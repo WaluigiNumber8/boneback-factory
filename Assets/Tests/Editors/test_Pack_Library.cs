@@ -5,53 +5,45 @@ using UnityEngine.TestTools;
 
 public class test_Pack_Library
 {
+    private PackAsset pack;
+    private LibraryOverseer lib;
 
-    [Test]
-    public void create_new_pack_and_it_gets_saved()
+    [SetUp]
+    public void Setup()
     {
-        int amountBefore = PackLibraryOverseer.Instance.GetPackAmount;
+        lib = LibraryOverseer.Instance;
 
-        //Create Pack
         string packName = "Test Pack";
         string packDescription = "Created this pack for testing purposes.";
         string packAuthor = "TestAuthor";
         Sprite packIcon = Sprite.Create(new Texture2D(16, 16), new Rect(0, 0, 16, 16), new Vector2(0.5f, 0.5f));
-
+        
         PackBuilder packBuilder = new PackBuilder();
+        pack = packBuilder.BuildPack(packName, packDescription, packAuthor, packIcon);
+    }
 
-        packBuilder.CreateNewPack(packName, packDescription, packAuthor, packIcon);
+    [TearDown]
+    public void Teardown()
+    {
+        lib.Library.Remove(pack.PackName, pack.Author);
+    }
 
-        //Test if pack was put to the library.
-        Assert.AreEqual(amountBefore + 1, PackLibraryOverseer.Instance.GetPackAmount);
+    [Test]
+    public void create_new_pack_and_it_gets_saved()
+    {
+        int amountBefore = lib.Library.Count;
 
-        PackLibraryOverseer.Instance.RemovePackByName(packName);
+        lib.Library.Add(pack);
+
+        Assert.AreEqual(amountBefore + 1, lib.Library.Count);
     }
 
     [Test]
     public void create_new_pack_and_check_if_data_is_correct()
     {
-        //Create Pack
-        string packName = "Test Pack";
-        string packDescription = "Created this pack for testing purposes.";
-        string packAuthor = "TestAuthor";
-        Sprite packIcon = Sprite.Create(new Texture2D(16, 16), new Rect(0, 0, 16, 16), new Vector2(0.5f, 0.5f));
-
-        PackBuilder packBuilder = new PackBuilder();
-
-        packBuilder.CreateNewPack(packName, packDescription, packAuthor, packIcon);
-        PackAsset foundPack = PackLibraryOverseer.Instance.FindPackByName("Test Pack");
-
-        //Test if pack is the same.
-        Assert.AreEqual(packName, foundPack.packName);
-
-        PackLibraryOverseer.Instance.RemovePackByName(packName);
+        lib.Library.Add(pack);
+        PackAsset foundPack = lib.Library.Find("Test Pack", "TestAuthor");
+        Assert.AreEqual(pack.PackName, foundPack.PackName);
     }
-
-    [Test]
-    public void is_the_library_empty()
-    {
-        Assert.AreEqual(0, PackLibraryOverseer.Instance.GetPackAmount);
-    }
-
 
 }
