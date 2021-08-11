@@ -1,4 +1,5 @@
 ﻿using RogiumLegend.Editors.PackData;
+using System;
 using UnityEngine;
 
 namespace RogiumLegend.ExternalStorage.Serialization
@@ -14,12 +15,13 @@ namespace RogiumLegend.ExternalStorage.Serialization
         /// </summary>
         /// <param name="packAsset">Formatted pack asset to convert.</param>
         /// <returns>A normal pack asset.</returns>
-        public static PackAsset DeserializePackAsset(FormattedPackAsset packAsset)
+        public static PackAsset DeserializePackAsset(SerializedPackAsset packAsset)
         {
             PackAsset pack = new PackAsset(packAsset.packName,
                                            packAsset.description,
                                            packAsset.author,
-                                           DeserializeSprite(packAsset.icon));
+                                           DeserializeSprite(packAsset.icon),
+                                           DateTime.Parse(packAsset.creationDateTime));
             return pack;
         }
 
@@ -50,11 +52,11 @@ namespace RogiumLegend.ExternalStorage.Serialization
         /// <returns>A Sprite that Unity can use.</returns>
         public static Sprite DeserializeSprite(SerializedSprite spr)
         {
-            Texture2D texture = new Texture2D(spr.TextureWidth, spr.TextureHeight);
-            ImageConversion.LoadImage(texture, spr.TextureBytes);
+            Texture2D texture = new Texture2D(spr.textureWidth, spr.textureHeight);
+            ImageConversion.LoadImage(texture, spr.textureBytes);
             Sprite sprite = Sprite.Create(texture,
-                                          new Rect(spr.X, spr.Y, spr.Width, spr.Height),
-                                          new Vector2(spr.PivotX, spr.PivotY));
+                                          new Rect(spr.x, spr.y, spr.width, spr.height),
+                                          new Vector2(spr.pivotX, spr.pivotY));
 
             return sprite;
         }

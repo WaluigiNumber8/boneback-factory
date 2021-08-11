@@ -24,7 +24,7 @@ namespace RogiumLegend.ExternalStorage
         {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Create);
-            FormattedPackAsset formattedAsset = new FormattedPackAsset(pack);
+            SerializedPackAsset formattedAsset = new SerializedPackAsset(pack);
 
             formatter.Serialize(stream, formattedAsset);
             stream.Close();
@@ -49,7 +49,7 @@ namespace RogiumLegend.ExternalStorage
                 string filePath = Path.Combine(path, files[i].Name);
                 FileStream stream = new FileStream(filePath, FileMode.Open);
 
-                FormattedPackAsset asset = (FormattedPackAsset)formatter.Deserialize(stream);
+                SerializedPackAsset asset = (SerializedPackAsset)formatter.Deserialize(stream);
                 assets.Add(SerializationFuncs.DeserializePackAsset(asset));
 
                 stream.Close();

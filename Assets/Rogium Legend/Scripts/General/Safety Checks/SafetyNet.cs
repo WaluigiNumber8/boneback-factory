@@ -9,6 +9,26 @@ namespace RogiumLegend.Global.SafetyChecks
     {
         public static event Action<string> OnFireErrorMessage;
 
+        #region Object Checks
+
+        /// <summary>
+        /// Checks if a given object is not null.
+        /// </summary>
+        /// <param name="obj">The object to check.</param>
+        /// <param name="variableName">Name of the checked variable.</param>
+        /// <exception cref="SafetyNetException"></exception>
+        public static void EnsureIsNotNull(object obj, string variableName)
+        {
+            if (obj == null)
+            {
+                string message = $"'{variableName}' cannot be null.";
+                OnFireErrorMessage?.Invoke(message);
+                throw new SafetyNetException(message);
+            }
+        }
+
+        #endregion
+
         #region String Checks
         /// /// <summary>
         /// Checks if a string is shorter that minLimit.
@@ -66,30 +86,14 @@ namespace RogiumLegend.Global.SafetyChecks
         /// </summary>
         /// <param name="list">The list to check.</param>
         /// <param name="variableName">The name of the list</param>
-        /// <exception cref="CollectionSizeException"></exception>
+        /// <exception cref="SafetyNetCollectionException"></exception>
         public static void EnsureListIsNotEmpty<T>(IList<T> list, string variableName)
         {
             if (list.Count <= 0)
             {
                 string message = $"The list '{variableName}' cannot be empty.";
                 OnFireErrorMessage?.Invoke(message);
-                throw new CollectionSizeException(message);
-            }
-        }
-
-        /// <summary>
-        /// Checks if a given list is not empty or null.
-        /// </summary>
-        /// <param name="list">The list to check.</param>
-        /// <param name="variableName">The name of the list</param>
-        /// <exception cref="CollectionSizeException"></exception>
-        public static void EnsureListIsNotNull<T>(IList<T> list, string variableName)
-        {
-            if (list == null)
-            {
-                string message = $"The list '{variableName}' cannot be null.";
-                OnFireErrorMessage?.Invoke(message);
-                throw new CollectionSizeException(message);
+                throw new SafetyNetCollectionException(message);
             }
         }
 
@@ -98,14 +102,14 @@ namespace RogiumLegend.Global.SafetyChecks
         /// </summary>
         /// <param name="list">The list to check.</param>
         /// <param name="variableName">The name of the list</param>
-        /// <exception cref="CollectionSizeException"></exception>
+        /// <exception cref="SafetyNetCollectionException"></exception>
         public static void EnsureListIsNotEmptyOrNull<T>(IList<T> list, string variableName)
         {
             if (list == null || list.Count <= 0)
             {
                 string message = $"The list '{variableName}' cannot be empty or null.";
                 OnFireErrorMessage?.Invoke(message);
-                throw new CollectionSizeException(message);
+                throw new SafetyNetCollectionException(message);
             }
         }
 
@@ -115,14 +119,98 @@ namespace RogiumLegend.Global.SafetyChecks
         /// <param name="list">The list to check.</param>
         /// <param name="maxAllowedSize">Max allowed size for the list.</param>
         /// <param name="variableName">The name of the list</param>
-        /// <exception cref="CollectionSizeException"></exception>
-        public static void EnsureListIsNotLongerOrEqualThan<T>(IList<T> list, int maxAllowedSize, string variableName)
+        /// <exception cref="SafetyNetCollectionException"></exception>
+        public static void EnsureListIsNotLongerThan<T>(IList<T> list, int maxAllowedSize, string variableName)
         {
-            if (list.Count <= maxAllowedSize)
+            if (list.Count > maxAllowedSize)
             {
                 string message = $"The list '{variableName}' cannot have more than {maxAllowedSize} elements.";
                 OnFireErrorMessage?.Invoke(message);
-                throw new CollectionSizeException(message);
+                throw new SafetyNetCollectionException(message);
+            }
+        }
+
+        /// <summary>
+        /// Checks if a given list has a size lower or equal to a specific size.
+        /// </summary>
+        /// <param name="list">The list to check.</param>
+        /// <param name="maxAllowedSize">Max allowed size for the list.</param>
+        /// <param name="variableName">The name of the list</param>
+        /// <exception cref="SafetyNetCollectionException"></exception>
+        public static void EnsureListIsNotLongerOrEqualThan<T>(IList<T> list, int maxAllowedSize, string variableName)
+        {
+            if (list.Count >= maxAllowedSize)
+            {
+                string message = $"The list '{variableName}' cannot have more or equal to {maxAllowedSize} elements.";
+                OnFireErrorMessage?.Invoke(message);
+                throw new SafetyNetCollectionException(message);
+            }
+        }
+
+        /// <summary>
+        /// Checks if a given list has a size bigger than a specific value.
+        /// </summary>
+        /// <param name="list">The list to check.</param>
+        /// <param name="minAllowedSize">Min allowed size for the list.</param>
+        /// <param name="variableName">The name of the list</param>
+        /// <exception cref="SafetyNetCollectionException"></exception>
+        public static void EnsureListIsNotShorterThan<T>(IList<T> list, int minAllowedSize, string variableName)
+        {
+            if (list.Count < minAllowedSize)
+            {
+                string message = $"The list '{variableName}' cannot have less than {minAllowedSize} elements.";
+                OnFireErrorMessage?.Invoke(message);
+                throw new SafetyNetCollectionException(message);
+            }
+        }
+
+        /// <summary>
+        /// Checks if a given list has a size bigger or equal to a specific value.
+        /// </summary>
+        /// <param name="list">The list to check.</param>
+        /// <param name="minAllowedSize">Min allowed size for the list.</param>
+        /// <param name="variableName">The name of the list</param>
+        /// <exception cref="SafetyNetCollectionException"></exception>
+        public static void EnsureListIsNotShorterOrEqualThan<T>(IList<T> list, int minAllowedSize, string variableName)
+        {
+            if (list.Count <= minAllowedSize)
+            {
+                string message = $"The list '{variableName}' cannot have less or equal to {minAllowedSize} elements.";
+                OnFireErrorMessage?.Invoke(message);
+                throw new SafetyNetCollectionException(message);
+            }
+        }
+
+        /// <summary>
+        /// Checks if a given list has a specific size.
+        /// </summary>
+        /// <param name="list">The list to check.</param>
+        /// <param name="size">The allowed size for the list.</param>
+        /// <param name="variableName">The name of the list</param>
+        /// <exception cref="SafetyNetCollectionException"></exception>
+        public static void EnsureListIsLongExactly<T>(IList<T> list, int size, string variableName)
+        {
+            if (list.Count == size)
+            {
+                string message = $"The list '{variableName}' must have exactly {size} elements.";
+                OnFireErrorMessage?.Invoke(message);
+                throw new SafetyNetCollectionException(message);
+            }
+        }
+
+        /// <summary>
+        /// Checks if List already conatins a given asset.
+        /// </summary>
+        /// <typeparam name="T">Asset type</typeparam>
+        /// <param name="asset">The Asset we check the duplicity for.</param>
+        /// <exception cref="SafetyNetCollectionException"></exception>
+        public static void EnsureListNotContains<T>(IList<T> list, T asset, string variableName)
+        {
+            if (list.Contains(asset))
+            {
+                string message = $"The list '{variableName}' already contains '{asset}'.";
+                OnFireErrorMessage?.Invoke(message);
+                throw new SafetyNetCollectionException(message);
             }
         }
 

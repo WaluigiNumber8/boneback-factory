@@ -3,7 +3,6 @@ using RogiumLegend.Global.SafetyChecks;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
 namespace RogiumLegend.Editors.PackData
 {
@@ -12,7 +11,7 @@ namespace RogiumLegend.Editors.PackData
     /// </summary>
     public class PackList : IList<PackAsset>
     {
-        private readonly List<PackAsset> list;
+        private List<PackAsset> list;
 
         public PackList()
         {
@@ -25,6 +24,7 @@ namespace RogiumLegend.Editors.PackData
         /// <param name="pack">The PackAsset to add.</param>
         public void Add(PackAsset pack)
         {
+            SafetyNet.EnsureListNotContains(this, pack, "List of Packs");
             ExternalStorageOverseer.Instance.Save(pack);
             list.Add(pack);
         }
@@ -35,7 +35,9 @@ namespace RogiumLegend.Editors.PackData
         /// <param name="name">The name of the pack to remove.</param>
         public void Remove(string name, string author)
         {
-            PackAsset foundPack = Find(name, author);
+            PackAsset foundPack = TryFinding(name, author);
+            SafetyNet.EnsureIsNotNull(foundPack, "Pack to Remove");
+
             ExternalStorageOverseer.Instance.Delete(foundPack);
             list.Remove(foundPack);
         }
@@ -48,28 +50,36 @@ namespace RogiumLegend.Editors.PackData
         /// </summary>
         /// <param name="packName">The name by which we are searching</param>
         /// <returns>The pack asset with the given name</returns>
-        public IList<PackAsset> Find(string packName)
+        public IList<PackAsset> TryFinding(string packName)
         {
-            IList<PackAsset> foundPacks = this.Where(pack => pack.PackName == packName).ToList();
-
-            SafetyNet.EnsureListIsNotNull(foundPacks, "Found Packs by name");
+            IList<PackAsset> foundPacks = this.Where(pack => pack.packName == packName).ToList();
             return new List<PackAsset>(foundPacks);
         }
 
         /// <summary>
         /// Finds a pack in the library by a given name and a given author.
+        /// If no pack is found, returns NULL.
         /// </summary>
         /// <param name="packName">The name by which we are searching</param>
         /// <param name="author">The name of the author who created the pack.</param>
         /// <returns>The pack asset with the given name</returns>
-        public PackAsset Find(string packName, string author)
+        public PackAsset TryFinding(string packName, string author)
         {
-            IList<PackAsset> foundPacks = this.Where(pack => pack.PackName == packName
-                                                        && pack.Author == author).ToList();
+            IList<PackAsset> foundPacks = this.Where(pack => pack.packName == packName
+                                                        && pack.author == author).ToList();
 
-            SafetyNet.EnsureListIsNotNull(foundPacks, "Found Packs by name & author");
-            SafetyNet.EnsureListIsNotLongerOrEqualThan(foundPacks, 1, "Found Packs by name & author");
+            SafetyNet.EnsureListIsNotLongerThan(foundPacks, 1, "Found Packs by name & author");
+            if (foundPacks.Count == 0) return null;
             return foundPacks[0];
+        }
+
+        /// <summary>
+        /// Replaces the current list with a new one.
+        /// </summary>
+        /// <param name="newList">The list to replace it with.</param>
+        public void Replace(IList<PackAsset> newList)
+        {
+            list = new List<PackAsset>(newList);
         }
 
         #region Untouched Overrides
@@ -84,6 +94,7 @@ namespace RogiumLegend.Editors.PackData
 
         public void Insert(int index, PackAsset item)
         {
+            SafetyNet.EnsureListNotContains(this, item, "List of Packs");
             list.Insert(index, item);
         }
 

@@ -1,14 +1,15 @@
-using RogiumLegend.ExternalStorage.Serialization;
+using System;
 using UnityEngine;
 
 namespace RogiumLegend.Editors.PackData
 {
     public class PackAsset
     {
-        private readonly string packName;
-        private readonly string description;
-        private readonly string author;
-        private readonly Sprite icon;
+        public readonly string packName;
+        public readonly string description;
+        public readonly string author;
+        public readonly Sprite icon;
+        public readonly DateTime creationDateTime;
 
         public PackAsset(string packName, string description, string author, Sprite icon)
         {
@@ -16,12 +17,31 @@ namespace RogiumLegend.Editors.PackData
             this.description = description;
             this.author = author;
             this.icon = icon;
+            this.creationDateTime = DateTime.Now;
         }
 
-        public string PackName { get => packName; }
-        public string Description { get => description; }
-        public string Author { get => author; }
-        public Sprite Icon { get => icon; }
+        public PackAsset(string packName, string description, string author, Sprite icon, DateTime creationDateTime)
+        {
+            this.packName = packName;
+            this.description = description;
+            this.author = author;
+            this.icon = icon;
+            this.creationDateTime = creationDateTime;
+        }
+
+        public override bool Equals(object obj)
+        {
+            PackAsset pack = (PackAsset)obj;
+            if (pack.packName == packName && pack.author == author && pack.creationDateTime == creationDateTime)
+                return true;
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            string hash = packName + author + creationDateTime;
+            return hash.GetHashCode();
+        }
     }
 }
 

@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using RogiumLegend.Editors.PackData;
 using RogiumLegend.ExternalStorage;
+using RogiumLegend.Global.SafetyChecks;
 using System.IO;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -24,7 +25,7 @@ public class test_Pack_Save_and_Load
         PackBuilder packBuilder = new PackBuilder();
         pack = packBuilder.BuildPack(packName, packDescription, packAuthor, packIcon);
         
-        path = Path.Combine(ExternalStorageOverseer.Instance.packDirectoryPath, pack.PackName + ExternalStorageOverseer.Instance.packExtension);
+        path = Path.Combine(ExternalStorageOverseer.Instance.packDirectoryPath, pack.packName + ExternalStorageOverseer.Instance.packExtension);
     }
 
     [TearDown]
@@ -32,21 +33,18 @@ public class test_Pack_Save_and_Load
     {
         try
         {
-            lib.Library.Remove(pack.PackName, pack.PackName);
-
+            lib.Library.Remove(pack.packName, pack.author);
         }
-        catch (MissingReferenceException)
+        catch (SafetyNetException)
         {
-
-            Debug.Log($"{pack.PackName} does not exist anymore. It might have been deleted already.");
-        }    
+            Debug.Log($"{pack.packName} does not exist anymore. It might have been deleted already.");
+        }
     }
 
     [Test]
     public void save_pack_to_storage()
     {
         lib.Library.Add(pack);
-
         Assert.AreEqual(true, File.Exists(path));
     }
 
@@ -60,11 +58,43 @@ public class test_Pack_Save_and_Load
     }
 
     [Test]
+    public void fail_when_removing_non_existing_packs_1()
+    {
+        try
+        {
+            lib.Library.Remove("Stupid Pack", "Idiota");
+            Assert.Fail();
+        }
+        catch (SafetyNetException)
+        {
+
+        }
+    }
+
+    [Test]
+    public void fail_when_removing_non_existing_packs_2()
+    {
+        try
+        {
+            lib.Library.Remove("Test Pack", "TestAuthor");
+            Assert.Fail();
+        }
+        catch (SafetyNetException)
+        {
+
+        }
+    }
+
+    [Test]
     public void try_to_save_pack_with_same_name()
     {
         lib.Library.Add(pack);
-        lib.Library.Add(pack);
-
+        try
+        {
+            lib.Library.Add(pack);
+            Assert.Fail();
+        }
+        catch (SafetyNetCollectionException) { }
     }
 
     [Test]
@@ -82,14 +112,14 @@ public class test_Pack_Save_and_Load
         lib.Library.Add(pack);
         lib.ReloadFromExternalStorage();
 
-        PackAsset foundPack = lib.Library.Find("Test Pack", "TestAuthor");
+        PackAsset foundPack = lib.Library.TryFinding("Test Pack", "TestAuthor");
 
-        byte[] currentBytes = ImageConversion.EncodeToPNG(pack.Icon.texture);
-        byte[] foundBytes = ImageConversion.EncodeToPNG(foundPack.Icon.texture);
+        byte[] currentBytes = ImageConversion.EncodeToPNG(pack.icon.texture);
+        byte[] foundBytes = ImageConversion.EncodeToPNG(foundPack.icon.texture);
 
-        Assert.AreEqual(pack.PackName, foundPack.PackName);
-        Assert.AreEqual(pack.Description, foundPack.Description);
-        Assert.AreEqual(pack.Author, foundPack.Author);
+        Assert.AreEqual(pack.packName, foundPack.packName);
+        Assert.AreEqual(pack.description, foundPack.description);
+        Assert.AreEqual(pack.author, foundPack.author);
         Assert.AreEqual(currentBytes, foundBytes);
     }
 

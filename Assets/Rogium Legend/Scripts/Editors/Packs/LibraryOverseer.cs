@@ -40,7 +40,7 @@ namespace RogiumLegend.Editors.PackData
         /// </summary>
         public void ReloadFromExternalStorage()
         {
-            library = (PackList)ExternalStorageOverseer.Instance.LoadAllPacks();
+            library.Replace(ExternalStorageOverseer.Instance.LoadAllPacks());
         }
 
         public PackList Library { get => library; }
