@@ -1,7 +1,4 @@
 ﻿using RogiumLegend.ExternalStorage;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace RogiumLegend.Editors.PackData
 {
@@ -40,7 +37,7 @@ namespace RogiumLegend.Editors.PackData
         /// </summary>
         public void ReloadFromExternalStorage()
         {
-            library.Replace(ExternalStorageOverseer.Instance.LoadAllPacks());
+            library.ReplaceAll(ExternalStorageOverseer.Instance.LoadAllPacks());
         }
 
         public PackList Library { get => library; }

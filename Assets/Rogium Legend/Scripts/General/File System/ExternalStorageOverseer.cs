@@ -50,7 +50,7 @@ namespace RogiumLegend.ExternalStorage
         /// <param name="pack">The pack to save.</param>
         public void Save(PackAsset pack)
         {
-            string savePath = Path.Combine(packDirectoryPath, pack.packName + packExtension);
+            string savePath = Path.Combine(packDirectoryPath, pack.PackInfo.packName + packExtension);
             FileSystem.SavePackAsset(savePath, pack);
         }
 
@@ -69,7 +69,7 @@ namespace RogiumLegend.ExternalStorage
         /// </summary>
         public void Delete(PackAsset pack)
         {
-            string removePath = Path.Combine(packDirectoryPath, pack.packName + packExtension);
+            string removePath = Path.Combine(packDirectoryPath, pack.PackInfo.packName + packExtension);
             FileSystem.DeletePack(removePath);
         }
     }

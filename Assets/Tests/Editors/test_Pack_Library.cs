@@ -25,7 +25,7 @@ public class test_Pack_Library
     [TearDown]
     public void Teardown()
     {
-        lib.Library.Remove(pack.packName, pack.author);
+        lib.Library.Remove(pack.PackInfo.packName, pack.PackInfo.author);
     }
 
     [Test]
@@ -43,7 +43,7 @@ public class test_Pack_Library
     {
         lib.Library.Add(pack);
         PackAsset foundPack = lib.Library.TryFinding("Test Pack", "TestAuthor");
-        Assert.AreEqual(pack.packName, foundPack.packName);
+        Assert.AreEqual(pack.PackInfo.packName, foundPack.PackInfo.packName);
     }
 
 }

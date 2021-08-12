@@ -24,7 +24,7 @@ namespace RogiumLegend.ExternalStorage
         {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Create);
-            SerializedPackAsset formattedAsset = new SerializedPackAsset(pack);
+            SerializedPackAsset formattedAsset = new SerializedPackAsset(pack.PackInfo);
 
             formatter.Serialize(stream, formattedAsset);
             stream.Close();

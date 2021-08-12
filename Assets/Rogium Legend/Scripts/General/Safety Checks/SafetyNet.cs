@@ -29,6 +29,17 @@ namespace RogiumLegend.Global.SafetyChecks
 
         #endregion
 
+        #region Int Checks
+            
+        public static void EnsureIntIsBiggerThan(int integer, int minSize, string variableName)
+        {
+            string message = $"Integer called '{variableName}' must be above {minSize}";
+            OnFireErrorMessage?.Invoke(message);
+            throw new SafetyNetException(message);
+        }
+
+        #endregion
+
         #region String Checks
         /// /// <summary>
         /// Checks if a string is shorter that minLimit.

@@ -1,47 +1,48 @@
-using System;
-using UnityEngine;
+using RogiumLegend.Editors.PaletteData;
+using RogiumLegend.Editors.RoomData;
+using System.Collections.Generic;
 
 namespace RogiumLegend.Editors.PackData
 {
     public class PackAsset
     {
-        public readonly string packName;
-        public readonly string description;
-        public readonly string author;
-        public readonly Sprite icon;
-        public readonly DateTime creationDateTime;
+        private PackInfoAsset packInfo;
+        private List<PaletteAsset> palettes;
+        private List<RoomAsset> rooms;
 
-        public PackAsset(string packName, string description, string author, Sprite icon)
+        public PackAsset(PackInfoAsset packInfo)
         {
-            this.packName = packName;
-            this.description = description;
-            this.author = author;
-            this.icon = icon;
-            this.creationDateTime = DateTime.Now;
+            this.packInfo = packInfo;
         }
 
-        public PackAsset(string packName, string description, string author, Sprite icon, DateTime creationDateTime)
+        /// <summary>
+        /// Updates the packs Pack Information.
+        /// </summary>
+        /// <param name="packinfo">New Pack Information Container.</param>
+        public void UpdatePackInfo(PackInfoAsset packinfo)
         {
-            this.packName = packName;
-            this.description = description;
-            this.author = author;
-            this.icon = icon;
-            this.creationDateTime = creationDateTime;
+            this.packInfo = new PackInfoAsset(packInfo.packName, packinfo.description, packinfo.author, packInfo.icon, packInfo.creationDateTime);
         }
 
         public override bool Equals(object obj)
         {
             PackAsset pack = (PackAsset)obj;
-            if (pack.packName == packName && pack.author == author && pack.creationDateTime == creationDateTime)
+            if (pack.packInfo.packName == packInfo.packName &&
+                pack.packInfo.author == packInfo.author &&
+                pack.packInfo.creationDateTime == packInfo.creationDateTime)
                 return true;
             return false;
         }
 
         public override int GetHashCode()
         {
-            string hash = packName + author + creationDateTime;
+            string hash = packInfo.packName + packInfo.author + packInfo.creationDateTime;
             return hash.GetHashCode();
         }
+
+        public PackInfoAsset PackInfo { get => packInfo; }
+        public List<PaletteAsset> Palettes { get => palettes; }
+        public List<RoomAsset> Rooms { get => rooms; }
     }
 }
 

@@ -52,7 +52,7 @@ namespace RogiumLegend.Editors.PackData
         /// <returns>The pack asset with the given name</returns>
         public IList<PackAsset> TryFinding(string packName)
         {
-            IList<PackAsset> foundPacks = this.Where(pack => pack.packName == packName).ToList();
+            IList<PackAsset> foundPacks = this.Where(pack => pack.PackInfo.packName == packName).ToList();
             return new List<PackAsset>(foundPacks);
         }
 
@@ -65,8 +65,8 @@ namespace RogiumLegend.Editors.PackData
         /// <returns>The pack asset with the given name</returns>
         public PackAsset TryFinding(string packName, string author)
         {
-            IList<PackAsset> foundPacks = this.Where(pack => pack.packName == packName
-                                                        && pack.author == author).ToList();
+            IList<PackAsset> foundPacks = this.Where(pack => pack.PackInfo.packName == packName
+                                                        && pack.PackInfo.author == author).ToList();
 
             SafetyNet.EnsureListIsNotLongerThan(foundPacks, 1, "Found Packs by name & author");
             if (foundPacks.Count == 0) return null;
@@ -77,7 +77,7 @@ namespace RogiumLegend.Editors.PackData
         /// Replaces the current list with a new one.
         /// </summary>
         /// <param name="newList">The list to replace it with.</param>
-        public void Replace(IList<PackAsset> newList)
+        public void ReplaceAll(IList<PackAsset> newList)
         {
             list = new List<PackAsset>(newList);
         }
