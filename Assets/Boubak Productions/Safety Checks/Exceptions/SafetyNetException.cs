@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace RogiumLegend.Global.SafetyChecks
+namespace BoubakProductions.Safety
 {
     public class SafetyNetException : System.Exception
     {

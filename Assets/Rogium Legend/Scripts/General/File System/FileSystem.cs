@@ -1,11 +1,9 @@
-﻿using RogiumLegend.Editors.PackData;
+﻿using BoubakProductions.Safety;
+using RogiumLegend.Editors.PackData;
 using RogiumLegend.ExternalStorage.Serialization;
-using RogiumLegend.Global.SafetyChecks;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using UnityEngine;
 
 namespace RogiumLegend.ExternalStorage
 {
@@ -14,7 +12,6 @@ namespace RogiumLegend.ExternalStorage
     /// </summary>
     public static class FileSystem
     {
-
         /// <summary>
         /// Save pack to external storage.
         /// </summary>

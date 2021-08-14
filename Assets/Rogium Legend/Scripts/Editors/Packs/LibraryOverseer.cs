@@ -40,6 +40,23 @@ namespace RogiumLegend.Editors.PackData
             library.ReplaceAll(ExternalStorageOverseer.Instance.LoadAllPacks());
         }
 
+        /// <summary>
+        /// Creates a new Pack, and adds it to the library.
+        /// </summary>
+        public void CreateAndAddPack()
+        {
+            PackAsset newPack = new PackAsset();
+            library.Add(newPack);
+        }
+
+        /// <summary>
+        /// Prepare one of the packs in the library for editing.
+        /// </summary>
+        public void ActivatePackEditor(int packIndex)
+        {
+            PackEditorOverseer.Instance.AssignNewPack(library[packIndex]);
+        }
+
         public PackList Library { get => library; }
     }
 }

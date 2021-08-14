@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.IO;
-using UnityEngine;
 
-namespace RogiumLegend.Global.SafetyChecks
+namespace BoubakProductions.Safety
 {
     public class SafetyNetIO
     {

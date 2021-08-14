@@ -1,5 +1,5 @@
-﻿using RogiumLegend.ExternalStorage;
-using RogiumLegend.Global.SafetyChecks;
+﻿using BoubakProductions.Safety;
+using RogiumLegend.ExternalStorage;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;

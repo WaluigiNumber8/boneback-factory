@@ -1,48 +1,60 @@
 ﻿using NUnit.Framework;
+using RogiumLegend.Editors;
 using RogiumLegend.Editors.PackData;
-using RogiumLegend.Global.SafetyChecks;
+using RogiumLegend.Editors.RoomData;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace Assets.Tests.Editors
+public class test_Room_Editor
 {
-    public class test_Room_Editor
+    private LibraryOverseer lib;
+    private PackEditorOverseer packEditor;
+    private RoomEditorOverseer roomEditor;
+    private PackAsset pack;
+
+    [SetUp]
+    public void Setup()
     {
-        private LibraryOverseer lib;
-        private PackBuilder packBuilder;
-        private PackAsset pack;
+        lib = LibraryOverseer.Instance;
+        packEditor = PackEditorOverseer.Instance;
+        roomEditor = RoomEditorOverseer.Instance;
 
-        [SetUp]
-        public void Setup()
-        {
-            lib = LibraryOverseer.Instance;
+        string packName = "Test Pack";
+        string packDescription = "Created this pack for testing purposes.";
+        string packAuthor = "TestAuthor";
+        Sprite packIcon = Sprite.Create(new Texture2D(16, 16), new Rect(0, 0, 16, 16), new Vector2(0.5f, 0.5f));
 
-            string packName = "Test Pack";
-            string packDescription = "Created this pack for testing purposes.";
-            string packAuthor = "TestAuthor";
-            Sprite packIcon = Sprite.Create(new Texture2D(16, 16), new Rect(0, 0, 16, 16), new Vector2(0.5f, 0.5f));
+        pack = new PackAsset(new PackInfoAsset(packName, packDescription, packAuthor, packIcon));
+        lib.Library.Add(pack);
 
-            packBuilder = new PackBuilder();
-            pack = packBuilder.BuildPack(packName, packDescription, packAuthor, packIcon);
-        }
+        lib.ActivatePackEditor(0);
+    }
 
-        [TearDown]
-        public void Teardown()
-        {
-            try
-            {
-                lib.Library.Remove(pack.PackInfo.packName, pack.PackInfo.author);
-            }
-            catch (SafetyNetException)
-            {
-                Debug.Log($"{pack.PackInfo.packName} does not exist anymore. It might have been deleted already.");
-            }
-        }
+    [TearDown]
+    public void Teardown()
+    {
+            lib.Library.Remove(pack.PackInfo.packName, pack.PackInfo.author);
+    }
 
-        [Test]
-        public void create_new_room()
-        {
+    [Test]
+    public void create_new_room()
+    {
+        int roomsBefore = packEditor.CurrentPack.Rooms.Count;
+        packEditor.CreateNewRoom();
 
-        }
+        Assert.AreEqual(roomsBefore + 1, packEditor.CurrentPack.Rooms.Count);
+    }
+
+    [Test]
+    public void ensure_room_data_saves_correctly()
+    {
+        packEditor.CreateNewRoom();
+        string roomName = packEditor.CurrentPack.Rooms[0].RoomName;
+
+        packEditor.CompleteEditing();
+        lib.ReloadFromExternalStorage();
+        lib.ActivatePackEditor(0);
+
+        Assert.AreEqual(roomName, packEditor.CurrentPack.Rooms[0].RoomName);
     }
 }

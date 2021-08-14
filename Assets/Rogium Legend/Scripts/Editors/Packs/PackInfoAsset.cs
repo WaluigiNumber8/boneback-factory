@@ -19,7 +19,6 @@ namespace RogiumLegend.Editors.PackData
             this.icon = icon;
             creationDateTime = DateTime.Now;
         }
-
         public PackInfoAsset(string packName, string description, string author, Sprite icon, DateTime creationDateTime)
         {
             this.packName = packName;

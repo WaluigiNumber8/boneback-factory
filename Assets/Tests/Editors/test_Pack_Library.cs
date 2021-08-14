@@ -18,8 +18,7 @@ public class test_Pack_Library
         string packAuthor = "TestAuthor";
         Sprite packIcon = Sprite.Create(new Texture2D(16, 16), new Rect(0, 0, 16, 16), new Vector2(0.5f, 0.5f));
         
-        PackBuilder packBuilder = new PackBuilder();
-        pack = packBuilder.BuildPack(packName, packDescription, packAuthor, packIcon);
+        pack = new PackAsset(new PackInfoAsset(packName, packDescription, packAuthor, packIcon));
     }
 
     [TearDown]

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace RogiumLegend.Global.SafetyChecks
+namespace BoubakProductions.Safety
 {
     public class SafetyNetCollectionException : Exception
     {

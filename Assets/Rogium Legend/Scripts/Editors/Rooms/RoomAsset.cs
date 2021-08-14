@@ -1,19 +1,25 @@
-using RogiumLegend.Global.SafetyChecks;
-using System.Collections;
-using System.Collections.Generic;
+using BoubakProductions.Safety;
+using RogiumLegend.Global.GridSystem;
 using UnityEngine;
 
 namespace RogiumLegend.Editors.RoomData
 {
+    /// <summary>
+    /// Contains all data needed for a pack room.
+    /// </summary>
     public class RoomAsset
     {
+        private static readonly Vector2Int gridSize = new Vector2Int(20, 15);
+
         private string roomName;
         private int difficultyLevel;
+        private ObjectGrid<TileAsset> tileGrid;
 
         public RoomAsset()
         {
             roomName = "New Room";
             difficultyLevel = 1;
+            tileGrid = new ObjectGrid<TileAsset>(gridSize.x, gridSize.y, () => new TileAsset());
         }
 
         public RoomAsset(string roomName, int difficultyLevel)
@@ -22,6 +28,7 @@ namespace RogiumLegend.Editors.RoomData
 
             this.roomName = roomName;
             this.difficultyLevel = difficultyLevel;
+            tileGrid = new ObjectGrid<TileAsset>(gridSize.x, gridSize.y, () => new TileAsset());
         }
 
         public string RoomName { get => roomName;  }

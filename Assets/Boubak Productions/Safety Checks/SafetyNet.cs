@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RogiumLegend.Global.SafetyChecks
+namespace BoubakProductions.Safety
 {
     public class SafetyNet
     {
@@ -30,12 +30,86 @@ namespace RogiumLegend.Global.SafetyChecks
         #endregion
 
         #region Int Checks
-            
+        
+        /// <summary>
+        /// Checks if an integer is bigger than a specific size.
+        /// </summary>
+        /// <param name="integer">The INT to check.</param>
+        /// <param name="minSize">Minimum size allowed.</param>
+        /// <param name="variableName">Name of the checked variable.</param>
         public static void EnsureIntIsBiggerThan(int integer, int minSize, string variableName)
         {
-            string message = $"Integer called '{variableName}' must be above {minSize}";
-            OnFireErrorMessage?.Invoke(message);
-            throw new SafetyNetException(message);
+            if (integer < minSize)
+            {
+                string message = $"Integer called '{variableName}' must be above {minSize}";
+                OnFireErrorMessage?.Invoke(message);
+                throw new SafetyNetException(message);
+            }
+        }
+
+        /// <summary>
+        /// Checks if an integer is bigger than or equal to a specific size.
+        /// </summary>
+        /// <param name="integer">The INT to check.</param>
+        /// <param name="minSize">Minimum size allowed.</param>
+        /// <param name="variableName">Name of the checked variable.</param>
+        public static void EnsureIntIsBiggerOrEqualTo(int integer, int minSize, string variableName)
+        {
+            if (integer >= minSize)
+            {
+                string message = $"Integer called '{variableName}' must be above or equal to {minSize}";
+                OnFireErrorMessage?.Invoke(message);
+                throw new SafetyNetException(message);
+            }
+        }
+
+        /// <summary>
+        /// Checks if an integer is smaller than a specific size.
+        /// </summary>
+        /// <param name="integer">The INT to check.</param>
+        /// <param name="maxSize">Maximum size allowed.</param>
+        /// <param name="variableName">Name of the checked variable.</param>
+        public static void EnsureIntIsSmallerThan(int integer, int maxSize, string variableName)
+        {
+            if (integer < maxSize)
+            {
+                string message = $"Integer called '{variableName}' must be below {maxSize}";
+                OnFireErrorMessage?.Invoke(message);
+                throw new SafetyNetException(message);
+            }
+        }
+
+        /// <summary>
+        /// Checks if an integer is smaller than or equal to a specific size.
+        /// </summary>
+        /// <param name="integer">The INT to check.</param>
+        /// <param name="maxSize">Maximum size allowed.</param>
+        /// <param name="variableName">Name of the checked variable.</param>
+        public static void EnsureIntIsSmallerOrEqualTo(int integer, int maxSize, string variableName)
+        {
+            if (integer <= maxSize)
+            {
+                string message = $"Integer called '{variableName}' must be below or equal to {maxSize}";
+                OnFireErrorMessage?.Invoke(message);
+                throw new SafetyNetException(message);
+            }
+        }
+
+        /// <summary>
+        /// Checks if an integer is within a given range (both inclusive).
+        /// </summary>
+        /// <param name="integer">The INT to check.</param>
+        /// <param name="lowBounds">Minimum size allowed.</param>
+        /// <param name="highBounds">Maximum size allowed.</param>
+        /// <param name="variableName">Name of the checked variable.</param>
+        public static void EnsureIntIsInRange(int integer, int lowBounds, int highBounds, string variableName)
+        {
+            if (integer >= lowBounds && integer <= highBounds)
+            {
+                string message = $"Integer called '{variableName}' must be in range of {lowBounds} - {highBounds}.";
+                OnFireErrorMessage?.Invoke(message);
+                throw new SafetyNetException(message);
+            }
         }
 
         #endregion

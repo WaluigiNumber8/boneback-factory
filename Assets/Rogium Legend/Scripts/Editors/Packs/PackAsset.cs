@@ -1,17 +1,29 @@
+using BoubakProductions.Safety;
 using RogiumLegend.Editors.PaletteData;
 using RogiumLegend.Editors.RoomData;
 using System.Collections.Generic;
 
 namespace RogiumLegend.Editors.PackData
 {
+    /// <summary>
+    /// Contains all important data for a given pack.
+    /// </summary>
     public class PackAsset
     {
         private PackInfoAsset packInfo;
-        private List<PaletteAsset> palettes;
-        private List<RoomAsset> rooms;
+        private List<PaletteAsset> palettes = new List<PaletteAsset>();
+        private List<RoomAsset> rooms = new List<RoomAsset>();
 
+        public PackAsset()
+        {
+            //TODO - Plug in Default Data.
+            PackInfoAsset packInfo = new PackInfoAsset("New Pack", "", "ME", null);
+        }
         public PackAsset(PackInfoAsset packInfo)
         {
+            SafetyNet.EnsureStringInRange(packInfo.packName, 4, 30, "name");
+            SafetyNet.EnsureStringInRange(packInfo.description, 0, 2000, "description");
+
             this.packInfo = packInfo;
         }
 

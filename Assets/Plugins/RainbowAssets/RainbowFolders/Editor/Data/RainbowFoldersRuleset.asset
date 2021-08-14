@@ -23,7 +23,7 @@ MonoBehaviour:
     IsIconRecursive: 1
     BackgroundType: 130
     BackgroundTexture: {fileID: 0}
-    IsBackgroundRecursive: 1
+    IsBackgroundRecursive: 0
     IsHidden: 0
   - Type: 0
     Key: Audio
@@ -155,7 +155,7 @@ MonoBehaviour:
     IsIconRecursive: 1
     BackgroundType: 140
     BackgroundTexture: {fileID: 0}
-    IsBackgroundRecursive: 1
+    IsBackgroundRecursive: 0
     IsHidden: 0
   - Type: 0
     Key: Project
@@ -203,7 +203,7 @@ MonoBehaviour:
     IsIconRecursive: 1
     BackgroundType: 160
     BackgroundTexture: {fileID: 0}
-    IsBackgroundRecursive: 1
+    IsBackgroundRecursive: 0
     IsHidden: 0
   - Type: 0
     Key: Shaders
@@ -329,11 +329,11 @@ MonoBehaviour:
     Key: Assets/Rogium Legend/Assets
     Ordinal: 26
     Priority: 0
-    IconType: 1190
+    IconType: 1090
     SmallIcon: {fileID: 0}
     LargeIcon: {fileID: 0}
     IsIconRecursive: 1
-    BackgroundType: 190
+    BackgroundType: 90
     BackgroundTexture: {fileID: 0}
     IsBackgroundRecursive: 0
     IsHidden: 0
@@ -347,7 +347,7 @@ MonoBehaviour:
     IsIconRecursive: 1
     BackgroundType: 30
     BackgroundTexture: {fileID: 0}
-    IsBackgroundRecursive: 1
+    IsBackgroundRecursive: 0
     IsHidden: 0
   - Type: 1
     Key: Assets/Rogium Legend
@@ -370,6 +370,18 @@ MonoBehaviour:
     LargeIcon: {fileID: 0}
     IsIconRecursive: 1
     BackgroundType: 150
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
+  - Type: 1
+    Key: Assets/Rogium Legend/Tiles
+    Ordinal: 30
+    Priority: 0
+    IconType: 1200
+    SmallIcon: {fileID: 0}
+    LargeIcon: {fileID: 0}
+    IsIconRecursive: 1
+    BackgroundType: 180
     BackgroundTexture: {fileID: 0}
     IsBackgroundRecursive: 1
     IsHidden: 0

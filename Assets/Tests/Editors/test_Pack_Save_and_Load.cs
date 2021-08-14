@@ -1,7 +1,7 @@
+using BoubakProductions.Safety;
 using NUnit.Framework;
 using RogiumLegend.Editors.PackData;
 using RogiumLegend.ExternalStorage;
-using RogiumLegend.Global.SafetyChecks;
 using System.IO;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -9,7 +9,6 @@ using UnityEngine.TestTools;
 public class test_Pack_Save_and_Load
 {
     private LibraryOverseer lib;
-    private PackBuilder packBuilder;
     private PackAsset pack;
     private string path;
 
@@ -23,8 +22,8 @@ public class test_Pack_Save_and_Load
         string packAuthor = "TestAuthor";
         Sprite packIcon = Sprite.Create(new Texture2D(16, 16), new Rect(0, 0, 16, 16), new Vector2(0.5f, 0.5f));
 
-        packBuilder = new PackBuilder();
-        pack = packBuilder.BuildPack(packName, packDescription, packAuthor, packIcon);
+        PackInfoAsset packInfo = new PackInfoAsset(packName, packDescription, packAuthor, packIcon);
+        pack = new PackAsset(packInfo);
         
         path = Path.Combine(ExternalStorageOverseer.Instance.packDirectoryPath, pack.PackInfo.packName + ExternalStorageOverseer.Instance.packExtension);
     }
@@ -128,7 +127,7 @@ public class test_Pack_Save_and_Load
     public void update_pack_details()
     {
         PackInfoAsset newInfo = new PackInfoAsset(pack.PackInfo.packName, "This pack has now been updated", pack.PackInfo.author, pack.PackInfo.icon, pack.PackInfo.creationDateTime);
-        PackAsset oldPack = packBuilder.BuildPack(pack);
+        PackAsset oldPack = new PackAsset(pack.PackInfo);
 
         lib.Library.Add(pack);
         pack.UpdatePackInfo(newInfo);

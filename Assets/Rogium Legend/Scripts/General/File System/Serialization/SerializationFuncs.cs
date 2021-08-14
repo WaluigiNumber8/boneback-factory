@@ -17,13 +17,12 @@ namespace RogiumLegend.ExternalStorage.Serialization
         /// <returns>A normal pack asset.</returns>
         public static PackAsset DeserializePackAsset(SerializedPackAsset packAsset)
         {
-            PackBuilder builder = new PackBuilder();
-            PackAsset pack = builder.BuildPack(packAsset.packInfo.packName,
-                                               packAsset.packInfo.description,
-                                               packAsset.packInfo.author,
-                                               DeserializeSprite(packAsset.packInfo.icon),
-                                               DateTime.Parse(packAsset.packInfo.creationDateTime));
-                              
+            PackInfoAsset packInfo = new PackInfoAsset(packAsset.packInfo.packName,
+                                                       packAsset.packInfo.description,
+                                                       packAsset.packInfo.author,
+                                                       DeserializeSprite(packAsset.packInfo.icon),
+                                                       DateTime.Parse(packAsset.packInfo.creationDateTime));
+            PackAsset pack = new PackAsset(packInfo);
             return pack;
         }
 
