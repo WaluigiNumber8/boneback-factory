@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using BoubakProductions.Safety;
+using System;
+using System.Collections;
 using UnityEngine;
 
 namespace RogiumLegend.Editors.RoomData
@@ -8,6 +10,7 @@ namespace RogiumLegend.Editors.RoomData
     /// </summary>
     public class RoomEditorOverseer : IEditorOverseer
     {
+        public event Action<RoomAsset> OnAssignRoom;
         private RoomAsset currentRoom;
 
         #region Singleton Pattern
@@ -36,6 +39,8 @@ namespace RogiumLegend.Editors.RoomData
         /// <param name="room">The room that will be edited.</param>
         public void AssignCurrentAsset(RoomAsset room)
         {
+            SafetyNet.EnsureIsNotNull(room, "Assigned Room");
+            OnAssignRoom?.Invoke(room);
             currentRoom = room;
         }
 

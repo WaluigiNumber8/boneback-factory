@@ -20,7 +20,7 @@ namespace RogiumLegend.Editors.RoomData
         public TileAsset()
         {
             this.type = TileType.Wall;
-            this.tile = new Tile();
+            this.tile = ScriptableObject.CreateInstance<Tile>();
             this.tile.sprite = Sprite.Create(new Texture2D(16, 16), new Rect(0, 0, 16, 16), new Vector2(0.5f, 0.5f));
         }
         public TileAsset(Tile tile, TileType type)

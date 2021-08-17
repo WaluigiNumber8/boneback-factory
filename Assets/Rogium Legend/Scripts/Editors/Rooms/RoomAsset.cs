@@ -9,7 +9,7 @@ namespace RogiumLegend.Editors.RoomData
     /// </summary>
     public class RoomAsset
     {
-        private static readonly Vector2Int gridSize = new Vector2Int(20, 15);
+        public static readonly Vector2Int gridSize = new Vector2Int(20, 15);
 
         private string roomName;
         private int difficultyLevel;

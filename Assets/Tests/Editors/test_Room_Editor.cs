@@ -70,4 +70,15 @@ public class test_Room_Editor
         Assert.AreEqual(roomName, packEditor.CurrentPack.Rooms[0].RoomName);
     }
 
+    [Test]
+    public void remove_room_from_pack()
+    {
+        packEditor.CreateNewRoom();
+        int roomsBefore = packEditor.CurrentPack.Rooms.Count;
+
+        packEditor.CurrentPack.Rooms.RemoveAt(0);
+
+        Assert.Less(packEditor.CurrentPack.Rooms.Count, roomsBefore);
+    }
+
 }

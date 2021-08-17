@@ -1,8 +1,9 @@
-﻿using BoubakProductions.Safety;
+﻿using System;
+using UnityEngine;
+using BoubakProductions.Safety;
 using RogiumLegend.Editors.PackData;
 using RogiumLegend.Editors.RoomData;
 using RogiumLegend.ExternalStorage;
-using UnityEngine;
 
 namespace RogiumLegend.Editors
 {
@@ -11,6 +12,9 @@ namespace RogiumLegend.Editors
     /// </summary>
     public class PackEditorOverseer : IEditorOverseer
     {
+        private LibraryOverseer lib;
+        private RoomEditorOverseer roomEditor;
+
         private PackAsset currentPack;
 
         #region Singleton Pattern
@@ -31,7 +35,11 @@ namespace RogiumLegend.Editors
 
         #endregion
 
-        private PackEditorOverseer() { }
+        private PackEditorOverseer() 
+        {
+            lib = LibraryOverseer.Instance;
+            roomEditor = RoomEditorOverseer.Instance;
+        }
 
         /// <summary>
         /// Assigns a new pack for editing.
@@ -52,13 +60,27 @@ namespace RogiumLegend.Editors
         }
 
         /// <summary>
+        /// Deletes a room from the pack.
+        /// <param name="roomIndex">The index of the room to be deleted.</param>
+        /// </summary>
+        public void DeleteRoom(int roomIndex)
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Currect Pack");
+            SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Rooms, "List of Rooms");
+            SafetyNet.EnsureIntIsInRange(roomIndex, 0, currentPack.Rooms.Count, "Room Index");
+            currentPack.Rooms.RemoveAt(roomIndex);
+        }
+
+        /// <summary>
         /// Send Command to Room Editor, to start editing a room.
         /// </summary>
         /// <param name="roomIndex">Room index from the list</param>
         public void ActivateRoomEditor(int roomIndex)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Currect Pack");
-            RoomEditorOverseer.Instance.AssignCurrentAsset(CurrentPack.Rooms[roomIndex]);
+            SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Rooms, "List of Rooms");
+            SafetyNet.EnsureIntIsInRange(roomIndex, 0, currentPack.Rooms.Count, "Room Index");
+            roomEditor.AssignCurrentAsset(CurrentPack.Rooms[roomIndex]);
         }
 
         /// <summary>
