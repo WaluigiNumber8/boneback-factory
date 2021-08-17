@@ -1,4 +1,5 @@
-﻿using RogiumLegend.ExternalStorage;
+﻿using BoubakProductions.Safety;
+using RogiumLegend.ExternalStorage;
 
 namespace RogiumLegend.Editors.PackData
 {
@@ -54,6 +55,8 @@ namespace RogiumLegend.Editors.PackData
         /// </summary>
         public void ActivatePackEditor(int packIndex)
         {
+            SafetyNet.EnsureListIsNotEmptyOrNull(library, "Pack Library");
+            SafetyNet.EnsureIntIsInRange(packIndex, 0, library.Count, "packIndex for activating Pack Editor");
             PackEditorOverseer.Instance.AssignNewPack(library[packIndex]);
         }
 

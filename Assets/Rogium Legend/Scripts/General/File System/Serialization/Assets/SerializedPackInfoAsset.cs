@@ -21,7 +21,7 @@ namespace RogiumLegend.ExternalStorage.Serialization
             this.packName = packInfo.packName;
             this.description = packInfo.description;
             this.author = packInfo.author;
-            this.icon = SerializationFuncs.SerializeSprite(packInfo.icon);
+            this.icon = new SerializedSprite(packInfo.icon);
             this.creationDateTime = packInfo.creationDateTime.ToString();
         }
 

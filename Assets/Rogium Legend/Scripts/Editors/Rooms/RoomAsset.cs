@@ -15,23 +15,33 @@ namespace RogiumLegend.Editors.RoomData
         private int difficultyLevel;
         private ObjectGrid<TileAsset> tileGrid;
 
+        #region Constructors
         public RoomAsset()
         {
             roomName = "New Room";
             difficultyLevel = 1;
             tileGrid = new ObjectGrid<TileAsset>(gridSize.x, gridSize.y, () => new TileAsset());
         }
-
         public RoomAsset(string roomName, int difficultyLevel)
         {
             SafetyNet.EnsureIntIsBiggerThan(difficultyLevel, 0, "New Room Difficulty Level");
 
             this.roomName = roomName;
             this.difficultyLevel = difficultyLevel;
-            tileGrid = new ObjectGrid<TileAsset>(gridSize.x, gridSize.y, () => new TileAsset());
+            this.tileGrid = new ObjectGrid<TileAsset>(gridSize.x, gridSize.y, () => new TileAsset());
         }
+        public RoomAsset(string roomName, int difficultyLevel, ObjectGrid<TileAsset> tileGrid)
+        {
+            SafetyNet.EnsureIntIsBiggerThan(difficultyLevel, 0, "New Room Difficulty Level");
+
+            this.roomName = roomName;
+            this.difficultyLevel = difficultyLevel;
+            this.tileGrid = tileGrid;
+        }
+        #endregion
 
         public string RoomName { get => roomName;  }
         public int DifficultyLevel { get => difficultyLevel; }
+        public ObjectGrid<TileAsset> TileGrid { get => tileGrid; }
     }
 }

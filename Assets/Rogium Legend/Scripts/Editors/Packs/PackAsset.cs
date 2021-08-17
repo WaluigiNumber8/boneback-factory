@@ -26,6 +26,14 @@ namespace RogiumLegend.Editors.PackData
 
             this.packInfo = packInfo;
         }
+        public PackAsset(PackInfoAsset packInfo, List<RoomAsset> rooms)
+        {
+            SafetyNet.EnsureStringInRange(packInfo.packName, 4, 30, "name");
+            SafetyNet.EnsureStringInRange(packInfo.description, 0, 2000, "description");
+
+            this.packInfo = packInfo;
+            this.rooms = new List<RoomAsset>(rooms);
+        }
 
         /// <summary>
         /// Updates the packs Pack Information.

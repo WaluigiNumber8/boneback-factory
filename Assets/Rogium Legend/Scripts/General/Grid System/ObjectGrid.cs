@@ -4,7 +4,7 @@ using System;
 namespace RogiumLegend.Global.GridSystem
 {
     /// <summary>
-    /// An object that stores INT numbers in a grid array.
+    /// An object that stores T-type in a grid array.
     /// </summary>
     public class ObjectGrid<T>
     {
@@ -65,5 +65,6 @@ namespace RogiumLegend.Global.GridSystem
 
         public int Width { get => width; }
         public int Height { get => height; }
+        public T[,] CellArray => cellArray;
     }
 }

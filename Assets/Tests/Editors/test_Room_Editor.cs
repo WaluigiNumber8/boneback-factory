@@ -46,7 +46,19 @@ public class test_Room_Editor
     }
 
     [Test]
-    public void ensure_room_data_saves_correctly()
+    public void ensure_room_data_saves_correctly1()
+    {
+        packEditor.CreateNewRoom();
+        string roomName = packEditor.CurrentPack.Rooms[0].RoomName;
+
+        packEditor.CompleteEditing();
+        lib.ActivatePackEditor(0);
+
+        Assert.AreEqual(roomName, packEditor.CurrentPack.Rooms[0].RoomName);
+    }
+
+    [Test]
+    public void ensure_room_data_saves_correctly2()
     {
         packEditor.CreateNewRoom();
         string roomName = packEditor.CurrentPack.Rooms[0].RoomName;
@@ -57,4 +69,5 @@ public class test_Room_Editor
 
         Assert.AreEqual(roomName, packEditor.CurrentPack.Rooms[0].RoomName);
     }
+
 }

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 
 namespace RogiumLegend.Editors.RoomData
@@ -17,5 +16,20 @@ namespace RogiumLegend.Editors.RoomData
     {
         private Tile tile;
         private TileType type;
+
+        public TileAsset()
+        {
+            this.type = TileType.Wall;
+            this.tile = new Tile();
+            this.tile.sprite = Sprite.Create(new Texture2D(16, 16), new Rect(0, 0, 16, 16), new Vector2(0.5f, 0.5f));
+        }
+        public TileAsset(Tile tile, TileType type)
+        {
+            this.type = type;
+            this.tile = tile;
+        }
+
+        public Tile Tile { get => tile; }
+        public TileType Type { get => type;}
     }
 }

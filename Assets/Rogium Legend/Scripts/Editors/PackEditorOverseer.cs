@@ -1,4 +1,5 @@
-﻿using RogiumLegend.Editors.PackData;
+﻿using BoubakProductions.Safety;
+using RogiumLegend.Editors.PackData;
 using RogiumLegend.Editors.RoomData;
 using RogiumLegend.ExternalStorage;
 using UnityEngine;
@@ -56,6 +57,7 @@ namespace RogiumLegend.Editors
         /// <param name="roomIndex">Room index from the list</param>
         public void ActivateRoomEditor(int roomIndex)
         {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Currect Pack");
             RoomEditorOverseer.Instance.AssignCurrentAsset(CurrentPack.Rooms[roomIndex]);
         }
 
@@ -65,6 +67,7 @@ namespace RogiumLegend.Editors
         public void CompleteEditing()
         {
             ExternalStorageOverseer.Instance.Save(CurrentPack);
+            currentPack = null;
         }
 
         public PackAsset CurrentPack

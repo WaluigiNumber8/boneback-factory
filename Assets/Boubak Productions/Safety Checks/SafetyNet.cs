@@ -41,7 +41,7 @@ namespace BoubakProductions.Safety
         {
             if (integer < minSize)
             {
-                string message = $"Integer called '{variableName}' must be above {minSize}";
+                string message = $"Integer called '{variableName}' must be above {minSize}. ({integer})";
                 OnFireErrorMessage?.Invoke(message);
                 throw new SafetyNetException(message);
             }
@@ -57,7 +57,7 @@ namespace BoubakProductions.Safety
         {
             if (integer >= minSize)
             {
-                string message = $"Integer called '{variableName}' must be above or equal to {minSize}";
+                string message = $"Integer called '{variableName}' must be above or equal to {minSize}. ({integer})";
                 OnFireErrorMessage?.Invoke(message);
                 throw new SafetyNetException(message);
             }
@@ -73,7 +73,7 @@ namespace BoubakProductions.Safety
         {
             if (integer < maxSize)
             {
-                string message = $"Integer called '{variableName}' must be below {maxSize}";
+                string message = $"Integer called '{variableName}' must be below {maxSize}. ({integer})";
                 OnFireErrorMessage?.Invoke(message);
                 throw new SafetyNetException(message);
             }
@@ -89,7 +89,7 @@ namespace BoubakProductions.Safety
         {
             if (integer <= maxSize)
             {
-                string message = $"Integer called '{variableName}' must be below or equal to {maxSize}";
+                string message = $"Integer called '{variableName}' must be below or equal to {maxSize}. ({integer})";
                 OnFireErrorMessage?.Invoke(message);
                 throw new SafetyNetException(message);
             }
@@ -104,9 +104,9 @@ namespace BoubakProductions.Safety
         /// <param name="variableName">Name of the checked variable.</param>
         public static void EnsureIntIsInRange(int integer, int lowBounds, int highBounds, string variableName)
         {
-            if (integer >= lowBounds && integer <= highBounds)
+            if (integer < lowBounds && integer > highBounds)
             {
-                string message = $"Integer called '{variableName}' must be in range of {lowBounds} - {highBounds}.";
+                string message = $"Integer called '{variableName}' must be in range of {lowBounds} - {highBounds}. ({integer})";
                 OnFireErrorMessage?.Invoke(message);
                 throw new SafetyNetException(message);
             }
@@ -209,7 +209,7 @@ namespace BoubakProductions.Safety
         {
             if (list.Count > maxAllowedSize)
             {
-                string message = $"The list '{variableName}' cannot have more than {maxAllowedSize} elements.";
+                string message = $"The list '{variableName}' cannot have more than {maxAllowedSize} elements. ({list.Count})";
                 OnFireErrorMessage?.Invoke(message);
                 throw new SafetyNetCollectionException(message);
             }
@@ -226,7 +226,7 @@ namespace BoubakProductions.Safety
         {
             if (list.Count >= maxAllowedSize)
             {
-                string message = $"The list '{variableName}' cannot have more or equal to {maxAllowedSize} elements.";
+                string message = $"The list '{variableName}' cannot have more or equal to {maxAllowedSize} elements. ({list.Count})";
                 OnFireErrorMessage?.Invoke(message);
                 throw new SafetyNetCollectionException(message);
             }
@@ -243,7 +243,7 @@ namespace BoubakProductions.Safety
         {
             if (list.Count < minAllowedSize)
             {
-                string message = $"The list '{variableName}' cannot have less than {minAllowedSize} elements.";
+                string message = $"The list '{variableName}' cannot have less than {minAllowedSize} elements. ({list.Count})";
                 OnFireErrorMessage?.Invoke(message);
                 throw new SafetyNetCollectionException(message);
             }
@@ -260,7 +260,7 @@ namespace BoubakProductions.Safety
         {
             if (list.Count <= minAllowedSize)
             {
-                string message = $"The list '{variableName}' cannot have less or equal to {minAllowedSize} elements.";
+                string message = $"The list '{variableName}' cannot have less or equal to {minAllowedSize} elements. ({list.Count})";
                 OnFireErrorMessage?.Invoke(message);
                 throw new SafetyNetCollectionException(message);
             }
@@ -277,7 +277,7 @@ namespace BoubakProductions.Safety
         {
             if (list.Count == size)
             {
-                string message = $"The list '{variableName}' must have exactly {size} elements.";
+                string message = $"The list '{variableName}' must have exactly {size} elements. ({list.Count})";
                 OnFireErrorMessage?.Invoke(message);
                 throw new SafetyNetCollectionException(message);
             }
