@@ -8,6 +8,7 @@ namespace RogiumLegend.Global.GraphicsDrawing
         [SerializeField] private Vector2Int gridSize;
         [SerializeField] private float thickness;
 
+        private float width, height;
         private float cellWidth;
         private float cellHeight;
 
@@ -15,11 +16,11 @@ namespace RogiumLegend.Global.GraphicsDrawing
         {
             vh.Clear();
 
-            float width = rectTransform.rect.width;
-            float height = -rectTransform.rect.height;
+            width = rectTransform.rect.width;
+            height = rectTransform.rect.height;
 
-            cellWidth = width / (float)gridSize.x;
-            cellHeight = height / (float)gridSize.y;
+            cellWidth = width / gridSize.x;
+            cellHeight = height / gridSize.y;
 
             int count = 0;
             for (int y = 0; y < gridSize.y; y++)
@@ -41,8 +42,8 @@ namespace RogiumLegend.Global.GraphicsDrawing
         /// <param name="vh">Vertex Helper</param>
         private void DrawGridCell(int x, int y, int index, VertexHelper vh)
         {
-            float posX = cellWidth * x;
-            float posY = cellHeight * y;
+            float posX = cellWidth * x - (width * 0.5f);
+            float posY = cellHeight * y - (height * 0.5f);
 
             UIVertex vertex = UIVertex.simpleVert;
             vertex.color = color;
@@ -60,13 +61,13 @@ namespace RogiumLegend.Global.GraphicsDrawing
             float distanceSqr = widthSqr / 2f;
             float distance = Mathf.Sqrt(distanceSqr);
 
-            vertex.position = new Vector3(posX + distance, posY - distance);
+            vertex.position = new Vector3(posX + distance, posY + distance);
             vh.AddVert(vertex);
-            vertex.position = new Vector3(posX + distance, posY + (cellHeight + distance));
+            vertex.position = new Vector3(posX + distance, posY + (cellHeight - distance));
             vh.AddVert(vertex);
-            vertex.position = new Vector3(posX + (cellWidth - distance), posY + (cellHeight + distance));
+            vertex.position = new Vector3(posX + (cellWidth - distance), posY + (cellHeight - distance));
             vh.AddVert(vertex);
-            vertex.position = new Vector3(posX + (cellWidth - distance), posY - distance);
+            vertex.position = new Vector3(posX + (cellWidth - distance), posY + distance);
             vh.AddVert(vertex);
 
             int offset = index * 8;

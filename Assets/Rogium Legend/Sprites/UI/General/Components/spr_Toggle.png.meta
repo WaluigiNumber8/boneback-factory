@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: 36059e5069992c740b496603a94de3e5
+guid: 2a72d9c48666e2b418883adfde98ec3e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1710142096185499444
-    second: spr_menu_Button_0
+      213: 8590992100134328239
+    second: spr_Toggle_0
   - first:
-      213: 5859310336560257863
-    second: spr_menu_Button_1
+      213: 6652248115344873176
+    second: spr_Toggle_1
   - first:
-      213: -2898601567995641077
-    second: spr_menu_Button_2
+      213: -7032248792264864566
+    second: spr_Toggle_2
   - first:
-      213: -6978822509411700170
-    second: spr_menu_Button_3
+      213: -3575513463544626636
+    second: spr_Toggle_3
   - first:
-      213: -3446791080198967921
-    second: spr_menu_Button_4
+      213: -4683504060022012660
+    second: spr_Toggle_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -58,10 +58,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 8
+  spritePixelsToUnits: 16
   spriteBorder: {x: 2, y: 2, z: 2, w: 2}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -102,122 +102,110 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 1024
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spr_menu_Button_0
+      name: spr_Toggle_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
+        width: 8
+        height: 8
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 3, y: 3, z: 3, w: 3}
+      pivot: {x: 0, y: 0}
+      border: {x: 2, y: 2, z: 2, w: 2}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 43f149efc25abb710800000000000000
-      internalID: 1710142096185499444
+      spriteID: fa791bc4cc5593770800000000000000
+      internalID: 8590992100134328239
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_menu_Button_1
+      name: spr_Toggle_1
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 2, y: 2, z: 2, w: 2}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d694e07a68815c50800000000000000
+      internalID: 6652248115344873176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Toggle_2
       rect:
         serializedVersion: 2
         x: 16
         y: 0
-        width: 16
-        height: 16
+        width: 8
+        height: 8
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 3, y: 3, z: 3, w: 3}
+      pivot: {x: 0, y: 0}
+      border: {x: 2, y: 2, z: 2, w: 2}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 74bd27705b3705150800000000000000
-      internalID: 5859310336560257863
+      spriteID: acc02ec5bfe686e90800000000000000
+      internalID: -7032248792264864566
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_menu_Button_2
+      name: spr_Toggle_3
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 2, y: 2, z: 2, w: 2}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 432cbc3e279316ec0800000000000000
+      internalID: -3575513463544626636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Toggle_4
       rect:
         serializedVersion: 2
         x: 32
         y: 0
-        width: 16
-        height: 16
+        width: 8
+        height: 8
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 3, y: 3, z: 3, w: 3}
+      pivot: {x: 0, y: 0}
+      border: {x: 2, y: 2, z: 2, w: 2}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b03ca3a3b3916c7d0800000000000000
-      internalID: -2898601567995641077
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spr_menu_Button_3
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 3, y: 3, z: 3, w: 3}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 632f30037ed362f90800000000000000
-      internalID: -6978822509411700170
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spr_menu_Button_4
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 3, y: 3, z: 3, w: 3}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f8d61c146c98a20d0800000000000000
-      internalID: -3446791080198967921
+      spriteID: c05c9462fd9d00fb0800000000000000
+      internalID: -4683504060022012660
       vertices: []
       indices: 
       edges: []
