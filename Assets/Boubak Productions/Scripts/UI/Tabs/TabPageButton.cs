@@ -16,7 +16,7 @@ namespace BoubakProductions.UI
         private TabGroup group;
         private Image background;
 
-        private void Start()
+        private void Awake()
         {
             background = GetComponent<Image>();
             group = GetComponentInParent<TabGroup>();

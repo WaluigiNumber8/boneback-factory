@@ -1,16 +1,19 @@
 fileFormatVersion: 2
-guid: 1a9b11cc4e1c3bc479f31faa68266624
+guid: 9982117715ef32742bb10e1673e9a966
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4271988431060051694
-    second: spr_Scrollbar_0
+      213: 7374556573876112190
+    second: sprset_Menu_Icons_0
   - first:
-      213: 414729955651042257
-    second: spr_Scrollbar_1
+      213: -3570321469151275219
+    second: sprset_Menu_Icons_1
   - first:
-      213: 2730928265610731746
-    second: spr_Scrollbar_2
+      213: 8767952898310572170
+    second: sprset_Menu_Icons_2
+  - first:
+      213: 1578862862787981921
+    second: sprset_Menu_Icons_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -44,19 +47,19 @@ TextureImporter:
     filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
-  spriteBorder: {x: 1, y: 1, z: 1, w: 1}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -100,64 +103,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spr_Scrollbar_0
+      name: sprset_Menu_Icons_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 4
-        height: 4
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 1, y: 1, z: 1, w: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 219561ae729d6b4c0800000000000000
-      internalID: -4271988431060051694
+      spriteID: e3b48e1c120b75660800000000000000
+      internalID: 7374556573876112190
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_Scrollbar_1
-      rect:
-        serializedVersion: 2
-        x: 4
-        y: 0
-        width: 4
-        height: 4
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 1, y: 1, z: 1, w: 1}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1db3b4482ba61c500800000000000000
-      internalID: 414729955651042257
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spr_Scrollbar_2
+      name: sprset_Menu_Icons_1
       rect:
         serializedVersion: 2
         x: 8
         y: 0
-        width: 4
-        height: 4
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 1, y: 1, z: 1, w: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e02dcad9c436e520800000000000000
-      internalID: 2730928265610731746
+      spriteID: d2799494a8ba37ec0800000000000000
+      internalID: -3570321469151275219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprset_Menu_Icons_2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a888827d4b60ea970800000000000000
+      internalID: 8767952898310572170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprset_Menu_Icons_3
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 162b885986f39e510800000000000000
+      internalID: 1578862862787981921
       vertices: []
       indices: 
       edges: []
