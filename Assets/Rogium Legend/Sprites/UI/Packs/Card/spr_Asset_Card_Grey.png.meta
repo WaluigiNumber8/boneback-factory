@@ -1,22 +1,10 @@
 fileFormatVersion: 2
-guid: 9982117715ef32742bb10e1673e9a966
+guid: d05e4cc0e3631bf4e9a1594017bd2023
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7374556573876112190
-    second: sprset_Menu_Icons_0
-  - first:
-      213: -3570321469151275219
-    second: sprset_Menu_Icons_1
-  - first:
-      213: 8767952898310572170
-    second: sprset_Menu_Icons_2
-  - first:
-      213: 1578862862787981921
-    second: sprset_Menu_Icons_3
-  - first:
-      213: 1527275266437571312
-    second: sprset_Menu_Icons_4
+      213: 1213128511734711869
+    second: spr_Asset_Card_Grey_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -106,13 +94,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sprset_Menu_Icons_0
+      name: spr_Asset_Card_Grey_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 8
-        height: 8
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -120,92 +108,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3b48e1c120b75660800000000000000
-      internalID: 7374556573876112190
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprset_Menu_Icons_1
-      rect:
-        serializedVersion: 2
-        x: 8
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d2799494a8ba37ec0800000000000000
-      internalID: -3570321469151275219
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprset_Menu_Icons_2
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a888827d4b60ea970800000000000000
-      internalID: 8767952898310572170
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprset_Menu_Icons_3
-      rect:
-        serializedVersion: 2
-        x: 24
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 162b885986f39e510800000000000000
-      internalID: 1578862862787981921
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprset_Menu_Icons_4
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0f2604253c8f13510800000000000000
-      internalID: 1527275266437571312
+      spriteID: d3688d834f5e5d010800000000000000
+      internalID: 1213128511734711869
       vertices: []
       indices: 
       edges: []
