@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using BoubakProductions.Core;
+using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace BoubakProductions.Safety
 {
@@ -296,6 +295,21 @@ namespace BoubakProductions.Safety
                 string message = $"The list '{variableName}' already contains '{asset}'.";
                 OnFireErrorMessage?.Invoke(message);
                 throw new SafetyNetCollectionException(message);
+            }
+        }
+
+        /// <summary>
+        /// Checks if a given list does not have any duplicates.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="varibleName"></param>
+        public static void EnsureListDoesNotHaveDuplicits<T>(List<T> list, string varibleName)
+        {
+            int foundDuplicates = list.GetDuplicatesCount();
+            if (foundDuplicates > 0)
+            {
+                throw new FoundDuplicationException($"The list {varibleName} cannot have any duplicit values.");
             }
         }
 

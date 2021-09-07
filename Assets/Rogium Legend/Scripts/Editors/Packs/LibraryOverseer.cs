@@ -1,15 +1,16 @@
 ﻿using BoubakProductions.Safety;
+using RogiumLegend.Editors.Core;
 using RogiumLegend.ExternalStorage;
 
 namespace RogiumLegend.Editors.PackData
 {
     /// <summary>
     /// Overseers the in-game pack library and controls it's content.
-    /// This library is also synced with pack data files located on the external harddrive.
+    /// This library is also synced with pack data files located on the external hard drive.
     /// </summary>
     public class LibraryOverseer
     {
-        private PackList library = new PackList();
+        private readonly PackList library = new PackList();
 
         #region Singleton Pattern
         private static LibraryOverseer instance;
@@ -57,7 +58,7 @@ namespace RogiumLegend.Editors.PackData
         {
             SafetyNet.EnsureListIsNotEmptyOrNull(library, "Pack Library");
             SafetyNet.EnsureIntIsInRange(packIndex, 0, library.Count, "packIndex for activating Pack Editor");
-            PackEditorOverseer.Instance.AssignNewPack(library[packIndex]);
+            EditorOverseer.Instance.AssignNewPack(library[packIndex]);
         }
 
         public PackList Library { get => library; }

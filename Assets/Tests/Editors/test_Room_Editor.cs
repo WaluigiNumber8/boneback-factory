@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using RogiumLegend.Editors;
+using RogiumLegend.Editors.Core;
 using RogiumLegend.Editors.PackData;
 using RogiumLegend.Editors.RoomData;
 using UnityEngine;
@@ -8,7 +8,7 @@ using UnityEngine.TestTools;
 public class test_Room_Editor
 {
     private LibraryOverseer lib;
-    private PackEditorOverseer packEditor;
+    private EditorOverseer packEditor;
     private RoomEditorOverseer roomEditor;
     private PackAsset pack;
 
@@ -16,7 +16,7 @@ public class test_Room_Editor
     public void Setup()
     {
         lib = LibraryOverseer.Instance;
-        packEditor = PackEditorOverseer.Instance;
+        packEditor = EditorOverseer.Instance;
         roomEditor = RoomEditorOverseer.Instance;
 
         string packName = "Test Pack";
@@ -49,25 +49,25 @@ public class test_Room_Editor
     public void ensure_room_data_saves_correctly1()
     {
         packEditor.CreateNewRoom();
-        string roomName = packEditor.CurrentPack.Rooms[0].RoomName;
+        string roomName = packEditor.CurrentPack.Rooms[0].Title;
 
         packEditor.CompleteEditing();
         lib.ActivatePackEditor(0);
 
-        Assert.AreEqual(roomName, packEditor.CurrentPack.Rooms[0].RoomName);
+        Assert.AreEqual(roomName, packEditor.CurrentPack.Rooms[0].Title);
     }
 
     [Test]
     public void ensure_room_data_saves_correctly2()
     {
         packEditor.CreateNewRoom();
-        string roomName = packEditor.CurrentPack.Rooms[0].RoomName;
+        string roomName = packEditor.CurrentPack.Rooms[0].Title;
 
         packEditor.CompleteEditing();
         lib.ReloadFromExternalStorage();
         lib.ActivatePackEditor(0);
 
-        Assert.AreEqual(roomName, packEditor.CurrentPack.Rooms[0].RoomName);
+        Assert.AreEqual(roomName, packEditor.CurrentPack.Rooms[0].Title);
     }
 
     [Test]

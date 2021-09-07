@@ -2,7 +2,8 @@
     "name": "Rogium Scripts",
     "rootNamespace": "",
     "references": [
-        "GUID:3eb62161a68d59640ac34972cc0a9917"
+        "GUID:3eb62161a68d59640ac34972cc0a9917",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

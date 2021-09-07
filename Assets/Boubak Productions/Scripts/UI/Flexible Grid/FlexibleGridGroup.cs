@@ -5,42 +5,50 @@ using UnityEngine.UI;
 
 public class FlexibleGridGroup : LayoutGroup
 {
+    public enum Alignment
+    {
+        Horizontal,
+        Vertical
+    }
     public enum FitType
     {
         Uniform,
         Width,
         Height,
         FixedRows,
-        FixedColumns
+        FixedColumns,
+        FixedBoth
     }
 
-    [SerializeField] FitType fitType;
-    [SerializeField] private int rows;
-    [SerializeField] private int columns;
-    [SerializeField] private Vector2 cellSize;
-    [SerializeField] private Vector2 spacing;
-    public bool fitX;
-    [SerializeField] private bool fitY;
+    public Alignment alignment;
+    public FitType fitType;
 
-    public override void CalculateLayoutInputHorizontal()
+    public int rows;
+    public int columns;
+    public Vector2 cellSize;
+    public Vector2 spacing;
+
+    public bool fitX;
+    public bool fitY;
+
+    public override void CalculateLayoutInputVertical()
     {
         base.CalculateLayoutInputHorizontal();
 
-        if (fitType == FitType.Uniform || fitType == FitType.Width || fitType == FitType.Height)
+        if (fitType == FitType.Width || fitType == FitType.Height || fitType == FitType.Uniform)
         {
             fitX = true;
             fitY = true;
-
-            float sqrt = Mathf.Sqrt(transform.childCount);
-            rows = Mathf.CeilToInt(sqrt);
-            columns = Mathf.CeilToInt(sqrt);
+            float sqrRt = Mathf.Sqrt(transform.childCount);
+            rows = Mathf.CeilToInt(sqrRt);
+            columns = Mathf.CeilToInt(sqrRt);
         }
 
-        if (fitType == FitType.Width || fitType == FitType.FixedColumns)
+        if (fitType == FitType.Width || fitType == FitType.FixedColumns || fitType == FitType.Uniform)
         {
             rows = Mathf.CeilToInt(transform.childCount / (float)columns);
         }
-        else if (fitType == FitType.Height || fitType == FitType.FixedRows)
+        if (fitType == FitType.Height || fitType == FitType.FixedRows || fitType == FitType.Uniform)
         {
             columns = Mathf.CeilToInt(transform.childCount / (float)rows);
         }
@@ -48,37 +56,63 @@ public class FlexibleGridGroup : LayoutGroup
         float parentWidth = rectTransform.rect.width;
         float parentHeight = rectTransform.rect.height;
 
-        float cellWidth = (parentWidth / (float)columns) - ((spacing.x / (float)columns) * 2) - (padding.left / (float)columns) - (padding.right / (float)columns);
-        float cellHeight = (parentHeight / (float)rows) - ((spacing.y / (float)rows) * 2) - (padding.top / (float)rows) - (padding.bottom / (float)rows);
+        float cellWidth;
+        float cellHeight;
 
-        cellSize.x = (fitX) ? cellWidth : cellSize.x;
-        cellSize.y = (fitY) ? cellHeight : cellSize.y;
+        if (alignment == Alignment.Horizontal)
+        {
+            cellWidth = (parentWidth / (float)columns) - ((spacing.x / (float)columns) * (columns - 1)) - (padding.left / (float)columns) - (padding.right / (float)columns);
+            cellHeight = (parentHeight / (float)rows) - ((spacing.y / (float)rows) * (rows - 1)) - (padding.top / (float)rows) - (padding.bottom / (float)rows);
+        }
+        else
+        {
+            cellHeight = (parentWidth / (float)columns) - ((spacing.x / (float)columns) * (columns - 1)) - (padding.left / (float)columns) - (padding.right / (float)columns);
+            cellWidth = (parentHeight / (float)rows) - ((spacing.y / (float)rows) * (rows - 1)) - (padding.top / (float)rows) - (padding.bottom / (float)rows);
+        }
 
-        int columnCount, rowCount;
+        cellSize.x = fitX ? cellWidth : cellSize.x;
+        cellSize.y = fitY ? cellHeight : cellSize.y;
+
+        int columnCount = 0;
+        int rowCount = 0;
+
         for (int i = 0; i < rectChildren.Count; i++)
         {
-            rowCount = i / columns;
-            columnCount = i % columns;
 
-            RectTransform child = rectChildren[i];
-            float posX = (cellSize.x * columnCount) + (spacing.x * columnCount) + padding.left;
-            float posY = (cellSize.y * rowCount) + (spacing.y * rowCount) + padding.top;
+            var item = rectChildren[i];
 
-            SetChildAlongAxis(child, 0, posX, cellSize.x);
-            SetChildAlongAxis(child, 1, posY, cellSize.y);
+            if (alignment == Alignment.Horizontal)
+            {
+                rowCount = i / columns;
+                columnCount = i % columns;
+                var xPos = (cellSize.x * columnCount) + (spacing.x * columnCount) + padding.left;
+                var yPos = (cellSize.y * rowCount) + (spacing.y * rowCount) + padding.top;
+
+                SetChildAlongAxis(item, 0, xPos, cellSize.x);
+                SetChildAlongAxis(item, 1, yPos, cellSize.y);
+            }
+            else
+            {
+                rowCount = i / rows;
+                columnCount = i % rows;
+                var xPos = (cellSize.x * columnCount) + (spacing.x * columnCount) + padding.left;
+                var yPos = (cellSize.y * rowCount) + (spacing.y * rowCount) + padding.top;
+
+                SetChildAlongAxis(item, 0, yPos, cellSize.y);
+                SetChildAlongAxis(item, 1, xPos, cellSize.x);
+            }
+
         }
-    }
 
-    public override void CalculateLayoutInputVertical()
-    {
-        
     }
 
     public override void SetLayoutHorizontal()
     {
+
     }
 
     public override void SetLayoutVertical()
     {
+
     }
 }

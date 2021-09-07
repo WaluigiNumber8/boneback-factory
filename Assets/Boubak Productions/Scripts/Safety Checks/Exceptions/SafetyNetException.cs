@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
-
+﻿
 namespace BoubakProductions.Safety
 {
     public class SafetyNetException : System.Exception

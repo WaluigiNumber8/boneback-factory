@@ -11,7 +11,7 @@ namespace RogiumLegend.Editors.PackData
     /// </summary>
     public class PackList : IList<PackAsset>
     {
-        private List<PackAsset> list;
+        private IList<PackAsset> list;
 
         public PackList()
         {

@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89336f03827cef34d898e6a19f50937b, type: 3}
+  m_Name: asset_Menu_Selection_Pack
+  m_EditorClassIdentifier: 
+  assetObject: {fileID: 61901961728102061, guid: f2193dd6773d9964ea5cbd534858c12d, type: 3}
+  addButtonSprite: {fileID: -496649957641659102, guid: dd0fa1bc4f28bc44db5bf5a10747a97a, type: 3}

@@ -13,7 +13,7 @@ namespace RogiumLegend.ExternalStorage.Serialization
     public class SerializedPackAsset
     {
         public readonly SerializedPackInfoAsset packInfo;
-        public readonly List<SerializedRoomAsset> rooms; 
+        public readonly IList<SerializedRoomAsset> rooms; 
 
         public SerializedPackAsset(PackAsset pack)
         {

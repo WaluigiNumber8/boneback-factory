@@ -1,5 +1,4 @@
 using BoubakProductions.Safety;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -73,7 +72,6 @@ namespace BoubakProductions.UI
         /// <param name="button"></param>
         private void HideAllPagesExcept(TabPageButton button)
         {
-            
             foreach (TabPageButton tabButton in buttons)
             {
                 tabButton.Page.SetActive(false);

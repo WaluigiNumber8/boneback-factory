@@ -1,5 +1,6 @@
 ﻿using RogiumLegend.Editors.PackData;
 using RogiumLegend.Editors.RoomData;
+using RogiumLegend.Editors.TileData;
 using RogiumLegend.Global.GridSystem;
 using System;
 using System.Collections.Generic;
@@ -89,13 +90,13 @@ namespace RogiumLegend.ExternalStorage.Serialization
         /// </summary>
         /// <param name="rooms">The lst of rooms to serialize,</param>
         /// <returns>Serialized List.</returns>
-        public static List<SerializedRoomAsset> SerializeRooms(List<RoomAsset> rooms)
+        public static IList<SerializedRoomAsset> SerializeRooms(IList<RoomAsset> rooms)
         {
-            List<SerializedRoomAsset> serializedRooms = new List<SerializedRoomAsset>();
+            IList<SerializedRoomAsset> serializedRooms = new List<SerializedRoomAsset>();
             for (int i = 0; i < rooms.Count; i++)
             {
                 RoomAsset rm = rooms[i];
-                serializedRooms.Add(new SerializedRoomAsset(rm.RoomName, rm.DifficultyLevel, SerializeTileGrid(rm.TileGrid)));
+                serializedRooms.Add(new SerializedRoomAsset(rm.Title, rm.DifficultyLevel, SerializeTileGrid(rm.TileGrid)));
             }
             return serializedRooms;
         }
@@ -143,9 +144,9 @@ namespace RogiumLegend.ExternalStorage.Serialization
             return grid;
         }
 
-        public static List<RoomAsset> DeserializeRooms(List<SerializedRoomAsset> serializedRooms)
+        public static IList<RoomAsset> DeserializeRooms(IList<SerializedRoomAsset> serializedRooms)
         {
-            List<RoomAsset> rooms = new List<RoomAsset>();
+            IList<RoomAsset> rooms = new List<RoomAsset>();
             for (int i = 0; i < serializedRooms.Count; i++)
             {
                 SerializedRoomAsset room = serializedRooms[i];

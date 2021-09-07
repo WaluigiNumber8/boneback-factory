@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace RogiumLegend.Editors.RoomData
+namespace RogiumLegend.Editors.TileData
 {
     public enum TileType
     {
@@ -12,8 +12,9 @@ namespace RogiumLegend.Editors.RoomData
     /// <summary>
     /// Contains all data needed for a tile in a pack.
     /// </summary>
-    public class TileAsset
+    public class TileAsset : IAsset
     {
+        private string title;
         private Tile tile;
         private TileType type;
 
@@ -29,6 +30,8 @@ namespace RogiumLegend.Editors.RoomData
             this.tile = tile;
         }
 
+        public string Title { get => title; }
+        public Sprite Icon { get => tile.sprite; }
         public Tile Tile { get => tile; }
         public TileType Type { get => type;}
     }

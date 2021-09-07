@@ -1,5 +1,4 @@
-﻿using RogiumLegend.Editors.RoomData;
-using System.Collections;
+﻿using RogiumLegend.Editors.TileData;
 using UnityEngine;
 
 namespace RogiumLegend.ExternalStorage.Serialization

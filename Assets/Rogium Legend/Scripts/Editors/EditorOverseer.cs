@@ -1,33 +1,31 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using BoubakProductions.Safety;
 using RogiumLegend.Editors.PackData;
 using RogiumLegend.Editors.RoomData;
 using RogiumLegend.ExternalStorage;
 
-namespace RogiumLegend.Editors
+namespace RogiumLegend.Editors.Core
 {
     /// <summary>
     /// Overseers the work on a given pack.
     /// </summary>
-    public class PackEditorOverseer : IEditorOverseer
+    public class EditorOverseer : IEditorOverseer
     {
-        private LibraryOverseer lib;
-        private RoomEditorOverseer roomEditor;
+        private readonly RoomEditorOverseer roomEditor;
 
         private PackAsset currentPack;
 
         #region Singleton Pattern
-        private static PackEditorOverseer instance;
+        private static EditorOverseer instance;
         private static readonly object padlock = new object();
-        public static PackEditorOverseer Instance
+        public static EditorOverseer Instance
         {
             get
             {
                 lock (padlock)
                 {
                     if (instance == null)
-                        instance = new PackEditorOverseer();
+                        instance = new EditorOverseer();
                     return instance;
                 }
             }
@@ -35,9 +33,8 @@ namespace RogiumLegend.Editors
 
         #endregion
 
-        private PackEditorOverseer() 
+        private EditorOverseer() 
         {
-            lib = LibraryOverseer.Instance;
             roomEditor = RoomEditorOverseer.Instance;
         }
 
@@ -96,7 +93,7 @@ namespace RogiumLegend.Editors
         {
             get 
             {
-                if (currentPack == null) throw new MissingReferenceException("Current Room has not been set. Did you forget to activate the editor?");
+                if (currentPack == null) throw new MissingReferenceException("Current Pack has not been set. Did you forget to activate the editor?");
                 return this.currentPack;
             }
         }
