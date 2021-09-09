@@ -50,6 +50,33 @@ namespace RogiumLegend.Editors.PackData
             PackAsset newPack = new PackAsset();
             library.Add(newPack);
         }
+        /// <summary>
+        /// Creates a new Pack, and adds it to the library.
+        /// </summary>
+        /// <param name="packInfo">Information about the pack.</param>
+        public void CreateAndAddPack(PackInfoAsset packInfo)
+        {
+            PackAsset newPack = new PackAsset(packInfo);
+            library.Add(newPack);
+        }
+
+        /// <summary>
+        /// Remove pack from the library.
+        /// </summary>
+        /// <param name="packIndex">Pack ID in the list.</param>
+        public void RemovePack(int packIndex)
+        {
+            library.Remove(packIndex);
+        }
+        /// <summary>
+        /// Remove pack from the library.
+        /// </summary>
+        /// <param name="title">Pack's Title</param>
+        /// <param name="author">Pack's Author</param>
+        public void RemovePack(string title, string author)
+        {
+            library.Remove(title, author);
+        }
 
         /// <summary>
         /// Prepare one of the packs in the library for editing.
@@ -61,6 +88,15 @@ namespace RogiumLegend.Editors.PackData
             EditorOverseer.Instance.AssignNewPack(library[packIndex]);
         }
 
-        public PackList Library { get => library; }
+        /// <summary>
+        /// Amount of packs, stored in the library.
+        /// </summary>
+        public int PackCount => library.Count;
+
+        /// <summary>
+        /// Returns a copy of the list of packs stored here.
+        /// </summary>
+        /// <returns>A copy of Pack Library.</returns>
+        public PackList GetCopy => new PackList(library);
     }
 }

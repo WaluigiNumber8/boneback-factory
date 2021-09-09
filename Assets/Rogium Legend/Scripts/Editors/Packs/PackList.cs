@@ -17,6 +17,10 @@ namespace RogiumLegend.Editors.PackData
         {
             list = new List<PackAsset>();
         }
+        public PackList(PackList original)
+        {
+            list = new List<PackAsset>(original);
+        }
 
         /// <summary>
         /// Adds a new pack to the library.
@@ -24,7 +28,9 @@ namespace RogiumLegend.Editors.PackData
         /// <param name="pack">The PackAsset to add.</param>
         public void Add(PackAsset pack)
         {
-            SafetyNet.EnsureListNotContains(this, pack, "List of Packs");
+            if (TryFinding(pack.Title, pack.Author) != null)
+                throw new FoundDuplicationException("You are trying to create a pack, that already exists. Cannot have the same title and author!");
+            
             ExternalStorageOverseer.Instance.Save(pack);
             list.Add(pack);
         }
@@ -43,6 +49,20 @@ namespace RogiumLegend.Editors.PackData
         }
 
         /// <summary>
+        /// Remove pack from the library with a specific name.
+        /// </summary>
+        /// <param name="name">The name of the pack to remove.</param>
+        public void Remove(int packIndex)
+        {
+            SafetyNet.EnsureIntIsInRange(packIndex, 0, list.Count, "Pack Index when removing");
+            PackAsset foundPack = list[packIndex];
+            SafetyNet.EnsureIsNotNull(foundPack, "Pack to Remove");
+
+            ExternalStorageOverseer.Instance.Delete(foundPack);
+            list.Remove(foundPack);
+        }
+
+        /// <summary>
         /// Finds a pack in the library by a given name.
         /// 
         /// TODO - Solution for multiple packs with the same name.
@@ -52,7 +72,7 @@ namespace RogiumLegend.Editors.PackData
         /// <returns>The pack asset with the given name</returns>
         public IList<PackAsset> TryFinding(string packName)
         {
-            IList<PackAsset> foundPacks = this.Where(pack => pack.PackInfo.packName == packName).ToList();
+            IList<PackAsset> foundPacks = this.Where(pack => pack.PackInfo.Title == packName).ToList();
             return new List<PackAsset>(foundPacks);
         }
 
@@ -65,8 +85,8 @@ namespace RogiumLegend.Editors.PackData
         /// <returns>The pack asset with the given name</returns>
         public PackAsset TryFinding(string packName, string author)
         {
-            IList<PackAsset> foundPacks = this.Where(pack => pack.PackInfo.packName == packName
-                                                        && pack.PackInfo.author == author).ToList();
+            IList<PackAsset> foundPacks = this.Where(pack => pack.PackInfo.Title == packName
+                                                        && pack.PackInfo.Author == author).ToList();
 
             SafetyNet.EnsureListIsNotLongerThan(foundPacks, 1, "Found Packs by name & author");
             if (foundPacks.Count == 0) return null;

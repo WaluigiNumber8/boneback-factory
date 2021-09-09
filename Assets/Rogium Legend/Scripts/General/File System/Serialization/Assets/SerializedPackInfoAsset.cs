@@ -1,6 +1,4 @@
 ﻿using RogiumLegend.Editors.PackData;
-using System.Collections;
-using UnityEngine;
 
 namespace RogiumLegend.ExternalStorage.Serialization
 {
@@ -10,19 +8,19 @@ namespace RogiumLegend.ExternalStorage.Serialization
     [System.Serializable]
     public class SerializedPackInfoAsset
     {
-        public readonly string packName;
-        public readonly string description;
-        public readonly string author;
+        public readonly string title;
         public readonly SerializedSprite icon;
-        public readonly string creationDateTime;
+        public readonly string author;
+        public readonly string creationTime;
+        public readonly string description;
 
         public SerializedPackInfoAsset(PackInfoAsset packInfo)
         {
-            this.packName = packInfo.packName;
-            this.description = packInfo.description;
-            this.author = packInfo.author;
-            this.icon = new SerializedSprite(packInfo.icon);
-            this.creationDateTime = packInfo.creationDateTime.ToString();
+            this.title = packInfo.Title;
+            this.icon = new SerializedSprite(packInfo.Icon);
+            this.author = packInfo.Author;
+            this.creationTime = packInfo.CreationDate.ToString();
+            this.description = packInfo.Description;
         }
 
     }

@@ -8,10 +8,12 @@ namespace RogiumLegend.Global.MenuSystem
     /// </summary>
     public enum MenuType
     {
+        None,
         MainMenu,
         OptionsMenu,
 
         AssetSelection,
+        AssetTypeSelection,
 
         WeaponEditor,
         EnemyEditor,

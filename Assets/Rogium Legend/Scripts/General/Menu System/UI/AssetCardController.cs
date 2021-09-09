@@ -1,9 +1,8 @@
 ﻿using RogiumLegend.Core;
-using System.Collections;
+using RogiumLegend.Editors.Core;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using RogiumLegend.Editors;
 
 namespace RogiumLegend.Global.MenuSystem.UI
 {
@@ -26,6 +25,11 @@ namespace RogiumLegend.Global.MenuSystem.UI
             cardButton.onClick.AddListener(OnClick);
         }
 
+        public void Construct(AssetType type, int id, IAsset asset, Image iconPos)
+        {
+            ui.icon = iconPos;
+            Construct(type, id, asset);
+        }
         public void Construct(AssetType type, int id, IAsset asset)
         {
             this.type = type;
@@ -43,30 +47,6 @@ namespace RogiumLegend.Global.MenuSystem.UI
             ui.buttonGroup.SetActive(!ui.buttonGroup.activeSelf);
         }
 
-        /// <summary>
-        /// Calls the correct action when the Edit Button was pressed.
-        /// </summary>
-        private void OnEdit()
-        {
-            
-        }
-
-        /// <summary>
-        /// Calls the correct action when the Config Button was pressed.
-        /// </summary>
-        private void OnConfig()
-        {
-
-        }
-
-        /// <summary>
-        /// Calls the correct action when the Remove Button was pressed.
-        /// </summary>
-        private void OnDelete()
-        {
-
-        }
-
         public AssetType Type { get => type; }
         public int ID { get => id; }
 
@@ -76,9 +56,6 @@ namespace RogiumLegend.Global.MenuSystem.UI
             public TextMeshProUGUI title;
             public Image icon;
             public GameObject buttonGroup;
-            public Button editButton;
-            public Button configButton;
-            public Button removeButton;
         }
     }
 }

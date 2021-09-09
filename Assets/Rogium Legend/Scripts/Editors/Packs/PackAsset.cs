@@ -1,6 +1,9 @@
 using BoubakProductions.Safety;
+using RogiumLegend.Editors.Core;
 using RogiumLegend.Editors.PaletteData;
 using RogiumLegend.Editors.RoomData;
+using RogiumLegend.Editors.TileData;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,58 +17,52 @@ namespace RogiumLegend.Editors.PackData
         private PackInfoAsset packInfo;
         private IList<PaletteAsset> palettes = new List<PaletteAsset>();
         private IList<RoomAsset> rooms = new List<RoomAsset>();
+        private IList<TileAsset> tiles = new List<TileAsset>();
 
         public PackAsset()
         {
             //TODO - Plug in Default Data.
-            this.packInfo = new PackInfoAsset("New Pack", "", "ME", null);
+            this.packInfo = new PackInfoAsset("New Pack",
+                                              Sprite.Create(new Texture2D(16, 16), new Rect(0, 0, 16, 16), new Vector2(0.5f, 0.5f)),
+                                              "NO_AUTHOR",
+                                              "A Pack filled with adventure!");
         }
         public PackAsset(PackInfoAsset packInfo)
         {
-            SafetyNet.EnsureStringInRange(packInfo.packName, 4, 30, "name");
-            SafetyNet.EnsureStringInRange(packInfo.description, 0, 2000, "description");
-
             this.packInfo = packInfo;
         }
-        public PackAsset(PackInfoAsset packInfo, IList<RoomAsset> rooms)
+        public PackAsset(PackInfoAsset packInfo, IList<RoomAsset> rooms, IList<TileAsset> tiles)
         {
-            SafetyNet.EnsureStringInRange(packInfo.packName, 4, 30, "name");
-            SafetyNet.EnsureStringInRange(packInfo.description, 0, 2000, "description");
-
             this.packInfo = packInfo;
             this.rooms = new List<RoomAsset>(rooms);
-        }
-
-        /// <summary>
-        /// Updates the packs Pack Information.
-        /// </summary>
-        /// <param name="packinfo">New Pack Information Container.</param>
-        public void UpdatePackInfo(PackInfoAsset packinfo)
-        {
-            this.packInfo = new PackInfoAsset(packInfo.packName, packinfo.description, packinfo.author, packInfo.icon, packInfo.creationDateTime);
+            this.tiles = new List<TileAsset>(tiles);
         }
 
         public override bool Equals(object obj)
         {
             PackAsset pack = (PackAsset)obj;
-            if (pack.packInfo.packName == packInfo.packName &&
-                pack.packInfo.author == packInfo.author &&
-                pack.packInfo.creationDateTime == packInfo.creationDateTime)
+            if (pack.packInfo.Title == packInfo.Title &&
+                pack.packInfo.Author == packInfo.Author &&
+                pack.packInfo.CreationDate == packInfo.CreationDate)
                 return true;
             return false;
         }
 
         public override int GetHashCode()
         {
-            string hash = packInfo.packName + packInfo.author + packInfo.creationDateTime;
+            string hash = packInfo.Title + packInfo.Author + packInfo.CreationDate;
             return hash.GetHashCode();
         }
 
-        public string Title { get => packInfo.packName; }
-        public Sprite Icon { get => packInfo.icon; }
-        public PackInfoAsset PackInfo { get => packInfo; }
+        public string Title { get => packInfo.Title; }
+        public Sprite Icon { get => packInfo.Icon; }
+        public string Author { get => packInfo.Author; }
+        public DateTime CreationDate { get => packInfo.CreationDate; }
+        public PackInfoAsset PackInfo { get => packInfo; set => packInfo = value; }
+        public string Description { get => packInfo.Description; }
         public IList<PaletteAsset> Palettes { get => palettes; }
         public IList<RoomAsset> Rooms { get => rooms; }
+        public IList<TileAsset> Tiles { get => tiles; }
 
     }
 }

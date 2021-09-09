@@ -38,5 +38,21 @@ namespace RogiumLegend.ExternalStorage.Serialization
             this.textureHeight = textureHeight;
             this.textureBytes = textureBytes;
         }
+
+        /// <summary>
+        /// Deserializes this serialized sprite and returns in the sprite format.
+        /// </summary>
+        /// <returns>A Sprite that Unity can use.</returns>
+        public Sprite Deserialize()
+        {
+            Texture2D texture = new Texture2D(this.textureWidth, this.textureHeight);
+            ImageConversion.LoadImage(texture, this.textureBytes);
+            Sprite sprite = Sprite.Create(texture,
+                                          new Rect(this.x, this.y, this.width, this.height),
+                                          new Vector2(this.pivotX, this.pivotY));
+
+            return sprite;
+        }
+
     }
 }

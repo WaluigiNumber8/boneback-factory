@@ -50,5 +50,31 @@ namespace RogiumLegend.ExternalStorage.Serialization
             this.m32 = m32;
             this.m33 = m33;
         }
+
+        /// <summary>
+        /// Turns a Serialized Matrix4x4 into a normal Matrix4x4.
+        /// </summary>
+        /// <returns>A normal Matrix4x4</returns>
+        public Matrix4x4 Deserialize()
+        {
+            Matrix4x4 matrix = new Matrix4x4();
+            matrix.m00 = this.m00;
+            matrix.m01 = this.m00;
+            matrix.m02 = this.m00;
+            matrix.m03 = this.m00;
+            matrix.m10 = this.m00;
+            matrix.m11 = this.m00;
+            matrix.m12 = this.m00;
+            matrix.m13 = this.m00;
+            matrix.m20 = this.m00;
+            matrix.m21 = this.m00;
+            matrix.m22 = this.m00;
+            matrix.m23 = this.m00;
+            matrix.m30 = this.m00;
+            matrix.m31 = this.m00;
+            matrix.m32 = this.m00;
+            matrix.m33 = this.m00;
+            return matrix;
+        }
     }
 }

@@ -29,7 +29,23 @@ namespace BoubakProductions.Safety
         #endregion
 
         #region Int Checks
-        
+
+        /// <summary>
+        /// Checks if an integer is not equal to a specific number
+        /// </summary>
+        /// <param name="integer">The INT to check.</param>
+        /// <param name="disallowedNumber">The number it cannot equal to.</param>
+        /// <param name="variableName">Name of the checked variable.</param>
+        public static void EnsureIntIsNotEqual(int integer, int disallowedNumber, string variableName)
+        {
+            if (integer == disallowedNumber)
+            {
+                string message = $"Integer called '{variableName}' must not equal to {disallowedNumber}. ({integer})";
+                OnFireErrorMessage?.Invoke(message);
+                throw new SafetyNetException(message);
+            }
+        }
+
         /// <summary>
         /// Checks if an integer is bigger than a specific size.
         /// </summary>

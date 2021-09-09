@@ -2,6 +2,7 @@
 using RogiumLegend.GASExtensions;
 using RogiumLegend.Global.MenuSystem.UI;
 using RogiumLegend.Global.MenuSystem.AssetSelection;
+using RogiumLegend.Editors.PackData;
 
 namespace RogiumLegend.Global.MenuSystem.Interactables
 {
@@ -14,7 +15,6 @@ namespace RogiumLegend.Global.MenuSystem.Interactables
         {
             GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundMain);
             GAS.ObjectSetActive(true, UIEditorContainer.GetInstance().Background);
-            GAS.ObjectSetActive(true, UIEditorContainer.GetInstance().PackInfoHeader);
             GASRogium.SwitchMenu(MenuType.AssetSelection);
             AssetSelectionOverseer.GetInstance().OpenForPacks();
         }
@@ -32,5 +32,23 @@ namespace RogiumLegend.Global.MenuSystem.Interactables
 
         }
 
+        public static void CreatePack()
+        {
+            LibraryOverseer.Instance.CreateAndAddPack();
+            AssetSelectionOverseer.GetInstance().OpenForPacks();
+        }
+
+        public static void EditPack(int packIndex)
+        {
+            LibraryOverseer.Instance.ActivatePackEditor(packIndex);
+            GASRogium.SwitchMenu(MenuType.AssetTypeSelection);
+            GAS.ObjectSetActive(true, UIEditorContainer.GetInstance().PackInfoHeader);
+        }
+
+        public static void RemovePack(int packIndex)
+        {
+            LibraryOverseer.Instance.RemovePack(packIndex);
+            AssetSelectionOverseer.GetInstance().OpenForPacks();
+        }
     }
 }

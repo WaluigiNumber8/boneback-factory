@@ -35,7 +35,7 @@ namespace RogiumLegend.ExternalStorage
         {
             SafetyNetIO.EnsureDirectoryExists(path);
 
-            List<PackAsset> assets = new List<PackAsset>();
+            IList<PackAsset> assets = new List<PackAsset>();
 
             BinaryFormatter formatter = new BinaryFormatter();
             DirectoryInfo directory = new DirectoryInfo(path);
@@ -47,7 +47,7 @@ namespace RogiumLegend.ExternalStorage
                 FileStream stream = new FileStream(filePath, FileMode.Open);
 
                 SerializedPackAsset asset = (SerializedPackAsset)formatter.Deserialize(stream);
-                assets.Add(SerializationFuncs.DeserializePackAsset(asset));
+                assets.Add(asset.Deserialize());
 
                 stream.Close();
             } 

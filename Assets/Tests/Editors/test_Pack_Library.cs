@@ -5,7 +5,7 @@ using UnityEngine.TestTools;
 
 public class test_Pack_Library
 {
-    private PackAsset pack;
+    private PackInfoAsset packInfo;
     private LibraryOverseer lib;
 
     [SetUp]
@@ -18,31 +18,31 @@ public class test_Pack_Library
         string packAuthor = "TestAuthor";
         Sprite packIcon = Sprite.Create(new Texture2D(16, 16), new Rect(0, 0, 16, 16), new Vector2(0.5f, 0.5f));
         
-        pack = new PackAsset(new PackInfoAsset(packName, packDescription, packAuthor, packIcon));
+        packInfo = new PackInfoAsset(packName, packIcon, packAuthor, packDescription);
     }
 
     [TearDown]
     public void Teardown()
     {
-        lib.Library.Remove(pack.PackInfo.packName, pack.PackInfo.author);
+        lib.RemovePack(packInfo.Title, packInfo.Author);
     }
 
     [Test]
     public void create_new_pack_and_it_gets_saved()
     {
-        int amountBefore = lib.Library.Count;
+        int amountBefore = lib.PackCount;
 
-        lib.Library.Add(pack);
+        lib.CreateAndAddPack(packInfo);
 
-        Assert.AreEqual(amountBefore + 1, lib.Library.Count);
+        Assert.AreEqual(amountBefore + 1, lib.PackCount);
     }
 
     [Test]
     public void create_new_pack_and_check_if_data_is_correct()
     {
-        lib.Library.Add(pack);
-        PackAsset foundPack = lib.Library.TryFinding("Test Pack", "TestAuthor");
-        Assert.AreEqual(pack.PackInfo.packName, foundPack.PackInfo.packName);
+        lib.CreateAndAddPack(packInfo);
+        PackAsset foundPack = lib.GetCopy.TryFinding("Test Pack", "TestAuthor");
+        Assert.AreEqual(packInfo.Title, foundPack.Title);
     }
 
 }

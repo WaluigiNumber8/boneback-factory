@@ -7,6 +7,9 @@ namespace RogiumLegend.Global.MenuSystem.Interactables
     {
         DoNothing,
         OpenPackSelection,
-        ReturnToMainMenu
+        ReturnToMainMenu,
+        CreatePack,
+        EditPack,
+        DeletePack
     }
 }

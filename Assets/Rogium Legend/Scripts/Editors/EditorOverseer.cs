@@ -48,6 +48,19 @@ namespace RogiumLegend.Editors.Core
         }
 
         /// <summary>
+        /// Updates the pack's Pack Information.
+        /// </summary>
+        /// <param name="packinfo">New Pack Information Container.</param>
+        public void UpdatePackInfo(PackInfoAsset packInfo)
+        {
+            CurrentPack.PackInfo = new PackInfoAsset(packInfo.Title,
+                                                     packInfo.Icon,
+                                                     packInfo.Author,
+                                                     packInfo.Description,
+                                                     packInfo.CreationDate);
+        }
+
+        /// <summary>
         /// Creates a new room, and adds it to the Pack Asset.
         /// </summary>
         public void CreateNewRoom()

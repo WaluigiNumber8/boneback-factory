@@ -6,6 +6,6 @@ namespace RogiumLegend.Global.MenuSystem.AssetSelection
     public class SelectionMenuAsset : ScriptableObject
     {
         public GameObject assetObject;
-        public Sprite addButtonSprite;
+        public GameObject addButton;
     }
 }

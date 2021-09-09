@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6189089518405755137}
   - component: {fileID: 4187260785273232397}
   - component: {fileID: 4234182212748769756}
+  - component: {fileID: -421584340355227751}
   m_Layer: 5
   m_Name: pref_Card_Button
   m_TagString: Untagged
@@ -142,6 +143,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &-421584340355227751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305523389597949465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdbd33c92c2034a44bc806bf077f3ef9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  action: 0
 --- !u!1 &9000432377099674298
 GameObject:
   m_ObjectHideFlags: 0

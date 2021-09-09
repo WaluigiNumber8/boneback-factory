@@ -1,4 +1,5 @@
 ﻿using RogiumLegend.Editors.TileData;
+using System;
 using UnityEngine;
 
 namespace RogiumLegend.ExternalStorage.Serialization
@@ -6,33 +7,39 @@ namespace RogiumLegend.ExternalStorage.Serialization
     [System.Serializable]
     public class SerializedTileAsset
     {
+        public readonly string title;
+        public readonly SerializedSprite icon;
+        public readonly string author;
+        public readonly string creationDate;
         public readonly int tileType;
-        public readonly SerializedSprite sprite;
         public readonly SerializedColor color;
         public SerializedMatrix4x4 transform;
 
-        public SerializedTileAsset()
-        {
-            this.tileType = 1;
-            this.sprite = new SerializedSprite(Sprite.Create(new Texture2D(16, 16), new Rect(0, 0, 16, 16), new Vector2(0.5f, 0.5f)));
-            this.color = new SerializedColor(Color.magenta);
-            this.transform = new SerializedMatrix4x4(Matrix4x4.identity);
-        }
+        public SerializedTileAsset() {}
 
         public SerializedTileAsset(TileAsset tileAsset)
         {
+            this.title = tileAsset.Title;
+            this.author = tileAsset.Author;
+            this.creationDate = tileAsset.CreationDate.ToString();
             this.tileType = (int)tileAsset.Type;
-            this.sprite = new SerializedSprite(tileAsset.Tile.sprite);
+            this.icon = new SerializedSprite(tileAsset.Tile.sprite);
             this.color = new SerializedColor(tileAsset.Tile.color);
             this.transform = new SerializedMatrix4x4(tileAsset.Tile.transform);
         }
 
-        public SerializedTileAsset(int tileType, SerializedSprite sprite, SerializedColor color, SerializedMatrix4x4 transform)
+        /// <summary>
+        /// Turns the Tile Asset into a Unity readable format.
+        /// </summary>
+        /// <returns></returns>
+        public TileAsset Deserialize()
         {
-            this.tileType = tileType;
-            this.sprite = sprite;
-            this.color = color;
-            this.transform = transform;
+            return new TileAsset(this.title,
+                                 this.icon.Deserialize(),
+                                 this.author,
+                                 (TileType)this.tileType,
+                                 this.color.Deserialize(),
+                                 DateTime.Parse(this.creationDate));
         }
     }
 }

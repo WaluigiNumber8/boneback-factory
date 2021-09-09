@@ -1,14 +1,12 @@
 ﻿using BoubakProductions.Core;
 using BoubakProductions.Safety;
 using RogiumLegend.Core;
-using RogiumLegend.Editors;
 using RogiumLegend.Editors.Core;
 using RogiumLegend.Editors.PackData;
 using RogiumLegend.Global.MenuSystem.UI;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace RogiumLegend.Global.MenuSystem.AssetSelection
 {
@@ -20,10 +18,8 @@ namespace RogiumLegend.Global.MenuSystem.AssetSelection
     {
         private EditorOverseer editor;
         private LibraryOverseer lib;
-        private ObjectSwitcher switcher;
+        private ObjectSwitcher layoutSwitcher;
         
-        [SerializeField] private Image addButtonImage;
-        [Space]
         [SerializeField] private LayoutInfo layouts;
         [SerializeField] private AssetSelectionMenuInfo selectionMenus;
 
@@ -35,7 +31,7 @@ namespace RogiumLegend.Global.MenuSystem.AssetSelection
             base.Awake();
             editor = EditorOverseer.Instance;
             lib = LibraryOverseer.Instance;
-            switcher = GetComponent<ObjectSwitcher>();
+            layoutSwitcher = GetComponent<ObjectSwitcher>();
             lastTypeOpen = AssetType.None;
         }
 
@@ -54,11 +50,10 @@ namespace RogiumLegend.Global.MenuSystem.AssetSelection
         /// </summary>
         public void OpenForRooms()
         {
-            addButtonImage.sprite = selectionMenus.room.addButtonSprite;
             Setup(AssetType.Room,
                   layouts.list,
-                  selectionMenus.room.assetObject,
-                  (IList<IAsset>)editor.CurrentPack.Rooms);
+                  selectionMenus.room,
+                  editor.CurrentPack.Rooms.ToList<IAsset>());
         }
 
         /// <summary>
@@ -66,46 +61,70 @@ namespace RogiumLegend.Global.MenuSystem.AssetSelection
         /// </summary>
         public void OpenForPacks()
         {
-            addButtonImage.sprite = selectionMenus.pack.addButtonSprite;
             Setup(AssetType.Pack,
                   layouts.grid,
-                  selectionMenus.pack.assetObject,
-                  lib.Library.ToList<IAsset>());
+                  selectionMenus.pack,
+                  lib.GetCopy.ToList<IAsset>());
         }
 
         /// <summary>
         /// Sets up the selection menu.
         /// </summary>
-        private void Setup(AssetType type, SelectionMenuLayout layout, GameObject assetObject, IList<IAsset> assetList)
+        private void Setup(AssetType type, SelectionMenuLayout layout, SelectionMenuAsset asset, IList<IAsset> assetList)
         {
-            switcher.DeselectAllExcept(layout.Menu);
+            layoutSwitcher.DeselectAllExcept(layout.Menu);
 
             //Do not refill, if menu is the same.
             if (type == lastTypeOpen && type != AssetType.None)
             {
                 if (assetList.Count != assets.Count)
                 {
-                    return;
+                    //Spawn newly created cards.
+                    int newCards = assetList.Count - assets.Count;
+
+                    //If a pack was removed, reload the list.
+                    if (newCards > 0)
+                    {
+                        for (int i = 0; i < newCards; i++)
+                        {
+                            SpawnCard(assetList.Count + (i-1), type, layout, asset, assetList);
+                        }
+                        return;
+                    }
                 }
             }
 
-            RefillMenu(type, layout.Content, assetObject, assetList);
+            RefillMenu(type, layout, asset, assetList);
             lastTypeOpen = type;
         }
 
         /// <summary>
         /// Fills the selection menu canvas with asset holder objects.
         /// </summary>
-        private void RefillMenu(AssetType type, GameObject content, GameObject assetObject, IList<IAsset> assetList)
+        private void RefillMenu(AssetType type, SelectionMenuLayout layout, SelectionMenuAsset asset, IList<IAsset> assetList)
         {
-            SafetyNet.EnsureIsNotNull(assetObject.GetComponent<IAssetHolder>(), "IAssetHolder in RefillMenu");
+            SafetyNet.EnsureIsNotNull(asset.assetObject.GetComponent<IAssetHolder>(), "IAssetHolder in RefillMenu");
+            
+            //Clear assets from content, respawn add button
             assets.Clear();
+            layout.Content.KillChildren();
+            Instantiate(asset.addButton, layout.Content.transform);
+
+            //Spawn new assets
             for (int i = 0; i < assetList.Count; i++)
             {
-                IAssetHolder holder = Instantiate(assetObject, content.transform).GetComponent<IAssetHolder>();
-                holder.Construct(type, i, assetList[i]);
-                assets.Add(holder);
+                SpawnCard(i, type, layout, asset, assetList);
             }
+        }
+
+        private void SpawnCard(int id, AssetType type, SelectionMenuLayout layout, SelectionMenuAsset asset, IList<IAsset> assetList)
+        {
+            IAssetHolder holder = Instantiate(asset.assetObject, layout.Content.transform).GetComponent<IAssetHolder>();
+            if (layout.IconPositionType == IconPositionType.Global)
+                holder.Construct(type, id, assetList[id], layout.IconPosition);
+            else
+                holder.Construct(type, id, assetList[id]);
+            assets.Add(holder);
         }
 
         /// <summary>

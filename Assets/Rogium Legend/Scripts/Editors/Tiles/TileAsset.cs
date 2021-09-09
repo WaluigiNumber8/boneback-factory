@@ -1,38 +1,51 @@
-﻿using UnityEngine;
+﻿using RogiumLegend.Editors.Core;
+using System;
+using UnityEngine;
 using UnityEngine.Tilemaps;
 
 namespace RogiumLegend.Editors.TileData
 {
-    public enum TileType
-    {
-        Floor,
-        Wall
-    }
-
     /// <summary>
     /// Contains all data needed for a tile in a pack.
     /// </summary>
     public class TileAsset : IAsset
     {
         private string title;
-        private Tile tile;
-        private TileType type;
+        private TileObject tile;
+        private string author;
+        private DateTime creationDate;
 
         public TileAsset()
         {
-            this.type = TileType.Wall;
-            this.tile = ScriptableObject.CreateInstance<Tile>();
-            this.tile.sprite = Sprite.Create(new Texture2D(16, 16), new Rect(0, 0, 16, 16), new Vector2(0.5f, 0.5f));
+            this.title = "New Tile";
+            this.author = "NO_AUTHOR";
+            this.creationDate = DateTime.Now;
+            this.tile = new TileObject(ScriptableObject.CreateInstance<Tile>(), TileType.Wall);
+            this.tile.Tile.sprite = Sprite.Create(new Texture2D(16, 16), new Rect(0, 0, 16, 16), new Vector2(0.5f, 0.5f));
         }
-        public TileAsset(Tile tile, TileType type)
+        public TileAsset(string title, Sprite icon, string author, TileType type)
         {
-            this.type = type;
-            this.tile = tile;
+            this.title = title;
+            this.author = author;
+            this.creationDate = DateTime.Now;
+            this.tile = new TileObject(ScriptableObject.CreateInstance<Tile>(), type);
+            this.tile.Tile.sprite = icon;
+        }
+        public TileAsset(string title, Sprite icon, string author, TileType type, Color tileColor, DateTime creationDate)
+        {
+            this.title = title;
+            this.author = author;
+            this.creationDate = creationDate;
+            this.tile = new TileObject(ScriptableObject.CreateInstance<Tile>(), type);
+            this.tile.Tile.sprite = icon;
+            this.tile.Tile.color = tileColor;
         }
 
         public string Title { get => title; }
-        public Sprite Icon { get => tile.sprite; }
-        public Tile Tile { get => tile; }
-        public TileType Type { get => type;}
+        public Sprite Icon { get => tile.Tile.sprite; }
+        public Tile Tile { get => tile.Tile; }
+        public TileType Type { get => tile.Type;}
+        public string Author { get => author;}
+        public DateTime CreationDate { get => creationDate; }
     }
 }

@@ -1,13 +1,18 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-namespace RogiumLegend.Editors
+namespace RogiumLegend.Editors.Core
 {
     /// <summary>
     /// Interface for a Asset type object.
     /// </summary>
     public interface IAsset
     {
-        string Title { get; }
-        Sprite Icon { get; }
+        //TODO - For all assets upon creation, read author from Player Profile.
+
+        public string Title { get; }
+        public Sprite Icon { get; }
+        public string Author { get; }
+        public DateTime CreationDate { get; }
     }
 }

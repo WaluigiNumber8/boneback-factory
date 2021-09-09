@@ -1,31 +1,46 @@
-﻿using System;
+﻿using BoubakProductions.Safety;
+using System;
 using UnityEngine;
 
 namespace RogiumLegend.Editors.PackData
 {
     public class PackInfoAsset
     {
-        public readonly string packName;
-        public readonly string description;
-        public readonly string author;
-        public readonly Sprite icon;
-        public readonly DateTime creationDateTime;
+        private string title;
+        private Sprite icon;
+        private string author;
+        private DateTime creationDate;
+        private string description;
 
-        public PackInfoAsset(string packName, string description, string author, Sprite icon)
+        public PackInfoAsset(string title, Sprite icon, string author, string description)
         {
-            this.packName = packName;
-            this.description = description;
-            this.author = author;
+            SafetyNet.EnsureStringInRange(title, 4, 30, "name");
+            SafetyNet.EnsureStringInRange(description, 0, 2000, "description");
+            SafetyNet.EnsureStringInRange(author, 8, 20, "author");
+
+            this.title = title;
             this.icon = icon;
-            creationDateTime = DateTime.Now;
+            this.author = author;
+            this.creationDate = DateTime.Now;
+            this.description = description;
         }
-        public PackInfoAsset(string packName, string description, string author, Sprite icon, DateTime creationDateTime)
+        public PackInfoAsset(string title, Sprite icon, string author, string description, DateTime creationDateTime)
         {
-            this.packName = packName;
-            this.description = description;
-            this.author = author;
+            SafetyNet.EnsureStringInRange(title, 4, 30, "name");
+            SafetyNet.EnsureStringInRange(description, 0, 2000, "description");
+            SafetyNet.EnsureStringInRange(author, 8, 20, "author");
+
+            this.title = title;
             this.icon = icon;
-            this.creationDateTime = creationDateTime;
+            this.author = author;
+            this.creationDate = creationDateTime;
+            this.description = description;
         }
+
+        public string Title { get => title; }
+        public Sprite Icon { get => icon; }
+        public string Author { get => author; }
+        public DateTime CreationDate { get => creationDate; }
+        public string Description { get => description; }
     }
 }

@@ -1,5 +1,6 @@
 using BoubakProductions.Safety;
 using NUnit.Framework;
+using RogiumLegend.Editors.Core;
 using RogiumLegend.Editors.PackData;
 using RogiumLegend.ExternalStorage;
 using System.IO;
@@ -9,23 +10,23 @@ using UnityEngine.TestTools;
 public class test_Pack_Save_and_Load
 {
     private LibraryOverseer lib;
-    private PackAsset pack;
+    private EditorOverseer editor;
+    private PackInfoAsset packInfo;
     private string path;
 
     [SetUp]
     public void Setup()
     {
         lib = LibraryOverseer.Instance;
+        editor = EditorOverseer.Instance;
 
         string packName = "Test Pack";
         string packDescription = "Created this pack for testing purposes.";
         string packAuthor = "TestAuthor";
         Sprite packIcon = Sprite.Create(new Texture2D(16, 16), new Rect(0, 0, 16, 16), new Vector2(0.5f, 0.5f));
+        packInfo = new PackInfoAsset(packName, packIcon, packAuthor, packDescription);
 
-        PackInfoAsset packInfo = new PackInfoAsset(packName, packDescription, packAuthor, packIcon);
-        pack = new PackAsset(packInfo);
-        
-        path = Path.Combine(ExternalStorageOverseer.Instance.packDirectoryPath, pack.PackInfo.packName + ExternalStorageOverseer.Instance.packExtension);
+        path = Path.Combine(ExternalStorageOverseer.Instance.packDirectoryPath, this.packInfo.Title + ExternalStorageOverseer.Instance.packExtension);
     }
 
     [TearDown]
@@ -33,26 +34,26 @@ public class test_Pack_Save_and_Load
     {
         try
         {
-            lib.Library.Remove(pack.PackInfo.packName, pack.PackInfo.author);
+            lib.RemovePack(packInfo.Title, packInfo.Author);
         }
         catch (SafetyNetException)
         {
-            Debug.Log($"{pack.PackInfo.packName} does not exist anymore. It might have been deleted already.");
+            Debug.Log($"{packInfo.Title} does not exist anymore. It might have been deleted already.");
         }
     }
 
     [Test]
     public void save_pack_to_storage()
     {
-        lib.Library.Add(pack);
+        lib.CreateAndAddPack(packInfo);
         Assert.AreEqual(true, File.Exists(path));
     }
 
     [Test]
     public void remove_pack_from_storage()
     {
-        lib.Library.Add(pack);
-        lib.Library.Remove("Test Pack", "TestAuthor");
+        lib.CreateAndAddPack(packInfo);
+        lib.RemovePack("Test Pack", "TestAuthor");
 
         Assert.AreEqual(true, !File.Exists(path));
     }
@@ -62,7 +63,7 @@ public class test_Pack_Save_and_Load
     {
         try
         {
-            lib.Library.Remove("Stupid Pack", "Idiota");
+            lib.RemovePack("Stupid Pack", "Idiota");
             Assert.Fail();
         }
         catch (SafetyNetException)
@@ -76,7 +77,7 @@ public class test_Pack_Save_and_Load
     {
         try
         {
-            lib.Library.Remove("Test Pack", "TestAuthor");
+            lib.RemovePack("Test Pack", "TestAuthor");
             Assert.Fail();
         }
         catch (SafetyNetException)
@@ -88,10 +89,10 @@ public class test_Pack_Save_and_Load
     [Test]
     public void try_to_save_pack_with_same_name()
     {
-        lib.Library.Add(pack);
+        lib.CreateAndAddPack(packInfo);
         try
         {
-            lib.Library.Add(pack);
+            lib.CreateAndAddPack(packInfo);
             Assert.Fail();
         }
         catch (SafetyNetCollectionException) { }
@@ -100,39 +101,40 @@ public class test_Pack_Save_and_Load
     [Test]
     public void pack_data_did_load()
     {
-        lib.Library.Add(pack);
+        lib.CreateAndAddPack(packInfo);
         lib.ReloadFromExternalStorage();
 
-        Assert.AreEqual(1, lib.Library.Count);
+        Assert.AreEqual(1, lib.PackCount);
     }
 
     [Test]
     public void pack_data_loaded_correctly()
     {
-        lib.Library.Add(pack);
+        lib.CreateAndAddPack(packInfo);
         lib.ReloadFromExternalStorage();
 
-        PackAsset foundPack = lib.Library.TryFinding("Test Pack", "TestAuthor");
+        PackAsset foundPack = lib.GetCopy.TryFinding("Test Pack", "TestAuthor");
 
-        byte[] currentBytes = ImageConversion.EncodeToPNG(pack.PackInfo.icon.texture);
-        byte[] foundBytes = ImageConversion.EncodeToPNG(foundPack.PackInfo.icon.texture);
+        byte[] currentBytes = ImageConversion.EncodeToPNG(packInfo.Icon.texture);
+        byte[] foundBytes = ImageConversion.EncodeToPNG(foundPack.Icon.texture);
 
-        Assert.AreEqual(pack.PackInfo.packName, foundPack.PackInfo.packName);
-        Assert.AreEqual(pack.PackInfo.description, foundPack.PackInfo.description);
-        Assert.AreEqual(pack.PackInfo.author, foundPack.PackInfo.author);
+        Assert.AreEqual(packInfo.Title, foundPack.Title);
+        Assert.AreEqual(packInfo.Description, foundPack.Description);
+        Assert.AreEqual(packInfo.Author, foundPack.Author);
         Assert.AreEqual(currentBytes, foundBytes);
     }
 
     [Test]
     public void update_pack_details()
     {
-        PackInfoAsset newInfo = new PackInfoAsset(pack.PackInfo.packName, "This pack has now been updated", pack.PackInfo.author, pack.PackInfo.icon, pack.PackInfo.creationDateTime);
-        PackAsset oldPack = new PackAsset(pack.PackInfo);
+        PackInfoAsset newInfo = new PackInfoAsset(packInfo.Title, packInfo.Icon, packInfo.Author, "This pack has now been updated", packInfo.CreationDate);
+        lib.CreateAndAddPack(packInfo);
+        lib.ActivatePackEditor(0);
+        PackInfoAsset oldInfo = editor.CurrentPack.PackInfo;
 
-        lib.Library.Add(pack);
-        pack.UpdatePackInfo(newInfo);
+        editor.UpdatePackInfo(newInfo);
         
-        Assert.AreNotEqual(oldPack.PackInfo.description, pack.PackInfo.description);
+        Assert.AreNotEqual(oldInfo.Description, editor.CurrentPack.PackInfo.Description);
     }
 
 }
