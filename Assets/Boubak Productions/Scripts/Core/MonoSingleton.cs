@@ -34,13 +34,11 @@ namespace BoubakProductions.Core
             if (instance == null)
             {
                 instance = this as T;
-                DontDestroyOnLoad(gameObject);
             }
             else if (instance != this as T)
             {
                 Destroy(gameObject);
             }
-            else { DontDestroyOnLoad(gameObject); }
         }
 
         private void OnApplicationQuit()

@@ -130,6 +130,21 @@ namespace BoubakProductions.Safety
         #endregion
 
         #region String Checks
+        /// <summary>
+        /// Checks if a given string is not null or empty.
+        /// </summary>
+        /// <param name="stringObject">The string to check.</param>
+        /// <param name="variableName">Name of the variable.</param>
+        public static void EnsureStringNotNullOrEmpty(string stringObject, string variableName)
+        {
+            if (string.IsNullOrEmpty(stringObject))
+            {
+                string message = $"The string '{variableName}' cannot be null nor empty.";
+                OnFireErrorMessage?.Invoke(message);
+                throw new SafetyNetException(message);
+            }
+        }
+        
         /// /// <summary>
         /// Checks if a string is shorter that minLimit.
         /// </summary>

@@ -2,8 +2,8 @@
 using NUnit.Framework;
 using RogiumLegend.Editors.Core;
 using RogiumLegend.Editors.PackData;
-using RogiumLegend.Global.MenuSystem.AssetSelection;
-using RogiumLegend.Global.MenuSystem.Interactables;
+using RogiumLegend.Global.UISystem.AssetSelection;
+using RogiumLegend.Global.UISystem.Interactables;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.TestTools;

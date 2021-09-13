@@ -1,6 +1,6 @@
 using System.Collections;
 using NUnit.Framework;
-using RogiumLegend.Global.MenuSystem;
+using RogiumLegend.Global.UISystem;
 using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.UI;

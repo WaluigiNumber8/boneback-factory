@@ -5,6 +5,18 @@ TextureImporter:
   - first:
       213: 7928669489828817438
     second: spr_Asset_Bar_Blue_0
+  - first:
+      213: 9000284026481143382
+    second: spr_Asset_Bar_Blue_1
+  - first:
+      213: 569874396376383910
+    second: spr_Asset_Bar_Blue_2
+  - first:
+      213: -7439933270191751611
+    second: spr_Asset_Bar_Blue_3
+  - first:
+      213: -1089724947061779968
+    second: spr_Asset_Bar_Blue_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -102,7 +114,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 8, y: 7, z: 7, w: 8}
       outline: []
       physicsShape: []
@@ -110,6 +122,90 @@ TextureImporter:
       bones: []
       spriteID: e1a69b2a4ea480e60800000000000000
       internalID: 7928669489828817438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Asset_Bar_Blue_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 8, y: 7, z: 7, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65ee704f2ae67ec70800000000000000
+      internalID: 9000284026481143382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Asset_Bar_Blue_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 8, y: 7, z: 7, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a1ca928eb998e700800000000000000
+      internalID: 569874396376383910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Asset_Bar_Blue_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 8, y: 7, z: 7, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54e3c95fb1c00c890800000000000000
+      internalID: -7439933270191751611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Asset_Bar_Blue_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 8, y: 7, z: 7, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 002508b2fe480e0f0800000000000000
+      internalID: -1089724947061779968
       vertices: []
       indices: 
       edges: []

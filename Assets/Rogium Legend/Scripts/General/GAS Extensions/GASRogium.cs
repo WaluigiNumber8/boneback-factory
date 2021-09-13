@@ -1,4 +1,4 @@
-﻿using RogiumLegend.Global.MenuSystem;
+﻿using RogiumLegend.Global.UISystem;
 
 namespace RogiumLegend.GASExtensions
 {
