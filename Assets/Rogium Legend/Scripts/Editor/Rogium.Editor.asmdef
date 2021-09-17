@@ -1,0 +1,16 @@
+{
+    "name": "Rogium.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:e6dfa6ef797391d40a06df7cf055f449"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
