@@ -16,14 +16,6 @@ namespace Rogium.Global.UISystem.Interactables
     {
         private static int storedNumber = -1; //Used for method traveling.
 
-        public static void OpenPackSelection()
-        {
-            GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundMain);
-            GAS.ObjectSetActive(true, UIEditorContainer.GetInstance().Background);
-            GASRogium.SwitchMenu(MenuType.AssetSelection);
-            AssetSelectionOverseer.GetInstance().OpenForPacks();
-        }
-
         public static void ReturnToMainMenu()
         {
             GAS.ObjectSetActive(false, UIEditorContainer.GetInstance().PackInfoHeader);
@@ -32,29 +24,53 @@ namespace Rogium.Global.UISystem.Interactables
             GASRogium.SwitchMenu(MenuType.MainMenu);
         }
 
-        public static void OpenRoomEditor()
-        {
+        #region Open Selection Menus
 
+        public static void OpenPackSelection()
+        {
+            GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundMain);
+            GAS.ObjectSetActive(true, UIEditorContainer.GetInstance().Background);
+            GASRogium.SwitchMenu(MenuType.AssetSelection);
+            AssetSelectionOverseer.GetInstance().ReopenForPacks();
         }
 
+        public static void OpenRoomSelection()
+        {
+            GASRogium.SwitchMenu(MenuType.AssetSelection);
+            AssetSelectionOverseer.GetInstance().ReopenForRooms();
+        }
+
+        #endregion
+
+        #region Create Assets
         public static void CreatePack()
         {
-            new ModalPropertyWindowBuilder().OpenPackPropertiesCreate();
+            new ModalWindowPropertyBuilderPack().OpenForCreate();
         }
 
-        public static void EditPack(int packIndex)
+        public static void CreateRoom()
         {
-            LibraryOverseer.Instance.ActivatePackEditor(packIndex);
-            GASRogium.SwitchMenu(MenuType.AssetTypeSelection);
-            GAS.ObjectSetActive(true, UIEditorContainer.GetInstance().PackInfoHeader);
+            new ModalWindowPropertyBuilderRooms().OpenForCreate();
         }
 
+        #endregion
+
+        #region Edit Asset Properties
         public static void EditPackProperties(int packIndex)
         {
             LibraryOverseer.Instance.ActivatePackEditor(packIndex);
-            new ModalPropertyWindowBuilder().OpenPackPropertiesEdit();
+            new ModalWindowPropertyBuilderPack().OpenForUpdate();
         }
 
+        public static void EditRoomProperties(int roomIndex)
+        {
+            EditorOverseer.Instance.ActivateRoomEditor(roomIndex);
+            new ModalWindowPropertyBuilderRooms().OpenForUpdate();
+        }
+
+        #endregion
+
+        #region Remove Assets
         public static void RemovePack(int packIndex)
         {
             ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
@@ -65,15 +81,34 @@ namespace Rogium.Global.UISystem.Interactables
         {
             SafetyNet.EnsureIntIsBiggerThan(storedNumber, 0, "StoredNumber");
             LibraryOverseer.Instance.RemovePack(storedNumber);
-            AssetSelectionOverseer.GetInstance().OpenForPacks();
+            AssetSelectionOverseer.GetInstance().ReopenForPacks();
             storedNumber = -1;
         }
 
-        public static void CreateRoom()
+        public static void RemoveRoom(int roomIndex)
         {
-            EditorOverseer.Instance.CreateNewRoom();
-            AssetSelectionOverseer.GetInstance().OpenForPacks();
+            ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
+            storedNumber = roomIndex;
+            window.OpenAsMessage("Do you really want to remove this room?", "Yes", "No", RemoveRoomAccept, true);
+        }
+        private static void RemoveRoomAccept()
+        {
+            SafetyNet.EnsureIntIsBiggerThan(storedNumber, 0, "StoredNumber");
+            EditorOverseer.Instance.RemoveRoom(storedNumber);
+            AssetSelectionOverseer.GetInstance().ReopenForRooms();
+            storedNumber = -1;
         }
 
+        #endregion
+
+        #region Open Editors
+        public static void OpenEditor(int packIndex)
+        {
+            LibraryOverseer.Instance.ActivatePackEditor(packIndex);
+            GASRogium.SwitchMenu(MenuType.AssetTypeSelection);
+            GAS.ObjectSetActive(true, UIEditorContainer.GetInstance().PackInfoHeader);
+        }
+
+        #endregion
     }
 }

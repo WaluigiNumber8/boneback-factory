@@ -15,27 +15,39 @@ namespace Rogium.Editors.PackData
     public class PackAsset : IAsset
     {
         private PackInfoAsset packInfo;
-        private IList<PaletteAsset> palettes = new List<PaletteAsset>();
-        private IList<RoomAsset> rooms = new List<RoomAsset>();
-        private IList<TileAsset> tiles = new List<TileAsset>();
+        private AssetList<PaletteAsset> palettes;
+        private AssetList<RoomAsset> rooms;
+        private AssetList<TileAsset> tiles;
 
         #region Constructors
         public PackAsset()
         {
-            this.packInfo = new PackInfoAsset(EditorDefaults.packTitle,
-                                              EditorDefaults.packIcon,
-                                              EditorDefaults.author,
-                                              EditorDefaults.packDescription);
+            this.packInfo = new PackInfoAsset(EditorDefaults.PackTitle,
+                                              EditorDefaults.PackIcon,
+                                              EditorDefaults.Author,
+                                              EditorDefaults.PackDescription);
+
+            this.palettes = new AssetList<PaletteAsset>(this);
+            this.rooms = new AssetList<RoomAsset>(this);
+            this.tiles = new AssetList<TileAsset>(this);
         }
         public PackAsset(PackInfoAsset packInfo)
         {
             this.packInfo = packInfo;
+            
+            this.palettes = new AssetList<PaletteAsset>(this);
+            this.rooms = new AssetList<RoomAsset>(this);
+            this.tiles = new AssetList<TileAsset>(this);
         }
         public PackAsset(PackInfoAsset packInfo, IList<RoomAsset> rooms, IList<TileAsset> tiles)
         {
             this.packInfo = packInfo;
-            this.rooms = new List<RoomAsset>(rooms);
-            this.tiles = new List<TileAsset>(tiles);
+            
+            //TODO Add all asset list generation in here.
+            
+            this.palettes = new AssetList<PaletteAsset>(this);
+            this.rooms = new AssetList<RoomAsset>(this, rooms);
+            this.tiles = new AssetList<TileAsset>(this, tiles);
         }
         #endregion
 
@@ -94,9 +106,9 @@ namespace Rogium.Editors.PackData
         public DateTime CreationDate { get => packInfo.CreationDate; }
 
         public PackInfoAsset PackInfo { get => packInfo; }
-        public IList<PaletteAsset> Palettes { get => palettes; }
-        public IList<RoomAsset> Rooms { get => rooms; }
-        public IList<TileAsset> Tiles { get => tiles; }
+        public AssetList<PaletteAsset> Palettes { get => palettes; }
+        public AssetList<RoomAsset> Rooms { get => rooms; }
+        public AssetList<TileAsset> Tiles { get => tiles; }
     }
 }
 

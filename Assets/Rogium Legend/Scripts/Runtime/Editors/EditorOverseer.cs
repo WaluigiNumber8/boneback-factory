@@ -37,6 +37,7 @@ namespace Rogium.Editors.Core
         private EditorOverseer() 
         {
             roomEditor = RoomEditorOverseer.Instance;
+            roomEditor.OnCompleteEditing += UpdateRoom;
         }
 
         /// <summary>
@@ -49,25 +50,51 @@ namespace Rogium.Editors.Core
             startingTitle = pack.Title;
         }
 
+        #region Rooms
         /// <summary>
         /// Creates a new room, and adds it to the Pack Asset.
+        /// <param name="newRoom">The new Room Asset to Add.</param>
         /// </summary>
+        public void CreateNewRoom(RoomAsset newRoom)
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Currect Pack");
+            SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Rooms, "List of Rooms");
+            CurrentPack.Rooms.Add(newRoom);
+            
+        }
         public void CreateNewRoom()
         {
-            RoomAsset newRoom = new RoomAsset();
-            CurrentPack.Rooms.Add(newRoom);
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Currect Pack");
+            SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Rooms, "List of Rooms");
+            CurrentPack.Rooms.Add(new RoomAsset());
+            SavePackChanges();
         }
+
+        /// <summary>
+        /// Updates the room in the given pack.
+        /// </summary>
+        /// <param name="newRoom">Room Asset with the new details.</param>
+        /// <param name="positionIndex">Which room to override.</param>
+        public void UpdateRoom(RoomAsset newRoom, int positionIndex)
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Currect Pack");
+            SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Rooms, "List of Rooms");
+            
+            CurrentPack.Rooms.Update(positionIndex, newRoom);
+            SavePackChanges();
+        } 
 
         /// <summary>
         /// Deletes a room from the pack.
         /// <param name="roomIndex">The index of the room to be deleted.</param>
         /// </summary>
-        public void DeleteRoom(int roomIndex)
+        public void RemoveRoom(int roomIndex)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Currect Pack");
             SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Rooms, "List of Rooms");
-            SafetyNet.EnsureIntIsInRange(roomIndex, 0, currentPack.Rooms.Count, "Room Index");
             currentPack.Rooms.RemoveAt(roomIndex);
+
+            SavePackChanges();
         }
 
         /// <summary>
@@ -79,20 +106,29 @@ namespace Rogium.Editors.Core
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Currect Pack");
             SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Rooms, "List of Rooms");
             SafetyNet.EnsureIntIsInRange(roomIndex, 0, currentPack.Rooms.Count, "Room Index");
-            roomEditor.AssignCurrentAsset(CurrentPack.Rooms[roomIndex]);
+            roomEditor.AssignCurrentAsset(CurrentPack.Rooms[roomIndex], roomIndex);
         }
 
+        #endregion
+        
         /// <summary>
         /// Saves all edits done to a pack and "returns" it to the library.
         /// </summary>
         public void CompleteEditing()
         {
+            SavePackChanges();
+            currentPack = null;
+        }
+
+        /// <summary>
+        /// Save changes.
+        /// </summary>
+        private void SavePackChanges()
+        {
             ExternalStorageOverseer.Instance.Save(CurrentPack);
 
             if (startingTitle != CurrentPack.Title)
                 ExternalStorageOverseer.Instance.Delete(startingTitle);
-
-            currentPack = null;
         }
 
         public PackAsset CurrentPack

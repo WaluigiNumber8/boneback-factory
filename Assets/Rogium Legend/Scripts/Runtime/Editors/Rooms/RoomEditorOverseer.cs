@@ -1,7 +1,6 @@
-﻿using BoubakProductions.Safety;
-using System;
-using System.Collections;
+﻿using System;
 using UnityEngine;
+using BoubakProductions.Safety;
 
 namespace Rogium.Editors.RoomData
 {
@@ -11,7 +10,9 @@ namespace Rogium.Editors.RoomData
     public class RoomEditorOverseer : IEditorOverseer
     {
         public event Action<RoomAsset> OnAssignRoom;
+        public event Action<RoomAsset, int> OnCompleteEditing;
         private RoomAsset currentRoom;
+        private int myIndex;
 
         #region Singleton Pattern
         private static RoomEditorOverseer instance;
@@ -37,16 +38,17 @@ namespace Rogium.Editors.RoomData
         /// Assigns a new pack for editing.
         /// </summary>
         /// <param name="room">The room that will be edited.</param>
-        public void AssignCurrentAsset(RoomAsset room)
+        public void AssignCurrentAsset(RoomAsset room, int index)
         {
             SafetyNet.EnsureIsNotNull(room, "Assigned Room");
             OnAssignRoom?.Invoke(room);
-            currentRoom = room;
+            currentRoom = new RoomAsset(room);
+            myIndex = index;
         }
 
         public void CompleteEditing()
         {
-            throw new System.NotImplementedException();
+            OnCompleteEditing?.Invoke(CurrentRoom, myIndex);
         }
 
         public RoomAsset CurrentRoom 

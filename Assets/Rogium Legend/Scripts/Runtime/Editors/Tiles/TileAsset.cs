@@ -20,11 +20,11 @@ namespace Rogium.Editors.TileData
         #region Constructors
         public TileAsset()
         {
-            this.title = EditorDefaults.tileTitle;
-            this.author = EditorDefaults.author;
+            this.title = EditorDefaults.TileTitle;
+            this.author = EditorDefaults.Author;
             this.creationDate = DateTime.Now;
             this.tile = new TileObject(ScriptableObject.CreateInstance<Tile>(), TileType.Wall);
-            this.tile.Tile.sprite = EditorDefaults.tileSprite;
+            this.tile.Tile.sprite = EditorDefaults.TileSprite;
         }
         public TileAsset(string title, Sprite icon, string author, TileType type)
         {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Rogium.ExternalStorage.Serialization
 {
@@ -7,37 +8,29 @@ namespace Rogium.ExternalStorage.Serialization
     /// A Serialized List, ready for saving on external storage.
     /// </summary>
     /// <typeparam name="T">Unity readable Asset.</typeparam>
-    /// <typeparam name="S">Serialized Form of <see cref="T"/>Asset.</typeparam>
+    /// <typeparam name="TS">Serialized Form of <see cref="T"/>Asset.</typeparam>
     [System.Serializable]
-    public class SerializedList<T,S>
+    public class SerializedList<T,TS>
     {
-        private IList<S> serializedList = new List<S>();
+        private IList<TS> serializedList = new List<TS>();
 
         /// <summary>
         /// The Constructor.
         /// </summary>
         /// <param name="objectList">The List we want to serialize.</param>
-        /// <param name="NewSerializedObject">Constructor for the Serialized Asset this list is going to contain.</param>
-        public SerializedList(IList<T> objectList, Func<T,S> NewSerializedObject)
+        /// <param name="newSerializedObject">Constructor for the Serialized Asset this list is going to contain.</param>
+        public SerializedList(IList<T> objectList, Func<T,TS> newSerializedObject)
         {
-            for (int i = 0; i < objectList.Count; i++)
+            foreach (T listObject in objectList)
             {
-                S newObject = NewSerializedObject(objectList[i]);
+                TS newObject = newSerializedObject(listObject);
                 serializedList.Add(newObject);
             }
         }
 
-        public IList<T> Deserialize(Func<S,T> NewDeserializedObject)
+        public IList<T> Deserialize(Func<TS,T> newDeserializedObject)
         {
-            IList<T> deserializedList = new List<T>();
-
-            foreach (S serializedObject in serializedList)
-            {
-                T newObject = NewDeserializedObject(serializedObject);
-                deserializedList.Add(newObject);
-            }
-
-            return deserializedList;
+            return serializedList.Select(newDeserializedObject).ToList();
         }
     }
 }

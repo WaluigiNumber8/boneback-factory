@@ -19,8 +19,8 @@ namespace Rogium.ExternalStorage.Serialization
         public SerializedPackAsset(PackAsset pack)
         {
             this.packInfo = new SerializedPackInfoAsset(pack.PackInfo);
-            this.tiles = new SerializedList<TileAsset, SerializedTileAsset>(pack.Tiles, _ => new SerializedTileAsset());
-            this.rooms = new SerializedList<RoomAsset, SerializedRoomAsset>(pack.Rooms, _ => new SerializedRoomAsset());
+            this.tiles = new SerializedList<TileAsset, SerializedTileAsset>(pack.Tiles, tile => new SerializedTileAsset(tile));
+            this.rooms = new SerializedList<RoomAsset, SerializedRoomAsset>(pack.Rooms, room => new SerializedRoomAsset(room));
         }
 
         /// <summary>
@@ -29,15 +29,15 @@ namespace Rogium.ExternalStorage.Serialization
         /// <returns>The Pack Asset in a readable form.</returns>
         public PackAsset Deserialize()
         {
-            PackInfoAsset packInfo = new PackInfoAsset(this.packInfo.title,
+            PackInfoAsset deserializedInfo = new PackInfoAsset(this.packInfo.title,
                                                        this.packInfo.icon.Deserialize(),
                                                        this.packInfo.author,
                                                        this.packInfo.description,
                                                        DateTime.Parse(this.packInfo.creationTime));
 
             IList<TileAsset> deserializedTiles = tiles.Deserialize(tile => tile.Deserialize());
-            IList<RoomAsset> deserializedRooms = rooms.Deserialize(room => room.Deserialize(deserializedTiles));
-            return new PackAsset(packInfo, deserializedRooms, deserializedTiles);
+            IList<RoomAsset> deserializedRooms = rooms.Deserialize(room => room.Deserialize());
+            return new PackAsset(deserializedInfo, deserializedRooms, deserializedTiles);
         }
     }
 }

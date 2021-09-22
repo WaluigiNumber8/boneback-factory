@@ -37,6 +37,8 @@ namespace Rogium.Global.UISystem.UI
             this.asset = asset;
             ui.title.text = asset.Title;
             ui.icon.sprite = asset.Icon;
+            
+            ui.infoGroup.gameObject.SetActive(true);
         }
 
         /// <summary>
@@ -44,7 +46,7 @@ namespace Rogium.Global.UISystem.UI
         /// </summary>
         private void OnClick()
         {
-            ui.title.gameObject.SetActive(!ui.title.gameObject.activeSelf);
+            ui.infoGroup.gameObject.SetActive(!ui.infoGroup.gameObject.activeSelf);
             ui.buttonGroup.SetActive(!ui.buttonGroup.activeSelf);
         }
 
@@ -56,6 +58,7 @@ namespace Rogium.Global.UISystem.UI
         {
             public TextMeshProUGUI title;
             public Image icon;
+            public GameObject infoGroup;
             public GameObject buttonGroup;
         }
     }

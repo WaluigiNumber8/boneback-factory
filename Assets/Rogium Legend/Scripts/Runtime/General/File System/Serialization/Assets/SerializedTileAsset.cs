@@ -15,8 +15,6 @@ namespace Rogium.ExternalStorage.Serialization
         public readonly SerializedColor color;
         public SerializedMatrix4x4 transform;
 
-        public SerializedTileAsset() {}
-
         public SerializedTileAsset(TileAsset tileAsset)
         {
             this.title = tileAsset.Title;

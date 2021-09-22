@@ -8,15 +8,18 @@ namespace Rogium.Editors.Core.Defaults
     /// </summary>
     public static class EditorDefaults
     {
-        public static readonly string packTitle = "New Pack";
-        public static readonly string packDescription = "A new pack filled with adventure!";
-        public static readonly Sprite packIcon = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Rogium Legend/Sprites/Defaults/spr_Default_Weapon_Filled.png");
-        public static readonly string author = "NO_AUTHOR";
+        public const string PackTitle = "New Pack";
+        public const string PackDescription = "A new pack filled with adventure!";
+        public static readonly Sprite PackIcon = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Rogium Legend/Sprites/Defaults/spr_Default_Weapon_Filled.png");
+        public const string Author = "NO_AUTHOR";
 
-        public static readonly string tileTitle = "New Tile";
-        public static readonly Sprite tileSprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Rogium Legend/Sprites/Defaults/spr_Default_Weapon_Filled.png");
+        public const string TileTitle = "New Tile";
+        public static readonly Sprite TileSprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Rogium Legend/Sprites/Defaults/spr_Default_Weapon_Filled.png");
 
-        public static readonly string roomTitle = "New Room";
-        public static readonly Sprite roomSprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Rogium Legend/Sprites/Defaults/spr_Default_Weapon_Filled.png");
+        public const string RoomTitle = "New Room";
+        public const int RoomDifficulty = 0;
+        public static readonly Sprite RoomSprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Rogium Legend/Sprites/Defaults/spr_Default_Weapon_Filled.png");
+        
+        public const int DefaultTileIndex = -1;
     }
 }

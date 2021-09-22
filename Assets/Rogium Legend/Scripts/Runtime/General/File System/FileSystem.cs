@@ -41,9 +41,9 @@ namespace Rogium.ExternalStorage
             DirectoryInfo directory = new DirectoryInfo(path);
             FileInfo[] files = directory.GetFiles();
 
-            for (int i = 0; i < files.Length; i++)
+            foreach (FileInfo file in files)
             {
-                string filePath = Path.Combine(path, files[i].Name);
+                string filePath = Path.Combine(path, file.Name);
                 FileStream stream = new FileStream(filePath, FileMode.Open);
 
                 SerializedPackAsset asset = (SerializedPackAsset)formatter.Deserialize(stream);

@@ -48,7 +48,7 @@ namespace Rogium.Global.UISystem.AssetSelection
         /// <summary>
         /// Opens the selection menu for room assets.
         /// </summary>
-        public void OpenForRooms()
+        public void ReopenForRooms()
         {
             Setup(AssetType.Room,
                   layouts.list,
@@ -59,7 +59,7 @@ namespace Rogium.Global.UISystem.AssetSelection
         /// <summary>
         /// Opens the selection menu for pack assets.
         /// </summary>
-        public void OpenForPacks()
+        public void ReopenForPacks()
         {
             Setup(AssetType.Pack,
                   layouts.grid,

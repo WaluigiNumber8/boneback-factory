@@ -1,5 +1,6 @@
 ﻿using BoubakProductions.Core;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Rogium.Global.UISystem.Interactables.Properties
@@ -66,14 +67,15 @@ namespace Rogium.Global.UISystem.Interactables.Properties
         /// Builds the Dropdown Property.
         /// </summary>
         /// <param name="title">Name of the property.</param>
+        /// <param name="options">The list of options the dropdown will be filled with.</param>
         /// <param name="value">Starting value of the property</param>
         /// <param name="parent">Under which transform is this property going to be created.</param>
         /// <param name="OnChangeValue">What happens when the property changes value.</param>
         /// <returns>The property itself.</returns>
-        public InteractablePropertyDropdown BuildDropdown(string title, int value, Transform parent, Action<int> OnChangeValue)
+        public InteractablePropertyDropdown BuildDropdown(string title, IList<string> options, int value, Transform parent, Action<int> OnChangeValue)
         {
             InteractablePropertyDropdown dropdown = Instantiate(dropdownProperty, parent).GetComponent<InteractablePropertyDropdown>();
-            dropdown.Set(title, value, OnChangeValue);
+            dropdown.Set(title, options, value, OnChangeValue);
             return dropdown;
         }
 

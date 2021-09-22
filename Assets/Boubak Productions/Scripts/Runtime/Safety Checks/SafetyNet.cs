@@ -157,7 +157,7 @@ namespace BoubakProductions.Safety
         /// <exception cref="SafetyNetException"></exception>
         public static void EnsureStringMinLimit(string stringObject, int minLimit, string variableName)
         {
-            if (stringObject.Length <= minLimit)
+            if (stringObject.Length < minLimit)
             {
                 string message = $"The string '{variableName}' cannot have less or equal to {minLimit} characters! ({stringObject.Length})";
                 OnFireErrorMessage?.Invoke(message);
@@ -174,7 +174,7 @@ namespace BoubakProductions.Safety
         /// <exception cref="SafetyNetException"></exception>
         public static void EnsureStringMaxLimit(string stringObject, int maxLimit, string variableName)
         {
-            if (stringObject.Length >= maxLimit)
+            if (stringObject.Length > maxLimit)
             {
                 string message = $"The string '{variableName}' cannot have more or equal to {maxLimit} characters! ({stringObject.Length})";
                 OnFireErrorMessage?.Invoke(message);

@@ -18,11 +18,11 @@ namespace Rogium.Editors.PackData
 
         public PackInfoAsset() 
         {
-            this.title = EditorDefaults.packTitle;
-            this.icon = EditorDefaults.packIcon;
-            this.author = EditorDefaults.author;
+            this.title = EditorDefaults.PackTitle;
+            this.icon = EditorDefaults.PackIcon;
+            this.author = EditorDefaults.Author;
             this.creationDate = DateTime.Now;
-            this.description = EditorDefaults.packDescription;
+            this.description = EditorDefaults.PackDescription;
         }
 
         public PackInfoAsset(PackInfoAsset packInfo)

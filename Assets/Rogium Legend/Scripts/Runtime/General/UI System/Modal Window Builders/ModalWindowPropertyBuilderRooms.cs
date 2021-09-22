@@ -1,0 +1,60 @@
+﻿using System;
+using System.Collections.Generic;
+using Rogium.Editors.RoomData;
+
+namespace Rogium.Global.UISystem.UI
+{
+    /// <summary>
+    /// Constructor for the Room Properties Modal Window.
+    /// </summary>
+    public class ModalWindowPropertyBuilderRooms : ModalWindowPropertyBuilder
+    {
+        private RoomEditorOverseer roomEditor;
+
+        public ModalWindowPropertyBuilderRooms()
+        {
+            roomEditor = RoomEditorOverseer.Instance;
+        }
+
+        public override void OpenForCreate()
+        {
+            OpenWindow(new RoomAsset(), CreateAsset, "Creating new room");
+        }
+
+        public override void OpenForUpdate()
+        {
+            OpenWindow(roomEditor.CurrentRoom, UpdateAsset, $"Editing {roomEditor.CurrentRoom}");
+        }
+
+        private void OpenWindow(RoomAsset currentRoomAsset, Action onConfirmAction, string headerText)
+        {
+            IList<string> options = new List<string>();
+            options.Add("Level 1");
+            options.Add("Level 2");
+            options.Add("Level 3");
+            options.Add("Level 4");
+            options.Add("Level 5");
+
+            //TODO - Move this to somewhere more logical.
+
+            propertyBuilder.BuildInputField("Title", currentRoomAsset.Title, window.FirstColumnContent, currentRoomAsset.UpdateTitle);
+            propertyBuilder.BuildDropdown("Difficulty", options, currentRoomAsset.DifficultyLevel, window.FirstColumnContent, currentRoomAsset.UpdateDifficultyLevel);
+
+            editedAsset = currentRoomAsset;
+            window.OpenAsPropertiesColumn1(headerText, "Done", "Cancel", onConfirmAction, true);
+        }
+
+        private void CreateAsset()
+        {
+            editor.CreateNewRoom((RoomAsset)editedAsset);
+            selectionMenu.ReopenForRooms();
+        }
+
+        private void UpdateAsset()
+        {
+            roomEditor.CompleteEditing();
+            selectionMenu.ReopenForRooms();
+        }
+
+    }
+}

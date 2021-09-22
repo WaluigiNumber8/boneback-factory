@@ -34,8 +34,22 @@ namespace Rogium.Global.UISystem.Interactables
         /// </summary>
         private void ShowNumberField()
         {
-            if ((actionType == ButtonType.EditPack) ||
+            if ((actionType == ButtonType.SelectionOpenAssetType) ||
                (actionType == ButtonType.EditPackProperties) ||
+               (actionType == ButtonType.EditorOpenPalette) ||
+               (actionType == ButtonType.EditSpriteProperties) ||
+               (actionType == ButtonType.EditWeaponProperties) ||
+               (actionType == ButtonType.EditEnemyProperties) ||
+               (actionType == ButtonType.EditRoomProperties) ||
+               (actionType == ButtonType.EditTileProperties) ||
+               (actionType == ButtonType.EditProjectileProperties) ||
+               (actionType == ButtonType.DeletePalette) ||
+               (actionType == ButtonType.DeleteSprite) ||
+               (actionType == ButtonType.DeleteWeapon) ||
+               (actionType == ButtonType.DeleteEnemy) ||
+               (actionType == ButtonType.DeleteRoom) ||
+               (actionType == ButtonType.DeleteTile) ||
+               (actionType == ButtonType.DeleteProjectile) ||
                (actionType == ButtonType.DeletePack))
             {
                 number = EditorGUILayout.IntField("Number", number);

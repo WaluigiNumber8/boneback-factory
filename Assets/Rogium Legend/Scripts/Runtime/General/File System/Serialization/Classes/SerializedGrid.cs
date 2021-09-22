@@ -1,5 +1,6 @@
 ﻿using Rogium.Global.GridSystem;
 using System.Collections.Generic;
+using Rogium.Editors.Core.Defaults;
 
 namespace Rogium.ExternalStorage.Serialization
 {
@@ -59,7 +60,7 @@ namespace Rogium.ExternalStorage.Serialization
         /// </summary>
         /// <typeparam name="S"></typeparam>
         /// <param name="objectList">The List of object to read from.</param>
-        public ObjectGrid<T> Deserialize(IList<T> objectList)
+        public ObjectGrid<T> DeserializeViaList(IList<T> objectList)
         {
             int width = serializedGrid.GetLength(0);
             int height = serializedGrid.GetLength(1);
@@ -71,6 +72,23 @@ namespace Rogium.ExternalStorage.Serialization
                 {
                     int index = serializedGrid[x, y];
                     grid.SetValue(x, y, objectList[index]);
+                }
+            }
+            return grid;
+        }
+
+        public ObjectGrid<int> Deserialize()
+        {
+            int width = serializedGrid.GetLength(0);
+            int height = serializedGrid.GetLength(1);
+            ObjectGrid<int> grid = new ObjectGrid<int>(width, height, () => EditorDefaults.DefaultTileIndex);
+
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    int value = serializedGrid[x, y];
+                    grid.SetValue(x, y, value);
                 }
             }
             return grid;

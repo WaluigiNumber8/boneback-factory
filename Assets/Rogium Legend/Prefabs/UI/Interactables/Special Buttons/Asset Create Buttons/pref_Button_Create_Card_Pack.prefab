@@ -109,11 +109,11 @@ PrefabInstance:
       objectReference: {fileID: 5795334684194331718, guid: 5ef60885b5525024ea87aa0a0c0062af, type: 3}
     - target: {fileID: 9141038177592774345, guid: 475160b8cb80c2f4e9fa692693538ea9, type: 3}
       propertyPath: m_Name
-      value: pref_Card_Create_Button_Pack
+      value: pref_Button_Create_Card_Pack
       objectReference: {fileID: 0}
     - target: {fileID: 9189480147332028196, guid: 475160b8cb80c2f4e9fa692693538ea9, type: 3}
       propertyPath: action
-      value: 3
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 475160b8cb80c2f4e9fa692693538ea9, type: 3}

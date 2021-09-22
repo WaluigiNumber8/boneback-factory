@@ -90,7 +90,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 10
+  m_Spacing: 32
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 882554230}
   - component: {fileID: 882554234}
   m_Layer: 5
-  m_Name: Left Column
+  m_Name: First Column
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -359,7 +359,7 @@ GameObject:
   - component: {fileID: 8742004777211322256}
   - component: {fileID: 2086097652}
   m_Layer: 5
-  m_Name: Right Column
+  m_Name: Second Column
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -580,7 +580,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 25
+  m_Spacing: 32
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
@@ -649,15 +649,15 @@ MonoBehaviour:
     text: {fileID: 3348369913775767294}
   layout:
     area: {fileID: 3348369913072516633}
-    basic:
+    message:
       area: {fileID: 3348369913825590045}
       text: {fileID: 3348369914073946683}
     properties:
       area: {fileID: 956223073}
-      leftColumn: {fileID: 882554229}
-      rightColumn: {fileID: 2488520000998953180}
-      leftColumnContent: {fileID: 696490271}
-      rightColumnContent: {fileID: 1530068254796101520}
+      firstColumn: {fileID: 882554229}
+      secondColumn: {fileID: 2488520000998953180}
+      firstColumnContent: {fileID: 696490271}
+      secondColumnContent: {fileID: 1530068254796101520}
   footer:
     area: {fileID: 3348369912921281449}
     acceptButtonText: {fileID: 4504896087994389579}

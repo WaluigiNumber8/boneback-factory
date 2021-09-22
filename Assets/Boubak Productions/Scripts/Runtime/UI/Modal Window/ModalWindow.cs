@@ -70,10 +70,10 @@ namespace BoubakProductions.UI
             WindowSetup();
 
             layout.area.gameObject.SetActive(true);
-            layout.basic.area.gameObject.SetActive(true);
-            layout.basic.text.gameObject.SetActive(true);
+            layout.message.area.gameObject.SetActive(true);
+            layout.message.text.gameObject.SetActive(true);
 
-            layout.basic.text.text = message;
+            layout.message.text.text = message;
 
             DrawFooter(acceptButtonText, denyButtonText, specialButtonText, onAcceptAction, onDenyAction, onSpecialAction);
             windowBox.gameObject.SetActive(true);
@@ -97,13 +97,13 @@ namespace BoubakProductions.UI
                 OpenAsPropertiesColumn2(headerText, acceptButtonText, denyButtonText, specialButtonDefault, onAcceptAction, null, null);
         }
         /// <summary>
-            /// Draws the window as a properties window.
-            /// </summary>
-            /// <param name="headerText">Text in the header.</param>
-            /// <param name="acceptButtonText">Text in the Accept Button.</param>
-            /// <param name="denyButtonText">Text in the Deny Button.</param>
-            /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.</param>
-            /// <param name="onDenyAction">Method, that happens when the Dccept Button is clicked.</param>
+        /// Draws the window as a properties window.
+        /// </summary>
+        /// <param name="headerText">Text in the header.</param>
+        /// <param name="acceptButtonText">Text in the Accept Button.</param>
+        /// <param name="denyButtonText">Text in the Deny Button.</param>
+        /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.</param>
+        /// <param name="onDenyAction">Method, that happens when the Dccept Button is clicked.</param>
         public void OpenAsPropertiesColumn2(string headerText, string acceptButtonText, string denyButtonText, Action onAcceptAction, Action onDenyAction)
         {
             OpenAsPropertiesColumn2(headerText, acceptButtonText, denyButtonText, specialButtonDefault, onAcceptAction, onDenyAction, null);
@@ -124,10 +124,54 @@ namespace BoubakProductions.UI
             DrawHeader(headerText);
 
             layout.properties.area.gameObject.SetActive(true);
-            layout.properties.leftColumn.gameObject.SetActive(true);
-            layout.properties.rightColumn.gameObject.SetActive(true);
-            layout.properties.leftColumnContent.gameObject.SetActive(true);
-            layout.properties.rightColumnContent.gameObject.SetActive(true);
+            layout.properties.firstColumn.gameObject.SetActive(true);
+            layout.properties.secondColumn.gameObject.SetActive(true);
+            layout.properties.firstColumnContent.gameObject.SetActive(true);
+            layout.properties.secondColumnContent.gameObject.SetActive(true);
+
+            layout.area.gameObject.SetActive(true);
+
+            DrawFooter(acceptButtonText, denyButtonText, specialButtonText, onAcceptAction, onDenyAction, onSpecialAction);
+            windowBox.gameObject.SetActive(true);
+        }
+
+        /// <summary>
+        /// Draws the window as a properties window.
+        /// </summary>
+        /// <param name="headerText">Text in the header.</param>
+        /// <param name="acceptButtonText">Text in the Accept Button.</param>
+        /// <param name="denyButtonText">Text in the Deny Button.</param>
+        /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.</param>
+        /// <param name="denyActionClosesWindow">If true, clicking the deny button will just close the window. Otherwise is null.</param>
+        public void OpenAsPropertiesColumn1(string headerText, string acceptButtonText, string denyButtonText, Action onAcceptAction, bool denyActionClosesWindow = false)
+        {
+            if (denyActionClosesWindow)
+                OpenAsPropertiesColumn1(headerText, acceptButtonText, denyButtonText, specialButtonDefault, onAcceptAction, Close, null);
+            else
+                OpenAsPropertiesColumn1(headerText, acceptButtonText, denyButtonText, specialButtonDefault, onAcceptAction, null, null);
+        }
+        /// <summary>
+        /// Draws the window as a properties window.
+        /// </summary>
+        /// <param name="headerText">Text in the header.</param>
+        /// <param name="acceptButtonText">Text in the Accept Button.</param>
+        /// <param name="denyButtonText">Text in the Deny Button.</param>
+        /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.</param>
+        /// <param name="onDenyAction">Method, that happens when the Dccept Button is clicked.</param>
+        public void OpenAsPropertiesColumn1(string headerText, string acceptButtonText, string denyButtonText, Action onAcceptAction, Action onDenyAction)
+        {
+            OpenAsPropertiesColumn1(headerText, acceptButtonText, denyButtonText, specialButtonDefault, onAcceptAction, onDenyAction, null);
+        }
+        public void OpenAsPropertiesColumn1(string headerText, string acceptButtonText, string denyButtonText, string specialButtonText, Action onAcceptAction, Action onDenyAction, Action onSpecialAction)
+        {
+            WindowSetup();
+            DrawHeader(headerText);
+
+            layout.properties.area.gameObject.SetActive(true);
+            layout.properties.firstColumn.gameObject.SetActive(true);
+            layout.properties.secondColumn.gameObject.SetActive(false);
+            layout.properties.firstColumnContent.gameObject.SetActive(true);
+            layout.properties.secondColumnContent.gameObject.SetActive(false);
 
             layout.area.gameObject.SetActive(true);
 
@@ -138,7 +182,7 @@ namespace BoubakProductions.UI
         #endregion
 
         #region Window Part Drawing
-        
+
         /// <summary>
         /// Draws the Header part of the Window.
         /// </summary>
@@ -226,14 +270,19 @@ namespace BoubakProductions.UI
         public void Close()
         {
             windowBox.gameObject.SetActive(false);
-            layout.properties.leftColumnContent.gameObject.KillChildren();
-            layout.properties.rightColumnContent.gameObject.KillChildren();
+
+            layout.message.area.gameObject.SetActive(false);
+
+            layout.properties.area.gameObject.SetActive(false);
+            layout.properties.firstColumnContent.gameObject.KillChildren();
+            layout.properties.secondColumnContent.gameObject.KillChildren();
+
             background.gameObject.SetActive(false);
             area.gameObject.SetActive(false);
         }
 
-        public Transform LeftColumnContent => layout.properties.leftColumnContent;
-        public Transform RightColumnContent => layout.properties.rightColumnContent;
+        public Transform FirstColumnContent => layout.properties.firstColumnContent;
+        public Transform SecondColumnContent => layout.properties.secondColumnContent;
 
         [System.Serializable]
         public struct HeaderInfo
@@ -246,7 +295,7 @@ namespace BoubakProductions.UI
         public struct LayoutInfo
         {
             public Transform area;
-            public BasicLayoutInfo basic;
+            public BasicLayoutInfo message;
             public PropertiesLayoutInfo properties;
         }
 
@@ -261,10 +310,10 @@ namespace BoubakProductions.UI
         public struct PropertiesLayoutInfo
         {
             public Transform area;
-            public Transform leftColumn;
-            public Transform rightColumn;
-            public Transform leftColumnContent;
-            public Transform rightColumnContent;
+            public Transform firstColumn;
+            public Transform secondColumn;
+            public Transform firstColumnContent;
+            public Transform secondColumnContent;
         }
 
         [System.Serializable]

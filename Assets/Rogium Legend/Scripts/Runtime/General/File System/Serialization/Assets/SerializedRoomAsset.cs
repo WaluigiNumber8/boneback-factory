@@ -1,4 +1,5 @@
-﻿using Rogium.Editors.RoomData;
+﻿using System;
+using Rogium.Editors.RoomData;
 using Rogium.Editors.TileData;
 using System.Collections.Generic;
 
@@ -15,9 +16,7 @@ namespace Rogium.ExternalStorage.Serialization
         public readonly string author;
         public readonly string creationDate;
         public readonly int difficultyLevel;
-        public readonly SerializedGrid<TileAsset> tileGrid;
-
-        public SerializedRoomAsset() {}
+        public readonly SerializedGrid<int> tileGrid;
 
         public SerializedRoomAsset(RoomAsset rm)
         {
@@ -26,16 +25,17 @@ namespace Rogium.ExternalStorage.Serialization
             this.author = rm.Author;
             this.creationDate = rm.CreationDate.ToString();
             this.difficultyLevel = rm.DifficultyLevel;
-            this.tileGrid = new SerializedGrid<TileAsset>(rm.TileGrid);
+            this.tileGrid = new SerializedGrid<int>(rm.TileGrid);
         }
 
-        public RoomAsset Deserialize(IList<TileAsset> tiles)
+        public RoomAsset Deserialize()
         {
             return new RoomAsset(this.roomName,
                                  this.icon.Deserialize(),
                                  this.author,
                                  this.difficultyLevel,
-                                 this.tileGrid.Deserialize(tiles));
+                                 this.tileGrid.Deserialize(),
+                                 DateTime.Parse(this.creationDate));
         }
     }
 }

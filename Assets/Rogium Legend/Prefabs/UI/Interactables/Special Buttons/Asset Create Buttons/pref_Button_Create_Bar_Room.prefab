@@ -93,7 +93,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5351878498162132235, guid: c3c92e2b7f2e040419431ccf012b2daa, type: 3}
       propertyPath: m_Name
-      value: pref_Button_Create_Bar
+      value: pref_Button_Create_Bar_Room
+      objectReference: {fileID: 0}
+    - target: {fileID: 5411456931603160294, guid: c3c92e2b7f2e040419431ccf012b2daa, type: 3}
+      propertyPath: action
+      value: 17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3c92e2b7f2e040419431ccf012b2daa, type: 3}

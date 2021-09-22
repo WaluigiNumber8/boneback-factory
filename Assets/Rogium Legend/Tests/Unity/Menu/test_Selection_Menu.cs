@@ -20,10 +20,10 @@ public class test_Selection_Menu
     public void Setup()
     {
         #region Prepare Test Pack
-        string packTitle = EditorDefaults.packTitle;
-        string packDescription = EditorDefaults.packDescription;
-        string packAuthor = EditorDefaults.author;
-        Sprite packIcon = EditorDefaults.packIcon;
+        string packTitle = EditorDefaults.PackTitle;
+        string packDescription = EditorDefaults.PackDescription;
+        string packAuthor = EditorDefaults.Author;
+        Sprite packIcon = EditorDefaults.PackIcon;
 
         packInfo = new PackInfoAsset(packTitle, packIcon, packAuthor, packDescription);
         #endregion
@@ -59,7 +59,7 @@ public class test_Selection_Menu
     {
         LibraryOverseer.Instance.CreateAndAddPack(packInfo);
 
-        selectionMenu.OpenForPacks();
+        selectionMenu.ReopenForPacks();
         yield return new WaitForSeconds(0.1f);
         Assert.AreEqual(true, selectionMenu.gameObject.activeSelf);
         Assert.AreEqual(true, selectionMenu.GridMenu.activeSelf);
@@ -72,9 +72,9 @@ public class test_Selection_Menu
     {
         LibraryOverseer.Instance.CreateAndAddPack(packInfo);
 
-        selectionMenu.OpenForPacks();
+        selectionMenu.ReopenForPacks();
         yield return new WaitForSeconds(0.5f);
-        selectionMenu.OpenForPacks();
+        selectionMenu.ReopenForPacks();
         yield return new WaitForSeconds(0.25f);
 
         Assert.AreEqual(1, selectionMenu.AssetCount);
@@ -86,7 +86,7 @@ public class test_Selection_Menu
     {
         LibraryOverseer.Instance.CreateAndAddPack(packInfo);
 
-        selectionMenu.OpenForPacks();
+        selectionMenu.ReopenForPacks();
         
         yield return new WaitForSeconds(0.2f);
         LibraryOverseer.Instance.ActivatePackEditor(0);
@@ -95,7 +95,7 @@ public class test_Selection_Menu
         EditorOverseer.Instance.CreateNewRoom();
 
         yield return new WaitForSeconds(0.1f);
-        selectionMenu.OpenForRooms();
+        selectionMenu.ReopenForRooms();
         yield return new WaitForSeconds(0.2f);
 
         Assert.AreEqual(true, selectionMenu.gameObject.activeSelf);
@@ -114,7 +114,7 @@ public class test_Selection_Menu
         EditorOverseer.Instance.CreateNewRoom();
 
         yield return new WaitForSeconds(0.1f);
-        selectionMenu.OpenForRooms();
+        selectionMenu.ReopenForRooms();
         yield return new WaitForSeconds(0.2f);
 
         Assert.AreEqual(true, selectionMenu.gameObject.activeSelf);
@@ -126,7 +126,7 @@ public class test_Selection_Menu
     [UnityTest]
     public IEnumerator create_new_pack()
     {
-        selectionMenu.OpenForPacks();
+        selectionMenu.ReopenForPacks();
         yield return new WaitForSeconds(0.1f);
         GASButtonActions.CreatePack();
 
@@ -138,7 +138,7 @@ public class test_Selection_Menu
     [UnityTest]
     public IEnumerator delete_pack()
     {
-        selectionMenu.OpenForPacks();
+        selectionMenu.ReopenForPacks();
         yield return new WaitForSeconds(0.1f);
         GASButtonActions.CreatePack();
         yield return new WaitForSeconds(0.3f);
