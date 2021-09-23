@@ -1153,6 +1153,8 @@ MonoBehaviour:
     weapon: {fileID: 0}
     enemy: {fileID: 0}
     room: {fileID: 11400000, guid: 8b214c23441118d4cb58cc289b8d086a, type: 2}
+    tile: {fileID: 11400000, guid: 30fd5df9f4f4b19409498c4137407e81, type: 2}
+    projectile: {fileID: 0}
     palette: {fileID: 0}
     sprite: {fileID: 0}
 --- !u!114 &257940455688472748

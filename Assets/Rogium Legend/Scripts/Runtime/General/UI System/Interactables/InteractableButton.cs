@@ -36,6 +36,7 @@ namespace Rogium.Global.UISystem.Interactables
                     GASButtonActions.ReturnToMainMenu();
                     break;
 
+                #region Open Selection Menus
                 case ButtonType.SelectionOpenAssetType:
                     SafetyNet.EnsureIntIsNotEqual(number, -1, "BUTTON INTERACTION - EDIT PACK");
                     GASButtonActions.OpenEditor(number);
@@ -55,10 +56,14 @@ namespace Rogium.Global.UISystem.Interactables
                     GASButtonActions.OpenRoomSelection();
                     break;
                 case ButtonType.SelectionOpenTile:
+                    GASButtonActions.OpenTileSelection();
                     break;
                 case ButtonType.SelectionOpenProjectile:
                     break;
+                
+                #endregion
 
+                #region Create Assets
                 case ButtonType.CreatePack:
                     GASButtonActions.CreatePack();
                     break;
@@ -74,10 +79,14 @@ namespace Rogium.Global.UISystem.Interactables
                 case ButtonType.CreateEnemy:
                     break;
                 case ButtonType.CreateTile:
+                    GASButtonActions.CreateTile();
                     break;
                 case ButtonType.CreateProjectile:
                     break;
+                
+                #endregion
 
+                #region Edit Asset Properties
                 case ButtonType.EditPackProperties:
                     SafetyNet.EnsureIntIsNotEqual(number, -1, "BUTTON INTERACTION - EDIT PACK PROPERTIES");
                     GASButtonActions.EditPackProperties(number);
@@ -95,10 +104,15 @@ namespace Rogium.Global.UISystem.Interactables
                     GASButtonActions.EditRoomProperties(number);
                     break;
                 case ButtonType.EditTileProperties:
+                    SafetyNet.EnsureIntIsNotEqual(number, -1, "BUTTON INTERACTION - EDIT TILE PROPERTIES");
+                    GASButtonActions.EditTileProperties(number);
                     break;
                 case ButtonType.EditProjectileProperties:
                     break;
+                
+                #endregion
 
+                #region Delete Assets
                 case ButtonType.DeletePack:
                     SafetyNet.EnsureIntIsNotEqual(number, -1, "BUTTON INTERACTION - REMOVE PACK");
                     GASButtonActions.RemovePack(number);
@@ -116,10 +130,15 @@ namespace Rogium.Global.UISystem.Interactables
                     GASButtonActions.RemoveRoom(number);
                     break;
                 case ButtonType.DeleteTile:
+                    SafetyNet.EnsureIntIsNotEqual(number, -1, "BUTTON INTERACTION - REMOVE TILE");
+                    GASButtonActions.RemoveTile(number);
                     break;
                 case ButtonType.DeleteProjectile:
                     break;
+                
+                #endregion
 
+                #region Open Editors
                 case ButtonType.EditorOpenPalette:
                     break;
                 case ButtonType.EditorOpenSprite:
@@ -134,6 +153,7 @@ namespace Rogium.Global.UISystem.Interactables
                     break;
                 case ButtonType.EditorOpenProjectile:
                     break;
+                #endregion
                 default:
                     throw new InvalidEnumArgumentException("Unknown Button Type.");
             }

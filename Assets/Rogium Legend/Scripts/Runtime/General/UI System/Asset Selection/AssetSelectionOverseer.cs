@@ -55,6 +55,17 @@ namespace Rogium.Global.UISystem.AssetSelection
                   selectionMenus.room,
                   editor.CurrentPack.Rooms.ToList<IAsset>());
         }
+        
+        /// <summary>
+        /// Opens the selection menu for tile assets.
+        /// </summary>
+        public void ReopenForTiles()
+        {
+            Setup(AssetType.Tile,
+                layouts.grid,
+                selectionMenus.tile,
+                editor.CurrentPack.Tiles.ToList<IAsset>());
+        }
 
         /// <summary>
         /// Opens the selection menu for pack assets.
@@ -142,6 +153,8 @@ namespace Rogium.Global.UISystem.AssetSelection
             public SelectionMenuAsset weapon;
             public SelectionMenuAsset enemy;
             public SelectionMenuAsset room;
+            public SelectionMenuAsset tile;
+            public SelectionMenuAsset projectile;
             public SelectionMenuAsset palette;
             public SelectionMenuAsset sprite;
         }

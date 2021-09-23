@@ -26,6 +26,14 @@ namespace Rogium.Editors.TileData
             this.tile = new TileObject(ScriptableObject.CreateInstance<Tile>(), TileType.Wall);
             this.tile.Tile.sprite = EditorDefaults.TileSprite;
         }
+        public TileAsset(TileAsset tileAsset)
+        {
+            this.title = tileAsset.Title;
+            this.author = tileAsset.Author;
+            this.creationDate = tileAsset.CreationDate;
+            this.tile = new TileObject(tileAsset.Tile, tileAsset.Type);
+            this.tile.Tile.sprite = tileAsset.Tile.sprite;
+        }
         public TileAsset(string title, Sprite icon, string author, TileType type)
         {
             this.title = title;
@@ -46,7 +54,6 @@ namespace Rogium.Editors.TileData
         #endregion
 
         #region Update Values
-
         public void UpdateTitle(string newTitle)
         {
             this.title = newTitle;
@@ -69,6 +76,10 @@ namespace Rogium.Editors.TileData
             this.creationDate = newCreationDate;
         }
 
+        public void UpdateTileType(int newType)
+        {
+            this.tile.UpdateType((TileType) newType);
+        }
         #endregion
 
         public string Title { get => title; }

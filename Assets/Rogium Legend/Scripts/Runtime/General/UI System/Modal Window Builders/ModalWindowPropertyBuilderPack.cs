@@ -39,7 +39,7 @@ namespace Rogium.Global.UISystem.UI
         /// <summary>
         /// Builds a pack and saves it to the library.
         /// </summary>
-        private void CreateAsset()
+        protected override void CreateAsset()
         {
             lib.CreateAndAddPack((PackInfoAsset)editedAsset);
             selectionMenu.ReopenForPacks();
@@ -48,7 +48,7 @@ namespace Rogium.Global.UISystem.UI
         /// <summary>
         /// Updates a given pack.
         /// </summary>
-        private void UpdateAsset()
+        protected override void UpdateAsset()
         {
             editor.CurrentPack.UpdatePackInfo((PackInfoAsset)editedAsset);
             editor.CompleteEditing();

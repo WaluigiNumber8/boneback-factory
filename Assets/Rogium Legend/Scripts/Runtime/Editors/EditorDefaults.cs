@@ -14,7 +14,7 @@ namespace Rogium.Editors.Core.Defaults
         public const string Author = "NO_AUTHOR";
 
         public const string TileTitle = "New Tile";
-        public static readonly Sprite TileSprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Rogium Legend/Sprites/Defaults/spr_Default_Weapon_Filled.png");
+        public static readonly Sprite TileSprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Rogium Legend/Sprites/Tiles/spr_tile_FloorTile.png");
 
         public const string RoomTitle = "New Room";
         public const int RoomDifficulty = 0;

@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89336f03827cef34d898e6a19f50937b, type: 3}
+  m_Name: asset_Menu_Selection_Tile
+  m_EditorClassIdentifier: 
+  assetObject: {fileID: 397767052321836008, guid: f89cd053f4baa1845b53bcf6a8636774, type: 3}
+  addButton: {fileID: 4882071331066414250, guid: 09e89ed0da8da374185a07558525bb8c, type: 3}

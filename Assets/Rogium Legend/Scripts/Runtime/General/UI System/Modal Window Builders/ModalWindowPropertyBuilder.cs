@@ -36,5 +36,15 @@ namespace Rogium.Global.UISystem.UI
         /// Opens a Modal Window as an Edit Window.
         /// </summary>
         public abstract void OpenForUpdate();
+
+        /// <summary>
+        /// What happens, when the confirm button is pressed in the creation window variation.
+        /// </summary>
+        protected abstract void CreateAsset();
+        
+        /// <summary>
+        /// What happens, when the confirm button is pressed in the update window variation.
+        /// </summary>
+        protected abstract void UpdateAsset();
     }
 }

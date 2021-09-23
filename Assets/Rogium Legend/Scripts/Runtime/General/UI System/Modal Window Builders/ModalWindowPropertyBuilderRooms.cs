@@ -39,18 +39,20 @@ namespace Rogium.Global.UISystem.UI
 
             propertyBuilder.BuildInputField("Title", currentRoomAsset.Title, window.FirstColumnContent, currentRoomAsset.UpdateTitle);
             propertyBuilder.BuildDropdown("Difficulty", options, currentRoomAsset.DifficultyLevel, window.FirstColumnContent, currentRoomAsset.UpdateDifficultyLevel);
-
+            propertyBuilder.BuildPlainText("Created by", currentRoomAsset.Author, window.SecondColumnContent);
+            propertyBuilder.BuildPlainText("Created on", currentRoomAsset.CreationDate.ToString(), window.SecondColumnContent);
+            
             editedAsset = currentRoomAsset;
             window.OpenAsPropertiesColumn1(headerText, "Done", "Cancel", onConfirmAction, true);
         }
 
-        private void CreateAsset()
+        protected override void CreateAsset()
         {
             editor.CreateNewRoom((RoomAsset)editedAsset);
             selectionMenu.ReopenForRooms();
         }
 
-        private void UpdateAsset()
+        protected override void UpdateAsset()
         {
             roomEditor.CompleteEditing();
             selectionMenu.ReopenForRooms();

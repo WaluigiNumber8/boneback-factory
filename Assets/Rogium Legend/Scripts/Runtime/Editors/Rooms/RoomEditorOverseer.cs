@@ -38,7 +38,8 @@ namespace Rogium.Editors.RoomData
         /// Assigns a new pack for editing.
         /// </summary>
         /// <param name="room">The room that will be edited.</param>
-        public void AssignCurrentAsset(RoomAsset room, int index)
+        /// <param name="index"></param>
+        public void AssignAsset(RoomAsset room, int index)
         {
             SafetyNet.EnsureIsNotNull(room, "Assigned Room");
             OnAssignRoom?.Invoke(room);

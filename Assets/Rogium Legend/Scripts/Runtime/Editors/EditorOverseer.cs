@@ -2,6 +2,7 @@
 using BoubakProductions.Safety;
 using Rogium.Editors.PackData;
 using Rogium.Editors.RoomData;
+using Rogium.Editors.TileData;
 using Rogium.ExternalStorage;
 
 namespace Rogium.Editors.Core
@@ -12,6 +13,7 @@ namespace Rogium.Editors.Core
     public class EditorOverseer : IEditorOverseer
     {
         private readonly RoomEditorOverseer roomEditor;
+        private readonly TileEditorOverseer tileEditor;
 
         private PackAsset currentPack;
         private string startingTitle;
@@ -19,6 +21,7 @@ namespace Rogium.Editors.Core
         #region Singleton Pattern
         private static EditorOverseer instance;
         private static readonly object padlock = new object();
+
         public static EditorOverseer Instance
         {
             get
@@ -37,7 +40,9 @@ namespace Rogium.Editors.Core
         private EditorOverseer() 
         {
             roomEditor = RoomEditorOverseer.Instance;
+            tileEditor = TileEditorOverseer.Instance;
             roomEditor.OnCompleteEditing += UpdateRoom;
+            tileEditor.OnCompleteEditing += UpdateTile;
         }
 
         /// <summary>
@@ -58,14 +63,14 @@ namespace Rogium.Editors.Core
         public void CreateNewRoom(RoomAsset newRoom)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Currect Pack");
-            SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Rooms, "List of Rooms");
+            SafetyNet.EnsureIsNotNull(currentPack.Rooms, "Pack Editor - List of Rooms");
             CurrentPack.Rooms.Add(newRoom);
             
         }
         public void CreateNewRoom()
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Currect Pack");
-            SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Rooms, "List of Rooms");
+            SafetyNet.EnsureIsNotNull(currentPack.Rooms, "Pack Editor - List of Rooms");
             CurrentPack.Rooms.Add(new RoomAsset());
             SavePackChanges();
         }
@@ -73,14 +78,14 @@ namespace Rogium.Editors.Core
         /// <summary>
         /// Updates the room in the given pack.
         /// </summary>
-        /// <param name="newRoom">Room Asset with the new details.</param>
+        /// <param name="newTile">Room Asset with the new details.</param>
         /// <param name="positionIndex">Which room to override.</param>
-        public void UpdateRoom(RoomAsset newRoom, int positionIndex)
+        public void UpdateRoom(RoomAsset newTile, int positionIndex)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Currect Pack");
             SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Rooms, "List of Rooms");
             
-            CurrentPack.Rooms.Update(positionIndex, newRoom);
+            CurrentPack.Rooms.Update(positionIndex, newTile);
             SavePackChanges();
         } 
 
@@ -100,13 +105,74 @@ namespace Rogium.Editors.Core
         /// <summary>
         /// Send Command to Room Editor, to start editing a room.
         /// </summary>
-        /// <param name="roomIndex">Room index from the list</param>
-        public void ActivateRoomEditor(int roomIndex)
+        /// <param name="tileIndex">Room index from the list</param>
+        public void ActivateRoomEditor(int tileIndex)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Currect Pack");
             SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Rooms, "List of Rooms");
-            SafetyNet.EnsureIntIsInRange(roomIndex, 0, currentPack.Rooms.Count, "Room Index");
-            roomEditor.AssignCurrentAsset(CurrentPack.Rooms[roomIndex], roomIndex);
+            SafetyNet.EnsureIntIsInRange(tileIndex, 0, currentPack.Rooms.Count, "Room Index");
+            roomEditor.AssignAsset(CurrentPack.Rooms[tileIndex], tileIndex);
+        }
+
+        #endregion
+
+        #region Tiles
+        /// <summary>
+        /// Creates a new tile, and adds it to the Pack Asset.
+        /// <param name="newTile">The new Tile Asset to Add.</param>
+        /// </summary>
+        public void CreateNewTile(TileAsset newTile)
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Currect Pack");
+            SafetyNet.EnsureIsNotNull(currentPack.Rooms, "Pack Editor - List of Tiles");
+            CurrentPack.Tiles.Add(newTile);
+            
+        }
+        public void CreateNewTile()
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Currect Pack");
+            SafetyNet.EnsureIsNotNull(currentPack.Rooms, "Pack Editor - List of Tiles");
+            CurrentPack.Tiles.Add(new TileAsset());
+            SavePackChanges();
+        }
+
+        /// <summary>
+        /// Updates the tile in the given pack.
+        /// </summary>
+        /// <param name="newTile">Tile Asset with the new details.</param>
+        /// <param name="positionIndex">Which tile to override.</param>
+        public void UpdateTile(TileAsset newTile, int positionIndex)
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Currect Pack");
+            SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Tiles, "List of Tiles");
+            
+            CurrentPack.Tiles.Update(positionIndex, newTile);
+            SavePackChanges();
+        } 
+
+        /// <summary>
+        /// Deletes a tile from the pack.
+        /// <param name="tileIndex">The index of the tile to be deleted.</param>
+        /// </summary>
+        public void RemoveTile(int tileIndex)
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Currect Pack");
+            SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Tiles, "List of Tiles");
+            currentPack.Tiles.RemoveAt(tileIndex);
+
+            SavePackChanges();
+        }
+
+        /// <summary>
+        /// Send Command to the Tile Editor, to start editing a tile.
+        /// </summary>
+        /// <param name="tileIndex">Room index from the list</param>
+        public void ActivateTileEditor(int tileIndex)
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Currect Pack");
+            SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Tiles, "List of Tiles");
+            SafetyNet.EnsureIntIsInRange(tileIndex, 0, currentPack.Tiles.Count, "Tile Index");
+            tileEditor.AssignAsset(CurrentPack.Tiles[tileIndex], tileIndex);
         }
 
         #endregion

@@ -11,17 +11,32 @@ namespace Rogium.Editors.TileData
         private Tile tile;
         private TileType type;
 
+        #region Constructors
         public TileObject()
         {
             this.tile = new Tile();
             this.type = TileType.Wall;
+        }
+        public TileObject(TileObject tileObject)
+        {
+            this.tile = tileObject.Tile;
+            this.type = tileObject.Type;
         }
         public TileObject(Tile tile, TileType type)
         {
             this.tile = tile;
             this.type = type;
         }
+        #endregion
 
+        #region Update Values
+        public void UpdateType(TileType newType)
+        {
+            this.type = newType;
+        }
+
+        #endregion
+        
         public Tile Tile { get => tile; }
         public TileType Type { get => type; }
     }

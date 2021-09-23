@@ -39,6 +39,12 @@ namespace Rogium.Global.UISystem.Interactables
             GASRogium.SwitchMenu(MenuType.AssetSelection);
             AssetSelectionOverseer.GetInstance().ReopenForRooms();
         }
+        
+        public static void OpenTileSelection()
+        {
+            GASRogium.SwitchMenu(MenuType.AssetSelection);
+            AssetSelectionOverseer.GetInstance().ReopenForTiles();
+        }
 
         #endregion
 
@@ -51,6 +57,10 @@ namespace Rogium.Global.UISystem.Interactables
         public static void CreateRoom()
         {
             new ModalWindowPropertyBuilderRooms().OpenForCreate();
+        }
+        public static void CreateTile()
+        {
+            new ModalWindowPropertyBuilderTile().OpenForCreate();
         }
 
         #endregion
@@ -68,6 +78,11 @@ namespace Rogium.Global.UISystem.Interactables
             new ModalWindowPropertyBuilderRooms().OpenForUpdate();
         }
 
+        public static void EditTileProperties(int tileIndex)
+        {
+            EditorOverseer.Instance.ActivateTileEditor(tileIndex);
+            new ModalWindowPropertyBuilderTile().OpenForUpdate();
+        }
         #endregion
 
         #region Remove Assets
@@ -96,6 +111,20 @@ namespace Rogium.Global.UISystem.Interactables
             SafetyNet.EnsureIntIsBiggerThan(storedNumber, 0, "StoredNumber");
             EditorOverseer.Instance.RemoveRoom(storedNumber);
             AssetSelectionOverseer.GetInstance().ReopenForRooms();
+            storedNumber = -1;
+        }
+        
+        public static void RemoveTile(int tileIndex)
+        {
+            ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
+            storedNumber = tileIndex;
+            window.OpenAsMessage("Do you really want to remove this tile?", "Yes", "No", RemoveTileAccept, true);
+        }
+        private static void RemoveTileAccept()
+        {
+            SafetyNet.EnsureIntIsBiggerThan(storedNumber, 0, "StoredNumber");
+            EditorOverseer.Instance.RemoveTile(storedNumber);
+            AssetSelectionOverseer.GetInstance().ReopenForTiles();
             storedNumber = -1;
         }
 
