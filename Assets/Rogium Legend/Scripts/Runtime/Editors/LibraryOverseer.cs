@@ -10,7 +10,7 @@ namespace Rogium.Editors.PackData
     /// </summary>
     public class LibraryOverseer
     {
-        private readonly PackList library = new PackList();
+        private readonly PackList library;
 
         #region Singleton Pattern
         private static LibraryOverseer instance;
@@ -31,6 +31,7 @@ namespace Rogium.Editors.PackData
 
         private LibraryOverseer() 
         {
+            library = new PackList();
             ReloadFromExternalStorage();
         }
 

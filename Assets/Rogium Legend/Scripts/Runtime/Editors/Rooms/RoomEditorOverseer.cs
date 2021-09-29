@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using BoubakProductions.Safety;
+using Rogium.Editors.TileData;
 
 namespace Rogium.Editors.RoomData
 {
@@ -11,8 +12,12 @@ namespace Rogium.Editors.RoomData
     {
         public event Action<RoomAsset> OnAssignRoom;
         public event Action<RoomAsset, int> OnCompleteEditing;
+        
         private RoomAsset currentRoom;
         private int myIndex;
+
+        private ToolboxEffects gridEditor;
+        private ToolBox toolBox;
 
         #region Singleton Pattern
         private static RoomEditorOverseer instance;
@@ -32,7 +37,11 @@ namespace Rogium.Editors.RoomData
 
         #endregion
 
-        private RoomEditorOverseer() { }
+        private RoomEditorOverseer()
+        {
+            gridEditor = new ToolboxEffects();
+            toolBox = new ToolBox();
+        }
 
         /// <summary>
         /// Assigns a new pack for editing.
@@ -47,6 +56,16 @@ namespace Rogium.Editors.RoomData
             myIndex = index;
         }
 
+        /// <summary>
+        /// Updates Tiles on the tile grid, based on the active tool in the editor.
+        /// </summary>
+        /// <param name="worldPosition">Position of the tile, that will be updated, on the grid.</param>
+        /// <param name="asset">The tile asset we want to place here.</param>
+        public void UpdateTile(Vector2Int worldPosition, TileAsset asset)
+        {
+            gridEditor.UseTool(CurrentRoom.TileGrid, asset, worldPosition, toolBox.CurrentTool);
+        }
+        
         public void CompleteEditing()
         {
             OnCompleteEditing?.Invoke(CurrentRoom, myIndex);

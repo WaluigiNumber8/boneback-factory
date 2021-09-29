@@ -42,13 +42,13 @@ namespace Rogium.Global.UISystem.UI
             propertyBuilder.BuildPlainText("Created by", currentRoomAsset.Author, window.SecondColumnContent);
             propertyBuilder.BuildPlainText("Created on", currentRoomAsset.CreationDate.ToString(), window.SecondColumnContent);
             
-            editedAsset = currentRoomAsset;
+            editedAssetBase = currentRoomAsset;
             window.OpenAsPropertiesColumn1(headerText, "Done", "Cancel", onConfirmAction, true);
         }
 
         protected override void CreateAsset()
         {
-            editor.CreateNewRoom((RoomAsset)editedAsset);
+            editor.CreateNewRoom((RoomAsset)editedAssetBase);
             selectionMenu.ReopenForRooms();
         }
 

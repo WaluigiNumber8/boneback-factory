@@ -7,6 +7,7 @@ namespace Rogium.ExternalStorage.Serialization
     [System.Serializable]
     public class SerializedTileAsset
     {
+        public readonly string id;
         public readonly string title;
         public readonly SerializedSprite icon;
         public readonly string author;
@@ -17,6 +18,7 @@ namespace Rogium.ExternalStorage.Serialization
 
         public SerializedTileAsset(TileAsset tileAsset)
         {
+            this.id = tileAsset.ID;
             this.title = tileAsset.Title;
             this.author = tileAsset.Author;
             this.creationDate = tileAsset.CreationDate.ToString();
@@ -32,7 +34,8 @@ namespace Rogium.ExternalStorage.Serialization
         /// <returns></returns>
         public TileAsset Deserialize()
         {
-            return new TileAsset(this.title,
+            return new TileAsset(this.id,
+                                 this.title,
                                  this.icon.Deserialize(),
                                  this.author,
                                  (TileType)this.tileType,

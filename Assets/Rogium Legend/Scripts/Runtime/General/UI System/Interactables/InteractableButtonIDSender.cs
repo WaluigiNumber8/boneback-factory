@@ -12,7 +12,7 @@ namespace Rogium.Global.UISystem.Interactables
     {
         [SerializeField] private AssetCardController assetController;
 
-        private void Awake()
+        private void OnEnable()
         {
             GetComponent<InteractableButton>().Number = assetController.ID;
         }

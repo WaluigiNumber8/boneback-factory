@@ -8,6 +8,7 @@ namespace Rogium.ExternalStorage.Serialization
     [System.Serializable]
     public class SerializedPackInfoAsset
     {
+        public readonly string id;
         public readonly string title;
         public readonly SerializedSprite icon;
         public readonly string author;
@@ -16,6 +17,7 @@ namespace Rogium.ExternalStorage.Serialization
 
         public SerializedPackInfoAsset(PackInfoAsset packInfo)
         {
+            this.id = packInfo.ID;
             this.title = packInfo.Title;
             this.icon = new SerializedSprite(packInfo.Icon);
             this.author = packInfo.Author;

@@ -3,7 +3,6 @@ using UnityEngine;
 using BoubakProductions.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
-using Rogium.Editors.TileData;
 using Rogium.Global.GridSystem;
 
 namespace Rogium.Editors.RoomData
@@ -11,48 +10,48 @@ namespace Rogium.Editors.RoomData
     /// <summary>
     /// Contains all data needed for a pack room.
     /// </summary>
-    public class RoomAsset : IAsset
+    public class RoomAsset : AssetBase
     {
         public static readonly Vector2Int gridSize = new Vector2Int(20, 15);
-
-        private string title;
-        private Sprite icon;
-        private string author;
-        private DateTime creationDate;
+        
         private int difficultyLevel;
-        private ObjectGrid<int> tileGrid;
+        private ObjectGrid<string> tileGrid;
 
         #region Constructors
         public RoomAsset()
         {
             this.title = EditorDefaults.RoomTitle;
-            this.icon = EditorDefaults.RoomSprite;
+            this.icon = EditorDefaults.RoomIcon;
             this.author = EditorDefaults.Author;
             this.creationDate = DateTime.Now;
             this.difficultyLevel = EditorDefaults.RoomDifficulty;
-            this.tileGrid = new ObjectGrid<int>(gridSize.x, gridSize.y, () => -1);
+            this.tileGrid = new ObjectGrid<string>(gridSize.x, gridSize.y, () => EditorDefaults.DefaultTileID);
+            GenerateID(EditorAssetIDs.RoomIdentifier);
         }
         public RoomAsset(RoomAsset roomAsset)
         {
+            this.id = roomAsset.id;
             this.title = roomAsset.Title;
             this.icon = roomAsset.Icon;
             this.author = roomAsset.author;
             this.creationDate = roomAsset.CreationDate;
             this.difficultyLevel = roomAsset.DifficultyLevel;
             this.tileGrid = roomAsset.TileGrid;
+            Debug.Log(id);
         }
-        public RoomAsset(string roomName, string author, int difficultyLevel)
+        public RoomAsset(string roomName, Sprite roomIcon, string author, int difficultyLevel)
         {
             SafetyNet.EnsureIntIsBiggerThan(difficultyLevel, 0, "New Room Difficulty Level");
 
             this.title = roomName;
-            this.icon = EditorDefaults.RoomSprite;
+            this.icon = roomIcon;
             this.author = author;
             this.creationDate = DateTime.Now;
             this.difficultyLevel = difficultyLevel;
-            this.tileGrid = new ObjectGrid<int>(gridSize.x, gridSize.y, () => -1);
+            this.tileGrid = new ObjectGrid<string>(gridSize.x, gridSize.y, () => EditorDefaults.DefaultTileID);
+            GenerateID(EditorAssetIDs.RoomIdentifier);
         }
-        public RoomAsset(string roomName, Sprite icon, string author, int difficultyLevel, ObjectGrid<TileAsset> tileGrid)
+        public RoomAsset(string roomName, Sprite icon, string author, int difficultyLevel, ObjectGrid<string> tileGrid)
         {
             SafetyNet.EnsureIntIsBiggerThan(difficultyLevel, 0, "New Room Difficulty Level");
 
@@ -61,12 +60,14 @@ namespace Rogium.Editors.RoomData
             this.author = author;
             this.creationDate = DateTime.Now;
             this.difficultyLevel = difficultyLevel;
-            this.tileGrid = new ObjectGrid<int>(gridSize.x, gridSize.y, () => -1);
+            this.tileGrid = tileGrid;
+            GenerateID(EditorAssetIDs.RoomIdentifier);
         }
-        public RoomAsset(string title, Sprite icon, string author, int difficultyLevel, ObjectGrid<int> tileGrid, DateTime creationDate)
+        public RoomAsset(string id, string title, Sprite icon, string author, int difficultyLevel, ObjectGrid<string> tileGrid, DateTime creationDate)
         {
             SafetyNet.EnsureIntIsBiggerThan(difficultyLevel, 0, "New Room Difficulty Level");
 
+            this.id = id;
             this.title = title;
             this.icon = icon;
             this.author = author;
@@ -76,28 +77,8 @@ namespace Rogium.Editors.RoomData
         }
         #endregion
 
+        
         #region Update Values
-
-        public void UpdateTitle(string newTitle)
-        {
-            this.title = newTitle;
-        }
-
-        public void UpdateIcon(Sprite newIcon)
-        {
-            this.icon = newIcon;
-        }
-
-        public void UpdateAuthor(string newAuthor)
-        {
-            this.author = newAuthor;
-        }
-
-        public void UpdateCreationDate(DateTime newCreationDate)
-        {
-            this.creationDate = newCreationDate;
-        }
-
         public void UpdateDifficultyLevel(int newLevel)
         {
             this.difficultyLevel = newLevel;
@@ -105,13 +86,8 @@ namespace Rogium.Editors.RoomData
 
         #endregion
 
-        public string Title { get => title; }
-        public Sprite Icon { get => icon; }
-        public string Author { get => author; }
-        public DateTime CreationDate { get => creationDate; }
-
         public int DifficultyLevel { get => difficultyLevel; }
-        public ObjectGrid<int> TileGrid { get => tileGrid; }
+        public ObjectGrid<string> TileGrid { get => tileGrid; }
 
         
 

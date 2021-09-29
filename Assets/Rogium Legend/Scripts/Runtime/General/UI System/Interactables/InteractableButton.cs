@@ -148,12 +148,51 @@ namespace Rogium.Global.UISystem.Interactables
                 case ButtonType.EditorOpenEnemy:
                     break;
                 case ButtonType.EditorOpenRoom:
+                    SafetyNet.EnsureIntIsNotEqual(number, -1, "BUTTON INTERACTION - OPEN ROOM EDITOR");
+                    GASButtonActions.OpenRoomEditor(number);
                     break;
                 case ButtonType.EditorOpenTile:
                     break;
                 case ButtonType.EditorOpenProjectile:
                     break;
                 #endregion
+
+                    #region Save Editor Changes
+                case ButtonType.SaveChangesPalette:
+                    break;
+                case ButtonType.SaveChangesSprite:
+                    break;
+                case ButtonType.SaveChangesWeapon:
+                    break;
+                case ButtonType.SaveChangesEnemy:
+                    break;
+                case ButtonType.SaveChangesRoom:
+                    GASButtonActions.SaveChangesRoom();
+                    break;
+                case ButtonType.SaveChangesTile:
+                    break;
+                case ButtonType.SaveChangesProjectile:
+                    break;
+                #endregion
+
+                #region Cancel Editor Changes
+                case ButtonType.CancelChangesPalette:
+                    break;
+                case ButtonType.CancelChangesSprite:
+                    break;
+                case ButtonType.CancelChangesWeapon:
+                    break;
+                case ButtonType.CancelChangesEnemy:
+                    break;
+                case ButtonType.CancelChangesRoom:
+                    GASButtonActions.CancelChangesRoom();
+                    break;
+                case ButtonType.CancelChangesTile:
+                    break;
+                case ButtonType.CancelChangesProjectile:
+                    break;
+                #endregion
+
                 default:
                     throw new InvalidEnumArgumentException("Unknown Button Type.");
             }

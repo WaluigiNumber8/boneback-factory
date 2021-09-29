@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering;
 
 namespace Rogium.ExternalStorage.Serialization
 {
@@ -46,11 +47,12 @@ namespace Rogium.ExternalStorage.Serialization
         public Sprite Deserialize()
         {
             Texture2D texture = new Texture2D(this.textureWidth, this.textureHeight);
-            ImageConversion.LoadImage(texture, this.textureBytes);
+            texture.filterMode = FilterMode.Point;
+            texture.LoadImage(this.textureBytes);
             Sprite sprite = Sprite.Create(texture,
                                           new Rect(this.x, this.y, this.width, this.height),
-                                          new Vector2(this.pivotX, this.pivotY));
-
+                                          new Vector2(this.pivotX, this.pivotY),
+                                          16);
             return sprite;
         }
 

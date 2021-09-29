@@ -10,7 +10,7 @@ namespace Rogium.Editors.PackData
     /// <summary>
     /// Special distinct List variant. Is synced with external storage.
     /// </summary>
-    public class AssetList<T> : IList<T> where T : IAsset
+    public class AssetList<T> : IList<T> where T : AssetBase
     {
         private IList<T> list;
         private readonly PackAsset pack;
@@ -55,7 +55,7 @@ namespace Rogium.Editors.PackData
             SafetyNet.EnsureIsNotNull(asset, "Asset to add");
             SafetyNet.EnsureIntIsInRange(index ,0, list.Count, "Asset List");
             
-            if (TryFinding(asset.Title, asset.Author) != null)
+            if (TryFinding(asset.Title, asset.Author, index) != null)
                 throw new FoundDuplicationException("You are trying to update an asset with a name and author that is already taken. Cannot have the same title and author!");
             list[index] = asset;
             
@@ -89,32 +89,20 @@ namespace Rogium.Editors.PackData
             list.Remove(foundAsset);
             ExternalStorageOverseer.Instance.Save(pack);
         }
-
-        /// <summary>
-        /// Finds a pack in the library by a given name.
-        /// 
-        /// tODO - Solution for multiple packs with the same name.
-        /// 
-        /// </summary>
-        /// <param name="assetName">the name by which we are searching</param>
-        /// <returns>the pack asset with the given name</returns>
-        public IList<T> TryFinding(string assetName)
-        {
-            IList<T> foundAssets = this.Where(asset => asset.Title == assetName).ToList();
-            return new List<T>(foundAssets);
-        }
-
+        
         /// <summary>
         /// Finds a pack in the library by a given name and a given author.
         /// If no pack is found, returns NULL.
         /// </summary>
         /// <param name="title">the name by which we are searching</param>
         /// <param name="author">the name of the author who created the pack.</param>
-        /// <returns>the pack asset with the given name</returns>
-        private T TryFinding(string title, string author)
+        /// <param name="excludePos">The position on the list exclude from checking.</param>
+        /// <returns>the pack asset with the given name.</returns>
+        private T TryFinding(string title, string author, int excludePos = -1)
         {
-            IList<T> foundAssets = this.Where(asset => asset.Title == title
-                                                            && asset.Author == author).ToList();
+            IList<T> foundAssets = list.Where((asset, counter) => counter != excludePos)
+                                       .Where(asset => asset.Title == title && asset.Author == author)
+                                       .ToList();
 
             SafetyNet.EnsureListIsNotLongerThan(foundAssets, 1, "Found Packs by name & author");
             return (foundAssets.Count == 0) ? default : foundAssets[0];
@@ -128,8 +116,6 @@ namespace Rogium.Editors.PackData
         {
             list = new List<T>(newList);
         }
-
-        
 
         #region Untouched Overrides
         public int Count => list.Count;

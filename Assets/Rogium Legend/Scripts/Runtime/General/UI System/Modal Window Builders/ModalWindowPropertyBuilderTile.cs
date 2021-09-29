@@ -35,13 +35,13 @@ namespace Rogium.Global.UISystem.UI
             propertyBuilder.BuildPlainText("Created by", currentTileAsset.Author, window.SecondColumnContent);
             propertyBuilder.BuildPlainText("Created on", currentTileAsset.CreationDate.ToString(), window.SecondColumnContent);
             
-            editedAsset = currentTileAsset;
+            editedAssetBase = currentTileAsset;
             window.OpenAsPropertiesColumn1(headerText, "Done", "Cancel", onConfirmAction, true);
         }
 
         protected override void CreateAsset()
         {
-            editor.CreateNewTile((TileAsset)editedAsset);
+            editor.CreateNewTile((TileAsset)editedAssetBase);
             selectionMenu.ReopenForTiles();
         }
 

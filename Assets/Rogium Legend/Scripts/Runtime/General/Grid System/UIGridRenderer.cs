@@ -82,7 +82,11 @@ namespace Rogium.Global.GraphicsDrawing
             vh.AddTriangle(offset + 4, offset + 7, offset + 3);
         }
 
-        public Vector2Int GridSize { get => gridSize; set => gridSize = value; }
-        public float Thickness { get => thickness; set => thickness = value; }
+        public Vector2Int GridSize { get => gridSize; }
+        public float Width { get => width;}
+        public float Height { get => height;}
+        public float CellWidth { get => cellWidth;}
+        public float CellHeight { get => cellHeight;}
+        public float Thickness { get => thickness; }
     }
 }

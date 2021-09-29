@@ -16,7 +16,7 @@ namespace Rogium.Global.UISystem.UI
         protected readonly EditorOverseer editor;
         protected readonly LibraryOverseer lib;
         protected readonly AssetSelectionOverseer selectionMenu;
-        protected IAsset editedAsset;
+        protected AssetBase editedAssetBase;
 
         public ModalWindowPropertyBuilder()
         {

@@ -105,13 +105,13 @@ namespace Rogium.Editors.Core
         /// <summary>
         /// Send Command to Room Editor, to start editing a room.
         /// </summary>
-        /// <param name="tileIndex">Room index from the list</param>
-        public void ActivateRoomEditor(int tileIndex)
+        /// <param name="roomIndex">Room index from the list</param>
+        public void ActivateRoomEditor(int roomIndex)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Currect Pack");
             SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Rooms, "List of Rooms");
-            SafetyNet.EnsureIntIsInRange(tileIndex, 0, currentPack.Rooms.Count, "Room Index");
-            roomEditor.AssignAsset(CurrentPack.Rooms[tileIndex], tileIndex);
+            SafetyNet.EnsureIntIsInRange(roomIndex, 0, currentPack.Rooms.Count, "Room Index");
+            roomEditor.AssignAsset(CurrentPack.Rooms[roomIndex], roomIndex);
         }
 
         #endregion

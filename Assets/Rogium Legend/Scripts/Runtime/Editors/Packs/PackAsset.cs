@@ -12,7 +12,7 @@ namespace Rogium.Editors.PackData
     /// <summary>
     /// Contains all important data for a given pack.
     /// </summary>
-    public class PackAsset : IAsset
+    public class PackAsset : AssetBase
     {
         private PackInfoAsset packInfo;
         private AssetList<PaletteAsset> palettes;
@@ -22,19 +22,22 @@ namespace Rogium.Editors.PackData
         #region Constructors
         public PackAsset()
         {
+            
             this.packInfo = new PackInfoAsset(EditorDefaults.PackTitle,
                                               EditorDefaults.PackIcon,
                                               EditorDefaults.Author,
                                               EditorDefaults.PackDescription);
-
+           
+            GatherValuesFromInfo(packInfo);
             this.palettes = new AssetList<PaletteAsset>(this);
             this.rooms = new AssetList<RoomAsset>(this);
             this.tiles = new AssetList<TileAsset>(this);
         }
         public PackAsset(PackInfoAsset packInfo)
         {
-            this.packInfo = packInfo;
+            this.packInfo = new PackInfoAsset(packInfo);
             
+            GatherValuesFromInfo(packInfo);
             this.palettes = new AssetList<PaletteAsset>(this);
             this.rooms = new AssetList<RoomAsset>(this);
             this.tiles = new AssetList<TileAsset>(this);
@@ -45,47 +48,34 @@ namespace Rogium.Editors.PackData
             
             //TODO Add all asset list generation in here.
             
+            GatherValuesFromInfo(packInfo);
             this.palettes = new AssetList<PaletteAsset>(this);
             this.rooms = new AssetList<RoomAsset>(this, rooms);
             this.tiles = new AssetList<TileAsset>(this, tiles);
         }
         #endregion
 
+        private void GatherValuesFromInfo(PackInfoAsset info)
+        {
+            this.id = packInfo.ID;
+            this.title = packInfo.Title;
+            this.icon = packInfo.Icon;
+            this.author = packInfo.Author;
+            this.creationDate = packInfo.CreationDate;
+        }
+        
         #region Update Values
-        public void UpdateTitle(string newTitle)
-        {
-            packInfo.UpdateTitle(newTitle);
-        }
-
-        public void UpdateIcon(Sprite newIcon)
-        {
-            packInfo.UpdateIcon(newIcon);
-        }
-
-        public void UpdateAuthor(string newAuthor)
-        {
-            packInfo.UpdateAuthor(newAuthor);
-        }
-
-        public void UpdateCreationDate(DateTime newCreationDate)
-        {
-            packInfo.UpdateCreationDate(newCreationDate);
-        }
-
-        public void UpdateDescription(string newDescription)
-        {
-            packInfo.UpdateDescription(newDescription);
-        }
-
         public void UpdatePackInfo(PackInfoAsset newPackInfo)
         {
             packInfo = new PackInfoAsset(newPackInfo);
+            GatherValuesFromInfo(packInfo);
         }
         #endregion
 
         public override bool Equals(object obj)
         {
             PackAsset pack = (PackAsset)obj;
+            if (pack == null) return false;
             if (pack.packInfo.Title == packInfo.Title &&
                 pack.packInfo.Author == packInfo.Author &&
                 pack.packInfo.CreationDate == packInfo.CreationDate)
@@ -95,15 +85,8 @@ namespace Rogium.Editors.PackData
 
         public override int GetHashCode()
         {
-            string hash = packInfo.Title + packInfo.Author + packInfo.CreationDate;
-            return hash.GetHashCode();
+            return int.Parse(packInfo.ID);
         }
-
-        public string Title { get => packInfo.Title; }
-        public string Description { get => packInfo.Description; }
-        public Sprite Icon { get => packInfo.Icon; }
-        public string Author { get => packInfo.Author; }
-        public DateTime CreationDate { get => packInfo.CreationDate; }
 
         public PackInfoAsset PackInfo { get => packInfo; }
         public AssetList<PaletteAsset> Palettes { get => palettes; }

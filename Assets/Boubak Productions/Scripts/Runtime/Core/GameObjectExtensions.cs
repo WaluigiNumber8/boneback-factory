@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 namespace BoubakProductions.Core
 {
@@ -18,6 +19,16 @@ namespace BoubakProductions.Core
                 if (child == gObject.transform) continue;
                 GameObject.Destroy(child.gameObject);
             }
+        }
+
+        /// <summary>
+        /// Get the amount of active children this object has.
+        /// </summary>
+        /// <param name="gObject">The object, who's children will be counted.</param>
+        /// <returns>Children count.</returns>
+        public static int GetChildCountActive(this GameObject gObject)
+        {
+            return gObject.transform.Cast<Transform>().Count(child => child.gameObject.activeSelf);
         }
     }
 }

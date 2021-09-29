@@ -6,32 +6,30 @@ using Rogium.Editors.Core.Defaults;
 
 namespace Rogium.Editors.PackData
 {
-    public class PackInfoAsset : IAsset
+    public class PackInfoAsset : AssetBase
     {
-        private string title;
-        private Sprite icon;
-        private string author;
-        private DateTime creationDate;
         private string description;
 
         #region Constructors
-
-        public PackInfoAsset() 
+        public PackInfoAsset()
         {
             this.title = EditorDefaults.PackTitle;
             this.icon = EditorDefaults.PackIcon;
             this.author = EditorDefaults.Author;
             this.creationDate = DateTime.Now;
             this.description = EditorDefaults.PackDescription;
+            GenerateID(EditorAssetIDs.PackIdentifier);
         }
 
         public PackInfoAsset(PackInfoAsset packInfo)
         {
+            this.id = packInfo.ID;
             this.title = packInfo.Title;
             this.icon = packInfo.Icon;
             this.author = packInfo.Author;
             this.creationDate = packInfo.CreationDate;
             this.description = packInfo.Description;
+            GenerateID(EditorAssetIDs.PackIdentifier);
         }
 
         public PackInfoAsset(string title, Sprite icon, string author, string description)
@@ -45,13 +43,15 @@ namespace Rogium.Editors.PackData
             this.author = author;
             this.creationDate = DateTime.Now;
             this.description = description;
+            GenerateID(EditorAssetIDs.PackIdentifier);
         }
-        public PackInfoAsset(string title, Sprite icon, string author, string description, DateTime creationDateTime)
+        public PackInfoAsset(string id, string title, Sprite icon, string author, string description, DateTime creationDateTime)
         {
             SafetyNet.EnsureStringInRange(title, 4, 30, "name");
             SafetyNet.EnsureStringInRange(description, 0, 2000, "description");
             SafetyNet.EnsureStringInRange(author, 8, 20, "author");
 
+            this.id = id;
             this.title = title;
             this.icon = icon;
             this.author = author;
@@ -59,38 +59,14 @@ namespace Rogium.Editors.PackData
             this.description = description;
         }
         #endregion
-
+        
         #region Update Values
-        public void UpdateTitle(string newTitle)
-        {
-            this.title = newTitle;
-        }
-
-        public void UpdateIcon(Sprite newIcon)
-        {
-            this.icon = newIcon;
-        }
-
-        public void UpdateAuthor(string newAuthor)
-        {
-            this.author = newAuthor;
-        }
-
-        public void UpdateCreationDate(DateTime newCreationDate)
-        {
-            this.creationDate = newCreationDate;
-        }
-
         public void UpdateDescription(string newDescription)
         {
             this.description = newDescription;
         }
         #endregion
-
-        public string Title { get => title; }
-        public Sprite Icon { get => icon; }
-        public string Author { get => author; }
-        public DateTime CreationDate { get => creationDate; }
+        
         public string Description { get => description; }
     }
 }

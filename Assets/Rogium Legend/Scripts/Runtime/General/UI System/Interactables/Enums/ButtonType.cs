@@ -53,5 +53,21 @@ namespace Rogium.Global.UISystem.Interactables
         EditorOpenRoom,
         EditorOpenTile,
         EditorOpenProjectile,
-    }
+        
+        SaveChangesPalette,
+        SaveChangesSprite,
+        SaveChangesWeapon,
+        SaveChangesEnemy,
+        SaveChangesRoom,
+        SaveChangesTile,
+        SaveChangesProjectile,
+        
+        CancelChangesPalette,
+        CancelChangesSprite,
+        CancelChangesWeapon,
+        CancelChangesEnemy,
+        CancelChangesRoom,
+        CancelChangesTile,
+        CancelChangesProjectile,
+    }   
 }

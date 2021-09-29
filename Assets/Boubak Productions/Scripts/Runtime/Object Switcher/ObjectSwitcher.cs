@@ -1,20 +1,29 @@
-﻿using BoubakProductions.Safety;
+﻿using System.Collections.Generic;
+using BoubakProductions.Safety;
 using UnityEngine;
 
-namespace BoubakProductions.Core
+namespace BoubakProductions.ObjectSwitching
 {
     /// <summary>
     /// Switches between a given group of objects.
     /// </summary>
-    public class ObjectSwitcher : MonoBehaviour
+    public class ObjectSwitcher
     {
-        [SerializeField] private int defaultIndex = -1;
-        [SerializeField] private GameObject[] objects;
+        private readonly GameObject[] objects;
 
-        private void Start()
+        #region Constructors
+        public ObjectSwitcher(GameObject[] objects)
         {
+            this.objects = objects;
+            DeselectAllExcept(0);
+        }
+        public ObjectSwitcher(GameObject[] objects, int defaultIndex)
+        {
+            this.objects = objects;
             DeselectAllExcept(defaultIndex);
         }
+        
+        #endregion
 
         /// <summary>
         /// Deselects all objects except one.
@@ -24,11 +33,10 @@ namespace BoubakProductions.Core
         {
             for (int i = 0; i < objects.Length; i++)
             {
-                if (activatedObject == objects[i])
-                {
-                    DeselectAllExcept(i);
-                    return;
-                }
+                if (activatedObject != objects[i]) continue;
+                
+                DeselectAllExcept(i);
+                return;
             }
             throw new System.InvalidOperationException($"'{activatedObject.name}' was not found in this array.");
         }
@@ -39,7 +47,7 @@ namespace BoubakProductions.Core
         public void DeselectAllExcept(int index)
         {
             if (index == -1) return;
-            SafetyNet.EnsureIntIsInRange(defaultIndex, 0, objects.Length, "Default Tab Index");
+            SafetyNet.EnsureIntIsInRange(index, 0, objects.Length, "Default Tab Index");
             
             foreach (GameObject gObject in objects)
             {
@@ -47,7 +55,5 @@ namespace BoubakProductions.Core
             }
             objects[index].SetActive(true);
         }
-
-
     }
 }

@@ -51,7 +51,7 @@ namespace Rogium.Editors.PackData
         /// <summary>
         /// Remove pack from the library with a specific name.
         /// </summary>
-        /// <param name="name">The name of the pack to remove.</param>
+        /// <param name="packIndex">The position of the pack to remove on the list.</param>
         public void Remove(int packIndex)
         {
             SafetyNet.EnsureIntIsInRange(packIndex, 0, list.Count, "Pack Index when removing");
@@ -63,34 +63,21 @@ namespace Rogium.Editors.PackData
         }
 
         /// <summary>
-        /// Finds a pack in the library by a given name.
-        /// 
-        /// TODO - Solution for multiple packs with the same name.
-        /// 
-        /// </summary>
-        /// <param name="packName">The name by which we are searching</param>
-        /// <returns>The pack asset with the given name</returns>
-        public IList<PackAsset> TryFinding(string packName)
-        {
-            IList<PackAsset> foundPacks = this.Where(pack => pack.PackInfo.Title == packName).ToList();
-            return new List<PackAsset>(foundPacks);
-        }
-
-        /// <summary>
         /// Finds a pack in the library by a given name and a given author.
         /// If no pack is found, returns NULL.
         /// </summary>
         /// <param name="packName">The name by which we are searching</param>
         /// <param name="author">The name of the author who created the pack.</param>
+        /// <param name="excludePos">The position in the list to exclude.</param>
         /// <returns>The pack asset with the given name</returns>
-        public PackAsset TryFinding(string packName, string author)
+        public PackAsset TryFinding(string packName, string author, int excludePos = -1)
         {
-            IList<PackAsset> foundPacks = this.Where(pack => pack.PackInfo.Title == packName
-                                                        && pack.PackInfo.Author == author).ToList();
+            IList<PackAsset> foundPacks = list.Where((pack, counter) => counter != excludePos)
+                                              .Where((pack) => pack.PackInfo.Title == packName && pack.PackInfo.Author == author)
+                                              .ToList();
 
             SafetyNet.EnsureListIsNotLongerThan(foundPacks, 1, "Found Packs by name & author");
-            if (foundPacks.Count == 0) return null;
-            return foundPacks[0];
+            return (foundPacks.Count == 0) ? null : foundPacks[0];
         }
 
         /// <summary>

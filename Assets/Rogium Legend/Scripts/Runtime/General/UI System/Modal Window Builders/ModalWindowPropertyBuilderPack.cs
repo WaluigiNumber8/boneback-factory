@@ -32,7 +32,7 @@ namespace Rogium.Global.UISystem.UI
             propertyBuilder.BuildPlainText("Created by", currentPackInfo.Author, window.SecondColumnContent);
             propertyBuilder.BuildPlainText("Created on", currentPackInfo.CreationDate.ToString(), window.SecondColumnContent);
 
-            editedAsset = currentPackInfo;
+            editedAssetBase = currentPackInfo;
             window.OpenAsPropertiesColumn2(headerText, "Done", "Cancel", onConfirmButton, true);
         }
 
@@ -41,7 +41,7 @@ namespace Rogium.Global.UISystem.UI
         /// </summary>
         protected override void CreateAsset()
         {
-            lib.CreateAndAddPack((PackInfoAsset)editedAsset);
+            lib.CreateAndAddPack((PackInfoAsset)editedAssetBase);
             selectionMenu.ReopenForPacks();
         }
 
@@ -50,7 +50,7 @@ namespace Rogium.Global.UISystem.UI
         /// </summary>
         protected override void UpdateAsset()
         {
-            editor.CurrentPack.UpdatePackInfo((PackInfoAsset)editedAsset);
+            editor.CurrentPack.UpdatePackInfo((PackInfoAsset)editedAssetBase);
             editor.CompleteEditing();
             selectionMenu.ReopenForPacks();
         }

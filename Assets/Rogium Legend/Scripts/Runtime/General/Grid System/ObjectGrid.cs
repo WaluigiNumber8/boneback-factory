@@ -1,5 +1,6 @@
 ﻿using BoubakProductions.Safety;
 using System;
+using UnityEngine;
 
 namespace Rogium.Global.GridSystem
 {
@@ -12,26 +13,26 @@ namespace Rogium.Global.GridSystem
         private readonly int height;
         private readonly T[,] cellArray;
 
-        public ObjectGrid(int width, int height, Func<T> CreateDefaultObject)
+        public ObjectGrid(int width, int height, Func<T> createDefaultObject)
         {
             this.width = width;
             this.height = height;
             cellArray = new T[width, height];
 
-            InitiliazeGrid(CreateDefaultObject);
+            InitializeGrid(createDefaultObject);
         }
 
         /// <summary>
-        /// Upon Creation, initiliaze the grid a default form of T.
+        /// Upon Creation, initialize the grid a default form of T.
         /// </summary>
-        /// <param name="CreateDefaultObject"></param>
-        private void InitiliazeGrid(Func<T> CreateDefaultObject)
+        /// <param name="createDefaultObject"></param>
+        private void InitializeGrid(Func<T> createDefaultObject)
         {
             for (int i = 0; i < cellArray.GetLength(0); i++)
             {
                 for (int j = 0; j < cellArray.GetLength(1); j++)
                 {
-                    cellArray[i, j] = CreateDefaultObject();
+                    cellArray[i, j] = createDefaultObject();
                 }
             }
         }
@@ -46,12 +47,13 @@ namespace Rogium.Global.GridSystem
         {
             SafetyNet.EnsureIntIsInRange(x, 0, width, "Grid X");
             SafetyNet.EnsureIntIsInRange(y, 0, height, "Grid Y");
-
             cellArray[x, y] = value;
         }
 
+        
+
         /// <summary>
-        /// Get an INT value from a specific grid cell.
+        /// Get a value from a specific grid cell.
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
@@ -65,6 +67,5 @@ namespace Rogium.Global.GridSystem
 
         public int Width { get => width; }
         public int Height { get => height; }
-        public T[,] CellArray => cellArray;
     }
 }

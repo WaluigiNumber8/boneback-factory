@@ -1,11 +1,13 @@
 ﻿using BoubakProductions.GASCore;
 using BoubakProductions.Safety;
 using BoubakProductions.UI;
+using Rogium.Core;
 using Rogium.GASExtensions;
 using Rogium.Global.UISystem.UI;
 using Rogium.Global.UISystem.AssetSelection;
 using Rogium.Editors.PackData;
 using Rogium.Editors.Core;
+using Rogium.Editors.RoomData;
 
 namespace Rogium.Global.UISystem.Interactables
 {
@@ -31,19 +33,19 @@ namespace Rogium.Global.UISystem.Interactables
             GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundMain);
             GAS.ObjectSetActive(true, UIEditorContainer.GetInstance().Background);
             GASRogium.SwitchMenu(MenuType.AssetSelection);
-            AssetSelectionOverseer.GetInstance().ReopenForPacks();
+            GASRogium.ReopenSelectionMenu(AssetType.Pack);
         }
 
         public static void OpenRoomSelection()
         {
             GASRogium.SwitchMenu(MenuType.AssetSelection);
-            AssetSelectionOverseer.GetInstance().ReopenForRooms();
+            GASRogium.ReopenSelectionMenu(AssetType.Room);
         }
         
         public static void OpenTileSelection()
         {
             GASRogium.SwitchMenu(MenuType.AssetSelection);
-            AssetSelectionOverseer.GetInstance().ReopenForTiles();
+            GASRogium.ReopenSelectionMenu(AssetType.Tile);
         }
 
         #endregion
@@ -96,7 +98,7 @@ namespace Rogium.Global.UISystem.Interactables
         {
             SafetyNet.EnsureIntIsBiggerThan(storedNumber, 0, "StoredNumber");
             LibraryOverseer.Instance.RemovePack(storedNumber);
-            AssetSelectionOverseer.GetInstance().ReopenForPacks();
+            GASRogium.ReopenSelectionMenu(AssetType.Pack);
             storedNumber = -1;
         }
 
@@ -110,7 +112,7 @@ namespace Rogium.Global.UISystem.Interactables
         {
             SafetyNet.EnsureIntIsBiggerThan(storedNumber, 0, "StoredNumber");
             EditorOverseer.Instance.RemoveRoom(storedNumber);
-            AssetSelectionOverseer.GetInstance().ReopenForRooms();
+            GASRogium.ReopenSelectionMenu(AssetType.Room);
             storedNumber = -1;
         }
         
@@ -124,7 +126,7 @@ namespace Rogium.Global.UISystem.Interactables
         {
             SafetyNet.EnsureIntIsBiggerThan(storedNumber, 0, "StoredNumber");
             EditorOverseer.Instance.RemoveTile(storedNumber);
-            AssetSelectionOverseer.GetInstance().ReopenForTiles();
+            GASRogium.ReopenSelectionMenu(AssetType.Tile);
             storedNumber = -1;
         }
 
@@ -138,6 +140,38 @@ namespace Rogium.Global.UISystem.Interactables
             GAS.ObjectSetActive(true, UIEditorContainer.GetInstance().PackInfoHeader);
         }
 
+        public static void OpenRoomEditor(int roomIndex)
+        {
+            EditorOverseer.Instance.ActivateRoomEditor(roomIndex);
+            GASRogium.SwitchMenu(MenuType.RoomEditor);
+            GAS.ObjectSetActive(false, UIEditorContainer.GetInstance().PackInfoHeader);
+        }
         #endregion
+
+        #region Save Editor Changes
+        public static void SaveChangesRoom()
+        {
+            RoomEditorOverseer.Instance.CompleteEditing();
+            GASRogium.SwitchMenu(MenuType.AssetSelection);
+            GASRogium.ReopenSelectionMenu(AssetType.Room);
+        }
+
+        #endregion
+
+        #region Cancel Editor Changes
+        public static void CancelChangesRoom()
+        {
+            ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
+            window.OpenAsMessage("Do you really not want to save changes?","Yes","No", CancelChangesRoomAccept, true);
+        }
+        
+        private static void CancelChangesRoomAccept()
+        {
+            GASRogium.SwitchMenu(MenuType.AssetSelection);
+            GASRogium.ReopenSelectionMenu(AssetType.Room);
+        }
+
+        #endregion
+        
     }
 }

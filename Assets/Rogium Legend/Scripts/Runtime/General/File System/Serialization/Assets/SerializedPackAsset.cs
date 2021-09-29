@@ -29,11 +29,12 @@ namespace Rogium.ExternalStorage.Serialization
         /// <returns>The Pack Asset in a readable form.</returns>
         public PackAsset Deserialize()
         {
-            PackInfoAsset deserializedInfo = new PackInfoAsset(this.packInfo.title,
-                                                       this.packInfo.icon.Deserialize(),
-                                                       this.packInfo.author,
-                                                       this.packInfo.description,
-                                                       DateTime.Parse(this.packInfo.creationTime));
+            PackInfoAsset deserializedInfo = new PackInfoAsset(this.packInfo.id,
+                                                               this.packInfo.title,
+                                                               this.packInfo.icon.Deserialize(),
+                                                               this.packInfo.author,
+                                                               this.packInfo.description,
+                                                               DateTime.Parse(this.packInfo.creationTime));
 
             IList<TileAsset> deserializedTiles = tiles.Deserialize(tile => tile.Deserialize());
             IList<RoomAsset> deserializedRooms = rooms.Deserialize(room => room.Deserialize());

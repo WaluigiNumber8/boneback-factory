@@ -1,5 +1,6 @@
 ﻿using BoubakProductions.Core;
 using BoubakProductions.Safety;
+using BoubakProductions.ObjectSwitching;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.PackData;
@@ -13,12 +14,12 @@ namespace Rogium.Global.UISystem.AssetSelection
     /// <summary>
     /// Is responsible for controlling the Asset Selection Menu, and switching out content as needed in it.
     /// </summary>
-    [RequireComponent(typeof(ObjectSwitcher))]
+    [RequireComponent(typeof(ObjectSwitcherMono))]
     public class AssetSelectionOverseer : MonoSingleton<AssetSelectionOverseer>
     {
         private EditorOverseer editor;
         private LibraryOverseer lib;
-        private ObjectSwitcher layoutSwitcher;
+        private ObjectSwitcherMono layoutSwitcher;
         
         [SerializeField] private LayoutInfo layouts;
         [SerializeField] private AssetSelectionMenuInfo selectionMenus;
@@ -31,7 +32,7 @@ namespace Rogium.Global.UISystem.AssetSelection
             base.Awake();
             editor = EditorOverseer.Instance;
             lib = LibraryOverseer.Instance;
-            layoutSwitcher = GetComponent<ObjectSwitcher>();
+            layoutSwitcher = GetComponent<ObjectSwitcherMono>();
             lastTypeOpen = AssetType.None;
         }
 
@@ -53,7 +54,7 @@ namespace Rogium.Global.UISystem.AssetSelection
             Setup(AssetType.Room,
                   layouts.list,
                   selectionMenus.room,
-                  editor.CurrentPack.Rooms.ToList<IAsset>());
+                  editor.CurrentPack.Rooms.ToList<AssetBase>());
         }
         
         /// <summary>
@@ -64,7 +65,7 @@ namespace Rogium.Global.UISystem.AssetSelection
             Setup(AssetType.Tile,
                 layouts.grid,
                 selectionMenus.tile,
-                editor.CurrentPack.Tiles.ToList<IAsset>());
+                editor.CurrentPack.Tiles.ToList<AssetBase>());
         }
 
         /// <summary>
@@ -75,15 +76,15 @@ namespace Rogium.Global.UISystem.AssetSelection
             Setup(AssetType.Pack,
                   layouts.grid,
                   selectionMenus.pack,
-                  lib.GetCopy.ToList<IAsset>());
+                  lib.GetCopy.ToList<AssetBase>());
         }
 
         /// <summary>
         /// Sets up the selection menu.
         /// </summary>
-        private void Setup(AssetType type, SelectionMenuLayout layout, SelectionMenuAsset asset, IList<IAsset> assetList)
+        private void Setup(AssetType type, SelectionMenuLayout layout, SelectionMenuAsset asset, IList<AssetBase> assetList)
         {
-            layoutSwitcher.DeselectAllExcept(layout.Menu);
+            layoutSwitcher.Switcher.DeselectAllExcept(layout.Menu);
 
             //Do not refill, if menu is the same.
             if (type == lastTypeOpen && type != AssetType.None)
@@ -112,7 +113,7 @@ namespace Rogium.Global.UISystem.AssetSelection
         /// <summary>
         /// Fills the selection menu canvas with asset holder objects.
         /// </summary>
-        private void RefillMenu(AssetType type, SelectionMenuLayout layout, SelectionMenuAsset asset, IList<IAsset> assetList)
+        private void RefillMenu(AssetType type, SelectionMenuLayout layout, SelectionMenuAsset asset, IList<AssetBase> assetList)
         {
             SafetyNet.EnsureIsNotNull(asset.assetObject.GetComponent<IAssetHolder>(), "IAssetHolder in RefillMenu");
             
@@ -128,7 +129,7 @@ namespace Rogium.Global.UISystem.AssetSelection
             }
         }
 
-        private void SpawnCard(int id, AssetType type, SelectionMenuLayout layout, SelectionMenuAsset asset, IList<IAsset> assetList)
+        private void SpawnCard(int id, AssetType type, SelectionMenuLayout layout, SelectionMenuAsset asset, IList<AssetBase> assetList)
         {
             IAssetHolder holder = Instantiate(asset.assetObject, layout.Content.transform).GetComponent<IAssetHolder>();
             if (layout.IconPositionType == IconPositionType.Global)
@@ -164,6 +165,26 @@ namespace Rogium.Global.UISystem.AssetSelection
         {
             public SelectionMenuLayout grid;
             public SelectionMenuLayout list;
+        }
+
+        public void ReopenForPalettes()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void ReopenForSprites()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void ReopenForWeapons()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void ReopenForEnemies()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

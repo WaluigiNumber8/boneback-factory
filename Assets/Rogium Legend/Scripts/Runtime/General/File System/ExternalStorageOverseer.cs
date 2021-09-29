@@ -11,7 +11,7 @@ namespace Rogium.ExternalStorage
     public class ExternalStorageOverseer
     {
         public readonly string localPacksFolderName = "Packs";
-        public readonly string packExtension = ".pck";
+        public readonly string packExtension = ".bumpack";
 
         public readonly string packDirectoryPath;
 

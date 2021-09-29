@@ -1,14 +1,18 @@
 using BoubakProductions.Safety;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace BoubakProductions.UI
 {
     /// <summary>
-    /// A new type of a UI Layout group, the Tab, allows for swithcing on and off different screens.
+    /// A new type of a UI Layout group, the Tab, allows for switching on and off different screens.
     /// </summary>
     public class TabGroup : MonoBehaviour
     {
+        public event Action<GameObject> onTabSwitch;
+        
         [SerializeField] private int defaultTabIndex;
         [SerializeField] private Sprite tabIdle;
         [SerializeField] private Sprite tabHover;
@@ -29,8 +33,7 @@ namespace BoubakProductions.UI
         /// <param name="button">The button to register.</param>
         public void Subscribe(TabPageButton button)
         {
-            if (buttons == null)
-                buttons = new List<TabPageButton>();
+            buttons ??= new List<TabPageButton>();
             buttons.Add(button);
         }
 
@@ -51,7 +54,7 @@ namespace BoubakProductions.UI
             selectedTab = button;
             ResetAllTabs();
             button.Background.sprite = tabActive;
-            HideAllPagesExcept(button);
+            onTabSwitch?.Invoke(button.Page);
         }
 
         /// <summary>
@@ -67,18 +70,14 @@ namespace BoubakProductions.UI
         }
 
         /// <summary>
-        /// Disables all gameobjects in the list except the one with the button.
+        /// Get all pages from tab group as an array of GameObjects.
         /// </summary>
-        /// <param name="button"></param>
-        private void HideAllPagesExcept(TabPageButton button)
+        /// <returns>An array of pages.</returns>
+        public GameObject[] GetButtonsAsArray()
         {
-            foreach (TabPageButton tabButton in buttons)
-            {
-                tabButton.Page.SetActive(false);
-            }
-            button.Page.SetActive(true);
+            return buttons.Select(button => button.Page)
+                          .ToArray();
         }
-
     }
 }
 

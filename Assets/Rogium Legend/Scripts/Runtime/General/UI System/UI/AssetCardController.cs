@@ -15,7 +15,7 @@ namespace Rogium.Global.UISystem.UI
         [SerializeField] private AssetType type;
         [SerializeField] private UIInfo ui;
 
-        private IAsset asset; //Will be used for sorting cards
+        private AssetBase assetBase; //Will be used for sorting cards
         private int id;
         private Button cardButton;
 
@@ -25,18 +25,18 @@ namespace Rogium.Global.UISystem.UI
             cardButton.onClick.AddListener(OnClick);
         }
 
-        public void Construct(AssetType type, int id, IAsset asset, Image iconPos)
+        public void Construct(AssetType type, int id, AssetBase assetBase, Image iconPos)
         {
             ui.icon = iconPos;
-            Construct(type, id, asset);
+            Construct(type, id, assetBase);
         }
-        public void Construct(AssetType type, int id, IAsset asset)
+        public void Construct(AssetType type, int id, AssetBase assetBase)
         {
             this.type = type;
             this.id = id;
-            this.asset = asset;
-            ui.title.text = asset.Title;
-            ui.icon.sprite = asset.Icon;
+            this.assetBase = assetBase;
+            ui.title.text = assetBase.Title;
+            ui.icon.sprite = assetBase.Icon;
             
             ui.infoGroup.gameObject.SetActive(true);
         }
