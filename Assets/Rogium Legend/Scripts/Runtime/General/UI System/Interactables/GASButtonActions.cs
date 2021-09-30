@@ -4,7 +4,6 @@ using BoubakProductions.UI;
 using Rogium.Core;
 using Rogium.GASExtensions;
 using Rogium.Global.UISystem.UI;
-using Rogium.Global.UISystem.AssetSelection;
 using Rogium.Editors.PackData;
 using Rogium.Editors.Core;
 using Rogium.Editors.RoomData;
@@ -18,13 +17,30 @@ namespace Rogium.Global.UISystem.Interactables
     {
         private static int storedNumber = -1; //Used for method traveling.
 
+        #region Return from menus
         public static void ReturnToMainMenu()
         {
-            GAS.ObjectSetActive(false, UIEditorContainer.GetInstance().PackInfoHeader);
+            CanvasOverseer.GetInstance().NavigationBar.Hide();
             GAS.ObjectSetActive(false, UIEditorContainer.GetInstance().Background);
             GAS.ObjectSetActive(true, UIMainContainer.GetInstance().BackgroundMain);
             GASRogium.SwitchMenu(MenuType.MainMenu);
         }
+
+        private static void ReturnToPackSelectionMenu()
+        {
+            EditorOverseer.Instance.CompleteEditing();
+            GASRogium.SwitchMenu(MenuType.AssetSelection);
+            GASRogium.ReopenSelectionMenu(AssetType.Pack);
+            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToMainMenu);
+        }
+        
+        private static void ReturnToAssetTypeSelection()
+        {
+            GASRogium.SwitchMenu(MenuType.AssetTypeSelection);
+            PackAsset pack = EditorOverseer.Instance.CurrentPack;
+            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToPackSelectionMenu, null, pack.Title, pack.Icon);
+        }
+        #endregion
 
         #region Open Selection Menus
 
@@ -34,18 +50,23 @@ namespace Rogium.Global.UISystem.Interactables
             GAS.ObjectSetActive(true, UIEditorContainer.GetInstance().Background);
             GASRogium.SwitchMenu(MenuType.AssetSelection);
             GASRogium.ReopenSelectionMenu(AssetType.Pack);
+            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToMainMenu);
         }
 
         public static void OpenRoomSelection()
         {
             GASRogium.SwitchMenu(MenuType.AssetSelection);
             GASRogium.ReopenSelectionMenu(AssetType.Room);
+            PackAsset pack = EditorOverseer.Instance.CurrentPack;
+            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToAssetTypeSelection, null, pack.Title, pack.Icon);
         }
         
         public static void OpenTileSelection()
         {
             GASRogium.SwitchMenu(MenuType.AssetSelection);
             GASRogium.ReopenSelectionMenu(AssetType.Tile);
+            PackAsset pack = EditorOverseer.Instance.CurrentPack;
+            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToAssetTypeSelection, null, pack.Title, pack.Icon);
         }
 
         #endregion
@@ -137,14 +158,15 @@ namespace Rogium.Global.UISystem.Interactables
         {
             LibraryOverseer.Instance.ActivatePackEditor(packIndex);
             GASRogium.SwitchMenu(MenuType.AssetTypeSelection);
-            GAS.ObjectSetActive(true, UIEditorContainer.GetInstance().PackInfoHeader);
+            PackAsset pack = EditorOverseer.Instance.CurrentPack;
+            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToPackSelectionMenu, null, pack.Title, pack.Icon);
         }
 
         public static void OpenRoomEditor(int roomIndex)
         {
             EditorOverseer.Instance.ActivateRoomEditor(roomIndex);
             GASRogium.SwitchMenu(MenuType.RoomEditor);
-            GAS.ObjectSetActive(false, UIEditorContainer.GetInstance().PackInfoHeader);
+            CanvasOverseer.GetInstance().NavigationBar.Hide();
         }
         #endregion
 
@@ -152,8 +174,7 @@ namespace Rogium.Global.UISystem.Interactables
         public static void SaveChangesRoom()
         {
             RoomEditorOverseer.Instance.CompleteEditing();
-            GASRogium.SwitchMenu(MenuType.AssetSelection);
-            GASRogium.ReopenSelectionMenu(AssetType.Room);
+            OpenRoomSelection();
         }
 
         #endregion
@@ -162,16 +183,8 @@ namespace Rogium.Global.UISystem.Interactables
         public static void CancelChangesRoom()
         {
             ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
-            window.OpenAsMessage("Do you really not want to save changes?","Yes","No", CancelChangesRoomAccept, true);
+            window.OpenAsMessage("Do you really not want to save changes?","Yes","No", OpenRoomSelection, true);
         }
-        
-        private static void CancelChangesRoomAccept()
-        {
-            GASRogium.SwitchMenu(MenuType.AssetSelection);
-            GASRogium.ReopenSelectionMenu(AssetType.Room);
-        }
-
         #endregion
-        
     }
 }

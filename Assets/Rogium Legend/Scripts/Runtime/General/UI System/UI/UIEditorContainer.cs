@@ -9,9 +9,7 @@ namespace Rogium.Global.UISystem.UI
     public class UIEditorContainer : MonoSingleton<UIEditorContainer>
     {
         [SerializeField] private GameObject background;
-        [SerializeField] private GameObject packNavigationBar;
 
-        public GameObject PackInfoHeader { get => packNavigationBar; }
         public GameObject Background { get => background;}
     }
 }
