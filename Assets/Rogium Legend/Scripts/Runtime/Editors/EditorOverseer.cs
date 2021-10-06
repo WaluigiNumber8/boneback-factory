@@ -95,7 +95,7 @@ namespace Rogium.Editors.Core
         /// </summary>
         public void RemoveRoom(int roomIndex)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Currect Pack");
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Correct Pack");
             SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Rooms, "List of Rooms");
             currentPack.Rooms.RemoveAt(roomIndex);
 
@@ -108,7 +108,7 @@ namespace Rogium.Editors.Core
         /// <param name="roomIndex">Room index from the list</param>
         public void ActivateRoomEditor(int roomIndex)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Currect Pack");
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Rooms, "List of Rooms");
             SafetyNet.EnsureIntIsInRange(roomIndex, 0, currentPack.Rooms.Count, "Room Index");
             roomEditor.AssignAsset(CurrentPack.Rooms[roomIndex], roomIndex);

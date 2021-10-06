@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using Rogium.Editors.Core;
+using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.PackData;
 using Rogium.Editors.RoomData;
 using UnityEngine;
@@ -19,12 +20,13 @@ public class test_Room_Editor
         editor = EditorOverseer.Instance;
         roomEditor = RoomEditorOverseer.Instance;
 
-        string packName = "Test Pack";
-        string packDescription = "Created this pack for testing purposes.";
-        string packAuthor = "TestAuthor";
-        Sprite packIcon = Sprite.Create(new Texture2D(16, 16), new Rect(0, 0, 16, 16), new Vector2(0.5f, 0.5f));
+        const string packName = "Test Pack";
+        const string packDescription = "Created this pack for testing purposes.";
+        const string packAuthor = "TestAuthor";
+        Sprite packIcon = EditorDefaults.PackIcon;
 
-        packInfo = new PackInfoAsset(packName, packIcon, packAuthor, packDescription);
+        lib.CreateAndAddPack(new PackInfoAsset(packName, packIcon, packAuthor, packDescription));
+        lib.ActivatePackEditor(0);
     }
 
     [TearDown]
@@ -36,9 +38,6 @@ public class test_Room_Editor
     [Test]
     public void create_new_room()
     {
-        lib.CreateAndAddPack(packInfo);
-        lib.ActivatePackEditor(0);
-
         int roomsBefore = editor.CurrentPack.Rooms.Count;
         editor.CreateNewRoom();
 
@@ -48,9 +47,6 @@ public class test_Room_Editor
     [Test]
     public void ensure_room_data_saves_correctly1()
     {
-        lib.CreateAndAddPack(packInfo);
-        lib.ActivatePackEditor(0);
-
         editor.CreateNewRoom();
         string roomName = editor.CurrentPack.Rooms[0].Title;
 
@@ -63,9 +59,6 @@ public class test_Room_Editor
     [Test]
     public void ensure_room_data_saves_correctly2()
     {
-        lib.CreateAndAddPack(packInfo);
-        lib.ActivatePackEditor(0);
-
         editor.CreateNewRoom();
         string roomName = editor.CurrentPack.Rooms[0].Title;
 
@@ -79,15 +72,17 @@ public class test_Room_Editor
     [Test]
     public void remove_room_from_pack()
     {
-        lib.CreateAndAddPack(packInfo);
-        lib.ActivatePackEditor(0);
-
         editor.CreateNewRoom();
         int roomsBefore = editor.CurrentPack.Rooms.Count;
 
         editor.CurrentPack.Rooms.RemoveAt(0);
 
         Assert.Less(editor.CurrentPack.Rooms.Count, roomsBefore);
+    }
+
+    public void grid_fills_correctly_with_all_data()
+    {
+        
     }
 
 }

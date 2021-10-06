@@ -25,7 +25,7 @@ namespace Rogium.Editors.RoomData
             this.author = EditorDefaults.Author;
             this.creationDate = DateTime.Now;
             this.difficultyLevel = EditorDefaults.RoomDifficulty;
-            this.tileGrid = new ObjectGrid<string>(gridSize.x, gridSize.y, () => EditorDefaults.DefaultTileID);
+            this.tileGrid = new ObjectGrid<string>(gridSize.x, gridSize.y, () => EditorDefaults.EmptyID);
             GenerateID(EditorAssetIDs.RoomIdentifier);
         }
         public RoomAsset(RoomAsset roomAsset)
@@ -37,7 +37,6 @@ namespace Rogium.Editors.RoomData
             this.creationDate = roomAsset.CreationDate;
             this.difficultyLevel = roomAsset.DifficultyLevel;
             this.tileGrid = roomAsset.TileGrid;
-            Debug.Log(id);
         }
         public RoomAsset(string roomName, Sprite roomIcon, string author, int difficultyLevel)
         {
@@ -48,7 +47,7 @@ namespace Rogium.Editors.RoomData
             this.author = author;
             this.creationDate = DateTime.Now;
             this.difficultyLevel = difficultyLevel;
-            this.tileGrid = new ObjectGrid<string>(gridSize.x, gridSize.y, () => EditorDefaults.DefaultTileID);
+            this.tileGrid = new ObjectGrid<string>(gridSize.x, gridSize.y, () => EditorDefaults.EmptyID);
             GenerateID(EditorAssetIDs.RoomIdentifier);
         }
         public RoomAsset(string roomName, Sprite icon, string author, int difficultyLevel, ObjectGrid<string> tileGrid)

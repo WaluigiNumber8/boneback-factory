@@ -38,7 +38,7 @@ namespace Rogium.ExternalStorage.Serialization
                                  this.icon.Deserialize(),
                                  this.author,
                                  this.difficultyLevel,
-                                 this.tileGrid.Deserialize(() => EditorDefaults.DefaultTileID),
+                                 this.tileGrid.Deserialize(() => EditorDefaults.EmptyID),
                                  DateTime.Parse(this.creationDate));
         }
     }

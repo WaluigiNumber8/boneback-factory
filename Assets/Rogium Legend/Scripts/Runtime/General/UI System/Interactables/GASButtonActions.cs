@@ -17,6 +17,13 @@ namespace Rogium.Global.UISystem.Interactables
     {
         private static int storedNumber = -1; //Used for method traveling.
 
+        public static void GameStart()
+        {
+            GAS.ObjectSetActive(true, UIMainContainer.GetInstance().BackgroundMain);
+            GAS.ObjectSetActive(false, UIEditorContainer.GetInstance().Background);
+            CanvasOverseer.GetInstance().NavigationBar.Hide();
+        }
+        
         #region Return from menus
         public static void ReturnToMainMenu()
         {
@@ -29,9 +36,9 @@ namespace Rogium.Global.UISystem.Interactables
         private static void ReturnToPackSelectionMenu()
         {
             EditorOverseer.Instance.CompleteEditing();
+            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToMainMenu);
             GASRogium.SwitchMenu(MenuType.AssetSelection);
             GASRogium.ReopenSelectionMenu(AssetType.Pack);
-            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToMainMenu);
         }
         
         private static void ReturnToAssetTypeSelection()
@@ -165,8 +172,8 @@ namespace Rogium.Global.UISystem.Interactables
         public static void OpenRoomEditor(int roomIndex)
         {
             EditorOverseer.Instance.ActivateRoomEditor(roomIndex);
-            GASRogium.SwitchMenu(MenuType.RoomEditor);
             CanvasOverseer.GetInstance().NavigationBar.Hide();
+            GASRogium.SwitchMenu(MenuType.RoomEditor);
         }
         #endregion
 

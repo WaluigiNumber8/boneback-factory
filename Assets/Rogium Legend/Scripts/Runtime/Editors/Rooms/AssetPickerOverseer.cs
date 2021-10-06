@@ -18,7 +18,7 @@ namespace Rogium.Editors.RoomData
             //TODO Make it function with the UI.
             if (LibraryOverseer.Instance.GetCopy[0] == null)
             {
-                Debug.LogError("TEMPORARY SOLUTION - It is required that an asset will have atleast 1 tile created.");
+                Debug.LogError("TEMPORARY SOLUTION - It is required that an asset will have at least 1 tile created.");
                 return;
             }
             

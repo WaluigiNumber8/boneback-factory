@@ -1,0 +1,67 @@
+﻿using System;
+using System.Collections;
+using NUnit.Framework;
+using Rogium.Editors.Core;
+using Rogium.Editors.Core.Defaults;
+using Rogium.Editors.PackData;
+using Rogium.Editors.RoomData;
+using Rogium.Editors.TileData;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.TestTools;
+
+namespace Rogium_Legend.Tests.CSharp.Editors
+{
+    public class test_Editors
+    {
+        private EditorOverseer editor;
+
+        [SetUp]
+        public void Setup()
+        {
+            editor = EditorOverseer.Instance;
+
+            const string packName = "Test Pack";
+            const string packDescription = "Created this pack for testing purposes.";
+            const string packAuthor = "TestAuthor";
+            Sprite packIcon = EditorDefaults.PackIcon;
+
+            LibraryOverseer.Instance.CreateAndAddPack(new PackInfoAsset(packName, packIcon, packAuthor, packDescription));
+            LibraryOverseer.Instance.ActivatePackEditor(0);
+        }
+
+        [TearDown]
+        public void Teardown()
+        {
+            editor.CompleteEditing();
+            LibraryOverseer.Instance.RemovePack(0);
+        }
+        
+        [Test]
+        public void find_tile_with_same_ID()
+        {
+            editor.CreateNewTile();
+            editor.CreateNewTile(new TileAsset("Devil Tile", EditorDefaults.TileIcon, "TestAuthor", TileType.Floor));
+            TileAsset foundTile = editor.CurrentPack.Tiles.GetByID(editor.CurrentPack.Tiles[0].ID);
+            
+            Assert.AreEqual(editor.CurrentPack.Tiles[0].ID, foundTile.ID);
+        }
+        
+        [Test]
+        public void fail_when_same_id_is_not_found()
+        {
+            editor.CreateNewTile();
+            editor.CreateNewTile(new TileAsset("Devil Tile", EditorDefaults.TileIcon, "TestAuthor", TileType.Floor));
+            TileAsset tile = new TileAsset("Bob tile", EditorDefaults.TileIcon, "TestAuthor", TileType.Floor);
+
+            try
+            {
+                editor.CurrentPack.Tiles.GetByID(tile.ID);
+                Assert.Fail();
+            }
+            catch (InvalidOperationException) { }
+        }
+
+        
+    }
+}

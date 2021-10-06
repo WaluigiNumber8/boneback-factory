@@ -20,7 +20,8 @@ namespace Rogium.Editors.Core.Defaults
         public const int RoomDifficulty = 0;
         public static readonly Sprite RoomIcon = Resources.Load<Sprite>("Defaults/spr_Default_Weapon_Filled");
         
-        public const string DefaultTileID = "-1";
+        public const string EmptyID = "-1";
         public static readonly Sprite EmptyGridSprite = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
+        public static readonly Sprite MissingSprite = Resources.Load<Sprite>("Defaults/spr_Missing");
     }
 }

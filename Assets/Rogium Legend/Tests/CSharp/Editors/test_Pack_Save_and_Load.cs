@@ -95,7 +95,7 @@ public class test_Pack_Save_and_Load
             lib.CreateAndAddPack(packInfo);
             Assert.Fail();
         }
-        catch (SafetyNetCollectionException) { }
+        catch (FoundDuplicationException) { }
     }
 
     [Test]

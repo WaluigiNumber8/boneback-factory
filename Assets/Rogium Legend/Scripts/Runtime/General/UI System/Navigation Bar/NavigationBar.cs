@@ -21,6 +21,7 @@ namespace  Rogium.Global.UISystem.Navigation
         /// <param name="packIcon">Icon of the pack, that will show up.</param>
         public void Show(Action onReturnClick, Action onConfigClick = null, string packTitle = null, Sprite packIcon = null)
         {
+            Hide();
             ui.area.gameObject.SetActive(true);
 
             DrawReturnButton(onReturnClick);
@@ -51,7 +52,7 @@ namespace  Rogium.Global.UISystem.Navigation
         /// <param name="packIcon">Icon of the pack, that will show up.</param>
         private void DrawPackInfo(string packTitle, Sprite packIcon)
         {
-            if (packTitle != null && packIcon != null) return;
+            if (packTitle == null && packIcon == null) return;
             
             ui.packInfo.area.gameObject.SetActive(true);
             ui.packInfo.titleText.gameObject.SetActive(true);
@@ -76,7 +77,7 @@ namespace  Rogium.Global.UISystem.Navigation
         /// <param name="onConfigClick">Method that will run, once the "Config" Button is pressed.</param>
         private void DrawConfigButton(Action onConfigClick)
         {
-            if (onConfigClick != null) return;
+            if (onConfigClick == null) return;
             
             ui.configButton.gameObject.SetActive(true);
             ui.onConfigClick = onConfigClick;

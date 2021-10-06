@@ -1,5 +1,5 @@
 ﻿using Rogium.Global.PlayerData;
-using System.Collections;
+using Rogium.Global.UISystem.Interactables;
 using UnityEngine;
 
 namespace Rogium.Global
@@ -11,6 +11,7 @@ namespace Rogium.Global
         private void Awake()
         {
             PlayerProfile.SetPlayerData(playerData);
+            GASButtonActions.GameStart();
         }
     }
 }

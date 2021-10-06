@@ -57,11 +57,11 @@ namespace Rogium.Editors.PackData
 
         private void GatherValuesFromInfo(PackInfoAsset info)
         {
-            this.id = packInfo.ID;
-            this.title = packInfo.Title;
-            this.icon = packInfo.Icon;
-            this.author = packInfo.Author;
-            this.creationDate = packInfo.CreationDate;
+            this.id = info.ID;
+            this.title = info.Title;
+            this.icon = info.Icon;
+            this.author = info.Author;
+            this.creationDate = info.CreationDate;
         }
         
         #region Update Values

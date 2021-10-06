@@ -42,15 +42,7 @@ namespace Rogium.Editors.PackData
         {
             library.ReplaceAll(ExternalStorageOverseer.Instance.LoadAllPacks());
         }
-
-        /// <summary>
-        /// Creates a new Pack, and adds it to the library.
-        /// </summary>
-        public void CreateAndAddPack()
-        {
-            PackAsset newPack = new PackAsset();
-            library.Add(newPack);
-        }
+        
         /// <summary>
         /// Creates a new Pack, and adds it to the library.
         /// </summary>

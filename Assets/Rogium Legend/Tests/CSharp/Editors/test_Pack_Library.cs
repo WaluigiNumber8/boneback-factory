@@ -44,5 +44,4 @@ public class test_Pack_Library
         PackAsset foundPack = lib.GetCopy.TryFinding("Test Pack", "TestAuthor");
         Assert.AreEqual(packInfo.Title, foundPack.Title);
     }
-
 }

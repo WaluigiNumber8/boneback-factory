@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Rogium.Global.Input;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -6,12 +6,13 @@ using UnityEngine.UI;
 namespace Rogium.Global.GridSystem
 {
     /// <summary>
-    /// Holds information Grid Cell specific information.
+    /// Holds Grid Cell's GUI information.
     /// </summary>
     [RequireComponent(typeof(Image))]
-    public class GridCell : MonoBehaviour, IPointerClickHandler
+    public class GridCell : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
     {
-        private EditorGridController controller;
+        private EditorGridOverseer overseer;
+        private UIInput input;
         
         [SerializeField] private Image image;
         private int x;
@@ -20,16 +21,18 @@ namespace Rogium.Global.GridSystem
         /// <summary>
         /// Spawns a Grid Cell with correct information
         /// </summary>
-        /// <param name="controller">The Grid Loader, that spawned this cell.</param>
+        /// <param name="overseer">The Grid Loader, that spawned this cell.</param>
         /// <param name="x">Cell's X position on the grid.</param>
         /// <param name="y">Cell's Y position on the gird.</param>
         /// <param name="sprite">The sprite of cell, that will show in the UI.</param>
-        public void Spawn(EditorGridController controller, int x, int y, Sprite sprite)
+        public void Spawn(EditorGridOverseer overseer, UIInput input, int x, int y, Sprite sprite)
         {
-            this.controller = controller;
+            this.overseer = overseer;
+            this.input = input;
             this.x = x;
             this.y = y;
             UpdateSprite(sprite);
+
         }
 
         /// <summary>
@@ -40,10 +43,16 @@ namespace Rogium.Global.GridSystem
         {
             this.image.sprite = sprite;
         }
-        
-        public void OnPointerClick(PointerEventData eventData)
+
+        public void OnPointerDown(PointerEventData eventData)
         {
-            controller.OnCellClick(x, y);
+            overseer.OnCellClick(x, y);
         }
+        
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            if (input.ClickHold || input.ClickPressed) overseer.OnCellClick(x, y);
+        }
+
     }
 }

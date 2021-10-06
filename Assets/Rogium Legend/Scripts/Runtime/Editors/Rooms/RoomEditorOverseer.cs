@@ -16,8 +16,8 @@ namespace Rogium.Editors.RoomData
         private RoomAsset currentRoom;
         private int myIndex;
 
-        private ToolboxEffects gridEditor;
-        private ToolBox toolBox;
+        private readonly ToolboxEffects gridEditor;
+        private readonly ToolBox toolBox;
 
         #region Singleton Pattern
         private static RoomEditorOverseer instance;
@@ -51,9 +51,9 @@ namespace Rogium.Editors.RoomData
         public void AssignAsset(RoomAsset room, int index)
         {
             SafetyNet.EnsureIsNotNull(room, "Assigned Room");
-            OnAssignRoom?.Invoke(room);
             currentRoom = new RoomAsset(room);
             myIndex = index;
+            OnAssignRoom?.Invoke(room);
         }
 
         /// <summary>

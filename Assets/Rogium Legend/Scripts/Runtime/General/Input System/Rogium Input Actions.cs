@@ -54,7 +54,7 @@ namespace Rogium.Global.Input
                 },
                 {
                     ""name"": ""Click"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""9f328427-371b-4e5f-8c49-b85f36c302ac"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",

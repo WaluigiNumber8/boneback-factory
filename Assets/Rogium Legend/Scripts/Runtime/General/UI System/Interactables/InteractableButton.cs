@@ -157,7 +157,7 @@ namespace Rogium.Global.UISystem.Interactables
                     break;
                 #endregion
 
-                    #region Save Editor Changes
+                #region Save Editor Changes
                 case ButtonType.SaveChangesPalette:
                     break;
                 case ButtonType.SaveChangesSprite:
