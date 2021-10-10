@@ -194,7 +194,7 @@ namespace Rogium.Editors.Core
             ExternalStorageOverseer.Instance.Save(CurrentPack);
 
             if (startingTitle != CurrentPack.Title)
-                ExternalStorageOverseer.Instance.Delete(startingTitle);
+                ExternalStorageOverseer.Instance.DeletePack(startingTitle);
         }
 
         public PackAsset CurrentPack

@@ -26,7 +26,7 @@ public class test_Pack_Save_and_Load
         Sprite packIcon = Sprite.Create(new Texture2D(16, 16), new Rect(0, 0, 16, 16), new Vector2(0.5f, 0.5f));
         packInfo = new PackInfoAsset(packName, packIcon, packAuthor, packDescription);
 
-        path = Path.Combine(ExternalStorageOverseer.Instance.packDirectoryPath, this.packInfo.Title + ExternalStorageOverseer.Instance.packExtension);
+        path = Path.Combine(ExternalStorageOverseer.Instance.PackPath, $"{this.packInfo.Title}.{ExternalStorageOverseer.Instance.PackExtension}");
     }
 
     [TearDown]
@@ -113,7 +113,7 @@ public class test_Pack_Save_and_Load
         lib.CreateAndAddPack(packInfo);
         lib.ReloadFromExternalStorage();
 
-        PackAsset foundPack = lib.GetCopy.TryFinding("Test Pack", "TestAuthor");
+        PackAsset foundPack = lib.GetPacksCopy.TryFinding("Test Pack", "TestAuthor");
 
         byte[] currentBytes = ImageConversion.EncodeToPNG(packInfo.Icon.texture);
         byte[] foundBytes = ImageConversion.EncodeToPNG(foundPack.Icon.texture);

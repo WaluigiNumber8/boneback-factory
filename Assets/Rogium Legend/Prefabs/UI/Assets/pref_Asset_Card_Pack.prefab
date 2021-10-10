@@ -101,7 +101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 362831363888167731, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
       propertyPath: action
-      value: 28
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 1835956329474657887, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
       propertyPath: m_text
@@ -121,11 +121,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6308340593082758940, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
       propertyPath: action
-      value: 20
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 7420724473664746783, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
       propertyPath: action
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8405900835270735402, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
       propertyPath: m_AnchorMax.x

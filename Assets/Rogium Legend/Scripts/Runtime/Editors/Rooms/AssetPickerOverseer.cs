@@ -16,13 +16,13 @@ namespace Rogium.Editors.RoomData
         {
             //TODO Replace with a better way to get the default asset.
             //TODO Make it function with the UI.
-            if (LibraryOverseer.Instance.GetCopy[0] == null)
+            if (LibraryOverseer.Instance.GetPacksCopy[0] == null)
             {
                 Debug.LogError("TEMPORARY SOLUTION - It is required that an asset will have at least 1 tile created.");
                 return;
             }
             
-            currentAsset = new PlaceableAsset(LibraryOverseer.Instance.GetCopy[0].Tiles[0], PlaceableAssetType.Tile);
+            currentAsset = new PlaceableAsset(LibraryOverseer.Instance.GetPacksCopy[0].Tiles[0], PlaceableAssetType.Tile);
         }
         
         public PlaceableAsset CurrentAsset { get => currentAsset;}

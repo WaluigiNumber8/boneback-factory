@@ -13,7 +13,7 @@ namespace Rogium.Editors.PackData
     /// </summary>
     public class AssetList<T> : IList<T> where T : AssetBase
     {
-        private IList<T> list;
+        private List<T> list;
         private readonly PackAsset pack;
 
         public AssetList(PackAsset pack)
@@ -45,6 +45,16 @@ namespace Rogium.Editors.PackData
             ExternalStorageOverseer.Instance.Save(pack);
         }
 
+        /// <summary>
+        /// Adds a list of assets to this list without saving.
+        /// </summary>
+        /// <param name="assets"></param>
+        public void AddAllWithoutSave(AssetList<T> assets)
+        {
+            SafetyNet.EnsureIsNotNull(assets, "List of assets to add.");
+            list.AddRange(assets);
+        }
+        
         /// <summary>
         /// Change an asset on a specific index in the list.
         /// </summary>
@@ -101,6 +111,7 @@ namespace Rogium.Editors.PackData
         /// <returns>the pack asset with the given name.</returns>
         private T TryFinding(string title, string author, int excludePos = -1)
         {
+            if (list.Count == 0) return null;
             IList<T> foundAssets = list.Where((asset, counter) => counter != excludePos)
                                        .Where(asset => asset.Title == title && asset.Author == author)
                                        .ToList();

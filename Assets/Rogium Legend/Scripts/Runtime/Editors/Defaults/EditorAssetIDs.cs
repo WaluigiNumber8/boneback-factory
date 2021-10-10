@@ -13,5 +13,6 @@
         public const string PaletteIdentifier = "06";
         public const string SpriteIdentifier = "07";
         public const string ProjectileIdentifier = "08";
+        public const string CampaignIdentifier = "09";
     }
 }

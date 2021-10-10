@@ -42,6 +42,16 @@ namespace Rogium.Editors.PackData
             this.rooms = new AssetList<RoomAsset>(this);
             this.tiles = new AssetList<TileAsset>(this);
         }
+        
+        public PackAsset(PackAsset packAsset)
+        {
+            this.packInfo = new PackInfoAsset(packAsset.packInfo);
+            
+            GatherValuesFromInfo(packInfo);
+            this.palettes = new AssetList<PaletteAsset>(this, packAsset.palettes);
+            this.rooms = new AssetList<RoomAsset>(this, packAsset.rooms);
+            this.tiles = new AssetList<TileAsset>(this, packAsset.tiles);
+        }
         public PackAsset(PackInfoAsset packInfo, IList<RoomAsset> rooms, IList<TileAsset> tiles)
         {
             this.packInfo = packInfo;
@@ -63,7 +73,7 @@ namespace Rogium.Editors.PackData
             this.author = info.Author;
             this.creationDate = info.CreationDate;
         }
-        
+
         #region Update Values
         public void UpdatePackInfo(PackInfoAsset newPackInfo)
         {

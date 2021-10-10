@@ -14,7 +14,7 @@ public class test_Selection_Menu
 {
     private GameObject canvas;
     private PackInfoAsset packInfo;
-    private AssetSelectionOverseer selectionMenu;
+    private AssetSelectionOverseerMono selectionMenu;
 
     [SetUp]
     public void Setup()
@@ -44,7 +44,7 @@ public class test_Selection_Menu
 
         //Menus
         GameObject selectionMenus = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Menu_Selection.prefab");
-        selectionMenu = Object.Instantiate(selectionMenus, canvas.transform).GetComponent<AssetSelectionOverseer>();
+        selectionMenu = Object.Instantiate(selectionMenus, canvas.transform).GetComponent<AssetSelectionOverseerMono>();
         #endregion
     }
 

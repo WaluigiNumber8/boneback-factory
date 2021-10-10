@@ -41,7 +41,7 @@ public class test_Pack_Library
     public void create_new_pack_and_check_if_data_is_correct()
     {
         lib.CreateAndAddPack(packInfo);
-        PackAsset foundPack = lib.GetCopy.TryFinding("Test Pack", "TestAuthor");
+        PackAsset foundPack = lib.GetPacksCopy.TryFinding("Test Pack", "TestAuthor");
         Assert.AreEqual(packInfo.Title, foundPack.Title);
     }
 }

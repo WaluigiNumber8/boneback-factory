@@ -7,7 +7,7 @@ using Rogium.ExternalStorage;
 namespace Rogium.Editors.PackData
 {
     /// <summary>
-    /// Special distinct List variant. Is synced with external storage.
+    /// Special distinct List variant for packs. Is synced with external storage.
     /// </summary>
     public class PackList : IList<PackAsset>
     {
@@ -44,7 +44,7 @@ namespace Rogium.Editors.PackData
             PackAsset foundPack = TryFinding(name, author);
             SafetyNet.EnsureIsNotNull(foundPack, "Pack to Remove");
 
-            ExternalStorageOverseer.Instance.Delete(foundPack);
+            ExternalStorageOverseer.Instance.DeletePack(foundPack);
             list.Remove(foundPack);
         }
 
@@ -58,7 +58,7 @@ namespace Rogium.Editors.PackData
             PackAsset foundPack = list[packIndex];
             SafetyNet.EnsureIsNotNull(foundPack, "Pack to Remove");
 
-            ExternalStorageOverseer.Instance.Delete(foundPack);
+            ExternalStorageOverseer.Instance.DeletePack(foundPack);
             list.Remove(foundPack);
         }
 
@@ -72,6 +72,7 @@ namespace Rogium.Editors.PackData
         /// <returns>The pack asset with the given name</returns>
         public PackAsset TryFinding(string packName, string author, int excludePos = -1)
         {
+            if (list.Count == 0) return null;
             IList<PackAsset> foundPacks = list.Where((pack, counter) => counter != excludePos)
                                               .Where((pack) => pack.PackInfo.Title == packName && pack.PackInfo.Author == author)
                                               .ToList();

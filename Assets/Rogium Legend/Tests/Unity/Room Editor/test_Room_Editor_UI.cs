@@ -16,7 +16,7 @@ public class test_Room_Editor_UI
 {
     private EventSystem eventSystem;
     
-    private RoomEditorUIOverseer roomEditorUIOverseer;
+    private RoomEditorOverseerMono roomEditorOverseerMono;
     private RoomEditorOverseer roomEditorOverseer;
     private EditorGridOverseer roomGrid;
 
@@ -42,8 +42,8 @@ public class test_Room_Editor_UI
         scaler.referenceResolution = new Vector2(1920, 1080);
         
         //Room Editor
-        roomEditorUIOverseer = AssetDatabase.LoadAssetAtPath<RoomEditorUIOverseer>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Menu_RoomEditor.prefab");
-        roomGrid = roomEditorUIOverseer.GetComponentInChildren<EditorGridOverseer>();
+        roomEditorOverseerMono = AssetDatabase.LoadAssetAtPath<RoomEditorOverseerMono>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Menu_RoomEditor.prefab");
+        roomGrid = roomEditorOverseerMono.GetComponentInChildren<EditorGridOverseer>();
         #endregion
 
         #region Build Pack & Room
@@ -80,7 +80,7 @@ public class test_Room_Editor_UI
     [UnityTest]
     public IEnumerator use_brush_to_paint_tile()
     {
-        roomEditorUIOverseer.UpdateGridCell(new Vector2Int(1, 3));
+        roomEditorOverseerMono.UpdateGridCell(new Vector2Int(1, 3));
 
         yield return new WaitForSeconds(0.1f);
         

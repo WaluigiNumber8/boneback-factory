@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Rogium Legend/Scenes/Menu.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Rogium Legend/Scenes/Game.unity
+    guid: bbce94d8086b48b4495884a1c1f6544d
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: cb0e171c8612aea4281d607b59134983, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: ae83f0144a53cbe49a8f9f0f6b328297, type: 2}
