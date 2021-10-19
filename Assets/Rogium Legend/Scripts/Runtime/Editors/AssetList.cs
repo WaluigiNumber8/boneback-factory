@@ -16,6 +16,7 @@ namespace Rogium.Editors.PackData
         private List<T> list;
         private readonly PackAsset pack;
 
+        #region Constructors
         public AssetList(PackAsset pack)
         {
             SafetyNet.EnsureIsNotNull(pack, "Pack I belong to");
@@ -30,6 +31,8 @@ namespace Rogium.Editors.PackData
             list = new List<T>(original);
             this.pack = pack;
         }
+
+        #endregion
 
         /// <summary>
         /// Adds a new pack to the library.

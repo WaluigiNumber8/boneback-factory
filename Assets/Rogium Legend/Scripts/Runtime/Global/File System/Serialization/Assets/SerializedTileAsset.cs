@@ -14,7 +14,6 @@ namespace Rogium.ExternalStorage.Serialization
         public readonly string creationDate;
         public readonly int tileType;
         public readonly SerializedColor color;
-        public SerializedMatrix4x4 transform;
 
         public SerializedTileAsset(TileAsset tileAsset)
         {
@@ -25,7 +24,6 @@ namespace Rogium.ExternalStorage.Serialization
             this.tileType = (int)tileAsset.Type;
             this.icon = new SerializedSprite(tileAsset.Tile.sprite);
             this.color = new SerializedColor(tileAsset.Tile.color);
-            this.transform = new SerializedMatrix4x4(tileAsset.Tile.transform);
         }
 
         /// <summary>

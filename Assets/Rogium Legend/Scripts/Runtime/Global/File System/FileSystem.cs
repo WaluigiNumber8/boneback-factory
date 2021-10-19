@@ -70,11 +70,13 @@ namespace Rogium.ExternalStorage
 
             return assets;
         }
+
         /// <summary>
         /// Loads all assets under a path.
         /// </summary>
         /// <param name="path">Destination of the save.</param>
-        public static IList<CampaignAsset> LoadAllCampaigns(string path)
+        /// <param name="typeExtension">The extension of the files that will be read.</param>
+        public static IList<CampaignAsset> LoadAllCampaigns(string path, string typeExtension)
         {
             SafetyNetIO.EnsureDirectoryExists(path);
 
@@ -86,6 +88,10 @@ namespace Rogium.ExternalStorage
 
             foreach (FileInfo file in files)
             {
+                //If file does not have the type we want, skip it.
+                string extension = Path.GetExtension(file.Name).Replace(".", "");
+                if (extension != typeExtension) continue;
+                
                 string filePath = Path.Combine(path, file.Name);
                 FileStream stream = new FileStream(filePath, FileMode.Open);
 
@@ -99,21 +105,23 @@ namespace Rogium.ExternalStorage
         }
 
         /// <summary>
-        /// Removes an asset data file under a specific path.
+        /// Removes a file under a specific path.
         /// </summary>
-        /// <param name="path">The path of the pack.</param>
-        public static void Delete(string path)
+        /// <param name="path">The path to the file.</param>
+        public static void DeleteFile(string path)
         {
             SafetyNetIO.EnsureFileExists(path);
-
-            try
-            {
-                File.Delete(path);
-            }
-            catch (IOException e)
-            {
-                throw new IOException(e.Message);
-            }
+            File.Delete(path);
+        }
+        
+        /// <summary>
+        /// Removes a directory under a specific path.
+        /// </summary>
+        /// <param name="path">The path to the directory.</param>
+        public static void DeleteDirectory(string path)
+        {
+            SafetyNetIO.EnsureDirectoryExists(path);
+            Directory.Delete(path);
         }
     }
 }

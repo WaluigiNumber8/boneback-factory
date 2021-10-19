@@ -1,4 +1,4 @@
-﻿
+﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 
 namespace Rogium.Editors.TileData
@@ -14,17 +14,20 @@ namespace Rogium.Editors.TileData
         #region Constructors
         public TileObject()
         {
-            this.tile = new Tile();
+            this.tile = ScriptableObject.CreateInstance<Tile>();
+            // this.tile.color = Color.white;
             this.type = TileType.Wall;
         }
         public TileObject(TileObject tileObject)
         {
             this.tile = tileObject.Tile;
+            // this.tile.color = Color.white;
             this.type = tileObject.Type;
         }
         public TileObject(Tile tile, TileType type)
         {
             this.tile = tile;
+            // this.tile.color = Color.white;
             this.type = type;
         }
         #endregion

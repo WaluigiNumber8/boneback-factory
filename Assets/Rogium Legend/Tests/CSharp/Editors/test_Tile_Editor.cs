@@ -1,0 +1,56 @@
+﻿using System.Collections;
+using NUnit.Framework;
+using Rogium.Editors.Core;
+using Rogium.Editors.Core.Defaults;
+using Rogium.Editors.PackData;
+using Rogium.Editors.TileData;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.TestTools;
+
+namespace Rogium_Legend.Tests.CSharp.Editors
+{
+    public class test_Tile_Editor
+    {
+        private LibraryOverseer lib;
+        private EditorOverseer editor;
+        private TileEditorOverseer tileEditor;
+        
+        private PackAsset pack;
+        
+        [SetUp]
+        public void Setup()
+        {
+            lib = LibraryOverseer.Instance;
+            editor = EditorOverseer.Instance;
+            tileEditor = TileEditorOverseer.Instance;
+            
+            if (lib.GetPacksCopy.TryFinding("Test Pack", "NO AUTHOR") != null)  lib.DeletePack("Test Pack", "NO AUTHOR");
+            lib.CreateAndAddPack(new PackInfoAsset("Test Pack", EditorDefaults.PackIcon, "NO AUTHOR", "Blalalala"));
+            lib.ActivatePackEditor(0);
+        }
+
+        [TearDown]
+        public void Teardown()
+        {
+            lib.DeletePack("Test Pack", "NO AUTHOR");
+        }
+        
+        [Test]
+        public void tile_data_save_load_correctly()
+        {
+            TileAsset tile = new TileAsset("Test Tile", EditorDefaults.TileIcon, "NO AUTHOR", TileType.Floor);
+            editor.CreateNewTile(tile);
+            editor.CompleteEditing();
+            lib.ReloadFromExternalStorage();
+            lib.ActivatePackEditor(0);
+            editor.ActivateTileEditor(0);
+            
+            Assert.AreEqual(tile.ID, tileEditor.CurrentTile.ID);
+            Assert.AreEqual(tile.Title, tileEditor.CurrentTile.Title);
+            Assert.AreEqual(tile.Author, tileEditor.CurrentTile.Author);
+        }
+
+        
+    }
+}

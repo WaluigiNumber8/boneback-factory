@@ -74,7 +74,7 @@ public class test_Room_Editor_UI
     [TearDown]
     public void Teardown()
     {
-        LibraryOverseer.Instance.RemovePack(EditorDefaults.PackTitle, EditorDefaults.Author);
+        LibraryOverseer.Instance.DeletePack(EditorDefaults.PackTitle, EditorDefaults.Author);
     }
     
     [UnityTest]

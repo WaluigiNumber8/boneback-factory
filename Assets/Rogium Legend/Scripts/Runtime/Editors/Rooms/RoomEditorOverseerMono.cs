@@ -11,18 +11,28 @@ namespace Rogium.Editors.RoomData
     /// </summary>
     public class RoomEditorOverseerMono : MonoBehaviour
     {
+        private EditorOverseer editor;
         private RoomEditorOverseer roomEditor;
         private AssetPickerOverseer assetPicker;
         
         [SerializeField] private EditorGridOverseer editorGrid;
 
-        private void Start()
+        private void OnEnable()
         {
+            editor = EditorOverseer.Instance;
             roomEditor = RoomEditorOverseer.Instance;
-            assetPicker = new AssetPickerOverseer();
 
             roomEditor.OnAssignRoom += PrepareRoomEditor;
             editorGrid.OnInteractionClick += UpdateGridCell;
+            
+            assetPicker ??= new AssetPickerOverseer();
+            assetPicker.AssignTile(editor.CurrentPack.Tiles[0]);
+        }
+
+        private void OnDisable()
+        {
+            roomEditor.OnAssignRoom -= PrepareRoomEditor;
+            editorGrid.OnInteractionClick -= UpdateGridCell;
         }
 
         /// <summary>

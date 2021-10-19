@@ -1,6 +1,8 @@
-﻿using System;
-using BoubakProductions.Core;
-using Rogium.Global.TransferService;
+﻿using BoubakProductions.Core;
+using Rogium.Editors.Campaign;
+using Rogium.Editors.Core.Defaults;
+using Rogium.Gameplay.DataLoading;
+using Rogium.Global.SceneTransferService;
 using UnityEngine;
 
 namespace Rogium.Gameplay.Core
@@ -11,11 +13,18 @@ namespace Rogium.Gameplay.Core
     public class GameplayOverseerMono : MonoSingleton<GameplayOverseerMono>
     {
         private GameplayOverseer overseer;
+
+        [SerializeField] private Vector3Int positionOffset;
+        [SerializeField] private TilemapLayer[] tilemaps;
         
-        private void Start()
+        private void OnEnable()
         {
             overseer = GameplayOverseer.Instance;
-            overseer.PrepareGame(SceneTransferService.CurrentCampaign);
+            CampaignAsset campaign = SceneTransferOverseer.GetInstance().PickUpCampaign();
+            new GameObject("Test").AddComponent<SpriteRenderer>().sprite = EditorDefaults.TileIcon;
+            new GameObject("Test").AddComponent<SpriteRenderer>().sprite = campaign.Icon;
+            
+            overseer.PrepareGame(campaign, tilemaps, positionOffset);
         }
     }
 }

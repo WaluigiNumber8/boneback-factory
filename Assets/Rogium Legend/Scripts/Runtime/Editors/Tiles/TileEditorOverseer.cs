@@ -1,5 +1,6 @@
 ﻿using System;
 using BoubakProductions.Safety;
+using Rogium.Editors.Core;
 using Rogium.Editors.RoomData;
 using UnityEngine;
 

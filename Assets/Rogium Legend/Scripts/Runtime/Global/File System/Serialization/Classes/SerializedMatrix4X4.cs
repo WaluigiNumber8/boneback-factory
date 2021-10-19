@@ -7,7 +7,7 @@ namespace Rogium.ExternalStorage.Serialization
     /// Serialized form of Matrix4x4
     /// </summary>
     [System.Serializable]
-    public class SerializedMatrix4x4
+    public class SerializedMatrix4X4
     {
         public readonly float m00;
         public readonly float m01;
@@ -26,12 +26,12 @@ namespace Rogium.ExternalStorage.Serialization
         public readonly float m32;
         public readonly float m33;
 
-        public SerializedMatrix4x4(Matrix4x4 matrix) : this(matrix.m00, matrix.m01, matrix.m02, matrix.m03,
+        public SerializedMatrix4X4(Matrix4x4 matrix) : this(matrix.m00, matrix.m01, matrix.m02, matrix.m03,
                                                             matrix.m10, matrix.m11, matrix.m12, matrix.m13,
                                                             matrix.m20, matrix.m21, matrix.m22, matrix.m23,
                                                             matrix.m30, matrix.m31, matrix.m32, matrix.m33) { }
 
-        public SerializedMatrix4x4(float m00, float m01, float m02, float m03, float m10, float m11, float m12, float m13, float m20, float m21, float m22, float m23, float m30, float m31, float m32, float m33)
+        public SerializedMatrix4X4(float m00, float m01, float m02, float m03, float m10, float m11, float m12, float m13, float m20, float m21, float m22, float m23, float m30, float m31, float m32, float m33)
         {
             this.m00 = m00;
             this.m01 = m01;
@@ -59,21 +59,21 @@ namespace Rogium.ExternalStorage.Serialization
         {
             Matrix4x4 matrix = new Matrix4x4();
             matrix.m00 = this.m00;
-            matrix.m01 = this.m00;
-            matrix.m02 = this.m00;
-            matrix.m03 = this.m00;
-            matrix.m10 = this.m00;
-            matrix.m11 = this.m00;
-            matrix.m12 = this.m00;
-            matrix.m13 = this.m00;
-            matrix.m20 = this.m00;
-            matrix.m21 = this.m00;
-            matrix.m22 = this.m00;
-            matrix.m23 = this.m00;
-            matrix.m30 = this.m00;
-            matrix.m31 = this.m00;
-            matrix.m32 = this.m00;
-            matrix.m33 = this.m00;
+            matrix.m01 = this.m01;
+            matrix.m02 = this.m02;
+            matrix.m03 = this.m03;
+            matrix.m10 = this.m10;
+            matrix.m11 = this.m11;
+            matrix.m12 = this.m12;
+            matrix.m13 = this.m13;
+            matrix.m20 = this.m20;
+            matrix.m21 = this.m21;
+            matrix.m22 = this.m22;
+            matrix.m23 = this.m23;
+            matrix.m30 = this.m30;
+            matrix.m31 = this.m31;
+            matrix.m32 = this.m32;
+            matrix.m33 = this.m33;
             return matrix;
         }
     }

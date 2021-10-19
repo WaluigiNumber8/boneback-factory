@@ -77,6 +77,7 @@ namespace Rogium.Global.UISystem.Interactables
         CancelChangesProjectile,
         CancelChangesCampaign,
         
-        Play
+        Play,
+        TEST
     }   
 }

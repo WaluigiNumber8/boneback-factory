@@ -29,10 +29,16 @@ namespace Rogium.Global.UISystem.Interactables
 
         public static void PlayCampaign(int campaignIndex)
         {
-            //TODO Temporary solution for Campaign Creation. Fix when the actual campaign selection system works.
-            LibraryOverseer.Instance.CreateAndAddCampaign(EditorDefaults.CampaignTitle, EditorDefaults.CampaignIcon, EditorDefaults.Author, LibraryOverseer.Instance.GetPacksCopy[0]);
+            
+            
             LibraryOverseer.Instance.ActivateCampaignPlaythrough(campaignIndex);
             GAS.SwitchScene(1);
+        }
+
+        public static void CreateTestCampaign()
+        {
+            //TODO Temporary solution for Campaign Creation. Fix when the actual campaign selection system works.
+            LibraryOverseer.Instance.CreateAndAddCampaign(EditorDefaults.CampaignTitle, EditorDefaults.CampaignIcon, EditorDefaults.Author, LibraryOverseer.Instance.GetPacksCopy[0]);
         }
         
         #region Return from menus
@@ -136,7 +142,7 @@ namespace Rogium.Global.UISystem.Interactables
         private static void RemovePackAccept()
         {
             SafetyNet.EnsureIntIsBiggerThan(storedNumber, 0, "StoredNumber");
-            LibraryOverseer.Instance.RemovePack(storedNumber);
+            LibraryOverseer.Instance.DeletePack(storedNumber);
             GASRogium.ReopenSelectionMenu(AssetType.Pack);
             storedNumber = -1;
         }

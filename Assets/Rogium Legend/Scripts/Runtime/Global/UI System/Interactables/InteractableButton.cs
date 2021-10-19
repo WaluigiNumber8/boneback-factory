@@ -30,6 +30,12 @@ namespace Rogium.Global.UISystem.Interactables
                     Debug.LogError("This button Currently does nothing...");
                     break;
 
+                case ButtonType.TEST:
+                    GASButtonActions.CreateTestCampaign();
+                    break;
+                
+                
+                
                 case ButtonType.ReturnToAssetTypeSelection:
                     break;
                 case ButtonType.ReturnToMainMenu:

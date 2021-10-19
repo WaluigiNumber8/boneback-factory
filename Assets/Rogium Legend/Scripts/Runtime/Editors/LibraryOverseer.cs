@@ -1,9 +1,8 @@
-﻿using System;
-using BoubakProductions.Safety;
+﻿using BoubakProductions.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Campaign;
 using Rogium.ExternalStorage;
-using Rogium.Global.TransferService;
+using Rogium.Global.SceneTransferService;
 using UnityEngine;
 
 namespace Rogium.Editors.PackData
@@ -24,7 +23,7 @@ namespace Rogium.Editors.PackData
         { 
             get
             {
-                lock (padlock)
+                // lock (padlock)
                 {
                     if (instance == null)
                         instance = new LibraryOverseer();
@@ -38,6 +37,8 @@ namespace Rogium.Editors.PackData
         {
             packs = new PackList();
             campaigns = new CampaignList();
+
+            EditorOverseer.Instance.OnSaveChanges += UpdatePack;
             ReloadFromExternalStorage();
         }
 
@@ -62,10 +63,22 @@ namespace Rogium.Editors.PackData
         }
 
         /// <summary>
+        /// Updates the pack on a specific position in the library
+        /// </summary>
+        /// <param name="pack">The new data for the pack.</param>
+        /// <param name="index">Position to override.</param>
+        public void UpdatePack(PackAsset pack, int index, string lastTitle, string lastAuthor)
+        {
+            if (packs.TryFinding(lastTitle, lastAuthor) != null)
+                ExternalStorageOverseer.Instance.DeletePack(lastTitle);
+            packs.Update(index, pack);
+        }
+        
+        /// <summary>
         /// Remove pack from the library.
         /// </summary>
         /// <param name="packIndex">Pack ID in the list.</param>
-        public void RemovePack(int packIndex)
+        public void DeletePack(int packIndex)
         {
             packs.Remove(packIndex);
         }
@@ -74,7 +87,7 @@ namespace Rogium.Editors.PackData
         /// </summary>
         /// <param name="title">Pack's Title</param>
         /// <param name="author">Pack's Author</param>
-        public void RemovePack(string title, string author)
+        public void DeletePack(string title, string author)
         {
             packs.Remove(title, author);
         }
@@ -86,7 +99,7 @@ namespace Rogium.Editors.PackData
         {
             SafetyNet.EnsureListIsNotEmptyOrNull(packs, "Pack Library");
             SafetyNet.EnsureIntIsInRange(packIndex, 0, packs.Count, "packIndex for activating Pack Editor");
-            EditorOverseer.Instance.AssignNewPack(packs[packIndex]);
+            EditorOverseer.Instance.AssignNewPack(packs[packIndex], packIndex);
         }
         #endregion
 
@@ -106,10 +119,20 @@ namespace Rogium.Editors.PackData
         }
 
         /// <summary>
+        /// Updates the campaign on a specific position in the library.
+        /// </summary>
+        /// <param name="campaign">The new data for the campaign.</param>
+        /// <param name="index">Position to override.</param>
+        public void UpdateCampaign(CampaignAsset campaign, int index)
+        {
+            campaigns.Update(index, campaign);
+        }
+        
+        /// <summary>
         /// Remove campaign from the library.
         /// </summary>
         /// <param name="campaignIndex">Campaign ID in the list.</param>
-        public void RemoveCampaign(int campaignIndex)
+        public void DeleteCampaign(int campaignIndex)
         {
             campaigns.Remove(campaignIndex);
         }
@@ -118,9 +141,20 @@ namespace Rogium.Editors.PackData
         /// </summary>
         /// <param name="title">Campaign's Title</param>
         /// <param name="author">Campaign's Author</param>
-        public void RemoveCampaign(string title, string author)
+        public void DeleteCampaign(string title, string author)
         {
             campaigns.Remove(title, author);
+        }
+        
+        /// <summary>
+        /// Tries to remove a pack from the library. If it doesn't find one, nothing will happen.
+        /// </summary>
+        /// <param name="title">The Title of the pack.</param>
+        /// <param name="author">The author of the pack.</param>
+        public void TryDeletePack(string title, string author)
+        {
+            if (packs.TryFinding(title, author) != null)
+                DeletePack(title, author);
         }
 
         /// <summary>
@@ -141,7 +175,7 @@ namespace Rogium.Editors.PackData
         {
             SafetyNet.EnsureListIsNotEmptyOrNull(campaigns, "Campaign Library");
             SafetyNet.EnsureIntIsInRange(campaignIndex, 0, campaigns.Count, "campaignIndex for activating Campaign Playthrough");
-            SceneTransferService.CurrentCampaign = campaigns[campaignIndex];
+            SceneTransferOverseer.GetInstance().LoadUp(campaigns[campaignIndex]);
         }
         #endregion
         

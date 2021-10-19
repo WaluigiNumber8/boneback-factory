@@ -7,10 +7,10 @@ namespace Rogium.ExternalStorage.Serialization
     [System.Serializable]
     public class SerializedSprite
     {
-        public readonly float x;
-        public readonly float y;
-        public readonly float width;
-        public readonly float height;
+        public readonly float rectX;
+        public readonly float rectY;
+        public readonly float rectWidth;
+        public readonly float rectHeight;
         public readonly float pivotX;
         public readonly float pivotY;
         public readonly int textureWidth;
@@ -27,12 +27,12 @@ namespace Rogium.ExternalStorage.Serialization
                                                       sprite.texture.height,
                                                       ImageConversion.EncodeToPNG(sprite.texture)) {}
 
-        public SerializedSprite(float x, float y, float width, float height, float pivotX, float pivotY, int textureWidth, int textureHeight, byte[] textureBytes)
+        public SerializedSprite(float rectX, float rectY, float rectWidth, float rectHeight, float pivotX, float pivotY, int textureWidth, int textureHeight, byte[] textureBytes)
         {
-            this.x = x;
-            this.y = y;
-            this.width = width;
-            this.height = height;
+            this.rectX = rectX;
+            this.rectY = rectY;
+            this.rectWidth = rectWidth;
+            this.rectHeight = rectHeight;
             this.pivotX = pivotX;
             this.pivotY = pivotY;
             this.textureWidth = textureWidth;
@@ -50,8 +50,8 @@ namespace Rogium.ExternalStorage.Serialization
             texture.filterMode = FilterMode.Point;
             texture.LoadImage(this.textureBytes);
             Sprite sprite = Sprite.Create(texture,
-                                          new Rect(this.x, this.y, this.width, this.height),
-                                          new Vector2(this.pivotX, this.pivotY),
+                                          new Rect(rectX, rectY, rectWidth, rectHeight),
+                                          new Vector2(pivotX / rectWidth, pivotY / rectHeight),
                                           16);
             return sprite;
         }

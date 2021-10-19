@@ -34,6 +34,24 @@ namespace Rogium.Editors.PackData
             ExternalStorageOverseer.Instance.Save(pack);
             list.Add(pack);
         }
+        
+        /// <summary>
+        /// Change an pack on a specific index in the list.
+        /// </summary>
+        /// <param name="index">Index of the asset to change.</param>
+        /// <param name="pack">The new pack data.</param>
+        /// <exception cref="FoundDuplicationException"></exception>
+        public void Update(int index, PackAsset pack)
+        {
+            SafetyNet.EnsureIsNotNull(pack, "Pack to add");
+            SafetyNet.EnsureIntIsInRange(index ,0, list.Count, "Pack List");
+            
+            if (TryFinding(pack.Title, pack.Author, index) != null)
+                throw new FoundDuplicationException("You are trying to update a pack with a name and author that is already taken. Cannot have the same title and author!");
+            list[index] = pack;
+            
+            ExternalStorageOverseer.Instance.Save(pack);
+        }
 
         /// <summary>
         /// Remove pack from the library with a specific name.

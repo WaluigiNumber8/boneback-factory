@@ -34,7 +34,7 @@ public class test_Pack_Save_and_Load
     {
         try
         {
-            lib.RemovePack(packInfo.Title, packInfo.Author);
+            lib.DeletePack(packInfo.Title, packInfo.Author);
         }
         catch (SafetyNetException)
         {
@@ -53,7 +53,7 @@ public class test_Pack_Save_and_Load
     public void remove_pack_from_storage()
     {
         lib.CreateAndAddPack(packInfo);
-        lib.RemovePack("Test Pack", "TestAuthor");
+        lib.DeletePack("Test Pack", "TestAuthor");
 
         Assert.AreEqual(true, !File.Exists(path));
     }
@@ -63,7 +63,7 @@ public class test_Pack_Save_and_Load
     {
         try
         {
-            lib.RemovePack("Stupid Pack", "Idiota");
+            lib.DeletePack("Stupid Pack", "Idiota");
             Assert.Fail();
         }
         catch (SafetyNetException)
@@ -77,7 +77,7 @@ public class test_Pack_Save_and_Load
     {
         try
         {
-            lib.RemovePack("Test Pack", "TestAuthor");
+            lib.DeletePack("Test Pack", "TestAuthor");
             Assert.Fail();
         }
         catch (SafetyNetException)

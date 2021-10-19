@@ -29,7 +29,6 @@ namespace Rogium.Editors.PackData
             this.author = packInfo.Author;
             this.creationDate = packInfo.CreationDate;
             this.description = packInfo.Description;
-            GenerateID(EditorAssetIDs.PackIdentifier);
         }
 
         public PackInfoAsset(string title, Sprite icon, string author, string description)

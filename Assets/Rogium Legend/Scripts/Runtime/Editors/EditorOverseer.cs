@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using BoubakProductions.Safety;
 using Rogium.Editors.PackData;
 using Rogium.Editors.RoomData;
 using Rogium.Editors.TileData;
-using Rogium.ExternalStorage;
 
 namespace Rogium.Editors.Core
 {
@@ -12,11 +12,15 @@ namespace Rogium.Editors.Core
     /// </summary>
     public class EditorOverseer : IEditorOverseer
     {
+        public event Action<PackAsset, int, string, string> OnSaveChanges;
+        
         private readonly RoomEditorOverseer roomEditor;
         private readonly TileEditorOverseer tileEditor;
 
         private PackAsset currentPack;
+        private int myIndex;
         private string startingTitle;
+        private string startingAuthor;
 
         #region Singleton Pattern
         private static EditorOverseer instance;
@@ -49,10 +53,12 @@ namespace Rogium.Editors.Core
         /// Assigns a new pack for editing.
         /// </summary>
         /// <param name="pack">The new pack that will be edited.</param>
-        public void AssignNewPack(PackAsset pack)
+        public void AssignNewPack(PackAsset pack, int index)
         {
-            currentPack = pack;
-            startingTitle = pack.Title;
+            currentPack = new PackAsset(pack);
+            myIndex = index;
+            startingTitle = currentPack.Title;
+            startingAuthor = currentPack.Author;
         }
 
         #region Rooms
@@ -191,10 +197,7 @@ namespace Rogium.Editors.Core
         /// </summary>
         private void SavePackChanges()
         {
-            ExternalStorageOverseer.Instance.Save(CurrentPack);
-
-            if (startingTitle != CurrentPack.Title)
-                ExternalStorageOverseer.Instance.DeletePack(startingTitle);
+            OnSaveChanges?.Invoke(currentPack, myIndex, startingTitle, startingAuthor);
         }
 
         public PackAsset CurrentPack

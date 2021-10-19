@@ -77,7 +77,7 @@ namespace Rogium.ExternalStorage
         /// <returns></returns>
         public IList<CampaignAsset> LoadAllCampaigns()
         {
-            return FileSystem.LoadAllCampaigns(campaignData.Path);
+            return FileSystem.LoadAllCampaigns(campaignData.Path, campaignData.Extension);
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace Rogium.ExternalStorage
         public void DeletePack(string packTitle)
         {
             string removePath = Path.Combine(packData.Path, $"{packTitle}.{packData.Extension}");
-            FileSystem.Delete(removePath);
+            FileSystem.DeleteFile(removePath);
         }
         
         /// <summary>
@@ -114,7 +114,7 @@ namespace Rogium.ExternalStorage
         public void DeleteCampaign(string campaignTitle)
         {
             string removePath = Path.Combine(campaignData.Path, $"{campaignTitle}.{campaignData.Extension}");
-            FileSystem.Delete(removePath);
+            FileSystem.DeleteFile(removePath);
         }
 
         public string PackPath {get => packData.Path;}

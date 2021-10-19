@@ -24,7 +24,7 @@ public class test_Pack_Library
     [TearDown]
     public void Teardown()
     {
-        lib.RemovePack(packInfo.Title, packInfo.Author);
+        lib.DeletePack(packInfo.Title, packInfo.Author);
     }
 
     [Test]

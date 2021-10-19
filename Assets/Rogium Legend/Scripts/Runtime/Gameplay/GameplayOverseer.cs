@@ -10,7 +10,6 @@ namespace Rogium.Gameplay.Core
     public class GameplayOverseer
     {
         private CampaignAsset currentCampaign;
-
         private RoomLoader roomLoader;
 
         #region Singleton Pattern
@@ -41,12 +40,12 @@ namespace Rogium.Gameplay.Core
         /// Prepares the game scene.
         /// </summary>
         /// <param name="campaign"></param>
-        public void PrepareGame(CampaignAsset campaign)
+        public void PrepareGame(CampaignAsset campaign, TilemapLayer[] tilemaps, Vector3Int offset)
         {
             currentCampaign = new CampaignAsset(campaign);
             
             //TODO Create the specific flag for Rooms: Beginning Room. Then make it load here.
-            roomLoader.Load(currentCampaign.DataPack.Rooms[0]);
+            roomLoader.Load(tilemaps, offset, currentCampaign.DataPack.Rooms[0], currentCampaign.DataPack);
         }
     
         public CampaignAsset CurrentCampaign

@@ -36,6 +36,24 @@ namespace Rogium.Editors.Campaign
         }
 
         /// <summary>
+        /// Change an campaign on a specific index in the list.
+        /// </summary>
+        /// <param name="index">Index of the campaign to change.</param>
+        /// <param name="campaign">The new campaign data.</param>
+        /// <exception cref="FoundDuplicationException"></exception>
+        public void Update(int index, CampaignAsset campaign)
+        {
+            SafetyNet.EnsureIsNotNull(campaign, "Campaign to add");
+            SafetyNet.EnsureIntIsInRange(index ,0, list.Count, "Campaign List");
+            
+            if (TryFinding(campaign.Title, campaign.Author, index) != null)
+                throw new FoundDuplicationException("You are trying to update a campaign with a name and author that is already taken. Cannot have the same title and author!");
+            list[index] = campaign;
+            
+            ExternalStorageOverseer.Instance.Save(campaign);
+        }
+        
+        /// <summary>
         /// Remove campaign from the library with a specific name.
         /// </summary>
         /// <param name="name">The name of the campaign to remove.</param>

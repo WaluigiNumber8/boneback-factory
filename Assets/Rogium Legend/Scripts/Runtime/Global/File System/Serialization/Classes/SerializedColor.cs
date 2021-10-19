@@ -21,15 +21,9 @@ namespace Rogium.ExternalStorage.Serialization
         }
 
         /// <summary>
-        /// Converts a formatted pack asset into a normal pack asset.
-        /// </summary>
-        /// <param name="packAsset">Formatted pack asset to convert.</param>
-        /// <returns>A normal pack asset.</returns>
-        /// <summary>
         /// Turns a serialized color into a unity color format.
         /// </summary>
-        /// <param name="serializedColor"></param>
-        /// <returns></returns>
+        /// <returns>A color in a readable form.</returns>
         public Color Deserialize()
         {
             Color color = new Color(this.r, this.g, this.b, this.a);

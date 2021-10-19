@@ -24,7 +24,7 @@ namespace Rogium.Editors.Campaign
             this.creationDate = DateTime.Now;
             GenerateID(EditorAssetIDs.CampaignIdentifier);
             
-            this.dataPack = dataPack;
+            this.dataPack = new PackAsset(dataPack);
         }
         
         public CampaignAsset(CampaignAsset campaign)
@@ -35,7 +35,7 @@ namespace Rogium.Editors.Campaign
             this.author = campaign.Author;
             this.creationDate = campaign.CreationDate;
             
-            this.dataPack = campaign.DataPack;
+            this.dataPack = new PackAsset(campaign.DataPack);
         }
         
         public CampaignAsset(string title, Sprite icon, string author, PackAsset dataPack)
@@ -46,6 +46,16 @@ namespace Rogium.Editors.Campaign
             this.creationDate = DateTime.Now;
             GenerateID(EditorAssetIDs.CampaignIdentifier);
 
+            this.dataPack = dataPack;
+        }
+        public CampaignAsset(string title, Sprite icon, string author, DateTime creationDate, PackAsset dataPack)
+        {
+            this.title = title;
+            this.icon = icon;
+            this.author = author;
+            this.creationDate = creationDate;
+            GenerateID(EditorAssetIDs.CampaignIdentifier);
+            
             this.dataPack = dataPack;
         }
         public CampaignAsset(string id, string title, Sprite icon, string author, DateTime creationDate, PackAsset dataPack)

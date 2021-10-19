@@ -32,7 +32,7 @@ public class test_Room_Editor
     [TearDown]
     public void Teardown()
     {
-            lib.RemovePack(packInfo.Title, packInfo.Author);
+        lib.DeletePack(packInfo.Title, packInfo.Author);
     }
 
     [Test]

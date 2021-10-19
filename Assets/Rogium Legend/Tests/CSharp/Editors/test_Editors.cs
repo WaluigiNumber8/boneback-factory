@@ -34,7 +34,7 @@ namespace Rogium_Legend.Tests.CSharp.Editors
         public void Teardown()
         {
             editor.CompleteEditing();
-            LibraryOverseer.Instance.RemovePack(0);
+            LibraryOverseer.Instance.DeletePack(0);
         }
         
         [Test]

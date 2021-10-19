@@ -51,7 +51,7 @@ public class test_Selection_Menu
     [TearDown]
     public void Teardown()
     {
-        LibraryOverseer.Instance.RemovePack("New Pack", "NO_AUTHOR");
+        LibraryOverseer.Instance.DeletePack("New Pack", "NO_AUTHOR");
     }
 
     [UnityTest]
