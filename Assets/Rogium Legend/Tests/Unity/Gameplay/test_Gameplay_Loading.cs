@@ -3,7 +3,7 @@ using System.Collections;
 using NUnit.Framework;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Core.Defaults;
-using Rogium.Editors.PackData;
+using Rogium.Editors.Packs;
 using Rogium.Gameplay.Core;
 using Rogium.Gameplay.DataLoading;
 using UnityEditor;

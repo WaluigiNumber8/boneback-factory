@@ -1,7 +1,7 @@
 ﻿using System;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
-using Rogium.Editors.PackData;
+using Rogium.Editors.Packs;
 
 namespace Rogium.Global.GridSystem
 {

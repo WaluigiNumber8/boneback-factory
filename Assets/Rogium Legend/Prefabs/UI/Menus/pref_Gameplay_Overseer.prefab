@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 229f595731494fa29032bb3dd25f10db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionOffset: {x: -22, y: 9, z: 0}
+  positionOffset: {x: -10, y: 6, z: 0}
   tilemaps:
   - title: Floor
     tilemap: {fileID: 0}

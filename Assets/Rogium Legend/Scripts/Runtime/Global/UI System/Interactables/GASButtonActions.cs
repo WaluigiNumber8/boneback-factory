@@ -4,10 +4,10 @@ using BoubakProductions.UI;
 using Rogium.Core;
 using Rogium.GASExtensions;
 using Rogium.Global.UISystem.UI;
-using Rogium.Editors.PackData;
+using Rogium.Editors.Packs;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
-using Rogium.Editors.RoomData;
+using Rogium.Editors.Rooms;
 
 namespace Rogium.Global.UISystem.Interactables
 {

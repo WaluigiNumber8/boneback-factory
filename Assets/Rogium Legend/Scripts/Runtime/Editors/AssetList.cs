@@ -6,7 +6,7 @@ using BoubakProductions.Safety;
 using Rogium.Editors.Core;
 using Rogium.ExternalStorage;
 
-namespace Rogium.Editors.PackData
+namespace Rogium.Editors.Packs
 {
     /// <summary>
     /// Special distinct List variant. Is synced with external storage.

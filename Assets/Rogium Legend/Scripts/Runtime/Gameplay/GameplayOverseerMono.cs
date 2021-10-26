@@ -20,11 +20,7 @@ namespace Rogium.Gameplay.Core
         private void OnEnable()
         {
             overseer = GameplayOverseer.Instance;
-            CampaignAsset campaign = SceneTransferOverseer.GetInstance().PickUpCampaign();
-            new GameObject("Test").AddComponent<SpriteRenderer>().sprite = EditorDefaults.TileIcon;
-            new GameObject("Test").AddComponent<SpriteRenderer>().sprite = campaign.Icon;
-            
-            overseer.PrepareGame(campaign, tilemaps, positionOffset);
+            overseer.PrepareGame(SceneTransferOverseer.GetInstance().PickUpCampaign(), tilemaps, positionOffset);
         }
     }
 }

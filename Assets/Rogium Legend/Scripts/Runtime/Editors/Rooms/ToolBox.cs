@@ -1,4 +1,4 @@
-﻿namespace Rogium.Editors.RoomData
+﻿namespace Rogium.Editors.Rooms
 {
     /// <summary>
     /// Has control over which Tool is currently active.

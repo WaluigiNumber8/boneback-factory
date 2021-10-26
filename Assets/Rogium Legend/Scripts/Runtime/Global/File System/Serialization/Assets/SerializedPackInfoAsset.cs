@@ -1,4 +1,4 @@
-﻿using Rogium.Editors.PackData;
+﻿using Rogium.Editors.Packs;
 
 namespace Rogium.ExternalStorage.Serialization
 {

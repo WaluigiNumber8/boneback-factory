@@ -1,6 +1,6 @@
 ﻿using Rogium.Editors.Core;
 
-namespace Rogium.Editors.RoomData
+namespace Rogium.Editors.Rooms
 {
     /// <summary>
     /// The asset that is selected via the <see cref="AssetPickerOverseer"/>.

@@ -4,7 +4,7 @@ using System.Linq;
 using BoubakProductions.Safety;
 using Rogium.ExternalStorage;
 
-namespace Rogium.Editors.PackData
+namespace Rogium.Editors.Packs
 {
     /// <summary>
     /// Special distinct List variant for packs. Is synced with external storage.

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Rogium.Editors.RoomData;
+using Rogium.Editors.Rooms;
 
 namespace Rogium.Global.UISystem.UI
 {
@@ -39,8 +39,9 @@ namespace Rogium.Global.UISystem.UI
 
             propertyBuilder.BuildInputField("Title", currentRoomAsset.Title, window.FirstColumnContent, currentRoomAsset.UpdateTitle);
             propertyBuilder.BuildDropdown("Difficulty", options, currentRoomAsset.DifficultyLevel, window.FirstColumnContent, currentRoomAsset.UpdateDifficultyLevel);
-            propertyBuilder.BuildPlainText("Created by", currentRoomAsset.Author, window.SecondColumnContent);
-            propertyBuilder.BuildPlainText("Created on", currentRoomAsset.CreationDate.ToString(), window.SecondColumnContent);
+            propertyBuilder.BuildDropdown("Type", Enum.GetNames(typeof(RoomType)), (int) currentRoomAsset.Type, window.FirstColumnContent, currentRoomAsset.UpdateType);
+            propertyBuilder.BuildPlainText("Created by", currentRoomAsset.Author, window.FirstColumnContent);
+            propertyBuilder.BuildPlainText("Created on", currentRoomAsset.CreationDate.ToString(), window.FirstColumnContent);
             
             editedAssetBase = currentRoomAsset;
             window.OpenAsPropertiesColumn1(headerText, "Done", "Cancel", onConfirmAction, true);

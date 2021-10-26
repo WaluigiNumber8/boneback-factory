@@ -1,6 +1,6 @@
 ﻿using System;
 using BoubakProductions.Safety;
-using Rogium.Editors.PackData;
+using Rogium.Editors.Packs;
 using Rogium.ExternalStorage.Serialization;
 using System.Collections.Generic;
 using System.IO;

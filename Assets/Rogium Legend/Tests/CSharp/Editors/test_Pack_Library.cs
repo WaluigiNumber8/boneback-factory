@@ -1,5 +1,5 @@
 using NUnit.Framework;
-using Rogium.Editors.PackData;
+using Rogium.Editors.Packs;
 using UnityEngine;
 using UnityEngine.TestTools;
 

@@ -4,7 +4,7 @@ using BoubakProductions.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 
-namespace Rogium.Editors.PackData
+namespace Rogium.Editors.Packs
 {
     public class PackInfoAsset : AssetBase
     {

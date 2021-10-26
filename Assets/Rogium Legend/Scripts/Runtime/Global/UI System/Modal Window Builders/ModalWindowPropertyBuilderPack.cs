@@ -1,5 +1,5 @@
 ﻿using System;
-using Rogium.Editors.PackData;
+using Rogium.Editors.Packs;
 using Rogium.Global.UISystem.AssetSelection;
 
 namespace Rogium.Global.UISystem.UI

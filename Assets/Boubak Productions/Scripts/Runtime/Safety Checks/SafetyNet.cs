@@ -7,7 +7,7 @@ namespace BoubakProductions.Safety
     /// <summary>
     /// Contains various method for checking correctness of given parameters. If a method fails to pass, it throws an exception.
     /// </summary>
-    public class SafetyNet
+    public static class SafetyNet
     {
         public static event Action<string> OnFireErrorMessage;
 
@@ -57,7 +57,7 @@ namespace BoubakProductions.Safety
         /// <param name="variableName">Name of the checked variable.</param>
         public static void EnsureIntIsBiggerThan(int integer, int minSize, string variableName)
         {
-            if (integer < minSize)
+            if (integer <= minSize)
             {
                 string message = $"Integer called '{variableName}' must be above {minSize}. ({integer})";
                 OnFireErrorMessage?.Invoke(message);
@@ -73,7 +73,7 @@ namespace BoubakProductions.Safety
         /// <param name="variableName">Name of the checked variable.</param>
         public static void EnsureIntIsBiggerOrEqualTo(int integer, int minSize, string variableName)
         {
-            if (integer >= minSize)
+            if (integer < minSize)
             {
                 string message = $"Integer called '{variableName}' must be above or equal to {minSize}. ({integer})";
                 OnFireErrorMessage?.Invoke(message);
@@ -89,7 +89,7 @@ namespace BoubakProductions.Safety
         /// <param name="variableName">Name of the checked variable.</param>
         public static void EnsureIntIsSmallerThan(int integer, int maxSize, string variableName)
         {
-            if (integer < maxSize)
+            if (integer >= maxSize)
             {
                 string message = $"Integer called '{variableName}' must be below {maxSize}. ({integer})";
                 OnFireErrorMessage?.Invoke(message);
@@ -105,7 +105,7 @@ namespace BoubakProductions.Safety
         /// <param name="variableName">Name of the checked variable.</param>
         public static void EnsureIntIsSmallerOrEqualTo(int integer, int maxSize, string variableName)
         {
-            if (integer <= maxSize)
+            if (integer > maxSize)
             {
                 string message = $"Integer called '{variableName}' must be below or equal to {maxSize}. ({integer})";
                 OnFireErrorMessage?.Invoke(message);

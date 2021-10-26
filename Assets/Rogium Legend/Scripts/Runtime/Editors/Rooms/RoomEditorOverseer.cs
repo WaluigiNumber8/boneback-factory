@@ -4,7 +4,7 @@ using BoubakProductions.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.TileData;
 
-namespace Rogium.Editors.RoomData
+namespace Rogium.Editors.Rooms
 {
     /// <summary>
     /// Overseers everything happening in the room editor.

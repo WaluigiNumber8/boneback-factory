@@ -1,7 +1,7 @@
 ﻿using System;
 using BoubakProductions.Safety;
 using Rogium.Editors.Core;
-using Rogium.Editors.RoomData;
+using Rogium.Editors.Rooms;
 using UnityEngine;
 
 namespace Rogium.Editors.TileData

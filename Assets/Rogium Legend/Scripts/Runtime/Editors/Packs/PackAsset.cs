@@ -4,10 +4,10 @@ using UnityEngine;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.PaletteData;
-using Rogium.Editors.RoomData;
+using Rogium.Editors.Rooms;
 using Rogium.Editors.TileData;
 
-namespace Rogium.Editors.PackData
+namespace Rogium.Editors.Packs
 {
     /// <summary>
     /// Contains all important data for a given pack.

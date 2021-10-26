@@ -1,6 +1,6 @@
 ﻿using BoubakProductions.UI;
 using Rogium.Editors.Core;
-using Rogium.Editors.PackData;
+using Rogium.Editors.Packs;
 using Rogium.Global.UISystem.AssetSelection;
 using Rogium.Global.UISystem.Interactables.Properties;
 

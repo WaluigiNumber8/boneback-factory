@@ -1,9 +1,9 @@
 ﻿using BoubakProductions.Safety;
-using Rogium.Editors.PackData;
+using Rogium.Editors.Packs;
 using Rogium.Editors.TileData;
 using UnityEngine;
 
-namespace Rogium.Editors.RoomData
+namespace Rogium.Editors.Rooms
 {
     /// <summary>
     /// Decides which asset is will be be picked for editing.

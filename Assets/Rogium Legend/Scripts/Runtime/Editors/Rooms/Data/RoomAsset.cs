@@ -5,7 +5,7 @@ using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Global.GridSystem;
 
-namespace Rogium.Editors.RoomData
+namespace Rogium.Editors.Rooms
 {
     /// <summary>
     /// Contains all data needed for a pack room.
@@ -15,6 +15,7 @@ namespace Rogium.Editors.RoomData
         public static readonly Vector2Int gridSize = new Vector2Int(20, 15);
         
         private int difficultyLevel;
+        private RoomType type;
         private ObjectGrid<string> tileGrid;
 
         #region Constructors
@@ -25,18 +26,20 @@ namespace Rogium.Editors.RoomData
             this.author = EditorDefaults.Author;
             this.creationDate = DateTime.Now;
             this.difficultyLevel = EditorDefaults.RoomDifficulty;
+            this.type = EditorDefaults.RoomType;
             this.tileGrid = new ObjectGrid<string>(gridSize.x, gridSize.y, () => EditorDefaults.EmptyID);
             GenerateID(EditorAssetIDs.RoomIdentifier);
         }
-        public RoomAsset(RoomAsset roomAsset)
+        public RoomAsset(RoomAsset room)
         {
-            this.id = roomAsset.id;
-            this.title = roomAsset.Title;
-            this.icon = roomAsset.Icon;
-            this.author = roomAsset.author;
-            this.creationDate = roomAsset.CreationDate;
-            this.difficultyLevel = roomAsset.DifficultyLevel;
-            this.tileGrid = roomAsset.TileGrid;
+            this.id = room.id;
+            this.title = room.Title;
+            this.icon = room.Icon;
+            this.author = room.author;
+            this.creationDate = room.CreationDate;
+            this.difficultyLevel = room.DifficultyLevel;
+            this.type = room.type;
+            this.tileGrid = room.TileGrid;
         }
         public RoomAsset(string roomName, Sprite roomIcon, string author, int difficultyLevel)
         {
@@ -50,7 +53,7 @@ namespace Rogium.Editors.RoomData
             this.tileGrid = new ObjectGrid<string>(gridSize.x, gridSize.y, () => EditorDefaults.EmptyID);
             GenerateID(EditorAssetIDs.RoomIdentifier);
         }
-        public RoomAsset(string roomName, Sprite icon, string author, int difficultyLevel, ObjectGrid<string> tileGrid)
+        public RoomAsset(string roomName, Sprite icon, string author, int difficultyLevel, RoomType type, ObjectGrid<string> tileGrid)
         {
             SafetyNet.EnsureIntIsBiggerThan(difficultyLevel, 0, "New Room Difficulty Level");
 
@@ -59,12 +62,13 @@ namespace Rogium.Editors.RoomData
             this.author = author;
             this.creationDate = DateTime.Now;
             this.difficultyLevel = difficultyLevel;
+            this.type = type;
             this.tileGrid = tileGrid;
             GenerateID(EditorAssetIDs.RoomIdentifier);
         }
-        public RoomAsset(string id, string title, Sprite icon, string author, int difficultyLevel, ObjectGrid<string> tileGrid, DateTime creationDate)
+        public RoomAsset(string id, string title, Sprite icon, string author, int difficultyLevel, RoomType type, ObjectGrid<string> tileGrid, DateTime creationDate)
         {
-            SafetyNet.EnsureIntIsBiggerThan(difficultyLevel, 0, "New Room Difficulty Level");
+            SafetyNet.EnsureIntIsBiggerOrEqualTo(difficultyLevel, 0, "New Room Difficulty Level");
 
             this.id = id;
             this.title = title;
@@ -72,6 +76,7 @@ namespace Rogium.Editors.RoomData
             this.author = author;
             this.creationDate = creationDate;
             this.difficultyLevel = difficultyLevel;
+            this.type = type;
             this.tileGrid = tileGrid;
         }
         #endregion
@@ -83,9 +88,18 @@ namespace Rogium.Editors.RoomData
             this.difficultyLevel = newLevel;
         }
 
+        public void UpdateType(int newType)
+        {
+            UpdateType((RoomType)newType);
+        }
+        public void UpdateType(RoomType newType)
+        {
+            this.type = newType;
+        }
         #endregion
 
         public int DifficultyLevel { get => difficultyLevel; }
+        public RoomType Type {get => type;}
         public ObjectGrid<string> TileGrid { get => tileGrid; }
 
         

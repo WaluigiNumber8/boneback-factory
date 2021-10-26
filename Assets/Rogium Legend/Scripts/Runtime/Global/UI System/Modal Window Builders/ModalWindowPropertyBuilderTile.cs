@@ -32,8 +32,8 @@ namespace Rogium.Global.UISystem.UI
 
             propertyBuilder.BuildInputField("Title", currentTileAsset.Title, window.FirstColumnContent, currentTileAsset.UpdateTitle);
             propertyBuilder.BuildDropdown("Type", Enum.GetNames(typeof(TileType)).ToList(), 0, window.FirstColumnContent, currentTileAsset.UpdateTileType);
-            propertyBuilder.BuildPlainText("Created by", currentTileAsset.Author, window.SecondColumnContent);
-            propertyBuilder.BuildPlainText("Created on", currentTileAsset.CreationDate.ToString(), window.SecondColumnContent);
+            propertyBuilder.BuildPlainText("Created by", currentTileAsset.Author, window.FirstColumnContent);
+            propertyBuilder.BuildPlainText("Created on", currentTileAsset.CreationDate.ToString(), window.FirstColumnContent);
             
             editedAssetBase = currentTileAsset;
             window.OpenAsPropertiesColumn1(headerText, "Done", "Cancel", onConfirmAction, true);

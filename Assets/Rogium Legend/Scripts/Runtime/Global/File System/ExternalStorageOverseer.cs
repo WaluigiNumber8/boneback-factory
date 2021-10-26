@@ -1,4 +1,4 @@
-﻿using Rogium.Editors.PackData;
+﻿using Rogium.Editors.Packs;
 using System.Collections.Generic;
 using System.IO;
 using Rogium.Editors.Campaign;

@@ -4,7 +4,7 @@ using Rogium.Editors.TileData;
 using Rogium.Global.GridSystem;
 using UnityEngine;
 
-namespace Rogium.Editors.RoomData
+namespace Rogium.Editors.Rooms
 {
     /// <summary>
     /// Works like a bridge between the UI & <see cref="RoomEditorOverseer"/>.

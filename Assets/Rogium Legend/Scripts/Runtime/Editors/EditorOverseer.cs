@@ -1,8 +1,8 @@
 ﻿using System;
 using UnityEngine;
 using BoubakProductions.Safety;
-using Rogium.Editors.PackData;
-using Rogium.Editors.RoomData;
+using Rogium.Editors.Packs;
+using Rogium.Editors.Rooms;
 using Rogium.Editors.TileData;
 
 namespace Rogium.Editors.Core

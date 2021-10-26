@@ -1,6 +1,6 @@
 ﻿using Rogium.Editors.Core.Defaults;
-using Rogium.Editors.PackData;
-using Rogium.Editors.RoomData;
+using Rogium.Editors.Packs;
+using Rogium.Editors.Rooms;
 using Rogium.Editors.TileData;
 using Rogium.Global.GridSystem;
 
@@ -23,9 +23,8 @@ public static class TestBuilder
         tileGrid.SetValue(2, 1, tile.ID);
         tileGrid.SetValue(5, 1, tile.ID);
 
-        RoomAsset room = new RoomAsset("Devil Room", EditorDefaults.RoomIcon, "Test Author", 0, tileGrid);
-        PackAsset pack =
-            new PackAsset(new PackInfoAsset("Test Pack", EditorDefaults.PackIcon, "Test Author", "Just a pack"));
+        RoomAsset room = new RoomAsset("Devil Room", EditorDefaults.RoomIcon, "Test Author", 0, RoomType.Normal, tileGrid);
+        PackAsset pack = new PackAsset(new PackInfoAsset("Test Pack", EditorDefaults.PackIcon, "Test Author", "Just a pack"));
         pack.Tiles.Add(tile);
         pack.Rooms.Add(room);
         return pack;

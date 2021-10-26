@@ -1,4 +1,4 @@
-﻿using UnityEditor;
+﻿using Rogium.Editors.Rooms;
 using UnityEngine;
 
 namespace Rogium.Editors.Core.Defaults
@@ -24,8 +24,9 @@ namespace Rogium.Editors.Core.Defaults
 
         //Room
         public const string RoomTitle = "New Room";
-        public const int RoomDifficulty = 0;
         public static readonly Sprite RoomIcon = Resources.Load<Sprite>("Defaults/spr_Default_Weapon_Filled");
+        public const int RoomDifficulty = 0;
+        public const RoomType RoomType = Rooms.RoomType.Normal;
 
         //Other
         public const string EmptyID = "-1";

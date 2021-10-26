@@ -5,7 +5,7 @@ using Rogium.ExternalStorage;
 using Rogium.Global.SceneTransferService;
 using UnityEngine;
 
-namespace Rogium.Editors.PackData
+namespace Rogium.Editors.Packs
 {
     /// <summary>
     /// Overseers the in-game saveable assets library and controls their content.

@@ -1,5 +1,6 @@
 using Rogium.Editors.Campaign;
 using Rogium.Gameplay.DataLoading;
+using Rogium.Gameplay.AssetRandomGenerator;
 using UnityEngine;
 
 namespace Rogium.Gameplay.Core
@@ -11,7 +12,11 @@ namespace Rogium.Gameplay.Core
     {
         private CampaignAsset currentCampaign;
         private RoomLoader roomLoader;
+        private RRG rrg;
 
+        private TilemapLayer[] tilemapLayers;
+        private Vector3Int spawnOffset;
+        
         #region Singleton Pattern
         private static GameplayOverseer instance;
         private static readonly object padlock = new object();
@@ -43,10 +48,57 @@ namespace Rogium.Gameplay.Core
         public void PrepareGame(CampaignAsset campaign, TilemapLayer[] tilemaps, Vector3Int offset)
         {
             currentCampaign = new CampaignAsset(campaign);
+            this.tilemapLayers = tilemaps;
+            this.spawnOffset = offset;
+            rrg = new RRG(currentCampaign.DataPack.Rooms);
             
-            //TODO Create the specific flag for Rooms: Beginning Room. Then make it load here.
-            roomLoader.Load(tilemaps, offset, currentCampaign.DataPack.Rooms[0], currentCampaign.DataPack);
+            LoadEntranceRoom();
         }
+
+        #region Room Loading
+
+        /// <summary>
+        /// Loads the next normal type room.
+        /// </summary>
+        public void LoadNextNormalRoom()
+        {
+            LoadNewRoom(rrg.NextNormalRoom());
+        }
+        
+        /// <summary>
+        /// Loads the next rare type room.
+        /// </summary>
+        public void LoadNextRareRoom()
+        {
+            LoadNewRoom(rrg.NextRareRoom());
+        }
+        
+        /// <summary>
+        /// Loads the entrance room, chosen for this campaign.
+        /// </summary>
+        public void LoadEntranceRoom()
+        {
+            LoadNewRoom(rrg.ChosenEntranceRoom());
+        }
+        
+        /// <summary>
+        /// Loads the shop room, chosen for this campaign.
+        /// </summary>
+        public void LoadShopRoom()
+        {
+            LoadNewRoom(rrg.ChosenShopRoom());
+        }
+        
+        /// <summary>
+        /// Loads a room from the DataPack.
+        /// </summary>
+        /// <param name="index">The index of the room on the list.</param>
+        private void LoadNewRoom(int index)
+        {
+            roomLoader.Load(tilemapLayers, spawnOffset, CurrentCampaign.DataPack.Rooms[index], currentCampaign.DataPack);
+        }
+
+        #endregion
     
         public CampaignAsset CurrentCampaign
         {

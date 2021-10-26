@@ -2,8 +2,8 @@
 using NUnit.Framework;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
-using Rogium.Editors.PackData;
-using Rogium.Editors.RoomData;
+using Rogium.Editors.Packs;
+using Rogium.Editors.Rooms;
 using Rogium.Editors.TileData;
 using Rogium.Global.GridSystem;
 using UnityEditor;
