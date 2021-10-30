@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 952575815656073416}
   - component: {fileID: 7681528265699550975}
   - component: {fileID: 8882849320914530229}
+  - component: {fileID: 3151597211113517371}
   - component: {fileID: 1964327707294733106}
   m_Layer: 5
   m_Name: pref_Menu_Button_Blue
@@ -143,6 +144,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3151597211113517371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107557191573780117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34cb33770e184ea38dc983851a1dbfe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1964327707294733106
 MonoBehaviour:
   m_ObjectHideFlags: 0

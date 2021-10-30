@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4138968030734746975}
   - component: {fileID: 7009957131770155088}
   - component: {fileID: 4910847134802394837}
+  - component: {fileID: 6331390483721243339}
   - component: {fileID: 9189480147332028196}
   m_Layer: 5
   m_Name: pref_Button_Create_Card
@@ -121,6 +122,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6331390483721243339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9141038177592774345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34cb33770e184ea38dc983851a1dbfe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &9189480147332028196
 MonoBehaviour:
   m_ObjectHideFlags: 0

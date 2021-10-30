@@ -9,7 +9,9 @@ namespace Rogium.Global.UISystem.UI
     public class UIMainContainer : MonoSingleton<UIMainContainer>
     {
         [SerializeField] private GameObject backgroundMain;
+        [SerializeField] private GameObject backgroundGameplayMenus;
 
         public GameObject BackgroundMain { get => backgroundMain; }
+        public GameObject BackgroundGameplayMenus { get => backgroundGameplayMenus; }
     }
 }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 924370423275612320}
   - component: {fileID: 7420544010904829225}
+  - component: {fileID: -7413630203132287551}
   - component: {fileID: 4864222859122249799}
   m_Layer: 5
   m_Name: pref_Property_InputField_Area
@@ -65,6 +66,18 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &-7413630203132287551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924370423275612335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34cb33770e184ea38dc983851a1dbfe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4864222859122249799
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,13 +5,14 @@
     /// </summary>
     public enum AssetType
     {
-        None,
-        Pack,
-        Palette,
-        Sprite,
-        Weapon,
-        Enemy,
-        Room,
-        Tile
+        None = 0,
+        Pack = 1,
+        Palette = 2,
+        Sprite = 3,
+        Weapon = 4,
+        Enemy = 5,
+        Room = 6,
+        Tile = 7,
+        Campaign = 8
     }
 }

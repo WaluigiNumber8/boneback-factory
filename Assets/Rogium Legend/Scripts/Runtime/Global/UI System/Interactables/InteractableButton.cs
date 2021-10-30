@@ -71,6 +71,7 @@ namespace Rogium.Global.UISystem.Interactables
                 case ButtonType.SelectionOpenProjectile:
                     break;
                 case ButtonType.SelectionOpenCampaign:
+                    GASButtonActions.OpenCampaignSelection();
                     break;
                 
                 #endregion

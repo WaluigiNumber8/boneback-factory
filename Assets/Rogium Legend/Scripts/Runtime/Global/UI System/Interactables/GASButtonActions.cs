@@ -21,6 +21,7 @@ namespace Rogium.Global.UISystem.Interactables
         public static void GameStart()
         {
             GAS.ObjectSetActive(true, UIMainContainer.GetInstance().BackgroundMain);
+            GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundGameplayMenus);
             GAS.ObjectSetActive(false, UIEditorContainer.GetInstance().Background);
             GAS.ObjectSetActive(false, CanvasOverseer.GetInstance().ModalWindow.gameObject);
             GAS.ObjectSetActive(false, CanvasOverseer.GetInstance().NavigationBar.gameObject);
@@ -46,6 +47,7 @@ namespace Rogium.Global.UISystem.Interactables
         {
             CanvasOverseer.GetInstance().NavigationBar.Hide();
             GAS.ObjectSetActive(false, UIEditorContainer.GetInstance().Background);
+            GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundGameplayMenus);
             GAS.ObjectSetActive(true, UIMainContainer.GetInstance().BackgroundMain);
             GASRogium.SwitchMenu(MenuType.MainMenu);
         }
@@ -67,7 +69,6 @@ namespace Rogium.Global.UISystem.Interactables
         #endregion
 
         #region Open Selection Menus
-
         public static void OpenPackSelection()
         {
             GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundMain);
@@ -77,6 +78,14 @@ namespace Rogium.Global.UISystem.Interactables
             CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToMainMenu);
         }
 
+        public static void OpenCampaignSelection()
+        {
+            GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundMain);
+            GAS.ObjectSetActive(true, UIMainContainer.GetInstance().BackgroundGameplayMenus);
+            GASRogium.SwitchMenu(MenuType.CampaignSelection);
+            GASRogium.ReopenSelectionMenu(AssetType.Campaign);
+        }
+        
         public static void OpenRoomSelection()
         {
             GASRogium.SwitchMenu(MenuType.AssetSelection);
