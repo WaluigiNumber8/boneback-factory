@@ -10,7 +10,7 @@ namespace Rogium.Editors.Core
     /// <summary>
     /// Overseers the work on a given pack.
     /// </summary>
-    public class EditorOverseer : IEditorOverseer
+    public class PackEditorOverseer : IEditorOverseer
     {
         public event Action<PackAsset, int, string, string> OnSaveChanges;
         
@@ -23,17 +23,17 @@ namespace Rogium.Editors.Core
         private string startingAuthor;
 
         #region Singleton Pattern
-        private static EditorOverseer instance;
+        private static PackEditorOverseer instance;
         private static readonly object padlock = new object();
 
-        public static EditorOverseer Instance
+        public static PackEditorOverseer Instance
         {
             get
             {
                 lock (padlock)
                 {
                     if (instance == null)
-                        instance = new EditorOverseer();
+                        instance = new PackEditorOverseer();
                     return instance;
                 }
             }
@@ -41,7 +41,7 @@ namespace Rogium.Editors.Core
 
         #endregion
 
-        private EditorOverseer() 
+        private PackEditorOverseer() 
         {
             roomEditor = RoomEditorOverseer.Instance;
             tileEditor = TileEditorOverseer.Instance;
@@ -53,8 +53,9 @@ namespace Rogium.Editors.Core
         /// Assigns a new pack for editing.
         /// </summary>
         /// <param name="pack">The new pack that will be edited.</param>
-        public void AssignNewPack(PackAsset pack, int index)
+        public void AssignAsset(PackAsset pack, int index)
         {
+            SafetyNet.EnsureIsNotNull(pack, "Pack to assign");
             currentPack = new PackAsset(pack);
             myIndex = index;
             startingTitle = currentPack.Title;

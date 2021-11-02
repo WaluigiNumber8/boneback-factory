@@ -90,9 +90,9 @@ public class test_Selection_Menu
         
         yield return new WaitForSeconds(0.2f);
         LibraryOverseer.Instance.ActivatePackEditor(0);
-        EditorOverseer.Instance.CreateNewRoom();
-        EditorOverseer.Instance.CreateNewRoom();
-        EditorOverseer.Instance.CreateNewRoom();
+        PackEditorOverseer.Instance.CreateNewRoom();
+        PackEditorOverseer.Instance.CreateNewRoom();
+        PackEditorOverseer.Instance.CreateNewRoom();
 
         yield return new WaitForSeconds(0.1f);
         selectionMenu.ReopenForRooms();
@@ -110,8 +110,8 @@ public class test_Selection_Menu
         LibraryOverseer.Instance.CreateAndAddPack(packInfo);
 
         LibraryOverseer.Instance.ActivatePackEditor(0);
-        EditorOverseer.Instance.CreateNewRoom();
-        EditorOverseer.Instance.CreateNewRoom();
+        PackEditorOverseer.Instance.CreateNewRoom();
+        PackEditorOverseer.Instance.CreateNewRoom();
 
         yield return new WaitForSeconds(0.1f);
         selectionMenu.ReopenForRooms();

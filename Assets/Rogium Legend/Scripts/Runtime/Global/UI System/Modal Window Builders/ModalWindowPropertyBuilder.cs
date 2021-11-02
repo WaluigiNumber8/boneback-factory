@@ -13,7 +13,7 @@ namespace Rogium.Global.UISystem.UI
     {
         protected readonly ModalWindow window;
         protected readonly UIPropertyBuilder propertyBuilder;
-        protected readonly EditorOverseer editor;
+        protected readonly PackEditorOverseer editor;
         protected readonly LibraryOverseer lib;
         protected readonly AssetSelectionOverseerMono selectionMenu;
         protected AssetBase editedAssetBase;
@@ -23,7 +23,7 @@ namespace Rogium.Global.UISystem.UI
             window = CanvasOverseer.GetInstance().ModalWindow;
             propertyBuilder = UIPropertyBuilder.GetInstance();
             lib = LibraryOverseer.Instance;
-            editor = EditorOverseer.Instance;
+            editor = PackEditorOverseer.Instance;
             selectionMenu = AssetSelectionOverseerMono.GetInstance();
         }
 

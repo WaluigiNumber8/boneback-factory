@@ -1,6 +1,7 @@
 using Rogium.Editors.Packs;
 using Rogium.Editors.Rooms;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace Rogium.Gameplay.DataLoading
 {
@@ -37,9 +38,10 @@ namespace Rogium.Gameplay.DataLoading
         /// <param name="tilemaps">Cleans all layers in the room.</param>
         private void ClearAllTiles(TilemapLayer[] tilemaps)
         {
-            foreach (TilemapLayer tilemap in tilemaps)
+            foreach (TilemapLayer layer in tilemaps)
             {
-                tilemap.Tilemap.ClearAllTiles();
+                layer.Tilemap.ClearAllTiles();
+                layer.Positions.Clear();
             }
         }
     }

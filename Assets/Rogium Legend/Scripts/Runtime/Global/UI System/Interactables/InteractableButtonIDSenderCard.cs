@@ -1,5 +1,4 @@
-﻿using Rogium.Global.UISystem.UI;
-using System.Collections;
+﻿using Rogium.Global.UISystem.AssetSelection;
 using UnityEngine;
 
 namespace Rogium.Global.UISystem.Interactables
@@ -8,7 +7,7 @@ namespace Rogium.Global.UISystem.Interactables
     /// Takes an ID from <see cref="AssetCardController"/> and sends it to an <see cref="InteractableButton"/>.
     /// </summary>
     [RequireComponent(typeof(InteractableButton))]
-    public class InteractableButtonIDSender : MonoBehaviour
+    public class InteractableButtonIDSenderCard : MonoBehaviour
     {
         [SerializeField] private AssetCardController assetController;
 

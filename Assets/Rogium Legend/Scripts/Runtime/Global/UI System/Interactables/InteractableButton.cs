@@ -218,6 +218,12 @@ namespace Rogium.Global.UISystem.Interactables
                     break;
                 #endregion
 
+                case ButtonType.CampaignShowNext:
+                    GASButtonActions.CampaignShowNext();
+                    break;
+                case ButtonType.CampaignShowPrevious:
+                    GASButtonActions.CampaignShowPrevious();
+                    break;
                 default:
                     throw new InvalidEnumArgumentException("Unknown Button Type.");
             }

@@ -14,12 +14,12 @@ namespace Rogium_Legend.Tests.CSharp.Editors
 {
     public class test_Editors
     {
-        private EditorOverseer editor;
+        private PackEditorOverseer editor;
 
         [SetUp]
         public void Setup()
         {
-            editor = EditorOverseer.Instance;
+            editor = PackEditorOverseer.Instance;
 
             const string packName = "Test Pack";
             const string packDescription = "Created this pack for testing purposes.";

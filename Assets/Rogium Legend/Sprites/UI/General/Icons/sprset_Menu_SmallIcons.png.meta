@@ -1,34 +1,19 @@
 fileFormatVersion: 2
-guid: 9982117715ef32742bb10e1673e9a966
+guid: cac46778708b27b49a2ee7dd0fbb30a7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7374556573876112190
-    second: sprset_Menu_Icons_0_Cogwheel
+      213: -3077443614068609604
+    second: sprset_Menu_SmallIcons_0_MapIndividual
   - first:
-      213: -3570321469151275219
-    second: sprset_Menu_Icons_1_Undo
+      213: 7612675492157768007
+    second: sprset_Menu_SmallIcons_1_MapIndividualActive
   - first:
-      213: 8767952898310572170
-    second: sprset_Menu_Icons_2_Redo
+      213: 1902810623860997257
+    second: sprset_Menu_SmallIcons_2_MapSector
   - first:
-      213: 1578862862787981921
-    second: sprset_Menu_Icons_3_Trash
-  - first:
-      213: 1527275266437571312
-    second: sprset_Menu_Icons_4_BackRed
-  - first:
-      213: 4373759052838262303
-    second: sprset_Menu_Icons_5_BackYellow
-  - first:
-      213: 7421796747004351762
-    second: sprset_Menu_Icons_6_PlusYellow
-  - first:
-      213: 5274507140092311521
-    second: sprset_Menu_Icons_8_MapSectors
-  - first:
-      213: 3596455720936234763
-    second: sprset_Menu_Icons_7_MapIndividual
+      213: 6888885125828322033
+    second: sprset_Menu_SmallIcons_3_MapSectorActive
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -114,152 +99,101 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sprset_Menu_Icons_0_Cogwheel
+      name: sprset_Menu_SmallIcons_0_MapIndividual
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 8
-        height: 8
+        width: 4
+        height: 4
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3b48e1c120b75660800000000000000
-      internalID: 7374556573876112190
+      spriteID: cbd65278659ba45d0800000000000000
+      internalID: -3077443614068609604
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_Menu_Icons_1_Undo
+      name: sprset_Menu_SmallIcons_1_MapIndividualActive
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 0
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 741c264c608a5a960800000000000000
+      internalID: 7612675492157768007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprset_Menu_SmallIcons_2_MapSector
       rect:
         serializedVersion: 2
         x: 8
         y: 0
-        width: 8
-        height: 8
+        width: 4
+        height: 4
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d2799494a8ba37ec0800000000000000
-      internalID: -3570321469151275219
+      spriteID: 98cf21e4e24286a10800000000000000
+      internalID: 1902810623860997257
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_Menu_Icons_2_Redo
+      name: sprset_Menu_SmallIcons_3_MapSectorActive
       rect:
         serializedVersion: 2
-        x: 16
+        x: 12
         y: 0
-        width: 8
-        height: 8
+        width: 4
+        height: 4
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a888827d4b60ea970800000000000000
-      internalID: 8767952898310572170
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprset_Menu_Icons_3_Trash
-      rect:
-        serializedVersion: 2
-        x: 24
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 162b885986f39e510800000000000000
-      internalID: 1578862862787981921
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprset_Menu_Icons_4_BackRed
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0f2604253c8f13510800000000000000
-      internalID: 1527275266437571312
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprset_Menu_Icons_5_BackYellow
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f16d2957fa6b2bc30800000000000000
-      internalID: 4373759052838262303
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprset_Menu_Icons_6_PlusYellow
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 215185ca1d48ff660800000000000000
-      internalID: 7421796747004351762
+      spriteID: 1f22877e58c3a9f50800000000000000
+      internalID: 6888885125828322033
       vertices: []
       indices: 
       edges: []

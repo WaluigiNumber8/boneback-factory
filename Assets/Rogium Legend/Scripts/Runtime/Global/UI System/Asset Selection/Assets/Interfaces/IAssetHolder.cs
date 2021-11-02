@@ -2,7 +2,7 @@
 using Rogium.Editors.Core;
 using UnityEngine.UI;
 
-namespace Rogium.Global.UISystem.UI
+namespace Rogium.Global.UISystem.AssetSelection
 {
     public interface IAssetHolder
     {
@@ -15,15 +15,15 @@ namespace Rogium.Global.UISystem.UI
         /// </summary>
         /// <param name="type">The type of asset this is.</param>
         /// <param name="id">This asset's position in the list.</param>
-        /// <param name="assetBase">The Asset itself.</param>
-        public void Construct(AssetType type, int id, AssetBase assetBase);
+        /// <param name="asset">The Asset itself.</param>
+        /// <param name="iconPosition">Image, on which the icon will be drawn.</param>
+        public void Construct(AssetType type, int id, AssetBase asset, Image iconPos);
         /// <summary>
         /// Should be called after creating an Asset Card. Constructs basic variables.
         /// </summary>
         /// <param name="type">The type of asset this is.</param>
         /// <param name="id">This asset's position in the list.</param>
-        /// <param name="assetBase">The Asset itself.</param>
-        /// <param name="iconPosition">Image, on which the icon will be drawn.</param>
-        public void Construct(AssetType type, int id, AssetBase assetBase, Image iconPos);
+        /// <param name="asset">The Asset itself.</param>
+        public void Construct(AssetType type, int id, AssetBase asset);
     }
 }

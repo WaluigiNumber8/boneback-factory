@@ -11,12 +11,12 @@ namespace Rogium.Global.UISystem.UI
     {
         public override void OpenForCreate()
         {
-            BuildWindow(new PackInfoAsset(), CreateAsset, "Creating a new pack");
+            OpenWindow(new PackInfoAsset(), CreateAsset, "Creating a new pack");
         }
 
         public override void OpenForUpdate()
         {
-            BuildWindow(new PackInfoAsset(editor.CurrentPack.PackInfo), UpdateAsset, $"Editing {editor.CurrentPack.Title}");
+            OpenWindow(new PackInfoAsset(editor.CurrentPack.PackInfo), UpdateAsset, $"Editing {editor.CurrentPack.Title}");
         }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace Rogium.Global.UISystem.UI
         /// <param name="currentPackInfo">The PackInfo to edit.</param>
         /// <param name="onConfirmButton">What happens when the 'Confirm' button is pressed.</param>
         /// </summary>
-        private void BuildWindow(PackInfoAsset currentPackInfo, Action onConfirmButton, string headerText)
+        private void OpenWindow(PackInfoAsset currentPackInfo, Action onConfirmButton, string headerText)
         {
             propertyBuilder.BuildInputField("Name", currentPackInfo.Title, window.FirstColumnContent, currentPackInfo.UpdateTitle);
             propertyBuilder.BuildInputFieldArea("Description", currentPackInfo.Description, window.FirstColumnContent, currentPackInfo.UpdateDescription);

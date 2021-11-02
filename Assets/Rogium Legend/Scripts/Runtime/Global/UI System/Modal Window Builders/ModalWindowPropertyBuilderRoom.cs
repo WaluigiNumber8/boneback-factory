@@ -7,11 +7,11 @@ namespace Rogium.Global.UISystem.UI
     /// <summary>
     /// Constructor for the Room Properties Modal Window.
     /// </summary>
-    public class ModalWindowPropertyBuilderRooms : ModalWindowPropertyBuilder
+    public class ModalWindowPropertyBuilderRoom : ModalWindowPropertyBuilder
     {
         private RoomEditorOverseer roomEditor;
 
-        public ModalWindowPropertyBuilderRooms()
+        public ModalWindowPropertyBuilderRoom()
         {
             roomEditor = RoomEditorOverseer.Instance;
         }

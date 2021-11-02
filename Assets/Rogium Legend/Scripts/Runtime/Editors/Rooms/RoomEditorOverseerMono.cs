@@ -11,7 +11,7 @@ namespace Rogium.Editors.Rooms
     /// </summary>
     public class RoomEditorOverseerMono : MonoBehaviour
     {
-        private EditorOverseer editor;
+        private PackEditorOverseer editor;
         private RoomEditorOverseer roomEditor;
         private AssetPickerOverseer assetPicker;
         
@@ -19,7 +19,7 @@ namespace Rogium.Editors.Rooms
 
         private void OnEnable()
         {
-            editor = EditorOverseer.Instance;
+            editor = PackEditorOverseer.Instance;
             roomEditor = RoomEditorOverseer.Instance;
 
             roomEditor.OnAssignRoom += PrepareRoomEditor;
@@ -40,7 +40,7 @@ namespace Rogium.Editors.Rooms
         /// </summary>
         private void PrepareRoomEditor(RoomAsset roomAsset)
         {
-            editorGrid.LoadGrid(EditorOverseer.Instance.CurrentPack.Tiles, roomAsset);
+            editorGrid.LoadGrid(PackEditorOverseer.Instance.CurrentPack.Tiles, roomAsset);
         }
         
         /// <summary>

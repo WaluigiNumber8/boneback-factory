@@ -13,7 +13,7 @@ namespace Rogium_Legend.Tests.CSharp.Editors
     public class test_Tile_Editor
     {
         private LibraryOverseer lib;
-        private EditorOverseer editor;
+        private PackEditorOverseer editor;
         private TileEditorOverseer tileEditor;
         
         private PackAsset pack;
@@ -22,7 +22,7 @@ namespace Rogium_Legend.Tests.CSharp.Editors
         public void Setup()
         {
             lib = LibraryOverseer.Instance;
-            editor = EditorOverseer.Instance;
+            editor = PackEditorOverseer.Instance;
             tileEditor = TileEditorOverseer.Instance;
             
             if (lib.GetPacksCopy.TryFinding("Test Pack", "NO AUTHOR") != null)  lib.DeletePack("Test Pack", "NO AUTHOR");

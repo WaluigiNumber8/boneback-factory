@@ -38,7 +38,7 @@ namespace Rogium.Editors.Packs
             packs = new PackList();
             campaigns = new CampaignList();
 
-            EditorOverseer.Instance.OnSaveChanges += UpdatePack;
+            PackEditorOverseer.Instance.OnSaveChanges += UpdatePack;
             ReloadFromExternalStorage();
         }
 
@@ -99,7 +99,7 @@ namespace Rogium.Editors.Packs
         {
             SafetyNet.EnsureListIsNotEmptyOrNull(packs, "Pack Library");
             SafetyNet.EnsureIntIsInRange(packIndex, 0, packs.Count, "packIndex for activating Pack Editor");
-            EditorOverseer.Instance.AssignNewPack(packs[packIndex], packIndex);
+            PackEditorOverseer.Instance.AssignAsset(packs[packIndex], packIndex);
         }
         #endregion
 
@@ -115,6 +115,11 @@ namespace Rogium.Editors.Packs
         public void CreateAndAddCampaign(string title, Sprite icon, string author, PackAsset dataPack)
         {
             CampaignAsset newCampaign = new CampaignAsset(title, icon, author, dataPack);
+            campaigns.Add(newCampaign);
+        }
+        public void CreateAndAddCampaign(CampaignAsset campaign)
+        {
+            CampaignAsset newCampaign = new CampaignAsset(campaign);
             campaigns.Add(newCampaign);
         }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-namespace Rogium.Global.UISystem.UI
+namespace Rogium.Global.UISystem.AssetSelection
 {
     /// <summary>
     /// Handles setup and button interactions for the Asset Card object.
@@ -12,11 +12,11 @@ namespace Rogium.Global.UISystem.UI
     [RequireComponent(typeof(Button))]
     public class AssetCardController : MonoBehaviour, IAssetHolder
     {
-        [SerializeField] private AssetType type;
         [SerializeField] private UIInfo ui;
 
-        private AssetBase asset; //Will be used for sorting cards
         private int id;
+        private AssetType type;
+        private AssetBase asset; //Will be used for sorting cards
         private Button cardButton;
 
         private void Start()
@@ -25,20 +25,20 @@ namespace Rogium.Global.UISystem.UI
             cardButton.onClick.AddListener(OnClick);
         }
 
-        public void Construct(AssetType type, int id, AssetBase assetBase, Image iconPos)
+        public void Construct(AssetType type, int id, AssetBase asset, Image iconPos)
         {
             ui.icon = iconPos;
-            Construct(type, id, assetBase);
+            Construct(type, id, asset);
         }
 
 
-        public void Construct(AssetType type, int id, AssetBase assetBase)
+        public void Construct(AssetType type, int id, AssetBase asset)
         {
             this.type = type;
             this.id = id;
-            this.asset = assetBase;
-            ui.title.text = assetBase.Title;
-            ui.icon.sprite = assetBase.Icon;
+            this.asset = asset;
+            ui.title.text = asset.Title;
+            ui.icon.sprite = asset.Icon;
             
             ui.infoGroup.gameObject.SetActive(true);
         }

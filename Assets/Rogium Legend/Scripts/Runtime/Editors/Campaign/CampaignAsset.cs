@@ -16,6 +16,16 @@ namespace Rogium.Editors.Campaign
         //TODO Read the icon from the icon of the "Beginning Room" from the campaign.
 
         #region Constructors
+        public CampaignAsset()
+        {
+            this.title = EditorDefaults.CampaignTitle;
+            this.icon = EditorDefaults.RoomIcon;
+            this.author = EditorDefaults.Author;
+            this.creationDate = DateTime.Now;
+            GenerateID(EditorAssetIDs.CampaignIdentifier);
+            
+            this.dataPack = new PackAsset();
+        }
         public CampaignAsset(PackAsset dataPack)
         {
             this.title = EditorDefaults.CampaignTitle;

@@ -4,7 +4,6 @@ using BoubakProductions.ObjectSwitching;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
-using Rogium.Global.UISystem.UI;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -20,7 +19,7 @@ namespace Rogium.Global.UISystem.AssetSelection
         [SerializeField] private LayoutInfo layouts;
         [SerializeField] private AssetSelectionMenuInfo selectionMenus;
         
-        private EditorOverseer editor;
+        private PackEditorOverseer editor;
         private LibraryOverseer lib;
         private ObjectSwitcherMono layoutSwitcher;
         
@@ -30,7 +29,7 @@ namespace Rogium.Global.UISystem.AssetSelection
         protected override void Awake()
         {
             base.Awake();
-            editor = EditorOverseer.Instance;
+            editor = PackEditorOverseer.Instance;
             lib = LibraryOverseer.Instance;
             layoutSwitcher = GetComponent<ObjectSwitcherMono>();
             lastTypeOpen = AssetType.None;

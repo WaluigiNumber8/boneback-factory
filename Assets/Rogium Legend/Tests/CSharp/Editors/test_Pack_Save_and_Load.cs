@@ -10,7 +10,7 @@ using UnityEngine.TestTools;
 public class test_Pack_Save_and_Load
 {
     private LibraryOverseer lib;
-    private EditorOverseer editor;
+    private PackEditorOverseer editor;
     private PackInfoAsset packInfo;
     private string path;
 
@@ -18,7 +18,7 @@ public class test_Pack_Save_and_Load
     public void Setup()
     {
         lib = LibraryOverseer.Instance;
-        editor = EditorOverseer.Instance;
+        editor = PackEditorOverseer.Instance;
 
         string packName = "Test Pack";
         string packDescription = "Created this pack for testing purposes.";

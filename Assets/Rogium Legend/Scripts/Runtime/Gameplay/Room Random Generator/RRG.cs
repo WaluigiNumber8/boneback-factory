@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Rogium.Editors.Core;
 using Rogium.Editors.Rooms;
 
 namespace Rogium.Gameplay.AssetRandomGenerator
