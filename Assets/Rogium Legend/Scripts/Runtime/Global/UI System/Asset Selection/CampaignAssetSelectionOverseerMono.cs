@@ -17,7 +17,7 @@ namespace Rogium.Global.UISystem.AssetSelection
         private void Start()
         {
             overseer = CampaignAssetSelectionOverseer.Instance;
-            overseer.Load(wallpaperController, LibraryOverseer.Instance.GetCampaignsCopy, startingIndex);
+            overseer.Initialize(wallpaperController, startingIndex);
         }
     }
 }

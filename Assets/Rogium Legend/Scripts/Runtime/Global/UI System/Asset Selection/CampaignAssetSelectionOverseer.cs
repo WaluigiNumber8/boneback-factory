@@ -2,6 +2,7 @@
 using BoubakProductions.Safety;
 using Rogium.Core;
 using Rogium.Editors.Campaign;
+using Rogium.Editors.Packs;
 
 namespace Rogium.Global.UISystem.AssetSelection
 {
@@ -10,6 +11,8 @@ namespace Rogium.Global.UISystem.AssetSelection
     /// </summary>
     public class CampaignAssetSelectionOverseer
     {
+        private readonly LibraryOverseer lib;
+        
         private AssetWallpaperController wallpaper;
         private IList<CampaignAsset> campaigns;
         private int currentIndex;
@@ -33,24 +36,27 @@ namespace Rogium.Global.UISystem.AssetSelection
 
         #endregion
 
-        private CampaignAssetSelectionOverseer() {}
+        private CampaignAssetSelectionOverseer()
+        {
+            lib = LibraryOverseer.Instance;
+        }
 
         /// <summary>
         /// Initializes the overseer.
-        /// <param name="campaigns">The list of campaigns to load into the overseer.</param>
+        /// <param name="wallpaper">The Wallpaper Controller, that holds information about the UI.</param>
         /// <param name="startingIndex">The starting position on the list.</param>
         /// </summary>
-        public void Load(AssetWallpaperController wallpaper, IList<CampaignAsset> campaigns, int startingIndex)
+        public void Initialize(AssetWallpaperController wallpaper, int startingIndex)
         {
-            SafetyNet.EnsureIsNotNull(campaigns, "List of Campaigns to initialize");
             SafetyNet.EnsureIsNotNull(wallpaper, "Wallpaper to Initialize");
-            SafetyNet.EnsureIntIsInRange(startingIndex, 0, campaigns.Count, "Starting Index");
             
             this.wallpaper = wallpaper;
-            this.campaigns = new List<CampaignAsset>(campaigns);
             this.currentIndex = startingIndex;
-            
-            SelectCampaign();
+        }
+
+        private void ReloadList()
+        {
+            campaigns = new List<CampaignAsset>(lib.GetCampaignsCopy);
         }
         
         /// <summary>
@@ -58,6 +64,8 @@ namespace Rogium.Global.UISystem.AssetSelection
         /// </summary>
         public void SelectCampaignNext()
         {
+            ReloadList();
+            
             currentIndex++;
             SelectCampaign();
         }
@@ -67,16 +75,31 @@ namespace Rogium.Global.UISystem.AssetSelection
         /// </summary>
         public void SelectCampaignPrevious()
         {
+            ReloadList();
+            
             currentIndex--;
             SelectCampaign();
         }
 
         /// <summary>
+        /// Loads the first campaign on the list.
+        /// </summary>
+        public void SelectCampaignFirst()
+        {
+            ReloadList();
+
+            currentIndex = 0;
+            SelectCampaign();
+        }
+        
+        /// <summary>
         /// Loads the last campaign on the list.
         /// </summary>
         public void SelectCampaignLast()
         {
-            currentIndex = campaigns.Count;
+            ReloadList();
+            
+            currentIndex = campaigns.Count-1;
             SelectCampaign();
         }
         
@@ -104,9 +127,11 @@ namespace Rogium.Global.UISystem.AssetSelection
         private void SelectCampaignWithWrapping()
         {
             //Index Wrapping
-            currentIndex = (currentIndex > campaigns.Count) ? 0 : ((currentIndex < 0) ? campaigns.Count : currentIndex);
+            if (currentIndex > (campaigns.Count - 1)) currentIndex = 0;
+            else if (currentIndex < 0) currentIndex = campaigns.Count-1;
+            
             wallpaper.Construct(AssetType.Campaign, currentIndex, campaigns[currentIndex]);
         }
-        
+
     }
 }

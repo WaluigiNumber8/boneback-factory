@@ -1,4 +1,5 @@
-﻿using Rogium.Core;
+﻿using System;
+using Rogium.Core;
 using Rogium.Editors.Core;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +12,8 @@ namespace Rogium.Global.UISystem.AssetSelection
     /// </summary>
     public class AssetWallpaperController : MonoBehaviour, IAssetHolder
     {
+        public event Action<int> OnConstruct;
+        
         [SerializeField] private Sprite emptyWallpaper;
         [SerializeField, Multiline(4)] private string emptyMessage;
         [SerializeField] private UIInfo ui;
@@ -32,6 +35,8 @@ namespace Rogium.Global.UISystem.AssetSelection
             this.asset = asset;
             this.ui.title.text = asset.Title;
             this.ui.wallpaper.sprite = asset.Icon;
+            
+            OnConstruct?.Invoke(this.id);
         }
 
         /// <summary>
@@ -46,6 +51,8 @@ namespace Rogium.Global.UISystem.AssetSelection
             this.ui.wallpaper.sprite = emptyWallpaper;
             this.ui.emptyText.text = emptyMessage;
             this.ui.emptyText.gameObject.SetActive(true);
+            
+            OnConstruct?.Invoke(this.id);
         }
         
         public int ID { get => id; }

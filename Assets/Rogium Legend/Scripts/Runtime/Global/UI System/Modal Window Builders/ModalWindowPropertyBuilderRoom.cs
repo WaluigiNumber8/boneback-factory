@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using BoubakProductions.UI;
 using Rogium.Editors.Rooms;
 
 namespace Rogium.Global.UISystem.UI
@@ -44,7 +45,7 @@ namespace Rogium.Global.UISystem.UI
             propertyBuilder.BuildPlainText("Created on", currentRoomAsset.CreationDate.ToString(), window.FirstColumnContent);
             
             editedAssetBase = currentRoomAsset;
-            window.OpenAsPropertiesColumn1(headerText, "Done", "Cancel", onConfirmAction, true);
+            window.OpenAsPropertiesColumn1(headerText, ThemeType.Blue, "Done", "Cancel", onConfirmAction, true);
         }
 
         protected override void CreateAsset()

@@ -13,8 +13,8 @@ namespace Rogium.Editors.Packs
     /// </summary>
     public class LibraryOverseer
     {
-        private readonly PackList packs;
-        private readonly CampaignList campaigns;
+        private readonly PackList packs = new PackList();
+        private readonly CampaignList campaigns = new CampaignList();
 
         #region Singleton Pattern
         private static LibraryOverseer instance;
@@ -35,9 +35,6 @@ namespace Rogium.Editors.Packs
 
         private LibraryOverseer() 
         {
-            packs = new PackList();
-            campaigns = new CampaignList();
-
             PackEditorOverseer.Instance.OnSaveChanges += UpdatePack;
             ReloadFromExternalStorage();
         }

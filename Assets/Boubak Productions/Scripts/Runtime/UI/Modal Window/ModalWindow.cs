@@ -7,6 +7,9 @@ using BoubakProductions.Core;
 
 namespace BoubakProductions.UI
 {
+    /// <summary>
+    /// Draws a modal window on the screen.
+    /// </summary>
     public class ModalWindow : MonoBehaviour
     {
         [Header("Defaults")]
@@ -14,14 +17,14 @@ namespace BoubakProductions.UI
         [SerializeField] private string denyButtonDefault = "Cancel";
         [SerializeField] private string specialButtonDefault = "NONE";
 
-        [Header("UI")]
-        [SerializeField] private Transform area;
-        [SerializeField] private Image background;
-        [SerializeField] private Transform windowBox;
-        [SerializeField] private HeaderInfo header;
-        [SerializeField] private LayoutInfo layout;
-        [SerializeField] private FooterInfo footer;
+        [Header("UI")] 
+        [SerializeField] private UIInfo ui;
 
+        [Header("Themes")]
+        [SerializeField] private ThemeStyleInfo[] themes;
+
+        private ThemeType currentTheme;
+        
         #region Open As Message
         /// <summary>
         /// Opens the Modal Window as a message window.
@@ -30,12 +33,12 @@ namespace BoubakProductions.UI
         /// <param name="acceptButtonText">Text in the Accept Button.</param>
         /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.</param>
         /// <param name="denyButtonClosesWindow">If on, the Deny Button just closes the window.</param>
-        public void OpenAsMessage(string message, string acceptButtonText, Action onAcceptAction, bool denyButtonClosesWindow = false)
+        public void OpenAsMessage(string message, ThemeType theme, string acceptButtonText, Action onAcceptAction, bool denyButtonClosesWindow = false)
         {
             if (denyButtonClosesWindow)
-                OpenAsMessage(message, acceptButtonText, denyButtonDefault, specialButtonDefault, onAcceptAction, Close, null);
+                OpenAsMessage(message, theme, acceptButtonText, denyButtonDefault, specialButtonDefault, onAcceptAction, Close, null);
             else
-                OpenAsMessage(message, acceptButtonText, denyButtonDefault, specialButtonDefault, onAcceptAction, null, null);
+                OpenAsMessage(message, theme, acceptButtonText, denyButtonDefault, specialButtonDefault, onAcceptAction, null, null);
         }
         /// <summary>
         /// Opens the Modal Window as a message window.
@@ -46,12 +49,12 @@ namespace BoubakProductions.UI
         /// /// <param name="denyButtonText">Text in the Deny Button.</param>
         /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.</param>
         /// <param name="hasCloseButton">If on, the Deny Button just closes the window.</param>
-        public void OpenAsMessage(string message, string acceptButtonText, string denyButtonText, Action onAcceptAction, bool denyButtonClosesWindow = false)
+        public void OpenAsMessage(string message, ThemeType theme, string acceptButtonText, string denyButtonText, Action onAcceptAction, bool denyButtonClosesWindow = false)
         {
             if (denyButtonClosesWindow)
-                OpenAsMessage(message, acceptButtonText, denyButtonText, specialButtonDefault, onAcceptAction, Close, null);
+                OpenAsMessage(message, theme, acceptButtonText, denyButtonText, specialButtonDefault, onAcceptAction, Close, null);
             else
-                OpenAsMessage(message, acceptButtonText, denyButtonText, specialButtonDefault, onAcceptAction, null, null);
+                OpenAsMessage(message, theme, acceptButtonText, denyButtonText, specialButtonDefault, onAcceptAction, null, null);
         }
         /// <summary>
         /// Opens the Modal Window as a message window.
@@ -63,20 +66,20 @@ namespace BoubakProductions.UI
         /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.</param>
         /// <param name="onDenyAction">Method, that happens when the Dccept Button is clicked.</param>
         /// <param name="onSpecialAction">Method, that happens when the Special Button is clicked.</param>
-        public void OpenAsMessage(string message, string acceptButtonText, string denyButtonText, string specialButtonText, Action onAcceptAction, Action onDenyAction = null, Action onSpecialAction = null)
+        public void OpenAsMessage(string message, ThemeType theme, string acceptButtonText, string denyButtonText, string specialButtonText, Action onAcceptAction, Action onDenyAction = null, Action onSpecialAction = null)
         {
             SafetyNet.EnsureStringNotNullOrEmpty(message, "Modal Window Title");
             
-            WindowSetup();
+            WindowSetup(theme);
 
-            layout.area.gameObject.SetActive(true);
-            layout.message.area.gameObject.SetActive(true);
-            layout.message.text.gameObject.SetActive(true);
+            ui.layout.area.gameObject.SetActive(true);
+            ui.layout.message.area.gameObject.SetActive(true);
+            ui.layout.message.text.gameObject.SetActive(true);
 
-            layout.message.text.text = message;
+            ui.layout.message.text.text = message;
 
             DrawFooter(acceptButtonText, denyButtonText, specialButtonText, onAcceptAction, onDenyAction, onSpecialAction);
-            windowBox.gameObject.SetActive(true);
+            ui.windowBox.gameObject.SetActive(true);
         }
         #endregion
 
@@ -89,12 +92,12 @@ namespace BoubakProductions.UI
         /// <param name="denyButtonText">Text in the Deny Button.</param>
         /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.</param>
         /// <param name="denyActionClosesWindow">If true, clicking the deny button will just close the window. Otherwise is null.</param>
-        public void OpenAsPropertiesColumn2(string headerText, string acceptButtonText, string denyButtonText, Action onAcceptAction, bool denyActionClosesWindow = false)
+        public void OpenAsPropertiesColumn2(string headerText, ThemeType theme, string acceptButtonText, string denyButtonText, Action onAcceptAction, bool denyActionClosesWindow = false)
         {
             if (denyActionClosesWindow)
-                OpenAsPropertiesColumn2(headerText, acceptButtonText, denyButtonText, specialButtonDefault, onAcceptAction, Close, null);
+                OpenAsPropertiesColumn2(headerText, theme, acceptButtonText, denyButtonText, specialButtonDefault, onAcceptAction, Close, null);
             else
-                OpenAsPropertiesColumn2(headerText, acceptButtonText, denyButtonText, specialButtonDefault, onAcceptAction, null, null);
+                OpenAsPropertiesColumn2(headerText, theme, acceptButtonText, denyButtonText, specialButtonDefault, onAcceptAction, null, null);
         }
         /// <summary>
         /// Draws the window as a properties window.
@@ -104,9 +107,9 @@ namespace BoubakProductions.UI
         /// <param name="denyButtonText">Text in the Deny Button.</param>
         /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.</param>
         /// <param name="onDenyAction">Method, that happens when the Dccept Button is clicked.</param>
-        public void OpenAsPropertiesColumn2(string headerText, string acceptButtonText, string denyButtonText, Action onAcceptAction, Action onDenyAction)
+        public void OpenAsPropertiesColumn2(string headerText, ThemeType theme, string acceptButtonText, string denyButtonText, Action onAcceptAction, Action onDenyAction)
         {
-            OpenAsPropertiesColumn2(headerText, acceptButtonText, denyButtonText, specialButtonDefault, onAcceptAction, onDenyAction, null);
+            OpenAsPropertiesColumn2(headerText, theme, acceptButtonText, denyButtonText, specialButtonDefault, onAcceptAction, onDenyAction, null);
         }
         /// <summary>
         /// Draws the window as a properties window.
@@ -118,21 +121,21 @@ namespace BoubakProductions.UI
         /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.</param>
         /// <param name="onDenyAction">Method, that happens when the Dccept Button is clicked.</param>
         /// <param name="onSpecialAction">Method, that happens when the Special Button is clicked.</param>
-        public void OpenAsPropertiesColumn2(string headerText, string acceptButtonText, string denyButtonText, string specialButtonText, Action onAcceptAction, Action onDenyAction, Action onSpecialAction)
+        public void OpenAsPropertiesColumn2(string headerText, ThemeType theme, string acceptButtonText, string denyButtonText, string specialButtonText, Action onAcceptAction, Action onDenyAction, Action onSpecialAction)
         {
-            WindowSetup();
+            WindowSetup(theme);
             DrawHeader(headerText);
 
-            layout.properties.area.gameObject.SetActive(true);
-            layout.properties.firstColumn.gameObject.SetActive(true);
-            layout.properties.secondColumn.gameObject.SetActive(true);
-            layout.properties.firstColumnContent.gameObject.SetActive(true);
-            layout.properties.secondColumnContent.gameObject.SetActive(true);
+            ui.layout.properties.area.gameObject.SetActive(true);
+            ui.layout.properties.firstColumn.gameObject.SetActive(true);
+            ui.layout.properties.secondColumn.gameObject.SetActive(true);
+            ui.layout.properties.firstColumnContent.gameObject.SetActive(true);
+            ui.layout.properties.secondColumnContent.gameObject.SetActive(true);
 
-            layout.area.gameObject.SetActive(true);
+            ui.layout.area.gameObject.SetActive(true);
 
             DrawFooter(acceptButtonText, denyButtonText, specialButtonText, onAcceptAction, onDenyAction, onSpecialAction);
-            windowBox.gameObject.SetActive(true);
+            ui.windowBox.gameObject.SetActive(true);
         }
 
         /// <summary>
@@ -143,12 +146,12 @@ namespace BoubakProductions.UI
         /// <param name="denyButtonText">Text in the Deny Button.</param>
         /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.</param>
         /// <param name="denyActionClosesWindow">If true, clicking the deny button will just close the window. Otherwise is null.</param>
-        public void OpenAsPropertiesColumn1(string headerText, string acceptButtonText, string denyButtonText, Action onAcceptAction, bool denyActionClosesWindow = false)
+        public void OpenAsPropertiesColumn1(string headerText, ThemeType theme, string acceptButtonText, string denyButtonText, Action onAcceptAction, bool denyActionClosesWindow = false)
         {
             if (denyActionClosesWindow)
-                OpenAsPropertiesColumn1(headerText, acceptButtonText, denyButtonText, specialButtonDefault, onAcceptAction, Close, null);
+                OpenAsPropertiesColumn1(headerText, theme, acceptButtonText, denyButtonText, specialButtonDefault, onAcceptAction, Close, null);
             else
-                OpenAsPropertiesColumn1(headerText, acceptButtonText, denyButtonText, specialButtonDefault, onAcceptAction, null, null);
+                OpenAsPropertiesColumn1(headerText, theme, acceptButtonText, denyButtonText, specialButtonDefault, onAcceptAction, null, null);
         }
         /// <summary>
         /// Draws the window as a properties window.
@@ -158,25 +161,25 @@ namespace BoubakProductions.UI
         /// <param name="denyButtonText">Text in the Deny Button.</param>
         /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.</param>
         /// <param name="onDenyAction">Method, that happens when the Dccept Button is clicked.</param>
-        public void OpenAsPropertiesColumn1(string headerText, string acceptButtonText, string denyButtonText, Action onAcceptAction, Action onDenyAction)
+        public void OpenAsPropertiesColumn1(string headerText, ThemeType theme, string acceptButtonText, string denyButtonText, Action onAcceptAction, Action onDenyAction)
         {
-            OpenAsPropertiesColumn1(headerText, acceptButtonText, denyButtonText, specialButtonDefault, onAcceptAction, onDenyAction, null);
+            OpenAsPropertiesColumn1(headerText, theme, acceptButtonText, denyButtonText, specialButtonDefault, onAcceptAction, onDenyAction, null);
         }
-        public void OpenAsPropertiesColumn1(string headerText, string acceptButtonText, string denyButtonText, string specialButtonText, Action onAcceptAction, Action onDenyAction, Action onSpecialAction)
+        public void OpenAsPropertiesColumn1(string headerText, ThemeType theme, string acceptButtonText, string denyButtonText, string specialButtonText, Action onAcceptAction, Action onDenyAction, Action onSpecialAction)
         {
-            WindowSetup();
+            WindowSetup(theme);
             DrawHeader(headerText);
 
-            layout.properties.area.gameObject.SetActive(true);
-            layout.properties.firstColumn.gameObject.SetActive(true);
-            layout.properties.secondColumn.gameObject.SetActive(false);
-            layout.properties.firstColumnContent.gameObject.SetActive(true);
-            layout.properties.secondColumnContent.gameObject.SetActive(false);
+            ui.layout.properties.area.gameObject.SetActive(true);
+            ui.layout.properties.firstColumn.gameObject.SetActive(true);
+            ui.layout.properties.secondColumn.gameObject.SetActive(false);
+            ui.layout.properties.firstColumnContent.gameObject.SetActive(true);
+            ui.layout.properties.secondColumnContent.gameObject.SetActive(false);
 
-            layout.area.gameObject.SetActive(true);
+            ui.layout.area.gameObject.SetActive(true);
 
             DrawFooter(acceptButtonText, denyButtonText, specialButtonText, onAcceptAction, onDenyAction, onSpecialAction);
-            windowBox.gameObject.SetActive(true);
+            ui.windowBox.gameObject.SetActive(true);
         }
 
         #endregion
@@ -189,9 +192,9 @@ namespace BoubakProductions.UI
         /// <param name="headerText"></param>
         private void DrawHeader(string headerText)
         {
-            header.text.text = headerText;
-            header.text.gameObject.SetActive(true);
-            header.area.gameObject.SetActive(true);
+            ui.header.text.text = headerText;
+            ui.header.text.gameObject.SetActive(true);
+            ui.header.area.gameObject.SetActive(true);
         }
 
         /// <summary>
@@ -205,20 +208,20 @@ namespace BoubakProductions.UI
         /// <param name="onSpecialAction">Method, that happens when the Special Button is clicked.</param>
         private void DrawFooter(string acceptButtonText, string denyButtonText, string specialButtonText, Action onAcceptAction, Action onDenyAction, Action onSpecialAction)
         {
-            footer.area.gameObject.SetActive(true);
+            ui.footer.area.gameObject.SetActive(true);
 
-            footer.acceptButtonText.text = acceptButtonText;
-            footer.OnAcceptButtonClick = onAcceptAction;
+            ui.footer.acceptButtonText.text = acceptButtonText;
+            ui.footer.OnAcceptButtonClick = onAcceptAction;
 
             bool usesDeny = (onDenyAction != null);
-            footer.denyButton.gameObject.SetActive(usesDeny);
-            footer.denyButtonText.text = denyButtonText;
-            footer.OnDenyButtonClick = onDenyAction;
+            ui.footer.denyButton.gameObject.SetActive(usesDeny);
+            ui.footer.denyButtonText.text = denyButtonText;
+            ui.footer.OnDenyButtonClick = onDenyAction;
 
             bool usesSpecial = (onSpecialAction != null);
-            footer.specialButton.gameObject.SetActive(usesSpecial);
-            footer.specialButtonText.text = specialButtonText;
-            footer.OnSpecialButtonClick = onSpecialAction;
+            ui.footer.specialButton.gameObject.SetActive(usesSpecial);
+            ui.footer.specialButtonText.text = specialButtonText;
+            ui.footer.OnSpecialButtonClick = onSpecialAction;
         }
 
         #endregion
@@ -226,23 +229,64 @@ namespace BoubakProductions.UI
         /// <summary>
         /// Prepares the window.
         /// </summary>
-        private void WindowSetup()
+        private void WindowSetup(ThemeType theme)
         {
-            header.area.gameObject.SetActive(false);
-            layout.area.gameObject.SetActive(false);
-            footer.area.gameObject.SetActive(false);
+            ui.header.area.gameObject.SetActive(false);
+            ui.layout.area.gameObject.SetActive(false);
+            ui.footer.area.gameObject.SetActive(false);
 
-            area.gameObject.SetActive(true);
-            background.gameObject.SetActive(true);
-            windowBox.gameObject.SetActive(false);
+            ui.area.gameObject.SetActive(true);
+            ui.background.gameObject.SetActive(true);
+            ui.windowBox.gameObject.SetActive(false);
+            FillWithTheme(theme);
         }
 
+        #region Themes
+
+        /// <summary>
+        /// Fills the Modal Window with a proper theme.
+        /// </summary>
+        /// <param name="theme"></param>
+        private void FillWithTheme(ThemeType themeType)
+        {
+            if (themeType == currentTheme && themeType != ThemeType.NoTheme) return;
+
+            ThemeStyleInfo theme = themes[(int)themeType];
+
+            ui.windowBoxImage.sprite = theme.backgroundImage;
+            ui.header.headerImage.sprite = theme.headerImage;
+            FillWithThemeButton(theme, ui.footer.acceptButtonImage, ui.footer.acceptButton);
+            FillWithThemeButton(theme, ui.footer.denyButtonImage, ui.footer.denyButton);
+            FillWithThemeButton(theme, ui.footer.specialButtonImage, ui.footer.specialButton);
+            
+            currentTheme = themeType;
+        }
+
+        /// <summary>
+        /// Applies a theme to a button.
+        /// </summary>
+        /// <param name="theme">The theme to apply.</param>
+        /// <param name="buttonImage">Button's Image Component</param>
+        /// <param name="button">The Button itself.</param>
+        private void FillWithThemeButton(ThemeStyleInfo theme, Image buttonImage, Button button)
+        {
+            buttonImage.sprite = theme.buttonNormal;
+            SpriteState ss = new SpriteState();
+            ss.highlightedSprite = theme.buttonHighlight;
+            ss.pressedSprite = theme.buttonPress;
+            ss.selectedSprite = theme.buttonSelected;
+            ss.disabledSprite = theme.buttonDisabled;
+            button.spriteState = ss;
+        }
+
+        #endregion
+        
         /// <summary>
         /// Stores actions, that will take place once the Accept button is clicked.
         /// </summary>
         public void OnAccept()
         {
-            footer.OnAcceptButtonClick?.Invoke();
+            ui.footer.OnAcceptButtonClick?.Invoke();
             Close();
         }
 
@@ -251,7 +295,7 @@ namespace BoubakProductions.UI
         /// </summary>
         public void OnDeny()
         {
-            footer.OnDenyButtonClick?.Invoke();
+            ui.footer.OnDenyButtonClick?.Invoke();
             Close();
         }
 
@@ -260,7 +304,7 @@ namespace BoubakProductions.UI
         /// </summary>
         public void OnSpecial()
         {
-            footer.OnSpecialButtonClick?.Invoke();
+            ui.footer.OnSpecialButtonClick?.Invoke();
             Close();
         }
 
@@ -269,25 +313,38 @@ namespace BoubakProductions.UI
         /// </summary>
         public void Close()
         {
-            windowBox.gameObject.SetActive(false);
+            ui.windowBox.gameObject.SetActive(false);
 
-            layout.message.area.gameObject.SetActive(false);
+            ui.layout.message.area.gameObject.SetActive(false);
 
-            layout.properties.area.gameObject.SetActive(false);
-            layout.properties.firstColumnContent.gameObject.KillChildren();
-            layout.properties.secondColumnContent.gameObject.KillChildren();
+            ui.layout.properties.area.gameObject.SetActive(false);
+            ui.layout.properties.firstColumnContent.gameObject.KillChildren();
+            ui.layout.properties.secondColumnContent.gameObject.KillChildren();
 
-            background.gameObject.SetActive(false);
-            area.gameObject.SetActive(false);
+            ui.background.gameObject.SetActive(false);
+            ui.area.gameObject.SetActive(false);
         }
 
-        public Transform FirstColumnContent => layout.properties.firstColumnContent;
-        public Transform SecondColumnContent => layout.properties.secondColumnContent;
+        public Transform FirstColumnContent => ui.layout.properties.firstColumnContent;
+        public Transform SecondColumnContent => ui.layout.properties.secondColumnContent;
 
+        [System.Serializable]
+        public struct UIInfo
+        {
+            public Transform area;
+            public Image background;
+            public Transform windowBox;
+            public Image windowBoxImage;
+            public HeaderInfo header;
+            public LayoutInfo layout;
+            public FooterInfo footer;
+        }
+        
         [System.Serializable]
         public struct HeaderInfo
         {
             public Transform area;
+            public Image headerImage;
             public TextMeshProUGUI text;
         }
 
@@ -323,6 +380,9 @@ namespace BoubakProductions.UI
             public TextMeshProUGUI acceptButtonText;
             public TextMeshProUGUI denyButtonText;
             public TextMeshProUGUI specialButtonText;
+            public Image acceptButtonImage;
+            public Image denyButtonImage;
+            public Image specialButtonImage;
             public Button acceptButton;
             public Button denyButton;
             public Button specialButton;
@@ -331,5 +391,19 @@ namespace BoubakProductions.UI
             public Action OnDenyButtonClick;
             public Action OnSpecialButtonClick;
         }
+        
+        
+        [System.Serializable]
+        public struct ThemeStyleInfo
+        {
+            public Sprite backgroundImage;
+            public Sprite headerImage;
+            public Sprite buttonNormal;
+            public Sprite buttonHighlight;
+            public Sprite buttonPress;
+            public Sprite buttonSelected;
+            public Sprite buttonDisabled;
+        }
+        
     }
 }

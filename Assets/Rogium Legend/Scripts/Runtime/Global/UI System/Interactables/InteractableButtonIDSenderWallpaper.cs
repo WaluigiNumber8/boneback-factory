@@ -11,29 +11,27 @@ namespace Rogium.Global.UISystem.Interactables
     public class InteractableButtonIDSenderWallpaper : MonoBehaviour
     {
         [SerializeField] private AssetWallpaperController assetController;
-        [SerializeField] private Button button;
 
         private InteractableButton interactableButton;
         
         private void Start()
         {
             interactableButton = GetComponent<InteractableButton>();
-            button = GetComponent<Button>();
         }
 
         private void OnEnable()
         {
-            button.onClick.AddListener(SendSignal);
+            assetController.OnConstruct += UpdateSignal;
         }
 
         private void OnDisable()
         {
-            button.onClick.RemoveListener(SendSignal);
+            assetController.OnConstruct -= UpdateSignal;
         }
 
-        private void SendSignal()
+        private void UpdateSignal(int newValue)
         {
-            interactableButton.Number = assetController.ID;
+            interactableButton.Number = newValue;
         }
     }
 }

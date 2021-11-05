@@ -63,7 +63,7 @@ namespace Rogium.Gameplay.AssetRandomGenerator
             memory[memoryPos] = value;
             memoryPos++;
 
-            if (memoryPos > memory.Length)
+            if (memoryPos >= memory.Length)
                 memoryPos = 0;
         }
 
@@ -96,7 +96,7 @@ namespace Rogium.Gameplay.AssetRandomGenerator
         {
             if (value > collectionLength) value -= collectionLength;
             value = Mathf.Max(value, 0);
-            value = Mathf.Min(collectionLength, value);
+            value = Mathf.Min(collectionLength-1, value);
             return value;
         }
         

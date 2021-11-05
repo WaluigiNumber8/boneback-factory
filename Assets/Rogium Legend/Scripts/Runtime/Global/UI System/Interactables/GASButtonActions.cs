@@ -6,7 +6,6 @@ using Rogium.GASExtensions;
 using Rogium.Global.UISystem.UI;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Core;
-using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Rooms;
 using Rogium.Global.UISystem.AssetSelection;
 
@@ -37,12 +36,6 @@ namespace Rogium.Global.UISystem.Interactables
             GAS.SwitchScene(1);
         }
 
-        public static void CreateTestCampaign()
-        {
-            //TODO Temporary solution for Campaign Creation. Fix when the actual campaign selection system works.
-            LibraryOverseer.Instance.CreateAndAddCampaign(EditorDefaults.CampaignTitle, EditorDefaults.CampaignIcon, EditorDefaults.Author, LibraryOverseer.Instance.GetPacksCopy[0]);
-        }
-        
         #region Return from menus
         public static void ReturnToMainMenu()
         {
@@ -84,6 +77,7 @@ namespace Rogium.Global.UISystem.Interactables
             GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundMain);
             GAS.ObjectSetActive(true, UIMainContainer.GetInstance().BackgroundGameplayMenus);
             GASRogium.SwitchMenu(MenuType.CampaignSelection);
+            CampaignAssetSelectionOverseer.Instance.SelectCampaignFirst();
         }
         
         public static void OpenRoomSelection()
@@ -109,6 +103,11 @@ namespace Rogium.Global.UISystem.Interactables
         {
             new ModalWindowPropertyBuilderPack().OpenForCreate();
         }
+        
+        public static void CreateCampaign()
+        {
+            new ModalWindowPropertyBuilderCampaign().OpenForCreate();
+        }
 
         public static void CreateRoom()
         {
@@ -118,7 +117,6 @@ namespace Rogium.Global.UISystem.Interactables
         {
             new ModalWindowPropertyBuilderTile().OpenForCreate();
         }
-
         #endregion
 
         #region Edit Asset Properties
@@ -146,13 +144,28 @@ namespace Rogium.Global.UISystem.Interactables
         {
             ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
             storedNumber = packIndex;
-            window.OpenAsMessage("Do you really want to remove this pack?","Yes","No", RemovePackAccept, true);
+            window.OpenAsMessage("Do you really want to remove this pack?", ThemeType.Blue,"Yes","No", RemovePackAccept, true);
         }
         private static void RemovePackAccept()
         {
-            SafetyNet.EnsureIntIsBiggerThan(storedNumber, 0, "StoredNumber");
+            SafetyNet.EnsureIntIsBiggerOrEqualTo(storedNumber, 0, "StoredNumber");
             LibraryOverseer.Instance.DeletePack(storedNumber);
             GASRogium.ReopenSelectionMenu(AssetType.Pack);
+            storedNumber = -1;
+        }
+        
+        public static void RemoveCampaign(int campaignIndex)
+        {
+            ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
+            storedNumber = campaignIndex;
+            window.OpenAsMessage("Do you really want to remove this campaign?", ThemeType.Red,"Yes","No", RemoveCampaignAccept, true);
+        }
+        
+        private static void RemoveCampaignAccept()
+        {
+            SafetyNet.EnsureIntIsBiggerOrEqualTo(storedNumber, 0, "StoredNumber");
+            LibraryOverseer.Instance.DeleteCampaign(storedNumber);
+            CampaignShowPrevious();
             storedNumber = -1;
         }
 
@@ -160,11 +173,11 @@ namespace Rogium.Global.UISystem.Interactables
         {
             ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
             storedNumber = roomIndex;
-            window.OpenAsMessage("Do you really want to remove this room?", "Yes", "No", RemoveRoomAccept, true);
+            window.OpenAsMessage("Do you really want to remove this room?", ThemeType.Blue, "Yes", "No", RemoveRoomAccept, true);
         }
         private static void RemoveRoomAccept()
         {
-            SafetyNet.EnsureIntIsBiggerThan(storedNumber, 0, "StoredNumber");
+            SafetyNet.EnsureIntIsBiggerOrEqualTo(storedNumber, 0, "StoredNumber");
             PackEditorOverseer.Instance.RemoveRoom(storedNumber);
             GASRogium.ReopenSelectionMenu(AssetType.Room);
             storedNumber = -1;
@@ -174,16 +187,17 @@ namespace Rogium.Global.UISystem.Interactables
         {
             ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
             storedNumber = tileIndex;
-            window.OpenAsMessage("Do you really want to remove this tile?", "Yes", "No", RemoveTileAccept, true);
+            window.OpenAsMessage("Do you really want to remove this tile?", ThemeType.Blue, "Yes", "No", RemoveTileAccept, true);
         }
         private static void RemoveTileAccept()
         {
-            SafetyNet.EnsureIntIsBiggerThan(storedNumber, 0, "StoredNumber");
+            SafetyNet.EnsureIntIsBiggerOrEqualTo(storedNumber, 0, "StoredNumber");
             PackEditorOverseer.Instance.RemoveTile(storedNumber);
             GASRogium.ReopenSelectionMenu(AssetType.Tile);
             storedNumber = -1;
         }
 
+        
         #endregion
 
         #region Open Editors
@@ -216,7 +230,7 @@ namespace Rogium.Global.UISystem.Interactables
         public static void CancelChangesRoom()
         {
             ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
-            window.OpenAsMessage("Do you really not want to save changes?","Yes","No", OpenRoomSelection, true);
+            window.OpenAsMessage("Do you really not want to save changes?", ThemeType.Blue,"Yes","No", OpenRoomSelection, true);
         }
         #endregion
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using BoubakProductions.UI;
 using Rogium.Editors.Packs;
 using Rogium.Global.UISystem.AssetSelection;
 
@@ -33,7 +34,7 @@ namespace Rogium.Global.UISystem.UI
             propertyBuilder.BuildPlainText("Created on", currentPackInfo.CreationDate.ToString(), window.SecondColumnContent);
 
             editedAssetBase = currentPackInfo;
-            window.OpenAsPropertiesColumn2(headerText, "Done", "Cancel", onConfirmButton, true);
+            window.OpenAsPropertiesColumn2(headerText, ThemeType.Blue, "Done", "Cancel", onConfirmButton, true);
         }
 
         /// <summary>

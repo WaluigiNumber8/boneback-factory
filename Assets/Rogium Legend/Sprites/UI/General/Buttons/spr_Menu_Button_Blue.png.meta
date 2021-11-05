@@ -4,19 +4,19 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 1710142096185499444
-    second: spr_menu_Button_0
+    second: spr_menu_Button_Blue_0
   - first:
       213: 5859310336560257863
-    second: spr_menu_Button_1
+    second: spr_menu_Button_Blue_1
   - first:
       213: -2898601567995641077
-    second: spr_menu_Button_2
+    second: spr_menu_Button_Blue_2
   - first:
       213: -6978822509411700170
-    second: spr_menu_Button_3
+    second: spr_menu_Button_Blue_3
   - first:
       213: -3446791080198967921
-    second: spr_menu_Button_4
+    second: spr_menu_Button_Blue_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -118,7 +118,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spr_menu_Button_0
+      name: spr_menu_Button_Blue_0
       rect:
         serializedVersion: 2
         x: 0
@@ -139,7 +139,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_menu_Button_1
+      name: spr_menu_Button_Blue_1
       rect:
         serializedVersion: 2
         x: 16
@@ -160,7 +160,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_menu_Button_2
+      name: spr_menu_Button_Blue_2
       rect:
         serializedVersion: 2
         x: 32
@@ -181,7 +181,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_menu_Button_3
+      name: spr_menu_Button_Blue_3
       rect:
         serializedVersion: 2
         x: 48
@@ -202,7 +202,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_menu_Button_4
+      name: spr_menu_Button_Blue_4
       rect:
         serializedVersion: 2
         x: 64

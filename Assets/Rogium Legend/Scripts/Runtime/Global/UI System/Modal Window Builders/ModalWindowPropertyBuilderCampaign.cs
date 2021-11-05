@@ -1,5 +1,7 @@
 ﻿using System;
+using BoubakProductions.UI;
 using Rogium.Editors.Campaign;
+using Rogium.Editors.Packs;
 using Rogium.Global.UISystem.AssetSelection;
 
 namespace Rogium.Global.UISystem.UI
@@ -11,7 +13,8 @@ namespace Rogium.Global.UISystem.UI
     {
         public override void OpenForCreate()
         {
-            OpenWindow(new CampaignAsset(), CreateAsset, "Creating a new campaign");
+            //TODO Remove temporary solution for getting pack.
+            OpenWindow(new CampaignAsset(LibraryOverseer.Instance.GetPacksCopy[0]), CreateAsset, "Creating a new campaign");
         }
 
         public override void OpenForUpdate()
@@ -21,9 +24,13 @@ namespace Rogium.Global.UISystem.UI
 
         private void OpenWindow(CampaignAsset asset, Action onConfirmButton, string headerText)
         {
-            
+            propertyBuilder.BuildInputField("Name", asset.Title, window.FirstColumnContent, asset.UpdateTitle);
+            propertyBuilder.BuildPlainText("Created by", asset.Author, window.FirstColumnContent);
+            propertyBuilder.BuildPlainText("Created on", asset.CreationDate.ToString(), window.FirstColumnContent);
+
+            editedAssetBase = asset;
+            window.OpenAsPropertiesColumn1(headerText, ThemeType.Red, "Done", "Cancel", onConfirmButton, true);
         }
-        
         
         protected override void CreateAsset()
         {

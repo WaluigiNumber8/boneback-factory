@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BoubakProductions.UI;
 using Rogium.Editors.TileData;
 
 namespace Rogium.Global.UISystem.UI
@@ -29,14 +30,13 @@ namespace Rogium.Global.UISystem.UI
 
         private void OpenWindow(TileAsset currentTileAsset, Action onConfirmAction, string headerText)
         {
-
             propertyBuilder.BuildInputField("Title", currentTileAsset.Title, window.FirstColumnContent, currentTileAsset.UpdateTitle);
             propertyBuilder.BuildDropdown("Type", Enum.GetNames(typeof(TileType)).ToList(), 0, window.FirstColumnContent, currentTileAsset.UpdateTileType);
             propertyBuilder.BuildPlainText("Created by", currentTileAsset.Author, window.FirstColumnContent);
             propertyBuilder.BuildPlainText("Created on", currentTileAsset.CreationDate.ToString(), window.FirstColumnContent);
             
             editedAssetBase = currentTileAsset;
-            window.OpenAsPropertiesColumn1(headerText, "Done", "Cancel", onConfirmAction, true);
+            window.OpenAsPropertiesColumn1(headerText, ThemeType.Blue, "Done", "Cancel", onConfirmAction, true);
         }
 
         protected override void CreateAsset()

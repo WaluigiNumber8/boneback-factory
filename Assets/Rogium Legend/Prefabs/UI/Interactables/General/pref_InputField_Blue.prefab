@@ -198,7 +198,6 @@ GameObject:
   - component: {fileID: 7515233805834064384}
   - component: {fileID: 3632722608389898923}
   - component: {fileID: 1382075352184070466}
-  - component: {fileID: 7773290472386547520}
   m_Layer: 5
   m_Name: pref_InputField_Blue
   m_TagString: Untagged
@@ -382,15 +381,3 @@ MonoBehaviour:
   m_isRichTextEditingAllowed: 0
   m_LineLimit: 0
   m_InputValidator: {fileID: 0}
---- !u!114 &7773290472386547520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5892933663807651592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34cb33770e184ea38dc983851a1dbfe1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

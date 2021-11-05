@@ -30,11 +30,6 @@ namespace Rogium.Global.UISystem.Interactables
                     Debug.LogError("This button Currently does nothing...");
                     break;
 
-                case ButtonType.TEST:
-                    GASButtonActions.CreateTestCampaign();
-                    break;
-                
-                
                 
                 case ButtonType.ReturnToAssetTypeSelection:
                     break;
@@ -97,6 +92,7 @@ namespace Rogium.Global.UISystem.Interactables
                 case ButtonType.CreateProjectile:
                     break;
                 case ButtonType.CreateCampaign:
+                    GASButtonActions.CreateCampaign();
                     break;
                 
                 #endregion
@@ -153,6 +149,8 @@ namespace Rogium.Global.UISystem.Interactables
                 case ButtonType.DeleteProjectile:
                     break;
                 case ButtonType.DeleteCampaign:
+                    SafetyNet.EnsureIntIsNotEqual(number, -1, "BUTTON INTERACTION - REMOVE CAMPAIGN");
+                    GASButtonActions.RemoveCampaign(number);
                     break;
                 
                 #endregion

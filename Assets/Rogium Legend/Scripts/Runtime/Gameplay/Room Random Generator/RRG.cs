@@ -72,7 +72,8 @@ namespace Rogium.Gameplay.AssetRandomGenerator
         /// <returns>The index of the room to grab.</returns>
         public int NextNormalRoom()
         {
-            return normalRooms[randomizer.GetNext(0)];
+            int value = randomizer.GetNext(0);
+            return normalRooms[value];
         }
         
         /// <summary>
