@@ -18,7 +18,9 @@ namespace Rogium.Global.GridSystem
         /// <param name="assetList">The list fo asset from which to pick the sprites.</param>
         public static void LoadGridUI<T>(GridCell[,] cells, ObjectGrid<string> IDGrid, AssetList<T> assetList) where T : AssetBase
         {
+            ClearAllTiles(cells);
             AssetBase lastFoundAsset = null;
+            
             for (int x = 0; x < cells.GetLength(0); x++)
             {
                 for (int y = 0; y < cells.GetLength(1); y++)
@@ -30,12 +32,14 @@ namespace Rogium.Global.GridSystem
                         cells[x, y].UpdateSprite(EditorDefaults.EmptyGridSprite);
                         continue;
                     }
+
                     //Cache Optimisation
                     if (id == lastFoundAsset?.ID)
                     {
                         cells[x, y].UpdateSprite(lastFoundAsset.Icon);
                         continue;
                     }
+
                     //Try searching for ID
                     try
                     {
@@ -47,7 +51,18 @@ namespace Rogium.Global.GridSystem
                     {
                         cells[x, y].UpdateSprite(EditorDefaults.MissingSprite);
                     }
-                    
+
+                }
+            }
+        }
+
+        private static void ClearAllTiles(GridCell[,] cells)
+        {
+            for (int x = 0; x < cells.GetLength(0); x++)
+            {
+                for (int y = 0; y < cells.GetLength(1); y++)
+                {
+                    cells[x, y].UpdateSprite(EditorDefaults.EmptyGridSprite);
                 }
             }
         }

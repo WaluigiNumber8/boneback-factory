@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using NUnit.Framework;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Core.Defaults;
@@ -24,6 +25,7 @@ public class test_Gameplay_Loading
     public void Setup()
     {
         PackAsset pack = TestBuilder.SetupPackAsset();
+        
         campaign = new CampaignAsset("New Campaign", EditorDefaults.CampaignIcon, "Test Author", DateTime.Now, pack);
         
         grid = Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Gameplay_Grid.prefab")).GetComponent<Grid>();

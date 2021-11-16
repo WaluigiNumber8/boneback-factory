@@ -5,6 +5,7 @@ namespace Rogium.Global.UISystem.Interactables
     {
         DoNothing = 0,
 
+        #region Open Selection Menus
         SelectionOpenPack = 1,
         SelectionOpenPalette = 2,
         SelectionOpenSprite = 3,
@@ -15,10 +16,15 @@ namespace Rogium.Global.UISystem.Interactables
         SelectionOpenProjectile = 8,
         SelectionOpenCampaign = 9,
         SelectionOpenAssetType = 10,
+        #endregion
 
+        #region Return from Menus
         ReturnToAssetTypeSelection = 11,
         ReturnToMainMenu = 12,
 
+        #endregion
+
+        #region Create Assets
         CreatePack = 13,
         CreatePalette = 14,
         CreateSprite = 15,
@@ -28,7 +34,9 @@ namespace Rogium.Global.UISystem.Interactables
         CreateTile = 19,
         CreateProjectile = 20,
         CreateCampaign = 21,
-        
+        #endregion
+
+        #region Edit Asset Properties
         EditPackProperties = 22,
         EditPaletteProperties = 23,
         EditSpriteProperties = 24,
@@ -38,7 +46,9 @@ namespace Rogium.Global.UISystem.Interactables
         EditTileProperties = 28,
         EditProjectileProperties = 29,
         EditCampaignProperties = 30,
+        #endregion
 
+        #region Delete Assets
         DeletePack = 31,
         DeletePalette = 32,
         DeleteSprite = 33,
@@ -48,7 +58,9 @@ namespace Rogium.Global.UISystem.Interactables
         DeleteTile = 37,
         DeleteProjectile = 38,
         DeleteCampaign = 39,
-        
+        #endregion
+
+        #region Open Editors
         EditorOpenPalette = 40,
         EditorOpenSprite = 41,
         EditorOpenWeapon = 42,
@@ -57,7 +69,10 @@ namespace Rogium.Global.UISystem.Interactables
         EditorOpenTile = 45,
         EditorOpenProjectile = 46,
         EditorOpenCampaign = 47,
-        
+        #endregion
+
+        #region Save Editor Changes
+
         SaveChangesPalette = 48,
         SaveChangesSprite = 49,
         SaveChangesWeapon = 50,
@@ -66,7 +81,10 @@ namespace Rogium.Global.UISystem.Interactables
         SaveChangesTile = 53,
         SaveChangesProjectile = 54,
         SaveChangesCampaign = 55,
-        
+
+        #endregion
+
+        #region Cancel Editor Changes
         CancelChangesPalette = 56,
         CancelChangesSprite = 57,
         CancelChangesWeapon = 58,
@@ -75,9 +93,12 @@ namespace Rogium.Global.UISystem.Interactables
         CancelChangesTile = 61,
         CancelChangesProjectile = 62,
         CancelChangesCampaign = 63,
-        
+        #endregion
+
+        #region Campaign Editor
         CampaignShowNext = 64,
         CampaignShowPrevious = 65,
+        #endregion
         
         Play = 10000,
         TEST = 10001

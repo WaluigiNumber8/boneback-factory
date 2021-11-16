@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using BoubakProductions.UI;
 using Rogium.Editors.TileData;
@@ -25,7 +24,7 @@ namespace Rogium.Global.UISystem.UI
 
         public override void OpenForUpdate()
         {
-            OpenWindow(tileEditor.CurrentTile, UpdateAsset, $"Updating {tileEditor.CurrentTile.Title}");
+            OpenWindow(new TileAsset(tileEditor.CurrentTile), UpdateAsset, $"Updating {tileEditor.CurrentTile.Title}");
         }
 
         private void OpenWindow(TileAsset currentTileAsset, Action onConfirmAction, string headerText)
@@ -47,6 +46,7 @@ namespace Rogium.Global.UISystem.UI
 
         protected override void UpdateAsset()
         {
+            tileEditor.UpdateAsset((TileAsset)editedAssetBase);
             tileEditor.CompleteEditing();
             selectionMenu.ReopenForTiles();
         }

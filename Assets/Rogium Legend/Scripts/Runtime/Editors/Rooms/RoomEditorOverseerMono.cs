@@ -1,5 +1,5 @@
 ﻿using System;
-using Rogium.Editors.Core;
+using Rogium.Editors.Packs;
 using Rogium.Editors.TileData;
 using Rogium.Global.GridSystem;
 using UnityEngine;
@@ -17,16 +17,17 @@ namespace Rogium.Editors.Rooms
         
         [SerializeField] private EditorGridOverseer editorGrid;
 
-        private void OnEnable()
+        private void Awake()
         {
             editor = PackEditorOverseer.Instance;
             roomEditor = RoomEditorOverseer.Instance;
+            assetPicker ??= new AssetPickerOverseer();
+        }
 
+        private void OnEnable()
+        {
             roomEditor.OnAssignRoom += PrepareRoomEditor;
             editorGrid.OnInteractionClick += UpdateGridCell;
-            
-            assetPicker ??= new AssetPickerOverseer();
-            assetPicker.AssignTile(editor.CurrentPack.Tiles[0]);
         }
 
         private void OnDisable()
@@ -40,6 +41,7 @@ namespace Rogium.Editors.Rooms
         /// </summary>
         private void PrepareRoomEditor(RoomAsset roomAsset)
         {
+            assetPicker.AssignTile(editor.CurrentPack.Tiles[0]);
             editorGrid.LoadGrid(PackEditorOverseer.Instance.CurrentPack.Tiles, roomAsset);
         }
         

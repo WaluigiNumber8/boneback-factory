@@ -1,8 +1,5 @@
-﻿using System;
-using Rogium.Editors.Core.Defaults;
-using Rogium.Global.Input;
+﻿using Rogium.Global.Input;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Rogium.Global.GridSystem
 {

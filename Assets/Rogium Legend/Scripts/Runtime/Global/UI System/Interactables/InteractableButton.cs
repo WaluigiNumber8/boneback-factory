@@ -1,4 +1,5 @@
 ﻿using BoubakProductions.Safety;
+using Rogium.Global.GASExtension;
 using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,16 +31,13 @@ namespace Rogium.Global.UISystem.Interactables
                     Debug.LogError("This button Currently does nothing...");
                     break;
 
-                
+                #region Return from Menus
                 case ButtonType.ReturnToAssetTypeSelection:
                     break;
                 case ButtonType.ReturnToMainMenu:
                     GASButtonActions.ReturnToMainMenu();
                     break;
-                case ButtonType.Play:
-                    SafetyNet.EnsureIntIsNotEqual(number, -1, "BUTTON INTERACTION - PLAY CAMPAIGN");
-                    GASButtonActions.PlayCampaign(number);
-                    break;
+                #endregion
 
                 #region Open Selection Menus
                 case ButtonType.SelectionOpenAssetType:
@@ -121,6 +119,8 @@ namespace Rogium.Global.UISystem.Interactables
                 case ButtonType.EditProjectileProperties:
                     break;
                 case ButtonType.EditCampaignProperties:
+                    SafetyNet.EnsureIntIsNotEqual(number, -1, "BUTTON INTERACTION - EDIT CAMPAIGN PROPERTIES");
+                    GASButtonActions.EditCampaignProperties(number);
                     break;
                 
                 #endregion
@@ -173,6 +173,8 @@ namespace Rogium.Global.UISystem.Interactables
                 case ButtonType.EditorOpenProjectile:
                     break;
                 case ButtonType.EditorOpenCampaign:
+                    SafetyNet.EnsureIntIsNotEqual(number, -1, "BUTTON INTERACTION - OPEN CAMPAIGN EDITOR");
+                    GASButtonActions.OpenCampaignEditor(number);
                     break;
                 #endregion
 
@@ -193,6 +195,7 @@ namespace Rogium.Global.UISystem.Interactables
                 case ButtonType.SaveChangesProjectile:
                     break;
                 case ButtonType.SaveChangesCampaign:
+                    GASButtonActions.SaveChangesCampaign();
                     break;
                 #endregion
 
@@ -213,15 +216,24 @@ namespace Rogium.Global.UISystem.Interactables
                 case ButtonType.CancelChangesProjectile:
                     break;
                 case ButtonType.CancelChangesCampaign:
+                    GASButtonActions.CancelChangesCampaign();
                     break;
                 #endregion
 
+                #region Campaign Editor
                 case ButtonType.CampaignShowNext:
                     GASButtonActions.CampaignShowNext();
                     break;
                 case ButtonType.CampaignShowPrevious:
                     GASButtonActions.CampaignShowPrevious();
                     break;
+                #endregion
+                
+                case ButtonType.Play:
+                    SafetyNet.EnsureIntIsNotEqual(number, -1, "BUTTON INTERACTION - PLAY CAMPAIGN");
+                    GASButtonActions.PlayCampaign(number);
+                    break;
+                
                 default:
                     throw new InvalidEnumArgumentException("Unknown Button Type.");
             }

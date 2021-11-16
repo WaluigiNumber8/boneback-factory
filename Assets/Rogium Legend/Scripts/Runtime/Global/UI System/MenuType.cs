@@ -1,28 +1,25 @@
-﻿using System.Collections;
-using UnityEngine;
-
-namespace Rogium.Global.UISystem
+﻿namespace Rogium.Global.UISystem
 {
     /// <summary>
     /// All the different menu types, that can appear in the game.
     /// </summary>
     public enum MenuType
     {
-        None,
-        MainMenu,
-        OptionsMenu,
+        None = 0,
+        MainMenu = 1,
+        OptionsMenu = 2,
 
-        AssetSelection,
-        AssetTypeSelection,
+        AssetSelection = 3,
+        AssetTypeSelection = 4,
+        AssetSelectionPicker = 12,
+        CampaignSelection = 10,
 
-        WeaponEditor,
-        EnemyEditor,
-        RoomEditor,
-        ProjectileEditor,
-        PaletteEditor,
-        SpriteEditor,
-
-        CampaignSelection,
-        CampaignEditor
+        CampaignEditor = 11,
+        WeaponEditor = 5,
+        EnemyEditor = 6,
+        RoomEditor = 6,
+        ProjectileEditor = 7,
+        PaletteEditor = 8,
+        SpriteEditor = 9,
     }
 }

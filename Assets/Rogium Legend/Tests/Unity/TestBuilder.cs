@@ -3,6 +3,8 @@ using Rogium.Editors.Packs;
 using Rogium.Editors.Rooms;
 using Rogium.Editors.TileData;
 using Rogium.Global.GridSystem;
+using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Builds things for testing.
@@ -29,4 +31,21 @@ public static class TestBuilder
         pack.Rooms.Add(room);
         return pack;
     }
+
+    /// <summary>
+    /// Builds the canvas.
+    /// </summary>
+    /// <param name="canvas">The object holding the canvas.</param>
+    public static void SetupCanvas(out GameObject canvas)
+    {
+        //Canvas
+        canvas = new GameObject();
+        canvas.AddComponent<Canvas>();
+        canvas.AddComponent<GraphicRaycaster>();
+        CanvasScaler scaler = canvas.AddComponent<CanvasScaler>();
+
+        scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+        scaler.referenceResolution = new Vector2(1920, 1080);
+    }
+    
 }

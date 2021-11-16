@@ -11,15 +11,21 @@ namespace Rogium.Global.UISystem.UI
     /// </summary>
     public class ModalWindowPropertyBuilderCampaign : ModalWindowPropertyBuilder
     {
+        private CampaignEditorOverseer campaignEditor;
+
+        public ModalWindowPropertyBuilderCampaign()
+        {
+            campaignEditor = CampaignEditorOverseer.Instance;;
+        }
+        
         public override void OpenForCreate()
         {
-            //TODO Remove temporary solution for getting pack.
-            OpenWindow(new CampaignAsset(LibraryOverseer.Instance.GetPacksCopy[0]), CreateAsset, "Creating a new campaign");
+            OpenWindow(new CampaignAsset(), CreateAsset, "Creating a new campaign");
         }
 
         public override void OpenForUpdate()
         {
-            throw new System.NotImplementedException();
+            OpenWindow(new CampaignAsset(campaignEditor.CurrentCampaign), UpdateAsset, $"Updating {campaignEditor.CurrentCampaign.Title}");
         }
 
         private void OpenWindow(CampaignAsset asset, Action onConfirmButton, string headerText)
@@ -40,7 +46,9 @@ namespace Rogium.Global.UISystem.UI
 
         protected override void UpdateAsset()
         {
-            throw new System.NotImplementedException();
+            campaignEditor.UpdateAsset((CampaignAsset)editedAssetBase);
+            campaignEditor.CompleteEditing();
+            CampaignAssetSelectionOverseer.Instance.SelectAgain();
         }
     }
 }

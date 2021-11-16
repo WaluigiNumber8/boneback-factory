@@ -10,14 +10,13 @@ namespace Rogium.Global.UISystem.AssetSelection
     public class CampaignAssetSelectionOverseerMono : MonoSingleton<CampaignAssetSelectionOverseerMono>
     {
         [SerializeField] private AssetWallpaperController wallpaperController;
-        [SerializeField] private int startingIndex;
         
         private CampaignAssetSelectionOverseer overseer;
         
         private void Start()
         {
             overseer = CampaignAssetSelectionOverseer.Instance;
-            overseer.Initialize(wallpaperController, startingIndex);
+            overseer.Initialize(wallpaperController);
         }
     }
 }

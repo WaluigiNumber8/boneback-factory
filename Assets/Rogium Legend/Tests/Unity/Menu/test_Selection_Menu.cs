@@ -1,20 +1,20 @@
-﻿using System.Collections;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Packs;
+using Rogium.Global.GASExtension;
 using Rogium.Global.UISystem.AssetSelection;
-using Rogium.Global.UISystem.Interactables;
+using System.Collections;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.TestTools;
-using UnityEngine.UI;
 
 public class test_Selection_Menu
 {
     private GameObject canvas;
     private PackInfoAsset packInfo;
-    private AssetSelectionOverseerMono selectionMenu;
+    private AssetSelectionOverseer assetSelection;
+    private AssetSelectionOverseerMono assetSelectionMono;
 
     [SetUp]
     public void Setup()
@@ -30,13 +30,7 @@ public class test_Selection_Menu
 
         #region Prepare Menu
         //Canvas
-        canvas = new GameObject();
-        canvas.AddComponent<Canvas>();
-        canvas.AddComponent<GraphicRaycaster>();
-        CanvasScaler scaler = canvas.AddComponent<CanvasScaler>();
-
-        scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-        scaler.referenceResolution = new Vector2(1920, 1080);
+        TestBuilder.SetupCanvas(out canvas);
 
         //Camera
         GameObject cam = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/Global/pref_Camera_Main.prefab");
@@ -44,8 +38,10 @@ public class test_Selection_Menu
 
         //Menus
         GameObject selectionMenus = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Menu_Selection.prefab");
-        selectionMenu = Object.Instantiate(selectionMenus, canvas.transform).GetComponent<AssetSelectionOverseerMono>();
+        assetSelectionMono = Object.Instantiate(selectionMenus, canvas.transform).GetComponent<AssetSelectionOverseerMono>();
         #endregion
+        
+        assetSelection = AssetSelectionOverseer.Instance;
     }
 
     [TearDown]
@@ -59,12 +55,12 @@ public class test_Selection_Menu
     {
         LibraryOverseer.Instance.CreateAndAddPack(packInfo);
 
-        selectionMenu.ReopenForPacks();
+        assetSelectionMono.ReopenForPacks();
         yield return new WaitForSeconds(0.1f);
-        Assert.AreEqual(true, selectionMenu.gameObject.activeSelf);
-        Assert.AreEqual(true, selectionMenu.GridMenu.activeSelf);
-        Assert.AreEqual(false, selectionMenu.ListMenu.activeSelf);
-        Assert.AreEqual(1, selectionMenu.AssetCount);
+        Assert.AreEqual(true, assetSelectionMono.gameObject.activeSelf);
+        Assert.AreEqual(true, assetSelectionMono.GridMenu.activeSelf);
+        Assert.AreEqual(false, assetSelectionMono.ListMenu.activeSelf);
+        Assert.AreEqual(1, assetSelection.AssetCount);
     }
 
     [UnityTest]
@@ -72,12 +68,12 @@ public class test_Selection_Menu
     {
         LibraryOverseer.Instance.CreateAndAddPack(packInfo);
 
-        selectionMenu.ReopenForPacks();
+        assetSelectionMono.ReopenForPacks();
         yield return new WaitForSeconds(0.5f);
-        selectionMenu.ReopenForPacks();
+        assetSelectionMono.ReopenForPacks();
         yield return new WaitForSeconds(0.25f);
 
-        Assert.AreEqual(1, selectionMenu.AssetCount);
+        Assert.AreEqual(1, assetSelection.AssetCount);
 
     }
 
@@ -86,7 +82,7 @@ public class test_Selection_Menu
     {
         LibraryOverseer.Instance.CreateAndAddPack(packInfo);
 
-        selectionMenu.ReopenForPacks();
+        assetSelectionMono.ReopenForPacks();
         
         yield return new WaitForSeconds(0.2f);
         LibraryOverseer.Instance.ActivatePackEditor(0);
@@ -95,13 +91,13 @@ public class test_Selection_Menu
         PackEditorOverseer.Instance.CreateNewRoom();
 
         yield return new WaitForSeconds(0.1f);
-        selectionMenu.ReopenForRooms();
+        assetSelectionMono.ReopenForRooms();
         yield return new WaitForSeconds(0.2f);
 
-        Assert.AreEqual(true, selectionMenu.gameObject.activeSelf);
-        Assert.AreEqual(true, selectionMenu.ListMenu.activeSelf);
-        Assert.AreEqual(false, selectionMenu.GridMenu.activeSelf);
-        Assert.AreEqual(3, selectionMenu.AssetCount);
+        Assert.AreEqual(true, assetSelectionMono.gameObject.activeSelf);
+        Assert.AreEqual(true, assetSelectionMono.ListMenu.activeSelf);
+        Assert.AreEqual(false, assetSelectionMono.GridMenu.activeSelf);
+        Assert.AreEqual(3, assetSelection.AssetCount);
     }
 
     [UnityTest]
@@ -114,37 +110,37 @@ public class test_Selection_Menu
         PackEditorOverseer.Instance.CreateNewRoom();
 
         yield return new WaitForSeconds(0.1f);
-        selectionMenu.ReopenForRooms();
+        assetSelectionMono.ReopenForRooms();
         yield return new WaitForSeconds(0.2f);
 
-        Assert.AreEqual(true, selectionMenu.gameObject.activeSelf);
-        Assert.AreEqual(true, selectionMenu.ListMenu.activeSelf);
-        Assert.AreEqual(false, selectionMenu.GridMenu.activeSelf);
-        Assert.AreEqual(2, selectionMenu.AssetCount);
+        Assert.AreEqual(true, assetSelectionMono.gameObject.activeSelf);
+        Assert.AreEqual(true, assetSelectionMono.ListMenu.activeSelf);
+        Assert.AreEqual(false, assetSelectionMono.GridMenu.activeSelf);
+        Assert.AreEqual(2, assetSelection.AssetCount);
     }
 
     [UnityTest]
     public IEnumerator create_new_pack()
     {
-        selectionMenu.ReopenForPacks();
+        assetSelectionMono.ReopenForPacks();
         yield return new WaitForSeconds(0.1f);
         GASButtonActions.CreatePack();
 
         yield return new WaitForSeconds(0.1f);
 
-        Assert.AreEqual(1, selectionMenu.AssetCount);
+        Assert.AreEqual(1, assetSelection.AssetCount);
     }
 
     [UnityTest]
     public IEnumerator delete_pack()
     {
-        selectionMenu.ReopenForPacks();
+        assetSelectionMono.ReopenForPacks();
         yield return new WaitForSeconds(0.1f);
         GASButtonActions.CreatePack();
         yield return new WaitForSeconds(0.3f);
         GASButtonActions.RemovePack(0);
 
-        Assert.AreEqual(0, selectionMenu.AssetCount);
+        Assert.AreEqual(0, assetSelection.AssetCount);
     }
 
 }

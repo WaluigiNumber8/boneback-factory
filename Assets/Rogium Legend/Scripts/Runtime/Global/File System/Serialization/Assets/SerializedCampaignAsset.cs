@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Rogium.Editors.Campaign;
+using Rogium.Editors.Packs;
 
 namespace Rogium.ExternalStorage.Serialization
 {
@@ -14,8 +17,9 @@ namespace Rogium.ExternalStorage.Serialization
         public readonly SerializedSprite icon;
         public readonly string author;
         public readonly string creationDate;
-        
+
         public readonly SerializedPackAsset dataPack;
+        public readonly IList<string> referencedIDs;
 
         public SerializedCampaignAsset(CampaignAsset asset)
         {
@@ -26,8 +30,10 @@ namespace Rogium.ExternalStorage.Serialization
             this.creationDate = asset.CreationDate.ToString();
 
             this.dataPack = new SerializedPackAsset(asset.DataPack);
+            this.referencedIDs = new List<string>(asset.ReferencedIDs);
         }
 
+        
         /// <summary>
         /// Deserialize this Campaign.
         /// </summary>
@@ -39,7 +45,8 @@ namespace Rogium.ExternalStorage.Serialization
                                      icon.Deserialize(),
                                      author,
                                      DateTime.Parse(creationDate),
-                                     dataPack.Deserialize());
+                                     dataPack.Deserialize(),
+                                     referencedIDs);
         }
         
     }

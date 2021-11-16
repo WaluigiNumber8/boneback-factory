@@ -45,6 +45,16 @@ namespace Rogium.Editors.TileData
             myIndex = index;
         }
         
+        /// <summary>
+        /// Updates the tile asset with new data. Not allowed when no asset is assigned.
+        /// </summary>
+        /// <param name="updatedAsset">Asset Containing new data.</param>
+        public void UpdateAsset(TileAsset updatedAsset)
+        { 
+            SafetyNet.EnsureIsNotNull(currentTile, "Currently active asset.");
+            currentTile = new TileAsset(updatedAsset);
+        }
+        
         public void CompleteEditing()
         {
             OnCompleteEditing?.Invoke(CurrentTile, myIndex);

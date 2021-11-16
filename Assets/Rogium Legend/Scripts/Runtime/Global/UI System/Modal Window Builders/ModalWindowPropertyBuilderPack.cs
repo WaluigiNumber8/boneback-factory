@@ -1,7 +1,6 @@
 ﻿using System;
 using BoubakProductions.UI;
 using Rogium.Editors.Packs;
-using Rogium.Global.UISystem.AssetSelection;
 
 namespace Rogium.Global.UISystem.UI
 {

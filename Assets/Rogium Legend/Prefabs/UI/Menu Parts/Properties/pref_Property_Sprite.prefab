@@ -395,7 +395,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   title: {fileID: 8992736525539253784}
-  image: {fileID: 2029373318532658438}
+  icon: {fileID: 2029373318532658438}
+  spriteField: {fileID: 4306732192192704503}
+  ui:
+    borderImage: {fileID: 3685204394688434335}
 --- !u!114 &5067404990219432939
 MonoBehaviour:
   m_ObjectHideFlags: 0

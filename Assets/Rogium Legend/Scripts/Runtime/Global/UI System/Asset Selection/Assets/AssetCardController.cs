@@ -31,7 +31,6 @@ namespace Rogium.Global.UISystem.AssetSelection
             Construct(type, id, asset);
         }
 
-
         public void Construct(AssetType type, int id, AssetBase asset)
         {
             this.type = type;

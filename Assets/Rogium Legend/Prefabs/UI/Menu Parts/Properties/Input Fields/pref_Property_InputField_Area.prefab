@@ -79,6 +79,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: {fileID: 924370423554607896}
   inputField: {fileID: 3330162553110999482}
+  ui:
+    inputFieldImage: {fileID: 1113241161912308307}
+    inputtedText: {fileID: 284110629702513265}
 --- !u!1 &924370423554607878
 GameObject:
   m_ObjectHideFlags: 0

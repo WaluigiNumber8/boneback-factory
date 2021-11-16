@@ -1,6 +1,7 @@
 ﻿using BoubakProductions.UI;
 using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
+using Rogium.Global.GASExtension;
 using Rogium.Global.UISystem.AssetSelection;
 using Rogium.Global.UISystem.Interactables.Properties;
 
@@ -24,7 +25,7 @@ namespace Rogium.Global.UISystem.UI
             propertyBuilder = UIPropertyBuilder.GetInstance();
             lib = LibraryOverseer.Instance;
             editor = PackEditorOverseer.Instance;
-            selectionMenu = AssetSelectionOverseerMono.GetInstance();
+            selectionMenu = GASContainer.GetInstance().AssetSelection;
         }
 
         /// <summary>

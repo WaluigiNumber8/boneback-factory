@@ -1,5 +1,4 @@
-﻿using System;
-using Rogium.Global.UISystem.Interactables;
+﻿using Rogium.Global.GASExtension;
 using UnityEngine;
 
 namespace Rogium.Core

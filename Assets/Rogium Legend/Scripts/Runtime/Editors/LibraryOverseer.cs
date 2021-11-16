@@ -1,11 +1,11 @@
 ﻿using BoubakProductions.Safety;
-using Rogium.Editors.Core;
 using Rogium.Editors.Campaign;
+using Rogium.Editors.Packs;
 using Rogium.ExternalStorage;
 using Rogium.Global.SceneTransferService;
 using UnityEngine;
 
-namespace Rogium.Editors.Packs
+namespace Rogium.Editors.Core
 {
     /// <summary>
     /// Overseers the in-game saveable assets library and controls their content.
@@ -36,6 +36,7 @@ namespace Rogium.Editors.Packs
         private LibraryOverseer() 
         {
             PackEditorOverseer.Instance.OnSaveChanges += UpdatePack;
+            CampaignEditorOverseer.Instance.OnSaveChanges += UpdateCampaign;
             ReloadFromExternalStorage();
         }
 
@@ -64,10 +65,12 @@ namespace Rogium.Editors.Packs
         /// </summary>
         /// <param name="pack">The new data for the pack.</param>
         /// <param name="index">Position to override.</param>
-        public void UpdatePack(PackAsset pack, int index, string lastTitle, string lastAuthor)
+        /// <param name="originalTitle">Pack's Title before updating.</param>
+        /// <param name="originalAuthor">Pack's Author before updating.</param>
+        public void UpdatePack(PackAsset pack, int index, string originalTitle, string originalAuthor)
         {
-            if (packs.TryFinding(lastTitle, lastAuthor) != null)
-                ExternalStorageOverseer.Instance.DeletePack(lastTitle);
+            if (packs.TryFinding(originalTitle, originalAuthor) != null)
+                ExternalStorageOverseer.Instance.DeletePack(originalTitle);
             packs.Update(index, pack);
         }
         
@@ -111,7 +114,7 @@ namespace Rogium.Editors.Packs
         /// <param name="dataPack">Pack Asset, containing everything used in the campaign.</param>
         public void CreateAndAddCampaign(string title, Sprite icon, string author, PackAsset dataPack)
         {
-            CampaignAsset newCampaign = new CampaignAsset(title, icon, author, dataPack);
+            CampaignAsset newCampaign = new CampaignAsset(title, icon, author, new PackAsset(dataPack));
             campaigns.Add(newCampaign);
         }
         public void CreateAndAddCampaign(CampaignAsset campaign)
@@ -125,8 +128,12 @@ namespace Rogium.Editors.Packs
         /// </summary>
         /// <param name="campaign">The new data for the campaign.</param>
         /// <param name="index">Position to override.</param>
-        public void UpdateCampaign(CampaignAsset campaign, int index)
+        /// <param name="originalTitle">Campaign's title before updating.</param>
+        /// <param name="originalAuthor">Campaign's author before updating.</param>
+        public void UpdateCampaign(CampaignAsset campaign, int index, string originalTitle, string originalAuthor)
         {
+            if (campaigns.TryFinding(originalTitle, originalAuthor) != null)
+                ExternalStorageOverseer.Instance.DeleteCampaign(originalTitle);
             campaigns.Update(index, campaign);
         }
         
@@ -149,24 +156,13 @@ namespace Rogium.Editors.Packs
         }
         
         /// <summary>
-        /// Tries to remove a pack from the library. If it doesn't find one, nothing will happen.
-        /// </summary>
-        /// <param name="title">The Title of the pack.</param>
-        /// <param name="author">The author of the pack.</param>
-        public void TryDeletePack(string title, string author)
-        {
-            if (packs.TryFinding(title, author) != null)
-                DeletePack(title, author);
-        }
-
-        /// <summary>
         /// Prepare one of the campaigns in the library for editing.
         /// </summary>
         public void ActivateCampaignEditor(int campaignIndex)
         {
             SafetyNet.EnsureListIsNotEmptyOrNull(campaigns, "Campaign Library");
             SafetyNet.EnsureIntIsInRange(campaignIndex, 0, campaigns.Count, "campaignIndex for activating Campaign Editor");
-            CampaignOverseer.Instance.AssignAsset(campaigns[campaignIndex]);
+            CampaignEditorOverseer.Instance.AssignAsset(campaigns[campaignIndex], campaignIndex);
         }
 
         /// <summary>

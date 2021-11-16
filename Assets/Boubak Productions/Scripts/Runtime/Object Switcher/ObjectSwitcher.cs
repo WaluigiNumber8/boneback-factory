@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using BoubakProductions.Safety;
+﻿using BoubakProductions.Safety;
 using UnityEngine;
 
 namespace BoubakProductions.ObjectSwitching

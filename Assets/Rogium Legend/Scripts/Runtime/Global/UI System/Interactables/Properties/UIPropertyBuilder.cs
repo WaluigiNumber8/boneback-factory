@@ -1,4 +1,5 @@
 ﻿using BoubakProductions.Core;
+using Rogium.Global.ThemeSystem;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,8 @@ namespace Rogium.Global.UISystem.Interactables.Properties
         [SerializeField] private InteractablePropertyToggle toggleProperty;
         [SerializeField] private InteractablePropertyDropdown dropdownProperty;
 
+        private readonly ThemeUpdater themeUpdater = new ThemeUpdater();
+        
         /// <summary>
         /// Builds the Input Field Property.
         /// </summary>
@@ -29,7 +32,8 @@ namespace Rogium.Global.UISystem.Interactables.Properties
         public InteractablePropertyInputField BuildInputField(string title, string value, Transform parent, Action<string> OnChangeValue)
         {
             InteractablePropertyInputField inputField = Instantiate(inputFieldProperty, parent).GetComponent<InteractablePropertyInputField>();
-            inputField.Set(title, value, OnChangeValue);
+            inputField.Construct(title, value, OnChangeValue);
+            themeUpdater.UpdateInputField(inputField);
             return inputField;
         }
 
@@ -44,7 +48,8 @@ namespace Rogium.Global.UISystem.Interactables.Properties
         public InteractablePropertyInputField BuildInputFieldArea(string title, string value, Transform parent, Action<string> OnChangeValue)
         {
             InteractablePropertyInputField inputField = Instantiate(inputFieldAreaProperty, parent).GetComponent<InteractablePropertyInputField>();
-            inputField.Set(title, value, OnChangeValue);
+            inputField.Construct(title, value, OnChangeValue);
+            themeUpdater.UpdateInputField(inputField);
             return inputField;
         }
 
@@ -59,7 +64,8 @@ namespace Rogium.Global.UISystem.Interactables.Properties
         public InteractablePropertyToggle BuildToggle(string title, bool value, Transform parent, Action<bool> OnChangeValue)
         {
             InteractablePropertyToggle toggle = Instantiate(toggleProperty, parent).GetComponent<InteractablePropertyToggle>();
-            toggle.Set(title, value, OnChangeValue);
+            toggle.Construct(title, value, OnChangeValue);
+            themeUpdater.UpdateToggle(toggle);
             return toggle;
         }
 
@@ -75,7 +81,8 @@ namespace Rogium.Global.UISystem.Interactables.Properties
         public InteractablePropertyDropdown BuildDropdown(string title, IList<string> options, int value, Transform parent, Action<int> OnChangeValue)
         {
             InteractablePropertyDropdown dropdown = Instantiate(dropdownProperty, parent).GetComponent<InteractablePropertyDropdown>();
-            dropdown.Set(title, options, value, OnChangeValue);
+            dropdown.Construct(title, options, value, OnChangeValue);
+            themeUpdater.UpdateDropdown(dropdown);
             return dropdown;
         }
 
@@ -89,7 +96,8 @@ namespace Rogium.Global.UISystem.Interactables.Properties
         public InteractablePropertyPlainText BuildPlainText(string title, string value, Transform parent)
         {
             InteractablePropertyPlainText plainText = Instantiate(plainTextProperty, parent).GetComponent<InteractablePropertyPlainText>();
-            plainText.Set(title, value);
+            plainText.Construct(title, value);
+            themeUpdater.UpdatePlainText(plainText);
             return plainText;
         }
 
@@ -103,7 +111,8 @@ namespace Rogium.Global.UISystem.Interactables.Properties
         public InteractablePropertySprite BuildSprite(string title, Sprite value, Transform parent)
         {
             InteractablePropertySprite spriteField = Instantiate(spriteProperty, parent).GetComponent<InteractablePropertySprite>();
-            spriteField.Set(title, value);
+            spriteField.Construct(title, value);
+            themeUpdater.UpdateSpriteField(spriteField);
             return spriteField;
         }
     }

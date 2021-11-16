@@ -24,7 +24,7 @@ namespace Rogium.Global.UISystem.UI
 
         public override void OpenForUpdate()
         {
-            OpenWindow(roomEditor.CurrentRoom, UpdateAsset, $"Editing {roomEditor.CurrentRoom}");
+            OpenWindow(new RoomAsset(roomEditor.CurrentRoom), UpdateAsset, $"Editing {roomEditor.CurrentRoom}");
         }
 
         private void OpenWindow(RoomAsset currentRoomAsset, Action onConfirmAction, string headerText)
@@ -56,6 +56,7 @@ namespace Rogium.Global.UISystem.UI
 
         protected override void UpdateAsset()
         {
+            roomEditor.UpdateAsset((RoomAsset)editedAssetBase);
             roomEditor.CompleteEditing();
             selectionMenu.ReopenForRooms();
         }

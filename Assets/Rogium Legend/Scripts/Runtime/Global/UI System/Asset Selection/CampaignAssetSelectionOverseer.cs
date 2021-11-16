@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using BoubakProductions.Safety;
 using Rogium.Core;
+using Rogium.Editors.Core;
 using Rogium.Editors.Campaign;
-using Rogium.Editors.Packs;
 
 namespace Rogium.Global.UISystem.AssetSelection
 {
@@ -44,14 +44,11 @@ namespace Rogium.Global.UISystem.AssetSelection
         /// <summary>
         /// Initializes the overseer.
         /// <param name="wallpaper">The Wallpaper Controller, that holds information about the UI.</param>
-        /// <param name="startingIndex">The starting position on the list.</param>
         /// </summary>
-        public void Initialize(AssetWallpaperController wallpaper, int startingIndex)
+        public void Initialize(AssetWallpaperController wallpaper)
         {
             SafetyNet.EnsureIsNotNull(wallpaper, "Wallpaper to Initialize");
-            
             this.wallpaper = wallpaper;
-            this.currentIndex = startingIndex;
         }
 
         private void ReloadList()
@@ -109,6 +106,15 @@ namespace Rogium.Global.UISystem.AssetSelection
         public void SelectEmpty()
         {
             wallpaper.ConstructEmpty();
+        }
+
+        /// <summary>
+        /// Reselects the same campaign, that is already loaded.
+        /// </summary>
+        public void SelectAgain()
+        {
+            ReloadList();
+            SelectCampaign();
         }
         
         /// <summary>

@@ -58,6 +58,16 @@ namespace Rogium.Editors.Rooms
         }
 
         /// <summary>
+        /// Updates the room asset with new data. Not allowed when no asset is assigned.
+        /// </summary>
+        /// <param name="updatedAsset">Asset Containing new data.</param>
+        public void UpdateAsset(RoomAsset updatedAsset)
+        { 
+            SafetyNet.EnsureIsNotNull(currentRoom, "Currently active asset.");
+            currentRoom = new RoomAsset(updatedAsset);
+        }
+        
+        /// <summary>
         /// Updates Tiles on the tile grid, based on the active tool in the editor.
         /// </summary>
         /// <param name="worldPosition">Position of the tile, that will be updated, on the grid.</param>

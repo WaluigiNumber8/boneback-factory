@@ -1,4 +1,5 @@
 using Rogium.Editors.Campaign;
+using Rogium.Editors.Packs;
 using Rogium.Gameplay.DataLoading;
 using Rogium.Gameplay.AssetRandomGenerator;
 using UnityEngine;
@@ -95,7 +96,7 @@ namespace Rogium.Gameplay.Core
         /// <param name="index">The index of the room on the list.</param>
         private void LoadNewRoom(int index)
         {
-            roomLoader.Load(tilemapLayers, spawnOffset, CurrentCampaign.DataPack.Rooms[index], currentCampaign.DataPack);
+            roomLoader.Load(tilemapLayers, spawnOffset, currentCampaign.DataPack.Rooms[index], currentCampaign.DataPack);
         }
 
         #endregion

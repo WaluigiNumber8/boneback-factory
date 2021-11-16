@@ -10,15 +10,9 @@ namespace Rogium.Global.UISystem.Interactables
     [RequireComponent(typeof(InteractableButton))]
     public class InteractableButtonIDSenderWallpaper : MonoBehaviour
     {
+        [SerializeField] private InteractableButton interactableButton;
         [SerializeField] private AssetWallpaperController assetController;
-
-        private InteractableButton interactableButton;
         
-        private void Start()
-        {
-            interactableButton = GetComponent<InteractableButton>();
-        }
-
         private void OnEnable()
         {
             assetController.OnConstruct += UpdateSignal;
