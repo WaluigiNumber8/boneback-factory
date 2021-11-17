@@ -220,6 +220,17 @@ namespace Rogium.Global.UISystem.Interactables
                     break;
                 #endregion
 
+                #region Campaign Editor Menu
+                case ButtonType.CampaignEditorSelectAll:
+                    GASButtonActions.CampaignEditorSelectAll();
+                    break;
+                case ButtonType.CampaignEditorSelectNone:
+                    GASButtonActions.CampaignEditorSelectNone();
+                    break;
+                case ButtonType.CampaignEditorSelectRandom:
+                    break;
+                #endregion
+                
                 #region Campaign Editor
                 case ButtonType.CampaignShowNext:
                     GASButtonActions.CampaignShowNext();

@@ -21,7 +21,6 @@ namespace Rogium.Editors.Campaign
 
         private IList<AssetBase> selectedAssets;
 
-
         protected override void Awake()
         {
             base.Awake();
@@ -50,13 +49,17 @@ namespace Rogium.Editors.Campaign
         /// <summary>
         /// Calls for updating packs in the current campaign from the selection picker.
         /// </summary>
-        /// <param name="selectedAssets">The packs to update with.</param>
-        private void UpdatePacksFromSelection(IList<AssetBase> selectedAssets)
+        /// <param name="finalSelectedAssets">The packs to update with.</param>
+        private void UpdatePacksFromSelection(IList<AssetBase> finalSelectedAssets)
         {
-            IList<PackAsset> selectedPacks = selectedAssets.Cast<PackAsset>().ToList();
-            overseer.UpdatePacks(selectedPacks);
+            IList<PackAsset> finalSelectedPacks = finalSelectedAssets.Cast<PackAsset>().ToList();
+            overseer.UpdatePacks(finalSelectedPacks);
         }
 
+        /// <summary>
+        /// Updates the list of selected assets based on the currently edited campaign.
+        /// </summary>
+        /// <param name="campaign">The currently edited campaign.</param>
         private void RefillSelectedAssets(CampaignAsset campaign)
         {
             selectedAssets.Clear();

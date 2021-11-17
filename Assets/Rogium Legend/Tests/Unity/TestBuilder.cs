@@ -39,7 +39,7 @@ public static class TestBuilder
     public static void SetupCanvas(out GameObject canvas)
     {
         //Canvas
-        canvas = new GameObject();
+        canvas = new GameObject("Canvas");
         canvas.AddComponent<Canvas>();
         canvas.AddComponent<GraphicRaycaster>();
         CanvasScaler scaler = canvas.AddComponent<CanvasScaler>();

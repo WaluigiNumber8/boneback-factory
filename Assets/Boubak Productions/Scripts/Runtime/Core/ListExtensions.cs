@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using BoubakProductions.Safety;
 
 namespace BoubakProductions.Core
 {
@@ -13,6 +14,9 @@ namespace BoubakProductions.Core
         /// <returns>Amount of duplicate entries.</returns>
         public static int GetDuplicatesCount<T>(this IList<T> list)
         {
+            SafetyNet.EnsureIsNotNull(list, $"{nameof(list)} - List to get duplicates from.");
+            if (list.Count <= 0) return 0;
+            
             ISet<T> set = new HashSet<T>();
             ISet<T> duplicates = new HashSet<T>();
             int count = 0;
@@ -37,6 +41,7 @@ namespace BoubakProductions.Core
         /// <returns>True if value is found on the list, otherwise returns false.</returns>
         public static bool IsOnList<T>(this IList<T> list, T value) where T : class
         {
+            SafetyNet.EnsureIsNotNull(list, $"{nameof(list)} - List to Cast");
             return list.Any(listValue => listValue == value);
         }
 

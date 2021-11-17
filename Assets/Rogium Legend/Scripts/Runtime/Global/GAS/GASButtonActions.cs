@@ -241,6 +241,7 @@ namespace Rogium.Global.GASExtension
         public static void SaveChangesCampaign()
         {
             ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
+            //TODO Make sure you cannot combine a campaign, when no assets are selected.
             window.OpenAsMessage("Combine selected packs into a Campaign? Changes made to the packs after this combination will not effect this campaign.", ThemeType.Red,"Combine","Cancel", SaveChangesCampaignConfirm, true);
         }
 
@@ -273,6 +274,23 @@ namespace Rogium.Global.GASExtension
         }
         #endregion
 
+        #region Campaign Editor Menu
+        public static void CampaignEditorSelectAll()
+        {
+            CampaignEditorOverseerMono.GetInstance().SelectionPicker.WhenAssetSelectAll();
+        }
+        
+        public static void CampaignEditorSelectNone()
+        {
+            CampaignEditorOverseerMono.GetInstance().SelectionPicker.WhenAssetDeselectAll();
+        }
+        
+        public static void CampaignEditorSelectRandom()
+        {
+            
+        }
+        #endregion
+        
         #region Campaign Selection Menu
 
         public static void CampaignShowNext()

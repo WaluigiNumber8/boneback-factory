@@ -14,7 +14,6 @@ namespace Rogium.Global.UISystem.AssetSelection
     [RequireComponent(typeof(ObjectSwitcherMono))]
     public class AssetSelectionOverseerMono : MonoBehaviour, IAssetSelectionOverseer
     {
-        
         [SerializeField] private LayoutInfo layouts;
         [SerializeField] private AssetSelectionMenuInfo selectionMenus;
 
@@ -34,59 +33,62 @@ namespace Rogium.Global.UISystem.AssetSelection
             overseer = AssetSelectionOverseer.Instance;
         }
 
-        //TODO - Instead of the SelectionMenuAsset, make the default layout type load from the options save file.
+        #region Open Selection Menu
 
+        //TODO - Instead of the SelectionMenuAsset, make the default layout type load from the options save file.
         public void ReopenForPacks()
         {
             overseer.Setup(AssetType.Pack,
-                           layouts.grid,
-                           selectionMenus.pack,
-                           lib.GetPacksCopy.ToList<AssetBase>(),
-                           layoutSwitcher);
+                layouts.grid,
+                selectionMenus.pack,
+                lib.GetPacksCopy.ToList<AssetBase>(),
+                layoutSwitcher);
         }
         
         public void ReopenForPalettes()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void ReopenForSprites()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
         
         public void ReopenForWeapons()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void ReopenForProjectiles()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void ReopenForEnemies()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void ReopenForRooms()
         {
             overseer.Setup(AssetType.Room,
-                           layouts.list,
-                           selectionMenus.room,
-                           editor.CurrentPack.Rooms.ToList<AssetBase>(),
-                           layoutSwitcher);
+                layouts.list,
+                selectionMenus.room,
+                editor.CurrentPack.Rooms.ToList<AssetBase>(),
+                layoutSwitcher);
         }
         
         public void ReopenForTiles()
         {
             overseer.Setup(AssetType.Tile,
-                           layouts.grid,
-                           selectionMenus.tile,
-                           editor.CurrentPack.Tiles.ToList<AssetBase>(),
-                           layoutSwitcher);
+                layouts.grid,
+                selectionMenus.tile,
+                editor.CurrentPack.Tiles.ToList<AssetBase>(),
+                layoutSwitcher);
         }
+
+        #endregion
 
         /// <summary>
         /// Start listening to every card that is spawned by the selection menu.
@@ -98,6 +100,7 @@ namespace Rogium.Global.UISystem.AssetSelection
             this.listeningMethod = listeningMethod;
             overseer.OnSpawnCard += this.listeningMethod;
             overseer.OnFinishedFilling += StopListeningToSpawnedCards;
+            
         }
 
         /// <summary>

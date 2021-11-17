@@ -96,6 +96,12 @@ namespace Rogium.Global.UISystem.Interactables
         #endregion
 
         #region Campaign Editor
+        CampaignEditorSelectAll = 66,
+        CampaignEditorSelectNone = 67,
+        CampaignEditorSelectRandom = 68,
+        #endregion
+        
+        #region Campaign Editor
         CampaignShowNext = 64,
         CampaignShowPrevious = 65,
         #endregion
