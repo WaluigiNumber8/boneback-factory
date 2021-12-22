@@ -39,6 +39,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -220,6 +221,12 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      spr_Editor_Tool_Button_0: -6844475023896853492
+      spr_Editor_Tool_Button_2: 3194338367470042179
+      spr_Editor_Tool_Button_1: -3695155674551037259
+      spr_Editor_Tool_Button_3: 2854367906205274320
+      spr_Editor_Tool_Button_4: -3288420478271307502
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

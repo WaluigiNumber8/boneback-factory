@@ -1,6 +1,7 @@
 using System.Collections;
+using BoubakProductions.UI.MenuSwitching;
 using NUnit.Framework;
-using Rogium.Global.UISystem;
+using Rogium.UserInterface;
 using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.UI;

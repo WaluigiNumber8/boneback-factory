@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Rogium.Core;
+using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
 
 namespace Rogium.Editors.Campaign
@@ -24,5 +26,54 @@ namespace Rogium.Editors.Campaign
             }
             return ultimatePack;
         }
+
+        /// <summary>
+        /// Based on entered information, combines a list of packs into a single one..
+        /// </summary>
+        /// <param name="packs">The list of import information about packs.</param>
+        /// <returns>A single combined pack.</returns>
+        public PackAsset Combine(IList<PackImportInfo> packs)
+        {
+            PackAsset ultimatePack = new PackAsset();
+            IList<PackAsset> allPacks = LibraryOverseer.Instance.GetPacksCopy;
+
+            foreach (PackImportInfo importInfo in packs)
+            {
+                PackAsset foundPack = allPacks[allPacks.FindIndexFirst(importInfo.ID)];
+                CombinePack(ultimatePack, foundPack, importInfo);
+            }
+
+            return ultimatePack;
+        }
+
+        /// <summary>
+        /// Imports a given pack into a another one.
+        /// </summary>
+        /// <param name="ultimatePack">The pack to import into.</param>
+        /// <param name="packToImport">The pack that will be imported.</param>
+        /// <param name="importInfo">The data containing what will be imported.</param>
+        private void CombinePack(PackAsset ultimatePack, PackAsset packToImport, PackImportInfo importInfo)
+        {
+            ultimatePack.Palettes.AddAllWithoutSave(packToImport.Palettes);
+            //TODO Import Sprites
+            
+            if (importInfo.weapons)
+            {
+                //TODO Import Projectiles
+                //TODO Import Weapons
+            }
+
+            if (importInfo.enemies)
+            {
+                //TODO Import Projectiles
+                //TODO Import Enemies
+            }
+
+            if (importInfo.rooms)
+            {
+                ultimatePack.Rooms.AddAllWithoutSave(packToImport.Rooms);
+            }
+        }
+        
     }
 }

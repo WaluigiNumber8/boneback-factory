@@ -5,6 +5,18 @@ TextureImporter:
   - first:
       213: 519403993897979699
     second: spr_Asset_Card_Blue_0
+  - first:
+      213: 713038394397003543
+    second: spr_Asset_Card_Blue_1
+  - first:
+      213: -4003167621112270131
+    second: spr_Asset_Card_Blue_2
+  - first:
+      213: -3542005200973976324
+    second: spr_Asset_Card_Blue_3
+  - first:
+      213: -4508515265745168286
+    second: spr_Asset_Card_Blue_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -27,6 +39,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -102,7 +115,7 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -110,6 +123,90 @@ TextureImporter:
       bones: []
       spriteID: 33f45373e2b453700800000000000000
       internalID: 519403993897979699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Asset_Card_Blue_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71f8f3154a835e900800000000000000
+      internalID: 713038394397003543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Asset_Card_Blue_2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc2f14f1244e178c0800000000000000
+      internalID: -4003167621112270131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Asset_Card_Blue_3
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfc2c5b390548dec0800000000000000
+      internalID: -3542005200973976324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Asset_Card_Blue_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26855d0c0498e61c0800000000000000
+      internalID: -4508515265745168286
       vertices: []
       indices: 
       edges: []
@@ -124,6 +221,12 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      spr_Asset_Card_Blue_0: 519403993897979699
+      spr_Asset_Card_Blue_3: -3542005200973976324
+      spr_Asset_Card_Blue_1: 713038394397003543
+      spr_Asset_Card_Blue_4: -4508515265745168286
+      spr_Asset_Card_Blue_2: -4003167621112270131
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

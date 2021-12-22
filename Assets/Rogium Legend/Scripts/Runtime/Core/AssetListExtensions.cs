@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using BoubakProductions.Safety;
+﻿using BoubakProductions.Safety;
 using Rogium.Editors.Core;
-using Rogium.Global.UISystem.AssetSelection;
+using Rogium.Editors.Campaign;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Rogium.Core
 {
@@ -21,17 +21,29 @@ namespace Rogium.Core
         /// <exception cref="SafetyNetCollectionException">Is thrown when no asset with ID was found.</exception>
         public static int FindIndexFirst<T>(this IList<T> list, AssetBase asset) where T : AssetBase
         {
+            return FindIndexFirst(list, asset.ID);
+        }
+        
+        /// <summary>
+        /// Finds the index of the first asset with the same ID.
+        /// </summary>
+        /// <param name="list">The list to search in.</param>
+        /// <param name="id">The ID of the asset to search for.</param>
+        /// <typeparam name="T">Type is <see cref="AssetBase"/> or any of it's children.</typeparam>
+        /// <returns>Index of the first found asset.</returns>
+        /// <exception cref="SafetyNetCollectionException">Is thrown when no asset with ID was found.</exception>
+        public static int FindIndexFirst<T>(this IList<T> list, string id) where T : AssetBase
+        {
             SafetyNet.EnsureIsNotNull(list, "List ot search");
-            SafetyNet.EnsureIsNotNull(asset, "Asset to search for.");
             for (int i = 0; i < list.Count; i++)
             {
-                if (list[i].ID == asset.ID)
+                if (list[i].ID == id)
                 {
                     return i;
                 }
             }
 
-            throw new SafetyNetCollectionException($"Index of the Asset '{asset.Title}' was not found in the list.");
+            throw new SafetyNetCollectionException($"No asset with the ID '{id}' was not found in the list.");
         }
 
         /// <summary>
@@ -41,7 +53,7 @@ namespace Rogium.Core
         /// <param name="ids">The list asset ids which will be used to search for.</param>
         /// <typeparam name="T">Type is <see cref="AssetBase"/> or any of it's children.</typeparam>
         /// <returns>A List of the found assets.</returns>
-        public static IList<T> GrabFromList<T>(this IList<T> list, IList<string> ids) where T : AssetBase
+        public static IList<T> GrabBasedOn<T>(this IList<T> list, IList<string> ids) where T : AssetBase
         {
             IList<T> foundAssets = new List<T>();
             IList<string> idList = new List<string>(ids);
@@ -71,6 +83,11 @@ namespace Rogium.Core
         public static IList<string> ConvertToIDs<T>(this IList<T> assets) where T : AssetBase
         {
             return assets.Select(asset => asset.ID).ToList();
+        }
+
+        public static IList<string> ConvertToIDs(this IList<PackImportInfo> importInfos)
+        {
+            return importInfos.Select(importInfo => importInfo.ID).ToList();
         }
 
         /// <summary>

@@ -43,8 +43,8 @@ public class test_Campaign_Editor
         lib.ActivateCampaignEditor(0);
         campaignEditor.FillMenu();
         yield return new WaitForSeconds(0.1f);
-        campaignEditor.SelectionPicker.WhenAssetSelected(packs[0]);
-        campaignEditor.SelectionPicker.WhenAssetSelected(packs[1]);
+        campaignEditor.SelectionPicker.WhenAssetSelected(lib.GetPacksCopy[0]);
+        campaignEditor.SelectionPicker.WhenAssetSelected(lib.GetPacksCopy[1]);
         yield return new WaitForSeconds(0.1f);
         campaignEditor.SelectionPicker.ConfirmSelection();
         yield return new WaitForSeconds(0.1f);

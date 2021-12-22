@@ -36,6 +36,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -208,6 +209,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      sprset_Menu_SmallIcons_2_MapSector: 1902810623860997257
+      sprset_Menu_SmallIcons_3_MapSectorActive: 6888885125828322033
+      sprset_Menu_SmallIcons_1_MapIndividualActive: 7612675492157768007
+      sprset_Menu_SmallIcons_0_MapIndividual: -3077443614068609604
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

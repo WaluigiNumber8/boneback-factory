@@ -1,8 +1,8 @@
 ﻿using BoubakProductions.Core;
 using Rogium.Core;
 using Rogium.Editors.Core;
+using Rogium.UserInterface.AssetSelection;
 using Rogium.Editors.Packs;
-using Rogium.Global.UISystem.AssetSelection;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -15,7 +15,8 @@ namespace Rogium.Editors.Campaign
     public class CampaignEditorOverseerMono : MonoSingleton<CampaignEditorOverseerMono>
     {
         [SerializeField] private AssetSelectionPicker selectionPicker;
-
+        [SerializeField] private CampaignSelectedPackPropertyController propertyColumn;
+        
         private CampaignEditorOverseer overseer;
         private LibraryOverseer lib;
 
@@ -25,19 +26,38 @@ namespace Rogium.Editors.Campaign
         {
             base.Awake();
             overseer = CampaignEditorOverseer.Instance;
-            lib = LibraryOverseer.Instance;;
+            lib = LibraryOverseer.Instance;
             selectedAssets = new List<AssetBase>();
         }
-
+        
+        private void OnEnable()
+        {
+            AssetCardPickerController.OnToggled += PreparePropertyColumn;
+        }
+        
+        private void OnDisable()
+        {
+            AssetCardPickerController.OnToggled -= PreparePropertyColumn;
+        }
+        
         /// <summary>
         /// Uses the currently selected packs from the editor to combine them into a campaign.
         /// </summary>
         public void FillMenu()
         {
-            RefillSelectedAssets(overseer.CurrentCampaign);
+            PreselectAssetsFrom(overseer.CurrentCampaign);
             SelectionPicker.ReopenForPacks(UpdatePacksFromSelection, selectedAssets);
         }
 
+        /// <summary>
+        /// Selects/Deselects an asset.
+        /// </summary>
+        /// <param name="assetIndex">The position of the asset on the list.</param>
+        public void ChangeSelectStatus(int assetIndex)
+        {
+            SelectionPicker.WhenAssetSelectToggle(lib.GetPacksCopy[assetIndex]);
+        }
+        
         /// <summary>
         /// Calls for applying current selection.
         /// </summary>
@@ -53,23 +73,32 @@ namespace Rogium.Editors.Campaign
         private void UpdatePacksFromSelection(IList<AssetBase> finalSelectedAssets)
         {
             IList<PackAsset> finalSelectedPacks = finalSelectedAssets.Cast<PackAsset>().ToList();
-            overseer.UpdatePacks(finalSelectedPacks);
+            overseer.UpdateDataPack(finalSelectedPacks);
         }
 
         /// <summary>
         /// Updates the list of selected assets based on the currently edited campaign.
         /// </summary>
         /// <param name="campaign">The currently edited campaign.</param>
-        private void RefillSelectedAssets(CampaignAsset campaign)
+        private void PreselectAssetsFrom(CampaignAsset campaign)
         {
             selectedAssets.Clear();
             
-            if (campaign.ReferencedIDs == null || campaign.ReferencedIDs.Count <= 0) return;
+            if (campaign.PackReferences == null || campaign.PackReferences.Count <= 0) return;
             
             IList<AssetBase> allPacks = lib.GetPacksCopy.ConvertToAssetBase();
-            selectedAssets = allPacks.GrabFromList(campaign.ReferencedIDs);
+            selectedAssets = allPacks.GrabBasedOn(campaign.PackReferences);
         }
 
+        /// <summary>
+        /// Loads the proper pack into the Property Column.
+        /// </summary>
+        /// <param name="asset">The Position of the pack on the Library List.</param>
+        private void PreparePropertyColumn(AssetBase asset)
+        {
+            propertyColumn.AssignAsset((PackAsset)asset, new PackImportInfo());
+        }
+        
         public AssetSelectionPicker SelectionPicker { get => selectionPicker; }
     }
 }

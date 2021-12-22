@@ -156,7 +156,7 @@ namespace Rogium.Editors.Packs
 
         public void Insert(int index, T item)
         {
-            SafetyNet.EnsureListNotContains(this, item, "List of Packs");
+            SafetyNet.EnsureListNotContain(this, item, "List of Packs");
             list.Insert(index, item);
         }
 

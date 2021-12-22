@@ -39,6 +39,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -220,6 +221,12 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      spr_Asset_Bar_Blue_1: 9000284026481143382
+      spr_Asset_Bar_Blue_2: 569874396376383910
+      spr_Asset_Bar_Blue_0: 7928669489828817438
+      spr_Asset_Bar_Blue_4: -1089724947061779968
+      spr_Asset_Bar_Blue_3: -7439933270191751611
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

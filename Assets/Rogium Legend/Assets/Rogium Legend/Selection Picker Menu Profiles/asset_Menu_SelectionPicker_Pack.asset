@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: asset_Menu_SelectionPicker_Pack
   m_EditorClassIdentifier: 
   assetObject: {fileID: 1809474269269531380, guid: c0886208d75a44f45ad09d882d3d5e8f, type: 3}
-  addButton: {fileID: 3176998442737139422, guid: 8d6bd5b19e9355d4195446a012218da2, type: 3}
+  addButton: {fileID: 0}

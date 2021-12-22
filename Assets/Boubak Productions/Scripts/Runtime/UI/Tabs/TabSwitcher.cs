@@ -1,4 +1,4 @@
-﻿using BoubakProductions.ObjectSwitching;
+﻿using BoubakProductions.Systems.ObjectSwitching;
 using UnityEngine;
 
 namespace BoubakProductions.UI

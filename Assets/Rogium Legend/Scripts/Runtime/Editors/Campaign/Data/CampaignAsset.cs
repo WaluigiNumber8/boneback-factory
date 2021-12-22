@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using BoubakProductions.Safety;
+﻿using BoubakProductions.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Packs;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Rogium.Editors.Campaign
@@ -14,7 +14,7 @@ namespace Rogium.Editors.Campaign
     public class CampaignAsset : AssetBase
     {
         private PackAsset dataPack;
-        private IList<string> referencedIDs;
+        private IList<string> packReferences;
 
         //TODO Read the icon from the icon of the "Beginning Room" from the campaign.
 
@@ -28,7 +28,7 @@ namespace Rogium.Editors.Campaign
             GenerateID(EditorAssetIDs.CampaignIdentifier);
 
             this.dataPack = new PackAsset();
-            this.referencedIDs = new List<string>();
+            this.packReferences = new List<string>();
         }
         public CampaignAsset(PackAsset pack)
         {
@@ -39,7 +39,7 @@ namespace Rogium.Editors.Campaign
             GenerateID(EditorAssetIDs.CampaignIdentifier);
 
             this.dataPack = new PackAsset(pack);
-            this.referencedIDs = new List<string>();
+            this.packReferences = new List<string>();
         }
         
         public CampaignAsset(CampaignAsset campaign)
@@ -51,7 +51,7 @@ namespace Rogium.Editors.Campaign
             this.creationDate = campaign.CreationDate;
 
             this.dataPack = new PackAsset(campaign.DataPack);
-            this.referencedIDs = new List<string>(campaign.referencedIDs);
+            this.packReferences = new List<string>(campaign.packReferences);
         }
         
         public CampaignAsset(string title, Sprite icon, string author, PackAsset pack)
@@ -63,7 +63,7 @@ namespace Rogium.Editors.Campaign
             GenerateID(EditorAssetIDs.CampaignIdentifier);
 
             this.dataPack = new PackAsset(pack);
-            this.referencedIDs = new List<string>();
+            this.packReferences = new List<string>();
         }
         public CampaignAsset(string title, Sprite icon, string author, DateTime creationDate, PackAsset dataPack)
         {
@@ -74,8 +74,9 @@ namespace Rogium.Editors.Campaign
             GenerateID(EditorAssetIDs.CampaignIdentifier);
             
             this.dataPack = new PackAsset(dataPack);
+            this.packReferences = new List<string>();
         }
-        public CampaignAsset(string id, string title, Sprite icon, string author, DateTime creationDate, PackAsset dataPack, IList<string> referencedIDs)
+        public CampaignAsset(string id, string title, Sprite icon, string author, DateTime creationDate, PackAsset dataPack, IList<string> packReferences)
         {
             this.id = id;
             this.title = title;
@@ -84,7 +85,7 @@ namespace Rogium.Editors.Campaign
             this.creationDate = creationDate;
 
             this.dataPack = new PackAsset(dataPack);
-            this.referencedIDs = new List<string>(referencedIDs);
+            this.packReferences = new List<string>(packReferences);
         }
         #endregion
 
@@ -95,14 +96,14 @@ namespace Rogium.Editors.Campaign
             this.dataPack = new PackAsset(newPack);
         }
 
-        public void UpdateReferencedIDs(IList<string> newReferencedIDs)
+        public void UpdatePackReferences(IList<string> newPackReferences)
         {
-            SafetyNet.EnsureIsNotNull(newReferencedIDs, nameof(newReferencedIDs));
-            this.referencedIDs = new List<string>(newReferencedIDs);
+            SafetyNet.EnsureIsNotNull(newPackReferences, nameof(newPackReferences));
+            this.packReferences = new List<string>(newPackReferences);
         }
         #endregion
 
         public PackAsset DataPack { get => new PackAsset(dataPack); }
-        public IList<string> ReferencedIDs { get => new List<string>(referencedIDs); }
+        public IList<string> PackReferences { get => new List<string>(packReferences); }
     }
 }

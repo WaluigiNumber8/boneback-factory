@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using BoubakProductions.Safety;
 using Rogium.Core;
+using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
 using UnityEngine;
 
@@ -74,14 +75,13 @@ namespace Rogium.Editors.Campaign
         /// <summary>
         /// Updates current campaign's Data Pack with data from a list of packs.
         /// </summary>
-        /// <param name="packs">The list of packs to combine.</param>
-        public void UpdatePacks(IList<PackAsset> packs)
+        /// <param name="data">The list of packs to combine.</param>
+        public void UpdateDataPack(IList<PackAsset> data)
         {
-            PackAsset ultimatePack = packCombiner.Combine(packs);
-            IList<string> ids = packs.ConvertToIDs();
+            PackAsset ultimatePack = packCombiner.Combine(data);
             
             currentCampaign.UpdateDataPack(ultimatePack);
-            currentCampaign.UpdateReferencedIDs(ids);
+            currentCampaign.UpdatePackReferences(data.ConvertToIDs());
         }
         
         public void CompleteEditing()

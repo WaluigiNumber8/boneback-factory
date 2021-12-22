@@ -4,7 +4,19 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 6639046815104364320
-    second: spr_Asset_Card_Pack_Grey_0
+    second: spr_Asset_Card_Group_Grey_0
+  - first:
+      213: 5145271598094509374
+    second: spr_Asset_Card_Group_Grey_2
+  - first:
+      213: -5493489910924153562
+    second: spr_Asset_Card_Group_Grey_2
+  - first:
+      213: 6980516939810005274
+    second: spr_Asset_Card_Group_Grey_4
+  - first:
+      213: 7724392627075033788
+    second: spr_Asset_Card_Group_Grey_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -27,6 +39,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -94,7 +107,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spr_Asset_Card_Pack_Grey_0
+      name: spr_Asset_Card_Group_Grey_0
       rect:
         serializedVersion: 2
         x: 0
@@ -102,7 +115,7 @@ TextureImporter:
         width: 52
         height: 52
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -110,6 +123,90 @@ TextureImporter:
       bones: []
       spriteID: 02feb7537e1a22c50800000000000000
       internalID: 6639046815104364320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Asset_Card_Group_Grey_1
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 0
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e356455f14da76740800000000000000
+      internalID: 5145271598094509374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Asset_Card_Group_Grey_2
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 0
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62d6c22280433c3b0800000000000000
+      internalID: 7047919405681729365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Asset_Card_Group_Grey_3
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 0
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a11e8f12c27cfd060800000000000000
+      internalID: 6980516939810005274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Asset_Card_Group_Grey_4
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 0
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cba24723b2e823b60800000000000000
+      internalID: -790293529941777780
       vertices: []
       indices: 
       edges: []
@@ -124,6 +221,12 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      spr_Asset_Card_Group_Grey_1: 5145271598094509374
+      spr_Asset_Card_Group_Grey_3: 6980516939810005274
+      spr_Asset_Card_Group_Grey_4: -790293529941777780
+      spr_Asset_Card_Group_Grey_0: 6639046815104364320
+      spr_Asset_Card_Group_Grey_2: 7047919405681729365
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

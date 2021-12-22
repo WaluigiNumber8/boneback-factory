@@ -7,7 +7,7 @@ namespace BoubakProductions.Safety
     /// <summary>
     /// Contains various method for checking correctness of given parameters. If a method fails to pass, it throws an exception.
     /// </summary>
-    public static class SafetyNet
+    public class SafetyNet
     {
         public static event Action<string> OnFireErrorMessage;
 
@@ -148,8 +148,8 @@ namespace BoubakProductions.Safety
             }
         }
         
-        /// /// <summary>
-        /// Checks if a string is shorter that minLimit.
+        /// <summary>
+        /// Makes sure that a string is longer than minLimit.
         /// </summary>
         /// <param name="stringObject">The string to check.</param>
         /// <param name="minLimit">Minimum characters allowed for the string.</param>
@@ -166,7 +166,7 @@ namespace BoubakProductions.Safety
         }
 
         /// <summary>
-        /// Checks if a string is not longer that maxLimit.
+        /// Makes sure that a string is shorter than maxLimit.
         /// </summary>
         /// <param name="stringObject">The string to check.</param>
         /// <param name="maxLimit">Maximum characters allowed for the string.</param>
@@ -317,12 +317,14 @@ namespace BoubakProductions.Safety
         }
 
         /// <summary>
-        /// Checks if List already conatins a given asset.
+        /// Checks if List already contains a given asset.
         /// </summary>
-        /// <typeparam name="T">Asset type</typeparam>
+        /// <typeparam name="T">Asset type.</typeparam>
+        /// <param name="list">The list to check.</param>
         /// <param name="asset">The Asset we check the duplicity for.</param>
+        /// <param name="variableName">Name of the checked variable.</param>
         /// <exception cref="SafetyNetCollectionException"></exception>
-        public static void EnsureListNotContains<T>(IList<T> list, T asset, string variableName)
+        public static void EnsureListNotContain<T>(IList<T> list, T asset, string variableName)
         {
             if (list.Contains(asset))
             {
@@ -337,13 +339,13 @@ namespace BoubakProductions.Safety
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="list"></param>
-        /// <param name="varibleName"></param>
-        public static void EnsureListDoesNotHaveDuplicits<T>(List<T> list, string varibleName)
+        /// <param name="variableName"></param>
+        public static void EnsureListDoesNotHaveDuplicities<T>(List<T> list, string variableName)
         {
             int foundDuplicates = list.GetDuplicatesCount();
             if (foundDuplicates > 0)
             {
-                throw new FoundDuplicationException($"The list {varibleName} cannot have any duplicit values.");
+                throw new FoundDuplicationException($"The list {variableName} cannot have any duplicit values.");
             }
         }
 
