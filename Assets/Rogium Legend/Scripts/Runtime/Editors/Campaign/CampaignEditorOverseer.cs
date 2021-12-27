@@ -16,7 +16,7 @@ namespace Rogium.Editors.Campaign
         public event Action<CampaignAsset> OnAssignAsset; 
         public event Action<CampaignAsset, int, string, string> OnSaveChanges;
 
-        private PackCombiner packCombiner;
+        private readonly PackCombiner packCombiner;
         
         private CampaignAsset currentCampaign;
         private int myIndex;

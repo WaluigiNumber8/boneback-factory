@@ -39,15 +39,19 @@ namespace Rogium.UserInterface.AssetSelection
         public void ReopenForPacks()
         {
             overseer.Setup(AssetType.Pack,
-                layouts.grid,
-                selectionMenus.pack,
-                lib.GetPacksCopy.ToList<AssetBase>(),
-                layoutSwitcher);
+                           layouts.grid,
+                           selectionMenus.pack,
+                           lib.GetPacksCopy.ToList<AssetBase>(),
+                           layoutSwitcher);
         }
         
         public void ReopenForPalettes()
         {
-            throw new NotImplementedException();
+            overseer.Setup(AssetType.Palette,
+                           layouts.grid,
+                           selectionMenus.palette,
+                           editor.CurrentPack.Palettes.ToList<AssetBase>(),
+                           layoutSwitcher);
         }
 
         public void ReopenForSprites()
@@ -73,19 +77,19 @@ namespace Rogium.UserInterface.AssetSelection
         public void ReopenForRooms()
         {
             overseer.Setup(AssetType.Room,
-                layouts.list,
-                selectionMenus.room,
-                editor.CurrentPack.Rooms.ToList<AssetBase>(),
-                layoutSwitcher);
+                           layouts.list,
+                           selectionMenus.room,
+                           editor.CurrentPack.Rooms.ToList<AssetBase>(),
+                           layoutSwitcher);
         }
         
         public void ReopenForTiles()
         {
             overseer.Setup(AssetType.Tile,
-                layouts.grid,
-                selectionMenus.tile,
-                editor.CurrentPack.Tiles.ToList<AssetBase>(),
-                layoutSwitcher);
+                           layouts.grid,
+                           selectionMenus.tile,
+                           editor.CurrentPack.Tiles.ToList<AssetBase>(),
+                           layoutSwitcher);
         }
 
         #endregion

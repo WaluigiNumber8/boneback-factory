@@ -4,6 +4,7 @@ using Rogium.Editors.Rooms;
 using Rogium.Editors.TileData;
 using System;
 using System.Collections.Generic;
+using Rogium.Editors.PaletteData;
 
 namespace Rogium.ExternalStorage.Serialization
 {
@@ -14,14 +15,16 @@ namespace Rogium.ExternalStorage.Serialization
     public class SerializedPackAsset
     {
         public readonly SerializedPackInfoAsset packInfo;
-        public readonly SerializedList<RoomAsset, SerializedRoomAsset> rooms; 
+        public readonly SerializedList<PaletteAsset, SerializedPaletteAsset> palettes;
         public readonly SerializedList<TileAsset, SerializedTileAsset> tiles; 
+        public readonly SerializedList<RoomAsset, SerializedRoomAsset> rooms; 
 
-        public SerializedPackAsset(PackAsset pack)
+        public SerializedPackAsset(PackAsset asset)
         {
-            this.packInfo = new SerializedPackInfoAsset(pack.PackInfo);
-            this.tiles = new SerializedList<TileAsset, SerializedTileAsset>(pack.Tiles, tile => new SerializedTileAsset(tile));
-            this.rooms = new SerializedList<RoomAsset, SerializedRoomAsset>(pack.Rooms, room => new SerializedRoomAsset(room));
+            this.packInfo = new SerializedPackInfoAsset(asset.PackInfo);
+            this.palettes = new SerializedList<PaletteAsset, SerializedPaletteAsset>(asset.Palettes, palette => new SerializedPaletteAsset(palette));
+            this.tiles = new SerializedList<TileAsset, SerializedTileAsset>(asset.Tiles, tile => new SerializedTileAsset(tile));
+            this.rooms = new SerializedList<RoomAsset, SerializedRoomAsset>(asset.Rooms, room => new SerializedRoomAsset(room));
         }
 
         /// <summary>
@@ -37,9 +40,10 @@ namespace Rogium.ExternalStorage.Serialization
                                                                this.packInfo.description,
                                                                DateTime.Parse(this.packInfo.creationTime));
 
+            IList<PaletteAsset> deserializedPalettes = palettes.Deserialize(palette => palette.Deserialize());
             IList<TileAsset> deserializedTiles = tiles.Deserialize(tile => tile.Deserialize());
             IList<RoomAsset> deserializedRooms = rooms.Deserialize(room => room.Deserialize());
-            return new PackAsset(deserializedInfo, deserializedRooms, deserializedTiles);
+            return new PackAsset(deserializedInfo, deserializedPalettes, deserializedTiles, deserializedRooms);
         }
     }
 }

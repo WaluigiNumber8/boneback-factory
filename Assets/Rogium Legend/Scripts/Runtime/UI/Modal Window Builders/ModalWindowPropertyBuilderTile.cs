@@ -19,22 +19,22 @@ namespace Rogium.UserInterface.UI
         
         public override void OpenForCreate()
         {
-            OpenWindow(new TileAsset(), CreateAsset, "Creating new tile");
+            OpenWindow(new TileAsset(), CreateAsset, "Creating a new Tile");
         }
 
         public override void OpenForUpdate()
         {
-            OpenWindow(new TileAsset(tileEditor.CurrentTile), UpdateAsset, $"Updating {tileEditor.CurrentTile.Title}");
+            OpenWindow(new TileAsset(tileEditor.CurrentAsset), UpdateAsset, $"Updating {tileEditor.CurrentAsset.Title}");
         }
 
-        private void OpenWindow(TileAsset currentTileAsset, Action onConfirmAction, string headerText)
+        private void OpenWindow(TileAsset tile, Action onConfirmAction, string headerText)
         {
-            propertyBuilder.BuildInputField("Title", currentTileAsset.Title, window.FirstColumnContent, currentTileAsset.UpdateTitle);
-            propertyBuilder.BuildDropdown("Type", Enum.GetNames(typeof(TileType)).ToList(), 0, window.FirstColumnContent, currentTileAsset.UpdateTileType);
-            propertyBuilder.BuildPlainText("Created by", currentTileAsset.Author, window.FirstColumnContent);
-            propertyBuilder.BuildPlainText("Created on", currentTileAsset.CreationDate.ToString(), window.FirstColumnContent);
+            propertyBuilder.BuildInputField("Title", tile.Title, window.FirstColumnContent, tile.UpdateTitle);
+            propertyBuilder.BuildDropdown("Type", Enum.GetNames(typeof(TileType)).ToList(), 0, window.FirstColumnContent, tile.UpdateTileType);
+            propertyBuilder.BuildPlainText("Created by", tile.Author, window.FirstColumnContent);
+            propertyBuilder.BuildPlainText("Created on", tile.CreationDate.ToString(), window.FirstColumnContent);
             
-            editedAssetBase = currentTileAsset;
+            editedAssetBase = tile;
             window.OpenAsPropertiesColumn1(headerText, ThemeType.Blue, "Done", "Cancel", onConfirmAction, true);
         }
 

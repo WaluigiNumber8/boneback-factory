@@ -6,13 +6,13 @@ using System;
 namespace Rogium.ExternalStorage.Serialization
 {
     /// <summary>
-    /// Serialized form of the Room Asset.
+    /// Serialized form of the <see cref="RoomAsset"/>.
     /// </summary>
     [System.Serializable]
     public class SerializedRoomAsset
     {
         public readonly string id;
-        public readonly string roomName;
+        public readonly string title;
         public readonly SerializedSprite icon;
         public readonly string author;
         public readonly string creationDate;
@@ -20,22 +20,26 @@ namespace Rogium.ExternalStorage.Serialization
         public readonly int type;
         public readonly SerializedGrid<string> tileGrid;
 
-        public SerializedRoomAsset(RoomAsset rm)
+        public SerializedRoomAsset(RoomAsset asset)
         {
-            this.id = rm.ID;
-            this.roomName = rm.Title;
-            this.icon = new SerializedSprite(rm.Icon);
-            this.author = rm.Author;
-            this.creationDate = rm.CreationDate.ToString();
-            this.difficultyLevel = rm.DifficultyLevel;
-            this.type = (int)rm.Type;
-            this.tileGrid = new SerializedGrid<string>(rm.TileGrid);
+            this.id = asset.ID;
+            this.title = asset.Title;
+            this.icon = new SerializedSprite(asset.Icon);
+            this.author = asset.Author;
+            this.creationDate = asset.CreationDate.ToString();
+            this.difficultyLevel = asset.DifficultyLevel;
+            this.type = (int)asset.Type;
+            this.tileGrid = new SerializedGrid<string>(asset.TileGrid);
         }
 
+        /// <summary>
+        /// Deserializes the asset into a Unity readable format.
+        /// </summary>
+        /// <returns>A deserialized asset.</returns>
         public RoomAsset Deserialize()
         {
             return new RoomAsset(this.id,
-                                 this.roomName,
+                                 this.title,
                                  this.icon.Deserialize(),
                                  this.author,
                                  this.difficultyLevel,

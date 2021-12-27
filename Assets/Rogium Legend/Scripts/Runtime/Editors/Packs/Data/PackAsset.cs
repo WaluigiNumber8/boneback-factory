@@ -52,14 +52,14 @@ namespace Rogium.Editors.Packs
             this.rooms = new AssetList<RoomAsset>(this, packAsset.rooms);
             this.tiles = new AssetList<TileAsset>(this, packAsset.tiles);
         }
-        public PackAsset(PackInfoAsset packInfo, IList<RoomAsset> rooms, IList<TileAsset> tiles)
+        public PackAsset(PackInfoAsset packInfo, IList<PaletteAsset> palettes, IList<TileAsset> tiles, IList<RoomAsset> rooms)
         {
             this.packInfo = packInfo;
             
             //TODO Add all asset list generation in here.
             
             GatherValuesFromInfo(packInfo);
-            this.palettes = new AssetList<PaletteAsset>(this);
+            this.palettes = new AssetList<PaletteAsset>(this, palettes);
             this.rooms = new AssetList<RoomAsset>(this, rooms);
             this.tiles = new AssetList<TileAsset>(this, tiles);
         }

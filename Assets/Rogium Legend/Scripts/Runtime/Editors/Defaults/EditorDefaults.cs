@@ -18,6 +18,10 @@ namespace Rogium.Editors.Core.Defaults
         public const string CampaignTitle = "New Campaign";
         public static readonly Sprite CampaignIcon = Resources.Load<Sprite>("Defaults/spr_Default_Weapon_Filled");
 
+        //Palette
+        public const string PaletteName = "New Palette";
+        public const int PaletteSize = 9;
+        
         //Tile
         public const string TileTitle = "New Tile";
         public static readonly Sprite TileIcon = Resources.Load<Sprite>("Defaults/spr_Default_Tile");

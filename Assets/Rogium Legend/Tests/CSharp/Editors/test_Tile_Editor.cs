@@ -46,9 +46,9 @@ namespace Rogium_Legend.Tests.CSharp.Editors
             lib.ActivatePackEditor(0);
             editor.ActivateTileEditor(0);
             
-            Assert.AreEqual(tile.ID, tileEditor.CurrentTile.ID);
-            Assert.AreEqual(tile.Title, tileEditor.CurrentTile.Title);
-            Assert.AreEqual(tile.Author, tileEditor.CurrentTile.Author);
+            Assert.AreEqual(tile.ID, tileEditor.CurrentAsset.ID);
+            Assert.AreEqual(tile.Title, tileEditor.CurrentAsset.Title);
+            Assert.AreEqual(tile.Author, tileEditor.CurrentAsset.Author);
         }
 
         

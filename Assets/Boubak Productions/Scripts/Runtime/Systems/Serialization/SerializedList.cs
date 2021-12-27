@@ -28,6 +28,11 @@ namespace BoubakProductions.Systems.Serialization
             }
         }
 
+        /// <summary>
+        /// Deserializes the list into a Unity readable format.
+        /// </summary>
+        /// <param name="newDeserializedObject">The method/constructor that creates a deserialized form of the object.</param>
+        /// <returns>A list of deserialized objects.</returns>
         public IList<T> Deserialize(Func<TS,T> newDeserializedObject)
         {
             return serializedList.Select(newDeserializedObject).ToList();

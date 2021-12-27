@@ -63,7 +63,7 @@ public class test_Room_Editor_UI
         LibraryOverseer.Instance.ActivatePackEditor(0);
         PackEditorOverseer.Instance.CreateNewTile(new TileAsset(tileTitle, tileIcon, packAuthor, TileType.Wall));
         PackEditorOverseer.Instance.ActivateTileEditor(0);
-        tileID = TileEditorOverseer.Instance.CurrentTile.ID;
+        tileID = TileEditorOverseer.Instance.CurrentAsset.ID;
         TileEditorOverseer.Instance.CompleteEditing();
         PackEditorOverseer.Instance.CreateNewRoom(new RoomAsset(roomTitle, roomIcon, packAuthor, roomDifficulty));
         PackEditorOverseer.Instance.ActivateRoomEditor(0);

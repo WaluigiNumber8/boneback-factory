@@ -57,6 +57,7 @@ namespace Rogium.UserInterface.Interactables
                     GASButtonActions.OpenPackSelection();
                     break;
                 case ButtonType.SelectionOpenPalette:
+                    GASButtonActions.OpenPaletteSelection();
                     break;
                 case ButtonType.SelectionOpenSprite:
                     break;
@@ -82,21 +83,22 @@ namespace Rogium.UserInterface.Interactables
                 case ButtonType.CreatePack:
                     GASButtonActions.CreatePack();
                     break;
-                case ButtonType.CreateRoom:
-                    GASButtonActions.CreateRoom();
-                    break;
                 case ButtonType.CreatePalette:
+                    GASButtonActions.CreatePalette();
                     break;
                 case ButtonType.CreateSprite:
                     break;
                 case ButtonType.CreateWeapon:
+                    break;
+                case ButtonType.CreateProjectile:
                     break;
                 case ButtonType.CreateEnemy:
                     break;
                 case ButtonType.CreateTile:
                     GASButtonActions.CreateTile();
                     break;
-                case ButtonType.CreateProjectile:
+                case ButtonType.CreateRoom:
+                    GASButtonActions.CreateRoom();
                     break;
                 case ButtonType.CreateCampaign:
                     GASButtonActions.CreateCampaign();
@@ -110,6 +112,8 @@ namespace Rogium.UserInterface.Interactables
                     GASButtonActions.EditPackProperties(number);
                     break;
                 case ButtonType.EditPaletteProperties:
+                    SafetyNet.EnsureIntIsNotEqual(number, -1, "BUTTON INTERACTION - EDIT PALETTE PROPERTIES");
+                    GASButtonActions.EditPaletteProperties(number);
                     break;
                 case ButtonType.EditSpriteProperties:
                     break;
@@ -140,6 +144,8 @@ namespace Rogium.UserInterface.Interactables
                     GASButtonActions.RemovePack(number);
                     break;
                 case ButtonType.DeletePalette:
+                    SafetyNet.EnsureIntIsNotEqual(number, -1, "BUTTON INTERACTION - REMOVE PALETTE");
+                    GASButtonActions.RemovePalette(number);
                     break;
                 case ButtonType.DeleteSprite:
                     break;

@@ -82,6 +82,14 @@ namespace Rogium.Global.GASExtension
             GASRogium.ChangeTheme(ThemeSystem.ThemeType.Red);
         }
         
+        public static void OpenPaletteSelection()
+        {
+            GAS.SwitchMenu(MenuType.AssetSelection);
+            GASRogium.ReopenSelectionMenu(AssetType.Palette);
+            PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
+            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToAssetTypeSelection, null, pack.Title, pack.Icon);
+        }
+        
         public static void OpenRoomSelection()
         {
             GAS.SwitchMenu(MenuType.AssetSelection);
@@ -111,13 +119,19 @@ namespace Rogium.Global.GASExtension
             new ModalWindowPropertyBuilderCampaign().OpenForCreate();
         }
 
-        public static void CreateRoom()
+        public static void CreatePalette()
         {
-            new ModalWindowPropertyBuilderRoom().OpenForCreate();
+            new ModalWindowPropertyBuilderPalette().OpenForCreate();
         }
+        
         public static void CreateTile()
         {
             new ModalWindowPropertyBuilderTile().OpenForCreate();
+        }
+        
+        public static void CreateRoom()
+        {
+            new ModalWindowPropertyBuilderRoom().OpenForCreate();
         }
         #endregion
 
@@ -134,16 +148,22 @@ namespace Rogium.Global.GASExtension
             new ModalWindowPropertyBuilderCampaign().OpenForUpdate();
         }
         
-        public static void EditRoomProperties(int roomIndex)
+        public static void EditPaletteProperties(int assetIndex)
         {
-            PackEditorOverseer.Instance.ActivateRoomEditor(roomIndex);
-            new ModalWindowPropertyBuilderRoom().OpenForUpdate();
+            PackEditorOverseer.Instance.ActivatePaletteEditor(assetIndex);
+            new ModalWindowPropertyBuilderPalette().OpenForUpdate();
         }
-
-        public static void EditTileProperties(int tileIndex)
+        
+        public static void EditTileProperties(int assetIndex)
         {
-            PackEditorOverseer.Instance.ActivateTileEditor(tileIndex);
+            PackEditorOverseer.Instance.ActivateTileEditor(assetIndex);
             new ModalWindowPropertyBuilderTile().OpenForUpdate();
+        }
+        
+        public static void EditRoomProperties(int assetIndex)
+        {
+            PackEditorOverseer.Instance.ActivateRoomEditor(assetIndex);
+            new ModalWindowPropertyBuilderRoom().OpenForUpdate();
         }
         #endregion
 
@@ -177,24 +197,25 @@ namespace Rogium.Global.GASExtension
             storedNumber = -1;
         }
 
-        public static void RemoveRoom(int roomIndex)
+        public static void RemovePalette(int assetIndex)
         {
             ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
-            storedNumber = roomIndex;
-            window.OpenAsMessage("Do you really want to remove this room?", ThemeType.Blue, "Yes", "No", RemoveRoomAccept, true);
+            storedNumber = assetIndex;
+            window.OpenAsMessage("Do you really want to remove this palette?", ThemeType.Blue, "Yes", "No", RemovePaletteAccept, true);
         }
-        private static void RemoveRoomAccept()
+        private static void RemovePaletteAccept()
         {
             SafetyNet.EnsureIntIsBiggerOrEqualTo(storedNumber, 0, "StoredNumber");
-            PackEditorOverseer.Instance.RemoveRoom(storedNumber);
-            GASRogium.ReopenSelectionMenu(AssetType.Room);
+            
+            PackEditorOverseer.Instance.RemovePalette(storedNumber);
+            GASRogium.ReopenSelectionMenu(AssetType.Palette);
             storedNumber = -1;
         }
         
-        public static void RemoveTile(int tileIndex)
+        public static void RemoveTile(int assetIndex)
         {
             ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
-            storedNumber = tileIndex;
+            storedNumber = assetIndex;
             window.OpenAsMessage("Do you really want to remove this tile?", ThemeType.Blue, "Yes", "No", RemoveTileAccept, true);
         }
         private static void RemoveTileAccept()
@@ -204,8 +225,20 @@ namespace Rogium.Global.GASExtension
             GASRogium.ReopenSelectionMenu(AssetType.Tile);
             storedNumber = -1;
         }
-
         
+        public static void RemoveRoom(int assetIndex)
+        {
+            ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
+            storedNumber = assetIndex;
+            window.OpenAsMessage("Do you really want to remove this room?", ThemeType.Blue, "Yes", "No", RemoveRoomAccept, true);
+        }
+        private static void RemoveRoomAccept()
+        {
+            SafetyNet.EnsureIntIsBiggerOrEqualTo(storedNumber, 0, "StoredNumber");
+            PackEditorOverseer.Instance.RemoveRoom(storedNumber);
+            GASRogium.ReopenSelectionMenu(AssetType.Room);
+            storedNumber = -1;
+        }
         #endregion
 
         #region Open Editors
