@@ -31,6 +31,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1712754021899613018, guid: 7ca314d5936920f47887782ac0a580a2, type: 3}
+      propertyPath: m_text
+      value: Edit
+      objectReference: {fileID: 0}
     - target: {fileID: 2888698935524631234, guid: 7ca314d5936920f47887782ac0a580a2, type: 3}
       propertyPath: type
       value: 6
@@ -61,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7423225855552063156, guid: 7ca314d5936920f47887782ac0a580a2, type: 3}
       propertyPath: m_Name
-      value: pref_Asset_Bar_Room
+      value: prefvar_Asset_Bar_Room
       objectReference: {fileID: 0}
     - target: {fileID: 7423225855552063159, guid: 7ca314d5936920f47887782ac0a580a2, type: 3}
       propertyPath: m_Pivot.x

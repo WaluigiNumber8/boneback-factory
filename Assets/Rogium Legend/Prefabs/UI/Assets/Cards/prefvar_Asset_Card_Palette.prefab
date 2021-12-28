@@ -453,6 +453,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7662722960400641172}
     m_Modifications:
+    - target: {fileID: 401234909382832420, guid: 31dfc365cf33ce340a026bd669c0ccd5, type: 3}
+      propertyPath: m_text
+      value: Edit
+      objectReference: {fileID: 0}
     - target: {fileID: 2206765054246133103, guid: 31dfc365cf33ce340a026bd669c0ccd5, type: 3}
       propertyPath: m_Name
       value: Edit Button

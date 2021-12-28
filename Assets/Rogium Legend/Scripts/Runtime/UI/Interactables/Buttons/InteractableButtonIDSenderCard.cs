@@ -13,7 +13,7 @@ namespace Rogium.UserInterface.Interactables
 
         private void OnEnable()
         {
-            GetComponent<InteractableButton>().Number = assetController.ID;
+            GetComponent<InteractableButton>().Index = assetController.ID;
         }
     }
 }

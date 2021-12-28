@@ -13,7 +13,7 @@ namespace Rogium.UserInterface.Interactables
     public class InteractableButton : MonoBehaviour, IInteractableButton
     {
         [SerializeField] private ButtonType action;
-        [SerializeField] private int number = -1;
+        [SerializeField] private int index = -1;
         
         private Button button;
 
@@ -50,8 +50,8 @@ namespace Rogium.UserInterface.Interactables
 
                 #region Open Selection Menus
                 case ButtonType.SelectionOpenAssetType:
-                    SafetyNet.EnsureIntIsNotEqual(number, -1, "BUTTON INTERACTION - EDIT PACK");
-                    GASButtonActions.OpenEditor(number);
+                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - EDIT PACK");
+                    GASButtonActions.OpenEditor(index);
                     break;
                 case ButtonType.SelectionOpenPack:
                     GASButtonActions.OpenPackSelection();
@@ -108,12 +108,12 @@ namespace Rogium.UserInterface.Interactables
 
                 #region Edit Asset Properties
                 case ButtonType.EditPackProperties:
-                    SafetyNet.EnsureIntIsNotEqual(number, -1, "BUTTON INTERACTION - EDIT PACK PROPERTIES");
-                    GASButtonActions.EditPackProperties(number);
+                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - EDIT PACK PROPERTIES");
+                    GASButtonActions.EditPackProperties(index);
                     break;
                 case ButtonType.EditPaletteProperties:
-                    SafetyNet.EnsureIntIsNotEqual(number, -1, "BUTTON INTERACTION - EDIT PALETTE PROPERTIES");
-                    GASButtonActions.EditPaletteProperties(number);
+                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - EDIT PALETTE PROPERTIES");
+                    GASButtonActions.EditPaletteProperties(index);
                     break;
                 case ButtonType.EditSpriteProperties:
                     break;
@@ -122,30 +122,30 @@ namespace Rogium.UserInterface.Interactables
                 case ButtonType.EditEnemyProperties:
                     break;
                 case ButtonType.EditRoomProperties:
-                    SafetyNet.EnsureIntIsNotEqual(number, -1, "BUTTON INTERACTION - EDIT ROOM PROPERTIES");
-                    GASButtonActions.EditRoomProperties(number);
+                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - EDIT ROOM PROPERTIES");
+                    GASButtonActions.EditRoomProperties(index);
                     break;
                 case ButtonType.EditTileProperties:
-                    SafetyNet.EnsureIntIsNotEqual(number, -1, "BUTTON INTERACTION - EDIT TILE PROPERTIES");
-                    GASButtonActions.EditTileProperties(number);
+                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - EDIT TILE PROPERTIES");
+                    GASButtonActions.EditTileProperties(index);
                     break;
                 case ButtonType.EditProjectileProperties:
                     break;
                 case ButtonType.EditCampaignProperties:
-                    SafetyNet.EnsureIntIsNotEqual(number, -1, "BUTTON INTERACTION - EDIT CAMPAIGN PROPERTIES");
-                    GASButtonActions.EditCampaignProperties(number);
+                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - EDIT CAMPAIGN PROPERTIES");
+                    GASButtonActions.EditCampaignProperties(index);
                     break;
                 
                 #endregion
 
                 #region Delete Assets
                 case ButtonType.DeletePack:
-                    SafetyNet.EnsureIntIsNotEqual(number, -1, "BUTTON INTERACTION - REMOVE PACK");
-                    GASButtonActions.RemovePack(number);
+                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - REMOVE PACK");
+                    GASButtonActions.RemovePack(index);
                     break;
                 case ButtonType.DeletePalette:
-                    SafetyNet.EnsureIntIsNotEqual(number, -1, "BUTTON INTERACTION - REMOVE PALETTE");
-                    GASButtonActions.RemovePalette(number);
+                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - REMOVE PALETTE");
+                    GASButtonActions.RemovePalette(index);
                     break;
                 case ButtonType.DeleteSprite:
                     break;
@@ -154,24 +154,26 @@ namespace Rogium.UserInterface.Interactables
                 case ButtonType.DeleteEnemy:
                     break;
                 case ButtonType.DeleteRoom:
-                    SafetyNet.EnsureIntIsNotEqual(number, -1, "BUTTON INTERACTION - REMOVE ROOM");
-                    GASButtonActions.RemoveRoom(number);
+                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - REMOVE ROOM");
+                    GASButtonActions.RemoveRoom(index);
                     break;
                 case ButtonType.DeleteTile:
-                    SafetyNet.EnsureIntIsNotEqual(number, -1, "BUTTON INTERACTION - REMOVE TILE");
-                    GASButtonActions.RemoveTile(number);
+                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - REMOVE TILE");
+                    GASButtonActions.RemoveTile(index);
                     break;
                 case ButtonType.DeleteProjectile:
                     break;
                 case ButtonType.DeleteCampaign:
-                    SafetyNet.EnsureIntIsNotEqual(number, -1, "BUTTON INTERACTION - REMOVE CAMPAIGN");
-                    GASButtonActions.RemoveCampaign(number);
+                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - REMOVE CAMPAIGN");
+                    GASButtonActions.RemoveCampaign(index);
                     break;
                 
                 #endregion
 
                 #region Open Editors
                 case ButtonType.EditorOpenPalette:
+                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - OPEN PALETTE EDITOR");
+                    GASButtonActions.OpenPaletteEditor(index);
                     break;
                 case ButtonType.EditorOpenSprite:
                     break;
@@ -180,21 +182,22 @@ namespace Rogium.UserInterface.Interactables
                 case ButtonType.EditorOpenEnemy:
                     break;
                 case ButtonType.EditorOpenRoom:
-                    SafetyNet.EnsureIntIsNotEqual(number, -1, "BUTTON INTERACTION - OPEN ROOM EDITOR");
-                    GASButtonActions.OpenRoomEditor(number);
+                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - OPEN ROOM EDITOR");
+                    GASButtonActions.OpenRoomEditor(index);
                     break;
                 case ButtonType.EditorOpenTile:
                     break;
                 case ButtonType.EditorOpenProjectile:
                     break;
                 case ButtonType.EditorOpenCampaign:
-                    SafetyNet.EnsureIntIsNotEqual(number, -1, "BUTTON INTERACTION - OPEN CAMPAIGN EDITOR");
-                    GASButtonActions.OpenCampaignEditor(number);
+                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - OPEN CAMPAIGN EDITOR");
+                    GASButtonActions.OpenCampaignEditor(index);
                     break;
                 #endregion
 
                 #region Save Editor Changes
                 case ButtonType.SaveChangesPalette:
+                    GASButtonActions.SaveChangesPalette();
                     break;
                 case ButtonType.SaveChangesSprite:
                     break;
@@ -216,6 +219,7 @@ namespace Rogium.UserInterface.Interactables
 
                 #region Cancel Editor Changes
                 case ButtonType.CancelChangesPalette:
+                    GASButtonActions.CancelChangesPalette();
                     break;
                 case ButtonType.CancelChangesSprite:
                     break;
@@ -235,6 +239,19 @@ namespace Rogium.UserInterface.Interactables
                     break;
                 #endregion
 
+                #region Campaign Selection
+                case ButtonType.CampaignShowNext:
+                    GASButtonActions.CampaignShowNext();
+                    break;
+                case ButtonType.CampaignShowPrevious:
+                    GASButtonActions.CampaignShowPrevious();
+                    break;
+                case ButtonType.CampaignEditorChangeImportState:
+                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - CHANGE PACK IMPORT STATE");
+                    GASButtonActions.ChangeImportStatus(index);
+                    break;
+                #endregion
+                
                 #region Campaign Editor Menu
                 case ButtonType.CampaignEditorSelectAll:
                     GASButtonActions.CampaignEditorSelectAll();
@@ -246,22 +263,9 @@ namespace Rogium.UserInterface.Interactables
                     break;
                 #endregion
                 
-                #region Campaign Editor
-                case ButtonType.CampaignShowNext:
-                    GASButtonActions.CampaignShowNext();
-                    break;
-                case ButtonType.CampaignShowPrevious:
-                    GASButtonActions.CampaignShowPrevious();
-                    break;
-                case ButtonType.CampaignEditorChangeImportState:
-                    SafetyNet.EnsureIntIsNotEqual(number, -1, "BUTTON INTERACTION - CHANGE PACK IMPORT STATE");
-                    GASButtonActions.ChangeImportStatus(number);
-                    break;
-                #endregion
-                
                 case ButtonType.Play:
-                    SafetyNet.EnsureIntIsNotEqual(number, -1, "BUTTON INTERACTION - PLAY CAMPAIGN");
-                    GASButtonActions.PlayCampaign(number);
+                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - PLAY CAMPAIGN");
+                    GASButtonActions.PlayCampaign(index);
                     break;
                 
                 default:
@@ -269,6 +273,6 @@ namespace Rogium.UserInterface.Interactables
             }
         }
 
-        public int Number { get => number; set => number = value; }
+        public int Index { get => index; set => index = value; }
     }
 }

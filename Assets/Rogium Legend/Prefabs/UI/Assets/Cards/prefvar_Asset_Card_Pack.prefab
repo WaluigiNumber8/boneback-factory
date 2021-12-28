@@ -237,6 +237,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Edit Button
       objectReference: {fileID: 0}
+    - target: {fileID: 8109793272329656351, guid: 95c27b297efc9434d99dc1eac4e9e24d, type: 3}
+      propertyPath: m_text
+      value: Edit
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95c27b297efc9434d99dc1eac4e9e24d, type: 3}
 --- !u!224 &1918285096134785377 stripped

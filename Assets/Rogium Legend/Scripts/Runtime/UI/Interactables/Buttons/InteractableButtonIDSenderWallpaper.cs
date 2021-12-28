@@ -25,7 +25,7 @@ namespace Rogium.UserInterface.Interactables
 
         private void UpdateSignal(int newValue)
         {
-            interactableButton.Number = newValue;
+            interactableButton.Index = newValue;
         }
     }
 }

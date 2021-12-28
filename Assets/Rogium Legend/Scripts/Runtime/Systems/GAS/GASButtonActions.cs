@@ -7,6 +7,7 @@ using Rogium.Editors.Campaign;
 using Rogium.UserInterface.UI;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Core;
+using Rogium.Editors.PaletteData;
 using Rogium.Editors.Rooms;
 using Rogium.UserInterface;
 using Rogium.UserInterface.AssetSelection;
@@ -250,28 +251,29 @@ namespace Rogium.Global.GASExtension
             CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToPackSelectionMenu, null, pack.Title, pack.Icon);
         }
 
-        public static void OpenCampaignEditor(int campaignIndex)
+        public static void OpenCampaignEditor(int assetIndex)
         {
             GAS.SwitchMenu(MenuType.CampaignEditor);
-            LibraryOverseer.Instance.ActivateCampaignEditor(campaignIndex);
+            LibraryOverseer.Instance.ActivateCampaignEditor(assetIndex);
             CampaignEditorOverseerMono.GetInstance().FillMenu();
         }
+
+        public static void OpenPaletteEditor(int assetIndex)
+        {
+            CanvasOverseer.GetInstance().NavigationBar.Hide();
+            GAS.SwitchMenu(MenuType.PaletteEditor);
+            PackEditorOverseer.Instance.ActivatePaletteEditor(assetIndex);
+        }
         
-        public static void OpenRoomEditor(int roomIndex)
+        public static void OpenRoomEditor(int assetIndex)
         {
             CanvasOverseer.GetInstance().NavigationBar.Hide();
             GAS.SwitchMenu(MenuType.RoomEditor);
-            PackEditorOverseer.Instance.ActivateRoomEditor(roomIndex);
+            PackEditorOverseer.Instance.ActivateRoomEditor(assetIndex);
         }
         #endregion
 
         #region Save Editor Changes
-        public static void SaveChangesRoom()
-        {
-            RoomEditorOverseer.Instance.CompleteEditing();
-            OpenRoomSelection();
-        }
-
         public static void SaveChangesCampaign()
         {
             ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
@@ -286,9 +288,27 @@ namespace Rogium.Global.GASExtension
             CancelChangesCampaignConfirm();
         }
 
+        public static void SaveChangesPalette()
+        {
+            PaletteEditorOverseer.Instance.CompleteEditing();
+            OpenPaletteSelection();
+        }
+        
+        public static void SaveChangesRoom()
+        {
+            RoomEditorOverseer.Instance.CompleteEditing();
+            OpenRoomSelection();
+        }
         #endregion
 
         #region Cancel Editor Changes
+
+        public static void CancelChangesPalette()
+        {
+            ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
+            window.OpenAsMessage("Do you really not want to save changes?", ThemeType.Blue,"Yes","No", OpenPaletteSelection, true);
+        }
+        
         public static void CancelChangesRoom()
         {
             ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
