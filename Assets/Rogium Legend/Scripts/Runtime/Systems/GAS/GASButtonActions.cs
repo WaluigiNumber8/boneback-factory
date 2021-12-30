@@ -53,7 +53,7 @@ namespace Rogium.Global.GASExtension
             PackEditorOverseer.Instance.CompleteEditing();
             CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToMainMenu);
             GAS.SwitchMenu(MenuType.AssetSelection);
-            GASRogium.ReopenSelectionMenu(AssetType.Pack);
+            GASRogium.OpenSelectionMenu(AssetType.Pack);
         }
         
         private static void ReturnToAssetTypeSelection()
@@ -70,7 +70,7 @@ namespace Rogium.Global.GASExtension
             GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundMain);
             GAS.ObjectSetActive(true, UIEditorContainer.GetInstance().Background);
             GAS.SwitchMenu(MenuType.AssetSelection);
-            GASRogium.ReopenSelectionMenu(AssetType.Pack);
+            GASRogium.OpenSelectionMenu(AssetType.Pack);
             CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToMainMenu);
         }
 
@@ -86,7 +86,7 @@ namespace Rogium.Global.GASExtension
         public static void OpenPaletteSelection()
         {
             GAS.SwitchMenu(MenuType.AssetSelection);
-            GASRogium.ReopenSelectionMenu(AssetType.Palette);
+            GASRogium.OpenSelectionMenu(AssetType.Palette);
             PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
             CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToAssetTypeSelection, null, pack.Title, pack.Icon);
         }
@@ -94,7 +94,7 @@ namespace Rogium.Global.GASExtension
         public static void OpenRoomSelection()
         {
             GAS.SwitchMenu(MenuType.AssetSelection);
-            GASRogium.ReopenSelectionMenu(AssetType.Room);
+            GASRogium.OpenSelectionMenu(AssetType.Room);
             PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
             CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToAssetTypeSelection, null, pack.Title, pack.Icon);
         }
@@ -102,7 +102,7 @@ namespace Rogium.Global.GASExtension
         public static void OpenTileSelection()
         {
             GAS.SwitchMenu(MenuType.AssetSelection);
-            GASRogium.ReopenSelectionMenu(AssetType.Tile);
+            GASRogium.OpenSelectionMenu(AssetType.Tile);
             PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
             CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToAssetTypeSelection, null, pack.Title, pack.Icon);
         }
@@ -179,7 +179,7 @@ namespace Rogium.Global.GASExtension
         {
             SafetyNet.EnsureIntIsBiggerOrEqualTo(storedNumber, 0, "StoredNumber");
             LibraryOverseer.Instance.DeletePack(storedNumber);
-            GASRogium.ReopenSelectionMenu(AssetType.Pack);
+            GASRogium.OpenSelectionMenu(AssetType.Pack);
             storedNumber = -1;
         }
         
@@ -209,7 +209,7 @@ namespace Rogium.Global.GASExtension
             SafetyNet.EnsureIntIsBiggerOrEqualTo(storedNumber, 0, "StoredNumber");
             
             PackEditorOverseer.Instance.RemovePalette(storedNumber);
-            GASRogium.ReopenSelectionMenu(AssetType.Palette);
+            GASRogium.OpenSelectionMenu(AssetType.Palette);
             storedNumber = -1;
         }
         
@@ -223,7 +223,7 @@ namespace Rogium.Global.GASExtension
         {
             SafetyNet.EnsureIntIsBiggerOrEqualTo(storedNumber, 0, "StoredNumber");
             PackEditorOverseer.Instance.RemoveTile(storedNumber);
-            GASRogium.ReopenSelectionMenu(AssetType.Tile);
+            GASRogium.OpenSelectionMenu(AssetType.Tile);
             storedNumber = -1;
         }
         
@@ -237,7 +237,7 @@ namespace Rogium.Global.GASExtension
         {
             SafetyNet.EnsureIntIsBiggerOrEqualTo(storedNumber, 0, "StoredNumber");
             PackEditorOverseer.Instance.RemoveRoom(storedNumber);
-            GASRogium.ReopenSelectionMenu(AssetType.Room);
+            GASRogium.OpenSelectionMenu(AssetType.Room);
             storedNumber = -1;
         }
         #endregion

@@ -14,7 +14,7 @@ namespace Rogium.Global.GASExtension
     {
         public static AssetSelectionOverseerMono assetSelection;
 
-        public static void ReopenSelectionMenu(AssetType type)
+        public static void OpenSelectionMenu(AssetType type)
         {
             SafetyNet.EnsureIsNotNull(assetSelection, "GAS Asset Selection");
             switch (type)

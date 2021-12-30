@@ -36,14 +36,14 @@ namespace Rogium.Editors.Palettes
         private void OnEnable()
         {
             editor.OnAssignAsset += FillSlotRow;
-            editor.OnCompleteEditing += UpdateEditedColor;
+            editor.OnCompleteEditingBefore += UpdateEditedColor;
             ColorSlot.OnSelectedAny += SwitchEditedColor;
         }
 
         private void OnDisable()
         {
             editor.OnAssignAsset -= FillSlotRow;
-            editor.OnCompleteEditing -= UpdateEditedColor;
+            editor.OnCompleteEditingBefore -= UpdateEditedColor;
             ColorSlot.OnSelectedAny -= SwitchEditedColor;
         }
 
@@ -80,7 +80,7 @@ namespace Rogium.Editors.Palettes
         
         private void SwitchEditedColor(int newIndex)
         {
-            UpdateEditedColor(null, 0);
+            UpdateEditedColor();
             colorPicker.Construct(slots[newIndex].CurrentColor, slots[newIndex].colorImage);
             lastSelectedSlotIndex = newIndex;
         }
@@ -88,7 +88,7 @@ namespace Rogium.Editors.Palettes
         /// <summary>
         /// Updates changes made to the currently edited color.
         /// </summary>
-        private void UpdateEditedColor(PaletteAsset paletteAsset, int i)
+        private void UpdateEditedColor()
         {
             if (lastSelectedSlotIndex != -1)
                 editor.UpdateColor(colorPicker.CurrentColor, lastSelectedSlotIndex);

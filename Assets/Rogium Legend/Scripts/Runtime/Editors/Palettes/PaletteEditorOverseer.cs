@@ -10,7 +10,10 @@ namespace Rogium.Editors.Palettes
     public class PaletteEditorOverseer : IEditorOverseer
     {
         public event Action<PaletteAsset> OnAssignAsset;
+        public event Action OnCompleteEditingBefore, OnCompleteEditingAfter;
         public event Action<PaletteAsset, int> OnCompleteEditing;
+
+        private ColorIconBuilder iconBuilder;
         
         private PaletteAsset currentAsset;
         private int myIndex;
@@ -33,6 +36,11 @@ namespace Rogium.Editors.Palettes
 
         #endregion
 
+        private PaletteEditorOverseer()
+        {
+            iconBuilder = new ColorIconBuilder();
+        }
+        
         /// <summary>
         /// Assign an asset, that is going to be edited.
         /// </summary>
@@ -72,7 +80,12 @@ namespace Rogium.Editors.Palettes
         
         public void CompleteEditing()
         {
+            OnCompleteEditingBefore?.Invoke();
+            
+            currentAsset.UpdateIcon(iconBuilder.Build(currentAsset.Colors));
             OnCompleteEditing?.Invoke(currentAsset, myIndex);
+            
+            OnCompleteEditingAfter?.Invoke();
         }
         
         public PaletteAsset CurrentAsset 

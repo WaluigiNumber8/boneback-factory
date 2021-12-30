@@ -22,7 +22,7 @@ namespace Rogium.Editors.Palettes
             this.creationDate = DateTime.Now;;
             GenerateID(EditorAssetIDs.PaletteIdentifier);
 
-            this.colors = ArrayExtensions.GenerateEmptyColorArray(EditorDefaults.PaletteSize);
+            this.colors = BoubakBuilder.GenerateColorArray(EditorDefaults.PaletteSize, Color.black);
         }
 
         public PaletteAsset(PaletteAsset asset)
