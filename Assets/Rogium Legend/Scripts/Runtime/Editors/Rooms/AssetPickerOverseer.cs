@@ -1,6 +1,6 @@
 ﻿using BoubakProductions.Safety;
 using Rogium.Editors.Packs;
-using Rogium.Editors.TileData;
+using Rogium.Editors.Tiles;
 using UnityEngine;
 
 namespace Rogium.Editors.Rooms

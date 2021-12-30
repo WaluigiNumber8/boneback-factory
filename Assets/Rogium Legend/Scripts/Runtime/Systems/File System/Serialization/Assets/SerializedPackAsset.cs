@@ -1,10 +1,10 @@
 ﻿using BoubakProductions.Systems.Serialization;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Rooms;
-using Rogium.Editors.TileData;
+using Rogium.Editors.Tiles;
 using System;
 using System.Collections.Generic;
-using Rogium.Editors.PaletteData;
+using Rogium.Editors.Palettes;
 
 namespace Rogium.ExternalStorage.Serialization
 {

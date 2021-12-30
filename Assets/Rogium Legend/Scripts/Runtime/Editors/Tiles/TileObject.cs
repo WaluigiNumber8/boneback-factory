@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace Rogium.Editors.TileData
+namespace Rogium.Editors.Tiles
 {
     /// <summary>
     /// The Tile itself. It is used for for placement in the room.

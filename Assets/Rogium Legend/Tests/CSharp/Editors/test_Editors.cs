@@ -5,7 +5,7 @@ using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Rooms;
-using Rogium.Editors.TileData;
+using Rogium.Editors.Tiles;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.TestTools;

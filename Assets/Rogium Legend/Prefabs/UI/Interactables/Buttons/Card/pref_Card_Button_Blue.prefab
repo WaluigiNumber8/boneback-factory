@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4234182212748769756}
   - component: {fileID: 8180333505644680096}
   - component: {fileID: -421584340355227751}
+  - component: {fileID: 8174630149615070043}
   m_Layer: 5
   m_Name: pref_Card_Button_Blue
   m_TagString: Untagged
@@ -38,10 +39,10 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 168.73, y: 60.07}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1014814162680341127
 CanvasRenderer:
@@ -170,7 +171,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   action: 0
-  number: -1
+  index: -1
+--- !u!114 &8174630149615070043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305523389597949465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 6, y: -4}
+  m_UseGraphicAlpha: 1
 --- !u!1 &9000432377099674298
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,13 +2,14 @@
 using BoubakProductions.Safety;
 using UnityEngine;
 
-namespace Rogium.Editors.PaletteData
+namespace Rogium.Editors.Palettes
 {
     /// <summary>
     /// Overseers the Palette Editor.
     /// </summary>
     public class PaletteEditorOverseer : IEditorOverseer
     {
+        public event Action<PaletteAsset> OnAssignAsset;
         public event Action<PaletteAsset, int> OnCompleteEditing;
         
         private PaletteAsset currentAsset;
@@ -44,6 +45,8 @@ namespace Rogium.Editors.PaletteData
             
             currentAsset = asset;
             myIndex = index;
+            
+            OnAssignAsset?.Invoke(currentAsset);
         }
         
         /// <summary>
@@ -54,6 +57,17 @@ namespace Rogium.Editors.PaletteData
         { 
             SafetyNet.EnsureIsNotNull(currentAsset, "Currently active asset.");
             currentAsset = new PaletteAsset(updatedAsset);
+        }
+
+        /// <summary>
+        /// Updates a color on a specific position.
+        /// </summary>
+        /// <param name="color">The new color to assign.</param>
+        /// <param name="posIndex">The position for the color.</param>
+        public void UpdateColor(Color color, int posIndex)
+        {
+            SafetyNet.EnsureIntIsBiggerOrEqualTo(posIndex, 0, "posIndex");
+            currentAsset.Colors[posIndex] = color;
         }
         
         public void CompleteEditing()

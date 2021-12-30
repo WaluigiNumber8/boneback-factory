@@ -4,7 +4,7 @@ using Rogium.Editors.Core;
 using Rogium.Editors.Rooms;
 using UnityEngine;
 
-namespace Rogium.Editors.TileData
+namespace Rogium.Editors.Tiles
 {
     /// <summary>
     /// Overseers everything happening in the Tile Editor.

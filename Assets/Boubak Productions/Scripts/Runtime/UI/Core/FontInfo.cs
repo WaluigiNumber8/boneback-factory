@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 
-namespace BoubakProductions.UI.Helpers
+namespace BoubakProductions.UI.Core
 {
     /// <summary>
     /// Contains all necessary data for a font.

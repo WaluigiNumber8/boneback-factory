@@ -2,7 +2,7 @@
 using TMPro;
 using System;
 using System.Collections.Generic;
-using BoubakProductions.UI.Helpers;
+using BoubakProductions.UI.Core;
 using UnityEngine.UI;
 
 namespace Rogium.UserInterface.Interactables.Properties

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using BoubakProductions.UI;
-using Rogium.Editors.TileData;
+using Rogium.Editors.Tiles;
 
 namespace Rogium.UserInterface.UI
 {

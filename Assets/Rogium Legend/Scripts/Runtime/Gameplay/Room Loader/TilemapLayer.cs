@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Rogium.Editors.TileData;
+using Rogium.Editors.Tiles;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 

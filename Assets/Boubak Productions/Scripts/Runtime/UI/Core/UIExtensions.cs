@@ -1,7 +1,7 @@
 ﻿using UnityEngine.UI;
 using TMPro;
 
-namespace BoubakProductions.UI.Helpers
+namespace BoubakProductions.UI.Core
 {
     /// <summary>
     /// Contains helpful methods for dealing with UI.

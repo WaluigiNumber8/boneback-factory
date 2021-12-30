@@ -5,7 +5,7 @@ using BoubakProductions.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 
-namespace Rogium.Editors.TileData
+namespace Rogium.Editors.Tiles
 {
     /// <summary>
     /// Contains all data needed for a tile in a pack.

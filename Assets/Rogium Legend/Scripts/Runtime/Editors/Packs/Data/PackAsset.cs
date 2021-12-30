@@ -1,11 +1,9 @@
-using System;
-using System.Collections.Generic;
-using UnityEngine;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
-using Rogium.Editors.PaletteData;
+using Rogium.Editors.Palettes;
 using Rogium.Editors.Rooms;
-using Rogium.Editors.TileData;
+using Rogium.Editors.Tiles;
+using System.Collections.Generic;
 
 namespace Rogium.Editors.Packs
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 using BoubakProductions.UI;
-using Rogium.Editors.PaletteData;
+using Rogium.Editors.Palettes;
 
 namespace Rogium.UserInterface.UI
 {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace BoubakProductions.UI.Helpers
+namespace BoubakProductions.UI.Core
 {
     /// <summary>
     /// Contains UI data for an interactable.

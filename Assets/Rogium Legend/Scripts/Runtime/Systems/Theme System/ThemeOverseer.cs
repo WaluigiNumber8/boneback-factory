@@ -1,5 +1,5 @@
 ﻿using BoubakProductions.Safety;
-using BoubakProductions.UI.Helpers;
+using BoubakProductions.UI.Core;
 using UnityEngine;
 
 namespace Rogium.Global.ThemeSystem

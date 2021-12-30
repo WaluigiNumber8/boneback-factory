@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 using System;
-using BoubakProductions.UI.Helpers;
+using BoubakProductions.UI.Core;
 
 namespace Rogium.UserInterface.Interactables.Properties
 {

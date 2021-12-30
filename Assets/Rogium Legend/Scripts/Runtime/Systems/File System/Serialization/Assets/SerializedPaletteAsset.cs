@@ -1,6 +1,6 @@
 ﻿using System;
 using BoubakProductions.Systems.Serialization;
-using Rogium.Editors.PaletteData;
+using Rogium.Editors.Palettes;
 using UnityEngine;
 
 namespace Rogium.ExternalStorage.Serialization

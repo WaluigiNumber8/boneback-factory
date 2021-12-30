@@ -1,6 +1,6 @@
 ﻿using System;
 using Rogium.Editors.Packs;
-using Rogium.Editors.TileData;
+using Rogium.Editors.Tiles;
 using Rogium.Global.GridSystem;
 using UnityEngine;
 

@@ -3,7 +3,7 @@ using Rogium.Editors.Core;
 using Rogium.Global.GridSystem;
 using UnityEngine;
 
-namespace Rogium.Editors.Rooms
+namespace Rogium.Editors.Rooms.ToolSystem
 {
     /// <summary>
     /// Controls, what happens when the currently active tool is used.

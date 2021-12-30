@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
   m_AnchoredPosition: {x: -5, y: 0}
-  m_SizeDelta: {x: -20, y: 0}
+  m_SizeDelta: {x: -20, y: 3.0815}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2049710824627396531
 GameObject:
@@ -291,6 +291,7 @@ GameObject:
   - component: {fileID: 2049710826239503808}
   - component: {fileID: 2049710826239503870}
   - component: {fileID: 2049710826239503809}
+  - component: {fileID: 6514597047786524038}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -356,6 +357,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6514597047786524038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2049710826239503811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 6, y: -4}
+  m_UseGraphicAlpha: 1
 --- !u!1 &2049710826294254365
 GameObject:
   m_ObjectHideFlags: 0

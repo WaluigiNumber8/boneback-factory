@@ -2,7 +2,7 @@
 using System.Linq;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Packs;
-using Rogium.Editors.TileData;
+using Rogium.Editors.Tiles;
 using Rogium.Global.GridSystem;
 using UnityEngine;
 using UnityEngine.Tilemaps;

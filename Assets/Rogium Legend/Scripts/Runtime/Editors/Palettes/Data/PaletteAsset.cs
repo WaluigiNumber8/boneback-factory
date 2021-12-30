@@ -1,9 +1,10 @@
 using System;
+using BoubakProductions.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using UnityEngine;
 
-namespace Rogium.Editors.PaletteData
+namespace Rogium.Editors.Palettes
 {
     /// <summary>
     /// Contains all data needed for a palette.
@@ -21,7 +22,7 @@ namespace Rogium.Editors.PaletteData
             this.creationDate = DateTime.Now;;
             GenerateID(EditorAssetIDs.PaletteIdentifier);
 
-            this.colors = new Color[EditorDefaults.PaletteSize];
+            this.colors = ArrayExtensions.GenerateEmptyColorArray(EditorDefaults.PaletteSize);
         }
 
         public PaletteAsset(PaletteAsset asset)

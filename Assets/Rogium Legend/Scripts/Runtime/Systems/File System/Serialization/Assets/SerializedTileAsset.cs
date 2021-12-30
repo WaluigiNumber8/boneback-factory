@@ -1,5 +1,5 @@
 ﻿using BoubakProductions.Systems.Serialization;
-using Rogium.Editors.TileData;
+using Rogium.Editors.Tiles;
 using System;
 
 namespace Rogium.ExternalStorage.Serialization
