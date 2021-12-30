@@ -19,7 +19,7 @@ namespace Rogium.Global.GASExtension
     /// </summary>
     public static class GASButtonActions
     {
-        private static int storedNumber = -1; //Used for method traveling.
+        private static int storedIndex = -1; //Used for method traveling.
 
         public static void GameStart()
         {
@@ -65,7 +65,7 @@ namespace Rogium.Global.GASExtension
         #endregion
 
         #region Open Selection Menus
-        public static void OpenPackSelection()
+        public static void OpenSelectionPack()
         {
             GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundMain);
             GAS.ObjectSetActive(true, UIEditorContainer.GetInstance().Background);
@@ -74,7 +74,7 @@ namespace Rogium.Global.GASExtension
             CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToMainMenu);
         }
 
-        public static void OpenCampaignSelection()
+        public static void OpenSelectionCampaign()
         {
             GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundMain);
             GAS.ObjectSetActive(true, UIMainContainer.GetInstance().BackgroundGameplayMenus);
@@ -83,7 +83,7 @@ namespace Rogium.Global.GASExtension
             GASRogium.ChangeTheme(ThemeSystem.ThemeType.Red);
         }
         
-        public static void OpenPaletteSelection()
+        public static void OpenSelectionPalette()
         {
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Palette);
@@ -91,7 +91,15 @@ namespace Rogium.Global.GASExtension
             CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToAssetTypeSelection, null, pack.Title, pack.Icon);
         }
         
-        public static void OpenRoomSelection()
+        public static void OpenSelectionSprite()
+        {
+            GAS.SwitchMenu(MenuType.AssetSelection);
+            GASRogium.OpenSelectionMenu(AssetType.Sprite);
+            PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
+            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToAssetTypeSelection, null, pack.Title, pack.Icon);
+        }
+        
+        public static void OpenSelectionRoom()
         {
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Room);
@@ -99,7 +107,7 @@ namespace Rogium.Global.GASExtension
             CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToAssetTypeSelection, null, pack.Title, pack.Icon);
         }
         
-        public static void OpenTileSelection()
+        public static void OpenSelectionTile()
         {
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Tile);
@@ -124,6 +132,11 @@ namespace Rogium.Global.GASExtension
         {
             new ModalWindowPropertyBuilderPalette().OpenForCreate();
         }
+
+        public static void CreateSprite()
+        {
+            new ModalWindowPropertyBuilderSprite().OpenForCreate();
+        }
         
         public static void CreateTile()
         {
@@ -137,31 +150,37 @@ namespace Rogium.Global.GASExtension
         #endregion
 
         #region Edit Asset Properties
-        public static void EditPackProperties(int packIndex)
+        public static void EditPropertiesPack(int packIndex)
         {
             LibraryOverseer.Instance.ActivatePackEditor(packIndex);
             new ModalWindowPropertyBuilderPack().OpenForUpdate();
         }
 
-        public static void EditCampaignProperties(int campaignIndex)
+        public static void EditPropertiesCampaign(int campaignIndex)
         {
             LibraryOverseer.Instance.ActivateCampaignEditor(campaignIndex);
             new ModalWindowPropertyBuilderCampaign().OpenForUpdate();
         }
         
-        public static void EditPaletteProperties(int assetIndex)
+        public static void EditPropertiesPalette(int assetIndex)
         {
             PackEditorOverseer.Instance.ActivatePaletteEditor(assetIndex);
             new ModalWindowPropertyBuilderPalette().OpenForUpdate();
         }
         
-        public static void EditTileProperties(int assetIndex)
+        public static void EditPropertiesSprite(int assetIndex)
+        {
+            PackEditorOverseer.Instance.ActivateSpriteEditor(assetIndex);
+            new ModalWindowPropertyBuilderSprite().OpenForUpdate();
+        }
+        
+        public static void EditPropertiesTile(int assetIndex)
         {
             PackEditorOverseer.Instance.ActivateTileEditor(assetIndex);
             new ModalWindowPropertyBuilderTile().OpenForUpdate();
         }
         
-        public static void EditRoomProperties(int assetIndex)
+        public static void EditPropertiesRoom(int assetIndex)
         {
             PackEditorOverseer.Instance.ActivateRoomEditor(assetIndex);
             new ModalWindowPropertyBuilderRoom().OpenForUpdate();
@@ -169,76 +188,91 @@ namespace Rogium.Global.GASExtension
         #endregion
 
         #region Remove Assets
-        public static void RemovePack(int packIndex)
+        public static void DeletePack(int packIndex)
         {
             ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
-            storedNumber = packIndex;
+            storedIndex = packIndex;
             window.OpenAsMessage("Do you really want to remove this pack?", ThemeType.Blue,"Yes","No", RemovePackAccept, true);
         }
         private static void RemovePackAccept()
         {
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(storedNumber, 0, "StoredNumber");
-            LibraryOverseer.Instance.DeletePack(storedNumber);
+            SafetyNet.EnsureIntIsBiggerOrEqualTo(storedIndex, 0, "StoredNumber");
+            LibraryOverseer.Instance.DeletePack(storedIndex);
             GASRogium.OpenSelectionMenu(AssetType.Pack);
-            storedNumber = -1;
+            storedIndex = -1;
         }
         
-        public static void RemoveCampaign(int campaignIndex)
+        public static void DeleteCampaign(int campaignIndex)
         {
             ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
-            storedNumber = campaignIndex;
+            storedIndex = campaignIndex;
             window.OpenAsMessage("Do you really want to remove this campaign?", ThemeType.Red,"Yes","No", RemoveCampaignAccept, true);
         }
         
         private static void RemoveCampaignAccept()
         {
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(storedNumber, 0, "StoredNumber");
-            LibraryOverseer.Instance.DeleteCampaign(storedNumber);
+            SafetyNet.EnsureIntIsBiggerOrEqualTo(storedIndex, 0, "StoredNumber");
+            LibraryOverseer.Instance.DeleteCampaign(storedIndex);
             CampaignShowPrevious();
-            storedNumber = -1;
+            storedIndex = -1;
         }
 
-        public static void RemovePalette(int assetIndex)
+        public static void DeletePalette(int assetIndex)
         {
             ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
-            storedNumber = assetIndex;
+            storedIndex = assetIndex;
             window.OpenAsMessage("Do you really want to remove this palette?", ThemeType.Blue, "Yes", "No", RemovePaletteAccept, true);
         }
         private static void RemovePaletteAccept()
         {
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(storedNumber, 0, "StoredNumber");
+            SafetyNet.EnsureIntIsBiggerOrEqualTo(storedIndex, 0, "StoredNumber");
             
-            PackEditorOverseer.Instance.RemovePalette(storedNumber);
+            PackEditorOverseer.Instance.RemovePalette(storedIndex);
             GASRogium.OpenSelectionMenu(AssetType.Palette);
-            storedNumber = -1;
+            storedIndex = -1;
         }
         
-        public static void RemoveTile(int assetIndex)
+        public static void DeleteSprite(int assetIndex)
         {
             ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
-            storedNumber = assetIndex;
+            storedIndex = assetIndex;
+            window.OpenAsMessage("Do you really want to remove this sprite?", ThemeType.Blue, "Yes", "No", RemoveSpriteAccept, true);
+        }
+        private static void RemoveSpriteAccept()
+        {
+            SafetyNet.EnsureIntIsBiggerOrEqualTo(storedIndex, 0, "StoredNumber");
+            
+            PackEditorOverseer.Instance.RemoveSprite(storedIndex);
+            GASRogium.OpenSelectionMenu(AssetType.Sprite);
+            storedIndex = -1;
+        }
+        
+        public static void DeleteTile(int assetIndex)
+        {
+            ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
+            storedIndex = assetIndex;
             window.OpenAsMessage("Do you really want to remove this tile?", ThemeType.Blue, "Yes", "No", RemoveTileAccept, true);
         }
         private static void RemoveTileAccept()
         {
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(storedNumber, 0, "StoredNumber");
-            PackEditorOverseer.Instance.RemoveTile(storedNumber);
+            SafetyNet.EnsureIntIsBiggerOrEqualTo(storedIndex, 0, "StoredNumber");
+            PackEditorOverseer.Instance.RemoveTile(storedIndex);
             GASRogium.OpenSelectionMenu(AssetType.Tile);
-            storedNumber = -1;
+            storedIndex = -1;
         }
         
-        public static void RemoveRoom(int assetIndex)
+        public static void DeleteRoom(int assetIndex)
         {
             ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
-            storedNumber = assetIndex;
+            storedIndex = assetIndex;
             window.OpenAsMessage("Do you really want to remove this room?", ThemeType.Blue, "Yes", "No", RemoveRoomAccept, true);
         }
         private static void RemoveRoomAccept()
         {
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(storedNumber, 0, "StoredNumber");
-            PackEditorOverseer.Instance.RemoveRoom(storedNumber);
+            SafetyNet.EnsureIntIsBiggerOrEqualTo(storedIndex, 0, "StoredNumber");
+            PackEditorOverseer.Instance.RemoveRoom(storedIndex);
             GASRogium.OpenSelectionMenu(AssetType.Room);
-            storedNumber = -1;
+            storedIndex = -1;
         }
         #endregion
 
@@ -251,21 +285,28 @@ namespace Rogium.Global.GASExtension
             CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToPackSelectionMenu, null, pack.Title, pack.Icon);
         }
 
-        public static void OpenCampaignEditor(int assetIndex)
+        public static void OpenEditorCampaign(int assetIndex)
         {
             GAS.SwitchMenu(MenuType.CampaignEditor);
             LibraryOverseer.Instance.ActivateCampaignEditor(assetIndex);
             CampaignEditorOverseerMono.GetInstance().FillMenu();
         }
 
-        public static void OpenPaletteEditor(int assetIndex)
+        public static void OpenEditorPalette(int assetIndex)
         {
             CanvasOverseer.GetInstance().NavigationBar.Hide();
             GAS.SwitchMenu(MenuType.PaletteEditor);
             PackEditorOverseer.Instance.ActivatePaletteEditor(assetIndex);
         }
         
-        public static void OpenRoomEditor(int assetIndex)
+        public static void OpenEditorSprite(int assetIndex)
+        {
+            CanvasOverseer.GetInstance().NavigationBar.Hide();
+            GAS.SwitchMenu(MenuType.SpriteEditor);
+            PackEditorOverseer.Instance.ActivateSpriteEditor(assetIndex);
+        }
+        
+        public static void OpenEditorRoom(int assetIndex)
         {
             CanvasOverseer.GetInstance().NavigationBar.Hide();
             GAS.SwitchMenu(MenuType.RoomEditor);
@@ -291,40 +332,51 @@ namespace Rogium.Global.GASExtension
         public static void SaveChangesPalette()
         {
             PaletteEditorOverseer.Instance.CompleteEditing();
-            OpenPaletteSelection();
+            OpenSelectionPalette();
+        }
+        
+        public static void SaveChangesSprite()
+        {
+            SpriteEditorOverseer.Instance.CompleteEditing();
+            OpenSelectionSprite();
         }
         
         public static void SaveChangesRoom()
         {
             RoomEditorOverseer.Instance.CompleteEditing();
-            OpenRoomSelection();
+            OpenSelectionRoom();
         }
         #endregion
 
         #region Cancel Editor Changes
-
-        public static void CancelChangesPalette()
-        {
-            ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
-            window.OpenAsMessage("Do you really not want to save changes?", ThemeType.Blue,"Yes","No", OpenPaletteSelection, true);
-        }
-        
-        public static void CancelChangesRoom()
-        {
-            ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
-            window.OpenAsMessage("Do you really not want to save changes?", ThemeType.Blue,"Yes","No", OpenRoomSelection, true);
-        }
-
         public static void CancelChangesCampaign()
         {
             ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
             window.OpenAsMessage("Do you really not want to save changes?", ThemeType.Red,"Yes","No", CancelChangesCampaignConfirm, true);
         }
-
+        
         private static void CancelChangesCampaignConfirm()
         {
             GAS.SwitchMenu(MenuType.CampaignSelection);
             CampaignAssetSelectionOverseer.Instance.SelectAgain();
+        }
+        
+        public static void CancelChangesPalette()
+        {
+            ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
+            window.OpenAsMessage("Do you really not want to save changes?", ThemeType.Blue,"Yes","No", OpenSelectionPalette, true);
+        }
+        
+        public static void CancelChangesSprite()
+        {
+            ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
+            window.OpenAsMessage("Do you really not want to save changes?", ThemeType.Blue,"Yes","No", OpenSelectionSprite, true);
+        }
+        
+        public static void CancelChangesRoom()
+        {
+            ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
+            window.OpenAsMessage("Do you really not want to save changes?", ThemeType.Blue,"Yes","No", OpenSelectionRoom, true);
         }
         #endregion
 

@@ -56,7 +56,11 @@ namespace Rogium.UserInterface.AssetSelection
 
         public void ReopenForSprites()
         {
-            throw new NotImplementedException();
+            overseer.Setup(AssetType.Sprite,
+                           layouts.grid,
+                           selectionMenus.sprite,
+                           editor.CurrentPack.Sprites.ToList<AssetBase>(),
+                           layoutSwitcher);
         }
         
         public void ReopenForWeapons()

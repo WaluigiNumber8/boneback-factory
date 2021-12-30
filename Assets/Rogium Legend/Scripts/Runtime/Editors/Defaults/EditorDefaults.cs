@@ -22,6 +22,10 @@ namespace Rogium.Editors.Core.Defaults
         public const string PaletteName = "New Palette";
         public const int PaletteSize = 9;
         
+        //Sprite
+        public const string SpriteName = "New Sprite";
+        public static readonly Sprite SpriteIcon = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
+        
         //Tile
         public const string TileTitle = "New Tile";
         public static readonly Sprite TileIcon = Resources.Load<Sprite>("Defaults/spr_Default_Tile");

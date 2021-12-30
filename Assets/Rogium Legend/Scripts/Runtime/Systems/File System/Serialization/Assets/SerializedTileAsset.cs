@@ -5,25 +5,16 @@ using System;
 namespace Rogium.ExternalStorage.Serialization
 {
     [System.Serializable]
-    public class SerializedTileAsset
+    public class SerializedTileAsset : SerializedAssetBase
     {
-        public readonly string id;
-        public readonly string title;
-        public readonly SerializedSprite icon;
-        public readonly string author;
-        public readonly string creationDate;
         public readonly int tileType;
         public readonly SerializedColor color;
 
-        public SerializedTileAsset(TileAsset tileAsset)
+        public SerializedTileAsset(TileAsset asset) : base(asset)
         {
-            this.id = tileAsset.ID;
-            this.title = tileAsset.Title;
-            this.author = tileAsset.Author;
-            this.creationDate = tileAsset.CreationDate.ToString();
-            this.tileType = (int)tileAsset.Type;
-            this.icon = new SerializedSprite(tileAsset.Tile.sprite);
-            this.color = new SerializedColor(tileAsset.Tile.color);
+            this.tileType = (int)asset.Type;
+            this.icon = new SerializedSprite(asset.Tile.sprite);
+            this.color = new SerializedColor(asset.Tile.color);
         }
 
         /// <summary>

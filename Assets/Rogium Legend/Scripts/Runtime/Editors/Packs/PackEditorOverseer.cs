@@ -3,6 +3,7 @@ using UnityEngine;
 using BoubakProductions.Safety;
 using Rogium.Editors.Palettes;
 using Rogium.Editors.Rooms;
+using Rogium.Editors.Sprites;
 using Rogium.Editors.Tiles;
 
 namespace Rogium.Editors.Packs
@@ -15,6 +16,7 @@ namespace Rogium.Editors.Packs
         public event Action<PackAsset, int, string, string> OnSaveChanges;
 
         private readonly PaletteEditorOverseer paletteEditor;
+        private readonly SpriteEditorOverseer spriteEditor;
         private readonly TileEditorOverseer tileEditor;
         private readonly RoomEditorOverseer roomEditor;
 
@@ -44,11 +46,13 @@ namespace Rogium.Editors.Packs
 
         private PackEditorOverseer() 
         {
-            paletteEditor = PaletteEditorOverseer.Instance;;
+            paletteEditor = PaletteEditorOverseer.Instance;
+            spriteEditor = SpriteEditorOverseer.Instance;
             tileEditor = TileEditorOverseer.Instance;
             roomEditor = RoomEditorOverseer.Instance;
 
             paletteEditor.OnCompleteEditing += UpdatePalette;
+            spriteEditor.OnCompleteEditing += UpdateSprite;
             tileEditor.OnCompleteEditing += UpdateTile;
             roomEditor.OnCompleteEditing += UpdateRoom;
         }
@@ -123,6 +127,67 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Palettes, "List of Palettes");
             SafetyNet.EnsureIntIsInRange(assetIndex, 0, currentPack.Palettes.Count, "Palette Index");
             paletteEditor.AssignAsset(CurrentPack.Palettes[assetIndex], assetIndex);
+        }
+
+        #endregion
+        
+        #region Sprites
+        /// <summary>
+        /// Creates a new sprite, and adds it to the Pack Asset.
+        /// <param name="newAsset">The new Sprite Asset to Add.</param>
+        /// </summary>
+        public void CreateNewSprite(SpriteAsset newAsset)
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
+            SafetyNet.EnsureIsNotNull(currentPack.Sprites, "Pack Editor - List of Sprites");
+            CurrentPack.Sprites.Add(newAsset);
+            
+        }
+        public void CreateNewSprite()
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
+            SafetyNet.EnsureIsNotNull(currentPack.Sprites, "Pack Editor - List of Sprites");
+            CurrentPack.Sprites.Add(new SpriteAsset());
+            SavePackChanges();
+        }
+
+        /// <summary>
+        /// Updates the sprite in the given pack.
+        /// </summary>
+        /// <param name="newAsset">Sprite Asset with the new details.</param>
+        /// <param name="positionIndex">Which sprite to override.</param>
+        public void UpdateSprite(SpriteAsset newAsset, int positionIndex)
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
+            SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Sprites, "List of Sprites");
+            
+            CurrentPack.Sprites.Update(positionIndex, newAsset);
+            SavePackChanges();
+        } 
+
+        /// <summary>
+        /// Deletes a sprite from the pack.
+        /// <param name="assetIndex">The index of the sprite to be deleted.</param>
+        /// </summary>
+        public void RemoveSprite(int assetIndex)
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
+            SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Sprites, "List of Sprites");
+            currentPack.Sprites.RemoveAt(assetIndex);
+
+            SavePackChanges();
+        }
+
+        /// <summary>
+        /// Send Command to the Sprite Editor, to start editing a palette.
+        /// </summary>
+        /// <param name="assetIndex">Sprite index from the list.</param>
+        public void ActivateSpriteEditor(int assetIndex)
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
+            SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Sprites, "List of Sprites");
+            SafetyNet.EnsureIntIsInRange(assetIndex, 0, currentPack.Sprites.Count, "Sprite Index");
+            spriteEditor.AssignAsset(CurrentPack.Sprites[assetIndex], assetIndex);
         }
 
         #endregion

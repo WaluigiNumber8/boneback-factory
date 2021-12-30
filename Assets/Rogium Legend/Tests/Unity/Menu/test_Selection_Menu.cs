@@ -138,7 +138,7 @@ public class test_Selection_Menu
         yield return new WaitForSeconds(0.1f);
         GASButtonActions.CreatePack();
         yield return new WaitForSeconds(0.3f);
-        GASButtonActions.RemovePack(0);
+        GASButtonActions.DeletePack(0);
 
         Assert.AreEqual(0, assetSelection.AssetCount);
     }

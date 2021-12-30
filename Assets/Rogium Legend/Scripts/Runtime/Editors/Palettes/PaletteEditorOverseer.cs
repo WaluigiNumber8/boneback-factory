@@ -58,7 +58,7 @@ namespace Rogium.Editors.Palettes
         }
         
         /// <summary>
-        /// Updates the tile asset with new data. Not allowed when no asset is assigned.
+        /// Updates the Palette Asset with new data. Not allowed when no asset is assigned.
         /// </summary>
         /// <param name="updatedAsset">Asset Containing new data.</param>
         public void UpdateAsset(PaletteAsset updatedAsset)

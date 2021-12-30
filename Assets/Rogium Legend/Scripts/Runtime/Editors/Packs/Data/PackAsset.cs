@@ -3,6 +3,7 @@ using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Palettes;
 using Rogium.Editors.Rooms;
 using Rogium.Editors.Tiles;
+using Rogium.Editors.Sprites;
 using System.Collections.Generic;
 
 namespace Rogium.Editors.Packs
@@ -14,6 +15,7 @@ namespace Rogium.Editors.Packs
     {
         private PackInfoAsset packInfo;
         private AssetList<PaletteAsset> palettes;
+        private AssetList<SpriteAsset> sprites;
         private AssetList<RoomAsset> rooms;
         private AssetList<TileAsset> tiles;
 
@@ -28,6 +30,7 @@ namespace Rogium.Editors.Packs
            
             GatherValuesFromInfo(packInfo);
             this.palettes = new AssetList<PaletteAsset>(this);
+            this.sprites = new AssetList<SpriteAsset>(this);
             this.rooms = new AssetList<RoomAsset>(this);
             this.tiles = new AssetList<TileAsset>(this);
         }
@@ -37,20 +40,23 @@ namespace Rogium.Editors.Packs
             
             GatherValuesFromInfo(packInfo);
             this.palettes = new AssetList<PaletteAsset>(this);
+            this.sprites = new AssetList<SpriteAsset>(this);
             this.rooms = new AssetList<RoomAsset>(this);
             this.tiles = new AssetList<TileAsset>(this);
         }
         
-        public PackAsset(PackAsset packAsset)
+        public PackAsset(PackAsset asset)
         {
-            this.packInfo = new PackInfoAsset(packAsset.packInfo);
+            this.packInfo = new PackInfoAsset(asset.packInfo);
             
             GatherValuesFromInfo(packInfo);
-            this.palettes = new AssetList<PaletteAsset>(this, packAsset.palettes);
-            this.rooms = new AssetList<RoomAsset>(this, packAsset.rooms);
-            this.tiles = new AssetList<TileAsset>(this, packAsset.tiles);
+            this.palettes = new AssetList<PaletteAsset>(this, asset.Palettes);
+            this.sprites = new AssetList<SpriteAsset>(this, asset.Sprites);
+            this.rooms = new AssetList<RoomAsset>(this, asset.Rooms);
+            this.tiles = new AssetList<TileAsset>(this, asset.Tiles);
         }
-        public PackAsset(PackInfoAsset packInfo, IList<PaletteAsset> palettes, IList<TileAsset> tiles, IList<RoomAsset> rooms)
+        public PackAsset(PackInfoAsset packInfo, IList<PaletteAsset> palettes, IList<SpriteAsset> sprites,
+                        IList<TileAsset> tiles, IList<RoomAsset> rooms)
         {
             this.packInfo = packInfo;
             
@@ -58,6 +64,7 @@ namespace Rogium.Editors.Packs
             
             GatherValuesFromInfo(packInfo);
             this.palettes = new AssetList<PaletteAsset>(this, palettes);
+            this.sprites = new AssetList<SpriteAsset>(this, sprites);
             this.rooms = new AssetList<RoomAsset>(this, rooms);
             this.tiles = new AssetList<TileAsset>(this, tiles);
         }
@@ -98,6 +105,7 @@ namespace Rogium.Editors.Packs
 
         public PackInfoAsset PackInfo { get => packInfo; }
         public AssetList<PaletteAsset> Palettes { get => palettes; }
+        public AssetList<SpriteAsset> Sprites { get => sprites; }
         public AssetList<RoomAsset> Rooms { get => rooms; }
         public AssetList<TileAsset> Tiles { get => tiles; }
     }

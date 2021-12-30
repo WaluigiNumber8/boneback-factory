@@ -1,4 +1,4 @@
-﻿using BoubakProductions.Systems.Serialization;
+﻿using System;
 using Rogium.Editors.Packs;
 
 namespace Rogium.ExternalStorage.Serialization
@@ -7,23 +7,23 @@ namespace Rogium.ExternalStorage.Serialization
     /// Serialized form of the PackInfoAsset, ready for saving.
     /// </summary>
     [System.Serializable]
-    public class SerializedPackInfoAsset
+    public class SerializedPackInfoAsset : SerializedAssetBase
     {
-        public readonly string id;
-        public readonly string title;
-        public readonly SerializedSprite icon;
-        public readonly string author;
-        public readonly string creationTime;
         public readonly string description;
 
-        public SerializedPackInfoAsset(PackInfoAsset packInfo)
+        public SerializedPackInfoAsset(PackInfoAsset asset) : base(asset)
         {
-            this.id = packInfo.ID;
-            this.title = packInfo.Title;
-            this.icon = new SerializedSprite(packInfo.Icon);
-            this.author = packInfo.Author;
-            this.creationTime = packInfo.CreationDate.ToString();
-            this.description = packInfo.Description;
+            this.description = asset.Description;
+        }
+
+        public PackInfoAsset Deserialize()
+        {
+            return new PackInfoAsset(this.id,
+                                     this.title,
+                                     this.icon.Deserialize(),
+                                     this.author,
+                                     this.description,
+                                     DateTime.Parse(this.creationDate));
         }
 
     }

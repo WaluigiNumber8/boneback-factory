@@ -47,6 +47,17 @@ namespace BoubakProductions.Core
         /// <summary>
         /// Generates a new empty sprite.
         /// </summary>
+        /// <param name="width">The width of the sprite.</param>
+        /// <param name="height">The height of the sprite.</param>
+        /// <param name="pixelsPerUnit">How many pixels will be stored in 1 Unity Unit.</param>
+        /// <returns>A newly created sprite.</returns>
+        public static Sprite GenerateSprite(int width, int height, int pixelsPerUnit)
+        {
+            return GenerateSprite(width, height, new Vector2(0.5f, 0.5f), pixelsPerUnit);
+        }
+        /// <summary>
+        /// Generates a new empty sprite.
+        /// </summary>
         /// <param name="tex">The texture to use for the sprite.</param>
         /// <param name="pixelsPerUnit">How many pixels will be stored in 1 Unity Unit.</param>
         /// <returns>A newly created sprite.</returns>
