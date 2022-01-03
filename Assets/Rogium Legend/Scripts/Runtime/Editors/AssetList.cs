@@ -1,12 +1,12 @@
-﻿using System;
+﻿using BoubakProductions.Safety;
+using Rogium.Editors.Packs;
+using Rogium.ExternalStorage;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using BoubakProductions.Safety;
-using Rogium.Editors.Core;
-using Rogium.ExternalStorage;
 
-namespace Rogium.Editors.Packs
+namespace Rogium.Editors.Core
 {
     /// <summary>
     /// Special distinct List variant. Is synced with external storage.

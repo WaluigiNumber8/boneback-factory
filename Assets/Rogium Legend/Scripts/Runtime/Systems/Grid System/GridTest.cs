@@ -6,7 +6,7 @@ namespace Rogium.Global.GridSystem
     [RequireComponent(typeof(UIInput))]
     public class GridTest : MonoBehaviour
     {
-        private EditorGridOverseer gridOverseer;
+        private InteractableEditorGrid grid;
         private RectTransform gridRect;
         private UIInput input;
 
@@ -15,9 +15,9 @@ namespace Rogium.Global.GridSystem
         {
             gridRect = GetComponent<RectTransform>();
             input = GetComponent<UIInput>();
-            gridOverseer = GetComponent<EditorGridOverseer>();
+            grid = GetComponent<InteractableEditorGrid>();
 
-            Vector2Int gridSize = gridOverseer.GridSize;
+            Vector2Int gridSize = grid.GridSize;
             interval = new Vector2((gridRect.rect.width - gridRect.position.x) / gridSize.x,
                                    (gridRect.rect.height - gridRect.position.y) / gridSize.y);
         }

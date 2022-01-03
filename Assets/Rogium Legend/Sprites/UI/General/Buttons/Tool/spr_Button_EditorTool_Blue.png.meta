@@ -107,7 +107,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spr_Editor_Tool_Button_0
+      name: spr_Button_EditorTool_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
         width: 8
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 2, y: 2, z: 2, w: 2}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -128,7 +128,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_Editor_Tool_Button_1
+      name: spr_Button_EditorTool_1
       rect:
         serializedVersion: 2
         x: 8
@@ -136,8 +136,8 @@ TextureImporter:
         width: 8
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 2, y: 2, z: 2, w: 2}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -149,7 +149,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_Editor_Tool_Button_2
+      name: spr_Button_EditorTool_2
       rect:
         serializedVersion: 2
         x: 16
@@ -157,8 +157,8 @@ TextureImporter:
         width: 8
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 2, y: 2, z: 2, w: 2}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -170,7 +170,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_Editor_Tool_Button_3
+      name: spr_Button_EditorTool_3
       rect:
         serializedVersion: 2
         x: 24
@@ -178,8 +178,8 @@ TextureImporter:
         width: 8
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 2, y: 2, z: 2, w: 2}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -191,7 +191,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_Editor_Tool_Button_4
+      name: spr_Button_EditorTool_4
       rect:
         serializedVersion: 2
         x: 32
@@ -199,8 +199,8 @@ TextureImporter:
         width: 8
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 2, y: 2, z: 2, w: 2}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -222,11 +222,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      spr_Editor_Tool_Button_0: -6844475023896853492
-      spr_Editor_Tool_Button_2: 3194338367470042179
-      spr_Editor_Tool_Button_1: -3695155674551037259
-      spr_Editor_Tool_Button_3: 2854367906205274320
-      spr_Editor_Tool_Button_4: -3288420478271307502
+      spr_Button_EditorTool_1: -3695155674551037259
+      spr_Button_EditorTool_4: -3288420478271307502
+      spr_Button_EditorTool_0: -6844475023896853492
+      spr_Button_EditorTool_3: 2854367906205274320
+      spr_Button_EditorTool_2: 3194338367470042179
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

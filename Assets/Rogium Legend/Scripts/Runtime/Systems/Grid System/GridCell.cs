@@ -11,7 +11,7 @@ namespace Rogium.Global.GridSystem
     [RequireComponent(typeof(Image))]
     public class GridCell : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
     {
-        private EditorGridOverseer overseer;
+        private InteractableEditorGrid overseer;
         private UIInput input;
         
         [SerializeField] private Image image;
@@ -21,13 +21,13 @@ namespace Rogium.Global.GridSystem
         /// <summary>
         /// Spawns a Grid Cell with correct information
         /// </summary>
-        /// <param name="overseer">The Grid Loader, that spawned this cell.</param>
+        /// <param name="editorGrid">The Grid Loader, that spawned this cell.</param>
         /// <param name="x">Cell's X position on the grid.</param>
         /// <param name="y">Cell's Y position on the gird.</param>
         /// <param name="sprite">The sprite of cell, that will show in the UI.</param>
-        public void Spawn(EditorGridOverseer overseer, UIInput input, int x, int y, Sprite sprite)
+        public void Spawn(InteractableEditorGrid editorGrid, UIInput input, int x, int y, Sprite sprite)
         {
-            this.overseer = overseer;
+            this.overseer = editorGrid;
             this.input = input;
             this.x = x;
             this.y = y;

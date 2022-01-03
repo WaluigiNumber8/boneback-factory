@@ -15,7 +15,7 @@ namespace Rogium.Editors.Rooms
         private RoomEditorOverseer roomEditor;
         private AssetPickerOverseer assetPicker;
         
-        [SerializeField] private EditorGridOverseer editorGrid;
+        [SerializeField] private InteractableEditorGrid editorGrid;
 
         private void Awake()
         {
@@ -39,10 +39,10 @@ namespace Rogium.Editors.Rooms
         /// <summary>
         /// Prepares the room editor, whenever it is opened.
         /// </summary>
-        private void PrepareRoomEditor(RoomAsset roomAsset)
+        private void PrepareRoomEditor(RoomAsset room)
         {
             assetPicker.AssignTile(editor.CurrentPack.Tiles[0]);
-            editorGrid.LoadGrid(PackEditorOverseer.Instance.CurrentPack.Tiles, roomAsset);
+            editorGrid.LoadGrid(PackEditorOverseer.Instance.CurrentPack.Tiles, room.TileGrid);
         }
         
         /// <summary>

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9982117715ef32742bb10e1673e9a966
+guid: 71b23270d15255f48932aaab4ea9b008
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -104,7 +104,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sprset_Menu_Icons_0
+      name: spr_Card_Button_Purple_0
       rect:
         serializedVersion: 2
         x: 0
@@ -112,20 +112,20 @@ TextureImporter:
         width: 8
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 2, y: 2, z: 2, w: 2}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 48bc5054eed04274e8ee331f70c6a399
-      internalID: -203117973
+      spriteID: f28d288763fbaf84fbf5048a831984c4
+      internalID: 1913551406
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_Menu_Icons_1
+      name: spr_Card_Button_Purple_1
       rect:
         serializedVersion: 2
         x: 8
@@ -133,20 +133,20 @@ TextureImporter:
         width: 8
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 2, y: 2, z: 2, w: 2}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6251cb77ab78ac849a08203b59084e24
-      internalID: 925054236
+      spriteID: ca5019139ce52bc4e82c1f09fa94498c
+      internalID: 1390081756
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_Menu_Icons_2
+      name: spr_Card_Button_Purple_2
       rect:
         serializedVersion: 2
         x: 16
@@ -154,20 +154,20 @@ TextureImporter:
         width: 8
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 2, y: 2, z: 2, w: 2}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e518b593f9eb034fa74dcf7dbb7d6df
-      internalID: -1820635022
+      spriteID: b3e6a59bc6dc89f459b6b1f6d4a9887e
+      internalID: -1333714377
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_Menu_Icons_3
+      name: spr_Card_Button_Purple_3
       rect:
         serializedVersion: 2
         x: 24
@@ -175,20 +175,20 @@ TextureImporter:
         width: 8
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 2, y: 2, z: 2, w: 2}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e1c38f74a071cd459443237bf6d9e22
-      internalID: 115274202
+      spriteID: ad7666d2da7075042a7d39b470bdcbeb
+      internalID: -396533030
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_Menu_Icons_4
+      name: spr_Card_Button_Purple_4
       rect:
         serializedVersion: 2
         x: 32
@@ -196,56 +196,14 @@ TextureImporter:
         width: 8
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 2, y: 2, z: 2, w: 2}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9badb58f775e9f48be96ace59b1f8d5
-      internalID: -917808211
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprset_Menu_Icons_5
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fbb851441c095a549a8e480727661805
-      internalID: -375139211
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprset_Menu_Icons_6
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 521628d95f591af48946ecefcaec7ebc
-      internalID: 1300377024
+      spriteID: 2630892bb227edb449f0df53ed9381eb
+      internalID: 954764971
       vertices: []
       indices: 
       edges: []
@@ -261,13 +219,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      sprset_Menu_Icons_0: -203117973
-      sprset_Menu_Icons_2: -1820635022
-      sprset_Menu_Icons_1: 925054236
-      sprset_Menu_Icons_5: -375139211
-      sprset_Menu_Icons_6: 1300377024
-      sprset_Menu_Icons_4: -917808211
-      sprset_Menu_Icons_3: 115274202
+      spr_Card_Button_Purple_0: 1913551406
+      spr_Card_Button_Purple_3: -396533030
+      spr_Card_Button_Purple_1: 1390081756
+      spr_Card_Button_Purple_4: 954764971
+      spr_Card_Button_Purple_2: -1333714377
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

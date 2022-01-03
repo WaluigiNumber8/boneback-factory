@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 71b23270d15255f48932aaab4ea9b008
+guid: 776c0268cd7cd3941baec04f72e4887d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -104,7 +104,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spr_Card_Button_DarkPurple_0
+      name: spr_Button_EditorTool_Pink_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,14 +118,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f28d288763fbaf84fbf5048a831984c4
-      internalID: 1913551406
+      spriteID: e664dcb2600454b4dbefb3fc338d8207
+      internalID: -2034647878
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_Card_Button_DarkPurple_1
+      name: spr_Button_EditorTool_Pink_1
       rect:
         serializedVersion: 2
         x: 8
@@ -139,14 +139,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca5019139ce52bc4e82c1f09fa94498c
-      internalID: 1390081756
+      spriteID: 86c16874c6cacb84f8d0c76f1b37fcb2
+      internalID: 141005230
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_Card_Button_DarkPurple_2
+      name: spr_Button_EditorTool_Pink_2
       rect:
         serializedVersion: 2
         x: 16
@@ -160,14 +160,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3e6a59bc6dc89f459b6b1f6d4a9887e
-      internalID: -1333714377
+      spriteID: 95d3597e26f3e3449930bfb719381449
+      internalID: -389013717
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_Card_Button_DarkPurple_3
+      name: spr_Button_EditorTool_Pink_3
       rect:
         serializedVersion: 2
         x: 24
@@ -181,14 +181,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad7666d2da7075042a7d39b470bdcbeb
-      internalID: -396533030
+      spriteID: bc2f952087b25a34dafd43f330177f15
+      internalID: -84854227
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_Card_Button_DarkPurple_4
+      name: spr_Button_EditorTool_Pink_4
       rect:
         serializedVersion: 2
         x: 32
@@ -202,8 +202,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2630892bb227edb449f0df53ed9381eb
-      internalID: 954764971
+      spriteID: b1de41bc6605138409eb4bd3e2a15897
+      internalID: 518109535
       vertices: []
       indices: 
       edges: []
@@ -219,11 +219,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      spr_Card_Button_DarkPurple_2: -1333714377
-      spr_Card_Button_DarkPurple_3: -396533030
-      spr_Card_Button_DarkPurple_0: 1913551406
-      spr_Card_Button_DarkPurple_1: 1390081756
-      spr_Card_Button_DarkPurple_4: 954764971
+      spr_Button_EditorTool_Pink_4: 518109535
+      spr_Button_EditorTool_Pink_2: -389013717
+      spr_Button_EditorTool_Pink_1: 141005230
+      spr_Button_EditorTool_Pink_3: -84854227
+      spr_Button_EditorTool_Pink_0: -2034647878
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

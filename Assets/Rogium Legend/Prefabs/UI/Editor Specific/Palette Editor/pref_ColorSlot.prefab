@@ -184,7 +184,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1899903828, guid: c14ae50052bca6348b97cb6b002801ad, type: 3}
+  m_Sprite: {fileID: 1015410927, guid: 34a69be70a980e44583bbad73127c022, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -207,7 +207,6 @@ GameObject:
   - component: {fileID: 8740268503137790162}
   - component: {fileID: 4575017158073086607}
   - component: {fileID: 16064623958222674}
-  - component: {fileID: 3982093357705728287}
   m_Layer: 5
   m_Name: pref_ColorSlot
   m_TagString: Untagged
@@ -294,10 +293,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 1267965998, guid: c14ae50052bca6348b97cb6b002801ad, type: 3}
-    m_PressedSprite: {fileID: 27531306, guid: c14ae50052bca6348b97cb6b002801ad, type: 3}
-    m_SelectedSprite: {fileID: 1076304836, guid: c14ae50052bca6348b97cb6b002801ad, type: 3}
-    m_DisabledSprite: {fileID: 1899903828, guid: c14ae50052bca6348b97cb6b002801ad, type: 3}
+    m_HighlightedSprite: {fileID: -1194178464, guid: 34a69be70a980e44583bbad73127c022, type: 3}
+    m_PressedSprite: {fileID: -1775364646, guid: 34a69be70a980e44583bbad73127c022, type: 3}
+    m_SelectedSprite: {fileID: 401492236, guid: 34a69be70a980e44583bbad73127c022, type: 3}
+    m_DisabledSprite: {fileID: 1015410927, guid: 34a69be70a980e44583bbad73127c022, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -323,33 +322,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ui:
     colorImg: {fileID: 755378142194738726}
---- !u!114 &3982093357705728287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8740268503137790167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1

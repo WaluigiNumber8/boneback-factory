@@ -492,7 +492,7 @@ PrefabInstance:
     - target: {fileID: 3625262409749968233, guid: 4fbecacee74d9eb448fc7e0c7da8a0eb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 7374556573876112190, guid: 9982117715ef32742bb10e1673e9a966, type: 3}
+      objectReference: {fileID: -203117973, guid: 9982117715ef32742bb10e1673e9a966, type: 3}
     - target: {fileID: 4024388009033545112, guid: 4fbecacee74d9eb448fc7e0c7da8a0eb, type: 3}
       propertyPath: m_Name
       value: Config Button

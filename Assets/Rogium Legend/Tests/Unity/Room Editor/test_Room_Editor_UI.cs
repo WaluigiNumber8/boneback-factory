@@ -18,7 +18,7 @@ public class test_Room_Editor_UI
     
     private RoomEditorOverseerMono roomEditorOverseerMono;
     private RoomEditorOverseer roomEditorOverseer;
-    private EditorGridOverseer roomGrid;
+    private InteractableEditorGrid roomGrid;
 
     private string tileID;
     
@@ -43,7 +43,7 @@ public class test_Room_Editor_UI
         
         //Room Editor
         roomEditorOverseerMono = AssetDatabase.LoadAssetAtPath<RoomEditorOverseerMono>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Menu_RoomEditor.prefab");
-        roomGrid = roomEditorOverseerMono.GetComponentInChildren<EditorGridOverseer>();
+        roomGrid = roomEditorOverseerMono.GetComponentInChildren<InteractableEditorGrid>();
         #endregion
 
         #region Build Pack & Room

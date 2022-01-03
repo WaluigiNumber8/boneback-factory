@@ -119,7 +119,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spr_Card_Button_Purple_0
+      name: spr_Card_Button_Pink_0
       rect:
         serializedVersion: 2
         x: 0
@@ -127,7 +127,7 @@ TextureImporter:
         width: 8
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 2, y: 2, z: 2, w: 2}
       outline: []
       physicsShape: []
@@ -140,7 +140,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_Card_Button_Purple_1
+      name: spr_Card_Button_Pink_1
       rect:
         serializedVersion: 2
         x: 8
@@ -148,7 +148,7 @@ TextureImporter:
         width: 8
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 2, y: 2, z: 2, w: 2}
       outline: []
       physicsShape: []
@@ -161,7 +161,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_Card_Button_Purple_2
+      name: spr_Card_Button_Pink_2
       rect:
         serializedVersion: 2
         x: 16
@@ -169,7 +169,7 @@ TextureImporter:
         width: 8
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 2, y: 2, z: 2, w: 2}
       outline: []
       physicsShape: []
@@ -182,7 +182,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_Card_Button_Purple_3
+      name: spr_Card_Button_Pink_3
       rect:
         serializedVersion: 2
         x: 24
@@ -190,7 +190,7 @@ TextureImporter:
         width: 8
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 2, y: 2, z: 2, w: 2}
       outline: []
       physicsShape: []
@@ -203,7 +203,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_Card_Button_Purple_4
+      name: spr_Card_Button_Pink_4
       rect:
         serializedVersion: 2
         x: 32
@@ -211,7 +211,7 @@ TextureImporter:
         width: 8
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 2, y: 2, z: 2, w: 2}
       outline: []
       physicsShape: []
@@ -234,11 +234,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      spr_Card_Button_Purple_0: 7238548762348349891
-      spr_Card_Button_Purple_3: 4360974918694566743
-      spr_Card_Button_Purple_1: -1151530788858773162
-      spr_Card_Button_Purple_4: -2654010475583560125
-      spr_Card_Button_Purple_2: 1132998576907030740
+      spr_Card_Button_Pink_2: 1132998576907030740
+      spr_Card_Button_Pink_3: 4360974918694566743
+      spr_Card_Button_Pink_1: -1151530788858773162
+      spr_Card_Button_Pink_0: 7238548762348349891
+      spr_Card_Button_Pink_4: -2654010475583560125
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

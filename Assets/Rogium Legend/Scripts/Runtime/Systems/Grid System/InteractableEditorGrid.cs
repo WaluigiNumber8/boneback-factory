@@ -1,12 +1,10 @@
-﻿using System;
-using UnityEngine;
-using BoubakProductions.Core;
+﻿using BoubakProductions.Core;
 using BoubakProductions.UI;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
-using Rogium.Editors.Packs;
-using Rogium.Editors.Rooms;
 using Rogium.Global.Input;
+using System;
+using UnityEngine;
 
 namespace Rogium.Global.GridSystem
 {
@@ -14,14 +12,14 @@ namespace Rogium.Global.GridSystem
     /// Overseers most actions happening on the Room Grid.
     /// </summary>
     [RequireComponent(typeof(FlexibleGridGroup), typeof(UIInput))]
-    public class EditorGridOverseer : MonoBehaviour
+    public class InteractableEditorGrid : MonoBehaviour
     {
         public event Action<Vector2Int> OnInteractionClick;
 
-        private UIInput input;
-
         [SerializeField] private GridCell cellPrefab;
         [SerializeField] private Vector2Int gridSize;
+        
+        private UIInput input;
 
         private GridCell[,] cells;
 
@@ -53,11 +51,11 @@ namespace Rogium.Global.GridSystem
         /// Loads UI tiles into the editor grid.
         /// </summary>
         /// <param name="assetList">From which list of assets to load from.</param>
-        /// <param name="room">The room based on which to load the data. </param>
+        /// <param name="IDGrid">The grid of IDs to read.</param>
         /// <typeparam name="T"></typeparam>
-        public void LoadGrid<T>(AssetList<T> assetList, RoomAsset room) where T : AssetBase 
+        public void LoadGrid<T>(AssetList<T> assetList, ObjectGrid<string> IDGrid) where T : AssetBase 
         {
-            AssetGridLoader.LoadGridUI(cells, room.TileGrid, assetList);
+            AssetGridLoader.LoadGridUI(cells, IDGrid, assetList);
         }
         
         /// <summary>

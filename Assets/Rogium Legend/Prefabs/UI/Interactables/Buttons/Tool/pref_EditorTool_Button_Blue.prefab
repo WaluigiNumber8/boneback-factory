@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 3971390881174288881}
   - component: {fileID: 6993012654762189262}
   m_Layer: 5
-  m_Name: pref_Tool_Button_Blue
+  m_Name: pref_EditorTool_Button_Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

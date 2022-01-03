@@ -101,7 +101,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spr_Scrollbar_0
+      name: spr_Scrollbar_Blue_0
       rect:
         serializedVersion: 2
         x: 0
@@ -109,7 +109,7 @@ TextureImporter:
         width: 4
         height: 4
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 1, y: 1, z: 1, w: 1}
       outline: []
       physicsShape: []
@@ -122,7 +122,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_Scrollbar_1
+      name: spr_Scrollbar_Blue_1
       rect:
         serializedVersion: 2
         x: 4
@@ -130,7 +130,7 @@ TextureImporter:
         width: 4
         height: 4
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 1, y: 1, z: 1, w: 1}
       outline: []
       physicsShape: []
@@ -143,7 +143,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_Scrollbar_2
+      name: spr_Scrollbar_Blue_2
       rect:
         serializedVersion: 2
         x: 8
@@ -151,7 +151,7 @@ TextureImporter:
         width: 4
         height: 4
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 1, y: 1, z: 1, w: 1}
       outline: []
       physicsShape: []
@@ -159,6 +159,48 @@ TextureImporter:
       bones: []
       spriteID: 2e02dcad9c436e520800000000000000
       internalID: 2730928265610731746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Scrollbar_Blue_3
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 0
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 1, y: 1, z: 1, w: 1}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56b416f3f81ff0e49992e28cc8e0ed7b
+      internalID: 2050768783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Scrollbar_Blue_4
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 1, y: 1, z: 1, w: 1}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e89acd6eba16854e91e20bd508d6ed5
+      internalID: -1324826487
       vertices: []
       indices: 
       edges: []
@@ -174,9 +216,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      spr_Scrollbar_1: 414729955651042257
-      spr_Scrollbar_2: 2730928265610731746
-      spr_Scrollbar_0: -4271988431060051694
+      spr_Scrollbar_Blue_0: -4271988431060051694
+      spr_Scrollbar_Blue_2: 2730928265610731746
+      spr_Scrollbar_Blue_4: -1324826487
+      spr_Scrollbar_Blue_3: 2050768783
+      spr_Scrollbar_Blue_1: 414729955651042257
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

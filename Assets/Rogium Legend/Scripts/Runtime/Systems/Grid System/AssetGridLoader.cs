@@ -15,7 +15,7 @@ namespace Rogium.Global.GridSystem
         /// </summary>
         /// <param name="cells">The cells that will have their sprite updated.</param>
         /// <param name="IDGrid">The grid of IDs that tells which asset is assigned to which cell. </param>
-        /// <param name="assetList">The list fo asset from which to pick the sprites.</param>
+        /// <param name="assetList">The list of assets from which to pick the sprites.</param>
         public static void LoadGridUI<T>(GridCell[,] cells, ObjectGrid<string> IDGrid, AssetList<T> assetList) where T : AssetBase
         {
             ClearAllTiles(cells);
