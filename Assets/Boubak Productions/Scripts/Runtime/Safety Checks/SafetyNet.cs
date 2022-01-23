@@ -221,7 +221,7 @@ namespace BoubakProductions.Safety
         /// <param name="list">The list to check.</param>
         /// <param name="variableName">The name of the list</param>
         /// <exception cref="SafetyNetCollectionException"></exception>
-        public static void EnsureListIsNotEmptyOrNull<T>(IList<T> list, string variableName)
+        public static void EnsureListIsNotNullOrEmpty<T>(IList<T> list, string variableName)
         {
             if (list == null || list.Count <= 0)
             {

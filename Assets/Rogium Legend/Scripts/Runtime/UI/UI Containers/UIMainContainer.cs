@@ -1,7 +1,7 @@
 ﻿using BoubakProductions.Core;
 using UnityEngine;
 
-namespace Rogium.UserInterface.UI
+namespace Rogium.UserInterface.Containers
 {
     /// <summary>
     /// Contains references for various UI components of the Main Menus.

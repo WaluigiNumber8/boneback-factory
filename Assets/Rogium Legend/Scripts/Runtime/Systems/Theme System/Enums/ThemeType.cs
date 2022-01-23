@@ -1,4 +1,4 @@
-﻿namespace Rogium.Global.ThemeSystem
+﻿namespace Rogium.Systems.ThemeSystem
 {
     /// <summary>
     /// The types of themes this program can have.

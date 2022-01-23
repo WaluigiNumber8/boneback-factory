@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Rogium.Global.GraphicsDrawing
+namespace Rogium.Systems.GraphicsDrawing
 {
     public class UIGridRenderer : Graphic
     {

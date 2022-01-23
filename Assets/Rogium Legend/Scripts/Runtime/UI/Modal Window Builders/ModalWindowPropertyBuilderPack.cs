@@ -2,7 +2,7 @@
 using BoubakProductions.UI;
 using Rogium.Editors.Packs;
 
-namespace Rogium.UserInterface.UI
+namespace Rogium.UserInterface.ModalWindowBuilding
 {
     /// <summary>
     /// Constructor for the Pack Properties Modal Window.

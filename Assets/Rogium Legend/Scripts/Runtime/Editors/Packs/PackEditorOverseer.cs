@@ -98,7 +98,7 @@ namespace Rogium.Editors.Packs
         public void UpdatePalette(PaletteAsset newAsset, int positionIndex)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Palettes, "List of Palettes");
+            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Palettes, "List of Palettes");
             
             CurrentPack.Palettes.Update(positionIndex, newAsset);
             SavePackChanges();
@@ -111,7 +111,7 @@ namespace Rogium.Editors.Packs
         public void RemovePalette(int assetIndex)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Palettes, "List of Palettes");
+            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Palettes, "List of Palettes");
             currentPack.Palettes.RemoveAt(assetIndex);
 
             SavePackChanges();
@@ -124,7 +124,7 @@ namespace Rogium.Editors.Packs
         public void ActivatePaletteEditor(int assetIndex)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Palettes, "List of Palettes");
+            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Palettes, "List of Palettes");
             SafetyNet.EnsureIntIsInRange(assetIndex, 0, currentPack.Palettes.Count, "Palette Index");
             paletteEditor.AssignAsset(CurrentPack.Palettes[assetIndex], assetIndex);
         }
@@ -159,7 +159,7 @@ namespace Rogium.Editors.Packs
         public void UpdateSprite(SpriteAsset newAsset, int positionIndex)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Sprites, "List of Sprites");
+            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Sprites, "List of Sprites");
             
             CurrentPack.Sprites.Update(positionIndex, newAsset);
             SavePackChanges();
@@ -172,7 +172,7 @@ namespace Rogium.Editors.Packs
         public void RemoveSprite(int assetIndex)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Sprites, "List of Sprites");
+            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Sprites, "List of Sprites");
             currentPack.Sprites.RemoveAt(assetIndex);
 
             SavePackChanges();
@@ -185,7 +185,7 @@ namespace Rogium.Editors.Packs
         public void ActivateSpriteEditor(int assetIndex)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Sprites, "List of Sprites");
+            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Sprites, "List of Sprites");
             SafetyNet.EnsureIntIsInRange(assetIndex, 0, currentPack.Sprites.Count, "Sprite Index");
             spriteEditor.AssignAsset(CurrentPack.Sprites[assetIndex], assetIndex);
         }
@@ -220,7 +220,7 @@ namespace Rogium.Editors.Packs
         public void UpdateTile(TileAsset newAsset, int positionIndex)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Tiles, "List of Tiles");
+            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Tiles, "List of Tiles");
             
             CurrentPack.Tiles.Update(positionIndex, newAsset);
             SavePackChanges();
@@ -233,7 +233,7 @@ namespace Rogium.Editors.Packs
         public void RemoveTile(int assetIndex)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Tiles, "List of Tiles");
+            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Tiles, "List of Tiles");
             currentPack.Tiles.RemoveAt(assetIndex);
 
             SavePackChanges();
@@ -246,7 +246,7 @@ namespace Rogium.Editors.Packs
         public void ActivateTileEditor(int assetIndex)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Tiles, "List of Tiles");
+            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Tiles, "List of Tiles");
             SafetyNet.EnsureIntIsInRange(assetIndex, 0, currentPack.Tiles.Count, "Tile Index");
             tileEditor.AssignAsset(CurrentPack.Tiles[assetIndex], assetIndex);
         }
@@ -281,7 +281,7 @@ namespace Rogium.Editors.Packs
         public void UpdateRoom(RoomAsset newAsset, int positionIndex)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Rooms, "List of Rooms");
+            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Rooms, "List of Rooms");
             
             CurrentPack.Rooms.Update(positionIndex, newAsset);
             SavePackChanges();
@@ -294,7 +294,7 @@ namespace Rogium.Editors.Packs
         public void RemoveRoom(int assetIndex)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Rooms, "List of Rooms");
+            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Rooms, "List of Rooms");
             currentPack.Rooms.RemoveAt(assetIndex);
 
             SavePackChanges();
@@ -307,7 +307,7 @@ namespace Rogium.Editors.Packs
         public void ActivateRoomEditor(int assetIndex)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotEmptyOrNull(currentPack.Rooms, "List of Rooms");
+            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Rooms, "List of Rooms");
             SafetyNet.EnsureIntIsInRange(assetIndex, 0, currentPack.Rooms.Count, "Room Index");
             roomEditor.AssignAsset(CurrentPack.Rooms[assetIndex], assetIndex);
         }

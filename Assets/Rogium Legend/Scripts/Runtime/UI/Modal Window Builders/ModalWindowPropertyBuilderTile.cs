@@ -3,7 +3,7 @@ using System.Linq;
 using BoubakProductions.UI;
 using Rogium.Editors.Tiles;
 
-namespace Rogium.UserInterface.UI
+namespace Rogium.UserInterface.ModalWindowBuilding
 {
     /// <summary>
     /// Constructor for the Room Properties Modal Window.

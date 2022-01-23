@@ -1,5 +1,4 @@
-﻿using System;
-using BoubakProductions.Safety;
+﻿using BoubakProductions.Safety;
 using Rogium.Editors.Packs;
 using Rogium.ExternalStorage.Serialization;
 using System.Collections.Generic;
@@ -61,7 +60,7 @@ namespace Rogium.ExternalStorage
             {
                 string filePath = Path.Combine(path, file.Name);
                 FileStream stream = new FileStream(filePath, FileMode.Open);
-
+                
                 SerializedPackAsset asset = (SerializedPackAsset)formatter.Deserialize(stream);
                 assets.Add(asset.Deserialize());
 

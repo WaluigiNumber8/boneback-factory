@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using BoubakProductions.UI;
 using Rogium.Editors.Rooms;
 
-namespace Rogium.UserInterface.UI
+namespace Rogium.UserInterface.ModalWindowBuilding
 {
     /// <summary>
     /// Constructor for the Room Properties Modal Window.
@@ -24,7 +24,7 @@ namespace Rogium.UserInterface.UI
 
         public override void OpenForUpdate()
         {
-            OpenWindow(new RoomAsset(roomEditor.CurrentRoom), UpdateAsset, $"Editing {roomEditor.CurrentRoom}");
+            OpenWindow(new RoomAsset(roomEditor.CurrentAsset), UpdateAsset, $"Editing {roomEditor.CurrentAsset}");
         }
 
         private void OpenWindow(RoomAsset currentRoomAsset, Action onConfirmAction, string headerText)

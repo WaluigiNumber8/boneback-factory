@@ -25,5 +25,17 @@ namespace BoubakProductions.Core
                 Mathf.Round(vector3.y * multiplier) / multiplier,
                 Mathf.Round(vector3.z * multiplier) / multiplier);
         }
+
+        /// <summary>
+        /// Returns distance between 2 Vector3s. Better then Vector3.Distance.
+        /// </summary>
+        /// <param name="vector3">The first <see cref="Vector3"/>.</param>
+        /// <param name="other">The <see cref="Vector3"/> to compare to.</param>
+        /// <returns>The distance.</returns>
+        public static float DistanceTo(this Vector3 vector3, Vector3 other)
+        {
+            return (other - vector3).sqrMagnitude;
+        }
+        
     }
 }

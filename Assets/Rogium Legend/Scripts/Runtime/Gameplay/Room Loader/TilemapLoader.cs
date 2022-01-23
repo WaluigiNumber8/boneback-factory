@@ -1,7 +1,7 @@
 ﻿using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Tiles;
-using Rogium.Global.GridSystem;
+using Rogium.Systems.GridSystem;
 using System;
 using System.Linq;
 using UnityEngine;
@@ -36,7 +36,7 @@ namespace Rogium.Gameplay.DataLoading
                 {
                     string id = IDgrid.GetValue(x, y);
                     //Id is empty.
-                    if (id == EditorDefaults.EmptyID)
+                    if (id == EditorDefaults.EmptyAssetID)
                     {
                         continue;
                     }

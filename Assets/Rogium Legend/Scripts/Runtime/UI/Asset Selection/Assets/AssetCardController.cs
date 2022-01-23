@@ -25,16 +25,16 @@ namespace Rogium.UserInterface.AssetSelection
             cardButton.onClick.AddListener(OnClick);
         }
 
-        public void Construct(AssetType type, int id, AssetBase asset, Image iconPos)
+        public void Construct(AssetType type, int index, AssetBase asset, Image iconPos)
         {
             ui.icon = iconPos;
-            Construct(type, id, asset);
+            Construct(type, index, asset);
         }
 
-        public void Construct(AssetType type, int id, AssetBase asset)
+        public void Construct(AssetType type, int index, AssetBase asset)
         {
             this.type = type;
-            this.id = id;
+            this.id = index;
             this.asset = asset;
             ui.title.text = asset.Title;
             ui.icon.sprite = asset.Icon;
@@ -51,7 +51,7 @@ namespace Rogium.UserInterface.AssetSelection
             ui.buttonGroup.SetActive(!ui.buttonGroup.activeSelf);
         }
 
-        public int ID { get => id; }
+        public int Index { get => id; }
         public AssetType Type { get => type; }
         public AssetBase Asset { get => asset; }
 

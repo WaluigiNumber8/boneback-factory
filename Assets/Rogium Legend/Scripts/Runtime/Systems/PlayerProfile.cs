@@ -1,4 +1,4 @@
-﻿namespace Rogium.Global.PlayerData
+﻿namespace Rogium.Systems.PlayerData
 {
     public class PlayerProfile
     {

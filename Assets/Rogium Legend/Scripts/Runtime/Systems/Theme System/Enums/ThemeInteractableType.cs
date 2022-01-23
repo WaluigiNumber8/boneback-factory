@@ -1,4 +1,4 @@
-﻿namespace Rogium.Global.ThemeSystem
+﻿namespace Rogium.Systems.ThemeSystem
 {
     /// <summary>
     /// The different types of interactables a theme contains.

@@ -1,5 +1,4 @@
-﻿using BoubakProductions.Systems.Serialization;
-using Rogium.Editors.Sprites;
+﻿using Rogium.Editors.Sprites;
 using System;
 
 namespace Rogium.ExternalStorage.Serialization
@@ -10,11 +9,13 @@ namespace Rogium.ExternalStorage.Serialization
     [System.Serializable]
     public class SerializedSpriteAsset : SerializedAssetBase
     {
-        private SerializedSprite sprite;
+        private SerializedGrid<int> spriteData;
+        private string preferredPaletteID;
         
         public SerializedSpriteAsset(SpriteAsset asset) : base(asset)
         {
-            this.sprite = new SerializedSprite(asset.Sprite);
+            this.spriteData = new SerializedGrid<int>(asset.SpriteData);
+            this.preferredPaletteID = asset.PreferredPaletteID;
         }
 
         public SpriteAsset Deserialize()
@@ -23,7 +24,8 @@ namespace Rogium.ExternalStorage.Serialization
                                    this.title,
                                    this.icon.Deserialize(),
                                    this.author,
-                                   this.sprite.Deserialize(),
+                                   this.spriteData.Deserialize( () => -1),
+                                   this.preferredPaletteID,
                                    DateTime.Parse(this.creationDate));
         }
     }

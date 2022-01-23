@@ -33,7 +33,7 @@ namespace Rogium.ExternalStorage.Serialization
                                  this.author,
                                  this.difficultyLevel,
                                  (RoomType)type,
-                                 this.tileGrid.Deserialize(() => EditorDefaults.EmptyID),
+                                 this.tileGrid.Deserialize(() => EditorDefaults.EmptyAssetID),
                                  DateTime.Parse(this.creationDate));
         }
     }

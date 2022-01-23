@@ -1,7 +1,7 @@
 ﻿using BoubakProductions.UI.Core;
 using UnityEngine;
 
-namespace Rogium.Global.ThemeSystem
+namespace Rogium.Systems.ThemeSystem
 {
     /// <summary>
     /// Contains information that can be changed for different themes.

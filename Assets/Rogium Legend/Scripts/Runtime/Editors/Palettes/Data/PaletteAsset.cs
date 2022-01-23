@@ -13,13 +13,13 @@ namespace Rogium.Editors.Palettes
     {
         private Color[] colors;
 
-        #region Constrcutors
+        #region Constructors
         public PaletteAsset()
         {
             this.title = EditorDefaults.PaletteName;
             this.icon = EditorDefaults.EmptyGridSprite;
             this.author = EditorDefaults.Author;
-            this.creationDate = DateTime.Now;;
+            this.creationDate = DateTime.Now;
             GenerateID(EditorAssetIDs.PaletteIdentifier);
 
             this.colors = BoubakBuilder.GenerateColorArray(EditorDefaults.PaletteSize, Color.black);

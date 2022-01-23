@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-namespace Rogium.Global.Input
+namespace Rogium.Systems.Input
 {
     public partial class @RogiumInputActions : IInputActionCollection2, IDisposable
     {

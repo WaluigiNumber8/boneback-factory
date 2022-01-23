@@ -2,7 +2,7 @@
 using BoubakProductions.Core;
 using UnityEngine;
 
-namespace Rogium.Global.ThemeSystem
+namespace Rogium.Systems.ThemeSystem
 {
     public class ThemeOverseerMono : MonoSingleton<ThemeOverseerMono>
     {

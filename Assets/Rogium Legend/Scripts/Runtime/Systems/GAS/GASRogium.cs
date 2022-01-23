@@ -1,11 +1,11 @@
 ﻿using System;
 using BoubakProductions.Safety;
 using Rogium.Core;
-using Rogium.Global.ThemeSystem;
+using Rogium.Systems.ThemeSystem;
 using Rogium.UserInterface;
 using Rogium.UserInterface.AssetSelection;
 
-namespace Rogium.Global.GASExtension
+namespace Rogium.Systems.GASExtension
 {
     /// <summary>
     /// A GAS Extension class, containing specific actions to Rogium Legend.

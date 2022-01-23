@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-namespace Rogium.Global.GridSystem
+namespace Rogium.Systems.GridSystem
 {
     /// <summary>
     /// An object that stores T-type in a grid array.
@@ -12,7 +12,7 @@ namespace Rogium.Global.GridSystem
         private readonly int width;
         private readonly int height;
         private readonly T[,] cellArray;
-
+        
         public ObjectGrid(int width, int height, Func<T> createDefaultObject)
         {
             this.width = width;
@@ -40,6 +40,15 @@ namespace Rogium.Global.GridSystem
         /// <summary>
         /// Change a value in a specific position.
         /// </summary>
+        /// <param name="position"></param>
+        /// <param name="value">Value to set.</param>
+        public void SetValue(Vector2Int position, T value)
+        {
+            SetValue(position.x, position.y, value);
+        }
+        /// <summary>
+        /// Change a value in a specific position.
+        /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <param name="value">Value to set.</param>
@@ -49,8 +58,6 @@ namespace Rogium.Global.GridSystem
             SafetyNet.EnsureIntIsInRange(y, 0, height, "Grid Y");
             cellArray[x, y] = value;
         }
-
-        
 
         /// <summary>
         /// Get a value from a specific grid cell.

@@ -5,7 +5,7 @@ using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Rooms;
 using Rogium.Editors.Tiles;
-using Rogium.Global.GridSystem;
+using Rogium.Systems.GridSystem;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -84,6 +84,6 @@ public class test_Room_Editor_UI
 
         yield return new WaitForSeconds(0.1f);
         
-        Assert.AreEqual(tileID, roomEditorOverseer.CurrentRoom.TileGrid.GetValue(1, 3));
+        Assert.AreEqual(tileID, roomEditorOverseer.CurrentAsset.TileGrid.GetValue(1, 3));
     }
 }

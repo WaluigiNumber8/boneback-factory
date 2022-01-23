@@ -2,7 +2,7 @@
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Gameplay.DataLoading;
-using Rogium.Global.SceneTransferService;
+using Rogium.Systems.SceneTransferService;
 using UnityEngine;
 
 namespace Rogium.Gameplay.Core

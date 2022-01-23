@@ -4,7 +4,7 @@ using Rogium.UserInterface.Navigation;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Rogium.UserInterface
+namespace Rogium.UserInterface.Core
 {
     /// <summary>
     /// Overseers the game's UI.

@@ -95,7 +95,7 @@ namespace Rogium.UserInterface.Interactables
         CancelChangesCampaign = 63,
         #endregion
 
-        #region Campaign Editor
+        #region Campaign Selection Menu
         CampaignEditorSelectAll = 66,
         CampaignEditorSelectNone = 67,
         CampaignEditorSelectRandom = 68,
@@ -106,8 +106,22 @@ namespace Rogium.UserInterface.Interactables
         CampaignShowNext = 64,
         CampaignShowPrevious = 65,
         #endregion
+
+        #region Sprite Editor
+        SpriteSwitchTool = 70,
+        
+
+        #endregion
+
+        #region Room Editor
+        RoomSwitchTool = 71,
+        
+
+        #endregion
         
         Play = 10000,
         TEST = 10001
+        
+        //Latest : 71
     }   
 }

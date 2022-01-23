@@ -1,7 +1,8 @@
 ﻿using BoubakProductions.Safety;
-using Rogium.Editors.Rooms.ToolSystem;
-using Rogium.Editors.Tiles;
 using System;
+using Rogium.Editors.Core.Defaults;
+using Rogium.Editors.Packs;
+using Rogium.Systems.IconBuilders;
 using UnityEngine;
 
 namespace Rogium.Editors.Rooms
@@ -13,12 +14,11 @@ namespace Rogium.Editors.Rooms
     {
         public event Action<RoomAsset> OnAssignRoom;
         public event Action<RoomAsset, int> OnCompleteEditing;
-        
-        private RoomAsset currentRoom;
-        private int myIndex;
 
-        private readonly ToolboxEffects gridEditor;
-        private readonly ToolBox toolBox;
+        private IconBuilderAsset iconBuilder;
+        
+        private RoomAsset currentAsset;
+        private int myIndex;
 
         #region Singleton Pattern
         private static RoomEditorOverseer instance;
@@ -40,8 +40,7 @@ namespace Rogium.Editors.Rooms
 
         private RoomEditorOverseer()
         {
-            gridEditor = new ToolboxEffects();
-            toolBox = new ToolBox();
+            iconBuilder = new IconBuilderAsset();
         }
 
         /// <summary>
@@ -52,7 +51,7 @@ namespace Rogium.Editors.Rooms
         public void AssignAsset(RoomAsset room, int index)
         {
             SafetyNet.EnsureIsNotNull(room, "Assigned Room");
-            currentRoom = new RoomAsset(room);
+            currentAsset = new RoomAsset(room);
             myIndex = index;
             OnAssignRoom?.Invoke(room);
         }
@@ -63,31 +62,23 @@ namespace Rogium.Editors.Rooms
         /// <param name="updatedAsset">Asset Containing new data.</param>
         public void UpdateAsset(RoomAsset updatedAsset)
         { 
-            SafetyNet.EnsureIsNotNull(currentRoom, "Currently active asset.");
-            currentRoom = new RoomAsset(updatedAsset);
-        }
-        
-        /// <summary>
-        /// Updates Tiles on the tile grid, based on the active tool in the editor.
-        /// </summary>
-        /// <param name="worldPosition">Position of the tile, that will be updated, on the grid.</param>
-        /// <param name="asset">The tile asset we want to place here.</param>
-        public void UpdateTile(Vector2Int worldPosition, TileAsset asset)
-        {
-            gridEditor.UseTool(CurrentRoom.TileGrid, asset, worldPosition, toolBox.CurrentTool);
+            SafetyNet.EnsureIsNotNull(currentAsset, "Currently active asset.");
+            currentAsset = new RoomAsset(updatedAsset);
         }
         
         public void CompleteEditing()
         {
-            OnCompleteEditing?.Invoke(CurrentRoom, myIndex);
+            Sprite newIcon = iconBuilder.Build(currentAsset.TileGrid, EditorDefaults.PixelsPerUnit, PackEditorOverseer.Instance.CurrentPack.Tiles);
+            currentAsset.UpdateIcon(newIcon);
+            OnCompleteEditing?.Invoke(CurrentAsset, myIndex);
         }
 
-        public RoomAsset CurrentRoom 
+        public RoomAsset CurrentAsset 
         {
             get 
             {
-                if (currentRoom == null) throw new MissingReferenceException("Current Room has not been set. Did you forget to activate the editor?");
-                return this.currentRoom;
+                if (currentAsset == null) throw new MissingReferenceException("Current Room has not been set. Did you forget to activate the editor?");
+                return this.currentAsset;
             } 
         }
     }

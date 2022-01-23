@@ -1,4 +1,4 @@
-﻿namespace Rogium.Global.ThemeSystem
+﻿namespace Rogium.Systems.ThemeSystem
 {
     /// <summary>
     /// Contains elements the theme indexes belong to.

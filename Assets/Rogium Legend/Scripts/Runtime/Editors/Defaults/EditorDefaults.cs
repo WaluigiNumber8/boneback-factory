@@ -25,6 +25,7 @@ namespace Rogium.Editors.Core.Defaults
         //Sprite
         public const string SpriteName = "New Sprite";
         public static readonly Sprite SpriteIcon = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
+        public const int SpriteSize = 16;
         
         //Tile
         public const string TileTitle = "New Tile";
@@ -37,8 +38,13 @@ namespace Rogium.Editors.Core.Defaults
         public const RoomType RoomType = Rooms.RoomType.Normal;
 
         //Other
-        public const string EmptyID = "-1";
+        public const string EmptyAssetID = "-1";
+        public const int EmptyColorID = -1;
+        public const int PixelsPerUnit = 16;
         public static readonly Sprite EmptyGridSprite = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
+        public static readonly Color EmptyGridColor = new Color(0, 0, 0);
+        public static readonly Color NoColor = new Color(0, 0, 0, 0);
         public static readonly Sprite MissingSprite = Resources.Load<Sprite>("Defaults/spr_Missing");
+        public static readonly Color MissingColor = new Color(255, 88, 227);
     }
 }

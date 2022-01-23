@@ -1,7 +1,12 @@
-﻿using System;
-using Rogium.Editors.Packs;
+﻿using Rogium.Editors.Packs;
 using Rogium.Editors.Tiles;
-using Rogium.Global.GridSystem;
+using Rogium.Systems.GridSystem;
+using System;
+using BoubakProductions.Core;
+using Rogium.Core;
+using Rogium.Systems.ItemPalette;
+using Rogium.Systems.Toolbox;
+using Rogium.UserInterface.AssetSelection;
 using UnityEngine;
 
 namespace Rogium.Editors.Rooms
@@ -9,64 +14,68 @@ namespace Rogium.Editors.Rooms
     /// <summary>
     /// Works like a bridge between the UI & <see cref="RoomEditorOverseer"/>.
     /// </summary>
-    public class RoomEditorOverseerMono : MonoBehaviour
+    public class RoomEditorOverseerMono : MonoSingleton<RoomEditorOverseerMono>
     {
-        private PackEditorOverseer editor;
-        private RoomEditorOverseer roomEditor;
-        private AssetPickerOverseer assetPicker;
+        [SerializeField] private InteractableEditorGrid grid;
+        [SerializeField] private ItemPaletteAsset paletteTile;
         
-        [SerializeField] private InteractableEditorGrid editorGrid;
+        private PackEditorOverseer packEditor;
+        private RoomEditorOverseer editor;
+        private ToolBoxAsset toolbox;
 
-        private void Awake()
+        private AssetSlot currentTile;
+        
+        protected override void Awake()
         {
-            editor = PackEditorOverseer.Instance;
-            roomEditor = RoomEditorOverseer.Instance;
-            assetPicker ??= new AssetPickerOverseer();
+            packEditor = PackEditorOverseer.Instance;
+            editor = RoomEditorOverseer.Instance;
+            toolbox = new ToolBoxAsset(grid);
         }
 
         private void OnEnable()
         {
-            roomEditor.OnAssignRoom += PrepareRoomEditor;
-            editorGrid.OnInteractionClick += UpdateGridCell;
+            editor.OnAssignRoom += PrepareEditor;
+            grid.OnInteractionClick += UpdateGridCell;
+            paletteTile.OnSelect += ChangeCurrentTile;
         }
 
         private void OnDisable()
         {
-            roomEditor.OnAssignRoom -= PrepareRoomEditor;
-            editorGrid.OnInteractionClick -= UpdateGridCell;
+            editor.OnAssignRoom -= PrepareEditor;
+            grid.OnInteractionClick -= UpdateGridCell;
+            paletteTile.OnSelect -= ChangeCurrentTile;
         }
 
         /// <summary>
         /// Prepares the room editor, whenever it is opened.
         /// </summary>
-        private void PrepareRoomEditor(RoomAsset room)
+        private void PrepareEditor(RoomAsset room)
         {
-            assetPicker.AssignTile(editor.CurrentPack.Tiles[0]);
-            editorGrid.LoadGrid(PackEditorOverseer.Instance.CurrentPack.Tiles, room.TileGrid);
+            paletteTile.Fill(packEditor.CurrentPack.Tiles, AssetType.Tile);
+            paletteTile.Select(0);
+            
+            grid.LoadWithSprites(packEditor.CurrentPack.Tiles, room.TileGrid);
         }
         
         /// <summary>
-        /// Updates current rooms grid based properties.
+        /// Updates the grid based on inputted position.
         /// </summary>
-        /// <param name="gridPosition"></param>
-        /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public void UpdateGridCell(Vector2Int gridPosition)
+        /// <param name="position">The grid position to affect.</param>
+        public void UpdateGridCell(Vector2Int position)
         {
-            PlaceableAsset currentAsset = assetPicker.CurrentAsset;
-            switch (currentAsset.Type)
-            {
-                case PlaceableAssetType.Tile:
-                    roomEditor.UpdateTile(gridPosition, (TileAsset)currentAsset.Asset);
-                    break;
-                case PlaceableAssetType.Object:
-                    break;
-                case PlaceableAssetType.Enemy:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException($"'{currentAsset.Type}' is not a supported Placeable Asset Type.");
-            }
-            
-            editorGrid.UpdateCellSprite(gridPosition, currentAsset.Asset.Icon);
+            if (currentTile == null) return;
+            toolbox.ApplyCurrent(editor.CurrentAsset.TileGrid, position, currentTile);
         }
+
+        /// <summary>
+        /// Changes the current tile used for drawing on the grid.
+        /// </summary>
+        /// <param name="slot">The new slot holding the tile.</param>
+        private void ChangeCurrentTile(AssetSlot slot)
+        {
+            currentTile = slot;
+        }
+        
+        public ToolBoxAsset Toolbox { get => toolbox; } 
     }
 }

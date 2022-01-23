@@ -4,7 +4,7 @@ using Rogium.Editors.Campaign;
 using Rogium.Editors.Packs;
 using Rogium.UserInterface.AssetSelection;
 
-namespace Rogium.UserInterface.UI
+namespace Rogium.UserInterface.ModalWindowBuilding
 {
     /// <summary>
     /// Constructor for the Campaign Properties Modal Window

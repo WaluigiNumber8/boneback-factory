@@ -1,7 +1,7 @@
 ﻿using BoubakProductions.Core;
-using Rogium.Editors.Core.Defaults;
-using TMPro;
+using Rogium.Systems.ItemPalette;
 using UnityEngine;
+using TMPro;
 
 namespace Rogium.Editors.Palettes
 {
@@ -10,79 +10,59 @@ namespace Rogium.Editors.Palettes
     /// </summary>
     public class PaletteEditorOverseerMono : MonoSingleton<PaletteEditorOverseerMono>
     {
+        [SerializeField] private ItemPaletteColor itemPalette;
         [SerializeField] private TextMeshProUGUI titleText;
         
-        [Header("Slot Row")]
-        [SerializeField] private GameObject colorSlotPrefab;
-        [SerializeField] private Transform colorSlotContent;
-
         [Header("Color Picker")]
         [SerializeField] private ColorPickerManager colorPicker;
         
         private PaletteEditorOverseer editor;
-        private ColorSlot[] slots;
-        private int lastSelectedSlotIndex = -1;
+        private ColorSlot lastSlot;
 
         protected override void Awake()
         {
             base.Awake();
             
             editor = PaletteEditorOverseer.Instance;
-            slots = new ColorSlot[EditorDefaults.PaletteSize];
-            
-            BuildSlotRow(EditorDefaults.PaletteSize);
         }
 
         private void OnEnable()
         {
-            editor.OnAssignAsset += FillSlotRow;
+            editor.OnAssignAsset += RefreshEditor;
             editor.OnCompleteEditingBefore += UpdateEditedColor;
-            ColorSlot.OnSelectedAny += SwitchEditedColor;
+            itemPalette.OnSelect += SwitchEditedColor;
         }
 
         private void OnDisable()
         {
-            editor.OnAssignAsset -= FillSlotRow;
+            editor.OnAssignAsset -= RefreshEditor;
             editor.OnCompleteEditingBefore -= UpdateEditedColor;
-            ColorSlot.OnSelectedAny -= SwitchEditedColor;
+            itemPalette.OnSelect -= SwitchEditedColor;
         }
 
         /// <summary>
-        /// Prepares the color slot row of the editor.
-        /// </summary>
-        /// <param name="slotAmount">The amount of slots to spawn.</param>
-        private void BuildSlotRow(int slotAmount)
-        {
-            for (int i = 0; i < slotAmount; i++)
-            {
-                slots[i] = Instantiate(colorSlotPrefab, colorSlotContent).GetComponent<ColorSlot>();
-                slots[i].Construct(Color.black, i);
-            }
-        }
-
-        /// <summary>
-        /// Fills the slot row with colors in the palette.
+        /// Refreshes the editor based on a newly assigned color.
         /// </summary>
         /// <param name="palette">The palette to fill the data from.</param>
-        private void FillSlotRow(PaletteAsset palette)
+        private void RefreshEditor(PaletteAsset palette)
         {
             titleText.text = palette.Title;
             
-            lastSelectedSlotIndex = -1;
             Color[] colors = palette.Colors;
-            for (int i = 0; i < slots.Length; i++)
-            {
-                slots[i].Construct(colors[i], i);
-            }
+            itemPalette.Fill(colors);
             
-            SwitchEditedColor(0);
+            itemPalette.Select(0);
         }
         
-        private void SwitchEditedColor(int newIndex)
+        /// <summary>
+        /// Changes the currently edited color to a new one.
+        /// </summary>
+        /// <param name="slot">The color data to read from.</param>
+        private void SwitchEditedColor(ColorSlot slot)
         {
             UpdateEditedColor();
-            colorPicker.Construct(slots[newIndex].CurrentColor, slots[newIndex].colorImage);
-            lastSelectedSlotIndex = newIndex;
+            colorPicker.Construct(slot.CurrentColor, slot.ColorImage);
+            lastSlot = slot;
         }
         
         /// <summary>
@@ -90,8 +70,11 @@ namespace Rogium.Editors.Palettes
         /// </summary>
         private void UpdateEditedColor()
         {
-            if (lastSelectedSlotIndex != -1)
-                editor.UpdateColor(colorPicker.CurrentColor, lastSelectedSlotIndex);
+            if (lastSlot == null) return;
+            if (lastSlot.Index == -1) return;
+            
+            lastSlot.Construct(colorPicker.CurrentColor);
+            editor.UpdateColor(colorPicker.CurrentColor, lastSlot.Index);
         }
         
     }

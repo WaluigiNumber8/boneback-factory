@@ -1,7 +1,7 @@
-﻿using Rogium.Global.Input;
+﻿using Rogium.Systems.Input;
 using UnityEngine;
 
-namespace Rogium.Global.GridSystem
+namespace Rogium.Systems.GridSystem
 {
     [RequireComponent(typeof(UIInput))]
     public class GridTest : MonoBehaviour

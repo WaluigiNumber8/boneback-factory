@@ -1,11 +1,12 @@
 ﻿using BoubakProductions.UI;
 using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
-using Rogium.Global.GASExtension;
+using Rogium.Systems.GASExtension;
 using Rogium.UserInterface.AssetSelection;
+using Rogium.UserInterface.Core;
 using Rogium.UserInterface.Interactables.Properties;
 
-namespace Rogium.UserInterface.UI
+namespace Rogium.UserInterface.ModalWindowBuilding
 {
     /// <summary>
     /// Base for all Modal Window Constructors.

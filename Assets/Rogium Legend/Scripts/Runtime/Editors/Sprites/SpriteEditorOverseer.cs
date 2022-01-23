@@ -1,9 +1,10 @@
 ﻿using BoubakProductions.Safety;
 using Rogium.Editors.Sprites;
 using System;
+using Rogium.Systems.IconBuilders;
 using UnityEngine;
 
-namespace Rogium.Editors.Palettes
+namespace Rogium.Editors.Sprites
 {
     /// <summary>
     /// Overseers the Sprite Editor.
@@ -14,6 +15,9 @@ namespace Rogium.Editors.Palettes
         public event Action OnCompleteEditingBefore, OnCompleteEditingAfter;
         public event Action<SpriteAsset, int> OnCompleteEditing;
 
+        private IconBuilder iconBuilder;
+        private PalettePicker palettePicker;
+        
         private SpriteAsset currentAsset;
         private int myIndex;
         
@@ -35,7 +39,11 @@ namespace Rogium.Editors.Palettes
 
         #endregion
 
-        private SpriteEditorOverseer() { }
+        private SpriteEditorOverseer()
+        {
+            iconBuilder = new IconBuilder();
+            palettePicker = new PalettePicker();
+        }
         
         /// <summary>
         /// Assign an asset, that is going to be edited.
@@ -66,6 +74,10 @@ namespace Rogium.Editors.Palettes
         public void CompleteEditing()
         {
             OnCompleteEditingBefore?.Invoke();
+
+            Sprite newIcon = iconBuilder.BuildFromGrid(currentAsset.SpriteData, palettePicker.GrabBasedOn(currentAsset.PreferredPaletteID));
+            currentAsset.UpdateIcon(newIcon);
+            
             OnCompleteEditing?.Invoke(currentAsset, myIndex);
             OnCompleteEditingAfter?.Invoke();
         }

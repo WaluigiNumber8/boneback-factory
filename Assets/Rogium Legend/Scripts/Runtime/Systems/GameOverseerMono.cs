@@ -1,4 +1,4 @@
-﻿using Rogium.Global.GASExtension;
+﻿using Rogium.Systems.GASExtension;
 using UnityEngine;
 
 namespace Rogium.Core

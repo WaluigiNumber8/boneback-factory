@@ -3,7 +3,7 @@ using BoubakProductions.Safety;
 using Rogium.Editors.Campaign;
 using UnityEngine;
 
-namespace Rogium.Global.SceneTransferService
+namespace Rogium.Systems.SceneTransferService
 {
     public class SceneTransferOverseer : MonoSingleton<SceneTransferOverseer>
     {

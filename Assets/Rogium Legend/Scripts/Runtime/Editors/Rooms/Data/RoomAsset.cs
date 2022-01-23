@@ -3,7 +3,7 @@ using UnityEngine;
 using BoubakProductions.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
-using Rogium.Global.GridSystem;
+using Rogium.Systems.GridSystem;
 
 namespace Rogium.Editors.Rooms
 {
@@ -27,7 +27,7 @@ namespace Rogium.Editors.Rooms
             this.creationDate = DateTime.Now;
             this.difficultyLevel = EditorDefaults.RoomDifficulty;
             this.type = EditorDefaults.RoomType;
-            this.tileGrid = new ObjectGrid<string>(gridSize.x, gridSize.y, () => EditorDefaults.EmptyID);
+            this.tileGrid = new ObjectGrid<string>(gridSize.x, gridSize.y, () => EditorDefaults.EmptyAssetID);
             GenerateID(EditorAssetIDs.RoomIdentifier);
         }
         public RoomAsset(RoomAsset room)
@@ -50,7 +50,7 @@ namespace Rogium.Editors.Rooms
             this.author = author;
             this.creationDate = DateTime.Now;
             this.difficultyLevel = difficultyLevel;
-            this.tileGrid = new ObjectGrid<string>(gridSize.x, gridSize.y, () => EditorDefaults.EmptyID);
+            this.tileGrid = new ObjectGrid<string>(gridSize.x, gridSize.y, () => EditorDefaults.EmptyAssetID);
             GenerateID(EditorAssetIDs.RoomIdentifier);
         }
         public RoomAsset(string roomName, Sprite icon, string author, int difficultyLevel, RoomType type, ObjectGrid<string> tileGrid)

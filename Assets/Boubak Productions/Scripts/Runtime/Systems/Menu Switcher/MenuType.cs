@@ -12,14 +12,14 @@
         AssetSelection = 3,
         AssetTypeSelection = 4,
         AssetSelectionPicker = 12,
-        CampaignSelection = 10,
+        CampaignSelection = 11,
 
-        CampaignEditor = 11,
+        CampaignEditor = 12,
         WeaponEditor = 5,
         EnemyEditor = 6,
-        RoomEditor = 6,
-        ProjectileEditor = 7,
-        PaletteEditor = 8,
-        SpriteEditor = 9,
+        RoomEditor = 7,
+        ProjectileEditor = 8,
+        PaletteEditor = 9,
+        SpriteEditor = 10,
     }
 }

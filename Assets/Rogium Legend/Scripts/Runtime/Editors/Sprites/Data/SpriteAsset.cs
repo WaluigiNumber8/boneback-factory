@@ -1,7 +1,7 @@
 ﻿using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
+using Rogium.Systems.GridSystem;
 using System;
-using BoubakProductions.Core;
 using UnityEngine;
 
 namespace Rogium.Editors.Sprites
@@ -11,8 +11,9 @@ namespace Rogium.Editors.Sprites
     /// </summary>
     public class SpriteAsset : AssetBase
     {
-        private Sprite sprite;
-
+        private ObjectGrid<int> spriteData;
+        private string preferredPaletteID;
+        
         #region Constructors
         public SpriteAsset()
         {
@@ -22,7 +23,7 @@ namespace Rogium.Editors.Sprites
             this.creationDate = DateTime.Now;
             GenerateID(EditorAssetIDs.SpriteIdentifier);
 
-            this.sprite = BoubakBuilder.GenerateSprite(16, 16, 16);
+            this.spriteData = new ObjectGrid<int>(EditorDefaults.SpriteSize, EditorDefaults.SpriteSize, () => -1);
         }
 
         public SpriteAsset(SpriteAsset asset)
@@ -33,10 +34,11 @@ namespace Rogium.Editors.Sprites
             this.author = asset.Author;
             this.creationDate = asset.CreationDate;
 
-            this.sprite = asset.Sprite;
+            this.spriteData = asset.SpriteData;
+            this.preferredPaletteID = asset.PreferredPaletteID;
         }
         
-        public SpriteAsset(string id, string title, Sprite icon, string author, Sprite sprite, DateTime creationDate)
+        public SpriteAsset(string id, string title, Sprite icon, string author, ObjectGrid<int> spriteData, string preferredPaletteID, DateTime creationDate)
         {
             this.id = id;
             this.title = title;
@@ -44,18 +46,25 @@ namespace Rogium.Editors.Sprites
             this.author = author;
             this.creationDate = creationDate;
 
-            this.sprite = sprite;
+            this.spriteData = spriteData;
+            this.preferredPaletteID = preferredPaletteID;
         }
 
         #endregion
 
         #region Update Values
-        public void UpdateSprite(Sprite newSprite)
+        public void UpdateSpriteData(ObjectGrid<int> newSpriteData)
         {
-            this.sprite = newSprite;
+            this.spriteData = newSpriteData;
+        }
+
+        public void UpdatePreferredPaletteID(string newPaletteID)
+        {
+            this.preferredPaletteID = newPaletteID;
         }
         #endregion
         
-        public Sprite Sprite {get => sprite;}
+        public ObjectGrid<int> SpriteData { get => spriteData; }
+        public string PreferredPaletteID { get => preferredPaletteID; }
     }
 }

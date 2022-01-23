@@ -7,6 +7,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 40299561829601471, guid: 8f4ee0e6941aaf948a18da400dcd8bde, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 141005230, guid: 776c0268cd7cd3941baec04f72e4887d, type: 3}
+    - target: {fileID: 1203139928923892669, guid: 8f4ee0e6941aaf948a18da400dcd8bde, type: 3}
+      propertyPath: m_IsOn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203139928923892669, guid: 8f4ee0e6941aaf948a18da400dcd8bde, type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: -389013717, guid: 776c0268cd7cd3941baec04f72e4887d, type: 3}
+    - target: {fileID: 1203139928923892669, guid: 8f4ee0e6941aaf948a18da400dcd8bde, type: 3}
+      propertyPath: m_SpriteState.m_DisabledSprite
+      value: 
+      objectReference: {fileID: 518109535, guid: 776c0268cd7cd3941baec04f72e4887d, type: 3}
+    - target: {fileID: 1203139928923892669, guid: 8f4ee0e6941aaf948a18da400dcd8bde, type: 3}
+      propertyPath: m_SpriteState.m_SelectedSprite
+      value: 
+      objectReference: {fileID: -84854227, guid: 776c0268cd7cd3941baec04f72e4887d, type: 3}
+    - target: {fileID: 1203139928923892669, guid: 8f4ee0e6941aaf948a18da400dcd8bde, type: 3}
+      propertyPath: m_SpriteState.m_HighlightedSprite
+      value: 
+      objectReference: {fileID: 141005230, guid: 776c0268cd7cd3941baec04f72e4887d, type: 3}
     - target: {fileID: 3971390881174288881, guid: 8f4ee0e6941aaf948a18da400dcd8bde, type: 3}
       propertyPath: m_SpriteState.m_PressedSprite
       value: 

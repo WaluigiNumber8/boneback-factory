@@ -1,6 +1,6 @@
 ﻿using Rogium.UserInterface.Interactables.Properties;
 
-namespace Rogium.Global.ThemeSystem
+namespace Rogium.Systems.ThemeSystem
 {
     /// <summary>
     /// Updates various special UI elements with correct sprites based on the current theme.

@@ -1,4 +1,5 @@
 ﻿using System;
+using Rogium.UserInterface.AssetSelection;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,32 +8,20 @@ namespace Rogium.Editors.Palettes
     /// <summary>
     /// Holds information about a given color slot from a palette.
     /// </summary>
-    [RequireComponent(typeof(Button))]
-    public class ColorSlot : MonoBehaviour
+    public class ColorSlot : InteractableHolderBase
     {
-        public static event Action<int> OnSelectedAny;
-        
         [SerializeField] private UIInfo ui;
         
         private Color currentColor;
-        private Button button;
-        private int index = -1;
 
-        private void Awake()
+        /// <summary>
+        /// Constructs a color slot, without giving it a new index.
+        /// </summary>
+        /// <param name="color">The new color it's going to carry.</param>
+        public void Construct(Color color)
         {
-            button = GetComponent<Button>();
+            Construct(color, index);
         }
-
-        private void OnEnable()
-        {
-            button.onClick.AddListener(WhenSelected);
-        }
-
-        private void OnDisable()
-        {
-            button.onClick.RemoveListener(WhenSelected);
-        }
-
         /// <summary>
         /// Constructs the color slot.
         /// </summary>
@@ -53,13 +42,8 @@ namespace Rogium.Editors.Palettes
             ui.colorImg.color = currentColor;
         }
 
-        private void WhenSelected()
-        {
-            OnSelectedAny?.Invoke(index);
-        }
-        
         public Color CurrentColor { get => currentColor; }
-        public Image colorImage { get => ui.colorImg; }
+        public Image ColorImage { get => ui.colorImg; }
 
         [Serializable]
         public struct UIInfo

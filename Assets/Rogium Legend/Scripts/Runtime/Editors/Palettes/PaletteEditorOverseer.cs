@@ -1,5 +1,6 @@
 ﻿using System;
 using BoubakProductions.Safety;
+using Rogium.Systems.IconBuilders;
 using UnityEngine;
 
 namespace Rogium.Editors.Palettes
@@ -13,7 +14,7 @@ namespace Rogium.Editors.Palettes
         public event Action OnCompleteEditingBefore, OnCompleteEditingAfter;
         public event Action<PaletteAsset, int> OnCompleteEditing;
 
-        private ColorIconBuilder iconBuilder;
+        private IconBuilder iconBuilder;
         
         private PaletteAsset currentAsset;
         private int myIndex;
@@ -38,7 +39,7 @@ namespace Rogium.Editors.Palettes
 
         private PaletteEditorOverseer()
         {
-            iconBuilder = new ColorIconBuilder();
+            iconBuilder = new IconBuilder();
         }
         
         /// <summary>
@@ -82,7 +83,7 @@ namespace Rogium.Editors.Palettes
         {
             OnCompleteEditingBefore?.Invoke();
             
-            currentAsset.UpdateIcon(iconBuilder.Build(currentAsset.Colors));
+            currentAsset.UpdateIcon(iconBuilder.BuildFromArray(currentAsset.Colors));
             OnCompleteEditing?.Invoke(currentAsset, myIndex);
             
             OnCompleteEditingAfter?.Invoke();

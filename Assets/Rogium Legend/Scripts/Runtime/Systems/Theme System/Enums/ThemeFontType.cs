@@ -1,4 +1,4 @@
-﻿namespace Rogium.Global.ThemeSystem
+﻿namespace Rogium.Systems.ThemeSystem
 {
     /// <summary>
     /// Contains the different fonts for themes.

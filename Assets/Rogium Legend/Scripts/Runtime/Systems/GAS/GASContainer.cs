@@ -2,7 +2,7 @@
 using Rogium.UserInterface.AssetSelection;
 using UnityEngine;
 
-namespace Rogium.Global.GASExtension
+namespace Rogium.Systems.GASExtension
 {
     /// <summary>
     /// Allows GAS to access MonoBehaviours.

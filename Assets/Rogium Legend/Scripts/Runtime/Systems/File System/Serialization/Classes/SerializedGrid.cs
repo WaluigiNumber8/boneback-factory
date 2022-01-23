@@ -1,5 +1,5 @@
 ﻿using System;
-using Rogium.Global.GridSystem;
+using Rogium.Systems.GridSystem;
 
 namespace Rogium.ExternalStorage.Serialization
 {

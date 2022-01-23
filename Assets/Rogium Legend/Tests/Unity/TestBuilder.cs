@@ -2,7 +2,7 @@
 using Rogium.Editors.Packs;
 using Rogium.Editors.Rooms;
 using Rogium.Editors.Tiles;
-using Rogium.Global.GridSystem;
+using Rogium.Systems.GridSystem;
 using UnityEngine;
 using UnityEngine.UI;
 

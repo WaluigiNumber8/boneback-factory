@@ -1,6 +1,5 @@
 ﻿using BoubakProductions.Core;
 using BoubakProductions.Safety;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -32,10 +31,7 @@ namespace BoubakProductions.UI.MenuSwitching
         private List<MenuObject> GatherMenus()
         {
             List<MenuObject> gatheredMenus = GetComponentsInChildren<MenuObject>(true).ToList();
-            int duplicatesCount = gatheredMenus.GroupBy(x => x.MenuType)
-                                               .Where(_ => _.Count() > 1)
-                                               .Sum(_ => _.Count());
-            if (duplicatesCount > 0) throw new System.ArgumentException("List of gathered menus has found some duplicates! Only one MenuType per object is allowed.");
+            SafetyNet.EnsureListDoesNotHaveDuplicities(gatheredMenus, nameof(gatheredMenus));
             return gatheredMenus;
         }
 
@@ -47,12 +43,12 @@ namespace BoubakProductions.UI.MenuSwitching
             //Disable all canvases.
             if (lastOpenMenu == null)
             {
-                menus.ForEach(canvas => canvas.gameObject.SetActive(false));
+                menus.ForEach(canvasObject => canvasObject.gameObject.SetActive(false));
             }
             else lastOpenMenu.gameObject.SetActive(false);
 
             //Show wanted canvas.
-            MenuObject menuToShow = menus.Find(canvas => canvas.MenuType == newMenu);
+            MenuObject menuToShow = menus.Find(canvasObject => canvasObject.MenuType == newMenu);
             if (menuToShow != null)
             {
                 menuToShow.gameObject.SetActive(true);

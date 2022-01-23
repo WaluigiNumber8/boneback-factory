@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Rogium.Global.Input
+namespace Rogium.Systems.Input
 {
     public class UIInput : MonoBehaviour
     {

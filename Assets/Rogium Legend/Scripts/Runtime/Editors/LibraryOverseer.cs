@@ -2,7 +2,7 @@
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Packs;
 using Rogium.ExternalStorage;
-using Rogium.Global.SceneTransferService;
+using Rogium.Systems.SceneTransferService;
 using UnityEngine;
 
 namespace Rogium.Editors.Core
@@ -97,7 +97,7 @@ namespace Rogium.Editors.Core
         /// </summary>
         public void ActivatePackEditor(int packIndex)
         {
-            SafetyNet.EnsureListIsNotEmptyOrNull(packs, "Pack Library");
+            SafetyNet.EnsureListIsNotNullOrEmpty(packs, "Pack Library");
             SafetyNet.EnsureIntIsInRange(packIndex, 0, packs.Count, "packIndex for activating Pack Editor");
             PackEditorOverseer.Instance.AssignAsset(packs[packIndex], packIndex);
         }
@@ -160,7 +160,7 @@ namespace Rogium.Editors.Core
         /// </summary>
         public void ActivateCampaignEditor(int campaignIndex)
         {
-            SafetyNet.EnsureListIsNotEmptyOrNull(campaigns, "Campaign Library");
+            SafetyNet.EnsureListIsNotNullOrEmpty(campaigns, "Campaign Library");
             SafetyNet.EnsureIntIsInRange(campaignIndex, 0, campaigns.Count, "campaignIndex for activating Campaign Editor");
             CampaignEditorOverseer.Instance.AssignAsset(campaigns[campaignIndex], campaignIndex);
         }
@@ -171,7 +171,7 @@ namespace Rogium.Editors.Core
         /// <param name="campaignIndex"></param>
         public void ActivateCampaignPlaythrough(int campaignIndex)
         {
-            SafetyNet.EnsureListIsNotEmptyOrNull(campaigns, "Campaign Library");
+            SafetyNet.EnsureListIsNotNullOrEmpty(campaigns, "Campaign Library");
             SafetyNet.EnsureIntIsInRange(campaignIndex, 0, campaigns.Count, "campaignIndex for activating Campaign Playthrough");
             SceneTransferOverseer.GetInstance().LoadUp(campaigns[campaignIndex]);
         }

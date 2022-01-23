@@ -22,16 +22,16 @@ namespace Rogium.UserInterface.AssetSelection
         private int id = -1;
         private AssetBase asset;
         
-        public void Construct(AssetType type, int id, AssetBase asset, Image wallpaperPos)
+        public void Construct(AssetType type, int index, AssetBase asset, Image wallpaperPos)
         {
             ui.wallpaper = wallpaperPos;
-            Construct(type, id, asset);
+            Construct(type, index, asset);
         }
-        public void Construct(AssetType type, int id, AssetBase asset)
+        public void Construct(AssetType type, int index, AssetBase asset)
         {
             ui.emptyText.gameObject.SetActive(false);
             this.type = type;
-            this.id = id;
+            this.id = index;
             this.asset = asset;
             this.ui.title.text = asset.Title;
             this.ui.wallpaper.sprite = asset.Icon;
@@ -55,7 +55,7 @@ namespace Rogium.UserInterface.AssetSelection
             OnConstruct?.Invoke(this.id);
         }
         
-        public int ID { get => id; }
+        public int Index { get => id; }
         public AssetType Type { get => type; }
         public AssetBase Asset { get => asset; }
 

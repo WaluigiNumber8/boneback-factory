@@ -2,7 +2,7 @@
 using BoubakProductions.UI.Core;
 using UnityEngine;
 
-namespace Rogium.Global.ThemeSystem
+namespace Rogium.Systems.ThemeSystem
 {
     /// <summary>
     /// Overseers information regarding the editor's theme.

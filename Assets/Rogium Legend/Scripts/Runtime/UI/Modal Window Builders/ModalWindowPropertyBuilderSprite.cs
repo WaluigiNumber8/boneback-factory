@@ -3,7 +3,7 @@ using BoubakProductions.UI;
 using Rogium.Editors.Palettes;
 using Rogium.Editors.Sprites;
 
-namespace Rogium.UserInterface.UI
+namespace Rogium.UserInterface.ModalWindowBuilding
 {
     /// <summary>
     /// Constructor for the Palette Properties Modal Window.

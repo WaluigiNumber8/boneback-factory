@@ -1,4 +1,4 @@
-﻿using Rogium.Global.PlayerData;
+﻿using Rogium.Systems.PlayerData;
 
 namespace Rogium.Core
 {

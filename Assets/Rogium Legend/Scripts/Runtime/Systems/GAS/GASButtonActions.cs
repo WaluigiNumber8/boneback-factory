@@ -4,15 +4,18 @@ using BoubakProductions.UI;
 using BoubakProductions.UI.MenuSwitching;
 using Rogium.Core;
 using Rogium.Editors.Campaign;
-using Rogium.UserInterface.UI;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Core;
 using Rogium.Editors.Palettes;
 using Rogium.Editors.Rooms;
-using Rogium.UserInterface;
+using Rogium.Editors.Sprites;
+using Rogium.Systems.Toolbox;
 using Rogium.UserInterface.AssetSelection;
+using Rogium.UserInterface.Containers;
+using Rogium.UserInterface.Core;
+using Rogium.UserInterface.ModalWindowBuilding;
 
-namespace Rogium.Global.GASExtension
+namespace Rogium.Systems.GASExtension
 {
     /// <summary>
     /// A Container for GAS actions when a button is clicked.
@@ -413,6 +416,24 @@ namespace Rogium.Global.GASExtension
             CampaignAssetSelectionOverseer.Instance.SelectCampaignPrevious();
         }
         
+
+        #endregion
+
+        #region Sprite Editor
+        public static void SpriteSwitchTool(int index)
+        {
+            SpriteEditorOverseerMono.GetInstance().Toolbox.SwitchTool((ToolType) index);
+        }
+        
+
+        #endregion
+
+        #region Room Editor
+
+        public static void RoomSwitchTool(int index)
+        {
+            RoomEditorOverseerMono.GetInstance().Toolbox.SwitchTool((ToolType) index);
+        }
 
         #endregion
         
