@@ -54,7 +54,7 @@ namespace Rogium.Systems.IconBuilders
                 for (int x = 0; x < grid.Width; x++)
                 {
                     int posValue = grid.GetValue(x, y);
-                    int flippedY = grid.Height - y;
+                    int flippedY = (grid.Height - y) - 1;
 
                     //When color ID is bigger than the color array.
                     if (posValue >= colors.Length - 1)

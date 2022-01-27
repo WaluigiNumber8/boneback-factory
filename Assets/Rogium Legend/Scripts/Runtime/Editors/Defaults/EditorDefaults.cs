@@ -34,6 +34,7 @@ namespace Rogium.Editors.Core.Defaults
         //Room
         public const string RoomTitle = "New Room";
         public static readonly Sprite RoomIcon = Resources.Load<Sprite>("Defaults/spr_Default_Weapon_Filled");
+        public static readonly Vector2Int RoomSize = new Vector2Int(15, 10);
         public const int RoomDifficulty = 0;
         public const RoomType RoomType = Rooms.RoomType.Normal;
 
@@ -42,7 +43,7 @@ namespace Rogium.Editors.Core.Defaults
         public const int EmptyColorID = -1;
         public const int PixelsPerUnit = 16;
         public static readonly Sprite EmptyGridSprite = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
-        public static readonly Color EmptyGridColor = new Color(0, 0, 0);
+        public static readonly Color EmptyGridColor = Color.black;
         public static readonly Color NoColor = new Color(0, 0, 0, 0);
         public static readonly Sprite MissingSprite = Resources.Load<Sprite>("Defaults/spr_Missing");
         public static readonly Color MissingColor = new Color(255, 88, 227);

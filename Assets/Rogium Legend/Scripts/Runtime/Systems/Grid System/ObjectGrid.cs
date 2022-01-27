@@ -22,6 +22,13 @@ namespace Rogium.Systems.GridSystem
             InitializeGrid(createDefaultObject);
         }
 
+        public ObjectGrid(ObjectGrid<T> grid)
+        {
+            this.width = grid.Width;
+            this.height = grid.Height;
+            this.cellArray = grid.cellArray;
+        }
+
         /// <summary>
         /// Upon Creation, initialize the grid a default form of T.
         /// </summary>
@@ -62,13 +69,22 @@ namespace Rogium.Systems.GridSystem
         /// <summary>
         /// Get a value from a specific grid cell.
         /// </summary>
+        /// <param name="position">The position on the grid.</param>
+        /// <returns>The value on that position.</returns>
+        public T GetValue(Vector2Int position)
+        {
+            return GetValue(position.x, position.y);
+        }
+        /// <summary>
+        /// Get a value from a specific grid cell.
+        /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
         public T GetValue(int x, int y)
         {
-            SafetyNet.EnsureIntIsInRange(x, 0, width, "Grid X");
-            SafetyNet.EnsureIntIsInRange(y, 0, height, "Grid Y");
+            SafetyNet.EnsureIntIsInRange(x, 0, width-1, "Grid X");
+            SafetyNet.EnsureIntIsInRange(y, 0, height-1, "Grid Y");
             return cellArray[x, y];
         }
 

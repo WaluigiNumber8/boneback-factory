@@ -25,7 +25,7 @@ namespace Rogium.Systems.IconBuilders
         {
             Texture2D tex = BoubakBuilder.GenerateTexture(grid.Width * pixelsPerSprite, grid.Height * pixelsPerSprite);
             int texPosX = 0;
-            int texPosY = 0;
+            int texPosY = grid.Height * pixelsPerSprite - pixelsPerSprite;
             
             for (int y = 0; y < grid.Height; y++)
             {
@@ -33,14 +33,12 @@ namespace Rogium.Systems.IconBuilders
                 {
                     string id = grid.GetValue(x, y);
                     Sprite icon = GrabSprite(id, assets);
-                    // Color[] colors = icon.texture.GetPixels();
                     CopyTextureTo(icon.texture, tex, texPosX, texPosY, texPosX + pixelsPerSprite, texPosY + pixelsPerSprite);
                     
-                    // tex.SetPixels(texPosX, texPosY, texPosX+pixelsPerSprite-1, texPosY+pixelsPerSprite-1, colors);
                     texPosX += pixelsPerSprite;
                 }
 
-                texPosY += pixelsPerSprite;
+                texPosY -= pixelsPerSprite;
             }
 
             return BoubakBuilder.GenerateSprite(tex, pixelsPerSprite);

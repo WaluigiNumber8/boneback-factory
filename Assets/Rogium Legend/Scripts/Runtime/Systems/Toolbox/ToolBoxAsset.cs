@@ -13,6 +13,7 @@ namespace Rogium.Systems.Toolbox
     {
         private readonly BrushTool<string> toolBrush;
         private readonly EraserTool<string> toolEraser;
+        private readonly BucketTool<string> toolBucket;
 
         private InteractableEditorGrid UIGrid;
         private Sprite currentSprite;
@@ -22,6 +23,7 @@ namespace Rogium.Systems.Toolbox
         {
             toolBrush = new BrushTool<string>();
             toolEraser = new EraserTool<string>(EditorDefaults.EmptyAssetID);
+            toolBucket = new BucketTool<string>();
 
             this.UIGrid = UIGrid;
             SwitchTool(ToolType.Brush);
@@ -36,12 +38,11 @@ namespace Rogium.Systems.Toolbox
         public void ApplyCurrent(ObjectGrid<string> grid, Vector2Int position, AssetSlot value)
         {
             currentSprite = value.Asset.Icon;
-            currentTool.ApplyEffect(grid, position, value.Asset.ID);
+            currentTool.ApplyEffect(grid, position, value.Asset.ID, WhenDrawOnUIGrid);
         }
 
         public void SwitchTool(ToolType tool)
         {
-            if (currentTool != null) currentTool.OnEffectApplied -= WhenDrawOnUIGrid;
             switch (tool)
             {
                 case ToolType.Brush:
@@ -51,11 +52,12 @@ namespace Rogium.Systems.Toolbox
                     currentTool = toolEraser;
                     break;
                 case ToolType.Bucket:
+                    currentTool = toolBucket;
+                    break;
                 case ToolType.ColorPicker:
                 default:
                     throw new InvalidOperationException("Unknown or not yet supported Tool Type.");
             }
-            if (currentTool != null) currentTool.OnEffectApplied += WhenDrawOnUIGrid;
         }
 
         public void WhenDrawOnUIGrid(Vector2Int position, bool useEmpty)
@@ -64,6 +66,5 @@ namespace Rogium.Systems.Toolbox
             UIGrid.UpdateCellSprite(position, value);
         }
         
-        public ITool<string> CurrentTool { get => currentTool; }
     }
 }

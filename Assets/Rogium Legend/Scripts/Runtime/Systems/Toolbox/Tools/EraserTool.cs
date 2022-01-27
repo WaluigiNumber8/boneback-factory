@@ -4,10 +4,8 @@ using UnityEngine;
 
 namespace Rogium.Systems.Toolbox
 {
-    public class EraserTool<T> : ITool<T>
+    public class EraserTool<T> : ITool<T> where T : IComparable
     {
-        public event Action<Vector2Int, bool> OnEffectApplied;
-        
         private T emptyValue;
         
         public EraserTool(T emptyValue)
@@ -15,10 +13,10 @@ namespace Rogium.Systems.Toolbox
             this.emptyValue = emptyValue;
         }
 
-        public void ApplyEffect(ObjectGrid<T> grid, Vector2Int position, T value)
+        public void ApplyEffect(ObjectGrid<T> grid, Vector2Int position, T value, Action<Vector2Int, bool> applyOnUI)
         {
             grid.SetValue(position, emptyValue);
-            OnEffectApplied?.Invoke(position, true);
+            applyOnUI?.Invoke(position, true);
         }
     }
 }

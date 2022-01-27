@@ -34,7 +34,7 @@ namespace Rogium.Editors.Sprites
             this.author = asset.Author;
             this.creationDate = asset.CreationDate;
 
-            this.spriteData = asset.SpriteData;
+            this.spriteData = new ObjectGrid<int>(asset.SpriteData);
             this.preferredPaletteID = asset.PreferredPaletteID;
         }
         
@@ -46,7 +46,7 @@ namespace Rogium.Editors.Sprites
             this.author = author;
             this.creationDate = creationDate;
 
-            this.spriteData = spriteData;
+            this.spriteData = new ObjectGrid<int>(spriteData);
             this.preferredPaletteID = preferredPaletteID;
         }
 
@@ -55,7 +55,7 @@ namespace Rogium.Editors.Sprites
         #region Update Values
         public void UpdateSpriteData(ObjectGrid<int> newSpriteData)
         {
-            this.spriteData = newSpriteData;
+            this.spriteData = new ObjectGrid<int>(newSpriteData);
         }
 
         public void UpdatePreferredPaletteID(string newPaletteID)

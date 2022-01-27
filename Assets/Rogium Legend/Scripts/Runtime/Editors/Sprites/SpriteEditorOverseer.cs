@@ -1,5 +1,4 @@
 ﻿using BoubakProductions.Safety;
-using Rogium.Editors.Sprites;
 using System;
 using Rogium.Systems.IconBuilders;
 using UnityEngine;
@@ -55,7 +54,7 @@ namespace Rogium.Editors.Sprites
             SafetyNet.EnsureIsNotNull(asset, "Assigned Sprite");
             SafetyNet.EnsureIntIsBiggerOrEqualTo(index, 0, "Assigned asset index");
             
-            currentAsset = asset;
+            currentAsset = new SpriteAsset(asset);
             myIndex = index;
             
             OnAssignAsset?.Invoke(currentAsset);
