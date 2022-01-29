@@ -1,4 +1,4 @@
-﻿namespace Rogium.Editors.RoomData
+﻿namespace Rogium.Editors.Rooms
 {
     /// <summary>
     /// The type of asset that can be placed in the room.

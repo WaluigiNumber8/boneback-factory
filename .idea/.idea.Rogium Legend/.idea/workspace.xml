@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="02d690fd-a5ea-48d4-b4ca-481817b04f2a" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Button.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/41d34619c06946aebeba0ca1ee6d765b144200/e3/4e1960f0/Camera.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/41d34619c06946aebeba0ca1ee6d765b144200/d1/0c186fa8/Object.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Systems/Item Palette/ItemPaletteColor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/41d34619c06946aebeba0ca1ee6d765b144200/08/3b222b73/Random.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/IL/6dfe35c3dc8d46a097eb33cfb1a9cd1a8000/85/3d023588/0200000B.il" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Gameplay/GameplayOverseer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/10b6135e63434fdba4fc6c109928ab3b50800/6b/33ceb6ef/Reflect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/36/02b85da6/List`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.tilemap@1.0.0/Editor/GridPaintPaletteClipboard.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Toggle.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/51c9fc2d1be048cfa2dd679deaa7d4f717a300/95/a4afaf76/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/15e405c9beda435fb78db5a973118bc4157200/14/5ac4395f/Vector2Int.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/fd824cfb55004855b9e6d51b008c90e4568778/bc/2c955b55/Enum.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/b5/97301032/NullReferenceException.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cb62560c330e4d74aa195b471206277f17a320/2f/308956ca/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ad50157ee00e45cdb3c8bd67012f8804157200/23/1f365bb9/Texture.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Gameplay/Room Loader/RoomLoader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ad50157ee00e45cdb3c8bd67012f8804157200/7f/2335da05/Texture2D.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/423884a9072a40feb1817ca34f260b367ae00/0e/e2fbb5b9/BuilderConstants.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/351e49e2a5bf4fd6beabb458ce2255f3ff600/ca/7363510e/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/UIBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6dfe35c3dc8d46a097eb33cfb1a9cd1a8000/1f/d5303cb5/Tile.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/41d34619c06946aebeba0ca1ee6d765b144200/f0/34b7033d/Bounds.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/fd824cfb55004855b9e6d51b008c90e4568778/0b/7d5ee4e2/Boolean.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Selectable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6dfe35c3dc8d46a097eb33cfb1a9cd1a8000/a5/447e8bb7/Tilemap.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/fd824cfb55004855b9e6d51b008c90e4568778/a8/e0d6144d/IComparable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Editors/Campaign/PackCombiner.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/IL/41d34619c06946aebeba0ca1ee6d765b144200/53/567b1259/020000F0.il" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventSystem.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Systems/Item Palette/ItemPaletteAsset.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Layout/HorizontalOrVerticalLayoutGroup.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/abe4d92c617a485da48e0247d3cbf7a028e00/30/ced56fe4/InteractableEditorGrid.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/ExecuteEvents.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Boubak Productions/Scripts/Runtime/UI/Interactables/Toggles/TextToggleProperty.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/41d34619c06946aebeba0ca1ee6d765b144200/20/0ae449ad/Vector2Int.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="SWEA" />
+  </component>
+  <component name="ProjectId" id="1yPgAIL1nK2RNCVxcZZXrAlbRV1" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.34940413" />
+    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
+    <property name="Discover.Launch.Via.Unity" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="rider.run.widget.enabled.cache" value="false" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor &amp; Play">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="16344">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" value="16344" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="02d690fd-a5ea-48d4-b4ca-481817b04f2a" name="Changes" comment="" />
+      <created>1632158539983</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1632158539983</updated>
+      <workItem from="1632158557738" duration="318000" />
+      <workItem from="1632159004014" duration="1026000" />
+      <workItem from="1632214459385" duration="13557000" />
+      <workItem from="1632296827994" duration="590000" />
+      <workItem from="1632412415673" duration="6565000" />
+      <workItem from="1632561104279" duration="7794000" />
+      <workItem from="1632725848463" duration="30962000" />
+      <workItem from="1632816452587" duration="20457000" />
+      <workItem from="1632925891448" duration="6681000" />
+      <workItem from="1633094403231" duration="40000" />
+      <workItem from="1633094492972" duration="1230000" />
+      <workItem from="1633367474990" duration="3762000" />
+      <workItem from="1633421251520" duration="4553000" />
+      <workItem from="1633428021105" duration="43000" />
+      <workItem from="1633428088384" duration="5000" />
+      <workItem from="1633433216867" duration="203000" />
+      <workItem from="1633433628432" duration="1597000" />
+      <workItem from="1633451747486" duration="8011000" />
+      <workItem from="1633528357870" duration="10407000" />
+      <workItem from="1633622912002" duration="609000" />
+      <workItem from="1633682976803" duration="15075000" />
+      <workItem from="1633763750761" duration="609000" />
+      <workItem from="1633795473693" duration="7720000" />
+      <workItem from="1633805393936" duration="233000" />
+      <workItem from="1633857109041" duration="12047000" />
+      <workItem from="1633884408066" duration="6201000" />
+      <workItem from="1633966925215" duration="6231000" />
+      <workItem from="1634028096207" duration="18184000" />
+      <workItem from="1634102788546" duration="296000" />
+      <workItem from="1634374443338" duration="5775000" />
+      <workItem from="1634398872334" duration="761000" />
+      <workItem from="1634638372845" duration="8041000" />
+      <workItem from="1634998579247" duration="5933000" />
+      <workItem from="1635080359579" duration="4989000" />
+      <workItem from="1635090213172" duration="1133000" />
+      <workItem from="1635607495321" duration="5729000" />
+      <workItem from="1635673685333" duration="3820000" />
+      <workItem from="1635856542880" duration="6519000" />
+      <workItem from="1635873495116" duration="2089000" />
+      <workItem from="1636039052251" duration="4754000" />
+      <workItem from="1636054133325" duration="3568000" />
+      <workItem from="1636096172034" duration="7560000" />
+      <workItem from="1636113466527" duration="2725000" />
+      <workItem from="1636128473472" duration="10407000" />
+      <workItem from="1636221392339" duration="4407000" />
+      <workItem from="1636288449427" duration="4154000" />
+      <workItem from="1636302679684" duration="2000000" />
+      <workItem from="1636732710536" duration="6752000" />
+      <workItem from="1636741282834" duration="830000" />
+      <workItem from="1636796715318" duration="3436000" />
+      <workItem from="1636818897461" duration="297000" />
+      <workItem from="1636827163587" duration="3594000" />
+      <workItem from="1636885964920" duration="2398000" />
+      <workItem from="1636913792326" duration="802000" />
+      <workItem from="1636981354789" duration="9548000" />
+      <workItem from="1637053021780" duration="14958000" />
+      <workItem from="1637081156181" duration="2413000" />
+      <workItem from="1637138159153" duration="63000" />
+      <workItem from="1637138798329" duration="10814000" />
+      <workItem from="1637407469641" duration="5746000" />
+      <workItem from="1637430176153" duration="697000" />
+      <workItem from="1637571405441" duration="3136000" />
+      <workItem from="1637592285736" duration="2796000" />
+      <workItem from="1640090995991" duration="1943000" />
+      <workItem from="1640165539246" duration="2633000" />
+      <workItem from="1640168219967" duration="48000" />
+      <workItem from="1640168345790" duration="6026000" />
+      <workItem from="1640174455670" duration="1000" />
+      <workItem from="1640187450564" duration="8178000" />
+      <workItem from="1640602178340" duration="134000" />
+      <workItem from="1640602623975" duration="6154000" />
+      <workItem from="1640682296697" duration="9318000" />
+      <workItem from="1640768019093" duration="13807000" />
+      <workItem from="1640864311561" duration="11602000" />
+      <workItem from="1641205341114" duration="33000" />
+      <workItem from="1641205395216" duration="3200000" />
+      <workItem from="1641376689781" duration="5518000" />
+      <workItem from="1641406017915" duration="503000" />
+      <workItem from="1641581539881" duration="2894000" />
+      <workItem from="1642006389950" duration="241000" />
+      <workItem from="1642356104853" duration="4874000" />
+      <workItem from="1642410640665" duration="4739000" />
+      <workItem from="1642415845196" duration="1421000" />
+      <workItem from="1642422875420" duration="86000" />
+      <workItem from="1642422998798" duration="659000" />
+      <workItem from="1642423688407" duration="68000" />
+      <workItem from="1642423785489" duration="160000" />
+      <workItem from="1642423971297" duration="40000" />
+      <workItem from="1642424079760" duration="158000" />
+      <workItem from="1642424268816" duration="5140000" />
+      <workItem from="1642440058565" duration="51000" />
+      <workItem from="1642440134010" duration="442000" />
+      <workItem from="1642440698379" duration="32000" />
+      <workItem from="1642501150972" duration="224000" />
+      <workItem from="1642501467891" duration="214000" />
+      <workItem from="1642501702092" duration="196000" />
+      <workItem from="1642524631360" duration="4417000" />
+      <workItem from="1642585171037" duration="13532000" />
+      <workItem from="1642783056813" duration="5588000" />
+      <workItem from="1642852648483" duration="4967000" />
+      <workItem from="1642868562687" duration="7252000" />
+      <workItem from="1643108405808" duration="2733000" />
+      <workItem from="1643193531471" duration="6894000" />
+      <workItem from="1643274762621" duration="11104000" />
+      <workItem from="1643369805430" duration="4779000" />
+      <workItem from="1643463384786" duration="3624000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Tests/CSharp/Editors/test_Pack_Library.cs</url>
+          <line>42</line>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Tests\CSharp\Editors\test_Pack_Library.cs" initialLine="42" containingFunctionPresentation="method 'create_new_pack_and_check_if_data_is_correct'">
+            <startOffsets>
+              <option value="1075" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1106" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Tests/CSharp/Editors/test_Pack_Save_and_Load.cs</url>
+          <line>47</line>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Tests\CSharp\Editors\test_Pack_Save_and_Load.cs" initialLine="47" containingFunctionPresentation="method 'save_pack_to_storage'">
+            <startOffsets>
+              <option value="1391" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1422" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/UI/Modal Window Builders/ModalWindowPropertyBuilderCampaign.cs</url>
+          <line>49</line>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Global\UI System\Modal Window Builders\ModalWindowPropertyBuilderCampaign.cs" initialLine="51" containingFunctionPresentation="method 'UpdateAsset'" />
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Gameplay/GameplayOverseer.cs</url>
+          <line>98</line>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Gameplay\GameplayOverseer.cs" initialLine="99" containingFunctionPresentation="method 'LoadNewRoom'">
+            <startOffsets>
+              <option value="2743" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2852" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Systems/Icon Builder/IconBuilderAsset.cs</url>
+          <line>25</line>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Systems\Icon Builder\IconBuilderAsset.cs" initialLine="25" containingFunctionPresentation="method 'Build'">
+            <startOffsets>
+              <option value="901" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1008" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Systems/Toolbox/UI Manager/ToolBoxUIManagerRoom.cs</url>
+          <line>13</line>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Systems\Toolbox\UI Manager\ToolBoxUIManagerRoom.cs" initialLine="13" containingFunctionPresentation="method 'OnEnable'">
+            <startOffsets>
+              <option value="305" />
+            </startOffsets>
+            <endOffsets>
+              <option value="362" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="Type#Rogium.ExternalStorage.Serialization.SerializedGrid`1" memberName="objects" />
+        <PinnedItemInfo parentTag="Type#UnityEngine.Texture" memberName="imageContentsHash" />
+        <PinnedItemInfo parentTag="Type#Rogium.Editors.Campaign.CampaignAsset" memberName="dataPack" />
+      </pinned-members>
+    </pin-to-top-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
