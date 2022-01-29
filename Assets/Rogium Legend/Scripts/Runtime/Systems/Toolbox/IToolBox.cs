@@ -1,12 +1,15 @@
 ﻿using System;
-using Rogium.Systems.GridSystem;
-using Rogium.UserInterface.AssetSelection;
 using UnityEngine;
 
 namespace Rogium.Systems.Toolbox
 {
+    /// <summary>
+    /// A base for all toolboxes.
+    /// </summary>
     public interface IToolBox
     {
+        public event Action<ToolType> OnSwitchTool; 
+
         /// <summary>
         /// Switches to a new tool.
         /// </summary>

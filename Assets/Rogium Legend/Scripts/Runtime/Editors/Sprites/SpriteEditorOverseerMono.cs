@@ -1,4 +1,5 @@
 ﻿using BoubakProductions.Core;
+using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Palettes;
 using Rogium.Systems.GridSystem;
 using Rogium.Systems.ItemPalette;
@@ -34,6 +35,7 @@ namespace Rogium.Editors.Sprites
             editor.OnAssignAsset += PrepareEditor;
             grid.OnInteractionClick += UpdateGridCell;
             paletteColor.OnSelect += ChangeCurrentColor;
+            toolbox.OnChangePaletteValue += SelectFromColors;
         }
 
         private void OnDisable()
@@ -41,6 +43,7 @@ namespace Rogium.Editors.Sprites
             editor.OnAssignAsset -= PrepareEditor;
             grid.OnInteractionClick -= UpdateGridCell;
             paletteColor.OnSelect -= ChangeCurrentColor;
+            toolbox.OnChangePaletteValue -= SelectFromColors;
         }
 
         /// <summary>
@@ -73,6 +76,21 @@ namespace Rogium.Editors.Sprites
         private void ChangeCurrentColor(ColorSlot slot)
         {
             currentSlot = slot;
+        }
+        
+        /// <summary>
+        /// Selects a color from the colors palette.
+        /// </summary>
+        /// <param name="id">The id of the color to select.</param>
+        private void SelectFromColors(int id)
+        {
+            if (id == EditorDefaults.EmptyColorID)
+            {
+                toolbox.SwitchTool(ToolType.Eraser);
+                return;
+            }
+            paletteColor.Select(id);
+            toolbox.SwitchTool(ToolType.Brush);
         }
         
         public ToolBoxColor Toolbox { get => toolbox; } 

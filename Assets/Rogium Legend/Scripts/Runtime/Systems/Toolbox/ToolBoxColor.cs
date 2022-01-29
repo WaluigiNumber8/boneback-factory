@@ -11,21 +11,30 @@ namespace Rogium.Systems.Toolbox
     /// </summary>
     public class ToolBoxColor : IToolBox
     {
+        public event Action<ToolType> OnSwitchTool;
+        public event Action<int> OnChangePaletteValue; 
+
         private readonly BrushTool<int> toolBrush;
         private readonly EraserTool<int> toolEraser;
         private readonly BucketTool<int> toolBucket;
+        private readonly PickerTool<int> toolPicker;
 
         private InteractableEditorGrid UIGrid;
         private Color currentColor;
         private ITool<int> currentTool;
+        private ToolType currentToolType;
 
         public ToolBoxColor(InteractableEditorGrid UIGrid)
         {
             toolBrush = new BrushTool<int>();
             toolEraser = new EraserTool<int>(EditorDefaults.EmptyColorID);
             toolBucket = new BucketTool<int>();
+            toolPicker = new PickerTool<int>();
 
             this.UIGrid = UIGrid;
+
+            toolPicker.OnPickValue += ctx => OnChangePaletteValue?.Invoke(ctx);
+            
             SwitchTool(ToolType.Brush);
         }
         
@@ -43,21 +52,17 @@ namespace Rogium.Systems.Toolbox
 
         public void SwitchTool(ToolType tool)
         {
-            switch (tool)
+            if (currentToolType == tool) return;
+            currentTool = tool switch
             {
-                case ToolType.Brush:
-                    currentTool = toolBrush;
-                    break;
-                case ToolType.Eraser:
-                    currentTool = toolEraser;
-                    break;
-                case ToolType.Bucket:
-                    currentTool = toolBucket;
-                    break;
-                case ToolType.ColorPicker:
-                default:
-                    throw new InvalidOperationException("Unknown or not yet supported Tool Type.");
-            }
+                ToolType.Brush => toolBrush,
+                ToolType.Eraser => toolEraser,
+                ToolType.Bucket => toolBucket,
+                ToolType.ColorPicker => toolPicker,
+                _ => throw new InvalidOperationException("Unknown or not yet supported Tool Type.")
+            };
+            currentToolType = tool;
+            OnSwitchTool?.Invoke(tool);
         }
 
         public void WhenDrawOnUIGrid(Vector2Int position, bool useEmpty)

@@ -4,6 +4,7 @@ using Rogium.Systems.GridSystem;
 using System;
 using BoubakProductions.Core;
 using Rogium.Core;
+using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.ItemPalette;
 using Rogium.Systems.Toolbox;
 using Rogium.UserInterface.AssetSelection;
@@ -27,6 +28,7 @@ namespace Rogium.Editors.Rooms
         
         protected override void Awake()
         {
+            base.Awake();
             packEditor = PackEditorOverseer.Instance;
             editor = RoomEditorOverseer.Instance;
             toolbox = new ToolBoxAsset(grid);
@@ -37,6 +39,7 @@ namespace Rogium.Editors.Rooms
             editor.OnAssignRoom += PrepareEditor;
             grid.OnInteractionClick += UpdateGridCell;
             paletteTile.OnSelect += ChangeCurrentTile;
+            toolbox.OnChangePaletteValue += SelectFromTiles;
         }
 
         private void OnDisable()
@@ -44,6 +47,7 @@ namespace Rogium.Editors.Rooms
             editor.OnAssignRoom -= PrepareEditor;
             grid.OnInteractionClick -= UpdateGridCell;
             paletteTile.OnSelect -= ChangeCurrentTile;
+            toolbox.OnChangePaletteValue -= SelectFromTiles;
         }
 
         /// <summary>
@@ -74,6 +78,21 @@ namespace Rogium.Editors.Rooms
         private void ChangeCurrentTile(AssetSlot slot)
         {
             currentTile = slot;
+        }
+
+        /// <summary>
+        /// Selects a tile from the tiles palette.
+        /// </summary>
+        /// <param name="id">The id of the asset to select.</param>
+        private void SelectFromTiles(string id)
+        {
+            if (id == EditorDefaults.EmptyAssetID)
+            {
+                toolbox.SwitchTool(ToolType.Eraser);
+                return;
+            }
+            paletteTile.Select(id);
+            toolbox.SwitchTool(ToolType.Brush);
         }
         
         public ToolBoxAsset Toolbox { get => toolbox; } 

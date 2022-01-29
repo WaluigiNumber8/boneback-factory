@@ -41,6 +41,7 @@ namespace Rogium.UserInterface.AssetSelection
         }
         
         public int Index { get => index; }
+        public Toggle Toggle { get => toggle; }
         
     }
 }

@@ -3,6 +3,7 @@ using Rogium.Editors.Core;
 using Rogium.Editors.Campaign;
 using System.Collections.Generic;
 using System.Linq;
+using Rogium.UserInterface.AssetSelection;
 
 namespace Rogium.Core
 {
@@ -85,9 +86,23 @@ namespace Rogium.Core
             return assets.Select(asset => asset.ID).ToList();
         }
 
+        /// <summary>
+        /// Converts a list of assets into a list of their IDs.
+        /// </summary>
+        /// <param name="importInfos">The list of <see cref="PackImportInfo"/>s to take IDs from.</param>
+        /// <returns>A list of IDs (strings).</returns>
         public static IList<string> ConvertToIDs(this IList<PackImportInfo> importInfos)
         {
             return importInfos.Select(importInfo => importInfo.ID).ToList();
+        }
+        /// <summary>
+        /// Converts a list of assets into a list of their IDs.
+        /// </summary>
+        /// <param name="holders">The list of <see cref="IAssetHolder"/>s to take IDs from.</param>
+        /// <returns>A list of IDs (strings).</returns>
+        public static IList<string> ConvertToIDList<T>(this IList<T> holders) where T : IAssetHolder
+        {
+            return holders.Select(holder => holder.Asset.ID).ToList();
         }
 
         /// <summary>

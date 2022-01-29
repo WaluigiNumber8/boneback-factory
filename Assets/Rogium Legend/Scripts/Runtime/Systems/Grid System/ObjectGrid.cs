@@ -26,7 +26,7 @@ namespace Rogium.Systems.GridSystem
         {
             this.width = grid.Width;
             this.height = grid.Height;
-            this.cellArray = grid.cellArray;
+            this.cellArray = (T[,])grid.cellArray.Clone();
         }
 
         /// <summary>

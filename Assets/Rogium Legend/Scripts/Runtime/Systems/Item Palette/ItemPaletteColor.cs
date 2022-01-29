@@ -38,7 +38,8 @@ namespace Rogium.Systems.ItemPalette
         {
             SafetyNet.EnsureIntIsInRange(index, 0, slots.Count, "Item Index");
             if (slots?.Count <= 0) return;
-            
+
+            slots[index].Toggle.isOn = true;
             OnSelect?.Invoke(slots[index]);
         }
         

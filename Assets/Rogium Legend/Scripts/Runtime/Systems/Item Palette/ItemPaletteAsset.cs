@@ -21,6 +21,7 @@ namespace Rogium.Systems.ItemPalette
         [SerializeField] private TextMeshProUGUI emptyText;
         
         private readonly IList<AssetSlot> holders = new List<AssetSlot>();
+        private IList<string> ids;
 
         private void OnEnable()
         {
@@ -32,7 +33,17 @@ namespace Rogium.Systems.ItemPalette
             AssetSlot.OnSelectedAny -= Select;
         }
 
-        
+        /// <summary>
+        /// Call the <see cref="OnSelect"/> event for a specific item.
+        /// </summary>
+        /// <param name="id">The id of the item.</param>
+        public void Select(string id)
+        {
+            if (ids?.Count != holders.Count)
+                ids = holders.ConvertToIDList();
+            
+            Select(ids.IndexOf(id));
+        }
         /// <summary>
         /// Call the <see cref="OnSelect"/> event for a specific item.
         /// </summary>
