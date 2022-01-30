@@ -14,6 +14,7 @@ using Rogium.UserInterface.AssetSelection;
 using Rogium.UserInterface.Containers;
 using Rogium.UserInterface.Core;
 using Rogium.UserInterface.ModalWindowBuilding;
+using UnityEngine;
 
 namespace Rogium.Systems.GASExtension
 {
@@ -34,6 +35,11 @@ namespace Rogium.Systems.GASExtension
             CanvasOverseer.GetInstance().NavigationBar.Hide();
         }
 
+        public static void GameQuit()
+        {
+            Application.Quit();
+        }
+        
         public static void PlayCampaign(int campaignIndex)
         {
             LibraryOverseer.Instance.ActivateCampaignPlaythrough(campaignIndex);

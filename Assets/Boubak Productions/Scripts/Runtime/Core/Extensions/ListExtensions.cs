@@ -31,7 +31,7 @@ namespace BoubakProductions.Core
             return count;
         }
 
-        public static bool IsOnList<T>(this IList<T> list, T value) where T : class
+        public static bool ContainsAsset<T>(this IList<T> list, T value) where T : class
         {
             return list.Any(element => element == value);
         }

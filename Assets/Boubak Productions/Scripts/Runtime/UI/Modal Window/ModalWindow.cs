@@ -1,9 +1,9 @@
+using System;
+using BoubakProductions.Core;
+using BoubakProductions.Safety;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using System;
-using BoubakProductions.Safety;
-using BoubakProductions.Core;
 
 namespace BoubakProductions.UI
 {
@@ -17,49 +17,51 @@ namespace BoubakProductions.UI
         [SerializeField] private string denyButtonDefault = "Cancel";
         [SerializeField] private string specialButtonDefault = "NONE";
 
-        [Header("UI")] 
         [SerializeField] private UIInfo ui;
-
-        [Header("Themes")]
         [SerializeField] private ThemeStyleInfo[] themes;
 
         private ThemeType currentTheme;
         
         #region Open As Message
+
         /// <summary>
         /// Opens the Modal Window as a message window.
         /// </summary>
         /// <param name="message">Text in the header.</param>
+        /// <param name="theme">The graphic theme of the window.</param>
         /// <param name="acceptButtonText">Text in the Accept Button.</param>
         /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.</param>
         /// <param name="denyButtonClosesWindow">If on, the Deny Button just closes the window.</param>
         public void OpenAsMessage(string message, ThemeType theme, string acceptButtonText, Action onAcceptAction, bool denyButtonClosesWindow = false)
         {
             if (denyButtonClosesWindow)
-                OpenAsMessage(message, theme, acceptButtonText, denyButtonDefault, specialButtonDefault, onAcceptAction, Close, null);
+                OpenAsMessage(message, theme, acceptButtonText, denyButtonDefault, specialButtonDefault, onAcceptAction, Close);
             else
-                OpenAsMessage(message, theme, acceptButtonText, denyButtonDefault, specialButtonDefault, onAcceptAction, null, null);
+                OpenAsMessage(message, theme, acceptButtonText, denyButtonDefault, specialButtonDefault, onAcceptAction);
         }
+
         /// <summary>
         /// Opens the Modal Window as a message window.
         /// </summary>
         /// <param name="message">Text in the header.</param>
+        /// <param name="theme">The graphic theme of the window.</param>
         /// <param name="acceptButtonText">Text in the Accept Button.</param>
-        /// /// <param name="acceptButtonText">Text in the Accept Button.</param>
         /// /// <param name="denyButtonText">Text in the Deny Button.</param>
         /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.</param>
-        /// <param name="hasCloseButton">If on, the Deny Button just closes the window.</param>
+        /// <param name="denyButtonClosesWindow">The method that runs when the modal window is closed.</param>
         public void OpenAsMessage(string message, ThemeType theme, string acceptButtonText, string denyButtonText, Action onAcceptAction, bool denyButtonClosesWindow = false)
         {
             if (denyButtonClosesWindow)
-                OpenAsMessage(message, theme, acceptButtonText, denyButtonText, specialButtonDefault, onAcceptAction, Close, null);
+                OpenAsMessage(message, theme, acceptButtonText, denyButtonText, specialButtonDefault, onAcceptAction, Close);
             else
-                OpenAsMessage(message, theme, acceptButtonText, denyButtonText, specialButtonDefault, onAcceptAction, null, null);
+                OpenAsMessage(message, theme, acceptButtonText, denyButtonText, specialButtonDefault, onAcceptAction);
         }
+
         /// <summary>
         /// Opens the Modal Window as a message window.
         /// </summary>
         /// <param name="message">Text in the header.</param>
+        /// <param name="theme">The graphic theme of the window.</param>
         /// <param name="acceptButtonText">Text in the Accept Button.</param>
         /// <param name="denyButtonText">Text in the Deny Button.</param>
         /// <param name="specialButtonText">Text in the Special Button.</param>
@@ -80,14 +82,17 @@ namespace BoubakProductions.UI
 
             DrawFooter(acceptButtonText, denyButtonText, specialButtonText, onAcceptAction, onDenyAction, onSpecialAction);
             ui.windowBox.gameObject.SetActive(true);
+            Canvas.ForceUpdateCanvases();
         }
         #endregion
 
         #region Open As Properties
+
         /// <summary>
         /// Draws the window as a properties window.
         /// </summary>
         /// <param name="headerText">Text in the header.</param>
+        /// <param name="theme">The graphic theme of the window.</param>
         /// <param name="acceptButtonText">Text in the Accept Button.</param>
         /// <param name="denyButtonText">Text in the Deny Button.</param>
         /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.</param>
@@ -99,27 +104,31 @@ namespace BoubakProductions.UI
             else
                 OpenAsPropertiesColumn2(headerText, theme, acceptButtonText, denyButtonText, specialButtonDefault, onAcceptAction, null, null);
         }
+
         /// <summary>
         /// Draws the window as a properties window.
         /// </summary>
         /// <param name="headerText">Text in the header.</param>
+        /// <param name="theme">The graphic theme of the window.</param>
         /// <param name="acceptButtonText">Text in the Accept Button.</param>
         /// <param name="denyButtonText">Text in the Deny Button.</param>
         /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.</param>
-        /// <param name="onDenyAction">Method, that happens when the Dccept Button is clicked.</param>
+        /// <param name="onDenyAction">Method, that happens when the Deny Button is clicked.</param>
         public void OpenAsPropertiesColumn2(string headerText, ThemeType theme, string acceptButtonText, string denyButtonText, Action onAcceptAction, Action onDenyAction)
         {
             OpenAsPropertiesColumn2(headerText, theme, acceptButtonText, denyButtonText, specialButtonDefault, onAcceptAction, onDenyAction, null);
         }
+
         /// <summary>
         /// Draws the window as a properties window.
         /// </summary>
         /// <param name="headerText">Text in the header.</param>
+        /// <param name="theme">The graphic theme of the window.</param>
         /// <param name="acceptButtonText">Text in the Accept Button.</param>
         /// <param name="denyButtonText">Text in the Deny Button.</param>
         /// <param name="specialButtonText">Text in the Special Button.</param>
         /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.</param>
-        /// <param name="onDenyAction">Method, that happens when the Dccept Button is clicked.</param>
+        /// <param name="onDenyAction">Method, that happens when the Deny Button is clicked.</param>
         /// <param name="onSpecialAction">Method, that happens when the Special Button is clicked.</param>
         public void OpenAsPropertiesColumn2(string headerText, ThemeType theme, string acceptButtonText, string denyButtonText, string specialButtonText, Action onAcceptAction, Action onDenyAction, Action onSpecialAction)
         {
@@ -136,12 +145,14 @@ namespace BoubakProductions.UI
 
             DrawFooter(acceptButtonText, denyButtonText, specialButtonText, onAcceptAction, onDenyAction, onSpecialAction);
             ui.windowBox.gameObject.SetActive(true);
+            Canvas.ForceUpdateCanvases();
         }
 
         /// <summary>
         /// Draws the window as a properties window.
         /// </summary>
         /// <param name="headerText">Text in the header.</param>
+        /// <param name="theme">The graphic theme of the window.</param>
         /// <param name="acceptButtonText">Text in the Accept Button.</param>
         /// <param name="denyButtonText">Text in the Deny Button.</param>
         /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.</param>
@@ -153,14 +164,16 @@ namespace BoubakProductions.UI
             else
                 OpenAsPropertiesColumn1(headerText, theme, acceptButtonText, denyButtonText, specialButtonDefault, onAcceptAction, null, null);
         }
+
         /// <summary>
         /// Draws the window as a properties window.
         /// </summary>
         /// <param name="headerText">Text in the header.</param>
+        /// <param name="theme">The graphic theme of the window.</param>
         /// <param name="acceptButtonText">Text in the Accept Button.</param>
         /// <param name="denyButtonText">Text in the Deny Button.</param>
         /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.</param>
-        /// <param name="onDenyAction">Method, that happens when the Dccept Button is clicked.</param>
+        /// <param name="onDenyAction">Method, that happens when the Deny Button is clicked.</param>
         public void OpenAsPropertiesColumn1(string headerText, ThemeType theme, string acceptButtonText, string denyButtonText, Action onAcceptAction, Action onDenyAction)
         {
             OpenAsPropertiesColumn1(headerText, theme, acceptButtonText, denyButtonText, specialButtonDefault, onAcceptAction, onDenyAction, null);
@@ -246,7 +259,7 @@ namespace BoubakProductions.UI
         /// <summary>
         /// Fills the Modal Window with a proper theme.
         /// </summary>
-        /// <param name="theme"></param>
+        /// <param name="themeType">The theme to load.</param>
         private void FillWithTheme(ThemeType themeType)
         {
             if (themeType == currentTheme && themeType != ThemeType.NoTheme) return;
@@ -328,7 +341,7 @@ namespace BoubakProductions.UI
         public Transform FirstColumnContent => ui.layout.properties.firstColumnContent;
         public Transform SecondColumnContent => ui.layout.properties.secondColumnContent;
 
-        [System.Serializable]
+        [Serializable]
         public struct UIInfo
         {
             public Transform area;
@@ -340,7 +353,7 @@ namespace BoubakProductions.UI
             public FooterInfo footer;
         }
         
-        [System.Serializable]
+        [Serializable]
         public struct HeaderInfo
         {
             public Transform area;
@@ -348,7 +361,7 @@ namespace BoubakProductions.UI
             public TextMeshProUGUI text;
         }
 
-        [System.Serializable]
+        [Serializable]
         public struct LayoutInfo
         {
             public Transform area;
@@ -356,14 +369,14 @@ namespace BoubakProductions.UI
             public PropertiesLayoutInfo properties;
         }
 
-        [System.Serializable]
+        [Serializable]
         public struct BasicLayoutInfo
         {
             public Transform area;
             public TextMeshProUGUI text;
         }
 
-        [System.Serializable]
+        [Serializable]
         public struct PropertiesLayoutInfo
         {
             public Transform area;
@@ -373,7 +386,7 @@ namespace BoubakProductions.UI
             public Transform secondColumnContent;
         }
 
-        [System.Serializable]
+        [Serializable]
         public struct FooterInfo
         {
             public Transform area;
@@ -393,7 +406,7 @@ namespace BoubakProductions.UI
         }
         
         
-        [System.Serializable]
+        [Serializable]
         public struct ThemeStyleInfo
         {
             public Sprite backgroundImage;

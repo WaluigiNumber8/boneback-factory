@@ -17,6 +17,9 @@ namespace Rogium.UserInterface.Interactables
                 case ButtonType.DoNothing:
                     Debug.LogError("This button Currently does nothing...");
                     break;
+                case ButtonType.QuitGame:
+                    GASButtonActions.GameQuit();
+                    break;
 
                 #region Return from Menus
                 case ButtonType.ReturnToAssetTypeSelection:

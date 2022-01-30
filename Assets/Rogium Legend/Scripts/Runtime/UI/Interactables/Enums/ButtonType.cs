@@ -119,6 +119,7 @@ namespace Rogium.UserInterface.Interactables
 
         #endregion
         
+        QuitGame = 9999,
         Play = 10000,
         TEST = 10001
         

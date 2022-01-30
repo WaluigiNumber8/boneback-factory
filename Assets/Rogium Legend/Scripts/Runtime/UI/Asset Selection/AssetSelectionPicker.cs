@@ -51,7 +51,7 @@ namespace Rogium.UserInterface.AssetSelection
         /// <param name="asset">The newly selected asset.</param>
         public void WhenAssetSelected(AssetBase asset)
         {
-            if (selectedAssets.IsOnList(asset)) return;
+            if (selectedAssets.ContainsAsset(asset)) return;
             selectedAssets.Add(asset);
         }
 
@@ -61,7 +61,7 @@ namespace Rogium.UserInterface.AssetSelection
         /// <param name="asset">The asset to remove.</param>
         public void WhenAssetDeselected(AssetBase asset)
         {
-            if (!selectedAssets.IsOnList(asset)) return;
+            if (!selectedAssets.ContainsAsset(asset)) return;
             selectedAssets.RemoveAt(selectedAssets.FindIndexFirst(asset.ID));
         }
 
@@ -70,7 +70,7 @@ namespace Rogium.UserInterface.AssetSelection
         /// </summary>
         public void WhenAssetSelectToggle(AssetBase asset)
         {
-            if (!selectedAssets.IsOnList(asset))
+            if (!selectedAssets.ContainsAsset(asset))
                 WhenAssetSelected(asset);
             else WhenAssetDeselected(asset);
         }
@@ -174,7 +174,7 @@ namespace Rogium.UserInterface.AssetSelection
         {
             cardToggleList.Add((IToggleable)assetHolder);
             string assetID = assetHolder.Asset.ID;
-            if (selectedAssetsIDs.IsOnList(assetID))
+            if (selectedAssetsIDs.ContainsAsset(assetID))
             {
                 AssetCardPickerController pickerHolder = (AssetCardPickerController) assetHolder;
                 pickerHolder.ChangeToggleState(true);
