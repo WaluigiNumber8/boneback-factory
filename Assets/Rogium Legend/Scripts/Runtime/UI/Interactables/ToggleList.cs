@@ -24,7 +24,7 @@ namespace Rogium.UserInterface.Core
         {
             foreach (IToggleable toggle in toggles)
             {
-                toggle.Toggle(value);
+                toggle.SetToggle(value);
             }
         }
         
@@ -40,10 +40,10 @@ namespace Rogium.UserInterface.Core
             {
                 if (i == index)
                 {
-                    toggles[i].Toggle(value);
+                    toggles[i].SetToggle(value);
                     continue;
                 }
-                toggles[i].Toggle(!value);
+                toggles[i].SetToggle(!value);
             }
         }
 

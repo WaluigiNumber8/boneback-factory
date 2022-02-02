@@ -45,7 +45,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
             toggle.isOn = false;
         }
 
-        public void Toggle(bool value) => toggle.isOn = value;
+        public void SetToggle(bool value) => toggle.isOn = value;
 
         /// <summary>
         /// Register the toggle under a <see cref="ToggleGroup"/>.

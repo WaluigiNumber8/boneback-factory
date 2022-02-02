@@ -39,7 +39,6 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
         public void GrabAsset(AssetType type, Action<AssetBase> WhenAssetGrabbed, AssetBase preselectedAsset = null)
         {
             targetMethod = WhenAssetGrabbed;
-            
             Open();
 
             switch (type)
@@ -94,8 +93,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
         {
             targetMethod.Invoke(asset);
             targetMethod = null;
-            
-            Close();
+            CancelSelection();
         }
 
         /// <summary>

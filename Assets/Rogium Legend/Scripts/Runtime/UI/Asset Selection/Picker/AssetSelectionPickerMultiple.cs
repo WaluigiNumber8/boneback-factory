@@ -233,7 +233,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
             if (selectedAssetsIDs.ContainsAsset(assetID))
             {
                 AssetPickerCardController holder = (AssetPickerCardController) assetHolder;
-                holder.Toggle(true);
+                holder.SetToggle(true);
             }
         }
 

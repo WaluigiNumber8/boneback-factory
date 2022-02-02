@@ -62,6 +62,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
         public void CancelSelection()
         {
             selectedAsset = null;
+            previousID = "";
             targetMethod = null;
         }
 
@@ -186,7 +187,14 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
             AssetPickerCardController holder = (AssetPickerCardController) assetHolder;
             holder.RegisterToggleGroup(toggleGroup);
 
-            selectedAsset ??= assetHolder.Asset;
+            if (selectedAsset == null)
+            {
+                selectedAsset = assetHolder.Asset;
+                return;
+            }
+            
+            if (holder.Asset.ID == selectedAsset.ID)
+                holder.SetToggle(true);
         }
         
     }

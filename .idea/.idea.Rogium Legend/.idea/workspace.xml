@@ -85,10 +85,10 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor &amp; Play">
-    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="2804">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="2600">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="2804" />
+      <option name="pid" value="2600" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -230,7 +230,8 @@
       <workItem from="1643640181860" duration="6000" />
       <workItem from="1643640492530" duration="3549000" />
       <workItem from="1643707150566" duration="20684000" />
-      <workItem from="1643794048198" duration="4580000" />
+      <workItem from="1643794048198" duration="5244000" />
+      <workItem from="1643822476084" duration="2597000" />
     </task>
     <servers />
   </component>

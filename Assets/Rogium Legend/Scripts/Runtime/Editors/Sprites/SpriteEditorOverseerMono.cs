@@ -71,6 +71,7 @@ namespace Rogium.Editors.Sprites
                 lastPaletteAsset = asset;
                 PaletteAsset pal = (PaletteAsset) asset;
                 SwitchPalette(pal.Colors);
+                currentSprite.UpdatePreferredPaletteID(pal.ID);
             }, lastPaletteAsset);
         }
         
