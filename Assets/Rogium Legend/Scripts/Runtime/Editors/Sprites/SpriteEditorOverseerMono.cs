@@ -1,9 +1,12 @@
 ﻿using BoubakProductions.Core;
+using Rogium.Core;
+using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Palettes;
 using Rogium.Systems.GridSystem;
 using Rogium.Systems.ItemPalette;
 using Rogium.Systems.Toolbox;
+using Rogium.UserInterface.Core;
 using UnityEngine;
 
 namespace Rogium.Editors.Sprites
@@ -14,13 +17,15 @@ namespace Rogium.Editors.Sprites
     public class SpriteEditorOverseerMono : MonoSingleton<SpriteEditorOverseerMono>
     {
         [SerializeField] private InteractableEditorGrid grid;
-        [SerializeField] private ItemPaletteColor paletteColor;
+        [SerializeField] private ItemPaletteColor palette;
         
         private SpriteEditorOverseer editor;
         private PalettePicker palettePicker;
         private ToolBoxColor toolbox;
 
+        private SpriteAsset currentSprite;
         private ColorSlot currentSlot;
+        private AssetBase lastPaletteAsset;
 
         protected override void Awake()
         {
@@ -34,7 +39,7 @@ namespace Rogium.Editors.Sprites
         {
             editor.OnAssignAsset += PrepareEditor;
             grid.OnInteractionClick += UpdateGridCell;
-            paletteColor.OnSelect += ChangeCurrentColor;
+            palette.OnSelect += ChangeCurrentColor;
             toolbox.OnChangePaletteValue += SelectFromColors;
         }
 
@@ -42,23 +47,10 @@ namespace Rogium.Editors.Sprites
         {
             editor.OnAssignAsset -= PrepareEditor;
             grid.OnInteractionClick -= UpdateGridCell;
-            paletteColor.OnSelect -= ChangeCurrentColor;
+            palette.OnSelect -= ChangeCurrentColor;
             toolbox.OnChangePaletteValue -= SelectFromColors;
         }
 
-        /// <summary>
-        /// Prepares the Sprite Editor for operation.
-        /// </summary>
-        /// <param name="sprite">The sprite to read from.</param>
-        private void PrepareEditor(SpriteAsset sprite)
-        {
-            Color[] colorArray = palettePicker.GrabBasedOn(sprite.PreferredPaletteID);
-            grid.LoadWithColors(colorArray, sprite.SpriteData);
-            
-            paletteColor.Fill(colorArray);
-            paletteColor.Select(0);
-        }
-        
         /// <summary>
         /// Updates the grid based on inputted position.
         /// </summary>
@@ -67,6 +59,42 @@ namespace Rogium.Editors.Sprites
         {
             if (currentSlot == null) return;
             toolbox.ApplyCurrent(editor.CurrentAsset.SpriteData, position, currentSlot);
+        }
+
+        /// <summary>
+        /// Changes the palette using the Asset Picker Window.
+        /// </summary>
+        public void SwitchPaletteViaWindow()
+        {
+            CanvasOverseer.GetInstance().PickerWindow.GrabAsset(AssetType.Palette, asset =>
+            {
+                lastPaletteAsset = asset;
+                PaletteAsset pal = (PaletteAsset) asset;
+                SwitchPalette(pal.Colors);
+            }, lastPaletteAsset);
+        }
+        
+        /// <summary>
+        /// Changes the palette used by the Sprite Editor.
+        /// </summary>
+        /// <param name="colors"></param>
+        public void SwitchPalette(Color[] colors)
+        {
+            grid.LoadWithColors(colors, currentSprite.SpriteData);
+            palette.Fill(colors);
+        }
+        
+        /// <summary>
+        /// Prepares the Sprite Editor for operation.
+        /// </summary>
+        /// <param name="sprite">The sprite to read from.</param>
+        private void PrepareEditor(SpriteAsset sprite)
+        {
+            Color[] colorArray = palettePicker.GrabBasedOn(sprite.PreferredPaletteID);
+            currentSprite = sprite;
+            
+            SwitchPalette(colorArray);
+            palette.Select(0);
         }
         
         /// <summary>
@@ -89,7 +117,7 @@ namespace Rogium.Editors.Sprites
                 toolbox.SwitchTool(ToolType.Eraser);
                 return;
             }
-            paletteColor.Select(id);
+            palette.Select(id);
             toolbox.SwitchTool(ToolType.Brush);
         }
         

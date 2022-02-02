@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89336f03827cef34d898e6a19f50937b, type: 3}
   m_Name: asset_Menu_Selection_Palette
   m_EditorClassIdentifier: 
-  assetObject: {fileID: 7412841231284645527, guid: f3fa39a5d5b0a8044928fc35133e5bfc, type: 3}
+  assetObject: {fileID: 3883882690900181952, guid: f3fa39a5d5b0a8044928fc35133e5bfc, type: 3}
   addButton: {fileID: 8245988393718691521, guid: 9d783a74a217b1245bbc55f632abb908, type: 3}

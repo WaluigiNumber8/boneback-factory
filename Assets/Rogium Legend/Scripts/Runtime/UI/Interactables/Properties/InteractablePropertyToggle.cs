@@ -20,12 +20,12 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// </summary>
         /// <param name="title">Property Title.</param>
         /// <param name="toggleState">State of the toggle checkbox.</param>
-        /// <param name="OnChangeValue">The method that will run when the toggle changes it's value.</param>
-        public void Construct(string title, bool toggleState, Action<bool> OnChangeValue)
+        /// <param name="WhenChangeValue">The method that will run when the toggle changes it's value.</param>
+        public void Construct(string title, bool toggleState, Action<bool> WhenChangeValue)
         {
             this.title.text = title;
             this.toggle.isOn = toggleState;
-            this.toggle.onValueChanged.AddListener(delegate { OnChangeValue(toggle.isOn); });
+            this.toggle.onValueChanged.AddListener(delegate { WhenChangeValue(toggle.isOn); });
         }
 
         /// <summary>

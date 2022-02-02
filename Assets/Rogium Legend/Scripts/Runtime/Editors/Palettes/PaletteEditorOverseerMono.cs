@@ -10,7 +10,7 @@ namespace Rogium.Editors.Palettes
     /// </summary>
     public class PaletteEditorOverseerMono : MonoSingleton<PaletteEditorOverseerMono>
     {
-        [SerializeField] private ItemPaletteColor itemPalette;
+        [SerializeField] private ItemPaletteColor palette;
         [SerializeField] private TextMeshProUGUI titleText;
         
         [Header("Color Picker")]
@@ -22,7 +22,6 @@ namespace Rogium.Editors.Palettes
         protected override void Awake()
         {
             base.Awake();
-            
             editor = PaletteEditorOverseer.Instance;
         }
 
@@ -30,28 +29,29 @@ namespace Rogium.Editors.Palettes
         {
             editor.OnAssignAsset += RefreshEditor;
             editor.OnCompleteEditingBefore += UpdateEditedColor;
-            itemPalette.OnSelect += SwitchEditedColor;
+            palette.OnSelect += SwitchEditedColor;
         }
 
         private void OnDisable()
         {
             editor.OnAssignAsset -= RefreshEditor;
             editor.OnCompleteEditingBefore -= UpdateEditedColor;
-            itemPalette.OnSelect -= SwitchEditedColor;
+            palette.OnSelect -= SwitchEditedColor;
         }
 
         /// <summary>
         /// Refreshes the editor based on a newly assigned color.
         /// </summary>
-        /// <param name="palette">The palette to fill the data from.</param>
-        private void RefreshEditor(PaletteAsset palette)
+        /// <param name="asset">The palette to fill the data from.</param>
+        private void RefreshEditor(PaletteAsset asset)
         {
-            titleText.text = palette.Title;
+            lastSlot = null;
+            titleText.text = asset.Title;
             
-            Color[] colors = palette.Colors;
-            itemPalette.Fill(colors);
+            Color[] colors = asset.Colors;
+            palette.Fill(colors);
             
-            itemPalette.Select(0);
+            palette.Select(0);
         }
         
         /// <summary>

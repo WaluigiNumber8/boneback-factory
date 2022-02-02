@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using BoubakProductions.Safety;
 
 namespace Rogium.UserInterface.Core
 {
@@ -23,7 +24,26 @@ namespace Rogium.UserInterface.Core
         {
             foreach (IToggleable toggle in toggles)
             {
-                toggle.ChangeToggleState(value);
+                toggle.Toggle(value);
+            }
+        }
+        
+        /// <summary>
+        /// Toggle the element on a specific position to a value and everything else to the opposite value.
+        /// </summary>
+        /// <param name="index">The position of the element.</param>
+        /// <param name="value">The value to set it to.</param>
+        public void ToggleExclusive(int index, bool value)
+        {
+            SafetyNet.EnsureIntIsInRange(index, 0, toggles.Count, "Toggle list");
+            for (int i = 0; i < toggles.Count; i++)
+            {
+                if (i == index)
+                {
+                    toggles[i].Toggle(value);
+                    continue;
+                }
+                toggles[i].Toggle(!value);
             }
         }
 

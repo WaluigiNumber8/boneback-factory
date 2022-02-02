@@ -5,6 +5,7 @@ using Rogium.Core;
 using Rogium.Editors.Core;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace Rogium.UserInterface.AssetSelection
@@ -14,10 +15,10 @@ namespace Rogium.UserInterface.AssetSelection
     /// </summary>
     public class AssetSelectionOverseer
     {
-        public event Action<IAssetHolder> OnSpawnCard;
+        public event Action<AssetHolderBase> OnSpawnCard;
         public event Action OnFinishedFilling;
         
-        private readonly IList<IAssetHolder> assets;
+        private readonly IList<AssetHolderBase> assets;
         
         private ObjectSwitcherMono layoutSwitcher;
         private AssetType lastTypeOpen;
@@ -43,7 +44,7 @@ namespace Rogium.UserInterface.AssetSelection
 
         private AssetSelectionOverseer()
         {
-            assets = new List<IAssetHolder>();
+            assets = new List<AssetHolderBase>();
             lastTypeOpen = AssetType.None;
         }
 
@@ -53,7 +54,7 @@ namespace Rogium.UserInterface.AssetSelection
         public void Setup(AssetType type, SelectionMenuLayout layout, SelectionMenuAsset asset, IList<AssetBase> assetList, ObjectSwitcherMono layoutSwitcher)
         {
             this.layoutSwitcher = layoutSwitcher;
-            this.layoutSwitcher.Switcher.DeselectAllExcept(layout.Menu);
+            this.layoutSwitcher.Switch(layout.Menu.gameObject);
 
             //Do not refill, if menu is the same.
             if (type == lastTypeOpen && type != AssetType.None)
@@ -93,12 +94,15 @@ namespace Rogium.UserInterface.AssetSelection
             
             //Clear assets from content, respawn add button
             assets.Clear();
-            layout.Content.KillChildren();
+            layout.Content.gameObject.KillChildren();
             
             //Spawn ADD Button if not null.
             if (asset.addButton != null)
-                Object.Instantiate(asset.addButton, layout.Content.transform);
+                Object.Instantiate(asset.addButton, layout.Content);
 
+            //Cancel further process if list is empty.
+            if (CancelProcess(assetList, layout.NotFoundText)) return;
+            
             //Spawn new assets
             for (int i = 0; i < assetList.Count; i++)
             {
@@ -116,13 +120,33 @@ namespace Rogium.UserInterface.AssetSelection
         /// <param name="assetList">The list to take the data from.</param>
         private void SpawnCard(int id, AssetType type, SelectionMenuLayout layout, SelectionMenuAsset asset, IList<AssetBase> assetList)
         {
-            IAssetHolder holder = Object.Instantiate(asset.assetObject, layout.Content.transform).GetComponent<IAssetHolder>();
+            AssetHolderBase holder = Object.Instantiate(asset.assetObject, layout.Content);
             if (layout.IconPositionType == IconPositionType.Global)
                 holder.Construct(type, id, assetList[id], layout.IconPosition);
             else
                 holder.Construct(type, id, assetList[id]);
             OnSpawnCard?.Invoke(holder);
             assets.Add(holder);
+        }
+
+        /// <summary>
+        /// Determines if to continue with the process.
+        /// </summary>
+        /// <param name="assets">The list of assets.</param>
+        /// <param name="textObject">The text object to activate/deactivate.</param>
+        /// <returns></returns>
+        private bool CancelProcess(IList<AssetBase> assets, GameObject textObject)
+        {
+            if (assets.Count <= 0)
+            {
+                if (textObject != null) textObject.gameObject.SetActive(true);
+                return true;
+            }
+            else
+            {
+                if (textObject != null) textObject.gameObject.SetActive(false);
+                return false;
+            }
         }
         
         /// <summary>

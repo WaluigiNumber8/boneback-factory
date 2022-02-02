@@ -1,4 +1,5 @@
 ﻿using Rogium.UserInterface.AssetSelection;
+using Rogium.UserInterface.AssetSelection.PickerVariant;
 using Rogium.Editors.Core;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Rogium.Editors.Campaign
     /// </summary>
     public class PackImportController : MonoBehaviour
     {
-        [SerializeField] private AssetSelectionPicker selectionPicker;
+        [SerializeField] private AssetSelectionPickerMultiple selectionPicker;
         [SerializeField] private CampaignSelectedPackPropertyController propertyColumn;
 
         private IList<PackImportInfo> importedPacks;
@@ -23,12 +24,12 @@ namespace Rogium.Editors.Campaign
 
         private void OnEnable()
         {
-            AssetCardPickerController.OnSelected += PreparePropertyColumn;
+            AssetPickerCardController.OnSelected += PreparePropertyColumn;
         }
 
         private void OnDisable()
         {
-            AssetCardPickerController.OnSelected -= PreparePropertyColumn;
+            AssetPickerCardController.OnSelected -= PreparePropertyColumn;
         }
 
         public void AddToImportList(PackImportInfo importInfo)

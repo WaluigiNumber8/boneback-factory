@@ -40,7 +40,6 @@ namespace BoubakProductions.Core
         {
             Texture2D tex = new Texture2D(width, height);
             tex.filterMode = filterMode;
-
             return tex;
         }
 
@@ -54,9 +53,7 @@ namespace BoubakProductions.Core
         /// <returns>A new <see cref="Texture2D"/>Generated texture.</returns>
         public static Texture2D GenerateTexture(Color color, int width, int height, FilterMode filterMode = FilterMode.Point)
         {
-            Texture2D tex = new Texture2D(width, height);
-            tex.filterMode = filterMode;
-
+            Texture2D tex = GenerateTexture(width, height, filterMode);
             for (int y = 0; y < height; y++)
             {
                 for (int x = 0; x < width; x++)

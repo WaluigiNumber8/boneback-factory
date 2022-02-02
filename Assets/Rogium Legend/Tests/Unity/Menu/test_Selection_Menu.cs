@@ -55,11 +55,11 @@ public class test_Selection_Menu
     {
         LibraryOverseer.Instance.CreateAndAddPack(packInfo);
 
-        assetSelectionMono.ReopenForPacks();
+        assetSelectionMono.OpenForPacks();
         yield return new WaitForSeconds(0.1f);
         Assert.AreEqual(true, assetSelectionMono.gameObject.activeSelf);
-        Assert.AreEqual(true, assetSelectionMono.GridMenu.activeSelf);
-        Assert.AreEqual(false, assetSelectionMono.ListMenu.activeSelf);
+        Assert.AreEqual(true, assetSelectionMono.GridMenu.gameObject.activeSelf);
+        Assert.AreEqual(false, assetSelectionMono.ListMenu.gameObject.activeSelf);
         Assert.AreEqual(1, assetSelection.AssetCount);
     }
 
@@ -68,9 +68,9 @@ public class test_Selection_Menu
     {
         LibraryOverseer.Instance.CreateAndAddPack(packInfo);
 
-        assetSelectionMono.ReopenForPacks();
+        assetSelectionMono.OpenForPacks();
         yield return new WaitForSeconds(0.5f);
-        assetSelectionMono.ReopenForPacks();
+        assetSelectionMono.OpenForPacks();
         yield return new WaitForSeconds(0.25f);
 
         Assert.AreEqual(1, assetSelection.AssetCount);
@@ -82,7 +82,7 @@ public class test_Selection_Menu
     {
         LibraryOverseer.Instance.CreateAndAddPack(packInfo);
 
-        assetSelectionMono.ReopenForPacks();
+        assetSelectionMono.OpenForPacks();
         
         yield return new WaitForSeconds(0.2f);
         LibraryOverseer.Instance.ActivatePackEditor(0);
@@ -91,12 +91,12 @@ public class test_Selection_Menu
         PackEditorOverseer.Instance.CreateNewRoom();
 
         yield return new WaitForSeconds(0.1f);
-        assetSelectionMono.ReopenForRooms();
+        assetSelectionMono.OpenForRooms();
         yield return new WaitForSeconds(0.2f);
 
         Assert.AreEqual(true, assetSelectionMono.gameObject.activeSelf);
-        Assert.AreEqual(true, assetSelectionMono.ListMenu.activeSelf);
-        Assert.AreEqual(false, assetSelectionMono.GridMenu.activeSelf);
+        Assert.AreEqual(true, assetSelectionMono.ListMenu.gameObject.activeSelf);
+        Assert.AreEqual(false, assetSelectionMono.GridMenu.gameObject.activeSelf);
         Assert.AreEqual(3, assetSelection.AssetCount);
     }
 
@@ -110,19 +110,19 @@ public class test_Selection_Menu
         PackEditorOverseer.Instance.CreateNewRoom();
 
         yield return new WaitForSeconds(0.1f);
-        assetSelectionMono.ReopenForRooms();
+        assetSelectionMono.OpenForRooms();
         yield return new WaitForSeconds(0.2f);
 
         Assert.AreEqual(true, assetSelectionMono.gameObject.activeSelf);
-        Assert.AreEqual(true, assetSelectionMono.ListMenu.activeSelf);
-        Assert.AreEqual(false, assetSelectionMono.GridMenu.activeSelf);
+        Assert.AreEqual(true, assetSelectionMono.ListMenu.gameObject.activeSelf);
+        Assert.AreEqual(false, assetSelectionMono.GridMenu.gameObject.activeSelf);
         Assert.AreEqual(2, assetSelection.AssetCount);
     }
 
     [UnityTest]
     public IEnumerator create_new_pack()
     {
-        assetSelectionMono.ReopenForPacks();
+        assetSelectionMono.OpenForPacks();
         yield return new WaitForSeconds(0.1f);
         GASButtonActions.CreatePack();
 
@@ -134,7 +134,7 @@ public class test_Selection_Menu
     [UnityTest]
     public IEnumerator delete_pack()
     {
-        assetSelectionMono.ReopenForPacks();
+        assetSelectionMono.OpenForPacks();
         yield return new WaitForSeconds(0.1f);
         GASButtonActions.CreatePack();
         yield return new WaitForSeconds(0.3f);

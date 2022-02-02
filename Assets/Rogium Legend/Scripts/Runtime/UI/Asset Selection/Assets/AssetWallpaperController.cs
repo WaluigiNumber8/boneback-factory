@@ -10,7 +10,7 @@ namespace Rogium.UserInterface.AssetSelection
     /// <summary>
     /// Contains References to an Asset Wallpaper, as well as the ability to be constructed with data.
     /// </summary>
-    public class AssetWallpaperController : MonoBehaviour, IAssetHolder
+    public class AssetWallpaperController : AssetHolderBase
     {
         public event Action<int> OnConstruct;
         
@@ -22,12 +22,12 @@ namespace Rogium.UserInterface.AssetSelection
         private int id = -1;
         private AssetBase asset;
         
-        public void Construct(AssetType type, int index, AssetBase asset, Image wallpaperPos)
+        public override void Construct(AssetType type, int index, AssetBase asset, Image wallpaperPos)
         {
             ui.wallpaper = wallpaperPos;
             Construct(type, index, asset);
         }
-        public void Construct(AssetType type, int index, AssetBase asset)
+        public override void Construct(AssetType type, int index, AssetBase asset)
         {
             ui.emptyText.gameObject.SetActive(false);
             this.type = type;
@@ -55,9 +55,9 @@ namespace Rogium.UserInterface.AssetSelection
             OnConstruct?.Invoke(this.id);
         }
         
-        public int Index { get => id; }
-        public AssetType Type { get => type; }
-        public AssetBase Asset { get => asset; }
+        public override int Index { get => id; }
+        public override AssetType Type { get => type; }
+        public override AssetBase Asset { get => asset; }
 
         [System.Serializable]
         public struct UIInfo

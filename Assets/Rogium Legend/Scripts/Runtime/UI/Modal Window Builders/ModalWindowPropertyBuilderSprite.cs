@@ -40,14 +40,14 @@ namespace Rogium.UserInterface.ModalWindowBuilding
         protected override void CreateAsset()
         {
             editor.CreateNewSprite((SpriteAsset)editedAssetBase);
-            selectionMenu.ReopenForSprites();
+            selectionMenu.OpenForSprites();
         }
 
         protected override void UpdateAsset()
         {
             spriteEditor.UpdateAsset((SpriteAsset)editedAssetBase);
             spriteEditor.CompleteEditing();
-            selectionMenu.ReopenForSprites();
+            selectionMenu.OpenForSprites();
         }
     }
 }

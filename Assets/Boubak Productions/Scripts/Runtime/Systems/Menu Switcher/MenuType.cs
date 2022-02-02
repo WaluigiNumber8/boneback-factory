@@ -11,7 +11,6 @@
 
         AssetSelection = 3,
         AssetTypeSelection = 4,
-        AssetSelectionPicker = 12,
         CampaignSelection = 11,
 
         CampaignEditor = 12,

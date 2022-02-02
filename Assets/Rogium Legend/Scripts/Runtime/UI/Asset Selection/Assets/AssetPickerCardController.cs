@@ -6,13 +6,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-namespace Rogium.UserInterface.AssetSelection
+namespace Rogium.UserInterface.AssetSelection.PickerVariant
 {
     /// <summary>
     /// A variant for the <see cref="AssetCardController"/>. That allows the asset to be selected.
     /// </summary>
     [RequireComponent(typeof(Toggle))]
-    public class AssetCardPickerController : MonoBehaviour, IAssetHolder, IToggleable
+    public class AssetPickerCardController : AssetHolderBase, IToggleable
     {
         public static event Action<AssetBase> OnSelected;
         public static event Action<AssetBase> OnDeselected;
@@ -25,23 +25,16 @@ namespace Rogium.UserInterface.AssetSelection
         private AssetType type;
         private AssetBase asset;
 
-        private void OnEnable()
-        {
-            toggle.onValueChanged.AddListener(WhenToggled);
-        }
+        private void OnEnable() => toggle.onValueChanged.AddListener(WhenToggled);
+        private void OnDisable() => toggle.onValueChanged.RemoveListener(WhenToggled);
 
-        private void OnDisable()
-        {
-            toggle.onValueChanged.RemoveListener(WhenToggled);
-        }
-
-        public void Construct(AssetType type, int index, AssetBase asset, Image iconPos)
+        public override void Construct(AssetType type, int index, AssetBase asset, Image iconPos)
         {
             ui.icon = iconPos;
             Construct(type, index, asset);
         }
 
-        public void Construct(AssetType type, int index, AssetBase asset)
+        public override void Construct(AssetType type, int index, AssetBase asset)
         {
             this.type = type;
             this.posIndex = index;
@@ -52,11 +45,14 @@ namespace Rogium.UserInterface.AssetSelection
             toggle.isOn = false;
         }
 
-        public void ChangeToggleState(bool value)
-        {
-            toggle.isOn = value;
-        }
-        
+        public void Toggle(bool value) => toggle.isOn = value;
+
+        /// <summary>
+        /// Register the toggle under a <see cref="ToggleGroup"/>.
+        /// </summary>
+        /// <param name="group">The <see cref="ToggleGroup"/> to register the toggle under.</param>
+        public void RegisterToggleGroup(ToggleGroup group) => toggle.group = group;
+
         private void WhenToggled(bool value)
         {
             if (value) OnSelected?.Invoke(asset);
@@ -64,9 +60,9 @@ namespace Rogium.UserInterface.AssetSelection
             OnToggled?.Invoke(asset);
         }
 
-        public int Index { get => posIndex; }
-        public AssetType Type { get => type; }
-        public AssetBase Asset { get => asset; }
+        public override int Index { get => posIndex; }
+        public override AssetType Type { get => type; }
+        public override AssetBase Asset { get => asset; }
         
         [System.Serializable]
         public struct UIInfo

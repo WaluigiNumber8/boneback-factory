@@ -65,10 +65,10 @@ namespace Rogium.Systems.ThemeSystem
         /// <summary>
         /// Updates a sprite field with correct data from the current theme.
         /// </summary>
-        /// <param name="spriteField">The SpriteField to update.</param>
-        public void UpdateSpriteField(InteractablePropertySprite spriteField)
+        /// <param name="assetField">The SpriteField to update.</param>
+        public void UpdateSpriteField(InteractablePropertyAssetField assetField)
         {
-            spriteField.UpdateTheme(theme.GetInteractable(ThemeInteractableType.SpriteField));
+            assetField.UpdateTheme(theme.GetInteractable(ThemeInteractableType.SpriteField));
         }
         
     }

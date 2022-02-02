@@ -1,5 +1,6 @@
 ﻿using BoubakProductions.Core;
 using Rogium.UserInterface.AssetSelection;
+using Rogium.UserInterface.AssetSelection.PickerVariant;
 using UnityEngine;
 
 namespace Rogium.Systems.GASExtension
@@ -10,7 +11,7 @@ namespace Rogium.Systems.GASExtension
     public class GASContainer : MonoSingleton<GASContainer>
     {
         [SerializeField] private AssetSelectionOverseerMono assetSelection;
-        [SerializeField] private AssetSelectionPicker assetSelectionPicker;
+        [SerializeField] private AssetSelectionPickerMultiple assetSelectionPicker;
 
         protected override void Awake()
         {
@@ -18,6 +19,6 @@ namespace Rogium.Systems.GASExtension
         }
 
         public AssetSelectionOverseerMono AssetSelection { get => assetSelection; }
-        public AssetSelectionPicker AssetSelectionPicker { get => assetSelectionPicker; }
+        public AssetSelectionPickerMultiple AssetSelectionPicker { get => assetSelectionPicker; }
     }
 }

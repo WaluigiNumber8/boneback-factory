@@ -5,42 +5,42 @@
         /// <summary>
         /// Opens a selection menu for Pack Assets.
         /// </summary>
-        void ReopenForPacks();
+        void OpenForPacks();
 
         /// <summary>
         /// Opens a selection menu for Palette Assets.
         /// </summary>
-        void ReopenForPalettes();
+        void OpenForPalettes();
         
         /// <summary>
         /// Opens a selection menu for Sprite Assets.
         /// </summary>
-        void ReopenForSprites();
+        void OpenForSprites();
         
         /// <summary>
         /// Opens a selection menu for Weapon Assets.
         /// </summary>
-        void ReopenForWeapons();
+        void OpenForWeapons();
 
         /// <summary>
         /// Opens a selection menu for Projectile Assets.
         /// </summary>
-        void ReopenForProjectiles();
+        void OpenForProjectiles();
         
         /// <summary>
         /// Opens a selection menu for Enemy Assets.
         /// </summary>
-        void ReopenForEnemies();
+        void OpenForEnemies();
         
         /// <summary>
         /// Opens a selection menu for Room Assets.
         /// </summary>
-        void ReopenForRooms();
+        void OpenForRooms();
 
         /// <summary>
         /// Opens a selection menu for Tile Assets.
         /// </summary>
-        void ReopenForTiles();
+        void OpenForTiles();
 
     }
 }

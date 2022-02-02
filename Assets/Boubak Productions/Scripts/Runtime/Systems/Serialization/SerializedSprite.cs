@@ -23,7 +23,7 @@ namespace BoubakProductions.Systems.Serialization
                                                       sprite.pivot.y,
                                                       sprite.texture.width,
                                                       sprite.texture.height,
-                                                      ImageConversion.EncodeToPNG(sprite.texture)) {}
+                                                      sprite.texture.EncodeToPNG()) {}
 
         public SerializedSprite(float rectX, float rectY, float rectWidth, float rectHeight, float pivotX, float pivotY, int textureWidth, int textureHeight, byte[] textureBytes)
         {

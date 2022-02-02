@@ -39,14 +39,14 @@ namespace Rogium.UserInterface.ModalWindowBuilding
         protected override void CreateAsset()
         {
             editor.CreateNewPalette((PaletteAsset)editedAssetBase);
-            selectionMenu.ReopenForPalettes();
+            selectionMenu.OpenForPalettes();
         }
 
         protected override void UpdateAsset()
         {
             paletteEditor.UpdateAsset((PaletteAsset)editedAssetBase);
             paletteEditor.CompleteEditing();
-            selectionMenu.ReopenForPalettes();
+            selectionMenu.OpenForPalettes();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace BoubakProductions.UI
         {
             tabGroup = GetComponent<TabGroup>();
             switcher = new ObjectSwitcher(tabGroup.GetButtonsAsArray());
-            tabGroup.onTabSwitch += switcher.DeselectAllExcept;
+            tabGroup.onTabSwitch += switcher.Switch;
         }
     }
 }

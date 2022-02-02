@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using BoubakProductions.Safety;
 using UnityEngine;
 
 namespace BoubakProductions.Core
@@ -16,6 +17,10 @@ namespace BoubakProductions.Core
         /// <returns>Amount of duplicate entries.</returns>
         public static int GetDuplicatesCount<T>(this IList<T> list)
         {
+            SafetyNet.EnsureIsNotNull(list, "List to Check");
+            
+            if (list.Count <= 1) return 0;
+            
             ISet<T> set = new HashSet<T>();
             ISet<T> duplicates = new HashSet<T>();
             int count = 0;
@@ -33,6 +38,7 @@ namespace BoubakProductions.Core
 
         public static bool ContainsAsset<T>(this IList<T> list, T value) where T : class
         {
+            SafetyNet.EnsureIsNotNull(list, "List to check.");
             return list.Any(element => element == value);
         }
     }

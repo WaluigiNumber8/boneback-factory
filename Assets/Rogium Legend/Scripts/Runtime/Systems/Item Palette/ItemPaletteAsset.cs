@@ -4,6 +4,7 @@ using Rogium.Editors.Core;
 using Rogium.UserInterface.AssetSelection;
 using System;
 using System.Collections.Generic;
+using BoubakProductions.UI.MenuFilling;
 using UnityEngine;
 using TMPro;
 
@@ -19,19 +20,15 @@ namespace Rogium.Systems.ItemPalette
         [SerializeField] private AssetSlot assetHolderPrefab;
         [SerializeField] private Transform paletteParent;
         [SerializeField] private TextMeshProUGUI emptyText;
-        
+
+        private MenuFiller<AssetSlot> menuFiller;
+
         private readonly IList<AssetSlot> holders = new List<AssetSlot>();
         private IList<string> ids;
 
-        private void OnEnable()
-        {
-            AssetSlot.OnSelectedAny += Select;
-        }
-
-        private void OnDisable()
-        {
-            AssetSlot.OnSelectedAny -= Select;
-        }
+        private void Awake() => menuFiller = new MenuFiller<AssetSlot>();
+        private void OnEnable() => AssetSlot.OnSelectedAny += WhenSelected;
+        private void OnDisable() => AssetSlot.OnSelectedAny -= WhenSelected;
 
         /// <summary>
         /// Call the <see cref="OnSelect"/> event for a specific item.
@@ -52,8 +49,8 @@ namespace Rogium.Systems.ItemPalette
         {
             SafetyNet.EnsureIntIsInRange(index, 0, holders.Count, "Item Index");
             if (holders?.Count <= 0) return;
-            
-            OnSelect?.Invoke(holders[index]);
+
+            holders[index].Toggle.isOn = true;
         }
 
         /// <summary>
@@ -68,8 +65,7 @@ namespace Rogium.Systems.ItemPalette
             //Hint Text
             emptyText.gameObject.SetActive((assets.Count <= 0));
             
-            //Prebuild objects if none are created.
-            Build(assets.Count);
+            menuFiller.Update(holders, assets.Count, assetHolderPrefab, paletteParent);
             
             //Fill each item with data.
             for (int i = 0; i < holders.Count; i++)
@@ -77,60 +73,12 @@ namespace Rogium.Systems.ItemPalette
                 holders[i].Construct(type, i, assets[i]);
             }
         }
-
-        /// <summary>
-        /// Fills the palette with objects.
-        /// </summary>
-        /// <param name="length">The size of the palette.</param>
-        private void Build(int length)
-        {
-            if (length == holders.Count) return;
-                
-            //Length is bigger.
-            if (length > holders.Count)
-            {
-                BuildHolders(holders.Count, length);
-                return;
-            }
-            
-            //Length is smaller.
-            if (length < holders.Count)
-            {
-                DestroyHolders(holders.Count - (length - holders.Count), holders.Count);
-                return;
-            }
-            
-        }
-
-        /// <summary>
-        /// Fills the palette with objects.
-        /// </summary>
-        /// <param name="startIndex">The position to start on.</param>
-        /// <param name="endIndex">The position to end with.</param>
-        private void BuildHolders(int startIndex, int endIndex)
-        {
-            for (int i = startIndex; i < endIndex; i++)
-            {
-                AssetSlot holder = Instantiate(assetHolderPrefab, paletteParent).GetComponent<AssetSlot>();
-
-                if (i < holders.Count)
-                    holders[i] = holder;
-                else holders.Add(holder);
-            }
-        }
         
         /// <summary>
-        /// Destroys objects in the palette.
+        /// Fires an event when selected.
         /// </summary>
-        /// <param name="startIndex">The position to start on.</param>
-        /// <param name="endIndex">The position to end with.</param>
-        private void DestroyHolders(int startIndex, int endIndex)
-        {
-            for (int i = startIndex; i < endIndex; i++)
-            {
-                Destroy(holders[i]);
-                holders.RemoveAt(i);
-            }
-        }
+        /// <param name="index">The index of the slot to select.</param>
+        private void WhenSelected(int index) => OnSelect?.Invoke(holders[index]);
+        
     }
 }

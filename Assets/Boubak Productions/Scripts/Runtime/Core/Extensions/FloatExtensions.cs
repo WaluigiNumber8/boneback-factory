@@ -12,5 +12,15 @@
         {
             return number == 0 ? 0 : number > 0 ? 1 : -1;
         }
+
+        /// <summary>
+        /// Converts seconds to milliseconds.
+        /// </summary>
+        /// <param name="seconds">The seconds to delay.</param>
+        /// <returns>Seconds in milliseconds.</returns>
+        public static int ToMilliseconds(this float seconds)
+        {
+            return (int) seconds * 1000;
+        }
     }
 }

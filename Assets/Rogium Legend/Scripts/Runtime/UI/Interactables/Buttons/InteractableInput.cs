@@ -259,7 +259,9 @@ namespace Rogium.UserInterface.Interactables
                     SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - SWITCH SPRITE TOOL");
                     GASButtonActions.SpriteSwitchTool(index);
                     break;
-
+                case ButtonType.SpriteSwitchPalette:
+                    GASButtonActions.SpriteSwitchPalette();
+                    break;
                 #endregion
                 
                 #region Room Editor

@@ -23,6 +23,7 @@ namespace Rogium.UserInterface.Interactables
             InteractableInput.Handle(action, index);
         }
 
+        public ButtonType Action { get => action; set => action = value; }
         public int Index { get => index; set => index = value; }
     }
 }

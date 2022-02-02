@@ -1,10 +1,10 @@
 ﻿using BoubakProductions.Core;
 using Rogium.Core;
 using Rogium.Editors.Core;
-using Rogium.UserInterface.AssetSelection;
 using Rogium.Editors.Packs;
 using System.Collections.Generic;
 using System.Linq;
+using Rogium.UserInterface.AssetSelection.PickerVariant;
 using UnityEngine;
 
 namespace Rogium.Editors.Campaign
@@ -14,7 +14,7 @@ namespace Rogium.Editors.Campaign
     /// </summary>
     public class CampaignEditorOverseerMono : MonoSingleton<CampaignEditorOverseerMono>
     {
-        [SerializeField] private AssetSelectionPicker selectionPicker;
+        [SerializeField] private AssetSelectionPickerMultiple selectionPicker;
         [SerializeField] private CampaignSelectedPackPropertyController propertyColumn;
         
         private CampaignEditorOverseer overseer;
@@ -32,12 +32,12 @@ namespace Rogium.Editors.Campaign
         
         private void OnEnable()
         {
-            AssetCardPickerController.OnToggled += PreparePropertyColumn;
+            selectionPicker.OnAssetSelect += PreparePropertyColumn;
         }
         
         private void OnDisable()
         {
-            AssetCardPickerController.OnToggled -= PreparePropertyColumn;
+            selectionPicker.OnAssetSelect -= PreparePropertyColumn;
         }
         
         /// <summary>
@@ -46,7 +46,7 @@ namespace Rogium.Editors.Campaign
         public void FillMenu()
         {
             PreselectAssetsFrom(overseer.CurrentCampaign);
-            SelectionPicker.ReopenForPacks(UpdatePacksFromSelection, selectedAssets);
+            SelectionPicker.OpenForPacks(UpdatePacksFromSelection, selectedAssets);
         }
 
         /// <summary>
@@ -99,6 +99,6 @@ namespace Rogium.Editors.Campaign
             propertyColumn.AssignAsset((PackAsset)asset, new PackImportInfo());
         }
         
-        public AssetSelectionPicker SelectionPicker { get => selectionPicker; }
+        public AssetSelectionPickerMultiple SelectionPicker { get => selectionPicker; }
     }
 }

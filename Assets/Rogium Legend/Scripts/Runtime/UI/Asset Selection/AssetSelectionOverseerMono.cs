@@ -22,7 +22,7 @@ namespace Rogium.UserInterface.AssetSelection
         private LibraryOverseer lib;
         private ObjectSwitcherMono layoutSwitcher;
 
-        private Action<IAssetHolder> listeningMethod;
+        private Action<AssetHolderBase> listeningMethod;
         
         private void Awake()
         {
@@ -36,7 +36,7 @@ namespace Rogium.UserInterface.AssetSelection
         #region Open Selection Menu
 
         //TODO - Instead of the SelectionMenuAsset, make the default layout type load from the options save file.
-        public void ReopenForPacks()
+        public void OpenForPacks()
         {
             overseer.Setup(AssetType.Pack,
                            layouts.grid,
@@ -45,7 +45,7 @@ namespace Rogium.UserInterface.AssetSelection
                            layoutSwitcher);
         }
         
-        public void ReopenForPalettes()
+        public void OpenForPalettes()
         {
             overseer.Setup(AssetType.Palette,
                            layouts.grid,
@@ -54,7 +54,7 @@ namespace Rogium.UserInterface.AssetSelection
                            layoutSwitcher);
         }
 
-        public void ReopenForSprites()
+        public void OpenForSprites()
         {
             overseer.Setup(AssetType.Sprite,
                            layouts.grid,
@@ -63,22 +63,22 @@ namespace Rogium.UserInterface.AssetSelection
                            layoutSwitcher);
         }
         
-        public void ReopenForWeapons()
+        public void OpenForWeapons()
         {
             throw new NotImplementedException();
         }
 
-        public void ReopenForProjectiles()
+        public void OpenForProjectiles()
         {
             throw new NotImplementedException();
         }
 
-        public void ReopenForEnemies()
+        public void OpenForEnemies()
         {
             throw new NotImplementedException();
         }
 
-        public void ReopenForRooms()
+        public void OpenForRooms()
         {
             overseer.Setup(AssetType.Room,
                            layouts.list,
@@ -87,7 +87,7 @@ namespace Rogium.UserInterface.AssetSelection
                            layoutSwitcher);
         }
         
-        public void ReopenForTiles()
+        public void OpenForTiles()
         {
             overseer.Setup(AssetType.Tile,
                            layouts.grid,
@@ -103,7 +103,7 @@ namespace Rogium.UserInterface.AssetSelection
         /// Will no longer listen after the menu is filled.
         /// </summary>
         /// <param name="listeningMethod">The method that will work with the currently spawned card.</param>
-        public void BeginListeningToSpawnedCards(Action<IAssetHolder> listeningMethod)
+        public void BeginListeningToSpawnedCards(Action<AssetHolderBase> listeningMethod)
         {
             this.listeningMethod = listeningMethod;
             overseer.OnSpawnCard += this.listeningMethod;
@@ -116,11 +116,11 @@ namespace Rogium.UserInterface.AssetSelection
         /// </summary>
         private void StopListeningToSpawnedCards()
         {
-            overseer.OnSpawnCard -= this.listeningMethod;
+            overseer.OnSpawnCard -= listeningMethod;
         }
         
-        public GameObject ListMenu { get => layouts.list.Menu; }
-        public GameObject GridMenu { get => layouts.grid.Menu; }
+        public Transform ListMenu { get => layouts.list.Menu; }
+        public Transform GridMenu { get => layouts.grid.Menu; }
         
     }
 }

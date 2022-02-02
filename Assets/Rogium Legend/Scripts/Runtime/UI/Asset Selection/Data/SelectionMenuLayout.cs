@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Rogium.UserInterface.AssetSelection
@@ -9,13 +10,15 @@ namespace Rogium.UserInterface.AssetSelection
     [System.Serializable]
     public class SelectionMenuLayout
     {
-        [SerializeField] private GameObject menu;
-        [SerializeField] private GameObject content;
+        [SerializeField] private Transform menu;
+        [SerializeField] private Transform content;
+        [SerializeField] private GameObject notFoundText;
         [SerializeField] private IconPositionType iconPositionType;
         [SerializeField] private Image iconPosition;
 
-        public GameObject Menu { get => menu; }
-        public GameObject Content { get => content; }
+        public Transform Menu { get => menu; }
+        public Transform Content { get => content; }
+        public GameObject NotFoundText { get => notFoundText; }
         public IconPositionType IconPositionType { get => iconPositionType; }
         public Image IconPosition { get => iconPosition; }
     }

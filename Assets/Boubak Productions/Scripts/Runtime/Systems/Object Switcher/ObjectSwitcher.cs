@@ -14,12 +14,12 @@ namespace BoubakProductions.Systems.ObjectSwitching
         public ObjectSwitcher(GameObject[] objects)
         {
             this.objects = objects;
-            DeselectAllExcept(0);
+            Switch(0);
         }
         public ObjectSwitcher(GameObject[] objects, int defaultIndex)
         {
             this.objects = objects;
-            DeselectAllExcept(defaultIndex);
+            Switch(defaultIndex);
         }
         
         #endregion
@@ -28,13 +28,13 @@ namespace BoubakProductions.Systems.ObjectSwitching
         /// Deselects all objects except one.
         /// <param name="activatedObject">The object to activate.</param>
         /// </summary>
-        public void DeselectAllExcept(GameObject activatedObject)
+        public void Switch(GameObject activatedObject)
         {
             for (int i = 0; i < objects.Length; i++)
             {
                 if (activatedObject != objects[i]) continue;
                 
-                DeselectAllExcept(i);
+                Switch(i);
                 return;
             }
             throw new System.InvalidOperationException($"'{activatedObject.name}' was not found in this array.");
@@ -43,7 +43,7 @@ namespace BoubakProductions.Systems.ObjectSwitching
         /// Deselects all objects except one.
         /// <param name="index">The index of the object to activate.</param>
         /// </summary>
-        public void DeselectAllExcept(int index)
+        public void Switch(int index)
         {
             if (index == -1) return;
             SafetyNet.EnsureIntIsInRange(index, 0, objects.Length, "Default Tab Index");

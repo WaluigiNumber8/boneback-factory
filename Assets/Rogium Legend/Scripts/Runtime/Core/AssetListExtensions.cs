@@ -98,7 +98,7 @@ namespace Rogium.Core
         /// <summary>
         /// Converts a list of assets into a list of their IDs.
         /// </summary>
-        /// <param name="holders">The list of <see cref="IAssetHolder"/>s to take IDs from.</param>
+        /// <param name="holders">The list of <see cref="AssetHolderBase"/>s to take IDs from.</param>
         /// <returns>A list of IDs (strings).</returns>
         public static IList<string> ConvertToIDList<T>(this IList<T> holders) where T : IAssetHolder
         {

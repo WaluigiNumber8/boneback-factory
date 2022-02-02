@@ -10,7 +10,7 @@ namespace Rogium.UserInterface.AssetSelection
     /// Handles setup and button interactions for the Asset Card object.
     /// </summary>
     [RequireComponent(typeof(Button))]
-    public class AssetCardController : MonoBehaviour, IAssetHolder
+    public class AssetCardController : AssetHolderBase
     {
         [SerializeField] private UIInfo ui;
 
@@ -25,13 +25,13 @@ namespace Rogium.UserInterface.AssetSelection
             cardButton.onClick.AddListener(OnClick);
         }
 
-        public void Construct(AssetType type, int index, AssetBase asset, Image iconPos)
+        public override void Construct(AssetType type, int index, AssetBase asset, Image iconPos)
         {
             ui.icon = iconPos;
             Construct(type, index, asset);
         }
 
-        public void Construct(AssetType type, int index, AssetBase asset)
+        public override void Construct(AssetType type, int index, AssetBase asset)
         {
             this.type = type;
             this.id = index;
@@ -40,6 +40,7 @@ namespace Rogium.UserInterface.AssetSelection
             ui.icon.sprite = asset.Icon;
             
             ui.infoGroup.gameObject.SetActive(true);
+            ui.buttonGroup.gameObject.SetActive(false);
         }
 
         /// <summary>
@@ -51,9 +52,9 @@ namespace Rogium.UserInterface.AssetSelection
             ui.buttonGroup.SetActive(!ui.buttonGroup.activeSelf);
         }
 
-        public int Index { get => id; }
-        public AssetType Type { get => type; }
-        public AssetBase Asset { get => asset; }
+        public override int Index { get => id; }
+        public override AssetType Type { get => type; }
+        public override AssetBase Asset { get => asset; }
 
         [System.Serializable]
         public struct UIInfo

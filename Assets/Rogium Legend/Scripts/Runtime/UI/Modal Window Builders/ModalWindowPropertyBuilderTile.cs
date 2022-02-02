@@ -41,14 +41,14 @@ namespace Rogium.UserInterface.ModalWindowBuilding
         protected override void CreateAsset()
         {
             editor.CreateNewTile((TileAsset)editedAssetBase);
-            selectionMenu.ReopenForTiles();
+            selectionMenu.OpenForTiles();
         }
 
         protected override void UpdateAsset()
         {
             tileEditor.UpdateAsset((TileAsset)editedAssetBase);
             tileEditor.CompleteEditing();
-            selectionMenu.ReopenForTiles();
+            selectionMenu.OpenForTiles();
         }
     }
 }

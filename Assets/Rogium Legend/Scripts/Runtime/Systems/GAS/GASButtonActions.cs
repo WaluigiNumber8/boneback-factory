@@ -32,6 +32,7 @@ namespace Rogium.Systems.GASExtension
             GAS.ObjectSetActive(false, UIEditorContainer.GetInstance().Background);
             GAS.ObjectSetActive(false, CanvasOverseer.GetInstance().ModalWindow.gameObject);
             GAS.ObjectSetActive(false, CanvasOverseer.GetInstance().NavigationBar.gameObject);
+            GAS.ObjectSetActive(false, CanvasOverseer.GetInstance().PickerWindow.transform.GetChild(0).gameObject);
             CanvasOverseer.GetInstance().NavigationBar.Hide();
         }
 
@@ -430,7 +431,11 @@ namespace Rogium.Systems.GASExtension
         {
             SpriteEditorOverseerMono.GetInstance().Toolbox.SwitchTool((ToolType) index);
         }
-        
+
+        public static void SpriteSwitchPalette()
+        {
+            SpriteEditorOverseerMono.GetInstance().SwitchPaletteViaWindow();
+        }
 
         #endregion
 

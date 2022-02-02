@@ -37,13 +37,29 @@ namespace BoubakProductions.Safety
         /// Checks if an integer is not equal to a specific number
         /// </summary>
         /// <param name="integer">The INT to check.</param>
-        /// <param name="disallowedNumber">The number it cannot equal to.</param>
+        /// <param name="allowedValue">The number it cannot equal to.</param>
         /// <param name="variableName">Name of the checked variable.</param>
-        public static void EnsureIntIsNotEqual(int integer, int disallowedNumber, string variableName)
+        public static void EnsureIntIsEqual(int integer, int allowedValue, string variableName)
         {
-            if (integer == disallowedNumber)
+            if (integer != allowedValue)
             {
-                string message = $"Integer called '{variableName}' must not equal to {disallowedNumber}. ({integer})";
+                string message = $"Integer called '{variableName}' must only equal to {allowedValue}. ({integer})";
+                OnFireErrorMessage?.Invoke(message);
+                throw new SafetyNetException(message);
+            }
+        }
+        
+        /// <summary>
+        /// Checks if an integer is not equal to a specific number
+        /// </summary>
+        /// <param name="integer">The INT to check.</param>
+        /// <param name="disallowedValue">The number it cannot equal to.</param>
+        /// <param name="variableName">Name of the checked variable.</param>
+        public static void EnsureIntIsNotEqual(int integer, int disallowedValue, string variableName)
+        {
+            if (integer == disallowedValue)
+            {
+                string message = $"Integer called '{variableName}' must not equal to {disallowedValue}. ({integer})";
                 OnFireErrorMessage?.Invoke(message);
                 throw new SafetyNetException(message);
             }

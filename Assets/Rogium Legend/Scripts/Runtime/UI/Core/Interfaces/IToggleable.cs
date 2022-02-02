@@ -9,6 +9,6 @@
         /// Controls the toggle value.
         /// </summary>
         /// <param name="value">Value of the toggle.</param>
-        void ChangeToggleState(bool value);
+        void Toggle(bool value);
     }
 }

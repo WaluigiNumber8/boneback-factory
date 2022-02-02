@@ -51,14 +51,14 @@ namespace Rogium.UserInterface.ModalWindowBuilding
         protected override void CreateAsset()
         {
             editor.CreateNewRoom((RoomAsset)editedAssetBase);
-            selectionMenu.ReopenForRooms();
+            selectionMenu.OpenForRooms();
         }
 
         protected override void UpdateAsset()
         {
             roomEditor.UpdateAsset((RoomAsset)editedAssetBase);
             roomEditor.CompleteEditing();
-            selectionMenu.ReopenForRooms();
+            selectionMenu.OpenForRooms();
         }
 
     }

@@ -20,25 +20,25 @@ namespace Rogium.Systems.GASExtension
             switch (type)
             {
                 case AssetType.Pack:
-                    assetSelection.ReopenForPacks();
+                    assetSelection.OpenForPacks();
                     break;
                 case AssetType.Palette:
-                    assetSelection.ReopenForPalettes();
+                    assetSelection.OpenForPalettes();
                     break;
                 case AssetType.Sprite:
-                    assetSelection.ReopenForSprites();
+                    assetSelection.OpenForSprites();
                     break;
                 case AssetType.Weapon:
-                    assetSelection.ReopenForWeapons();
+                    assetSelection.OpenForWeapons();
                     break;
                 case AssetType.Enemy:
-                    assetSelection.ReopenForEnemies();
+                    assetSelection.OpenForEnemies();
                     break;
                 case AssetType.Room:
-                    assetSelection.ReopenForRooms();
+                    assetSelection.OpenForRooms();
                     break;
                 case AssetType.Tile:
-                    assetSelection.ReopenForTiles();
+                    assetSelection.OpenForTiles();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException($"'{type}' is not a supported Asset Type.");

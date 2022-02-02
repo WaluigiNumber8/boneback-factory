@@ -34,7 +34,7 @@ namespace Rogium.Systems.Toolbox
             toolPicker.OnPickValue += ctx => OnChangePaletteValue?.Invoke(ctx);
             
             this.UIGrid = UIGrid;
-            SwitchTool(ToolType.Brush);
+            currentTool = toolBrush;
         }
         
         /// <summary>

@@ -7,6 +7,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2114998893701717382, guid: a393dc5d27b0e8b4b9e7d843e06ae93a, type: 3}
+      propertyPath: m_Transition
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2114998893701717382, guid: a393dc5d27b0e8b4b9e7d843e06ae93a, type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: -4003167621112270131, guid: b60a823efbc4ee24c96d21c6fd96f1f2, type: 3}
+    - target: {fileID: 2114998893701717382, guid: a393dc5d27b0e8b4b9e7d843e06ae93a, type: 3}
+      propertyPath: m_SpriteState.m_DisabledSprite
+      value: 
+      objectReference: {fileID: -4508515265745168286, guid: b60a823efbc4ee24c96d21c6fd96f1f2, type: 3}
+    - target: {fileID: 2114998893701717382, guid: a393dc5d27b0e8b4b9e7d843e06ae93a, type: 3}
+      propertyPath: m_SpriteState.m_SelectedSprite
+      value: 
+      objectReference: {fileID: -3542005200973976324, guid: b60a823efbc4ee24c96d21c6fd96f1f2, type: 3}
+    - target: {fileID: 2114998893701717382, guid: a393dc5d27b0e8b4b9e7d843e06ae93a, type: 3}
+      propertyPath: m_SpriteState.m_HighlightedSprite
+      value: 
+      objectReference: {fileID: 713038394397003543, guid: b60a823efbc4ee24c96d21c6fd96f1f2, type: 3}
     - target: {fileID: 2226238698565490596, guid: a393dc5d27b0e8b4b9e7d843e06ae93a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -37,11 +57,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2226238698565490596, guid: a393dc5d27b0e8b4b9e7d843e06ae93a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 375
       objectReference: {fileID: 0}
     - target: {fileID: 2226238698565490596, guid: a393dc5d27b0e8b4b9e7d843e06ae93a, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 375
       objectReference: {fileID: 0}
     - target: {fileID: 2226238698565490596, guid: a393dc5d27b0e8b4b9e7d843e06ae93a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -93,7 +113,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2226238698565490597, guid: a393dc5d27b0e8b4b9e7d843e06ae93a, type: 3}
       propertyPath: m_Name
-      value: pref_Asset_Card_PickerVariant
+      value: prefvar_Asset_Card_PickerVariant_Room
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a393dc5d27b0e8b4b9e7d843e06ae93a, type: 3}

@@ -1,5 +1,5 @@
 ﻿using Rogium.Editors.Core;
-using Rogium.UserInterface.AssetSelection;
+using Rogium.UserInterface.AssetSelection.PickerVariant;
 using UnityEngine;
 using TMPro;
 
@@ -16,15 +16,15 @@ namespace Rogium.Editors.Campaign
 
         private void OnEnable()
         {
-            AssetCardPickerController.OnSelected += WhenCounterIncrease;
-            AssetCardPickerController.OnDeselected += WhenCounterDecrease;
+            AssetPickerCardController.OnSelected += WhenCounterIncrease;
+            AssetPickerCardController.OnDeselected += WhenCounterDecrease;
             CampaignEditorOverseer.Instance.OnAssignAsset += ResetCounter;
         }
 
         private void OnDisable()
         {
-            AssetCardPickerController.OnSelected -= WhenCounterIncrease;
-            AssetCardPickerController.OnDeselected -= WhenCounterDecrease;
+            AssetPickerCardController.OnSelected -= WhenCounterIncrease;
+            AssetPickerCardController.OnDeselected -= WhenCounterDecrease;
             CampaignEditorOverseer.Instance.OnAssignAsset -= ResetCounter;
         }
 

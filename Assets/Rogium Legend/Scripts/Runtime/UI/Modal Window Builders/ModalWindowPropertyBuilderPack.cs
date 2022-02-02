@@ -1,5 +1,7 @@
 ﻿using System;
 using BoubakProductions.UI;
+using Rogium.Core;
+using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
 
 namespace Rogium.UserInterface.ModalWindowBuilding
@@ -28,7 +30,7 @@ namespace Rogium.UserInterface.ModalWindowBuilding
         {
             propertyBuilder.BuildInputField("Name", currentPackInfo.Title, window.FirstColumnContent, currentPackInfo.UpdateTitle);
             propertyBuilder.BuildInputFieldArea("Description", currentPackInfo.Description, window.FirstColumnContent, currentPackInfo.UpdateDescription);
-            propertyBuilder.BuildSprite("",currentPackInfo.Icon, window.SecondColumnContent);
+            propertyBuilder.BuildAssetField("", AssetType.Sprite, currentPackInfo, window.SecondColumnContent, delegate(AssetBase asset) { editedAssetBase.UpdateIcon(asset.Icon);} );
             propertyBuilder.BuildPlainText("Created by", currentPackInfo.Author, window.SecondColumnContent);
             propertyBuilder.BuildPlainText("Created on", currentPackInfo.CreationDate.ToString(), window.SecondColumnContent);
 
@@ -42,7 +44,7 @@ namespace Rogium.UserInterface.ModalWindowBuilding
         protected override void CreateAsset()
         {
             lib.CreateAndAddPack((PackInfoAsset)editedAssetBase);
-            selectionMenu.ReopenForPacks();
+            selectionMenu.OpenForPacks();
         }
 
         /// <summary>
@@ -52,7 +54,7 @@ namespace Rogium.UserInterface.ModalWindowBuilding
         {
             editor.CurrentPack.UpdatePackInfo((PackInfoAsset)editedAssetBase);
             editor.CompleteEditing();
-            selectionMenu.ReopenForPacks();
+            selectionMenu.OpenForPacks();
         }
     }
 }
