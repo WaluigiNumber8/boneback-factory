@@ -12,7 +12,7 @@ namespace Rogium.Systems.GASExtension
     /// </summary>
     public static class GASRogium
     {
-        public static AssetSelectionOverseerMono assetSelection;
+        public static AssetSelectionMenu assetSelection;
 
         public static void OpenSelectionMenu(AssetType type)
         {
@@ -30,6 +30,9 @@ namespace Rogium.Systems.GASExtension
                     break;
                 case AssetType.Weapon:
                     assetSelection.OpenForWeapons();
+                    break;
+                case AssetType.Projectile:
+                    assetSelection.OpenForProjectiles();
                     break;
                 case AssetType.Enemy:
                     assetSelection.OpenForEnemies();

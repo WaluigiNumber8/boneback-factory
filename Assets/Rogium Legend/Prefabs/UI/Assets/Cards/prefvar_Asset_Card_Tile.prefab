@@ -273,6 +273,22 @@ PrefabInstance:
       propertyPath: action
       value: 45
       objectReference: {fileID: 0}
+    - target: {fileID: 8603769841665868365, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: -9170736326477728167, guid: d4efa4c054a0936489c8537bddae7776, type: 3}
+    - target: {fileID: 8603769841665868365, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
+      propertyPath: m_SpriteState.m_DisabledSprite
+      value: 
+      objectReference: {fileID: 3450116584724351567, guid: d4efa4c054a0936489c8537bddae7776, type: 3}
+    - target: {fileID: 8603769841665868365, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
+      propertyPath: m_SpriteState.m_SelectedSprite
+      value: 
+      objectReference: {fileID: -8462096917286156429, guid: d4efa4c054a0936489c8537bddae7776, type: 3}
+    - target: {fileID: 8603769841665868365, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
+      propertyPath: m_SpriteState.m_HighlightedSprite
+      value: 
+      objectReference: {fileID: 4628764067557275582, guid: d4efa4c054a0936489c8537bddae7776, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
 --- !u!224 &397767052321836009 stripped

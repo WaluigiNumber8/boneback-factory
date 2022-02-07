@@ -705,6 +705,22 @@ PrefabInstance:
       propertyPath: ui.buttonGroup
       value: 
       objectReference: {fileID: 7864159974126477323}
+    - target: {fileID: 8603769841665868365, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: -5566164986434823497, guid: 9a0e08d0e3f0ca641978915b28c9eb54, type: 3}
+    - target: {fileID: 8603769841665868365, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
+      propertyPath: m_SpriteState.m_DisabledSprite
+      value: 
+      objectReference: {fileID: 7720972361134201835, guid: 9a0e08d0e3f0ca641978915b28c9eb54, type: 3}
+    - target: {fileID: 8603769841665868365, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
+      propertyPath: m_SpriteState.m_SelectedSprite
+      value: 
+      objectReference: {fileID: 6846922002535690579, guid: 9a0e08d0e3f0ca641978915b28c9eb54, type: 3}
+    - target: {fileID: 8603769841665868365, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
+      propertyPath: m_SpriteState.m_HighlightedSprite
+      value: 
+      objectReference: {fileID: 3529131320251262540, guid: 9a0e08d0e3f0ca641978915b28c9eb54, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
 --- !u!114 &3883882690900181952 stripped

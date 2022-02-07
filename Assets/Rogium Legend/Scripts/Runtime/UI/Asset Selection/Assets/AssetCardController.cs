@@ -1,5 +1,6 @@
 ﻿using Rogium.Core;
 using Rogium.Editors.Core;
+using Rogium.UserInterface.Core;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -9,20 +10,20 @@ namespace Rogium.UserInterface.AssetSelection
     /// <summary>
     /// Handles setup and button interactions for the Asset Card object.
     /// </summary>
-    [RequireComponent(typeof(Button))]
-    public class AssetCardController : AssetHolderBase
+    [RequireComponent(typeof(Toggle))]
+    public class AssetCardController : AssetHolderBase, IToggleable
     {
         [SerializeField] private UIInfo ui;
 
         private int id;
         private AssetType type;
         private AssetBase asset; //Will be used for sorting cards
-        private Button cardButton;
+        private Toggle toggle;
 
-        private void Start()
+        private void Awake()
         {
-            cardButton = GetComponent<Button>();
-            cardButton.onClick.AddListener(OnClick);
+            toggle = GetComponent<Toggle>();
+            toggle.onValueChanged.AddListener(OnClick);
         }
 
         public override void Construct(AssetType type, int index, AssetBase asset, Image iconPos)
@@ -43,13 +44,21 @@ namespace Rogium.UserInterface.AssetSelection
             ui.buttonGroup.gameObject.SetActive(false);
         }
 
+        public void SetToggle(bool value) => toggle.isOn = value;
+
+        /// <summary>
+        /// Register the toggle under a <see cref="ToggleGroup"/>.
+        /// </summary>
+        /// <param name="group">The <see cref="ToggleGroup"/> to register the toggle under.</param>
+        public void RegisterToggleGroup(ToggleGroup group) => toggle.group = group;
+        
         /// <summary>
         /// Turns on/off button elements on the card.
         /// </summary>
-        private void OnClick()
+        private void OnClick(bool value)
         {
-            ui.infoGroup.gameObject.SetActive(!ui.infoGroup.gameObject.activeSelf);
-            ui.buttonGroup.SetActive(!ui.buttonGroup.activeSelf);
+            ui.infoGroup.gameObject.SetActive(!value);
+            ui.buttonGroup.SetActive(value);
         }
 
         public override int Index { get => id; }

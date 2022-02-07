@@ -23,6 +23,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
         private IList<string> selectedAssetsIDs;
 
         private ToggleList cardToggleList;
+        private bool defaultWasSet;
 
         private void Awake()
         {
@@ -47,6 +48,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
         {
             if (selectedAssets.ContainsAsset(asset)) return;
             selectedAssets.Add(asset);
+            selectedAssetsIDs.Add(asset.ID);
             OnAssetSelect?.Invoke(asset);
         }
 
@@ -69,18 +71,12 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
         /// <summary>
         /// Enable all the assets from the list.
         /// </summary>
-        public void WhenAssetSelectAll()
-        {
-            cardToggleList.ToggleAll(true);
-        }
-        
+        public void WhenAssetSelectAll() => cardToggleList.ToggleAll(true);
+
         /// <summary>
         /// Disable all the assets from the list.
         /// </summary>
-        public void WhenAssetDeselectAll()
-        {
-            cardToggleList.ToggleAll(false);
-        }
+        public void WhenAssetDeselectAll() => cardToggleList.ToggleAll(false);
 
         public void ConfirmSelection()
         {
@@ -215,7 +211,8 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
                 selectedAssets = new List<AssetBase>();
                 selectedAssetsIDs = new List<string>();
             }
-            
+
+            defaultWasSet = false;
             cardToggleList.Clear();
             this.targetMethod = targetMethod;
             assetSelection.BeginListeningToSpawnedCards(AddAssetHolderToList);
@@ -227,12 +224,21 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
         /// <param name="assetHolder">The Asset Holder this method works with.</param>
         private void AddAssetHolderToList(AssetHolderBase assetHolder)
         {
-            string assetID = assetHolder.Asset.ID;
+            AssetPickerCardController holder = (AssetPickerCardController)assetHolder;
+            string assetID = holder.Asset.ID;
             
-            cardToggleList.Add((IToggleable)assetHolder);
+            cardToggleList.Add(holder);
+            if (selectedAssets.Count <= 0)
+            {
+                WhenAssetSelected(holder.Asset);
+                holder.SetToggle(true);
+                defaultWasSet = true;
+            }
+
+            if (defaultWasSet) return;
+            
             if (selectedAssetsIDs.ContainsAsset(assetID))
             {
-                AssetPickerCardController holder = (AssetPickerCardController) assetHolder;
                 holder.SetToggle(true);
             }
         }

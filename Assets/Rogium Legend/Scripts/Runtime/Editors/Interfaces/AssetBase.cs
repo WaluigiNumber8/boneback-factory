@@ -23,21 +23,15 @@ namespace Rogium.Editors.Core
         protected void GenerateID(string assetIdentifier)
         {
             string authorPart = Mathf.Abs(author.GetHashCode()).ToString().Substring(0, 4);
-            string datePart = Mathf.Abs(creationDate.GetHashCode()).ToString().Substring(0, 5);
+            string datePart = Mathf.Abs(creationDate.GetHashCode()).ToString().Substring(0, 4);
             string randomPart = Random.Range(100, 999).ToString();
             id = assetIdentifier + authorPart + datePart + randomPart;
         }
 
         #region Update Values
-        public void UpdateTitle(string newTitle)
-        {
-            this.title = newTitle;
-        }
+        public void UpdateTitle(string newTitle) => this.title = newTitle;
+        public virtual void UpdateIcon(Sprite newIcon) => this.icon = newIcon;
 
-        public virtual void UpdateIcon(Sprite newIcon)
-        {
-            this.icon = newIcon;
-        }
         #endregion
         
         public string ID { get => id; }

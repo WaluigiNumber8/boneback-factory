@@ -193,6 +193,7 @@ namespace BoubakProductions.UI
 
             DrawFooter(acceptButtonText, denyButtonText, specialButtonText, onAcceptAction, onDenyAction, onSpecialAction);
             ui.windowBox.gameObject.SetActive(true);
+            Canvas.ForceUpdateCanvases();
         }
 
         #endregion

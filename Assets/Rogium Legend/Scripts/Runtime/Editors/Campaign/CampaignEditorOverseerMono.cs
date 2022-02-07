@@ -4,6 +4,7 @@ using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
 using System.Collections.Generic;
 using System.Linq;
+using BoubakProductions.Safety;
 using Rogium.UserInterface.AssetSelection.PickerVariant;
 using UnityEngine;
 
@@ -30,16 +31,9 @@ namespace Rogium.Editors.Campaign
             selectedAssets = new List<AssetBase>();
         }
         
-        private void OnEnable()
-        {
-            selectionPicker.OnAssetSelect += PreparePropertyColumn;
-        }
-        
-        private void OnDisable()
-        {
-            selectionPicker.OnAssetSelect -= PreparePropertyColumn;
-        }
-        
+        private void OnEnable() => selectionPicker.OnAssetSelect += PreparePropertyColumn;
+        private void OnDisable() => selectionPicker.OnAssetSelect -= PreparePropertyColumn;
+
         /// <summary>
         /// Uses the currently selected packs from the editor to combine them into a campaign.
         /// </summary>
@@ -53,18 +47,12 @@ namespace Rogium.Editors.Campaign
         /// Selects/Deselects an asset.
         /// </summary>
         /// <param name="assetIndex">The position of the asset on the list.</param>
-        public void ChangeSelectStatus(int assetIndex)
-        {
-            SelectionPicker.WhenAssetSelectToggle(lib.GetPacksCopy[assetIndex]);
-        }
-        
+        public void ChangeSelectStatus(int assetIndex) => SelectionPicker.WhenAssetSelectToggle(lib.GetPacksCopy[assetIndex]);
+
         /// <summary>
         /// Calls for applying current selection.
         /// </summary>
-        public void CompleteSelection()
-        {
-            SelectionPicker.ConfirmSelection();
-        }
+        public void CompleteSelection() => SelectionPicker.ConfirmSelection();
 
         /// <summary>
         /// Calls for updating packs in the current campaign from the selection picker.
@@ -72,6 +60,7 @@ namespace Rogium.Editors.Campaign
         /// <param name="finalSelectedAssets">The packs to update with.</param>
         private void UpdatePacksFromSelection(IList<AssetBase> finalSelectedAssets)
         {
+            SafetyNet.EnsureListIsNotNullOrEmpty(finalSelectedAssets, "Selected Packs");
             IList<PackAsset> finalSelectedPacks = finalSelectedAssets.Cast<PackAsset>().ToList();
             overseer.UpdateDataPack(finalSelectedPacks);
         }

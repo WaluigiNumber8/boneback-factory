@@ -10,15 +10,13 @@ namespace Rogium.Systems.GASExtension
     /// </summary>
     public class GASContainer : MonoSingleton<GASContainer>
     {
-        [SerializeField] private AssetSelectionOverseerMono assetSelection;
-        [SerializeField] private AssetSelectionPickerMultiple assetSelectionPicker;
+        [SerializeField] private AssetSelectionMenu assetSelection;
 
         protected override void Awake()
         {
             GASRogium.assetSelection = assetSelection;
         }
 
-        public AssetSelectionOverseerMono AssetSelection { get => assetSelection; }
-        public AssetSelectionPickerMultiple AssetSelectionPicker { get => assetSelectionPicker; }
+        public AssetSelectionMenu AssetSelection { get => assetSelection; }
     }
 }

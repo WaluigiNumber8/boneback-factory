@@ -56,7 +56,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
         {
             SafetyNet.EnsureIsNotNull(targetMethod, "Method to Run");
             targetMethod.Invoke(selectedAsset);
-            targetMethod = null;
+            CancelSelection();
         }
 
         public void CancelSelection()
@@ -189,7 +189,8 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
 
             if (selectedAsset == null)
             {
-                selectedAsset = assetHolder.Asset;
+                selectedAsset = holder.Asset;
+                holder.SetToggle(true);
                 return;
             }
             
