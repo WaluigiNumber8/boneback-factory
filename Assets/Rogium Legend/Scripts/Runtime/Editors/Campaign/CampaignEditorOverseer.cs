@@ -46,19 +46,22 @@ namespace Rogium.Editors.Campaign
         {
             packCombiner = new PackCombiner();
         }
-        
+
         /// <summary>
         /// Feeds the Campaign Editor data to edit.
         /// </summary>
         /// <param name="campaign">The campaign to edit.</param>
         /// <param name="index">The index of the campaign in the library list.</param>
-        public void AssignAsset(CampaignAsset campaign, int index)
+        /// <param name="prepareEditor">If true, load asset into the editor.</param>
+        public void AssignAsset(CampaignAsset campaign, int index, bool prepareEditor = true)
         {
             SafetyNet.EnsureIsNotNull(campaign, "Campaign to assign.");
             currentCampaign = new CampaignAsset(campaign);
             myIndex = index;
             originalTitle = campaign.Title;
             originalAuthor = campaign.Author;
+
+            if (!prepareEditor) return;
             OnAssignAsset?.Invoke(currentCampaign);
         }
 

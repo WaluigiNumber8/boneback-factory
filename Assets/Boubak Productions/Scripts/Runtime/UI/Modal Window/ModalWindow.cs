@@ -81,8 +81,8 @@ namespace BoubakProductions.UI
             ui.layout.message.text.text = message;
 
             DrawFooter(acceptButtonText, denyButtonText, specialButtonText, onAcceptAction, onDenyAction, onSpecialAction);
+            ui.area.GetComponent<RectTransform>().ForceUpdateRectTransforms();
             ui.windowBox.gameObject.SetActive(true);
-            Canvas.ForceUpdateCanvases();
         }
         #endregion
 
@@ -144,8 +144,8 @@ namespace BoubakProductions.UI
             ui.layout.area.gameObject.SetActive(true);
 
             DrawFooter(acceptButtonText, denyButtonText, specialButtonText, onAcceptAction, onDenyAction, onSpecialAction);
+            ui.area.GetComponent<RectTransform>().ForceUpdateRectTransforms();
             ui.windowBox.gameObject.SetActive(true);
-            Canvas.ForceUpdateCanvases();
         }
 
         /// <summary>
@@ -192,8 +192,8 @@ namespace BoubakProductions.UI
             ui.layout.area.gameObject.SetActive(true);
 
             DrawFooter(acceptButtonText, denyButtonText, specialButtonText, onAcceptAction, onDenyAction, onSpecialAction);
+            ui.area.GetComponent<RectTransform>().ForceUpdateRectTransforms();
             ui.windowBox.gameObject.SetActive(true);
-            Canvas.ForceUpdateCanvases();
         }
 
         #endregion

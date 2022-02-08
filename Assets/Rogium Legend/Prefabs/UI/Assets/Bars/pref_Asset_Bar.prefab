@@ -530,8 +530,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ui:
-    title: {fileID: 7423225854589187983}
-    icon: {fileID: 0}
+    titleText: {fileID: 7423225854589187983}
+    iconImage: {fileID: 0}
     infoGroup: {fileID: 8026081900213338433}
     buttonGroup: {fileID: 1750192886941938561}
 --- !u!1 &8026081900213338433

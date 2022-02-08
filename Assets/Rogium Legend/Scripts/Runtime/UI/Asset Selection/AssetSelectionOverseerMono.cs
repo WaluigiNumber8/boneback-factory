@@ -23,6 +23,7 @@ namespace Rogium.UserInterface.AssetSelection
         private ObjectSwitcherMono layoutSwitcher;
 
         private Action<AssetHolderBase> listeningMethod;
+        private Action finishedMethod;
         
         private void Awake()
         {
@@ -103,9 +104,10 @@ namespace Rogium.UserInterface.AssetSelection
         /// Will no longer listen after the menu is filled.
         /// </summary>
         /// <param name="listeningMethod">The method that will work with the currently spawned card.</param>
-        public void BeginListeningToSpawnedCards(Action<AssetHolderBase> listeningMethod)
+        public void BeginListeningToSpawnedCards(Action<AssetHolderBase> listeningMethod, Action finishedMethod = null)
         {
             this.listeningMethod = listeningMethod;
+            this.finishedMethod = finishedMethod;
             overseer.OnSpawnCard += this.listeningMethod;
             overseer.OnFinishedFilling += StopListeningToSpawnedCards;
             
@@ -117,6 +119,9 @@ namespace Rogium.UserInterface.AssetSelection
         private void StopListeningToSpawnedCards()
         {
             overseer.OnSpawnCard -= listeningMethod;
+            finishedMethod?.Invoke();
+            listeningMethod = null;
+            finishedMethod = null;
         }
         
         public Transform ListMenu { get => layouts.list.Menu; }

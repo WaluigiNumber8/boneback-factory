@@ -158,11 +158,11 @@ namespace Rogium.Editors.Core
         /// <summary>
         /// Prepare one of the campaigns in the library for editing.
         /// </summary>
-        public void ActivateCampaignEditor(int campaignIndex)
+        public void ActivateCampaignEditor(int campaignIndex, bool prepareEditor = true)
         {
             SafetyNet.EnsureListIsNotNullOrEmpty(campaigns, "Campaign Library");
             SafetyNet.EnsureIntIsInRange(campaignIndex, 0, campaigns.Count, "campaignIndex for activating Campaign Editor");
-            CampaignEditorOverseer.Instance.AssignAsset(campaigns[campaignIndex], campaignIndex);
+            CampaignEditorOverseer.Instance.AssignAsset(campaigns[campaignIndex], campaignIndex, prepareEditor);
         }
 
         /// <summary>

@@ -36,7 +36,7 @@ namespace Rogium.Editors.Rooms
 
         private void OnEnable()
         {
-            editor.OnAssignRoom += PrepareEditor;
+            editor.OnAssignAsset += PrepareEditor;
             grid.OnInteractionClick += UpdateGridCell;
             paletteTile.OnSelect += ChangeCurrentTile;
             toolbox.OnChangePaletteValue += SelectFromTiles;
@@ -44,7 +44,7 @@ namespace Rogium.Editors.Rooms
 
         private void OnDisable()
         {
-            editor.OnAssignRoom -= PrepareEditor;
+            editor.OnAssignAsset -= PrepareEditor;
             grid.OnInteractionClick -= UpdateGridCell;
             paletteTile.OnSelect -= ChangeCurrentTile;
             toolbox.OnChangePaletteValue -= SelectFromTiles;

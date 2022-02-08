@@ -30,8 +30,8 @@ namespace Rogium.Systems.GASExtension
             GAS.ObjectSetActive(true, UIMainContainer.GetInstance().BackgroundMain);
             GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundGameplayMenus);
             GAS.ObjectSetActive(false, UIEditorContainer.GetInstance().Background);
-            GAS.ObjectSetActive(false, CanvasOverseer.GetInstance().NavigationBar.gameObject);
             GAS.ObjectSetActive(false, CanvasOverseer.GetInstance().ModalWindow.gameObject);
+            GAS.ObjectSetActive(false, CanvasOverseer.GetInstance().NavigationBar.transform.GetChild(0).gameObject);
             GAS.ObjectSetActive(false, CanvasOverseer.GetInstance().PickerWindow.transform.GetChild(0).gameObject);
             CanvasOverseer.GetInstance().NavigationBar.Hide();
         }
@@ -168,31 +168,31 @@ namespace Rogium.Systems.GASExtension
 
         public static void EditPropertiesCampaign(int campaignIndex)
         {
-            LibraryOverseer.Instance.ActivateCampaignEditor(campaignIndex);
+            LibraryOverseer.Instance.ActivateCampaignEditor(campaignIndex, false);
             new ModalWindowPropertyBuilderCampaign().OpenForUpdate();
         }
         
         public static void EditPropertiesPalette(int assetIndex)
         {
-            PackEditorOverseer.Instance.ActivatePaletteEditor(assetIndex);
+            PackEditorOverseer.Instance.ActivatePaletteEditor(assetIndex, false);
             new ModalWindowPropertyBuilderPalette().OpenForUpdate();
         }
         
         public static void EditPropertiesSprite(int assetIndex)
         {
-            PackEditorOverseer.Instance.ActivateSpriteEditor(assetIndex);
+            PackEditorOverseer.Instance.ActivateSpriteEditor(assetIndex, false);
             new ModalWindowPropertyBuilderSprite().OpenForUpdate();
         }
         
         public static void EditPropertiesTile(int assetIndex)
         {
-            PackEditorOverseer.Instance.ActivateTileEditor(assetIndex);
+            PackEditorOverseer.Instance.ActivateTileEditor(assetIndex, false);
             new ModalWindowPropertyBuilderTile().OpenForUpdate();
         }
         
         public static void EditPropertiesRoom(int assetIndex)
         {
-            PackEditorOverseer.Instance.ActivateRoomEditor(assetIndex);
+            PackEditorOverseer.Instance.ActivateRoomEditor(assetIndex, false);
             new ModalWindowPropertyBuilderRoom().OpenForUpdate();
         }
         #endregion

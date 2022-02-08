@@ -12,7 +12,7 @@ namespace Rogium.Editors.Rooms
     /// </summary>
     public class RoomEditorOverseer : IEditorOverseer
     {
-        public event Action<RoomAsset> OnAssignRoom;
+        public event Action<RoomAsset> OnAssignAsset;
         public event Action<RoomAsset, int> OnCompleteEditing;
 
         private IconBuilderAsset iconBuilder;
@@ -48,12 +48,15 @@ namespace Rogium.Editors.Rooms
         /// </summary>
         /// <param name="room">The room that will be edited.</param>
         /// <param name="index">The position in the list.</param>
-        public void AssignAsset(RoomAsset room, int index)
+        /// <param name="prepareEditor">If true, load asset into the editor.</param>
+        public void AssignAsset(RoomAsset room, int index, bool prepareEditor = true)
         {
             SafetyNet.EnsureIsNotNull(room, "Assigned Room");
             currentAsset = new RoomAsset(room);
             myIndex = index;
-            OnAssignRoom?.Invoke(room);
+
+            if (!prepareEditor) return;
+            OnAssignAsset?.Invoke(room);
         }
 
         /// <summary>

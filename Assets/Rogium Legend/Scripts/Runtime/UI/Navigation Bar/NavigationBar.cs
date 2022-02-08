@@ -1,7 +1,7 @@
 ﻿using System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace  Rogium.UserInterface.Navigation
 {
@@ -12,6 +12,16 @@ namespace  Rogium.UserInterface.Navigation
     {
         [SerializeField] private NavBarUIInfo ui;
 
+        /// <summary>
+        /// Runs when the "Return" Button is clicked.
+        /// </summary>
+        public void OnReturnPressed() => ui.onReturnClick?.Invoke();
+
+        /// <summary>
+        /// Runs when the "Config" Button is clicked.
+        /// </summary>
+        public void OnConfigPressed() => ui.onConfigClick?.Invoke();
+        
         /// <summary>
         /// Shows the Navigation Bar.
         /// </summary>
@@ -84,24 +94,7 @@ namespace  Rogium.UserInterface.Navigation
         }
         #endregion
         
-        
-        /// <summary>
-        /// Runs when the "Return" Button is clicked.
-        /// </summary>
-        public void OnReturnPressed()
-        {
-            ui.onReturnClick?.Invoke();
-        }
-        
-        /// <summary>
-        /// Runs when the "Config" Button is clicked.
-        /// </summary>
-        public void OnConfigPressed()
-        {
-            ui.onConfigClick?.Invoke();
-        }
-        
-        [System.Serializable]
+        [Serializable]
         public struct NavBarUIInfo
         {
             public Transform area;
@@ -113,7 +106,7 @@ namespace  Rogium.UserInterface.Navigation
             public Action onConfigClick;
         }
 
-        [System.Serializable]
+        [Serializable]
         public struct PackInfoUIInfo
         {
             public Transform area;

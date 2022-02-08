@@ -1,4 +1,5 @@
-﻿using Rogium.Core;
+﻿using System;
+using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.UserInterface.Core;
 using UnityEngine;
@@ -13,6 +14,8 @@ namespace Rogium.UserInterface.AssetSelection
     [RequireComponent(typeof(Toggle))]
     public class AssetCardController : AssetHolderBase, IToggleable
     {
+        public static event Action<AssetBase> OnSelect; 
+
         [SerializeField] private UIInfo ui;
 
         private int id;
@@ -28,7 +31,7 @@ namespace Rogium.UserInterface.AssetSelection
 
         public override void Construct(AssetType type, int index, AssetBase asset, Image iconPos)
         {
-            ui.icon = iconPos;
+            // ui.iconImage = iconPos;
             Construct(type, index, asset);
         }
 
@@ -37,8 +40,8 @@ namespace Rogium.UserInterface.AssetSelection
             this.type = type;
             this.id = index;
             this.asset = asset;
-            ui.title.text = asset.Title;
-            ui.icon.sprite = asset.Icon;
+            ui.titleText.text = asset.Title;
+            if (ui.iconImage != null) ui.iconImage.sprite = asset.Icon;
             
             ui.infoGroup.gameObject.SetActive(true);
             ui.buttonGroup.gameObject.SetActive(false);
@@ -59,6 +62,7 @@ namespace Rogium.UserInterface.AssetSelection
         {
             ui.infoGroup.gameObject.SetActive(!value);
             ui.buttonGroup.SetActive(value);
+            OnSelect?.Invoke(asset);
         }
 
         public override int Index { get => id; }
@@ -68,8 +72,8 @@ namespace Rogium.UserInterface.AssetSelection
         [System.Serializable]
         public struct UIInfo
         {
-            public TextMeshProUGUI title;
-            public Image icon;
+            public TextMeshProUGUI titleText;
+            public Image iconImage;
             public GameObject infoGroup;
             public GameObject buttonGroup;
         }

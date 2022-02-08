@@ -11,6 +11,7 @@ namespace Rogium.Editors.Tiles
     /// </summary>
     public class TileEditorOverseer : IEditorOverseer
     {
+        public event Action<TileAsset> OnAssignAsset; 
         public event Action<TileAsset, int> OnCompleteEditing;
         
         private TileAsset currentAsset;
@@ -39,13 +40,17 @@ namespace Rogium.Editors.Tiles
         /// </summary>
         /// <param name="asset">The asset that is going to be edited.</param>
         /// <param name="index">Asset's list index. (For updating)</param>
-        public void AssignAsset(TileAsset asset, int index)
+        /// <param name="prepareEditor">If true, load asset into the editor.</param>
+        public void AssignAsset(TileAsset asset, int index, bool prepareEditor = true)
         {
             SafetyNet.EnsureIsNotNull(asset, "Assigned Tile");
             SafetyNet.EnsureIntIsBiggerOrEqualTo(index, 0, "Assigned asset index");
             
             currentAsset = new TileAsset(asset);
             myIndex = index;
+
+            if (!prepareEditor) return;
+            OnAssignAsset?.Invoke(currentAsset);
         }
         
         /// <summary>

@@ -1,5 +1,4 @@
 ﻿using BoubakProductions.Core;
-using Rogium.Editors.Packs;
 using UnityEngine;
 
 namespace Rogium.UserInterface.AssetSelection

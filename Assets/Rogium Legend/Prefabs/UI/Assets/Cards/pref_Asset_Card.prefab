@@ -170,8 +170,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ui:
-    title: {fileID: 1835956329474657887}
-    icon: {fileID: 3665386510588651531}
+    titleText: {fileID: 1835956329474657887}
+    iconImage: {fileID: 3665386510588651531}
     infoGroup: {fileID: 8498067413878600784}
     buttonGroup: {fileID: 0}
 --- !u!1 &4671855917810116678

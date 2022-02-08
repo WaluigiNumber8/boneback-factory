@@ -43,13 +43,14 @@ namespace Rogium.Editors.Sprites
             iconBuilder = new IconBuilder();
             palettePicker = new PalettePicker();
         }
-        
+
         /// <summary>
         /// Assign an asset, that is going to be edited.
         /// </summary>
         /// <param name="asset">The asset that is going to be edited.</param>
         /// <param name="index">Asset's list index. (For updating)</param>
-        public void AssignAsset(SpriteAsset asset, int index)
+        /// <param name="prepareEditor"></param>
+        public void AssignAsset(SpriteAsset asset, int index, bool prepareEditor = true)
         {
             SafetyNet.EnsureIsNotNull(asset, "Assigned Sprite");
             SafetyNet.EnsureIntIsBiggerOrEqualTo(index, 0, "Assigned asset index");
@@ -57,6 +58,7 @@ namespace Rogium.Editors.Sprites
             currentAsset = new SpriteAsset(asset);
             myIndex = index;
             
+            if (!prepareEditor) return;
             OnAssignAsset?.Invoke(currentAsset);
         }
         

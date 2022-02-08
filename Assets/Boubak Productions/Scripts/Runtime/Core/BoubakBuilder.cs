@@ -40,6 +40,7 @@ namespace BoubakProductions.Core
         {
             Texture2D tex = new Texture2D(width, height);
             tex.filterMode = filterMode;
+            tex.Apply();
             return tex;
         }
 

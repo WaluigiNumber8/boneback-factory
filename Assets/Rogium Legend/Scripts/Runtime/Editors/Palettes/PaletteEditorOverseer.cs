@@ -41,20 +41,22 @@ namespace Rogium.Editors.Palettes
         {
             iconBuilder = new IconBuilder();
         }
-        
+
         /// <summary>
         /// Assign an asset, that is going to be edited.
         /// </summary>
         /// <param name="asset">The asset that is going to be edited.</param>
         /// <param name="index">Asset's list index. (For updating)</param>
-        public void AssignAsset(PaletteAsset asset, int index)
+        /// <param name="prepareEditor">If true, load asset into the editor.</param>
+        public void AssignAsset(PaletteAsset asset, int index, bool prepareEditor = true)
         {
             SafetyNet.EnsureIsNotNull(asset, "Assigned Palette");
             SafetyNet.EnsureIntIsBiggerOrEqualTo(index, 0, "Assigned asset index");
             
             currentAsset = asset;
             myIndex = index;
-            
+
+            if (!prepareEditor) return;
             OnAssignAsset?.Invoke(currentAsset);
         }
         

@@ -121,12 +121,13 @@ namespace Rogium.Editors.Packs
         /// Send Command to the Palette Editor, to start editing a palette.
         /// </summary>
         /// <param name="assetIndex">Palette index from the list.</param>
-        public void ActivatePaletteEditor(int assetIndex)
+        /// <param name="prepareEditor"></param>
+        public void ActivatePaletteEditor(int assetIndex, bool prepareEditor = true)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Palettes, "List of Palettes");
             SafetyNet.EnsureIntIsInRange(assetIndex, 0, currentPack.Palettes.Count, "Palette Index");
-            paletteEditor.AssignAsset(CurrentPack.Palettes[assetIndex], assetIndex);
+            paletteEditor.AssignAsset(CurrentPack.Palettes[assetIndex], assetIndex, prepareEditor);
         }
 
         #endregion
@@ -182,12 +183,13 @@ namespace Rogium.Editors.Packs
         /// Send Command to the Sprite Editor, to start editing a palette.
         /// </summary>
         /// <param name="assetIndex">Sprite index from the list.</param>
-        public void ActivateSpriteEditor(int assetIndex)
+        /// <param name="prepareEditor">If true, load asset into the editor.</param>
+        public void ActivateSpriteEditor(int assetIndex, bool prepareEditor = true)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Sprites, "List of Sprites");
             SafetyNet.EnsureIntIsInRange(assetIndex, 0, currentPack.Sprites.Count, "Sprite Index");
-            spriteEditor.AssignAsset(CurrentPack.Sprites[assetIndex], assetIndex);
+            spriteEditor.AssignAsset(CurrentPack.Sprites[assetIndex], assetIndex, prepareEditor);
         }
 
         #endregion
@@ -243,12 +245,13 @@ namespace Rogium.Editors.Packs
         /// Send Command to the Tile Editor, to start editing a tile.
         /// </summary>
         /// <param name="assetIndex">Tile index from the list.</param>
-        public void ActivateTileEditor(int assetIndex)
+        /// <param name="prepareEditor">If true, load asset into the editor.</param>
+        public void ActivateTileEditor(int assetIndex, bool prepareEditor = true)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Tiles, "List of Tiles");
             SafetyNet.EnsureIntIsInRange(assetIndex, 0, currentPack.Tiles.Count, "Tile Index");
-            tileEditor.AssignAsset(CurrentPack.Tiles[assetIndex], assetIndex);
+            tileEditor.AssignAsset(CurrentPack.Tiles[assetIndex], assetIndex, prepareEditor);
         }
 
         #endregion
@@ -304,12 +307,13 @@ namespace Rogium.Editors.Packs
         /// Send Command to Room Editor, to start editing a room.
         /// </summary>
         /// <param name="assetIndex">Room index from the list</param>
-        public void ActivateRoomEditor(int assetIndex)
+        /// <param name="prepareEditor"></param>
+        public void ActivateRoomEditor(int assetIndex, bool prepareEditor = true)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Rooms, "List of Rooms");
             SafetyNet.EnsureIntIsInRange(assetIndex, 0, currentPack.Rooms.Count, "Room Index");
-            roomEditor.AssignAsset(CurrentPack.Rooms[assetIndex], assetIndex);
+            roomEditor.AssignAsset(CurrentPack.Rooms[assetIndex], assetIndex, prepareEditor);
         }
 
         #endregion

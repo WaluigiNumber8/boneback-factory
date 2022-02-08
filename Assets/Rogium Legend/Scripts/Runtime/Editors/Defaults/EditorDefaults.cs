@@ -33,7 +33,7 @@ namespace Rogium.Editors.Core.Defaults
 
         //Room
         public const string RoomTitle = "New Room";
-        public static readonly Sprite RoomIcon = Resources.Load<Sprite>("Defaults/spr_Default_Weapon_Filled");
+        public static readonly Sprite RoomIcon = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
         public static readonly Vector2Int RoomSize = new Vector2Int(15, 10);
         public const int RoomDifficulty = 0;
         public const RoomType RoomType = Rooms.RoomType.Normal;

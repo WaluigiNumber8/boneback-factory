@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Rogium.Editors.Core;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Rogium.UserInterface.AssetSelection
@@ -7,9 +8,13 @@ namespace Rogium.UserInterface.AssetSelection
     {
         [SerializeField] private AssetSelectionOverseerMono assetSelection;
         [SerializeField] private ToggleGroup toggleGroup;
+        [SerializeField] private SelectionInfoColumn infoColumn;
+
+        private void OnEnable() => AssetCardController.OnSelect += UpdateInfoColumn;
+        private void OnDisable() => AssetCardController.OnSelect -= UpdateInfoColumn;
+
 
         #region Open Selection
-
         public void OpenForPacks()
         {
             Open();
@@ -62,7 +67,10 @@ namespace Rogium.UserInterface.AssetSelection
         /// <summary>
         /// Prepares the menu for filling.
         /// </summary>
-        private void Open() => assetSelection.BeginListeningToSpawnedCards(AssignGroup);
+        private void Open()
+        {
+            assetSelection.BeginListeningToSpawnedCards(AssignGroup, DeselectAll);
+        }
 
         /// <summary>
         /// Assign the ToggleGroup to a card.
@@ -72,6 +80,20 @@ namespace Rogium.UserInterface.AssetSelection
         {
             AssetCardController card = (AssetCardController) holder;
             card.RegisterToggleGroup(toggleGroup);
+        }
+
+        /// <summary>
+        /// Updates the Info Column of the Selection Menu.
+        /// </summary>
+        /// <param name="asset">The asset to update the column with.</param>
+        private void UpdateInfoColumn(AssetBase asset)
+        {
+            infoColumn.Construct(asset);
+        }
+
+        private void DeselectAll()
+        {
+            toggleGroup.SetAllTogglesOff();
         }
         
     }
