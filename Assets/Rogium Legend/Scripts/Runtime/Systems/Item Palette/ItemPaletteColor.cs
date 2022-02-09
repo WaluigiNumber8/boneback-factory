@@ -21,9 +21,13 @@ namespace Rogium.Systems.ItemPalette
 
         private MenuFiller<ColorSlot> menuFiller;
 
-        private readonly IList<ColorSlot> slots = new List<ColorSlot>();
+        private IList<ColorSlot> slots;
 
-        private void Awake() => menuFiller = new MenuFiller<ColorSlot>();
+        private void Awake()
+        {
+            slots = new List<ColorSlot>();
+            menuFiller = new MenuFiller<ColorSlot>();
+        }
 
         private void OnEnable() => ColorSlot.OnSelectedAny += WhenSelected;
         private void OnDisable() => ColorSlot.OnSelectedAny -= WhenSelected;

@@ -3159,6 +3159,26 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &318813463 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4248916056486131450, guid: c899ef6895fdaed43aa1d8fed8721cd6, type: 3}
+  m_PrefabInstance: {fileID: 4248916055661773537}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &318813469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318813463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac036a1a9b1d4543badb9277ffb4a921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetHolderPrefab: {fileID: 5853962763517590801, guid: a1904a296f8c1f94eabbbbbde97da756, type: 3}
+  paletteParent: {fileID: 804228275}
+  emptyText: {fileID: 2139408633}
 --- !u!1 &320191312 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1331637143623217964, guid: dca05af6cd94d8e4b9877c8e9ef9b2e7, type: 3}
@@ -3363,17 +3383,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &360588892 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 385169746180079041, guid: c899ef6895fdaed43aa1d8fed8721cd6, type: 3}
-  m_PrefabInstance: {fileID: 4248916055661773537}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac036a1a9b1d4543badb9277ffb4a921, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &366163392
 GameObject:
   m_ObjectHideFlags: 0
@@ -6353,6 +6362,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &804228275 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4248916057005716453, guid: c899ef6895fdaed43aa1d8fed8721cd6, type: 3}
+  m_PrefabInstance: {fileID: 4248916055661773537}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &814731791
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12541,6 +12555,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1665750941}
   - component: {fileID: 1665750942}
+  - component: {fileID: 1665750943}
   m_Layer: 5
   m_Name: Color Picker
   m_TagString: Untagged
@@ -12591,6 +12606,24 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &1665750943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665750940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e75c31e4029f4f7ba28cb167e16a06f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorGuide: {fileID: 890174978}
+  sliders:
+    r: {fileID: 1308060320}
+    g: {fileID: 1884422047}
+    b: {fileID: 1560027692}
+  htmlField: {fileID: 667380252}
 --- !u!1 &1682440130
 GameObject:
   m_ObjectHideFlags: 0
@@ -13570,6 +13603,7 @@ GameObject:
   - component: {fileID: 1794900234}
   - component: {fileID: 1794900236}
   - component: {fileID: 1794900235}
+  - component: {fileID: 1794900237}
   m_Layer: 5
   m_Name: Color Palette
   m_TagString: Untagged
@@ -13627,6 +13661,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794900233}
   m_CullTransparentMesh: 1
+--- !u!114 &1794900237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794900233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c9d3c15bf64614a7ce7ffd40938001, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorSlotPrefab: {fileID: 16064623958222674, guid: 6dd316f406904b04a80def9ca0edf19e, type: 3}
+  paletteParent: {fileID: 366163393}
+  emptyText: {fileID: 0}
 --- !u!1001 &1821095718
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14982,8 +15031,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2028153901}
   - component: {fileID: 2028153902}
-  - component: {fileID: 2028153904}
-  - component: {fileID: 2028153903}
   m_Layer: 5
   m_Name: Palette Editor
   m_TagString: Untagged
@@ -15024,42 +15071,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e76acdc5710a41258e3511bbd046c793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  palette: {fileID: 2028153904}
+  palette: {fileID: 1794900237}
   titleText: {fileID: 20807319}
-  colorPicker: {fileID: 2028153903}
---- !u!114 &2028153903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2028153900}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e75c31e4029f4f7ba28cb167e16a06f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colorGuide: {fileID: 890174978}
-  sliders:
-    r: {fileID: 1308060320}
-    g: {fileID: 1884422047}
-    b: {fileID: 1560027692}
-  htmlField: {fileID: 667380252}
---- !u!114 &2028153904
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2028153900}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9c9d3c15bf64614a7ce7ffd40938001, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colorSlotPrefab: {fileID: 16064623958222674, guid: 6dd316f406904b04a80def9ca0edf19e, type: 3}
-  paletteParent: {fileID: 366163393}
-  emptyText: {fileID: 0}
+  colorPicker: {fileID: 1665750943}
 --- !u!1 &2031445310
 GameObject:
   m_ObjectHideFlags: 0
@@ -15830,6 +15844,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2139408633 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4969228120772017478, guid: c899ef6895fdaed43aa1d8fed8721cd6, type: 3}
+  m_PrefabInstance: {fileID: 4248916055661773537}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2143409327
@@ -18395,7 +18420,7 @@ PrefabInstance:
     - target: {fileID: 1004923741424044727, guid: c899ef6895fdaed43aa1d8fed8721cd6, type: 3}
       propertyPath: paletteTile
       value: 
-      objectReference: {fileID: 360588892}
+      objectReference: {fileID: 318813469}
     - target: {fileID: 1096651005718619081, guid: c899ef6895fdaed43aa1d8fed8721cd6, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
