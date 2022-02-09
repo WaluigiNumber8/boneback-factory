@@ -23,15 +23,10 @@ namespace Rogium.Systems.ItemPalette
 
         private MenuFiller<AssetSlot> menuFiller;
 
-        private IList<AssetSlot> holders;
+        private readonly IList<AssetSlot> holders = new List<AssetSlot>();
         private IList<string> ids;
 
-        private void Awake()
-        {
-            menuFiller = new MenuFiller<AssetSlot>();
-            holders = new List<AssetSlot>();
-        }
-
+        private void Awake() => menuFiller = new MenuFiller<AssetSlot>();
         private void OnEnable() => AssetSlot.OnSelectedAny += WhenSelected;
         private void OnDisable() => AssetSlot.OnSelectedAny -= WhenSelected;
 
@@ -83,7 +78,10 @@ namespace Rogium.Systems.ItemPalette
         /// Fires an event when selected.
         /// </summary>
         /// <param name="index">The index of the slot to select.</param>
-        private void WhenSelected(int index) => OnSelect?.Invoke(holders[index]);
-        
+        private void WhenSelected(int index)
+        {
+            SafetyNet.EnsureIndexWithingCollectionRange(index, holders, "List of holders");
+            OnSelect?.Invoke(holders[index]);
+        }
     }
 }

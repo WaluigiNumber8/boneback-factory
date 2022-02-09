@@ -82,6 +82,7 @@ namespace BoubakProductions.UI
 
             DrawFooter(acceptButtonText, denyButtonText, specialButtonText, onAcceptAction, onDenyAction, onSpecialAction);
             ui.area.GetComponent<RectTransform>().ForceUpdateRectTransforms();
+            Canvas.ForceUpdateCanvases();
             ui.windowBox.gameObject.SetActive(true);
         }
         #endregion
@@ -145,6 +146,7 @@ namespace BoubakProductions.UI
 
             DrawFooter(acceptButtonText, denyButtonText, specialButtonText, onAcceptAction, onDenyAction, onSpecialAction);
             ui.area.GetComponent<RectTransform>().ForceUpdateRectTransforms();
+            Canvas.ForceUpdateCanvases();
             ui.windowBox.gameObject.SetActive(true);
         }
 
@@ -193,6 +195,7 @@ namespace BoubakProductions.UI
 
             DrawFooter(acceptButtonText, denyButtonText, specialButtonText, onAcceptAction, onDenyAction, onSpecialAction);
             ui.area.GetComponent<RectTransform>().ForceUpdateRectTransforms();
+            Canvas.ForceUpdateCanvases();
             ui.windowBox.gameObject.SetActive(true);
         }
 

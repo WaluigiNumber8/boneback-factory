@@ -1,15 +1,16 @@
 ﻿using Rogium.Core;
 using Rogium.Editors.Core;
-using UnityEngine;
 using UnityEngine.UI;
 
 namespace Rogium.UserInterface.AssetSelection
 {
-    public abstract class AssetHolderBase : MonoBehaviour, IAssetHolder
+    /// <summary>
+    /// A base for all classes holding information about assets and being controlled via an internal toggle.
+    /// </summary>
+    public abstract class AssetHolderBase : ToggleableIndexBase, IAssetHolder
     {
-        public abstract int Index { get; }
-        public abstract AssetType Type { get; }
-        public abstract AssetBase Asset { get; }
+        protected AssetType type;
+        protected AssetBase asset;
 
         /// <summary>
         /// Should be called after creating an Asset Card. Constructs basic variables.
@@ -26,5 +27,8 @@ namespace Rogium.UserInterface.AssetSelection
         /// <param name="index">This asset's position in the list.</param>
         /// <param name="asset">The Asset itself.</param>
         public abstract void Construct(AssetType type, int index, AssetBase asset);
+        
+        public AssetType Type {get => type;}
+        public AssetBase Asset {get => asset;}
     }
 }

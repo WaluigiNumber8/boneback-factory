@@ -1,19 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using BoubakProductions.Safety;
+using Rogium.UserInterface.AssetSelection;
 
 namespace Rogium.UserInterface.Core
 {
     /// <summary>
     /// Controls toggle states on an array of toggles. 
     /// </summary>
-    public class ToggleList : IList<IToggleable>
+    public class ToggleList : IList<ToggleableBase>
     {
-        private readonly IList<IToggleable> toggles;
+        private readonly IList<ToggleableBase> toggles;
 
         public ToggleList()
         {
-            toggles = new List<IToggleable>();
+            toggles = new List<ToggleableBase>();
         }
 
         /// <summary>
@@ -22,7 +23,7 @@ namespace Rogium.UserInterface.Core
         /// <param name="value">The state of toggles.</param>
         public void ToggleAll(bool value)
         {
-            foreach (IToggleable toggle in toggles)
+            foreach (ToggleableBase toggle in toggles)
             {
                 toggle.SetToggle(value);
             }
@@ -48,7 +49,7 @@ namespace Rogium.UserInterface.Core
         }
 
         #region Untouched Overrides
-        public IEnumerator<IToggleable> GetEnumerator()
+        public IEnumerator<ToggleableBase> GetEnumerator()
         {
             return toggles.GetEnumerator();
         }
@@ -58,7 +59,7 @@ namespace Rogium.UserInterface.Core
             return toggles.GetEnumerator();
         }
 
-        public void Add(IToggleable item)
+        public void Add(ToggleableBase item)
         {
             toggles.Add(item);
         }
@@ -68,29 +69,29 @@ namespace Rogium.UserInterface.Core
             toggles.Clear();
         }
 
-        public bool Contains(IToggleable item)
+        public bool Contains(ToggleableBase item)
         {
             return toggles.Contains(item); 
         }
 
-        public void CopyTo(IToggleable[] array, int arrayIndex)
+        public void CopyTo(ToggleableBase[] array, int arrayIndex)
         {
             toggles.CopyTo(array, arrayIndex);
         }
 
-        public bool Remove(IToggleable item)
+        public bool Remove(ToggleableBase item)
         {
             return toggles.Remove(item);
         }
 
         public int Count { get => toggles.Count; }
         public bool IsReadOnly { get => toggles.IsReadOnly; }
-        public int IndexOf(IToggleable item)
+        public int IndexOf(ToggleableBase item)
         {
             return toggles.IndexOf(item);
         }
 
-        public void Insert(int index, IToggleable item)
+        public void Insert(int index, ToggleableBase item)
         {
             toggles.Insert(index, item);
         }
@@ -100,7 +101,7 @@ namespace Rogium.UserInterface.Core
             toggles.RemoveAt(index);
         }
 
-        public IToggleable this[int index]
+        public ToggleableBase this[int index]
         {
             get => toggles[index];
             set => toggles[index] = value;

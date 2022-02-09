@@ -78,8 +78,7 @@ namespace Rogium.UserInterface.AssetSelection
         /// <param name="holder">The card to assign to.</param>
         private void AssignGroup(AssetHolderBase holder)
         {
-            AssetCardController card = (AssetCardController) holder;
-            card.RegisterToggleGroup(toggleGroup);
+            holder.RegisterToggleGroup(toggleGroup);
         }
 
         /// <summary>
@@ -88,12 +87,18 @@ namespace Rogium.UserInterface.AssetSelection
         /// <param name="asset">The asset to update the column with.</param>
         private void UpdateInfoColumn(AssetBase asset)
         {
+            if (!infoColumn.isActiveAndEnabled) return;
             infoColumn.Construct(asset);
         }
 
+        /// <summary>
+        /// Deselect all toggles.
+        /// </summary>
         private void DeselectAll()
         {
             toggleGroup.SetAllTogglesOff();
+            if (infoColumn == null) return;
+            infoColumn.ConstructEmpty();
         }
         
     }

@@ -21,13 +21,9 @@ namespace Rogium.Systems.ItemPalette
 
         private MenuFiller<ColorSlot> menuFiller;
 
-        private IList<ColorSlot> slots;
+        private readonly IList<ColorSlot> slots = new List<ColorSlot>();
 
-        private void Awake()
-        {
-            menuFiller = new MenuFiller<ColorSlot>();
-            slots = new List<ColorSlot>();
-        }
+        private void Awake() => menuFiller = new MenuFiller<ColorSlot>();
 
         private void OnEnable() => ColorSlot.OnSelectedAny += WhenSelected;
         private void OnDisable() => ColorSlot.OnSelectedAny -= WhenSelected;
@@ -38,8 +34,8 @@ namespace Rogium.Systems.ItemPalette
         /// <param name="index">The index of the item.</param>
         public void Select(int index)
         {
-            SafetyNet.EnsureIntIsInRange(index, 0, slots.Count, "Item Index");
-            if (slots?.Count <= 0) return;
+            SafetyNet.EnsureIndexWithingCollectionRange(index, slots, "List of Slots");
+            if (slots == null && slots.Count <= 0) return;
             slots[index].SetToggle(true);
         }
         
@@ -68,6 +64,10 @@ namespace Rogium.Systems.ItemPalette
         /// Fires an event when selected.
         /// </summary>
         /// <param name="index">The index of the slot to select.</param>
-        private void WhenSelected(int index) => OnSelect?.Invoke(slots[index]);
+        private void WhenSelected(int index)
+        {
+            SafetyNet.EnsureIndexWithingCollectionRange(index, slots, "List of Slots");
+            OnSelect?.Invoke(slots[index]);
+        }
     }
 }

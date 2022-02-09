@@ -1,5 +1,6 @@
 ﻿using System;
 using Rogium.Editors.Core;
+using Rogium.Editors.Core.Defaults;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,11 @@ namespace Rogium.UserInterface.AssetSelection
         public void Construct(AssetBase asset)
         {
             ui.previewImage.sprite = asset.Icon;
+        }
+
+        public void ConstructEmpty()
+        {
+            ui.previewImage.sprite = EditorDefaults.RoomIcon;
         }
         
         [Serializable]

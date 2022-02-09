@@ -8,12 +8,17 @@ namespace Rogium.Editors.Palettes
     /// <summary>
     /// Holds information about a given color slot from a palette.
     /// </summary>
-    public class ColorSlot : InteractableHolderBase
+    public class ColorSlot : ToggleableIndexBase
     {
+        public static event Action<int> OnSelectedAny;
+        
         [SerializeField] private UIInfo ui;
         
         private Color currentColor;
 
+        private void OnEnable() => toggle.onValueChanged.AddListener(WhenSelected);
+        private void OnDisable() => toggle.onValueChanged.RemoveListener(WhenSelected);
+        
         /// <summary>
         /// Constructs a color slot, without giving it a new index.
         /// </summary>
@@ -40,6 +45,15 @@ namespace Rogium.Editors.Palettes
         private void RefreshUI()
         {
             ui.colorImg.color = currentColor;
+        }
+        
+        /// <summary>
+        /// Fires the select event when the toggle was clicked.
+        /// </summary>
+        private void WhenSelected(bool value)
+        {
+            if (!value) return;
+            OnSelectedAny?.Invoke(index);
         }
 
         public Color CurrentColor { get => currentColor; }

@@ -18,10 +18,6 @@ namespace Rogium.UserInterface.AssetSelection
         [SerializeField, Multiline(4)] private string emptyMessage;
         [SerializeField] private UIInfo ui;
 
-        private AssetType type;
-        private int id = -1;
-        private AssetBase asset;
-        
         public override void Construct(AssetType type, int index, AssetBase asset, Image wallpaperPos)
         {
             ui.wallpaper = wallpaperPos;
@@ -31,12 +27,12 @@ namespace Rogium.UserInterface.AssetSelection
         {
             ui.emptyText.gameObject.SetActive(false);
             this.type = type;
-            this.id = index;
+            this.index = index;
             this.asset = asset;
             this.ui.title.text = asset.Title;
             this.ui.wallpaper.sprite = asset.Icon;
             
-            OnConstruct?.Invoke(this.id);
+            OnConstruct?.Invoke(this.index);
         }
 
         /// <summary>
@@ -45,21 +41,17 @@ namespace Rogium.UserInterface.AssetSelection
         public void ConstructEmpty()
         {
             this.type = AssetType.None;
-            this.id = -1;
+            this.index = -1;
             this.asset = null;
             this.ui.title.text = "";
             this.ui.wallpaper.sprite = emptyWallpaper;
             this.ui.emptyText.text = emptyMessage;
             this.ui.emptyText.gameObject.SetActive(true);
             
-            OnConstruct?.Invoke(this.id);
+            OnConstruct?.Invoke(this.index);
         }
         
-        public override int Index { get => id; }
-        public override AssetType Type { get => type; }
-        public override AssetBase Asset { get => asset; }
-
-        [System.Serializable]
+        [Serializable]
         public struct UIInfo
         {
             public TextMeshProUGUI title;

@@ -365,6 +365,13 @@ namespace BoubakProductions.Safety
             }
         }
 
+        public static void EnsureIndexWithingCollectionRange<T>(int index, ICollection<T> collection, string collectionName)
+        {
+            if (index < 0 || index > collection.Count - 1)
+            {
+                throw new SafetyNetCollectionException($"The index doesn't fit on the {collectionName} collection. Length is {collection.Count}. ({index})");
+            }
+        }
         #endregion
 
     }
