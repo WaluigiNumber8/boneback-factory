@@ -250,6 +250,8 @@ namespace BoubakProductions.UI
         {
             ui.header.area.gameObject.SetActive(false);
             ui.layout.area.gameObject.SetActive(false);
+            ui.layout.message.area.gameObject.SetActive(false);
+            ui.layout.properties.area.gameObject.SetActive(false);
             ui.footer.area.gameObject.SetActive(false);
 
             ui.area.gameObject.SetActive(true);

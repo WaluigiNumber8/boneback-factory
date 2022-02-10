@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92a8d88a0ab248fc8c9002bb5755b42e, type: 3}
+  m_Name: asset_EditorTheme_Yellow
+  m_EditorClassIdentifier: 
+  elements:
+  - {fileID: 1854030663, guid: ffb3be43ead86ef49b07597d36a3072a, type: 3}
+  - {fileID: 1854030663, guid: ffb3be43ead86ef49b07597d36a3072a, type: 3}
+  - {fileID: 2335134593134040340, guid: c0e0f11f630bab34c849d3f3899b8662, type: 3}
+  - {fileID: 560576857, guid: a965327408ba7cf408d7bbdd97a59157, type: 3}
+  - {fileID: 21300000, guid: 3cd73286c1f01624db45bb8e89411a87, type: 3}
+  - {fileID: -1039666700, guid: 8c34cd1eb911fa340b19a528efaa2b23, type: 3}
+  - {fileID: -907753610, guid: 8c34cd1eb911fa340b19a528efaa2b23, type: 3}
+  - {fileID: 763664610205319021, guid: 97189544436cefd4b8dc05ed78c091aa, type: 3}
+  interactables:
+  - normal: {fileID: 1611734171, guid: d82de875f76e56347b907abe2af5ea39, type: 3}
+    highlighted: {fileID: 1654582915, guid: d82de875f76e56347b907abe2af5ea39, type: 3}
+    pressed: {fileID: 1638471272, guid: d82de875f76e56347b907abe2af5ea39, type: 3}
+    selected: {fileID: 882444307, guid: d82de875f76e56347b907abe2af5ea39, type: 3}
+    disabled: {fileID: 803955271, guid: d82de875f76e56347b907abe2af5ea39, type: 3}
+  - normal: {fileID: 1854030663, guid: ffb3be43ead86ef49b07597d36a3072a, type: 3}
+    highlighted: {fileID: 2011262241, guid: ffb3be43ead86ef49b07597d36a3072a, type: 3}
+    pressed: {fileID: 1437045503, guid: ffb3be43ead86ef49b07597d36a3072a, type: 3}
+    selected: {fileID: -302035138, guid: ffb3be43ead86ef49b07597d36a3072a, type: 3}
+    disabled: {fileID: -964773360, guid: ffb3be43ead86ef49b07597d36a3072a, type: 3}
+  - normal: {fileID: 560576857, guid: a965327408ba7cf408d7bbdd97a59157, type: 3}
+    highlighted: {fileID: -1212998039, guid: a965327408ba7cf408d7bbdd97a59157, type: 3}
+    pressed: {fileID: -1046402710, guid: a965327408ba7cf408d7bbdd97a59157, type: 3}
+    selected: {fileID: 1514796324, guid: a965327408ba7cf408d7bbdd97a59157, type: 3}
+    disabled: {fileID: 1365542189, guid: a965327408ba7cf408d7bbdd97a59157, type: 3}
+  - normal: {fileID: -883815518, guid: d53ed79b491fc6b47a78217e8fa9f952, type: 3}
+    highlighted: {fileID: 1885928005, guid: d53ed79b491fc6b47a78217e8fa9f952, type: 3}
+    pressed: {fileID: 335127249, guid: d53ed79b491fc6b47a78217e8fa9f952, type: 3}
+    selected: {fileID: -1169637229, guid: d53ed79b491fc6b47a78217e8fa9f952, type: 3}
+    disabled: {fileID: 466967953, guid: d53ed79b491fc6b47a78217e8fa9f952, type: 3}
+  - normal: {fileID: -907753610, guid: 8c34cd1eb911fa340b19a528efaa2b23, type: 3}
+    highlighted: {fileID: -1534664751, guid: 8c34cd1eb911fa340b19a528efaa2b23, type: 3}
+    pressed: {fileID: 1177784857, guid: 8c34cd1eb911fa340b19a528efaa2b23, type: 3}
+    selected: {fileID: 1177784857, guid: 8c34cd1eb911fa340b19a528efaa2b23, type: 3}
+    disabled: {fileID: -1039666700, guid: 8c34cd1eb911fa340b19a528efaa2b23, type: 3}
+  - normal: {fileID: -4468517890273291000, guid: 97189544436cefd4b8dc05ed78c091aa, type: 3}
+    highlighted: {fileID: 2546817722796273936, guid: 97189544436cefd4b8dc05ed78c091aa, type: 3}
+    pressed: {fileID: -1848648571299692439, guid: 97189544436cefd4b8dc05ed78c091aa, type: 3}
+    selected: {fileID: -9216096044141401584, guid: 97189544436cefd4b8dc05ed78c091aa, type: 3}
+    disabled: {fileID: 763664610205319021, guid: 97189544436cefd4b8dc05ed78c091aa, type: 3}
+  - normal: {fileID: 218806745, guid: 6664004d98649b24390616de32e2c5f5, type: 3}
+    highlighted: {fileID: -116123456, guid: 6664004d98649b24390616de32e2c5f5, type: 3}
+    pressed: {fileID: -878436180, guid: 6664004d98649b24390616de32e2c5f5, type: 3}
+    selected: {fileID: 2016315617, guid: 6664004d98649b24390616de32e2c5f5, type: 3}
+    disabled: {fileID: -1919005264, guid: 6664004d98649b24390616de32e2c5f5, type: 3}
+  fonts:
+  - font: {fileID: 11400000, guid: 610b74f9f977953488aee31905a7d7c6, type: 2}
+    color: {r: 0.8509804, g: 0.27058825, b: 0.7529412, a: 1}
+    size: 36
+  - font: {fileID: 11400000, guid: 7dcbf3f25fb09e840ab6875dff99cba5, type: 2}
+    color: {r: 0.67058825, g: 0.34901962, b: 1, a: 1}
+    size: 40
+  - font: {fileID: 11400000, guid: cf4879b37d976dc428255f939d628fa9, type: 2}
+    color: {r: 0.8509804, g: 0.27058825, b: 0.7529412, a: 1}
+    size: 65

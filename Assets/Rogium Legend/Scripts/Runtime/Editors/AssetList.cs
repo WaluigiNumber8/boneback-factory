@@ -139,6 +139,7 @@ namespace Rogium.Editors.Core
         /// <param name="newList">the list to replace it with.</param>
         public void ReplaceAll(IList<T> newList)
         {
+            SafetyNet.EnsureListDoesNotHaveDuplicities(newList, "New List");
             list = new List<T>(newList);
         }
 

@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92a8d88a0ab248fc8c9002bb5755b42e, type: 3}
+  m_Name: asset_EditorTheme_Red
+  m_EditorClassIdentifier: 
+  elements:
+  - {fileID: -7223259809704958672, guid: d08454f067178654c9702b3b47e8fcf4, type: 3}
+  - {fileID: -7223259809704958672, guid: d08454f067178654c9702b3b47e8fcf4, type: 3}
+  - {fileID: 182467184, guid: 3fe585dc3dcccb04e95e6a6b3a86e777, type: 3}
+  - {fileID: -5952446839684683332, guid: 4db80c77cefd72342954a136ff27edb6, type: 3}
+  - {fileID: 21300000, guid: 3cd73286c1f01624db45bb8e89411a87, type: 3}
+  - {fileID: -1226323052, guid: 73563ca719a007c46aafbb075799cadd, type: 3}
+  - {fileID: 1395390727, guid: 73563ca719a007c46aafbb075799cadd, type: 3}
+  - {fileID: -1729667448697702961, guid: dbedae98845b5bb4fad4ab2b167fa4c2, type: 3}
+  interactables:
+  - normal: {fileID: -4823215569807734335, guid: 0cc53795ee767354bb762801d50ebea6, type: 3}
+    highlighted: {fileID: -768985138969981176, guid: 0cc53795ee767354bb762801d50ebea6, type: 3}
+    pressed: {fileID: 7730157865469719957, guid: 0cc53795ee767354bb762801d50ebea6, type: 3}
+    selected: {fileID: -1552064243002502257, guid: 0cc53795ee767354bb762801d50ebea6, type: 3}
+    disabled: {fileID: 4072304962178982538, guid: 0cc53795ee767354bb762801d50ebea6, type: 3}
+  - normal: {fileID: -7223259809704958672, guid: d08454f067178654c9702b3b47e8fcf4, type: 3}
+    highlighted: {fileID: 5358666918459266497, guid: d08454f067178654c9702b3b47e8fcf4, type: 3}
+    pressed: {fileID: 4734173899635010625, guid: d08454f067178654c9702b3b47e8fcf4, type: 3}
+    selected: {fileID: 6711431833823839434, guid: d08454f067178654c9702b3b47e8fcf4, type: 3}
+    disabled: {fileID: -3687998264897197731, guid: d08454f067178654c9702b3b47e8fcf4, type: 3}
+  - normal: {fileID: -5952446839684683332, guid: 4db80c77cefd72342954a136ff27edb6, type: 3}
+    highlighted: {fileID: 2558533311469792044, guid: 4db80c77cefd72342954a136ff27edb6, type: 3}
+    pressed: {fileID: -7124936272814175406, guid: 4db80c77cefd72342954a136ff27edb6, type: 3}
+    selected: {fileID: -2106381050452406257, guid: 4db80c77cefd72342954a136ff27edb6, type: 3}
+    disabled: {fileID: 4514854897908065860, guid: 4db80c77cefd72342954a136ff27edb6, type: 3}
+  - normal: {fileID: -8229403360154262132, guid: 6ddfd136b736cd64d9dfc8bb459a5337, type: 3}
+    highlighted: {fileID: 4351940645853991999, guid: 6ddfd136b736cd64d9dfc8bb459a5337, type: 3}
+    pressed: {fileID: -1808257538814606922, guid: 6ddfd136b736cd64d9dfc8bb459a5337, type: 3}
+    selected: {fileID: 7332836200658907839, guid: 6ddfd136b736cd64d9dfc8bb459a5337, type: 3}
+    disabled: {fileID: -2110842195786436053, guid: 6ddfd136b736cd64d9dfc8bb459a5337, type: 3}
+  - normal: {fileID: 1395390727, guid: 73563ca719a007c46aafbb075799cadd, type: 3}
+    highlighted: {fileID: -821653939, guid: 73563ca719a007c46aafbb075799cadd, type: 3}
+    pressed: {fileID: -1410072512, guid: 73563ca719a007c46aafbb075799cadd, type: 3}
+    selected: {fileID: -1410072512, guid: 73563ca719a007c46aafbb075799cadd, type: 3}
+    disabled: {fileID: -1226323052, guid: 73563ca719a007c46aafbb075799cadd, type: 3}
+  - normal: {fileID: -6564338510557727406, guid: dbedae98845b5bb4fad4ab2b167fa4c2, type: 3}
+    highlighted: {fileID: 348422910028373009, guid: dbedae98845b5bb4fad4ab2b167fa4c2, type: 3}
+    pressed: {fileID: 6646389441960839064, guid: dbedae98845b5bb4fad4ab2b167fa4c2, type: 3}
+    selected: {fileID: -1711872503355626232, guid: dbedae98845b5bb4fad4ab2b167fa4c2, type: 3}
+    disabled: {fileID: -1729667448697702961, guid: dbedae98845b5bb4fad4ab2b167fa4c2, type: 3}
+  - normal: {fileID: -683851502, guid: c6e9ef311e5226c47b29373679fc41ee, type: 3}
+    highlighted: {fileID: -1485690793, guid: c6e9ef311e5226c47b29373679fc41ee, type: 3}
+    pressed: {fileID: 466363944, guid: c6e9ef311e5226c47b29373679fc41ee, type: 3}
+    selected: {fileID: 1430435723, guid: c6e9ef311e5226c47b29373679fc41ee, type: 3}
+    disabled: {fileID: 828541586, guid: c6e9ef311e5226c47b29373679fc41ee, type: 3}
+  fonts:
+  - font: {fileID: 11400000, guid: 610b74f9f977953488aee31905a7d7c6, type: 2}
+    color: {r: 1, g: 1, b: 0, a: 1}
+    size: 36
+  - font: {fileID: 11400000, guid: 7dcbf3f25fb09e840ab6875dff99cba5, type: 2}
+    color: {r: 1, g: 0.7921569, b: 0.19215687, a: 1}
+    size: 40
+  - font: {fileID: 11400000, guid: cf4879b37d976dc428255f939d628fa9, type: 2}
+    color: {r: 1, g: 1, b: 0, a: 1}
+    size: 65

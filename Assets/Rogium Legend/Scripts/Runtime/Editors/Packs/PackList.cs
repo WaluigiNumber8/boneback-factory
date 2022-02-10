@@ -105,6 +105,7 @@ namespace Rogium.Editors.Packs
         /// <param name="newList">The list to replace it with.</param>
         public void ReplaceAll(IList<PackAsset> newList)
         {
+            SafetyNet.EnsureListDoesNotHaveDuplicities(newList, "New List");
             list = new List<PackAsset>(newList);
         }
 

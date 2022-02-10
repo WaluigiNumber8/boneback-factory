@@ -84,14 +84,14 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="rider.run.widget.enabled.cache" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="RiderCSharpLiveTemplatesSettingsId" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor &amp; Play">
-    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="6172">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="6172" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -236,7 +236,8 @@
       <workItem from="1643794048198" duration="5244000" />
       <workItem from="1643822476084" duration="2597000" />
       <workItem from="1644315067122" duration="8816000" />
-      <workItem from="1644400694515" duration="6258000" />
+      <workItem from="1644400694515" duration="8355000" />
+      <workItem from="1644481493876" duration="12327000" />
     </task>
     <servers />
   </component>
@@ -350,13 +351,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Systems/Item Palette/ItemPaletteColor.cs</url>
-          <line>68</line>
+          <line>72</line>
           <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Systems\Item Palette\ItemPaletteColor.cs" initialLine="68" containingFunctionPresentation="method 'WhenSelected'">
             <startOffsets>
-              <option value="2351" />
+              <option value="2390" />
             </startOffsets>
             <endOffsets>
-              <option value="2426" />
+              <option value="2465" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="49" />

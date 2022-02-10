@@ -7,9 +7,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2981902531368629443, guid: c04113f03b7e48e47a48229ec71f67ca, type: 3}
+      propertyPath: ui.buttonText
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3394840216358424932, guid: c04113f03b7e48e47a48229ec71f67ca, type: 3}
       propertyPath: m_Name
-      value: prefvar_Button_Menu_Icon_Red
+      value: prefvar_Button_Menu_Red_Icon
       objectReference: {fileID: 0}
     - target: {fileID: 4547320064811781945, guid: c04113f03b7e48e47a48229ec71f67ca, type: 3}
       propertyPath: m_MinWidth

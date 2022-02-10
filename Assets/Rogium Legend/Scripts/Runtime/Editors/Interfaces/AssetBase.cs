@@ -22,8 +22,8 @@ namespace Rogium.Editors.Core
         /// <returns>ID</returns>
         protected void GenerateID(string assetIdentifier)
         {
-            string authorPart = Mathf.Abs(author.GetHashCode()).ToString().Substring(0, 4);
-            string datePart = Mathf.Abs(creationDate.GetHashCode()).ToString().Substring(0, 4);
+            string authorPart = Mathf.Abs(author.GetHashCode()).ToString().Substring(0, 3);
+            string datePart = Mathf.Abs(creationDate.GetHashCode()).ToString().Substring(0, 3);
             string randomPart = Random.Range(100, 999).ToString();
             id = assetIdentifier + authorPart + datePart + randomPart;
         }

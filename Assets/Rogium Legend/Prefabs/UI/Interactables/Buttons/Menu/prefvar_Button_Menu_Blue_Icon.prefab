@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1964327707294733106, guid: bf2a66882a3c4594abcba676cf0b90a1, type: 3}
+      propertyPath: ui.buttonText
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2107557191573780117, guid: bf2a66882a3c4594abcba676cf0b90a1, type: 3}
       propertyPath: m_Name
       value: prefvar_Button_Menu_Blue_Icon

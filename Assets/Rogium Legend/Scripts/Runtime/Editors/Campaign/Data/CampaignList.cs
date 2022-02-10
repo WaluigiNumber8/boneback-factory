@@ -105,6 +105,7 @@ namespace Rogium.Editors.Campaign
         /// <param name="newList">The list to replace it with.</param>
         public void ReplaceAll(IList<CampaignAsset> newList)
         {
+            SafetyNet.EnsureListDoesNotHaveDuplicities(newList, "New List");
             list = new List<CampaignAsset>(newList);
         }
 

@@ -7,5 +7,6 @@
     {
         General = 0,
         Inputted = 1,
+        Header = 2,
     }
 }

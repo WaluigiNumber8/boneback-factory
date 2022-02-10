@@ -5,9 +5,12 @@
     /// </summary>
     public enum ThemeInteractableType
     {
-        Button = 0,
+        ButtonMenu = 0,
         InputField = 1,
         Toggle = 2,
-        SpriteField = 3,
+        AssetField = 3,
+        Slider = 4,
+        ButtonCard = 5,
+        ButtonTool = 6,
     }
 }

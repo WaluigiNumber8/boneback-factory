@@ -1,20 +1,19 @@
-﻿using System;
-using BoubakProductions.Core;
+﻿using BoubakProductions.Core;
 using UnityEngine;
 
 namespace Rogium.Systems.ThemeSystem
 {
     public class ThemeOverseerMono : MonoSingleton<ThemeOverseerMono>
     {
-        [SerializeField] private int defaultTheme;
-        [SerializeField] private ThemeStyleInfo[] themes;
-
+        [SerializeField] private int defaultThemeIndex;
+        [SerializeField] private ThemeStyleAsset[] themes;
+        
         private ThemeOverseer overseer;
         
         private void Start()
         {
             overseer = ThemeOverseer.Instance;
-            overseer.Initialize(themes, defaultTheme);
+            overseer.Initialize(themes, defaultThemeIndex);
         }
     }
 }

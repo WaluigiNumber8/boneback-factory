@@ -1,4 +1,5 @@
-﻿using Rogium.UserInterface.Interactables.Properties;
+﻿using Rogium.UserInterface.Interactables;
+using Rogium.UserInterface.Interactables.Properties;
 
 namespace Rogium.Systems.ThemeSystem
 {
@@ -9,9 +10,28 @@ namespace Rogium.Systems.ThemeSystem
     {
         private readonly ThemeOverseer theme;
         
-        public ThemeUpdater()
+        public ThemeUpdater() => theme = ThemeOverseer.Instance;
+
+        /// <summary>
+        /// Updates a button with correct data from the current theme.
+        /// Style is "Menu."
+        /// </summary>
+        /// <param name="button">The button to update.</param>
+        public void UpdateButtonMenu(InteractableButton button)
         {
-            theme = ThemeOverseer.Instance;
+            button.UpdateTheme(theme.GetInteractable(ThemeInteractableType.ButtonMenu),
+                               theme.GetFont(ThemeFontType.General));
+        }
+        
+        /// <summary>
+        /// Updates a button with correct data from the current theme.
+        /// Style is "Card."
+        /// </summary>
+        /// <param name="button">The button to update.</param>
+        public void UpdateButtonCard(InteractableButton button)
+        {
+            button.UpdateTheme(theme.GetInteractable(ThemeInteractableType.ButtonCard),
+                               theme.GetFont(ThemeFontType.General));
         }
         
         /// <summary>
@@ -31,9 +51,8 @@ namespace Rogium.Systems.ThemeSystem
         /// <param name="toggle">The toggle to update.</param>
         public void UpdateToggle(InteractablePropertyToggle toggle)
         {
-            toggle.UpdateTheme(theme.GetElement(ThemeElementType.ToggleBorder), 
-                                                theme.GetInteractable(ThemeInteractableType.Toggle),
-                                                theme.GetElement(ThemeElementType.ToggleCheckmark));
+            toggle.UpdateTheme(theme.GetInteractable(ThemeInteractableType.Toggle),
+                               theme.GetElement(ThemeElementType.ToggleCheckmark));
         }
 
         /// <summary>
@@ -63,12 +82,33 @@ namespace Rogium.Systems.ThemeSystem
         }
 
         /// <summary>
-        /// Updates a sprite field with correct data from the current theme.
+        /// Updates a asset field with correct data from the current theme.
         /// </summary>
-        /// <param name="assetField">The SpriteField to update.</param>
-        public void UpdateSpriteField(InteractablePropertyAssetField assetField)
+        /// <param name="assetField">The AssetField to update.</param>
+        public void UpdateAssetField(InteractablePropertyAssetField assetField)
         {
-            assetField.UpdateTheme(theme.GetInteractable(ThemeInteractableType.SpriteField));
+            assetField.UpdateTheme(theme.GetInteractable(ThemeInteractableType.AssetField));
+        }
+
+        /// <summary>
+        /// Updates the slider with correct data from the current theme.
+        /// </summary>
+        /// <param name="slider">The slider property to update.</param>
+        public void UpdateSlider(InteractablePropertySlider slider)
+        {
+            slider.UpdateTheme(theme.GetInteractable(ThemeInteractableType.Slider),
+                               theme.GetElement(ThemeElementType.SliderBackground),
+                               theme.GetElement(ThemeElementType.SliderHandle),
+                               theme.GetFont(ThemeFontType.General));
+        }
+
+        /// <summary>
+        /// Updates the header with correct data from the current theme.
+        /// </summary>
+        /// <param name="header">The header property to update.</param>
+        public void UpdateHeader(InteractablePropertyHeader header)
+        {
+            header.UpdateTheme(theme.GetFont(ThemeFontType.Header));
         }
         
     }

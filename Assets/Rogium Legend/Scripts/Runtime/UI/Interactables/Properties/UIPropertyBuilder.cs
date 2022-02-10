@@ -13,15 +13,31 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// </summary>
     public class UIPropertyBuilder : MonoSingleton<UIPropertyBuilder>
     {
-        [Header("Property prefabs")]
+        [Header("Property prefabs")] 
+        [SerializeField] private InteractablePropertyHeader headerProperty;
         [SerializeField] private InteractablePropertyPlainText plainTextProperty;
         [SerializeField] private InteractablePropertyInputField inputFieldProperty;
         [SerializeField] private InteractablePropertyInputField inputFieldAreaProperty;
-        [SerializeField] private InteractablePropertyAssetField assetProperty;
+        [SerializeField] private InteractablePropertyAssetField assetFieldProperty;
         [SerializeField] private InteractablePropertyToggle toggleProperty;
         [SerializeField] private InteractablePropertyDropdown dropdownProperty;
-
+        [SerializeField] private InteractablePropertySlider sliderProperty;
+        
         private readonly ThemeUpdater themeUpdater = new ThemeUpdater();
+
+        /// <summary>
+        /// Builds the Header Property.
+        /// </summary>
+        /// <param name="headerText">The text of the header.</param>
+        /// <param name="parent">Under which transform is this property going to be created.</param>
+        /// <returns>The property itself.</returns>
+        public InteractablePropertyHeader BuildHeader(string headerText, Transform parent)
+        {
+            InteractablePropertyHeader header = Instantiate(headerProperty, parent);
+            header.Construct(headerText);
+            themeUpdater.UpdateHeader(header);
+            return header;
+        }
         
         /// <summary>
         /// Builds the Input Field Property.
@@ -29,12 +45,12 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="title">Name of the property.</param>
         /// <param name="value">Starting value of the property</param>
         /// <param name="parent">Under which transform is this property going to be created.</param>
-        /// <param name="WhenChangeValue">What happens when the property changes value.</param>
+        /// <param name="whenValueChange">What happens when the property changes value.</param>
         /// <returns>The property itself.</returns>
-        public InteractablePropertyInputField BuildInputField(string title, string value, Transform parent, Action<string> WhenChangeValue)
+        public InteractablePropertyInputField BuildInputField(string title, string value, Transform parent, Action<string> whenValueChange)
         {
-            InteractablePropertyInputField inputField = Instantiate(inputFieldProperty, parent).GetComponent<InteractablePropertyInputField>();
-            inputField.Construct(title, value, WhenChangeValue);
+            InteractablePropertyInputField inputField = Instantiate(inputFieldProperty, parent);
+            inputField.Construct(title, value, whenValueChange);
             themeUpdater.UpdateInputField(inputField);
             return inputField;
         }
@@ -45,12 +61,12 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="title">Name of the property.</param>
         /// <param name="value">Starting value of the property</param>
         /// <param name="parent">Under which transform is this property going to be created.</param>
-        /// <param name="WhenChangeValue">What happens when the property changes value.</param>
+        /// <param name="whenValueChange">What happens when the property changes value.</param>
         /// <returns>The property itself.</returns>
-        public InteractablePropertyInputField BuildInputFieldArea(string title, string value, Transform parent, Action<string> WhenChangeValue)
+        public InteractablePropertyInputField BuildInputFieldArea(string title, string value, Transform parent, Action<string> whenValueChange)
         {
-            InteractablePropertyInputField inputField = Instantiate(inputFieldAreaProperty, parent).GetComponent<InteractablePropertyInputField>();
-            inputField.Construct(title, value, WhenChangeValue);
+            InteractablePropertyInputField inputField = Instantiate(inputFieldAreaProperty, parent);
+            inputField.Construct(title, value, whenValueChange);
             themeUpdater.UpdateInputField(inputField);
             return inputField;
         }
@@ -61,12 +77,12 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="title">Name of the property.</param>
         /// <param name="value">Starting value of the property</param>
         /// <param name="parent">Under which transform is this property going to be created.</param>
-        /// <param name="WhenChangeValue">What happens when the property changes value.</param>
+        /// <param name="whenValueChange">What happens when the property changes value.</param>
         /// <returns>The property itself.</returns>
-        public InteractablePropertyToggle BuildToggle(string title, bool value, Transform parent, Action<bool> WhenChangeValue)
+        public InteractablePropertyToggle BuildToggle(string title, bool value, Transform parent, Action<bool> whenValueChange)
         {
             InteractablePropertyToggle toggle = Instantiate(toggleProperty, parent).GetComponent<InteractablePropertyToggle>();
-            toggle.Construct(title, value, WhenChangeValue);
+            toggle.Construct(title, value, whenValueChange);
             themeUpdater.UpdateToggle(toggle);
             return toggle;
         }
@@ -78,12 +94,12 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="options">The list of options the dropdown will be filled with.</param>
         /// <param name="value">Starting value of the property</param>
         /// <param name="parent">Under which transform is this property going to be created.</param>
-        /// <param name="WhenChangeValue">What happens when the property changes value.</param>
+        /// <param name="whenValueChange">What happens when the property changes value.</param>
         /// <returns>The property itself.</returns>
-        public InteractablePropertyDropdown BuildDropdown(string title, IList<string> options, int value, Transform parent, Action<int> WhenChangeValue)
+        public InteractablePropertyDropdown BuildDropdown(string title, IList<string> options, int value, Transform parent, Action<int> whenValueChange)
         {
-            InteractablePropertyDropdown dropdown = Instantiate(dropdownProperty, parent).GetComponent<InteractablePropertyDropdown>();
-            dropdown.Construct(title, options, value, WhenChangeValue);
+            InteractablePropertyDropdown dropdown = Instantiate(dropdownProperty, parent);
+            dropdown.Construct(title, options, value, whenValueChange);
             themeUpdater.UpdateDropdown(dropdown);
             return dropdown;
         }
@@ -97,7 +113,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <returns>The property itself.</returns>
         public InteractablePropertyPlainText BuildPlainText(string title, string value, Transform parent)
         {
-            InteractablePropertyPlainText plainText = Instantiate(plainTextProperty, parent).GetComponent<InteractablePropertyPlainText>();
+            InteractablePropertyPlainText plainText = Instantiate(plainTextProperty, parent);
             plainText.Construct(title, value);
             themeUpdater.UpdatePlainText(plainText);
             return plainText;
@@ -110,14 +126,32 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="type">The type of asset to work with.</param>
         /// <param name="value">Starting value of the property</param>
         /// <param name="parent">Under which transform is this property going to be created.</param>
-        /// <param name="WhenChangeValue">The method that runs when the asset is changed.</param>
+        /// <param name="whenValueChange">The method that runs when the asset is changed.</param>
         /// <returns>The property itself.</returns>
-        public InteractablePropertyAssetField BuildAssetField(string title, AssetType type, AssetBase value, Transform parent, Action<AssetBase> WhenChangeValue)
+        public InteractablePropertyAssetField BuildAssetField(string title, AssetType type, AssetBase value, Transform parent, Action<AssetBase> whenValueChange)
         {
-            InteractablePropertyAssetField assetField = Instantiate(assetProperty, parent).GetComponent<InteractablePropertyAssetField>();
-            assetField.Construct(title, type, value, WhenChangeValue);
-            themeUpdater.UpdateSpriteField(assetField);
+            InteractablePropertyAssetField assetField = Instantiate(assetFieldProperty, parent);
+            assetField.Construct(title, type, value, whenValueChange);
+            themeUpdater.UpdateAssetField(assetField);
             return assetField;
+        }
+
+        /// <summary>
+        /// Builds the Slider Property.
+        /// </summary>
+        /// <param name="title">The text of the property title.</param>
+        /// <param name="minValue">Minimum allowed value on the slider.</param>
+        /// <param name="maxValue">Maximum allowed value on the slider.</param>
+        /// <param name="startingValue">Starting value of the slider.</param>
+        /// <param name="parent">The parent under which to instantiate the property.</param>
+        /// <param name="whenValueChange">Method that will run when the slider changes value.</param>
+        /// <returns>The property itself.</returns>
+        public InteractablePropertySlider BuildSlider(string title, float minValue, float maxValue, float startingValue, Transform parent, Action<float> whenValueChange)
+        {
+            InteractablePropertySlider slider = Instantiate(sliderProperty, parent);
+            slider.Construct(title, minValue, maxValue, startingValue, whenValueChange);
+            themeUpdater.UpdateSlider(slider);
+            return slider;
         }
     }
 }

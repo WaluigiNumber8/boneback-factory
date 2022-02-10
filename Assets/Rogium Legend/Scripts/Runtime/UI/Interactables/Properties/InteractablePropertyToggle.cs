@@ -18,25 +18,26 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <summary>
         /// Set the property title and state.
         /// </summary>
-        /// <param name="title">Property Title.</param>
+        /// <param name="titleText">Property Title.</param>
         /// <param name="toggleState">State of the toggle checkbox.</param>
         /// <param name="WhenChangeValue">The method that will run when the toggle changes it's value.</param>
-        public void Construct(string title, bool toggleState, Action<bool> WhenChangeValue)
+        public void Construct(string titleText, bool toggleState, Action<bool> WhenChangeValue)
         {
-            this.title.text = title;
-            this.toggle.isOn = toggleState;
-            this.toggle.onValueChanged.AddListener(delegate { WhenChangeValue(toggle.isOn); });
+            title.text = titleText;
+            title.gameObject.SetActive((titleText != ""));
+            
+            toggle.isOn = toggleState;
+            toggle.onValueChanged.AddListener(delegate { WhenChangeValue(toggle.isOn); });
         }
 
         /// <summary>
         /// Updates UI elements.
         /// </summary>
-        /// <param name="background">The background of the toggle.</param>
+        /// <param name="toggleSpriteSet">The toggle graphics.</param>
         /// <param name="checkmark">The checkmark for activated toggle.</param>
-        public void UpdateTheme(Sprite background, InteractableInfo toggleSpriteSet, Sprite checkmark)
+        public void UpdateTheme(InteractableInfo toggleSpriteSet, Sprite checkmark)
         {
             UIExtensions.ChangeInteractableSprites(toggle, ui.backgroundImage, toggleSpriteSet);
-            ui.backgroundImage.sprite = background;
             ui.checkmarkImage.sprite = checkmark;
         }
         

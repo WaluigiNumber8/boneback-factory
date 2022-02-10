@@ -9,8 +9,8 @@ namespace Rogium.Systems.ThemeSystem
     /// </summary>
     public class ThemeOverseer
     {
-        private ThemeStyleInfo[] themes;
-        private ThemeStyleInfo currentTheme;
+        private ThemeStyleAsset[] themes;
+        private ThemeStyleAsset currentTheme;
 
         #region Singleton Pattern
         private static ThemeOverseer instance;
@@ -31,12 +31,17 @@ namespace Rogium.Systems.ThemeSystem
 
         #endregion
         
-        public void Initialize(ThemeStyleInfo[] themes, int startingTheme)
+        /// <summary>
+        /// Initializes the ThemeOverseer with variables.
+        /// </summary>
+        /// <param name="themes">The array of theme data.</param>
+        /// <param name="startingThemeIndex">The theme to set as default.</param>
+        public void Initialize(ThemeStyleAsset[] themes, int startingThemeIndex)
         {
-            SafetyNet.EnsureIntIsInRange(startingTheme, 0, themes.Length, "Themes to set");
+            SafetyNet.EnsureIntIsInRange(startingThemeIndex, 0, themes.Length, "Themes to set");
             
             this.themes = themes;
-            currentTheme = themes[startingTheme];
+            currentTheme = themes[startingThemeIndex];
         }
 
         /// <summary>
@@ -55,7 +60,7 @@ namespace Rogium.Systems.ThemeSystem
         /// <returns>The element as a sprite.</returns>
         public Sprite GetElement(ThemeElementType element)
         {
-            return currentTheme.elements[(int)element];
+            return currentTheme.Elements[(int)element];
         }
 
         /// <summary>
@@ -65,7 +70,7 @@ namespace Rogium.Systems.ThemeSystem
         /// <returns>Sprite set for an interactable.</returns>
         public InteractableInfo GetInteractable(ThemeInteractableType interactable)
         {
-            return currentTheme.interactables[(int)interactable];
+            return currentTheme.Interactables[(int)interactable];
         }
         
         /// <summary>
@@ -75,7 +80,7 @@ namespace Rogium.Systems.ThemeSystem
         /// <returns>TMPro Font Asset.</returns>
         public FontInfo GetFont(ThemeFontType font)
         {
-            return currentTheme.fonts[(int)font];
+            return currentTheme.Fonts[(int)font];
         }
     }
 }

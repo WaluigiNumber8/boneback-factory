@@ -356,7 +356,7 @@ namespace BoubakProductions.Safety
         /// <typeparam name="T"></typeparam>
         /// <param name="list"></param>
         /// <param name="variableName"></param>
-        public static void EnsureListDoesNotHaveDuplicities<T>(List<T> list, string variableName)
+        public static void EnsureListDoesNotHaveDuplicities<T>(IList<T> list, string variableName)
         {
             int foundDuplicates = list.GetDuplicatesCount();
             if (foundDuplicates > 0)

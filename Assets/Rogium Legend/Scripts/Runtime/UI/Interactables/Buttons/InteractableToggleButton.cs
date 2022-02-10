@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using BoubakProductions.UI.Core;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Rogium.UserInterface.Interactables
@@ -11,6 +12,8 @@ namespace Rogium.UserInterface.Interactables
     {
         [SerializeField] private ButtonType action;
         [SerializeField] private int index = -1;
+        [SerializeField] private UIInfo ui;
+        
         
         private Toggle button;
 
@@ -24,6 +27,23 @@ namespace Rogium.UserInterface.Interactables
             InteractableInput.Handle(action, index);
         }
 
+        /// <summary>
+        /// Updates the toggle buttons theme.
+        /// </summary>
+        /// <param name="toggleButtonSet">The main toggle.</param>
+        public void UpdateTheme(InteractableInfo toggleButtonSet)
+        {
+            UIExtensions.ChangeInteractableSprites(button, ui.backgroundImage, toggleButtonSet);
+            ui.toggleImage.sprite = toggleButtonSet.selected;
+        }
+        
         public int Index { get => index; set => index = value; }
+
+        [System.Serializable]
+        public struct UIInfo
+        {
+            public Image backgroundImage;
+            public Image toggleImage;
+        }
     }
 }

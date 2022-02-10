@@ -19,25 +19,31 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <summary>
         /// Set the property title and state.
         /// </summary>
-        /// <param name="title">Property Title.</param>
+        /// <param name="titleText">Property Title.</param>
         /// /// <param name="options">The list of options the dropdown will be filled with.</param>
-        /// <param name="index">Index of the dropdownOption.</param>
-        /// <param name="OnValueChange">Method that will run when the dropdown value changes.</param>
-        public void Construct(string title, IList<string> options, int index, Action<int> OnValueChange)
+        /// <param name="startingValue">Index of the dropdownOption.</param>
+        /// <param name="whenValueChange">Method that will run when the dropdown value changes.</param>
+        public void Construct(string titleText, IList<string> options, int startingValue, Action<int> whenValueChange)
         {
             FillDropdown(options);
-            this.title.text = title;
-            this.dropdown.value = index;
-            this.dropdown.onValueChanged.AddListener(delegate { OnValueChange(dropdown.value); });
+            title.text = titleText;
+            title.gameObject.SetActive((titleText != ""));
+            
+            dropdown.value = startingValue;
+            dropdown.onValueChanged.AddListener(delegate { whenValueChange(dropdown.value); });
         }
 
         /// <summary>
         /// Updates the dropdown's UI elements.
         /// </summary>
+        /// <param name="dropdownSpriteSet">Dropdown graphics on mouse hover.</param>
+        /// <param name="itemSpriteSet">Selected dropdown value graphics on mouse hover.</param>
         /// <param name="headerBackground">The "closed" state of the dropdown.</param>
         /// <param name="background">The "open" state of the dropdown.</param>
         /// <param name="dropdownArrow">The arrow sprite.</param>
         /// <param name="checkmark">The selected option checkmark sprite.</param>
+        /// <param name="titleFont">The font of the descriptive text.</param>
+        /// <param name="labelFont">The font of the value label text.</param>
         public void UpdateTheme(InteractableInfo dropdownSpriteSet, InteractableInfo itemSpriteSet, Sprite headerBackground, Sprite background, Sprite dropdownArrow, Sprite checkmark, FontInfo titleFont, FontInfo labelFont)
         {
             UIExtensions.ChangeInteractableSprites(dropdown, ui.headerBackgroundImage, dropdownSpriteSet);
@@ -45,6 +51,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             UIExtensions.ChangeFont(title, titleFont);
             UIExtensions.ChangeFont(ui.labelText, labelFont);
             UIExtensions.ChangeFont(ui.toggleLabelText, labelFont);
+            ui.headerBackgroundImage.sprite = headerBackground;
             ui.dropdownArrowImage.sprite = dropdownArrow;
             ui.dropdownImage.sprite = background;
             ui.toggleCheckmarkImage.sprite = checkmark;
@@ -63,15 +70,8 @@ namespace Rogium.UserInterface.Interactables.Properties
             }
         }
 
-        public string Title
-        {
-            get => title.text;
-        }
-
-        public int Property
-        {
-            get => dropdown.value;
-        }
+        public string Title { get => title.text; }
+        public int Property { get => dropdown.value; }
 
         [Serializable]
         public struct UIInfo

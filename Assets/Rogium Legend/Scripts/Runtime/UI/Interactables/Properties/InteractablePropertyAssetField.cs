@@ -24,22 +24,23 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <summary>
         /// Set the property title and state.
         /// </summary>
-        /// <param name="title">Property Title.</param>
+        /// <param name="titleText">Property Title.</param>
         /// <param name="value">Value of property.</param>
         /// <param name="WhenChangeValue">The method that will run, when the AssetField changes value.</param>
-        public void Construct(string title, AssetType type, AssetBase value, Action<AssetBase> WhenChangeValue)
+        public void Construct(string titleText, AssetType type, AssetBase value, Action<AssetBase> WhenChangeValue)
         {
-            this.asset = value;
+            asset = value;
+
+            title.text = titleText;
+            title.gameObject.SetActive((titleText != ""));
+            icon.sprite = asset.Icon;
             
-            this.title.text = title;
-            this.icon.sprite = asset.Icon;
+            assetField.SetType(type);
             
-            this.assetField.SetType(type);
-            if (lastMethod != null) 
-                this.assetField.OnValueChanged -= lastMethod;
+            if (lastMethod != null) assetField.OnValueChanged -= lastMethod;
             
-            this.lastMethod = WhenChangeValue;
-            this.assetField.OnValueChanged += lastMethod;
+            lastMethod = WhenChangeValue;
+            assetField.OnValueChanged += lastMethod;
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using UnityEngine.UI;
+﻿using BoubakProductions.Safety;
+using UnityEngine.UI;
 using TMPro;
 
 namespace BoubakProductions.UI.Core
@@ -16,6 +17,9 @@ namespace BoubakProductions.UI.Core
         /// <param name="spriteData">The set of sprites to update with.</param>
         public static void ChangeInteractableSprites(Selectable interactable, Image interactableImage, InteractableInfo spriteData)
         {
+            SafetyNet.EnsureIsNotNull(interactable, "Button to update.");
+            SafetyNet.EnsureIsNotNull(interactableImage, "Button image");
+            
             interactableImage.sprite = spriteData.normal;
             
             SpriteState ss = interactable.spriteState;
@@ -34,10 +38,11 @@ namespace BoubakProductions.UI.Core
         /// <param name="fontData">The new data to update with.</param>
         public static void ChangeFont(TextMeshProUGUI textAsset, FontInfo fontData)
         {
+            SafetyNet.EnsureIsNotNull(textAsset, "Text whose font will be updated");
+            
             textAsset.font = fontData.font;
             textAsset.color = fontData.color;
             textAsset.fontSize = fontData.size;
         }
-        
     }
 }

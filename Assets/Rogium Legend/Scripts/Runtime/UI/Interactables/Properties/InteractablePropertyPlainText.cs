@@ -16,12 +16,14 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <summary>
         /// Set the property title and state.
         /// </summary>
-        /// <param name="title">Property Title.</param>
+        /// <param name="titleText">Property Title.</param>
         /// <param name="text">Text in the property.</param>
-        public void Construct(string title, string text)
+        public void Construct(string titleText, string text)
         {
-            this.title.text = title;
-            this.plainText.text = text;
+            title.text = titleText;
+            title.gameObject.SetActive((titleText != ""));
+            
+            plainText.text = text;
         }
 
         /// <summary>

@@ -172,6 +172,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   action: 0
   index: -1
+  ui:
+    buttonImage: {fileID: 4187260785273232397}
+    buttonText: {fileID: 661851586290184786}
 --- !u!114 &8174630149615070043
 MonoBehaviour:
   m_ObjectHideFlags: 0

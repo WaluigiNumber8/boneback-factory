@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using BoubakProductions.UI.Core;
+using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Rogium.UserInterface.Interactables
@@ -11,6 +13,7 @@ namespace Rogium.UserInterface.Interactables
     {
         [SerializeField] private ButtonType action;
         [SerializeField] private int index = -1;
+        [SerializeField] private UIInfo ui;
         
         private Button button;
 
@@ -23,7 +26,26 @@ namespace Rogium.UserInterface.Interactables
             InteractableInput.Handle(action, index);
         }
 
+        /// <summary>
+        /// Updates the buttons theme.
+        /// </summary>
+        /// <param name="buttonSet">The main button.</param>
+        /// <param name="buttonFont">The text of the button (if it exists).</param>
+        public void UpdateTheme(InteractableInfo buttonSet, FontInfo buttonFont)
+        {
+            UIExtensions.ChangeInteractableSprites(button, ui.buttonImage, buttonSet);
+            if (ui.buttonText == null) return;
+            UIExtensions.ChangeFont(ui.buttonText, buttonFont);
+        }
+
         public ButtonType Action { get => action; set => action = value; }
         public int Index { get => index; set => index = value; }
+
+        [System.Serializable]
+        public struct UIInfo
+        {
+            public Image buttonImage;
+            public TextMeshProUGUI buttonText;
+        }
     }
 }

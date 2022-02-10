@@ -18,13 +18,16 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <summary>
         /// Set the property title and state.
         /// </summary>
-        /// <param name="title">Property Title.</param>
+        /// <param name="titleText">Property Title.</param>
         /// <param name="inputtedText">Text in the input field.</param>
-        public void Construct(string title, string inputtedText, Action<string> onChangeValue)
+        /// <param name="whenValueChange">Method that runs when value in the field changes.</param>
+        public void Construct(string titleText, string inputtedText, Action<string> whenValueChange)
         {
-            this.title.text = title;
+            title.text = titleText;
+            title.gameObject.SetActive((titleText != ""));
+            
             inputField.text = inputtedText;
-            inputField.onValueChanged.AddListener(delegate { onChangeValue(inputField.text); });
+            inputField.onValueChanged.AddListener(delegate { whenValueChange(inputField.text); });
         }
 
         /// <summary>

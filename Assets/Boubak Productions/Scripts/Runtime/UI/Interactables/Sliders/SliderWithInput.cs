@@ -43,6 +43,10 @@ namespace BoubakProductions.UI.Sliders
             inputField.onEndEdit.RemoveListener(FixValue);
         }
 
+        /// <summary>
+        /// Sets a new value.
+        /// </summary>
+        /// <param name="value">The new value.</param>
         public void ChangeValue(float value)
         {
             ignoreValueChange = true;
