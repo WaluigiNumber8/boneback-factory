@@ -103,7 +103,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 8, y: 7, z: 7, w: 8}
       outline: []
       physicsShape: []
@@ -111,6 +111,90 @@ TextureImporter:
       bones: []
       spriteID: 05c9b5d25d3b21e90800000000000000
       internalID: -7056379937965761456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Asset_Bar_Yellow_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 8, y: 7, z: 7, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8039f63850059cb46a604e55b8a6de8b
+      internalID: -1040492568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Asset_Bar_Yellow_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 8, y: 7, z: 7, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25fdfe5c58a11434784935c2cda4116a
+      internalID: 1334567496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Asset_Bar_Yellow_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 8, y: 7, z: 7, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f26125d8dfc0ca24d9b1b976df5d3764
+      internalID: 974744866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Asset_Bar_Yellow_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 8, y: 7, z: 7, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76deebd5f48364d4abf158e62a115f80
+      internalID: -451069724
       vertices: []
       indices: 
       edges: []
@@ -127,6 +211,10 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       spr_Asset_Bar_Yellow_0: -7056379937965761456
+      spr_Asset_Bar_Yellow_4: -451069724
+      spr_Asset_Bar_Yellow_2: 1334567496
+      spr_Asset_Bar_Yellow_1: -1040492568
+      spr_Asset_Bar_Yellow_3: 974744866
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -383,7 +383,7 @@ MonoBehaviour:
     IsIconRecursive: 1
     BackgroundType: 190
     BackgroundTexture: {fileID: 0}
-    IsBackgroundRecursive: 1
+    IsBackgroundRecursive: 0
     IsHidden: 0
   - Type: 1
     Key: Assets/Tests Unity

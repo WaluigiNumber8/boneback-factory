@@ -1,7 +1,7 @@
 ﻿namespace BoubakProductions.UI
 {
     /// <summary>
-    /// The different theme types for the modal window.
+    /// The different theme types.
     /// </summary>
     public enum ThemeType
     {

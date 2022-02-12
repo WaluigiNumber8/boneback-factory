@@ -9,6 +9,7 @@ using Rogium.Editors.Core;
 using Rogium.Editors.Palettes;
 using Rogium.Editors.Rooms;
 using Rogium.Editors.Sprites;
+using Rogium.Editors.Tiles;
 using Rogium.Systems.Toolbox;
 using Rogium.UserInterface.AssetSelection;
 using Rogium.UserInterface.Containers;
@@ -55,7 +56,7 @@ namespace Rogium.Systems.GASExtension
             GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundGameplayMenus);
             GAS.ObjectSetActive(true, UIMainContainer.GetInstance().BackgroundMain);
             GAS.SwitchMenu(MenuType.MainMenu);
-            GASRogium.ChangeTheme(ThemeSystem.ThemeType.Blue);
+            GASRogium.ChangeTheme(ThemeType.Blue);
         }
 
         private static void ReturnToPackSelectionMenu()
@@ -77,6 +78,7 @@ namespace Rogium.Systems.GASExtension
         #region Open Selection Menus
         public static void OpenSelectionPack()
         {
+            GASRogium.ChangeTheme(ThemeType.Blue);
             GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundMain);
             GAS.ObjectSetActive(true, UIEditorContainer.GetInstance().Background);
             GAS.SwitchMenu(MenuType.AssetSelection);
@@ -86,15 +88,17 @@ namespace Rogium.Systems.GASExtension
 
         public static void OpenSelectionCampaign()
         {
+            GASRogium.ChangeTheme(ThemeType.Red);
             GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundMain);
             GAS.ObjectSetActive(true, UIMainContainer.GetInstance().BackgroundGameplayMenus);
             GAS.SwitchMenu(MenuType.CampaignSelection);
             CampaignAssetSelectionOverseer.Instance.SelectCampaignFirst();
-            GASRogium.ChangeTheme(ThemeSystem.ThemeType.Red);
+            GASRogium.ChangeTheme(ThemeType.Red);
         }
         
         public static void OpenSelectionPalette()
         {
+            GASRogium.ChangeTheme(ThemeType.Blue);
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Palette);
             PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
@@ -111,6 +115,7 @@ namespace Rogium.Systems.GASExtension
         
         public static void OpenSelectionRoom()
         {
+            GASRogium.ChangeTheme(ThemeType.Blue);
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Room);
             PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
@@ -119,6 +124,7 @@ namespace Rogium.Systems.GASExtension
         
         public static void OpenSelectionTile()
         {
+            GASRogium.ChangeTheme(ThemeType.Blue);
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Tile);
             PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
@@ -322,6 +328,14 @@ namespace Rogium.Systems.GASExtension
             GAS.SwitchMenu(MenuType.RoomEditor);
             PackEditorOverseer.Instance.ActivateRoomEditor(assetIndex);
         }
+
+        public static void OpenEditorTile(int assetIndex)
+        {
+            CanvasOverseer.GetInstance().NavigationBar.Hide();
+            GASRogium.ChangeTheme(ThemeType.Yellow);
+            GAS.SwitchMenu(MenuType.PropertyEditor);
+            PackEditorOverseer.Instance.ActivateTileEditor(assetIndex);
+        }
         #endregion
 
         #region Save Editor Changes
@@ -356,6 +370,12 @@ namespace Rogium.Systems.GASExtension
             RoomEditorOverseer.Instance.CompleteEditing();
             OpenSelectionRoom();
         }
+
+        public static void SaveChangesTile()
+        {
+            TileEditorOverseer.Instance.CompleteEditing();
+            OpenSelectionTile();
+        }
         #endregion
 
         #region Cancel Editor Changes
@@ -387,6 +407,12 @@ namespace Rogium.Systems.GASExtension
         {
             ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
             window.OpenAsMessage("Do you really not want to save changes?", ThemeType.Blue,"Yes","No", OpenSelectionRoom, true);
+        }
+
+        public static void CancelChangesTile()
+        {
+            ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
+            window.OpenAsMessage("Do you really not want to save changes?", ThemeType.Yellow,"Yes","No", OpenSelectionTile, true);
         }
         #endregion
 

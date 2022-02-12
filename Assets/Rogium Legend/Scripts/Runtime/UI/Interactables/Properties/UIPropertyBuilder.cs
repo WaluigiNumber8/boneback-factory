@@ -22,8 +22,6 @@ namespace Rogium.UserInterface.Interactables.Properties
         [SerializeField] private InteractablePropertyToggle toggleProperty;
         [SerializeField] private InteractablePropertyDropdown dropdownProperty;
         [SerializeField] private InteractablePropertySlider sliderProperty;
-        
-        private readonly ThemeUpdater themeUpdater = new ThemeUpdater();
 
         /// <summary>
         /// Builds the Header Property.
@@ -35,7 +33,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             InteractablePropertyHeader header = Instantiate(headerProperty, parent);
             header.Construct(headerText);
-            themeUpdater.UpdateHeader(header);
+            ThemeUpdater.UpdateHeader(header);
             return header;
         }
         
@@ -51,7 +49,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             InteractablePropertyInputField inputField = Instantiate(inputFieldProperty, parent);
             inputField.Construct(title, value, whenValueChange);
-            themeUpdater.UpdateInputField(inputField);
+            ThemeUpdater.UpdateInputField(inputField);
             return inputField;
         }
 
@@ -67,7 +65,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             InteractablePropertyInputField inputField = Instantiate(inputFieldAreaProperty, parent);
             inputField.Construct(title, value, whenValueChange);
-            themeUpdater.UpdateInputField(inputField);
+            ThemeUpdater.UpdateInputField(inputField);
             return inputField;
         }
 
@@ -83,7 +81,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             InteractablePropertyToggle toggle = Instantiate(toggleProperty, parent).GetComponent<InteractablePropertyToggle>();
             toggle.Construct(title, value, whenValueChange);
-            themeUpdater.UpdateToggle(toggle);
+            ThemeUpdater.UpdateToggle(toggle);
             return toggle;
         }
 
@@ -100,7 +98,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             InteractablePropertyDropdown dropdown = Instantiate(dropdownProperty, parent);
             dropdown.Construct(title, options, value, whenValueChange);
-            themeUpdater.UpdateDropdown(dropdown);
+            ThemeUpdater.UpdateDropdown(dropdown);
             return dropdown;
         }
 
@@ -115,7 +113,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             InteractablePropertyPlainText plainText = Instantiate(plainTextProperty, parent);
             plainText.Construct(title, value);
-            themeUpdater.UpdatePlainText(plainText);
+            ThemeUpdater.UpdatePlainText(plainText);
             return plainText;
         }
 
@@ -132,7 +130,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             InteractablePropertyAssetField assetField = Instantiate(assetFieldProperty, parent);
             assetField.Construct(title, type, value, whenValueChange);
-            themeUpdater.UpdateAssetField(assetField);
+            ThemeUpdater.UpdateAssetField(assetField);
             return assetField;
         }
 
@@ -150,7 +148,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             InteractablePropertySlider slider = Instantiate(sliderProperty, parent);
             slider.Construct(title, minValue, maxValue, startingValue, whenValueChange);
-            themeUpdater.UpdateSlider(slider);
+            ThemeUpdater.UpdateSlider(slider);
             return slider;
         }
     }

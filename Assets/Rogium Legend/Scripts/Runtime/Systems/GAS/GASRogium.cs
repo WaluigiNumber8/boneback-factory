@@ -1,9 +1,10 @@
 ﻿using System;
 using BoubakProductions.Safety;
+using BoubakProductions.UI;
 using Rogium.Core;
 using Rogium.Systems.ThemeSystem;
-using Rogium.UserInterface;
 using Rogium.UserInterface.AssetSelection;
+using Rogium.UserInterface.Core;
 
 namespace Rogium.Systems.GASExtension
 {

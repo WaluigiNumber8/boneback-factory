@@ -59,11 +59,11 @@ MonoBehaviour:
     disabled: {fileID: -1919005264, guid: 6664004d98649b24390616de32e2c5f5, type: 3}
   fonts:
   - font: {fileID: 11400000, guid: 610b74f9f977953488aee31905a7d7c6, type: 2}
-    color: {r: 0.8509804, g: 0.27058825, b: 0.7529412, a: 1}
+    color: {r: 1, g: 0.3372549, b: 0.5019608, a: 1}
     size: 36
   - font: {fileID: 11400000, guid: 7dcbf3f25fb09e840ab6875dff99cba5, type: 2}
     color: {r: 0.67058825, g: 0.34901962, b: 1, a: 1}
     size: 40
   - font: {fileID: 11400000, guid: cf4879b37d976dc428255f939d628fa9, type: 2}
-    color: {r: 0.8509804, g: 0.27058825, b: 0.7529412, a: 1}
+    color: {r: 1, g: 0.3372549, b: 0.5019608, a: 1}
     size: 65

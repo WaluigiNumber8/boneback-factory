@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using BoubakProductions.Core;
 using BoubakProductions.UI;
 using Rogium.Editors.Tiles;
 
@@ -30,7 +31,7 @@ namespace Rogium.UserInterface.ModalWindowBuilding
         private void OpenWindow(TileAsset tile, Action onConfirmAction, string headerText)
         {
             propertyBuilder.BuildInputField("Title", tile.Title, window.FirstColumnContent, tile.UpdateTitle);
-            propertyBuilder.BuildDropdown("Type", Enum.GetNames(typeof(TileType)).ToList(), 0, window.FirstColumnContent, tile.UpdateTileType);
+            propertyBuilder.BuildDropdown("Type", EnumUtils.ToStringList(typeof(TileType)), 0, window.FirstColumnContent, tile.UpdateTileType);
             propertyBuilder.BuildPlainText("Created by", tile.Author, window.FirstColumnContent);
             propertyBuilder.BuildPlainText("Created on", tile.CreationDate.ToString(), window.FirstColumnContent);
             

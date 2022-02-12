@@ -1,6 +1,7 @@
 ﻿using BoubakProductions.UI.Core;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Rogium.UserInterface.Interactables.Properties
 {
@@ -10,7 +11,8 @@ namespace Rogium.UserInterface.Interactables.Properties
     public class InteractablePropertyHeader : MonoBehaviour, IInteractableProperty
     {
         [SerializeField] private TextMeshProUGUI header;
-
+        [SerializeField] private Image line;
+        
         /// <summary>
         /// Sets the property title and state.
         /// </summary>
@@ -24,9 +26,11 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// Updates the header's UI elements.
         /// </summary>
         /// <param name="headerFont">The font of the header text.</param>
-        public void UpdateTheme(FontInfo headerFont)
+        /// <param name="lineSprite">The line drawn under the header.</param>
+        public void UpdateTheme(FontInfo headerFont, Sprite lineSprite)
         {
             UIExtensions.ChangeFont(header, headerFont);
+            line.sprite = lineSprite;
         }
         
         public string Title { get => header.text; }
