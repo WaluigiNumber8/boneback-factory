@@ -28,9 +28,9 @@ namespace Rogium.UserInterface.ModalWindowBuilding
 
         private void OpenWindow(PaletteAsset palette, Action onConfirmAction, string headerText)
         {
-            propertyBuilder.BuildInputField("Title", palette.Title, window.FirstColumnContent, palette.UpdateTitle);
-            propertyBuilder.BuildPlainText("Created by", palette.Author, window.FirstColumnContent);
-            propertyBuilder.BuildPlainText("Created on", palette.CreationDate.ToString(), window.FirstColumnContent);
+            builder.BuildInputField("Title", palette.Title, window.FirstColumnContent, palette.UpdateTitle);
+            builder.BuildPlainText("Created by", palette.Author, window.FirstColumnContent);
+            builder.BuildPlainText("Created on", palette.CreationDate.ToString(), window.FirstColumnContent);
             
             editedAssetBase = palette;
             window.OpenAsPropertiesColumn1(headerText, ThemeType.Blue, "Done", "Cancel", onConfirmAction, true);

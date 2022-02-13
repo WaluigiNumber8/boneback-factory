@@ -5086,8 +5086,21 @@ MonoBehaviour:
   selectionPicker: {fileID: 1069171461}
   ui:
     windowPrefab: {fileID: 1069171458}
-    acceptButton: {fileID: 6016028724644009571}
-    cancelButton: {fileID: 2560046143282476694}
+    windowBoxImage: {fileID: 2560046142112308197}
+    header:
+      area: {fileID: 2560046143989630937}
+      headerImage: {fileID: 2560046143989630938}
+      text: {fileID: 2560046142852553545}
+    layout:
+      area: {fileID: 2560046141943749550}
+      emptyMessageCard: {fileID: 702964822}
+      emptyMessageList: {fileID: 1788661646}
+    footer:
+      area: {fileID: 2560046142060967454}
+      acceptButtonImage: {fileID: 4801197184214703913}
+      acceptButton: {fileID: 6016028724644009571}
+      cancelButtonImage: {fileID: 2560046143282476695}
+      cancelButton: {fileID: 2560046143282476694}
 --- !u!1 &519312291
 GameObject:
   m_ObjectHideFlags: 0
@@ -15807,16 +15820,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1846797214}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3919c595842f4334857b77bfa1136ba0, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b1e3281c7a8420581dc1a21ecd05826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   defaultThemeIndex: 0
   themes:
-  - {fileID: 11400000, guid: 50b9cc3f7eca3a342b63a7f54a1856f3, type: 2}
-  - {fileID: 11400000, guid: 41ac6348dac37a046ba72be90cbde2d8, type: 2}
-  - {fileID: 11400000, guid: 5eb161af0161a344e84fbaccc522a5e9, type: 2}
-  - {fileID: 11400000, guid: a75ba620e683cb94796a52b2737911d7, type: 2}
-  - {fileID: 11400000, guid: 85244eb17d365d149b9ea09574e1b608, type: 2}
+  - {fileID: 11400000, guid: 9f446412e9a55b54a83920f9c3419bef, type: 2}
+  - {fileID: 11400000, guid: ec6b3ee36de81cb47a70999fd7947499, type: 2}
+  - {fileID: 11400000, guid: 274310af4bd15764f9c0b3c67183bd15, type: 2}
+  - {fileID: 11400000, guid: 157b2a47476f99a44933f6bb024435d8, type: 2}
+  - {fileID: 11400000, guid: fbd5cb20748e91a4b95e456ce90e61c2, type: 2}
 --- !u!1001 &1856902207
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18732,7 +18745,7 @@ GameObject:
   - component: {fileID: 2560046143282476694}
   - component: {fileID: 4519895422927689017}
   m_Layer: 5
-  m_Name: Deny Button
+  m_Name: Cancel Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

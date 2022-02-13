@@ -13,11 +13,11 @@ namespace Rogium.UserInterface.Core
     public class CanvasOverseer : MonoSingleton<CanvasOverseer>
     {
         [SerializeField] private ModalWindow modalWindow;
-        [SerializeField] private AssetPickerWindowController pickerWindow;
+        [SerializeField] private AssetPickerWindow pickerWindow;
         [SerializeField] private NavigationBar navigationBar;
         
         public ModalWindow ModalWindow { get => modalWindow; }
-        public AssetPickerWindowController PickerWindow { get => pickerWindow; }
+        public AssetPickerWindow PickerWindow { get => pickerWindow; }
         public NavigationBar NavigationBar { get => navigationBar; }
     }
 }

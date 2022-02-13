@@ -1,9 +1,11 @@
 using System;
 using BoubakProductions.Core;
 using BoubakProductions.Safety;
-using TMPro;
+using BoubakProductions.UI.Core;
+using Rogium.Systems.ThemeSystem;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace BoubakProductions.UI
 {
@@ -18,10 +20,7 @@ namespace BoubakProductions.UI
         [SerializeField] private string specialButtonDefault = "NONE";
 
         [SerializeField] private UIInfo ui;
-        [SerializeField] private ThemeStyleInfo[] themes;
 
-        private ThemeType currentTheme;
-        
         #region Open As Message
 
         /// <summary>
@@ -257,48 +256,27 @@ namespace BoubakProductions.UI
             ui.area.gameObject.SetActive(true);
             ui.background.gameObject.SetActive(true);
             ui.windowBox.gameObject.SetActive(false);
-            FillWithTheme(theme);
+            ThemeUpdater.UpdateModalWindow(this, theme);
         }
-
-        #region Themes
 
         /// <summary>
         /// Fills the Modal Window with a proper theme.
         /// </summary>
-        /// <param name="themeType">The theme to load.</param>
-        private void FillWithTheme(ThemeType themeType)
+        /// <param name="backgroundSprite">The background of the window.</param>
+        /// <param name="headerSprite">The bar around the header.</param>
+        /// <param name="buttonSet">Buttons of teh window.</param>
+        /// <param name="headerFont">Font of the header text.</param>
+        /// <param name="textFont">Font of text in the content section.</param>
+        public void UpdateTheme(Sprite backgroundSprite, Sprite headerSprite, InteractableInfo buttonSet, FontInfo headerFont, FontInfo textFont)
         {
-            if (themeType == currentTheme && themeType != ThemeType.NoTheme) return;
-
-            ThemeStyleInfo theme = themes[(int)themeType];
-
-            ui.windowBoxImage.sprite = theme.backgroundImage;
-            ui.header.headerImage.sprite = theme.headerImage;
-            FillWithThemeButton(theme, ui.footer.acceptButtonImage, ui.footer.acceptButton);
-            FillWithThemeButton(theme, ui.footer.denyButtonImage, ui.footer.denyButton);
-            FillWithThemeButton(theme, ui.footer.specialButtonImage, ui.footer.specialButton);
-            
-            currentTheme = themeType;
+            UIExtensions.ChangeInteractableSprites(ui.footer.acceptButton, ui.footer.acceptButtonImage, buttonSet);
+            UIExtensions.ChangeInteractableSprites(ui.footer.denyButton, ui.footer.denyButtonImage, buttonSet);
+            UIExtensions.ChangeInteractableSprites(ui.footer.specialButton, ui.footer.specialButtonImage, buttonSet);
+            UIExtensions.ChangeFont(ui.header.text, headerFont);
+            UIExtensions.ChangeFont(ui.layout.message.text, textFont);
+            ui.windowBoxImage.sprite = backgroundSprite;
+            ui.header.headerImage.sprite = headerSprite;
         }
-
-        /// <summary>
-        /// Applies a theme to a button.
-        /// </summary>
-        /// <param name="theme">The theme to apply.</param>
-        /// <param name="buttonImage">Button's Image Component</param>
-        /// <param name="button">The Button itself.</param>
-        private void FillWithThemeButton(ThemeStyleInfo theme, Image buttonImage, Button button)
-        {
-            buttonImage.sprite = theme.buttonNormal;
-            SpriteState ss = new SpriteState();
-            ss.highlightedSprite = theme.buttonHighlight;
-            ss.pressedSprite = theme.buttonPress;
-            ss.selectedSprite = theme.buttonSelected;
-            ss.disabledSprite = theme.buttonDisabled;
-            button.spriteState = ss;
-        }
-
-        #endregion
         
         /// <summary>
         /// Stores actions, that will take place once the Accept button is clicked.
@@ -371,12 +349,12 @@ namespace BoubakProductions.UI
         public struct LayoutInfo
         {
             public Transform area;
-            public BasicLayoutInfo message;
+            public MessageLayoutInfo message;
             public PropertiesLayoutInfo properties;
         }
 
         [Serializable]
-        public struct BasicLayoutInfo
+        public struct MessageLayoutInfo
         {
             public Transform area;
             public TextMeshProUGUI text;
@@ -410,19 +388,5 @@ namespace BoubakProductions.UI
             public Action OnDenyButtonClick;
             public Action OnSpecialButtonClick;
         }
-        
-        
-        [Serializable]
-        public struct ThemeStyleInfo
-        {
-            public Sprite backgroundImage;
-            public Sprite headerImage;
-            public Sprite buttonNormal;
-            public Sprite buttonHighlight;
-            public Sprite buttonPress;
-            public Sprite buttonSelected;
-            public Sprite buttonDisabled;
-        }
-        
     }
 }

@@ -62,12 +62,12 @@ namespace Rogium.Editors.PropertyEditor
         /// </summary>
         private void ReloadTheme()
         {
-            ThemeUpdater.UpdateElement(ui.importantColumnBackground);
-            ThemeUpdater.UpdateButtonCard(ui.saveButton);
-            ThemeUpdater.UpdateButtonCard(ui.cancelButton);
-            ThemeUpdater.UpdateButtonMenu(ui.undoButton);
-            ThemeUpdater.UpdateButtonMenu(ui.redoButton);
-            ThemeUpdater.UpdateButtonMenu(ui.resetButton);
+            ThemeUpdaterRogium.UpdateElement(ui.importantColumnBackground);
+            ThemeUpdaterRogium.UpdateButtonCard(ui.saveButton);
+            ThemeUpdaterRogium.UpdateButtonCard(ui.cancelButton);
+            ThemeUpdaterRogium.UpdateButtonMenu(ui.undoButton);
+            ThemeUpdaterRogium.UpdateButtonMenu(ui.redoButton);
+            ThemeUpdaterRogium.UpdateButtonMenu(ui.resetButton);
         }
         
         [System.Serializable]

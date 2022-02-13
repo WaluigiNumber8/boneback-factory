@@ -2,6 +2,7 @@
 using Rogium.Systems.ThemeSystem;
 using System;
 using System.Collections.Generic;
+using BoubakProductions.UI;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using UnityEngine;
@@ -33,7 +34,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             InteractablePropertyHeader header = Instantiate(headerProperty, parent);
             header.Construct(headerText);
-            ThemeUpdater.UpdateHeader(header);
+            ThemeUpdaterRogium.UpdateHeader(header);
             return header;
         }
         
@@ -49,7 +50,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             InteractablePropertyInputField inputField = Instantiate(inputFieldProperty, parent);
             inputField.Construct(title, value, whenValueChange);
-            ThemeUpdater.UpdateInputField(inputField);
+            ThemeUpdaterRogium.UpdateInputField(inputField);
             return inputField;
         }
 
@@ -65,7 +66,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             InteractablePropertyInputField inputField = Instantiate(inputFieldAreaProperty, parent);
             inputField.Construct(title, value, whenValueChange);
-            ThemeUpdater.UpdateInputField(inputField);
+            ThemeUpdaterRogium.UpdateInputField(inputField);
             return inputField;
         }
 
@@ -81,7 +82,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             InteractablePropertyToggle toggle = Instantiate(toggleProperty, parent).GetComponent<InteractablePropertyToggle>();
             toggle.Construct(title, value, whenValueChange);
-            ThemeUpdater.UpdateToggle(toggle);
+            ThemeUpdaterRogium.UpdateToggle(toggle);
             return toggle;
         }
 
@@ -98,7 +99,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             InteractablePropertyDropdown dropdown = Instantiate(dropdownProperty, parent);
             dropdown.Construct(title, options, value, whenValueChange);
-            ThemeUpdater.UpdateDropdown(dropdown);
+            ThemeUpdaterRogium.UpdateDropdown(dropdown);
             return dropdown;
         }
 
@@ -113,7 +114,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             InteractablePropertyPlainText plainText = Instantiate(plainTextProperty, parent);
             plainText.Construct(title, value);
-            ThemeUpdater.UpdatePlainText(plainText);
+            ThemeUpdaterRogium.UpdatePlainText(plainText);
             return plainText;
         }
 
@@ -125,12 +126,13 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="value">Starting value of the property</param>
         /// <param name="parent">Under which transform is this property going to be created.</param>
         /// <param name="whenValueChange">The method that runs when the asset is changed.</param>
+        /// <param name="theme">The theme for the Asset Picker Window.</param>
         /// <returns>The property itself.</returns>
-        public InteractablePropertyAssetField BuildAssetField(string title, AssetType type, AssetBase value, Transform parent, Action<AssetBase> whenValueChange)
+        public InteractablePropertyAssetField BuildAssetField(string title, AssetType type, AssetBase value, Transform parent, Action<AssetBase> whenValueChange, ThemeType theme = ThemeType.NoTheme)
         {
             InteractablePropertyAssetField assetField = Instantiate(assetFieldProperty, parent);
-            assetField.Construct(title, type, value, whenValueChange);
-            ThemeUpdater.UpdateAssetField(assetField);
+            assetField.Construct(title, type, value, whenValueChange, theme);
+            ThemeUpdaterRogium.UpdateAssetField(assetField);
             return assetField;
         }
 
@@ -148,7 +150,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             InteractablePropertySlider slider = Instantiate(sliderProperty, parent);
             slider.Construct(title, minValue, maxValue, startingValue, whenValueChange);
-            ThemeUpdater.UpdateSlider(slider);
+            ThemeUpdaterRogium.UpdateSlider(slider);
             return slider;
         }
     }

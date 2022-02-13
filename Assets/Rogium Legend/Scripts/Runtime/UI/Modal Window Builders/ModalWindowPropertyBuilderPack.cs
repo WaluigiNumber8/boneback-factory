@@ -28,11 +28,11 @@ namespace Rogium.UserInterface.ModalWindowBuilding
         /// </summary>
         private void OpenWindow(PackInfoAsset currentPackInfo, Action onConfirmButton, string headerText)
         {
-            propertyBuilder.BuildInputField("Name", currentPackInfo.Title, window.FirstColumnContent, currentPackInfo.UpdateTitle);
-            propertyBuilder.BuildInputFieldArea("Description", currentPackInfo.Description, window.FirstColumnContent, currentPackInfo.UpdateDescription);
-            propertyBuilder.BuildAssetField("", AssetType.Sprite, currentPackInfo, window.SecondColumnContent, delegate(AssetBase asset) { editedAssetBase.UpdateIcon(asset.Icon);} );
-            propertyBuilder.BuildPlainText("Created by", currentPackInfo.Author, window.SecondColumnContent);
-            propertyBuilder.BuildPlainText("Created on", currentPackInfo.CreationDate.ToString(), window.SecondColumnContent);
+            builder.BuildInputField("Name", currentPackInfo.Title, window.FirstColumnContent, currentPackInfo.UpdateTitle);
+            builder.BuildInputFieldArea("Description", currentPackInfo.Description, window.FirstColumnContent, currentPackInfo.UpdateDescription);
+            builder.BuildAssetField("", AssetType.Sprite, currentPackInfo, window.SecondColumnContent, delegate(AssetBase asset) { editedAssetBase.UpdateIcon(asset.Icon);} );
+            builder.BuildPlainText("Created by", currentPackInfo.Author, window.SecondColumnContent);
+            builder.BuildPlainText("Created on", currentPackInfo.CreationDate.ToString(), window.SecondColumnContent);
 
             editedAssetBase = currentPackInfo;
             window.OpenAsPropertiesColumn2(headerText, ThemeType.Blue, "Done", "Cancel", onConfirmButton, true);

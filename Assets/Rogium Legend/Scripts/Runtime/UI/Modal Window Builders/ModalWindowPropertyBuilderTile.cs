@@ -30,13 +30,13 @@ namespace Rogium.UserInterface.ModalWindowBuilding
 
         private void OpenWindow(TileAsset tile, Action onConfirmAction, string headerText)
         {
-            propertyBuilder.BuildInputField("Title", tile.Title, window.FirstColumnContent, tile.UpdateTitle);
-            propertyBuilder.BuildDropdown("Type", EnumUtils.ToStringList(typeof(TileType)), 0, window.FirstColumnContent, tile.UpdateTileType);
-            propertyBuilder.BuildPlainText("Created by", tile.Author, window.FirstColumnContent);
-            propertyBuilder.BuildPlainText("Created on", tile.CreationDate.ToString(), window.FirstColumnContent);
+            builder.BuildInputField("Title", tile.Title, window.FirstColumnContent, tile.UpdateTitle);
+            builder.BuildDropdown("Type", EnumUtils.ToStringList(typeof(TileType)), 0, window.FirstColumnContent, tile.UpdateTileType);
+            builder.BuildPlainText("Created by", tile.Author, window.FirstColumnContent);
+            builder.BuildPlainText("Created on", tile.CreationDate.ToString(), window.FirstColumnContent);
             
             editedAssetBase = tile;
-            window.OpenAsPropertiesColumn1(headerText, ThemeType.Blue, "Done", "Cancel", onConfirmAction, true);
+            window.OpenAsPropertiesColumn1(headerText, ThemeType.Yellow, "Done", "Cancel", onConfirmAction, true);
         }
 
         protected override void CreateAsset()

@@ -1,4 +1,5 @@
 ﻿using System;
+using BoubakProductions.UI;
 using BoubakProductions.UI.Core;
 using Rogium.Core;
 using Rogium.Editors.Core;
@@ -25,9 +26,11 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// Set the property title and state.
         /// </summary>
         /// <param name="titleText">Property Title.</param>
+        /// <param name="type">The type of assets to store.</param>
         /// <param name="value">Value of property.</param>
         /// <param name="WhenChangeValue">The method that will run, when the AssetField changes value.</param>
-        public void Construct(string titleText, AssetType type, AssetBase value, Action<AssetBase> WhenChangeValue)
+        /// <param name="theme">The theme of the Asset Picker Window.</param>
+        public void Construct(string titleText, AssetType type, AssetBase value, Action<AssetBase> WhenChangeValue, ThemeType theme = ThemeType.NoTheme)
         {
             asset = value;
 
@@ -36,6 +39,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             icon.sprite = asset.Icon;
             
             assetField.SetType(type);
+            assetField.SetTheme(theme);
             
             if (lastMethod != null) assetField.OnValueChanged -= lastMethod;
             

@@ -124,7 +124,7 @@ namespace Rogium.Systems.GASExtension
         
         public static void OpenSelectionTile()
         {
-            GASRogium.ChangeTheme(ThemeType.Blue);
+            GASRogium.ChangeTheme(ThemeType.Yellow);
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Tile);
             PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
@@ -267,7 +267,7 @@ namespace Rogium.Systems.GASExtension
         {
             ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
             storedIndex = assetIndex;
-            window.OpenAsMessage("Do you really want to remove this tile?", ThemeType.Blue, "Yes", "No", RemoveTileAccept, true);
+            window.OpenAsMessage("Do you really want to remove this tile?", ThemeType.Yellow, "Yes", "No", RemoveTileAccept, true);
         }
         private static void RemoveTileAccept()
         {

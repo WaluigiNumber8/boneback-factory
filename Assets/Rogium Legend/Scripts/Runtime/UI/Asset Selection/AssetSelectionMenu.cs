@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 namespace Rogium.UserInterface.AssetSelection
 {
+    /// <summary>
+    /// Controls the Asset Selection Menu.
+    /// </summary>
     public class AssetSelectionMenu : MonoBehaviour, IAssetSelectionOverseer
     {
         [SerializeField] private AssetSelectionOverseerMono assetSelection;
@@ -100,6 +103,5 @@ namespace Rogium.UserInterface.AssetSelection
             if (infoColumn == null) return;
             infoColumn.ConstructEmpty();
         }
-        
     }
 }

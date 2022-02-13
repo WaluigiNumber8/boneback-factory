@@ -29,9 +29,9 @@ namespace Rogium.UserInterface.ModalWindowBuilding
 
         private void OpenWindow(SpriteAsset sprite, Action onConfirmAction, string headerText)
         {
-            propertyBuilder.BuildInputField("Title", sprite.Title, window.FirstColumnContent, sprite.UpdateTitle);
-            propertyBuilder.BuildPlainText("Created by", sprite.Author, window.FirstColumnContent);
-            propertyBuilder.BuildPlainText("Created on", sprite.CreationDate.ToString(), window.FirstColumnContent);
+            builder.BuildInputField("Title", sprite.Title, window.FirstColumnContent, sprite.UpdateTitle);
+            builder.BuildPlainText("Created by", sprite.Author, window.FirstColumnContent);
+            builder.BuildPlainText("Created on", sprite.CreationDate.ToString(), window.FirstColumnContent);
             
             editedAssetBase = sprite;
             window.OpenAsPropertiesColumn1(headerText, ThemeType.Blue, "Done", "Cancel", onConfirmAction, true);

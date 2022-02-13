@@ -30,9 +30,9 @@ namespace Rogium.UserInterface.ModalWindowBuilding
 
         private void OpenWindow(CampaignAsset asset, Action onConfirmButton, string headerText)
         {
-            propertyBuilder.BuildInputField("Name", asset.Title, window.FirstColumnContent, asset.UpdateTitle);
-            propertyBuilder.BuildPlainText("Created by", asset.Author, window.FirstColumnContent);
-            propertyBuilder.BuildPlainText("Created on", asset.CreationDate.ToString(), window.FirstColumnContent);
+            builder.BuildInputField("Name", asset.Title, window.FirstColumnContent, asset.UpdateTitle);
+            builder.BuildPlainText("Created by", asset.Author, window.FirstColumnContent);
+            builder.BuildPlainText("Created on", asset.CreationDate.ToString(), window.FirstColumnContent);
 
             editedAssetBase = asset;
             window.OpenAsPropertiesColumn1(headerText, ThemeType.Red, "Done", "Cancel", onConfirmButton, true);

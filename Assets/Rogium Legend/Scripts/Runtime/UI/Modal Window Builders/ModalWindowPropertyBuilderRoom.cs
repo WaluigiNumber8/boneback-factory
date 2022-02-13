@@ -38,11 +38,11 @@ namespace Rogium.UserInterface.ModalWindowBuilding
 
             //TODO - Move this to somewhere more logical.
 
-            propertyBuilder.BuildInputField("Title", currentRoomAsset.Title, window.FirstColumnContent, currentRoomAsset.UpdateTitle);
-            propertyBuilder.BuildDropdown("Difficulty", options, currentRoomAsset.DifficultyLevel, window.FirstColumnContent, currentRoomAsset.UpdateDifficultyLevel);
-            propertyBuilder.BuildDropdown("Type", Enum.GetNames(typeof(RoomType)), (int) currentRoomAsset.Type, window.FirstColumnContent, currentRoomAsset.UpdateType);
-            propertyBuilder.BuildPlainText("Created by", currentRoomAsset.Author, window.FirstColumnContent);
-            propertyBuilder.BuildPlainText("Created on", currentRoomAsset.CreationDate.ToString(), window.FirstColumnContent);
+            builder.BuildInputField("Title", currentRoomAsset.Title, window.FirstColumnContent, currentRoomAsset.UpdateTitle);
+            builder.BuildDropdown("Difficulty", options, currentRoomAsset.DifficultyLevel, window.FirstColumnContent, currentRoomAsset.UpdateDifficultyLevel);
+            builder.BuildDropdown("Type", Enum.GetNames(typeof(RoomType)), (int) currentRoomAsset.Type, window.FirstColumnContent, currentRoomAsset.UpdateType);
+            builder.BuildPlainText("Created by", currentRoomAsset.Author, window.FirstColumnContent);
+            builder.BuildPlainText("Created on", currentRoomAsset.CreationDate.ToString(), window.FirstColumnContent);
             
             editedAssetBase = currentRoomAsset;
             window.OpenAsPropertiesColumn1(headerText, ThemeType.Blue, "Done", "Cancel", onConfirmAction, true);

@@ -1,4 +1,5 @@
 ﻿using BoubakProductions.Core;
+using BoubakProductions.UI;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Tiles;
@@ -39,7 +40,7 @@ namespace Rogium.Editors.PropertyEditor
         private void ImportantTile(Transform content, TileAsset asset)
         {
             builder.BuildInputField("", asset.Title, content, asset.UpdateTitle);
-            builder.BuildAssetField("", AssetType.Sprite, asset, content, delegate(AssetBase a) { asset.UpdateIcon(a.Icon);});
+            builder.BuildAssetField("", AssetType.Sprite, asset, content, delegate(AssetBase a) { asset.UpdateIcon(a.Icon);}, ThemeType.Yellow);
         }
 
         private void PropertiesTile(Transform content, TileAsset asset)
