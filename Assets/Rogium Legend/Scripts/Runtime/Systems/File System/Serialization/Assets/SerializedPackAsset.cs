@@ -1,10 +1,11 @@
-﻿using BoubakProductions.Systems.Serialization;
+﻿using BoubakProductions.Systems.FileSystem.Serialization;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Palettes;
 using Rogium.Editors.Sprites;
 using Rogium.Editors.Rooms;
 using Rogium.Editors.Tiles;
 using System.Collections.Generic;
+using Rogium.Editors.Core;
 
 namespace Rogium.ExternalStorage.Serialization
 {
@@ -12,7 +13,7 @@ namespace Rogium.ExternalStorage.Serialization
     /// Serialized form of the PackAsset Class, ready for saving.
     /// </summary>
     [System.Serializable]
-    public class SerializedPackAsset
+    public class SerializedPackAsset : ISerializedObject<PackAsset>
     {
         private SerializedPackInfoAsset packInfo;
         private SerializedList<PaletteAsset, SerializedPaletteAsset> palettes;
@@ -22,25 +23,21 @@ namespace Rogium.ExternalStorage.Serialization
 
         public SerializedPackAsset(PackAsset asset)
         {
-            this.packInfo = new SerializedPackInfoAsset(asset.PackInfo);
-            this.palettes = new SerializedList<PaletteAsset, SerializedPaletteAsset>(asset.Palettes, palette => new SerializedPaletteAsset(palette));
-            this.sprites = new SerializedList<SpriteAsset, SerializedSpriteAsset>(asset.Sprites, sprite => new SerializedSpriteAsset(sprite));
-            this.tiles = new SerializedList<TileAsset, SerializedTileAsset>(asset.Tiles, tile => new SerializedTileAsset(tile));
-            this.rooms = new SerializedList<RoomAsset, SerializedRoomAsset>(asset.Rooms, room => new SerializedRoomAsset(room));
+            packInfo = new SerializedPackInfoAsset(asset.PackInfo);
+            palettes = new SerializedList<PaletteAsset, SerializedPaletteAsset>(asset.Palettes, p => new SerializedPaletteAsset(p), p => p.Deserialize());
+            sprites = new SerializedList<SpriteAsset, SerializedSpriteAsset>(asset.Sprites, sprite => new SerializedSpriteAsset(sprite), s => s.Deserialize());
+            tiles = new SerializedList<TileAsset, SerializedTileAsset>(asset.Tiles, t => new SerializedTileAsset(t), t => t.Deserialize());
+            rooms = new SerializedList<RoomAsset, SerializedRoomAsset>(asset.Rooms, r => new SerializedRoomAsset(r), r => r.Deserialize());
         }
 
-        /// <summary>
-        /// Deserializes the Pack, so that it can be red by Unity.
-        /// </summary>
-        /// <returns>The Pack Asset in a readable form.</returns>
         public PackAsset Deserialize()
         {
-            PackInfoAsset deserializedInfo = this.packInfo.Deserialize();
+            PackInfoAsset deserializedInfo = packInfo.Deserialize();
             
-            IList<PaletteAsset> deserializedPalettes = palettes.Deserialize(palette => palette.Deserialize());
-            IList<SpriteAsset> deserializedSprites = sprites.Deserialize(sprite => sprite.Deserialize());
-            IList<TileAsset> deserializedTiles = tiles.Deserialize(tile => tile.Deserialize());
-            IList<RoomAsset> deserializedRooms = rooms.Deserialize(room => room.Deserialize());
+            IList<PaletteAsset> deserializedPalettes = palettes.Deserialize();
+            IList<SpriteAsset> deserializedSprites = sprites.Deserialize();
+            IList<TileAsset> deserializedTiles = tiles.Deserialize();
+            IList<RoomAsset> deserializedRooms = rooms.Deserialize();
             
             return new PackAsset(deserializedInfo, deserializedPalettes, deserializedSprites, deserializedTiles,
                                 deserializedRooms);

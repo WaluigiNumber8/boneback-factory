@@ -1,35 +1,35 @@
-﻿using BoubakProductions.Systems.Serialization;
+﻿using BoubakProductions.Systems.FileSystem.Serialization;
 using Rogium.Editors.Tiles;
 using System;
 
 namespace Rogium.ExternalStorage.Serialization
 {
     [System.Serializable]
-    public class SerializedTileAsset : SerializedAssetBase
+    public class SerializedTileAsset : SerializedAssetBase<TileAsset>
     {
         public readonly int tileType;
         public readonly SerializedColor color;
 
         public SerializedTileAsset(TileAsset asset) : base(asset)
         {
-            this.tileType = (int)asset.Type;
-            this.icon = new SerializedSprite(asset.Tile.sprite);
-            this.color = new SerializedColor(asset.Tile.color);
+            tileType = (int)asset.Type;
+            icon = new SerializedSprite(asset.Tile.sprite);
+            color = new SerializedColor(asset.Tile.color);
         }
 
         /// <summary>
         /// Turns the Tile Asset into a Unity readable format.
         /// </summary>
         /// <returns></returns>
-        public TileAsset Deserialize()
+        public override TileAsset Deserialize()
         {
-            return new TileAsset(this.id,
-                                 this.title,
-                                 this.icon.Deserialize(),
-                                 this.author,
-                                 (TileType)this.tileType,
-                                 this.color.Deserialize(),
-                                 DateTime.Parse(this.creationDate));
+            return new TileAsset(id,
+                                 title,
+                                 icon.Deserialize(),
+                                 author,
+                                 (TileType)tileType,
+                                 color.Deserialize(),
+                                 DateTime.Parse(creationDate));
         }
     }
 }

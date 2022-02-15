@@ -1,5 +1,5 @@
 ﻿using System;
-using BoubakProductions.Systems.Serialization;
+using BoubakProductions.Systems.FileSystem.Serialization;
 using Rogium.Editors.Palettes;
 using UnityEngine;
 
@@ -8,28 +8,28 @@ namespace Rogium.ExternalStorage.Serialization
     /// <summary>
     /// Serialized form of the <see cref="PaletteAsset"/>.
     /// </summary>
-    [System.Serializable]
-    public class SerializedPaletteAsset : SerializedAssetBase
+    [Serializable]
+    public class SerializedPaletteAsset : SerializedAssetBase<PaletteAsset>
     {
         public readonly SerializedArray<Color, SerializedColor> colors;
 
         public SerializedPaletteAsset(PaletteAsset asset) : base(asset)
         {
-            this.colors = new SerializedArray<Color, SerializedColor>(asset.Colors, color => new SerializedColor(color));
+            colors = new SerializedArray<Color, SerializedColor>(asset.Colors, c => new SerializedColor(c), c => c.Deserialize());
         }
 
         /// <summary>
         /// Deserializes the asset into a Unity readable format.
         /// </summary>
         /// <returns>A deserialized asset.</returns>
-        public PaletteAsset Deserialize()
+        public override PaletteAsset Deserialize()
         {
-            Color[] deserializedColors = colors.Deserialize(color => color.Deserialize());
+            Color[] deserializedColors = colors.Deserialize();
 
-            return new PaletteAsset(this.id,
-                                    this.title,
-                                    this.icon.Deserialize(),
-                                    this.author,
+            return new PaletteAsset(id,
+                                    title,
+                                    icon.Deserialize(),
+                                    author,
                                     deserializedColors,
                                     DateTime.Parse(creationDate));
         }

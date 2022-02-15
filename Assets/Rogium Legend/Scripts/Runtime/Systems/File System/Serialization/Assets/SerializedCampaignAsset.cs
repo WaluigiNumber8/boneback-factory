@@ -1,6 +1,7 @@
 ﻿using Rogium.Editors.Campaign;
 using System;
 using System.Collections.Generic;
+using Rogium.Editors.Packs;
 
 namespace Rogium.ExternalStorage.Serialization
 {
@@ -8,7 +9,7 @@ namespace Rogium.ExternalStorage.Serialization
     /// The Serialized form of the Campaign Asset.
     /// </summary>
     [System.Serializable]
-    public class SerializedCampaignAsset : SerializedAssetBase
+    public class SerializedCampaignAsset : SerializedAssetBase<CampaignAsset>
     {
         public readonly SerializedPackAsset dataPack;
         public readonly IList<string> packReferences;
@@ -23,15 +24,15 @@ namespace Rogium.ExternalStorage.Serialization
         /// Deserialize this Campaign.
         /// </summary>
         /// <returns>The deserialized form of the campaign.</returns>
-        public CampaignAsset Deserialize()
+        public override CampaignAsset Deserialize()
         {
-            return new CampaignAsset(this.id,
-                                     this.title,
-                                     this.icon.Deserialize(),
-                                     this.author,
-                                     DateTime.Parse(this.creationDate),
-                                     this.dataPack.Deserialize(),
-                                     this.packReferences);
+            return new CampaignAsset(id,
+                                     title,
+                                     icon.Deserialize(),
+                                     author,
+                                     DateTime.Parse(creationDate),
+                                     dataPack.Deserialize(),
+                                     packReferences);
         }
         
     }

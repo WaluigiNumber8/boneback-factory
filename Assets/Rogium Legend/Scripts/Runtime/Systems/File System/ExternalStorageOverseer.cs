@@ -1,8 +1,9 @@
 ﻿using Rogium.Editors.Packs;
 using System.Collections.Generic;
 using System.IO;
+using BoubakProductions.Systems.FileSystem;
 using Rogium.Editors.Campaign;
-using UnityEngine;
+using Rogium.ExternalStorage.Serialization;
 
 namespace Rogium.ExternalStorage
 {
@@ -51,7 +52,7 @@ namespace Rogium.ExternalStorage
         public void Save(PackAsset pack)
         {
             string savePath = Path.Combine(packData.Path, $"{pack.PackInfo.Title}.{packData.Extension}");
-            FileSystem.SavePack(savePath, pack);
+            FileSystem.Save(savePath, pack, packToSave => new SerializedPackAsset(packToSave));
         }
         /// <summary>
         /// Wrapper for saving a campaign to external storage.
@@ -60,7 +61,7 @@ namespace Rogium.ExternalStorage
         public void Save(CampaignAsset campaign)
         {
             string savePath = Path.Combine(campaignData.Path, $"{campaign.Title}.{campaignData.Extension}");
-            FileSystem.SaveCampaign(savePath, campaign);
+            FileSystem.Save(savePath, campaign, campaignToSave => new SerializedCampaignAsset(campaignToSave));
         }
 
         /// <summary>
@@ -69,7 +70,7 @@ namespace Rogium.ExternalStorage
         /// <returns></returns>
         public IList<PackAsset> LoadAllPacks()
         {
-            return FileSystem.LoadAllPacks(packData.Path);
+            return FileSystem.LoadAll<PackAsset, SerializedPackAsset>(packData.Path, packData.Extension);
         }
         /// <summary>
         /// Wrapper for loading all campaigns from external storage.
@@ -77,7 +78,7 @@ namespace Rogium.ExternalStorage
         /// <returns></returns>
         public IList<CampaignAsset> LoadAllCampaigns()
         {
-            return FileSystem.LoadAllCampaigns(campaignData.Path, campaignData.Extension);
+            return FileSystem.LoadAll<CampaignAsset, SerializedCampaignAsset>(campaignData.Path, campaignData.Extension);
         }
 
         /// <summary>

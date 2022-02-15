@@ -8,7 +8,7 @@ namespace Rogium.ExternalStorage.Serialization
     /// Serialized form of the <see cref="RoomAsset"/>.
     /// </summary>
     [System.Serializable]
-    public class SerializedRoomAsset : SerializedAssetBase
+    public class SerializedRoomAsset : SerializedAssetBase<RoomAsset>
     {
         public readonly int difficultyLevel;
         public readonly int type;
@@ -25,16 +25,16 @@ namespace Rogium.ExternalStorage.Serialization
         /// Deserializes the asset into a Unity readable format.
         /// </summary>
         /// <returns>A deserialized asset.</returns>
-        public RoomAsset Deserialize()
+        public override RoomAsset Deserialize()
         {
-            return new RoomAsset(this.id,
-                                 this.title,
-                                 this.icon.Deserialize(),
-                                 this.author,
-                                 this.difficultyLevel,
+            return new RoomAsset(id,
+                                 title,
+                                 icon.Deserialize(),
+                                 author,
+                                 difficultyLevel,
                                  (RoomType)type,
-                                 this.tileGrid.Deserialize(() => EditorDefaults.EmptyAssetID),
-                                 DateTime.Parse(this.creationDate));
+                                 tileGrid.Deserialize(() => EditorDefaults.EmptyAssetID),
+                                 DateTime.Parse(creationDate));
         }
     }
 }
