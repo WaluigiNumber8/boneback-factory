@@ -113,18 +113,18 @@ namespace Rogium.UserInterface.AssetSelection
         /// <summary>
         /// Spawns the clickable UI Card itself.
         /// </summary>
-        /// <param name="id">Position on the list it spawns the card on.</param>
+        /// <param name="index">Position on the list it spawns the card on.</param>
         /// <param name="type">The type of asset this card will be.</param>
         /// <param name="layout">Which layout is used.</param>
         /// <param name="asset">What kind of data will be used.</param>
         /// <param name="assetList">The list to take the data from.</param>
-        private void SpawnCard(int id, AssetType type, SelectionMenuLayout layout, SelectionMenuAsset asset, IList<AssetBase> assetList)
+        private void SpawnCard(int index, AssetType type, SelectionMenuLayout layout, SelectionMenuAsset asset, IList<AssetBase> assetList)
         {
             AssetHolderBase holder = Object.Instantiate(asset.assetObject, layout.Content);
             if (layout.IconPositionType == IconPositionType.Global)
-                holder.Construct(type, id, assetList[id], layout.IconPosition);
+                holder.Construct(type, index, assetList[index], layout.IconPosition);
             else
-                holder.Construct(type, id, assetList[id]);
+                holder.Construct(type, index, assetList[index]);
             OnSpawnCard?.Invoke(holder);
             assets.Add(holder);
         }

@@ -34,7 +34,7 @@ namespace Rogium.UserInterface.ModalWindowBuilding
             builder.BuildPlainText("Created on", sprite.CreationDate.ToString(), window.FirstColumnContent);
             
             editedAssetBase = sprite;
-            window.OpenAsPropertiesColumn1(headerText, ThemeType.Blue, "Done", "Cancel", onConfirmAction, true);
+            window.OpenAsPropertiesColumn1(headerText, ThemeType.Pink, "Done", "Cancel", onConfirmAction, true);
         }
         
         protected override void CreateAsset()

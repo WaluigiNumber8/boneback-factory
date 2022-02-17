@@ -107,6 +107,7 @@ namespace Rogium.Systems.GASExtension
         
         public static void OpenSelectionSprite()
         {
+            GASRogium.ChangeTheme(ThemeType.Pink);
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Sprite);
             PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
