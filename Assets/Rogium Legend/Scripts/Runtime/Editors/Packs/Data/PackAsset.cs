@@ -1,10 +1,11 @@
+using System.Collections.Generic;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Palettes;
 using Rogium.Editors.Rooms;
-using Rogium.Editors.Tiles;
 using Rogium.Editors.Sprites;
-using System.Collections.Generic;
+using Rogium.Editors.Tiles;
+using Rogium.ExternalStorage;
 
 namespace Rogium.Editors.Packs
 {
@@ -19,41 +20,43 @@ namespace Rogium.Editors.Packs
         private AssetList<RoomAsset> rooms;
         private AssetList<TileAsset> tiles;
 
+        private ExternalStorageOverseer ex = ExternalStorageOverseer.Instance;
+        
         #region Constructors
         public PackAsset()
         {
             
-            this.packInfo = new PackInfoAsset(EditorDefaults.PackTitle,
-                                              EditorDefaults.PackIcon,
-                                              EditorDefaults.Author,
-                                              EditorDefaults.PackDescription);
+            packInfo = new PackInfoAsset(EditorDefaults.PackTitle,
+                                         EditorDefaults.PackIcon,
+                                         EditorDefaults.Author,
+                                         EditorDefaults.PackDescription);
            
             GatherValuesFromInfo(packInfo);
-            this.palettes = new AssetList<PaletteAsset>(this);
-            this.sprites = new AssetList<SpriteAsset>(this);
-            this.rooms = new AssetList<RoomAsset>(this);
-            this.tiles = new AssetList<TileAsset>(this);
+            palettes = new AssetList<PaletteAsset>(ex.Palettes.Save, ex.Palettes.UpdateTitle, ex.Palettes.Delete);
+            sprites = new AssetList<SpriteAsset>(ex.Sprites.Save, ex.Sprites.UpdateTitle, ex.Sprites.Delete);
+            rooms = new AssetList<RoomAsset>(ex.Rooms.Save, ex.Rooms.UpdateTitle, ex.Rooms.Delete);
+            tiles = new AssetList<TileAsset>(ex.Tiles.Save, ex.Tiles.UpdateTitle, ex.Tiles.Delete);
         }
         public PackAsset(PackInfoAsset packInfo)
         {
             this.packInfo = new PackInfoAsset(packInfo);
             
             GatherValuesFromInfo(packInfo);
-            this.palettes = new AssetList<PaletteAsset>(this);
-            this.sprites = new AssetList<SpriteAsset>(this);
-            this.rooms = new AssetList<RoomAsset>(this);
-            this.tiles = new AssetList<TileAsset>(this);
+            palettes = new AssetList<PaletteAsset>(ex.Palettes.Save, ex.Palettes.UpdateTitle, ex.Palettes.Delete);
+            sprites = new AssetList<SpriteAsset>(ex.Sprites.Save, ex.Sprites.UpdateTitle, ex.Sprites.Delete);
+            rooms = new AssetList<RoomAsset>(ex.Rooms.Save, ex.Rooms.UpdateTitle, ex.Rooms.Delete);
+            tiles = new AssetList<TileAsset>(ex.Tiles.Save, ex.Tiles.UpdateTitle, ex.Tiles.Delete);
         }
         
         public PackAsset(PackAsset asset)
         {
-            this.packInfo = new PackInfoAsset(asset.packInfo);
+            packInfo = new PackInfoAsset(asset.packInfo);
             
             GatherValuesFromInfo(packInfo);
-            this.palettes = new AssetList<PaletteAsset>(this, asset.Palettes);
-            this.sprites = new AssetList<SpriteAsset>(this, asset.Sprites);
-            this.rooms = new AssetList<RoomAsset>(this, asset.Rooms);
-            this.tiles = new AssetList<TileAsset>(this, asset.Tiles);
+            palettes = new AssetList<PaletteAsset>(ex.Palettes.Save, ex.Palettes.UpdateTitle, ex.Palettes.Delete, asset.Palettes);
+            sprites = new AssetList<SpriteAsset>(ex.Sprites.Save, ex.Sprites.UpdateTitle, ex.Sprites.Delete, asset.Sprites);
+            rooms = new AssetList<RoomAsset>(ex.Rooms.Save, ex.Rooms.UpdateTitle, ex.Rooms.Delete, asset.Rooms);
+            tiles = new AssetList<TileAsset>(ex.Tiles.Save, ex.Tiles.UpdateTitle, ex.Tiles.Delete, asset.Tiles);
         }
         public PackAsset(PackInfoAsset packInfo, IList<PaletteAsset> palettes, IList<SpriteAsset> sprites,
                         IList<TileAsset> tiles, IList<RoomAsset> rooms)
@@ -63,20 +66,20 @@ namespace Rogium.Editors.Packs
             //TODO Add all asset list generation in here.
             
             GatherValuesFromInfo(packInfo);
-            this.palettes = new AssetList<PaletteAsset>(this, palettes);
-            this.sprites = new AssetList<SpriteAsset>(this, sprites);
-            this.rooms = new AssetList<RoomAsset>(this, rooms);
-            this.tiles = new AssetList<TileAsset>(this, tiles);
+            this.palettes = new AssetList<PaletteAsset>(ex.Palettes.Save, ex.Palettes.UpdateTitle, ex.Palettes.Delete, palettes);
+            this.sprites = new AssetList<SpriteAsset>(ex.Sprites.Save, ex.Sprites.UpdateTitle, ex.Sprites.Delete, sprites);
+            this.rooms = new AssetList<RoomAsset>(ex.Rooms.Save, ex.Rooms.UpdateTitle, ex.Rooms.Delete, rooms);
+            this.tiles = new AssetList<TileAsset>(ex.Tiles.Save, ex.Tiles.UpdateTitle, ex.Tiles.Delete, tiles);
         }
         #endregion
 
         private void GatherValuesFromInfo(PackInfoAsset info)
         {
-            this.id = info.ID;
-            this.title = info.Title;
-            this.icon = info.Icon;
-            this.author = info.Author;
-            this.creationDate = info.CreationDate;
+            id = info.ID;
+            title = info.Title;
+            icon = info.Icon;
+            author = info.Author;
+            creationDate = info.CreationDate;
         }
 
         #region Update Values

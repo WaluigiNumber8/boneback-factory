@@ -26,7 +26,7 @@ public class test_Pack_Save_and_Load
         Sprite packIcon = Sprite.Create(new Texture2D(16, 16), new Rect(0, 0, 16, 16), new Vector2(0.5f, 0.5f));
         packInfo = new PackInfoAsset(packName, packIcon, packAuthor, packDescription);
 
-        path = Path.Combine(ExternalStorageOverseer.Instance.PackPath, $"{this.packInfo.Title}.{ExternalStorageOverseer.Instance.PackExtension}");
+        path = Path.Combine(Application.persistentDataPath, "Packs", $"{this.packInfo.Title}.bumpack");
     }
 
     [TearDown]

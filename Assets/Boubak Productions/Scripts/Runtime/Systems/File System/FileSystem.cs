@@ -12,6 +12,26 @@ namespace BoubakProductions.Systems.FileSystem
     /// </summary>
     public static class FileSystem
     {
+
+        /// <summary>
+        /// If it doesn't exist, creates a directory at specific path.
+        /// </summary>
+        /// <param name="path">The location to create the directory in.</param>
+        /// <param name="name">The name of the directory.</param>
+        public static void CreateDirectory(string path, string name)
+        {
+            CreateDirectory(Path.Combine(path, name));
+        }
+        /// <summary>
+        /// If it doesn't exist, creates a directory at specific path.
+        /// </summary>
+        /// <param name="path">The location to create the directory in. (including directory title)</param>
+        public static void CreateDirectory(string path)
+        {
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+        }
+        
         /// <summary>
         /// Save an asset to external storage.
         /// </summary>
@@ -20,7 +40,7 @@ namespace BoubakProductions.Systems.FileSystem
         /// <param name="newSerializedObject">A method that will create the create the serialized form of the object.</param>
         /// <typeparam name="T">The object to serialize.</typeparam>
         /// <typeparam name="TS">Serialized form of the object.</typeparam>
-        public static void Save<T,TS>(string path, T data, Func<T,TS> newSerializedObject)
+        public static void SaveFile<T,TS>(string path, T data, Func<T,TS> newSerializedObject)
         {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Create);
@@ -35,34 +55,12 @@ namespace BoubakProductions.Systems.FileSystem
         /// </summary>
         /// <param name="path">Destination of the data.</param>
         /// <param name="typeExtension">The extension of the files that will be read.</param>
+        /// <param name="deepSearch">If enabled, will also search all subdirectories.</param>
         /// <typeparam name="T">Unity readable Asset.</typeparam>
         /// <typeparam name="TS">Serialized form of the Asset.</typeparam>
-        public static IList<T> LoadAll<T, TS>(string path, string typeExtension) where TS : ISerializedObject<T>
+        public static IList<T> LoadAllFiles<T, TS>(string path, string typeExtension, bool deepSearch = false) where TS : ISerializedObject<T>
         {
-            SafetyNetIO.EnsureDirectoryExists(path);
-
-            IList<T> dataList = new List<T>();
-
-            BinaryFormatter formatter = new BinaryFormatter();
-            DirectoryInfo directory = new DirectoryInfo(path);
-            FileInfo[] files = directory.GetFiles();
-
-            foreach (FileInfo file in files)
-            {
-                //If file does not have the type we want, skip it.
-                string extension = Path.GetExtension(file.Name).Replace(".", "");
-                if (extension != typeExtension) continue;
-                
-                string filePath = Path.Combine(path, file.Name);
-                FileStream stream = new FileStream(filePath, FileMode.Open);
-                
-                TS asset = (TS)formatter.Deserialize(stream);
-                dataList.Add(asset.Deserialize());
-
-                stream.Close();
-            } 
-
-            return dataList;
+            return new FileLoader<T, TS>().LoadAllFiles(path, typeExtension, deepSearch);
         }
 
         /// <summary>
@@ -76,13 +74,36 @@ namespace BoubakProductions.Systems.FileSystem
         }
         
         /// <summary>
-        /// Removes a directory under a specific path.
+        /// Removes a directory and all it's contents under a specific path.
         /// </summary>
         /// <param name="path">The path to the directory.</param>
         public static void DeleteDirectory(string path)
         {
             SafetyNetIO.EnsureDirectoryExists(path);
-            Directory.Delete(path);
+            Directory.Delete(path, true);
         }
+
+        /// <summary>
+        /// Renames a specific file.
+        /// </summary>
+        /// <param name="oldPath">The full path of the old file.</param>
+        /// <param name="newPath">The full path of the new file.</param>
+        public static void RenameFile(string oldPath, string newPath)
+        {
+            SafetyNetIO.EnsureFileExists(oldPath);
+            File.Move(oldPath, newPath);
+        }
+        
+        /// <summary>
+        /// Renames a specific directory.
+        /// </summary>
+        /// <param name="oldPath">The full path of the old directory.</param>
+        /// <param name="newPath">The full path of the new directory.</param>
+        public static void RenameDirectory(string oldPath, string newPath)
+        {
+            SafetyNetIO.EnsureDirectoryExists(oldPath);
+            Directory.Move(oldPath, newPath);
+        }
+        
     }
 }

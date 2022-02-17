@@ -46,7 +46,7 @@ namespace Rogium.Editors.Core
         public void ReloadFromExternalStorage()
         {
             packs.ReplaceAll(ExternalStorageOverseer.Instance.LoadAllPacks());
-            campaigns.ReplaceAll(ExternalStorageOverseer.Instance.LoadAllCampaigns());
+            campaigns.ReplaceAll(ExternalStorageOverseer.Instance.Campaigns.LoadAll());
         }
 
         #region Packs
@@ -69,8 +69,6 @@ namespace Rogium.Editors.Core
         /// <param name="originalAuthor">Pack's Author before updating.</param>
         public void UpdatePack(PackAsset pack, int index, string originalTitle, string originalAuthor)
         {
-            if (packs.TryFinding(originalTitle, originalAuthor) != null)
-                ExternalStorageOverseer.Instance.DeletePack(originalTitle);
             packs.Update(index, pack);
         }
         
@@ -99,6 +97,7 @@ namespace Rogium.Editors.Core
         {
             SafetyNet.EnsureListIsNotNullOrEmpty(packs, "Pack Library");
             SafetyNet.EnsureIntIsInRange(packIndex, 0, packs.Count, "packIndex for activating Pack Editor");
+            packs[packIndex] = ExternalStorageOverseer.Instance.LoadPack(packs[packIndex]);
             PackEditorOverseer.Instance.AssignAsset(packs[packIndex], packIndex);
         }
         #endregion
@@ -132,8 +131,6 @@ namespace Rogium.Editors.Core
         /// <param name="originalAuthor">Campaign's author before updating.</param>
         public void UpdateCampaign(CampaignAsset campaign, int index, string originalTitle, string originalAuthor)
         {
-            if (campaigns.TryFinding(originalTitle, originalAuthor) != null)
-                ExternalStorageOverseer.Instance.DeleteCampaign(originalTitle);
             campaigns.Update(index, campaign);
         }
         

@@ -14,22 +14,23 @@ namespace Rogium.Editors.Core
     public class AssetList<T> : IList<T> where T : AssetBase
     {
         private List<T> list;
-        private readonly PackAsset pack;
+        private readonly Action<T> saveToExternalStorage;
+        private readonly Action<T> updateOnExternalStorage;
+        private readonly Action<T> deleteFromExternalStorage;
 
         #region Constructors
-        public AssetList(PackAsset pack)
+        public AssetList(Action<T> saveToExternalStorage, Action<T> updateOnExternalStorage, Action<T> deleteFromExternalStorage) : this(saveToExternalStorage, updateOnExternalStorage, deleteFromExternalStorage, new List<T>()) { }
+        public AssetList(Action<T> saveToExternalStorage, Action<T> updateOnExternalStorage, Action<T> deleteFromExternalStorage, IList<T> original)
         {
-            SafetyNet.EnsureIsNotNull(pack, "Pack I belong to");
-
-            list = new List<T>();
-            this.pack = pack;
-        }
-        public AssetList(PackAsset pack, IList<T> original)
-        {
-            SafetyNet.EnsureIsNotNull(pack, "Pack I belong to");
+            SafetyNet.EnsureIsNotNull(original, "List to use/copy");
+            SafetyNet.EnsureIsNotNull(saveToExternalStorage, "Saving Method");
+            SafetyNet.EnsureIsNotNull(updateOnExternalStorage, "Updating Method");
+            SafetyNet.EnsureIsNotNull(deleteFromExternalStorage, "Deleting Method");
 
             list = new List<T>(original);
-            this.pack = pack;
+            this.saveToExternalStorage = saveToExternalStorage;
+            this.updateOnExternalStorage = updateOnExternalStorage;
+            this.deleteFromExternalStorage = deleteFromExternalStorage;
         }
 
         #endregion
@@ -45,7 +46,7 @@ namespace Rogium.Editors.Core
                 throw new FoundDuplicationException("You are trying to create an asset, that already exists. Cannot have the same title and author!");
             
             list.Add(asset);
-            ExternalStorageOverseer.Instance.Save(pack);
+            saveToExternalStorage.Invoke(asset);
         }
 
         /// <summary>
@@ -73,13 +74,14 @@ namespace Rogium.Editors.Core
                 throw new FoundDuplicationException("You are trying to update an asset with a name and author that is already taken. Cannot have the same title and author!");
             list[index] = asset;
             
-            ExternalStorageOverseer.Instance.Save(pack);
+            updateOnExternalStorage.Invoke(asset);
+            saveToExternalStorage.Invoke(asset);
         }
         
         /// <summary>
-        /// Remove pack from the library with a specific name.
+        /// Remove an asset from the library with a specific name.
         /// </summary>
-        /// <param name="name">the name of the pack to remove.</param>
+        /// <param name="name">the name of the asset to remove.</param>
         /// <param name="author">the author of the asset.</param>
         public void Remove(string name, string author)
         {
@@ -87,21 +89,21 @@ namespace Rogium.Editors.Core
             SafetyNet.EnsureIsNotNull(foundAsset, "Asset to Remove");
 
             list.Remove(foundAsset);
-            ExternalStorageOverseer.Instance.Save(pack);
+            deleteFromExternalStorage.Invoke(foundAsset);
         }
 
         /// <summary>
-        /// Remove pack from the library with a specific name.
+        /// Remove an asset from the library with a specific name.
         /// </summary>
-        /// <param name="packIndex"></param>
-        public void Remove(int packIndex)
+        /// <param name="assetIndex"></param>
+        public void Remove(int assetIndex)
         {
-            SafetyNet.EnsureIntIsInRange(packIndex, 0, list.Count, "Pack Index when removing");
-            T foundAsset = list[packIndex];
+            SafetyNet.EnsureIntIsInRange(assetIndex, 0, list.Count, "Pack Index when removing");
+            T foundAsset = list[assetIndex];
             SafetyNet.EnsureIsNotNull(foundAsset, "Asset to Remove");
 
             list.Remove(foundAsset);
-            ExternalStorageOverseer.Instance.Save(pack);
+            deleteFromExternalStorage.Invoke(foundAsset);
         }
         
         /// <summary>
@@ -157,14 +159,14 @@ namespace Rogium.Editors.Core
 
         public void Insert(int index, T item)
         {
-            SafetyNet.EnsureListNotContain(this, item, "List of Packs");
+            SafetyNet.EnsureListNotContains(this, item, "List of Packs");
             list.Insert(index, item);
         }
 
         public void RemoveAt(int index)
         {
             SafetyNet.EnsureIntIsInRange(index, 0, list.Count, "Index");
-            list.RemoveAt(index);
+            Remove(index);
         }
 
         public void Clear()

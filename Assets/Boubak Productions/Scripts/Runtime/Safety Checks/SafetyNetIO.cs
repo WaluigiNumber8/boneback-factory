@@ -3,7 +3,7 @@ using System.IO;
 
 namespace BoubakProductions.Safety
 {
-    public class SafetyNetIO
+    public static class SafetyNetIO
     {
         public static event Action<string> OnFireErrorMessage;
 

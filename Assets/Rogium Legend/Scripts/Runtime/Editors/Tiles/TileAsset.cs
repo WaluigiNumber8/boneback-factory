@@ -59,12 +59,12 @@ namespace Rogium.Editors.Tiles
         {
             SafetyNet.EnsureIsNotNull(tile, "TileObject");
             SafetyNet.EnsureIsNotNull(tile.Tile, "Tile in TileObject");
-            this.tile.Tile.sprite = newIcon;
+            tile.Tile.sprite = newIcon;
         }
 
         public void UpdateTileType(int newType)
         {
-            this.tile.UpdateType((TileType) newType);
+            tile.UpdateType((TileType) newType);
         }
         #endregion
 

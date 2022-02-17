@@ -10,6 +10,7 @@ namespace BoubakProductions.UI.Core
     {
         public void OnPointerExit(PointerEventData eventData)
         {
+            if (EventSystem.current == null) return;
             EventSystem.current.SetSelectedGameObject(null);
         }
     }

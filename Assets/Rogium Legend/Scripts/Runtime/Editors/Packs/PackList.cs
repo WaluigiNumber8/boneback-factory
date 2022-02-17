@@ -13,14 +13,8 @@ namespace Rogium.Editors.Packs
     {
         private IList<PackAsset> list;
 
-        public PackList()
-        {
-            list = new List<PackAsset>();
-        }
-        public PackList(PackList original)
-        {
-            list = new List<PackAsset>(original);
-        }
+        public PackList() => list = new List<PackAsset>();
+        public PackList(PackList original) => list = new List<PackAsset>(original);
 
         /// <summary>
         /// Adds a new pack to the library.
@@ -31,7 +25,7 @@ namespace Rogium.Editors.Packs
             if (TryFinding(pack.PackInfo.Title, pack.PackInfo.Author) != null)
                 throw new FoundDuplicationException("You are trying to create a pack, that already exists. Cannot have the same title and author!");
             
-            ExternalStorageOverseer.Instance.Save(pack);
+            ExternalStorageOverseer.Instance.CreatePack(pack);
             list.Add(pack);
         }
         
@@ -50,7 +44,7 @@ namespace Rogium.Editors.Packs
                 throw new FoundDuplicationException("You are trying to update a pack with a name and author that is already taken. Cannot have the same title and author!");
             list[index] = pack;
             
-            ExternalStorageOverseer.Instance.Save(pack);
+            ExternalStorageOverseer.Instance.UpdatePack(pack);
         }
 
         /// <summary>
@@ -121,7 +115,7 @@ namespace Rogium.Editors.Packs
 
         public void Insert(int index, PackAsset item)
         {
-            SafetyNet.EnsureListNotContain(this, item, "List of Packs");
+            SafetyNet.EnsureListNotContains(this, item, "List of Packs");
             list.Insert(index, item);
         }
 

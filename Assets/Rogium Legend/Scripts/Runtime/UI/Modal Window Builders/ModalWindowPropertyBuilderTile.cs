@@ -31,7 +31,7 @@ namespace Rogium.UserInterface.ModalWindowBuilding
         private void OpenWindow(TileAsset tile, Action onConfirmAction, string headerText)
         {
             builder.BuildInputField("Title", tile.Title, window.FirstColumnContent, tile.UpdateTitle);
-            builder.BuildDropdown("Type", EnumUtils.ToStringList(typeof(TileType)), 0, window.FirstColumnContent, tile.UpdateTileType);
+            builder.BuildDropdown("Type", EnumUtils.ToStringList(typeof(TileType)), (int)tile.Type, window.FirstColumnContent, tile.UpdateTileType);
             builder.BuildPlainText("Created by", tile.Author, window.FirstColumnContent);
             builder.BuildPlainText("Created on", tile.CreationDate.ToString(), window.FirstColumnContent);
             

@@ -31,7 +31,7 @@ namespace Rogium.Editors.Campaign
             if (TryFinding(campaign.Title, campaign.Author) != null)
                 throw new FoundDuplicationException("You are trying to create a campaign, that already exists. Cannot have the same title and author!");
             
-            ExternalStorageOverseer.Instance.Save(campaign);
+            ExternalStorageOverseer.Instance.Campaigns.Save(campaign);
             list.Add(campaign);
         }
 
@@ -50,7 +50,8 @@ namespace Rogium.Editors.Campaign
                 throw new FoundDuplicationException("You are trying to update a campaign with a name and author that is already taken. Cannot have the same title and author!");
             list[index] = campaign;
             
-            ExternalStorageOverseer.Instance.Save(campaign);
+            ExternalStorageOverseer.Instance.Campaigns.UpdateTitle(campaign);
+            ExternalStorageOverseer.Instance.Campaigns.Save(campaign);
         }
         
         /// <summary>
@@ -62,7 +63,7 @@ namespace Rogium.Editors.Campaign
             CampaignAsset foundCampaign = TryFinding(name, author);
             SafetyNet.EnsureIsNotNull(foundCampaign, "Pack to Remove");
 
-            ExternalStorageOverseer.Instance.DeleteCampaign(foundCampaign);
+            ExternalStorageOverseer.Instance.Campaigns.Delete(foundCampaign);
             list.Remove(foundCampaign);
         }
 
@@ -76,7 +77,7 @@ namespace Rogium.Editors.Campaign
             CampaignAsset foundCampaign = list[campaignIndex];
             SafetyNet.EnsureIsNotNull(foundCampaign, "Campaign to Remove");
 
-            ExternalStorageOverseer.Instance.DeleteCampaign(foundCampaign);
+            ExternalStorageOverseer.Instance.Campaigns.Delete(foundCampaign);
             list.Remove(foundCampaign);
         }
 
@@ -121,7 +122,7 @@ namespace Rogium.Editors.Campaign
 
         public void Insert(int index, CampaignAsset item)
         {
-            SafetyNet.EnsureListNotContain(this, item, "List of Packs");
+            SafetyNet.EnsureListNotContains(this, item, "List of Packs");
             list.Insert(index, item);
         }
 

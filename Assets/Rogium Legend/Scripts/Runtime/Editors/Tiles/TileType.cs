@@ -6,7 +6,7 @@ namespace Rogium.Editors.Tiles
     /// </summary>
     public enum TileType
     {
-        Floor,
-        Wall
+        Floor = 0,
+        Wall = 1,
     }
 }

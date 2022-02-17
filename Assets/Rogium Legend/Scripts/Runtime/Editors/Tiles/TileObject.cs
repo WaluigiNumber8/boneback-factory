@@ -35,7 +35,7 @@ namespace Rogium.Editors.Tiles
         #region Update Values
         public void UpdateType(TileType newType)
         {
-            this.type = newType;
+            type = newType;
         }
 
         #endregion

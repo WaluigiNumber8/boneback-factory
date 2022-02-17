@@ -112,7 +112,7 @@ namespace Rogium.Editors.Packs
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Palettes, "List of Palettes");
-            currentPack.Palettes.RemoveAt(assetIndex);
+            currentPack.Palettes.Remove(assetIndex);
 
             SavePackChanges();
         }
@@ -174,7 +174,7 @@ namespace Rogium.Editors.Packs
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Sprites, "List of Sprites");
-            currentPack.Sprites.RemoveAt(assetIndex);
+            currentPack.Sprites.Remove(assetIndex);
 
             SavePackChanges();
         }
@@ -236,7 +236,7 @@ namespace Rogium.Editors.Packs
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Tiles, "List of Tiles");
-            currentPack.Tiles.RemoveAt(assetIndex);
+            currentPack.Tiles.Remove(assetIndex);
 
             SavePackChanges();
         }
@@ -298,7 +298,7 @@ namespace Rogium.Editors.Packs
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Rooms, "List of Rooms");
-            currentPack.Rooms.RemoveAt(assetIndex);
+            currentPack.Rooms.Remove(assetIndex);
 
             SavePackChanges();
         }

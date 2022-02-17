@@ -46,7 +46,7 @@ namespace Rogium.Editors.PropertyEditor
         private void PropertiesTile(Transform content, TileAsset asset)
         {
             builder.BuildHeader("General", content);
-            builder.BuildDropdown("Type", EnumUtils.ToStringList(typeof(TileType)), 0, content, asset.UpdateTileType);
+            builder.BuildDropdown("Type", EnumUtils.ToStringList(typeof(TileType)), (int)asset.Type, content, asset.UpdateTileType);
         }
 
         private void Build()

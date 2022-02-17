@@ -46,7 +46,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
 
         public void WhenAssetSelected(AssetBase asset)
         {
-            if (selectedAssets.ContainsAsset(asset)) return;
+            if (selectedAssets.ContainsValue(asset)) return;
             selectedAssets.Add(asset);
             selectedAssetsIDs.Add(asset.ID);
             OnAssetSelect?.Invoke(asset);
@@ -54,7 +54,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
 
         public void WhenAssetDeselected(AssetBase asset)
         {
-            if (!selectedAssets.ContainsAsset(asset)) return;
+            if (!selectedAssets.ContainsValue(asset)) return;
             selectedAssets.RemoveAt(selectedAssets.FindIndexFirst(asset.ID));
         }
 
@@ -63,7 +63,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
         /// </summary>
         public void WhenAssetSelectToggle(AssetBase asset)
         {
-            if (!selectedAssets.ContainsAsset(asset))
+            if (!selectedAssets.ContainsValue(asset))
                 WhenAssetSelected(asset);
             else WhenAssetDeselected(asset);
         }
@@ -208,8 +208,8 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
             }
             else
             {
-                selectedAssets = new List<AssetBase>();
-                selectedAssetsIDs = new List<string>();
+                selectedAssets.Clear();
+                selectedAssetsIDs.Clear();
             }
 
             defaultWasSet = false;
@@ -237,7 +237,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
 
             if (defaultWasSet) return;
             
-            if (selectedAssetsIDs.ContainsAsset(assetID))
+            if (selectedAssetsIDs.ContainsValue(assetID))
             {
                 holder.SetToggle(true);
             }

@@ -1,8 +1,14 @@
-﻿using Rogium.Editors.Packs;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using BoubakProductions.Safety;
 using BoubakProductions.Systems.FileSystem;
+using Rogium.Editors.Sprites;
 using Rogium.Editors.Campaign;
+using Rogium.Editors.Packs;
+using Rogium.Editors.Palettes;
+using Rogium.Editors.Rooms;
+using Rogium.Editors.Tiles;
 using Rogium.ExternalStorage.Serialization;
 
 namespace Rogium.ExternalStorage
@@ -14,6 +20,19 @@ namespace Rogium.ExternalStorage
     {
         private SaveableData packData;
         private SaveableData campaignData;
+
+        private IList<PackPathInfo> packPaths;
+        private PackPathInfo currentPackInfo;
+
+        private CRUDOperations<CampaignAsset, SerializedCampaignAsset> campaignCRUD;
+        
+        private CRUDOperations<PaletteAsset, SerializedPaletteAsset> paletteCRUD;
+        private CRUDOperations<SpriteAsset, SerializedSpriteAsset> spriteCRUD;
+        // private CRUDOperations<, SerializedRoomAsset> weaponCRUD;
+        // private CRUDOperations<RoomAsset, SerializedRoomAsset> projectileCRUD;
+        // private CRUDOperations<RoomAsset, SerializedRoomAsset> enemyCRUD;
+        private CRUDOperations<RoomAsset, SerializedRoomAsset> roomCRUD;
+        private CRUDOperations<TileAsset, SerializedTileAsset> tileCRUD;
 
         #region Singleton Pattern
         private static ExternalStorageOverseer instance;
@@ -36,91 +55,278 @@ namespace Rogium.ExternalStorage
         {
             packData = new SaveableData("Packs", "bumpack");
             campaignData = new SaveableData("Campaigns", "bumcamp");
-
-            //Create directories if they don't exist.
-            if (!Directory.Exists(packData.Path))
-                Directory.CreateDirectory(packData.Path);
             
-            if (!Directory.Exists(campaignData.Path))
-                Directory.CreateDirectory(campaignData.Path);
+            packPaths = new List<PackPathInfo>();
+
+            campaignCRUD = new CRUDOperations<CampaignAsset, SerializedCampaignAsset>(c => new SerializedCampaignAsset(c));
+            campaignCRUD.RefreshSaveableData(campaignData);
+            
+            paletteCRUD = new CRUDOperations<PaletteAsset, SerializedPaletteAsset>(p => new SerializedPaletteAsset(p));
+            spriteCRUD = new CRUDOperations<SpriteAsset, SerializedSpriteAsset>(s => new SerializedSpriteAsset(s));
+            // weaponCRUD = new CRUDOperations<RoomAsset, SerializedRoomAsset>(r => new SerializedRoomAsset(r));
+            // projectileCRUD = new CRUDOperations<RoomAsset, SerializedRoomAsset>(r => new SerializedRoomAsset(r));
+            // enemyCRUD = new CRUDOperations<RoomAsset, SerializedRoomAsset>(r => new SerializedRoomAsset(r));
+            roomCRUD = new CRUDOperations<RoomAsset, SerializedRoomAsset>(r => new SerializedRoomAsset(r));
+            tileCRUD = new CRUDOperations<TileAsset, SerializedTileAsset>(t => new SerializedTileAsset(t));
+            
+            FileSystem.CreateDirectory(packData.Path);
+            FileSystem.CreateDirectory(campaignData.Path);
+        }
+
+        public void CreatePack(PackAsset pack)
+        {
+            LoadPack(pack);
         }
 
         /// <summary>
-        /// Wrapper for saving a pack to external storage.
+        /// Updates information
         /// </summary>
-        /// <param name="pack">The pack to save.</param>
-        public void Save(PackAsset pack)
+        /// <param name="pack"></param>
+        public void UpdatePack(PackAsset pack)
         {
-            string savePath = Path.Combine(packData.Path, $"{pack.PackInfo.Title}.{packData.Extension}");
-            FileSystem.Save(savePath, pack, packToSave => new SerializedPackAsset(packToSave));
-        }
-        /// <summary>
-        /// Wrapper for saving a campaign to external storage.
-        /// </summary>
-        /// <param name="campaign">The campaign to save.</param>
-        public void Save(CampaignAsset campaign)
-        {
-            string savePath = Path.Combine(campaignData.Path, $"{campaign.Title}.{campaignData.Extension}");
-            FileSystem.Save(savePath, campaign, campaignToSave => new SerializedCampaignAsset(campaignToSave));
-        }
-
-        /// <summary>
-        /// Wrapper for loading all packs from external storage.
-        /// </summary>
-        /// <returns></returns>
-        public IList<PackAsset> LoadAllPacks()
-        {
-            return FileSystem.LoadAll<PackAsset, SerializedPackAsset>(packData.Path, packData.Extension);
-        }
-        /// <summary>
-        /// Wrapper for loading all campaigns from external storage.
-        /// </summary>
-        /// <returns></returns>
-        public IList<CampaignAsset> LoadAllCampaigns()
-        {
-            return FileSystem.LoadAll<CampaignAsset, SerializedCampaignAsset>(campaignData.Path, campaignData.Extension);
-        }
-
-        /// <summary>
-        /// Wrapper for removing a pack from external storage.
-        /// <param name="pack">The pack to remove.</param>
-        /// </summary>
-        public void DeletePack(PackAsset pack)
-        {
-            DeletePack(pack.Title);
-        }
-        /// <summary>
-        /// Wrapper for removing a pack from external storage.
-        /// </summary>
-        /// <param name="packTitle">The name of the pack to remove.</param>
-        public void DeletePack(string packTitle)
-        {
-            string removePath = Path.Combine(packData.Path, $"{packTitle}.{packData.Extension}");
-            FileSystem.DeleteFile(removePath);
+            if (currentPackInfo.PackTitle != pack.Title)
+                RenameCurrentPack(pack.Title);
+            
+            FileSystem.SaveFile(currentPackInfo.FilePath, pack, p => new SerializedPackAsset(p));
         }
         
         /// <summary>
-        /// Wrapper for removing a campaign from external storage.
-        /// <param name="campaign">The pack to remove.</param>
+        /// Loads all packs stored at application persistent path.
         /// </summary>
-        public void DeleteCampaign(CampaignAsset campaign)
+        /// <returns>A list of all <see cref="PackAsset"/>s.</returns>
+        public IList<PackAsset> LoadAllPacks()
         {
-            DeleteCampaign(campaign.Title);
+            IList<PackAsset> packs = FileSystem.LoadAllFiles<PackAsset, SerializedPackAsset>(packData.Path, packData.Extension, true);
+            foreach (PackAsset pack in packs)
+            {
+                packPaths.Add(BuildPackInfo(pack));
+            }
+
+            return packs;
+        }
+
+        public void DeletePack(PackAsset pack)
+        {
+            try
+            {
+                int index = GetIndexFirst(packPaths, pack.ID);
+                FileSystem.DeleteDirectory(packPaths[index].DirectoryPath);
+                packPaths.RemoveAt(index);
+                currentPackInfo = null;
+            }
+            catch (SafetyNetCollectionException)
+            {
+                throw new InvalidOperationException("Cannot delete a pack that doesn't exist.");
+            }
+        }
+        
+        /// <summary>
+        /// Prepares the overseer for working with a specific pack and loads it's data.
+        /// </summary>
+        /// <param name="pack">The pack to load.</param>
+        public PackAsset LoadPack(PackAsset pack)
+        {
+            //Update current pack info.
+            try
+            {
+                currentPackInfo = GetPackInfoFirst(packPaths, pack.ID);
+            }
+            catch (SafetyNetCollectionException)
+            {
+               CreateSkeleton(pack);
+            }
+
+            PackInfoAsset packInfo = new PackInfoAsset(pack.PackInfo);
+            
+            paletteCRUD.RefreshSaveableData(currentPackInfo.PalettesData);
+            spriteCRUD.RefreshSaveableData(currentPackInfo.SpritesData);
+            // weaponCRUD.RefreshSaveableData(currentPackInfo.WeaponsData);
+            // projectileCRUD.RefreshSaveableData(currentPackInfo.ProjectilesData);
+            // enemyCRUD.RefreshSaveableData(currentPackInfo.EnemiesData);
+            roomCRUD.RefreshSaveableData(currentPackInfo.RoomsData);
+            tileCRUD.RefreshSaveableData(currentPackInfo.TilesData);
+            
+            return new PackAsset(packInfo, paletteCRUD.LoadAll(), spriteCRUD.LoadAll(), tileCRUD.LoadAll(), roomCRUD.LoadAll());
+        }
+
+        
+        // #region Rooms
+        //
+        // /// <summary>
+        // /// Saves a room under the currently edited pack.
+        // /// </summary>
+        // /// <param name="room">The room to save.</param>
+        // public void SaveRoom(RoomAsset room)
+        // {
+        //     currentPackInfo.RoomsData.AddFilePath(room.Title);
+        //     FileSystem.SaveFile(currentPackInfo.RoomsData.GetPathOfFile(room.Title), room, r => new SerializedRoomAsset(r));
+        // }
+        //
+        // /// <summary>
+        // /// Updates the title of a room under the currently edited pack.
+        // /// </summary>
+        // /// <param name="room">The room, whose title to update.</param>
+        // public void UpdateTitleRoom(RoomAsset room)
+        // {
+        //     string oldPath = currentPackInfo.RoomsData.GetPathOfFile(room.Title);
+        //     currentPackInfo.RoomsData.UpdateFileTitle(room.Title);
+        //     FileSystem.RenameFile(oldPath, currentPackInfo.RoomsData.GetPathOfFile(room.Title));
+        // }
+        //
+        // /// <summary>
+        // /// Deletes a room from the currently edited pack.
+        // /// </summary>
+        // /// <param name="room">The room to delete.</param>
+        // public void DeleteRoom(RoomAsset room)
+        // {
+        //     FileSystem.DeleteFile(currentPackInfo.RoomsData.GetPathOfFile(room.Title));
+        //     currentPackInfo.RoomsData.RemoveFilePath(room.Title);
+        // }
+        //
+        // #endregion
+
+        
+        // /// <summary>
+        // /// Wrapper for saving a campaign to external storage.
+        // /// </summary>
+        // /// <param name="campaign">The campaign to save.</param>
+        // public void Save(CampaignAsset campaign)
+        // {
+        //     string savePath = Path.Combine(campaignData.Path, $"{campaign.Title}.{campaignData.Extension}");
+        //     FileSystem.SaveFile(savePath, campaign, campaignToSave => new SerializedCampaignAsset(campaignToSave));
+        // }
+        //
+        // /// <summary>
+        // /// Loads all campaigns stored under the application persistent path.
+        // /// </summary>
+        // /// <returns>A list of <see cref="CampaignAsset"/>s.</returns>
+        // public IList<CampaignAsset> LoadAllCampaigns()
+        // {
+        //     return FileSystem.LoadAllFiles<CampaignAsset, SerializedCampaignAsset>(campaignData.Path, campaignData.Extension);
+        // }
+        //
+        // /// <summary>
+        // /// Wrapper for removing a campaign from external storage.
+        // /// <param name="campaign">The pack to remove.</param>
+        // /// </summary>
+        // public void DeleteCampaign(CampaignAsset campaign)
+        // {
+        //     DeleteCampaign(campaign.Title);
+        // }
+        //
+        // /// <summary>
+        // /// Wrapper for removing a campaign from external storage.
+        // /// </summary>
+        // /// <param name="campaignTitle">The name of the campaign to remove.</param>
+        // public void DeleteCampaign(string campaignTitle)
+        // {
+        //     string removePath = Path.Combine(campaignData.Path, $"{campaignTitle}.{campaignData.Extension}");
+        //     FileSystem.DeleteFile(removePath);
+        // }
+        
+        /// <summary>
+        /// Initializes a new pack and builds it's skeleton in external storage.
+        /// </summary>
+        /// <param name="pack">The pack to initialize.</param>
+        private void CreateSkeleton(PackAsset pack)
+        {
+            PackPathInfo packInfo = BuildPackInfo(pack);
+            string newPackPathFile = Path.Combine(packInfo.DirectoryPath, $"{pack.Title}.{packData.Extension}");
+            
+            FileSystem.CreateDirectory(packInfo.DirectoryPath);
+            FileSystem.SaveFile(newPackPathFile, pack, p => new SerializedPackAsset(p));
+
+            FileSystem.CreateDirectory(packInfo.PalettesData.Path);
+            FileSystem.CreateDirectory(packInfo.SpritesData.Path);
+            FileSystem.CreateDirectory(packInfo.WeaponsData.Path);
+            FileSystem.CreateDirectory(packInfo.ProjectilesData.Path);
+            FileSystem.CreateDirectory(packInfo.EnemiesData.Path);
+            FileSystem.CreateDirectory(packInfo.RoomsData.Path);
+            FileSystem.CreateDirectory(packInfo.TilesData.Path);
+            
+            packPaths.Add(packInfo);
+            currentPackInfo = packInfo;
         }
 
         /// <summary>
-        /// Wrapper for removing a campaign from external storage.
+        /// Renames the currently pack files.
         /// </summary>
-        /// <param name="campaignTitle">The name of the campaign to remove.</param>
-        public void DeleteCampaign(string campaignTitle)
+        /// <param name="newTitle">The title to use.</param>
+        private void RenameCurrentPack(string newTitle)
         {
-            string removePath = Path.Combine(campaignData.Path, $"{campaignTitle}.{campaignData.Extension}");
-            FileSystem.DeleteFile(removePath);
+            string oldPathDirectory = currentPackInfo.DirectoryPath;
+            string newPathDirectory = Path.Combine(packData.Path, newTitle);
+            string oldPathFile = Path.Combine(newPathDirectory, $"{currentPackInfo.PackTitle}.{packData.Extension}");
+            string newPathFile = Path.Combine(packData.Path, newTitle, $"{newTitle}.{packData.Extension}");
+            
+            currentPackInfo.UpdateTitle(newTitle);
+            currentPackInfo.UpdatePath(newPathDirectory, newPathFile);
+            
+            FileSystem.RenameDirectory(oldPathDirectory, newPathDirectory);
+            FileSystem.RenameFile(oldPathFile, newPathFile);
+        }
+        
+        /// <summary>
+        /// Finds the index of the first asset with the same ID.
+        /// </summary>
+        /// <param name="list">The list to search in.</param>
+        /// <param name="id">The ID of the asset to search for.</param>
+        /// <returns>Index of the first found asset.</returns>
+        /// <exception cref="SafetyNetCollectionException">Is thrown when no asset with ID was found.</exception>
+        private PackPathInfo GetPackInfoFirst(IList<PackPathInfo> list, string id)
+        {
+            try
+            {
+                return list[GetIndexFirst(list, id)];
+            }
+            catch (SafetyNetCollectionException)
+            {
+                throw new SafetyNetCollectionException($"No object with the ID '{id}' was not found in the list.");
+            }
+        }
+        
+        /// <summary>
+        /// Finds the index of the first asset with the same ID.
+        /// </summary>
+        /// <param name="list">The list to search in.</param>
+        /// <param name="id">The ID of the asset to search for.</param>
+        /// <returns>Index of the first found asset.</returns>
+        /// <exception cref="SafetyNetCollectionException">Is thrown when no asset with ID was found.</exception>
+        private int GetIndexFirst(IList<PackPathInfo> list, string id)
+        {
+            SafetyNet.EnsureIsNotNull(list, "List ot search");
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i].PackID == id)
+                {
+                    return i;
+                }
+            }
+
+            throw new SafetyNetCollectionException($"No object with the ID '{id}' was not found in the list.");
         }
 
-        public string PackPath {get => packData.Path;}
-        public string CampaignPath {get => campaignData.Path;}
-        public string PackExtension {get => packData.Extension;}
-        public string CampaignExtension {get => campaignData.Extension;}
+        /// <summary>
+        /// Builds a <see cref="PackPathInfo"/> from a <see cref="PackAsset"/>.
+        /// </summary>
+        /// <param name="pack">The pack to build for.</param>
+        /// <returns>A <see cref="PackPathInfo"/> with proper data.</returns>
+        private PackPathInfo BuildPackInfo(PackAsset pack)
+        {
+            return new PackPathInfo(pack.ID,
+                                    pack.Title,
+                                    Path.Combine(packData.Path, pack.Title),
+                                    Path.Combine(packData.Path, pack.Title, $"{pack.Title}.{packData.Extension}"));
+        }
+
+        public CRUDOperations<CampaignAsset, SerializedCampaignAsset> Campaigns { get => campaignCRUD; }
+        public CRUDOperations<PaletteAsset, SerializedPaletteAsset> Palettes { get => paletteCRUD; }
+        public CRUDOperations<SpriteAsset, SerializedSpriteAsset> Sprites { get => spriteCRUD; }
+        // public CRUDOperations<, SerializedRoomAsset> Weapons { get => weaponCRUD; }
+        // public CRUDOperations<RoomAsset, SerializedRoomAsset> Projectiles { get => projectileCRUD; }
+        // public CRUDOperations<RoomAsset, SerializedRoomAsset> Enemies { get => enemyCRUD; }
+        public CRUDOperations<RoomAsset, SerializedRoomAsset> Rooms { get => roomCRUD; }
+        public CRUDOperations<TileAsset, SerializedTileAsset> Tiles { get => tileCRUD; }
+
     }
 }

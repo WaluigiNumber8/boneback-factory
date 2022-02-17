@@ -7,7 +7,7 @@ namespace BoubakProductions.Safety
     /// <summary>
     /// Contains various method for checking correctness of given parameters. If a method fails to pass, it throws an exception.
     /// </summary>
-    public class SafetyNet
+    public static class SafetyNet
     {
         public static event Action<string> OnFireErrorMessage;
 
@@ -333,18 +333,36 @@ namespace BoubakProductions.Safety
         }
 
         /// <summary>
-        /// Checks if List already contains a given asset.
+        /// Ensures a list does not contain a specific object.
         /// </summary>
-        /// <typeparam name="T">Asset type.</typeparam>
+        /// <typeparam name="T">Any object type.</typeparam>
         /// <param name="list">The list to check.</param>
-        /// <param name="asset">The Asset we check the duplicity for.</param>
+        /// <param name="value">The object we check the duplicity for.</param>
         /// <param name="variableName">Name of the checked variable.</param>
         /// <exception cref="SafetyNetCollectionException"></exception>
-        public static void EnsureListNotContain<T>(IList<T> list, T asset, string variableName)
+        public static void EnsureListNotContains<T>(IList<T> list, T value, string variableName)
         {
-            if (list.Contains(asset))
+            if (list.Contains(value))
             {
-                string message = $"The list '{variableName}' already contains '{asset}'.";
+                string message = $"The list '{variableName}' already contains '{value}'.";
+                OnFireErrorMessage?.Invoke(message);
+                throw new SafetyNetCollectionException(message);
+            }
+        }
+        
+        /// <summary>
+        /// Ensures that list contains a specific object.
+        /// </summary>
+        /// <typeparam name="T">Any object type.</typeparam>
+        /// <param name="list">The list to check.</param>
+        /// <param name="value">The object we check the duplicity for.</param>
+        /// <param name="variableName">Name of the checked variable.</param>
+        /// <exception cref="SafetyNetCollectionException"></exception>
+        public static void EnsureListContains<T>(IList<T> list, T value, string variableName) where T : class
+        {
+            if (!list.ContainsValue(value))
+            {
+                string message = $"The list '{variableName}' does not contain '{value}'.";
                 OnFireErrorMessage?.Invoke(message);
                 throw new SafetyNetCollectionException(message);
             }
