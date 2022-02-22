@@ -118,8 +118,7 @@ namespace Rogium.Editors.Core
         }
         public void CreateAndAddCampaign(CampaignAsset campaign)
         {
-            CampaignAsset newCampaign = new CampaignAsset(campaign);
-            campaigns.Add(newCampaign);
+            campaigns.Add(new CampaignAsset(campaign));
         }
 
         /// <summary>

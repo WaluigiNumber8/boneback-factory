@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using BoubakProductions.Core;
 using BoubakProductions.Safety;
 using BoubakProductions.Systems.FileSystem;
 using Rogium.Editors.Sprites;
@@ -37,8 +38,9 @@ namespace Rogium.ExternalStorage
         #region Singleton Pattern
         private static ExternalStorageOverseer instance;
         private static readonly object padlock = new object();
-        public static ExternalStorageOverseer Instance 
-        { 
+
+        public static ExternalStorageOverseer Instance
+        {
             get
             {
                 lock (padlock)
@@ -49,8 +51,9 @@ namespace Rogium.ExternalStorage
                 }
             }
         }
-        #endregion
 
+        #endregion
+        
         private ExternalStorageOverseer()
         {
             packData = new SaveableData("Packs", "bumpack");
@@ -149,81 +152,6 @@ namespace Rogium.ExternalStorage
             return new PackAsset(packInfo, paletteCRUD.LoadAll(), spriteCRUD.LoadAll(), tileCRUD.LoadAll(), roomCRUD.LoadAll());
         }
 
-        
-        // #region Rooms
-        //
-        // /// <summary>
-        // /// Saves a room under the currently edited pack.
-        // /// </summary>
-        // /// <param name="room">The room to save.</param>
-        // public void SaveRoom(RoomAsset room)
-        // {
-        //     currentPackInfo.RoomsData.AddFilePath(room.Title);
-        //     FileSystem.SaveFile(currentPackInfo.RoomsData.GetPathOfFile(room.Title), room, r => new SerializedRoomAsset(r));
-        // }
-        //
-        // /// <summary>
-        // /// Updates the title of a room under the currently edited pack.
-        // /// </summary>
-        // /// <param name="room">The room, whose title to update.</param>
-        // public void UpdateTitleRoom(RoomAsset room)
-        // {
-        //     string oldPath = currentPackInfo.RoomsData.GetPathOfFile(room.Title);
-        //     currentPackInfo.RoomsData.UpdateFileTitle(room.Title);
-        //     FileSystem.RenameFile(oldPath, currentPackInfo.RoomsData.GetPathOfFile(room.Title));
-        // }
-        //
-        // /// <summary>
-        // /// Deletes a room from the currently edited pack.
-        // /// </summary>
-        // /// <param name="room">The room to delete.</param>
-        // public void DeleteRoom(RoomAsset room)
-        // {
-        //     FileSystem.DeleteFile(currentPackInfo.RoomsData.GetPathOfFile(room.Title));
-        //     currentPackInfo.RoomsData.RemoveFilePath(room.Title);
-        // }
-        //
-        // #endregion
-
-        
-        // /// <summary>
-        // /// Wrapper for saving a campaign to external storage.
-        // /// </summary>
-        // /// <param name="campaign">The campaign to save.</param>
-        // public void Save(CampaignAsset campaign)
-        // {
-        //     string savePath = Path.Combine(campaignData.Path, $"{campaign.Title}.{campaignData.Extension}");
-        //     FileSystem.SaveFile(savePath, campaign, campaignToSave => new SerializedCampaignAsset(campaignToSave));
-        // }
-        //
-        // /// <summary>
-        // /// Loads all campaigns stored under the application persistent path.
-        // /// </summary>
-        // /// <returns>A list of <see cref="CampaignAsset"/>s.</returns>
-        // public IList<CampaignAsset> LoadAllCampaigns()
-        // {
-        //     return FileSystem.LoadAllFiles<CampaignAsset, SerializedCampaignAsset>(campaignData.Path, campaignData.Extension);
-        // }
-        //
-        // /// <summary>
-        // /// Wrapper for removing a campaign from external storage.
-        // /// <param name="campaign">The pack to remove.</param>
-        // /// </summary>
-        // public void DeleteCampaign(CampaignAsset campaign)
-        // {
-        //     DeleteCampaign(campaign.Title);
-        // }
-        //
-        // /// <summary>
-        // /// Wrapper for removing a campaign from external storage.
-        // /// </summary>
-        // /// <param name="campaignTitle">The name of the campaign to remove.</param>
-        // public void DeleteCampaign(string campaignTitle)
-        // {
-        //     string removePath = Path.Combine(campaignData.Path, $"{campaignTitle}.{campaignData.Extension}");
-        //     FileSystem.DeleteFile(removePath);
-        // }
-        
         /// <summary>
         /// Initializes a new pack and builds it's skeleton in external storage.
         /// </summary>

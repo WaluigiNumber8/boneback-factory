@@ -42,8 +42,8 @@ namespace Rogium.Systems.GraphicsDrawing
         /// <param name="vh">Vertex Helper</param>
         private void DrawGridCell(int x, int y, int index, VertexHelper vh)
         {
-            float posX = cellWidth * x - (width * 0.5f);
-            float posY = cellHeight * y - (height * 0.5f);
+            float posX = cellWidth * x;
+            float posY = cellHeight * y;
 
             UIVertex vertex = UIVertex.simpleVert;
             vertex.color = color;

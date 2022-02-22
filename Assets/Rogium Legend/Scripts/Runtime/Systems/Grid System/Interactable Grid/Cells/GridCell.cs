@@ -1,4 +1,5 @@
 ﻿using System;
+using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.Input;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -70,7 +71,7 @@ namespace Rogium.Systems.GridSystem
         public void Clear()
         {
             UpdateSprite(null);
-            UpdateColor(Color.black);
+            UpdateColor(EditorDefaults.NoColor);
         }
 
         public void OnPointerDown(PointerEventData eventData)

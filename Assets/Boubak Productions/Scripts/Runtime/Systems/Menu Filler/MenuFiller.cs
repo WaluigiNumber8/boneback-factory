@@ -49,7 +49,7 @@ namespace BoubakProductions.UI.MenuFilling
             //Length is smaller.
             if (newLength < currentLength)
             {
-                DestroyHolders(currentLength - (newLength - currentLength), currentLength);
+                DestroyHolders(currentLength - Mathf.Abs(newLength - currentLength), currentLength);
                 return;
             }
             
@@ -81,7 +81,7 @@ namespace BoubakProductions.UI.MenuFilling
         {
             for (int i = startIndex; i < endIndex; i++)
             {
-                Object.Destroy(list[i]);
+                Object.Destroy(list[i].gameObject);
                 list.RemoveAt(i);
             }
         }

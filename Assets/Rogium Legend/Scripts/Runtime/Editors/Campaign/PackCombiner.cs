@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
+using Rogium.ExternalStorage;
 
 namespace Rogium.Editors.Campaign
 {
@@ -20,9 +21,11 @@ namespace Rogium.Editors.Campaign
             PackAsset ultimatePack = new PackAsset();
             foreach (PackAsset pack in packs)
             {
-                ultimatePack.Palettes.AddAllWithoutSave(pack.Palettes);
-                ultimatePack.Rooms.AddAllWithoutSave(pack.Rooms);
-                ultimatePack.Tiles.AddAllWithoutSave(pack.Tiles);
+                PackAsset p = ExternalStorageOverseer.Instance.LoadPack(pack);
+                ultimatePack.Palettes.AddAllWithoutSave(p.Palettes);
+                ultimatePack.Sprites.AddAllWithoutSave(p.Sprites);
+                ultimatePack.Rooms.AddAllWithoutSave(p.Rooms);
+                ultimatePack.Tiles.AddAllWithoutSave(p.Tiles);
             }
             return ultimatePack;
         }
@@ -55,7 +58,7 @@ namespace Rogium.Editors.Campaign
         private void CombinePack(PackAsset ultimatePack, PackAsset packToImport, PackImportInfo importInfo)
         {
             ultimatePack.Palettes.AddAllWithoutSave(packToImport.Palettes);
-            //TODO Import Sprites
+            ultimatePack.Sprites.AddAllWithoutSave(packToImport.Sprites);
             
             if (importInfo.weapons)
             {
@@ -71,6 +74,7 @@ namespace Rogium.Editors.Campaign
 
             if (importInfo.rooms)
             {
+                ultimatePack.Tiles.AddAllWithoutSave(packToImport.Tiles);
                 ultimatePack.Rooms.AddAllWithoutSave(packToImport.Rooms);
             }
         }

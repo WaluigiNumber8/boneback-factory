@@ -24,7 +24,7 @@ namespace Rogium.UserInterface.ModalWindowBuilding
 
         public override void OpenForUpdate()
         {
-            OpenWindow(new RoomAsset(roomEditor.CurrentAsset), UpdateAsset, $"Editing {roomEditor.CurrentAsset.Title}");
+            OpenWindow(roomEditor.CurrentAsset, UpdateAsset, $"Editing {roomEditor.CurrentAsset.Title}");
         }
 
         private void OpenWindow(RoomAsset currentRoomAsset, Action onConfirmAction, string headerText)

@@ -49,8 +49,8 @@ namespace Rogium.Gameplay.Core
         public void PrepareGame(CampaignAsset campaign, TilemapLayer[] tilemaps, Vector3Int offset)
         {
             currentCampaign = new CampaignAsset(campaign);
-            this.tilemapLayers = tilemaps;
-            this.spawnOffset = offset;
+            tilemapLayers = tilemaps;
+            spawnOffset = offset;
             rrg = new RRG(currentCampaign.DataPack.Rooms);
             
             LoadEntranceRoom();

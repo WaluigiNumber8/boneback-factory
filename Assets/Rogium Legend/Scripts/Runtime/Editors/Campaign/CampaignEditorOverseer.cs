@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using BoubakProductions.Safety;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
+using Rogium.Editors.Rooms;
 using UnityEngine;
 
 namespace Rogium.Editors.Campaign
@@ -89,6 +91,7 @@ namespace Rogium.Editors.Campaign
         
         public void CompleteEditing()
         {
+            currentCampaign.UpdateIcon(GetIconDirty(currentCampaign.DataPack));
             SaveChanges();
             currentCampaign = null;
         }
@@ -99,6 +102,17 @@ namespace Rogium.Editors.Campaign
         private void SaveChanges()
         {
             OnSaveChanges?.Invoke(CurrentCampaign, myIndex, originalTitle, originalAuthor);
+        }
+
+        /// <summary>
+        /// Returns the icon of the first entrance room.
+        /// </summary>
+        /// <param name="dataPack"></param>
+        /// <returns></returns>
+        private Sprite GetIconDirty(PackAsset dataPack)
+        {
+            Sprite icon = dataPack.Rooms.FirstOrDefault(rm => rm.Type == RoomType.Entrance)?.Icon;
+            return icon;
         }
         
         public CampaignAsset CurrentCampaign
