@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using BoubakProductions.Core;
 using BoubakProductions.Safety;
 using BoubakProductions.Systems.FileSystem;
 using Rogium.Editors.Sprites;
 using Rogium.Editors.Campaign;
+using Rogium.Editors.Enemies;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Palettes;
+using Rogium.Editors.Projectiles;
 using Rogium.Editors.Rooms;
 using Rogium.Editors.Tiles;
+using Rogium.Editors.Weapons;
 using Rogium.ExternalStorage.Serialization;
 
 namespace Rogium.ExternalStorage
@@ -29,9 +31,9 @@ namespace Rogium.ExternalStorage
         
         private CRUDOperations<PaletteAsset, SerializedPaletteAsset> paletteCRUD;
         private CRUDOperations<SpriteAsset, SerializedSpriteAsset> spriteCRUD;
-        // private CRUDOperations<, SerializedRoomAsset> weaponCRUD;
-        // private CRUDOperations<RoomAsset, SerializedRoomAsset> projectileCRUD;
-        // private CRUDOperations<RoomAsset, SerializedRoomAsset> enemyCRUD;
+        private CRUDOperations<WeaponAsset, SerializedWeaponAsset> weaponCRUD;
+        private CRUDOperations<ProjectileAsset, SerializedProjectileAsset> projectileCRUD;
+        private CRUDOperations<EnemyAsset, SerializedEnemyAsset> enemyCRUD;
         private CRUDOperations<RoomAsset, SerializedRoomAsset> roomCRUD;
         private CRUDOperations<TileAsset, SerializedTileAsset> tileCRUD;
 
@@ -66,9 +68,9 @@ namespace Rogium.ExternalStorage
             
             paletteCRUD = new CRUDOperations<PaletteAsset, SerializedPaletteAsset>(p => new SerializedPaletteAsset(p));
             spriteCRUD = new CRUDOperations<SpriteAsset, SerializedSpriteAsset>(s => new SerializedSpriteAsset(s));
-            // weaponCRUD = new CRUDOperations<RoomAsset, SerializedRoomAsset>(r => new SerializedRoomAsset(r));
-            // projectileCRUD = new CRUDOperations<RoomAsset, SerializedRoomAsset>(r => new SerializedRoomAsset(r));
-            // enemyCRUD = new CRUDOperations<RoomAsset, SerializedRoomAsset>(r => new SerializedRoomAsset(r));
+            weaponCRUD = new CRUDOperations<WeaponAsset, SerializedWeaponAsset>(w => new SerializedWeaponAsset(w));
+            projectileCRUD = new CRUDOperations<ProjectileAsset, SerializedProjectileAsset>(p => new SerializedProjectileAsset(p));
+            enemyCRUD = new CRUDOperations<EnemyAsset, SerializedEnemyAsset>(e => new SerializedEnemyAsset(e));
             roomCRUD = new CRUDOperations<RoomAsset, SerializedRoomAsset>(r => new SerializedRoomAsset(r));
             tileCRUD = new CRUDOperations<TileAsset, SerializedTileAsset>(t => new SerializedTileAsset(t));
             
@@ -76,6 +78,10 @@ namespace Rogium.ExternalStorage
             FileSystem.CreateDirectory(campaignData.Path);
         }
 
+        /// <summary>
+        /// Create a new pack on external storage.
+        /// </summary>
+        /// <param name="pack">The data to create the pack with.</param>
         public void CreatePack(PackAsset pack)
         {
             LoadPack(pack);
@@ -108,6 +114,11 @@ namespace Rogium.ExternalStorage
             return packs;
         }
 
+        /// <summary>
+        /// Delete a pack from external storage.
+        /// </summary>
+        /// <param name="pack">The pack to delete.</param>
+        /// <exception cref="InvalidOperationException">Is thrown when pack doesn't exist.</exception>
         public void DeletePack(PackAsset pack)
         {
             try
@@ -143,13 +154,14 @@ namespace Rogium.ExternalStorage
             
             paletteCRUD.RefreshSaveableData(currentPackInfo.PalettesData);
             spriteCRUD.RefreshSaveableData(currentPackInfo.SpritesData);
-            // weaponCRUD.RefreshSaveableData(currentPackInfo.WeaponsData);
-            // projectileCRUD.RefreshSaveableData(currentPackInfo.ProjectilesData);
-            // enemyCRUD.RefreshSaveableData(currentPackInfo.EnemiesData);
+            weaponCRUD.RefreshSaveableData(currentPackInfo.WeaponsData);
+            projectileCRUD.RefreshSaveableData(currentPackInfo.ProjectilesData);
+            enemyCRUD.RefreshSaveableData(currentPackInfo.EnemiesData);
             roomCRUD.RefreshSaveableData(currentPackInfo.RoomsData);
             tileCRUD.RefreshSaveableData(currentPackInfo.TilesData);
             
-            return new PackAsset(packInfo, paletteCRUD.LoadAll(), spriteCRUD.LoadAll(), tileCRUD.LoadAll(), roomCRUD.LoadAll());
+            return new PackAsset(packInfo, paletteCRUD.LoadAll(), spriteCRUD.LoadAll(), weaponCRUD.LoadAll(),
+                                 projectileCRUD.LoadAll(), enemyCRUD.LoadAll(), roomCRUD.LoadAll(), tileCRUD.LoadAll());
         }
 
         /// <summary>
@@ -250,9 +262,9 @@ namespace Rogium.ExternalStorage
         public CRUDOperations<CampaignAsset, SerializedCampaignAsset> Campaigns { get => campaignCRUD; }
         public CRUDOperations<PaletteAsset, SerializedPaletteAsset> Palettes { get => paletteCRUD; }
         public CRUDOperations<SpriteAsset, SerializedSpriteAsset> Sprites { get => spriteCRUD; }
-        // public CRUDOperations<, SerializedRoomAsset> Weapons { get => weaponCRUD; }
-        // public CRUDOperations<RoomAsset, SerializedRoomAsset> Projectiles { get => projectileCRUD; }
-        // public CRUDOperations<RoomAsset, SerializedRoomAsset> Enemies { get => enemyCRUD; }
+        public CRUDOperations<WeaponAsset, SerializedWeaponAsset> Weapons { get => weaponCRUD; }
+        public CRUDOperations<ProjectileAsset, SerializedProjectileAsset> Projectiles { get => projectileCRUD; }
+        public CRUDOperations<EnemyAsset, SerializedEnemyAsset> Enemies { get => enemyCRUD; }
         public CRUDOperations<RoomAsset, SerializedRoomAsset> Rooms { get => roomCRUD; }
         public CRUDOperations<TileAsset, SerializedTileAsset> Tiles { get => tileCRUD; }
 

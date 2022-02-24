@@ -34,113 +34,113 @@ namespace BoubakProductions.Safety
         #region Int Checks
 
         /// <summary>
-        /// Checks if an integer is not equal to a specific number
+        /// Checks if an number is not equal to a specific value.
         /// </summary>
-        /// <param name="integer">The INT to check.</param>
-        /// <param name="allowedValue">The number it cannot equal to.</param>
+        /// <param name="number">The number to check.</param>
+        /// <param name="allowedValue">The value it cannot equal to.</param>
         /// <param name="variableName">Name of the checked variable.</param>
-        public static void EnsureIntIsEqual(int integer, int allowedValue, string variableName)
+        public static void EnsureIntIsEqual(int number, int allowedValue, string variableName)
         {
-            if (integer != allowedValue)
+            if (number != allowedValue)
             {
-                string message = $"Integer called '{variableName}' must only equal to {allowedValue}. ({integer})";
+                string message = $"Number called '{variableName}' must only equal to {allowedValue}. ({number})";
                 OnFireErrorMessage?.Invoke(message);
                 throw new SafetyNetException(message);
             }
         }
         
         /// <summary>
-        /// Checks if an integer is not equal to a specific number
+        /// Checks if an number is not equal to a specific value.
         /// </summary>
-        /// <param name="integer">The INT to check.</param>
-        /// <param name="disallowedValue">The number it cannot equal to.</param>
+        /// <param name="number">The number to check.</param>
+        /// <param name="disallowedValue">The value it cannot equal to.</param>
         /// <param name="variableName">Name of the checked variable.</param>
-        public static void EnsureIntIsNotEqual(int integer, int disallowedValue, string variableName)
+        public static void EnsureIntIsNotEqual(int number, int disallowedValue, string variableName)
         {
-            if (integer == disallowedValue)
+            if (number == disallowedValue)
             {
-                string message = $"Integer called '{variableName}' must not equal to {disallowedValue}. ({integer})";
+                string message = $"Number called '{variableName}' must not equal to {disallowedValue}. ({number})";
                 OnFireErrorMessage?.Invoke(message);
                 throw new SafetyNetException(message);
             }
         }
 
         /// <summary>
-        /// Checks if an integer is bigger than a specific size.
+        /// Checks if an number is bigger than a specific value.
         /// </summary>
-        /// <param name="integer">The INT to check.</param>
-        /// <param name="minSize">Minimum size allowed.</param>
+        /// <param name="number">The number to check.</param>
+        /// <param name="minSize">Minimum value allowed.</param>
         /// <param name="variableName">Name of the checked variable.</param>
-        public static void EnsureIntIsBiggerThan(int integer, int minSize, string variableName)
+        public static void EnsureIntIsBiggerThan(int number, int minSize, string variableName)
         {
-            if (integer <= minSize)
+            if (number <= minSize)
             {
-                string message = $"Integer called '{variableName}' must be above {minSize}. ({integer})";
+                string message = $"Number called '{variableName}' must be above {minSize}. ({number})";
                 OnFireErrorMessage?.Invoke(message);
                 throw new SafetyNetException(message);
             }
         }
 
         /// <summary>
-        /// Checks if an integer is bigger than or equal to a specific size.
+        /// Checks if an number is bigger than or equal to a specific value.
         /// </summary>
-        /// <param name="integer">The INT to check.</param>
-        /// <param name="minSize">Minimum size allowed.</param>
+        /// <param name="number">The number to check.</param>
+        /// <param name="minSize">Minimum value allowed.</param>
         /// <param name="variableName">Name of the checked variable.</param>
-        public static void EnsureIntIsBiggerOrEqualTo(int integer, int minSize, string variableName)
+        public static void EnsureIntIsBiggerOrEqualTo(int number, int minSize, string variableName)
         {
-            if (integer < minSize)
+            if (number < minSize)
             {
-                string message = $"Integer called '{variableName}' must be above or equal to {minSize}. ({integer})";
+                string message = $"Number called '{variableName}' must be above or equal to {minSize}. ({number})";
                 OnFireErrorMessage?.Invoke(message);
                 throw new SafetyNetException(message);
             }
         }
 
         /// <summary>
-        /// Checks if an integer is smaller than a specific size.
+        /// Checks if an number is smaller than a specific value.
         /// </summary>
-        /// <param name="integer">The INT to check.</param>
-        /// <param name="maxSize">Maximum size allowed.</param>
+        /// <param name="number">The number to check.</param>
+        /// <param name="maxSize">Maximum value allowed.</param>
         /// <param name="variableName">Name of the checked variable.</param>
-        public static void EnsureIntIsSmallerThan(int integer, int maxSize, string variableName)
+        public static void EnsureIntIsSmallerThan(int number, int maxSize, string variableName)
         {
-            if (integer >= maxSize)
+            if (number >= maxSize)
             {
-                string message = $"Integer called '{variableName}' must be below {maxSize}. ({integer})";
+                string message = $"Number called '{variableName}' must be below {maxSize}. ({number})";
                 OnFireErrorMessage?.Invoke(message);
                 throw new SafetyNetException(message);
             }
         }
 
         /// <summary>
-        /// Checks if an integer is smaller than or equal to a specific size.
+        /// Checks if an number is smaller than or equal to a specific value.
         /// </summary>
-        /// <param name="integer">The INT to check.</param>
-        /// <param name="maxSize">Maximum size allowed.</param>
+        /// <param name="number">The number to check.</param>
+        /// <param name="maxSize">Maximum value allowed.</param>
         /// <param name="variableName">Name of the checked variable.</param>
-        public static void EnsureIntIsSmallerOrEqualTo(int integer, int maxSize, string variableName)
+        public static void EnsureIntIsSmallerOrEqualTo(int number, int maxSize, string variableName)
         {
-            if (integer > maxSize)
+            if (number > maxSize)
             {
-                string message = $"Integer called '{variableName}' must be below or equal to {maxSize}. ({integer})";
+                string message = $"Number called '{variableName}' must be below or equal to {maxSize}. ({number})";
                 OnFireErrorMessage?.Invoke(message);
                 throw new SafetyNetException(message);
             }
         }
 
         /// <summary>
-        /// Checks if an integer is within a given range (both inclusive).
+        /// Checks if an number is within a given range (both inclusive).
         /// </summary>
-        /// <param name="integer">The INT to check.</param>
-        /// <param name="lowBounds">Minimum size allowed.</param>
-        /// <param name="highBounds">Maximum size allowed.</param>
+        /// <param name="number">The number to check.</param>
+        /// <param name="lowBounds">Minimum value allowed.</param>
+        /// <param name="highBounds">Maximum value allowed.</param>
         /// <param name="variableName">Name of the checked variable.</param>
-        public static void EnsureIntIsInRange(int integer, int lowBounds, int highBounds, string variableName)
+        public static void EnsureIntIsInRange(int number, int lowBounds, int highBounds, string variableName)
         {
-            if (integer < lowBounds && integer > highBounds)
+            if (number < lowBounds && number > highBounds)
             {
-                string message = $"Integer called '{variableName}' must be in range of {lowBounds} - {highBounds}. ({integer})";
+                string message = $"Number called '{variableName}' must be in range of {lowBounds} - {highBounds}. ({number})";
                 OnFireErrorMessage?.Invoke(message);
                 throw new SafetyNetException(message);
             }
@@ -148,6 +148,123 @@ namespace BoubakProductions.Safety
 
         #endregion
 
+        #region Float Checks
+
+        /// <summary>
+        /// Checks if a number is not equal to a specific value.
+        /// </summary>
+        /// <param name="number">The number to check.</param>
+        /// <param name="allowedValue">The value it cannot equal to.</param>
+        /// <param name="variableName">Name of the checked variable.</param>
+        public static void EnsureFloatIsEqual(float number, float allowedValue, string variableName)
+        {
+            if (Math.Abs(number - allowedValue) > 0.01f)
+            {
+                string message = $"Number called '{variableName}' must only equal to {allowedValue}. ({number})";
+                OnFireErrorMessage?.Invoke(message);
+                throw new SafetyNetException(message);
+            }
+        }
+        
+        /// <summary>
+        /// Checks if a number is not equal to a specific value.
+        /// </summary>
+        /// <param name="number">The number to check.</param>
+        /// <param name="disallowedValue">The value it cannot equal to.</param>
+        /// <param name="variableName">Name of the checked variable.</param>
+        public static void EnsureFloatIsNotEqual(float number, float disallowedValue, string variableName)
+        {
+            if (Math.Abs(number - disallowedValue) < 0.01f)
+            {
+                string message = $"Number called '{variableName}' must not equal to {disallowedValue}. ({number})";
+                OnFireErrorMessage?.Invoke(message);
+                throw new SafetyNetException(message);
+            }
+        }
+
+        /// <summary>
+        /// Checks if an number is bigger than a specific value.
+        /// </summary>
+        /// <param name="number">The number to check.</param>
+        /// <param name="minSize">Minimum value allowed.</param>
+        /// <param name="variableName">Name of the checked variable.</param>
+        public static void EnsureFloatIsBiggerThan(float number, float minSize, string variableName)
+        {
+            if (number <= minSize)
+            {
+                string message = $"Number called '{variableName}' must be above {minSize}. ({number})";
+                OnFireErrorMessage?.Invoke(message);
+                throw new SafetyNetException(message);
+            }
+        }
+
+        /// <summary>
+        /// Checks if an number is bigger than or equal to a specific value.
+        /// </summary>
+        /// <param name="number">The number to check.</param>
+        /// <param name="minSize">Minimum value allowed.</param>
+        /// <param name="variableName">Name of the checked variable.</param>
+        public static void EnsureFloatIsBiggerOrEqualTo(float number, float minSize, string variableName)
+        {
+            if (number < minSize)
+            {
+                string message = $"Number called '{variableName}' must be above or equal to {minSize}. ({number})";
+                OnFireErrorMessage?.Invoke(message);
+                throw new SafetyNetException(message);
+            }
+        }
+
+        /// <summary>
+        /// Checks if an number is smaller than a specific value.
+        /// </summary>
+        /// <param name="number">The number to check.</param>
+        /// <param name="maxSize">Maximum value allowed.</param>
+        /// <param name="variableName">Name of the checked variable.</param>
+        public static void EnsureFloatIsSmallerThan(float number, float maxSize, string variableName)
+        {
+            if (number >= maxSize)
+            {
+                string message = $"Number called '{variableName}' must be below {maxSize}. ({number})";
+                OnFireErrorMessage?.Invoke(message);
+                throw new SafetyNetException(message);
+            }
+        }
+
+        /// <summary>
+        /// Checks if an number is smaller than or equal to a specific value.
+        /// </summary>
+        /// <param name="number">The number to check.</param>
+        /// <param name="maxSize">Maximum value allowed.</param>
+        /// <param name="variableName">Name of the checked variable.</param>
+        public static void EnsureFloatIsSmallerOrEqualTo(float number, float maxSize, string variableName)
+        {
+            if (number > maxSize)
+            {
+                string message = $"Number called '{variableName}' must be below or equal to {maxSize}. ({number})";
+                OnFireErrorMessage?.Invoke(message);
+                throw new SafetyNetException(message);
+            }
+        }
+
+        /// <summary>
+        /// Checks if an number is within a given range (both inclusive).
+        /// </summary>
+        /// <param name="number">The number to check.</param>
+        /// <param name="lowBounds">Minimum value allowed.</param>
+        /// <param name="highBounds">Maximum value allowed.</param>
+        /// <param name="variableName">Name of the checked variable.</param>
+        public static void EnsureValueIsInRange(float number, float lowBounds, float highBounds, string variableName)
+        {
+            if (number < lowBounds && number > highBounds)
+            {
+                string message = $"Number called '{variableName}' must be in range of {lowBounds} - {highBounds}. ({number})";
+                OnFireErrorMessage?.Invoke(message);
+                throw new SafetyNetException(message);
+            }
+        }
+
+        #endregion
+        
         #region String Checks
         /// <summary>
         /// Checks if a given string is not null or empty.

@@ -19,24 +19,49 @@ namespace Rogium.Editors.Core.Defaults
         public static readonly Sprite CampaignIcon = Resources.Load<Sprite>("Defaults/spr_Default_Weapon_Filled");
 
         //Palette
-        public const string PaletteName = "New Palette";
+        public const string PaletteTitle = "New Palette";
         public const int PaletteSize = 9;
         
         //Sprite
-        public const string SpriteName = "New Sprite";
+        public const string SpriteTitle = "New Sprite";
         public static readonly Sprite SpriteIcon = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
         public const int SpriteSize = 16;
         
-        //Tile
-        public const string TileTitle = "New Tile";
-        public static readonly Sprite TileIcon = Resources.Load<Sprite>("Defaults/spr_Default_Tile");
-
+        //Weapon
+        public const string WeaponTitle = "New Weapon";
+        public static readonly Sprite WeaponIcon = Resources.Load<Sprite>("Defaults/spr_Default_Weapon");
+        public const int WeaponBaseDamage = 2;
+        public const float WeaponUseDelay = 0.1f;
+        public const float WeaponKnockbackSelf = 0;
+        public const float WeaponKnockbackOther = 1;
+        
+        //Projectile
+        public const string ProjectileTitle = "New Projectile";
+        public static readonly Sprite ProjectileIcon = Resources.Load<Sprite>("Defaults/spr_Default_Weapon_Filled");
+        public const int ProjectileBaseDamage = 1;
+        public const float ProjectileLifetime = 5;
+        public const float ProjectileKnockbackSelf = 0;
+        public const float ProjectileKnockbackOther = 1;
+        
+        
+        //Enemy
+        public const string EnemyTitle = "New Enemy";
+        public static readonly Sprite EnemyIcon = Resources.Load<Sprite>("Defaults/spr_Default_Weapon_Filled");
+        public const int EnemyBaseDamage = 1;
+        public const float EnemyAttackDelay = 0.2f;
+        public const float EnemyKnockbackSelf = 1;
+        public const float EnemyKnockbackOther = 2;
+        
         //Room
         public const string RoomTitle = "New Room";
         public static readonly Sprite RoomIcon = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
         public static readonly Vector2Int RoomSize = new Vector2Int(15, 10);
         public const int RoomDifficulty = 0;
         public const RoomType RoomType = Rooms.RoomType.Normal;
+        
+        //Tile
+        public const string TileTitle = "New Tile";
+        public static readonly Sprite TileIcon = Resources.Load<Sprite>("Defaults/spr_Default_Tile");
 
         //Other
         public const string EmptyAssetID = "-1";

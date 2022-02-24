@@ -16,16 +16,21 @@ namespace Rogium.ExternalStorage.Serialization
         protected string author;
         protected string creationDate;
 
-        protected SerializedAssetBase(AssetBase asset)
+        protected SerializedAssetBase(T asset)
         {
-            this.id = asset.ID;
-            this.title = asset.Title;
-            this.icon = new SerializedSprite(asset.Icon);
-            this.author = asset.Author;
-            this.creationDate = asset.CreationDate.ToString();
+            id = asset.ID;
+            title = asset.Title;
+            icon = new SerializedSprite(asset.Icon);
+            author = asset.Author;
+            creationDate = asset.CreationDate.ToString();
         }
 
         T ISerializedObject<T>.Deserialize() => Deserialize();
+        
+       /// <summary>
+       /// Deserializes the asset.
+       /// </summary>
+       /// <returns>The asset in a readable form.</returns>
         public abstract T Deserialize();
 
     }

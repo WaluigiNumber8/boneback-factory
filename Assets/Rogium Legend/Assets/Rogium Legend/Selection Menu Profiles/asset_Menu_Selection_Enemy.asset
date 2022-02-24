@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89336f03827cef34d898e6a19f50937b, type: 3}
+  m_Name: asset_Menu_Selection_Enemy
+  m_EditorClassIdentifier: 
+  assetObject: {fileID: 3475530483016258065, guid: 35dea7b1da929d145a1b224d5b61c66a, type: 3}
+  addButton: {fileID: 6744328303431766435, guid: 060244854d9a53d4199d077070e98617, type: 3}

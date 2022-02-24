@@ -4,6 +4,9 @@ using System;
 
 namespace Rogium.ExternalStorage.Serialization
 {
+    /// <summary>
+    /// Serialized form of the <see cref="TileAsset"/>.
+    /// </summary>
     [System.Serializable]
     public class SerializedTileAsset : SerializedAssetBase<TileAsset>
     {

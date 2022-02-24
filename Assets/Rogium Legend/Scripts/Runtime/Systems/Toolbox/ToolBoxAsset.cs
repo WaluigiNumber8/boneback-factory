@@ -66,7 +66,7 @@ namespace Rogium.Systems.Toolbox
 
         public void WhenDrawOnUIGrid(Vector2Int position, bool useEmpty)
         {
-            Sprite value = (useEmpty) ? EditorDefaults.EmptyGridSprite : currentSprite;
+            Sprite value = (useEmpty) ? null : currentSprite;
             UIGrid.UpdateCellSprite(position, value);
         }
         

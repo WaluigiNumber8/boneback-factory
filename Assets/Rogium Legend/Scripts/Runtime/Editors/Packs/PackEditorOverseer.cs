@@ -1,10 +1,13 @@
 ﻿using System;
 using UnityEngine;
 using BoubakProductions.Safety;
+using Rogium.Editors.Enemies;
 using Rogium.Editors.Palettes;
+using Rogium.Editors.Projectiles;
 using Rogium.Editors.Rooms;
 using Rogium.Editors.Sprites;
 using Rogium.Editors.Tiles;
+using Rogium.Editors.Weapons;
 
 namespace Rogium.Editors.Packs
 {
@@ -17,6 +20,9 @@ namespace Rogium.Editors.Packs
 
         private readonly PaletteEditorOverseer paletteEditor;
         private readonly SpriteEditorOverseer spriteEditor;
+        private readonly WeaponEditorOverseer weaponEditor;
+        private readonly ProjectileEditorOverseer projectileEditor;
+        private readonly EnemyEditorOverseer enemyEditor;
         private readonly TileEditorOverseer tileEditor;
         private readonly RoomEditorOverseer roomEditor;
 
@@ -48,13 +54,19 @@ namespace Rogium.Editors.Packs
         {
             paletteEditor = PaletteEditorOverseer.Instance;
             spriteEditor = SpriteEditorOverseer.Instance;
-            tileEditor = TileEditorOverseer.Instance;
+            weaponEditor = WeaponEditorOverseer.Instance;
+            projectileEditor = ProjectileEditorOverseer.Instance;
+            enemyEditor = EnemyEditorOverseer.Instance;
             roomEditor = RoomEditorOverseer.Instance;
+            tileEditor = TileEditorOverseer.Instance;
 
             paletteEditor.OnCompleteEditing += UpdatePalette;
             spriteEditor.OnCompleteEditing += UpdateSprite;
-            tileEditor.OnCompleteEditing += UpdateTile;
+            weaponEditor.OnCompleteEditing += UpdateWeapon;
+            projectileEditor.OnCompleteEditing += UpdateProjectile;
+            enemyEditor.OnCompleteEditing += UpdateEnemy;
             roomEditor.OnCompleteEditing += UpdateRoom;
+            tileEditor.OnCompleteEditing += UpdateTile;
         }
 
         /// <summary>
@@ -190,6 +202,192 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Sprites, "List of Sprites");
             SafetyNet.EnsureIntIsInRange(assetIndex, 0, currentPack.Sprites.Count, "Sprite Index");
             spriteEditor.AssignAsset(CurrentPack.Sprites[assetIndex], assetIndex, prepareEditor);
+        }
+
+        #endregion
+        
+        #region Weapons
+        /// <summary>
+        /// Creates a new weapon, and adds it to the Pack Asset.
+        /// <param name="newAsset">The new Weapon Asset to Add.</param>
+        /// </summary>
+        public void CreateNewWeapon(WeaponAsset newAsset)
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
+            SafetyNet.EnsureIsNotNull(currentPack.Weapons, "Pack Editor - List of Weapons");
+            CurrentPack.Weapons.Add(newAsset);
+            
+        }
+        public void CreateNewWeapon()
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
+            SafetyNet.EnsureIsNotNull(currentPack.Weapons, "Pack Editor - List of Weapons");
+            CurrentPack.Weapons.Add(new WeaponAsset());
+            SavePackChanges();
+        }
+
+        /// <summary>
+        /// Updates a weapon in the given pack.
+        /// </summary>
+        /// <param name="newAsset">Weapon Asset with the new details.</param>
+        /// <param name="positionIndex">Which weapon to override.</param>
+        public void UpdateWeapon(WeaponAsset newAsset, int positionIndex)
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
+            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Weapons, "List of Weapons");
+            
+            CurrentPack.Weapons.Update(positionIndex, newAsset);
+            SavePackChanges();
+        } 
+
+        /// <summary>
+        /// Deletes a weapon from the pack.
+        /// <param name="assetIndex">The index of the weapon to be deleted.</param>
+        /// </summary>
+        public void RemoveWeapon(int assetIndex)
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
+            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Weapons, "List of Weapons");
+            currentPack.Weapons.Remove(assetIndex);
+
+            SavePackChanges();
+        }
+
+        /// <summary>
+        /// Send Command to the Weapon Editor, to start editing a weapon.
+        /// </summary>
+        /// <param name="assetIndex">Weapon index from the list.</param>
+        /// <param name="prepareEditor">If true, load asset into the editor.</param>
+        public void ActivateWeaponEditor(int assetIndex, bool prepareEditor = true)
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
+            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Weapons, "List of Weapons");
+            SafetyNet.EnsureIntIsInRange(assetIndex, 0, currentPack.Weapons.Count, "Weapon Index");
+            weaponEditor.AssignAsset(CurrentPack.Weapons[assetIndex], assetIndex, prepareEditor);
+        }
+
+        #endregion
+        
+        #region Projectiles
+        /// <summary>
+        /// Creates a new projectile, and adds it to the Pack Asset.
+        /// <param name="newAsset">The new Projectile Asset to Add.</param>
+        /// </summary>
+        public void CreateNewProjectile(ProjectileAsset newAsset)
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
+            SafetyNet.EnsureIsNotNull(currentPack.Projectiles, "Pack Editor - List of Projectiles");
+            CurrentPack.Projectiles.Add(newAsset);
+            
+        }
+        public void CreateNewProjectile()
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
+            SafetyNet.EnsureIsNotNull(currentPack.Projectiles, "Pack Editor - List of Projectiles");
+            CurrentPack.Projectiles.Add(new ProjectileAsset());
+            SavePackChanges();
+        }
+
+        /// <summary>
+        /// Updates the projectile in the given pack.
+        /// </summary>
+        /// <param name="newAsset">Projectile Asset with the new details.</param>
+        /// <param name="positionIndex">Which projectile to override.</param>
+        public void UpdateProjectile(ProjectileAsset newAsset, int positionIndex)
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
+            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Projectiles, "List of Projectiles");
+            
+            CurrentPack.Projectiles.Update(positionIndex, newAsset);
+            SavePackChanges();
+        } 
+
+        /// <summary>
+        /// Deletes a projectile from the pack.
+        /// <param name="assetIndex">The index of the projectile to be deleted.</param>
+        /// </summary>
+        public void RemoveProjectile(int assetIndex)
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
+            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Projectiles, "List of Projectiles");
+            currentPack.Projectiles.Remove(assetIndex);
+
+            SavePackChanges();
+        }
+
+        /// <summary>
+        /// Send Command to the Projectile Editor, to start editing a tile.
+        /// </summary>
+        /// <param name="assetIndex">Projectile index from the list.</param>
+        /// <param name="prepareEditor">If true, load asset into the editor.</param>
+        public void ActivateProjectileEditor(int assetIndex, bool prepareEditor = true)
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
+            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Projectiles, "List of Projectiles");
+            SafetyNet.EnsureIntIsInRange(assetIndex, 0, currentPack.Projectiles.Count, "Projectile Index");
+            projectileEditor.AssignAsset(CurrentPack.Projectiles[assetIndex], assetIndex, prepareEditor);
+        }
+
+        #endregion
+        
+        #region Enemies
+        /// <summary>
+        /// Creates a new enemy, and adds it to the Pack Asset.
+        /// <param name="newAsset">The new Enemy Asset to Add.</param>
+        /// </summary>
+        public void CreateNewEnemy(EnemyAsset newAsset)
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
+            SafetyNet.EnsureIsNotNull(currentPack.Enemies, "Pack Editor - List of Enemies");
+            CurrentPack.Enemies.Add(newAsset);
+            
+        }
+        public void CreateNewEnemy()
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
+            SafetyNet.EnsureIsNotNull(currentPack.Enemies, "Pack Editor - List of Enemies");
+            CurrentPack.Enemies.Add(new EnemyAsset());
+            SavePackChanges();
+        }
+
+        /// <summary>
+        /// Updates the enemy in the given pack.
+        /// </summary>
+        /// <param name="newAsset">Enemy Asset with the new details.</param>
+        /// <param name="positionIndex">Which enemy to override.</param>
+        public void UpdateEnemy(EnemyAsset newAsset, int positionIndex)
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
+            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Enemies, "List of Enemies");
+            
+            CurrentPack.Enemies.Update(positionIndex, newAsset);
+            SavePackChanges();
+        } 
+
+        /// <summary>
+        /// Deletes a enemy from the pack.
+        /// <param name="assetIndex">The index of the enemy to be deleted.</param>
+        /// </summary>
+        public void RemoveEnemy(int assetIndex)
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
+            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Enemies, "List of Enemies");
+            currentPack.Enemies.Remove(assetIndex);
+
+            SavePackChanges();
+        }
+
+        /// <summary>
+        /// Send Command to the Enemy Editor, to start editing a enemy.
+        /// </summary>
+        /// <param name="assetIndex">Enemy index from the list.</param>
+        /// <param name="prepareEditor">If true, load asset into the editor.</param>
+        public void ActivateEnemyEditor(int assetIndex, bool prepareEditor = true)
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
+            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Enemies, "List of Enemies");
+            SafetyNet.EnsureIntIsInRange(assetIndex, 0, currentPack.Enemies.Count, "Enemy Index");
+            enemyEditor.AssignAsset(CurrentPack.Enemies[assetIndex], assetIndex, prepareEditor);
         }
 
         #endregion

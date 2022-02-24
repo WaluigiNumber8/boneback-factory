@@ -47,10 +47,13 @@ namespace Rogium.UserInterface.Interactables
                     GASButtonActions.OpenSelectionSprite();
                     break;
                 case ButtonType.SelectionOpenWeapon:
+                    GASButtonActions.OpenSelectionWeapon();
                     break;
                 case ButtonType.SelectionOpenProjectile:
+                    GASButtonActions.OpenSelectionProjectile();
                     break;
                 case ButtonType.SelectionOpenEnemy:
+                    GASButtonActions.OpenSelectionEnemy();
                     break;
                 case ButtonType.SelectionOpenRoom:
                     GASButtonActions.OpenSelectionRoom();
@@ -75,10 +78,13 @@ namespace Rogium.UserInterface.Interactables
                     GASButtonActions.CreateSprite();
                     break;
                 case ButtonType.CreateWeapon:
+                    GASButtonActions.CreateWeapon();
                     break;
                 case ButtonType.CreateProjectile:
+                    GASButtonActions.CreateProjectile();
                     break;
                 case ButtonType.CreateEnemy:
+                    GASButtonActions.CreateEnemy();
                     break;
                 case ButtonType.CreateTile:
                     GASButtonActions.CreateTile();
@@ -107,10 +113,16 @@ namespace Rogium.UserInterface.Interactables
                     GASButtonActions.EditPropertiesSprite(index);
                     break;
                 case ButtonType.EditWeaponProperties:
+                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - EDIT WEAPON PROPERTIES");
+                    GASButtonActions.EditPropertiesWeapon(index);
                     break;
                 case ButtonType.EditProjectileProperties:
+                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - EDIT PROJECTILE PROPERTIES");
+                    GASButtonActions.EditPropertiesProjectile(index);
                     break;
                 case ButtonType.EditEnemyProperties:
+                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - EDIT ENEMY PROPERTIES");
+                    GASButtonActions.EditPropertiesEnemy(index);
                     break;
                 case ButtonType.EditRoomProperties:
                     SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - EDIT ROOM PROPERTIES");
@@ -141,10 +153,16 @@ namespace Rogium.UserInterface.Interactables
                     GASButtonActions.DeleteSprite(index);
                     break;
                 case ButtonType.DeleteWeapon:
+                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - DELETE WEAPON");
+                    GASButtonActions.DeleteWeapon(index);
                     break;
                 case ButtonType.DeleteProjectile:
+                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - DELETE PROJECTILE");
+                    GASButtonActions.DeleteProjectile(index);
                     break;
                 case ButtonType.DeleteEnemy:
+                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - DELETE ENEMY");
+                    GASButtonActions.DeleteEnemy(index);
                     break;
                 case ButtonType.DeleteRoom:
                     SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - DELETE ROOM");
@@ -171,10 +189,16 @@ namespace Rogium.UserInterface.Interactables
                     GASButtonActions.OpenEditorSprite(index);
                     break;
                 case ButtonType.EditorOpenWeapon:
+                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - OPEN EDITOR WEAPON");
+                    GASButtonActions.OpenEditorWeapon(index);
                     break;
                 case ButtonType.EditorOpenProjectile:
+                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - OPEN EDITOR PROJECTILE");
+                    GASButtonActions.OpenEditorProjectile(index);
                     break;
                 case ButtonType.EditorOpenEnemy:
+                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - OPEN EDITOR ENEMY");
+                    GASButtonActions.OpenEditorEnemy(index);
                     break;
                 case ButtonType.EditorOpenRoom:
                     SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - OPEN EDITOR ROOM");
@@ -197,10 +221,13 @@ namespace Rogium.UserInterface.Interactables
                     GASButtonActions.SaveChangesSprite();
                     break;
                 case ButtonType.SaveChangesWeapon:
+                    GASButtonActions.SaveChangesWeapon();
                     break;
                 case ButtonType.SaveChangesProjectile:
+                    GASButtonActions.SaveChangesProjectile();
                     break;
                 case ButtonType.SaveChangesEnemy:
+                    GASButtonActions.SaveChangesEnemy();
                     break;
                 case ButtonType.SaveChangesRoom:
                     GASButtonActions.SaveChangesRoom();
@@ -221,10 +248,13 @@ namespace Rogium.UserInterface.Interactables
                     GASButtonActions.CancelChangesSprite();
                     break;
                 case ButtonType.CancelChangesWeapon:
+                    GASButtonActions.CancelChangesWeapon();
                     break;
                 case ButtonType.CancelChangesProjectile:
+                    GASButtonActions.CancelChangesProjectile();
                     break;
                 case ButtonType.CancelChangesEnemy:
+                    GASButtonActions.CancelChangesEnemy();
                     break;
                 case ButtonType.CancelChangesRoom:
                     GASButtonActions.CancelChangesRoom();

@@ -4,7 +4,7 @@ using Rogium.Editors.Packs;
 namespace Rogium.ExternalStorage.Serialization
 {
     /// <summary>
-    /// Serialized form of the PackInfoAsset, ready for saving.
+    /// Serialized form of the <see cref="PackInfoAsset"/>.
     /// </summary>
     [System.Serializable]
     public class SerializedPackInfoAsset : SerializedAssetBase<PackInfoAsset>

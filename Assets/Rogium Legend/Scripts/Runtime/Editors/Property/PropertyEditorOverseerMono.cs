@@ -1,5 +1,9 @@
 ﻿using BoubakProductions.Core;
+using Rogium.Editors.Enemies;
+using Rogium.Editors.Projectiles;
+using Rogium.Editors.PropertyEditor.Builders;
 using Rogium.Editors.Tiles;
+using Rogium.Editors.Weapons;
 using Rogium.Systems.ThemeSystem;
 using Rogium.UserInterface.Interactables;
 using UnityEngine;
@@ -16,24 +20,78 @@ namespace Rogium.Editors.PropertyEditor
         [SerializeField] private Transform propertyContent;
         [SerializeField] private UIInfo ui;
 
-        private PropertyEditorBuilder builder;
+        private PropertyEditorBuilderWeapon weaponBuilder;
+        private PropertyEditorBuilderProjectile projectileBuilder;
+        private PropertyEditorBuilderEnemy enemyBuilder;
+        private PropertyEditorBuilderTile tileBuilder;
 
         protected override void Awake()
         {
             base.Awake();
-            builder = new PropertyEditorBuilder(importantContent, propertyContent);
+            weaponBuilder = new PropertyEditorBuilderWeapon(importantContent, propertyContent);
+            projectileBuilder = new PropertyEditorBuilderProjectile(importantContent, propertyContent);
+            enemyBuilder = new PropertyEditorBuilderEnemy(importantContent, propertyContent);
+            tileBuilder = new PropertyEditorBuilderTile(importantContent, propertyContent);
         }
 
         private void OnEnable()
         {
+            WeaponEditorOverseer.Instance.OnAssignAsset += InitWeapons;
+            ProjectileEditorOverseer.Instance.OnAssignAsset += InitProjectiles;
+            EnemyEditorOverseer.Instance.OnAssignAsset += InitEnemies;
             TileEditorOverseer.Instance.OnAssignAsset += InitTiles;
         }
 
         private void OnDisable()
         {
+            WeaponEditorOverseer.Instance.OnAssignAsset -= InitWeapons;
+            ProjectileEditorOverseer.Instance.OnAssignAsset -= InitProjectiles;
+            EnemyEditorOverseer.Instance.OnAssignAsset -= InitEnemies;
             TileEditorOverseer.Instance.OnAssignAsset -= InitTiles;
         }
 
+        
+        /// <summary>
+        /// Initializes the editor for Weapons.
+        /// </summary>
+        /// <param name="asset">The Weapon Asset to work with.</param>
+        private void InitWeapons(WeaponAsset asset)
+        {
+            Init();
+
+            ui.saveButton.Action = ButtonType.SaveChangesWeapon;
+            ui.cancelButton.Action = ButtonType.CancelChangesWeapon;
+            
+            weaponBuilder.Build(asset);
+        }
+        
+        /// <summary>
+        /// Initializes the editor for Projectiles.
+        /// </summary>
+        /// <param name="asset">The Projectile Asset to work with.</param>
+        private void InitProjectiles(ProjectileAsset asset)
+        {
+            Init();
+
+            ui.saveButton.Action = ButtonType.SaveChangesProjectile;
+            ui.cancelButton.Action = ButtonType.CancelChangesProjectile;
+            
+            projectileBuilder.Build(asset);
+        }
+        
+        /// <summary>
+        /// Initializes the editor for Enemies.
+        /// </summary>
+        /// <param name="asset">The Enemy Asset to work with.</param>
+        private void InitEnemies(EnemyAsset asset)
+        {
+            Init();
+
+            ui.saveButton.Action = ButtonType.SaveChangesEnemy;
+            ui.cancelButton.Action = ButtonType.CancelChangesEnemy;
+            
+            enemyBuilder.Build(asset);
+        }
         
         /// <summary>
         /// Initializes the editor for Tiles.
@@ -46,7 +104,7 @@ namespace Rogium.Editors.PropertyEditor
             ui.saveButton.Action = ButtonType.SaveChangesTile;
             ui.cancelButton.Action = ButtonType.CancelChangesTile;
             
-            builder.BuildForTiles(asset);
+            tileBuilder.Build(asset);
         }
 
         /// <summary>

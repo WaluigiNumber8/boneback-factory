@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Rogium.Editors.Sprites
 {
     /// <summary>
-    /// Contains all data needed for a Sprite
+    /// Contains all data needed for a Sprite.
     /// </summary>
     public class SpriteAsset : AssetBase
     {
@@ -17,7 +17,7 @@ namespace Rogium.Editors.Sprites
         #region Constructors
         public SpriteAsset()
         {
-            this.title = EditorDefaults.SpriteName;
+            this.title = EditorDefaults.SpriteTitle;
             this.icon = EditorDefaults.SpriteIcon;
             this.author = EditorDefaults.Author;
             this.creationDate = DateTime.Now;

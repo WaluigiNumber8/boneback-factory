@@ -67,7 +67,7 @@ namespace Rogium.Systems.Toolbox
 
         public void WhenDrawOnUIGrid(Vector2Int position, bool useEmpty)
         {
-            Color value = (useEmpty) ? EditorDefaults.EmptyGridColor : currentColor;
+            Color value = (useEmpty) ? EditorDefaults.NoColor : currentColor;
             UIGrid.UpdateCellColor(position, value);
         }
         

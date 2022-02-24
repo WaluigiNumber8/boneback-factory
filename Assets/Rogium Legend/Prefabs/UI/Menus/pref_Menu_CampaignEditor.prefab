@@ -1560,7 +1560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c71f9e646d537ff4f91d360b0c38be1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuType: 12
+  menuType: 6
 --- !u!114 &650393693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2297,22 +2297,24 @@ MonoBehaviour:
     grid:
       menu: {fileID: 5868724423002422602}
       content: {fileID: 5868724423569545473}
+      notFoundText: {fileID: 0}
       iconPositionType: 0
       iconPosition: {fileID: 0}
     list:
       menu: {fileID: 4963877523665445342}
       content: {fileID: 4963877523665445342}
+      notFoundText: {fileID: 0}
       iconPositionType: 0
       iconPosition: {fileID: 0}
   selectionMenus:
     pack: {fileID: 11400000, guid: 8865ac4ace4f4d54cb39c82db3fd7fe1, type: 2}
     palette: {fileID: 11400000, guid: 3d44bacd7be5b5c47a8d1b20eaa9a6c3, type: 2}
     sprite: {fileID: 11400000, guid: af4161bafc485c84ea2c3388667b0423, type: 2}
-    weapon: {fileID: 0}
-    projectile: {fileID: 0}
-    enemy: {fileID: 0}
-    room: {fileID: 0}
-    tile: {fileID: 0}
+    weapon: {fileID: 11400000, guid: 5126c0680a52b0144aab51c33ac88306, type: 2}
+    projectile: {fileID: 11400000, guid: 7b63ca0a3ce6fc64ca13ba5fe2f985bb, type: 2}
+    enemy: {fileID: 11400000, guid: 6c23bcfdb8b6e1b4aae99a4441cc4d9c, type: 2}
+    room: {fileID: 11400000, guid: 9593e3fca8c7a574397e762b75fa63b9, type: 2}
+    tile: {fileID: 11400000, guid: 0ff8f62a0370c93409f3e0729532847d, type: 2}
 --- !u!1 &5868724423708217071
 GameObject:
   m_ObjectHideFlags: 0

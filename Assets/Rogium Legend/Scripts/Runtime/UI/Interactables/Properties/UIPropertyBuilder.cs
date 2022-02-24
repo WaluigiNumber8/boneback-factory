@@ -6,6 +6,7 @@ using BoubakProductions.UI;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using UnityEngine;
+using TMPro;
 
 namespace Rogium.UserInterface.Interactables.Properties
 {
@@ -37,7 +38,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             ThemeUpdaterRogium.UpdateHeader(header);
             return header;
         }
-        
+
         /// <summary>
         /// Builds the Input Field Property.
         /// </summary>
@@ -45,11 +46,12 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="value">Starting value of the property</param>
         /// <param name="parent">Under which transform is this property going to be created.</param>
         /// <param name="whenValueChange">What happens when the property changes value.</param>
+        /// <param name="characterValidation">The validation to use for inputted symbols.</param>
         /// <returns>The property itself.</returns>
-        public InteractablePropertyInputField BuildInputField(string title, string value, Transform parent, Action<string> whenValueChange)
+        public InteractablePropertyInputField BuildInputField(string title, string value, Transform parent, Action<string> whenValueChange, TMP_InputField.CharacterValidation characterValidation = TMP_InputField.CharacterValidation.None)
         {
             InteractablePropertyInputField inputField = Instantiate(inputFieldProperty, parent);
-            inputField.Construct(title, value, whenValueChange);
+            inputField.Construct(title, value, whenValueChange, characterValidation);
             ThemeUpdaterRogium.UpdateInputField(inputField);
             return inputField;
         }
@@ -61,11 +63,12 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="value">Starting value of the property</param>
         /// <param name="parent">Under which transform is this property going to be created.</param>
         /// <param name="whenValueChange">What happens when the property changes value.</param>
+        /// <param name="characterValidation">The validation to use for inputted symbols.</param>
         /// <returns>The property itself.</returns>
-        public InteractablePropertyInputField BuildInputFieldArea(string title, string value, Transform parent, Action<string> whenValueChange)
+        public InteractablePropertyInputField BuildInputFieldArea(string title, string value, Transform parent, Action<string> whenValueChange, TMP_InputField.CharacterValidation characterValidation = TMP_InputField.CharacterValidation.None)
         {
             InteractablePropertyInputField inputField = Instantiate(inputFieldAreaProperty, parent);
-            inputField.Construct(title, value, whenValueChange);
+            inputField.Construct(title, value, whenValueChange, characterValidation);
             ThemeUpdaterRogium.UpdateInputField(inputField);
             return inputField;
         }

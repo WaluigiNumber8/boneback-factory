@@ -66,17 +66,29 @@ namespace Rogium.UserInterface.AssetSelection
         
         public void OpenForWeapons()
         {
-            throw new NotImplementedException();
+            overseer.Setup(AssetType.Weapon,
+                           layouts.grid,
+                           selectionMenus.weapon,
+                           editor.CurrentPack.Weapons.ToList<AssetBase>(),
+                           layoutSwitcher);
         }
 
         public void OpenForProjectiles()
         {
-            throw new NotImplementedException();
+            overseer.Setup(AssetType.Projectile,
+                           layouts.grid,
+                           selectionMenus.projectile,
+                           editor.CurrentPack.Projectiles.ToList<AssetBase>(),
+                           layoutSwitcher);
         }
 
         public void OpenForEnemies()
         {
-            throw new NotImplementedException();
+            overseer.Setup(AssetType.Enemy,
+                           layouts.grid,
+                           selectionMenus.enemy,
+                           editor.CurrentPack.Enemies.ToList<AssetBase>(),
+                           layoutSwitcher);
         }
 
         public void OpenForRooms()

@@ -16,7 +16,7 @@ namespace Rogium.Editors.Palettes
         #region Constructors
         public PaletteAsset()
         {
-            this.title = EditorDefaults.PaletteName;
+            this.title = EditorDefaults.PaletteTitle;
             this.icon = EditorDefaults.EmptyGridSprite;
             this.author = EditorDefaults.Author;
             this.creationDate = DateTime.Now;
