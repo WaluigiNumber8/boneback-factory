@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e0ecfa36a90467aa410aeeccc2ad911, type: 3}
+  m_Name: asset_EditorTheme_Purple
+  m_EditorClassIdentifier: 
+  elements:
+    dropdownHeader: {fileID: -1730332384, guid: 07d0a7d6b639c6b40a5620de48bdbf33, type: 3}
+    dropdownBackground: {fileID: -1730332384, guid: 07d0a7d6b639c6b40a5620de48bdbf33, type: 3}
+    dropdownArrow: {fileID: 2335134593134040340, guid: c0e0f11f630bab34c849d3f3899b8662, type: 3}
+    toggleBorder: {fileID: -1620686000, guid: c14ae50052bca6348b97cb6b002801ad, type: 3}
+    toggleCheckmark: {fileID: 21300000, guid: 3cd73286c1f01624db45bb8e89411a87, type: 3}
+    sliderBackground: {fileID: 1287366117, guid: 04c4a6178bc5c7f47bf0ca513a394a31, type: 3}
+    sliderHandle: {fileID: -947447350, guid: 04c4a6178bc5c7f47bf0ca513a394a31, type: 3}
+    editorBackground: {fileID: 954764971, guid: 71b23270d15255f48932aaab4ea9b008, type: 3}
+    modalWindowBackground: {fileID: 21300000, guid: 48137aa70ae77b64e83330df5bd68449, type: 3}
+  interactables:
+    buttonMenu:
+      normal: {fileID: -1730332384, guid: 07d0a7d6b639c6b40a5620de48bdbf33, type: 3}
+      highlighted: {fileID: -193273234, guid: 07d0a7d6b639c6b40a5620de48bdbf33, type: 3}
+      pressed: {fileID: 1855383202, guid: 07d0a7d6b639c6b40a5620de48bdbf33, type: 3}
+      selected: {fileID: -1745194208, guid: 07d0a7d6b639c6b40a5620de48bdbf33, type: 3}
+      disabled: {fileID: -691254246, guid: 07d0a7d6b639c6b40a5620de48bdbf33, type: 3}
+    buttonCard:
+      normal: {fileID: 1913551406, guid: 71b23270d15255f48932aaab4ea9b008, type: 3}
+      highlighted: {fileID: 1390081756, guid: 71b23270d15255f48932aaab4ea9b008, type: 3}
+      pressed: {fileID: -1333714377, guid: 71b23270d15255f48932aaab4ea9b008, type: 3}
+      selected: {fileID: -396533030, guid: 71b23270d15255f48932aaab4ea9b008, type: 3}
+      disabled: {fileID: 954764971, guid: 71b23270d15255f48932aaab4ea9b008, type: 3}
+    buttonTool:
+      normal: {fileID: 571939082, guid: 3efe7336c6a691b418caf9438bc761de, type: 3}
+      highlighted: {fileID: 277551811, guid: 3efe7336c6a691b418caf9438bc761de, type: 3}
+      pressed: {fileID: -1057540431, guid: 3efe7336c6a691b418caf9438bc761de, type: 3}
+      selected: {fileID: -1253534556, guid: 3efe7336c6a691b418caf9438bc761de, type: 3}
+      disabled: {fileID: -1209299020, guid: 3efe7336c6a691b418caf9438bc761de, type: 3}
+    inputField:
+      normal: {fileID: -1730332384, guid: 07d0a7d6b639c6b40a5620de48bdbf33, type: 3}
+      highlighted: {fileID: -193273234, guid: 07d0a7d6b639c6b40a5620de48bdbf33, type: 3}
+      pressed: {fileID: 1855383202, guid: 07d0a7d6b639c6b40a5620de48bdbf33, type: 3}
+      selected: {fileID: -1745194208, guid: 07d0a7d6b639c6b40a5620de48bdbf33, type: 3}
+      disabled: {fileID: -691254246, guid: 07d0a7d6b639c6b40a5620de48bdbf33, type: 3}
+    toggle:
+      normal: {fileID: -1620686000, guid: c14ae50052bca6348b97cb6b002801ad, type: 3}
+      highlighted: {fileID: 1267965998, guid: c14ae50052bca6348b97cb6b002801ad, type: 3}
+      pressed: {fileID: 27531306, guid: c14ae50052bca6348b97cb6b002801ad, type: 3}
+      selected: {fileID: 1076304836, guid: c14ae50052bca6348b97cb6b002801ad, type: 3}
+      disabled: {fileID: 1899903828, guid: c14ae50052bca6348b97cb6b002801ad, type: 3}
+    assetField:
+      normal: {fileID: 272336893, guid: b867a7c093f4c374ebc8cb7b345a0f2d, type: 3}
+      highlighted: {fileID: 1863612767, guid: b867a7c093f4c374ebc8cb7b345a0f2d, type: 3}
+      pressed: {fileID: -612759392, guid: b867a7c093f4c374ebc8cb7b345a0f2d, type: 3}
+      selected: {fileID: 670810546, guid: b867a7c093f4c374ebc8cb7b345a0f2d, type: 3}
+      disabled: {fileID: 558482297, guid: b867a7c093f4c374ebc8cb7b345a0f2d, type: 3}
+    slider:
+      normal: {fileID: -787628387, guid: 04c4a6178bc5c7f47bf0ca513a394a31, type: 3}
+      highlighted: {fileID: -417427851, guid: 04c4a6178bc5c7f47bf0ca513a394a31, type: 3}
+      pressed: {fileID: 1821833887, guid: 04c4a6178bc5c7f47bf0ca513a394a31, type: 3}
+      selected: {fileID: -947447350, guid: 04c4a6178bc5c7f47bf0ca513a394a31, type: 3}
+      disabled: {fileID: 1287366117, guid: 04c4a6178bc5c7f47bf0ca513a394a31, type: 3}
+  fonts:
+    general:
+      font: {fileID: 11400000, guid: 610b74f9f977953488aee31905a7d7c6, type: 2}
+      color: {r: 1, g: 0.3372549, b: 0.5019608, a: 1}
+      size: 36
+    inputted:
+      font: {fileID: 11400000, guid: 7dcbf3f25fb09e840ab6875dff99cba5, type: 2}
+      color: {r: 0.89411765, g: 0.19607843, b: 0.44705883, a: 1}
+      size: 46
+    header:
+      font: {fileID: 11400000, guid: cf4879b37d976dc428255f939d628fa9, type: 2}
+      color: {r: 1, g: 0.3372549, b: 0.5019608, a: 1}
+      size: 65

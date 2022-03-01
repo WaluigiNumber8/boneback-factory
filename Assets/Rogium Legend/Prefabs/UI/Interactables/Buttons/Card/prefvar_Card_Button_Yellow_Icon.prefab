@@ -37,11 +37,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1709100223876062946, guid: 4a7f0a4364fc65d47aba8a3a9c8a0d2f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1709100223876062946, guid: 4a7f0a4364fc65d47aba8a3a9c8a0d2f, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1709100223876062946, guid: 4a7f0a4364fc65d47aba8a3a9c8a0d2f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -91,6 +91,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1801377786256016773, guid: 4a7f0a4364fc65d47aba8a3a9c8a0d2f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801377786256016773, guid: 4a7f0a4364fc65d47aba8a3a9c8a0d2f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6727734576422274859, guid: 4a7f0a4364fc65d47aba8a3a9c8a0d2f, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -111,6 +119,10 @@ PrefabInstance:
       propertyPath: m_SpriteState.m_HighlightedSprite
       value: 
       objectReference: {fileID: 2546817722796273936, guid: 97189544436cefd4b8dc05ed78c091aa, type: 3}
+    - target: {fileID: 8240134013388119143, guid: 4a7f0a4364fc65d47aba8a3a9c8a0d2f, type: 3}
+      propertyPath: m_EffectColor.a
+      value: 0.72156864
+      objectReference: {fileID: 0}
     - target: {fileID: 8457675536860316991, guid: 4a7f0a4364fc65d47aba8a3a9c8a0d2f, type: 3}
       propertyPath: m_Name
       value: prefvar_Card_Button_Yellow_Icon

@@ -1,4 +1,5 @@
 ﻿using Rogium.Systems.GASExtension;
+using Rogium.Systems.Input;
 using UnityEngine;
 
 namespace Rogium.Core
@@ -13,7 +14,10 @@ namespace Rogium.Core
         private void Awake()
         {
             gameOverseer = GameOverseer.Instance;
+            InputOverseer.Instance.EnableUIMap();
             GASButtonActions.GameStart();
+            DontDestroyOnLoad(gameObject);
         }
+
     }
 }

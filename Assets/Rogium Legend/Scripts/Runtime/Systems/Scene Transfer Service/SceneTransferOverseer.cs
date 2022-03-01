@@ -12,7 +12,7 @@ namespace Rogium.Systems.SceneTransferService
         protected override void Awake()
         {
             base.Awake();
-            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(gameObject);
         }
 
         /// <summary>

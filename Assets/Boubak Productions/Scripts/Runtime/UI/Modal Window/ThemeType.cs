@@ -12,5 +12,6 @@
         Yellow = 3,
         Teal = 4,
         Pink = 5,
+        Purple = 6,
     }
 }

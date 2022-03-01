@@ -104,7 +104,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spr_InputField_DarkPurple_0
+      name: spr_InputField_Purple_0
       rect:
         serializedVersion: 2
         x: 0
@@ -125,7 +125,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_InputField_DarkPurple_1
+      name: spr_InputField_Purple_1
       rect:
         serializedVersion: 2
         x: 16
@@ -146,7 +146,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_InputField_DarkPurple_2
+      name: spr_InputField_Purple_2
       rect:
         serializedVersion: 2
         x: 32
@@ -167,7 +167,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_InputField_DarkPurple_3
+      name: spr_InputField_Purple_3
       rect:
         serializedVersion: 2
         x: 48
@@ -188,7 +188,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_InputField_DarkPurple_4
+      name: spr_InputField_Purple_4
       rect:
         serializedVersion: 2
         x: 64
@@ -219,11 +219,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      spr_InputField_DarkPurple_2: 1855383202
-      spr_InputField_DarkPurple_0: -1730332384
-      spr_InputField_DarkPurple_1: -193273234
-      spr_InputField_DarkPurple_3: -1745194208
-      spr_InputField_DarkPurple_4: -691254246
+      spr_InputField_Purple_0: -1730332384
+      spr_InputField_Purple_3: -1745194208
+      spr_InputField_Purple_4: -691254246
+      spr_InputField_Purple_2: 1855383202
+      spr_InputField_Purple_1: -193273234
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

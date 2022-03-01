@@ -2387,7 +2387,6 @@ GameObject:
   - component: {fileID: 4248916056567668631}
   - component: {fileID: 7348266322911235993}
   - component: {fileID: 8546171657231680538}
-  - component: {fileID: 8413502425205200994}
   m_Layer: 5
   m_Name: Grid
   m_TagString: Untagged
@@ -2464,19 +2463,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellPrefab: {fileID: -5758607023194494919, guid: aebc41f328a702b4ebcd0869cd236fed, type: 3}
   gridSize: {x: 15, y: 10}
---- !u!114 &8413502425205200994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4248916056567668626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c0e3d249af21f64d93e641dae68c10e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canBeReset: 0
 --- !u!1 &4248916056675789711
 GameObject:
   m_ObjectHideFlags: 0

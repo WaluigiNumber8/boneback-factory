@@ -3,18 +3,15 @@ using UnityEngine;
 
 namespace Rogium.Systems.GridSystem
 {
-    [RequireComponent(typeof(UIInput))]
     public class GridTest : MonoBehaviour
     {
         private InteractableEditorGrid grid;
         private RectTransform gridRect;
-        private UIInput input;
 
         private Vector2 interval;
         private void Start()
         {
             gridRect = GetComponent<RectTransform>();
-            input = GetComponent<UIInput>();
             grid = GetComponent<InteractableEditorGrid>();
 
             Vector2Int gridSize = grid.GridSize;
@@ -22,12 +19,22 @@ namespace Rogium.Systems.GridSystem
                                    (gridRect.rect.height - gridRect.position.y) / gridSize.y);
         }
 
-        private void Update()
+        private void OnEnable()
         {
-            Vector2 mousePos = input.PointerPosition;
-            Vector2Int relativeMousePos = new Vector2Int(Mathf.FloorToInt(mousePos.x * -1 / interval.x),
-                                                         Mathf.FloorToInt(mousePos.y * -1 / interval.y));
-            Debug.Log($"Mouse: {mousePos} | Grid: {relativeMousePos}");
+            InputOverseer.Instance.UI.PointerPosition.OnPressed += Calculate;
+        }
+
+        private void OnDisable()
+        {
+            InputOverseer.Instance.UI.PointerPosition.OnPressed -= Calculate;
+        }
+
+
+        private void Calculate(Vector2 pointerPos)
+        {
+            Vector2Int relativeMousePos = new Vector2Int(Mathf.FloorToInt(pointerPos.x * -1 / interval.x),
+            Mathf.FloorToInt(pointerPos.y * -1 / interval.y));
+            Debug.Log($"Mouse: {pointerPos} | Grid: {relativeMousePos}");
 
             // gridOverseer.UpdateCellSprite(relativeMousePos, EditorDefaults.TileIcon);
         }

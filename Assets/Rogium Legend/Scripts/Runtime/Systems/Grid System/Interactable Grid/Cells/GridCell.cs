@@ -16,8 +16,6 @@ namespace Rogium.Systems.GridSystem
         
         [SerializeField] private Image image;
         
-        private UIInput input;
-        
         private int x, y;
 
         /// <summary>
@@ -26,9 +24,9 @@ namespace Rogium.Systems.GridSystem
         /// <param name="x">Cell's X position on the grid.</param>
         /// <param name="y">Cell's Y position on the gird.</param>
         /// <param name="color">The color of cell, that will show in the UI.</param>
-        public void Construct(UIInput input, int x, int y, Color color)
+        public void Construct(int x, int y, Color color)
         {
-            Construct(input, x, y, null);
+            Construct(x, y, null);
             UpdateColor(color);
         }
         /// <summary>
@@ -37,9 +35,8 @@ namespace Rogium.Systems.GridSystem
         /// <param name="x">Cell's X position on the grid.</param>
         /// <param name="y">Cell's Y position on the gird.</param>
         /// <param name="sprite">The sprite of cell, that will show in the UI.</param>
-        public void Construct(UIInput input, int x, int y, Sprite sprite)
+        public void Construct(int x, int y, Sprite sprite)
         {
-            this.input = input;
             this.x = x;
             this.y = y;
             UpdateSprite(sprite);
@@ -51,8 +48,8 @@ namespace Rogium.Systems.GridSystem
         /// <param name="sprite"></param>
         public void UpdateSprite(Sprite sprite)
         {
-            this.image.color = Color.white;
-            this.image.sprite = sprite;
+            image.color = Color.white;
+            image.sprite = sprite;
         }
 
         /// <summary>
@@ -61,8 +58,8 @@ namespace Rogium.Systems.GridSystem
         /// <param name="color">The new color the cell will use.</param>
         public void UpdateColor(Color color)
         {
-            this.image.sprite = null;
-            this.image.color = color;
+            image.sprite = null;
+            image.color = color;
         }
 
         /// <summary>
@@ -81,7 +78,7 @@ namespace Rogium.Systems.GridSystem
         
         public void OnPointerEnter(PointerEventData eventData)
         {
-            if (input.ClickHold || input.ClickPressed) OnCellClick?.Invoke(x, y);
+            if (InputOverseer.Instance.UI.Click.IsHeld) OnCellClick?.Invoke(x, y);
         }
 
     }

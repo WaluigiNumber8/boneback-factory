@@ -1,5 +1,4 @@
 using Rogium.Editors.Campaign;
-using Rogium.Editors.Packs;
 using Rogium.Gameplay.DataLoading;
 using Rogium.Gameplay.AssetRandomGenerator;
 using UnityEngine;
@@ -37,11 +36,8 @@ namespace Rogium.Gameplay.Core
 
         #endregion
 
-        private GameplayOverseer()
-        {
-            roomLoader = new RoomLoader();
-        }
-        
+        private GameplayOverseer() => roomLoader = new RoomLoader();
+
         /// <summary>
         /// Prepares the game scene.
         /// </summary>

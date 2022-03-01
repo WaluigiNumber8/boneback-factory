@@ -2,7 +2,6 @@
 using BoubakProductions.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
-using Rogium.Systems.Input;
 using UnityEngine;
 
 namespace Rogium.Systems.GridSystem
@@ -18,12 +17,9 @@ namespace Rogium.Systems.GridSystem
         [SerializeField] private Vector2Int gridSize;
         
         private GridCell[,] cells;
-        private UIInput input;
         
         private void Awake()
         {
-            input = GetComponent<UIInput>();
-            
             cells = new GridCell[gridSize.x, gridSize.y];
             BuildGrid();
         }
@@ -101,7 +97,7 @@ namespace Rogium.Systems.GridSystem
                 for (int x = 0; x < gridSize.x; x++)
                 {
                     cells[x, y] = Instantiate(cellPrefab, transform);
-                    cells[x, y].Construct(input, x, y, EditorDefaults.EmptyGridColor);
+                    cells[x, y].Construct(x, y, EditorDefaults.EmptyGridColor);
                 }
             }
         }

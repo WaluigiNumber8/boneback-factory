@@ -33,7 +33,7 @@ namespace Rogium.UserInterface.ModalWindowBuilding
             builder.BuildPlainText("Created on", palette.CreationDate.ToString(), window.FirstColumnContent);
             
             editedAssetBase = palette;
-            window.OpenAsPropertiesColumn1(headerText, ThemeType.Blue, "Done", "Cancel", onConfirmAction, true);
+            window.OpenAsPropertiesColumn1(headerText, ThemeType.Purple, "Done", "Cancel", onConfirmAction, true);
         }
         
         protected override void CreateAsset()

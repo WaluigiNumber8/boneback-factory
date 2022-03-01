@@ -34,7 +34,9 @@ namespace Rogium.Gameplay.DataLoading
             {
                 for (int x = 0; x < IDgrid.Width; x++)
                 {
+                    int flippedY = (IDgrid.Height - y) - 1;
                     string id = IDgrid.GetValue(x, y);
+                    
                     //Id is empty.
                     if (id == EditorDefaults.EmptyAssetID)
                     {
@@ -44,7 +46,7 @@ namespace Rogium.Gameplay.DataLoading
                     //Cache optimisation.
                     if (id == lastFoundAsset?.ID)
                     {
-                        DecideAddition(layers, offsetPos + new Vector3Int(x, y, 0), lastFoundAsset);
+                        DecideAddition(layers, offsetPos + new Vector3Int(x, flippedY, 0), lastFoundAsset);
                         continue;
                     }
 
@@ -52,7 +54,7 @@ namespace Rogium.Gameplay.DataLoading
                     try
                     {
                         lastFoundAsset = dataList.GetByID(id);
-                        DecideAddition(layers, offsetPos + new Vector3Int(x, y, 0), lastFoundAsset);
+                        DecideAddition(layers, offsetPos + new Vector3Int(x, flippedY, 0), lastFoundAsset);
                     }
                     //When the tile is missing.
                     catch (InvalidOperationException)

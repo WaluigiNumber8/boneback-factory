@@ -8,5 +8,6 @@ namespace Rogium.Editors.Tiles
     {
         Floor = 0,
         Wall = 1,
+        Ceiling = 2,
     }
 }

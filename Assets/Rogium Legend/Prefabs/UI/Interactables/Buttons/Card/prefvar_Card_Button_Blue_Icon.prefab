@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1305523389597949465, guid: 315dcab41b264f74194b91f1aa21028b, type: 3}
       propertyPath: m_Name
-      value: prefvar_Card_Button_Icon_Blue
+      value: prefvar_Card_Button_Blue_Icon
       objectReference: {fileID: 0}
     - target: {fileID: 8139803418870760900, guid: 315dcab41b264f74194b91f1aa21028b, type: 3}
       propertyPath: m_Pivot.x
@@ -41,11 +41,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8139803418870760900, guid: 315dcab41b264f74194b91f1aa21028b, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8139803418870760900, guid: 315dcab41b264f74194b91f1aa21028b, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8139803418870760900, guid: 315dcab41b264f74194b91f1aa21028b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -125,11 +125,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9204884854702923427, guid: 315dcab41b264f74194b91f1aa21028b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.0000068545
+      value: -1.8
       objectReference: {fileID: 0}
     - target: {fileID: 9204884854702923427, guid: 315dcab41b264f74194b91f1aa21028b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 1.8
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 661851586290184786, guid: 315dcab41b264f74194b91f1aa21028b, type: 3}
@@ -181,6 +181,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.72156864}
   m_EffectDistance: {x: 6, y: -4}
   m_UseGraphicAlpha: 1

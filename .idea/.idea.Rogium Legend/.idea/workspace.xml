@@ -91,7 +91,7 @@
     <property name="XThreadsFramesViewSplitterKey" value="0.45884147" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="rider.run.widget.enabled.cache" value="false" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor &amp; Play">
@@ -257,7 +257,11 @@
       <workItem from="1645532714718" duration="8074000" />
       <workItem from="1645556587841" duration="384000" />
       <workItem from="1645611035767" duration="9329000" />
-      <workItem from="1645696624478" duration="4865000" />
+      <workItem from="1645696624478" duration="4971000" />
+      <workItem from="1645868524964" duration="2905000" />
+      <workItem from="1645889513160" duration="5546000" />
+      <workItem from="1645959702695" duration="3330000" />
+      <workItem from="1646126628175" duration="1253000" />
     </task>
     <servers />
   </component>
@@ -303,19 +307,6 @@
           <line>49</line>
           <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Global\UI System\Modal Window Builders\ModalWindowPropertyBuilderCampaign.cs" initialLine="51" containingFunctionPresentation="method 'UpdateAsset'" />
           <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Gameplay/GameplayOverseer.cs</url>
-          <line>98</line>
-          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Gameplay\GameplayOverseer.cs" initialLine="99" containingFunctionPresentation="method 'LoadNewRoom'">
-            <startOffsets>
-              <option value="2733" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2842" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Systems/Toolbox/UI Manager/ToolBoxUIManagerRoom.cs</url>
@@ -394,19 +385,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="57" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Gameplay/GameplayOverseer.cs</url>
-          <line>50</line>
-          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Gameplay\GameplayOverseer.cs" initialLine="50" containingFunctionPresentation="method 'PrepareGame'">
-            <startOffsets>
-              <option value="1389" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1435" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="62" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

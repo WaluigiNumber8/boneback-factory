@@ -1,6 +1,5 @@
 ﻿using BoubakProductions.Core;
-using Rogium.Editors.Campaign;
-using Rogium.Editors.Core.Defaults;
+using Rogium.Editors.Core;
 using Rogium.Gameplay.DataLoading;
 using Rogium.Systems.SceneTransferService;
 using UnityEngine;
@@ -20,7 +19,8 @@ namespace Rogium.Gameplay.Core
         private void OnEnable()
         {
             overseer = GameplayOverseer.Instance;
-            overseer.PrepareGame(SceneTransferOverseer.GetInstance().PickUpCampaign(), tilemaps, positionOffset);
+            // overseer.PrepareGame(SceneTransferOverseer.GetInstance().PickUpCampaign(), tilemaps, positionOffset);
+            overseer.PrepareGame(LibraryOverseer.Instance.GetCampaignsCopy[0], tilemaps, positionOffset);
         }
     }
 }

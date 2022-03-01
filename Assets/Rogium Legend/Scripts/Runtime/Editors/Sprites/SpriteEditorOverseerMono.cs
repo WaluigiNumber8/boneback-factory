@@ -1,4 +1,5 @@
 ﻿using BoubakProductions.Core;
+using BoubakProductions.UI;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
@@ -72,7 +73,7 @@ namespace Rogium.Editors.Sprites
                 PaletteAsset pal = (PaletteAsset) asset;
                 SwitchPalette(pal.Colors);
                 currentSprite.UpdatePreferredPaletteID(pal.ID);
-            }, lastPaletteAsset);
+            }, lastPaletteAsset, ThemeType.Pink);
         }
         
         /// <summary>
