@@ -1,6 +1,7 @@
 using Rogium.Editors.Campaign;
 using Rogium.Gameplay.DataLoading;
 using Rogium.Gameplay.AssetRandomGenerator;
+using Rogium.Systems.Input;
 using UnityEngine;
 
 namespace Rogium.Gameplay.Core
@@ -48,6 +49,7 @@ namespace Rogium.Gameplay.Core
             tilemapLayers = tilemaps;
             spawnOffset = offset;
             rrg = new RRG(currentCampaign.DataPack.Rooms);
+            InputOverseer.Instance.EnablePlayerMap();
             
             LoadEntranceRoom();
         }

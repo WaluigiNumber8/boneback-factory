@@ -10,7 +10,7 @@ namespace Rogium.Systems.Input
     public class InputVector2 : IInputType
     {
         public event Action<Vector2> OnPressed;
-        public event Action OnReleased;
+        public event Action<Vector2> OnReleased;
 
         private readonly InputAction action;
 
@@ -29,7 +29,7 @@ namespace Rogium.Systems.Input
         }
         
         private void CallPress(InputAction.CallbackContext ctx) => OnPressed?.Invoke(ctx.ReadValue<Vector2>());
-        private void CallRelease(InputAction.CallbackContext ctx) => OnReleased?.Invoke();
+        private void CallRelease(InputAction.CallbackContext ctx) => OnReleased?.Invoke(Vector2.zero);
         
     }
 }
