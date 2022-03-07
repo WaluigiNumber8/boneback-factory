@@ -802,7 +802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc47df1375214f89a4fc8ebbbc0c0cf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGizmos: 1
+  showGizmos: 0
   dash:
     forceSpeed: 40
     time: 0.05
@@ -821,9 +821,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entity: {fileID: 595301349}
-  maxSpeed: 5.5
-  acceleration: 0.2
-  brakeForce: 0.165
+  data:
+    maxSpeed: 5.5
+    acceleration: 0.2
+    brakeForce: 0.165
 --- !u!114 &595301352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -837,8 +838,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entity: {fileID: 595301349}
-  maxHealth: 50
-  invincibilityTime: 0.5
+  data:
+    maxHealth: 50
+    invincibilityTime: 0.5
 --- !u!1 &618825316
 GameObject:
   m_ObjectHideFlags: 0
@@ -1221,6 +1223,7 @@ GameObject:
   - component: {fileID: 1680673256}
   - component: {fileID: 1680673261}
   - component: {fileID: 1680673260}
+  - component: {fileID: 1680673264}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -1278,13 +1281,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entity: {fileID: 1680673261}
-  baseDamage: 5
-  knockbackSelf:
-    forceSpeed: 5
-    time: 0.01
-  knockbackOther:
-    forceSpeed: 27
-    time: 0.1
+  data:
+    baseDamage: 5
+    knockbackSelf:
+      forceSpeed: 30
+      time: 0.01
+    knockbackOther:
+      forceSpeed: 28
+      time: 0.075
 --- !u!114 &1680673261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1297,8 +1301,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcd0e4b5a6b1499f8d7bcaddd3338564, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGizmos: 1
+  showGizmos: 0
   damageGiver: {fileID: 1680673260}
+  damageReceiver: {fileID: 1680673264}
 --- !u!70 &1680673262
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1341,6 +1346,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 0.95}
   m_EdgeRadius: 0
+--- !u!114 &1680673264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680673254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efd1bc7068764984a3ce9eaf800f71b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: {fileID: 1680673261}
+  data:
+    maxHealth: 20
+    invincibilityTime: 0.1
 --- !u!1 &1962549084
 GameObject:
   m_ObjectHideFlags: 0

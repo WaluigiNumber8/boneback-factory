@@ -12,7 +12,7 @@ namespace Rogium.Systems.Toolbox
     {
         public event Action<T> OnPickValue; 
 
-        public void ApplyEffect(ObjectGrid<T> grid, Vector2Int position, T value, Action<Vector2Int, bool> applyOnUI)
+        public void ApplyEffect(ObjectGrid<T> grid, Vector2Int position, T value, Action<Vector2Int, bool> applyOnUI, Action finishProcess)
         {
             T valueFromGrid = grid.GetValue(position);
             OnPickValue?.Invoke(valueFromGrid);

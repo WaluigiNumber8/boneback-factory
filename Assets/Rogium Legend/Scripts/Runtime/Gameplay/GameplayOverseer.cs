@@ -12,7 +12,7 @@ namespace Rogium.Gameplay.Core
     public class GameplayOverseer
     {
         private CampaignAsset currentCampaign;
-        private RoomLoader roomLoader;
+        private readonly RoomLoader roomLoader;
         private RRG rrg;
 
         private TilemapLayer[] tilemapLayers;
@@ -49,7 +49,7 @@ namespace Rogium.Gameplay.Core
             tilemapLayers = tilemaps;
             spawnOffset = offset;
             rrg = new RRG(currentCampaign.DataPack.Rooms);
-            InputOverseer.Instance.EnablePlayerMap();
+            InputSystem.Instance.EnablePlayerMap();
             
             LoadEntranceRoom();
         }

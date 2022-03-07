@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 namespace Rogium.Systems.GraphicsDrawing
 {
+    /// <summary>
+    /// Renders a UI grid.
+    /// </summary>
     public class UIGridRenderer : Graphic
     {
         [SerializeField] private Vector2Int gridSize;

@@ -19,12 +19,12 @@ namespace Rogium.Systems.Toolbox
         private readonly BucketTool<int> toolBucket;
         private readonly PickerTool<int> toolPicker;
 
-        private InteractableEditorGrid UIGrid;
+        private readonly InteractableEditorGridBase UIGrid;
         private Color currentColor;
         private ITool<int> currentTool;
         private ToolType currentToolType;
 
-        public ToolBoxColor(InteractableEditorGrid UIGrid)
+        public ToolBoxColor(InteractableEditorGridBase UIGrid)
         {
             toolBrush = new BrushTool<int>();
             toolEraser = new EraserTool<int>(EditorDefaults.EmptyColorID);
@@ -47,7 +47,7 @@ namespace Rogium.Systems.Toolbox
         public void ApplyCurrent(ObjectGrid<int> grid, Vector2Int position, ColorSlot value)
         {
             currentColor = value.CurrentColor;
-            currentTool.ApplyEffect(grid, position, value.Index, WhenDrawOnUIGrid);
+            currentTool.ApplyEffect(grid, position, value.Index, WhenDrawOnUIGrid, UIGrid.Apply);
         }
 
         public void SwitchTool(ToolType tool)
@@ -68,7 +68,7 @@ namespace Rogium.Systems.Toolbox
         public void WhenDrawOnUIGrid(Vector2Int position, bool useEmpty)
         {
             Color value = (useEmpty) ? EditorDefaults.NoColor : currentColor;
-            UIGrid.UpdateCellColor(position, value);
+            UIGrid.UpdateCell(position, value);
         }
         
     }

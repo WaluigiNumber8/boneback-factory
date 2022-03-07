@@ -10,6 +10,8 @@ namespace Rogium.Editors.Enemies
     /// </summary>
     public class EnemyAsset : EntityAssetBase
     {
+        private int maxHealth;
+        private float invincibilityTime;
         
         #region Constructors
         public EnemyAsset()
@@ -21,8 +23,11 @@ namespace Rogium.Editors.Enemies
 
             baseDamage = EditorDefaults.EnemyBaseDamage;
             useDelay = EditorDefaults.EnemyAttackDelay;
-            knockbackSelf = EditorDefaults.EnemyKnockbackSelf;
-            knockbackOther = EditorDefaults.EnemyKnockbackOther;
+            knockbackForceSelf = EditorDefaults.EnemyKnockbackSelf;
+            knockbackForceOther = EditorDefaults.EnemyKnockbackOther;
+
+            maxHealth = EditorDefaults.EnemyMaxHealth;
+            invincibilityTime = EditorDefaults.EnemyInvincibilityTime;
             
             GenerateID(EditorAssetIDs.EnemyIdentifier);
         }
@@ -37,12 +42,15 @@ namespace Rogium.Editors.Enemies
 
             baseDamage = asset.BaseDamage;
             useDelay = asset.UseDelay;
-            knockbackSelf = asset.KnockbackSelf;
-            knockbackOther = asset.KnockbackOther;
+            knockbackForceSelf = asset.KnockbackSelf;
+            knockbackForceOther = asset.KnockbackOther;
+
+            maxHealth = asset.MaxHealth;
+            invincibilityTime = asset.InvincibilityTime;
         }
 
         public EnemyAsset(string id, string title, Sprite icon, string author, int baseDamage, float useDelay,
-            float knockbackSelf, float knockbackOther, DateTime creationDate)
+            float knockbackForceSelf, float knockbackForceOther, int maxHealth, float invincibilityTime, DateTime creationDate)
         {
             this.id = id;
             this.title = title;
@@ -52,17 +60,22 @@ namespace Rogium.Editors.Enemies
 
             this.baseDamage = baseDamage;
             this.useDelay = useDelay;
-            this.knockbackSelf = knockbackSelf;
-            this.knockbackOther = knockbackOther;
-            
+            this.knockbackForceSelf = knockbackForceSelf;
+            this.knockbackForceOther = knockbackForceOther;
+
+            this.maxHealth = maxHealth;
+            this.invincibilityTime = invincibilityTime;
+
         }
         #endregion
 
         #region Update Values
-
-
+        public void UpdateMaxHealth(int newMaxHealth) => maxHealth = newMaxHealth;
+        public void UpdateInvincibilityTime(float newInvincibilityTime) => invincibilityTime = newInvincibilityTime;
 
         #endregion
 
+        public int MaxHealth { get => maxHealth; }
+        public float InvincibilityTime { get => invincibilityTime; }
     }
 }

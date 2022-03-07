@@ -14,7 +14,7 @@ namespace Rogium.Core
         private void Awake()
         {
             gameOverseer = GameOverseer.Instance;
-            InputOverseer.Instance.EnableUIMap();
+            InputSystem.Instance.EnableUIMap();
             GASButtonActions.GameStart();
             DontDestroyOnLoad(gameObject);
         }

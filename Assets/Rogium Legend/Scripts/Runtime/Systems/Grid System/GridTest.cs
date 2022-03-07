@@ -21,12 +21,12 @@ namespace Rogium.Systems.GridSystem
 
         private void OnEnable()
         {
-            InputOverseer.Instance.UI.PointerPosition.OnPressed += Calculate;
+            InputSystem.Instance.UI.PointerPosition.OnPressed += Calculate;
         }
 
         private void OnDisable()
         {
-            InputOverseer.Instance.UI.PointerPosition.OnPressed -= Calculate;
+            InputSystem.Instance.UI.PointerPosition.OnPressed -= Calculate;
         }
 
 

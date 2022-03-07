@@ -15,6 +15,17 @@
         public static int Wrap(int index, int min, int max)
         {
             return (index > max) ? min : ((index < min) ? max : index);
-;        }
+        }
+
+        /// <summary>
+        /// Flips a value in a range to other side.
+        /// </summary>
+        /// <param name="value">The value to flip.</param>
+        /// <param name="rangeLength">Length of the range.</param>
+        /// <returns></returns>
+        public static int Flip(int value, int rangeLength)
+        {
+            return (rangeLength - value) - 1;
+        }
     }
 }

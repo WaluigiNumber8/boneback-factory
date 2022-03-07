@@ -22,8 +22,8 @@ namespace Rogium.Editors.Weapons
 
             baseDamage = EditorDefaults.WeaponBaseDamage;
             useDelay = EditorDefaults.WeaponUseDelay;
-            knockbackSelf = EditorDefaults.WeaponKnockbackSelf;
-            knockbackOther = EditorDefaults.WeaponKnockbackOther;
+            knockbackForceSelf = EditorDefaults.WeaponKnockbackSelf;
+            knockbackForceOther = EditorDefaults.WeaponKnockbackOther;
             
             GenerateID(EditorAssetIDs.WeaponIdentifier);
         }
@@ -38,12 +38,12 @@ namespace Rogium.Editors.Weapons
 
             baseDamage = asset.BaseDamage;
             useDelay = asset.UseDelay;
-            knockbackSelf = asset.KnockbackSelf;
-            knockbackOther = asset.KnockbackOther;
+            knockbackForceSelf = asset.KnockbackSelf;
+            knockbackForceOther = asset.KnockbackOther;
         }
 
         public WeaponAsset(string id, string title, Sprite icon, string author, int baseDamage, float useDelay,
-                           float knockbackSelf, float knockbackOther, DateTime creationDate)
+                           float knockbackForceSelf, float knockbackForceOther, DateTime creationDate)
         {
             this.id = id;
             this.title = title;
@@ -53,8 +53,8 @@ namespace Rogium.Editors.Weapons
 
             this.baseDamage = baseDamage;
             this.useDelay = useDelay;
-            this.knockbackSelf = knockbackSelf;
-            this.knockbackOther = knockbackOther;
+            this.knockbackForceSelf = knockbackForceSelf;
+            this.knockbackForceOther = knockbackForceOther;
             
         }
         #endregion

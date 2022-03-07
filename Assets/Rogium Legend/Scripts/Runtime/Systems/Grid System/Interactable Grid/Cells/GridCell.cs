@@ -78,7 +78,7 @@ namespace Rogium.Systems.GridSystem
         
         public void OnPointerEnter(PointerEventData eventData)
         {
-            if (InputOverseer.Instance.UI.Click.IsHeld) OnCellClick?.Invoke(x, y);
+            if (InputSystem.Instance.UI.Click.IsHeld) OnCellClick?.Invoke(x, y);
         }
 
     }

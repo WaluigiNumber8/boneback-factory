@@ -9,8 +9,8 @@ namespace Rogium.Editors.Core
     {
         protected int baseDamage;
         protected float useDelay;
-        protected float knockbackSelf;
-        protected float knockbackOther;
+        protected float knockbackForceSelf;
+        protected float knockbackForceOther;
 
         #region Update Values
         public void UpdateBaseDamage(int newBaseDamage) => baseDamage = newBaseDamage;
@@ -20,13 +20,13 @@ namespace Rogium.Editors.Core
             useDelay = newUseDelay;
         }
 
-        public void UpdateKnockbackSelf(float newKnockbackSelf) => knockbackSelf = newKnockbackSelf;
-        public void UpdateKnockbackOther(float newKnockbackOther) => knockbackOther = newKnockbackOther;
+        public void UpdateKnockbackSelf(float newKnockbackSelf) => knockbackForceSelf = newKnockbackSelf;
+        public void UpdateKnockbackOther(float newKnockbackOther) => knockbackForceOther = newKnockbackOther;
         #endregion
         
         public int BaseDamage { get => baseDamage; }
         public float UseDelay { get => useDelay; }
-        public float KnockbackSelf { get => knockbackSelf; }
-        public float KnockbackOther { get => knockbackOther; }
+        public float KnockbackSelf { get => knockbackForceSelf; }
+        public float KnockbackOther { get => knockbackForceOther; }
     }
 }

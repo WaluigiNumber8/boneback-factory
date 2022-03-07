@@ -54,21 +54,20 @@ namespace Rogium.Systems.IconBuilders
                 for (int x = 0; x < grid.Width; x++)
                 {
                     int posValue = grid.GetValue(x, y);
-                    int flippedY = (grid.Height - y) - 1;
 
                     //When color ID is bigger than the color array.
                     if (posValue >= colors.Length - 1)
                     {
-                        tex.SetPixel(x, flippedY, EditorDefaults.MissingColor);
+                        tex.SetPixel(x, y, EditorDefaults.MissingColor);
                         continue;
                     }
                     //if color ID is empty = transparent.
                     if (posValue < 0)
                     {
-                        tex.SetPixel(x, flippedY, EditorDefaults.NoColor);
+                        tex.SetPixel(x, y, EditorDefaults.NoColor);
                         continue;
                     }
-                    tex.SetPixel(x, flippedY, colors[posValue]);
+                    tex.SetPixel(x, y, colors[posValue]);
                 }
             }
             return BoubakBuilder.GenerateSprite(tex, EditorDefaults.PixelsPerUnit);

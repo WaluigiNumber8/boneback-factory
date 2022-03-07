@@ -8,5 +8,11 @@
     {
         public float forceSpeed;
         public float time;
+
+        public ForcedMoveInfo(float forceSpeed, float time)
+        {
+            this.forceSpeed = forceSpeed;
+            this.time = time;
+        }
     }
 }

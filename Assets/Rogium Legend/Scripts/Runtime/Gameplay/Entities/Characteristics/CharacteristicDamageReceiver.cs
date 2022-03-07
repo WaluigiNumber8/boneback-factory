@@ -11,15 +11,14 @@ namespace Rogium.Gameplay.Entities.Characteristics
         public event Action OnDeath;
 
         [SerializeField] private EntityController entity;
-        [SerializeField] private int maxHealth;
-        [SerializeField, Range(0.05f, 0.5f)] private float invincibilityTime;
+        [SerializeField] private CharDamageReceiverInfo data;
         
         private int health;
         private float invincibilityTimer;
 
         private void Awake()
         {
-            health = maxHealth;
+            health = data.maxHealth;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -28,6 +27,16 @@ namespace Rogium.Gameplay.Entities.Characteristics
             if (!other.TryGetComponent(out CharacteristicDamageGiver giver)) return;
             
             TakeDamage(giver);
+        }
+
+        /// <summary>
+        /// Constructs the characteristic.
+        /// </summary>
+        /// <param name="newInfo">New data to use.</param>
+        public void Construct(CharDamageReceiverInfo newInfo)
+        {
+            data = newInfo;
+            health = data.maxHealth;
         }
 
         /// <summary>
@@ -45,7 +54,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
             }
             
             giver.ReceiveKnockback(entity);
-            invincibilityTimer = Time.time + invincibilityTime;
+            invincibilityTimer = Time.time + data.invincibilityTime;
         }
         
     }

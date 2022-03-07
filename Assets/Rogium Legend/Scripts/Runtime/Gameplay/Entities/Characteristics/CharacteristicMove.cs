@@ -8,13 +8,16 @@ namespace Rogium.Gameplay.Entities.Characteristics
     public class CharacteristicMove : MonoBehaviour
     {
         [SerializeField] private EntityController entity;
-        
-        [SerializeField] private float maxSpeed;
-        [SerializeField, Range(0.005f, 0.2f)] private float acceleration;
-        [SerializeField, Range(0.005f, 0.2f)] private float brakeForce;
+        [SerializeField] private CharMoveInfo data;
 
         private Vector2 lastDirection;
         private float accel;
+        
+        /// <summary>
+        /// Constructs the characteristic.
+        /// </summary>
+        /// <param name="newInfo">New data to use.</param>
+        public void Construct(CharMoveInfo newInfo) => data = newInfo;
         
         /// <summary>
         /// Move in a specific direction.
@@ -25,7 +28,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
             CalculateAcceleration(direction);
             
             lastDirection = (direction == Vector2.zero) ? lastDirection : direction;
-            float speed = maxSpeed * accel;
+            float speed = data.maxSpeed * accel;
             
             entity.Rigidbody.MovePosition(entity.Rigidbody.position + lastDirection * speed * Time.fixedDeltaTime);
         }
@@ -38,11 +41,11 @@ namespace Rogium.Gameplay.Entities.Characteristics
         {
             if (direction == Vector2.zero)
             {
-                accel = Mathf.Max(0, accel -= brakeForce);
+                accel = Mathf.Max(0, accel -= data.brakeForce);
                 return;
             }
 
-            accel = Mathf.Min(accel += acceleration, 1);
+            accel = Mathf.Min(accel += data.acceleration, 1);
         }
 
     }

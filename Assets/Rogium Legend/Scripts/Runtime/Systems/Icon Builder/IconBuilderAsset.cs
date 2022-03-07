@@ -25,7 +25,7 @@ namespace Rogium.Systems.IconBuilders
         {
             Texture2D tex = BoubakBuilder.GenerateTexture(grid.Width * pixelsPerSprite, grid.Height * pixelsPerSprite);
             int texPosX = 0;
-            int texPosY = grid.Height * pixelsPerSprite - pixelsPerSprite;
+            int texPosY = 0;
             
             for (int y = 0; y < grid.Height; y++)
             {

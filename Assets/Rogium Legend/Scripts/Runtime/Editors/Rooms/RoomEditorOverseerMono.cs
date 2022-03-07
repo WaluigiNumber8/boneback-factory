@@ -1,7 +1,5 @@
 ﻿using Rogium.Editors.Packs;
-using Rogium.Editors.Tiles;
 using Rogium.Systems.GridSystem;
-using System;
 using BoubakProductions.Core;
 using Rogium.Core;
 using Rogium.Editors.Core.Defaults;
@@ -17,7 +15,7 @@ namespace Rogium.Editors.Rooms
     /// </summary>
     public class RoomEditorOverseerMono : MonoSingleton<RoomEditorOverseerMono>
     {
-        [SerializeField] private InteractableEditorGrid grid;
+        [SerializeField] private InteractableEditorGridBase grid;
         [SerializeField] private ItemPaletteAsset paletteTile;
         
         private PackEditorOverseer packEditor;
@@ -37,7 +35,7 @@ namespace Rogium.Editors.Rooms
         private void OnEnable()
         {
             editor.OnAssignAsset += PrepareEditor;
-            grid.OnInteractionClick += UpdateGridCell;
+            grid.OnClick += UpdateGridCell;
             paletteTile.OnSelect += ChangeCurrentTile;
             toolbox.OnChangePaletteValue += SelectFromTiles;
         }
@@ -45,7 +43,7 @@ namespace Rogium.Editors.Rooms
         private void OnDisable()
         {
             editor.OnAssignAsset -= PrepareEditor;
-            grid.OnInteractionClick -= UpdateGridCell;
+            grid.OnClick -= UpdateGridCell;
             paletteTile.OnSelect -= ChangeCurrentTile;
             toolbox.OnChangePaletteValue -= SelectFromTiles;
         }
@@ -75,10 +73,7 @@ namespace Rogium.Editors.Rooms
         /// Changes the current tile used for drawing on the grid.
         /// </summary>
         /// <param name="slot">The new slot holding the tile.</param>
-        private void ChangeCurrentTile(AssetSlot slot)
-        {
-            currentTile = slot;
-        }
+        private void ChangeCurrentTile(AssetSlot slot) => currentTile = slot;
 
         /// <summary>
         /// Selects a tile from the tiles palette.

@@ -3,22 +3,22 @@
     /// <summary>
     /// Overseers all input profiles and deals with their switching.
     /// </summary>
-    public class InputOverseer
+    public class InputSystem
     {
         private readonly InputProfilePlayer inputPlayer;
         private readonly InputProfileUI inputUI;
         
         #region Singleton Pattern
-        private static InputOverseer instance;
+        private static InputSystem instance;
         private static readonly object padlock = new object();
-        public static InputOverseer Instance
+        public static InputSystem Instance
         {
             get
             {
                 lock (padlock)
                 {
                     if (instance == null)
-                        instance = new InputOverseer();
+                        instance = new InputSystem();
                     return instance;
                 }
             }
@@ -26,7 +26,7 @@
 
         #endregion
 
-        private InputOverseer()
+        private InputSystem()
         {
             inputPlayer = new InputProfilePlayer();
             inputUI = new InputProfileUI();

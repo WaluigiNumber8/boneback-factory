@@ -11,6 +11,7 @@ namespace Rogium.Gameplay.DataLoading
         [SerializeField] private string title;
         [SerializeField] private Tilemap tilemap;
         [SerializeField] private TileType type;
+        
         private IList<Vector3Int> positions;
         private IList<TileBase> tiles;
 

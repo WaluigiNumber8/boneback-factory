@@ -21,8 +21,8 @@ namespace Rogium.Editors.Projectiles
 
             baseDamage = EditorDefaults.ProjectileBaseDamage;
             useDelay = EditorDefaults.ProjectileLifetime;
-            knockbackSelf = EditorDefaults.ProjectileKnockbackSelf;
-            knockbackOther = EditorDefaults.ProjectileKnockbackOther;
+            knockbackForceSelf = EditorDefaults.ProjectileKnockbackSelf;
+            knockbackForceOther = EditorDefaults.ProjectileKnockbackOther;
             
             GenerateID(EditorAssetIDs.ProjectileIdentifier);
         }
@@ -37,12 +37,12 @@ namespace Rogium.Editors.Projectiles
 
             baseDamage = asset.BaseDamage;
             useDelay = asset.UseDelay;
-            knockbackSelf = asset.KnockbackSelf;
-            knockbackOther = asset.KnockbackOther;
+            knockbackForceSelf = asset.KnockbackSelf;
+            knockbackForceOther = asset.KnockbackOther;
         }
 
         public ProjectileAsset(string id, string title, Sprite icon, string author, int baseDamage, float useDelay,
-            float knockbackSelf, float knockbackOther, DateTime creationDate)
+            float knockbackForceSelf, float knockbackForceOther, DateTime creationDate)
         {
             this.id = id;
             this.title = title;
@@ -52,8 +52,8 @@ namespace Rogium.Editors.Projectiles
 
             this.baseDamage = baseDamage;
             this.useDelay = useDelay;
-            this.knockbackSelf = knockbackSelf;
-            this.knockbackOther = knockbackOther;
+            this.knockbackForceSelf = knockbackForceSelf;
+            this.knockbackForceOther = knockbackForceOther;
             
         }
         #endregion

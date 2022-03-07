@@ -33,6 +33,8 @@ namespace Rogium.Editors.PropertyEditor.Builders
         protected override void BuildProperty(Transform content)
         {
             builder.BuildHeader("General", content);
+            builder.BuildInputField("Max Health", asset.MaxHealth.ToString(), content, s => asset.UpdateMaxHealth(int.Parse(s)), TMP_InputField.CharacterValidation.Integer);
+            builder.BuildInputField("Invincibility Time", asset.InvincibilityTime.ToString(), content, s => asset.UpdateInvincibilityTime(float.Parse(s)), TMP_InputField.CharacterValidation.Decimal);
             builder.BuildInputField("Damage", asset.BaseDamage.ToString(), content, s => asset.UpdateBaseDamage(int.Parse(s)), TMP_InputField.CharacterValidation.Integer);
             builder.BuildInputField("Attack Delay", asset.UseDelay.ToString(), content, s => asset.UpdateUseDelay(float.Parse(s)), TMP_InputField.CharacterValidation.Decimal);
             builder.BuildInputField("Knockback Self", asset.KnockbackSelf.ToString(), content, s => asset.UpdateKnockbackSelf(float.Parse(s)), TMP_InputField.CharacterValidation.Decimal);

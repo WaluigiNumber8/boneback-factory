@@ -18,7 +18,6 @@ namespace Rogium.Systems.GridSystem
         /// <param name="assetList">A list of assets from which to pick the sprites.</param>
         public static void LoadBySprites<T>(GridCell[,] cells, ObjectGrid<string> IDGrid, AssetList<T> assetList) where T : AssetBase
         {
-            // ClearAllCells(cells);
             AssetBase lastFoundAsset = null;
             
             for (int x = 0; x < cells.GetLength(0); x++)

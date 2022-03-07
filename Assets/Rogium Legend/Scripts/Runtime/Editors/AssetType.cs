@@ -14,6 +14,9 @@
         Enemy = 6,
         Room = 7,
         Tile = 8,
-        Campaign = 9
+        Campaign = 9,
+        
+        Object = 10,
+        Sound = 11,
     }
 }

@@ -10,10 +10,11 @@ namespace Rogium.Systems.Toolbox
     public class BrushTool<T> : ITool<T> where T : IComparable
     {
         
-        public void ApplyEffect(ObjectGrid<T> grid, Vector2Int position, T value, Action<Vector2Int, bool> applyOnUI)
+        public void ApplyEffect(ObjectGrid<T> grid, Vector2Int position, T value, Action<Vector2Int, bool> applyOnUI, Action finishProcess)
         {
             grid.SetValue(position, value);
             applyOnUI?.Invoke(position, false);
+            finishProcess?.Invoke();
         }
 
     }

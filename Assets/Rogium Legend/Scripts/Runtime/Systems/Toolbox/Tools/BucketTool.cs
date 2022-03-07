@@ -14,19 +14,23 @@ namespace Rogium.Systems.Toolbox
         private ObjectGrid<T> grid;
         private T currentValue;
         private T valueToOverride;
-        private IList<Vector2Int> criticalPositions;
+        private readonly IList<Vector2Int> criticalPositions;
 
         private Action<Vector2Int, bool> applyOnUI;
+        private Action finishProcess;
 
-        public void ApplyEffect(ObjectGrid<T> grid, Vector2Int position, T value, Action<Vector2Int, bool> applyOnUI)
+        public BucketTool() => criticalPositions = new List<Vector2Int>();
+
+        public void ApplyEffect(ObjectGrid<T> grid, Vector2Int position, T value, Action<Vector2Int, bool> applyOnUI, Action finishProcess)
         {
             SafetyNet.EnsureIsNotNull(grid, "grid");
             
             this.grid = grid;
             this.applyOnUI = applyOnUI;
+            this.finishProcess = finishProcess;
             this.currentValue = value;
             this.valueToOverride = GetFrom(position);
-            this.criticalPositions = new List<Vector2Int>();
+            this.criticalPositions.Clear();
 
             //Return if value on the grid is the same as the bucket fill value.
             if (valueToOverride.CompareTo(currentValue) == 0) return;
@@ -61,7 +65,11 @@ namespace Rogium.Systems.Toolbox
                     criticalPositions.RemoveAt(criticalPositions.Count-1);
                     ProcessLoop(newPosition);
                 }
-                else return;
+                else
+                {
+                    finishProcess?.Invoke();
+                    return;
+                }
             }
             //Increment pixel x
             else ProcessLoop(pos + Vector2Int.right);

@@ -46,11 +46,13 @@ namespace Rogium.Editors.Core.Defaults
         
         //Enemy
         public const string EnemyTitle = "New Enemy";
-        public static readonly Sprite EnemyIcon = Resources.Load<Sprite>("Defaults/spr_Default_Weapon_Filled");
+        public static readonly Sprite EnemyIcon = Resources.Load<Sprite>("Defaults/spr_TestDummy");
         public const int EnemyBaseDamage = 1;
         public const float EnemyAttackDelay = 0.2f;
         public const float EnemyKnockbackSelf = 1;
         public const float EnemyKnockbackOther = 2;
+        public const int EnemyMaxHealth = 20;
+        public const float EnemyInvincibilityTime = 0.05f;
         
         //Room
         public const string RoomTitle = "New Room";

@@ -2,7 +2,7 @@
 using System;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Packs;
-using Rogium.Systems.IconBuilders;
+using Rogium.Systems.GridSystem;
 using UnityEngine;
 
 namespace Rogium.Editors.Rooms
@@ -15,7 +15,7 @@ namespace Rogium.Editors.Rooms
         public event Action<RoomAsset> OnAssignAsset;
         public event Action<RoomAsset, int> OnCompleteEditing;
 
-        private IconBuilderAsset iconBuilder;
+        private readonly SpriteDrawer drawer;
         
         private RoomAsset currentAsset;
         private int myIndex;
@@ -40,7 +40,7 @@ namespace Rogium.Editors.Rooms
 
         private RoomEditorOverseer()
         {
-            iconBuilder = new IconBuilderAsset();
+            drawer = new SpriteDrawer(EditorDefaults.RoomSize, new Vector2Int(EditorDefaults.SpriteSize, EditorDefaults.SpriteSize), EditorDefaults.SpriteSize);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Rogium.Editors.Rooms
         
         public void CompleteEditing()
         {
-            Sprite newIcon = iconBuilder.Build(currentAsset.TileGrid, EditorDefaults.PixelsPerUnit, PackEditorOverseer.Instance.CurrentPack.Tiles);
+            Sprite newIcon = drawer.Build(currentAsset.TileGrid, PackEditorOverseer.Instance.CurrentPack.Tiles);
             currentAsset.UpdateIcon(newIcon);
             OnCompleteEditing?.Invoke(CurrentAsset, myIndex);
         }

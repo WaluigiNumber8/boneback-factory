@@ -19,12 +19,12 @@ namespace Rogium.Systems.Toolbox
         private readonly BucketTool<string> toolBucket;
         private readonly PickerTool<string> toolPicker;
 
-        private InteractableEditorGrid UIGrid;
+        private readonly InteractableEditorGridBase UIGrid;
         private Sprite currentSprite;
         private ITool<string> currentTool;
         private ToolType currentToolType;
 
-        public ToolBoxAsset(InteractableEditorGrid UIGrid)
+        public ToolBoxAsset(InteractableEditorGridBase UIGrid)
         {
             toolBrush = new BrushTool<string>();
             toolEraser = new EraserTool<string>(EditorDefaults.EmptyAssetID);
@@ -46,7 +46,7 @@ namespace Rogium.Systems.Toolbox
         public void ApplyCurrent(ObjectGrid<string> grid, Vector2Int position, AssetSlot value)
         {
             currentSprite = value.Asset.Icon;
-            currentTool.ApplyEffect(grid, position, value.Asset.ID, WhenDrawOnUIGrid);
+            currentTool.ApplyEffect(grid, position, value.Asset.ID, WhenDrawOnUIGrid, UIGrid.Apply);
         }
 
         public void SwitchTool(ToolType tool)
@@ -67,8 +67,8 @@ namespace Rogium.Systems.Toolbox
         public void WhenDrawOnUIGrid(Vector2Int position, bool useEmpty)
         {
             Sprite value = (useEmpty) ? EditorDefaults.EmptyGridSprite : currentSprite;
-            UIGrid.UpdateCellSprite(position, value);
+            UIGrid.UpdateCell(position, value);
         }
-        
+
     }
 }

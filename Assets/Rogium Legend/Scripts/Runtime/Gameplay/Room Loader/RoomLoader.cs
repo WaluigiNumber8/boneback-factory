@@ -11,11 +11,8 @@ namespace Rogium.Gameplay.DataLoading
     {
         private readonly TilemapLoader tilemapLoader;
         
-        public RoomLoader()
-        {
-            tilemapLoader = new TilemapLoader();
-        }
-        
+        public RoomLoader() => tilemapLoader = new TilemapLoader();
+
         /// <summary>
         /// Loads the room with Tile, Object & Enemy data.
         /// </summary>

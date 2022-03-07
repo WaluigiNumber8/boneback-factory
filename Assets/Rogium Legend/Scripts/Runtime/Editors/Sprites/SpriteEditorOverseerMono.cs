@@ -17,7 +17,7 @@ namespace Rogium.Editors.Sprites
     /// </summary>
     public class SpriteEditorOverseerMono : MonoSingleton<SpriteEditorOverseerMono>
     {
-        [SerializeField] private InteractableEditorGrid grid;
+        [SerializeField] private InteractableEditorGridBase grid;
         [SerializeField] private ItemPaletteColor palette;
         
         private SpriteEditorOverseer editor;
@@ -39,7 +39,7 @@ namespace Rogium.Editors.Sprites
         private void OnEnable()
         {
             editor.OnAssignAsset += PrepareEditor;
-            grid.OnInteractionClick += UpdateGridCell;
+            grid.OnClick += UpdateGridCell;
             palette.OnSelect += ChangeCurrentColor;
             toolbox.OnChangePaletteValue += SelectFromColors;
         }
@@ -47,7 +47,7 @@ namespace Rogium.Editors.Sprites
         private void OnDisable()
         {
             editor.OnAssignAsset -= PrepareEditor;
-            grid.OnInteractionClick -= UpdateGridCell;
+            grid.OnClick -= UpdateGridCell;
             palette.OnSelect -= ChangeCurrentColor;
             toolbox.OnChangePaletteValue -= SelectFromColors;
         }

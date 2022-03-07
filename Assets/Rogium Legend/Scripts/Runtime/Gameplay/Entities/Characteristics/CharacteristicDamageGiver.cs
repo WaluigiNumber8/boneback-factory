@@ -8,17 +8,21 @@ namespace Rogium.Gameplay.Entities.Characteristics
     public class CharacteristicDamageGiver : MonoBehaviour
     {
         [SerializeField] private EntityController entity;
-        [SerializeField] private int baseDamage;
-        [SerializeField] private ForcedMoveInfo knockbackSelf;
-        [SerializeField] private ForcedMoveInfo knockbackOther;
-        
+        [SerializeField] private CharDamageGiverInfo data;
+
+        /// <summary>
+        /// Constructs the characteristic.
+        /// </summary>
+        /// <param name="newInfo">New data to use.</param>
+        public void Construct(CharDamageGiverInfo newInfo) => data = newInfo;
+
         /// <summary>
         /// Rolls a new damage roll and returns it.
         /// </summary>
         /// <returns>Returns rolled damage.</returns>
         public int GetDamageTaken()
         {
-            return baseDamage;
+            return data.baseDamage;
         }
 
         /// <summary>
@@ -27,8 +31,8 @@ namespace Rogium.Gameplay.Entities.Characteristics
         /// <param name="other">The receiver of the knockback.</param>
         public void ReceiveKnockback(EntityController other)
         {
-            entity.ForceMove(other.FaceDirection, knockbackSelf);
-            other.ForceMove(-other.FaceDirection, knockbackOther);
+            entity.ForceMove(other.FaceDirection, data.knockbackSelf);
+            other.ForceMove(-other.FaceDirection, data.knockbackOther);
         }
         
     }
