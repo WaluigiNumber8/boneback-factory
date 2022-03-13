@@ -22,8 +22,8 @@ namespace Rogium.ExternalStorage.Serialization
                                        author,
                                        baseDamage,
                                        useDelay,
-                                       knockbackSelf,
-                                       knockbackOther,
+                                       knockbackForceSelf,
+                                       knockbackForceOther,
                                        DateTime.Parse(creationDate));
         }
     }

@@ -26,8 +26,10 @@ namespace Rogium.ExternalStorage.Serialization
                                   author,
                                   baseDamage,
                                   useDelay,
-                                  knockbackSelf,
-                                  knockbackOther,
+                                  knockbackForceSelf,
+                                  knockbackTimeSelf,
+                                  knockbackForceOther,
+                                  knockbackTimeOther,
                                   maxHealth,
                                   invincibilityTime,
                                   DateTime.Parse(creationDate));

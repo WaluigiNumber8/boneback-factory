@@ -7,7 +7,7 @@ namespace Rogium.Systems.Toolbox
     /// </summary>
     public class ToolBoxUIManagerRoom : ToolBoxUIManagerBase
     {
-        private ToolBoxAsset toolbox;
+        private ToolBoxAsset<string> toolbox;
 
         private void Start()
         {

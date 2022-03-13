@@ -28,6 +28,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             FillDropdown(options);
             title.text = titleText;
             title.gameObject.SetActive((titleText != ""));
+            if (ui.emptySpace != null) ui.emptySpace.SetActive((titleText != ""));
             
             dropdown.value = startingValue;
             dropdown.onValueChanged.AddListener(delegate { whenValueChange(dropdown.value); });
@@ -84,6 +85,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             public TextMeshProUGUI toggleLabelText;
             public Image toggleBackgroundImage;
             public Image toggleCheckmarkImage;
+            public GameObject emptySpace;
         }
     }
 }

@@ -7,16 +7,11 @@ namespace Rogium.UserInterface.AssetSelection
     /// <summary>
     /// A base for all classes working with an internal toggle.
     /// </summary>
-    [RequireComponent(typeof(Toggle))]
     public abstract class ToggleableBase : MonoBehaviour
     {
-        protected Toggle toggle;
+        [SerializeField] protected Toggle toggle;
         
-        protected virtual void Awake()
-        {
-            toggle = GetComponent<Toggle>();
-            toggle.group = GetComponentInParent<ToggleGroup>();
-        }
+        protected virtual void Awake() => toggle.group = GetComponentInParent<ToggleGroup>();
 
         /// <summary>
         /// Sets the value of the Internal Toggle.

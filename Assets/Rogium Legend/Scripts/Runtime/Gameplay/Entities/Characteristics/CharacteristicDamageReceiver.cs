@@ -6,19 +6,18 @@ namespace Rogium.Gameplay.Entities.Characteristics
     /// <summary>
     /// Gives entities the ability to receive damage.
     /// </summary>
-    public class CharacteristicDamageReceiver : MonoBehaviour
+    public class CharacteristicDamageReceiver : CharacteristicBase
     {
         public event Action OnDeath;
 
-        [SerializeField] private EntityController entity;
-        [SerializeField] private CharDamageReceiverInfo data;
+        [SerializeField] private CharDamageReceiverInfo defaultData;
         
         private int health;
         private float invincibilityTimer;
 
         private void Awake()
         {
-            health = data.maxHealth;
+            health = defaultData.maxHealth;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -35,8 +34,8 @@ namespace Rogium.Gameplay.Entities.Characteristics
         /// <param name="newInfo">New data to use.</param>
         public void Construct(CharDamageReceiverInfo newInfo)
         {
-            data = newInfo;
-            health = data.maxHealth;
+            defaultData = newInfo;
+            health = defaultData.maxHealth;
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
             }
             
             giver.ReceiveKnockback(entity);
-            invincibilityTimer = Time.time + data.invincibilityTime;
+            invincibilityTimer = Time.time + defaultData.invincibilityTime;
         }
         
     }

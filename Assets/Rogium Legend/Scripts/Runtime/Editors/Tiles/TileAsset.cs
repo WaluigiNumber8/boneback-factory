@@ -18,24 +18,27 @@ namespace Rogium.Editors.Tiles
         public TileAsset()
         {
             this.title = EditorDefaults.TileTitle;
+            this.icon = EditorDefaults.TileIcon;
             this.author = EditorDefaults.Author;
             this.creationDate = DateTime.Now;
             this.tile = new TileObject(ScriptableObject.CreateInstance<Tile>(), TileType.Wall);
-            this.tile.Tile.sprite = EditorDefaults.TileIcon;
+            this.tile.Tile.sprite = this.icon;
             GenerateID(EditorAssetIDs.TileIdentifier);
         }
-        public TileAsset(TileAsset tileAsset)
+        public TileAsset(TileAsset asset)
         {
-            this.id = tileAsset.ID;
-            this.title = tileAsset.Title;
-            this.author = tileAsset.Author;
-            this.creationDate = tileAsset.CreationDate;
-            this.tile = new TileObject(tileAsset.Tile, tileAsset.Type);
-            this.tile.Tile.sprite = tileAsset.Tile.sprite;
+            this.id = asset.ID;
+            this.icon = asset.Icon;
+            this.title = asset.Title;
+            this.author = asset.Author;
+            this.creationDate = asset.CreationDate;
+            this.tile = new TileObject(asset.Tile, asset.Type);
+            this.tile.Tile.sprite = this.icon;
         }
         public TileAsset(string title, Sprite icon, string author, TileType type)
         {
             this.title = title;
+            this.icon = icon;
             this.author = author;
             this.creationDate = DateTime.Now;
             this.tile = new TileObject(ScriptableObject.CreateInstance<Tile>(), type);
@@ -46,6 +49,7 @@ namespace Rogium.Editors.Tiles
         {
             this.id = id;
             this.title = title;
+            this.icon = icon;
             this.author = author;
             this.creationDate = creationDate;
             this.tile = new TileObject(ScriptableObject.CreateInstance<Tile>(), type);
@@ -59,6 +63,7 @@ namespace Rogium.Editors.Tiles
         {
             SafetyNet.EnsureIsNotNull(tile, "TileObject");
             SafetyNet.EnsureIsNotNull(tile.Tile, "Tile in TileObject");
+            icon = newIcon;
             tile.Tile.sprite = newIcon;
         }
 
@@ -68,7 +73,6 @@ namespace Rogium.Editors.Tiles
         }
         #endregion
 
-        public override Sprite Icon { get => tile.Tile.sprite; }
         public Tile Tile { get => tile.Tile; }
         public TileType Type { get => tile.Type;}
     }

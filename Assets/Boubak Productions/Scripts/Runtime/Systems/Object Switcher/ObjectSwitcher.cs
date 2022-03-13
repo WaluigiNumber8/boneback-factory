@@ -9,15 +9,18 @@ namespace BoubakProductions.Systems.ObjectSwitching
     public class ObjectSwitcher
     {
         private readonly GameObject[] objects;
+        private int lastIndex;
 
         #region Constructors
         public ObjectSwitcher(GameObject[] objects)
         {
+            lastIndex = -1;
             this.objects = objects;
             Switch(0);
         }
         public ObjectSwitcher(GameObject[] objects, int defaultIndex)
         {
+            lastIndex = -1;
             this.objects = objects;
             Switch(defaultIndex);
         }
@@ -45,6 +48,7 @@ namespace BoubakProductions.Systems.ObjectSwitching
         /// </summary>
         public void Switch(int index)
         {
+            if (index == lastIndex) return;
             if (index == -1) return;
             SafetyNet.EnsureIntIsInRange(index, 0, objects.Length, "Default Tab Index");
             
@@ -53,6 +57,8 @@ namespace BoubakProductions.Systems.ObjectSwitching
                 gObject.SetActive(false);
             }
             objects[index].SetActive(true);
+
+            lastIndex = index;
         }
     }
 }

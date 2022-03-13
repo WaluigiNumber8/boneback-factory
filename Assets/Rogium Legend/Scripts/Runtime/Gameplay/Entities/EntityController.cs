@@ -69,13 +69,10 @@ namespace Rogium.Gameplay.Entities
                 return;
             }
             
-            rb.MovePosition(rb.position + forceMove.moveDirection * forceMove.force * Time.fixedDeltaTime);
+            rb.MovePosition(rb.position + forceMove.moveDirection * forceMove.force * 10 * Time.fixedDeltaTime);
         }
 
-        protected virtual void WhenForceMoveEnd()
-        {
-            
-        }
+        protected virtual void WhenForceMoveEnd() { }
 
         protected void OnDrawGizmos()
         {

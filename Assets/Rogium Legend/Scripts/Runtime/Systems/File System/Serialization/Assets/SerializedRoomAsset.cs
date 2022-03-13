@@ -13,12 +13,14 @@ namespace Rogium.ExternalStorage.Serialization
         public readonly int difficultyLevel;
         public readonly int type;
         public readonly SerializedGrid<string> tileGrid;
+        public readonly SerializedGrid<string> enemyGrid;
 
         public SerializedRoomAsset(RoomAsset asset) : base(asset)
         {
-            this.difficultyLevel = asset.DifficultyLevel;
-            this.type = (int)asset.Type;
-            this.tileGrid = new SerializedGrid<string>(asset.TileGrid);
+            difficultyLevel = asset.DifficultyLevel;
+            type = (int)asset.Type;
+            tileGrid = new SerializedGrid<string>(asset.TileGrid);
+            enemyGrid = new SerializedGrid<string>(asset.EnemyGrid);
         }
 
         /// <summary>
@@ -34,6 +36,7 @@ namespace Rogium.ExternalStorage.Serialization
                                  difficultyLevel,
                                  (RoomType)type,
                                  tileGrid.Deserialize(() => EditorDefaults.EmptyAssetID),
+                                 enemyGrid.Deserialize(() => EditorDefaults.EmptyAssetID),
                                  DateTime.Parse(creationDate));
         }
     }

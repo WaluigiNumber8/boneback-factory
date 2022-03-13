@@ -38,8 +38,8 @@ namespace Rogium.Editors.Weapons
 
             baseDamage = asset.BaseDamage;
             useDelay = asset.UseDelay;
-            knockbackForceSelf = asset.KnockbackSelf;
-            knockbackForceOther = asset.KnockbackOther;
+            knockbackForceSelf = asset.KnockbackForceSelf;
+            knockbackForceOther = asset.KnockbackForceOther;
         }
 
         public WeaponAsset(string id, string title, Sprite icon, string author, int baseDamage, float useDelay,

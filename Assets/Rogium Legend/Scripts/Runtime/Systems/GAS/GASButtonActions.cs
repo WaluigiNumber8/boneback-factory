@@ -64,6 +64,7 @@ namespace Rogium.Systems.GASExtension
 
         private static void ReturnToPackSelectionMenu()
         {
+            GASRogium.ChangeTheme(ThemeType.Blue);
             PackEditorOverseer.Instance.CompleteEditing();
             CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToMainMenu);
             GAS.SwitchMenu(MenuType.AssetSelection);
@@ -301,7 +302,7 @@ namespace Rogium.Systems.GASExtension
         {
             ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
             storedIndex = assetIndex;
-            window.OpenAsMessage("Do you really want to remove this palette?", ThemeType.Blue, "Yes", "No", RemovePaletteAccept, true);
+            window.OpenAsMessage("Do you really want to remove this palette?", ThemeType.Purple, "Yes", "No", RemovePaletteAccept, true);
         }
         private static void RemovePaletteAccept()
         {
@@ -636,6 +637,11 @@ namespace Rogium.Systems.GASExtension
         public static void RoomSwitchTool(int index)
         {
             RoomEditorOverseerMono.GetInstance().Toolbox.SwitchTool((ToolType) index);
+        }
+
+        public static void RoomSwitchPalette(int index)
+        {
+            RoomEditorOverseerMono.GetInstance().SwitchLayer(index);
         }
 
         #endregion

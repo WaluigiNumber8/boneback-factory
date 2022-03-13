@@ -529,6 +529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07530fd6b18bba242846b1b4b6e06ff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toggle: {fileID: 5648363141199595390}
   ui:
     titleText: {fileID: 7423225854589187983}
     iconImage: {fileID: 0}

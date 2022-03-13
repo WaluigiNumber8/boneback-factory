@@ -25,12 +25,7 @@ namespace Rogium.ExternalStorage.Serialization
         /// <returns>The PackImportInfo Unity can read.</returns>
         public PackImportInfo Deserialize()
         {
-            PackImportInfo importInfo;
-            importInfo.ID = ID;
-            importInfo.weapons = weapons;
-            importInfo.enemies = enemies;
-            importInfo.rooms = rooms;
-            return importInfo;
+            return new PackImportInfo(ID, weapons, enemies, rooms);;
         }
     }
 }

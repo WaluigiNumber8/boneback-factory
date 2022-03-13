@@ -12,7 +12,6 @@ namespace Rogium.Editors.Core.Defaults
         public const string PackTitle = "New Pack";
         public const string PackDescription = "A new pack filled with adventure!";
         public static readonly Sprite PackIcon = Resources.Load<Sprite>("Defaults/spr_Default_Weapon_Filled");
-        public const string Author = "NO_AUTHOR";
         
         //Campaign
         public const string CampaignTitle = "New Campaign";
@@ -43,14 +42,15 @@ namespace Rogium.Editors.Core.Defaults
         public const float ProjectileKnockbackSelf = 0;
         public const float ProjectileKnockbackOther = 1;
         
-        
         //Enemy
         public const string EnemyTitle = "New Enemy";
         public static readonly Sprite EnemyIcon = Resources.Load<Sprite>("Defaults/spr_TestDummy");
         public const int EnemyBaseDamage = 1;
         public const float EnemyAttackDelay = 0.2f;
-        public const float EnemyKnockbackSelf = 1;
-        public const float EnemyKnockbackOther = 2;
+        public const float EnemyKnockbackForceSelf = 1;
+        public const float EnemyKnockbackTimeSelf = 0.025f;
+        public const float EnemyKnockbackTimeOther = 0.05f;
+        public const float EnemyKnockbackForceOther = 2;
         public const int EnemyMaxHealth = 20;
         public const float EnemyInvincibilityTime = 0.05f;
         
@@ -68,11 +68,20 @@ namespace Rogium.Editors.Core.Defaults
         //Other
         public const string EmptyAssetID = "-1";
         public const int EmptyColorID = -1;
+        public const string Author = "NO_AUTHOR";
+        public const string AuthorGame = "Game";
         public const int PixelsPerUnit = 16;
         public static readonly Sprite EmptyGridSprite = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
         public static readonly Color EmptyGridColor = Color.black;
         public static readonly Color NoColor = new Color(0, 0, 0, 0);
         public static readonly Sprite MissingSprite = Resources.Load<Sprite>("Defaults/spr_Missing");
         public static readonly Color MissingColor = new Color(255, 88, 227);
+        public static readonly Color DefaultColor = Color.white;
+        
+        //Asset SubMenu
+        public const string AssetMenuBase = "Rogium Legend/";
+        public const string AssetMenuAssets = "Rogium Legend/Assets/";
+        public const string AssetMenuEditor = "Rogium Legend/Editor/";
+        public const string AssetMenuGameplay = "Rogium Legend/Gameplay/";
     }
 }

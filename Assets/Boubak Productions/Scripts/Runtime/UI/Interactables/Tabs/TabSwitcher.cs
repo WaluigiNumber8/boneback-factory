@@ -18,5 +18,7 @@ namespace BoubakProductions.UI
             switcher = new ObjectSwitcher(tabGroup.GetButtonsAsArray());
             tabGroup.onTabSwitch += switcher.Switch;
         }
+        
+        public ObjectSwitcher Switcher { get => switcher; }
     }
 }

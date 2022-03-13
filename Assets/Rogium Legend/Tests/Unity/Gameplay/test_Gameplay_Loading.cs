@@ -39,7 +39,7 @@ public class test_Gameplay_Loading
     [UnityTest]
     public IEnumerator prepare_game_correctly_full_tour()
     {
-        gameplay.PrepareGame(campaign, tilemaps, new Vector3Int(-19, 10, 0));
+        gameplay.PrepareGame(campaign, new RoomLoader());
         yield return new WaitForSeconds(2f);
         Assert.AreEqual(campaign.DataPack.Tiles[0].Tile, tilemaps[0].Tilemap.GetTile(new Vector3Int(-18, 11, 0)));
     }

@@ -28,8 +28,8 @@ namespace BoubakProductions.Systems.FileSystem
         /// <param name="path">The location to create the directory in. (including directory title)</param>
         public static void CreateDirectory(string path)
         {
-            if (!Directory.Exists(path))
-                Directory.CreateDirectory(path);
+            if (Directory.Exists(path)) return;
+            Directory.CreateDirectory(path);
         }
         
         /// <summary>

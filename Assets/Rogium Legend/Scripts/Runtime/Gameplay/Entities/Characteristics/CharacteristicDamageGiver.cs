@@ -5,16 +5,15 @@ namespace Rogium.Gameplay.Entities.Characteristics
     /// <summary>
     /// Gives entities the ability to give out damage.
     /// </summary>
-    public class CharacteristicDamageGiver : MonoBehaviour
+    public class CharacteristicDamageGiver : CharacteristicBase
     {
-        [SerializeField] private EntityController entity;
-        [SerializeField] private CharDamageGiverInfo data;
+        [SerializeField] private CharDamageGiverInfo defaultData;
 
         /// <summary>
         /// Constructs the characteristic.
         /// </summary>
         /// <param name="newInfo">New data to use.</param>
-        public void Construct(CharDamageGiverInfo newInfo) => data = newInfo;
+        public void Construct(CharDamageGiverInfo newInfo) => defaultData = newInfo;
 
         /// <summary>
         /// Rolls a new damage roll and returns it.
@@ -22,7 +21,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
         /// <returns>Returns rolled damage.</returns>
         public int GetDamageTaken()
         {
-            return data.baseDamage;
+            return defaultData.baseDamage;
         }
 
         /// <summary>
@@ -31,8 +30,8 @@ namespace Rogium.Gameplay.Entities.Characteristics
         /// <param name="other">The receiver of the knockback.</param>
         public void ReceiveKnockback(EntityController other)
         {
-            entity.ForceMove(other.FaceDirection, data.knockbackSelf);
-            other.ForceMove(-other.FaceDirection, data.knockbackOther);
+            entity.ForceMove(other.FaceDirection, defaultData.knockbackSelf);
+            other.ForceMove(-other.FaceDirection, defaultData.knockbackOther);
         }
         
     }

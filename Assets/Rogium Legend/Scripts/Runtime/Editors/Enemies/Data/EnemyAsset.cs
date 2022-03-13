@@ -23,8 +23,10 @@ namespace Rogium.Editors.Enemies
 
             baseDamage = EditorDefaults.EnemyBaseDamage;
             useDelay = EditorDefaults.EnemyAttackDelay;
-            knockbackForceSelf = EditorDefaults.EnemyKnockbackSelf;
-            knockbackForceOther = EditorDefaults.EnemyKnockbackOther;
+            knockbackForceSelf = EditorDefaults.EnemyKnockbackForceSelf;
+            knockbackTimeSelf = EditorDefaults.EnemyKnockbackTimeSelf;
+            knockbackForceOther = EditorDefaults.EnemyKnockbackForceOther;
+            knockbackTimeOther = EditorDefaults.EnemyKnockbackTimeOther;
 
             maxHealth = EditorDefaults.EnemyMaxHealth;
             invincibilityTime = EditorDefaults.EnemyInvincibilityTime;
@@ -42,15 +44,18 @@ namespace Rogium.Editors.Enemies
 
             baseDamage = asset.BaseDamage;
             useDelay = asset.UseDelay;
-            knockbackForceSelf = asset.KnockbackSelf;
-            knockbackForceOther = asset.KnockbackOther;
+            knockbackForceSelf = asset.KnockbackForceSelf;
+            knockbackTimeSelf = asset.KnockbackTimeSelf;
+            knockbackForceOther = asset.KnockbackForceOther;
+            knockbackTimeOther = asset.KnockbackTimeOther;
 
             maxHealth = asset.MaxHealth;
             invincibilityTime = asset.InvincibilityTime;
         }
 
         public EnemyAsset(string id, string title, Sprite icon, string author, int baseDamage, float useDelay,
-            float knockbackForceSelf, float knockbackForceOther, int maxHealth, float invincibilityTime, DateTime creationDate)
+                          float knockbackForceSelf, float knockbackTimeSelf, float knockbackForceOther,
+                          float knockbackTimeOther, int maxHealth, float invincibilityTime, DateTime creationDate)
         {
             this.id = id;
             this.title = title;
@@ -61,7 +66,9 @@ namespace Rogium.Editors.Enemies
             this.baseDamage = baseDamage;
             this.useDelay = useDelay;
             this.knockbackForceSelf = knockbackForceSelf;
+            this.knockbackTimeSelf = knockbackTimeSelf;
             this.knockbackForceOther = knockbackForceOther;
+            this.knockbackTimeOther = knockbackTimeOther;
 
             this.maxHealth = maxHealth;
             this.invincibilityTime = invincibilityTime;

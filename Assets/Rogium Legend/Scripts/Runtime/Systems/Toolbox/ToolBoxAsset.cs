@@ -1,7 +1,6 @@
 ﻿using System;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.GridSystem;
-using Rogium.UserInterface.AssetSelection;
 using UnityEngine;
 
 namespace Rogium.Systems.Toolbox
@@ -9,29 +8,29 @@ namespace Rogium.Systems.Toolbox
     /// <summary>
     /// Houses all the tools used on an <see cref="InteractableEditorGrid"/>.
     /// </summary>
-    public class ToolBoxAsset : IToolBox
+    public class ToolBoxAsset<T> : IToolBox where T : IComparable
     {
         public event Action<ToolType> OnSwitchTool;
-        public event Action<string> OnChangePaletteValue; 
+        public event Action<T> OnChangePaletteValue; 
         
-        private readonly BrushTool<string> toolBrush;
-        private readonly EraserTool<string> toolEraser;
-        private readonly BucketTool<string> toolBucket;
-        private readonly PickerTool<string> toolPicker;
+        private readonly BrushTool<T> toolBrush;
+        private readonly EraserTool<T> toolEraser;
+        private readonly BucketTool<T> toolBucket;
+        private readonly PickerTool<T> toolPicker;
 
         private readonly InteractableEditorGridBase UIGrid;
         private Sprite currentSprite;
-        private ITool<string> currentTool;
+        private ITool<T> currentTool;
         private ToolType currentToolType;
 
-        public ToolBoxAsset(InteractableEditorGridBase UIGrid)
+        public ToolBoxAsset(InteractableEditorGridBase UIGrid, T emptyValue)
         {
-            toolBrush = new BrushTool<string>();
-            toolEraser = new EraserTool<string>(EditorDefaults.EmptyAssetID);
-            toolBucket = new BucketTool<string>();
-            toolPicker = new PickerTool<string>();
+            toolBrush = new BrushTool<T>();
+            toolEraser = new EraserTool<T>(emptyValue);
+            toolBucket = new BucketTool<T>();
+            toolPicker = new PickerTool<T>();
 
-            toolPicker.OnPickValue += ctx => OnChangePaletteValue?.Invoke(ctx);
+            toolPicker.OnPickValue += id => OnChangePaletteValue?.Invoke(id);
             
             this.UIGrid = UIGrid;
             currentTool = toolBrush;
@@ -43,12 +42,24 @@ namespace Rogium.Systems.Toolbox
         /// <param name="grid">The grid to affect.</param>
         /// <param name="position">The position to start with.</param>
         /// <param name="value">The value to set.</param>
-        public void ApplyCurrent(ObjectGrid<string> grid, Vector2Int position, AssetSlot value)
+        public void ApplyCurrent(ObjectGrid<T> grid, Vector2Int position, T value, Sprite sprite)
         {
-            currentSprite = value.Asset.Icon;
-            currentTool.ApplyEffect(grid, position, value.Asset.ID, WhenDrawOnUIGrid, UIGrid.Apply);
+            currentSprite = sprite;
+            currentTool.ApplyEffect(grid, position, value, WhenDrawOnUIGrid, UIGrid.Apply);
         }
 
+        /// <summary>
+        /// Applies the effect of a specific tool based on tool type.
+        /// </summary>
+        /// <param name="tool">The tool to use.</param>
+        /// <param name="grid">The grid to affect.</param>
+        /// <param name="position">The position to start with.</param>
+        /// <param name="value">The value to set.</param>
+        public void ApplySpecific(ToolType tool, ObjectGrid<T> grid, Vector2Int position, T value)
+        {
+            GetTool(tool).ApplyEffect(grid, position, value, WhenDrawOnUIGrid, UIGrid.Apply);
+        }
+        
         public void SwitchTool(ToolType tool)
         {
             if (currentToolType == tool) return;
@@ -68,6 +79,25 @@ namespace Rogium.Systems.Toolbox
         {
             Sprite value = (useEmpty) ? EditorDefaults.EmptyGridSprite : currentSprite;
             UIGrid.UpdateCell(position, value);
+        }
+        
+        /// <summary>
+        /// Grabs a tool based on entered tool type.
+        /// </summary>
+        /// <param name="toolType">The type of tool to get.</param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException">Is thrown when <see cref="ToolType"/> is unknown or unsupported.</exception>
+        private ITool<T> GetTool(ToolType toolType)
+        {
+            ITool<T> tool = toolType switch
+            {
+                ToolType.Brush => toolBrush,
+                ToolType.Eraser => toolEraser,
+                ToolType.Bucket => toolBucket,
+                ToolType.ColorPicker => toolPicker,
+                _ => throw new InvalidOperationException("Unknown or not yet supported Tool Type.")
+            };
+            return tool;
         }
 
     }

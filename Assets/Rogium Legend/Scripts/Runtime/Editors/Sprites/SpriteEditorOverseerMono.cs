@@ -17,7 +17,7 @@ namespace Rogium.Editors.Sprites
     /// </summary>
     public class SpriteEditorOverseerMono : MonoSingleton<SpriteEditorOverseerMono>
     {
-        [SerializeField] private InteractableEditorGridBase grid;
+        [SerializeField] private InteractableEditorGridV2 grid;
         [SerializeField] private ItemPaletteColor palette;
         
         private SpriteEditorOverseer editor;
@@ -40,16 +40,18 @@ namespace Rogium.Editors.Sprites
         {
             editor.OnAssignAsset += PrepareEditor;
             grid.OnClick += UpdateGridCell;
+            grid.OnClickAlternative += EraseCell;
             palette.OnSelect += ChangeCurrentColor;
-            toolbox.OnChangePaletteValue += SelectFromColors;
+            toolbox.OnChangePaletteValue += SelectFrom;
         }
 
         private void OnDisable()
         {
             editor.OnAssignAsset -= PrepareEditor;
             grid.OnClick -= UpdateGridCell;
+            grid.OnClickAlternative -= EraseCell;
             palette.OnSelect -= ChangeCurrentColor;
-            toolbox.OnChangePaletteValue -= SelectFromColors;
+            toolbox.OnChangePaletteValue -= SelectFrom;
         }
 
         /// <summary>
@@ -112,7 +114,7 @@ namespace Rogium.Editors.Sprites
         /// Selects a color from the colors palette.
         /// </summary>
         /// <param name="id">The id of the color to select.</param>
-        private void SelectFromColors(int id)
+        private void SelectFrom(int id)
         {
             if (id == EditorDefaults.EmptyColorID)
             {
@@ -121,6 +123,15 @@ namespace Rogium.Editors.Sprites
             }
             palette.Select(id);
             toolbox.SwitchTool(ToolType.Brush);
+        }
+        
+        /// <summary>
+        /// Erases a specific cell.
+        /// </summary>
+        /// <param name="position">The cell to erase.</param>
+        private void EraseCell(Vector2Int position)
+        {
+            toolbox.ApplySpecific(ToolType.Eraser, editor.CurrentAsset.SpriteData, position, currentSlot);
         }
         
         public ToolBoxColor Toolbox { get => toolbox; } 

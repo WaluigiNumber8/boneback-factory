@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using BoubakProductions.Safety;
 using BoubakProductions.Systems.FileSystem;
+using Rogium.Core;
 using Rogium.Editors.Sprites;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Enemies;
@@ -21,21 +22,20 @@ namespace Rogium.ExternalStorage
     /// </summary>
     public class ExternalStorageOverseer
     {
-        private SaveableData packData;
-        private SaveableData campaignData;
+        private readonly SaveableData packData;
+        private readonly SaveableData campaignData;
 
-        private IList<PackPathInfo> packPaths;
+        private readonly IList<PackPathInfo> packPaths;
         private PackPathInfo currentPackInfo;
 
-        private CRUDOperations<CampaignAsset, SerializedCampaignAsset> campaignCRUD;
-        
-        private CRUDOperations<PaletteAsset, SerializedPaletteAsset> paletteCRUD;
-        private CRUDOperations<SpriteAsset, SerializedSpriteAsset> spriteCRUD;
-        private CRUDOperations<WeaponAsset, SerializedWeaponAsset> weaponCRUD;
-        private CRUDOperations<ProjectileAsset, SerializedProjectileAsset> projectileCRUD;
-        private CRUDOperations<EnemyAsset, SerializedEnemyAsset> enemyCRUD;
-        private CRUDOperations<RoomAsset, SerializedRoomAsset> roomCRUD;
-        private CRUDOperations<TileAsset, SerializedTileAsset> tileCRUD;
+        private readonly CRUDOperations<CampaignAsset, SerializedCampaignAsset> campaignCRUD;
+        private readonly CRUDOperations<PaletteAsset, SerializedPaletteAsset> paletteCRUD;
+        private readonly CRUDOperations<SpriteAsset, SerializedSpriteAsset> spriteCRUD;
+        private readonly CRUDOperations<WeaponAsset, SerializedWeaponAsset> weaponCRUD;
+        private readonly CRUDOperations<ProjectileAsset, SerializedProjectileAsset> projectileCRUD;
+        private readonly CRUDOperations<EnemyAsset, SerializedEnemyAsset> enemyCRUD;
+        private readonly CRUDOperations<RoomAsset, SerializedRoomAsset> roomCRUD;
+        private readonly CRUDOperations<TileAsset, SerializedTileAsset> tileCRUD;
 
         #region Singleton Pattern
         private static ExternalStorageOverseer instance;
@@ -93,7 +93,7 @@ namespace Rogium.ExternalStorage
         /// <param name="pack"></param>
         public void UpdatePack(PackAsset pack)
         {
-            if (currentPackInfo.PackTitle != pack.Title)
+            if (currentPackInfo.Title != pack.Title)
                 RenameCurrentPack(pack.Title);
             
             FileSystem.SaveFile(currentPackInfo.FilePath, pack, p => new SerializedPackAsset(p));
@@ -123,7 +123,7 @@ namespace Rogium.ExternalStorage
         {
             try
             {
-                int index = GetIndexFirst(packPaths, pack.ID);
+                int index = packPaths.FindIndexFirst(pack.ID);
                 FileSystem.DeleteDirectory(packPaths[index].DirectoryPath);
                 packPaths.RemoveAt(index);
                 currentPackInfo = null;
@@ -143,14 +143,14 @@ namespace Rogium.ExternalStorage
             //Update current pack info.
             try
             {
-                currentPackInfo = GetPackInfoFirst(packPaths, pack.ID);
+                currentPackInfo = packPaths.FindValueFirst(pack.ID);
             }
             catch (SafetyNetCollectionException)
             {
                CreateSkeleton(pack);
             }
 
-            PackInfoAsset packInfo = new PackInfoAsset(pack.PackInfo);
+            PackInfoAsset packInfo = new(pack.PackInfo);
             
             paletteCRUD.RefreshSaveableData(currentPackInfo.PalettesData);
             spriteCRUD.RefreshSaveableData(currentPackInfo.SpritesData);
@@ -196,7 +196,7 @@ namespace Rogium.ExternalStorage
         {
             string oldPathDirectory = currentPackInfo.DirectoryPath;
             string newPathDirectory = Path.Combine(packData.Path, newTitle);
-            string oldPathFile = Path.Combine(newPathDirectory, $"{currentPackInfo.PackTitle}.{packData.Extension}");
+            string oldPathFile = Path.Combine(newPathDirectory, $"{currentPackInfo.Title}.{packData.Extension}");
             string newPathFile = Path.Combine(packData.Path, newTitle, $"{newTitle}.{packData.Extension}");
             
             currentPackInfo.UpdateTitle(newTitle);
@@ -206,46 +206,6 @@ namespace Rogium.ExternalStorage
             FileSystem.RenameFile(oldPathFile, newPathFile);
         }
         
-        /// <summary>
-        /// Finds the index of the first asset with the same ID.
-        /// </summary>
-        /// <param name="list">The list to search in.</param>
-        /// <param name="id">The ID of the asset to search for.</param>
-        /// <returns>Index of the first found asset.</returns>
-        /// <exception cref="SafetyNetCollectionException">Is thrown when no asset with ID was found.</exception>
-        private PackPathInfo GetPackInfoFirst(IList<PackPathInfo> list, string id)
-        {
-            try
-            {
-                return list[GetIndexFirst(list, id)];
-            }
-            catch (SafetyNetCollectionException)
-            {
-                throw new SafetyNetCollectionException($"No object with the ID '{id}' was not found in the list.");
-            }
-        }
-        
-        /// <summary>
-        /// Finds the index of the first asset with the same ID.
-        /// </summary>
-        /// <param name="list">The list to search in.</param>
-        /// <param name="id">The ID of the asset to search for.</param>
-        /// <returns>Index of the first found asset.</returns>
-        /// <exception cref="SafetyNetCollectionException">Is thrown when no asset with ID was found.</exception>
-        private int GetIndexFirst(IList<PackPathInfo> list, string id)
-        {
-            SafetyNet.EnsureIsNotNull(list, "List ot search");
-            for (int i = 0; i < list.Count; i++)
-            {
-                if (list[i].PackID == id)
-                {
-                    return i;
-                }
-            }
-
-            throw new SafetyNetCollectionException($"No object with the ID '{id}' was not found in the list.");
-        }
-
         /// <summary>
         /// Builds a <see cref="PackPathInfo"/> from a <see cref="PackAsset"/>.
         /// </summary>

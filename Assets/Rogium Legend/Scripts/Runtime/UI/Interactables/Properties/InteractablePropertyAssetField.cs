@@ -36,6 +36,7 @@ namespace Rogium.UserInterface.Interactables.Properties
 
             title.text = titleText;
             title.gameObject.SetActive((titleText != ""));
+            if (ui.emptySpace != null) ui.emptySpace.SetActive((titleText != ""));
             icon.sprite = asset.Icon;
             
             assetField.SetType(type);
@@ -63,6 +64,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         public struct UIInfo
         {
             public Image borderImage;
+            public GameObject emptySpace;
         }
     }
 }

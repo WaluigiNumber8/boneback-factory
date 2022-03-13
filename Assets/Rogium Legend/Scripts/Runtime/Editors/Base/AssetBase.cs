@@ -5,9 +5,9 @@ using Random = UnityEngine.Random;
 namespace Rogium.Editors.Core
 {
     /// <summary>
-    /// Interface for a Asset type object.
+    /// A base for all user created assets.
     /// </summary>
-    public abstract class AssetBase
+    public abstract class AssetBase : IAsset
     {
         //TODO - For all assets upon creation, read author from Player Profile.
         protected string id;
@@ -29,14 +29,14 @@ namespace Rogium.Editors.Core
         }
 
         #region Update Values
-        public void UpdateTitle(string newTitle) => this.title = newTitle;
-        public virtual void UpdateIcon(Sprite newIcon) => this.icon = newIcon;
+        public void UpdateTitle(string newTitle) => title = newTitle;
+        public virtual void UpdateIcon(Sprite newIcon) => icon = newIcon;
 
         #endregion
         
         public string ID { get => id; }
         public string Title { get => title; }
-        public virtual Sprite Icon { get => icon; }
+        public Sprite Icon { get => icon; }
         public string Author { get => author; }
         public DateTime CreationDate { get => creationDate; }
     }

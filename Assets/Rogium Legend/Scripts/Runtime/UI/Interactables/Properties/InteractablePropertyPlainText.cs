@@ -1,7 +1,6 @@
-﻿using UnityEngine;
+﻿using BoubakProductions.UI.Core;
+using UnityEngine;
 using TMPro;
-using System;
-using BoubakProductions.UI.Core;
 
 namespace Rogium.UserInterface.Interactables.Properties
 {
@@ -12,7 +11,9 @@ namespace Rogium.UserInterface.Interactables.Properties
     {
         [SerializeField] private TextMeshProUGUI title;
         [SerializeField] private TextMeshProUGUI plainText;
-
+        [SerializeField] private UIInfo ui;
+        
+        
         /// <summary>
         /// Set the property title and state.
         /// </summary>
@@ -22,6 +23,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             title.text = titleText;
             title.gameObject.SetActive((titleText != ""));
+            if (ui.emptySpace != null) ui.emptySpace.SetActive((titleText != ""));
             
             plainText.text = text;
         }
@@ -37,5 +39,11 @@ namespace Rogium.UserInterface.Interactables.Properties
         
         public string Title { get => title.text; }
         public string Property { get => plainText.text; }
+
+        [System.Serializable]
+        public struct UIInfo
+        {
+            public GameObject emptySpace;
+        }
     }
 }

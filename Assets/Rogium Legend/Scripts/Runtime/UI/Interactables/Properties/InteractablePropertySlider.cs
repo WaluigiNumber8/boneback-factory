@@ -27,6 +27,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             title.text = titleText;
             title.gameObject.SetActive((titleText != ""));
+            if (ui.emptySpace != null) ui.emptySpace.SetActive((titleText != ""));
             
             slider.minValue = minValue;
             slider.maxValue = maxValue;
@@ -57,6 +58,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             public Image fillImage;
             public Image backgroundImage;
             public Image handleImage;
+            public GameObject emptySpace;
         }
     }
 }

@@ -76,6 +76,10 @@ namespace Rogium.ExternalStorage
         /// Updates CRUD information.
         /// </summary>
         /// <param name="saveableData">New data to read from.</param>
-        public void RefreshSaveableData(SaveableData saveableData) => this.data = saveableData;
+        public void RefreshSaveableData(SaveableData saveableData)
+        {
+            FileSystem.CreateDirectory(saveableData.Path);
+            data = saveableData;
+        }
     }
 }

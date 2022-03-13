@@ -27,6 +27,7 @@ namespace Rogium.UserInterface.AssetSelection
         /// <param name="index">This asset's position in the list.</param>
         /// <param name="asset">The Asset itself.</param>
         public abstract void Construct(AssetType type, int index, AssetBase asset);
+        public string ID { get => asset.ID; }
         
         public AssetType Type {get => type;}
         public AssetBase Asset {get => asset;}

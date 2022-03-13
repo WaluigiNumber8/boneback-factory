@@ -177,6 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 172f26cea6c74f3c8ad783b76a91af48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toggle: {fileID: 2314962600742563754}
   ui:
     iconImg: {fileID: 7534113801851809657}
 --- !u!1 &4611710778633598101

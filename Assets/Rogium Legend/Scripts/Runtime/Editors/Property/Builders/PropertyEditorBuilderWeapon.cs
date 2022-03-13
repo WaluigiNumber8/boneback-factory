@@ -35,8 +35,8 @@ namespace Rogium.Editors.PropertyEditor.Builders
             builder.BuildHeader("General", content);
             builder.BuildInputField("Damage", asset.BaseDamage.ToString(), content, s => asset.UpdateBaseDamage(int.Parse(s)), TMP_InputField.CharacterValidation.Integer);
             builder.BuildInputField("Attack Delay", asset.UseDelay.ToString(), content, s => asset.UpdateUseDelay(float.Parse(s)), TMP_InputField.CharacterValidation.Decimal);
-            builder.BuildInputField("Knockback Self", asset.KnockbackSelf.ToString(), content, s => asset.UpdateKnockbackSelf(float.Parse(s)), TMP_InputField.CharacterValidation.Decimal);
-            builder.BuildInputField("Knockback Other", asset.KnockbackOther.ToString(), content, s => asset.UpdateKnockbackOther(float.Parse(s)), TMP_InputField.CharacterValidation.Decimal);
+            builder.BuildInputField("Knockback Self", asset.KnockbackForceSelf.ToString(), content, s => asset.UpdateKnockbackForceSelf(float.Parse(s)), TMP_InputField.CharacterValidation.Decimal);
+            builder.BuildInputField("Knockback Other", asset.KnockbackForceOther.ToString(), content, s => asset.UpdateKnockbackForceOther(float.Parse(s)), TMP_InputField.CharacterValidation.Decimal);
             
         }
     }

@@ -37,7 +37,7 @@ namespace Rogium.Systems.ItemPalette
         public void Select(string id)
         {
             if (ids?.Count != holders.Count)
-                ids = holders.ConvertToIDList();
+                ids = holders.ConvertToIDs();
             
             Select(ids.IndexOf(id));
         }
@@ -50,7 +50,7 @@ namespace Rogium.Systems.ItemPalette
             SafetyNet.EnsureIntIsInRange(index, 0, holders.Count, "Item Index");
             if (holders?.Count <= 0) return;
 
-            holders[index].SetToggle(true);
+            OnSelect?.Invoke(holders[index]);
         }
 
         /// <summary>

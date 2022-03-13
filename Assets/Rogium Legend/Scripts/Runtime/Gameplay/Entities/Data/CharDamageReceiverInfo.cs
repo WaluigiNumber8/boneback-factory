@@ -3,7 +3,7 @@
 namespace Rogium.Gameplay.Entities.Characteristics
 {
     /// <summary>
-    /// Contains data of the <see cref="CharacteristicDamageReceiver"/>
+    /// Contains data of the <see cref="CharacteristicDamageReceiver"/> characteristic.
     /// </summary>
     [System.Serializable]
     public struct CharDamageReceiverInfo

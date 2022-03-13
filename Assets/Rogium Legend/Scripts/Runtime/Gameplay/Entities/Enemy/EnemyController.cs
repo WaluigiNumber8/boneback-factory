@@ -11,14 +11,17 @@ namespace Rogium.Gameplay.Entities.Enemy
     {
         [SerializeField] private CharacteristicDamageGiver damageGiver;
         [SerializeField] private CharacteristicDamageReceiver damageReceiver;
+        [SerializeField] private CharacteristicVisual visual;
         
         private void OnEnable()
         {
+            if (damageReceiver == null) return;
             damageReceiver.OnDeath += Die;
         }
 
         private void OnDisable()
         {
+            if (damageReceiver == null) return;
             damageReceiver.OnDeath -= Die;
         }
 
@@ -29,13 +32,28 @@ namespace Rogium.Gameplay.Entities.Enemy
         /// <param name="asset">The asset to take data from.</param>
         public void Construct(EnemyAsset asset)
         {
-            ForcedMoveInfo knockbackSelf = new(asset.KnockbackSelf, asset.KnockbackSelf * 0.01f);
-            ForcedMoveInfo knockbackOther = new(asset.KnockbackOther, asset.KnockbackOther * 0.01f);
-            CharDamageGiverInfo damageGiver = new(asset.BaseDamage, knockbackSelf, knockbackOther);
-            CharDamageReceiverInfo damageReceiver = new(asset.MaxHealth, asset.InvincibilityTime);
+            //Damage Giver
+            if (damageGiver != null)
+            {
+                ForcedMoveInfo knockbackSelf = new(asset.KnockbackForceSelf, asset.KnockbackForceSelf * 0.1f);
+                ForcedMoveInfo knockbackOther = new(asset.KnockbackForceOther, asset.KnockbackForceOther * 0.1f);
+                CharDamageGiverInfo damageGiver = new(asset.BaseDamage, knockbackSelf, knockbackOther);
+                this.damageGiver.Construct(damageGiver);
+            }
 
-            this.damageReceiver.Construct(damageReceiver);
-            this.damageGiver.Construct(damageGiver);
+            //Damage Receiver
+            if (damageReceiver != null)
+            {
+                CharDamageReceiverInfo damageReceiver = new(asset.MaxHealth, asset.InvincibilityTime);
+                this.damageReceiver.Construct(damageReceiver);
+            }
+
+            //Visual
+            if (visual != null)
+            {
+                CharVisualInfo visual = new(asset.Icon);
+                this.visual.Construct(visual);
+            }
         }
 
         private void Die()

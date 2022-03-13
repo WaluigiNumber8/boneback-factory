@@ -3,7 +3,7 @@
 namespace Rogium.Gameplay.Entities.Characteristics
 {
     /// <summary>
-    /// Contains data of the <see cref="CharacteristicMove"/>
+    /// Contains data of the <see cref="CharacteristicMove"/> characteristic.
     /// </summary>
     [System.Serializable]
     public struct CharMoveInfo

@@ -1,6 +1,7 @@
 ﻿using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using System;
+using Rogium.Core;
 using UnityEngine;
 
 namespace Rogium.Systems.GridSystem
@@ -18,40 +19,11 @@ namespace Rogium.Systems.GridSystem
         /// <param name="assetList">A list of assets from which to pick the sprites.</param>
         public static void LoadBySprites<T>(GridCell[,] cells, ObjectGrid<string> IDGrid, AssetList<T> assetList) where T : AssetBase
         {
-            AssetBase lastFoundAsset = null;
+            AssetUtils.UpdateFromGridByList(IDGrid, assetList, 
+                                            (x, y, asset) => cells[x, y].UpdateSprite(asset.Icon),
+                                            (x, y) => cells[x, y].UpdateSprite(EditorDefaults.MissingSprite), 
+                                            (x, y, _) => cells[x, y].Clear());
             
-            for (int x = 0; x < cells.GetLength(0); x++)
-            {
-                for (int y = 0; y < cells.GetLength(1); y++)
-                {
-                    string id = IDGrid.GetValue(x, y);
-                    //When Cell is empty
-                    if (id == EditorDefaults.EmptyAssetID)
-                    {
-                        cells[x, y].Clear();
-                        continue;
-                    }
-
-                    //Cache Optimisation
-                    if (id == lastFoundAsset?.ID)
-                    {
-                        cells[x, y].UpdateSprite(lastFoundAsset.Icon);
-                        continue;
-                    }
-
-                    //Try searching for ID
-                    try
-                    {
-                        lastFoundAsset = assetList.GetByID(id);
-                        cells[x, y].UpdateSprite(lastFoundAsset.Icon);
-                    }
-                    //If Asset not found, replace with empty tile.
-                    catch (InvalidOperationException)
-                    {
-                        cells[x, y].UpdateSprite(EditorDefaults.MissingSprite);
-                    }
-                }
-            }
         }
         
         /// <summary>
@@ -63,7 +35,7 @@ namespace Rogium.Systems.GridSystem
         public static void LoadByColor(GridCell[,] cells, ObjectGrid<int> indexGrid, Color[] colorArray)
         {
             ClearAllCells(cells);
-            
+
             for (int x = 0; x < cells.GetLength(0); x++)
             {
                 for (int y = 0; y < cells.GetLength(1); y++)

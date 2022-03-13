@@ -13,14 +13,13 @@ namespace Rogium.Gameplay.Core
     {
         private GameplayOverseer overseer;
 
-        [SerializeField] private Vector3Int positionOffset;
-        [SerializeField] private TilemapLayer[] tilemaps;
+        [SerializeField] private RoomLoader roomLoader;
         
         private void OnEnable()
         {
             overseer = GameplayOverseer.Instance;
-            // overseer.PrepareGame(SceneTransferOverseer.GetInstance().PickUpCampaign(), tilemaps, positionOffset);
-            overseer.PrepareGame(LibraryOverseer.Instance.GetCampaignsCopy[0], tilemaps, positionOffset);
+            overseer.PrepareGame(SceneTransferOverseer.GetInstance().PickUpCampaign(), roomLoader);
+            // overseer.PrepareGame(LibraryOverseer.Instance.GetCampaignsCopy[0], roomLoader);
         }
     }
 }

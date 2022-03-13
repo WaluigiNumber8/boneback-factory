@@ -75,7 +75,7 @@ namespace Rogium.Editors.Campaign
             
             if (campaign.PackReferences == null || campaign.PackReferences.Count <= 0) return;
             
-            IList<AssetBase> allPacks = lib.GetPacksCopy.ConvertToAssetBase();
+            IList<AssetBase> allPacks = lib.GetPacksCopy.Cast<AssetBase>().ToList();
             selectedAssets = allPacks.GrabBasedOn(campaign.PackReferences);
         }
 

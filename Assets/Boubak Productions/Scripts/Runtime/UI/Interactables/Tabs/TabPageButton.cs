@@ -1,5 +1,6 @@
 using BoubakProductions.Safety;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -12,7 +13,8 @@ namespace BoubakProductions.UI
     public class TabPageButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField] private GameObject page;
-
+        [SerializeField] private EventInfo events;
+        
         private TabGroup group;
         private Image background;
 
@@ -27,6 +29,7 @@ namespace BoubakProductions.UI
         public void OnPointerClick(PointerEventData eventData)
         {
             group.OnTabSelect(this);
+            events.onClick?.Invoke();
         }
 
         public void OnPointerEnter(PointerEventData eventData)
@@ -41,5 +44,11 @@ namespace BoubakProductions.UI
 
         public Image Background { get => background; }
         public GameObject Page { get => page; }
+
+        [System.Serializable]
+        public struct EventInfo
+        {
+            public UnityEvent onClick;
+        }
     }
 }

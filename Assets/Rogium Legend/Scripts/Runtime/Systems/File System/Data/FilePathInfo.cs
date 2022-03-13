@@ -1,8 +1,10 @@
-﻿namespace Rogium.ExternalStorage
+﻿using Rogium.Editors.Core;
+
+namespace Rogium.ExternalStorage
 {
-    public class FilePathInfo
+    public class FilePathInfo : IDataAsset
     {
-        private string id;
+        private readonly string id;
         private string title;
         private string path;
 

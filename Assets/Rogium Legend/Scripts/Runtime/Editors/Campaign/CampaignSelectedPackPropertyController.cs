@@ -42,7 +42,7 @@ namespace Rogium.Editors.Campaign
         {
             SafetyNet.EnsureIsNotNull(pack, "Current Pack");
             currentPack = pack;
-            currentImportInfo.ID = importInfo.ID;
+            currentImportInfo = importInfo;
             
             RefreshUI();
         }

@@ -1,7 +1,7 @@
 ﻿namespace Rogium.Gameplay.Entities.Characteristics
 {
     /// <summary>
-    /// Contains data of the <see cref="CharacteristicDamageGiver"/>
+    /// Contains data of the <see cref="CharacteristicDamageGiver"/> characteristic.
     /// </summary>
     [System.Serializable]
     public struct CharDamageGiverInfo

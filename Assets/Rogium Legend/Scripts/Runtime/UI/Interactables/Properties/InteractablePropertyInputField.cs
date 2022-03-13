@@ -26,6 +26,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             title.text = titleText;
             title.gameObject.SetActive((titleText != ""));
+            if (ui.emptySpace != null) ui.emptySpace.SetActive((titleText != ""));
             
             inputField.text = inputtedText;
             inputField.characterValidation = characterValidation;
@@ -53,6 +54,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             public Image inputFieldImage;
             public TextMeshProUGUI inputtedText;
+            public GameObject emptySpace;
         }
     }
 }

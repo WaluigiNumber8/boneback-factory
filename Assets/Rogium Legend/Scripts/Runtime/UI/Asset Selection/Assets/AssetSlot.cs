@@ -43,6 +43,8 @@ namespace Rogium.UserInterface.AssetSelection
             OnSelectedAny?.Invoke(index);
         }
         
+        public string ID { get => asset.ID; }
+        
         public AssetType Type { get => type; }
         public AssetBase Asset { get => asset; }
 
@@ -51,5 +53,6 @@ namespace Rogium.UserInterface.AssetSelection
         {
             public Image iconImg;
         }
+
     }
 }

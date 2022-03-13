@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using BoubakProductions.Core;
 using BoubakProductions.Safety;
+using Rogium.Core;
 using UnityEngine;
 
 namespace Rogium.ExternalStorage
@@ -10,8 +12,8 @@ namespace Rogium.ExternalStorage
     /// </summary>
     public class SaveableData
     {
-        private string folderTitle;
-        private string extension;
+        private readonly string folderTitle;
+        private readonly string extension;
         private string path;
 
         private readonly IList<FilePathInfo> filePaths;
@@ -63,7 +65,7 @@ namespace Rogium.ExternalStorage
         /// <param name="id">The id of the file to remove.</param>
         public void RemoveFilePath(string id)
         {
-            filePaths.RemoveAt(GetIndexFirst(id));
+            filePaths.RemoveAt(filePaths.FindIndexFirst(id));
         }
 
         /// <summary>
@@ -92,7 +94,7 @@ namespace Rogium.ExternalStorage
         /// <returns>Path of the file with the same title.</returns>
         public string GetFilePath(string id)
         {
-            return filePaths[GetIndexFirst(id)].Path;
+            return filePaths.FindValueFirst(id).Path;
         }
 
         /// <summary>
@@ -104,14 +106,15 @@ namespace Rogium.ExternalStorage
         /// <returns>Title of the file with the same id.</returns>
         public void GetFileTitleAndPath(string id, out string title, out string path)
         {
-            FilePathInfo info = filePaths[GetIndexFirst(id)];
+            FilePathInfo info = filePaths.FindValueFirst(id);
             title = info.Title;
             path = info.Path;
         }
-        
+
         /// <summary>
         /// Converts a file title and converts it to it's path.
         /// </summary>
+        /// <param name="id">The ID of the asset.</param>
         /// <param name="title">The title of the file.</param>
         /// <returns>The path of the file.</returns>
         private FilePathInfo ConvertToFileInfo(string id, string title)
@@ -119,24 +122,6 @@ namespace Rogium.ExternalStorage
             return new FilePathInfo(id, title, CombineFilePath(title));
         }
         
-        /// <summary>
-        /// Tries to get index of a specific value from a list.
-        /// </summary>
-        /// <param name="ID">The path of the file to search for..</param>
-        /// <returns>The position/index of the path on the list,.</returns>
-        /// <exception cref="ArgumentNullException">Is thrown when the value was not found.</exception>
-        private int GetIndexFirst(string ID)
-        {
-            if (filePaths == null || filePaths.Count <= 0) throw new ArgumentNullException($"No element with value '{ID}' was found.");
-            
-            for (int i = 0; i < filePaths.Count; i++)
-            {
-                if (filePaths[i].ID == ID) return i;
-            }
-
-            throw new ArgumentNullException($"No element with value '{ID}' was found.");
-        }
-
         /// <summary>
         /// Returns a path to a file with a specific name.
         /// </summary>

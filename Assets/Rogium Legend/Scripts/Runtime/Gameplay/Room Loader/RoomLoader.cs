@@ -7,38 +7,24 @@ namespace Rogium.Gameplay.DataLoading
     /// <summary>
     /// Turns a <see cref="RoomAsset"/> into a Gameplay Form.
     /// </summary>
-    public class RoomLoader
+    public class RoomLoader : MonoBehaviour
     {
-        private readonly TilemapLoader tilemapLoader;
+        [SerializeField] private Vector3Int originPos;
+        [SerializeField] private TileMapLoader tilemapLoader;
+        [SerializeField] private EnemyMapLoader enemyLoader;
         
-        public RoomLoader() => tilemapLoader = new TilemapLoader();
 
         /// <summary>
         /// Loads the room with Tile, Object & Enemy data.
         /// </summary>
         /// <param name="room">The room to load.</param>
-        /// <param name="data">The pack to take data from.</param>
-        public void Load(TilemapLayer[] tilemaps, Vector3Int originPosition, RoomAsset room, PackAsset data)
+        /// <param name="dataPack">The pack to take data from.</param>
+        public void Load(RoomAsset room, PackAsset dataPack)
         {
-            //Clean the room
-            ClearAllTiles(tilemaps);
-            
-            //Place new tiles.
-            tilemapLoader.LoadTiles(tilemaps, room.TileGrid, originPosition, data.Tiles);
-            
+            tilemapLoader.Load(originPos, room.TileGrid, dataPack.Tiles);
+            enemyLoader.Load(originPos, room.EnemyGrid, dataPack.Enemies);
         }
         
-        /// <summary>
-        /// Cleans the entire room.
-        /// </summary>
-        /// <param name="tilemaps">Cleans all layers in the room.</param>
-        private void ClearAllTiles(TilemapLayer[] tilemaps)
-        {
-            foreach (TilemapLayer layer in tilemaps)
-            {
-                layer.Tilemap.ClearAllTiles();
-                layer.Positions.Clear();
-            }
-        }
+        
     }
 }

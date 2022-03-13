@@ -24,6 +24,9 @@ namespace Rogium.Editors.Campaign
                 PackAsset p = ExternalStorageOverseer.Instance.LoadPack(pack);
                 ultimatePack.Palettes.AddAllWithoutSave(p.Palettes);
                 ultimatePack.Sprites.AddAllWithoutSave(p.Sprites);
+                ultimatePack.Weapons.AddAllWithoutSave(p.Weapons);
+                ultimatePack.Projectiles.AddAllWithoutSave(p.Projectiles);
+                ultimatePack.Enemies.AddAllWithoutSave(p.Enemies);
                 ultimatePack.Rooms.AddAllWithoutSave(p.Rooms);
                 ultimatePack.Tiles.AddAllWithoutSave(p.Tiles);
             }
@@ -59,17 +62,16 @@ namespace Rogium.Editors.Campaign
         {
             ultimatePack.Palettes.AddAllWithoutSave(packToImport.Palettes);
             ultimatePack.Sprites.AddAllWithoutSave(packToImport.Sprites);
+            ultimatePack.Projectiles.AddAllWithoutSave(packToImport.Projectiles);
             
             if (importInfo.weapons)
             {
-                //TODO Import Projectiles
-                //TODO Import Weapons
+                ultimatePack.Weapons.AddAllWithoutSave(packToImport.Weapons);
             }
 
             if (importInfo.enemies)
             {
-                //TODO Import Projectiles
-                //TODO Import Enemies
+                ultimatePack.Enemies.AddAllWithoutSave(packToImport.Enemies);
             }
 
             if (importInfo.rooms)

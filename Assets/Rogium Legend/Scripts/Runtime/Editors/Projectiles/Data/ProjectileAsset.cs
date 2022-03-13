@@ -37,8 +37,8 @@ namespace Rogium.Editors.Projectiles
 
             baseDamage = asset.BaseDamage;
             useDelay = asset.UseDelay;
-            knockbackForceSelf = asset.KnockbackSelf;
-            knockbackForceOther = asset.KnockbackOther;
+            knockbackForceSelf = asset.KnockbackForceSelf;
+            knockbackForceOther = asset.KnockbackForceOther;
         }
 
         public ProjectileAsset(string id, string title, Sprite icon, string author, int baseDamage, float useDelay,

@@ -123,15 +123,15 @@ namespace Rogium.Editors.Core
             return (foundAssets.Count == 0) ? default : foundAssets[0];
         }
 
-        /// <summary>
-        /// Returns an asset with a given ID.
-        /// </summary>
-        /// <param name="ID">The ID we are searching for.</param>
-        /// <exception cref="InvalidOperationException">When no asset with this ID was found.</exception>
-        public T GetByID(string ID)
-        {
-            return list.First(asset => asset.ID == ID);
-        }
+        // /// <summary>
+        // /// Returns an asset with a given ID.
+        // /// </summary>
+        // /// <param name="ID">The ID we are searching for.</param>
+        // /// <exception cref="InvalidOperationException">When no asset with this ID was found.</exception>
+        // public T GetByID(string ID)
+        // {
+        //     return list.First(asset => asset.ID == ID);
+        // }
         
         /// <summary>
         /// Replaces the current list with a new one.

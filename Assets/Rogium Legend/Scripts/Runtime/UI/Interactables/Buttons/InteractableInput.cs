@@ -303,7 +303,11 @@ namespace Rogium.UserInterface.Interactables
                     SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - SWITCH ROOM TOOL");
                     GASButtonActions.RoomSwitchTool(index);
                     break;
-                    
+                
+                case ButtonType.RoomSwitchPalette:
+                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - SWITCH ROOM PALETTE");
+                    GASButtonActions.RoomSwitchPalette(index);
+                    break;
 
                 #endregion
                 

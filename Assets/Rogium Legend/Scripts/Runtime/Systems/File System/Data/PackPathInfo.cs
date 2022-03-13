@@ -1,9 +1,11 @@
-﻿namespace Rogium.ExternalStorage
+﻿using Rogium.Editors.Core;
+
+namespace Rogium.ExternalStorage
 {
     /// <summary>
     /// Stores information about usable paths for a pack.
     /// </summary>
-    public class PackPathInfo
+    public class PackPathInfo : IDataAsset
     {
         private readonly string packID;
         private string packTitle;
@@ -63,8 +65,8 @@
             tilesData.UpdatePath(newPathDirectory);
         }
         
-        public string PackID { get => packID; }
-        public string PackTitle { get => packTitle; }
+        public string ID { get => packID; }
+        public string Title { get => packTitle; }
         public string DirectoryPath { get => directoryPath; }
         public string FilePath { get => filePath; }
         

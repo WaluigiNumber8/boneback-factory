@@ -25,6 +25,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             title.text = titleText;
             title.gameObject.SetActive((titleText != ""));
+            if (ui.emptySpace != null) ui.emptySpace.SetActive((titleText != ""));
             
             toggle.isOn = toggleState;
             toggle.onValueChanged.AddListener(delegate { WhenChangeValue(toggle.isOn); });
@@ -49,6 +50,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             public Image backgroundImage;
             public Image checkmarkImage;
+            public GameObject emptySpace;
         }
     }
 }

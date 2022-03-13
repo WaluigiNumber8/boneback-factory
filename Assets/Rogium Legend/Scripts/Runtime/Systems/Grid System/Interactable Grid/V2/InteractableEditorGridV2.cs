@@ -17,9 +17,10 @@ namespace Rogium.Systems.GridSystem
     public class InteractableEditorGridV2 : InteractableEditorGridBase, IPointerClickHandler, IPointerMoveHandler
     {
         public override event Action<Vector2Int> OnClick;
+        public event Action<Vector2Int> OnClickAlternative;
         
         [SerializeField] private Vector2Int gridSize;
-        [SerializeField] private Image[] layers;
+        [SerializeField] private LayerInfo[] layers;
         
         private RectTransform ttransform;
         private SpriteDrawer drawer;
@@ -44,17 +45,50 @@ namespace Rogium.Systems.GridSystem
 
         public void OnPointerClick(PointerEventData eventData)
         {
-           RecalculateSelectedPosition(eventData.position);
-           OnClick?.Invoke(selectedPos);
+            switch (eventData.button)
+            {
+                case PointerEventData.InputButton.Left:
+                    RecalculateSelectedPosition(eventData.position);
+                    OnClick?.Invoke(selectedPos);
+                    return;
+                case PointerEventData.InputButton.Right:
+                    RecalculateSelectedPosition(eventData.position);
+                    OnClickAlternative?.Invoke(selectedPos);
+                    return;
+            }
         }
 
         public void OnPointerMove(PointerEventData eventData)
         {
-            if (!InputSystem.Instance.UI.Click.IsHeld) return;
-            RecalculateSelectedPosition(eventData.position);
-            OnClick?.Invoke(selectedPos);
+            if (InputSystem.Instance.UI.Click.IsHeld)
+            {
+                RecalculateSelectedPosition(eventData.position);
+                OnClick?.Invoke(selectedPos);
+                return;
+            }
+            
+            if (InputSystem.Instance.UI.ClickAlternative.IsHeld)
+            {
+                RecalculateSelectedPosition(eventData.position);
+                OnClickAlternative?.Invoke(selectedPos);
+                return;
+            }
         }
 
+        /// <summary>
+        /// Loads sprites into the editor grid.
+        /// </summary>
+        /// <param name="assetList">From which list of assets to load from.</param>
+        /// <param name="IDGrid">The grid of IDs to read.</param>
+        /// <param name="layerIndex">The index of the layer to load on.</param>
+        /// <typeparam name="T">Is a type of Asset.</typeparam>
+        public void LoadWithSprites<T>(AssetList<T> assetList, ObjectGrid<string> IDGrid, int layerIndex) where T : AssetBase
+        {
+            SafetyNet.EnsureIntIsEqual(IDGrid.Width, gridSize.x, "Grid Width");
+            SafetyNet.EnsureIntIsEqual(IDGrid.Height, gridSize.y, "Grid Height");
+            layers[layerIndex].layer.sprite = drawer.Build(IDGrid, assetList);
+        }
+        
         public override void LoadWithSprites<T>(AssetList<T> assetList, ObjectGrid<string> IDGrid)
         {
             SafetyNet.EnsureIntIsEqual(IDGrid.Width, gridSize.x, "Grid Width");
@@ -88,7 +122,9 @@ namespace Rogium.Systems.GridSystem
         public void SwitchActiveLayer(int layerIndex)
         {
             SafetyNet.EnsureIndexWithingCollectionRange(layerIndex, layers, nameof(layers));
-            activeLayer = layers[layerIndex];
+            activeLayer = layers[layerIndex].layer;
+
+            RefreshLayerColors(layerIndex);
         }
         
         /// <summary>
@@ -112,15 +148,32 @@ namespace Rogium.Systems.GridSystem
         /// </summary>
         private void PrepareLayers()
         {
-            foreach (Image layer in layers)
+            foreach (LayerInfo info in layers)
             {
-                layer.color = Color.white;
-                layer.sprite = BoubakBuilder.GenerateSprite(EditorDefaults.NoColor,
-                                                            EditorDefaults.SpriteSize * gridSize.x,
-                                                            EditorDefaults.SpriteSize * gridSize.y,
-                                                            EditorDefaults.SpriteSize);
+                info.layer.color = Color.white;
+                info.layer.sprite = BoubakBuilder.GenerateSprite(EditorDefaults.NoColor,
+                                                                 EditorDefaults.SpriteSize * gridSize.x,
+                                                                 EditorDefaults.SpriteSize * gridSize.y,
+                                                                 EditorDefaults.SpriteSize);
             }
         }
-        
+
+        /// <summary>
+        /// Refreshes the color of all layers.
+        /// </summary>
+        /// <param name="layerIndex">The active layer index.</param>
+        private void RefreshLayerColors(int layerIndex)
+        {
+            for (int i = 0; i < layers.Length; i++)
+            {
+                if (i == layerIndex)
+                {
+                    layers[i].layer.color = Color.white;
+                    continue;
+                }
+
+                layers[i].layer.color = layers[i].outOfFocusColor;
+            }
+        }
     }
 }

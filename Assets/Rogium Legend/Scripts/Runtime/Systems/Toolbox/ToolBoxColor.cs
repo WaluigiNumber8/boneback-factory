@@ -50,17 +50,22 @@ namespace Rogium.Systems.Toolbox
             currentTool.ApplyEffect(grid, position, value.Index, WhenDrawOnUIGrid, UIGrid.Apply);
         }
 
+        /// <summary>
+        /// Applies the effect of a specific tool based on tool type.
+        /// </summary>
+        /// <param name="tool">The tool to use.</param>
+        /// <param name="grid">The grid to affect.</param>
+        /// <param name="position">The position to start with.</param>
+        /// <param name="value">The value to set.</param>
+        public void ApplySpecific(ToolType tool, ObjectGrid<int> grid, Vector2Int position, ColorSlot value)
+        {
+            GetTool(tool).ApplyEffect(grid, position, value.Index, WhenDrawOnUIGrid, UIGrid.Apply);
+        }
+
         public void SwitchTool(ToolType tool)
         {
             if (currentToolType == tool) return;
-            currentTool = tool switch
-            {
-                ToolType.Brush => toolBrush,
-                ToolType.Eraser => toolEraser,
-                ToolType.Bucket => toolBucket,
-                ToolType.ColorPicker => toolPicker,
-                _ => throw new InvalidOperationException("Unknown or not yet supported Tool Type.")
-            };
+            currentTool = GetTool(tool);
             currentToolType = tool;
             OnSwitchTool?.Invoke(tool);
         }
@@ -70,6 +75,24 @@ namespace Rogium.Systems.Toolbox
             Color value = (useEmpty) ? EditorDefaults.NoColor : currentColor;
             UIGrid.UpdateCell(position, value);
         }
-        
+
+        /// <summary>
+        /// Grabs a tool based on entered tool type.
+        /// </summary>
+        /// <param name="toolType">The type of tool to get.</param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException">Is thrown when <see cref="ToolType"/> is unknown or unsupported.</exception>
+        private ITool<int> GetTool(ToolType toolType)
+        {
+            ITool<int> tool = toolType switch
+            {
+                ToolType.Brush => toolBrush,
+                ToolType.Eraser => toolEraser,
+                ToolType.Bucket => toolBucket,
+                ToolType.ColorPicker => toolPicker,
+                _ => throw new InvalidOperationException("Unknown or not yet supported Tool Type.")
+            };
+            return tool;
+        }
     }
 }

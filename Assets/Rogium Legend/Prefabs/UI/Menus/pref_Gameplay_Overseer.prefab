@@ -27,7 +27,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1002070479685519082}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -43,7 +45,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 229f595731494fa29032bb3dd25f10db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionOffset: {x: -10, y: 6, z: 0}
+  roomLoader: {fileID: 2982206685237233498}
+--- !u!1 &3514882699237565128
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1002070479685519082}
+  - component: {fileID: 2982206685237233498}
+  - component: {fileID: 2648304389740304645}
+  - component: {fileID: 1187064705479546962}
+  m_Layer: 0
+  m_Name: Loaders
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1002070479685519082
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3514882699237565128}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 855326788739806885}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2982206685237233498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3514882699237565128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01323ce7b18710a4f8a65fc9f5d7df8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  originPos: {x: -8, y: -5, z: 0}
+  tilemapLoader: {fileID: 2648304389740304645}
+  enemyLoader: {fileID: 1187064705479546962}
+--- !u!114 &2648304389740304645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3514882699237565128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5455dd2cd1f94af18a7a1fc0a2d1ca82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   tilemaps:
   - title: Floor
     tilemap: {fileID: 0}
@@ -51,3 +114,21 @@ MonoBehaviour:
   - title: Wall
     tilemap: {fileID: 0}
     type: 1
+  - title: Ceiling
+    tilemap: {fileID: 0}
+    type: 2
+--- !u!114 &1187064705479546962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3514882699237565128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0fa0b1fbd09c3943b825a20fcbd8139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vessel: {fileID: 8749843501973659655, guid: c4b5acf17fe98ea45929818b099ebbb3, type: 3}
+  missingEnemyObject: {fileID: 3813614324292317664, guid: 4380cf9d6df7d6d45b8abeab8a9380a7, type: 3}
+  content: {fileID: 0}

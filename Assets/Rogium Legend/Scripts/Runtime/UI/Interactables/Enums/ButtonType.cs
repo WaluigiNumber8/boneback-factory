@@ -114,7 +114,7 @@ namespace Rogium.UserInterface.Interactables
 
         #region Room Editor
         RoomSwitchTool = 71,
-        
+        RoomSwitchPalette = 73,
 
         #endregion
         
@@ -122,6 +122,6 @@ namespace Rogium.UserInterface.Interactables
         Play = 10000,
         TEST = 10001
         
-        //Latest : 72
+        //Latest : 73
     }   
 }

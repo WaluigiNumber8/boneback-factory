@@ -58,6 +58,16 @@ namespace BoubakProductions.UI
         }
 
         /// <summary>
+        /// Switches to a button with given index.
+        /// </summary>
+        /// <param name="index">The index of the button to switch.</param>
+        public void Switch(int index)
+        {
+            SafetyNet.EnsureIndexWithingCollectionRange(index, buttons, "Tab Buttons");
+            OnTabSelect(buttons[index]);
+        }
+        
+        /// <summary>
         /// Resets all tabs to their default state.
         /// </summary>
         private void ResetAllTabs()

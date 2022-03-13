@@ -23,7 +23,7 @@ public static class TestBuilder
         tileGrid.SetValue(2, 1, tile.ID);
         tileGrid.SetValue(5, 1, tile.ID);
 
-        RoomAsset room = new RoomAsset("Devil Room", EditorDefaults.RoomIcon, "Test Author", 0, RoomType.Normal, tileGrid);
+        RoomAsset room = new RoomAsset("Devil Room", EditorDefaults.RoomIcon, "Test Author", 0, RoomType.Normal, tileGrid, new ObjectGrid<string>(10, 15, () => "-1"));
         PackAsset pack =
             new PackAsset(new PackInfoAsset("Test Pack", EditorDefaults.PackIcon, "Test Author", "Just a pack"));
         pack.Tiles.Add(tile);
