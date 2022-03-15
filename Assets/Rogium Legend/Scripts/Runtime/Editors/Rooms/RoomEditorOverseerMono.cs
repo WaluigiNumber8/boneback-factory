@@ -24,7 +24,7 @@ namespace Rogium.Editors.Rooms
         
         private PackEditorOverseer packEditor;
         private RoomEditorOverseer editor;
-        private ToolBoxAsset<string> toolbox;
+        private ToolBox<string, Sprite> toolbox;
 
         private GridData currentData;
         private GridData tileData;
@@ -36,7 +36,7 @@ namespace Rogium.Editors.Rooms
             base.Awake();
             packEditor = PackEditorOverseer.Instance;
             editor = RoomEditorOverseer.Instance;
-            toolbox = new ToolBoxAsset<string>(grid, EditorDefaults.EmptyAssetID);
+            toolbox = new ToolBox<string, Sprite>(grid, EditorDefaults.EmptyAssetID, EditorDefaults.EmptyGridSprite, grid.UpdateCell);
         }
 
         private void OnEnable()
@@ -128,6 +128,6 @@ namespace Rogium.Editors.Rooms
             toolbox.SwitchTool(ToolType.Brush);
         }
         
-        public ToolBoxAsset<string> Toolbox { get => toolbox; } 
+        public ToolBox<string, Sprite> Toolbox { get => toolbox; } 
     }
 }

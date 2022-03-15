@@ -14,10 +14,12 @@ namespace Rogium.Systems.GridSystem
     /// An upgraded version of <see cref="InteractableEditorGrid"/>.
     /// </summary>
     [RequireComponent(typeof(RectTransform))]
-    public class InteractableEditorGridV2 : InteractableEditorGridBase, IPointerClickHandler, IPointerMoveHandler
+    public class InteractableEditorGridV2 : InteractableEditorGridBase, IPointerClickHandler, IPointerMoveHandler, IPointerEnterHandler, IPointerExitHandler
     {
         public override event Action<Vector2Int> OnClick;
         public event Action<Vector2Int> OnClickAlternative;
+        public event Action OnPointerLeave;
+        public event Action OnPointerComeIn;
         
         [SerializeField] private Vector2Int gridSize;
         [SerializeField] private LayerInfo[] layers;
@@ -43,35 +45,35 @@ namespace Rogium.Systems.GridSystem
             
         }
 
-        public void OnPointerClick(PointerEventData eventData)
-        {
-            switch (eventData.button)
-            {
-                case PointerEventData.InputButton.Left:
-                    RecalculateSelectedPosition(eventData.position);
-                    OnClick?.Invoke(selectedPos);
-                    return;
-                case PointerEventData.InputButton.Right:
-                    RecalculateSelectedPosition(eventData.position);
-                    OnClickAlternative?.Invoke(selectedPos);
-                    return;
-            }
-        }
-
+        public void OnPointerEnter(PointerEventData eventData) => OnPointerComeIn?.Invoke();
+        public void OnPointerExit(PointerEventData eventData) => OnPointerLeave?.Invoke();
+        
         public void OnPointerMove(PointerEventData eventData)
         {
+            RecalculateSelectedPosition(eventData.position);
             if (InputSystem.Instance.UI.Click.IsHeld)
             {
-                RecalculateSelectedPosition(eventData.position);
                 OnClick?.Invoke(selectedPos);
                 return;
             }
             
             if (InputSystem.Instance.UI.ClickAlternative.IsHeld)
             {
-                RecalculateSelectedPosition(eventData.position);
                 OnClickAlternative?.Invoke(selectedPos);
                 return;
+            }
+        }
+        
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            switch (eventData.button)
+            {
+                case PointerEventData.InputButton.Left:
+                    OnClick?.Invoke(selectedPos);
+                    return;
+                case PointerEventData.InputButton.Right:
+                    OnClickAlternative?.Invoke(selectedPos);
+                    return;
             }
         }
 
@@ -136,9 +138,9 @@ namespace Rogium.Systems.GridSystem
             
             int x = (int)Mathf.Abs(Mathf.Floor(pos.x / cellSize.x));
             int y = (int)Mathf.Abs(Mathf.Floor(pos.y / cellSize.y));
-
-            x = Mathf.Max(0, Mathf.Min(x, gridSize.x-1));
-            y = Mathf.Max(0, Mathf.Min(y, gridSize.y-1));
+            
+            x = Mathf.Clamp(x, 0, gridSize.x - 1);
+            y = Mathf.Clamp(y, 0, gridSize.y - 1);
             
             selectedPos = new Vector2Int(x, y);
         }
@@ -175,5 +177,9 @@ namespace Rogium.Systems.GridSystem
                 layers[i].layer.color = layers[i].outOfFocusColor;
             }
         }
+        
+        public Vector2Int Size { get => gridSize; }
+        public Vector2Int CellSize { get => cellSize; }
+        public Vector2Int SelectedPosition { get => selectedPos; }
     }
 }

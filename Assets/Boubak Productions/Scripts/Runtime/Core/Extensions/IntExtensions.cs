@@ -1,4 +1,6 @@
-﻿namespace BoubakProductions.Core
+﻿using UnityEngine;
+
+namespace BoubakProductions.Core
 {
     /// <summary>
     /// Extension methods for the integer type.
@@ -14,5 +16,6 @@
         {
             return (float) milliseconds / 1000;
         }
+
     }
 }

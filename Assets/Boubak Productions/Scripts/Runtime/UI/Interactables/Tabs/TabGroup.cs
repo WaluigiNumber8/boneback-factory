@@ -2,6 +2,7 @@ using BoubakProductions.Safety;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BoubakProductions.Core;
 using UnityEngine;
 
 namespace BoubakProductions.UI
@@ -64,7 +65,7 @@ namespace BoubakProductions.UI
         public void Switch(int index)
         {
             SafetyNet.EnsureIndexWithingCollectionRange(index, buttons, "Tab Buttons");
-            OnTabSelect(buttons[index]);
+            OnTabSelect(buttons[IntUtils.Flip(index, buttons.Count)]);
         }
         
         /// <summary>

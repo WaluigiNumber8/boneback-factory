@@ -100,10 +100,10 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor &amp; Play">
-    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="17012">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="19204">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="17012" />
+      <option name="pid" value="19204" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -279,7 +279,9 @@
       <workItem from="1646814423974" duration="12482000" />
       <workItem from="1646904342231" duration="7906000" />
       <workItem from="1647010427710" duration="9425000" />
-      <workItem from="1647162028353" duration="13531000" />
+      <workItem from="1647162028353" duration="14519000" />
+      <workItem from="1647251184393" duration="6249000" />
+      <workItem from="1647349749367" duration="3760000" />
     </task>
     <servers />
   </component>
@@ -326,7 +328,7 @@
           <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Global\UI System\Modal Window Builders\ModalWindowPropertyBuilderCampaign.cs" initialLine="51" containingFunctionPresentation="method 'UpdateAsset'" />
           <option name="timeStamp" value="17" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+        <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Gameplay/Entities/Characteristics/CharacteristicDamageReceiver.cs</url>
           <line>24</line>
           <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Gameplay\Entities\Characteristics\CharacteristicDamageReceiver.cs" initialLine="26" containingFunctionPresentation="method 'OnTriggerEnter2D'">
@@ -339,7 +341,7 @@
           </properties>
           <option name="timeStamp" value="63" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+        <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Editors/Rooms/RoomEditorOverseer.cs</url>
           <line>73</line>
           <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Editors\Rooms\RoomEditorOverseer.cs" initialLine="73" containingFunctionPresentation="method 'CompleteEditing'">
@@ -351,6 +353,12 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="74" />
+        </line-breakpoint>
+        <line-breakpoint type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Systems/Toolbox/ToolBox.cs</url>
+          <line>84</line>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Systems\Toolbox\ToolBoxAsset.cs" initialLine="84" containingFunctionPresentation="method 'WhenDrawOnUIGrid'" />
+          <option name="timeStamp" value="75" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

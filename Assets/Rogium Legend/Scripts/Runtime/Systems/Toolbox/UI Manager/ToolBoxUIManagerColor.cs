@@ -1,4 +1,5 @@
 ﻿using Rogium.Editors.Sprites;
+using UnityEngine;
 
 namespace Rogium.Systems.Toolbox
 {
@@ -7,7 +8,7 @@ namespace Rogium.Systems.Toolbox
     /// </summary>
     public class ToolBoxUIManagerColor : ToolBoxUIManagerBase
     {
-        private ToolBoxColor toolbox;
+        private ToolBox<int, Color> toolbox;
 
         private void Start()
         {

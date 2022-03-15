@@ -22,7 +22,7 @@ namespace Rogium.Editors.Sprites
         
         private SpriteEditorOverseer editor;
         private PalettePicker palettePicker;
-        private ToolBoxColor toolbox;
+        private ToolBox<int, Color> toolbox;
 
         private SpriteAsset currentSprite;
         private ColorSlot currentSlot;
@@ -33,7 +33,7 @@ namespace Rogium.Editors.Sprites
             base.Awake();
             editor = SpriteEditorOverseer.Instance;
             palettePicker = new PalettePicker();
-            toolbox = new ToolBoxColor(grid);
+            toolbox = new ToolBox<int, Color>(grid, EditorDefaults.EmptyColorID, EditorDefaults.NoColor, grid.UpdateCell);
         }
 
         private void OnEnable()
@@ -61,7 +61,7 @@ namespace Rogium.Editors.Sprites
         public void UpdateGridCell(Vector2Int position)
         {
             if (currentSlot == null) return;
-            toolbox.ApplyCurrent(editor.CurrentAsset.SpriteData, position, currentSlot);
+            toolbox.ApplyCurrent(editor.CurrentAsset.SpriteData, position, currentSlot.Index, currentSlot.CurrentColor);
         }
 
         /// <summary>
@@ -131,9 +131,9 @@ namespace Rogium.Editors.Sprites
         /// <param name="position">The cell to erase.</param>
         private void EraseCell(Vector2Int position)
         {
-            toolbox.ApplySpecific(ToolType.Eraser, editor.CurrentAsset.SpriteData, position, currentSlot);
+            toolbox.ApplySpecific(ToolType.Eraser, editor.CurrentAsset.SpriteData, position, currentSlot.Index);
         }
         
-        public ToolBoxColor Toolbox { get => toolbox; } 
+        public ToolBox<int, Color> Toolbox { get => toolbox; } 
     }
 }

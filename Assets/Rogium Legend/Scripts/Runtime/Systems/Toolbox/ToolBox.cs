@@ -8,7 +8,7 @@ namespace Rogium.Systems.Toolbox
     /// <summary>
     /// Houses all the tools used on an <see cref="InteractableEditorGrid"/>.
     /// </summary>
-    public class ToolBoxAsset<T> : IToolBox where T : IComparable
+    public class ToolBox<T, TS> : IToolBox where T : IComparable
     {
         public event Action<ToolType> OnSwitchTool;
         public event Action<T> OnChangePaletteValue; 
@@ -19,12 +19,18 @@ namespace Rogium.Systems.Toolbox
         private readonly PickerTool<T> toolPicker;
 
         private readonly InteractableEditorGridBase UIGrid;
-        private Sprite currentSprite;
+        private TS currentBrush;
         private ITool<T> currentTool;
         private ToolType currentToolType;
+        private Action<Vector2Int, TS> drawOnGrid;
+        private TS emptyValueEditor;
 
-        public ToolBoxAsset(InteractableEditorGridBase UIGrid, T emptyValue)
+        public ToolBox(InteractableEditorGridBase UIGrid, T emptyValue, TS emptyValueEditor, Action<Vector2Int, TS> drawOnGrid)
         {
+            this.UIGrid = UIGrid;
+            this.drawOnGrid = drawOnGrid;
+            this.emptyValueEditor = emptyValueEditor;
+            
             toolBrush = new BrushTool<T>();
             toolEraser = new EraserTool<T>(emptyValue);
             toolBucket = new BucketTool<T>();
@@ -32,7 +38,6 @@ namespace Rogium.Systems.Toolbox
 
             toolPicker.OnPickValue += id => OnChangePaletteValue?.Invoke(id);
             
-            this.UIGrid = UIGrid;
             currentTool = toolBrush;
         }
         
@@ -42,9 +47,9 @@ namespace Rogium.Systems.Toolbox
         /// <param name="grid">The grid to affect.</param>
         /// <param name="position">The position to start with.</param>
         /// <param name="value">The value to set.</param>
-        public void ApplyCurrent(ObjectGrid<T> grid, Vector2Int position, T value, Sprite sprite)
+        public void ApplyCurrent(ObjectGrid<T> grid, Vector2Int position, T value, TS brush)
         {
-            currentSprite = sprite;
+            currentBrush = brush;
             currentTool.ApplyEffect(grid, position, value, WhenDrawOnUIGrid, UIGrid.Apply);
         }
 
@@ -77,8 +82,8 @@ namespace Rogium.Systems.Toolbox
 
         public void WhenDrawOnUIGrid(Vector2Int position, bool useEmpty)
         {
-            Sprite value = (useEmpty) ? EditorDefaults.EmptyGridSprite : currentSprite;
-            UIGrid.UpdateCell(position, value);
+            TS value = (useEmpty) ? emptyValueEditor : currentBrush;
+            drawOnGrid?.Invoke(position, value);
         }
         
         /// <summary>

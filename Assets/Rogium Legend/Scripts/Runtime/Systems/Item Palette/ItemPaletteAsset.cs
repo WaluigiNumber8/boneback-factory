@@ -26,8 +26,15 @@ namespace Rogium.Systems.ItemPalette
         private readonly IList<AssetSlot> holders = new List<AssetSlot>();
         private IList<string> ids;
 
+        private int lastSelected = -1;
+        
         private void Awake() => menuFiller = new MenuFiller<AssetSlot>();
-        private void OnEnable() => AssetSlot.OnSelectedAny += WhenSelected;
+        private void OnEnable()
+        {
+            AssetSlot.OnSelectedAny += WhenSelected;
+            if (lastSelected != -1) Select(lastSelected);
+        }
+
         private void OnDisable() => AssetSlot.OnSelectedAny -= WhenSelected;
 
         /// <summary>
@@ -50,6 +57,7 @@ namespace Rogium.Systems.ItemPalette
             SafetyNet.EnsureIntIsInRange(index, 0, holders.Count, "Item Index");
             if (holders?.Count <= 0) return;
 
+            lastSelected = index;
             OnSelect?.Invoke(holders[index]);
         }
 
