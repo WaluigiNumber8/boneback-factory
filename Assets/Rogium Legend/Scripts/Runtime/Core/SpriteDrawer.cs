@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using BoubakProductions.Core;
 using BoubakProductions.Safety;
 using Rogium.Core;
@@ -73,7 +74,7 @@ namespace Rogium.Systems.GridSystem
         /// </summary>
         /// <param name="IDGrid">The grid of IDs to read.</param>
         /// <param name="assetList">The list of assets to take data from.</param>
-        public Sprite Build<T>(ObjectGrid<string> IDGrid, AssetList<T> assetList) where T : AssetBase
+        public Sprite Build<T>(ObjectGrid<string> IDGrid, IList<T> assetList) where T : IAsset
         {
             Texture2D tex = BoubakBuilder.GenerateTexture(IDGrid.Width * pixelsPerUnit, IDGrid.Height * pixelsPerUnit);
             Sprite sprite = BoubakBuilder.GenerateSprite(tex, pixelsPerUnit);

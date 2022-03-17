@@ -11,7 +11,7 @@ namespace Rogium.UserInterface.AssetSelection
     /// </summary>
     public class CampaignAssetSelectionOverseer
     {
-        private readonly LibraryOverseer lib;
+        private readonly ExternalLibraryOverseer lib;
         
         private AssetWallpaperController wallpaper;
         private IList<CampaignAsset> campaigns;
@@ -38,7 +38,7 @@ namespace Rogium.UserInterface.AssetSelection
 
         private CampaignAssetSelectionOverseer()
         {
-            lib = LibraryOverseer.Instance;
+            lib = ExternalLibraryOverseer.Instance;
         }
 
         /// <summary>

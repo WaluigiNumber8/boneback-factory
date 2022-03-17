@@ -30,7 +30,7 @@ namespace Rogium.UserInterface.ModalWindowBuilding
         {
             builder.BuildInputField("Name", currentPackInfo.Title, window.FirstColumnContent, currentPackInfo.UpdateTitle);
             builder.BuildInputFieldArea("Description", currentPackInfo.Description, window.FirstColumnContent, currentPackInfo.UpdateDescription);
-            builder.BuildAssetField("", AssetType.Sprite, currentPackInfo, window.SecondColumnContent, delegate(AssetBase asset) { editedAssetBase.UpdateIcon(asset.Icon);} );
+            builder.BuildAssetField("", AssetType.Sprite, currentPackInfo, window.SecondColumnContent, delegate(IAsset asset) { editedAssetBase.UpdateIcon(asset.Icon);} );
             builder.BuildPlainText("Created by", currentPackInfo.Author, window.SecondColumnContent);
             builder.BuildPlainText("Created on", currentPackInfo.CreationDate.ToString(), window.SecondColumnContent);
 

@@ -14,12 +14,12 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
     /// </summary>
     public class AssetSelectionPickerMultiple : MonoBehaviour, IAssetSelectionPicker
     {
-        public event Action<AssetBase> OnAssetSelect; 
+        public event Action<IAsset> OnAssetSelect; 
 
         [SerializeField] private AssetSelectionOverseerMono assetSelection;
         
-        private Action<IList<AssetBase>> targetMethod;
-        private IList<AssetBase> selectedAssets;
+        private Action<IList<IAsset>> targetMethod;
+        private IList<IAsset> selectedAssets;
         private IList<string> selectedAssetsIDs;
 
         private ToggleList cardToggleList;
@@ -27,7 +27,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
 
         private void Awake()
         {
-            selectedAssets = new List<AssetBase>();
+            selectedAssets = new List<IAsset>();
             selectedAssetsIDs = new List<string>();
             cardToggleList = new ToggleList();
         }
@@ -44,7 +44,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
             AssetPickerCardController.OnDeselected -= WhenAssetDeselected;
         }
 
-        public void WhenAssetSelected(AssetBase asset)
+        public void WhenAssetSelected(IAsset asset)
         {
             if (selectedAssets.ContainsValue(asset)) return;
             selectedAssets.Add(asset);
@@ -52,7 +52,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
             OnAssetSelect?.Invoke(asset);
         }
 
-        public void WhenAssetDeselected(AssetBase asset)
+        public void WhenAssetDeselected(IAsset asset)
         {
             if (!selectedAssets.ContainsValue(asset)) return;
             selectedAssets.RemoveAt(selectedAssets.FindIndexFirst(asset.ID));
@@ -100,7 +100,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
         /// <param name="targetMethod">The method, that requires results of the selection and
         /// will run only after ConfirmSelection() has been called.</param>
         /// <param name="preselectedAssets">The assets that will already be selected, after opening the menu.</param>
-        public void OpenForPacks(Action<IList<AssetBase>> targetMethod, IList<AssetBase> preselectedAssets = null)
+        public void OpenForPacks(Action<IList<IAsset>> targetMethod, IList<IAsset> preselectedAssets = null)
         {
             Open(targetMethod, preselectedAssets);
             assetSelection.OpenForPacks();
@@ -112,7 +112,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
         /// <param name="targetMethod">The method, that requires results of the selection and
         /// will run only after ConfirmSelection() has been called.</param>
         /// <param name="preselectedAssets">The assets that will already be selected, after opening the menu.</param>
-        public void OpenForPalettes(Action<IList<AssetBase>> targetMethod, IList<AssetBase> preselectedAssets = null)
+        public void OpenForPalettes(Action<IList<IAsset>> targetMethod, IList<IAsset> preselectedAssets = null)
         {
             Open(targetMethod, preselectedAssets);
             assetSelection.OpenForPalettes();
@@ -124,7 +124,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
         /// <param name="targetMethod">The method, that requires results of the selection and
         /// will run only after ConfirmSelection() has been called.</param>
         /// <param name="preselectedAssets">The assets that will already be selected, after opening the menu.</param>
-        public void OpenForSprites(Action<IList<AssetBase>> targetMethod, IList<AssetBase> preselectedAssets = null)
+        public void OpenForSprites(Action<IList<IAsset>> targetMethod, IList<IAsset> preselectedAssets = null)
         {
             Open(targetMethod, preselectedAssets);
             assetSelection.OpenForSprites();
@@ -136,7 +136,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
         /// <param name="targetMethod">The method, that requires results of the selection and
         /// will run only after ConfirmSelection() has been called.</param>
         /// <param name="preselectedAssets">The assets that will already be selected, after opening the menu.</param>
-        public void OpenForWeapons(Action<IList<AssetBase>> targetMethod, IList<AssetBase> preselectedAssets = null)
+        public void OpenForWeapons(Action<IList<IAsset>> targetMethod, IList<IAsset> preselectedAssets = null)
         {
             Open(targetMethod, preselectedAssets);
             assetSelection.OpenForWeapons();
@@ -148,7 +148,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
         /// <param name="targetMethod">The method, that requires results of the selection and
         /// will run only after ConfirmSelection() has been called.</param>
         /// <param name="preselectedAssets">The assets that will already be selected, after opening the menu.</param>
-        public void OpenForProjectiles(Action<IList<AssetBase>> targetMethod, IList<AssetBase> preselectedAssets = null)
+        public void OpenForProjectiles(Action<IList<IAsset>> targetMethod, IList<IAsset> preselectedAssets = null)
         {
             Open(targetMethod, preselectedAssets);
             assetSelection.OpenForProjectiles();
@@ -160,7 +160,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
         /// <param name="targetMethod">The method, that requires results of the selection and
         /// will run only after ConfirmSelection() has been called.</param>
         /// <param name="preselectedAssets">The assets that will already be selected, after opening the menu.</param>
-        public void OpenForEnemies(Action<IList<AssetBase>> targetMethod, IList<AssetBase> preselectedAssets = null)
+        public void OpenForEnemies(Action<IList<IAsset>> targetMethod, IList<IAsset> preselectedAssets = null)
         {
             Open(targetMethod, preselectedAssets);
             assetSelection.OpenForEnemies();
@@ -172,7 +172,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
         /// <param name="targetMethod">The method, that requires results of the selection and
         /// will run only after ConfirmSelection() has been called.</param>
         /// <param name="preselectedAssets">The assets that will already be selected, after opening the menu.</param>
-        public void OpenForRooms(Action<IList<AssetBase>> targetMethod, IList<AssetBase> preselectedAssets = null)
+        public void OpenForRooms(Action<IList<IAsset>> targetMethod, IList<IAsset> preselectedAssets = null)
         {
             Open(targetMethod, preselectedAssets);
             assetSelection.OpenForRooms();
@@ -184,7 +184,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
         /// <param name="targetMethod">The method, that requires results of the selection and
         /// will run only after ConfirmSelection() has been called.</param>
         /// <param name="preselectedAssets">The assets that will already be selected, after opening the menu.</param>
-        public void OpenForTiles(Action<IList<AssetBase>> targetMethod, IList<AssetBase> preselectedAssets = null)
+        public void OpenForTiles(Action<IList<IAsset>> targetMethod, IList<IAsset> preselectedAssets = null)
         {
             Open(targetMethod, preselectedAssets);
             assetSelection.OpenForTiles();
@@ -198,12 +198,12 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
         /// <param name="targetMethod">The method, that requires results of the selection and
         /// will run only after ConfirmSelection() has been called.</param>
         /// <param name="preselectedAssets">The assets that will be already selected, after opening the menu.</param>
-        private void Open(Action<IList<AssetBase>> targetMethod, IList<AssetBase> preselectedAssets)
+        private void Open(Action<IList<IAsset>> targetMethod, IList<IAsset> preselectedAssets)
         {
             //Preselect Assets.
             if (preselectedAssets?.Count > 0)
             {
-                selectedAssets = new List<AssetBase>(preselectedAssets);
+                selectedAssets = new List<IAsset>(preselectedAssets);
                 selectedAssetsIDs = new List<string>(preselectedAssets.ConvertToIDs());
             }
             else

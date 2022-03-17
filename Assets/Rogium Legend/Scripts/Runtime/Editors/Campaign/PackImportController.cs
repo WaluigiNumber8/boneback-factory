@@ -42,7 +42,7 @@ namespace Rogium.Editors.Campaign
         /// Loads the proper pack into the Property Column.
         /// </summary>
         /// <param name="asset">The Position of the pack on the Library List.</param>
-        private void PreparePropertyColumn(AssetBase asset)
+        private void PreparePropertyColumn(IAsset asset)
         {
             // if (IsOnList(importedPacks, asset.ID))
             // propertyColumn.AssignAsset(asset, );

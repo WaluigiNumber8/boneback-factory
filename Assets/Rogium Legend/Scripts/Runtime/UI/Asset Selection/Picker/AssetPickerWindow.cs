@@ -18,7 +18,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
         [SerializeField] private AssetSelectionPickerSingle selectionPicker;
         [SerializeField] private UIInfo ui;
         
-        private Action<AssetBase> targetMethod;
+        private Action<IAsset> targetMethod;
 
         private void OnEnable()
         {
@@ -41,7 +41,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
         /// <param name="theme">The graphic theme to set.</param>
         /// <exception cref="InvalidOperationException">Is thrown when the asset is set to "None".</exception>
         /// <exception cref="ArgumentOutOfRangeException">Is thrown when an unsupported type appears.</exception>
-        public void GrabAsset(AssetType type, Action<AssetBase> WhenAssetGrabbed, AssetBase preselectedAsset = null, ThemeType theme = ThemeType.Blue)
+        public void GrabAsset(AssetType type, Action<IAsset> WhenAssetGrabbed, IAsset preselectedAsset = null, ThemeType theme = ThemeType.Blue)
         {
             targetMethod = WhenAssetGrabbed;
             Open(theme);
@@ -117,7 +117,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
         /// Runs when an asset is selected and the action is confirmed successfully.
         /// </summary>
         /// <param name="asset">The asset that was selected.</param>
-        private void ConfirmSelection(AssetBase asset)
+        private void ConfirmSelection(IAsset asset)
         {
             targetMethod.Invoke(asset);
             targetMethod = null;

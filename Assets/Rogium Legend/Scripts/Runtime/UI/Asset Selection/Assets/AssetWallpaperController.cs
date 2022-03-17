@@ -18,12 +18,12 @@ namespace Rogium.UserInterface.AssetSelection
         [SerializeField, Multiline(4)] private string emptyMessage;
         [SerializeField] private UIInfo ui;
 
-        public override void Construct(AssetType type, int index, AssetBase asset, Image wallpaperPos)
+        public override void Construct(AssetType type, int index, IAsset asset, Image wallpaperPos)
         {
             ui.wallpaper = wallpaperPos;
             Construct(type, index, asset);
         }
-        public override void Construct(AssetType type, int index, AssetBase asset)
+        public override void Construct(AssetType type, int index, IAsset asset)
         {
             ui.emptyText.gameObject.SetActive(false);
             this.type = type;

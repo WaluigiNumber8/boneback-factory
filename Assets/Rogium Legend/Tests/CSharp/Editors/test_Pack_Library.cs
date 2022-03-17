@@ -6,12 +6,12 @@ using UnityEngine;
 public class test_Pack_Library
 {
     private PackInfoAsset packInfo;
-    private LibraryOverseer lib;
+    private ExternalLibraryOverseer lib;
 
     [SetUp]
     public void Setup()
     {
-        lib = LibraryOverseer.Instance;
+        lib = ExternalLibraryOverseer.Instance;
 
         string packName = "Test Pack";
         string packDescription = "Created this pack for testing purposes.";

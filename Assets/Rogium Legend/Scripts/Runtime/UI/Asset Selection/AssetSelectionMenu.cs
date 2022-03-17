@@ -65,6 +65,18 @@ namespace Rogium.UserInterface.AssetSelection
             assetSelection.OpenForTiles();
         }
 
+        public void OpenForObjects()
+        {
+            Open();
+            assetSelection.OpenForObjects();
+        }
+        
+        public void OpenForSounds()
+        {
+            Open();
+            assetSelection.OpenForSounds();
+        }
+
         #endregion
 
         /// <summary>
@@ -88,7 +100,7 @@ namespace Rogium.UserInterface.AssetSelection
         /// Updates the Info Column of the Selection Menu.
         /// </summary>
         /// <param name="asset">The asset to update the column with.</param>
-        private void UpdateInfoColumn(AssetBase asset)
+        private void UpdateInfoColumn(IAsset asset)
         {
             if (!infoColumn.isActiveAndEnabled) return;
             infoColumn.Construct(asset);

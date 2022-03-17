@@ -16,17 +16,17 @@ namespace Rogium.UserInterface.AssetSelection
         [SerializeField] private UIInfo ui;
 
         private AssetType type;
-        private AssetBase asset;
+        private IAsset asset;
         
         private void OnEnable() => toggle.onValueChanged.AddListener(WhenSelected);
         private void OnDisable() => toggle.onValueChanged.RemoveListener(WhenSelected);
         
-        public void Construct(AssetType type, int index, AssetBase asset, Image iconPos)
+        public void Construct(AssetType type, int index, IAsset asset, Image iconPos)
         {
             ui.iconImg = iconPos;
             Construct(type, index, asset);
         }
-        public void Construct(AssetType type, int index, AssetBase asset)
+        public void Construct(AssetType type, int index, IAsset asset)
         {
             this.type = type;
             this.index = index;
@@ -46,7 +46,7 @@ namespace Rogium.UserInterface.AssetSelection
         public string ID { get => asset.ID; }
         
         public AssetType Type { get => type; }
-        public AssetBase Asset { get => asset; }
+        public IAsset Asset { get => asset; }
 
         [System.Serializable]
         public struct UIInfo

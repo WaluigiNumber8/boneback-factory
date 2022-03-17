@@ -5,19 +5,19 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
 {
     public interface IAssetSelectionPicker
     {
-        public event Action<AssetBase> OnAssetSelect; 
+        public event Action<IAsset> OnAssetSelect; 
         
         /// <summary>
         /// Runs when an asset is selected.
         /// </summary>
         /// <param name="asset">The asset that was selected.</param>
-        public void WhenAssetSelected(AssetBase asset);
+        public void WhenAssetSelected(IAsset asset);
         
         /// <summary>
         /// Runs when an asset is deselected.
         /// </summary>
         /// <param name="asset">The asset that was deselected.</param>
-        public void WhenAssetDeselected(AssetBase asset);
+        public void WhenAssetDeselected(IAsset asset);
         
         /// <summary>
         /// Sends the selected assets to all subjects.

@@ -1,4 +1,6 @@
-﻿namespace Rogium.UserInterface.AssetSelection
+﻿using UnityEngine;
+
+namespace Rogium.UserInterface.AssetSelection
 {
     [System.Serializable]
     public struct AssetSelectionMenuInfo
@@ -11,5 +13,8 @@
         public SelectionMenuAsset enemy;
         public SelectionMenuAsset room;
         public SelectionMenuAsset tile;
+        [Space] 
+        public SelectionMenuAsset interactableObject;
+        public SelectionMenuAsset sound;
     }
 }

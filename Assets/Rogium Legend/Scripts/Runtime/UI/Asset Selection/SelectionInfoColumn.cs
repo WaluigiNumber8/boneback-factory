@@ -13,7 +13,7 @@ namespace Rogium.UserInterface.AssetSelection
     {
         [SerializeField] private UIInfo ui;
 
-        public void Construct(AssetBase asset)
+        public void Construct(IAsset asset)
         {
             ui.previewImage.sprite = asset.Icon;
         }

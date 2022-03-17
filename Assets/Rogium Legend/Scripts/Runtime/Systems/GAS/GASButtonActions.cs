@@ -47,7 +47,7 @@ namespace Rogium.Systems.GASExtension
         
         public static void PlayCampaign(int campaignIndex)
         {
-            LibraryOverseer.Instance.ActivateCampaignPlaythrough(campaignIndex);
+            ExternalLibraryOverseer.Instance.ActivateCampaignPlaythrough(campaignIndex);
             GAS.SwitchScene(1);
         }
 
@@ -215,13 +215,13 @@ namespace Rogium.Systems.GASExtension
         #region Edit Asset Properties
         public static void EditPropertiesPack(int packIndex)
         {
-            LibraryOverseer.Instance.ActivatePackEditor(packIndex);
+            ExternalLibraryOverseer.Instance.ActivatePackEditor(packIndex);
             new ModalWindowPropertyBuilderPack().OpenForUpdate();
         }
 
         public static void EditPropertiesCampaign(int campaignIndex)
         {
-            LibraryOverseer.Instance.ActivateCampaignEditor(campaignIndex, false);
+            ExternalLibraryOverseer.Instance.ActivateCampaignEditor(campaignIndex, false);
             new ModalWindowPropertyBuilderCampaign().OpenForUpdate();
         }
         
@@ -278,7 +278,7 @@ namespace Rogium.Systems.GASExtension
         private static void RemovePackAccept()
         {
             SafetyNet.EnsureIntIsBiggerOrEqualTo(storedIndex, 0, "StoredNumber");
-            LibraryOverseer.Instance.DeletePack(storedIndex);
+            ExternalLibraryOverseer.Instance.DeletePack(storedIndex);
             GASRogium.OpenSelectionMenu(AssetType.Pack);
             storedIndex = -1;
         }
@@ -293,7 +293,7 @@ namespace Rogium.Systems.GASExtension
         private static void RemoveCampaignAccept()
         {
             SafetyNet.EnsureIntIsBiggerOrEqualTo(storedIndex, 0, "StoredNumber");
-            LibraryOverseer.Instance.DeleteCampaign(storedIndex);
+            ExternalLibraryOverseer.Instance.DeleteCampaign(storedIndex);
             CampaignShowPrevious();
             storedIndex = -1;
         }
@@ -405,7 +405,7 @@ namespace Rogium.Systems.GASExtension
         #region Open Editors
         public static void OpenEditor(int packIndex)
         {
-            LibraryOverseer.Instance.ActivatePackEditor(packIndex);
+            ExternalLibraryOverseer.Instance.ActivatePackEditor(packIndex);
             GAS.SwitchMenu(MenuType.AssetTypeSelection);
             PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
             CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToPackSelectionMenu, null, pack.Title, pack.Icon);
@@ -414,7 +414,7 @@ namespace Rogium.Systems.GASExtension
         public static void OpenEditorCampaign(int assetIndex)
         {
             GAS.SwitchMenu(MenuType.CampaignEditor);
-            LibraryOverseer.Instance.ActivateCampaignEditor(assetIndex);
+            ExternalLibraryOverseer.Instance.ActivateCampaignEditor(assetIndex);
             CampaignEditorOverseerMono.GetInstance().FillMenu();
         }
 

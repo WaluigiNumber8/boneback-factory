@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using BoubakProductions.Core;
 using BoubakProductions.Safety;
 using Rogium.Editors.Core;
@@ -84,21 +85,21 @@ namespace Rogium.Systems.GridSystem
         /// <param name="IDGrid">The grid of IDs to read.</param>
         /// <param name="layerIndex">The index of the layer to load on.</param>
         /// <typeparam name="T">Is a type of Asset.</typeparam>
-        public void LoadWithSprites<T>(AssetList<T> assetList, ObjectGrid<string> IDGrid, int layerIndex) where T : AssetBase
+        public void LoadWithSprites<T>(ObjectGrid<string> IDGrid, IList<T> assetList, int layerIndex) where T : IAsset
         {
             SafetyNet.EnsureIntIsEqual(IDGrid.Width, gridSize.x, "Grid Width");
             SafetyNet.EnsureIntIsEqual(IDGrid.Height, gridSize.y, "Grid Height");
             layers[layerIndex].layer.sprite = drawer.Build(IDGrid, assetList);
         }
         
-        public override void LoadWithSprites<T>(AssetList<T> assetList, ObjectGrid<string> IDGrid)
+        public override void LoadWithSprites<T>(ObjectGrid<string> IDGrid, IList<T> assetList)
         {
             SafetyNet.EnsureIntIsEqual(IDGrid.Width, gridSize.x, "Grid Width");
             SafetyNet.EnsureIntIsEqual(IDGrid.Height, gridSize.y, "Grid Height");
             activeLayer.sprite = drawer.Build(IDGrid, assetList);
         }
         
-        public override void LoadWithColors(Color[] colorArray, ObjectGrid<int> indexGrid)
+        public override void LoadWithColors(ObjectGrid<int> indexGrid, Color[] colorArray)
         {
             SafetyNet.EnsureIntIsEqual(indexGrid.Width, gridSize.x, "Grid Width");
             SafetyNet.EnsureIntIsEqual(indexGrid.Height, gridSize.y, "Grid Height");

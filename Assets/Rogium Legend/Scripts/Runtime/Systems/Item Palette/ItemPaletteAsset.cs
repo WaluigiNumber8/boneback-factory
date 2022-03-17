@@ -29,11 +29,7 @@ namespace Rogium.Systems.ItemPalette
         private int lastSelected = -1;
         
         private void Awake() => menuFiller = new MenuFiller<AssetSlot>();
-        private void OnEnable()
-        {
-            AssetSlot.OnSelectedAny += WhenSelected;
-            if (lastSelected != -1) Select(lastSelected);
-        }
+        private void OnEnable() => AssetSlot.OnSelectedAny += WhenSelected;
 
         private void OnDisable() => AssetSlot.OnSelectedAny -= WhenSelected;
 
@@ -54,11 +50,19 @@ namespace Rogium.Systems.ItemPalette
         /// <param name="index">The index of the item.</param>
         public void Select(int index)
         {
-            SafetyNet.EnsureIntIsInRange(index, 0, holders.Count, "Item Index");
             if (holders?.Count <= 0) return;
-
-            lastSelected = index;
+            SafetyNet.EnsureIndexWithingCollectionRange(index, holders, "Item Index");
+            holders[index].SetToggle(true);
             OnSelect?.Invoke(holders[index]);
+        }
+
+        /// <summary>
+        /// Select the last selected asset on this palette.
+        /// </summary>
+        public void SelectLast()
+        {
+            if (lastSelected < 0 || lastSelected > holders.Count) return;
+            Select(lastSelected);
         }
 
         /// <summary>
@@ -66,7 +70,7 @@ namespace Rogium.Systems.ItemPalette
         /// </summary>
         /// <param name="assets">The list of assets the base the filling on.</param>
         /// <param name="type">The type the assets are.</param>
-        public void Fill<T>(IList<T> assets, AssetType type) where T : AssetBase
+        public void Fill<T>(IList<T> assets, AssetType type) where T : IAsset
         {
             SafetyNet.EnsureIsNotNull(assets, "List of assets");
             
@@ -89,6 +93,7 @@ namespace Rogium.Systems.ItemPalette
         private void WhenSelected(int index)
         {
             SafetyNet.EnsureIndexWithingCollectionRange(index, holders, "List of holders");
+            lastSelected = index;
             OnSelect?.Invoke(holders[index]);
         }
     }

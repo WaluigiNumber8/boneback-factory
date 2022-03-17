@@ -12,7 +12,7 @@ namespace Rogium_Legend.Tests.CSharp.Editors
 {
     public class test_Tile_Editor
     {
-        private LibraryOverseer lib;
+        private ExternalLibraryOverseer lib;
         private PackEditorOverseer editor;
         private TileEditorOverseer tileEditor;
         
@@ -21,7 +21,7 @@ namespace Rogium_Legend.Tests.CSharp.Editors
         [SetUp]
         public void Setup()
         {
-            lib = LibraryOverseer.Instance;
+            lib = ExternalLibraryOverseer.Instance;
             editor = PackEditorOverseer.Instance;
             tileEditor = TileEditorOverseer.Instance;
             

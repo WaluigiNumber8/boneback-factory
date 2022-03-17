@@ -10,6 +10,6 @@ namespace Rogium.UserInterface.AssetSelection
     {
         public int Index { get; }
         public AssetType Type { get; }
-        public AssetBase Asset { get; }
+        public IAsset Asset { get; }
     }
 }

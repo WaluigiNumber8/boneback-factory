@@ -1,9 +1,10 @@
-﻿using BoubakProductions.Systems.ObjectSwitching;
+﻿using System;
+using System.Linq;
+using BoubakProductions.Systems.ObjectSwitching;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
-using System;
-using System.Linq;
+using Rogium.ExternalStorage;
 using UnityEngine;
 
 namespace Rogium.UserInterface.AssetSelection
@@ -19,7 +20,7 @@ namespace Rogium.UserInterface.AssetSelection
 
         private AssetSelectionOverseer overseer;
         private PackEditorOverseer editor;
-        private LibraryOverseer lib;
+        private ExternalLibraryOverseer lib;
         private ObjectSwitcherMono layoutSwitcher;
 
         private Action<AssetHolderBase> listeningMethod;
@@ -28,7 +29,7 @@ namespace Rogium.UserInterface.AssetSelection
         private void Awake()
         {
             editor = PackEditorOverseer.Instance;
-            lib = LibraryOverseer.Instance;
+            lib = ExternalLibraryOverseer.Instance;
             layoutSwitcher = GetComponent<ObjectSwitcherMono>();
             
             overseer = AssetSelectionOverseer.Instance;
@@ -42,7 +43,7 @@ namespace Rogium.UserInterface.AssetSelection
             overseer.Setup(AssetType.Pack,
                            layouts.grid,
                            selectionMenus.pack,
-                           lib.GetPacksCopy.ToList<AssetBase>(),
+                           lib.GetPacksCopy.ToList<IAsset>(),
                            layoutSwitcher);
         }
         
@@ -51,7 +52,7 @@ namespace Rogium.UserInterface.AssetSelection
             overseer.Setup(AssetType.Palette,
                            layouts.grid,
                            selectionMenus.palette,
-                           editor.CurrentPack.Palettes.ToList<AssetBase>(),
+                           editor.CurrentPack.Palettes.ToList<IAsset>(),
                            layoutSwitcher);
         }
 
@@ -60,7 +61,7 @@ namespace Rogium.UserInterface.AssetSelection
             overseer.Setup(AssetType.Sprite,
                            layouts.grid,
                            selectionMenus.sprite,
-                           editor.CurrentPack.Sprites.ToList<AssetBase>(),
+                           editor.CurrentPack.Sprites.ToList<IAsset>(),
                            layoutSwitcher);
         }
         
@@ -69,7 +70,7 @@ namespace Rogium.UserInterface.AssetSelection
             overseer.Setup(AssetType.Weapon,
                            layouts.grid,
                            selectionMenus.weapon,
-                           editor.CurrentPack.Weapons.ToList<AssetBase>(),
+                           editor.CurrentPack.Weapons.ToList<IAsset>(),
                            layoutSwitcher);
         }
 
@@ -78,7 +79,7 @@ namespace Rogium.UserInterface.AssetSelection
             overseer.Setup(AssetType.Projectile,
                            layouts.grid,
                            selectionMenus.projectile,
-                           editor.CurrentPack.Projectiles.ToList<AssetBase>(),
+                           editor.CurrentPack.Projectiles.ToList<IAsset>(),
                            layoutSwitcher);
         }
 
@@ -87,7 +88,7 @@ namespace Rogium.UserInterface.AssetSelection
             overseer.Setup(AssetType.Enemy,
                            layouts.grid,
                            selectionMenus.enemy,
-                           editor.CurrentPack.Enemies.ToList<AssetBase>(),
+                           editor.CurrentPack.Enemies.ToList<IAsset>(),
                            layoutSwitcher);
         }
 
@@ -96,7 +97,7 @@ namespace Rogium.UserInterface.AssetSelection
             overseer.Setup(AssetType.Room,
                            layouts.list,
                            selectionMenus.room,
-                           editor.CurrentPack.Rooms.ToList<AssetBase>(),
+                           editor.CurrentPack.Rooms.ToList<IAsset>(),
                            layoutSwitcher);
         }
         
@@ -105,10 +106,23 @@ namespace Rogium.UserInterface.AssetSelection
             overseer.Setup(AssetType.Tile,
                            layouts.grid,
                            selectionMenus.tile,
-                           editor.CurrentPack.Tiles.ToList<AssetBase>(),
+                           editor.CurrentPack.Tiles.ToList<IAsset>(),
                            layoutSwitcher);
         }
 
+        public void OpenForObjects()
+        {
+            overseer.Setup(AssetType.Object,
+                           layouts.grid,
+                           selectionMenus.interactableObject,
+                           InternalLibraryOverseer.GetInstance().GetObjectsCopy().ToList<IAsset>(),
+                           layoutSwitcher);
+        }
+        
+        public void OpenForSounds()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         /// <summary>
@@ -138,6 +152,6 @@ namespace Rogium.UserInterface.AssetSelection
         
         public Transform ListMenu { get => layouts.list.Menu; }
         public Transform GridMenu { get => layouts.grid.Menu; }
-        
+
     }
 }

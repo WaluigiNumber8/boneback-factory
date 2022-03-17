@@ -69,7 +69,7 @@ namespace Rogium.Gameplay.Entities
                 return;
             }
             
-            rb.MovePosition(rb.position + forceMove.moveDirection * forceMove.force * 10 * Time.fixedDeltaTime);
+            rb.MovePosition(rb.position + forceMove.force * 10 * Time.fixedDeltaTime * forceMove.moveDirection);
         }
 
         protected virtual void WhenForceMoveEnd() { }
@@ -84,7 +84,8 @@ namespace Rogium.Gameplay.Entities
         public Transform Transform { get => ttransform; }
         public Rigidbody2D Rigidbody { get => rb; }
         public Vector2 FaceDirection { get => faceDirection; }
-
+        public bool ActionsLocked { get => actionsLocked; }
+        
         private struct ForceMoveInfo
         {
             public Vector2 moveDirection;

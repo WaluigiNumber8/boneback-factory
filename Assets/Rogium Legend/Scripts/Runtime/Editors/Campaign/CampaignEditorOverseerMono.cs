@@ -19,16 +19,16 @@ namespace Rogium.Editors.Campaign
         [SerializeField] private CampaignSelectedPackPropertyController propertyColumn;
         
         private CampaignEditorOverseer overseer;
-        private LibraryOverseer lib;
+        private ExternalLibraryOverseer lib;
 
-        private IList<AssetBase> selectedAssets;
+        private IList<IAsset> selectedAssets;
 
         protected override void Awake()
         {
             base.Awake();
             overseer = CampaignEditorOverseer.Instance;
-            lib = LibraryOverseer.Instance;
-            selectedAssets = new List<AssetBase>();
+            lib = ExternalLibraryOverseer.Instance;
+            selectedAssets = new List<IAsset>();
         }
         
         private void OnEnable() => selectionPicker.OnAssetSelect += PreparePropertyColumn;
@@ -58,7 +58,7 @@ namespace Rogium.Editors.Campaign
         /// Calls for updating packs in the current campaign from the selection picker.
         /// </summary>
         /// <param name="finalSelectedAssets">The packs to update with.</param>
-        private void UpdatePacksFromSelection(IList<AssetBase> finalSelectedAssets)
+        private void UpdatePacksFromSelection(IList<IAsset> finalSelectedAssets)
         {
             SafetyNet.EnsureListIsNotNullOrEmpty(finalSelectedAssets, "Selected Packs");
             IList<PackAsset> finalSelectedPacks = finalSelectedAssets.Cast<PackAsset>().ToList();
@@ -75,7 +75,7 @@ namespace Rogium.Editors.Campaign
             
             if (campaign.PackReferences == null || campaign.PackReferences.Count <= 0) return;
             
-            IList<AssetBase> allPacks = lib.GetPacksCopy.Cast<AssetBase>().ToList();
+            IList<IAsset> allPacks = lib.GetPacksCopy.Cast<IAsset>().ToList();
             selectedAssets = allPacks.GrabBasedOn(campaign.PackReferences);
         }
 
@@ -83,7 +83,7 @@ namespace Rogium.Editors.Campaign
         /// Loads the proper pack into the Property Column.
         /// </summary>
         /// <param name="asset">The Position of the pack on the Library List.</param>
-        private void PreparePropertyColumn(AssetBase asset)
+        private void PreparePropertyColumn(IAsset asset)
         {
             propertyColumn.AssignAsset((PackAsset)asset, new PackImportInfo());
         }

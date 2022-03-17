@@ -11,13 +11,13 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
     /// </summary>
     public class AssetSelectionPickerSingle : MonoBehaviour, IAssetSelectionPicker
     {
-        public event Action<AssetBase> OnAssetSelect;
+        public event Action<IAsset> OnAssetSelect;
         
         [SerializeField] private AssetSelectionOverseerMono assetSelection;
         [SerializeField] private ToggleGroup toggleGroup;
         
-        private Action<AssetBase> targetMethod;
-        private AssetBase selectedAsset;
+        private Action<IAsset> targetMethod;
+        private IAsset selectedAsset;
         private string previousID;
 
         private void OnEnable()
@@ -32,7 +32,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
             AssetPickerCardController.OnDeselected -= WhenAssetDeselected;
         }
 
-        public void WhenAssetSelected(AssetBase asset)
+        public void WhenAssetSelected(IAsset asset)
         {
             if (asset.ID == previousID)
             {
@@ -46,7 +46,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
             OnAssetSelect?.Invoke(asset);
         }
         
-        public void WhenAssetDeselected(AssetBase asset)
+        public void WhenAssetDeselected(IAsset asset)
         {
             if (selectedAsset == null || asset.ID != selectedAsset.ID) return;
             selectedAsset = null;
@@ -74,7 +74,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
         /// <param name="targetMethod">The method, that requires results of the selection and
         /// will run only after ConfirmSelection() has been called.</param>
         /// <param name="preselectedAsset">The asset that will already be selected, after opening the menu.</param>
-        public void OpenForPacks(Action<AssetBase> targetMethod, AssetBase preselectedAsset = null)
+        public void OpenForPacks(Action<IAsset> targetMethod, IAsset preselectedAsset = null)
         {
             Open(targetMethod, preselectedAsset);
             assetSelection.OpenForPacks();
@@ -86,7 +86,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
         /// <param name="targetMethod">The method, that requires results of the selection and
         /// will run only after ConfirmSelection() has been called.</param>
         /// <param name="preselectedAsset">The asset that will already be selected, after opening the menu.</param>
-        public void OpenForPalettes(Action<AssetBase> targetMethod, AssetBase preselectedAsset = null)
+        public void OpenForPalettes(Action<IAsset> targetMethod, IAsset preselectedAsset = null)
         {
             Open(targetMethod, preselectedAsset);
             assetSelection.OpenForPalettes();
@@ -98,7 +98,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
         /// <param name="targetMethod">The method, that requires results of the selection and
         /// will run only after ConfirmSelection() has been called.</param>
         /// <param name="preselectedAsset">The asset that will already be selected, after opening the menu.</param>
-        public void OpenForSprites(Action<AssetBase> targetMethod, AssetBase preselectedAsset = null)
+        public void OpenForSprites(Action<IAsset> targetMethod, IAsset preselectedAsset = null)
         {
             Open(targetMethod, preselectedAsset);
             assetSelection.OpenForSprites();
@@ -110,7 +110,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
         /// <param name="targetMethod">The method, that requires results of the selection and
         /// will run only after ConfirmSelection() has been called.</param>
         /// <param name="preselectedAsset">The asset that will already be selected, after opening the menu.</param>
-        public void OpenForWeapons(Action<AssetBase> targetMethod, AssetBase preselectedAsset = null)
+        public void OpenForWeapons(Action<IAsset> targetMethod, IAsset preselectedAsset = null)
         {
             Open(targetMethod, preselectedAsset);
             assetSelection.OpenForWeapons();
@@ -122,7 +122,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
         /// <param name="targetMethod">The method, that requires results of the selection and
         /// will run only after ConfirmSelection() has been called.</param>
         /// <param name="preselectedAsset">The asset that will already be selected, after opening the menu.</param>
-        public void OpenForProjectiles(Action<AssetBase> targetMethod, AssetBase preselectedAsset = null)
+        public void OpenForProjectiles(Action<IAsset> targetMethod, IAsset preselectedAsset = null)
         {
             Open(targetMethod, preselectedAsset);
             assetSelection.OpenForProjectiles();
@@ -134,7 +134,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
         /// <param name="targetMethod">The method, that requires results of the selection and
         /// will run only after ConfirmSelection() has been called.</param>
         /// <param name="preselectedAsset">The asset that will already be selected, after opening the menu.</param>
-        public void OpenForEnemies(Action<AssetBase> targetMethod, AssetBase preselectedAsset = null)
+        public void OpenForEnemies(Action<IAsset> targetMethod, IAsset preselectedAsset = null)
         {
             Open(targetMethod, preselectedAsset);
             assetSelection.OpenForEnemies();
@@ -146,7 +146,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
         /// <param name="targetMethod">The method, that requires results of the selection and
         /// will run only after ConfirmSelection() has been called.</param>
         /// <param name="preselectedAsset">The asset that will already be selected, after opening the menu.</param>
-        public void OpenForRooms(Action<AssetBase> targetMethod, AssetBase preselectedAsset = null)
+        public void OpenForRooms(Action<IAsset> targetMethod, IAsset preselectedAsset = null)
         {
             Open(targetMethod, preselectedAsset);
             assetSelection.OpenForRooms();
@@ -158,7 +158,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
         /// <param name="targetMethod">The method, that requires results of the selection and
         /// will run only after ConfirmSelection() has been called.</param>
         /// <param name="preselectedAsset">The asset that will already be selected, after opening the menu.</param>
-        public void OpenForTiles(Action<AssetBase> targetMethod, AssetBase preselectedAsset = null)
+        public void OpenForTiles(Action<IAsset> targetMethod, IAsset preselectedAsset = null)
         {
             Open(targetMethod, preselectedAsset);
             assetSelection.OpenForTiles();
@@ -171,7 +171,7 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
         /// </summary>
         /// <param name="targetMethod">The method that will run once </param>
         /// <param name="preselectedAsset"></param>
-        private void Open(Action<AssetBase> targetMethod, AssetBase preselectedAsset)
+        private void Open(Action<IAsset> targetMethod, IAsset preselectedAsset)
         {
             if (preselectedAsset != null) selectedAsset = preselectedAsset;
             this.targetMethod = targetMethod;

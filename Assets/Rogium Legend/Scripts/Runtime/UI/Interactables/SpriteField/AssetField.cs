@@ -14,12 +14,12 @@ namespace Rogium.UserInterface.Interactables
     /// </summary>
     public class AssetField : Selectable, IPointerClickHandler
     {
-        public event Action<AssetBase> OnValueChanged;
+        public event Action<IAsset> OnValueChanged;
 
         [SerializeField] private AssetType type;
         [SerializeField] private UIInfo ui;
 
-        private AssetBase lastAsset;
+        private IAsset lastAsset;
         private ThemeType themeToUse = ThemeType.NoTheme;
         
         public void OnPointerClick(PointerEventData eventData)
@@ -43,7 +43,7 @@ namespace Rogium.UserInterface.Interactables
         /// Update the UI based on the grabbed sprite.
         /// </summary>
         /// <param name="asset">The sprite to update with.</param>
-        private void WhenAssetGrabbed(AssetBase asset)
+        private void WhenAssetGrabbed(IAsset asset)
         {
             lastAsset = asset;
             ui.icon.sprite = asset.Icon;

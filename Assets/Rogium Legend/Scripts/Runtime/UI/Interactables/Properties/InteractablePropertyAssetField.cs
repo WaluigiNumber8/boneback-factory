@@ -19,8 +19,8 @@ namespace Rogium.UserInterface.Interactables.Properties
         [SerializeField] private AssetField assetField;
         [SerializeField] private UIInfo ui;
 
-        private AssetBase asset;
-        private Action<AssetBase> lastMethod;
+        private IAsset asset;
+        private Action<IAsset> lastMethod;
 
         /// <summary>
         /// Set the property title and state.
@@ -30,7 +30,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="value">Value of property.</param>
         /// <param name="WhenChangeValue">The method that will run, when the AssetField changes value.</param>
         /// <param name="theme">The theme of the Asset Picker Window.</param>
-        public void Construct(string titleText, AssetType type, AssetBase value, Action<AssetBase> WhenChangeValue, ThemeType theme = ThemeType.NoTheme)
+        public void Construct(string titleText, AssetType type, IAsset value, Action<IAsset> WhenChangeValue, ThemeType theme = ThemeType.NoTheme)
         {
             asset = value;
 

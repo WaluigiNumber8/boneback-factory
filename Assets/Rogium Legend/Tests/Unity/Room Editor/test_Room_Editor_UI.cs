@@ -59,8 +59,8 @@ public class test_Room_Editor_UI
         string tileTitle = EditorDefaults.TileTitle;
         Sprite tileIcon = EditorDefaults.TileIcon;
         
-        LibraryOverseer.Instance.CreateAndAddPack(new PackInfoAsset(packTitle, packIcon, packAuthor, packDescription));
-        LibraryOverseer.Instance.ActivatePackEditor(0);
+        ExternalLibraryOverseer.Instance.CreateAndAddPack(new PackInfoAsset(packTitle, packIcon, packAuthor, packDescription));
+        ExternalLibraryOverseer.Instance.ActivatePackEditor(0);
         PackEditorOverseer.Instance.CreateNewTile(new TileAsset(tileTitle, tileIcon, packAuthor, TileType.Wall));
         PackEditorOverseer.Instance.ActivateTileEditor(0);
         tileID = TileEditorOverseer.Instance.CurrentAsset.ID;
@@ -74,7 +74,7 @@ public class test_Room_Editor_UI
     [TearDown]
     public void Teardown()
     {
-        LibraryOverseer.Instance.DeletePack(EditorDefaults.PackTitle, EditorDefaults.Author);
+        ExternalLibraryOverseer.Instance.DeletePack(EditorDefaults.PackTitle, EditorDefaults.Author);
     }
     
     [UnityTest]

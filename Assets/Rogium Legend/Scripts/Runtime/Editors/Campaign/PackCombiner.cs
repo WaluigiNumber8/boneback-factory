@@ -41,7 +41,7 @@ namespace Rogium.Editors.Campaign
         public PackAsset Combine(IList<PackImportInfo> packs)
         {
             PackAsset ultimatePack = new PackAsset();
-            IList<PackAsset> allPacks = LibraryOverseer.Instance.GetPacksCopy;
+            IList<PackAsset> allPacks = ExternalLibraryOverseer.Instance.GetPacksCopy;
 
             foreach (PackImportInfo importInfo in packs)
             {

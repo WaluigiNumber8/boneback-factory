@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using Rogium.Editors.Core;
+using Rogium.Editors.Objects;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Rooms;
 using UnityEngine;
@@ -11,20 +15,18 @@ namespace Rogium.Gameplay.DataLoading
     {
         [SerializeField] private Vector3Int originPos;
         [SerializeField] private TileMapLoader tilemapLoader;
+        [SerializeField] private ObjectMapLoader objectLoader;
         [SerializeField] private EnemyMapLoader enemyLoader;
-        
 
-        /// <summary>
-        /// Loads the room with Tile, Object & Enemy data.
-        /// </summary>
-        /// <param name="room">The room to load.</param>
-        /// <param name="dataPack">The pack to take data from.</param>
+        private IList<ObjectAsset> objects;
+
+        private void Awake() => objects = InternalLibraryOverseer.GetInstance().GetObjectsCopy();
+
         public void Load(RoomAsset room, PackAsset dataPack)
         {
             tilemapLoader.Load(originPos, room.TileGrid, dataPack.Tiles);
+            objectLoader.Load(originPos, room.ObjectGrid, objects);
             enemyLoader.Load(originPos, room.EnemyGrid, dataPack.Enemies);
         }
-        
-        
     }
 }

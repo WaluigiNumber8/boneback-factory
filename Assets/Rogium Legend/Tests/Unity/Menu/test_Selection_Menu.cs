@@ -47,13 +47,13 @@ public class test_Selection_Menu
     [TearDown]
     public void Teardown()
     {
-        LibraryOverseer.Instance.DeletePack("New Pack", "NO_AUTHOR");
+        ExternalLibraryOverseer.Instance.DeletePack("New Pack", "NO_AUTHOR");
     }
 
     [UnityTest]
     public IEnumerator menu_correctly_sets_up_grid_pack_selection()
     {
-        LibraryOverseer.Instance.CreateAndAddPack(packInfo);
+        ExternalLibraryOverseer.Instance.CreateAndAddPack(packInfo);
 
         assetSelectionMono.OpenForPacks();
         yield return new WaitForSeconds(0.1f);
@@ -66,7 +66,7 @@ public class test_Selection_Menu
     [UnityTest]
     public IEnumerator open_same_selection_menu_after_the_last_one_was_loaded()
     {
-        LibraryOverseer.Instance.CreateAndAddPack(packInfo);
+        ExternalLibraryOverseer.Instance.CreateAndAddPack(packInfo);
 
         assetSelectionMono.OpenForPacks();
         yield return new WaitForSeconds(0.5f);
@@ -80,12 +80,12 @@ public class test_Selection_Menu
     [UnityTest]
     public IEnumerator reload_selection_menu_with_room_assets()
     {
-        LibraryOverseer.Instance.CreateAndAddPack(packInfo);
+        ExternalLibraryOverseer.Instance.CreateAndAddPack(packInfo);
 
         assetSelectionMono.OpenForPacks();
         
         yield return new WaitForSeconds(0.2f);
-        LibraryOverseer.Instance.ActivatePackEditor(0);
+        ExternalLibraryOverseer.Instance.ActivatePackEditor(0);
         PackEditorOverseer.Instance.CreateNewRoom();
         PackEditorOverseer.Instance.CreateNewRoom();
         PackEditorOverseer.Instance.CreateNewRoom();
@@ -103,9 +103,9 @@ public class test_Selection_Menu
     [UnityTest]
     public IEnumerator menu_correctly_sets_up_room_selection_list_menu()
     {
-        LibraryOverseer.Instance.CreateAndAddPack(packInfo);
+        ExternalLibraryOverseer.Instance.CreateAndAddPack(packInfo);
 
-        LibraryOverseer.Instance.ActivatePackEditor(0);
+        ExternalLibraryOverseer.Instance.ActivatePackEditor(0);
         PackEditorOverseer.Instance.CreateNewRoom();
         PackEditorOverseer.Instance.CreateNewRoom();
 

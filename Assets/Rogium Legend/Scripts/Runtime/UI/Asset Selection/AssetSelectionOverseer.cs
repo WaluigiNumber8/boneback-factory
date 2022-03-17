@@ -51,7 +51,7 @@ namespace Rogium.UserInterface.AssetSelection
         /// <summary>
         /// Sets up the selection menu.
         /// </summary>
-        public void Setup(AssetType type, SelectionMenuLayout layout, SelectionMenuAsset asset, IList<AssetBase> assetList, ObjectSwitcherMono layoutSwitcher)
+        public void Setup(AssetType type, SelectionMenuLayout layout, SelectionMenuAsset asset, IList<IAsset> assetList, ObjectSwitcherMono layoutSwitcher)
         {
             this.layoutSwitcher = layoutSwitcher;
             this.layoutSwitcher.Switch(layout.Menu.gameObject);
@@ -88,7 +88,7 @@ namespace Rogium.UserInterface.AssetSelection
         /// <param name="asset">What kind of data will be used.</param>
         /// <param name="assetList">The list to take the data from.</param>
         /// </summary>
-        private void RefillMenu(AssetType type, SelectionMenuLayout layout, SelectionMenuAsset asset, IList<AssetBase> assetList)
+        private void RefillMenu(AssetType type, SelectionMenuLayout layout, SelectionMenuAsset asset, IList<IAsset> assetList)
         {
             SafetyNet.EnsureIsNotNull(asset.assetObject.GetComponent<IAssetHolder>(), "IAssetHolder in RefillMenu");
             
@@ -118,7 +118,7 @@ namespace Rogium.UserInterface.AssetSelection
         /// <param name="layout">Which layout is used.</param>
         /// <param name="asset">What kind of data will be used.</param>
         /// <param name="assetList">The list to take the data from.</param>
-        private void SpawnCard(int index, AssetType type, SelectionMenuLayout layout, SelectionMenuAsset asset, IList<AssetBase> assetList)
+        private void SpawnCard(int index, AssetType type, SelectionMenuLayout layout, SelectionMenuAsset asset, IList<IAsset> assetList)
         {
             AssetHolderBase holder = Object.Instantiate(asset.assetObject, layout.Content);
             if (layout.IconPositionType == IconPositionType.Global)
@@ -135,7 +135,7 @@ namespace Rogium.UserInterface.AssetSelection
         /// <param name="assets">The list of assets.</param>
         /// <param name="textObject">The text object to activate/deactivate.</param>
         /// <returns></returns>
-        private bool CancelProcess(IList<AssetBase> assets, GameObject textObject)
+        private bool CancelProcess(IList<IAsset> assets, GameObject textObject)
         {
             if (assets.Count <= 0)
             {

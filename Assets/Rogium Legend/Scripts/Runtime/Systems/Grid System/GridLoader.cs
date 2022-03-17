@@ -1,6 +1,7 @@
 ﻿using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using System;
+using System.Collections.Generic;
 using Rogium.Core;
 using UnityEngine;
 
@@ -17,7 +18,7 @@ namespace Rogium.Systems.GridSystem
         /// <param name="cells">The cells that will have their sprite updated.</param>
         /// <param name="IDGrid">The grid of IDs that tells which asset is assigned to which cell.</param>
         /// <param name="assetList">A list of assets from which to pick the sprites.</param>
-        public static void LoadBySprites<T>(GridCell[,] cells, ObjectGrid<string> IDGrid, AssetList<T> assetList) where T : AssetBase
+        public static void LoadBySprites<T>(GridCell[,] cells, ObjectGrid<string> IDGrid, IList<T> assetList) where T : IAsset
         {
             AssetUtils.UpdateFromGridByList(IDGrid, assetList, 
                                             (x, y, asset) => cells[x, y].UpdateSprite(asset.Icon),

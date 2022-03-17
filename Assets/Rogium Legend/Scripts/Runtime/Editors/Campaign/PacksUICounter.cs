@@ -41,7 +41,7 @@ namespace Rogium.Editors.Campaign
         /// Increases the counter by 1.
         /// </summary>
         /// <param name="asset"></param>
-        private void WhenCounterIncrease(AssetBase asset)
+        private void WhenCounterIncrease(IAsset asset)
         {
             counter++;
             RefreshUI();
@@ -51,7 +51,7 @@ namespace Rogium.Editors.Campaign
         /// Decreases the Counter by 1.
         /// </summary>
         /// <param name="asset"></param>
-        private void WhenCounterDecrease(AssetBase asset)
+        private void WhenCounterDecrease(IAsset asset)
         {
             counter--;
             RefreshUI();

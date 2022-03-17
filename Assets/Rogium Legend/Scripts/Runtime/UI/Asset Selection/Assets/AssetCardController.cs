@@ -12,7 +12,7 @@ namespace Rogium.UserInterface.AssetSelection
     /// </summary>
     public class AssetCardController : AssetHolderBase
     {
-        public static event Action<AssetBase> OnSelect; 
+        public static event Action<IAsset> OnSelect; 
 
         [SerializeField] private UIInfo ui;
 
@@ -22,13 +22,13 @@ namespace Rogium.UserInterface.AssetSelection
             toggle.onValueChanged.AddListener(OnClick);
         }
 
-        public override void Construct(AssetType type, int index, AssetBase asset, Image iconPos)
+        public override void Construct(AssetType type, int index, IAsset asset, Image iconPos)
         {
             // ui.iconImage = iconPos;
             Construct(type, index, asset);
         }
 
-        public override void Construct(AssetType type, int index, AssetBase asset)
+        public override void Construct(AssetType type, int index, IAsset asset)
         {
             this.type = type;
             this.index = index;

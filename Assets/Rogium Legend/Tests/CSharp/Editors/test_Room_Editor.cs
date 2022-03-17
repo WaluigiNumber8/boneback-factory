@@ -8,7 +8,7 @@ using UnityEngine.TestTools;
 
 public class test_Room_Editor
 {
-    private LibraryOverseer lib;
+    private ExternalLibraryOverseer lib;
     private PackEditorOverseer editor;
     private RoomEditorOverseer roomEditor;
     private PackInfoAsset packInfo;
@@ -16,7 +16,7 @@ public class test_Room_Editor
     [SetUp]
     public void Setup()
     {
-        lib = LibraryOverseer.Instance;
+        lib = ExternalLibraryOverseer.Instance;
         editor = PackEditorOverseer.Instance;
         roomEditor = RoomEditorOverseer.Instance;
 

@@ -131,7 +131,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="whenValueChange">The method that runs when the asset is changed.</param>
         /// <param name="theme">The theme for the Asset Picker Window.</param>
         /// <returns>The property itself.</returns>
-        public InteractablePropertyAssetField BuildAssetField(string title, AssetType type, AssetBase value, Transform parent, Action<AssetBase> whenValueChange, ThemeType theme = ThemeType.NoTheme)
+        public InteractablePropertyAssetField BuildAssetField(string title, AssetType type, IAsset value, Transform parent, Action<IAsset> whenValueChange, ThemeType theme = ThemeType.NoTheme)
         {
             InteractablePropertyAssetField assetField = Instantiate(assetFieldProperty, parent);
             assetField.Construct(title, type, value, whenValueChange, theme);

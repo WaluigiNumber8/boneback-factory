@@ -13,22 +13,22 @@ namespace Rogium.UserInterface.AssetSelection.PickerVariant
     [RequireComponent(typeof(Toggle))]
     public class AssetPickerCardController : AssetHolderBase
     {
-        public static event Action<AssetBase> OnSelected;
-        public static event Action<AssetBase> OnDeselected;
-        public static event Action<AssetBase> OnToggled;
+        public static event Action<IAsset> OnSelected;
+        public static event Action<IAsset> OnDeselected;
+        public static event Action<IAsset> OnToggled;
 
         [SerializeField] private UIInfo ui;
 
         private void OnEnable() => toggle.onValueChanged.AddListener(WhenToggled);
         private void OnDisable() => toggle.onValueChanged.RemoveListener(WhenToggled);
 
-        public override void Construct(AssetType type, int index, AssetBase asset, Image iconPos)
+        public override void Construct(AssetType type, int index, IAsset asset, Image iconPos)
         {
             ui.icon = iconPos;
             Construct(type, index, asset);
         }
 
-        public override void Construct(AssetType type, int index, AssetBase asset)
+        public override void Construct(AssetType type, int index, IAsset asset)
         {
             this.type = type;
             this.index = index;

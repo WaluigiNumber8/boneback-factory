@@ -27,7 +27,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
         protected override void BuildImportant(Transform content)
         {
             builder.BuildInputField("", asset.Title, content, asset.UpdateTitle);
-            builder.BuildAssetField("", AssetType.Sprite, asset, content, delegate(AssetBase a) { asset.UpdateIcon(a.Icon);}, ThemeType.Yellow);
+            builder.BuildAssetField("", AssetType.Sprite, asset, content, delegate(IAsset a) { asset.UpdateIcon(a.Icon);}, ThemeType.Yellow);
         }
 
         protected override void BuildProperty(Transform content)

@@ -26,7 +26,7 @@ namespace Rogium.Editors.Sprites
 
         private SpriteAsset currentSprite;
         private ColorSlot currentSlot;
-        private AssetBase lastPaletteAsset;
+        private IAsset lastPaletteAsset;
 
         protected override void Awake()
         {
@@ -84,7 +84,7 @@ namespace Rogium.Editors.Sprites
         /// <param name="colors"></param>
         public void SwitchPalette(Color[] colors)
         {
-            grid.LoadWithColors(colors, currentSprite.SpriteData);
+            grid.LoadWithColors(currentSprite.SpriteData, colors);
             palette.Fill(colors);
         }
         

@@ -27,15 +27,15 @@ namespace Rogium_Legend.Tests.CSharp.Editors
             const string packAuthor = "TestAuthor";
             Sprite packIcon = EditorDefaults.PackIcon;
 
-            LibraryOverseer.Instance.CreateAndAddPack(new PackInfoAsset(packName, packIcon, packAuthor, packDescription));
-            LibraryOverseer.Instance.ActivatePackEditor(0);
+            ExternalLibraryOverseer.Instance.CreateAndAddPack(new PackInfoAsset(packName, packIcon, packAuthor, packDescription));
+            ExternalLibraryOverseer.Instance.ActivatePackEditor(0);
         }
 
         [TearDown]
         public void Teardown()
         {
             editor.CompleteEditing();
-            LibraryOverseer.Instance.DeletePack(0);
+            ExternalLibraryOverseer.Instance.DeletePack(0);
         }
         
         [Test]

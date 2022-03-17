@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using Rogium.Editors.Packs;
 using Rogium.Systems.GridSystem;
 using BoubakProductions.Core;
 using BoubakProductions.UI;
 using Rogium.Core;
+using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
+using Rogium.Editors.Objects;
 using Rogium.Systems.ItemPalette;
 using Rogium.Systems.Toolbox;
 using UnityEngine;
@@ -26,6 +29,7 @@ namespace Rogium.Editors.Rooms
         private RoomEditorOverseer editor;
         private ToolBox<string, Sprite> toolbox;
 
+        private IList<ObjectAsset> objects;
         private GridData currentData;
         private GridData tileData;
         private GridData objectData;
@@ -37,6 +41,7 @@ namespace Rogium.Editors.Rooms
             packEditor = PackEditorOverseer.Instance;
             editor = RoomEditorOverseer.Instance;
             toolbox = new ToolBox<string, Sprite>(grid, EditorDefaults.EmptyAssetID, EditorDefaults.EmptyGridSprite, grid.UpdateCell);
+            objects = InternalLibraryOverseer.GetInstance().GetObjectsCopy();
         }
 
         private void OnEnable()
@@ -62,8 +67,6 @@ namespace Rogium.Editors.Rooms
         /// <exception cref="ArgumentOutOfRangeException">Is thrown when no layer is stored under the index.</exception>
         public void SwitchLayer(int index)
         {
-            grid.SwitchActiveLayer(index);
-            partsDrawer.Switch(index);
             currentData = index switch
             {
                 0 => tileData,
@@ -71,6 +74,9 @@ namespace Rogium.Editors.Rooms
                 2 => enemyData,
                 _ => throw new ArgumentOutOfRangeException($"Layer under the index '{index}' is not supported.")
             };
+            grid.SwitchActiveLayer(index);
+            partsDrawer.Switch(index);
+            currentData.Palette.SelectLast();
         }
         
         /// <summary>
@@ -98,18 +104,19 @@ namespace Rogium.Editors.Rooms
         private void PrepareEditor(RoomAsset room)
         {
             tileData = new GridData(editor.CurrentAsset.TileGrid, paletteTile);
-            // objectData = new GridData<string>(editor.CurrentAsset.ObjectGrid, paletteObject);
+            objectData = new GridData(editor.CurrentAsset.ObjectGrid, paletteObject);
             enemyData = new GridData(editor.CurrentAsset.EnemyGrid, paletteEnemy);
             
             paletteTile.Fill(packEditor.CurrentPack.Tiles, AssetType.Tile);
+            paletteObject.Fill(objects, AssetType.Object);
             paletteEnemy.Fill(packEditor.CurrentPack.Enemies, AssetType.Enemy);
             
             SwitchLayer(0);
             paletteTile.Select(0);
             
-            grid.LoadWithSprites(packEditor.CurrentPack.Tiles, room.TileGrid, 0);
-            // grid.LoadWithSprites(packEditor.CurrentPack.Objects, room.ObjectGrid, 1);
-            grid.LoadWithSprites(packEditor.CurrentPack.Enemies, room.EnemyGrid, 2);
+            grid.LoadWithSprites(room.TileGrid, packEditor.CurrentPack.Tiles, 0);
+            grid.LoadWithSprites(room.ObjectGrid, objects, 1);
+            grid.LoadWithSprites(room.EnemyGrid, packEditor.CurrentPack.Enemies, 2);
             
         }
         

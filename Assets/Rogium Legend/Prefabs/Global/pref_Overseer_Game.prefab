@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 1184853988599181683}
   - component: {fileID: 1184853988599181682}
   m_Layer: 0
-  m_Name: pref_Overseer_Game
+  m_Name: pref_overseer_Game
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

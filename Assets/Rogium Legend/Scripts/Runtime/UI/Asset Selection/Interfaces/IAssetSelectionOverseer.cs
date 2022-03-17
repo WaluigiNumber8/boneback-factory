@@ -41,6 +41,16 @@
         /// Opens a selection menu for Tile Assets.
         /// </summary>
         void OpenForTiles();
+        
+        /// <summary>
+        /// Opens a selection menu for Interactable Object Assets.
+        /// </summary>
+        void OpenForObjects();
+        
+        /// <summary>
+        /// Opens a selection menu for Sound Assets.
+        /// </summary>
+        void OpenForSounds();
 
     }
 }

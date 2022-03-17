@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using BoubakProductions.Core;
 using BoubakProductions.Safety;
 using Rogium.Editors.Core;
@@ -37,7 +38,7 @@ namespace Rogium.Systems.GridSystem
         public void OnCellClick(int x, int y) => OnClick?.Invoke(new Vector2Int(x, y));
 
         
-        public override void LoadWithSprites<T>(AssetList<T> assetList, ObjectGrid<string> IDGrid)
+        public override void LoadWithSprites<T>(ObjectGrid<string> IDGrid, IList<T> assetList)
         {
             SafetyNet.EnsureIntIsEqual(IDGrid.Width, gridSize.x, "Grid Width");
             SafetyNet.EnsureIntIsEqual(IDGrid.Height, gridSize.y, "Grid Height");
@@ -45,7 +46,7 @@ namespace Rogium.Systems.GridSystem
         }
         
         
-        public override void LoadWithColors(Color[] colorArray, ObjectGrid<int> indexGrid)
+        public override void LoadWithColors(ObjectGrid<int> indexGrid, Color[] colorArray)
         {
             SafetyNet.EnsureIntIsEqual(indexGrid.Width, gridSize.x, "Grid Width");
             SafetyNet.EnsureIntIsEqual(indexGrid.Height, gridSize.y, "Grid Height");

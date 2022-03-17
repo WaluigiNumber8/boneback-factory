@@ -42,7 +42,10 @@ namespace Rogium.Editors.Objects
         public void UpdateBoolValue8(bool newValue) => parameters.boolValue8 = newValue;
         #endregion
         
-        [System.Serializable]
+        public GameObject Prefab { get => prefab; }
+        public ParameterInfo Parameters { get => parameters; }
+
+            [System.Serializable]
         public struct ParameterInfo
         {
             public int intValue1;

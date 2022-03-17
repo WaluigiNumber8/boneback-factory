@@ -11,7 +11,7 @@ using UnityEngine.TestTools;
 public class test_Campaign_Editor
 {
     private CampaignEditorOverseerMono campaignEditor;
-    private LibraryOverseer lib;
+    private ExternalLibraryOverseer lib;
     
     private PackList packs;
     private IList<AssetBase> foundAssets;
@@ -22,8 +22,8 @@ public class test_Campaign_Editor
         TestBuilder.SetupCanvas(out GameObject canvas);
         GameObject campaignEditorPrefab = Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Menu_CampaignEditor.prefab"));
 
-        packs = LibraryOverseer.Instance.GetPacksCopy;
-        lib = LibraryOverseer.Instance;
+        packs = ExternalLibraryOverseer.Instance.GetPacksCopy;
+        lib = ExternalLibraryOverseer.Instance;
         campaignEditor = campaignEditorPrefab.GetComponent<CampaignEditorOverseerMono>();
     }
 
