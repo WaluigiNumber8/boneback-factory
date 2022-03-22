@@ -81,7 +81,7 @@ namespace Rogium.Editors.Rooms
             get 
             {
                 if (currentAsset == null) throw new MissingReferenceException("Current Room has not been set. Did you forget to activate the editor?");
-                return this.currentAsset;
+                return currentAsset;
             } 
         }
     }

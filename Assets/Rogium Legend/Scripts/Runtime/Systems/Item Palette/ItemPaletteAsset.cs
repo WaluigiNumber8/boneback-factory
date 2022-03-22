@@ -15,7 +15,7 @@ namespace Rogium.Systems.ItemPalette
     /// </summary>
     public class ItemPaletteAsset : MonoBehaviour
     {
-        public event Action<AssetSlot> OnSelect;
+        public event Action<IAsset> OnSelect;
         
         [SerializeField] private AssetSlot assetHolderPrefab;
         [SerializeField] private Transform paletteParent;
@@ -53,7 +53,7 @@ namespace Rogium.Systems.ItemPalette
             if (holders?.Count <= 0) return;
             SafetyNet.EnsureIndexWithingCollectionRange(index, holders, "Item Index");
             holders[index].SetToggle(true);
-            OnSelect?.Invoke(holders[index]);
+            OnSelect?.Invoke(holders[index].Asset);
         }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace Rogium.Systems.ItemPalette
         {
             SafetyNet.EnsureIndexWithingCollectionRange(index, holders, "List of holders");
             lastSelected = index;
-            OnSelect?.Invoke(holders[index]);
+            OnSelect?.Invoke(holders[index].Asset);
         }
     }
 }

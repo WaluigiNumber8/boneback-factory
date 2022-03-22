@@ -1,4 +1,5 @@
-﻿using Rogium.Editors.Core.Defaults;
+﻿using Rogium.Editors.Core;
+using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Rooms;
 using Rogium.Editors.Tiles;
@@ -17,15 +18,15 @@ public static class TestBuilder
     {
         TileAsset tile = new TileAsset("Test Tile", EditorDefaults.TileIcon, "Test Author", TileType.Floor);
 
-        ObjectGrid<string> tileGrid = new(15, 10, () => "-1");
-        ObjectGrid<string> objectGrid = new(15, 10, () => "-1");
-        ObjectGrid<string> enemyGrid = new(15, 10, () => "-1");
-        tileGrid.SetValue(1, 1, tile.ID);
-        tileGrid.SetValue(8, 5, tile.ID);
-        tileGrid.SetValue(2, 1, tile.ID);
-        tileGrid.SetValue(5, 1, tile.ID);
+        ObjectGrid<AssetData> tileGrid = new(15, 10, () => new AssetData(ParameterDefaults.ParamsTile));
+        ObjectGrid<AssetData> objectGrid = new(15, 10, () => new AssetData(ParameterDefaults.ParamsEmpty));
+        ObjectGrid<AssetData> enemyGrid = new(15, 10, () => new AssetData(ParameterDefaults.ParamsEnemy));
+        tileGrid.SetValue(1, 1, new AssetData(tile.ID, ParameterDefaults.ParamsTile));
+        tileGrid.SetValue(8, 5, new AssetData(tile.ID, ParameterDefaults.ParamsTile));
+        tileGrid.SetValue(2, 1, new AssetData(tile.ID, ParameterDefaults.ParamsTile));
+        tileGrid.SetValue(5, 1, new AssetData(tile.ID, ParameterDefaults.ParamsTile));
 
-        RoomAsset room = new RoomAsset("Devil Room", EditorDefaults.RoomIcon, "Test Author", 0, RoomType.Normal, tileGrid, objectGrid, enemyGrid);
+        RoomAsset room = new RoomAsset("Devil Room", EditorDefaults.RoomIcon, "Test Author", 0, RoomType.Normal, 255, tileGrid, objectGrid, enemyGrid);
         PackAsset pack = new PackAsset(new PackInfoAsset("Test Pack", EditorDefaults.PackIcon, "Test Author", "Just a pack"));
         pack.Tiles.Add(tile);
         pack.Rooms.Add(room);

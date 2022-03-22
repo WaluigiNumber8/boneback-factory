@@ -68,13 +68,15 @@ namespace Rogium.Systems.GridSystem
             Apply(sprite);
             return sprite;
         }
-        
+
         /// <summary>
         /// Loads a sprite based on asset data.
         /// </summary>
         /// <param name="IDGrid">The grid of IDs to read.</param>
         /// <param name="assetList">The list of assets to take data from.</param>
-        public Sprite Build<T>(ObjectGrid<string> IDGrid, IList<T> assetList) where T : IAsset
+        /// <typeparam name="T">Any type of <see cref="IAsset"/>.</typeparam>
+        /// <typeparam name="TS">Any type of <see cref="IComparable"/>.</typeparam>
+        public Sprite Build<T, TS>(ObjectGrid<TS> IDGrid, IList<T> assetList) where T : IAsset where TS : IComparable
         {
             Texture2D tex = BoubakBuilder.GenerateTexture(IDGrid.Width * pixelsPerUnit, IDGrid.Height * pixelsPerUnit);
             Sprite sprite = BoubakBuilder.GenerateSprite(tex, pixelsPerUnit);

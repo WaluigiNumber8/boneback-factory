@@ -1,4 +1,5 @@
-﻿using Rogium.Editors.Objects;
+﻿using Rogium.Editors.Core;
+using Rogium.Editors.Objects;
 using Rogium.Gameplay.Core;
 using Rogium.Gameplay.Entities.Player;
 using UnityEngine;
@@ -11,7 +12,7 @@ namespace Rogium.Gameplay.InteractableObjects
     [RequireComponent(typeof(BoxCollider2D))]
     public class InteractObjectDoorLeave : MonoBehaviour, IInteractObject
     {
-        public void Construct(ObjectAsset data)
+        public void Construct(ObjectAsset data, ParameterInfo parameters)
         {
             
         }

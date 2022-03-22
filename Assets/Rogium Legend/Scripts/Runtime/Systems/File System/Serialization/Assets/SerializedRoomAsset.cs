@@ -1,6 +1,7 @@
-﻿using Rogium.Editors.Rooms;
+﻿using System;
+using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
-using System;
+using Rogium.Editors.Rooms;
 
 namespace Rogium.ExternalStorage.Serialization
 {
@@ -10,19 +11,21 @@ namespace Rogium.ExternalStorage.Serialization
     [System.Serializable]
     public class SerializedRoomAsset : SerializedAssetBase<RoomAsset>
     {
-        public readonly int difficultyLevel;
-        public readonly int type;
-        public readonly SerializedGrid<string> tileGrid;
-        public readonly SerializedGrid<string> objectGrid;
-        public readonly SerializedGrid<string> enemyGrid;
+        private readonly int difficultyLevel;
+        private readonly int type;
+        private readonly int lightness;
+        private readonly SerializedGrid<AssetData> tileGrid;
+        private readonly SerializedGrid<AssetData> objectGrid;
+        private readonly SerializedGrid<AssetData> enemyGrid;
 
         public SerializedRoomAsset(RoomAsset asset) : base(asset)
         {
             difficultyLevel = asset.DifficultyLevel;
             type = (int)asset.Type;
-            tileGrid = new SerializedGrid<string>(asset.TileGrid);
-            objectGrid = new SerializedGrid<string>(asset.ObjectGrid);
-            enemyGrid = new SerializedGrid<string>(asset.EnemyGrid);
+            lightness = asset.Lightness;
+            tileGrid = new SerializedGrid<AssetData>(asset.TileGrid);
+            objectGrid = new SerializedGrid<AssetData>(asset.ObjectGrid);
+            enemyGrid = new SerializedGrid<AssetData>(asset.EnemyGrid);
         }
 
         /// <summary>
@@ -37,9 +40,10 @@ namespace Rogium.ExternalStorage.Serialization
                                  author,
                                  difficultyLevel,
                                  (RoomType)type,
-                                 tileGrid.Deserialize(() => EditorDefaults.EmptyAssetID),
-                                 objectGrid.Deserialize(() => EditorDefaults.EmptyAssetID),
-                                 enemyGrid.Deserialize(() => EditorDefaults.EmptyAssetID),
+                                 lightness,
+                                 tileGrid.Deserialize(() => new AssetData(ParameterDefaults.ParamsTile)),
+                                 objectGrid.Deserialize(() => new AssetData(ParameterDefaults.ParamsEmpty)),
+                                 enemyGrid.Deserialize(() => new AssetData(ParameterDefaults.ParamsEnemy)),
                                  DateTime.Parse(creationDate));
         }
     }

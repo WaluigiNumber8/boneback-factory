@@ -14,7 +14,7 @@ namespace Rogium.UserInterface.ModalWindowBuilding
     public abstract class ModalWindowPropertyBuilder
     {
         protected readonly ModalWindow window;
-        protected readonly UIPropertyBuilder builder;
+        protected readonly UIPropertyBuilder b;
         protected readonly PackEditorOverseer editor;
         protected readonly ExternalLibraryOverseer lib;
         protected readonly AssetSelectionMenu selectionMenu;
@@ -23,7 +23,7 @@ namespace Rogium.UserInterface.ModalWindowBuilding
         protected ModalWindowPropertyBuilder()
         {
             window = CanvasOverseer.GetInstance().ModalWindow;
-            builder = UIPropertyBuilder.GetInstance();
+            b = UIPropertyBuilder.GetInstance();
             lib = ExternalLibraryOverseer.Instance;
             editor = PackEditorOverseer.Instance;
             selectionMenu = GASContainer.GetInstance().AssetSelection;

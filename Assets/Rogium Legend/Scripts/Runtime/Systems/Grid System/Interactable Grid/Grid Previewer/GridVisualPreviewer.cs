@@ -1,0 +1,177 @@
+﻿using System;
+using Rogium.Editors.Core;
+using Rogium.Editors.Core.Defaults;
+using Rogium.Editors.Palettes;
+using Rogium.Systems.ItemPalette;
+using Rogium.Systems.Toolbox;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace Rogium.Systems.GridSystem
+{
+    /// <summary>
+    /// Controls the Visual Preview on the Interactable grid, so that the user knows, what he is using.
+    /// </summary>
+    public class GridVisualPreviewer : MonoBehaviour
+    {
+        [SerializeField] private InteractableEditorGridV2 grid;
+        [SerializeField] private ToolBoxUIManagerBase toolbox;
+        [SerializeField] private PreviewerInfo gridPreviewer;
+        
+        [Header("Palettes")]
+        [SerializeField] private ItemPaletteAsset[] assetPalettes;
+        [SerializeField] private ItemPaletteColor[] colorPalettes;
+        
+        [Header("Tool Presets")]
+        [SerializeField] private GridPreviewerToolInfoAsset toolInfoAsset;
+        
+        private RectTransform gridTransform;
+        private ToolType currentTool = ToolType.Eraser;
+        private bool inPermanentState;
+        private bool allowMaterialSwitching;
+        private bool followCursor;
+
+        private void Start()
+        {
+            gridTransform = grid.GetComponent<RectTransform>();
+            gridPreviewer.transform.position = gridTransform.anchoredPosition;
+            gridPreviewer.transform.sizeDelta = grid.CellSize;
+            followCursor = true;
+            
+            PrepareForTool(ToolType.Brush);
+            Hide();
+            EnablePermanent();
+        }
+        
+        private void OnEnable()
+        {
+            grid.OnPointerComeIn += Show;
+            grid.OnPointerLeave += Hide;
+            grid.OnPointerClicked += UpdatePositionOnGrid;
+            toolbox.OnSwitchTool += PrepareForTool;
+            
+            foreach (ItemPaletteAsset palette in assetPalettes)
+            {
+                if (palette != null) palette.OnSelect += ChangeMaterial;
+            }
+            foreach (ItemPaletteColor palette in colorPalettes)
+            {
+                if (palette != null) palette.OnSelect += ChangeMaterial;
+            }
+        }
+
+        private void OnDisable()
+        {
+            grid.OnPointerComeIn -= Show;
+            grid.OnPointerLeave -= Hide;
+            grid.OnPointerClicked -= UpdatePositionOnGrid;
+            toolbox.OnSwitchTool -= PrepareForTool;
+            
+            foreach (ItemPaletteAsset palette in assetPalettes)
+            {
+                if (palette != null) palette.OnSelect -= ChangeMaterial;
+            }
+            foreach (ItemPaletteColor palette in colorPalettes)
+            {
+                if (palette != null) palette.OnSelect -= ChangeMaterial;
+            }
+        }
+
+        private void Update()
+        {
+            if (!followCursor) return;
+            UpdatePositionOnGrid();
+        }
+
+        /// <summary>
+        /// Handles Grid Previewers following on the grid.
+        /// </summary>
+        private void UpdatePositionOnGrid()
+        {
+            if (!gridPreviewer.gameObject.activeSelf) return;
+            
+            float x = gridTransform.position.x + grid.CellSize.x * grid.SelectedPosition.x + grid.SelectedPosition.x;
+            float y = gridTransform.position.y + grid.CellSize.y * grid.SelectedPosition.y + grid.SelectedPosition.y;
+            gridPreviewer.transform.position = new Vector3(x, y, 0);
+        }
+
+        #region Visibility Control
+
+        /// <summary>
+        /// Show the previewer.
+        /// </summary>
+        private void Show()
+        {
+            if (!inPermanentState) return;
+            gridPreviewer.gameObject.SetActive(true);
+        }
+
+        /// <summary>
+        /// Hide the previewer.
+        /// </summary>
+        private void Hide()
+        {
+            if (inPermanentState) return;
+            gridPreviewer.gameObject.SetActive(false);
+        }
+
+        /// <summary>
+        /// Show the previewer permanently.
+        /// </summary>
+        private void EnablePermanent() => inPermanentState = true;
+
+        /// <summary>
+        /// Hide the previewer permanently.
+        /// </summary>
+        private void DisablePermanent() => inPermanentState = false;
+        #endregion
+
+        private void ChangeMaterial(IAsset slot)
+        {
+            if (!allowMaterialSwitching) return;
+            gridPreviewer.image.color = EditorDefaults.DefaultColor;
+            gridPreviewer.image.sprite = slot.Icon;
+        }
+        
+        private void ChangeMaterial(ColorSlot slot)
+        {
+            if (!allowMaterialSwitching) return;
+            gridPreviewer.image.sprite = null;
+            gridPreviewer.image.color = slot.CurrentColor;
+        }
+
+        /// <summary>
+        /// Prepares the previewer for a specific tool.
+        /// </summary>
+        /// <param name="type">The type of tool.</param>
+        private void PrepareForTool(ToolType type)
+        {
+            if (type == currentTool) return;
+            foreach (PreviewerToolDataInfo info in toolInfoAsset.ToolInfo)
+            {
+                if (type != info.tool) continue;
+    
+                if (info.isVisible) Show(); else Hide();
+                if (info.permanentState) EnablePermanent(); else DisablePermanent();
+                followCursor = info.followCursor;
+                allowMaterialSwitching = info.autoMaterial;
+                if (!allowMaterialSwitching)
+                {
+                    gridPreviewer.image.sprite = info.customSprite;
+                    gridPreviewer.image.color = info.customColor;
+                }
+                
+                
+                currentTool = type;
+            }
+        }
+        
+        [Serializable]
+        public struct PreviewerInfo
+        {
+            public GameObject gameObject;
+            public RectTransform transform;
+            public Image image;
+        }
+    }
+}

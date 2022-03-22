@@ -1,5 +1,4 @@
 ﻿using System;
-using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.GridSystem;
 using UnityEngine;
 
@@ -11,32 +10,37 @@ namespace Rogium.Systems.Toolbox
     public class ToolBox<T, TS> : IToolBox where T : IComparable
     {
         public event Action<ToolType> OnSwitchTool;
-        public event Action<T> OnChangePaletteValue; 
         
+        public event Action<T> OnChangePaletteValue;
+        public event Action<T> OnSelectValue;
+
+        private readonly SelectionTool<T> toolSelection;
         private readonly BrushTool<T> toolBrush;
         private readonly EraserTool<T> toolEraser;
         private readonly BucketTool<T> toolBucket;
         private readonly PickerTool<T> toolPicker;
 
         private readonly InteractableEditorGridBase UIGrid;
+        private readonly Action<Vector2Int, TS> drawOnGrid;
+        private readonly TS emptyValueEditor;
         private TS currentBrush;
         private ITool<T> currentTool;
         private ToolType currentToolType;
-        private Action<Vector2Int, TS> drawOnGrid;
-        private TS emptyValueEditor;
 
         public ToolBox(InteractableEditorGridBase UIGrid, T emptyValue, TS emptyValueEditor, Action<Vector2Int, TS> drawOnGrid)
         {
             this.UIGrid = UIGrid;
             this.drawOnGrid = drawOnGrid;
             this.emptyValueEditor = emptyValueEditor;
-            
+
+            toolSelection = new SelectionTool<T>();
             toolBrush = new BrushTool<T>();
             toolEraser = new EraserTool<T>(emptyValue);
             toolBucket = new BucketTool<T>();
             toolPicker = new PickerTool<T>();
 
-            toolPicker.OnPickValue += id => OnChangePaletteValue?.Invoke(id);
+            toolSelection.OnSelectValue += data => OnSelectValue?.Invoke(data);
+            toolPicker.OnPickValue += data => OnChangePaletteValue?.Invoke(data);
             
             currentTool = toolBrush;
         }
@@ -70,6 +74,7 @@ namespace Rogium.Systems.Toolbox
             if (currentToolType == tool) return;
             currentTool = tool switch
             {
+                ToolType.Selection => toolSelection,
                 ToolType.Brush => toolBrush,
                 ToolType.Eraser => toolEraser,
                 ToolType.Bucket => toolBucket,
@@ -96,6 +101,7 @@ namespace Rogium.Systems.Toolbox
         {
             ITool<T> tool = toolType switch
             {
+                ToolType.Selection => toolSelection,
                 ToolType.Brush => toolBrush,
                 ToolType.Eraser => toolEraser,
                 ToolType.Bucket => toolBucket,

@@ -24,9 +24,9 @@ namespace Rogium.Systems.GridSystem
 
         public ObjectGrid(ObjectGrid<T> grid)
         {
-            this.width = grid.Width;
-            this.height = grid.Height;
-            this.cellArray = (T[,])grid.cellArray.Clone();
+            width = grid.Width;
+            height = grid.Height;
+            cellArray = (T[,])grid.cellArray.Clone();
         }
 
         /// <summary>

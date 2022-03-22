@@ -1,4 +1,5 @@
-﻿using Rogium.Editors.Objects;
+﻿using Rogium.Editors.Core;
+using Rogium.Editors.Objects;
 
 namespace Rogium.Gameplay.InteractableObjects
 {
@@ -11,6 +12,6 @@ namespace Rogium.Gameplay.InteractableObjects
         /// Constructs an interactable object.
         /// </summary>
         /// <param name="data">The data to use.</param>
-        public void Construct(ObjectAsset data);
+        public void Construct(ObjectAsset data, ParameterInfo parameters);
     }
 }

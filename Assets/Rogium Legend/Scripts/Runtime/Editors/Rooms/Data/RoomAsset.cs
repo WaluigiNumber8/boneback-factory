@@ -14,9 +14,10 @@ namespace Rogium.Editors.Rooms
     {
         private int difficultyLevel;
         private RoomType type;
-        private readonly ObjectGrid<string> tileGrid;
-        private readonly ObjectGrid<string> objectGrid;
-        private readonly ObjectGrid<string> enemyGrid;
+        private int lightness;
+        private readonly ObjectGrid<AssetData> tileGrid;
+        private readonly ObjectGrid<AssetData> objectGrid;
+        private readonly ObjectGrid<AssetData> enemyGrid;
 
         #region Constructors
         public RoomAsset()
@@ -28,9 +29,10 @@ namespace Rogium.Editors.Rooms
             
             this.difficultyLevel = EditorDefaults.RoomDifficulty;
             this.type = EditorDefaults.RoomType;
-            this.tileGrid = new ObjectGrid<string>(EditorDefaults.RoomSize.x, EditorDefaults.RoomSize.y, () => EditorDefaults.EmptyAssetID);
-            this.objectGrid = new ObjectGrid<string>(EditorDefaults.RoomSize.x, EditorDefaults.RoomSize.y, () => EditorDefaults.EmptyAssetID);
-            this.enemyGrid = new ObjectGrid<string>(EditorDefaults.RoomSize.x, EditorDefaults.RoomSize.y, () => EditorDefaults.EmptyAssetID);
+            this.lightness = EditorDefaults.RoomLightness;
+            this.tileGrid = new ObjectGrid<AssetData>(EditorDefaults.RoomSize.x, EditorDefaults.RoomSize.y, () => new AssetData(ParameterDefaults.ParamsTile));
+            this.objectGrid = new ObjectGrid<AssetData>(EditorDefaults.RoomSize.x, EditorDefaults.RoomSize.y, () => new AssetData(ParameterDefaults.ParamsEmpty));
+            this.enemyGrid = new ObjectGrid<AssetData>(EditorDefaults.RoomSize.x, EditorDefaults.RoomSize.y, () => new AssetData(ParameterDefaults.ParamsEnemy));
             
             GenerateID(EditorAssetIDs.RoomIdentifier);
         }
@@ -44,9 +46,10 @@ namespace Rogium.Editors.Rooms
             
             this.difficultyLevel = asset.DifficultyLevel;
             this.type = asset.Type;
-            this.tileGrid = new ObjectGrid<string>(asset.TileGrid);
-            this.objectGrid = new ObjectGrid<string>(asset.ObjectGrid);
-            this.enemyGrid = new ObjectGrid<string>(asset.EnemyGrid);
+            this.lightness = asset.Lightness;
+            this.tileGrid = new ObjectGrid<AssetData>(asset.TileGrid);
+            this.objectGrid = new ObjectGrid<AssetData>(asset.ObjectGrid);
+            this.enemyGrid = new ObjectGrid<AssetData>(asset.EnemyGrid);
         }
         public RoomAsset(string title, Sprite roomIcon, string author, int difficultyLevel)
         {
@@ -59,14 +62,15 @@ namespace Rogium.Editors.Rooms
             
             this.difficultyLevel = difficultyLevel;
             this.type = EditorDefaults.RoomType;
-            this.tileGrid = new ObjectGrid<string>(EditorDefaults.RoomSize.x, EditorDefaults.RoomSize.y, () => EditorDefaults.EmptyAssetID);
-            this.objectGrid = new ObjectGrid<string>(EditorDefaults.RoomSize.x, EditorDefaults.RoomSize.y, () => EditorDefaults.EmptyAssetID);
-            this.enemyGrid = new ObjectGrid<string>(EditorDefaults.RoomSize.x, EditorDefaults.RoomSize.y, () => EditorDefaults.EmptyAssetID);
+            this.lightness = EditorDefaults.RoomLightness;
+            this.tileGrid = new ObjectGrid<AssetData>(EditorDefaults.RoomSize.x, EditorDefaults.RoomSize.y, () => new AssetData(ParameterDefaults.ParamsTile));
+            this.objectGrid = new ObjectGrid<AssetData>(EditorDefaults.RoomSize.x, EditorDefaults.RoomSize.y, () => new AssetData(ParameterDefaults.ParamsEmpty));
+            this.enemyGrid = new ObjectGrid<AssetData>(EditorDefaults.RoomSize.x, EditorDefaults.RoomSize.y, () => new AssetData(ParameterDefaults.ParamsEnemy));
             
             GenerateID(EditorAssetIDs.RoomIdentifier);
         }
-        public RoomAsset(string title, Sprite icon, string author, int difficultyLevel, RoomType type, ObjectGrid<string> tileGrid,
-                         ObjectGrid<string> objectGrid, ObjectGrid<string> enemyGrid)
+        public RoomAsset(string title, Sprite icon, string author, int difficultyLevel, RoomType type, int lightness,
+                         ObjectGrid<AssetData> tileGrid, ObjectGrid<AssetData> objectGrid, ObjectGrid<AssetData> enemyGrid)
         {
             SafetyNet.EnsureIntIsBiggerThan(difficultyLevel, 0, "New Room Difficulty Level");
 
@@ -77,14 +81,15 @@ namespace Rogium.Editors.Rooms
             
             this.difficultyLevel = difficultyLevel;
             this.type = type;
-            this.tileGrid = new ObjectGrid<string>(tileGrid);
-            this.objectGrid = new ObjectGrid<string>(objectGrid);
-            this.enemyGrid = new ObjectGrid<string>(enemyGrid);
+            this.lightness = lightness;
+            this.tileGrid = new ObjectGrid<AssetData>(tileGrid);
+            this.objectGrid = new ObjectGrid<AssetData>(objectGrid);
+            this.enemyGrid = new ObjectGrid<AssetData>(enemyGrid);
             
             GenerateID(EditorAssetIDs.RoomIdentifier);
         }
-        public RoomAsset(string id, string title, Sprite icon, string author, int difficultyLevel, RoomType type,
-                         ObjectGrid<string> tileGrid, ObjectGrid<string> objectGrid, ObjectGrid<string> enemyGrid,
+        public RoomAsset(string id, string title, Sprite icon, string author, int difficultyLevel, RoomType type, int lightness,
+                         ObjectGrid<AssetData> tileGrid, ObjectGrid<AssetData> objectGrid, ObjectGrid<AssetData> enemyGrid,
                          DateTime creationDate)
         {
             SafetyNet.EnsureIntIsBiggerOrEqualTo(difficultyLevel, 0, "New Room Difficulty Level");
@@ -97,9 +102,10 @@ namespace Rogium.Editors.Rooms
             
             this.difficultyLevel = difficultyLevel;
             this.type = type;
-            this.tileGrid = new ObjectGrid<string>(tileGrid);
-            this.objectGrid = new ObjectGrid<string>(objectGrid);
-            this.enemyGrid = new ObjectGrid<string>(enemyGrid);
+            this.lightness = lightness;
+            this.tileGrid = new ObjectGrid<AssetData>(tileGrid);
+            this.objectGrid = new ObjectGrid<AssetData>(objectGrid);
+            this.enemyGrid = new ObjectGrid<AssetData>(enemyGrid);
         }
         #endregion
 
@@ -118,13 +124,19 @@ namespace Rogium.Editors.Rooms
 
         public void UpdateType(RoomType newType) => type = newType;
 
+        public void UpdateLightness(int newLightness)
+        {
+            SafetyNet.EnsureIntIsInRange(newLightness, 0, 255, "Room Lightness");
+            lightness = newLightness;
+        }
         #endregion
 
         public int DifficultyLevel { get => difficultyLevel; }
         public RoomType Type {get => type;}
-        public ObjectGrid<string> TileGrid { get => tileGrid; }
-        public ObjectGrid<string> ObjectGrid { get => objectGrid; }
-        public ObjectGrid<string> EnemyGrid { get => enemyGrid; }
+        public int Lightness { get => lightness; }
+        public ObjectGrid<AssetData> TileGrid { get => tileGrid; }
+        public ObjectGrid<AssetData> ObjectGrid { get => objectGrid; }
+        public ObjectGrid<AssetData> EnemyGrid { get => enemyGrid; }
 
         
 

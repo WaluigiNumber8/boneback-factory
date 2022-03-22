@@ -1,4 +1,5 @@
 ﻿using BoubakProductions.Core;
+using Rogium.Editors.Rooms.PropertyColumn;
 using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine;
 
@@ -7,23 +8,10 @@ namespace Rogium.Editors.PropertyEditor.Builders
     /// <summary>
     /// A base for all property editor builders.
     /// </summary>
-    public abstract class PropertyEditorBuilderBase
+    public abstract class PropertyEditorBuilderBase : UIPropertyContentBuilderBaseColumn2
     {
-        protected UIPropertyBuilder builder;
-        protected Transform importantContent;
-        protected Transform propertyContent;
-
-        public PropertyEditorBuilderBase(Transform importantContent, Transform propertyContent)
+        protected PropertyEditorBuilderBase(Transform contentMain, Transform contentSecond) : base(contentMain, contentSecond)
         {
-            builder = UIPropertyBuilder.GetInstance();
-            this.importantContent = importantContent;
-            this.propertyContent = propertyContent;
-        }
-
-        protected void EmptyEditor()
-        {
-            importantContent.gameObject.KillChildren();
-            propertyContent.gameObject.KillChildren();
         }
         
         /// <summary>

@@ -1,6 +1,4 @@
 ﻿using System;
-using Rogium.Editors.Sprites;
-using Rogium.UserInterface.Interactables;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +9,9 @@ namespace Rogium.Systems.Toolbox
     /// </summary>
     public abstract class ToolBoxUIManagerBase : MonoBehaviour
     {
+        public event Action<ToolType> OnSwitchTool;
+        
+        [SerializeField] private Toggle buttonSelection;
         [SerializeField] private Toggle buttonBrush;
         [SerializeField] private Toggle buttonEraser;
         [SerializeField] private Toggle buttonBucket;
@@ -18,10 +19,10 @@ namespace Rogium.Systems.Toolbox
 
         private ToolType currentToolType;
 
-        protected void SwitchTool(ToolType tool)
+        protected void SwitchTool(ToolType toolType)
         {
-            if (currentToolType == tool) return;
-            switch(tool)
+            if (currentToolType == toolType) return;
+            switch(toolType)
             {
                 case ToolType.Brush:
                     buttonBrush.isOn = true;
@@ -35,11 +36,15 @@ namespace Rogium.Systems.Toolbox
                 case ToolType.ColorPicker:
                     buttonPicker.isOn = true;
                     break;
+                case ToolType.Selection:
+                    buttonSelection.isOn = true;
+                    break;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(tool), tool, null);
+                    throw new ArgumentOutOfRangeException(nameof(toolType), toolType, null);
             }
 
-            currentToolType = tool;
+            currentToolType = toolType;
+            OnSwitchTool?.Invoke(currentToolType);
         }
     }
 }

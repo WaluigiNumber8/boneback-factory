@@ -65,6 +65,7 @@ namespace Rogium.Core
 
             throw new SafetyNetCollectionException($"No asset with the ID '{id}' was found in the list.");
         }
+        
 
         /// <summary>
         /// Tries to find and copy entries from one list to another.

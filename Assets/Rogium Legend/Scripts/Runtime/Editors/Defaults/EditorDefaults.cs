@@ -60,6 +60,7 @@ namespace Rogium.Editors.Core.Defaults
         public static readonly Vector2Int RoomSize = new Vector2Int(15, 10);
         public const int RoomDifficulty = 0;
         public const RoomType RoomType = Rooms.RoomType.Normal;
+        public const int RoomLightness = 255;
         
         //Tile
         public const string TileTitle = "New Tile";

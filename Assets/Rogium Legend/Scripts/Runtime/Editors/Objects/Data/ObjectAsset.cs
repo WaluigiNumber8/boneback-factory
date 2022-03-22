@@ -8,12 +8,14 @@ namespace Rogium.Editors.Objects
     /// Contains all data needed for an interactable object.
     /// </summary>
     [CreateAssetMenu(fileName = "New Interactable Object", menuName = EditorDefaults.AssetMenuAssets + "Interactable Object", order = 1)]
-    public class ObjectAsset : AssetBaseSO
+    public class ObjectAsset : AssetBaseSO, IParameterAsset
     {
         [SerializeField] private GameObject prefab;
         [SerializeField] private ParameterInfo parameters;
 
         #region Update Values
+        public void UpdateParameters(ParameterInfo newParams) => parameters = newParams;
+        
         public void UpdateIntValue1(int newValue) => parameters.intValue1 = newValue;
         public void UpdateIntValue2(int newValue) => parameters.intValue2 = newValue;
         public void UpdateIntValue3(int newValue) => parameters.intValue3 = newValue;
@@ -44,36 +46,5 @@ namespace Rogium.Editors.Objects
         
         public GameObject Prefab { get => prefab; }
         public ParameterInfo Parameters { get => parameters; }
-
-            [System.Serializable]
-        public struct ParameterInfo
-        {
-            public int intValue1;
-            public int intValue2;
-            public int intValue3;
-            public int intValue4;
-            public int intValue5;
-            public int intValue6;
-            public int intValue7;
-            public int intValue8;
-            [Space]
-            public float floatValue1;
-            public float floatValue2;
-            public float floatValue3;
-            public float floatValue4;
-            public float floatValue5;
-            public float floatValue6;
-            public float floatValue7;
-            public float floatValue8;
-            [Space]
-            public bool boolValue1;
-            public bool boolValue2;
-            public bool boolValue3;
-            public bool boolValue4;
-            public bool boolValue5;
-            public bool boolValue6;
-            public bool boolValue7;
-            public bool boolValue8;
-        }
     }
 }

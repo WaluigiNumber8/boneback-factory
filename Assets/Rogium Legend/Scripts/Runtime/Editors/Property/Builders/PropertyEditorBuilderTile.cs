@@ -14,26 +14,26 @@ namespace Rogium.Editors.PropertyEditor.Builders
     {
         private TileAsset asset;
         
-        public PropertyEditorBuilderTile(Transform importantContent, Transform propertyContent) : base(importantContent, propertyContent) { }
+        public PropertyEditorBuilderTile(Transform contentMain, Transform contentSecond) : base(contentMain, contentSecond) { }
 
         public void Build(TileAsset asset)
         {
             this.asset = asset;
-            EmptyEditor();
-            BuildImportant(importantContent);
-            BuildProperty(propertyContent);
+            EmptyContent();
+            BuildImportant(contentMain);
+            BuildProperty(contentSecond);
         }
         
         protected override void BuildImportant(Transform content)
         {
-            builder.BuildInputField("", asset.Title, content, asset.UpdateTitle);
-            builder.BuildAssetField("", AssetType.Sprite, asset, content, delegate(IAsset a) { asset.UpdateIcon(a.Icon);}, ThemeType.Yellow);
+            b.BuildInputField("", asset.Title, content, asset.UpdateTitle);
+            b.BuildAssetField("", AssetType.Sprite, asset, content, delegate(IAsset a) { asset.UpdateIcon(a.Icon);}, false, ThemeType.Yellow);
         }
 
         protected override void BuildProperty(Transform content)
         {
-            builder.BuildHeader("General", content);
-            builder.BuildDropdown("Type", EnumUtils.ToStringList(typeof(TileType)), (int)asset.Type, content, asset.UpdateTileType);
+            b.BuildHeader("General", content);
+            b.BuildDropdown("Type", EnumUtils.ToStringList(typeof(TileType)), (int)asset.Type, content, asset.UpdateTileType);
         }
     }
 }

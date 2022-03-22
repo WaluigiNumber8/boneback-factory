@@ -104,7 +104,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spr_Toolset_0
+      name: sprset_Tools_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,14 +118,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3aa4fac8b5cc1db00800000000000000
-      internalID: 851686498124122787
+      spriteID: 8983769e339ed5b489b0b39cf9789227
+      internalID: -1815877068
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_Toolset_1
+      name: sprset_Tools_1
       rect:
         serializedVersion: 2
         x: 8
@@ -139,14 +139,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5da1a4d37c92990d0800000000000000
-      internalID: -3415652906680313131
+      spriteID: 8a3864bd358630640a07f69317289cc7
+      internalID: 264872386
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_Toolset_2
+      name: sprset_Tools_2
       rect:
         serializedVersion: 2
         x: 16
@@ -160,14 +160,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 63d7a7e47ecf77520800000000000000
-      internalID: 2699904572016196918
+      spriteID: bff9316f19b46d3468d3598f220c4c31
+      internalID: -274898638
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_Toolset_3
+      name: sprset_Tools_3
       rect:
         serializedVersion: 2
         x: 24
@@ -181,8 +181,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2307ba0c8ef43dbe0800000000000000
-      internalID: -1453730393627070414
+      spriteID: 2e850a62b5aaa5d44aa9b16f96b9a7fd
+      internalID: 2131062300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprset_Tools_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba13f285c496ca54bbd215aa4a8875f6
+      internalID: -1144933720
       vertices: []
       indices: 
       edges: []
@@ -198,10 +219,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      spr_Toolset_1: -3415652906680313131
-      spr_Toolset_3: -1453730393627070414
-      spr_Toolset_2: 2699904572016196918
-      spr_Toolset_0: 851686498124122787
+      sprset_Tools_2: -274898638
+      sprset_Tools_1: 264872386
+      sprset_Tools_0: -1815877068
+      sprset_Tools_4: -1144933720
+      sprset_Tools_3: 2131062300
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

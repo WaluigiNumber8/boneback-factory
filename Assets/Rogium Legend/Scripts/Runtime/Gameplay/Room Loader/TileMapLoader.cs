@@ -2,6 +2,7 @@
 using Rogium.Editors.Tiles;
 using Rogium.Systems.GridSystem;
 using Rogium.Core;
+using Rogium.Editors.Core;
 using UnityEngine;
 
 namespace Rogium.Gameplay.DataLoading
@@ -19,7 +20,7 @@ namespace Rogium.Gameplay.DataLoading
         /// <param name="originPos">The offset of the origin.</param>
         /// <param name="IDGrid">The grid of tile IDs to use loading.</param>
         /// <param name="dataList">List of Tile Assets to place down.</param>
-        public void Load(Vector3Int originPos, ObjectGrid<string> IDGrid, IList<TileAsset> dataList)
+        public void Load(Vector3Int originPos, ObjectGrid<AssetData> IDGrid, IList<TileAsset> dataList)
         {
             foreach (TilemapLayer layer in tilemaps)
             {

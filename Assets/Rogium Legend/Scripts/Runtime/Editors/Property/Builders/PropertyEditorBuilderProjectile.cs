@@ -14,29 +14,29 @@ namespace Rogium.Editors.PropertyEditor.Builders
     {
         private ProjectileAsset asset;
         
-        public PropertyEditorBuilderProjectile(Transform importantContent, Transform propertyContent) : base(importantContent, propertyContent) { }
+        public PropertyEditorBuilderProjectile(Transform contentMain, Transform contentSecond) : base(contentMain, contentSecond) { }
 
         public void Build(ProjectileAsset asset)
         {
             this.asset = asset;
-            EmptyEditor();
-            BuildImportant(importantContent);
-            BuildProperty(propertyContent);
+            EmptyContent();
+            BuildImportant(contentMain);
+            BuildProperty(contentSecond);
         }
         
         protected override void BuildImportant(Transform content)
         {
-            builder.BuildInputField("", asset.Title, content, asset.UpdateTitle);
-            builder.BuildAssetField("", AssetType.Sprite, asset, content, delegate(IAsset a) { asset.UpdateIcon(a.Icon);}, ThemeType.Teal);
+            b.BuildInputField("", asset.Title, content, asset.UpdateTitle);
+            b.BuildAssetField("", AssetType.Sprite, asset, content, delegate(IAsset a) { asset.UpdateIcon(a.Icon);},false, ThemeType.Teal);
         }
 
         protected override void BuildProperty(Transform content)
         {
-            builder.BuildHeader("General", content);
-            builder.BuildInputField("Damage", asset.BaseDamage.ToString(), content, s => asset.UpdateBaseDamage(int.Parse(s)), TMP_InputField.CharacterValidation.Integer);
-            builder.BuildInputField("Lifetime", asset.UseDelay.ToString(), content, s => asset.UpdateUseDelay(float.Parse(s)), TMP_InputField.CharacterValidation.Decimal);
-            builder.BuildInputField("Knockback Self", asset.KnockbackForceSelf.ToString(), content, s => asset.UpdateKnockbackForceSelf(float.Parse(s)), TMP_InputField.CharacterValidation.Decimal);
-            builder.BuildInputField("Knockback Other", asset.KnockbackForceOther.ToString(), content, s => asset.UpdateKnockbackForceOther(float.Parse(s)), TMP_InputField.CharacterValidation.Decimal);
+            b.BuildHeader("General", content);
+            b.BuildInputField("Damage", asset.BaseDamage.ToString(), content, s => asset.UpdateBaseDamage(int.Parse(s)),false, TMP_InputField.CharacterValidation.Integer);
+            b.BuildInputField("Lifetime", asset.UseDelay.ToString(), content, s => asset.UpdateUseDelay(float.Parse(s)),false, TMP_InputField.CharacterValidation.Decimal);
+            b.BuildInputField("Knockback Self", asset.KnockbackForceSelf.ToString(), content, s => asset.UpdateKnockbackForceSelf(float.Parse(s)),false, TMP_InputField.CharacterValidation.Decimal);
+            b.BuildInputField("Knockback Other", asset.KnockbackForceOther.ToString(), content, s => asset.UpdateKnockbackForceOther(float.Parse(s)),false, TMP_InputField.CharacterValidation.Decimal);
             
         }
     }

@@ -46,12 +46,14 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="value">Starting value of the property</param>
         /// <param name="parent">Under which transform is this property going to be created.</param>
         /// <param name="whenValueChange">What happens when the property changes value.</param>
+        /// <param name="isDisabled">Initialize the property as a non-interactable.</param>
         /// <param name="characterValidation">The validation to use for inputted symbols.</param>
         /// <returns>The property itself.</returns>
-        public InteractablePropertyInputField BuildInputField(string title, string value, Transform parent, Action<string> whenValueChange, TMP_InputField.CharacterValidation characterValidation = TMP_InputField.CharacterValidation.None)
+        public InteractablePropertyInputField BuildInputField(string title, string value, Transform parent, Action<string> whenValueChange, bool isDisabled = false, TMP_InputField.CharacterValidation characterValidation = TMP_InputField.CharacterValidation.None)
         {
             InteractablePropertyInputField inputField = Instantiate(inputFieldProperty, parent);
             inputField.Construct(title, value, whenValueChange, characterValidation);
+            inputField.ChangeDisabledStatus(isDisabled);
             ThemeUpdaterRogium.UpdateInputField(inputField);
             return inputField;
         }
@@ -63,12 +65,14 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="value">Starting value of the property</param>
         /// <param name="parent">Under which transform is this property going to be created.</param>
         /// <param name="whenValueChange">What happens when the property changes value.</param>
+        /// <param name="isDisabled">Initialize the property as a non-interactable.</param>
         /// <param name="characterValidation">The validation to use for inputted symbols.</param>
         /// <returns>The property itself.</returns>
-        public InteractablePropertyInputField BuildInputFieldArea(string title, string value, Transform parent, Action<string> whenValueChange, TMP_InputField.CharacterValidation characterValidation = TMP_InputField.CharacterValidation.None)
+        public InteractablePropertyInputField BuildInputFieldArea(string title, string value, Transform parent, Action<string> whenValueChange, bool isDisabled = false, TMP_InputField.CharacterValidation characterValidation = TMP_InputField.CharacterValidation.None)
         {
             InteractablePropertyInputField inputField = Instantiate(inputFieldAreaProperty, parent);
             inputField.Construct(title, value, whenValueChange, characterValidation);
+            inputField.ChangeDisabledStatus(isDisabled);
             ThemeUpdaterRogium.UpdateInputField(inputField);
             return inputField;
         }
@@ -80,11 +84,13 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="value">Starting value of the property</param>
         /// <param name="parent">Under which transform is this property going to be created.</param>
         /// <param name="whenValueChange">What happens when the property changes value.</param>
+        /// <param name="isDisabled">Initialize the property as a non-interactable.</param>
         /// <returns>The property itself.</returns>
-        public InteractablePropertyToggle BuildToggle(string title, bool value, Transform parent, Action<bool> whenValueChange)
+        public InteractablePropertyToggle BuildToggle(string title, bool value, Transform parent, Action<bool> whenValueChange, bool isDisabled = false)
         {
             InteractablePropertyToggle toggle = Instantiate(toggleProperty, parent).GetComponent<InteractablePropertyToggle>();
             toggle.Construct(title, value, whenValueChange);
+            toggle.ChangeDisabledStatus(isDisabled);
             ThemeUpdaterRogium.UpdateToggle(toggle);
             return toggle;
         }
@@ -97,11 +103,13 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="value">Starting value of the property</param>
         /// <param name="parent">Under which transform is this property going to be created.</param>
         /// <param name="whenValueChange">What happens when the property changes value.</param>
+        /// <param name="isDisabled">Initialize the property as a non-interactable.</param>
         /// <returns>The property itself.</returns>
-        public InteractablePropertyDropdown BuildDropdown(string title, IList<string> options, int value, Transform parent, Action<int> whenValueChange)
+        public InteractablePropertyDropdown BuildDropdown(string title, IList<string> options, int value, Transform parent, Action<int> whenValueChange, bool isDisabled = false)
         {
             InteractablePropertyDropdown dropdown = Instantiate(dropdownProperty, parent);
             dropdown.Construct(title, options, value, whenValueChange);
+            dropdown.ChangeDisabledStatus(isDisabled);
             ThemeUpdaterRogium.UpdateDropdown(dropdown);
             return dropdown;
         }
@@ -129,12 +137,14 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="value">Starting value of the property</param>
         /// <param name="parent">Under which transform is this property going to be created.</param>
         /// <param name="whenValueChange">The method that runs when the asset is changed.</param>
+        /// <param name="isDisabled">Initialize the property as a non-interactable.</param>
         /// <param name="theme">The theme for the Asset Picker Window.</param>
         /// <returns>The property itself.</returns>
-        public InteractablePropertyAssetField BuildAssetField(string title, AssetType type, IAsset value, Transform parent, Action<IAsset> whenValueChange, ThemeType theme = ThemeType.NoTheme)
+        public InteractablePropertyAssetField BuildAssetField(string title, AssetType type, IAsset value, Transform parent, Action<IAsset> whenValueChange, bool isDisabled = false, ThemeType theme = ThemeType.NoTheme)
         {
             InteractablePropertyAssetField assetField = Instantiate(assetFieldProperty, parent);
             assetField.Construct(title, type, value, whenValueChange, theme);
+            assetField.ChangeDisabledStatus(isDisabled);
             ThemeUpdaterRogium.UpdateAssetField(assetField);
             return assetField;
         }
@@ -148,11 +158,13 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="startingValue">Starting value of the slider.</param>
         /// <param name="parent">The parent under which to instantiate the property.</param>
         /// <param name="whenValueChange">Method that will run when the slider changes value.</param>
+        /// <param name="isDisabled">Initialize the property as a non-interactable.</param>
         /// <returns>The property itself.</returns>
-        public InteractablePropertySlider BuildSlider(string title, float minValue, float maxValue, float startingValue, Transform parent, Action<float> whenValueChange)
+        public InteractablePropertySlider BuildSlider(string title, float minValue, float maxValue, float startingValue, Transform parent, Action<float> whenValueChange, bool isDisabled = false)
         {
             InteractablePropertySlider slider = Instantiate(sliderProperty, parent);
             slider.Construct(title, minValue, maxValue, startingValue, whenValueChange);
+            slider.ChangeDisabledStatus(isDisabled);
             ThemeUpdaterRogium.UpdateSlider(slider);
             return slider;
         }

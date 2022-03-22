@@ -1,4 +1,5 @@
-﻿using Rogium.Editors.Rooms;
+﻿using Rogium.Editors.Core;
+using Rogium.Editors.Rooms;
 using UnityEngine;
 
 namespace Rogium.Systems.Toolbox
@@ -8,7 +9,7 @@ namespace Rogium.Systems.Toolbox
     /// </summary>
     public class ToolBoxUIManagerRoom : ToolBoxUIManagerBase
     {
-        private ToolBox<string, Sprite> toolbox;
+        private ToolBox<AssetData, Sprite> toolbox;
 
         private void Start()
         {

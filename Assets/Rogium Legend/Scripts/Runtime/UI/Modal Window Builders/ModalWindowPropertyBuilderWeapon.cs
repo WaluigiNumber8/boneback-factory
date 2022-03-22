@@ -31,9 +31,9 @@ namespace Rogium.UserInterface.ModalWindowBuilding
 
         private void OpenWindow(WeaponAsset weapon, Action onConfirmAction, string headerText)
         {
-            builder.BuildInputField("Title", weapon.Title, window.FirstColumnContent, weapon.UpdateTitle);
-            builder.BuildPlainText("Created by", weapon.Author, window.FirstColumnContent);
-            builder.BuildPlainText("Created on", weapon.CreationDate.ToString(), window.FirstColumnContent);
+            b.BuildInputField("Title", weapon.Title, window.FirstColumnContent, weapon.UpdateTitle);
+            b.BuildPlainText("Created by", weapon.Author, window.FirstColumnContent);
+            b.BuildPlainText("Created on", weapon.CreationDate.ToString(), window.FirstColumnContent);
             
             editedAssetBase = weapon;
             window.OpenAsPropertiesColumn1(headerText, ThemeType.Green, "Done", "Cancel", onConfirmAction, true);

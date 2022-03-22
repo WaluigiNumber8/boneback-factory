@@ -1,4 +1,6 @@
-﻿using Rogium.Systems.GridSystem;
+﻿using Rogium.Core;
+using Rogium.Editors.Core;
+using Rogium.Systems.GridSystem;
 using Rogium.Systems.ItemPalette;
 using UnityEngine;
 
@@ -7,30 +9,33 @@ namespace Rogium.Editors.Rooms
     /// <summary>
     /// Contains data needed for grid drawing operations.
     /// </summary>
-    public class GridData
+    public class GridData<T>
     {
-        private readonly ObjectGrid<string> grid;
+        private readonly ObjectGrid<T> grid;
         private readonly ItemPaletteAsset palette;
-        private string paintValue;
+        private readonly AssetType type;
+        private AssetData paintValue;
         private Sprite paintSprite;
 
-        public GridData(ObjectGrid<string> grid, ItemPaletteAsset palette)
+        public GridData(ObjectGrid<T> grid, ItemPaletteAsset palette, AssetType type, ParameterInfo defaultParams)
         {
             this.grid = grid;
             this.palette = palette;
+            this.type = type;
 
-            this.palette.OnSelect += (slot => UpdateUsedPaint(slot.ID, slot.Asset.Icon));
+            this.palette.OnSelect += (asset => UpdateUsedPaint(new AssetData(asset.ID, defaultParams), asset.Icon));
         }
 
-        private void UpdateUsedPaint(string newPaintValue, Sprite newPaintSprite)
+        private void UpdateUsedPaint(AssetData newPaintValue, Sprite newPaintSprite)
         {
             paintValue = newPaintValue;
             paintSprite = newPaintSprite;
         }
 
-        public ObjectGrid<string> Grid { get => grid; }
+        public ObjectGrid<T> Grid { get => grid; }
         public ItemPaletteAsset Palette { get => palette; }
-        public string BrushValue { get => paintValue; }
+        public AssetType Type { get => type; }
+        public AssetData BrushValue { get => paintValue; }
         public Sprite BrushSprite { get => paintSprite; }
     }
 }

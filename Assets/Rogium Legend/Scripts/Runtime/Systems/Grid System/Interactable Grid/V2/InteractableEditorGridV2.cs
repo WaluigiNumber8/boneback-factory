@@ -21,6 +21,7 @@ namespace Rogium.Systems.GridSystem
         public event Action<Vector2Int> OnClickAlternative;
         public event Action OnPointerLeave;
         public event Action OnPointerComeIn;
+        public event Action OnPointerClicked;
         
         [SerializeField] private Vector2Int gridSize;
         [SerializeField] private LayerInfo[] layers;
@@ -67,6 +68,8 @@ namespace Rogium.Systems.GridSystem
         
         public void OnPointerClick(PointerEventData eventData)
         {
+            RecalculateSelectedPosition(eventData.position);
+            OnPointerClicked?.Invoke();
             switch (eventData.button)
             {
                 case PointerEventData.InputButton.Left:
@@ -84,8 +87,9 @@ namespace Rogium.Systems.GridSystem
         /// <param name="assetList">From which list of assets to load from.</param>
         /// <param name="IDGrid">The grid of IDs to read.</param>
         /// <param name="layerIndex">The index of the layer to load on.</param>
-        /// <typeparam name="T">Is a type of Asset.</typeparam>
-        public void LoadWithSprites<T>(ObjectGrid<string> IDGrid, IList<T> assetList, int layerIndex) where T : IAsset
+        /// <typeparam name="T">Is a type of <see cref="IAsset"/>.</typeparam>
+        /// <typeparam name="TS">Any type of <see cref="IComparable"/>.</typeparam>
+        public void LoadWithSprites<T, TS>(ObjectGrid<TS> IDGrid, IList<T> assetList, int layerIndex) where T : IAsset where TS : IComparable
         {
             SafetyNet.EnsureIntIsEqual(IDGrid.Width, gridSize.x, "Grid Width");
             SafetyNet.EnsureIntIsEqual(IDGrid.Height, gridSize.y, "Grid Height");

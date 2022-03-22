@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using BoubakProductions.Core;
 using Rogium.Core;
+using Rogium.Editors.Core;
 using Rogium.Editors.Enemies;
 using Rogium.Gameplay.Entities.Enemy;
 using Rogium.Systems.GridSystem;
@@ -23,7 +24,7 @@ namespace Rogium.Gameplay.DataLoading
         /// <param name="offsetPos">The offset from center, where to start spawning.</param>
         /// <param name="IDGrid">The grid enemy IDs.</param>
         /// <param name="dataList">The list of assets to take data from.</param>
-        public void Load(Vector3Int offsetPos, ObjectGrid<string> IDGrid, IList<EnemyAsset> dataList)
+        public void Load(Vector3Int offsetPos, ObjectGrid<AssetData> IDGrid, IList<EnemyAsset> dataList)
         {
             content.gameObject.KillChildren();
             AssetUtils.UpdateFromGridByList(IDGrid, dataList,

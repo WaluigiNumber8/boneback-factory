@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using BoubakProductions.Core;
 using BoubakProductions.UI;
 using Rogium.Editors.Rooms;
 
@@ -10,11 +10,13 @@ namespace Rogium.UserInterface.ModalWindowBuilding
     /// </summary>
     public class ModalWindowPropertyBuilderRoom : ModalWindowPropertyBuilder
     {
-        private RoomEditorOverseer roomEditor;
+        private readonly RoomEditorOverseer roomEditor;
+        private readonly RoomSettingsBuilder roomBuilder;
 
         public ModalWindowPropertyBuilderRoom()
         {
             roomEditor = RoomEditorOverseer.Instance;
+            roomBuilder = new RoomSettingsBuilder();
         }
 
         public override void OpenForCreate()
@@ -27,24 +29,16 @@ namespace Rogium.UserInterface.ModalWindowBuilding
             OpenWindow(roomEditor.CurrentAsset, UpdateAsset, $"Editing {roomEditor.CurrentAsset.Title}");
         }
 
-        private void OpenWindow(RoomAsset currentRoomAsset, Action onConfirmAction, string headerText)
+        private void OpenWindow(RoomAsset data, Action onConfirmAction, string headerText)
         {
-            IList<string> options = new List<string>();
-            options.Add("Level 1");
-            options.Add("Level 2");
-            options.Add("Level 3");
-            options.Add("Level 4");
-            options.Add("Level 5");
-
-            //TODO - Move this to somewhere more logical.
-
-            builder.BuildInputField("Title", currentRoomAsset.Title, window.FirstColumnContent, currentRoomAsset.UpdateTitle);
-            builder.BuildDropdown("Difficulty", options, currentRoomAsset.DifficultyLevel, window.FirstColumnContent, currentRoomAsset.UpdateDifficultyLevel);
-            builder.BuildDropdown("Type", Enum.GetNames(typeof(RoomType)), (int) currentRoomAsset.Type, window.FirstColumnContent, currentRoomAsset.UpdateType);
-            builder.BuildPlainText("Created by", currentRoomAsset.Author, window.FirstColumnContent);
-            builder.BuildPlainText("Created on", currentRoomAsset.CreationDate.ToString(), window.FirstColumnContent);
+            window.FirstColumnContent.gameObject.KillChildren();
             
-            editedAssetBase = currentRoomAsset;
+            b.BuildInputField("Title", data.Title, window.FirstColumnContent, data.UpdateTitle);
+            roomBuilder.Build(window.FirstColumnContent, data);
+            b.BuildPlainText("Created by", data.Author, window.FirstColumnContent);
+            b.BuildPlainText("Created on", data.CreationDate.ToString(), window.FirstColumnContent);
+            
+            editedAssetBase = data;
             window.OpenAsPropertiesColumn1(headerText, ThemeType.Blue, "Done", "Cancel", onConfirmAction, true);
         }
 

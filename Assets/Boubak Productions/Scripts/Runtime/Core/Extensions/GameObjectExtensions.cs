@@ -9,7 +9,7 @@ namespace BoubakProductions.Core
     public static class GameObjectExtensions
     {
         /// <summary>
-        /// Deletes all of this GameObjects's children.
+        /// Deletes all of this GameObject's children.
         /// </summary>
         /// <param name="gObject"></param>
         public static void KillChildren(this GameObject gObject)
@@ -17,7 +17,7 @@ namespace BoubakProductions.Core
             foreach (Transform child in gObject.transform)
             {
                 if (child == gObject.transform) continue;
-                GameObject.Destroy(child.gameObject);
+                Object.Destroy(child.gameObject);
             }
         }
 

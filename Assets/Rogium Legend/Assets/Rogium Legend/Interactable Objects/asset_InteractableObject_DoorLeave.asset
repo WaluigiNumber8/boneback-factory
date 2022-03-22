@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: asset_InteractableObject_DoorLeave
   m_EditorClassIdentifier: 
   id: 001
-  title: Door (lLeave)
+  title: Door (Leave)
   icon: {fileID: 21300000, guid: fe8b8523471148d40ae5d3cd37315cad, type: 3}
   prefab: {fileID: 3237167547994554368, guid: 023618c2e3c40794e8dfe78749fe530f, type: 3}
   parameters:
