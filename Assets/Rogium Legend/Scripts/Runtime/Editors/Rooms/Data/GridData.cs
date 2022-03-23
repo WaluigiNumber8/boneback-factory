@@ -1,5 +1,7 @@
-﻿using Rogium.Core;
+﻿using System;
+using Rogium.Core;
 using Rogium.Editors.Core;
+using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.GridSystem;
 using Rogium.Systems.ItemPalette;
 using UnityEngine;
@@ -17,14 +19,25 @@ namespace Rogium.Editors.Rooms
         private AssetData paintValue;
         private Sprite paintSprite;
 
-        public GridData(ObjectGrid<T> grid, ItemPaletteAsset palette, AssetType type, ParameterInfo defaultParams)
+        #region Constructors
+        public GridData(ObjectGrid<T> grid, ItemPaletteAsset palette, AssetType type, Func<IAsset, AssetData> createAssetData)
         {
             this.grid = grid;
             this.palette = palette;
             this.type = type;
 
-            this.palette.OnSelect += (asset => UpdateUsedPaint(new AssetData(asset.ID, defaultParams), asset.Icon));
+            this.palette.OnSelect += (asset => UpdateUsedPaint(createAssetData(asset), asset.Icon));
         }
+
+        public GridData(ObjectGrid<T> grid, ItemPaletteAsset palette, AssetType type)
+        {
+            this.grid = grid;
+            this.palette = palette;
+            this.type = type;
+
+            this.palette.OnSelect += (asset => new AssetData(asset.ID, ParameterDefaults.ParamsEmpty));
+        }
+        #endregion
 
         private void UpdateUsedPaint(AssetData newPaintValue, Sprite newPaintSprite)
         {

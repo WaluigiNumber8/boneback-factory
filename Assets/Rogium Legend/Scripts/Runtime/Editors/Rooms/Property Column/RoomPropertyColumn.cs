@@ -25,7 +25,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         private AssetType lastType = AssetType.Tile;
         private string currentRoomTitle;
         private string lastAssetTitle;
-        private bool settingsOpen;
+        
         private void Awake()
         {
             builderTile = new RoomPropertyColumnBuilderTile(assetContent);
@@ -42,7 +42,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         /// <param name="type">The asset type.</param>
         public void ConstructAsset(IAsset asset, AssetType type)
         {
-            if (!settingsOpen) ui.titleText.text = asset.Title;
+            ui.titleText.text = asset.Title;
             ui.iconImage.color = EditorDefaults.DefaultColor;
             ui.iconImage.sprite = asset.Icon;
 
@@ -76,7 +76,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         /// </summary>
         public void ConstructSettings(RoomAsset data)
         {
-            builderSettings.Build(settingsContent, data);
+            builderSettings.Build(settingsContent, data, true);
             currentRoomTitle = data.Title;
         }
         
@@ -92,23 +92,24 @@ namespace Rogium.Editors.Rooms.PropertyColumn
             ui.iconImage.sprite = null;
         }
 
+        /// <summary>
+        /// Prepares the Properties Column for Asset Properties visually.
+        /// </summary>
         public void PreparePropertiesColumn()
         {
             ui.titleText.text = lastAssetTitle;
             ui.typeText.gameObject.SetActive(true);
             ui.icon.gameObject.SetActive(true);
-            settingsOpen = false;
         }
         
         /// <summary>
-        /// Prepares the column for room settings.
+        /// Prepares the column for room settings visually.
         /// </summary>
         public void PrepareSettingsColumn()
         {
             ui.titleText.text = currentRoomTitle;
             ui.typeText.gameObject.SetActive(false);
             ui.icon.SetActive(false);
-            settingsOpen = true;
         }
         
         [System.Serializable]

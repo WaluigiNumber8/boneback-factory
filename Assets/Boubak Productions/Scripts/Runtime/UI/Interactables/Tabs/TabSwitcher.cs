@@ -1,7 +1,7 @@
 ﻿using BoubakProductions.Systems.ObjectSwitching;
 using UnityEngine;
 
-namespace BoubakProductions.UI
+namespace BoubakProductions.UI.Tabs
 {
     /// <summary>
     /// An Addon for <see cref="TabGroup"/> that uses the <see cref="ObjectSwitcher"/>.
@@ -18,7 +18,5 @@ namespace BoubakProductions.UI
             switcher = new ObjectSwitcher(tabGroup.GetButtonsAsArray());
             tabGroup.onTabSwitch += switcher.Switch;
         }
-        
-        public ObjectSwitcher Switcher { get => switcher; }
     }
 }

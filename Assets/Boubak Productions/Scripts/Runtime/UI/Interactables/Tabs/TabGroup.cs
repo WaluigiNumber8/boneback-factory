@@ -1,11 +1,9 @@
-using BoubakProductions.Safety;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using BoubakProductions.Core;
+using BoubakProductions.Safety;
 using UnityEngine;
 
-namespace BoubakProductions.UI
+namespace BoubakProductions.UI.Tabs
 {
     /// <summary>
     /// A new type of a UI Layout group, the Tab, allows for switching on and off different screens.
@@ -15,34 +13,22 @@ namespace BoubakProductions.UI
         public event Action<GameObject> onTabSwitch;
         
         [SerializeField] private int defaultTabIndex;
-        [SerializeField] private Sprite tabIdle;
-        [SerializeField] private Sprite tabHover;
-        [SerializeField] private Sprite tabActive;
+        [SerializeField] private ButtonVisualInfo visuals;
+        [SerializeField] private TabPageButton[] buttons;
 
-        private List<TabPageButton> buttons;
         private TabPageButton selectedTab;
 
         private void Start()
         {
-            SafetyNet.EnsureIntIsInRange(defaultTabIndex, 0, buttons.Count, "Default Tab Index");
+            SafetyNet.EnsureIntIsInRange(defaultTabIndex, 0, buttons.Length, "Default Tab Index");
             OnTabSelect(buttons[defaultTabIndex]);
-        }
-
-        /// <summary>
-        /// Register TabButton as part of this TabGroup.
-        /// </summary>
-        /// <param name="button">The button to register.</param>
-        public void Subscribe(TabPageButton button)
-        {
-            buttons ??= new List<TabPageButton>();
-            buttons.Add(button);
         }
 
         public void OnTabEnter(TabPageButton button)
         {
             ResetAllTabs();
             if (selectedTab == null || selectedTab != button)
-                button.Background.sprite = tabHover;
+                button.Background.sprite = visuals.tabHover;
         }
 
         public void OnTabExit(TabPageButton button)
@@ -54,7 +40,7 @@ namespace BoubakProductions.UI
         {
             selectedTab = button;
             ResetAllTabs();
-            button.Background.sprite = tabActive;
+            button.Background.sprite = visuals.tabActive;
             onTabSwitch?.Invoke(button.Page);
         }
 
@@ -65,7 +51,7 @@ namespace BoubakProductions.UI
         public void Switch(int index)
         {
             SafetyNet.EnsureIndexWithingCollectionRange(index, buttons, "Tab Buttons");
-            OnTabSelect(buttons[IntUtils.Flip(index, buttons.Count)]);
+            OnTabSelect(buttons[index]);
         }
         
         /// <summary>
@@ -76,7 +62,7 @@ namespace BoubakProductions.UI
             foreach (TabPageButton button in buttons)
             {
                 if (selectedTab != null && selectedTab == button) continue;
-                button.Background.sprite = tabIdle;
+                button.Background.sprite = visuals.tabIdle;
             }
         }
 
@@ -84,10 +70,14 @@ namespace BoubakProductions.UI
         /// Get all pages from tab group as an array of GameObjects.
         /// </summary>
         /// <returns>An array of pages.</returns>
-        public GameObject[] GetButtonsAsArray()
+        public GameObject[] GetButtonsAsArray() => buttons.Select(button => button.Page).ToArray();
+
+        [Serializable]
+        private struct ButtonVisualInfo
         {
-            return buttons.Select(button => button.Page)
-                          .ToArray();
+            public Sprite tabIdle;
+            public Sprite tabHover;
+            public Sprite tabActive;
         }
     }
 }

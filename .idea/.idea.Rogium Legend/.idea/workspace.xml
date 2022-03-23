@@ -78,6 +78,7 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_Dropdown.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/fd824cfb55004855b9e6d51b008c90e4568778/a8/e0d6144d/IComparable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/bc1d04d811fc4873ab7d8d9d4daddcc9568788/66/2a4e206f/Object.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/feaaa6313e32495d9f259b175aa6b59746a800/2c/d8d49d78/NullReferenceException.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Systems/Theme System/ThemeUpdaterRogium.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -105,10 +106,10 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor &amp; Play">
-    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="20316">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="20316" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -297,7 +298,9 @@
       <workItem from="1647857101869" duration="6100000" />
       <workItem from="1647884348907" duration="5898000" />
       <workItem from="1647938227369" duration="7033000" />
-      <workItem from="1647958083414" duration="1956000" />
+      <workItem from="1647958083414" duration="6715000" />
+      <workItem from="1648026340164" duration="2278000" />
+      <workItem from="1648051217342" duration="5640000" />
     </task>
     <servers />
   </component>

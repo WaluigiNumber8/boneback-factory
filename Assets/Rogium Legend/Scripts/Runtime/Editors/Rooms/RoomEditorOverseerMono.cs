@@ -1,14 +1,17 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using BoubakProductions.Core;
-using BoubakProductions.UI;
-using Rogium.Editors.Packs;
-using Rogium.Systems.GridSystem;
+using BoubakProductions.UI.Tabs;
 using Rogium.Core;
+using Rogium.Editors.Packs;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
+using Rogium.Editors.Enemies;
 using Rogium.Editors.Objects;
 using Rogium.Editors.Rooms.PropertyColumn;
+using Rogium.Editors.Tiles;
+using Rogium.Systems.GridSystem;
 using Rogium.Systems.ItemPalette;
 using Rogium.Systems.Toolbox;
 using UnityEngine;
@@ -116,17 +119,16 @@ namespace Rogium.Editors.Rooms
         /// </summary>
         private void PrepareEditor(RoomAsset room)
         {
-            tileData = new GridData<AssetData>(editor.CurrentAsset.TileGrid, paletteTile, AssetType.Tile, ParameterDefaults.ParamsTile);
-            objectData = new GridData<AssetData>(editor.CurrentAsset.ObjectGrid, paletteObject, AssetType.Object, ParameterDefaults.ParamsEmpty);
-            enemyData = new GridData<AssetData>(editor.CurrentAsset.EnemyGrid, paletteEnemy, AssetType.Enemy, ParameterDefaults.ParamsEnemy);
-            currentData = new GridData<AssetData>(editor.CurrentAsset.EnemyGrid, paletteEnemy, AssetType.None, ParameterDefaults.ParamsEmpty);
+            tileData = new GridData<AssetData>(editor.CurrentAsset.TileGrid, paletteTile, AssetType.Tile, AssetDataBuilder.ForTile);
+            objectData = new GridData<AssetData>(editor.CurrentAsset.ObjectGrid, paletteObject, AssetType.Object);
+            enemyData = new GridData<AssetData>(editor.CurrentAsset.EnemyGrid, paletteEnemy, AssetType.Enemy, AssetDataBuilder.ForEnemy);
+            currentData = new GridData<AssetData>(editor.CurrentAsset.EnemyGrid, paletteEnemy, AssetType.None);
             
             paletteTile.Fill(packEditor.CurrentPack.Tiles, AssetType.Tile);
             paletteObject.Fill(objects, AssetType.Object);
             paletteEnemy.Fill(packEditor.CurrentPack.Enemies, AssetType.Enemy);
-            
-            SwitchLayer(0);
-            paletteTile.Select(0);
+
+            StartCoroutine(SwitchLayer0Delay(0.1f));
             
             grid.LoadWithSprites(room.TileGrid, packEditor.CurrentPack.Tiles, 0);
             grid.LoadWithSprites(room.ObjectGrid, objects, 1);
@@ -154,9 +156,9 @@ namespace Rogium.Editors.Rooms
         {
             AssetData data = type switch
             {
-                AssetType.Tile => new AssetData(asset.ID, ParameterDefaults.ParamsTile),
+                AssetType.Tile => AssetDataBuilder.ForTile((TileAsset)asset),
                 AssetType.Object => new AssetData(asset.ID, ParameterDefaults.ParamsEmpty),
-                AssetType.Enemy => new AssetData(asset.ID, ParameterDefaults.ParamsEnemy),
+                AssetType.Enemy => AssetDataBuilder.ForEnemy((EnemyAsset)asset),
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };
             SelectedValue(data, type, asset);
@@ -202,7 +204,14 @@ namespace Rogium.Editors.Rooms
             }
             propertyColumn.ConstructAsset(asset, type);
         }
-        
+
+        private IEnumerator SwitchLayer0Delay(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            SwitchLayer(0);
+            paletteTile.Select(0);
+        }
+
         public ToolBox<AssetData, Sprite> Toolbox { get => toolbox; } 
     }
 }

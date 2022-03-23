@@ -4,7 +4,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace BoubakProductions.UI
+namespace BoubakProductions.UI.Tabs
 {
     /// <summary>
     /// A Button, belonging to a TabGroup, located on one of the parents of this object.
@@ -23,7 +23,6 @@ namespace BoubakProductions.UI
             background = GetComponent<Image>();
             group = GetComponentInParent<TabGroup>();
             SafetyNet.EnsureIsNotNull(group, group.name);
-            group.Subscribe(this);
         }
 
         public void OnPointerClick(PointerEventData eventData)

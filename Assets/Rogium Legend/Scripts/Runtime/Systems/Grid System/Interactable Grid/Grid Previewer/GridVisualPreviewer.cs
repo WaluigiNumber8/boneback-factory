@@ -31,12 +31,16 @@ namespace Rogium.Systems.GridSystem
         private bool allowMaterialSwitching;
         private bool followCursor;
 
+        private Sprite lastMaterial;
+        private Color lastColor;
+
         private void Start()
         {
             gridTransform = grid.GetComponent<RectTransform>();
             gridPreviewer.transform.position = gridTransform.anchoredPosition;
             gridPreviewer.transform.sizeDelta = grid.CellSize;
             followCursor = true;
+            lastColor = EditorDefaults.DefaultColor;
             
             PrepareForTool(ToolType.Brush);
             Hide();
@@ -52,11 +56,11 @@ namespace Rogium.Systems.GridSystem
             
             foreach (ItemPaletteAsset palette in assetPalettes)
             {
-                if (palette != null) palette.OnSelect += ChangeMaterial;
+                palette.OnSelect += ChangeMaterial;
             }
             foreach (ItemPaletteColor palette in colorPalettes)
             {
-                if (palette != null) palette.OnSelect += ChangeMaterial;
+                palette.OnSelect += ChangeColor;
             }
         }
 
@@ -69,11 +73,11 @@ namespace Rogium.Systems.GridSystem
             
             foreach (ItemPaletteAsset palette in assetPalettes)
             {
-                if (palette != null) palette.OnSelect -= ChangeMaterial;
+                palette.OnSelect -= ChangeMaterial;
             }
             foreach (ItemPaletteColor palette in colorPalettes)
             {
-                if (palette != null) palette.OnSelect -= ChangeMaterial;
+                palette.OnSelect -= ChangeColor;
             }
         }
 
@@ -126,19 +130,31 @@ namespace Rogium.Systems.GridSystem
         private void DisablePermanent() => inPermanentState = false;
         #endregion
 
-        private void ChangeMaterial(IAsset slot)
+        #region Material Change
+
+        private void ChangeMaterial(Sprite brush)
         {
+            lastMaterial = brush;
+            
             if (!allowMaterialSwitching) return;
+            
             gridPreviewer.image.color = EditorDefaults.DefaultColor;
-            gridPreviewer.image.sprite = slot.Icon;
+            gridPreviewer.image.sprite = lastMaterial;
         }
-        
-        private void ChangeMaterial(ColorSlot slot)
+        private void ChangeMaterial(IAsset brush) => ChangeMaterial(brush.Icon);
+
+        private void ChangeColor(Color color)
         {
+            lastColor = color;
+            
             if (!allowMaterialSwitching) return;
+            
             gridPreviewer.image.sprite = null;
-            gridPreviewer.image.color = slot.CurrentColor;
+            gridPreviewer.image.color = lastColor;
         }
+        private void ChangeColor(ColorSlot slot) => ChangeColor(slot.CurrentColor);
+
+        #endregion
 
         /// <summary>
         /// Prepares the previewer for a specific tool.
@@ -160,8 +176,11 @@ namespace Rogium.Systems.GridSystem
                     gridPreviewer.image.sprite = info.customSprite;
                     gridPreviewer.image.color = info.customColor;
                 }
-                
-                
+                else
+                {
+                    ChangeMaterial(lastMaterial);
+                }
+
                 currentTool = type;
             }
         }

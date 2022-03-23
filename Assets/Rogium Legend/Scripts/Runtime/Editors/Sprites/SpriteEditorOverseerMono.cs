@@ -1,4 +1,5 @@
-﻿using BoubakProductions.Core;
+﻿using System.Collections;
+using BoubakProductions.Core;
 using BoubakProductions.UI;
 using Rogium.Core;
 using Rogium.Editors.Core;
@@ -98,7 +99,7 @@ namespace Rogium.Editors.Sprites
             currentSprite = sprite;
             
             SwitchPalette(colorArray);
-            palette.Select(0);
+            StartCoroutine(SwitchLayerDelay(0.1f));
         }
         
         /// <summary>
@@ -132,6 +133,12 @@ namespace Rogium.Editors.Sprites
         private void EraseCell(Vector2Int position)
         {
             toolbox.ApplySpecific(ToolType.Eraser, editor.CurrentAsset.SpriteData, position, currentSlot.Index);
+        }
+        
+        private IEnumerator SwitchLayerDelay(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            palette.Select(0);
         }
         
         public ToolBox<int, Color> Toolbox { get => toolbox; } 

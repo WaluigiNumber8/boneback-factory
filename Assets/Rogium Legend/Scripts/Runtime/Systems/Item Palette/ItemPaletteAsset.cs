@@ -30,7 +30,6 @@ namespace Rogium.Systems.ItemPalette
         
         private void Awake() => menuFiller = new MenuFiller<AssetSlot>();
         private void OnEnable() => AssetSlot.OnSelectedAny += WhenSelected;
-
         private void OnDisable() => AssetSlot.OnSelectedAny -= WhenSelected;
 
         /// <summary>

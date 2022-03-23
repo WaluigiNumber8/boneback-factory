@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using BoubakProductions.Core;
 using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine;
 
@@ -21,14 +22,16 @@ namespace Rogium.Editors.Rooms
             difficulties.Add("Level 4");
             difficulties.Add("Level 5");
         }
-        
+
         /// <summary>
         /// Build setting properties for a room.
         /// </summary>
         /// <param name="content">The content to build under.</param>
         /// <param name="data">The data to use.</param>
-        public void Build(Transform content, RoomAsset data)
+        /// <param name="clearContent">If on, all of contents children will be killed before building properties.</param>
+        public void Build(Transform content, RoomAsset data, bool clearContent)
         {
+            if (clearContent) content.gameObject.KillChildren();
             b.BuildDropdown("Type", Enum.GetNames(typeof(RoomType)), (int) data.Type, content, data.UpdateType);
             b.BuildDropdown("Tier", difficulties, data.DifficultyLevel, content, data.UpdateDifficultyLevel);
         }
