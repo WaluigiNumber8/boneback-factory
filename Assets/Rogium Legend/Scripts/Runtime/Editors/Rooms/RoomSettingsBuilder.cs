@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using BoubakProductions.Core;
 using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine;
@@ -9,18 +8,18 @@ namespace Rogium.Editors.Rooms
     public class RoomSettingsBuilder
     {
         private readonly UIPropertyBuilder b;
-        private readonly IList<string> difficulties;
+        private readonly string[] difficulties;
 
         public RoomSettingsBuilder()
         {
             b = UIPropertyBuilder.GetInstance();
-            
-            difficulties = new List<string>();
-            difficulties.Add("Level 1");
-            difficulties.Add("Level 2");
-            difficulties.Add("Level 3");
-            difficulties.Add("Level 4");
-            difficulties.Add("Level 5");
+
+            difficulties = new string[5];
+            difficulties[0] = "Level 1";
+            difficulties[1] = "Level 2";
+            difficulties[2] = "Level 3";
+            difficulties[3] = "Level 4";
+            difficulties[4] = "Level 5";
         }
 
         /// <summary>

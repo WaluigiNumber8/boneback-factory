@@ -10,9 +10,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
     /// </summary>
     public class RoomPropertyColumnBuilderEnemy : UIPropertyContentBuilderBaseColumn1
     {
-        public RoomPropertyColumnBuilderEnemy(Transform contentMain) : base(contentMain)
-        {
-        }
+        public RoomPropertyColumnBuilderEnemy(Transform contentMain) : base(contentMain) { }
 
         /// <summary>
         /// Build properties.

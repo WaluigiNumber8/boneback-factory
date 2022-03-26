@@ -105,7 +105,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="whenValueChange">What happens when the property changes value.</param>
         /// <param name="isDisabled">Initialize the property as a non-interactable.</param>
         /// <returns>The property itself.</returns>
-        public InteractablePropertyDropdown BuildDropdown(string title, IList<string> options, int value, Transform parent, Action<int> whenValueChange, bool isDisabled = false)
+        public InteractablePropertyDropdown BuildDropdown(string title, IEnumerable<string> options, int value, Transform parent, Action<int> whenValueChange, bool isDisabled = false)
         {
             InteractablePropertyDropdown dropdown = Instantiate(dropdownProperty, parent);
             dropdown.Construct(title, options, value, whenValueChange);

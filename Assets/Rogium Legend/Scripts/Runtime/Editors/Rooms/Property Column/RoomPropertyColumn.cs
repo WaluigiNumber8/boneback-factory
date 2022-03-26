@@ -19,6 +19,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         [SerializeField] private UIInfo ui;
 
         private RoomPropertyColumnBuilderTile builderTile;
+        private RoomPropertyColumnBuilderObject builderObject;
         private RoomPropertyColumnBuilderEnemy builderEnemy;
         private RoomSettingsBuilder builderSettings;
 
@@ -29,6 +30,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         private void Awake()
         {
             builderTile = new RoomPropertyColumnBuilderTile(assetContent);
+            builderObject = new RoomPropertyColumnBuilderObject(assetContent);
             builderEnemy = new RoomPropertyColumnBuilderEnemy(assetContent);
             builderSettings = new RoomSettingsBuilder();
             
@@ -57,20 +59,20 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         /// Constructs the Asset Properties Column from tiles.
         /// </summary>
         /// <param name="data">The asset data to read from.</param>
-        public void ConstructAssetPropertiesTile(AssetData data)
-        {
-            builderTile.Build(data);
-        }
-        
+        public void ConstructAssetPropertiesTile(AssetData data) => builderTile.Build(data);
+
+        /// <summary>
+        /// Constructs the Asset Properties Column from interactable objects.
+        /// </summary>
+        /// <param name="data">The asset data to read from.</param>
+        public void ConstructAssetPropertiesObject(AssetData data) => builderObject.Build(data);
+
         /// <summary>
         /// Constructs the Asset Properties Column from enemies.
         /// </summary>
         /// <param name="data">The asset data to read from.</param>
-        public void ConstructAssetPropertiesEnemies(AssetData data)
-        {
-            builderEnemy.Build(data);
-        }
-        
+        public void ConstructAssetPropertiesEnemies(AssetData data) => builderEnemy.Build(data);
+
         /// <summary>
         /// Constructs the Room Settings Column.
         /// </summary>

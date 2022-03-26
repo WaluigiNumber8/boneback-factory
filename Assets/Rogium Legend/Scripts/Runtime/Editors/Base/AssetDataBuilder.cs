@@ -1,6 +1,7 @@
 ﻿using Rogium.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Enemies;
+using Rogium.Editors.Objects;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Tiles;
 
@@ -15,15 +16,6 @@ namespace Rogium.Editors.Core
         private static AssetType lastType;
         private static AssetData lastData;
 
-        /// <summary>
-        /// Builds Asset data for a tile in the currently open pack.
-        /// </summary>
-        /// <param name="id">The id of the tile to build for.</param>
-        /// <returns>AssetData for that specific asset.</returns>
-        public static AssetData ForTile(string id)
-        {
-            return ForTile(PackEditorOverseer.Instance.CurrentPack.Tiles.FindValueFirst(id));
-        }
         /// <summary>
         /// Builds Asset data for a tile in the currently open pack.
         /// </summary>
@@ -45,16 +37,27 @@ namespace Rogium.Editors.Core
 
             return lastData;
         }
-        
+
         /// <summary>
-        /// Builds Asset data for an enemy in the currently open pack.
+        /// Builds Asset data for an interactable object.
         /// </summary>
-        /// <param name="id">The id of the enemy to read from.</param>
+        /// <param name="asset">The object to read from.</param>
         /// <returns>AssetData for that specific asset.</returns>
-        public static AssetData ForEnemy(string id)
+        public static AssetData ForObject(IAsset asset)
         {
-            return ForEnemy(PackEditorOverseer.Instance.CurrentPack.Enemies.FindValueFirst(id));
+            if (asset.ID == EditorDefaults.EmptyAssetID) return new AssetData(ParameterDefaults.ParamsEmpty);
+            if (asset.ID == lastID && lastType == AssetType.Object) return lastData;
+            
+            ObjectAsset iobject = (ObjectAsset)asset;
+            ParameterInfo parameters = iobject.Parameters;
+
+            lastID = asset.ID;
+            lastType = AssetType.Object;
+            lastData = new AssetData(asset.ID, parameters);
+
+            return lastData;
         }
+        
         /// <summary>
         /// Builds Asset data for an enemy in the currently open pack.
         /// </summary>
@@ -76,5 +79,7 @@ namespace Rogium.Editors.Core
 
             return lastData;
         }
+        
+        
     }
 }

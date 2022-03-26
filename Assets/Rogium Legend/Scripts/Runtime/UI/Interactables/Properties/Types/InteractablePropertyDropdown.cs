@@ -24,7 +24,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// /// <param name="options">The list of options the dropdown will be filled with.</param>
         /// <param name="startingValue">Index of the dropdownOption.</param>
         /// <param name="whenValueChange">Method that will run when the dropdown value changes.</param>
-        public void Construct(string titleText, IList<string> options, int startingValue, Action<int> whenValueChange)
+        public void Construct(string titleText, IEnumerable<string> options, int startingValue, Action<int> whenValueChange)
         {
             FillDropdown(options);
             title.text = titleText;
@@ -63,7 +63,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// Fills the dropdown with strings.
         /// </summary>
         /// <param name="options">List of strings, that will become values.</param>
-        private void FillDropdown(IList<string> options)
+        private void FillDropdown(IEnumerable<string> options)
         {
             dropdown.options.Clear();
             foreach (string option in options)

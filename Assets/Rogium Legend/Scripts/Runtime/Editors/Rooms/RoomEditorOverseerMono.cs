@@ -7,10 +7,8 @@ using Rogium.Core;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
-using Rogium.Editors.Enemies;
 using Rogium.Editors.Objects;
 using Rogium.Editors.Rooms.PropertyColumn;
-using Rogium.Editors.Tiles;
 using Rogium.Systems.GridSystem;
 using Rogium.Systems.ItemPalette;
 using Rogium.Systems.Toolbox;
@@ -102,7 +100,7 @@ namespace Rogium.Editors.Rooms
         public void UpdateGridCell(Vector2Int position)
         {
             if (currentData.BrushValue.ID == EditorDefaults.EmptyAssetID) return;
-            toolbox.ApplyCurrent(currentData.Grid, position, currentData.BrushValue, currentData.BrushSprite);
+            toolbox.ApplyCurrent(currentData.Grid, position, new AssetData(currentData.BrushValue), currentData.BrushSprite);
         }
 
         /// <summary>
@@ -120,7 +118,7 @@ namespace Rogium.Editors.Rooms
         private void PrepareEditor(RoomAsset room)
         {
             tileData = new GridData<AssetData>(editor.CurrentAsset.TileGrid, paletteTile, AssetType.Tile, AssetDataBuilder.ForTile);
-            objectData = new GridData<AssetData>(editor.CurrentAsset.ObjectGrid, paletteObject, AssetType.Object);
+            objectData = new GridData<AssetData>(editor.CurrentAsset.ObjectGrid, paletteObject, AssetType.Object, AssetDataBuilder.ForObject);
             enemyData = new GridData<AssetData>(editor.CurrentAsset.EnemyGrid, paletteEnemy, AssetType.Enemy, AssetDataBuilder.ForEnemy);
             currentData = new GridData<AssetData>(editor.CurrentAsset.EnemyGrid, paletteEnemy, AssetType.None);
             
@@ -152,13 +150,18 @@ namespace Rogium.Editors.Rooms
             toolbox.SwitchTool(ToolType.Brush);
         }
 
+        /// <summary>
+        /// Select a value from the current grid.
+        /// </summary>
+        /// <param name="asset">The asset to use.</param>
+        /// <param name="type">The type of asset that was selected.</param>
         private void SelectedValue(IAsset asset, AssetType type)
         {
             AssetData data = type switch
             {
-                AssetType.Tile => AssetDataBuilder.ForTile((TileAsset)asset),
-                AssetType.Object => new AssetData(asset.ID, ParameterDefaults.ParamsEmpty),
-                AssetType.Enemy => AssetDataBuilder.ForEnemy((EnemyAsset)asset),
+                AssetType.Tile => AssetDataBuilder.ForTile(packEditor.CurrentPack.Tiles.FindValueFirst(asset.ID)),
+                AssetType.Object => AssetDataBuilder.ForObject(asset),
+                AssetType.Enemy => AssetDataBuilder.ForEnemy(packEditor.CurrentPack.Enemies.FindValueFirst(asset.ID)),
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };
             SelectedValue(data, type, asset);
@@ -172,12 +175,13 @@ namespace Rogium.Editors.Rooms
         {
             SelectedValue(data, currentData.Type);
         }
-        
+
         /// <summary>
         /// Select a value from the current grid.
         /// </summary>
         /// <param name="data">The data of the value on the grid.</param>
         /// <param name="type">The type of asset that was selected.</param>
+        /// <param name="asset">The asset to use.</param>
         private void SelectedValue(AssetData data, AssetType type, IAsset asset = null)
         {
             if (data.ID == EditorDefaults.EmptyAssetID)
@@ -193,6 +197,7 @@ namespace Rogium.Editors.Rooms
                     asset ??= packEditor.CurrentPack.Tiles.FindValueFirst(data.ID);
                     break;
                 case AssetType.Object:
+                    propertyColumn.ConstructAssetPropertiesObject(data);
                     asset ??= objects.FindValueFirst(data.ID);
                     break;
                 case AssetType.Enemy:
@@ -202,6 +207,7 @@ namespace Rogium.Editors.Rooms
                 default:
                     throw new ArgumentOutOfRangeException($"Layer with type '{type}' is not supported.");
             }
+            currentData.UpdateUsedPaint(data);
             propertyColumn.ConstructAsset(asset, type);
         }
 

@@ -39,9 +39,14 @@ namespace Rogium.Editors.Rooms
         }
         #endregion
 
-        private void UpdateUsedPaint(AssetData newPaintValue, Sprite newPaintSprite)
+        public void UpdateUsedPaint(AssetData newPaintValue)
         {
             paintValue = newPaintValue;
+        }
+        
+        private void UpdateUsedPaint(AssetData newPaintValue, Sprite newPaintSprite)
+        {
+            UpdateUsedPaint(newPaintValue);
             paintSprite = newPaintSprite;
         }
 

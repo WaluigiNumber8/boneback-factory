@@ -106,10 +106,10 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor &amp; Play">
-    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="20316">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="14068">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="20316" />
+      <option name="pid" value="14068" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -300,7 +300,9 @@
       <workItem from="1647938227369" duration="7033000" />
       <workItem from="1647958083414" duration="6715000" />
       <workItem from="1648026340164" duration="2278000" />
-      <workItem from="1648051217342" duration="5640000" />
+      <workItem from="1648051217342" duration="5744000" />
+      <workItem from="1648123679607" duration="2861000" />
+      <workItem from="1648312775050" duration="3778000" />
     </task>
     <servers />
   </component>
@@ -411,6 +413,32 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="86" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Editors/Rooms/RoomEditorOverseerMono.cs</url>
+          <line>102</line>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Editors\Rooms\RoomEditorOverseerMono.cs" initialLine="102" containingFunctionPresentation="method 'UpdateGridCell'">
+            <startOffsets>
+              <option value="3888" />
+            </startOffsets>
+            <endOffsets>
+              <option value="4001" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="87" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Editors/Rooms/Data/GridData.cs</url>
+          <line>43</line>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Editors\Rooms\Data\GridData.cs" initialLine="43" containingFunctionPresentation="method 'UpdateUsedPaint'">
+            <startOffsets>
+              <option value="1343" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1370" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="88" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -1,4 +1,5 @@
-﻿using BoubakProductions.Core;
+﻿using System;
+using BoubakProductions.Core;
 using BoubakProductions.UI;
 using Rogium.Core;
 using Rogium.Editors.Core;
@@ -33,7 +34,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
         protected override void BuildProperty(Transform content)
         {
             b.BuildHeader("General", content);
-            b.BuildDropdown("Type", EnumUtils.ToStringList(typeof(TileType)), (int)asset.Type, content, asset.UpdateTileType);
+            b.BuildDropdown("Type", Enum.GetNames(typeof(TileType)), (int)asset.Type, content, asset.UpdateTileType);
         }
     }
 }

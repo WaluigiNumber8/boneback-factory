@@ -11,13 +11,10 @@ namespace Rogium.UserInterface.ModalWindowBuilding
     /// </summary>
     public class ModalWindowPropertyBuilderTile : ModalWindowPropertyBuilder
     {
-        private TileEditorOverseer tileEditor;
+        private readonly TileEditorOverseer tileEditor;
 
-        public ModalWindowPropertyBuilderTile()
-        {
-            tileEditor = TileEditorOverseer.Instance;
-        }
-        
+        public ModalWindowPropertyBuilderTile() => tileEditor = TileEditorOverseer.Instance;
+
         public override void OpenForCreate()
         {
             OpenWindow(new TileAsset(), CreateAsset, "Creating a new Tile");
@@ -31,7 +28,7 @@ namespace Rogium.UserInterface.ModalWindowBuilding
         private void OpenWindow(TileAsset tile, Action onConfirmAction, string headerText)
         {
             b.BuildInputField("Title", tile.Title, window.FirstColumnContent, tile.UpdateTitle);
-            b.BuildDropdown("Type", EnumUtils.ToStringList(typeof(TileType)), (int)tile.Type, window.FirstColumnContent, tile.UpdateTileType);
+            b.BuildDropdown("Type", Enum.GetNames(typeof(TileType)), (int)tile.Type, window.FirstColumnContent, tile.UpdateTileType);
             b.BuildPlainText("Created by", tile.Author, window.FirstColumnContent);
             b.BuildPlainText("Created on", tile.CreationDate.ToString(), window.FirstColumnContent);
             
