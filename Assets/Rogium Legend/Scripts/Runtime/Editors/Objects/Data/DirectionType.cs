@@ -3,11 +3,11 @@
     /// <summary>
     /// Direction of movement.
     /// </summary>
-    public enum Direction
+    public enum DirectionType
     {
         Up = 0,
-        Right = 1,
-        Down = 2,
+        Down = 1,
+        Right = 2,
         Left = 3
     }
 }

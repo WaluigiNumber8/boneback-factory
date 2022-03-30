@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using BoubakProductions.Systems.Randomization;
 using Rogium.Editors.Rooms;
 
 namespace Rogium.Gameplay.AssetRandomGenerator
@@ -13,10 +14,11 @@ namespace Rogium.Gameplay.AssetRandomGenerator
         private readonly IList<int> entranceRooms;
         private readonly IList<int> shopRooms;
 
+        private readonly IRandomizer randomizerNormal;
+        private readonly IRandomizer randomizerRare;
+
         private readonly int chosenEntrance;
         private readonly int chosenShop;
-
-        private readonly RandomizerOverseer randomizer;
 
         public RRG(IList<RoomAsset> allRooms)
         {
@@ -26,14 +28,11 @@ namespace Rogium.Gameplay.AssetRandomGenerator
             shopRooms = new List<int>();
             LoadUpLists(allRooms);
 
-            randomizer = new RandomizerOverseer();
-            randomizer.Register(0, normalRooms.Count, 5);
-            randomizer.Register(1, rareRooms.Count, 5);
-            randomizer.Register(2, entranceRooms.Count, 5);
-            randomizer.Register(3, shopRooms.Count, 5);
+            randomizerNormal = new RandomizerRegion(0, normalRooms.Count);
+            randomizerRare = new RandomizerRegion(0, rareRooms.Count);
 
             //TODO Deal with having no rooms in a collection.
-            chosenEntrance = entranceRooms[randomizer.GetNext(2)];
+            chosenEntrance = entranceRooms[0];
             // chosenShop = shopRooms[randomizer.GetNext(3)];
         }
 
@@ -72,8 +71,7 @@ namespace Rogium.Gameplay.AssetRandomGenerator
         /// <returns>The index of the room to grab.</returns>
         public int NextNormalRoom()
         {
-            int value = randomizer.GetNext(0);
-            return normalRooms[value];
+            return normalRooms[randomizerNormal.GetNext()];
         }
         
         /// <summary>
@@ -82,7 +80,7 @@ namespace Rogium.Gameplay.AssetRandomGenerator
         /// <returns>The index of the room to grab.</returns>
         public int NextRareRoom()
         {
-            return rareRooms[randomizer.GetNext(1)];
+            return rareRooms[randomizerRare.GetNext()];
         }
         
         /// <summary>

@@ -16,12 +16,7 @@ namespace Rogium.Gameplay.DataLoading
     public class ObjectMapLoader : MonoBehaviour
     {
         [SerializeField] private Vector2 spawnOffset = new Vector2(0.5f, 0.5f);
-        
         [SerializeField] private Transform content;
-
-        private IList<ObjectAsset> objects;
-
-        private void Awake() => objects = InternalLibraryOverseer.GetInstance().GetObjectsCopy();
 
         /// <summary>
         /// Load a new grid tilemap of interactable objects.
@@ -32,7 +27,7 @@ namespace Rogium.Gameplay.DataLoading
         public void Load(Vector3Int offsetPos, ObjectGrid<AssetData> IDGrid, IList<ObjectAsset> dataList)
         {
             content.gameObject.KillChildren();
-            AssetUtils.UpdateFromGridByList(IDGrid, objects,
+            AssetUtils.UpdateFromGridByList(IDGrid, dataList,
                                             (x, y, asset, data) => Spawn(offsetPos, x, y, asset, data.Parameters),
                                             (x, y) => throw new InvalidOperationException("This interactable object does not exist."));
         }

@@ -263,6 +263,22 @@ namespace BoubakProductions.Safety
             }
         }
 
+        /// <summary>
+        /// Checks if an number is within a given range (both inclusive).
+        /// </summary>
+        /// <param name="number">The number to check.</param>
+        /// <param name="lowBounds">Minimum value allowed.</param>
+        /// <param name="highBounds">Maximum value allowed.</param>
+        /// <param name="variableName">Name of the checked variable.</param>
+        public static void EnsureFloatIsInRange(float number, float lowBounds, float highBounds, string variableName)
+        {
+            if (number < lowBounds && number > highBounds)
+            {
+                string message = $"Number called '{variableName}' must be in range of {lowBounds} - {highBounds}. ({number})";
+                OnFireErrorMessage?.Invoke(message);
+                throw new SafetyNetException(message);
+            }
+        }
         #endregion
         
         #region String Checks

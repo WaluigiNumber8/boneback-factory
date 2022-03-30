@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Rogium.Editors.Core;
 using Rogium.Editors.Objects;
@@ -22,6 +21,11 @@ namespace Rogium.Gameplay.DataLoading
 
         private void Awake() => objects = InternalLibraryOverseer.GetInstance().GetObjectsCopy();
 
+        /// <summary>
+        /// Loads the next room.
+        /// </summary>
+        /// <param name="room"></param>
+        /// <param name="dataPack"></param>
         public void Load(RoomAsset room, PackAsset dataPack)
         {
             tilemapLoader.Load(originPos, room.TileGrid, dataPack.Tiles);

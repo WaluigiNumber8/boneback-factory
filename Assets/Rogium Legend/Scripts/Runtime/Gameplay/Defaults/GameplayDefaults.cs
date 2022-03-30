@@ -7,6 +7,10 @@ namespace Rogium.Gameplay.Core
     /// </summary>
     public static class GameplayDefaults
     {
+        //Randomizer
+        public const int EmptyMemoryValue = -1;
+        
+        //Entities
         public static readonly Vector2 FaceDirection = Vector2.right;
     }
 }

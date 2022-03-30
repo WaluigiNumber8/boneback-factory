@@ -12,13 +12,14 @@ namespace Rogium.Editors.Rooms.PropertyColumn
     /// </summary>
     public class RoomPropertyColumnBuilderObject : UIPropertyContentBuilderBaseColumn1
     {
-        private IDictionary<string, Action<AssetData>> presets;
+        private readonly IDictionary<string, Action<AssetData>> presets;
 
         public RoomPropertyColumnBuilderObject(Transform contentMain) : base(contentMain)
         {
             presets = new Dictionary<string, Action<AssetData>>();
             
             presets.Add("001", BuildRoomExit);
+            presets.Add("002", BuildStartingPoint);
         }
         
         /// <summary>
@@ -45,9 +46,15 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         private void BuildRoomExit(AssetData data)
         {
             EmptyContent();
-            b.BuildDropdown("Direction", Enum.GetNames(typeof(Direction)), data.Parameters.intValue1, contentMain, data.UpdateIntValue1);
+            b.BuildDropdown("Direction", Enum.GetNames(typeof(DirectionType)), data.Parameters.intValue1, contentMain, data.UpdateIntValue1);
+            b.BuildDropdown("Next Room", Enum.GetNames(typeof(RoomType)), data.Parameters.intValue2, contentMain, data.UpdateIntValue2);
         }
 
+        private void BuildStartingPoint(AssetData data)
+        {
+            EmptyContent();
+            b.BuildDropdown("Exit Direction", Enum.GetNames(typeof(DirectionType)), data.Parameters.intValue1, contentMain, data.UpdateIntValue1);
+        }
         #endregion
         
     }

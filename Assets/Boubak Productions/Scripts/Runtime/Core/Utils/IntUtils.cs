@@ -8,13 +8,13 @@
         /// <summary>
         /// Wraps an index in a range of integers (both inclusive).
         /// </summary>
-        /// <param name="index">The index to wrap.</param>
-        /// <param name="min">Range Minimum.</param>
-        /// <param name="max">Range Maximum.</param>
+        /// <param name="value">The value to wrap and return.</param>
+        /// <param name="min">Range Minimum. (inclusive)</param>
+        /// <param name="max">Range Maximum. (inclusive)</param>
         /// <returns>The new index position.</returns>
-        public static int Wrap(int index, int min, int max)
+        public static int Wrap(int value, int min, int max)
         {
-            return (index > max) ? min : ((index < min) ? max : index);
+            return (value > max) ? min : ((value < min) ? max : value);
         }
 
         /// <summary>
