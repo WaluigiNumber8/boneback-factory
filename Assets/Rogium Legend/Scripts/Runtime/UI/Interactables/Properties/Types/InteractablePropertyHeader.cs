@@ -32,7 +32,5 @@ namespace Rogium.UserInterface.Interactables.Properties
             UIExtensions.ChangeFont(title, headerFont);
             line.sprite = lineSprite;
         }
-        
-        public string Title { get => title.text; }
     }
 }

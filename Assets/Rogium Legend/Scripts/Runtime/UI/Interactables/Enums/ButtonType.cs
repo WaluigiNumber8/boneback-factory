@@ -4,6 +4,7 @@ namespace Rogium.UserInterface.Interactables
     public enum ButtonType
     {
         DoNothing = 0,
+        OpenOptionsMenu = 75,
 
         #region Open Selection Menus
         SelectionOpenPack = 1,
@@ -20,7 +21,8 @@ namespace Rogium.UserInterface.Interactables
 
         #region Return from Menus
         ReturnToAssetTypeSelection = 11,
-        ReturnToMainMenu = 12,
+        ReturnToMainMenuFromSelection = 12,
+        ReturnToMainMenuFromOptions = 74,
 
         #endregion
 
@@ -122,6 +124,6 @@ namespace Rogium.UserInterface.Interactables
         Play = 10000,
         TEST = 10001
         
-        //Latest : 73
+        //Latest : 75
     }   
 }

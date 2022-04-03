@@ -51,8 +51,24 @@ namespace Rogium.Systems.GASExtension
             GAS.SwitchScene(1);
         }
 
+        public static void OpenOptionsMenu()
+        {
+            GAS.SwitchMenu(MenuType.OptionsMenu);
+        }
+
+        public static void ReturnToMainMenuOptions()
+        {
+            ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
+            window.OpenAsMessage("Return to Main Menu without confirming changes?", ThemeType.Blue,"Yes","No", ReturnToMainMenuOptionsConfirm, true);
+        }
+        
+        private static void ReturnToMainMenuOptionsConfirm()
+        {
+            GAS.SwitchMenu(MenuType.MainMenu);
+        }
+        
         #region Return from menus
-        public static void ReturnToMainMenu()
+        public static void ReturnToMainMenuSelection()
         {
             CanvasOverseer.GetInstance().NavigationBar.Hide();
             GAS.ObjectSetActive(false, UIEditorContainer.GetInstance().Background);
@@ -66,7 +82,7 @@ namespace Rogium.Systems.GASExtension
         {
             GASRogium.ChangeTheme(ThemeType.Blue);
             PackEditorOverseer.Instance.CompleteEditing();
-            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToMainMenu);
+            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToMainMenuSelection);
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Pack);
         }
@@ -87,7 +103,7 @@ namespace Rogium.Systems.GASExtension
             GAS.ObjectSetActive(true, UIEditorContainer.GetInstance().Background);
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Pack);
-            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToMainMenu);
+            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToMainMenuSelection);
         }
 
         public static void OpenSelectionCampaign()

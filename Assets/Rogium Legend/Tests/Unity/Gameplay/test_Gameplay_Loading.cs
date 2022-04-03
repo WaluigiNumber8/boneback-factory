@@ -16,7 +16,7 @@ using Object = UnityEngine.Object;
 public class test_Gameplay_Loading
 {
 
-    private GameplayOverseer gameplay;
+    private GameplayOverseerMono gameplay;
     private Grid grid;
     private CampaignAsset campaign;
     private TilemapLayer[] tilemaps;
@@ -30,7 +30,7 @@ public class test_Gameplay_Loading
         
         grid = Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Gameplay_Grid.prefab")).GetComponent<Grid>();
         
-        gameplay = GameplayOverseer.Instance;
+        gameplay = GameplayOverseerMono.GetInstance();
         tilemaps = new TilemapLayer[2];
         tilemaps[0] = new TilemapLayer(grid.transform.GetChild(0).GetComponent<Tilemap>());
         tilemaps[1] = new TilemapLayer(grid.transform.GetChild(1).GetComponent<Tilemap>());
@@ -39,7 +39,7 @@ public class test_Gameplay_Loading
     [UnityTest]
     public IEnumerator prepare_game_correctly_full_tour()
     {
-        gameplay.PrepareGame(campaign, new RoomLoader());
+        gameplay.PrepareGame();
         yield return new WaitForSeconds(2f);
         Assert.AreEqual(campaign.DataPack.Tiles[0].Tile, tilemaps[0].Tilemap.GetTile(new Vector3Int(-18, 11, 0)));
     }

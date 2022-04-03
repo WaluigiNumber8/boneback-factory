@@ -198,8 +198,19 @@ PrefabInstance:
       propertyPath: tilemaps.Array.data[2].tilemap
       value: 
       objectReference: {fileID: 1962549087}
-    m_RemovedComponents:
-    - {fileID: 103936658, guid: 5eccfc24a45969d4db1104ca3d6fedc9, type: 3}
+    - target: {fileID: 2982206685237233498, guid: 5eccfc24a45969d4db1104ca3d6fedc9, type: 3}
+      propertyPath: originPos.x
+      value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2982206685237233498, guid: 5eccfc24a45969d4db1104ca3d6fedc9, type: 3}
+      propertyPath: originPos.y
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8568631024101359163, guid: 5eccfc24a45969d4db1104ca3d6fedc9, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 42737587976820105}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5eccfc24a45969d4db1104ca3d6fedc9, type: 3}
 --- !u!4 &103936656 stripped
 Transform:
@@ -1122,6 +1133,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b1858fadbbcfd14fa8ab21287d05e1f, type: 3}
+--- !u!114 &42737587976820105 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 42737588524664429, guid: 8b1858fadbbcfd14fa8ab21287d05e1f, type: 3}
+  m_PrefabInstance: {fileID: 42737587976820104}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc47df1375214f89a4fc8ebbbc0c0cf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4919760743876524898
 PrefabInstance:
   m_ObjectHideFlags: 0

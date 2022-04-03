@@ -20,12 +20,18 @@ namespace Rogium.UserInterface.Interactables
                 case ButtonType.QuitGame:
                     GASButtonActions.GameQuit();
                     break;
+                case ButtonType.OpenOptionsMenu:
+                    GASButtonActions.OpenOptionsMenu();
+                    break;
 
                 #region Return from Menus
                 case ButtonType.ReturnToAssetTypeSelection:
                     break;
-                case ButtonType.ReturnToMainMenu:
-                    GASButtonActions.ReturnToMainMenu();
+                case ButtonType.ReturnToMainMenuFromSelection:
+                    GASButtonActions.ReturnToMainMenuSelection();
+                    break;
+                case ButtonType.ReturnToMainMenuFromOptions:
+                    GASButtonActions.ReturnToMainMenuOptions();
                     break;
                 #endregion
 
