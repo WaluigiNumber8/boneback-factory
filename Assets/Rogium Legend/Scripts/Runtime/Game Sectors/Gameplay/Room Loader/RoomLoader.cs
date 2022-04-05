@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using BoubakProductions.Safety;
 using Rogium.Editors.Core;
@@ -43,42 +44,22 @@ namespace Rogium.Gameplay.DataLoading
             switch (type)
             {
                 case RoomType.Normal:
-                    LoadNextNormalRoom();
+                    LoadRoom(rrg.NextNormalRoom());
                     break;
                 case RoomType.Rare:
-                    LoadNextRareRoom();
+                    LoadRoom(rrg.NextRareRoom());
                     break;
                 case RoomType.Entrance:
-                    LoadEntranceRoom();
+                    LoadRoom(rrg.ChosenEntranceRoom());
                     break;
                 case RoomType.Shop:
-                    LoadShopRoom();
+                    LoadRoom(rrg.ChosenShopRoom());
                     break;
                 default:
                     throw new ArgumentOutOfRangeException($"The Room Type of '{type}' is not supported by the RRG.");
             }
         }
         
-        /// <summary>
-        /// Loads the next normal type room.
-        /// </summary>
-        public void LoadNextNormalRoom() => LoadRoom(rrg.NextNormalRoom());
-
-        /// <summary>
-        /// Loads the next rare type room.
-        /// </summary>
-        public void LoadNextRareRoom() => LoadRoom(rrg.NextRareRoom());
-
-        /// <summary>
-        /// Loads the entrance room, chosen for this campaign.
-        /// </summary>
-        public void LoadEntranceRoom() => LoadRoom(rrg.ChosenEntranceRoom());
-
-        /// <summary>
-        /// Loads the shop room, chosen for this campaign.
-        /// </summary>
-        public void LoadShopRoom() => LoadRoom(rrg.ChosenShopRoom());
-
         /// <summary>
         /// Loads the next room.
         /// </summary>

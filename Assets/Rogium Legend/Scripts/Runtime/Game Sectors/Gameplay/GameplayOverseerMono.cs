@@ -1,5 +1,6 @@
 ﻿using BoubakProductions.Core;
 using Rogium.Editors.Campaign;
+using Rogium.Editors.Core;
 using Rogium.Gameplay.Sequencer;
 using Rogium.Systems.Input;
 using Rogium.Systems.SceneTransferService;
@@ -20,6 +21,7 @@ namespace Rogium.Gameplay.Core
         {
             base.Awake();
             currentCampaign = new CampaignAsset(SceneTransferOverseer.GetInstance().PickUpCampaign());
+            // currentCampaign = ExternalLibraryOverseer.Instance.GetCampaignsCopy[0];
         }
 
         private void Start() => PrepareGame();

@@ -12,7 +12,6 @@ namespace Rogium.Gameplay.Entities
         [SerializeField] private Collider2D trigger;
         [SerializeField] private bool showGizmos;
 
-        private ObjectTransporter transporter;
         private ForceMoveInfo forceMove;
         
         protected Transform ttransform;
@@ -25,7 +24,6 @@ namespace Rogium.Gameplay.Entities
         {
             ttransform = transform;
             rb = GetComponent<Rigidbody2D>();
-            transporter = new ObjectTransporter(ttransform);
             
             faceDirection = GameplayDefaults.FaceDirection;
         }
@@ -36,23 +34,14 @@ namespace Rogium.Gameplay.Entities
         }
 
         /// <summary>
-        /// Transports the entity into a specific position.
+        /// Enables/Disables the entities ability to collide with objects and trigger events.
         /// </summary>
-        /// <param name="position">The position to put the entity.</param>
-        /// <param name="beforeTransport">Movement before the transport (offset).</param>
-        /// <param name="afterTransport">Movement after the transport (offset).</param>
-        /// <param name="finishMethod">The method that will run, when the transport is finished.</param>
-        public void Transport(Vector2 position, float speed, Vector2 beforeTransport,  Vector2 afterTransport, Action finishMethod = null)
+        /// <param name="enable">When on, collision is enabled.</param>
+        public void SetCollideMode(bool enable)
         {
-            ChangeCollisionStatus(false);
-            actionsLocked = true;
-            
-            transporter.Transport(position, speed, beforeTransport, afterTransport, () =>
-            {
-                actionsLocked = false;
-                ChangeCollisionStatus(true);
-                finishMethod?.Invoke();
-            }, TransportOrderType.XYZ);
+            actionsLocked = !enable;
+            collider.enabled = enable;
+            trigger.enabled = enable;
         }
         
         /// <summary>
@@ -81,7 +70,6 @@ namespace Rogium.Gameplay.Entities
             actionsLocked = true;
         }
 
-
         /// <summary>
         /// Handles Forced Movement processing.
         /// </summary>
@@ -102,15 +90,7 @@ namespace Rogium.Gameplay.Entities
 
         protected virtual void WhenForceMoveEnd() { }
 
-        /// <summary>
-        /// Enables/Disables the entities ability to collide with objects and trigger events.
-        /// </summary>
-        /// <param name="collide">When on, collision is enabled.</param>
-        protected void ChangeCollisionStatus(bool collide)
-        {
-            collider.enabled = collide;
-            trigger.enabled = collide;
-        }
+        
         
         protected void OnDrawGizmos()
         {

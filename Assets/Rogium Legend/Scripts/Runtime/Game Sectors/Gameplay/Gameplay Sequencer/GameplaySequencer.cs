@@ -7,6 +7,7 @@ using Rogium.Editors.Rooms;
 using Rogium.Gameplay.DataLoading;
 using Rogium.Gameplay.Entities.Player;
 using Rogium.Gameplay.InteractableObjects;
+using Rogium.Systems.SAS;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -19,13 +20,19 @@ namespace Rogium.Gameplay.Sequencer
     {
         [SerializeField] private RoomLoader roomLoader;
         [SerializeField] private PlayerController player;
-        [SerializeField] private float transportSpeed;
-        
+        [Space]
+        [SerializeField] private float transportRunSpeed;
+        [SerializeField] private float transportWalkSpeed;
+
+        private SASCore sas;
         private IDictionary<Vector2, Vector2> startingPoints;
+        private Transform playerTransform;
 
         private void Awake()
         {
+            sas = SASCore.GetInstance();
             startingPoints = new Dictionary<Vector2, Vector2>();
+            playerTransform = player.transform;
         }
 
         private void OnEnable()
@@ -43,25 +50,49 @@ namespace Rogium.Gameplay.Sequencer
         /// <summary>
         /// Runs the opening gameplay sequence.
         /// </summary>
-        public void RunIntro()
+        public void RunIntro() => StartCoroutine(RunIntroCoroutine());
+
+        /// <summary>
+        /// Runs the transition between rooms.
+        /// </summary>
+        public void RunTransition(RoomType nextRoomType, Vector2 direction) => StartCoroutine(RunTransitionCoroutine(nextRoomType, direction));
+        
+        /// <summary>
+        /// Runs the opening gameplay sequence.
+        /// </summary>
+        private IEnumerator RunIntroCoroutine()
         {
+            player.SetCollideMode(false);
             startingPoints.Clear();
-            roomLoader.LoadEntranceRoom();
+            roomLoader.LoadNext(RoomType.Entrance);
             (Vector2 pos, Vector2 dir) = startingPoints.ElementAt(GetPlayerStartPositionIndex());
+
+            playerTransform.position = pos - dir * 2;
+            yield return sas.Wait(0.5f);
+            yield return sas.FadeIn(2, false);
+            yield return sas.Transport(playerTransform, playerTransform.position + (Vector3)dir * 3, transportWalkSpeed * 0.5f);
             
-            player.Transport(pos, transportSpeed, Vector2.up, dir);
+            player.SetCollideMode(true);
         }
 
         /// <summary>
         /// Runs the transition between rooms.
         /// </summary>
-        public void RunTransition(RoomType nextRoomType, Vector2 direction)
+        private IEnumerator RunTransitionCoroutine(RoomType nextRoomType, Vector2 direction)
         {
+            player.SetCollideMode(false);
             startingPoints.Clear();
+            
+            yield return sas.FadeOut(0.5f, true);
+            yield return sas.Transport(playerTransform, playerTransform.position + (Vector3)direction, transportWalkSpeed);
+            
             roomLoader.LoadNext(nextRoomType);
             (Vector2 pos, Vector2 dir) = startingPoints.ElementAt(GetPlayerStartPositionIndex());
             
-            player.Transport(pos, transportSpeed, direction, dir);
+            yield return sas.Transport(playerTransform, pos, transportRunSpeed);
+            yield return sas.FadeIn(0.5f, false);
+            yield return sas.Transport(playerTransform, playerTransform.position + (Vector3)dir, transportWalkSpeed);
+            player.SetCollideMode(true);
         }
 
         /// <summary>
@@ -80,6 +111,5 @@ namespace Rogium.Gameplay.Sequencer
             if (startingPoints.Count == 1) return 0;
             return Random.Range(0, startingPoints.Count);
         }
-        
     }
 }
