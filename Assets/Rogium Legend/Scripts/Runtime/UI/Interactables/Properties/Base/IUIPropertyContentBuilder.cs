@@ -8,6 +8,6 @@
         /// <summary>
         /// Empty contents.
         /// </summary>
-        public void EmptyContent();
+        public void Clear();
     }
 }

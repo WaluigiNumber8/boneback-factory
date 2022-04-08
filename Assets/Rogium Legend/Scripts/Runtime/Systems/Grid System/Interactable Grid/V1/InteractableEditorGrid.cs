@@ -64,7 +64,8 @@ namespace Rogium.Systems.GridSystem
         }
         
         public override void Apply() { }
-        
+        public override void ClearAllCells() => GridLoader.ClearAllCells(cells);
+
         /// <summary>
         /// Delete all children and freshly Build the grid from scratch.
         /// </summary>

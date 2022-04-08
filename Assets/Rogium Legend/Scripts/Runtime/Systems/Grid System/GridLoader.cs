@@ -67,7 +67,7 @@ namespace Rogium.Systems.GridSystem
         /// Resets all cells to their empty state.
         /// </summary>
         /// <param name="cells">The cell array to clear.</param>
-        private static void ClearAllCells(GridCell[,] cells)
+        public static void ClearAllCells(GridCell[,] cells)
         {
             for (int x = 0; x < cells.GetLength(0); x++)
             {

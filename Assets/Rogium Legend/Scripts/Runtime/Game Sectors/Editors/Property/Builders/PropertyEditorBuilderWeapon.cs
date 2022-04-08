@@ -19,7 +19,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
         public void Build(WeaponAsset asset)
         {
             this.asset = asset;
-            EmptyContent();
+            Clear();
             BuildImportant(contentMain);
             BuildProperty(contentSecond);
         }

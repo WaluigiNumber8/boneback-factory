@@ -20,7 +20,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
         public void Build(TileAsset asset)
         {
             this.asset = asset;
-            EmptyContent();
+            Clear();
             BuildImportant(contentMain);
             BuildProperty(contentSecond);
         }

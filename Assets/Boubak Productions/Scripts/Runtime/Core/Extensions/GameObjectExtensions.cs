@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using BoubakProductions.Safety;
 using UnityEngine;
 
 namespace BoubakProductions.Core
@@ -14,6 +15,9 @@ namespace BoubakProductions.Core
         /// <param name="gObject"></param>
         public static void KillChildren(this GameObject gObject)
         {
+            SafetyNet.EnsureIsNotNull(gObject, "GameObject to kill children of");
+            if (gObject.transform.childCount <= 0) return;
+            
             foreach (Transform child in gObject.transform)
             {
                 if (child == gObject.transform) continue;

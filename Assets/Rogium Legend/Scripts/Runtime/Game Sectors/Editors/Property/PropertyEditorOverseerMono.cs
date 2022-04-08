@@ -123,9 +123,9 @@ namespace Rogium.Editors.PropertyEditor
             ThemeUpdaterRogium.UpdateElement(ui.importantColumnBackground);
             ThemeUpdaterRogium.UpdateButtonCard(ui.saveButton);
             ThemeUpdaterRogium.UpdateButtonCard(ui.cancelButton);
-            ThemeUpdaterRogium.UpdateButtonMenu(ui.undoButton);
-            ThemeUpdaterRogium.UpdateButtonMenu(ui.redoButton);
-            ThemeUpdaterRogium.UpdateButtonMenu(ui.resetButton);
+            // ThemeUpdaterRogium.UpdateButtonMenu(ui.undoButton);
+            // ThemeUpdaterRogium.UpdateButtonMenu(ui.redoButton);
+            // ThemeUpdaterRogium.UpdateButtonMenu(ui.resetButton);
         }
         
         [System.Serializable]

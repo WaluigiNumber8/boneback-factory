@@ -570,6 +570,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ui:
     previewImage: {fileID: 4467393436898323454}
+    content: {fileID: 8767079590174131165}
 --- !u!1 &8767079589207989091
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,7 +711,7 @@ MonoBehaviour:
       content: {fileID: 8767079589604249571}
       notFoundText: {fileID: 0}
       iconPositionType: 0
-      iconPosition: {fileID: 8767079589246555978}
+      iconPosition: {fileID: 0}
     list:
       menu: {fileID: 8767079589278379303}
       content: {fileID: 8767079589246555979}
@@ -726,6 +727,8 @@ MonoBehaviour:
     enemy: {fileID: 11400000, guid: a9d0216b9ca84414ea7c2b00cdd99a7c, type: 2}
     room: {fileID: 11400000, guid: 8b214c23441118d4cb58cc289b8d086a, type: 2}
     tile: {fileID: 11400000, guid: 30fd5df9f4f4b19409498c4137407e81, type: 2}
+    interactableObject: {fileID: 0}
+    sound: {fileID: 0}
 --- !u!114 &8875776990723667041
 MonoBehaviour:
   m_ObjectHideFlags: 0

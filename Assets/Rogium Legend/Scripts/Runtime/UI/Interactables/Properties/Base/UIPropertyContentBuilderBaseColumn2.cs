@@ -1,4 +1,5 @@
 ﻿using BoubakProductions.Core;
+using BoubakProductions.Safety;
 using UnityEngine;
 
 namespace Rogium.UserInterface.Interactables.Properties
@@ -12,10 +13,12 @@ namespace Rogium.UserInterface.Interactables.Properties
         
         protected UIPropertyContentBuilderBaseColumn2(Transform contentMain, Transform contentSecond) : base(contentMain)
         {
+            SafetyNet.EnsureIsNotNull(contentSecond, "Secondary Content Property Transform");
+            
             this.contentSecond = contentSecond;
         }
 
-        public override void EmptyContent()
+        public override void Clear()
         {
             contentMain.gameObject.KillChildren();
             contentSecond.gameObject.KillChildren();

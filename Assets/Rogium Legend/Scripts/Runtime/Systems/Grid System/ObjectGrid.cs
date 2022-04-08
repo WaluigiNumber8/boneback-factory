@@ -12,28 +12,31 @@ namespace Rogium.Systems.GridSystem
         private readonly int width;
         private readonly int height;
         private readonly T[,] cellArray;
-        
+
+        private readonly Func<T> createDefaultObject;
+
         public ObjectGrid(int width, int height, Func<T> createDefaultObject)
         {
             this.width = width;
             this.height = height;
             cellArray = new T[width, height];
+            this.createDefaultObject = createDefaultObject;
 
-            InitializeGrid(createDefaultObject);
+            InitializeGrid();
         }
 
         public ObjectGrid(ObjectGrid<T> grid)
         {
             width = grid.Width;
             height = grid.Height;
+            createDefaultObject = grid.createDefaultObject;
             cellArray = (T[,])grid.cellArray.Clone();
         }
 
         /// <summary>
         /// Upon Creation, initialize the grid a default form of T.
         /// </summary>
-        /// <param name="createDefaultObject"></param>
-        private void InitializeGrid(Func<T> createDefaultObject)
+        private void InitializeGrid()
         {
             for (int i = 0; i < cellArray.GetLength(0); i++)
             {
@@ -87,6 +90,11 @@ namespace Rogium.Systems.GridSystem
             SafetyNet.EnsureIntIsInRange(y, 0, height-1, "Grid Y");
             return cellArray[x, y];
         }
+
+        /// <summary>
+        /// Clears the entire grid by setting all values to default. 
+        /// </summary>
+        public void ClearAllCells() => InitializeGrid();
 
         public int Width { get => width; }
         public int Height { get => height; }

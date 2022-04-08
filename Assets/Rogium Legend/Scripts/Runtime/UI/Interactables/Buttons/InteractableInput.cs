@@ -302,6 +302,10 @@ namespace Rogium.UserInterface.Interactables
                 case ButtonType.SpriteSwitchPalette:
                     GASButtonActions.SpriteSwitchPalette();
                     break;
+                
+                case ButtonType.SpriteClearActiveLayer:
+                    GASButtonActions.SpriteClearActiveLayer();
+                    break;
                 #endregion
                 
                 #region Room Editor
@@ -313,6 +317,10 @@ namespace Rogium.UserInterface.Interactables
                 case ButtonType.RoomSwitchPalette:
                     SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - SWITCH ROOM PALETTE");
                     GASButtonActions.RoomSwitchPalette(index);
+                    break;
+                
+                case ButtonType.RoomClearActiveLayer:
+                    GASButtonActions.RoomClearActiveLayer();
                     break;
 
                 #endregion

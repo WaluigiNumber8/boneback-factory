@@ -10,6 +10,6 @@ namespace Rogium.UserInterface.Interactables.Properties
     {
         protected UIPropertyContentBuilderBaseColumn1(Transform contentMain) : base(contentMain) { }
 
-        public override void EmptyContent() => contentMain.gameObject.KillChildren();
+        public override void Clear() => contentMain.gameObject.KillChildren();
     }
 }

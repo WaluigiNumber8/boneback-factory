@@ -646,6 +646,10 @@ namespace Rogium.Systems.GASExtension
             SpriteEditorOverseerMono.GetInstance().SwitchPaletteViaWindow();
         }
 
+        public static void SpriteClearActiveLayer()
+        {
+            SpriteEditorOverseerMono.GetInstance().ClearActiveGrid();
+        }
         #endregion
 
         #region Room Editor
@@ -660,7 +664,10 @@ namespace Rogium.Systems.GASExtension
             RoomEditorOverseerMono.GetInstance().SwitchLayer(index);
         }
 
+        public static void RoomClearActiveLayer()
+        {
+            RoomEditorOverseerMono.GetInstance().ClearActiveLayer();
+        }
         #endregion
-        
     }
 }

@@ -42,5 +42,10 @@ namespace Rogium.Systems.GridSystem
         /// Applies grid changes.
         /// </summary>
         public abstract void Apply();
+
+        /// <summary>
+        /// Clears all elements on the active grid.
+        /// </summary>
+        public abstract void ClearAllCells();
     }
 }

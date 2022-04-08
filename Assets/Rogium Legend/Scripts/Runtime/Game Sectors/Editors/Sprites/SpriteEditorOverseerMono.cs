@@ -90,6 +90,15 @@ namespace Rogium.Editors.Sprites
         }
         
         /// <summary>
+        /// Clears the active grid of all data.
+        /// </summary>
+        public void ClearActiveGrid()
+        {
+            grid.ClearAllCells();
+            editor.CurrentAsset.SpriteData.ClearAllCells();
+        }
+        
+        /// <summary>
         /// Prepares the Sprite Editor for operation.
         /// </summary>
         /// <param name="sprite">The sprite to read from.</param>

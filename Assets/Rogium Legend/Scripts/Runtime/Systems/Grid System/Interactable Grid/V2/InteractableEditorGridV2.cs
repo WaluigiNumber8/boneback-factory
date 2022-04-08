@@ -121,7 +121,13 @@ namespace Rogium.Systems.GridSystem
         }
 
         public override void Apply() => drawer.Apply(activeLayer.sprite);
-        
+
+        public override void ClearAllCells()
+        {
+            drawer.ClearAllCells(activeLayer.sprite);
+            Apply();
+        }
+
         /// <summary>
         /// Switches the currently active layer.
         /// </summary>

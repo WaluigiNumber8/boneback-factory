@@ -112,18 +112,19 @@ namespace Rogium.UserInterface.Interactables
         #region Sprite Editor
         SpriteSwitchTool = 70,
         SpriteSwitchPalette = 72,
+        SpriteClearActiveLayer = 77,
         #endregion
 
         #region Room Editor
         RoomSwitchTool = 71,
         RoomSwitchPalette = 73,
-
+        RoomClearActiveLayer = 76,
         #endregion
         
         QuitGame = 9999,
         Play = 10000,
         TEST = 10001
         
-        //Latest : 75
+        //Latest : 77
     }   
 }

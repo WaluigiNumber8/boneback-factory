@@ -104,6 +104,15 @@ namespace Rogium.Editors.Rooms
         }
 
         /// <summary>
+        /// Clears the active layer of all data.
+        /// </summary>
+        public void ClearActiveLayer()
+        {
+            grid.ClearAllCells();
+            currentData.Grid.ClearAllCells();
+        }
+        
+        /// <summary>
         /// Erases a specific cell.
         /// </summary>
         /// <param name="position">The cell to erase.</param>

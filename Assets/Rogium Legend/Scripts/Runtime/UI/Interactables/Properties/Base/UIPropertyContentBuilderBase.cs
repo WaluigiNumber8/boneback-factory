@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using BoubakProductions.Safety;
+using UnityEngine;
 
 namespace Rogium.UserInterface.Interactables.Properties
 {
@@ -12,6 +13,8 @@ namespace Rogium.UserInterface.Interactables.Properties
 
         protected UIPropertyContentBuilderBase(Transform contentMain)
         {
+            SafetyNet.EnsureIsNotNull(contentMain, "Property Content Transform");
+            
             b = UIPropertyBuilder.GetInstance();
             this.contentMain = contentMain;
         }
@@ -19,6 +22,6 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <summary>
         /// Empty contents.
         /// </summary>
-        public abstract void EmptyContent();
+        public abstract void Clear();
     }
 }

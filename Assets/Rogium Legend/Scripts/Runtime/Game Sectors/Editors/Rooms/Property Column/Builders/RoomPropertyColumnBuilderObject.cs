@@ -45,14 +45,14 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         /// <param name="data">The data to use.</param>
         private void BuildRoomExit(AssetData data)
         {
-            EmptyContent();
+            Clear();
             b.BuildDropdown("Direction", Enum.GetNames(typeof(DirectionType)), data.Parameters.intValue1, contentMain, data.UpdateIntValue1);
             b.BuildDropdown("Next Room", Enum.GetNames(typeof(RoomType)), data.Parameters.intValue2, contentMain, data.UpdateIntValue2);
         }
 
         private void BuildStartingPoint(AssetData data)
         {
-            EmptyContent();
+            Clear();
             b.BuildDropdown("Exit Direction", Enum.GetNames(typeof(DirectionType)), data.Parameters.intValue1, contentMain, data.UpdateIntValue1);
         }
         #endregion

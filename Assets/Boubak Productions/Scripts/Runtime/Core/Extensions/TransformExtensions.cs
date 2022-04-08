@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using BoubakProductions.Safety;
 using UnityEngine;
 
 namespace BoubakProductions.Core
@@ -14,6 +15,10 @@ namespace BoubakProductions.Core
         /// <param name="transform"></param>
         public static void KillChildren(this Transform transform)
         {
+            SafetyNet.EnsureIsNotNull(transform, "Transform to kill children of");
+            
+            if (transform.childCount <= 0) return;
+            
             foreach (Transform child in transform)
             {
                 if (child == transform) continue;

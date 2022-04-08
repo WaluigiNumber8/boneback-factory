@@ -25,7 +25,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         /// <param name="data">The data of the individual asset.</param>
         public void Build(AssetData data)
         {
-            EmptyContent();
+            Clear();
             
             b.BuildDropdown("Type", tileTypes, data.Parameters.intValue1, contentMain, data.UpdateIntValue1, true);
         }

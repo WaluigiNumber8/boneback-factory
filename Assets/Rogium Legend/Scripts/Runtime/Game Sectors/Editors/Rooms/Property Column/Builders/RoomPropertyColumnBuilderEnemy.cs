@@ -18,7 +18,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         /// <param name="data">The asset to read from.</param>
         public void Build(AssetData data)
         {
-            EmptyContent();
+            Clear();
 
             b.BuildInputField("Damage", data.Parameters.intValue1.ToString(), contentMain, s => data.UpdateIntValue1(int.Parse(s)), true, TMP_InputField.CharacterValidation.Decimal);
         }
