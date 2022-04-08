@@ -1,6 +1,4 @@
-﻿using System;
-using BoubakProductions.Systems.ObjectTransport;
-using Rogium.Gameplay.Core;
+﻿using Rogium.Gameplay.Core;
 using UnityEngine;
 
 namespace Rogium.Gameplay.Entities
@@ -25,7 +23,7 @@ namespace Rogium.Gameplay.Entities
             ttransform = transform;
             rb = GetComponent<Rigidbody2D>();
             
-            faceDirection = GameplayDefaults.FaceDirection;
+            faceDirection = GameplayDefaults.StartingFaceDirection;
         }
 
         protected virtual void FixedUpdate()
@@ -61,12 +59,11 @@ namespace Rogium.Gameplay.Entities
         /// <param name="time">The time to take for the movement.</param>
         public void ForceMove(Vector2 direction, float force, float time)
         {
-            forceMove.moveDirection = direction;
+            forceMove.moveDirection = direction.normalized;
             forceMove.force = force;
             forceMove.timer = Time.time + time;
             forceMove.activated = true;
 
-            faceDirection = direction;
             actionsLocked = true;
         }
 
@@ -89,8 +86,6 @@ namespace Rogium.Gameplay.Entities
         }
 
         protected virtual void WhenForceMoveEnd() { }
-
-        
         
         protected void OnDrawGizmos()
         {

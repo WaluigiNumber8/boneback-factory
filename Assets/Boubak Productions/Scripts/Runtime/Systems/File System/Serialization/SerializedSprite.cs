@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using BoubakProductions.Safety;
+using UnityEngine;
 
 namespace BoubakProductions.Systems.FileSystem.Serialization
 {
@@ -16,14 +17,17 @@ namespace BoubakProductions.Systems.FileSystem.Serialization
         public readonly byte[] textureBytes;
 
         public SerializedSprite(Sprite sprite) : this(sprite.rect.x,
-                                                      sprite.rect.y,
-                                                      sprite.rect.width,
-                                                      sprite.rect.height,
-                                                      sprite.pivot.x,
-                                                      sprite.pivot.y,
-                                                      sprite.texture.width,
-                                                      sprite.texture.height,
-                                                      sprite.texture.EncodeToPNG()) {}
+            sprite.rect.y,
+            sprite.rect.width,
+            sprite.rect.height,
+            sprite.pivot.x,
+            sprite.pivot.y,
+            sprite.texture.width,
+            sprite.texture.height,
+            sprite.texture.EncodeToPNG())
+        {
+            SafetyNet.EnsureIsNotNull(sprite, "New Serialized Sprite");
+        }
 
         public SerializedSprite(float rectX, float rectY, float rectWidth, float rectHeight, float pivotX, float pivotY, int textureWidth, int textureHeight, byte[] textureBytes)
         {

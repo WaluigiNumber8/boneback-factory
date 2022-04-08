@@ -46,9 +46,20 @@ namespace BoubakProductions.Core
         public static bool ContainsValue<T>(this IList<T> list, T value) where T : class
         {
             if (list == null || list.Count <= 0) return false;
-            
-            SafetyNet.EnsureIsNotNull(list, "List to check.");
             return list.Any(element => element == value);
+        }
+        
+        /// <summary>
+        /// Checks if a list contains a specific value.
+        /// </summary>
+        /// <param name="list">The list to check.</param>
+        /// <param name="value">The object to check for.</param>
+        /// <typeparam name="T">Any <see cref="IComparable"/> type.</typeparam>
+        /// <returns>True if the list contains the given value.</returns>
+        public static bool ContainsComparableValue<T>(this ICollection<T> list, T value) where T : IComparable
+        {
+            if (list == null || list.Count <= 0) return false;
+            return list.Any(element => element.CompareTo(value) == 0);
         }
 
         /// <summary>

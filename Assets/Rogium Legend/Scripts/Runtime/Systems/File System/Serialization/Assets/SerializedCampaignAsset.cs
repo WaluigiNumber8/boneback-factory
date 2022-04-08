@@ -1,9 +1,9 @@
-﻿using Rogium.Editors.Campaign;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using BoubakProductions.Systems.FileSystem.Serialization;
 using Rogium.Editors.Enemies;
 using Rogium.Editors.Packs;
+using Rogium.Editors.Campaign;
 using Rogium.Editors.Palettes;
 using Rogium.Editors.Projectiles;
 using Rogium.Editors.Rooms;
@@ -19,14 +19,16 @@ namespace Rogium.ExternalStorage.Serialization
     [System.Serializable]
     public class SerializedCampaignAsset : SerializedAssetBase<CampaignAsset>
     {
-        private SerializedList<PaletteAsset, SerializedPaletteAsset> palettes;
-        private SerializedList<SpriteAsset, SerializedSpriteAsset> sprites;
-        private SerializedList<WeaponAsset, SerializedWeaponAsset> weapons;
-        private SerializedList<ProjectileAsset, SerializedProjectileAsset> projectiles;
-        private SerializedList<EnemyAsset, SerializedEnemyAsset> enemies;
-        private SerializedList<RoomAsset, SerializedRoomAsset> rooms; 
-        private SerializedList<TileAsset, SerializedTileAsset> tiles; 
-        public readonly IList<string> packReferences;
+        private readonly SerializedList<PaletteAsset, SerializedPaletteAsset> palettes;
+        private readonly SerializedList<SpriteAsset, SerializedSpriteAsset> sprites;
+        private readonly SerializedList<WeaponAsset, SerializedWeaponAsset> weapons;
+        private readonly SerializedList<ProjectileAsset, SerializedProjectileAsset> projectiles;
+        private readonly SerializedList<EnemyAsset, SerializedEnemyAsset> enemies;
+        private readonly SerializedList<RoomAsset, SerializedRoomAsset> rooms; 
+        private readonly SerializedList<TileAsset, SerializedTileAsset> tiles;
+
+        private readonly int adventureLength;
+        private readonly IList<string> packReferences;
 
         public SerializedCampaignAsset(CampaignAsset asset) : base(asset)
         {
@@ -37,7 +39,8 @@ namespace Rogium.ExternalStorage.Serialization
             enemies = new SerializedList<EnemyAsset, SerializedEnemyAsset>(asset.DataPack.Enemies, e => new SerializedEnemyAsset(e), e => e.Deserialize());
             rooms = new SerializedList<RoomAsset, SerializedRoomAsset>(asset.DataPack.Rooms, r => new SerializedRoomAsset(r), r => r.Deserialize());
             tiles = new SerializedList<TileAsset, SerializedTileAsset>(asset.DataPack.Tiles, t => new SerializedTileAsset(t), t => t.Deserialize());
-            
+
+            adventureLength = asset.AdventureLength;
             packReferences = new List<string>(asset.PackReferences);
         }
         
@@ -56,6 +59,7 @@ namespace Rogium.ExternalStorage.Serialization
                                      icon.Deserialize(),
                                      author,
                                      DateTime.Parse(creationDate),
+                                     adventureLength,
                                      dataPack,
                                      packReferences);
         }

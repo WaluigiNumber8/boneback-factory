@@ -61,7 +61,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomLoader: {fileID: 2982206685237233498}
   player: {fileID: 0}
-  transportSpeed: 5
+  transportRunSpeed: 12
+  transportWalkSpeed: 2
 --- !u!1 &3514882699237565128
 GameObject:
   m_ObjectHideFlags: 0

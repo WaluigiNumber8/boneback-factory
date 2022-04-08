@@ -35,36 +35,33 @@ namespace Rogium.Gameplay.Sequencer
             playerTransform = player.transform;
         }
 
-        private void OnEnable()
-        {
-            InteractObjectDoorLeave.OnTrigger += RunTransition;
-            InteractObjectStartingPoint.OnConstruct += startingPoints.Add;
-        }
-
-        private void OnDisable()
-        {
-            InteractObjectDoorLeave.OnTrigger -= RunTransition;
-            InteractObjectStartingPoint.OnConstruct -= startingPoints.Add;
-        }
+        private void OnEnable() => InteractObjectStartingPoint.OnConstruct += startingPoints.Add;
+        private void OnDisable() => InteractObjectStartingPoint.OnConstruct -= startingPoints.Add;
 
         /// <summary>
         /// Runs the opening gameplay sequence.
         /// </summary>
-        public void RunIntro() => StartCoroutine(RunIntroCoroutine());
+        public void RunIntro(int difficultyTier) => StartCoroutine(RunIntroCoroutine(difficultyTier));
 
         /// <summary>
         /// Runs the transition between rooms.
         /// </summary>
-        public void RunTransition(RoomType nextRoomType, Vector2 direction) => StartCoroutine(RunTransitionCoroutine(nextRoomType, direction));
+        public void RunTransition(RoomType nextRoomType, Vector2 direction, int difficultyTier) => StartCoroutine(RunTransitionCoroutine(nextRoomType, direction, difficultyTier));
         
+        /// <summary>
+        /// Runs the gameplay finish transition.
+        /// </summary>
+        public void RunEnd(Vector2 direction) => StartCoroutine(RunEndCoroutine(direction));
+
         /// <summary>
         /// Runs the opening gameplay sequence.
         /// </summary>
-        private IEnumerator RunIntroCoroutine()
+        private IEnumerator RunIntroCoroutine(int difficultyTier)
         {
             player.SetCollideMode(false);
             startingPoints.Clear();
-            roomLoader.LoadNext(RoomType.Entrance);
+
+            roomLoader.LoadNext(RoomType.Entrance, difficultyTier);
             (Vector2 pos, Vector2 dir) = startingPoints.ElementAt(GetPlayerStartPositionIndex());
 
             playerTransform.position = pos - dir * 2;
@@ -78,7 +75,7 @@ namespace Rogium.Gameplay.Sequencer
         /// <summary>
         /// Runs the transition between rooms.
         /// </summary>
-        private IEnumerator RunTransitionCoroutine(RoomType nextRoomType, Vector2 direction)
+        private IEnumerator RunTransitionCoroutine(RoomType nextRoomType, Vector2 direction, int difficultyTier)
         {
             player.SetCollideMode(false);
             startingPoints.Clear();
@@ -86,11 +83,11 @@ namespace Rogium.Gameplay.Sequencer
             yield return sas.FadeOut(0.5f, true);
             yield return sas.Transport(playerTransform, playerTransform.position + (Vector3)direction, transportWalkSpeed);
             
-            roomLoader.LoadNext(nextRoomType);
+            roomLoader.LoadNext(nextRoomType, difficultyTier);
             (Vector2 pos, Vector2 dir) = startingPoints.ElementAt(GetPlayerStartPositionIndex());
             
             yield return sas.Transport(playerTransform, pos, transportRunSpeed);
-            yield return sas.FadeIn(0.5f, false);
+            yield return sas.FadeIn(1f, false);
             yield return sas.Transport(playerTransform, playerTransform.position + (Vector3)dir, transportWalkSpeed);
             player.SetCollideMode(true);
         }
@@ -98,11 +95,19 @@ namespace Rogium.Gameplay.Sequencer
         /// <summary>
         /// Runs the gameplay finish transition.
         /// </summary>
-        public void RunEnd()
+        private IEnumerator RunEndCoroutine(Vector2 direction)
         {
+            player.SetCollideMode(false);
+            startingPoints.Clear();
             
+            yield return sas.Transport(playerTransform, playerTransform.position + (Vector3)direction, transportWalkSpeed);
+            yield return sas.FadeOut(5f, true);
+            
+            player.gameObject.SetActive(false);
+            yield return sas.Wait(1f);
+            roomLoader.Clear();
         }
-
+        
         //Decides on, which position will the start in the next room.
         private int GetPlayerStartPositionIndex()
         {

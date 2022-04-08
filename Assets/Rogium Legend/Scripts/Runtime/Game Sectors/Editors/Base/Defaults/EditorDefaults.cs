@@ -16,6 +16,7 @@ namespace Rogium.Editors.Core.Defaults
         //Campaign
         public const string CampaignTitle = "New Campaign";
         public static readonly Sprite CampaignIcon = Resources.Load<Sprite>("Defaults/spr_Default_Weapon_Filled");
+        public const int CampaignLength = 25;
 
         //Palette
         public const string PaletteTitle = "New Palette";

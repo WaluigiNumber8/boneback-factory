@@ -21,43 +21,35 @@ namespace Rogium.Gameplay.DataLoading
         [SerializeField] private TileMapDataBuilder tilemapBuilder;
         [SerializeField] private ObjectMapDataBuilder objectBuilder;
         [SerializeField] private EnemyMapDataBuilder enemyBuilder;
+        
+        private IList<ObjectAsset> objects;
 
         private PackAsset dataPack;
         private RRG rrg;
-
-        private IList<ObjectAsset> objects;
 
         private void Start()
         {
             objects = InternalLibraryOverseer.GetInstance().GetObjectsCopy();
             dataPack = GameplayOverseerMono.GetInstance().CurrentCampaign.DataPack;
-            rrg = new RRG(dataPack.Rooms);
+            rrg = new RRG(dataPack.Rooms, 0);
         }
 
         /// <summary>
         /// Loads the next room based on <see cref="RoomType"/>.
         /// </summary>
         /// <param name="type">The type of room to load next.</param>
+        /// <param name="difficultyTier">The difficulty tier of the room.</param>
         /// <exception cref="ArgumentOutOfRangeException">Is thrown when the <see cref="RRG"/> does not support the given type.</exception>
-        public void LoadNext(RoomType type)
+        public void LoadNext(RoomType type, int difficultyTier) => LoadRoom(rrg.LoadNext(type, difficultyTier));
+
+        /// <summary>
+        /// Clears all data of the previous room.
+        /// </summary>
+        public void Clear()
         {
-            switch (type)
-            {
-                case RoomType.Normal:
-                    LoadRoom(rrg.NextNormalRoom());
-                    break;
-                case RoomType.Rare:
-                    LoadRoom(rrg.NextRareRoom());
-                    break;
-                case RoomType.Entrance:
-                    LoadRoom(rrg.ChosenEntranceRoom());
-                    break;
-                case RoomType.Shop:
-                    LoadRoom(rrg.ChosenShopRoom());
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException($"The Room Type of '{type}' is not supported by the RRG.");
-            }
+            tilemapBuilder.Clear();
+            objectBuilder.Clear();
+            enemyBuilder.Clear();
         }
         
         /// <summary>

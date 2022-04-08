@@ -8,7 +8,7 @@
         Normal = 0,
         Rare = 1,
         Entrance = 2,
-        Shop = 3,
-        Test = 4
+        Exit = 3,
+        Shop = 4,
     }
 }

@@ -13,13 +13,14 @@ namespace Rogium.Editors.Rooms
         public RoomSettingsBuilder()
         {
             b = UIPropertyBuilder.GetInstance();
-
-            difficulties = new string[5];
-            difficulties[0] = "Level 1";
-            difficulties[1] = "Level 2";
-            difficulties[2] = "Level 3";
-            difficulties[3] = "Level 4";
-            difficulties[4] = "Level 5";
+            difficulties = new[]
+            {
+                "Level 1",
+                "Level 2",
+                "Level 3",
+                "Level 4",
+                "Level 5"
+            };
         }
 
         /// <summary>
