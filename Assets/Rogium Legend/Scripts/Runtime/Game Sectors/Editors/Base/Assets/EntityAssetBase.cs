@@ -5,7 +5,7 @@ namespace Rogium.Editors.Core
     /// <summary>
     /// A base for all entity type assets.
     /// </summary>
-    public abstract class EntityAssetBase : AssetBase
+    public abstract class EntityAssetBase : AnimatedAssetBase
     {
         protected int baseDamage;
         protected float useDelay;

@@ -20,10 +20,16 @@ namespace Rogium.Editors.Weapons
             author = EditorDefaults.Author;
             creationDate = DateTime.Now;
 
+            animationType = EditorDefaults.WeaponAnimationType;
+            frameDuration = EditorDefaults.WeaponFrameDuration;
+            iconAlt = EditorDefaults.WeaponIconAlt;
+            
             baseDamage = EditorDefaults.WeaponBaseDamage;
             useDelay = EditorDefaults.WeaponUseDelay;
-            knockbackForceSelf = EditorDefaults.WeaponKnockbackSelf;
-            knockbackForceOther = EditorDefaults.WeaponKnockbackOther;
+            knockbackForceSelf = EditorDefaults.WeaponKnockbackForceSelf;
+            knockbackTimeSelf = EditorDefaults.WeaponKnockbackTimeSelf;
+            knockbackForceOther = EditorDefaults.WeaponKnockbackForceOther;
+            knockbackTimeOther = EditorDefaults.WeaponKnockbackTimeOther;
             
             GenerateID(EditorAssetIDs.WeaponIdentifier);
         }
@@ -36,14 +42,22 @@ namespace Rogium.Editors.Weapons
             author = asset.Author;
             creationDate = asset.CreationDate;
 
+            animationType = asset.AnimationType;
+            frameDuration = asset.FrameDuration;
+            iconAlt = asset.IconAlt;
+            
             baseDamage = asset.BaseDamage;
             useDelay = asset.UseDelay;
             knockbackForceSelf = asset.KnockbackForceSelf;
+            knockbackTimeSelf = asset.KnockbackTimeSelf;
             knockbackForceOther = asset.KnockbackForceOther;
+            knockbackTimeOther = asset.KnockbackTimeOther;
         }
 
-        public WeaponAsset(string id, string title, Sprite icon, string author, int baseDamage, float useDelay,
-                           float knockbackForceSelf, float knockbackForceOther, DateTime creationDate)
+        public WeaponAsset(string id, string title, Sprite icon, string author, AnimationType animationType, 
+                           int frameDuration, Sprite iconAlt,int baseDamage, float useDelay, float knockbackForceSelf,
+                           float knockbackTimeSelf, float knockbackForceOther, float knockbackTimeOther,
+                           DateTime creationDate)
         {
             this.id = id;
             this.title = title;
@@ -51,10 +65,16 @@ namespace Rogium.Editors.Weapons
             this.author = author;
             this.creationDate = creationDate;
 
+            this.animationType = animationType;
+            this.frameDuration = frameDuration;
+            this.iconAlt = iconAlt;
+            
             this.baseDamage = baseDamage;
             this.useDelay = useDelay;
             this.knockbackForceSelf = knockbackForceSelf;
+            this.knockbackTimeSelf = knockbackTimeSelf;
             this.knockbackForceOther = knockbackForceOther;
+            this.knockbackTimeOther = knockbackTimeOther;
             
         }
         #endregion

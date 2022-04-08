@@ -1,4 +1,5 @@
-﻿using BoubakProductions.UI;
+﻿using System;
+using BoubakProductions.UI;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Enemies;
@@ -43,7 +44,10 @@ namespace Rogium.Editors.PropertyEditor.Builders
             b.BuildInputField("Knockback Self Time", asset.KnockbackTimeSelf.ToString(), content, s => asset.UpdateKnockbackTimeSelf(float.Parse(s)), false, TMP_InputField.CharacterValidation.Decimal);
             b.BuildInputField("Knockback Other", asset.KnockbackForceOther.ToString(), content, s => asset.UpdateKnockbackForceOther(float.Parse(s)), false, TMP_InputField.CharacterValidation.Decimal);
             b.BuildInputField("Knockback Other Time", asset.KnockbackTimeOther.ToString(), content, s => asset.UpdateKnockbackTimeOther(float.Parse(s)), false, TMP_InputField.CharacterValidation.Decimal);
-            
+
+            b.BuildHeader("Animation", content);
+            b.BuildDropdown("Type", Enum.GetNames(typeof(AnimationType)), (int) asset.AnimationType, content, i => asset.UpdateAnimationType((AnimationType) i));
+            b.BuildInputField("Frame Duration", asset.FrameDuration.ToString(), content, s => asset.UpdateFrameDuration(int.Parse(s)));
         }
     }
 }

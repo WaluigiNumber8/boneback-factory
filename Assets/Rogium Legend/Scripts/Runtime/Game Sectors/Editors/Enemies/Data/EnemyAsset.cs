@@ -21,6 +21,10 @@ namespace Rogium.Editors.Enemies
             author = EditorDefaults.Author;
             creationDate = DateTime.Now;
 
+            animationType = EditorDefaults.EnemyAnimationType;
+            frameDuration = EditorDefaults.EnemyFrameDuration;
+            iconAlt = EditorDefaults.EnemyIconAlt;
+            
             baseDamage = EditorDefaults.EnemyBaseDamage;
             useDelay = EditorDefaults.EnemyAttackDelay;
             knockbackForceSelf = EditorDefaults.EnemyKnockbackForceSelf;
@@ -42,6 +46,10 @@ namespace Rogium.Editors.Enemies
             author = asset.Author;
             creationDate = asset.CreationDate;
 
+            animationType = asset.AnimationType;
+            frameDuration = asset.FrameDuration;
+            iconAlt = asset.IconAlt;
+            
             baseDamage = asset.BaseDamage;
             useDelay = asset.UseDelay;
             knockbackForceSelf = asset.KnockbackForceSelf;
@@ -53,9 +61,10 @@ namespace Rogium.Editors.Enemies
             invincibilityTime = asset.InvincibilityTime;
         }
 
-        public EnemyAsset(string id, string title, Sprite icon, string author, int baseDamage, float useDelay,
-                          float knockbackForceSelf, float knockbackTimeSelf, float knockbackForceOther,
-                          float knockbackTimeOther, int maxHealth, float invincibilityTime, DateTime creationDate)
+        public EnemyAsset(string id, string title, Sprite icon, string author, AnimationType animationType, 
+                          int frameDuration, Sprite iconAlt, int baseDamage, float useDelay, float knockbackForceSelf,
+                          float knockbackTimeSelf, float knockbackForceOther, float knockbackTimeOther, int maxHealth,
+                          float invincibilityTime, DateTime creationDate)
         {
             this.id = id;
             this.title = title;
@@ -63,6 +72,10 @@ namespace Rogium.Editors.Enemies
             this.author = author;
             this.creationDate = creationDate;
 
+            this.animationType = animationType;
+            this.frameDuration = frameDuration;
+            this.iconAlt = iconAlt;
+            
             this.baseDamage = baseDamage;
             this.useDelay = useDelay;
             this.knockbackForceSelf = knockbackForceSelf;

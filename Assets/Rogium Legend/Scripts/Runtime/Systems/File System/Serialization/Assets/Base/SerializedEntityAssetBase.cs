@@ -6,7 +6,7 @@ namespace Rogium.ExternalStorage.Serialization
     /// Serialized form of the <see cref="EntityAssetBase"/>.
     /// </summary>
     [System.Serializable]
-    public abstract class SerializedEntityAssetBase<T> : SerializedAssetBase<T> where T : EntityAssetBase
+    public abstract class SerializedEntityAssetBase<T> : SerializedAnimatedAssetBase<T> where T : EntityAssetBase
     {
         protected int baseDamage;
         protected float useDelay;

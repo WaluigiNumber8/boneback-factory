@@ -1,4 +1,5 @@
 ﻿using System;
+using Rogium.Editors.Core;
 using Rogium.Editors.Enemies;
 
 namespace Rogium.ExternalStorage.Serialization
@@ -24,6 +25,9 @@ namespace Rogium.ExternalStorage.Serialization
                                   title,
                                   icon.Deserialize(),
                                   author,
+                                  (AnimationType)animationType,
+                                  frameDuration,
+                                  iconAlt.Deserialize(),
                                   baseDamage,
                                   useDelay,
                                   knockbackForceSelf,

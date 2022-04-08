@@ -30,28 +30,48 @@ namespace Rogium.Editors.Core.Defaults
         //Weapon
         public const string WeaponTitle = "New Weapon";
         public static readonly Sprite WeaponIcon = Resources.Load<Sprite>("Defaults/spr_Default_Weapon");
+        
+        public const AnimationType WeaponAnimationType = AnimationType.NoAnimation;
+        public const int WeaponFrameDuration = 40;
+        public static readonly Sprite WeaponIconAlt = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
+        
         public const int WeaponBaseDamage = 2;
         public const float WeaponUseDelay = 0.1f;
-        public const float WeaponKnockbackSelf = 0;
-        public const float WeaponKnockbackOther = 1;
+        public const float WeaponKnockbackForceSelf = 0;
+        public const float WeaponKnockbackTimeSelf = 0f;
+        public const float WeaponKnockbackTimeOther = 0.05f;
+        public const float WeaponKnockbackForceOther = 0.5f;
         
         //Projectile
         public const string ProjectileTitle = "New Projectile";
         public static readonly Sprite ProjectileIcon = Resources.Load<Sprite>("Defaults/spr_Default_Weapon_Filled");
+        
+        public const AnimationType ProjectileAnimationType = AnimationType.NoAnimation;
+        public const int ProjectileFrameDuration = 40;
+        public static readonly Sprite ProjectileIconAlt = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
+        
         public const int ProjectileBaseDamage = 1;
         public const float ProjectileLifetime = 5;
-        public const float ProjectileKnockbackSelf = 0;
-        public const float ProjectileKnockbackOther = 1;
+        public const float ProjectileKnockbackForceSelf = 0;
+        public const float ProjectileKnockbackTimeSelf = 0f;
+        public const float ProjectileKnockbackTimeOther = 0.05f;
+        public const float ProjectileKnockbackForceOther = 0.5f;
         
         //Enemy
         public const string EnemyTitle = "New Enemy";
         public static readonly Sprite EnemyIcon = Resources.Load<Sprite>("Defaults/spr_TestDummy");
+
+        public const AnimationType EnemyAnimationType = AnimationType.HorizontalFlip;
+        public const int EnemyFrameDuration = 50;
+        public static readonly Sprite EnemyIconAlt = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
+        
         public const int EnemyBaseDamage = 1;
         public const float EnemyAttackDelay = 0.2f;
         public const float EnemyKnockbackForceSelf = 1;
         public const float EnemyKnockbackTimeSelf = 0.025f;
         public const float EnemyKnockbackTimeOther = 0.05f;
         public const float EnemyKnockbackForceOther = 2;
+        
         public const int EnemyMaxHealth = 20;
         public const float EnemyInvincibilityTime = 0.05f;
         

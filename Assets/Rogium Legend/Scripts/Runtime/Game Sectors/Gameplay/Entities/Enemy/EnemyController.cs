@@ -51,7 +51,7 @@ namespace Rogium.Gameplay.Entities.Enemy
             //Visual
             if (visual != null)
             {
-                CharVisualInfo visual = new(asset.Icon);
+                CharVisualInfo visual = new(asset.Icon, asset.AnimationType, asset.FrameDuration, asset.IconAlt);
                 this.visual.Construct(visual);
             }
         }

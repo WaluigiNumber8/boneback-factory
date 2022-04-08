@@ -1,4 +1,5 @@
 ﻿using System;
+using Rogium.Editors.Core;
 using Rogium.Editors.Projectiles;
 
 namespace Rogium.ExternalStorage.Serialization
@@ -20,10 +21,15 @@ namespace Rogium.ExternalStorage.Serialization
                                        title,
                                        icon.Deserialize(),
                                        author,
+                                       (AnimationType)animationType,
+                                       frameDuration,
+                                       iconAlt.Deserialize(),
                                        baseDamage,
                                        useDelay,
                                        knockbackForceSelf,
+                                       knockbackTimeSelf,
                                        knockbackForceOther,
+                                       knockbackTimeOther,
                                        DateTime.Parse(creationDate));
         }
     }
