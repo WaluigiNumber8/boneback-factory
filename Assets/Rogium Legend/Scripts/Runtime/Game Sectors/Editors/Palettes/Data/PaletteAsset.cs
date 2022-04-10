@@ -2,6 +2,7 @@ using System;
 using BoubakProductions.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
+using Rogium.Systems.Validation;
 using UnityEngine;
 
 namespace Rogium.Editors.Palettes
@@ -38,6 +39,8 @@ namespace Rogium.Editors.Palettes
         
         public PaletteAsset(string id, string title, Sprite icon, string author, Color[] colors, DateTime creationDate)
         {
+            AssetValidation.ValidateTitle(title);
+            
             this.id = id;
             this.title = title;
             this.icon = icon;
@@ -49,10 +52,7 @@ namespace Rogium.Editors.Palettes
         #endregion
         
         #region Update Values
-        public void UpdateColors(Color[] newColors)
-        {
-            colors = newColors;
-        }
+        public void UpdateColors(Color[] newColors) => colors = newColors;
         #endregion
         
         public Color[] Colors { get => colors; }

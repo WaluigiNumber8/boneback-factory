@@ -54,6 +54,12 @@ namespace Rogium.Editors.Core
         public void AddAllWithoutSave(AssetList<T> assets)
         {
             SafetyNet.EnsureIsNotNull(assets, "List of assets to add.");
+            
+            List<T> newAssets = list;
+            newAssets.AddRange(assets);
+            
+            SafetyNet.EnsureListDoesNotHaveDuplicities(newAssets, "Newly Added Assets");
+            
             list.AddRange(assets);
         }
         

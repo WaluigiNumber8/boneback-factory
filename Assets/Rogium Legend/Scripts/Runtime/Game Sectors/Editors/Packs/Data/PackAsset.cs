@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using BoubakProductions.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Enemies;
@@ -18,13 +19,13 @@ namespace Rogium.Editors.Packs
     public class PackAsset : AssetBase
     {
         private PackInfoAsset packInfo;
-        private AssetList<PaletteAsset> palettes;
-        private AssetList<SpriteAsset> sprites;
-        private AssetList<WeaponAsset> weapons;
-        private AssetList<ProjectileAsset> projectiles;
-        private AssetList<EnemyAsset> enemies;
-        private AssetList<RoomAsset> rooms;
-        private AssetList<TileAsset> tiles;
+        private readonly AssetList<PaletteAsset> palettes;
+        private readonly AssetList<SpriteAsset> sprites;
+        private readonly AssetList<WeaponAsset> weapons;
+        private readonly AssetList<ProjectileAsset> projectiles;
+        private readonly AssetList<EnemyAsset> enemies;
+        private readonly AssetList<RoomAsset> rooms;
+        private readonly AssetList<TileAsset> tiles;
 
         private readonly ExternalStorageOverseer ex = ExternalStorageOverseer.Instance;
         

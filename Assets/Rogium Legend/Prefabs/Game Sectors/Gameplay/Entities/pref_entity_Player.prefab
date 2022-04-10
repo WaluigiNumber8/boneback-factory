@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 42737587612288670}
   - component: {fileID: 42737587612288671}
+  - component: {fileID: 7203054627564163038}
   m_Layer: 3
   m_Name: Visual
   m_TagString: Untagged
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8502a58a2fae3db43b142e2887147ea4, type: 3}
+  m_Sprite: {fileID: -1461425999, guid: 680589a0053c0a24aa1db3390f0cabaf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -84,6 +85,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &7203054627564163038
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42737587612288669}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2d31a1a64bbed8040bf1cee27341ddbc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &42737588524664425
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,6 +120,7 @@ GameObject:
   - component: {fileID: 42737588524664429}
   - component: {fileID: 8977098935747787102}
   - component: {fileID: 4680545751819740615}
+  - component: {fileID: 691628062176777703}
   m_Layer: 3
   m_Name: pref_entity_Player
   m_TagString: Player
@@ -238,3 +260,21 @@ MonoBehaviour:
   defaultData:
     maxHealth: 50
     invincibilityTime: 0.1
+--- !u!114 &691628062176777703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42737588524664425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 966b98d64950472c97898c8c2f408c80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: {fileID: 42737588524664429}
+  animator: {fileID: 7203054627564163038}
+  propertyNames:
+    FaceDirectionX: FaceDirectionX
+    FaceDirectionY: FaceDirectionY
+    MoveSpeed: MoveSpeed

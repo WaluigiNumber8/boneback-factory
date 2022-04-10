@@ -6,16 +6,20 @@ namespace Rogium.Gameplay.Entities
     [RequireComponent(typeof(Rigidbody2D))]
     public abstract class EntityController : MonoBehaviour
     {
-        [SerializeField] private Collider2D collider;
+        [SerializeField] private new Collider2D collider;
         [SerializeField] private Collider2D trigger;
         [SerializeField] private bool showGizmos;
 
         private ForceMoveInfo forceMove;
+
+        private UpdateFaceDirectionType faceDirectionType;
+        private Vector3 previousPos;
+        private float currentSpeed;
         
         protected Transform ttransform;
-        protected Rigidbody2D rb;
+        private Rigidbody2D rb;
 
-        protected Vector2 faceDirection;
+        protected Vector2Int faceDirection;
         protected bool actionsLocked;
         
         protected virtual void Awake()
@@ -29,6 +33,7 @@ namespace Rogium.Gameplay.Entities
         protected virtual void FixedUpdate()
         {
             DoForceMovement();
+            UpdateParameters();
         }
 
         /// <summary>
@@ -41,6 +46,12 @@ namespace Rogium.Gameplay.Entities
             collider.enabled = enable;
             trigger.enabled = enable;
         }
+
+        /// <summary>
+        /// Changes the way the face direction is updated.
+        /// </summary>
+        /// <param name="type"></param>
+        public void SetFaceDirectionUpdateType(UpdateFaceDirectionType type) => faceDirectionType = type;
         
         /// <summary>
         /// Force movement in a specific direction.
@@ -85,18 +96,33 @@ namespace Rogium.Gameplay.Entities
             rb.MovePosition(rb.position + forceMove.force * 10 * Time.fixedDeltaTime * forceMove.moveDirection);
         }
 
+        /// <summary>
+        /// Updates the readable entity parameters.
+        /// </summary>
+        private void UpdateParameters()
+        {
+            Vector3 velocityChange = (ttransform.position - previousPos);
+            Vector3 velocityChangeNormalized = (velocityChange * 0.01f).normalized;
+            previousPos = ttransform.position;
+
+            faceDirection = (velocityChange != Vector3.zero) ? new Vector2Int(Mathf.RoundToInt(velocityChangeNormalized.x), Mathf.RoundToInt(velocityChangeNormalized.y)) : faceDirection;
+            currentSpeed = velocityChange.magnitude * 100f;
+            
+            
+        }
+        
         protected virtual void WhenForceMoveEnd() { }
         
         protected void OnDrawGizmos()
         {
             if (!showGizmos) return;
             Gizmos.color = Color.yellow;
-            Gizmos.DrawRay(transform.position, faceDirection * 1f);
         }
 
         public Transform Transform { get => ttransform; }
         public Rigidbody2D Rigidbody { get => rb; }
-        public Vector2 FaceDirection { get => faceDirection; }
+        public Vector2Int FaceDirection { get => faceDirection; }
+        public float CurrentSpeed { get => currentSpeed; }
         public bool ActionsLocked { get => actionsLocked; }
         
         private struct ForceMoveInfo

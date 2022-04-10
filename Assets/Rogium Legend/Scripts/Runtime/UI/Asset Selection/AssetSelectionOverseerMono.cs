@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using BoubakProductions.Safety;
 using BoubakProductions.Systems.ObjectSwitching;
 using Rogium.Core;
 using Rogium.Editors.Core;
@@ -136,7 +137,6 @@ namespace Rogium.UserInterface.AssetSelection
             this.finishedMethod = finishedMethod;
             overseer.OnSpawnCard += this.listeningMethod;
             overseer.OnFinishedFilling += StopListeningToSpawnedCards;
-            
         }
 
         /// <summary>

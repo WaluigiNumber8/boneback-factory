@@ -1,4 +1,5 @@
 using System;
+using System.ServiceModel.Configuration;
 using BoubakProductions.Core;
 using BoubakProductions.Safety;
 using BoubakProductions.UI.Core;
@@ -14,13 +15,12 @@ namespace BoubakProductions.UI
     /// </summary>
     public class ModalWindow : MonoBehaviour
     {
-        [Header("Defaults")]
-        [SerializeField] private string acceptButtonDefault = "Confirm";
         [SerializeField] private string denyButtonDefault = "Cancel";
         [SerializeField] private string specialButtonDefault = "NONE";
-
         [SerializeField] private UIInfo ui;
 
+        private bool isOpened; 
+        
         #region Open As Message
 
         /// <summary>
@@ -83,6 +83,7 @@ namespace BoubakProductions.UI
             ui.area.GetComponent<RectTransform>().ForceUpdateRectTransforms();
             Canvas.ForceUpdateCanvases();
             ui.windowBox.gameObject.SetActive(true);
+            isOpened = true;
         }
         #endregion
 
@@ -147,6 +148,7 @@ namespace BoubakProductions.UI
             ui.area.GetComponent<RectTransform>().ForceUpdateRectTransforms();
             Canvas.ForceUpdateCanvases();
             ui.windowBox.gameObject.SetActive(true);
+            isOpened = true;
         }
 
         /// <summary>
@@ -320,10 +322,12 @@ namespace BoubakProductions.UI
 
             ui.background.gameObject.SetActive(false);
             ui.area.gameObject.SetActive(false);
+            isOpened = false;
         }
 
-        public Transform FirstColumnContent => ui.layout.properties.firstColumnContent;
-        public Transform SecondColumnContent => ui.layout.properties.secondColumnContent;
+        public Transform FirstColumnContent { get =>ui.layout.properties.firstColumnContent; }
+        public Transform SecondColumnContent {get => ui.layout.properties.secondColumnContent; }
+        public bool IsOpened { get => isOpened; }
 
         [Serializable]
         public struct UIInfo

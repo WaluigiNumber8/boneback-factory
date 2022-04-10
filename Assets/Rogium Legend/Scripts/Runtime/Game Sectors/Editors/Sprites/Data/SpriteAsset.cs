@@ -2,6 +2,8 @@
 using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.GridSystem;
 using System;
+using BoubakProductions.Safety;
+using Rogium.Systems.Validation;
 using UnityEngine;
 
 namespace Rogium.Editors.Sprites
@@ -40,6 +42,8 @@ namespace Rogium.Editors.Sprites
         
         public SpriteAsset(string id, string title, Sprite icon, string author, ObjectGrid<int> spriteData, string preferredPaletteID, DateTime creationDate)
         {
+            AssetValidation.ValidateTitle(title);
+            
             this.id = id;
             this.title = title;
             this.icon = icon;
@@ -53,15 +57,9 @@ namespace Rogium.Editors.Sprites
         #endregion
 
         #region Update Values
-        public void UpdateSpriteData(ObjectGrid<int> newSpriteData)
-        {
-            this.spriteData = new ObjectGrid<int>(newSpriteData);
-        }
+        public void UpdateSpriteData(ObjectGrid<int> newSpriteData) => spriteData = new ObjectGrid<int>(newSpriteData);
+        public void UpdatePreferredPaletteID(string newPaletteID) => preferredPaletteID = newPaletteID;
 
-        public void UpdatePreferredPaletteID(string newPaletteID)
-        {
-            this.preferredPaletteID = newPaletteID;
-        }
         #endregion
         
         public ObjectGrid<int> SpriteData { get => spriteData; }

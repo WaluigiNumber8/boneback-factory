@@ -9,8 +9,7 @@ namespace Rogium.Systems.ThemeSystem
     public static class ThemeUpdater
     {
         private static ThemeStyleAsset t;
-
-
+        
         /// <summary>
         /// Updates an editor element with correct data from the correct theme.
         /// </summary>
@@ -42,7 +41,7 @@ namespace Rogium.Systems.ThemeSystem
         /// <returns></returns>
         private static void UpdateUsedTheme(ThemeType theme = ThemeType.NoTheme)
         {
-            t = (theme == ThemeType.NoTheme) ? ThemeOverseer.Instance.CurrentTheme : ThemeOverseer.Instance.GetTheme(theme);
+            t = (theme == ThemeType.NoTheme) ? ThemeOverseerMono.GetInstance().CurrentThemeData : ThemeOverseerMono.GetInstance().GetTheme(theme);
         }
     }
 }

@@ -11,6 +11,6 @@ namespace Rogium.Gameplay.Core
         public const int EmptyMemoryValue = -1;
         
         //Entities
-        public static readonly Vector2 StartingFaceDirection = Vector2.right;
+        public static readonly Vector2Int StartingFaceDirection = Vector2Int.down;
     }
 }

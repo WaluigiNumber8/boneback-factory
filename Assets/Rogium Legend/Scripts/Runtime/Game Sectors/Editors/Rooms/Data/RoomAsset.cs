@@ -4,6 +4,7 @@ using BoubakProductions.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.GridSystem;
+using Rogium.Systems.Validation;
 
 namespace Rogium.Editors.Rooms
 {
@@ -53,7 +54,8 @@ namespace Rogium.Editors.Rooms
         }
         public RoomAsset(string title, Sprite roomIcon, string author, int difficultyLevel)
         {
-            SafetyNet.EnsureIntIsBiggerThan(difficultyLevel, 0, "New Room Difficulty Level");
+            AssetValidation.ValidateTitle(title);
+            SafetyNet.EnsureIntIsBiggerThan(difficultyLevel, 0, "Room Difficulty Level");
 
             this.title = title;
             this.icon = roomIcon;
@@ -72,6 +74,7 @@ namespace Rogium.Editors.Rooms
         public RoomAsset(string title, Sprite icon, string author, int difficultyLevel, RoomType type, int lightness,
                          ObjectGrid<AssetData> tileGrid, ObjectGrid<AssetData> objectGrid, ObjectGrid<AssetData> enemyGrid)
         {
+            AssetValidation.ValidateTitle(title);
             SafetyNet.EnsureIntIsBiggerThan(difficultyLevel, 0, "New Room Difficulty Level");
 
             this.title = title;
@@ -92,6 +95,7 @@ namespace Rogium.Editors.Rooms
                          ObjectGrid<AssetData> tileGrid, ObjectGrid<AssetData> objectGrid, ObjectGrid<AssetData> enemyGrid,
                          DateTime creationDate)
         {
+            AssetValidation.ValidateTitle(title);
             SafetyNet.EnsureIntIsBiggerOrEqualTo(difficultyLevel, 0, "New Room Difficulty Level");
 
             this.id = id;
@@ -112,13 +116,12 @@ namespace Rogium.Editors.Rooms
         #region Update Values
         public void UpdateDifficultyLevel(int newLevel)
         {
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(newLevel, 0, "New Room Level");
+            newLevel = Mathf.Clamp(newLevel, 0, 10);
             difficultyLevel = newLevel;
         }
 
         public void UpdateType(int newType)
         {
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(newType, 0, "New Room Type");
             UpdateType((RoomType) newType);
         }
 

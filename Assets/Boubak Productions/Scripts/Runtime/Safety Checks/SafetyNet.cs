@@ -512,7 +512,9 @@ namespace BoubakProductions.Safety
             int foundDuplicates = list.GetDuplicatesCount();
             if (foundDuplicates > 0)
             {
-                throw new FoundDuplicationException($"The list {variableName} cannot have any duplicit values.");
+                string message = $"The list '{variableName}' cannot have any duplicit values.";
+                OnFireErrorMessage?.Invoke(message);
+                throw new FoundDuplicationException(message);
             }
         }
 
@@ -520,10 +522,23 @@ namespace BoubakProductions.Safety
         {
             if (index < 0 || index > collection.Count - 1)
             {
-                throw new SafetyNetCollectionException($"The index doesn't fit on the {collectionName} collection. Length is {collection.Count}. ({index})");
+                string message = $"The index doesn't fit on the '{collectionName}' collection. Length is {collection.Count}. ({index})";
+                OnFireErrorMessage?.Invoke(message);
+                throw new SafetyNetCollectionException(message);
             }
         }
         #endregion
+
+        /// <summary>
+        /// Throw a custom exception, that is recognized by the Safety Net System.
+        /// </summary>
+        /// <param name="exception"></param>
+        /// <exception cref="Exception"></exception>
+        public static void ThrowCustom(Exception exception)
+        {
+            OnFireErrorMessage?.Invoke(exception.Message);
+            throw exception;
+        }
 
     }
 }

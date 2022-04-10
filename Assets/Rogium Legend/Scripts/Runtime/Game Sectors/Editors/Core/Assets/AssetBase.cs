@@ -1,4 +1,6 @@
 ﻿using System;
+using BoubakProductions.Safety;
+using Rogium.Systems.Validation;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -30,6 +32,7 @@ namespace Rogium.Editors.Core
 
         #region Update Values
         public void UpdateTitle(string newTitle) => title = newTitle;
+
         public virtual void UpdateIcon(Sprite newIcon) => icon = newIcon;
 
         #endregion

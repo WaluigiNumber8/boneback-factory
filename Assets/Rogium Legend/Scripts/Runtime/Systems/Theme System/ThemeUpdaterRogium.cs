@@ -153,7 +153,7 @@ namespace Rogium.Systems.ThemeSystem
         /// <returns></returns>
         private static void UpdateUsedTheme(ThemeType theme = ThemeType.NoTheme)
         {
-            t = (theme == ThemeType.NoTheme) ? ThemeOverseer.Instance.CurrentTheme : ThemeOverseer.Instance.GetTheme(theme);
+            t = (theme == ThemeType.NoTheme) ? ThemeOverseerMono.GetInstance().CurrentThemeData : ThemeOverseerMono.GetInstance().GetTheme(theme);
         }
     }
 }

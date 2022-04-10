@@ -182,7 +182,7 @@ namespace Rogium.Editors.Core
         /// Returns a copy of the list of packs stored here.
         /// </summary>
         /// <returns>A copy of Pack Library.</returns>
-        public PackList GetPacksCopy => new PackList(packs);
+        public PackList GetPacksCopy => new(packs);
         
         /// <summary>
         /// Amount of campaigns stored in the library.
@@ -193,6 +193,6 @@ namespace Rogium.Editors.Core
         /// Returns a copy of the list of campaigns stored here.
         /// </summary>
         /// <returns>A copy of Pack Library.</returns>
-        public CampaignList GetCampaignsCopy => new CampaignList(campaigns);
+        public CampaignList GetCampaignsCopy => new(campaigns);
     }
 }

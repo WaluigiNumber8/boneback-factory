@@ -1,4 +1,6 @@
 ﻿using BoubakProductions.Safety;
+using Rogium.Systems.Validation;
+using UnityEngine;
 
 namespace Rogium.Editors.Core
 {
@@ -15,23 +17,27 @@ namespace Rogium.Editors.Core
         protected float knockbackTimeOther;
 
         #region Update Values
-        public void UpdateBaseDamage(int newBaseDamage) => baseDamage = newBaseDamage;
+        public void UpdateBaseDamage(int newBaseDamage)
+        {
+            baseDamage = newBaseDamage;
+        }
+
         public void UpdateUseDelay(float newUseDelay)
         {
-            SafetyNet.EnsureFloatIsBiggerOrEqualTo(newUseDelay, 0, "New UseDelay");
+            newUseDelay = Mathf.Clamp(newUseDelay, 0f, AssetValidation.MaxUseDelay);
             useDelay = newUseDelay;
         }
 
         public void UpdateKnockbackForceSelf(float newKnockbackSelf) => knockbackForceSelf = newKnockbackSelf;
         public void UpdateKnockbackTimeSelf(float newKnockbackTime)
         {
-            SafetyNet.EnsureFloatIsBiggerOrEqualTo(newKnockbackTime, 0, "New Knockback time self");
+            newKnockbackTime = Mathf.Clamp(newKnockbackTime, 0f, AssetValidation.MaxKnockbackSelfTime);
             knockbackTimeSelf = newKnockbackTime;
         }
         public void UpdateKnockbackForceOther(float newKnockbackOther) => knockbackForceOther = newKnockbackOther;
         public void UpdateKnockbackTimeOther(float newKnockbackTime)
         {
-            SafetyNet.EnsureFloatIsBiggerOrEqualTo(newKnockbackTime, 0, "New Knockback time other");
+            newKnockbackTime = Mathf.Clamp(newKnockbackTime, 0f, AssetValidation.MaxKnockbackOtherTime);
             knockbackTimeOther = newKnockbackTime;
         }
         #endregion

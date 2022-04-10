@@ -1,6 +1,8 @@
 ﻿using System;
+using BoubakProductions.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
+using Rogium.Systems.Validation;
 using UnityEngine;
 
 namespace Rogium.Editors.Weapons
@@ -59,6 +61,8 @@ namespace Rogium.Editors.Weapons
                            float knockbackTimeSelf, float knockbackForceOther, float knockbackTimeOther,
                            DateTime creationDate)
         {
+            AssetValidation.ValidateTitle(title);
+            
             this.id = id;
             this.title = title;
             this.icon = icon;

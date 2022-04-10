@@ -51,7 +51,7 @@ namespace Rogium.Systems.GASExtension
 
         public static void ChangeTheme(ThemeType type)
         {
-            ThemeOverseer.Instance.ChangeTheme(type);
+            ThemeOverseerMono.GetInstance().ChangeTheme(type);
         }
     }
 }

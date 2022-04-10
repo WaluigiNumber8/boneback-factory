@@ -34,5 +34,16 @@ namespace BoubakProductions.Safety
                 throw new IOException(message);
             }
         }
+        
+        /// <summary>
+        /// Throw a custom exception, that is recognized by the Safety Net System.
+        /// </summary>
+        /// <param name="exception"></param>
+        /// <exception cref="Exception"></exception>
+        public static void ThrowCustom(Exception exception)
+        {
+            OnFireErrorMessage?.Invoke($"IO - {exception.Message}");
+            throw exception;
+        }
     }
 }

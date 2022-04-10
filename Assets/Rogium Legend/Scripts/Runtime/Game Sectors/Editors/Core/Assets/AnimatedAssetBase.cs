@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Rogium.Systems.Validation;
+using UnityEngine;
 
 namespace Rogium.Editors.Core
 {
@@ -12,11 +13,14 @@ namespace Rogium.Editors.Core
         protected Sprite iconAlt;
 
         #region Update Values
-
         public void UpdateAnimationType(AnimationType newType) => animationType = newType;
-        public void UpdateFrameDuration(int newFrameDuration) => frameDuration = newFrameDuration;
-        public void UpdateIconAlt(Sprite newIconAlt) => iconAlt = newIconAlt;
+        public void UpdateFrameDuration(int newFrameDuration)
+        {
+            newFrameDuration = Mathf.Clamp(newFrameDuration, 0, AssetValidation.MaxFrameDuration);
+            frameDuration = newFrameDuration;
+        }
 
+        public void UpdateIconAlt(Sprite newIconAlt) => iconAlt = newIconAlt;
         #endregion
         
         public AnimationType AnimationType { get => animationType; }

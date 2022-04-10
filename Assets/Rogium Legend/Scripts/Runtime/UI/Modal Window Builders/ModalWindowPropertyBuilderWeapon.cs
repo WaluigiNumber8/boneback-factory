@@ -12,13 +12,10 @@ namespace Rogium.UserInterface.ModalWindowBuilding
     /// </summary>
     public class ModalWindowPropertyBuilderWeapon : ModalWindowPropertyBuilder
     {
-        private WeaponEditorOverseer weaponEditor;
+        private readonly WeaponEditorOverseer weaponEditor;
 
-        public ModalWindowPropertyBuilderWeapon()
-        {
-            weaponEditor = WeaponEditorOverseer.Instance;
-        }
-        
+        public ModalWindowPropertyBuilderWeapon() => weaponEditor = WeaponEditorOverseer.Instance;
+
         public override void OpenForCreate()
         {
             OpenWindow(new WeaponAsset(), CreateAsset, "Creating a new Weapon");

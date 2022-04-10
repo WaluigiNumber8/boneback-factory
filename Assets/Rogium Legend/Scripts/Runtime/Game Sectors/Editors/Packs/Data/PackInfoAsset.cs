@@ -3,6 +3,7 @@ using UnityEngine;
 using BoubakProductions.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
+using Rogium.Systems.Validation;
 
 namespace Rogium.Editors.Packs
 {
@@ -35,7 +36,6 @@ namespace Rogium.Editors.Packs
         {
             SafetyNet.EnsureStringInRange(title, 4, 30, "name");
             SafetyNet.EnsureStringInRange(description, 0, 2000, "description");
-            SafetyNet.EnsureStringInRange(author, 8, 20, "author");
 
             this.title = title;
             this.icon = icon;
@@ -46,9 +46,8 @@ namespace Rogium.Editors.Packs
         }
         public PackInfoAsset(string id, string title, Sprite icon, string author, string description, DateTime creationDateTime)
         {
-            SafetyNet.EnsureStringInRange(title, 4, 30, "name");
-            SafetyNet.EnsureStringInRange(description, 0, 2000, "description");
-            SafetyNet.EnsureStringInRange(author, 8, 20, "author");
+            AssetValidation.ValidateTitle(title);
+            AssetValidation.ValidateDescription(description);
 
             this.id = id;
             this.title = title;
@@ -60,10 +59,8 @@ namespace Rogium.Editors.Packs
         #endregion
         
         #region Update Values
-        public void UpdateDescription(string newDescription)
-        {
-            this.description = newDescription;
-        }
+        public void UpdateDescription(string newDescription) => description = newDescription;
+
         #endregion
         
         public string Description { get => description; }

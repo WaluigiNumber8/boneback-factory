@@ -4,6 +4,7 @@ using UnityEngine.Tilemaps;
 using BoubakProductions.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
+using Rogium.Systems.Validation;
 
 namespace Rogium.Editors.Tiles
 {
@@ -12,7 +13,7 @@ namespace Rogium.Editors.Tiles
     /// </summary>
     public class TileAsset : AssetBase
     {
-        private TileObject tile;
+        private readonly TileObject tile;
 
         #region Constructors
         public TileAsset()
@@ -37,6 +38,8 @@ namespace Rogium.Editors.Tiles
         }
         public TileAsset(string title, Sprite icon, string author, TileType type)
         {
+            AssetValidation.ValidateTitle(title);
+            
             this.title = title;
             this.icon = icon;
             this.author = author;
@@ -47,6 +50,8 @@ namespace Rogium.Editors.Tiles
         }
         public TileAsset(string id, string title, Sprite icon, string author, TileType type, Color tileColor, DateTime creationDate)
         {
+            AssetValidation.ValidateTitle(title);
+            
             this.id = id;
             this.title = title;
             this.icon = icon;

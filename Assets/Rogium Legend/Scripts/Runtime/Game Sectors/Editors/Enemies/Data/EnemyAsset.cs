@@ -1,6 +1,8 @@
 ﻿using System;
+using BoubakProductions.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
+using Rogium.Systems.Validation;
 using UnityEngine;
 
 namespace Rogium.Editors.Enemies
@@ -66,6 +68,8 @@ namespace Rogium.Editors.Enemies
                           float knockbackTimeSelf, float knockbackForceOther, float knockbackTimeOther, int maxHealth,
                           float invincibilityTime, DateTime creationDate)
         {
+            AssetValidation.ValidateTitle(title);
+            
             this.id = id;
             this.title = title;
             this.icon = icon;
@@ -90,8 +94,17 @@ namespace Rogium.Editors.Enemies
         #endregion
 
         #region Update Values
-        public void UpdateMaxHealth(int newMaxHealth) => maxHealth = newMaxHealth;
-        public void UpdateInvincibilityTime(float newInvincibilityTime) => invincibilityTime = newInvincibilityTime;
+        public void UpdateMaxHealth(int newMaxHealth)
+        {
+            newMaxHealth = Mathf.Clamp(newMaxHealth, 0, AssetValidation.MaxEnemyHealth);
+            maxHealth = newMaxHealth;
+        }
+
+        public void UpdateInvincibilityTime(float newInvincibilityTime)
+        {
+            newInvincibilityTime = Mathf.Clamp(newInvincibilityTime, 0, AssetValidation.MaxEnemyInvincibilityTime);
+            invincibilityTime = newInvincibilityTime;
+        }
 
         #endregion
 

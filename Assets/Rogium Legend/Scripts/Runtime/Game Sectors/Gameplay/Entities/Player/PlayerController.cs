@@ -44,6 +44,7 @@ namespace Rogium.Gameplay.Entities.Player
             
             if (actionsLocked) return;
             movement.Move(moveDirection);
+            
         }
 
         /// <summary>
@@ -52,7 +53,7 @@ namespace Rogium.Gameplay.Entities.Player
         /// <param name="inputDir">The input of the player.</param>
         private void DoMovement(Vector2 inputDir)
         {
-            faceDirection = (inputDir != Vector2.zero) ? inputDir : faceDirection;
+            // faceDirection = (inputDir != Vector2.zero) ? inputDir : faceDirection;
             moveDirection = inputDir.normalized;
         }
 
