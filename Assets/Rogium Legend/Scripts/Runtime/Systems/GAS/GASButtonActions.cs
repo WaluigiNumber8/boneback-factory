@@ -14,10 +14,10 @@ using Rogium.Editors.Sprites;
 using Rogium.Editors.Tiles;
 using Rogium.Editors.Weapons;
 using Rogium.Systems.Toolbox;
-using Rogium.UserInterface.AssetSelection;
+using Rogium.UserInterface.Editors.AssetSelection;
 using Rogium.UserInterface.Containers;
 using Rogium.UserInterface.Core;
-using Rogium.UserInterface.ModalWindowBuilding;
+using Rogium.UserInterface.Editors.ModalWindowBuilding;
 using UnityEngine;
 
 namespace Rogium.Systems.GASExtension

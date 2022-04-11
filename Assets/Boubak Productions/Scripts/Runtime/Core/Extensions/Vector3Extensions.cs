@@ -36,6 +36,15 @@ namespace BoubakProductions.Core
         {
             return (other - vector3).sqrMagnitude;
         }
-        
+
+        /// <summary>
+        /// Absolutes the vector.
+        /// </summary>
+        /// <param name="vector">The vector to absolute.</param>
+        /// <returns>The absolutated vector.</returns>
+        public static Vector3 Abs(this Vector3 vector)
+        {
+            return new Vector3(Mathf.Abs(vector.x), Mathf.Abs(vector.y), Mathf.Abs(vector.z));
+        }
     }
 }

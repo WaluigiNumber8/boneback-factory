@@ -1,7 +1,7 @@
 ﻿using BoubakProductions.Safety;
 using Rogium.Core;
 using Rogium.Editors.Core;
-using Rogium.UserInterface.AssetSelection;
+using Rogium.UserInterface.Editors.AssetSelection;
 using System;
 using System.Collections.Generic;
 using BoubakProductions.UI.MenuFilling;

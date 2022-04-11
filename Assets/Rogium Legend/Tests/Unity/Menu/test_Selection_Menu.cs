@@ -3,7 +3,7 @@ using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Packs;
 using Rogium.Systems.GASExtension;
-using Rogium.UserInterface.AssetSelection;
+using Rogium.UserInterface.Editors.AssetSelection;
 using System.Collections;
 using UnityEditor;
 using UnityEngine;

@@ -1,4 +1,5 @@
-﻿using Rogium.Gameplay.Core;
+﻿using BoubakProductions.Core;
+using Rogium.Gameplay.Core;
 using UnityEngine;
 
 namespace Rogium.Gameplay.Entities
@@ -12,14 +13,13 @@ namespace Rogium.Gameplay.Entities
 
         private ForceMoveInfo forceMove;
 
-        private UpdateFaceDirectionType faceDirectionType;
         private Vector3 previousPos;
         private float currentSpeed;
         
         protected Transform ttransform;
         private Rigidbody2D rb;
 
-        protected Vector2Int faceDirection;
+        protected Vector2 faceDirection;
         protected bool actionsLocked;
         
         protected virtual void Awake()
@@ -47,12 +47,6 @@ namespace Rogium.Gameplay.Entities
             trigger.enabled = enable;
         }
 
-        /// <summary>
-        /// Changes the way the face direction is updated.
-        /// </summary>
-        /// <param name="type"></param>
-        public void SetFaceDirectionUpdateType(UpdateFaceDirectionType type) => faceDirectionType = type;
-        
         /// <summary>
         /// Force movement in a specific direction.
         /// </summary>
@@ -102,15 +96,11 @@ namespace Rogium.Gameplay.Entities
         private void UpdateParameters()
         {
             Vector3 velocityChange = (ttransform.position - previousPos);
-            Vector3 velocityChangeNormalized = (velocityChange * 0.01f).normalized;
+            currentSpeed = velocityChange.magnitude * 1000f;
+            faceDirection = (Vector3.Distance(velocityChange, Vector3.zero) > 0.01f) ? velocityChange.normalized : faceDirection;
             previousPos = ttransform.position;
-
-            faceDirection = (velocityChange != Vector3.zero) ? new Vector2Int(Mathf.RoundToInt(velocityChangeNormalized.x), Mathf.RoundToInt(velocityChangeNormalized.y)) : faceDirection;
-            currentSpeed = velocityChange.magnitude * 100f;
-            
-            
         }
-        
+
         protected virtual void WhenForceMoveEnd() { }
         
         protected void OnDrawGizmos()
@@ -121,7 +111,7 @@ namespace Rogium.Gameplay.Entities
 
         public Transform Transform { get => ttransform; }
         public Rigidbody2D Rigidbody { get => rb; }
-        public Vector2Int FaceDirection { get => faceDirection; }
+        public Vector2 FaceDirection { get => faceDirection; }
         public float CurrentSpeed { get => currentSpeed; }
         public bool ActionsLocked { get => actionsLocked; }
         

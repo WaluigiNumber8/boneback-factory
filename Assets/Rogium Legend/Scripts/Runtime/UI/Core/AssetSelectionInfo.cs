@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Rogium.UserInterface.AssetSelection
+namespace Rogium.UserInterface.Editors.AssetSelection
 {
     [System.Serializable]
     public struct AssetSelectionMenuInfo

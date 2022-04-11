@@ -5,7 +5,7 @@ using Rogium.Editors.Packs;
 using System.Collections.Generic;
 using System.Linq;
 using BoubakProductions.Safety;
-using Rogium.UserInterface.AssetSelection.PickerVariant;
+using Rogium.UserInterface.Editors.AssetSelection.PickerVariant;
 using UnityEngine;
 
 namespace Rogium.Editors.Campaign

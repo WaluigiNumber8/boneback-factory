@@ -1,7 +1,7 @@
 ﻿using BoubakProductions.Core;
 using BoubakProductions.UI;
-using Rogium.UserInterface.AssetSelection.PickerVariant;
-using Rogium.UserInterface.Navigation;
+using Rogium.UserInterface.Editors.AssetSelection.PickerVariant;
+using Rogium.UserInterface.Editors.Navigation;
 using UnityEngine;
 using UnityEngine.Serialization;
 

@@ -1,5 +1,5 @@
 ﻿using BoubakProductions.UI;
-using Rogium.UserInterface.AssetSelection.PickerVariant;
+using Rogium.UserInterface.Editors.AssetSelection.PickerVariant;
 using Rogium.UserInterface.Interactables;
 using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine.UI;

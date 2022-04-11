@@ -23,5 +23,15 @@ namespace BoubakProductions.Core
             vector.y = (sin * tx) + (cos * ty);
             return vector;
         }
+        
+        /// <summary>
+        /// Absolutes the vector.
+        /// </summary>
+        /// <param name="vector">The vector to absolute.</param>
+        /// <returns>The absolutated vector.</returns>
+        public static Vector2 Abs(this Vector2 vector)
+        {
+            return new Vector2(Mathf.Abs(vector.x), Mathf.Abs(vector.y));
+        }
     }
 }

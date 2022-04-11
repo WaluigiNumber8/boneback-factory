@@ -20,6 +20,7 @@ namespace Rogium.Systems.SAS
         {
             base.Awake();
             transporter = new ObjectTransporter();
+            transitionCanvas.gameObject.SetActive(true);
         }
 
         /// <summary>

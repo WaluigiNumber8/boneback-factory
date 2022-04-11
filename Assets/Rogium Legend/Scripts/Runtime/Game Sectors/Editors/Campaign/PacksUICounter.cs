@@ -1,5 +1,5 @@
 ﻿using Rogium.Editors.Core;
-using Rogium.UserInterface.AssetSelection.PickerVariant;
+using Rogium.UserInterface.Editors.AssetSelection.PickerVariant;
 using UnityEngine;
 using TMPro;
 

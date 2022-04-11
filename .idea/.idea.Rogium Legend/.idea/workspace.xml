@@ -337,7 +337,8 @@
       <workItem from="1649413247677" duration="9864000" />
       <workItem from="1649435048351" duration="4045000" />
       <workItem from="1649492174419" duration="4890000" />
-      <workItem from="1649579941810" duration="6807000" />
+      <workItem from="1649579941810" duration="7413000" />
+      <workItem from="1649660733596" duration="5423000" />
     </task>
     <servers />
   </component>
@@ -385,14 +386,14 @@
           <option name="timeStamp" value="63" />
         </line-breakpoint>
         <line-breakpoint type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/UI/Asset Selection/Assets/AssetSlot.cs</url>
+          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/UI/Editor Specific/Asset Selection/Assets/AssetSlot.cs</url>
           <line>41</line>
           <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\UI\Asset Selection\Assets\AssetSlot.cs" initialLine="41" containingFunctionPresentation="method 'WhenSelected'">
             <startOffsets>
-              <option value="1257" />
+              <option value="1265" />
             </startOffsets>
             <endOffsets>
-              <option value="1268" />
+              <option value="1276" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="82" />
@@ -422,14 +423,14 @@
           <option name="timeStamp" value="87" />
         </line-breakpoint>
         <line-breakpoint type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/UI/Modal Window Builders/ModalWindowPropertyBuilderCampaign.cs</url>
+          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/UI/Editor Specific/Modal Window Builders/ModalWindowPropertyBuilderCampaign.cs</url>
           <line>50</line>
           <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\UI\Modal Window Builders\ModalWindowPropertyBuilderCampaign.cs" initialLine="49" containingFunctionPresentation="method 'OpenWindow'">
             <startOffsets>
-              <option value="1762" />
+              <option value="1778" />
             </startOffsets>
             <endOffsets>
-              <option value="1926" />
+              <option value="1942" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="99" />

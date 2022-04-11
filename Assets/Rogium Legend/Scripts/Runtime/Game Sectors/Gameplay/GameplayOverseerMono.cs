@@ -1,15 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using BoubakProductions.Core;
 using BoubakProductions.Safety;
 using BoubakProductions.Systems.GASCore;
 using Rogium.Editors.Campaign;
+using Rogium.Editors.Core;
 using Rogium.Editors.Rooms;
 using Rogium.Gameplay.InteractableObjects;
 using Rogium.Gameplay.Sequencer;
 using Rogium.Systems.Input;
 using Rogium.Systems.SceneTransferService;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Rogium.Gameplay.Core
 {
@@ -30,8 +34,10 @@ namespace Rogium.Gameplay.Core
         {
             base.Awake();
             difficultyData = new SortedDictionary<int, int>();
-            currentCampaign = new CampaignAsset(SceneTransferOverseer.GetInstance().PickUpCampaign());
-            // currentCampaign = ExternalLibraryOverseer.Instance.GetCampaignsCopy[0];
+            
+            try { currentCampaign = new CampaignAsset(SceneTransferOverseer.GetInstance().PickUpCampaign()); }
+            catch (Exception) { currentCampaign = ExternalLibraryOverseer.Instance.GetCampaignsCopy[0]; }
+            
         }
         private void OnEnable() => InteractObjectDoorLeave.OnTrigger += AdvanceRoom;
         private void OnDisable() => InteractObjectDoorLeave.OnTrigger -= AdvanceRoom;
@@ -73,7 +79,7 @@ namespace Rogium.Gameplay.Core
                     //Check if no more tiers exist, then finish the game.
                     if (difficultyData.Count <= 0)
                     {
-                        FinishGame(direction);
+                        StartCoroutine(FinishGame(direction));
                         return;
                     }
                     
@@ -140,10 +146,10 @@ namespace Rogium.Gameplay.Core
             difficultyData = updateDifficultyData;
         }
 
-        private void FinishGame(Vector2 direction)
+        private IEnumerator FinishGame(Vector2 direction)
         {
             InputSystem.Instance.EnableUIMap();
-            sequencer.RunEnd(direction);
+            yield return sequencer.RunEndCoroutine(direction);
             GAS.SwitchScene(0);
         }
 

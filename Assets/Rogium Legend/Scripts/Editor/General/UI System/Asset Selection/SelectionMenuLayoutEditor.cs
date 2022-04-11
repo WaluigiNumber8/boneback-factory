@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace Rogium.UserInterface.AssetSelection
+namespace Rogium.UserInterface.Editors.AssetSelection
 {
     [CustomEditor(typeof(SelectionMenuLayout))]
     public class SelectionMenuLayoutEditor : Editor

@@ -5,6 +5,7 @@ using System.Linq;
 using BoubakProductions.Safety;
 using Rogium.Editors.Rooms;
 using Rogium.Gameplay.DataLoading;
+using Rogium.Gameplay.Entities;
 using Rogium.Gameplay.Entities.Player;
 using Rogium.Gameplay.InteractableObjects;
 using Rogium.Systems.SAS;
@@ -49,11 +50,6 @@ namespace Rogium.Gameplay.Sequencer
         public void RunTransition(RoomType nextRoomType, Vector2 direction, int difficultyTier) => StartCoroutine(RunTransitionCoroutine(nextRoomType, direction, difficultyTier));
         
         /// <summary>
-        /// Runs the gameplay finish transition.
-        /// </summary>
-        public void RunEnd(Vector2 direction) => StartCoroutine(RunEndCoroutine(direction));
-
-        /// <summary>
         /// Runs the opening gameplay sequence.
         /// </summary>
         private IEnumerator RunIntroCoroutine(int difficultyTier)
@@ -95,7 +91,7 @@ namespace Rogium.Gameplay.Sequencer
         /// <summary>
         /// Runs the gameplay finish transition.
         /// </summary>
-        private IEnumerator RunEndCoroutine(Vector2 direction)
+        public IEnumerator RunEndCoroutine(Vector2 direction)
         {
             player.SetCollideMode(false);
             startingPoints.Clear();

@@ -1,6 +1,6 @@
 ﻿using BoubakProductions.Core;
-using Rogium.UserInterface.AssetSelection;
-using Rogium.UserInterface.AssetSelection.PickerVariant;
+using Rogium.UserInterface.Editors.AssetSelection;
+using Rogium.UserInterface.Editors.AssetSelection.PickerVariant;
 using UnityEngine;
 
 namespace Rogium.Systems.GASExtension

@@ -1,4 +1,4 @@
-﻿using Rogium.UserInterface.AssetSelection;
+﻿using Rogium.UserInterface.Editors.AssetSelection;
 using UnityEngine;
 
 namespace Rogium.UserInterface.Interactables
