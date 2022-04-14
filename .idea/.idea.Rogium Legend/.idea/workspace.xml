@@ -338,7 +338,11 @@
       <workItem from="1649435048351" duration="4045000" />
       <workItem from="1649492174419" duration="4890000" />
       <workItem from="1649579941810" duration="7413000" />
-      <workItem from="1649660733596" duration="5423000" />
+      <workItem from="1649660733596" duration="5819000" />
+      <workItem from="1649679645135" duration="1221000" />
+      <workItem from="1649701653502" duration="1202000" />
+      <workItem from="1649787909685" duration="3434000" />
+      <workItem from="1649946845319" duration="2895000" />
     </task>
     <servers />
   </component>
@@ -388,14 +392,7 @@
         <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/UI/Editor Specific/Asset Selection/Assets/AssetSlot.cs</url>
           <line>41</line>
-          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\UI\Asset Selection\Assets\AssetSlot.cs" initialLine="41" containingFunctionPresentation="method 'WhenSelected'">
-            <startOffsets>
-              <option value="1265" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1276" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\UI\Asset Selection\Assets\AssetSlot.cs" initialLine="41" containingFunctionPresentation="method 'WhenSelected'" />
           <option name="timeStamp" value="82" />
         </line-breakpoint>
         <line-breakpoint type="DotNet Breakpoints">
@@ -425,14 +422,7 @@
         <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/UI/Editor Specific/Modal Window Builders/ModalWindowPropertyBuilderCampaign.cs</url>
           <line>50</line>
-          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\UI\Modal Window Builders\ModalWindowPropertyBuilderCampaign.cs" initialLine="49" containingFunctionPresentation="method 'OpenWindow'">
-            <startOffsets>
-              <option value="1778" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1942" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\UI\Modal Window Builders\ModalWindowPropertyBuilderCampaign.cs" initialLine="49" containingFunctionPresentation="method 'OpenWindow'" />
           <option name="timeStamp" value="99" />
         </line-breakpoint>
         <line-breakpoint type="DotNet Breakpoints">
@@ -462,19 +452,6 @@
           <option name="timeStamp" value="106" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Gameplay/Room Random Generator/RRG.cs</url>
-          <line>51</line>
-          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Gameplay\Room Random Generator\RRG.cs" initialLine="51" containingFunctionPresentation="method 'LoadNext'">
-            <startOffsets>
-              <option value="1939" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1973" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="109" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Systems/Grid System/ObjectGrid.cs</url>
           <line>96</line>
           <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Systems\Grid System\ObjectGrid.cs" initialLine="95" containingFunctionPresentation="method 'ClearAllCells'">
@@ -486,6 +463,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="112" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Systems/GAS/GASButtonActions.cs</url>
+          <line>678</line>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Systems\GAS\GASButtonActions.cs" initialLine="678" containingFunctionPresentation="method 'GameplayPauseResume'">
+            <startOffsets>
+              <option value="26583" />
+            </startOffsets>
+            <endOffsets>
+              <option value="26637" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="114" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

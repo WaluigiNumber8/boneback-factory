@@ -67,5 +67,7 @@ namespace Rogium.Systems.Input
         public InputButton ButtonMainAlternative { get => buttonMainAlternative; }
         public InputButton ButtonSubAlternative { get => buttonSubAlternative; }
         public InputButton ButtonDashAlternative { get => buttonDashAlternative; }
+        
+        public InputButton ButtonStart { get => buttonStart; }
     }
 }

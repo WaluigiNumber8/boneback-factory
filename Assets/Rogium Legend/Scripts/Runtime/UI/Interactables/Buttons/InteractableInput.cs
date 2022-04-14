@@ -324,6 +324,17 @@ namespace Rogium.UserInterface.Interactables
                     break;
 
                 #endregion
+
+                #region Gameplay Pause Menu
+                case ButtonType.GameplayPauseResume:
+                    GASButtonActions.GameplayPauseResume();
+                    break;
+                
+                case ButtonType.GameplayPauseQuit:
+                    GASButtonActions.GameplayPauseQuit();
+                    break;
+
+                #endregion
                 
                 case ButtonType.Play:
                     SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - PLAY CAMPAIGN");

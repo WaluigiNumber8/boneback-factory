@@ -1,4 +1,5 @@
-﻿using BoubakProductions.Systems.GASCore;
+﻿using System;
+using BoubakProductions.Systems.GASCore;
 using BoubakProductions.Safety;
 using BoubakProductions.UI;
 using BoubakProductions.UI.MenuSwitching;
@@ -18,6 +19,7 @@ using Rogium.UserInterface.Editors.AssetSelection;
 using Rogium.UserInterface.Containers;
 using Rogium.UserInterface.Core;
 using Rogium.UserInterface.Editors.ModalWindowBuilding;
+using Rogium.UserInterface.Gameplay.PauseMenu;
 using UnityEngine;
 
 namespace Rogium.Systems.GASExtension
@@ -668,6 +670,20 @@ namespace Rogium.Systems.GASExtension
         {
             RoomEditorOverseerMono.GetInstance().ClearActiveLayer();
         }
+        #endregion
+
+        #region Gameplay Pause Menu
+
+        public static void GameplayPauseResume()
+        {
+            PauseMenuOverseerMono.GetInstance().SwitchMenuState();
+        }
+
+        public static void GameplayPauseQuit()
+        {
+            PauseMenuOverseerMono.GetInstance().ReturnToMainMenu();
+        }
+
         #endregion
     }
 }

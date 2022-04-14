@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 8170688877254251976}
   - component: {fileID: 6430995865926283817}
   - component: {fileID: 2147883220404228556}
+  - component: {fileID: 3783253690797899005}
   - component: {fileID: 1608917976491776161}
   m_Layer: 0
   m_Name: pref_Button_Gameplay_White
@@ -279,6 +280,23 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3783253690797899005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5585607263565443267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdbd33c92c2034a44bc806bf077f3ef9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  action: 0
+  index: -1
+  ui:
+    buttonImage: {fileID: 0}
+    buttonText: {fileID: 0}
 --- !u!114 &1608917976491776161
 MonoBehaviour:
   m_ObjectHideFlags: 0

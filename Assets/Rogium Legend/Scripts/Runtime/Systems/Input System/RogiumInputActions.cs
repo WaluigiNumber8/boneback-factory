@@ -831,7 +831,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": """",
                     ""id"": ""a735878a-27ac-4b15-afce-2b2c2b848c75"",
-                    ""path"": ""<Keyboard>/enter"",
+                    ""path"": ""<Keyboard>/backspace"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard + Mouse"",

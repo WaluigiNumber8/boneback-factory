@@ -1,4 +1,5 @@
-﻿using Rogium.Gameplay.Entities.Characteristics;
+﻿using System;
+using Rogium.Gameplay.Entities.Characteristics;
 using Rogium.Systems.Input;
 using UnityEngine;
 

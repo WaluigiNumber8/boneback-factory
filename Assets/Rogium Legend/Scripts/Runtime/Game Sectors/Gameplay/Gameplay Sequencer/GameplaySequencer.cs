@@ -97,7 +97,7 @@ namespace Rogium.Gameplay.Sequencer
             startingPoints.Clear();
             
             yield return sas.Transport(playerTransform, playerTransform.position + (Vector3)direction, transportWalkSpeed);
-            yield return sas.FadeOut(5f, true);
+            yield return sas.FadeOut(3f, true);
             
             player.gameObject.SetActive(false);
             yield return sas.Wait(1f);

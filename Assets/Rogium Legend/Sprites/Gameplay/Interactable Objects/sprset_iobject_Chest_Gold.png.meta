@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 521960d463b17fb49bb19a854608bf12
+guid: 0fe87e1d960a01d4ea6f5bae06796dfd
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -104,64 +104,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sprset_Gameplay_BigIcons_0
+      name: sprset_iobject_Chest_Gold_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 16
-        height: 16
+        height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39bee47a8f22ba84d9bb8265e8b70e94
-      internalID: -2013601848
+      spriteID: 64782de70e5909946adc95f457fca617
+      internalID: -2070364155
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_Gameplay_BigIcons_1
+      name: sprset_iobject_Chest_Gold_1
       rect:
         serializedVersion: 2
         x: 16
         y: 0
         width: 16
-        height: 16
+        height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5602a521ce7e01549a13192fe5957426
-      internalID: 519437726
+      spriteID: 01c432148a6eab54c83f58167d7f7951
+      internalID: -457365677
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_Gameplay_BigIcons_2
+      name: sprset_iobject_Chest_Gold_2
       rect:
         serializedVersion: 2
         x: 32
         y: 0
         width: 16
-        height: 16
+        height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b8ddaac1fcd4b1439a47395815a34de
-      internalID: 1137047716
+      spriteID: 3ca14eaba9fd2df4aa5c24d3c34bbef3
+      internalID: 1657490155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprset_iobject_Chest_Gold_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80808ed3b8314244b962693016601714
+      internalID: -1676964723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprset_iobject_Chest_Gold_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b574a869743d7448814ca2758cc653f
+      internalID: 536269969
       vertices: []
       indices: 
       edges: []
@@ -177,9 +219,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      sprset_Gameplay_BigIcons_0: -2013601848
-      sprset_Gameplay_BigIcons_2: 1137047716
-      sprset_Gameplay_BigIcons_1: 519437726
+      sprset_iobject_Chest_Gold_4: 536269969
+      sprset_iobject_Chest_Gold_0: -2070364155
+      sprset_iobject_Chest_Gold_2: 1657490155
+      sprset_iobject_Chest_Gold_3: -1676964723
+      sprset_iobject_Chest_Gold_1: -457365677
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

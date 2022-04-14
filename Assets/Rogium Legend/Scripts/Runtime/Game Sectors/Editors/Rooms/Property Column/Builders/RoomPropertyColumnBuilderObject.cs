@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Objects;
 using Rogium.UserInterface.Interactables.Properties;
@@ -20,6 +21,8 @@ namespace Rogium.Editors.Rooms.PropertyColumn
             
             presets.Add("001", BuildRoomExit);
             presets.Add("002", BuildStartingPoint);
+            presets.Add("003", BuildWeaponDrop);
+            presets.Add("004", BuildChestGold);
         }
         
         /// <summary>
@@ -30,6 +33,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         {
             if (presets.TryGetValue(data.ID, out Action<AssetData> method))
             {
+                Clear();
                 method?.Invoke(data);
                 return;
             }
@@ -45,15 +49,21 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         /// <param name="data">The data to use.</param>
         private void BuildRoomExit(AssetData data)
         {
-            Clear();
             b.BuildDropdown("Direction", Enum.GetNames(typeof(DirectionType)), data.Parameters.intValue1, contentMain, data.UpdateIntValue1);
             b.BuildDropdown("Next Room", Enum.GetNames(typeof(RoomType)), data.Parameters.intValue2, contentMain, data.UpdateIntValue2);
         }
 
         private void BuildStartingPoint(AssetData data)
         {
-            Clear();
-            b.BuildDropdown("Exit Direction", Enum.GetNames(typeof(DirectionType)), data.Parameters.intValue1, contentMain, data.UpdateIntValue1);
+            b.BuildDropdown("Direction", Enum.GetNames(typeof(DirectionType)), data.Parameters.intValue1, contentMain, data.UpdateIntValue1);
+        }
+        
+        private void BuildWeaponDrop(AssetData data)
+        {
+        }
+        
+        private void BuildChestGold(AssetData data)
+        {
         }
         #endregion
         

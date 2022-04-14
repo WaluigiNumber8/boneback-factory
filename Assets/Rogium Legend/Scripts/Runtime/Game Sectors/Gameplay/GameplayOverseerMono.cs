@@ -56,6 +56,8 @@ namespace Rogium.Gameplay.Core
             sequencer.RunIntro(currentTier);
         }
 
+        public void EndGame() => StartCoroutine(FinishGame(Vector2.down * 10));
+        
         /// <summary>
         /// Complete the current room and move to the next one.
         /// </summary>

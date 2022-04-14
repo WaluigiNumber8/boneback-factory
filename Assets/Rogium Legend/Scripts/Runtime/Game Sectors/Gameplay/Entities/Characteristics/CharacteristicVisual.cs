@@ -1,4 +1,5 @@
 ﻿using System;
+using BoubakProductions.Systems.ClockOfTheGame;
 using Rogium.Editors.Core;
 using UnityEngine;
 
@@ -20,7 +21,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
 
         private void Update()
         {
-            frameCountdown--;
+            frameCountdown -= (int)(1 * GameClock.Instance.Scale);
             ProcessSwitchFrame();
         }
 

@@ -51,11 +51,10 @@
         }
         
         /// <summary>
-        /// Disables all Action Maps.
+        /// Disables all Action Maps except UI.
         /// </summary>
         private void DisableAll()
         {
-            inputUI.Disable();
             inputPlayer.Disable();
         }
         
