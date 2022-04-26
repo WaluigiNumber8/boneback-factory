@@ -85,5 +85,26 @@ namespace BoubakProductions.Core
             throw new ArgumentNullException($"No element with value '{value}' was found.");
         }
         
+        /// <summary>
+        /// Resize a list and keep it's existing values.
+        /// </summary>
+        /// <param name="list">The list to resize.</param>
+        /// <param name="size">The new size.</param>
+        /// <param name="element">Initial value of newly added positions.</param>
+        /// <typeparam name="T">Any Type.</typeparam>
+        public static void Resize<T>(this List<T> list, int size, T element = default(T))
+        {
+            int count = list.Count;
+
+            if (count == size) return;
+            if (size < count)
+            {
+                list.RemoveRange(size, count - size);
+                return;
+            }
+            
+            if (size > list.Capacity) list.Capacity = size;
+            list.AddRange(Enumerable.Repeat(element, size - count));
+        }
     }
 }

@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using BoubakProductions.Core;
+using BoubakProductions.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.Validation;
@@ -14,7 +17,7 @@ namespace Rogium.Editors.Enemies
     {
         private int maxHealth;
         private float invincibilityTime;
-        private string[] weaponIDs;
+        private List<string> weaponIDs;
 
         #region Constructors
         public EnemyAsset()
@@ -37,7 +40,7 @@ namespace Rogium.Editors.Enemies
 
             maxHealth = EditorDefaults.EnemyMaxHealth;
             invincibilityTime = EditorDefaults.EnemyInvincibilityTime;
-            weaponIDs = Enumerable.Repeat(EditorDefaults.EmptyAssetID, EditorDefaults.EnemyWeaponMaxCount).ToArray();
+            weaponIDs = new List<string>();
             
             GenerateID(EditorAssetIDs.EnemyIdentifier);
         }
@@ -64,13 +67,13 @@ namespace Rogium.Editors.Enemies
             maxHealth = asset.MaxHealth;
             invincibilityTime = asset.InvincibilityTime;
 
-            weaponIDs = asset.weaponIDs;
+            weaponIDs = new List<string>(asset.weaponIDs);
         }
 
         public EnemyAsset(string id, string title, Sprite icon, string author, AnimationType animationType, 
                           int frameDuration, Sprite iconAlt, int baseDamage, float useDelay, float knockbackForceSelf,
                           float knockbackTimeSelf, float knockbackForceOther, float knockbackTimeOther, int maxHealth,
-                          float invincibilityTime, string[] weaponIDs, DateTime creationDate)
+                          float invincibilityTime, List<string> weaponIDs, DateTime creationDate)
         {
             AssetValidation.ValidateTitle(title);
             
@@ -94,7 +97,7 @@ namespace Rogium.Editors.Enemies
             this.maxHealth = maxHealth;
             this.invincibilityTime = invincibilityTime;
 
-            this.weaponIDs = weaponIDs;
+            this.weaponIDs = new List<string>(weaponIDs);
         }
         #endregion
 
@@ -111,11 +114,16 @@ namespace Rogium.Editors.Enemies
             invincibilityTime = newInvincibilityTime;
         }
 
+        public void UpdateWeaponIDsLength(int newLength)
+        {
+            SafetyNet.EnsureIntIsBiggerOrEqualTo(newLength, 0, "New weapon IDs size");
+            weaponIDs.Resize(newLength, EditorDefaults.EmptyAssetID);
+        }
         public void UpdateWeaponIDPos(int pos, string value) => WeaponIDs[pos] = value;
 
         #endregion
 
-        public string[] WeaponIDs { get => weaponIDs; }
+        public List<string> WeaponIDs { get => weaponIDs; }
         public int MaxHealth { get => maxHealth; }
         public float InvincibilityTime { get => invincibilityTime; }
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Rogium.Editors.Core;
 using Rogium.Editors.Enemies;
 
@@ -12,7 +13,7 @@ namespace Rogium.ExternalStorage.Serialization
     {
         private int maxHealth;
         private float invincibilityTime;
-        private string[] weaponsIDs;
+        private List<string> weaponsIDs;
 
         public SerializedEnemyAsset(EnemyAsset asset) : base(asset)
         {
