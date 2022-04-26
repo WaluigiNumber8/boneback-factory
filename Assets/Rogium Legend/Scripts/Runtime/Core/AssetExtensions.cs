@@ -20,13 +20,15 @@ namespace Rogium.Core
         /// <returns>A List of assets.</returns>
         public static IList<T> ConvertToAssets<T>(this IEnumerable<string> ids, IList<T> allAssets, bool keepEmpty = false) where T : IIDHolder
         {
+            if (allAssets == null || allAssets.Count <= 0) return new List<T>();
+            
             IList<T> assets = new List<T>();
             string lastID = EditorDefaults.EmptyAssetID;
             T lastAsset = default;
             
             foreach (string id in ids)
             {
-                if (id != EditorDefaults.EmptyAssetID)
+                if (id == EditorDefaults.EmptyAssetID)
                 {
                     if (!keepEmpty) assets.Add(default);
                     continue;

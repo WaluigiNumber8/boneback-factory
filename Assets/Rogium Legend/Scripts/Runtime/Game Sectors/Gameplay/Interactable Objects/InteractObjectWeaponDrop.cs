@@ -1,4 +1,5 @@
 ﻿using System;
+using BoubakProductions.Safety;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Objects;
@@ -18,6 +19,8 @@ namespace Rogium.Gameplay.InteractableObjects
     {
         public event Action<WeaponAsset> OnPlayerPickUp;
 
+        [SerializeField] private SpriteRenderer iconRenderer;
+        
         private WeaponAsset weapon;
         private bool playerOnly;
 
@@ -38,8 +41,17 @@ namespace Rogium.Gameplay.InteractableObjects
 
         public void Construct(ObjectAsset data, ParameterInfo parameters)
         {
-            weapon = GameplayOverseerMono.GetInstance().CurrentCampaign.DataPack.Weapons.FindValueFirst(parameters.stringValue1);
-            playerOnly = parameters.boolValue1;
+            try
+            {
+                weapon = GameplayOverseerMono.GetInstance().CurrentCampaign.DataPack.Weapons.FindValueFirstOrReturnFirst(parameters.stringValue1);
+                iconRenderer.sprite = weapon.Icon;
+                playerOnly = parameters.boolValue1;
+            }
+            catch (Exception e)
+            {
+                if (e is SafetyNetException or SafetyNetCollectionException) Destroy(gameObject);
+            }
+
         }
 
         /// <summary>

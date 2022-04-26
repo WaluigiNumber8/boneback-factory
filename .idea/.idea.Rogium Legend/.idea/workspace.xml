@@ -39,6 +39,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/423884a9072a40feb1817ca34f260b367ae00/0e/e2fbb5b9/BuilderConstants.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/51c9fc2d1be048cfa2dd679deaa7d4f717a300/95/a4afaf76/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6073cf49ed704e958b8a66d540dea94846a800/45/a343a3af/Buffer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6073cf49ed704e958b8a66d540dea94846a800/4d/a312943a/Buffer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/64be95f13bf5438daa35c8333dd294ed9800/04/ac1fbd36/TileBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/64be95f13bf5438daa35c8333dd294ed9800/26/88e3d99d/Tilemap.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/36/02b85da6/List`1.cs" root0="SKIP_HIGHLIGHTING" />
@@ -354,7 +355,7 @@
       <workItem from="1650182453840" duration="26345000" />
       <workItem from="1650267940544" duration="2271000" />
       <workItem from="1650299394832" duration="2912000" />
-      <workItem from="1650965304529" duration="4460000" />
+      <workItem from="1650965304529" duration="13619000" />
     </task>
     <servers />
   </component>
@@ -490,32 +491,6 @@
           <option name="timeStamp" value="114" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Core/AssetUtils.cs</url>
-          <line>58</line>
-          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Core\AssetUtils.cs" initialLine="55" containingFunctionPresentation="method 'UpdateFromGridByList'">
-            <startOffsets>
-              <option value="2748" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2793" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="117" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Gameplay/Room Loader/Builders/ObjectMapDataBuilder.cs</url>
-          <line>49</line>
-          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Gameplay\Room Loader\Builders\ObjectMapDataBuilder.cs" initialLine="49" containingFunctionPresentation="method 'Spawn'">
-            <startOffsets>
-              <option value="2152" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2292" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="118" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Editors/Core/Assets/AnimatedAssetBase.cs</url>
           <line>23</line>
           <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Editors\Core\Assets\AnimatedAssetBase.cs" initialLine="23" containingFunctionPresentation="method 'UpdateIconAlt'">
@@ -529,17 +504,56 @@
           <option name="timeStamp" value="123" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Editors/Property/Builders/PropertyEditorBuilderEnemy.cs</url>
-          <line>103</line>
-          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Editors\Property\Builders\PropertyEditorBuilderEnemy.cs" initialLine="102" containingFunctionPresentation="method 'LoadWeaponSlots'">
+          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Gameplay/Entities/Characteristics/CharacteristicWeaponHold.cs</url>
+          <line>54</line>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Gameplay\Entities\Characteristics\CharacteristicWeaponHold.cs" initialLine="54" containingFunctionPresentation="method 'Use'">
             <startOffsets>
-              <option value="5478" />
+              <option value="2121" />
             </startOffsets>
             <endOffsets>
-              <option value="5547" />
+              <option value="2156" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="125" />
+          <option name="timeStamp" value="128" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/UI/Interactables/Asset Field/AssetField.cs</url>
+          <line>48</line>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\UI\Interactables\Asset Field\AssetField.cs" initialLine="48" containingFunctionPresentation="method 'WhenAssetGrabbed'">
+            <startOffsets>
+              <option value="1667" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1685" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="139" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Gameplay/Entities/Types/EnemyController.cs</url>
+          <line>92</line>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Gameplay\Entities\Types\EnemyController.cs" initialLine="90" containingFunctionPresentation="method 'UseWeapon'">
+            <startOffsets>
+              <option value="3106" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3151" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="143" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Gameplay/Room Loader/Builders/EnemyMapDataBuilder.cs</url>
+          <line>54</line>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Gameplay\Room Loader\Builders\EnemyMapDataBuilder.cs" initialLine="54" containingFunctionPresentation="method 'Spawn'">
+            <startOffsets>
+              <option value="2171" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2305" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="145" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

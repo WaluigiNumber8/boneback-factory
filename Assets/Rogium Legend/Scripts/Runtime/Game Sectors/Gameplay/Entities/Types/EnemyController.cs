@@ -18,10 +18,11 @@ namespace Rogium.Gameplay.Entities.Enemy
 
         private float weaponUseTime;
         private float weaponUseTimer;
+        private float attackProbability;
         
         private void OnEnable()
         {
-            if (damageReceiver != null) return;
+            if (damageReceiver == null) return;
             damageReceiver.OnDeath += Die;
         }
 
@@ -42,6 +43,8 @@ namespace Rogium.Gameplay.Entities.Enemy
         /// <param name="asset">The asset to take data from.</param>
         public void Construct(EnemyAsset asset, IList<WeaponAsset> weapons = null)
         {
+            faceDirection = Vector2.down;
+            
             //Damage Giver
             if (damageGiver != null)
             {
@@ -72,6 +75,7 @@ namespace Rogium.Gameplay.Entities.Enemy
                 this.weaponHold.Construct(weaponHold, weapons);
                 
                 weaponUseTime = asset.UseDelay;
+                attackProbability = asset.AttackProbability;
             }
         }
 
@@ -80,13 +84,16 @@ namespace Rogium.Gameplay.Entities.Enemy
         /// </summary>
         private void UseWeapon()
         {
+            if (weaponUseTimer > Time.time) return;
             if (weaponHold == null) return;
             if (weaponHold.WeaponCount <= 0) return;
-            if (weaponUseTimer > Time.time) return;
 
+            weaponUseTimer = Time.time + weaponUseTime + Random.Range(0f, 0.05f);
+
+            if (Random.Range(0f, 1f) > attackProbability) return;
+            
             int slot = (weaponHold.WeaponCount > 1) ? Random.Range(0, weaponHold.WeaponCount) : 0;
             weaponHold.Use(slot);
-            weaponUseTimer = Time.time + weaponUseTime;
         }
         
         private void Die()

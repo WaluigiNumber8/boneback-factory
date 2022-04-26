@@ -42,50 +42,48 @@ namespace Rogium.Gameplay.Sequencer
         /// <summary>
         /// Runs the opening gameplay sequence.
         /// </summary>
-        public void RunIntro(int difficultyTier) => StartCoroutine(RunIntroCoroutine(difficultyTier));
-
-        /// <summary>
-        /// Runs the transition between rooms.
-        /// </summary>
-        public void RunTransition(RoomType nextRoomType, Vector2 direction, int difficultyTier) => StartCoroutine(RunTransitionCoroutine(nextRoomType, direction, difficultyTier));
-        
-        /// <summary>
-        /// Runs the opening gameplay sequence.
-        /// </summary>
-        private IEnumerator RunIntroCoroutine(int difficultyTier)
+        public void RunIntro(int difficultyTier)
         {
-            player.SetCollideMode(false);
-            startingPoints.Clear();
+            StartCoroutine(RunIntroCoroutine(difficultyTier));
+            IEnumerator RunIntroCoroutine(int tier)
+            {
+                player.SetCollideMode(false);
+                startingPoints.Clear();
 
-            roomLoader.LoadNext(RoomType.Entrance, difficultyTier);
-            (Vector2 pos, Vector2 dir) = startingPoints.ElementAt(GetPlayerStartPositionIndex());
+                roomLoader.LoadNext(RoomType.Entrance, tier);
+                (Vector2 pos, Vector2 dir) = startingPoints.ElementAt(GetPlayerStartPositionIndex());
 
-            playerTransform.position = pos - dir * 2;
-            yield return sas.Wait(0.5f);
-            yield return sas.FadeIn(2, false);
-            yield return sas.Transport(playerTransform, playerTransform.position + (Vector3)dir * 3, transportWalkSpeed * 0.5f);
+                playerTransform.position = pos - dir * 2;
+                yield return sas.Wait(0.5f);
+                yield return sas.FadeIn(2, false);
+                yield return sas.Transport(playerTransform, playerTransform.position + (Vector3)dir * 3, transportWalkSpeed * 0.5f);
             
-            player.SetCollideMode(true);
+                player.SetCollideMode(true);
+            }
         }
 
         /// <summary>
         /// Runs the transition between rooms.
         /// </summary>
-        private IEnumerator RunTransitionCoroutine(RoomType nextRoomType, Vector2 direction, int difficultyTier)
+        public void RunTransition(RoomType nextRoomType, Vector2 direction, int difficultyTier)
         {
-            player.SetCollideMode(false);
-            startingPoints.Clear();
+            StartCoroutine(RunTransitionCoroutine(nextRoomType, direction, difficultyTier));
+            IEnumerator RunTransitionCoroutine(RoomType roomType, Vector2 direction, int tier)
+            {
+                player.SetCollideMode(false);
+                startingPoints.Clear();
             
-            yield return sas.FadeOut(0.5f, true);
-            yield return sas.Transport(playerTransform, playerTransform.position + (Vector3)direction, transportWalkSpeed);
+                yield return sas.FadeOut(0.5f, true);
+                yield return sas.Transport(playerTransform, playerTransform.position + (Vector3)direction, transportWalkSpeed);
             
-            roomLoader.LoadNext(nextRoomType, difficultyTier);
-            (Vector2 pos, Vector2 dir) = startingPoints.ElementAt(GetPlayerStartPositionIndex());
+                roomLoader.LoadNext(roomType, tier);
+                (Vector2 pos, Vector2 dir) = startingPoints.ElementAt(GetPlayerStartPositionIndex());
             
-            yield return sas.Transport(playerTransform, pos, transportRunSpeed);
-            yield return sas.FadeIn(1f, false);
-            yield return sas.Transport(playerTransform, playerTransform.position + (Vector3)dir, transportWalkSpeed);
-            player.SetCollideMode(true);
+                yield return sas.Transport(playerTransform, pos, transportRunSpeed);
+                yield return sas.FadeIn(1f, false);
+                yield return sas.Transport(playerTransform, playerTransform.position + (Vector3)dir, transportWalkSpeed);
+                player.SetCollideMode(true);
+            }
         }
 
         /// <summary>

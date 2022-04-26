@@ -184,11 +184,10 @@ namespace Rogium.UserInterface.Interactables.Properties
         public InteractablePropertySlider BuildSlider(string title, int minValue, int maxValue, int startingValue, Transform parent, Action<float> whenValueChange, bool isDisabled = false)
         {
             InteractablePropertySlider slider = Instantiate(sliderProperty, parent);
-            InteractablePropertyInputField inputField = slider.GetComponentInChildren<InteractablePropertyInputField>();
             slider.Construct(title, minValue, maxValue, startingValue, whenValueChange);
             slider.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateSlider(slider);
-            if (inputField != null) ThemeUpdaterRogium.UpdateInputField(inputField);
+            if (slider.InputField != null) ThemeUpdaterRogium.UpdateInputField(slider.InputField);
             return slider;
         }
 

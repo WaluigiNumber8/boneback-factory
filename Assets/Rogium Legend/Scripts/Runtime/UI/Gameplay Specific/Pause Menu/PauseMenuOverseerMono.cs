@@ -44,12 +44,14 @@ namespace Rogium.UserInterface.Gameplay.PauseMenu
                 SwitchVisibilityStatus(false);
                 GameClock.Instance.Resume();
                 EventSystem.current.firstSelectedGameObject = null;
+                InputSystem.Instance.EnablePlayerMap();
                 isActive = false;
                 return;
             }
 
             SwitchVisibilityStatus(true);
             GameClock.Instance.Pause();
+            InputSystem.Instance.EnableUIMap();
             if (firstSelectedButton != null) EventSystem.current.firstSelectedGameObject = firstSelectedButton;
             isActive = true;
         }

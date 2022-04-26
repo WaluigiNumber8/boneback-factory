@@ -71,13 +71,14 @@ namespace Rogium.Editors.Core.Defaults
         public static readonly Sprite EnemyIconAlt = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
         
         public const int EnemyBaseDamage = 1;
-        public const float EnemyAttackDelay = 0.2f;
+        public const float EnemyAttackDelay = 2f;
         public const float EnemyKnockbackForceSelf = 1;
         public const float EnemyKnockbackTimeSelf = 0.025f;
         public const float EnemyKnockbackTimeOther = 0.05f;
         public const float EnemyKnockbackForceOther = 2;
         
         public const int EnemyMaxHealth = 20;
+        public const float EnemyAttackProbability = 100;
         public const float EnemyInvincibilityTime = 0.05f;
         public const int EnemyWeaponMaxCount = 4;
         

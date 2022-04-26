@@ -36,6 +36,8 @@ namespace Rogium.Gameplay.Entities.Characteristics
         public void Construct(CharWeaponHoldInfo newInfo, IList<WeaponAsset> presetWeapons = null)
         {
             defaultData = newInfo;
+            
+            if (presetWeapons == null || presetWeapons.Count <= 0) return;
             weapons = new List<WeaponAsset>(presetWeapons);
         }
 
@@ -45,9 +47,10 @@ namespace Rogium.Gameplay.Entities.Characteristics
         /// <param name="slot">The index of the weapon to use.</param>
         public void Use(int slot)
         {
-            SafetyNet.EnsureListIsNotNullOrEmpty(weapons, "List of weapons");
-            SafetyNet.EnsureIndexWithingCollectionRange(slot, weapons, "List of weapons");
+            if (entity.ActionsLocked) return;
             if (useDelayTimer > Time.time) return;
+            if (weapons == null || weapons.Count <= 0) return;
+            if (weapons[slot] == null) return;
             
             weaponEntity.LoadUp(weapons[slot]);
             weaponEntity.Activate();

@@ -12,10 +12,15 @@ namespace Rogium.UserInterface.Interactables.Properties
     public class InteractablePropertySlider : InteractablePropertyBase
     {
         [SerializeField] private Slider slider;
+        [SerializeField] private InteractablePropertyInputField inputField;
         [SerializeField] private UIInfo ui;
         
-        public override void SetDisabled(bool isDisabled) => slider.interactable = !isDisabled;
-        
+        public override void SetDisabled(bool isDisabled)
+        {
+            slider.interactable = !isDisabled;
+            if (inputField != null) inputField.SetDisabled(isDisabled);
+        }
+
         /// <summary>
         /// Sets the property title and state.
         /// </summary>
@@ -72,6 +77,8 @@ namespace Rogium.UserInterface.Interactables.Properties
             ui.backgroundImage.sprite = backgroundSprite;
             ui.handleImage.sprite = handleSprite;
         }
+        
+        public InteractablePropertyInputField InputField { get => inputField; }
         
         [Serializable]
         public struct UIInfo

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5432043208715019361}
   - component: {fileID: 6507709000051811484}
   - component: {fileID: 7601419146444906514}
+  - component: {fileID: 5727797397282415324}
   m_Layer: 0
   m_Name: pref_entity_Weapon
   m_TagString: Untagged
@@ -151,6 +152,7 @@ MonoBehaviour:
   trigger: {fileID: 8662828520708714079}
   showGizmos: 0
   damageGiver: {fileID: 7601419146444906514}
+  visual: {fileID: 5727797397282415324}
 --- !u!114 &7601419146444906514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,3 +174,22 @@ MonoBehaviour:
     knockbackOther:
       forceSpeed: 2
       time: 0.1
+--- !u!114 &5727797397282415324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3808502605660081328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aed382263728490894a328dbed62eaf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: {fileID: 6507709000051811484}
+  renderer: {fileID: 4928987670853685628}
+  defaultData:
+    baseSprite: {fileID: 0}
+    animationType: 0
+    frameDuration: 0
+    spriteAlt: {fileID: 0}

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using BoubakProductions.Core;
 using BoubakProductions.Safety;
 using Rogium.Editors.Core;
@@ -16,6 +15,7 @@ namespace Rogium.Editors.Enemies
     public class EnemyAsset : EntityAssetBase
     {
         private int maxHealth;
+        private float attackProbability;
         private float invincibilityTime;
         private List<string> weaponIDs;
 
@@ -39,6 +39,7 @@ namespace Rogium.Editors.Enemies
             knockbackTimeOther = EditorDefaults.EnemyKnockbackTimeOther;
 
             maxHealth = EditorDefaults.EnemyMaxHealth;
+            attackProbability = EditorDefaults.EnemyAttackProbability;
             invincibilityTime = EditorDefaults.EnemyInvincibilityTime;
             weaponIDs = new List<string>();
             
@@ -65,6 +66,7 @@ namespace Rogium.Editors.Enemies
             knockbackTimeOther = asset.KnockbackTimeOther;
 
             maxHealth = asset.MaxHealth;
+            attackProbability = asset.AttackProbability;
             invincibilityTime = asset.InvincibilityTime;
 
             weaponIDs = new List<string>(asset.weaponIDs);
@@ -73,7 +75,7 @@ namespace Rogium.Editors.Enemies
         public EnemyAsset(string id, string title, Sprite icon, string author, AnimationType animationType, 
                           int frameDuration, Sprite iconAlt, int baseDamage, float useDelay, float knockbackForceSelf,
                           float knockbackTimeSelf, float knockbackForceOther, float knockbackTimeOther, int maxHealth,
-                          float invincibilityTime, List<string> weaponIDs, DateTime creationDate)
+                          float attackProbability, float invincibilityTime, List<string> weaponIDs, DateTime creationDate)
         {
             AssetValidation.ValidateTitle(title);
             
@@ -95,6 +97,7 @@ namespace Rogium.Editors.Enemies
             this.knockbackTimeOther = knockbackTimeOther;
 
             this.maxHealth = maxHealth;
+            this.attackProbability = attackProbability;
             this.invincibilityTime = invincibilityTime;
 
             this.weaponIDs = new List<string>(weaponIDs);
@@ -102,17 +105,11 @@ namespace Rogium.Editors.Enemies
         #endregion
 
         #region Update Values
-        public void UpdateMaxHealth(int newMaxHealth)
-        {
-            newMaxHealth = Mathf.Clamp(newMaxHealth, 0, AssetValidation.MaxEnemyHealth);
-            maxHealth = newMaxHealth;
-        }
+        public void UpdateMaxHealth(int newMaxHealth) => maxHealth = newMaxHealth;
 
-        public void UpdateInvincibilityTime(float newInvincibilityTime)
-        {
-            newInvincibilityTime = Mathf.Clamp(newInvincibilityTime, 0, AssetValidation.MaxEnemyInvincibilityTime);
-            invincibilityTime = newInvincibilityTime;
-        }
+        public void UpdateAttackProbability(float newAttackProbability) => attackProbability = newAttackProbability;
+
+        public void UpdateInvincibilityTime(float newInvincibilityTime) => invincibilityTime = newInvincibilityTime;
 
         public void UpdateWeaponIDsLength(int newLength)
         {
@@ -125,6 +122,7 @@ namespace Rogium.Editors.Enemies
 
         public List<string> WeaponIDs { get => weaponIDs; }
         public int MaxHealth { get => maxHealth; }
+        public float AttackProbability { get => attackProbability; }
         public float InvincibilityTime { get => invincibilityTime; }
     }
 }

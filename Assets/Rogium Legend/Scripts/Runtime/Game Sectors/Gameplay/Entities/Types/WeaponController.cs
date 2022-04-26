@@ -12,7 +12,8 @@ namespace Rogium.Gameplay.Entities
     public class WeaponController : EntityController
     {
         [SerializeField] private CharacteristicDamageGiver damageGiver;
-
+        [SerializeField] private CharacteristicVisual visual;
+        
         private WeaponAsset weapon;
         private string lastWeaponID;
         
@@ -34,7 +35,8 @@ namespace Rogium.Gameplay.Entities
             ForcedMoveInfo knockbackSelf = new(asset.KnockbackForceSelf, asset.KnockbackTimeSelf);
             ForcedMoveInfo knockbackOther = new(asset.KnockbackForceOther, asset.KnockbackTimeOther);
             damageGiver.Construct(new CharDamageGiverInfo(asset.BaseDamage, knockbackSelf, knockbackOther));
-
+            visual.Construct(new CharVisualInfo(asset.Icon, asset.AnimationType, asset.FrameDuration, asset.IconAlt));
+            
             weapon = asset;
             lastWeaponID = weapon.ID;
             
@@ -46,6 +48,7 @@ namespace Rogium.Gameplay.Entities
         /// </summary>
         public void Activate()
         {
+            gameObject.SetActive(true);
             switch (weapon.UseType)
             {
                 case WeaponUseType.PopUp:
@@ -63,7 +66,6 @@ namespace Rogium.Gameplay.Entities
 
         private IEnumerator StaticTypeCoroutine(bool showWeapon)
         {
-            if (showWeapon) gameObject.SetActive(true);
             yield return new WaitForSeconds(weapon.UseDuration);
             if (showWeapon) gameObject.SetActive(false);
         }

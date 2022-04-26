@@ -22,7 +22,7 @@ namespace Rogium.Gameplay.DataLoading
 
         private IList<WeaponAsset> weapons;
 
-        private void Awake() => weapons = GameplayOverseerMono.GetInstance().CurrentCampaign.DataPack.Weapons;
+        private void Start() => weapons = GameplayOverseerMono.GetInstance().CurrentCampaign.DataPack.Weapons;
 
         /// <summary>
         /// Load a new grid tilemap of enemies.
@@ -54,8 +54,7 @@ namespace Rogium.Gameplay.DataLoading
         {
             EnemyController en = Instantiate(vessel, offsetPos + new Vector3(x, y, 0) + new Vector3(0.5f, 0.5f, 0), Quaternion.identity, content);
             IList<WeaponAsset> weapons = data.WeaponIDs.ConvertToAssets(this.weapons);
-
-            en.Construct(data);
+            en.Construct(data, weapons);
         }
 
         /// <summary>
