@@ -52,7 +52,6 @@ namespace Rogium.Editors.Palettes
         #endregion
         
         #region Update Values
-        public void UpdateColors(Color[] newColors) => colors = newColors;
         #endregion
         
         public Color[] Colors { get => colors; }

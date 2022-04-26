@@ -12,7 +12,7 @@ namespace BoubakProductions.Systems.ObjectSwitching
         [SerializeField] private int defaultIndex;
         [SerializeField] private GameObject[] objects;
 
-        private void Awake() => switcher = new ObjectSwitcher(objects, defaultIndex);
+        private void Awake() => switcher = new ObjectSwitcher(defaultIndex, objects);
 
         /// <summary>
         /// Switches GameObjects.

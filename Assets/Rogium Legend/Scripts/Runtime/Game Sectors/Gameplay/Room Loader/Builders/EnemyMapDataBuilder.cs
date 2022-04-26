@@ -3,6 +3,8 @@ using BoubakProductions.Core;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Enemies;
+using Rogium.Editors.Weapons;
+using Rogium.Gameplay.Core;
 using Rogium.Gameplay.Entities.Enemy;
 using Rogium.Systems.GridSystem;
 using UnityEngine;
@@ -17,6 +19,10 @@ namespace Rogium.Gameplay.DataLoading
         [SerializeField] private EnemyController vessel;
         [SerializeField] private GameObject missingEnemyObject;
         [SerializeField] private Transform content;
+
+        private IList<WeaponAsset> weapons;
+
+        private void Awake() => weapons = GameplayOverseerMono.GetInstance().CurrentCampaign.DataPack.Weapons;
 
         /// <summary>
         /// Load a new grid tilemap of enemies.
@@ -47,6 +53,8 @@ namespace Rogium.Gameplay.DataLoading
         private void Spawn(Vector3Int offsetPos, int x, int y, EnemyAsset data)
         {
             EnemyController en = Instantiate(vessel, offsetPos + new Vector3(x, y, 0) + new Vector3(0.5f, 0.5f, 0), Quaternion.identity, content);
+            IList<WeaponAsset> weapons = data.WeaponIDs.ConvertToAssets(this.weapons);
+
             en.Construct(data);
         }
 

@@ -14,8 +14,6 @@ namespace Rogium.Editors.Core
         public int intValue4;
         public int intValue5;
         public int intValue6;
-        public int intValue7;
-        public int intValue8;
         [Space]
         public float floatValue1;
         public float floatValue2;
@@ -23,8 +21,6 @@ namespace Rogium.Editors.Core
         public float floatValue4;
         public float floatValue5;
         public float floatValue6;
-        public float floatValue7;
-        public float floatValue8;
         [Space]
         public bool boolValue1;
         public bool boolValue2;
@@ -32,10 +28,19 @@ namespace Rogium.Editors.Core
         public bool boolValue4;
         public bool boolValue5;
         public bool boolValue6;
-        public bool boolValue7;
-        public bool boolValue8;
-
-        public ParameterInfo(int intValue1, int intValue2, int intValue3, int intValue4, int intValue5, int intValue6, int intValue7, int intValue8, float floatValue1, float floatValue2, float floatValue3, float floatValue4, float floatValue5, float floatValue6, float floatValue7, float floatValue8, bool boolValue1, bool boolValue2, bool boolValue3, bool boolValue4, bool boolValue5, bool boolValue6, bool boolValue7, bool boolValue8)
+        [Space]
+        public string stringValue1;
+        public string stringValue2;
+        public string stringValue3;
+        public string stringValue4;
+        public string stringValue5;
+        public string stringValue6;
+        
+        public ParameterInfo(int intValue1, int intValue2, int intValue3, int intValue4, int intValue5, int intValue6,
+                             float floatValue1, float floatValue2, float floatValue3, float floatValue4, float floatValue5,
+                             float floatValue6, bool boolValue1, bool boolValue2, bool boolValue3, bool boolValue4, 
+                             bool boolValue5, bool boolValue6, string stringValue1, string stringValue2, string stringValue3, 
+                             string stringValue4, string stringValue5, string stringValue6)
         {
             this.intValue1 = intValue1;
             this.intValue2 = intValue2;
@@ -43,24 +48,24 @@ namespace Rogium.Editors.Core
             this.intValue4 = intValue4;
             this.intValue5 = intValue5;
             this.intValue6 = intValue6;
-            this.intValue7 = intValue7;
-            this.intValue8 = intValue8;
             this.floatValue1 = floatValue1;
             this.floatValue2 = floatValue2;
             this.floatValue3 = floatValue3;
             this.floatValue4 = floatValue4;
             this.floatValue5 = floatValue5;
             this.floatValue6 = floatValue6;
-            this.floatValue7 = floatValue7;
-            this.floatValue8 = floatValue8;
             this.boolValue1 = boolValue1;
             this.boolValue2 = boolValue2;
             this.boolValue3 = boolValue3;
             this.boolValue4 = boolValue4;
             this.boolValue5 = boolValue5;
             this.boolValue6 = boolValue6;
-            this.boolValue7 = boolValue7;
-            this.boolValue8 = boolValue8;
+            this.stringValue1 = stringValue1;
+            this.stringValue2 = stringValue2;
+            this.stringValue3 = stringValue3;
+            this.stringValue4 = stringValue4;
+            this.stringValue5 = stringValue5;
+            this.stringValue6 = stringValue6;
         }
     }
 }

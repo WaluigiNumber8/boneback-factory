@@ -94,8 +94,8 @@ namespace Rogium.Systems.GridSystem
         {
             if (!gridPreviewer.gameObject.activeSelf) return;
             
-            float x = gridTransform.position.x + grid.CellSize.x * grid.SelectedPosition.x + grid.SelectedPosition.x;
-            float y = gridTransform.position.y + grid.CellSize.y * grid.SelectedPosition.y + grid.SelectedPosition.y;
+            float x = gridTransform.position.x + grid.CellSize.x * grid.SelectedPosition.x + grid.SelectedPosition.x * 0.1f;
+            float y = gridTransform.position.y + grid.CellSize.y * grid.SelectedPosition.y + grid.SelectedPosition.y * 0.1f;
             gridPreviewer.transform.position = new Vector3(x, y, 0);
         }
 

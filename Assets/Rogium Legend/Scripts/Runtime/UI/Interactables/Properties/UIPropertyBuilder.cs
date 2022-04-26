@@ -24,7 +24,8 @@ namespace Rogium.UserInterface.Interactables.Properties
         [SerializeField] private InteractablePropertyToggle toggleProperty;
         [SerializeField] private InteractablePropertyDropdown dropdownProperty;
         [SerializeField] private InteractablePropertySlider sliderProperty;
-
+        [SerializeField] private ContentBlockInfo contentBlocks;
+        
         /// <summary>
         /// Builds the Header Property.
         /// </summary>
@@ -53,7 +54,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             InteractablePropertyInputField inputField = Instantiate(inputFieldProperty, parent);
             inputField.Construct(title, value, whenValueChange, characterValidation);
-            inputField.ChangeDisabledStatus(isDisabled);
+            inputField.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateInputField(inputField);
             return inputField;
         }
@@ -72,7 +73,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             InteractablePropertyInputField inputField = Instantiate(inputFieldAreaProperty, parent);
             inputField.Construct(title, value, whenValueChange, characterValidation);
-            inputField.ChangeDisabledStatus(isDisabled);
+            inputField.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateInputField(inputField);
             return inputField;
         }
@@ -90,7 +91,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             InteractablePropertyToggle toggle = Instantiate(toggleProperty, parent).GetComponent<InteractablePropertyToggle>();
             toggle.Construct(title, value, whenValueChange);
-            toggle.ChangeDisabledStatus(isDisabled);
+            toggle.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateToggle(toggle);
             return toggle;
         }
@@ -109,7 +110,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             InteractablePropertyDropdown dropdown = Instantiate(dropdownProperty, parent);
             dropdown.Construct(title, options, value, whenValueChange);
-            dropdown.ChangeDisabledStatus(isDisabled);
+            dropdown.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateDropdown(dropdown);
             return dropdown;
         }
@@ -144,7 +145,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             InteractablePropertyAssetField assetField = Instantiate(assetFieldProperty, parent);
             assetField.Construct(title, type, value, whenValueChange, theme);
-            assetField.ChangeDisabledStatus(isDisabled);
+            assetField.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateAssetField(assetField);
             return assetField;
         }
@@ -164,9 +165,76 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             InteractablePropertySlider slider = Instantiate(sliderProperty, parent);
             slider.Construct(title, minValue, maxValue, startingValue, whenValueChange);
-            slider.ChangeDisabledStatus(isDisabled);
+            slider.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateSlider(slider);
             return slider;
+        }
+        
+        /// <summary>
+        /// Builds the Slider Property.
+        /// </summary>
+        /// <param name="title">The text of the property title.</param>
+        /// <param name="minValue">Minimum allowed value on the slider.</param>
+        /// <param name="maxValue">Maximum allowed value on the slider.</param>
+        /// <param name="startingValue">Starting value of the slider.</param>
+        /// <param name="parent">The parent under which to instantiate the property.</param>
+        /// <param name="whenValueChange">Method that will run when the slider changes value.</param>
+        /// <param name="isDisabled">Initialize the property as a non-interactable.</param>
+        /// <returns>The property itself.</returns>
+        public InteractablePropertySlider BuildSlider(string title, int minValue, int maxValue, int startingValue, Transform parent, Action<float> whenValueChange, bool isDisabled = false)
+        {
+            InteractablePropertySlider slider = Instantiate(sliderProperty, parent);
+            slider.Construct(title, minValue, maxValue, startingValue, whenValueChange);
+            slider.SetDisabled(isDisabled);
+            ThemeUpdaterRogium.UpdateSlider(slider);
+            return slider;
+        }
+
+        /// <summary>
+        /// Build the Horizontal Content Block.
+        /// </summary>
+        /// <param name="parent">The parent under which to instantiate the property.</param>
+        /// <param name="isDisabled">Show/Hide the content block at init..</param>
+        /// <returns></returns>
+        public InteractablePropertyContentBlock CreateContentBlockHorizontal(Transform parent, bool isDisabled = false)
+        {
+            InteractablePropertyContentBlock contentBlock = Instantiate(contentBlocks.horizontal, parent);
+            contentBlock.SetDisabled(isDisabled);
+            return contentBlock;
+        }
+        
+        /// <summary>
+        /// Build the Vertical Content Block.
+        /// </summary>
+        /// <param name="parent">The parent under which to instantiate the property.</param>
+        /// <param name="isDisabled">Show/Hide the content block at init..</param>
+        /// <returns></returns>
+        public InteractablePropertyContentBlock CreateContentBlockVertical(Transform parent, bool isDisabled = false)
+        {
+            InteractablePropertyContentBlock contentBlock = Instantiate(contentBlocks.vertical, parent);
+            contentBlock.SetDisabled(isDisabled);
+            return contentBlock;
+        }
+        
+        /// <summary>
+        /// Build the 2 Column Content Block.
+        /// </summary>
+        /// <param name="parent">The parent under which to instantiate the property.</param>
+        /// <param name="isDisabled">Show/Hide the content block at init..</param>
+        /// <returns></returns>
+        public InteractablePropertyContentBlock CreateContentBlockColumn2(Transform parent, bool isDisabled = false)
+        {
+            InteractablePropertyContentBlock contentBlock = Instantiate(contentBlocks.column2, parent);
+            contentBlock.SetDisabled(isDisabled);
+            return contentBlock;
+        }
+        
+        [System.Serializable]
+        public struct ContentBlockInfo
+        {
+            public InteractablePropertyContentBlock vertical;
+            public InteractablePropertyContentBlock horizontal;
+            public InteractablePropertyContentBlock column2;
         }
     }
 }

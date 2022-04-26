@@ -10,9 +10,15 @@ namespace Rogium.ExternalStorage.Serialization
     [System.Serializable]
     public class SerializedWeaponAsset : SerializedEntityAssetBase<WeaponAsset>
     {
+        private int useType;
+        private float useDuration;
+        private bool isEvasive;
+        
         public SerializedWeaponAsset(WeaponAsset asset) : base(asset)
         {
-            
+            useType = (int)asset.UseType;
+            useDuration = asset.UseDuration;
+            isEvasive = asset.IsEvasive;
         }
 
         public override WeaponAsset Deserialize()
@@ -30,6 +36,9 @@ namespace Rogium.ExternalStorage.Serialization
                                    knockbackTimeSelf,
                                    knockbackForceOther,
                                    knockbackTimeOther,
+                                   (WeaponUseType)useType,
+                                   useDuration,
+                                   isEvasive,
                                    DateTime.Parse(creationDate));
         }
     }

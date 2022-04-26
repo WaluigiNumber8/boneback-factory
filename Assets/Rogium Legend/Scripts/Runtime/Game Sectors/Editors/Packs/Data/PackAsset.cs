@@ -124,6 +124,14 @@ namespace Rogium.Editors.Packs
             return int.Parse(packInfo.ID);
         }
 
+        public bool ContainsAnyPalettes => (palettes?.Count > 0);
+        public bool ContainsAnySprites => (sprites?.Count > 0);
+        public bool ContainsAnyWeapons => (weapons?.Count > 0);
+        public bool ContainsAnyProjectiles => (projectiles?.Count > 0);
+        public bool ContainsAnyEnemies => (enemies?.Count > 0);
+        public bool ContainsAnyRooms => (rooms?.Count > 0);
+        public bool ContainsAnyTiles => (tiles?.Count > 0);
+        
         public PackInfoAsset PackInfo { get => packInfo; }
         public AssetList<PaletteAsset> Palettes { get => palettes; }
         public AssetList<SpriteAsset> Sprites { get => sprites; }

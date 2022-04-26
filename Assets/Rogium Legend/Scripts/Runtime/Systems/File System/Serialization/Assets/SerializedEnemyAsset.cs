@@ -12,11 +12,13 @@ namespace Rogium.ExternalStorage.Serialization
     {
         private int maxHealth;
         private float invincibilityTime;
-        
+        private string[] weaponsIDs;
+
         public SerializedEnemyAsset(EnemyAsset asset) : base(asset)
         {
             maxHealth = asset.MaxHealth;
             invincibilityTime = asset.InvincibilityTime;
+            weaponsIDs = asset.WeaponIDs;
         }
 
         public override EnemyAsset Deserialize()
@@ -36,6 +38,7 @@ namespace Rogium.ExternalStorage.Serialization
                                   knockbackTimeOther,
                                   maxHealth,
                                   invincibilityTime,
+                                  weaponsIDs,
                                   DateTime.Parse(creationDate));
         }
     }

@@ -14,7 +14,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         [SerializeField] private Toggle toggle;
         [SerializeField] private UIInfo ui;
 
-        public override void ChangeDisabledStatus(bool isDisabled) => toggle.interactable = !isDisabled;
+        public override void SetDisabled(bool isDisabled) => toggle.interactable = !isDisabled;
 
         /// <summary>
         /// Set the property title and state.
@@ -37,9 +37,10 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// </summary>
         /// <param name="toggleSpriteSet">The toggle graphics.</param>
         /// <param name="checkmark">The checkmark for activated toggle.</param>
-        public void UpdateTheme(InteractableInfo toggleSpriteSet, Sprite checkmark)
+        public void UpdateTheme(InteractableInfo toggleSpriteSet, Sprite checkmark, FontInfo titleFont)
         {
             UIExtensions.ChangeInteractableSprites(toggle, ui.backgroundImage, toggleSpriteSet);
+            UIExtensions.ChangeFont(title, titleFont);
             ui.checkmarkImage.sprite = checkmark;
         }
         

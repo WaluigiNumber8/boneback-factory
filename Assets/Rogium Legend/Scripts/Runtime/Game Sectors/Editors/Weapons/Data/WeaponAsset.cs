@@ -1,8 +1,6 @@
 ﻿using System;
-using BoubakProductions.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
-using Rogium.Systems.Validation;
 using UnityEngine;
 
 namespace Rogium.Editors.Weapons
@@ -12,7 +10,9 @@ namespace Rogium.Editors.Weapons
     /// </summary>
     public class WeaponAsset : EntityAssetBase
     {
-        
+        private WeaponUseType useType;
+        private float useDuration;
+        private bool isEvasive;
         
         #region Constructors
         public WeaponAsset()
@@ -32,6 +32,10 @@ namespace Rogium.Editors.Weapons
             knockbackTimeSelf = EditorDefaults.WeaponKnockbackTimeSelf;
             knockbackForceOther = EditorDefaults.WeaponKnockbackForceOther;
             knockbackTimeOther = EditorDefaults.WeaponKnockbackTimeOther;
+
+            useType = EditorDefaults.WeaponUseType;
+            useDuration = EditorDefaults.WeaponUseDuration;
+            isEvasive = EditorDefaults.WeaponIsEvasive;
             
             GenerateID(EditorAssetIDs.WeaponIdentifier);
         }
@@ -54,15 +58,17 @@ namespace Rogium.Editors.Weapons
             knockbackTimeSelf = asset.KnockbackTimeSelf;
             knockbackForceOther = asset.KnockbackForceOther;
             knockbackTimeOther = asset.KnockbackTimeOther;
+
+            useType = asset.UseType;
+            useDuration = asset.UseDuration;
+            isEvasive = asset.IsEvasive;
         }
 
         public WeaponAsset(string id, string title, Sprite icon, string author, AnimationType animationType, 
                            int frameDuration, Sprite iconAlt,int baseDamage, float useDelay, float knockbackForceSelf,
-                           float knockbackTimeSelf, float knockbackForceOther, float knockbackTimeOther,
-                           DateTime creationDate)
+                           float knockbackTimeSelf, float knockbackForceOther, float knockbackTimeOther, WeaponUseType useType,
+                           float useDuration, bool isEvasive, DateTime creationDate)
         {
-            AssetValidation.ValidateTitle(title);
-            
             this.id = id;
             this.title = title;
             this.icon = icon;
@@ -79,15 +85,23 @@ namespace Rogium.Editors.Weapons
             this.knockbackTimeSelf = knockbackTimeSelf;
             this.knockbackForceOther = knockbackForceOther;
             this.knockbackTimeOther = knockbackTimeOther;
-            
+
+            this.useType = useType;
+            this.useDuration = useDuration;
+            this.isEvasive = isEvasive;
+
         }
         #endregion
 
         #region Update Values
-
-
-
+        public void UpdateUseType(WeaponUseType newUseType) => useType = newUseType;
+        public void UpdateUseType(int newUseType) => useType = (WeaponUseType)newUseType;
+        public void UpdateUseDuration(float newUseDuration) => useDuration = newUseDuration;
+        public void UpdateIsEvasive(bool newIsEvasive) => isEvasive = newIsEvasive;
         #endregion
-        
+
+        public WeaponUseType UseType { get => useType; }
+        public float UseDuration { get => useDuration; }
+        public bool IsEvasive { get => isEvasive; }
     }
 }

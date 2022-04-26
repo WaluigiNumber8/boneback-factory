@@ -412,7 +412,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8464327280619493826, guid: 678680c637e49b3449f41daaced82cbc, type: 3}
       propertyPath: m_Name
-      value: Sprite Field
+      value: Asset Field
       objectReference: {fileID: 0}
     - target: {fileID: 8464327280619493826, guid: 678680c637e49b3449f41daaced82cbc, type: 3}
       propertyPath: m_IsActive

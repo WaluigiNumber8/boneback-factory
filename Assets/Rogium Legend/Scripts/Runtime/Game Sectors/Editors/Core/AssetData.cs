@@ -42,8 +42,6 @@ namespace Rogium.Editors.Core
         public void UpdateIntValue4(int newValue) => parameters.intValue4 = newValue;
         public void UpdateIntValue5(int newValue) => parameters.intValue5 = newValue;
         public void UpdateIntValue6(int newValue) => parameters.intValue6 = newValue;
-        public void UpdateIntValue7(int newValue) => parameters.intValue7 = newValue;
-        public void UpdateIntValue8(int newValue) => parameters.intValue8 = newValue;
         
         public void UpdateFloatValue1(float newValue) => parameters.floatValue1 = newValue;
         public void UpdateFloatValue2(float newValue) => parameters.floatValue2 = newValue;
@@ -51,8 +49,6 @@ namespace Rogium.Editors.Core
         public void UpdateFloatValue4(float newValue) => parameters.floatValue4 = newValue;
         public void UpdateFloatValue5(float newValue) => parameters.floatValue5 = newValue;
         public void UpdateFloatValue6(float newValue) => parameters.floatValue6 = newValue;
-        public void UpdateFloatValue7(float newValue) => parameters.floatValue7 = newValue;
-        public void UpdateFloatValue8(float newValue) => parameters.floatValue8 = newValue;
         
         public void UpdateBoolValue1(bool newValue) => parameters.boolValue1 = newValue;
         public void UpdateBoolValue2(bool newValue) => parameters.boolValue2 = newValue;
@@ -60,8 +56,13 @@ namespace Rogium.Editors.Core
         public void UpdateBoolValue4(bool newValue) => parameters.boolValue4 = newValue;
         public void UpdateBoolValue5(bool newValue) => parameters.boolValue5 = newValue;
         public void UpdateBoolValue6(bool newValue) => parameters.boolValue6 = newValue;
-        public void UpdateBoolValue7(bool newValue) => parameters.boolValue7 = newValue;
-        public void UpdateBoolValue8(bool newValue) => parameters.boolValue8 = newValue;
+        
+        public void UpdateStringValue1(string newValue) => parameters.stringValue1 = newValue;
+        public void UpdateStringValue2(string newValue) => parameters.stringValue2 = newValue;
+        public void UpdateStringValue3(string newValue) => parameters.stringValue3 = newValue;
+        public void UpdateStringValue4(string newValue) => parameters.stringValue4 = newValue;
+        public void UpdateStringValue5(string newValue) => parameters.stringValue5 = newValue;
+        public void UpdateStringValue6(string newValue) => parameters.stringValue6 = newValue;
         #endregion
         
         public override int GetHashCode()

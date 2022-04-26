@@ -57,7 +57,8 @@ namespace Rogium.Systems.ThemeSystem
         {
             UpdateUsedTheme(theme);
             toggle.UpdateTheme(t.Interactables.toggle,
-                               t.Elements.toggleCheckmark);
+                               t.Elements.toggleCheckmark,
+                               t.Fonts.general);
         }
 
         /// <summary>
@@ -95,7 +96,8 @@ namespace Rogium.Systems.ThemeSystem
         public static void UpdateAssetField(InteractablePropertyAssetField assetField, ThemeType theme = ThemeType.NoTheme)
         {
             UpdateUsedTheme(theme);
-            assetField.UpdateTheme(t.Interactables.assetField);
+            assetField.UpdateTheme(t.Interactables.assetField,
+                                   t.Fonts.general);
         }
 
         /// <summary>

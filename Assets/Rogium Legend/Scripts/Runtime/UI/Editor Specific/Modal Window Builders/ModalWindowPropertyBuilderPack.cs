@@ -1,7 +1,6 @@
 ﻿using System;
 using BoubakProductions.UI;
 using Rogium.Core;
-using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
 
 namespace Rogium.UserInterface.Editors.ModalWindowBuilding
@@ -28,9 +27,11 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         /// </summary>
         private void OpenWindow(PackInfoAsset currentPackInfo, Action onConfirmButton, string headerText)
         {
+            bool isDisabled = (editor.CurrentPack == null) ? true : !editor.CurrentPack.ContainsAnySprites;
+            
             b.BuildInputField("Name", currentPackInfo.Title, window.FirstColumnContent, currentPackInfo.UpdateTitle);
             b.BuildInputFieldArea("Description", currentPackInfo.Description, window.FirstColumnContent, currentPackInfo.UpdateDescription);
-            b.BuildAssetField("", AssetType.Sprite, currentPackInfo, window.SecondColumnContent, delegate(IAsset asset) { editedAssetBase.UpdateIcon(asset.Icon);} );
+            b.BuildAssetField("", AssetType.Sprite, currentPackInfo, window.SecondColumnContent, a => editedAssetBase.UpdateIcon(a?.Icon), isDisabled);
             b.BuildPlainText("Created by", currentPackInfo.Author, window.SecondColumnContent);
             b.BuildPlainText("Created on", currentPackInfo.CreationDate.ToString(), window.SecondColumnContent);
 

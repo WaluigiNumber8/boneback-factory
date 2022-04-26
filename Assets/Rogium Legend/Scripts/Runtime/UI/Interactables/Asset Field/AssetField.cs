@@ -24,6 +24,7 @@ namespace Rogium.UserInterface.Interactables
         
         public void OnPointerClick(PointerEventData eventData)
         {
+            if (!interactable) return;
             CanvasOverseer.GetInstance().PickerWindow.GrabAsset(type, WhenAssetGrabbed, lastAsset, themeToUse);
         }
 

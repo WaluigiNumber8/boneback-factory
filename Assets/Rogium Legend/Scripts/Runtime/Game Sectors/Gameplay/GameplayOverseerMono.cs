@@ -8,6 +8,7 @@ using BoubakProductions.Systems.GASCore;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Core;
 using Rogium.Editors.Rooms;
+using Rogium.Editors.Weapons;
 using Rogium.Gameplay.InteractableObjects;
 using Rogium.Gameplay.Sequencer;
 using Rogium.Systems.Input;

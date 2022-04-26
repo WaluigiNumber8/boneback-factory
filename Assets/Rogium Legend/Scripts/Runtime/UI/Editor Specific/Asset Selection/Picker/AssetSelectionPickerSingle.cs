@@ -59,6 +59,16 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
             CancelSelection();
         }
 
+        /// <summary>
+        /// Confirms the selection with no selected asset.
+        /// </summary>
+        public void ConfirmSelectionNone()
+        {
+            SafetyNet.EnsureIsNotNull(targetMethod, "Method to Run");
+            targetMethod.Invoke(null);
+            CancelSelection();
+        }
+        
         public void CancelSelection()
         {
             selectedAsset = null;

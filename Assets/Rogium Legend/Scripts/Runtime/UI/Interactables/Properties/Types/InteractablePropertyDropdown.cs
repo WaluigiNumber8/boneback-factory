@@ -15,7 +15,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         [SerializeField] private TMP_Dropdown dropdown;
         [SerializeField] private UIInfo ui;
 
-        public override void ChangeDisabledStatus(bool isDisabled) => dropdown.interactable = !isDisabled;
+        public override void SetDisabled(bool isDisabled) => dropdown.interactable = !isDisabled;
 
         /// <summary>
         /// Set the property title and state.

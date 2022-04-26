@@ -66,6 +66,68 @@ namespace Rogium.Core
             throw new SafetyNetCollectionException($"No asset with the ID '{id}' was found in the list.");
         }
         
+        /// <summary>
+        /// Tries to finds the value of the first asset with the same ID. If it fails then tries to return the first value of the collection.
+        /// </summary>
+        /// <param name="list">The list to search in.</param>
+        /// <param name="id">The ID of the asset to search for.</param>
+        /// <typeparam name="T">Type is <see cref="IIDHolder"/> or any of it's children.</typeparam>
+        /// <typeparam name="TS">Any type of <see cref="IComparable"/>. (string, int, etc.)</typeparam>
+        /// <returns>Value of the first found asset or the first value of the collection.</returns>
+        public static T FindValueFirstOrReturnFirst<T, TS>(this IList<T> list, TS id) where T : IIDHolder where TS : IComparable
+        {
+            SafetyNet.EnsureIsNotNull(list, "List ot search");
+            SafetyNet.EnsureIntIsBiggerOrEqualTo(list.Count, 1, nameof(list));
+            
+            try { return list.FindValueFirst(id); }
+            catch (SafetyNetCollectionException)
+            {
+                return list[0];
+            }
+
+        }
+        
+        /// <summary>
+        /// Tries to finds the value of the first asset with the same ID. If it fails returns the default value.
+        /// </summary>
+        /// <param name="list">The list to search in.</param>
+        /// <param name="id">The ID of the asset to search for.</param>
+        /// <typeparam name="T">Type is <see cref="IIDHolder"/> or any of it's children.</typeparam>
+        /// <typeparam name="TS">Any type of <see cref="IComparable"/>. (string, int, etc.)</typeparam>
+        /// <returns>Value of the first found asset or default.</returns>
+        public static T FindValueFirstOrDefault<T, TS>(this IList<T> list, TS id) where T : IIDHolder where TS : IComparable
+        {
+            SafetyNet.EnsureIsNotNull(list, "List ot search");
+            
+            try { return list.FindValueFirst(id); }
+            catch (SafetyNetCollectionException)
+            {
+                return default;
+            }
+
+        }
+        
+        /// <summary>
+        /// Tries to finds the value of the first asset with the same ID. If it fails then tries to return the first value of the collection.
+        /// If that fails as well, returns default.
+        /// </summary>
+        /// <param name="list">The list to search in.</param>
+        /// <param name="id">The ID of the asset to search for.</param>
+        /// <typeparam name="T">Type is <see cref="IIDHolder"/> or any of it's children.</typeparam>
+        /// <typeparam name="TS">Any type of <see cref="IComparable"/>. (string, int, etc.)</typeparam>
+        /// <returns>Value of the first found asset or the first value of the collection or default.</returns>
+        public static T FindValueFirstOrReturnFirstOrDefault<T, TS>(this IList<T> list, TS id) where T : IIDHolder where TS : IComparable
+        {
+            SafetyNet.EnsureIsNotNull(list, "List ot search");
+            
+            try { return list.FindValueFirstOrReturnFirst(id); }
+            catch (SafetyNetCollectionException)
+            {
+                return default;
+            }
+
+        }
+        
 
         /// <summary>
         /// Tries to find and copy entries from one list to another.
@@ -104,6 +166,17 @@ namespace Rogium.Core
         public static IList<string> ConvertToIDs<T>(this IEnumerable<T> assets) where T : IIDHolder
         {
             return assets.Select(asset => asset.ID).ToList();
+        }
+        
+        /// <summary>
+        /// Converts a list of Data Assets into a list of their Titles.
+        /// </summary>
+        /// <param name="assets">The list of data assets to convert.</param>
+        /// <typeparam name="T">Type is <see cref="IDataAsset"/> or any of it's children.</typeparam>
+        /// <returns>A list of Titles (strings).</returns>
+        public static IList<string> ConvertToTitles<T>(this IEnumerable<T> assets) where T : IDataAsset
+        {
+            return assets.Select(asset => asset.Title).ToList();
         }
         
     }

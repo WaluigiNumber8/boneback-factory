@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace BoubakProductions.Core
+﻿namespace BoubakProductions.Core
 {
     /// <summary>
     /// Extension methods for the integer type.

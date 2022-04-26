@@ -14,7 +14,7 @@ namespace Rogium.Editors.Palettes
         public event Action OnCompleteEditingBefore, OnCompleteEditingAfter;
         public event Action<PaletteAsset, int> OnCompleteEditing;
 
-        private IconBuilder iconBuilder;
+        private readonly IconBuilder iconBuilder;
         
         private PaletteAsset currentAsset;
         private int myIndex;

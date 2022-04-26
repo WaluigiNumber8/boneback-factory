@@ -32,8 +32,8 @@ namespace BoubakProductions.Systems.Randomization
         /// <summary>
         /// Constructor.
         /// </summary>
-        /// <param name="min">Minimum allowed value to roll.</param>
-        /// <param name="max">Maximum allowed value to roll.</param>
+        /// <param name="min">Minimum allowed value to roll (inclusive).</param>
+        /// <param name="max">Maximum allowed value to roll (exclusive).</param>
         /// <param name="errorChance">A chance to throw a totally random value, not based on memory.</param>
         /// <param name="rerolls">he amount of times a bad value can be rerolled.</param>
         /// <param name="leadway">The higher this value is, the less the randomizer depends on it's memory.</param>

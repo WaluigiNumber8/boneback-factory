@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using BoubakProductions.Safety;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Objects;
+using Rogium.Editors.Packs;
+using Rogium.Editors.Weapons;
 using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine;
 
@@ -44,7 +47,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         #region Builder Methods
 
         /// <summary>
-        /// Builds the Room Properties Column for the Room Exit Interactable Object.
+        /// Builds the Room Properties Column for the Room Exit Object.
         /// </summary>
         /// <param name="data">The data to use.</param>
         private void BuildRoomExit(AssetData data)
@@ -53,15 +56,33 @@ namespace Rogium.Editors.Rooms.PropertyColumn
             b.BuildDropdown("Next Room", Enum.GetNames(typeof(RoomType)), data.Parameters.intValue2, contentMain, data.UpdateIntValue2);
         }
 
+        /// <summary>
+        /// Builds the Room Properties Column for the Room Start Object.
+        /// </summary>
+        /// <param name="data">The data to use.</param>
         private void BuildStartingPoint(AssetData data)
         {
             b.BuildDropdown("Direction", Enum.GetNames(typeof(DirectionType)), data.Parameters.intValue1, contentMain, data.UpdateIntValue1);
         }
         
+        /// <summary>
+        /// Builds the Room Properties Column for the Weapon Drop Object.
+        /// </summary>
+        /// <param name="data">The data to use.</param>
         private void BuildWeaponDrop(AssetData data)
         {
+            IList<WeaponAsset> weapons = PackEditorOverseer.Instance.CurrentPack.Weapons;
+            IAsset startValue = weapons.FindValueFirstOrReturnFirstOrDefault(data.Parameters.stringValue1);
+            bool isDisabled = (startValue == default);
+
+            b.BuildAssetField("Weapon", AssetType.Weapon, startValue, contentMain, asset => data.UpdateStringValue1(asset.ID));
+            b.BuildToggle("Player only", data.Parameters.boolValue1, contentMain, data.UpdateBoolValue1);
         }
         
+        /// <summary>
+        /// Builds the Room Properties Column for the Golden Chest Object.
+        /// </summary>
+        /// <param name="data">The data to use.</param>
         private void BuildChestGold(AssetData data)
         {
         }

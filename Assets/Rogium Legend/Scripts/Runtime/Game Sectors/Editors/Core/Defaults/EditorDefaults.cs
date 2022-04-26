@@ -1,4 +1,5 @@
 ﻿using Rogium.Editors.Rooms;
+using Rogium.Editors.Weapons;
 using UnityEngine;
 
 namespace Rogium.Editors.Core.Defaults
@@ -11,11 +12,11 @@ namespace Rogium.Editors.Core.Defaults
         //Pack
         public const string PackTitle = "New Pack";
         public const string PackDescription = "A new pack filled with adventure!";
-        public static readonly Sprite PackIcon = Resources.Load<Sprite>("Defaults/spr_Default_Weapon_Filled");
+        public static readonly Sprite PackIcon = Resources.Load<Sprite>("Defaults/spr_Default_Weapon");
         
         //Campaign
         public const string CampaignTitle = "New Campaign";
-        public static readonly Sprite CampaignIcon = Resources.Load<Sprite>("Defaults/spr_Default_Weapon_Filled");
+        public static readonly Sprite CampaignIcon = Resources.Load<Sprite>("Defaults/spr_Default_Weapon");
         public const int CampaignLength = 25;
 
         //Palette
@@ -41,10 +42,14 @@ namespace Rogium.Editors.Core.Defaults
         public const float WeaponKnockbackTimeSelf = 0f;
         public const float WeaponKnockbackTimeOther = 0.05f;
         public const float WeaponKnockbackForceOther = 0.5f;
+
+        public const WeaponUseType WeaponUseType = Weapons.WeaponUseType.PopUp;
+        public const float WeaponUseDuration = 0.05f;
+        public const bool WeaponIsEvasive = false;
         
         //Projectile
         public const string ProjectileTitle = "New Projectile";
-        public static readonly Sprite ProjectileIcon = Resources.Load<Sprite>("Defaults/spr_Default_Weapon_Filled");
+        public static readonly Sprite ProjectileIcon = Resources.Load<Sprite>("Defaults/spr_Default_Weapon");
         
         public const AnimationType ProjectileAnimationType = AnimationType.NoAnimation;
         public const int ProjectileFrameDuration = 40;
@@ -74,6 +79,7 @@ namespace Rogium.Editors.Core.Defaults
         
         public const int EnemyMaxHealth = 20;
         public const float EnemyInvincibilityTime = 0.05f;
+        public const int EnemyWeaponMaxCount = 4;
         
         //Room
         public const string RoomTitle = "New Room";

@@ -12,7 +12,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         [SerializeField] private TextMeshProUGUI plainText;
         [SerializeField] private UIInfo ui;
         
-        public override void ChangeDisabledStatus(bool isDisabled) {}
+        public override void SetDisabled(bool isDisabled) {}
         
         /// <summary>
         /// Set the property title and state.

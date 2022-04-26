@@ -3,6 +3,7 @@ using BoubakProductions.Core;
 using BoubakProductions.UI;
 using Rogium.Core;
 using Rogium.Editors.Core;
+using Rogium.Editors.Packs;
 using Rogium.Editors.Tiles;
 using UnityEngine;
 
@@ -28,7 +29,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
         protected override void BuildImportant(Transform content)
         {
             b.BuildInputField("", asset.Title, content, asset.UpdateTitle);
-            b.BuildAssetField("", AssetType.Sprite, asset, content, delegate(IAsset a) { asset.UpdateIcon(a.Icon);}, false, ThemeType.Yellow);
+            b.BuildAssetField("", AssetType.Sprite, asset, content, delegate(IAsset a) { asset.UpdateIcon(a.Icon);}, !PackEditorOverseer.Instance.CurrentPack.ContainsAnyTiles, ThemeType.Yellow);
         }
 
         protected override void BuildProperty(Transform content)

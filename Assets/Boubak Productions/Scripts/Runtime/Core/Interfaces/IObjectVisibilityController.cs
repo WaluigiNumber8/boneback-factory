@@ -11,9 +11,5 @@
         /// </summary>
         public void SwitchVisibilityStatus(bool isVisible);
         
-        /// <summary>
-        /// Changes the visibility state of the object.
-        /// </summary>
-        public void SwitchVisibilityStatus();
     }
 }

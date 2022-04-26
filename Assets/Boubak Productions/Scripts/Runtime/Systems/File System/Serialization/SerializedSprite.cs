@@ -1,4 +1,5 @@
-﻿using BoubakProductions.Safety;
+﻿using BoubakProductions.Core;
+using BoubakProductions.Safety;
 using UnityEngine;
 
 namespace BoubakProductions.Systems.FileSystem.Serialization
@@ -16,17 +17,18 @@ namespace BoubakProductions.Systems.FileSystem.Serialization
         public readonly int textureHeight;
         public readonly byte[] textureBytes;
 
-        public SerializedSprite(Sprite sprite) : this(sprite.rect.x,
-            sprite.rect.y,
-            sprite.rect.width,
-            sprite.rect.height,
-            sprite.pivot.x,
-            sprite.pivot.y,
-            sprite.texture.width,
-            sprite.texture.height,
-            sprite.texture.EncodeToPNG())
+        public SerializedSprite(Sprite sprite)
         {
-            SafetyNet.EnsureIsNotNull(sprite, "New Serialized Sprite");
+            Sprite spriteToUse = (sprite == null) ? BoubakBuilder.GenerateSprite(new Color(0, 0, 0, 1), 16, 16, 16) : sprite;
+            rectX = spriteToUse.rect.x;
+            rectY = spriteToUse.rect.y;
+            rectWidth = spriteToUse.rect.width;
+            rectHeight = spriteToUse.rect.height;
+            pivotX = spriteToUse.pivot.x;
+            pivotY = spriteToUse.pivot.y;
+            textureWidth = spriteToUse.texture.width;
+            textureHeight = spriteToUse.texture.height;
+            textureBytes = spriteToUse.texture.EncodeToPNG();
         }
 
         public SerializedSprite(float rectX, float rectY, float rectWidth, float rectHeight, float pivotX, float pivotY, int textureWidth, int textureHeight, byte[] textureBytes)
@@ -48,9 +50,9 @@ namespace BoubakProductions.Systems.FileSystem.Serialization
         /// <returns>A Sprite that Unity can use.</returns>
         public Sprite Deserialize()
         {
-            Texture2D texture = new Texture2D(this.textureWidth, this.textureHeight);
+            Texture2D texture = new(textureWidth, textureHeight);
             texture.filterMode = FilterMode.Point;
-            texture.LoadImage(this.textureBytes);
+            texture.LoadImage(textureBytes);
             Sprite sprite = Sprite.Create(texture,
                                           new Rect(rectX, rectY, rectWidth, rectHeight),
                                           new Vector2(pivotX / rectWidth, pivotY / rectHeight),

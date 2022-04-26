@@ -13,9 +13,9 @@ namespace Rogium.Systems.Input
         private readonly InputButton buttonMain;
         private readonly InputButton buttonSub;
         private readonly InputButton buttonDash;
-        private readonly InputButton buttonMainAlternative;
-        private readonly InputButton buttonSubAlternative;
-        private readonly InputButton buttonDashAlternative;
+        private readonly InputButton buttonMainAlt;
+        private readonly InputButton buttonSubAlt;
+        private readonly InputButton buttonDashAlt;
         
         private readonly InputButton buttonStart;
 
@@ -26,9 +26,9 @@ namespace Rogium.Systems.Input
             buttonMain = new InputButton(map.UseMain);
             buttonSub = new InputButton(map.UseSub);
             buttonDash = new InputButton(map.UseDash);
-            buttonMainAlternative = new InputButton(map.AlternativeMain);
-            buttonSubAlternative = new InputButton(map.AlternativeSub);
-            buttonDashAlternative = new InputButton(map.AlternativeDash);
+            buttonMainAlt = new InputButton(map.AlternativeMain);
+            buttonSubAlt = new InputButton(map.AlternativeSub);
+            buttonDashAlt = new InputButton(map.AlternativeDash);
             buttonStart = new InputButton(map.Start);
         }
         
@@ -40,9 +40,9 @@ namespace Rogium.Systems.Input
             buttonMain.Enable();
             buttonSub.Enable();
             buttonDash.Enable();
-            buttonMainAlternative.Enable();
-            buttonSubAlternative.Enable();
-            buttonDashAlternative.Enable();
+            buttonMainAlt.Enable();
+            buttonSubAlt.Enable();
+            buttonDashAlt.Enable();
             buttonStart.Enable();
         }
 
@@ -52,9 +52,9 @@ namespace Rogium.Systems.Input
             buttonMain.Disable();
             buttonSub.Disable();
             buttonDash.Disable();
-            buttonMainAlternative.Disable();
-            buttonSubAlternative.Disable();
-            buttonDashAlternative.Disable();
+            buttonMainAlt.Disable();
+            buttonSubAlt.Disable();
+            buttonDashAlt.Disable();
             buttonStart.Disable();
             
             map.Disable();
@@ -64,9 +64,9 @@ namespace Rogium.Systems.Input
         public InputButton ButtonMain { get => buttonMain; }
         public InputButton ButtonSub { get => buttonSub; }
         public InputButton ButtonDash { get => buttonDash; }
-        public InputButton ButtonMainAlternative { get => buttonMainAlternative; }
-        public InputButton ButtonSubAlternative { get => buttonSubAlternative; }
-        public InputButton ButtonDashAlternative { get => buttonDashAlternative; }
+        public InputButton ButtonMainAlt { get => buttonMainAlt; }
+        public InputButton ButtonSubAlt { get => buttonSubAlt; }
+        public InputButton ButtonDashAlt { get => buttonDashAlt; }
         
         public InputButton ButtonStart { get => buttonStart; }
     }

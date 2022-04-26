@@ -1,4 +1,5 @@
 ﻿using System;
+using BoubakProductions.Core;
 using UnityEngine;
 
 namespace Rogium.Gameplay.Entities.Characteristics
@@ -12,6 +13,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
         public event Action<int> OnDamageReceived;
         public event Action OnDeath;
 
+        [SerializeField] private LayerMask ignoredMask;
         [SerializeField] private CharDamageReceiverInfo defaultData;
         
         private int health;
@@ -26,6 +28,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
         {
             if (invincibilityTimer > Time.time) return;
             if (!other.TryGetComponent(out CharacteristicDamageGiver giver)) return;
+            if (GameObjectUtils.IsInLayerMask(other.gameObject, ignoredMask)) return;
             
             TakeDamage(giver);
         }

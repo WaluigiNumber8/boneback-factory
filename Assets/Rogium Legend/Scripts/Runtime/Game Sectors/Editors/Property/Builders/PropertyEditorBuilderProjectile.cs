@@ -2,6 +2,7 @@
 using BoubakProductions.UI;
 using Rogium.Core;
 using Rogium.Editors.Core;
+using Rogium.Editors.Packs;
 using Rogium.Editors.Projectiles;
 using UnityEngine;
 using TMPro;
@@ -28,7 +29,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
         protected override void BuildImportant(Transform content)
         {
             b.BuildInputField("", asset.Title, content, asset.UpdateTitle);
-            b.BuildAssetField("", AssetType.Sprite, asset, content, delegate(IAsset a) { asset.UpdateIcon(a.Icon);},false, ThemeType.Teal);
+            b.BuildAssetField("", AssetType.Sprite, asset, content, delegate(IAsset a) { asset.UpdateIcon(a.Icon);}, !PackEditorOverseer.Instance.CurrentPack.ContainsAnyProjectiles, ThemeType.Teal);
         }
 
         protected override void BuildProperty(Transform content)

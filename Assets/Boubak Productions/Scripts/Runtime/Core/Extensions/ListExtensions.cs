@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace BoubakProductions.Core
 {
+    /// <summary>
+    /// Contains extension methods for the the <see cref="IList{T}"/> type interface.
+    /// </summary>
     public static class ListExtensions
     {
         /// <summary>

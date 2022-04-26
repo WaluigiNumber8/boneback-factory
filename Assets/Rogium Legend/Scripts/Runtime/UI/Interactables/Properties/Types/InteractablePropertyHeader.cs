@@ -11,7 +11,7 @@ namespace Rogium.UserInterface.Interactables.Properties
     {
         [SerializeField] private Image line;
         
-        public override void ChangeDisabledStatus(bool isDisabled) {}
+        public override void SetDisabled(bool isDisabled) {}
         
         /// <summary>
         /// Sets the property title and state.

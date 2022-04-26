@@ -12,13 +12,13 @@ namespace BoubakProductions.Systems.ObjectSwitching
         private int lastIndex;
 
         #region Constructors
-        public ObjectSwitcher(GameObject[] objects)
+        public ObjectSwitcher(params GameObject[] objects)
         {
             lastIndex = -1;
             this.objects = objects;
             Switch(0);
         }
-        public ObjectSwitcher(GameObject[] objects, int defaultIndex)
+        public ObjectSwitcher(int defaultIndex, params GameObject[] objects)
         {
             lastIndex = -1;
             this.objects = objects;

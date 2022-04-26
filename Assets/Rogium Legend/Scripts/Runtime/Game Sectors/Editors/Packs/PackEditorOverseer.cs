@@ -533,13 +533,6 @@ namespace Rogium.Editors.Packs
             OnSaveChanges?.Invoke(currentPack, myIndex, startingTitle, startingAuthor);
         }
 
-        public PackAsset CurrentPack
-        {
-            get 
-            {
-                if (currentPack == null) throw new MissingReferenceException("Current Pack has not been set. Did you forget to activate the editor?");
-                return currentPack;
-            }
-        }
+        public PackAsset CurrentPack { get => currentPack; }
     }
 }

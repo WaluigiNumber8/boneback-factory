@@ -3,6 +3,7 @@ using BoubakProductions.UI;
 using BoubakProductions.UI.Core;
 using Rogium.Core;
 using Rogium.Editors.Core;
+using Rogium.Editors.Core.Defaults;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -21,8 +22,8 @@ namespace Rogium.UserInterface.Interactables.Properties
         private IAsset asset;
         private Action<IAsset> lastMethod;
 
-        public override void ChangeDisabledStatus(bool isDisabled) => assetField.interactable = !isDisabled;
-        
+        public override void SetDisabled(bool isDisabled) => assetField.interactable = !isDisabled;
+
         /// <summary>
         /// Set the property title and state.
         /// </summary>
@@ -38,6 +39,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             title.text = titleText;
             title.gameObject.SetActive((titleText != ""));
             if (ui.emptySpace != null) ui.emptySpace.SetActive((titleText != ""));
+            
             icon.sprite = asset.Icon;
             
             assetField.SetType(type);
@@ -53,9 +55,10 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// Updates the UI elements
         /// </summary>
         /// <param name="fieldSpriteSet">A Set of Sprites for the button.</param>
-        public void UpdateTheme(InteractableInfo fieldSpriteSet)
+        public void UpdateTheme(InteractableInfo fieldSpriteSet, FontInfo titleFont)
         {
             UIExtensions.ChangeInteractableSprites(assetField, ui.borderImage, fieldSpriteSet);
+            UIExtensions.ChangeFont(title, titleFont);
         }
 
         public Sprite Icon { get => icon.sprite; }

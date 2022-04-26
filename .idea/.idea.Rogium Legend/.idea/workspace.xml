@@ -59,6 +59,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/abe4d92c617a485da48e0247d3cbf7a028e00/30/ced56fe4/InteractableEditorGrid.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/13e6546058e340ada820e34dce3b245e157400/42/b4c44289/SetupCoroutine.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/ExecuteEvents.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1332c534a8a44623b2e5cc943a0b790e157400/f5/b34990dc/LayerMask.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Boubak Productions/Scripts/Runtime/UI/Interactables/Toggles/TextToggleProperty.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/41d34619c06946aebeba0ca1ee6d765b144200/20/0ae449ad/Vector2Int.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/41d34619c06946aebeba0ca1ee6d765b144200/e3/4e1960f0/Camera.cs" root0="SKIP_HIGHLIGHTING" />
@@ -78,6 +79,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/b5/97301032/NullReferenceException.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cb62560c330e4d74aa195b471206277f17a320/2f/308956ca/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/64be95f13bf5438daa35c8333dd294ed9800/26/88e3d99d/Tilemap.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6073cf49ed704e958b8a66d540dea94846a800/45/a343a3af/Buffer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/UI/Transition Canvas/TransitionCanvas.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/bc1d04d811fc4873ab7d8d9d4daddcc9568788/81/be1a6dab/Dictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/UIBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
@@ -113,7 +115,7 @@
     <property name="XThreadsFramesViewSplitterKey" value="0.45884147" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="rider.run.widget.enabled.cache" value="false" />
-    <property name="settings.editor.selected.configurable" value="advanced.settings" />
+    <property name="settings.editor.selected.configurable" value="CodeLensConfigurable" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor &amp; Play">
@@ -342,7 +344,12 @@
       <workItem from="1649679645135" duration="1221000" />
       <workItem from="1649701653502" duration="1202000" />
       <workItem from="1649787909685" duration="3434000" />
-      <workItem from="1649946845319" duration="2895000" />
+      <workItem from="1649946845319" duration="3363000" />
+      <workItem from="1650013870915" duration="428000" />
+      <workItem from="1650115079525" duration="9296000" />
+      <workItem from="1650182453840" duration="26345000" />
+      <workItem from="1650267940544" duration="2271000" />
+      <workItem from="1650299394832" duration="2912000" />
     </task>
     <servers />
   </component>
@@ -476,6 +483,45 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="114" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Core/AssetUtils.cs</url>
+          <line>58</line>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Core\AssetUtils.cs" initialLine="55" containingFunctionPresentation="method 'UpdateFromGridByList'">
+            <startOffsets>
+              <option value="2748" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2793" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="117" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Gameplay/Room Loader/Builders/ObjectMapDataBuilder.cs</url>
+          <line>49</line>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Gameplay\Room Loader\Builders\ObjectMapDataBuilder.cs" initialLine="49" containingFunctionPresentation="method 'Spawn'">
+            <startOffsets>
+              <option value="2152" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2292" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="118" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Editors/Enemies/Data/EnemyAsset.cs</url>
+          <line>113</line>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Editors\Enemies\Data\EnemyAsset.cs" initialLine="113" containingFunctionPresentation="method 'UpdateWeaponIDPos'">
+            <startOffsets>
+              <option value="4307" />
+            </startOffsets>
+            <endOffsets>
+              <option value="4329" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="122" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

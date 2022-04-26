@@ -8,6 +8,9 @@ using Rogium.Systems.GridSystem;
 
 namespace Rogium.Core
 {
+    /// <summary>
+    /// Contains various method that help working with assets.
+    /// </summary>
     public static class AssetUtils
     {
         /// <summary>
