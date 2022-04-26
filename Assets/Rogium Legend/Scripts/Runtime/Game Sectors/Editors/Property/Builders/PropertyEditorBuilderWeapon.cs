@@ -40,7 +40,9 @@ namespace Rogium.Editors.PropertyEditor.Builders
             b.BuildInputField("Attack Delay", asset.UseDelay.ToString(), content, s => asset.UpdateUseDelay(float.Parse(s)), false, TMP_InputField.CharacterValidation.Decimal);
             b.BuildInputField("Attack Duration", asset.UseDuration.ToString(), content, s => asset.UpdateUseDuration(float.Parse(s)), false, TMP_InputField.CharacterValidation.Decimal);
             b.BuildInputField("Knockback Self", asset.KnockbackForceSelf.ToString(), content, s => asset.UpdateKnockbackForceSelf(float.Parse(s)), false, TMP_InputField.CharacterValidation.Decimal);
+            b.BuildInputField("Knockback Self Time", asset.KnockbackTimeSelf.ToString(), content, s => asset.UpdateKnockbackTimeSelf(float.Parse(s)), false, TMP_InputField.CharacterValidation.Decimal);
             b.BuildInputField("Knockback Other", asset.KnockbackForceOther.ToString(), content, s => asset.UpdateKnockbackForceOther(float.Parse(s)), false, TMP_InputField.CharacterValidation.Decimal);
+            b.BuildInputField("Knockback Other Time", asset.KnockbackTimeOther.ToString(), content, s => asset.UpdateKnockbackTimeOther(float.Parse(s)), false, TMP_InputField.CharacterValidation.Decimal);
             b.BuildToggle("Is Evasive", asset.IsEvasive, content, asset.UpdateIsEvasive);
             
             b.BuildHeader("Animation", content);

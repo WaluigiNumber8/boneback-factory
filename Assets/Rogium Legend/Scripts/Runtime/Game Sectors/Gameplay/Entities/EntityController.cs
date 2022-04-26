@@ -27,7 +27,7 @@ namespace Rogium.Gameplay.Entities
             ttransform = transform;
             rb = GetComponent<Rigidbody2D>();
             
-            faceDirection = GameplayDefaults.StartingFaceDirection;
+            ForceMove(GameplayDefaults.StartingFaceDirection, 0.1f, 0.01f);
         }
 
         protected virtual void FixedUpdate()

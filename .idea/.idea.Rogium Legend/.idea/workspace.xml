@@ -355,7 +355,7 @@
       <workItem from="1650182453840" duration="26345000" />
       <workItem from="1650267940544" duration="2271000" />
       <workItem from="1650299394832" duration="2912000" />
-      <workItem from="1650965304529" duration="13619000" />
+      <workItem from="1650965304529" duration="14751000" />
     </task>
     <servers />
   </component>
@@ -534,10 +534,10 @@
           <line>92</line>
           <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Gameplay\Entities\Types\EnemyController.cs" initialLine="90" containingFunctionPresentation="method 'UseWeapon'">
             <startOffsets>
-              <option value="3106" />
+              <option value="3132" />
             </startOffsets>
             <endOffsets>
-              <option value="3151" />
+              <option value="3177" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="143" />

@@ -40,8 +40,8 @@ namespace Rogium.Editors.Core.Defaults
         public const float WeaponUseDelay = 0.1f;
         public const float WeaponKnockbackForceSelf = 0;
         public const float WeaponKnockbackTimeSelf = 0f;
-        public const float WeaponKnockbackTimeOther = 0.05f;
         public const float WeaponKnockbackForceOther = 0.5f;
+        public const float WeaponKnockbackTimeOther = 0.05f;
 
         public const WeaponUseType WeaponUseType = Weapons.WeaponUseType.PopUp;
         public const float WeaponUseDuration = 0.05f;
@@ -59,8 +59,8 @@ namespace Rogium.Editors.Core.Defaults
         public const float ProjectileLifetime = 5;
         public const float ProjectileKnockbackForceSelf = 0;
         public const float ProjectileKnockbackTimeSelf = 0f;
-        public const float ProjectileKnockbackTimeOther = 0.05f;
-        public const float ProjectileKnockbackForceOther = 0.5f;
+        public const float ProjectileKnockbackForceOther = 2f;
+        public const float ProjectileKnockbackTimeOther = 0.075f;
         
         //Enemy
         public const string EnemyTitle = "New Enemy";
@@ -74,8 +74,8 @@ namespace Rogium.Editors.Core.Defaults
         public const float EnemyAttackDelay = 2f;
         public const float EnemyKnockbackForceSelf = 1;
         public const float EnemyKnockbackTimeSelf = 0.025f;
-        public const float EnemyKnockbackTimeOther = 0.05f;
         public const float EnemyKnockbackForceOther = 2;
+        public const float EnemyKnockbackTimeOther = 0.075f;
         
         public const int EnemyMaxHealth = 20;
         public const float EnemyAttackProbability = 100;
