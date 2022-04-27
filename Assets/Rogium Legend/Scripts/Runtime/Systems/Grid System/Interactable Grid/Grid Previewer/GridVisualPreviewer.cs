@@ -134,6 +134,7 @@ namespace Rogium.Systems.GridSystem
 
         private void ChangeMaterial(Sprite brush)
         {
+            if (assetPalettes.Length <= 0) return;
             lastMaterial = brush;
             
             if (!allowMaterialSwitching) return;
@@ -145,6 +146,7 @@ namespace Rogium.Systems.GridSystem
 
         private void ChangeColor(Color color)
         {
+            if (colorPalettes.Length <= 0) return;
             lastColor = color;
             
             if (!allowMaterialSwitching) return;
