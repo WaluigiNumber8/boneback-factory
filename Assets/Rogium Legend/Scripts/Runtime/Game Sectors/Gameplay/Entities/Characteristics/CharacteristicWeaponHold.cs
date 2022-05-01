@@ -11,13 +11,14 @@ namespace Rogium.Gameplay.Entities.Characteristics
     public class CharacteristicWeaponHold : CharacteristicBase
     {
         [SerializeField] private WeaponController weaponEntity;
+        [SerializeField] private int startingSlots = 0;
         [SerializeField] private PositionInfo weaponPositions;
         [SerializeField] private CharWeaponHoldInfo defaultData;
 
         private IList<WeaponAsset> weapons;
         private float useDelayTimer;
 
-        private void Awake() => weapons = new List<WeaponAsset>();
+        private void Awake() => weapons = new List<WeaponAsset>(new WeaponAsset[startingSlots]);
 
         private void Update()
         {
@@ -39,6 +40,17 @@ namespace Rogium.Gameplay.Entities.Characteristics
             
             if (presetWeapons == null || presetWeapons.Count <= 0) return;
             weapons = new List<WeaponAsset>(presetWeapons);
+        }
+
+        /// <summary>
+        /// Construct the characteristic.
+        /// </summary>
+        /// <param name="newInfo">The new data to use.</param>
+        /// <param name="slotAmount">The amount of weapon slots to reserve.</param>
+        public void Construct(CharWeaponHoldInfo newInfo, int slotAmount = 0)
+        {
+            defaultData = newInfo;
+            weapons = new List<WeaponAsset>(slotAmount);
         }
 
         /// <summary>

@@ -325,7 +325,7 @@ namespace Rogium.UserInterface.Interactables
 
                 #endregion
 
-                #region Gameplay Pause Menu
+                #region Gameplay Menu
                 case ButtonType.GameplayPauseResume:
                     GASButtonActions.GameplayPauseResume();
                     break;
@@ -334,6 +334,10 @@ namespace Rogium.UserInterface.Interactables
                     GASButtonActions.GameplayPauseQuit();
                     break;
 
+                case ButtonType.GameplaySelectWeapon:
+                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - GAMEPLAY SELECT WEAPON");
+                    GASButtonActions.GameplaySelectWeapon(index);
+                    break;
                 #endregion
                 
                 case ButtonType.Play:

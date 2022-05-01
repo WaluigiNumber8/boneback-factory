@@ -5,7 +5,6 @@ using System.Linq;
 using BoubakProductions.Safety;
 using Rogium.Editors.Rooms;
 using Rogium.Gameplay.DataLoading;
-using Rogium.Gameplay.Entities;
 using Rogium.Gameplay.Entities.Player;
 using Rogium.Gameplay.InteractableObjects;
 using Rogium.Systems.SAS;
@@ -43,7 +42,8 @@ namespace Rogium.Gameplay.Sequencer
         /// Runs the opening gameplay sequence.
         /// </summary>
         public void RunIntro(int difficultyTier)
-        {
+        {   
+            roomLoader.Init();
             StartCoroutine(RunIntroCoroutine(difficultyTier));
             IEnumerator RunIntroCoroutine(int tier)
             {

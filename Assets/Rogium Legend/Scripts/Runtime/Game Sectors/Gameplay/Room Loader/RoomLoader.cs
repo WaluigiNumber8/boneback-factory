@@ -27,7 +27,7 @@ namespace Rogium.Gameplay.DataLoading
         private PackAsset dataPack;
         private RRG rrg;
 
-        private void Start()
+        public void Init()
         {
             objects = InternalLibraryOverseer.GetInstance().GetObjectsCopy();
             dataPack = GameplayOverseerMono.GetInstance().CurrentCampaign.DataPack;

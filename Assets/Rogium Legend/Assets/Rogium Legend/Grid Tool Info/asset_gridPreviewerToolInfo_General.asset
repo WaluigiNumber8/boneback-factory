@@ -40,11 +40,11 @@ MonoBehaviour:
     followCursor: 0
     autoMaterial: 1
     customSprite: {fileID: 0}
-    customColor: {r: 1, g: 1, b: 1, a: 1}
+    customColor: {r: 1, g: 1, b: 1, a: 0}
   - tool: 4
     isVisible: 1
     permanentState: 1
     followCursor: 0
     autoMaterial: 0
     customSprite: {fileID: -1775364646, guid: 34a69be70a980e44583bbad73127c022, type: 3}
-    customColor: {r: 1, g: 1, b: 1, a: 1}
+    customColor: {r: 1, g: 1, b: 1, a: 0}

@@ -17,7 +17,7 @@ namespace Rogium.Gameplay.InteractableObjects
     [RequireComponent(typeof(BoxCollider2D))]
     public class InteractObjectWeaponDrop : MonoBehaviour, IInteractObject
     {
-        public event Action<WeaponAsset> OnPlayerPickUp;
+        public static event Action<WeaponAsset> OnPlayerPickUp;
 
         [SerializeField] private SpriteRenderer iconRenderer;
         

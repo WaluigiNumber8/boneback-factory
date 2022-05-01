@@ -121,15 +121,16 @@ namespace Rogium.UserInterface.Interactables
         RoomClearActiveLayer = 76,
         #endregion
 
-        #region Gameplay Pause Menu
+        #region Gameplay
         GameplayPauseResume = 78,
         GameplayPauseQuit = 79,
+        GameplaySelectWeapon = 80,
         #endregion
         
         QuitGame = 9999,
         Play = 10000,
         TEST = 10001
         
-        //Latest : 79
+        //Latest : 80
     }   
 }

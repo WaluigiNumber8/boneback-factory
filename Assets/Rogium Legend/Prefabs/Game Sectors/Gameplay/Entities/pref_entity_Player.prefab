@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 50
   m_Sprite: {fileID: -1461425999, guid: 680589a0053c0a24aa1db3390f0cabaf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -295,6 +295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entity: {fileID: 42737588524664429}
   weaponEntity: {fileID: 6185820723040305167}
+  startingSlots: 6
   weaponPositions:
     north: {x: 0.21, y: 0.33, z: 1}
     east: {x: 0.62, y: -0.124, z: -1}

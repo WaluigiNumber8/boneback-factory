@@ -132,10 +132,10 @@
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="13816">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="13816" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -356,7 +356,11 @@
       <workItem from="1650267940544" duration="2271000" />
       <workItem from="1650299394832" duration="2912000" />
       <workItem from="1650965304529" duration="15021000" />
-      <workItem from="1651074676128" duration="1461000" />
+      <workItem from="1651074676128" duration="1718000" />
+      <workItem from="1651148061193" duration="139000" />
+      <workItem from="1651158514834" duration="2225000" />
+      <workItem from="1651423325205" duration="257000" />
+      <workItem from="1651423849296" duration="6340000" />
     </task>
     <servers />
   </component>
@@ -479,19 +483,6 @@
           <option name="timeStamp" value="112" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Systems/GAS/GASButtonActions.cs</url>
-          <line>678</line>
-          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Systems\GAS\GASButtonActions.cs" initialLine="678" containingFunctionPresentation="method 'GameplayPauseResume'">
-            <startOffsets>
-              <option value="26583" />
-            </startOffsets>
-            <endOffsets>
-              <option value="26637" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="114" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Editors/Core/Assets/AnimatedAssetBase.cs</url>
           <line>23</line>
           <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Editors\Core\Assets\AnimatedAssetBase.cs" initialLine="23" containingFunctionPresentation="method 'UpdateIconAlt'">
@@ -503,19 +494,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="123" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Gameplay/Entities/Characteristics/CharacteristicWeaponHold.cs</url>
-          <line>54</line>
-          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Gameplay\Entities\Characteristics\CharacteristicWeaponHold.cs" initialLine="54" containingFunctionPresentation="method 'Use'">
-            <startOffsets>
-              <option value="2121" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2156" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="128" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/UI/Interactables/Asset Field/AssetField.cs</url>
@@ -558,16 +536,16 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Systems/Grid System/Interactable Grid/Grid Previewer/GridVisualPreviewer.cs</url>
-          <line>147</line>
-          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Systems\Grid System\Interactable Grid\Grid Previewer\GridVisualPreviewer.cs" initialLine="147" containingFunctionPresentation="method 'ChangeColor'">
+          <line>56</line>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Systems\Grid System\Interactable Grid\Grid Previewer\GridVisualPreviewer.cs" initialLine="56" containingFunctionPresentation="method 'OnEnable'">
             <startOffsets>
-              <option value="4772" />
+              <option value="1950" />
             </startOffsets>
             <endOffsets>
-              <option value="4790" />
+              <option value="2001" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="146" />
+          <option name="timeStamp" value="147" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

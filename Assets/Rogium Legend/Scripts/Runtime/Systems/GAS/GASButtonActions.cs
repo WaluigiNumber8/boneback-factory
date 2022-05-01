@@ -14,6 +14,7 @@ using Rogium.Editors.Rooms;
 using Rogium.Editors.Sprites;
 using Rogium.Editors.Tiles;
 using Rogium.Editors.Weapons;
+using Rogium.Gameplay.Inventory;
 using Rogium.Systems.Toolbox;
 using Rogium.UserInterface.Editors.AssetSelection;
 using Rogium.UserInterface.Containers;
@@ -672,7 +673,7 @@ namespace Rogium.Systems.GASExtension
         }
         #endregion
 
-        #region Gameplay Pause Menu
+        #region Gameplay Menu
 
         public static void GameplayPauseResume()
         {
@@ -684,6 +685,11 @@ namespace Rogium.Systems.GASExtension
             PauseMenuOverseerMono.GetInstance().ReturnToMainMenu();
         }
 
+        public static void GameplaySelectWeapon(int index)
+        {
+            WeaponSelectMenu.GetInstance().Select(index);
+        }
         #endregion
+        
     }
 }
