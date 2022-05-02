@@ -37,7 +37,7 @@ namespace Rogium.Editors.Core.Defaults
         public static readonly Sprite WeaponIconAlt = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
         
         public const int WeaponBaseDamage = 2;
-        public const float WeaponUseDelay = 0.1f;
+        public const float WeaponUseDelay = 0.18f;
         public const float WeaponKnockbackForceSelf = 0;
         public const float WeaponKnockbackTimeSelf = 0f;
         public const bool WeaponKnockbackLockDirectionSelf = true;
@@ -50,7 +50,10 @@ namespace Rogium.Editors.Core.Defaults
         public const float WeaponUseStartDelay = 0f;
         public const bool WeaponIsEvasive = false;
         public const bool WeaponFreezeUser = true;
+        
         public const int WeaponProjectileMaxCount = 12;
+        public const int WeaponProjectileAngleOffset = 0;
+        public const float WeaponProjectileSpawnDelay = 0;
         
         //Projectile
         public const string ProjectileTitle = "New Projectile";
@@ -86,9 +89,9 @@ namespace Rogium.Editors.Core.Defaults
         public const float EnemyKnockbackTimeOther = 0.075f;
         public const bool EnemyKnockbackLockDirectionOther = true;
         
-        public const int EnemyMaxHealth = 20;
+        public const int EnemyMaxHealth = 5;
         public const float EnemyAttackProbability = 100;
-        public const float EnemyInvincibilityTime = 0.05f;
+        public const float EnemyInvincibilityTime = 0.18f;
         public const int EnemyWeaponMaxCount = 4;
         
         //Room

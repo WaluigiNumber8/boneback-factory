@@ -98,13 +98,14 @@ namespace Rogium.Editors.PropertyEditor.Builders
         /// <param name="amount">The amount of weapon slots.</param>
         private void LoadProjectileSlots(int amount)
         {
+            asset.UpdateProjectileIDsLength(amount);
+            
             if (amount <= 0)
             {
                 projectileSlotsBlock.SetDisabled(true);
                 return;
             }
 
-            asset.UpdateProjectileIDsLength(amount);
             projectileSlotsBlock.Clear();
             projectileSlotsBlock.SetDisabled(false);
 

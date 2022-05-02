@@ -123,12 +123,13 @@ namespace Rogium.Editors.Weapons
         public void UpdateUseDuration(float newUseDuration) => useDuration = newUseDuration;
         public void UpdateUseStartDelay(float newUseStartDelay) => useStartDelay = newUseStartDelay;
         public void UpdateIsEvasive(bool newIsEvasive) => isEvasive = newIsEvasive;
-        public void UpdateFreezeUser(bool newFreezeUser) => isEvasive = newFreezeUser;
+        public void UpdateFreezeUser(bool newFreezeUser) => freezeUser = newFreezeUser;
         public void UpdateProjectileIDsLength(int newLength)
         {
             SafetyNet.EnsureIntIsBiggerOrEqualTo(newLength, 0, "New weapon IDs size");
-            projectileIDs = new List<ProjectileDataInfo>();
-            projectileIDs.AddRange(Enumerable.Repeat(new ProjectileDataInfo(EditorDefaults.EmptyAssetID, 0, 0), newLength));
+            projectileIDs.Resize(newLength, new ProjectileDataInfo(EditorDefaults.EmptyAssetID,
+                                                                   EditorDefaults.WeaponProjectileSpawnDelay, 
+                                                                   EditorDefaults.WeaponProjectileAngleOffset));
         }
         public void UpdateProjectileIDsPosID(int pos, string value) => projectileIDs[pos].UpdateID(value);
         public void UpdateProjectileIDsPosSpawnDelay(int pos, float value) => projectileIDs[pos].UpdateSpawnDelay(value);

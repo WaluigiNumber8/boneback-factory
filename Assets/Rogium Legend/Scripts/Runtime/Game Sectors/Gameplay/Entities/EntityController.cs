@@ -1,4 +1,5 @@
-﻿using Rogium.Gameplay.Core;
+﻿using System.Collections;
+using Rogium.Gameplay.Core;
 using UnityEngine;
 
 namespace Rogium.Gameplay.Entities
@@ -21,6 +22,7 @@ namespace Rogium.Gameplay.Entities
         protected Vector2 faceDirection;
         protected bool faceDirectionLocked;
         protected bool actionsLocked;
+        protected bool movementLocked;
         
         protected virtual void Awake()
         {
@@ -47,6 +49,21 @@ namespace Rogium.Gameplay.Entities
             trigger.enabled = enable;
         }
 
+        /// <summary>
+        /// Locks the entities movement for a certain amount of time.
+        /// </summary>
+        /// <param name="time">The time to lock movement for.</param>
+        public void LockMovement(float time)
+        {
+            StartCoroutine(MovementLockCoroutine());
+            IEnumerator MovementLockCoroutine()
+            {
+                movementLocked = true;
+                yield return new WaitForSeconds(time);
+                movementLocked = false;
+            }
+        }
+        
         /// <summary>
         /// Force movement in a specific direction.
         /// </summary>
@@ -105,7 +122,7 @@ namespace Rogium.Gameplay.Entities
             
             void UpdateFaceDirection()
             {
-                if (faceDirectionLocked) return;
+                if (faceDirectionLocked || movementLocked) return;
                 faceDirection = (Vector3.Distance(velocityChange, Vector3.zero) > 0.01f) ? velocityChange.normalized : faceDirection;
             }
         }

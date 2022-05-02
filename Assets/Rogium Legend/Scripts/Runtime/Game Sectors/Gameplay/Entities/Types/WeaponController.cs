@@ -49,25 +49,19 @@ namespace Rogium.Gameplay.Entities
         /// </summary>
         public void Activate()
         {
-            StartCoroutine(ActivateCoroutine());
-            IEnumerator ActivateCoroutine()
+            gameObject.SetActive(true);
+            switch (weapon.UseType)
             {
-                yield return new WaitForSeconds(weapon.UseStartDelay);
-                
-                gameObject.SetActive(true);
-                switch (weapon.UseType)
-                {
-                    case WeaponUseType.PopUp:
-                        StartCoroutine(StaticTypeCoroutine(true));
-                        break;
-                    case WeaponUseType.Hidden:
-                        StartCoroutine(StaticTypeCoroutine(false));
-                        break;
-                    case WeaponUseType.Constant:
-                        yield break;
-                    default:
-                        throw new ArgumentOutOfRangeException($"The Use Type '{weapon.UseType}' is not supported or implemented.");
-                }
+                case WeaponUseType.PopUp:
+                    StartCoroutine(StaticTypeCoroutine(true));
+                    break;
+                case WeaponUseType.Hidden:
+                    StartCoroutine(StaticTypeCoroutine(false));
+                    break;
+                case WeaponUseType.Constant:
+                    return;
+                default:
+                    throw new ArgumentOutOfRangeException($"The Use Type '{weapon.UseType}' is not supported or implemented.");
             }
             
         }

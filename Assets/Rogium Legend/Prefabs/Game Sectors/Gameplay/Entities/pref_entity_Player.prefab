@@ -297,10 +297,10 @@ MonoBehaviour:
   weaponEntity: {fileID: 6185820723040305167}
   startingSlots: 6
   weaponPositions:
-    north: {x: 0.21, y: 0.33, z: 1}
-    east: {x: 0.62, y: -0.124, z: -1}
-    south: {x: -0.21, y: -0.52, z: -1}
-    west: {x: -0.57, y: -0.124, z: 1}
+    north: {x: 0, y: 1, z: 1}
+    east: {x: 1, y: 0, z: -1}
+    south: {x: 0, y: -1, z: -1}
+    west: {x: -1, y: 0, z: 1}
   defaultData:
     useDelay: 0.01
 --- !u!1001 &1119274212337525907

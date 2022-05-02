@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using BoubakProductions.Safety;
 using Rogium.Editors.Weapons;
 using UnityEngine;
@@ -65,11 +66,18 @@ namespace Rogium.Gameplay.Entities.Characteristics
             if (weapons[slot] == null) return;
 
             WeaponAsset weapon = weapons[slot];
-            
-            weaponEntity.LoadUp(weapon);
-            weaponEntity.Activate();
-            entity.ForceMove(-entity.FaceDirection, weapon.KnockbackForceSelf, weapon.KnockbackTimeSelf, weapon.KnockbackLockDirectionSelf);
-            useDelayTimer = Time.time + defaultData.useDelay;
+            if (weapon.FreezeUser) entity.LockMovement(weapon.UseDuration + weapon.UseStartDelay);
+            StartCoroutine(ActivateCoroutine());
+
+            IEnumerator ActivateCoroutine()
+            {
+                yield return new WaitForSeconds(weapon.UseStartDelay);
+                
+                weaponEntity.LoadUp(weapon);
+                weaponEntity.Activate();
+                entity.ForceMove(-entity.FaceDirection, weapon.KnockbackForceSelf, weapon.KnockbackTimeSelf, weapon.KnockbackLockDirectionSelf);
+                useDelayTimer = Time.time + defaultData.useDelay;
+            }
         }
 
         /// <summary>

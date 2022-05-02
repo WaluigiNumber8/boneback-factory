@@ -40,6 +40,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/51c9fc2d1be048cfa2dd679deaa7d4f717a300/95/a4afaf76/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6073cf49ed704e958b8a66d540dea94846a800/45/a343a3af/Buffer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6073cf49ed704e958b8a66d540dea94846a800/4d/a312943a/Buffer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6073cf49ed704e958b8a66d540dea94846a800/9c/a5e40348/List`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/64be95f13bf5438daa35c8333dd294ed9800/04/ac1fbd36/TileBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/64be95f13bf5438daa35c8333dd294ed9800/26/88e3d99d/Tilemap.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/36/02b85da6/List`1.cs" root0="SKIP_HIGHLIGHTING" />
@@ -362,7 +363,7 @@
       <workItem from="1651158514834" duration="2225000" />
       <workItem from="1651423325205" duration="257000" />
       <workItem from="1651423849296" duration="6576000" />
-      <workItem from="1651474569557" duration="14473000" />
+      <workItem from="1651474569557" duration="18797000" />
     </task>
     <servers />
   </component>
@@ -538,16 +539,42 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Editors/Property/Builders/PropertyEditorBuilderWeapon.cs</url>
-          <line>106</line>
-          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Editors\Property\Builders\PropertyEditorBuilderWeapon.cs" initialLine="105" containingFunctionPresentation="method 'LoadProjectileSlots'">
+          <line>115</line>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Editors\Property\Builders\PropertyEditorBuilderWeapon.cs" initialLine="115" containingFunctionPresentation="lambda expression inside method 'LoadProjectileSlots'">
             <startOffsets>
-              <option value="6004" />
+              <option value="6681" />
             </startOffsets>
             <endOffsets>
-              <option value="6044" />
+              <option value="6738" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="150" />
+          <option name="timeStamp" value="152" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Editors/Property/Builders/PropertyEditorBuilderEnemy.cs</url>
+          <line>116</line>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Editors\Property\Builders\PropertyEditorBuilderEnemy.cs" initialLine="116" containingFunctionPresentation="lambda expression inside method 'LoadWeaponSlots'">
+            <startOffsets>
+              <option value="6504" />
+            </startOffsets>
+            <endOffsets>
+              <option value="6536" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="153" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Editors/Property/Builders/PropertyEditorBuilderWeapon.cs</url>
+          <line>122</line>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Editors\Property\Builders\PropertyEditorBuilderWeapon.cs" initialLine="122" containingFunctionPresentation="lambda expression inside method 'LoadProjectileSlots'">
+            <startOffsets>
+              <option value="7427" />
+            </startOffsets>
+            <endOffsets>
+              <option value="7466" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="154" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

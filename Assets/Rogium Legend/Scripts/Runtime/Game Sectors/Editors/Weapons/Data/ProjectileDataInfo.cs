@@ -5,7 +5,7 @@ namespace Rogium.Editors.Weapons
     /// Contains info about an added projectile.
     /// </summary>
     [System.Serializable]
-    public struct ProjectileDataInfo
+    public class ProjectileDataInfo
     {
         private string id;
         private float spawnDelay;
