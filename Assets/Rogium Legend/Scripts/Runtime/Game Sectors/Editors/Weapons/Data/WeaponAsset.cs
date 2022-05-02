@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using BoubakProductions.Core;
+using BoubakProductions.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using UnityEngine;
@@ -11,9 +15,12 @@ namespace Rogium.Editors.Weapons
     public class WeaponAsset : EntityAssetBase
     {
         private WeaponUseType useType;
+        private float useStartDelay;
         private float useDuration;
+        private bool freezeUser;
         private bool isEvasive;
-        
+        private List<ProjectileDataInfo> projectileIDs;
+
         #region Constructors
         public WeaponAsset()
         {
@@ -30,12 +37,17 @@ namespace Rogium.Editors.Weapons
             useDelay = EditorDefaults.WeaponUseDelay;
             knockbackForceSelf = EditorDefaults.WeaponKnockbackForceSelf;
             knockbackTimeSelf = EditorDefaults.WeaponKnockbackTimeSelf;
+            knockbackLockDirectionSelf = EditorDefaults.WeaponKnockbackLockDirectionSelf;
             knockbackForceOther = EditorDefaults.WeaponKnockbackForceOther;
             knockbackTimeOther = EditorDefaults.WeaponKnockbackTimeOther;
+            knockbackLockDirectionOther = EditorDefaults.WeaponKnockbackLockDirectionOther;
 
             useType = EditorDefaults.WeaponUseType;
             useDuration = EditorDefaults.WeaponUseDuration;
+            useStartDelay = EditorDefaults.WeaponUseStartDelay;
             isEvasive = EditorDefaults.WeaponIsEvasive;
+            freezeUser = EditorDefaults.WeaponFreezeUser;
+            projectileIDs = new List<ProjectileDataInfo>();
             
             GenerateID(EditorAssetIDs.WeaponIdentifier);
         }
@@ -56,18 +68,25 @@ namespace Rogium.Editors.Weapons
             useDelay = asset.UseDelay;
             knockbackForceSelf = asset.KnockbackForceSelf;
             knockbackTimeSelf = asset.KnockbackTimeSelf;
+            knockbackLockDirectionSelf = asset.KnockbackLockDirectionSelf;
             knockbackForceOther = asset.KnockbackForceOther;
             knockbackTimeOther = asset.KnockbackTimeOther;
+            knockbackLockDirectionOther = asset.KnockbackLockDirectionOther;
 
             useType = asset.UseType;
             useDuration = asset.UseDuration;
+            useStartDelay = asset.useStartDelay;
             isEvasive = asset.IsEvasive;
+            freezeUser = asset.FreezeUser;
+            projectileIDs = new List<ProjectileDataInfo>(asset.ProjectileIDs);
         }
 
         public WeaponAsset(string id, string title, Sprite icon, string author, AnimationType animationType, 
                            int frameDuration, Sprite iconAlt,int baseDamage, float useDelay, float knockbackForceSelf,
-                           float knockbackTimeSelf, float knockbackForceOther, float knockbackTimeOther, WeaponUseType useType,
-                           float useDuration, bool isEvasive, DateTime creationDate)
+                           float knockbackTimeSelf, bool knockbackLockDirectionSelf, float knockbackForceOther,
+                           float knockbackTimeOther, bool knockbackLockDirectionOther, WeaponUseType useType,
+                           float useDuration, float useStartDelay, bool isEvasive, bool freezeUser, 
+                           List<ProjectileDataInfo> projectileIDs, DateTime creationDate)
         {
             this.id = id;
             this.title = title;
@@ -83,12 +102,17 @@ namespace Rogium.Editors.Weapons
             this.useDelay = useDelay;
             this.knockbackForceSelf = knockbackForceSelf;
             this.knockbackTimeSelf = knockbackTimeSelf;
+            this.knockbackLockDirectionSelf = knockbackLockDirectionSelf;
             this.knockbackForceOther = knockbackForceOther;
             this.knockbackTimeOther = knockbackTimeOther;
+            this.knockbackLockDirectionOther = knockbackLockDirectionOther;
 
             this.useType = useType;
             this.useDuration = useDuration;
+            this.useStartDelay = useStartDelay;
             this.isEvasive = isEvasive;
+            this.freezeUser = freezeUser;
+            this.projectileIDs = new List<ProjectileDataInfo>(projectileIDs);
 
         }
         #endregion
@@ -97,11 +121,25 @@ namespace Rogium.Editors.Weapons
         public void UpdateUseType(WeaponUseType newUseType) => useType = newUseType;
         public void UpdateUseType(int newUseType) => useType = (WeaponUseType)newUseType;
         public void UpdateUseDuration(float newUseDuration) => useDuration = newUseDuration;
+        public void UpdateUseStartDelay(float newUseStartDelay) => useStartDelay = newUseStartDelay;
         public void UpdateIsEvasive(bool newIsEvasive) => isEvasive = newIsEvasive;
+        public void UpdateFreezeUser(bool newFreezeUser) => isEvasive = newFreezeUser;
+        public void UpdateProjectileIDsLength(int newLength)
+        {
+            SafetyNet.EnsureIntIsBiggerOrEqualTo(newLength, 0, "New weapon IDs size");
+            projectileIDs = new List<ProjectileDataInfo>();
+            projectileIDs.AddRange(Enumerable.Repeat(new ProjectileDataInfo(EditorDefaults.EmptyAssetID, 0, 0), newLength));
+        }
+        public void UpdateProjectileIDsPosID(int pos, string value) => projectileIDs[pos].UpdateID(value);
+        public void UpdateProjectileIDsPosSpawnDelay(int pos, float value) => projectileIDs[pos].UpdateSpawnDelay(value);
+        public void UpdateProjectileIDsPosAngleOffset(int pos, int value) => projectileIDs[pos].UpdateAngleOffset(value);
         #endregion
 
         public WeaponUseType UseType { get => useType; }
         public float UseDuration { get => useDuration; }
+        public float UseStartDelay { get => useStartDelay; }
         public bool IsEvasive { get => isEvasive; }
+        public bool FreezeUser { get => freezeUser; }
+        public List<ProjectileDataInfo> ProjectileIDs { get => projectileIDs; }
     }
 }

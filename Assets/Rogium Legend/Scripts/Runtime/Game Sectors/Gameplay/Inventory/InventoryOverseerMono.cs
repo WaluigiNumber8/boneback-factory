@@ -1,5 +1,4 @@
-﻿using BoubakProductions.Systems.ClockOfTheGame;
-using Rogium.Editors.Weapons;
+﻿using Rogium.Editors.Weapons;
 using Rogium.Gameplay.Entities.Characteristics;
 using Rogium.Gameplay.InteractableObjects;
 using Rogium.UserInterface.Gameplay.HUD;
@@ -24,7 +23,6 @@ namespace Rogium.Gameplay.Inventory
         private void ProcessNewWeapon(WeaponAsset newWeapon)
         {
             currentWeapon = newWeapon;
-            GameClock.Instance.Pause();
             
             if (newWeapon.IsEvasive) weaponSelectMenu.OpenForDash(CallForEquip);
             else weaponSelectMenu.OpenForNormal(CallForEquip);
@@ -39,7 +37,6 @@ namespace Rogium.Gameplay.Inventory
             weaponHolder.Equip(currentWeapon, slot);
             HUDController.GetInstance().UpdateWeaponSlot(slot, currentWeapon.Icon);
             currentWeapon = null;
-            GameClock.Instance.Resume();
         }
     }
 }

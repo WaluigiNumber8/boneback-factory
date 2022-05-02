@@ -48,8 +48,8 @@ namespace Rogium.Gameplay.Entities.Enemy
             //Damage Giver
             if (damageGiver != null)
             {
-                ForcedMoveInfo knockbackSelf = new(asset.KnockbackForceSelf, asset.KnockbackForceSelf * 0.1f);
-                ForcedMoveInfo knockbackOther = new(asset.KnockbackForceOther, asset.KnockbackForceOther * 0.1f);
+                ForcedMoveInfo knockbackSelf = new(asset.KnockbackForceSelf, asset.KnockbackForceSelf * 0.1f, asset.KnockbackLockDirectionSelf);
+                ForcedMoveInfo knockbackOther = new(asset.KnockbackForceOther, asset.KnockbackForceOther * 0.1f, asset.KnockbackLockDirectionOther);
                 CharDamageGiverInfo damageGiver = new(asset.BaseDamage, knockbackSelf, knockbackOther);
                 this.damageGiver.Construct(damageGiver);
             }

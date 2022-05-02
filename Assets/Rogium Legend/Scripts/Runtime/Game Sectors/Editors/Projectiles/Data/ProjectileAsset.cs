@@ -29,8 +29,10 @@ namespace Rogium.Editors.Projectiles
             useDelay = EditorDefaults.ProjectileLifetime;
             knockbackForceSelf = EditorDefaults.ProjectileKnockbackForceSelf;
             knockbackTimeSelf = EditorDefaults.ProjectileKnockbackTimeSelf;
+            knockbackLockDirectionSelf = EditorDefaults.ProjectileKnockbackLockDirectionSelf;
             knockbackForceOther = EditorDefaults.ProjectileKnockbackForceOther;
             knockbackTimeOther = EditorDefaults.ProjectileKnockbackTimeOther;
+            knockbackLockDirectionOther = EditorDefaults.ProjectileKnockbackLockDirectionOther;
             
             GenerateID(EditorAssetIDs.ProjectileIdentifier);
         }
@@ -51,14 +53,16 @@ namespace Rogium.Editors.Projectiles
             useDelay = asset.UseDelay;
             knockbackForceSelf = asset.KnockbackForceSelf;
             knockbackTimeSelf = asset.KnockbackTimeSelf;
+            knockbackLockDirectionSelf = asset.knockbackLockDirectionSelf;
             knockbackForceOther = asset.KnockbackForceOther;
             knockbackTimeOther = asset.KnockbackTimeOther;
+            knockbackLockDirectionOther = asset.knockbackLockDirectionOther;
         }
 
         public ProjectileAsset(string id, string title, Sprite icon, string author, AnimationType animationType, 
                                int frameDuration, Sprite iconAlt, int baseDamage, float useDelay, float knockbackForceSelf, 
-                               float knockbackTimeSelf, float knockbackForceOther, float knockbackTimeOther, 
-                               DateTime creationDate)
+                               float knockbackTimeSelf, bool knockbackLockDirectionSelf, float knockbackForceOther,
+                               float knockbackTimeOther, bool knockbackLockDirectionOther, DateTime creationDate)
         {
             AssetValidation.ValidateTitle(title);
             
@@ -76,8 +80,10 @@ namespace Rogium.Editors.Projectiles
             this.useDelay = useDelay;
             this.knockbackForceSelf = knockbackForceSelf;
             this.knockbackTimeSelf = knockbackTimeSelf;
+            this.knockbackLockDirectionSelf = knockbackLockDirectionSelf;
             this.knockbackForceOther = knockbackForceOther;
             this.knockbackTimeOther = knockbackTimeOther;
+            this.knockbackLockDirectionOther = knockbackLockDirectionOther;
 
         }
         #endregion

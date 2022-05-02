@@ -28,8 +28,10 @@ namespace Rogium.ExternalStorage.Serialization
                                        useDelay,
                                        knockbackForceSelf,
                                        knockbackTimeSelf,
+                                       knockbackLockDirectionSelf,
                                        knockbackForceOther,
                                        knockbackTimeOther,
+                                       knockbackLockDirectionOther,
                                        DateTime.Parse(creationDate));
         }
     }

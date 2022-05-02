@@ -14,6 +14,7 @@ namespace Rogium.Gameplay.Entities.Player
         [SerializeField] private CharacteristicWeaponHold weaponHold;
         
         private Vector2 moveDirection;
+        private bool disableMovement;
         private InputProfilePlayer input;
 
         protected override void Awake()

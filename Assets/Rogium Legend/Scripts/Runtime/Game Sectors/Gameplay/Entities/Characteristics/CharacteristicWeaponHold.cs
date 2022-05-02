@@ -63,9 +63,12 @@ namespace Rogium.Gameplay.Entities.Characteristics
             if (useDelayTimer > Time.time) return;
             if (weapons == null || weapons.Count <= 0) return;
             if (weapons[slot] == null) return;
+
+            WeaponAsset weapon = weapons[slot];
             
-            weaponEntity.LoadUp(weapons[slot]);
+            weaponEntity.LoadUp(weapon);
             weaponEntity.Activate();
+            entity.ForceMove(-entity.FaceDirection, weapon.KnockbackForceSelf, weapon.KnockbackTimeSelf, weapon.KnockbackLockDirectionSelf);
             useDelayTimer = Time.time + defaultData.useDelay;
         }
 

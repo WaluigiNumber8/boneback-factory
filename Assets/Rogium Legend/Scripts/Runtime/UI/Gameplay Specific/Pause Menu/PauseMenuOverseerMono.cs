@@ -5,6 +5,7 @@ using Rogium.Gameplay.Core;
 using Rogium.Systems.Input;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Rogium.UserInterface.Gameplay.PauseMenu
 {
@@ -14,14 +15,23 @@ namespace Rogium.UserInterface.Gameplay.PauseMenu
     public class PauseMenuOverseerMono : MonoSingleton<PauseMenuOverseerMono>, IObjectVisibilityController
     {
         [SerializeField] private GameObject pauseMenuObject;
-        [SerializeField] private GameObject firstSelectedButton;
+        [SerializeField] private Selectable firstSelectedButton;
         [SerializeField] private ModalWindow modalWindow;
 
         private bool isActive;
         
         private void Start() => SwitchVisibilityStatus(false);
-        private void OnEnable() => InputSystem.Instance.Player.ButtonStart.OnPress += SwitchMenuState;
-        private void OnDisable() => InputSystem.Instance.Player.ButtonStart.OnPress -= SwitchMenuState;
+        private void OnEnable()
+        {
+            InputSystem.Instance.Player.ButtonStart.OnPress += SwitchMenuState;
+            InputSystem.Instance.UI.Menu.OnPress += SwitchMenuState;
+        }
+
+        private void OnDisable()
+        {
+            InputSystem.Instance.Player.ButtonStart.OnPress -= SwitchMenuState;
+            InputSystem.Instance.UI.Menu.OnPress -= SwitchMenuState;
+        }
 
         public void SwitchVisibilityStatus() => SwitchVisibilityStatus(!pauseMenuObject.activeSelf);
         public void SwitchVisibilityStatus(bool isVisible) => pauseMenuObject.SetActive(isVisible);
@@ -42,17 +52,15 @@ namespace Rogium.UserInterface.Gameplay.PauseMenu
             if (isActive)
             {
                 SwitchVisibilityStatus(false);
-                GameClock.Instance.Resume();
-                EventSystem.current.firstSelectedGameObject = null;
-                InputSystem.Instance.EnablePlayerMap();
+                GameplayOverseerMono.GetInstance().DisableUI();
+                EventSystem.current.SetSelectedGameObject(null);
                 isActive = false;
                 return;
             }
 
             SwitchVisibilityStatus(true);
-            GameClock.Instance.Pause();
-            InputSystem.Instance.EnableUIMap();
-            if (firstSelectedButton != null) EventSystem.current.firstSelectedGameObject = firstSelectedButton;
+            GameplayOverseerMono.GetInstance().EnableUI();
+            firstSelectedButton.Select();
             isActive = true;
         }
 

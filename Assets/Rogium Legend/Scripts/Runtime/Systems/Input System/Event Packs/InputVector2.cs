@@ -24,6 +24,7 @@ namespace Rogium.Systems.Input
 
         public void Disable()
         {
+            OnReleased?.Invoke(Vector2.zero);
             action.performed -= CallPress;
             action.canceled -= CallRelease;
         }

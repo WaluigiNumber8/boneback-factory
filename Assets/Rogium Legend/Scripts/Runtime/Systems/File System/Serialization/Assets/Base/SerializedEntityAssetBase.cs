@@ -12,8 +12,10 @@ namespace Rogium.ExternalStorage.Serialization
         protected float useDelay;
         protected float knockbackForceSelf;
         protected float knockbackTimeSelf;
+        protected bool knockbackLockDirectionSelf;
         protected float knockbackForceOther;
         protected float knockbackTimeOther;
+        protected bool knockbackLockDirectionOther;
         
         protected SerializedEntityAssetBase(T asset) : base(asset)
         {
@@ -21,8 +23,10 @@ namespace Rogium.ExternalStorage.Serialization
             useDelay = asset.UseDelay;
             knockbackForceSelf = asset.KnockbackForceSelf;
             knockbackTimeSelf = asset.KnockbackTimeSelf;
+            knockbackLockDirectionSelf = asset.KnockbackLockDirectionSelf;
             knockbackForceOther = asset.KnockbackForceOther;
             knockbackTimeOther = asset.KnockbackTimeOther;
+            knockbackLockDirectionOther = asset.KnockbackLockDirectionOther;
         }
     }
 }

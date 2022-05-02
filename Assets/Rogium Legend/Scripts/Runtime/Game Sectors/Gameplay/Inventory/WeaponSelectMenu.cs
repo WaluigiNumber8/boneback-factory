@@ -1,7 +1,9 @@
 ﻿using System;
 using BoubakProductions.Core;
 using BoubakProductions.Systems.ObjectSwitching;
+using Rogium.Gameplay.Core;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Rogium.Gameplay.Inventory
 {
@@ -14,13 +16,11 @@ namespace Rogium.Gameplay.Inventory
         [SerializeField] private ObjectSwitcherMono layoutSwitcher;
         [SerializeField] private UIInfo ui;
 
-        private Transform ttransform;
         private Action<int> methodToRun;
 
         protected override void Awake()
         {
-            base.Awake();
-            ttransform = transform;
+            ui.ui.SetActive(false);
             Hide();
         }
 
@@ -32,6 +32,7 @@ namespace Rogium.Gameplay.Inventory
         {
             methodToRun = selectedMethod;
             layoutSwitcher.Switch(ui.normalLayout);
+            ui.firstSelectedNormal.Select();
             Show();
         }
         
@@ -43,6 +44,7 @@ namespace Rogium.Gameplay.Inventory
         {
             methodToRun = selectedMethod;
             layoutSwitcher.Switch(ui.dashLayout);
+            ui.firstSelectedDash.Select();
             Show();
         }
 
@@ -61,8 +63,9 @@ namespace Rogium.Gameplay.Inventory
         /// </summary>
         private void Show()
         {
-            ttransform.position = snapTransform.position;
+            ui.parent.position = snapTransform.position;
             ui.ui.SetActive(true);
+            GameplayOverseerMono.GetInstance().EnableUI();
         }
 
         /// <summary>
@@ -71,6 +74,7 @@ namespace Rogium.Gameplay.Inventory
         private void Hide()
         {
             ui.ui.SetActive(false);
+            GameplayOverseerMono.GetInstance().DisableUI();
         }
 
         [System.Serializable]
@@ -79,7 +83,9 @@ namespace Rogium.Gameplay.Inventory
             public Transform parent;
             public GameObject ui;
             public GameObject normalLayout;
+            public Selectable firstSelectedNormal;
             public GameObject dashLayout;
+            public Selectable firstSelectedDash;
         }
     }
 }

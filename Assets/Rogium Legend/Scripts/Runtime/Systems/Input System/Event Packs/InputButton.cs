@@ -24,6 +24,7 @@ namespace Rogium.Systems.Input
         
         public void Disable()
         {
+            if (isHeld) OnRelease?.Invoke();
             action.performed -= CallPress;
             action.canceled -= CallRelease;
         }

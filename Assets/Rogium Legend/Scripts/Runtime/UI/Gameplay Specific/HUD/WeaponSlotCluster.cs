@@ -39,7 +39,7 @@ namespace Rogium.UserInterface.Gameplay.HUD
         /// <param name="sprite">The sprite of the icon.</param>
         public void SetSub(Sprite sprite)
         {
-            mainIcon.color = EditorDefaults.DefaultColor;
+            subIcon.color = EditorDefaults.DefaultColor;
             subIcon.sprite = sprite;
         }
 

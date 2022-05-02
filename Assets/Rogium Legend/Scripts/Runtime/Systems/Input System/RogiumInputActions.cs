@@ -118,6 +118,15 @@ namespace Rogium.Systems.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""917fc69a-822e-4fee-9701-7a8bdbf130ba"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -538,6 +547,39 @@ namespace Rogium.Systems.Input
                     ""action"": ""Submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4469d629-7b32-4c7e-af70-34b29b0f15ea"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard + Mouse"",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""83333533-0e50-47f9-b61c-621786ab1a63"",
+                    ""path"": ""<Keyboard>/backspace"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard + Mouse"",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ee037bec-a534-4a61-b3ce-db074bf5534c"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -895,6 +937,7 @@ namespace Rogium.Systems.Input
             m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
             m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
             m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+            m_UI_Menu = m_UI.FindAction("Menu", throwIfNotFound: true);
             // Player
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
@@ -974,6 +1017,7 @@ namespace Rogium.Systems.Input
         private readonly InputAction m_UI_RightClick;
         private readonly InputAction m_UI_TrackedDevicePosition;
         private readonly InputAction m_UI_TrackedDeviceOrientation;
+        private readonly InputAction m_UI_Menu;
         public struct UIActions
         {
             private @RogiumInputActions m_Wrapper;
@@ -988,6 +1032,7 @@ namespace Rogium.Systems.Input
             public InputAction @RightClick => m_Wrapper.m_UI_RightClick;
             public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
             public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
+            public InputAction @Menu => m_Wrapper.m_UI_Menu;
             public InputActionMap Get() { return m_Wrapper.m_UI; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1027,6 +1072,9 @@ namespace Rogium.Systems.Input
                     @TrackedDeviceOrientation.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
                     @TrackedDeviceOrientation.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
                     @TrackedDeviceOrientation.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
+                    @Menu.started -= m_Wrapper.m_UIActionsCallbackInterface.OnMenu;
+                    @Menu.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnMenu;
+                    @Menu.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnMenu;
                 }
                 m_Wrapper.m_UIActionsCallbackInterface = instance;
                 if (instance != null)
@@ -1061,6 +1109,9 @@ namespace Rogium.Systems.Input
                     @TrackedDeviceOrientation.started += instance.OnTrackedDeviceOrientation;
                     @TrackedDeviceOrientation.performed += instance.OnTrackedDeviceOrientation;
                     @TrackedDeviceOrientation.canceled += instance.OnTrackedDeviceOrientation;
+                    @Menu.started += instance.OnMenu;
+                    @Menu.performed += instance.OnMenu;
+                    @Menu.canceled += instance.OnMenu;
                 }
             }
         }
@@ -1184,6 +1235,7 @@ namespace Rogium.Systems.Input
             void OnRightClick(InputAction.CallbackContext context);
             void OnTrackedDevicePosition(InputAction.CallbackContext context);
             void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+            void OnMenu(InputAction.CallbackContext context);
         }
         public interface IPlayerActions
         {

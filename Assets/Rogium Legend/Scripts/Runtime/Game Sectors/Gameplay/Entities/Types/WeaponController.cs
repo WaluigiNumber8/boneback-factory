@@ -32,10 +32,11 @@ namespace Rogium.Gameplay.Entities
         {
             if (lastWeaponID == asset.ID) return;
             
-            ForcedMoveInfo knockbackSelf = new(asset.KnockbackForceSelf, asset.KnockbackTimeSelf);
-            ForcedMoveInfo knockbackOther = new(asset.KnockbackForceOther, asset.KnockbackTimeOther);
+            ForcedMoveInfo knockbackSelf = new(asset.KnockbackForceSelf, asset.KnockbackTimeSelf, asset.KnockbackLockDirectionSelf);
+            ForcedMoveInfo knockbackOther = new(asset.KnockbackForceOther, asset.KnockbackTimeOther, asset.KnockbackLockDirectionOther);
             damageGiver.Construct(new CharDamageGiverInfo(asset.BaseDamage, knockbackSelf, knockbackOther));
             visual.Construct(new CharVisualInfo(asset.Icon, asset.AnimationType, asset.FrameDuration, asset.IconAlt));
+            visual.SwitchRenderState(asset.UseType != WeaponUseType.Hidden);
             
             weapon = asset;
             lastWeaponID = weapon.ID;
@@ -48,20 +49,27 @@ namespace Rogium.Gameplay.Entities
         /// </summary>
         public void Activate()
         {
-            gameObject.SetActive(true);
-            switch (weapon.UseType)
+            StartCoroutine(ActivateCoroutine());
+            IEnumerator ActivateCoroutine()
             {
-                case WeaponUseType.PopUp:
-                    StartCoroutine(StaticTypeCoroutine(true));
-                    break;
-                case WeaponUseType.Hidden:
-                    StartCoroutine(StaticTypeCoroutine(false));
-                    break;
-                case WeaponUseType.Constant:
-                    return;
-                default:
-                    throw new ArgumentOutOfRangeException($"The Use Type '{weapon.UseType}' is not supported or implemented.");
+                yield return new WaitForSeconds(weapon.UseStartDelay);
+                
+                gameObject.SetActive(true);
+                switch (weapon.UseType)
+                {
+                    case WeaponUseType.PopUp:
+                        StartCoroutine(StaticTypeCoroutine(true));
+                        break;
+                    case WeaponUseType.Hidden:
+                        StartCoroutine(StaticTypeCoroutine(false));
+                        break;
+                    case WeaponUseType.Constant:
+                        yield break;
+                    default:
+                        throw new ArgumentOutOfRangeException($"The Use Type '{weapon.UseType}' is not supported or implemented.");
+                }
             }
+            
         }
 
         private IEnumerator StaticTypeCoroutine(bool showWeapon)

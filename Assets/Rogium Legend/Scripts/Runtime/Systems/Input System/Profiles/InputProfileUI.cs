@@ -9,6 +9,7 @@
 
         private readonly InputButton click;
         private readonly InputButton clickAlternative;
+        private readonly InputButton menu;
 
         public InputProfileUI()
         {
@@ -18,6 +19,7 @@
             pointerPosition = new InputVector2(map.Point);
             click = new InputButton(map.Click);
             clickAlternative = new InputButton(map.RightClick);
+            menu = new InputButton(map.Menu);
         }
         
         public override void Enable()
@@ -28,6 +30,7 @@
             pointerPosition.Enable();
             click.Enable();
             clickAlternative.Enable();
+            menu.Enable();
         }
 
         public override void Disable()
@@ -38,11 +41,13 @@
             pointerPosition.Disable();
             click.Disable();
             clickAlternative.Disable();
+            menu.Disable();
         }
         
         public InputVector2 Navigate { get => navigate; }
         public InputVector2 PointerPosition { get => pointerPosition; }
         public InputButton Click { get => click; }
         public InputButton ClickAlternative { get => clickAlternative; }
+        public InputButton Menu { get => menu; }
     }
 }

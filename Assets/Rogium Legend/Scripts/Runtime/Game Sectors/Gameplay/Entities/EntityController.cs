@@ -1,5 +1,4 @@
-﻿using BoubakProductions.Core;
-using Rogium.Gameplay.Core;
+﻿using Rogium.Gameplay.Core;
 using UnityEngine;
 
 namespace Rogium.Gameplay.Entities
@@ -20,6 +19,7 @@ namespace Rogium.Gameplay.Entities
         private Rigidbody2D rb;
 
         protected Vector2 faceDirection;
+        protected bool faceDirectionLocked;
         protected bool actionsLocked;
         
         protected virtual void Awake()
@@ -27,7 +27,7 @@ namespace Rogium.Gameplay.Entities
             ttransform = transform;
             rb = GetComponent<Rigidbody2D>();
             
-            ForceMove(GameplayDefaults.StartingFaceDirection, 0.1f, 0.01f);
+            ForceMove(GameplayDefaults.StartingFaceDirection, 0.1f, 0.01f, true);
         }
 
         protected virtual void FixedUpdate()
@@ -54,21 +54,24 @@ namespace Rogium.Gameplay.Entities
         /// <param name="forceInfo">The data to use for the force.</param>
         public void ForceMove(Vector2 direction, ForcedMoveInfo forceInfo)
         {
-            ForceMove(direction, forceInfo.forceSpeed, forceInfo.time);
+            ForceMove(direction, forceInfo.forceSpeed, forceInfo.time, forceInfo.lockFaceDirection);
         }
+
         /// <summary>
         /// Force movement in a specific direction.
         /// </summary>
         /// <param name="direction">The direction of the movement.</param>
         /// <param name="force">The force of the movement.</param>
         /// <param name="time">The time to take for the movement.</param>
-        public void ForceMove(Vector2 direction, float force, float time)
+        /// <param name="lockFaceDirection">Lock the face direction during the movement.</param>
+        public void ForceMove(Vector2 direction, float force, float time, bool lockFaceDirection)
         {
             forceMove.moveDirection = direction.normalized;
             forceMove.force = force;
             forceMove.timer = Time.time + time;
             forceMove.activated = true;
 
+            faceDirectionLocked = lockFaceDirection;
             actionsLocked = true;
         }
 
@@ -97,11 +100,20 @@ namespace Rogium.Gameplay.Entities
         {
             Vector3 velocityChange = (ttransform.position - previousPos);
             currentSpeed = velocityChange.magnitude * 1000f;
-            faceDirection = (Vector3.Distance(velocityChange, Vector3.zero) > 0.01f) ? velocityChange.normalized : faceDirection;
+            UpdateFaceDirection();
             previousPos = ttransform.position;
+            
+            void UpdateFaceDirection()
+            {
+                if (faceDirectionLocked) return;
+                faceDirection = (Vector3.Distance(velocityChange, Vector3.zero) > 0.01f) ? velocityChange.normalized : faceDirection;
+            }
         }
 
-        protected virtual void WhenForceMoveEnd() { }
+        private void WhenForceMoveEnd()
+        {
+            faceDirectionLocked = false;
+        }
         
         protected void OnDrawGizmos()
         {

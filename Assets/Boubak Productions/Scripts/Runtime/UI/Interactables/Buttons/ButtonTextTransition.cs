@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
@@ -19,6 +20,8 @@ namespace BoubakProductions.UI.Core.Interactables.Buttons
 
         private Color normal;
         private Button button;
+
+        private bool isSelected;
         private bool isDisabled;
         
         private void Awake()
@@ -27,15 +30,37 @@ namespace BoubakProductions.UI.Core.Interactables.Buttons
             button = GetComponent<Button>();
         }
 
-        private void Update() => HandleDisabledStatus();
+        private void Start() => HandleSelectedStatus();
+
+        private void Update()
+        {
+            HandleSelectedStatus();
+            HandleDisabledStatus();
+        }
 
         public void OnPointerEnter(PointerEventData eventData) => text.color = highlighted;
         public void OnPointerExit(PointerEventData eventData) => text.color = normal;
         public void OnPointerDown(PointerEventData eventData) => text.color = pressed;
         public void OnPointerUp(PointerEventData eventData) => text.color = highlighted;
-        public void OnSelect(BaseEventData eventData) => text.color = selected;
-        public void OnDeselect(BaseEventData eventData) => text.color = normal;
+        public void OnSelect(BaseEventData eventData)
+        {
+            text.color = selected;
+            isSelected = true;
+        }
 
+        public void OnDeselect(BaseEventData eventData)
+        {
+            text.color = normal;
+            isSelected = false;
+        }
+
+        private void HandleSelectedStatus()
+        {
+            if (isSelected || EventSystem.current.currentSelectedGameObject != button.gameObject) return;
+            isSelected = true;
+            text.color = selected;
+        }
+        
         private void HandleDisabledStatus()
         {
             switch (button.interactable)

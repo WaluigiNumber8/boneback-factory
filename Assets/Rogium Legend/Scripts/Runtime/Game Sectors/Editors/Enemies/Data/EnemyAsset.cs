@@ -17,7 +17,7 @@ namespace Rogium.Editors.Enemies
         private int maxHealth;
         private float attackProbability;
         private float invincibilityTime;
-        private List<string> weaponIDs;
+        private readonly List<string> weaponIDs;
 
         #region Constructors
         public EnemyAsset()
@@ -35,8 +35,10 @@ namespace Rogium.Editors.Enemies
             useDelay = EditorDefaults.EnemyAttackDelay;
             knockbackForceSelf = EditorDefaults.EnemyKnockbackForceSelf;
             knockbackTimeSelf = EditorDefaults.EnemyKnockbackTimeSelf;
+            knockbackLockDirectionSelf = EditorDefaults.EnemyKnockbackLockDirectionSelf;
             knockbackForceOther = EditorDefaults.EnemyKnockbackForceOther;
             knockbackTimeOther = EditorDefaults.EnemyKnockbackTimeOther;
+            knockbackLockDirectionOther = EditorDefaults.EnemyKnockbackLockDirectionOther;
 
             maxHealth = EditorDefaults.EnemyMaxHealth;
             attackProbability = EditorDefaults.EnemyAttackProbability;
@@ -62,8 +64,10 @@ namespace Rogium.Editors.Enemies
             useDelay = asset.UseDelay;
             knockbackForceSelf = asset.KnockbackForceSelf;
             knockbackTimeSelf = asset.KnockbackTimeSelf;
+            knockbackLockDirectionSelf = asset.knockbackLockDirectionSelf;
             knockbackForceOther = asset.KnockbackForceOther;
             knockbackTimeOther = asset.KnockbackTimeOther;
+            knockbackLockDirectionOther = asset.knockbackLockDirectionOther;
 
             maxHealth = asset.MaxHealth;
             attackProbability = asset.AttackProbability;
@@ -74,8 +78,9 @@ namespace Rogium.Editors.Enemies
 
         public EnemyAsset(string id, string title, Sprite icon, string author, AnimationType animationType, 
                           int frameDuration, Sprite iconAlt, int baseDamage, float useDelay, float knockbackForceSelf,
-                          float knockbackTimeSelf, float knockbackForceOther, float knockbackTimeOther, int maxHealth,
-                          float attackProbability, float invincibilityTime, List<string> weaponIDs, DateTime creationDate)
+                          float knockbackTimeSelf, bool knockbackLockDirectionSelf, float knockbackForceOther, 
+                          float knockbackTimeOther, bool knockbackLockDirectionOther, int maxHealth, float attackProbability, 
+                          float invincibilityTime, List<string> weaponIDs, DateTime creationDate)
         {
             AssetValidation.ValidateTitle(title);
             
@@ -93,8 +98,10 @@ namespace Rogium.Editors.Enemies
             this.useDelay = useDelay;
             this.knockbackForceSelf = knockbackForceSelf;
             this.knockbackTimeSelf = knockbackTimeSelf;
+            this.knockbackLockDirectionSelf = knockbackLockDirectionSelf;
             this.knockbackForceOther = knockbackForceOther;
             this.knockbackTimeOther = knockbackTimeOther;
+            this.knockbackLockDirectionOther = knockbackLockDirectionOther;
 
             this.maxHealth = maxHealth;
             this.attackProbability = attackProbability;
@@ -116,7 +123,7 @@ namespace Rogium.Editors.Enemies
             SafetyNet.EnsureIntIsBiggerOrEqualTo(newLength, 0, "New weapon IDs size");
             weaponIDs.Resize(newLength, EditorDefaults.EmptyAssetID);
         }
-        public void UpdateWeaponIDPos(int pos, string value) => WeaponIDs[pos] = value;
+        public void UpdateWeaponIDPos(int pos, string value) => weaponIDs[pos] = value;
 
         #endregion
 

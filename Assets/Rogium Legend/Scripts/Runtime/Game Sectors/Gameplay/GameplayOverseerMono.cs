@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using BoubakProductions.Core;
 using BoubakProductions.Safety;
+using BoubakProductions.Systems.ClockOfTheGame;
 using BoubakProductions.Systems.GASCore;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Core;
 using Rogium.Editors.Rooms;
-using Rogium.Editors.Weapons;
 using Rogium.Gameplay.InteractableObjects;
 using Rogium.Gameplay.Sequencer;
 using Rogium.Systems.Input;
@@ -58,6 +58,23 @@ namespace Rogium.Gameplay.Core
         }
 
         public void EndGame() => StartCoroutine(FinishGame(Vector2.down * 10));
+
+        public void EnableUI()
+        {
+            GameClock.Instance.Pause();
+            InputSystem.Instance.EnableUIMap();
+        }
+
+        public void DisableUI()
+        {
+            GameClock.Instance.Resume();
+            StartCoroutine(EnableMap());
+            IEnumerator EnableMap()
+            {
+                yield return new WaitForSeconds(0.1f);
+                InputSystem.Instance.EnablePlayerMap();
+            }
+        }
         
         /// <summary>
         /// Complete the current room and move to the next one.
