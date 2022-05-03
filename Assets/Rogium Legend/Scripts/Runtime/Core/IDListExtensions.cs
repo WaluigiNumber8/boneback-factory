@@ -65,6 +65,29 @@ namespace Rogium.Core
 
             throw new SafetyNetCollectionException($"No asset with the ID '{id}' was found in the list.");
         }
+
+        /// <summary>
+        /// Finds the value of the first asset with the same ID.
+        /// </summary>
+        /// <param name="list">The list to search in.</param>
+        /// <param name="title">The Title of the asset to search for.</param>
+        /// <param name="author">The Author of the asset to search for.</param>
+        /// <typeparam name="T">Type is <see cref="IIDHolder"/> or any of it's children.</typeparam>
+        /// <typeparam name="TS">Any type of <see cref="IComparable"/>. (string, int, etc.)</typeparam>
+        /// <returns>Value the first found asset.</returns>
+        /// <exception cref="SafetyNetCollectionException">Is thrown when no asset with ID was found.</exception>
+        public static T FindAssetFirst<T, TS>(this IEnumerable<T> list, TS title, TS author) where T : IAsset where TS : IComparable
+        {
+            SafetyNet.EnsureIsNotNull(list, "List ot search");
+            foreach (T value in list)
+            {
+                if (title.CompareTo(value.Title) != 0) continue;
+                if (author.CompareTo(value.Author) != 0) continue;
+                return value;
+            }
+
+            throw new SafetyNetCollectionException($"No asset with the Title '{title}' and Author '{author}' was found in the list.");
+        }
         
         /// <summary>
         /// Tries to finds the value of the first asset with the same ID. If it fails then tries to return the first value of the collection.

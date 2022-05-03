@@ -30,6 +30,8 @@ namespace Rogium.Editors.Sprites
 
         public SpriteAsset(SpriteAsset asset)
         {
+            AssetValidation.ValidateTitle(asset.title);
+            
             this.id = asset.ID;
             this.title = asset.Title;
             this.icon = asset.Icon;
@@ -40,7 +42,8 @@ namespace Rogium.Editors.Sprites
             this.preferredPaletteID = asset.PreferredPaletteID;
         }
         
-        public SpriteAsset(string id, string title, Sprite icon, string author, ObjectGrid<int> spriteData, string preferredPaletteID, DateTime creationDate)
+        public SpriteAsset(string id, string title, Sprite icon, string author, ObjectGrid<int> spriteData, 
+                           string preferredPaletteID, DateTime creationDate)
         {
             AssetValidation.ValidateTitle(title);
             

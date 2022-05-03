@@ -4,6 +4,7 @@ using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
 using Rogium.ExternalStorage;
 using System.IO;
+using Rogium.Core;
 using UnityEngine;
 using UnityEngine.TestTools;
 
@@ -113,7 +114,7 @@ public class test_Pack_Save_and_Load
         lib.CreateAndAddPack(packInfo);
         lib.ReloadFromExternalStorage();
 
-        PackAsset foundPack = lib.GetPacksCopy.TryFinding("Test Pack", "TestAuthor");
+        PackAsset foundPack = lib.GetPacksCopy.FindValueFirst(packInfo.ID);
 
         byte[] currentBytes = ImageConversion.EncodeToPNG(packInfo.Icon.texture);
         byte[] foundBytes = ImageConversion.EncodeToPNG(foundPack.Icon.texture);

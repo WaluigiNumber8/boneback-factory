@@ -50,7 +50,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="isDisabled">Initialize the property as a non-interactable.</param>
         /// <param name="characterValidation">The validation to use for inputted symbols.</param>
         /// <returns>The property itself.</returns>
-        public InteractablePropertyInputField BuildInputField(string title, string value, Transform parent, Action<string> whenValueChange, bool isDisabled = false, TMP_InputField.CharacterValidation characterValidation = TMP_InputField.CharacterValidation.None)
+        public InteractablePropertyInputField BuildInputField(string title, string value, Transform parent, Action<string> whenValueChange, bool isDisabled = false, TMP_InputField.CharacterValidation characterValidation = TMP_InputField.CharacterValidation.Regex)
         {
             InteractablePropertyInputField inputField = Instantiate(inputFieldProperty, parent);
             inputField.Construct(title, value, whenValueChange, characterValidation);
@@ -69,7 +69,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="isDisabled">Initialize the property as a non-interactable.</param>
         /// <param name="characterValidation">The validation to use for inputted symbols.</param>
         /// <returns>The property itself.</returns>
-        public InteractablePropertyInputField BuildInputFieldArea(string title, string value, Transform parent, Action<string> whenValueChange, bool isDisabled = false, TMP_InputField.CharacterValidation characterValidation = TMP_InputField.CharacterValidation.None)
+        public InteractablePropertyInputField BuildInputFieldArea(string title, string value, Transform parent, Action<string> whenValueChange, bool isDisabled = false, TMP_InputField.CharacterValidation characterValidation = TMP_InputField.CharacterValidation.Regex)
         {
             InteractablePropertyInputField inputField = Instantiate(inputFieldAreaProperty, parent);
             inputField.Construct(title, value, whenValueChange, characterValidation);

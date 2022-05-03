@@ -29,6 +29,8 @@ namespace Rogium.Editors.Tiles
         }
         public TileAsset(TileAsset asset)
         {
+            AssetValidation.ValidateTitle(asset.title);
+            
             this.id = asset.ID;
             this.icon = asset.Icon;
             this.title = asset.Title;

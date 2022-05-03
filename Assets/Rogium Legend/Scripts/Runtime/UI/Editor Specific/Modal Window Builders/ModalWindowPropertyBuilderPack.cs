@@ -27,7 +27,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         /// </summary>
         private void OpenWindow(PackInfoAsset currentPackInfo, Action onConfirmButton, string headerText)
         {
-            bool isDisabled = (editor.CurrentPack == null) ? true : !editor.CurrentPack.ContainsAnySprites;
+            bool isDisabled = !editor.CurrentPack?.ContainsAnySprites ?? true;
             
             b.BuildInputField("Name", currentPackInfo.Title, window.FirstColumnContent, currentPackInfo.UpdateTitle);
             b.BuildInputFieldArea("Description", currentPackInfo.Description, window.FirstColumnContent, currentPackInfo.UpdateDescription);

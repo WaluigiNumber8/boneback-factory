@@ -50,6 +50,8 @@ namespace Rogium.Editors.Enemies
 
         public EnemyAsset(EnemyAsset asset)
         {
+            AssetValidation.ValidateTitle(asset.title);
+            
             id = asset.ID;
             title = asset.Title;
             icon = asset.Icon;

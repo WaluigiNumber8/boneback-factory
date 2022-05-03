@@ -83,6 +83,7 @@ MonoBehaviour:
   ui:
     inputFieldImage: {fileID: 1113241161912308307}
     inputtedText: {fileID: 284110629702513265}
+    emptySpace: {fileID: 0}
 --- !u!1 &924370423554607878
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,7 +439,7 @@ MonoBehaviour:
   m_VerticalScrollbar: {fileID: 5995462727396192713}
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
-  m_ScrollSensitivity: 15
+  m_ScrollSensitivity: 20
   m_ContentType: 9
   m_InputType: 0
   m_AsteriskChar: 42
@@ -446,8 +447,8 @@ MonoBehaviour:
   m_LineType: 2
   m_HideMobileInput: 0
   m_HideSoftKeyboard: 0
-  m_CharacterValidation: 0
-  m_RegexValue: 
+  m_CharacterValidation: 6
+  m_RegexValue: '[a-zA-Z0-9\.\-\+ ]+'
   m_GlobalPointSize: 14
   m_CharacterLimit: 2000
   m_OnEndEdit:

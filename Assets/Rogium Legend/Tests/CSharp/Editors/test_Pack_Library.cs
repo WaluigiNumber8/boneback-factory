@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
 using UnityEngine;
@@ -41,7 +42,7 @@ public class test_Pack_Library
     public void create_new_pack_and_check_if_data_is_correct()
     {
         lib.CreateAndAddPack(packInfo);
-        PackAsset foundPack = lib.GetPacksCopy.TryFinding("Test Pack", "TestAuthor");
+        PackAsset foundPack = lib.GetPacksCopy.FindValueFirst(packInfo.ID);
         Assert.AreEqual(packInfo.Title, foundPack.Title);
     }
 }

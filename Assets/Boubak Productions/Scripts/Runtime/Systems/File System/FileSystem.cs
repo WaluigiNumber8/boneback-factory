@@ -28,6 +28,7 @@ namespace BoubakProductions.Systems.FileSystem
         /// <param name="path">The location to create the directory in. (including directory title)</param>
         public static void CreateDirectory(string path)
         {
+            SafetyNetIO.EnsurePathNotContainsInvalidCharacters(path);
             if (Directory.Exists(path)) return;
             Directory.CreateDirectory(path);
         }
@@ -42,12 +43,21 @@ namespace BoubakProductions.Systems.FileSystem
         /// <typeparam name="TS">Serialized form of the object.</typeparam>
         public static void SaveFile<T,TS>(string path, T data, Func<T,TS> newSerializedObject)
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Create);
-            TS formattedAsset = newSerializedObject(data);
+            SafetyNetIO.EnsurePathNotContainsInvalidCharacters(path);
 
-            formatter.Serialize(stream, formattedAsset);
-            stream.Close();
+            try
+            {
+                BinaryFormatter formatter = new();
+                FileStream stream = new(path, FileMode.Create);
+                TS formattedAsset = newSerializedObject(data);
+
+                formatter.Serialize(stream, formattedAsset);
+                stream.Close();
+            }
+            catch (IOException)
+            {
+                SafetyNetIO.ThrowMessage($"File '{Path.GetFileName(path)} could not be saved.'");
+            }
         }
 
         /// <summary>
@@ -60,6 +70,7 @@ namespace BoubakProductions.Systems.FileSystem
         /// <typeparam name="TS">Serialized form of the Asset.</typeparam>
         public static IList<T> LoadAllFiles<T, TS>(string path, string typeExtension, bool deepSearch = false) where TS : ISerializedObject<T>
         {
+            SafetyNetIO.EnsurePathNotContainsInvalidCharacters(path);
             return new FileLoader<T, TS>().LoadAllFiles(path, typeExtension, deepSearch);
         }
 
@@ -69,6 +80,7 @@ namespace BoubakProductions.Systems.FileSystem
         /// <param name="path">The path to the file.</param>
         public static void DeleteFile(string path)
         {
+            SafetyNetIO.EnsurePathNotContainsInvalidCharacters(path);
             SafetyNetIO.EnsureFileExists(path);
             File.Delete(path);
         }
@@ -79,6 +91,7 @@ namespace BoubakProductions.Systems.FileSystem
         /// <param name="path">The path to the directory.</param>
         public static void DeleteDirectory(string path)
         {
+            SafetyNetIO.EnsurePathNotContainsInvalidCharacters(path);
             SafetyNetIO.EnsureDirectoryExists(path);
             Directory.Delete(path, true);
         }
@@ -90,6 +103,7 @@ namespace BoubakProductions.Systems.FileSystem
         /// <param name="newPath">The full path of the new file.</param>
         public static void RenameFile(string oldPath, string newPath)
         {
+            SafetyNetIO.EnsurePathNotContainsInvalidCharacters(newPath);
             SafetyNetIO.EnsureFileExists(oldPath);
             File.Move(oldPath, newPath);
         }
@@ -101,9 +115,10 @@ namespace BoubakProductions.Systems.FileSystem
         /// <param name="newPath">The full path of the new directory.</param>
         public static void RenameDirectory(string oldPath, string newPath)
         {
+            SafetyNetIO.EnsurePathNotContainsInvalidCharacters(newPath);
             SafetyNetIO.EnsureDirectoryExists(oldPath);
             Directory.Move(oldPath, newPath);
         }
-        
+
     }
 }

@@ -39,6 +39,8 @@ namespace Rogium.Editors.Projectiles
 
         public ProjectileAsset(ProjectileAsset asset)
         {
+            AssetValidation.ValidateTitle(asset.title);
+            
             id = asset.ID;
             title = asset.Title;
             icon = asset.Icon;

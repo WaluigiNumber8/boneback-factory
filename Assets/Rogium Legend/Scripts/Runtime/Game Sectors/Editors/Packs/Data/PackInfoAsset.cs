@@ -22,20 +22,23 @@ namespace Rogium.Editors.Packs
             GenerateID(EditorAssetIDs.PackIdentifier);
         }
 
-        public PackInfoAsset(PackInfoAsset packInfo)
+        public PackInfoAsset(PackInfoAsset asset)
         {
-            this.id = packInfo.ID;
-            this.title = packInfo.Title;
-            this.icon = packInfo.Icon;
-            this.author = packInfo.Author;
-            this.creationDate = packInfo.CreationDate;
-            this.description = packInfo.Description;
+            AssetValidation.ValidateTitle(asset.title);
+            AssetValidation.ValidateDescription(asset.description);
+            
+            this.id = asset.ID;
+            this.title = asset.Title;
+            this.icon = asset.Icon;
+            this.author = asset.Author;
+            this.creationDate = asset.CreationDate;
+            this.description = asset.Description;
         }
 
         public PackInfoAsset(string title, Sprite icon, string author, string description)
         {
-            SafetyNet.EnsureStringInRange(title, 4, 30, "name");
-            SafetyNet.EnsureStringInRange(description, 0, 2000, "description");
+            AssetValidation.ValidateTitle(title);
+            AssetValidation.ValidateDescription(description);
 
             this.title = title;
             this.icon = icon;

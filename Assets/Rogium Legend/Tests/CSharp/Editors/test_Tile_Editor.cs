@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using NUnit.Framework;
+using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Packs;
@@ -25,8 +26,8 @@ namespace Rogium_Legend.Tests.CSharp.Editors
             editor = PackEditorOverseer.Instance;
             tileEditor = TileEditorOverseer.Instance;
             
-            if (lib.GetPacksCopy.TryFinding("Test Pack", "NO AUTHOR") != null)  lib.DeletePack("Test Pack", "NO AUTHOR");
-            lib.CreateAndAddPack(new PackInfoAsset("Test Pack", EditorDefaults.PackIcon, "NO AUTHOR", "Blalalala"));
+            if (lib.GetPacksCopy.FindAssetFirst("Test Pack", "NO_AUTHOR") != null)  lib.DeletePack("Test Pack", "NO_AUTHOR");
+            lib.CreateAndAddPack(new PackInfoAsset("Test Pack", EditorDefaults.PackIcon, "NO_AUTHOR", "Blalalala"));
             lib.ActivatePackEditor(0);
         }
 

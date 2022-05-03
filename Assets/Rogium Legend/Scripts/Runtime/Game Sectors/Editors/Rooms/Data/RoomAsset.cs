@@ -39,6 +39,8 @@ namespace Rogium.Editors.Rooms
         }
         public RoomAsset(RoomAsset asset)
         {
+            AssetValidation.ValidateTitle(asset.title);
+            
             this.id = asset.ID;
             this.title = asset.Title;
             this.icon = asset.Icon;

@@ -308,7 +308,7 @@ namespace BoubakProductions.Safety
         {
             if (stringObject.Length < minLimit)
             {
-                string message = $"The string '{variableName}' cannot have less or equal to {minLimit} characters! ({stringObject.Length})";
+                string message = $"The string '{variableName}' with value '{stringObject}' cannot have less than or equal to {minLimit} characters! ({stringObject.Length})";
                 OnFireErrorMessage?.Invoke(message);
                 throw new SafetyNetException(message);
             }
@@ -325,7 +325,7 @@ namespace BoubakProductions.Safety
         {
             if (stringObject.Length > maxLimit)
             {
-                string message = $"The string '{variableName}' cannot have more or equal to {maxLimit} characters! ({stringObject.Length})";
+                string message = $"The string '{variableName}' with value '{stringObject}' cannot have more than or equal to {maxLimit} characters! ({stringObject.Length})";
                 OnFireErrorMessage?.Invoke(message);
                 throw new SafetyNetException(message);
             }
@@ -530,15 +530,10 @@ namespace BoubakProductions.Safety
         #endregion
 
         /// <summary>
-        /// Throw a custom exception, that is recognized by the Safety Net System.
+        /// Throw a custom error message, without raising an exception.
         /// </summary>
-        /// <param name="exception"></param>
-        /// <exception cref="Exception"></exception>
-        public static void ThrowCustom(Exception exception)
-        {
-            OnFireErrorMessage?.Invoke(exception.Message);
-            throw exception;
-        }
+        /// <param name="message">The message to throw.</param>
+        public static void ThrowMessage(string message) => OnFireErrorMessage?.Invoke($"Safety Net - {message}");
 
     }
 }

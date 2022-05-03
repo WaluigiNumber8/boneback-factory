@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
+using BoubakProductions.UI.ErrorMessageWindow;
 
 namespace BoubakProductions.Safety
 {
@@ -17,7 +19,7 @@ namespace BoubakProductions.Safety
             {
                 string message = $"The directory of '{path}' doesn't exist.";
                 OnFireErrorMessage?.Invoke(message);
-                throw new IOException(message);
+                throw new SafetyNetIOException(message);
             }
         }
 
@@ -31,19 +33,31 @@ namespace BoubakProductions.Safety
             {
                 string message = $"The file of '{path}' doesn't exist.";
                 OnFireErrorMessage?.Invoke(message);
-                throw new IOException(message);
+                throw new SafetyNetIOException(message);
+            }
+        }
+
+        /// <summary>
+        /// Checks if a given path contains any invalid characters.
+        /// </summary>
+        /// <param name="path">The path to check.</param>
+        /// <exception cref="SafetyNetIOException">Is thrown if path contains invalid characters.</exception>
+        public static void EnsurePathNotContainsInvalidCharacters(string path)
+        {
+            if (Path.GetInvalidFileNameChars().All(path.Contains))
+            {
+                throw new SafetyNetIOException($"The path of '{path}' contains invalid symbols.");
             }
         }
         
         /// <summary>
-        /// Throw a custom exception, that is recognized by the Safety Net System.
+        /// Throw a custom error message, without raising an exception.
         /// </summary>
-        /// <param name="exception"></param>
-        /// <exception cref="Exception"></exception>
-        public static void ThrowCustom(Exception exception)
+        /// <param name="message">The message to throw.</param>
+        public static void ThrowMessage(string message)
         {
-            OnFireErrorMessage?.Invoke($"IO - {exception.Message}");
-            throw exception;
+            ErrorMessageController.GetInstance().Open(message);
+            // OnFireErrorMessage?.Invoke($"IO - {message}");
         }
     }
 }

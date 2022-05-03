@@ -92,14 +92,12 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureIsNotNull(currentPack.Palettes, "Pack Editor - List of Palettes");
             CurrentPack.Palettes.Add(newAsset);
-            SavePackChanges();
         }
         public void CreateNewPalette()
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureIsNotNull(currentPack.Palettes, "Pack Editor - List of Palettes");
             CurrentPack.Palettes.Add(new PaletteAsset());
-            SavePackChanges();
         }
 
         /// <summary>
@@ -113,7 +111,6 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Palettes, "List of Palettes");
             
             CurrentPack.Palettes.Update(positionIndex, newAsset);
-            SavePackChanges();
         } 
 
         /// <summary>
@@ -125,8 +122,6 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Palettes, "List of Palettes");
             currentPack.Palettes.Remove(assetIndex);
-
-            SavePackChanges();
         }
 
         /// <summary>
@@ -154,14 +149,12 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureIsNotNull(currentPack.Sprites, "Pack Editor - List of Sprites");
             CurrentPack.Sprites.Add(newAsset);
-            SavePackChanges();
         }
         public void CreateNewSprite()
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureIsNotNull(currentPack.Sprites, "Pack Editor - List of Sprites");
             CurrentPack.Sprites.Add(new SpriteAsset());
-            SavePackChanges();
         }
 
         /// <summary>
@@ -173,9 +166,7 @@ namespace Rogium.Editors.Packs
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Sprites, "List of Sprites");
-            
             CurrentPack.Sprites.Update(positionIndex, newAsset);
-            SavePackChanges();
         } 
 
         /// <summary>
@@ -187,8 +178,6 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Sprites, "List of Sprites");
             currentPack.Sprites.Remove(assetIndex);
-
-            SavePackChanges();
         }
 
         /// <summary>
@@ -216,14 +205,12 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureIsNotNull(currentPack.Weapons, "Pack Editor - List of Weapons");
             CurrentPack.Weapons.Add(newAsset);
-            SavePackChanges();
         }
         public void CreateNewWeapon()
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureIsNotNull(currentPack.Weapons, "Pack Editor - List of Weapons");
             CurrentPack.Weapons.Add(new WeaponAsset());
-            SavePackChanges();
         }
 
         /// <summary>
@@ -235,9 +222,7 @@ namespace Rogium.Editors.Packs
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Weapons, "List of Weapons");
-            
             CurrentPack.Weapons.Update(positionIndex, newAsset);
-            SavePackChanges();
         } 
 
         /// <summary>
@@ -249,8 +234,6 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Weapons, "List of Weapons");
             currentPack.Weapons.Remove(assetIndex);
-
-            SavePackChanges();
         }
 
         /// <summary>
@@ -278,14 +261,12 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureIsNotNull(currentPack.Projectiles, "Pack Editor - List of Projectiles");
             CurrentPack.Projectiles.Add(newAsset);
-            SavePackChanges();
         }
         public void CreateNewProjectile()
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureIsNotNull(currentPack.Projectiles, "Pack Editor - List of Projectiles");
             CurrentPack.Projectiles.Add(new ProjectileAsset());
-            SavePackChanges();
         }
 
         /// <summary>
@@ -297,9 +278,7 @@ namespace Rogium.Editors.Packs
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Projectiles, "List of Projectiles");
-            
             CurrentPack.Projectiles.Update(positionIndex, newAsset);
-            SavePackChanges();
         } 
 
         /// <summary>
@@ -311,8 +290,6 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Projectiles, "List of Projectiles");
             currentPack.Projectiles.Remove(assetIndex);
-
-            SavePackChanges();
         }
 
         /// <summary>
@@ -340,14 +317,12 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureIsNotNull(currentPack.Enemies, "Pack Editor - List of Enemies");
             CurrentPack.Enemies.Add(newAsset);
-            SavePackChanges();
         }
         public void CreateNewEnemy()
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureIsNotNull(currentPack.Enemies, "Pack Editor - List of Enemies");
             CurrentPack.Enemies.Add(new EnemyAsset());
-            SavePackChanges();
         }
 
         /// <summary>
@@ -359,9 +334,7 @@ namespace Rogium.Editors.Packs
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Enemies, "List of Enemies");
-            
             CurrentPack.Enemies.Update(positionIndex, newAsset);
-            SavePackChanges();
         } 
 
         /// <summary>
@@ -373,8 +346,6 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Enemies, "List of Enemies");
             currentPack.Enemies.Remove(assetIndex);
-
-            SavePackChanges();
         }
 
         /// <summary>
@@ -402,14 +373,12 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureIsNotNull(currentPack.Tiles, "Pack Editor - List of Tiles");
             CurrentPack.Tiles.Add(newAsset);
-            SavePackChanges();
         }
         public void CreateNewTile()
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureIsNotNull(currentPack.Tiles, "Pack Editor - List of Tiles");
             CurrentPack.Tiles.Add(new TileAsset());
-            SavePackChanges();
         }
 
         /// <summary>
@@ -421,9 +390,7 @@ namespace Rogium.Editors.Packs
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Tiles, "List of Tiles");
-            
             CurrentPack.Tiles.Update(positionIndex, newAsset);
-            SavePackChanges();
         } 
 
         /// <summary>
@@ -435,8 +402,6 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Tiles, "List of Tiles");
             currentPack.Tiles.Remove(assetIndex);
-
-            SavePackChanges();
         }
 
         /// <summary>
@@ -464,14 +429,12 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureIsNotNull(currentPack.Rooms, "Pack Editor - List of Rooms");
             CurrentPack.Rooms.Add(newAsset);
-            SavePackChanges();
         }
         public void CreateNewRoom()
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureIsNotNull(currentPack.Rooms, "Pack Editor - List of Rooms");
             CurrentPack.Rooms.Add(new RoomAsset());
-            SavePackChanges();
         }
 
         /// <summary>
@@ -483,9 +446,7 @@ namespace Rogium.Editors.Packs
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Rooms, "List of Rooms");
-            
             CurrentPack.Rooms.Update(positionIndex, newAsset);
-            SavePackChanges();
         } 
 
         /// <summary>
@@ -497,8 +458,6 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Rooms, "List of Rooms");
             currentPack.Rooms.Remove(assetIndex);
-
-            SavePackChanges();
         }
 
         /// <summary>

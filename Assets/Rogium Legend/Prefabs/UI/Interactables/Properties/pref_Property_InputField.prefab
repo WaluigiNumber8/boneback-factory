@@ -340,16 +340,28 @@ PrefabInstance:
       value: 0.796875
       objectReference: {fileID: 0}
     - target: {fileID: 1382075352184070466, guid: 97ab44cab1fe6d14595c7e82a41c4386, type: 3}
+      propertyPath: m_InputType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382075352184070466, guid: 97ab44cab1fe6d14595c7e82a41c4386, type: 3}
+      propertyPath: m_RegexValue
+      value: '[a-zA-Z0-9\.\-\+ ]+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382075352184070466, guid: 97ab44cab1fe6d14595c7e82a41c4386, type: 3}
       propertyPath: m_ContentType
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382075352184070466, guid: 97ab44cab1fe6d14595c7e82a41c4386, type: 3}
+      propertyPath: m_KeyboardType
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1382075352184070466, guid: 97ab44cab1fe6d14595c7e82a41c4386, type: 3}
       propertyPath: m_CharacterLimit
-      value: 20
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1382075352184070466, guid: 97ab44cab1fe6d14595c7e82a41c4386, type: 3}
       propertyPath: m_CharacterValidation
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2263708435165106215, guid: 97ab44cab1fe6d14595c7e82a41c4386, type: 3}
       propertyPath: m_AnchoredPosition.y

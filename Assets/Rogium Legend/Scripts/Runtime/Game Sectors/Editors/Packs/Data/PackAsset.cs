@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using BoubakProductions.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Enemies;

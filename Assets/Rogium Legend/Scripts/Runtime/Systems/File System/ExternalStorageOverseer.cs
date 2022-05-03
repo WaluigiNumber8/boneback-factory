@@ -141,24 +141,13 @@ namespace Rogium.ExternalStorage
         public PackAsset LoadPack(PackAsset pack)
         {
             //Update current pack info.
-            try
-            {
-                currentPackInfo = packPaths.FindValueFirst(pack.ID);
-            }
+            try {currentPackInfo = packPaths.FindValueFirst(pack.ID); }
             catch (SafetyNetCollectionException)
             {
                CreateSkeleton(pack);
             }
-
             PackInfoAsset packInfo = new(pack.PackInfo);
-            
-            paletteCRUD.RefreshSaveableData(currentPackInfo.PalettesData);
-            spriteCRUD.RefreshSaveableData(currentPackInfo.SpritesData);
-            weaponCRUD.RefreshSaveableData(currentPackInfo.WeaponsData);
-            projectileCRUD.RefreshSaveableData(currentPackInfo.ProjectilesData);
-            enemyCRUD.RefreshSaveableData(currentPackInfo.EnemiesData);
-            roomCRUD.RefreshSaveableData(currentPackInfo.RoomsData);
-            tileCRUD.RefreshSaveableData(currentPackInfo.TilesData);
+            RefreshAssetSaveableData();
             
             return new PackAsset(packInfo, paletteCRUD.LoadAll(), spriteCRUD.LoadAll(), weaponCRUD.LoadAll(),
                                  projectileCRUD.LoadAll(), enemyCRUD.LoadAll(), roomCRUD.LoadAll(), tileCRUD.LoadAll());
@@ -204,6 +193,22 @@ namespace Rogium.ExternalStorage
             
             FileSystem.RenameDirectory(oldPathDirectory, newPathDirectory);
             FileSystem.RenameFile(oldPathFile, newPathFile);
+            
+            RefreshAssetSaveableData();
+        }
+
+        /// <summary>
+        /// Refreshes saveable data for all assets based on the current pack.
+        /// </summary>
+        private void RefreshAssetSaveableData()
+        {
+            paletteCRUD.RefreshSaveableData(currentPackInfo.PalettesData);
+            spriteCRUD.RefreshSaveableData(currentPackInfo.SpritesData);
+            weaponCRUD.RefreshSaveableData(currentPackInfo.WeaponsData);
+            projectileCRUD.RefreshSaveableData(currentPackInfo.ProjectilesData);
+            enemyCRUD.RefreshSaveableData(currentPackInfo.EnemiesData);
+            roomCRUD.RefreshSaveableData(currentPackInfo.RoomsData);
+            tileCRUD.RefreshSaveableData(currentPackInfo.TilesData);
         }
         
         /// <summary>

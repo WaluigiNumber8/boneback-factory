@@ -13,7 +13,7 @@ public class test_Campaign_Editor
     private CampaignEditorOverseerMono campaignEditor;
     private ExternalLibraryOverseer lib;
     
-    private PackList packs;
+    private IList<PackAsset> packs;
     private IList<AssetBase> foundAssets;
 
     [SetUp]

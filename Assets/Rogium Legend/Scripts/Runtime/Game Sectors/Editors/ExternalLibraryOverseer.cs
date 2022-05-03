@@ -1,4 +1,5 @@
-﻿using BoubakProductions.Safety;
+﻿using System.Collections.Generic;
+using BoubakProductions.Safety;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Packs;
 using Rogium.ExternalStorage;
@@ -13,8 +14,10 @@ namespace Rogium.Editors.Core
     /// </summary>
     public class ExternalLibraryOverseer
     {
-        private readonly PackList packs = new PackList();
-        private readonly CampaignList campaigns = new CampaignList();
+        private readonly ExternalStorageOverseer ex;
+        
+        private readonly AssetList<PackAsset> packs;
+        private readonly AssetList<CampaignAsset> campaigns;
 
         #region Singleton Pattern
         private static ExternalLibraryOverseer instance;
@@ -33,8 +36,12 @@ namespace Rogium.Editors.Core
         }
         #endregion
 
-        private ExternalLibraryOverseer() 
+        private ExternalLibraryOverseer()
         {
+            ex = ExternalStorageOverseer.Instance;
+            packs = new AssetList<PackAsset>(ex.CreatePack, ex.UpdatePack, ex.DeletePack);
+            campaigns = new AssetList<CampaignAsset>(ex.Campaigns.Save, ex.Campaigns.UpdateTitle, ex.Campaigns.Delete);
+            
             PackEditorOverseer.Instance.OnSaveChanges += UpdatePack;
             CampaignEditorOverseer.Instance.OnSaveChanges += UpdateCampaign;
             ReloadFromExternalStorage();
@@ -45,8 +52,8 @@ namespace Rogium.Editors.Core
         /// </summary>
         public void ReloadFromExternalStorage()
         {
-            packs.ReplaceAll(ExternalStorageOverseer.Instance.LoadAllPacks());
-            campaigns.ReplaceAll(ExternalStorageOverseer.Instance.Campaigns.LoadAll());
+            packs.ReplaceAll(ex.LoadAllPacks());
+            campaigns.ReplaceAll(ex.Campaigns.LoadAll());
         }
 
         #region Packs
@@ -56,7 +63,7 @@ namespace Rogium.Editors.Core
         /// <param name="packInfo">Information about the pack.</param>
         public void CreateAndAddPack(PackInfoAsset packInfo)
         {
-            PackAsset newPack = new PackAsset(packInfo);
+            PackAsset newPack = new(packInfo);
             packs.Add(newPack);
         }
 
@@ -97,7 +104,7 @@ namespace Rogium.Editors.Core
         {
             SafetyNet.EnsureListIsNotNullOrEmpty(packs, "Pack Library");
             SafetyNet.EnsureIntIsInRange(packIndex, 0, packs.Count, "packIndex for activating Pack Editor");
-            packs[packIndex] = ExternalStorageOverseer.Instance.LoadPack(packs[packIndex]);
+            packs[packIndex] = ex.LoadPack(packs[packIndex]);
             PackEditorOverseer.Instance.AssignAsset(packs[packIndex], packIndex);
         }
         #endregion
@@ -113,7 +120,7 @@ namespace Rogium.Editors.Core
         /// <param name="dataPack">Pack Asset, containing everything used in the campaign.</param>
         public void CreateAndAddCampaign(string title, Sprite icon, string author, PackAsset dataPack)
         {
-            CampaignAsset newCampaign = new CampaignAsset(title, icon, author, new PackAsset(dataPack));
+            CampaignAsset newCampaign = new(title, icon, author, new PackAsset(dataPack));
             campaigns.Add(newCampaign);
         }
         public void CreateAndAddCampaign(CampaignAsset campaign)
@@ -182,7 +189,7 @@ namespace Rogium.Editors.Core
         /// Returns a copy of the list of packs stored here.
         /// </summary>
         /// <returns>A copy of Pack Library.</returns>
-        public PackList GetPacksCopy => new(packs);
+        public IList<PackAsset> GetPacksCopy => new List<PackAsset>(packs);
         
         /// <summary>
         /// Amount of campaigns stored in the library.
@@ -193,6 +200,6 @@ namespace Rogium.Editors.Core
         /// Returns a copy of the list of campaigns stored here.
         /// </summary>
         /// <returns>A copy of Pack Library.</returns>
-        public CampaignList GetCampaignsCopy => new(campaigns);
+        public IList<CampaignAsset> GetCampaignsCopy => new List<CampaignAsset>(campaigns);
     }
 }

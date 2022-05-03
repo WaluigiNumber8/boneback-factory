@@ -32,7 +32,7 @@ namespace Rogium.Editors.Core
         }
 
         #region Update Values
-        public void UpdateTitle(string newTitle) => title = newTitle;
+        public void UpdateTitle(string newTitle) => title = newTitle.Trim();
 
         public virtual void UpdateIcon(Sprite newIcon) => icon = newIcon;
 

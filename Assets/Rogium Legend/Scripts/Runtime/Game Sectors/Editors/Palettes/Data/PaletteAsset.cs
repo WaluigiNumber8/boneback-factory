@@ -28,6 +28,8 @@ namespace Rogium.Editors.Palettes
 
         public PaletteAsset(PaletteAsset asset)
         {
+            AssetValidation.ValidateTitle(asset.title);
+            
             this.id = asset.ID;
             this.title = asset.Title;
             this.icon = asset.Icon;

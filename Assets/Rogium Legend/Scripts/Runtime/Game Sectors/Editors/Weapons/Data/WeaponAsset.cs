@@ -5,6 +5,7 @@ using BoubakProductions.Core;
 using BoubakProductions.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
+using Rogium.Systems.Validation;
 using UnityEngine;
 
 namespace Rogium.Editors.Weapons
@@ -54,6 +55,8 @@ namespace Rogium.Editors.Weapons
 
         public WeaponAsset(WeaponAsset asset)
         {
+            AssetValidation.ValidateTitle(asset.title);
+            
             id = asset.ID;
             title = asset.Title;
             icon = asset.Icon;
@@ -88,6 +91,8 @@ namespace Rogium.Editors.Weapons
                            float useDuration, float useStartDelay, bool isEvasive, bool freezeUser, 
                            List<ProjectileDataInfo> projectileIDs, DateTime creationDate)
         {
+            AssetValidation.ValidateTitle(title);
+            
             this.id = id;
             this.title = title;
             this.icon = icon;

@@ -1,4 +1,5 @@
-﻿using BoubakProductions.Safety;
+﻿using BoubakProductions.Core;
+using BoubakProductions.Safety;
 using Rogium.Systems.ThemeSystem;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ namespace BoubakProductions.UI.ErrorMessageWindow
     /// <summary>
     /// Controls the availability of the Error Message Window.
     /// </summary>
-    public class ErrorMessageController : MonoBehaviour
+    public class ErrorMessageController : MonoSingleton<ErrorMessageController>
     {
         [SerializeField] private ModalWindow errorWindow;
         [SerializeField] private string acceptText;
@@ -16,24 +17,23 @@ namespace BoubakProductions.UI.ErrorMessageWindow
         {
             SafetyNet.OnFireErrorMessage += Open;
             SafetyNetIO.OnFireErrorMessage += Open;
-            SafetyNetUnity.OnFireErrorMessage += Open;
         }
 
         private void OnDisable()
         {
             SafetyNet.OnFireErrorMessage -= Open;
             SafetyNetIO.OnFireErrorMessage -= Open;
-            SafetyNetUnity.OnFireErrorMessage -= Open;
         }
 
         /// <summary>
         /// Shows the Error Message Window.
         /// </summary>
         /// <param name="errorMessage">The message of the error.</param>
-        private void Open(string errorMessage)
+        public void Open(string errorMessage)
         {
-            if (errorWindow.IsOpened) return;
-            errorWindow.OpenAsMessage(errorMessage, ThemeOverseerMono.GetInstance().CurrentTheme, acceptText, errorWindow.Close);
+            string text = errorMessage;
+            if (errorWindow.IsOpened) text = $"{errorWindow.GetMessageText} \n\n {errorMessage}";
+            errorWindow.OpenAsMessage(text, ThemeOverseerMono.GetInstance().CurrentTheme, acceptText, errorWindow.Close);
         }
         
     }
