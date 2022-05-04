@@ -72,7 +72,7 @@ MonoBehaviour:
       size: 36
     inputted:
       font: {fileID: 11400000, guid: 7dcbf3f25fb09e840ab6875dff99cba5, type: 2}
-      color: {r: 0.89411765, g: 0.5921569, b: 0.43529412, a: 1}
+      color: {r: 0.94509804, g: 0.7019608, b: 0.5019608, a: 1}
       size: 46
     header:
       font: {fileID: 11400000, guid: cf4879b37d976dc428255f939d628fa9, type: 2}

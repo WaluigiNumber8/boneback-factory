@@ -28,7 +28,7 @@ namespace Rogium.ExternalStorage
         {
             SafetyNet.EnsureIsNotNull(data, "Saveable Data");
             
-            data.AddFilePath(asset.ID, asset.Title);
+            data.TryAddNewFilePath(asset.ID, asset.Title);
             FileSystem.SaveFile(data.GetFilePath(asset.ID), asset, r => newSerializedObject(r));
         }
 
@@ -42,7 +42,7 @@ namespace Rogium.ExternalStorage
             loadedData = FindAndRemoveDuplicates(loadedData);
             foreach (T piece in loadedData)
             {
-                data.AddFilePath(piece.ID, piece.Title);
+                data.TryAddNewFilePath(piece.ID, piece.Title);
             }
             return loadedData;
         }
@@ -84,6 +84,11 @@ namespace Rogium.ExternalStorage
             data = saveableData;
         }
         
+        /// <summary>
+        /// Searches a list for duplicate entries. If it finds any, will remove them from the list and throw an error message.
+        /// </summary>
+        /// <param name="list">The list to search.</param>
+        /// <returns>Returns a cleaned up list.</returns>
         private IList<T> FindAndRemoveDuplicates(IList<T> list)
         {
             if (list == null || list.Count <= 1) return list;

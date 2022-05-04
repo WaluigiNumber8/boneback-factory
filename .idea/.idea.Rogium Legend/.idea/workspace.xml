@@ -366,7 +366,7 @@
       <workItem from="1651474569557" duration="19200000" />
       <workItem from="1651561727432" duration="1381000" />
       <workItem from="1651570082849" duration="12415000" />
-      <workItem from="1651648466166" duration="7043000" />
+      <workItem from="1651648466166" duration="10258000" />
     </task>
     <servers />
   </component>
@@ -591,6 +591,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="159" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Systems/File System/Data/SaveableData.cs</url>
+          <line>57</line>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Systems\File System\Data\SaveableData.cs" initialLine="57" containingFunctionPresentation="method 'TryAddNewFilePath'">
+            <startOffsets>
+              <option value="2055" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2286" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="166" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -9,7 +9,7 @@ using UnityEngine;
 namespace Rogium.Editors.Core
 {
     /// <summary>
-    /// Overseers the in-game saveable assets library and controls their content.
+    /// Overseers the main in-game saveable assets library and controls their content.
     /// This library is also synced with asset data files located on the external hard drive.
     /// </summary>
     public class ExternalLibraryOverseer

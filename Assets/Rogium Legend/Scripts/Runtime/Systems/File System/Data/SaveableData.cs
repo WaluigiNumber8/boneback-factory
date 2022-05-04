@@ -49,14 +49,18 @@ namespace Rogium.ExternalStorage
         }
 
         /// <summary>
-        /// Register a new file.
+        /// Register a new file if it doesn't already exist..
         /// </summary>
         /// <param name="id">The ID of the file.</param>
         /// <param name="title">The title of the file.</param>
-        public void AddFilePath(string id, string title)
+        public void TryAddNewFilePath(string id, string title)
         {
-            FilePathInfo filePathInfo = ConvertToFileInfo(id, title);
-            filePaths.Add(filePathInfo);
+            try {filePaths.FindValueFirst(id);}
+            catch (SafetyNetCollectionException)
+            {
+                FilePathInfo filePathInfo = ConvertToFileInfo(id, title);
+                filePaths.Add(filePathInfo);
+            }
         }
 
         /// <summary>
