@@ -23,8 +23,8 @@ namespace Rogium.Editors.Packs
         private readonly WeaponEditorOverseer weaponEditor;
         private readonly ProjectileEditorOverseer projectileEditor;
         private readonly EnemyEditorOverseer enemyEditor;
-        private readonly TileEditorOverseer tileEditor;
         private readonly RoomEditorOverseer roomEditor;
+        private readonly TileEditorOverseer tileEditor;
 
         private PackAsset currentPack;
         private int myIndex;

@@ -121,7 +121,7 @@ namespace Rogium.Editors.Core
         private T TryFinding(string title, string author, int excludePos = -1)
         {
             if (list.Count == 0) return null;
-            IList<T> foundAssets = list.Where((asset, counter) => counter != excludePos)
+            IList<T> foundAssets = list.Where((_, counter) => counter != excludePos)
                                        .Where(asset => asset.Title == title && asset.Author == author)
                                        .ToList();
 
@@ -129,23 +129,12 @@ namespace Rogium.Editors.Core
             return (foundAssets.Count == 0) ? default : foundAssets[0];
         }
 
-        // /// <summary>
-        // /// Returns an asset with a given ID.
-        // /// </summary>
-        // /// <param name="ID">The ID we are searching for.</param>
-        // /// <exception cref="InvalidOperationException">When no asset with this ID was found.</exception>
-        // public T GetByID(string ID)
-        // {
-        //     return list.First(asset => asset.ID == ID);
-        // }
-        
         /// <summary>
         /// Replaces the current list with a new one.
         /// </summary>
         /// <param name="newList">the list to replace it with.</param>
         public void ReplaceAll(IList<T> newList)
         {
-            SafetyNet.EnsureListDoesNotHaveDuplicities(newList, "New List");
             list = new List<T>(newList);
         }
 

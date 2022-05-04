@@ -134,10 +134,10 @@
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="19108">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="7644">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="19108" />
+      <option name="pid" value="7644" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -365,7 +365,8 @@
       <workItem from="1651423849296" duration="6576000" />
       <workItem from="1651474569557" duration="19200000" />
       <workItem from="1651561727432" duration="1381000" />
-      <workItem from="1651570082849" duration="12243000" />
+      <workItem from="1651570082849" duration="12415000" />
+      <workItem from="1651648466166" duration="7043000" />
     </task>
     <servers />
   </component>
@@ -577,19 +578,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="154" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/UI/Editor Specific/Asset Selection/AssetSelectionOverseerMono.cs</url>
-          <line>137</line>
-          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\UI\Editor Specific\Asset Selection\AssetSelectionOverseerMono.cs" initialLine="137" containingFunctionPresentation="method 'BeginListeningToSpawnedCards'">
-            <startOffsets>
-              <option value="4915" />
-            </startOffsets>
-            <endOffsets>
-              <option value="4960" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="157" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Boubak Productions/Scripts/Runtime/Systems/File System/FileLoader.cs</url>

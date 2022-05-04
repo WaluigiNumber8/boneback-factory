@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using BoubakProductions.Safety;
 using BoubakProductions.Systems.FileSystem;
 using BoubakProductions.Systems.FileSystem.Serialization;
@@ -38,6 +39,7 @@ namespace Rogium.ExternalStorage
         public IList<T> LoadAll()
         {
             IList<T> loadedData = FileSystem.LoadAllFiles<T, TS>(data.Path, data.Extension);
+            loadedData = FindAndRemoveDuplicates(loadedData);
             foreach (T piece in loadedData)
             {
                 data.AddFilePath(piece.ID, piece.Title);
@@ -80,6 +82,27 @@ namespace Rogium.ExternalStorage
         {
             FileSystem.CreateDirectory(saveableData.Path);
             data = saveableData;
+        }
+        
+        private IList<T> FindAndRemoveDuplicates(IList<T> list)
+        {
+            if (list == null || list.Count <= 1) return list;
+            
+            Dictionary<string, int> duplicates = list.GroupBy(asset => asset.Title)
+                                            .Where(g => g.Count() > 1)
+                                            .ToDictionary(x => x.Key, y => y.Count());
+
+            if (duplicates.Count <= 0) return list;
+
+            foreach (KeyValuePair<string, int> dupe in duplicates)
+            {
+                string name = typeof(T).FullName.Split('.')[^1];
+                SafetyNetIO.ThrowMessage($" The {name} called '{dupe.Key}' was not loaded as it has duplicates ({(dupe.Value-1).ToString()}). \n\n Edited changes to any '{dupe.Key}' will not be saved until all duplicates are removed.");
+            }
+            
+            return list.GroupBy(asset => asset.ID)
+                        .Select(asset => asset.First())
+                        .ToList();
         }
     }
 }
