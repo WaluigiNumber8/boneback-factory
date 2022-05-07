@@ -9,6 +9,7 @@ using BoubakProductions.Systems.GASCore;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Core;
 using Rogium.Editors.Rooms;
+using Rogium.Gameplay.Entities.Player;
 using Rogium.Gameplay.InteractableObjects;
 using Rogium.Gameplay.Sequencer;
 using Rogium.Systems.Input;
@@ -24,6 +25,7 @@ namespace Rogium.Gameplay.Core
     public class GameplayOverseerMono : MonoSingleton<GameplayOverseerMono>
     {
         [SerializeField] private GameplaySequencer sequencer;
+        [SerializeField] private PlayerController player;
         
         private CampaignAsset currentCampaign;
 
@@ -40,8 +42,18 @@ namespace Rogium.Gameplay.Core
             catch (Exception) { currentCampaign = ExternalLibraryOverseer.Instance.GetCampaignsCopy[0]; }
             
         }
-        private void OnEnable() => InteractObjectDoorLeave.OnTrigger += AdvanceRoom;
-        private void OnDisable() => InteractObjectDoorLeave.OnTrigger -= AdvanceRoom;
+        private void OnEnable()
+        {
+            InteractObjectDoorLeave.OnTrigger += AdvanceRoom;
+            player.OnDeath += GameOverGame;
+        }
+
+        private void OnDisable()
+        {
+            InteractObjectDoorLeave.OnTrigger -= AdvanceRoom;
+            player.OnDeath -= GameOverGame;
+        }
+
         private void Start() => PrepareGame();
 
         /// <summary>
@@ -57,14 +69,21 @@ namespace Rogium.Gameplay.Core
             sequencer.RunIntro(currentTier);
         }
 
-        public void EndGame() => StartCoroutine(FinishGame(Vector2.down * 10));
+        public void EndGame() => StartCoroutine(FinishGameCoroutine(Vector2.down * 10));
+        public void GameOverGame() => StartCoroutine(GameOverGameCoroutine());
 
+        /// <summary>
+        /// Prepares the game for opening of UI.
+        /// </summary>
         public void EnableUI()
         {
             GameClock.Instance.Pause();
             InputSystem.Instance.EnableUIMap();
         }
 
+        /// <summary>
+        /// Prepares the game for resuming fom UI.
+        /// </summary>
         public void DisableUI()
         {
             GameClock.Instance.Resume();
@@ -99,7 +118,7 @@ namespace Rogium.Gameplay.Core
                     //Check if no more tiers exist, then finish the game.
                     if (difficultyData.Count <= 0)
                     {
-                        StartCoroutine(FinishGame(direction));
+                        StartCoroutine(FinishGameCoroutine(direction));
                         return;
                     }
                     
@@ -166,13 +185,20 @@ namespace Rogium.Gameplay.Core
             difficultyData = updateDifficultyData;
         }
 
-        private IEnumerator FinishGame(Vector2 direction)
+        private IEnumerator FinishGameCoroutine(Vector2 direction)
         {
             InputSystem.Instance.EnableUIMap();
             yield return sequencer.RunEndCoroutine(direction);
             GAS.SwitchScene(0);
         }
 
+        private IEnumerator GameOverGameCoroutine()
+        {
+            InputSystem.Instance.EnableUIMap();
+            yield return sequencer.RunGameOverCoroutine();
+            GAS.SwitchScene(0);
+        }
+        
         public CampaignAsset CurrentCampaign
         {
             get 

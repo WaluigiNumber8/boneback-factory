@@ -34,7 +34,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             window.FirstColumnContent.gameObject.KillChildren();
             
             b.BuildInputField("Title", data.Title, window.FirstColumnContent, data.UpdateTitle);
-            roomBuilder.Build(window.FirstColumnContent, data, false);
+            roomBuilder.BuildEssentials(window.FirstColumnContent, data, false);
             b.BuildPlainText("Created by", data.Author, window.FirstColumnContent);
             b.BuildPlainText("Created on", data.CreationDate.ToString(), window.FirstColumnContent);
             

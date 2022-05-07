@@ -10,10 +10,12 @@ namespace Rogium.Gameplay.Entities.Characteristics
         [SerializeField] private Animator animator;
         [SerializeField] private AnimatorPropertyData propertyNames;
         
-        private void Update()
-        {
-            UpdateAnimator();
-        }
+        private void Update() => UpdateAnimator();
+
+        /// <summary>
+        /// Play the Death animation.
+        /// </summary>
+        public void PlayDeath() => animator.SetTrigger(propertyNames.onDeath);
 
         private void UpdateAnimator()
         {
@@ -28,6 +30,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
             public string FaceDirectionX;
             public string FaceDirectionY;
             public string MoveSpeed;
+            public string onDeath;
         }
         
     }

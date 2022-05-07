@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using BoubakProductions.Core;
+﻿using System;
+using System.Collections.Generic;
 using Rogium.Editors.Core;
 using Rogium.Editors.Tiles;
 using Rogium.UserInterface.Interactables.Properties;
@@ -16,7 +16,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
 
         public RoomPropertyColumnBuilderTile(Transform contentMain) : base(contentMain)
         {
-            tileTypes = EnumUtils.ToStringList(typeof(TileType));
+            tileTypes = Enum.GetNames(typeof(TileType));
         }
 
         /// <summary>

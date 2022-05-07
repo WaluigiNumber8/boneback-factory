@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using BoubakProductions.Core;
 using BoubakProductions.Safety;
 using Rogium.Editors.Core;
@@ -124,21 +123,45 @@ namespace Rogium.Editors.Weapons
 
         #region Update Values
         public void UpdateUseType(WeaponUseType newUseType) => useType = newUseType;
-        public void UpdateUseType(int newUseType) => useType = (WeaponUseType)newUseType;
-        public void UpdateUseDuration(float newUseDuration) => useDuration = newUseDuration;
-        public void UpdateUseStartDelay(float newUseStartDelay) => useStartDelay = newUseStartDelay;
+        public void UpdateUseType(int newUseType) => useType = (WeaponUseType) newUseType;
+        public void UpdateUseDuration(float newUseDuration)
+        {
+            useDuration = newUseDuration;
+        }
+
+        public void UpdateUseStartDelay(float newUseStartDelay)
+        {
+            useStartDelay = newUseStartDelay;
+        }
+
         public void UpdateIsEvasive(bool newIsEvasive) => isEvasive = newIsEvasive;
         public void UpdateFreezeUser(bool newFreezeUser) => freezeUser = newFreezeUser;
+
         public void UpdateProjectileIDsLength(int newLength)
         {
             SafetyNet.EnsureIntIsBiggerOrEqualTo(newLength, 0, "New weapon IDs size");
-            projectileIDs.Resize(newLength, new ProjectileDataInfo(EditorDefaults.EmptyAssetID,
-                                                                   EditorDefaults.WeaponProjectileSpawnDelay, 
-                                                                   EditorDefaults.WeaponProjectileAngleOffset));
+
+            ProjectileDataInfo data = new(EditorDefaults.EmptyAssetID, 
+                                          EditorDefaults.WeaponProjectileSpawnDelay,
+                                          EditorDefaults.WeaponProjectileAngleOffset);
+            
+            projectileIDs.Resize(newLength, data);
         }
-        public void UpdateProjectileIDsPosID(int pos, string value) => projectileIDs[pos].UpdateID(value);
-        public void UpdateProjectileIDsPosSpawnDelay(int pos, float value) => projectileIDs[pos].UpdateSpawnDelay(value);
-        public void UpdateProjectileIDsPosAngleOffset(int pos, int value) => projectileIDs[pos].UpdateAngleOffset(value);
+        public void UpdateProjectileIDsPosID(int pos, string value)
+        {
+            projectileIDs[pos].UpdateID(value);
+        }
+
+        public void UpdateProjectileIDsPosSpawnDelay(int pos, float value)
+        {
+            projectileIDs[pos].UpdateSpawnDelay(value);
+        }
+
+        public void UpdateProjectileIDsPosAngleOffset(int pos, int value)
+        {
+            projectileIDs[pos].UpdateAngleOffset(value);
+        }
+
         #endregion
 
         public WeaponUseType UseType { get => useType; }

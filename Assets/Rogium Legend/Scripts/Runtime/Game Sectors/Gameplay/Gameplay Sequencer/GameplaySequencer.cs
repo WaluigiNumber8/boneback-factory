@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using BoubakProductions.Safety;
 using Rogium.Editors.Rooms;
 using Rogium.Gameplay.DataLoading;
 using Rogium.Gameplay.Entities.Player;
@@ -101,11 +100,17 @@ namespace Rogium.Gameplay.Sequencer
             yield return sas.Wait(1f);
             roomLoader.Clear();
         }
+
+        public IEnumerator RunGameOverCoroutine()
+        {
+            yield return sas.FadeOut(3f, true);
+            yield return sas.Wait(0.5f);
+            roomLoader.Clear();
+        }
         
         //Decides on, which position will the start in the next room.
         private int GetPlayerStartPositionIndex()
         {
-            SafetyNet.EnsureIsNotNull(startingPoints, "List of starting positions");
             if (startingPoints.Count <= 0) throw new InvalidOperationException("The list of starting positions cannot be empty.");
             if (startingPoints.Count == 1) return 0;
             return Random.Range(0, startingPoints.Count);

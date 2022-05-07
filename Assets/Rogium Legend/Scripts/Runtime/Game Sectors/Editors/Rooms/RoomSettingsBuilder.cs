@@ -24,16 +24,28 @@ namespace Rogium.Editors.Rooms
         }
 
         /// <summary>
+        /// Build only teh essential setting properties for a room.
+        /// </summary>
+        /// <param name="content">The content to build under.</param>
+        /// <param name="asset">The data to use.</param>
+        /// <param name="clearContent">If on, all of contents children will be killed before building properties.</param>
+        public void BuildEssentials(Transform content, RoomAsset asset, bool clearContent)
+        {
+            if (clearContent) content.gameObject.KillChildren();
+            b.BuildDropdown("Type", Enum.GetNames(typeof(RoomType)), (int) asset.Type, content, asset.UpdateType);
+            b.BuildDropdown("Tier", difficulties, asset.DifficultyLevel, content, asset.UpdateDifficultyLevel);
+        }
+        
+        /// <summary>
         /// Build setting properties for a room.
         /// </summary>
         /// <param name="content">The content to build under.</param>
-        /// <param name="data">The data to use.</param>
+        /// <param name="asset">The data to use.</param>
         /// <param name="clearContent">If on, all of contents children will be killed before building properties.</param>
-        public void Build(Transform content, RoomAsset data, bool clearContent)
+        public void Build(Transform content, RoomAsset asset, bool clearContent)
         {
-            if (clearContent) content.gameObject.KillChildren();
-            b.BuildDropdown("Type", Enum.GetNames(typeof(RoomType)), (int) data.Type, content, data.UpdateType);
-            b.BuildDropdown("Tier", difficulties, data.DifficultyLevel, content, data.UpdateDifficultyLevel);
+            BuildEssentials(content, asset, clearContent);
+            b.BuildSlider("Light", 0, 255, asset.Lightness, content, l => asset.UpdateLightness((int)l));
         }
         
     }

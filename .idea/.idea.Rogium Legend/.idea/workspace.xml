@@ -134,10 +134,10 @@
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="7644">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="2816">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="7644" />
+      <option name="pid" value="2816" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -366,7 +366,10 @@
       <workItem from="1651474569557" duration="19200000" />
       <workItem from="1651561727432" duration="1381000" />
       <workItem from="1651570082849" duration="12415000" />
-      <workItem from="1651648466166" duration="10258000" />
+      <workItem from="1651648466166" duration="11654000" />
+      <workItem from="1651742214527" duration="3353000" />
+      <workItem from="1651915556601" duration="3207000" />
+      <workItem from="1651937113934" duration="6016000" />
     </task>
     <servers />
   </component>
@@ -502,45 +505,6 @@
           <option name="timeStamp" value="123" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Gameplay/Entities/Types/EnemyController.cs</url>
-          <line>92</line>
-          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Gameplay\Entities\Types\EnemyController.cs" initialLine="90" containingFunctionPresentation="method 'UseWeapon'">
-            <startOffsets>
-              <option value="3201" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3246" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="143" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Gameplay/Room Loader/Builders/EnemyMapDataBuilder.cs</url>
-          <line>54</line>
-          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Gameplay\Room Loader\Builders\EnemyMapDataBuilder.cs" initialLine="54" containingFunctionPresentation="method 'Spawn'">
-            <startOffsets>
-              <option value="2171" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2305" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="145" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Systems/Grid System/Interactable Grid/Grid Previewer/GridVisualPreviewer.cs</url>
-          <line>56</line>
-          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Systems\Grid System\Interactable Grid\Grid Previewer\GridVisualPreviewer.cs" initialLine="56" containingFunctionPresentation="method 'OnEnable'">
-            <startOffsets>
-              <option value="1950" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2001" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="147" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Editors/Property/Builders/PropertyEditorBuilderWeapon.cs</url>
           <line>115</line>
           <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Editors\Property\Builders\PropertyEditorBuilderWeapon.cs" initialLine="115" containingFunctionPresentation="lambda expression inside method 'LoadProjectileSlots'">
@@ -591,19 +555,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="159" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Systems/File System/Data/SaveableData.cs</url>
-          <line>57</line>
-          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Systems\File System\Data\SaveableData.cs" initialLine="57" containingFunctionPresentation="method 'TryAddNewFilePath'">
-            <startOffsets>
-              <option value="2055" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2286" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="166" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

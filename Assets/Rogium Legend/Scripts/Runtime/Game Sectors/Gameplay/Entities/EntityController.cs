@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Rogium.Gameplay.Core;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ namespace Rogium.Gameplay.Entities
     [RequireComponent(typeof(Rigidbody2D))]
     public abstract class EntityController : MonoBehaviour
     {
+        public virtual event Action OnDeath;
+        
         [SerializeField] private new Collider2D collider;
         [SerializeField] private Collider2D trigger;
         [SerializeField] private bool showGizmos;

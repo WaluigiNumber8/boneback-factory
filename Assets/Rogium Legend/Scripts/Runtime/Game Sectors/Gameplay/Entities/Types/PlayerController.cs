@@ -1,4 +1,5 @@
-﻿using Rogium.Gameplay.Entities.Characteristics;
+﻿using System;
+using Rogium.Gameplay.Entities.Characteristics;
 using Rogium.Systems.Input;
 using UnityEngine;
 
@@ -9,8 +10,11 @@ namespace Rogium.Gameplay.Entities.Player
     /// </summary>
     public class PlayerController : EntityController
     {
+        public override event Action OnDeath; 
+
         [SerializeField] private CharacteristicMove movement;
         [SerializeField] private CharacteristicDamageReceiver damageReceiver;
+        [SerializeField] private CharacteristicVisualPlayer visual;
         [SerializeField] private CharacteristicWeaponHold weaponHold;
         
         private Vector2 moveDirection;
@@ -72,7 +76,10 @@ namespace Rogium.Gameplay.Entities.Player
         /// </summary>
         private void Die()
         {
-            print("Player has died!");
+            SetCollideMode(false);
+            actionsLocked = true;
+            visual.PlayDeath();
+            OnDeath?.Invoke();
         }
 
         private void UseWeaponMain() => weaponHold.Use(0);
