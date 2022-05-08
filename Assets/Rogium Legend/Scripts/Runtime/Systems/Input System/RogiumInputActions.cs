@@ -851,7 +851,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": """",
                     ""id"": ""a99769e4-89dc-4299-9433-225026101535"",
-                    ""path"": ""<Keyboard>/c"",
+                    ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard + Mouse"",

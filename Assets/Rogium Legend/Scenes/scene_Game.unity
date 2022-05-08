@@ -467,6 +467,10 @@ PrefabInstance:
       propertyPath: originPos.y
       value: -5
       objectReference: {fileID: 0}
+    - target: {fileID: 2982206685237233498, guid: 5eccfc24a45969d4db1104ca3d6fedc9, type: 3}
+      propertyPath: wallShadowCaster
+      value: 
+      objectReference: {fileID: 337157933}
     - target: {fileID: 8568631024101359163, guid: 5eccfc24a45969d4db1104ca3d6fedc9, type: 3}
       propertyPath: player
       value: 
@@ -937,6 +941,7 @@ GameObject:
   - component: {fileID: 337157932}
   - component: {fileID: 337157931}
   - component: {fileID: 337157930}
+  - component: {fileID: 337157933}
   m_Layer: 7
   m_Name: Wall
   m_TagString: Untagged
@@ -963,25 +968,25 @@ Tilemap:
   m_TileMatrixArray:
   - m_RefCount: 0
     m_Data:
-      e00: 1.5839965e-15
+      e00: 1.4037832e+13
       e01: 0
-      e02: 1.1020282e-38
-      e03: 1.1020282e-38
-      e10: 4.5916e-41
+      e02: 1.6643015e+10
+      e03: 1.6643015e+10
+      e10: 4.5907e-41
       e11: 0
-      e12: 8.02e-43
-      e13: 8.02e-43
-      e20: -1.564098e-33
+      e12: 8.09e-43
+      e13: 8.09e-43
+      e20: -1033755
       e21: 1e-45
-      e22: -2.4398705e-19
-      e23: -2.015911
+      e22: -4.8693985e-29
+      e23: -1.1812307e+10
       e30: 4.5905e-41
       e31: 0
-      e32: 8.02e-43
-      e33: 8.04e-43
+      e32: 8.09e-43
+      e33: 8.11e-43
   m_TileColorArray:
   - m_RefCount: 0
-    m_Data: {r: 3.7364e-41, g: 3.7364e-41, b: 3.7364e-41, a: 3.7364e-41}
+    m_Data: {r: 1.05181e-40, g: 1.05181e-40, b: 1.05181e-40, a: 1.05181e-40}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1131,6 +1136,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &337157933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 337157926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bfda47b62bda01449e1f0d9be70ce67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selfShadows: 1
 --- !u!1 &352387184
 GameObject:
   m_ObjectHideFlags: 0
@@ -3602,7 +3620,7 @@ PrefabInstance:
     - target: {fileID: 1663277814199073492, guid: e45c807a8e8ae2d49bffbf3b9adefcce, type: 3}
       propertyPath: m_Navigation.m_SelectOnUp
       value: 
-      objectReference: {fileID: 1347673024}
+      objectReference: {fileID: 1946443653}
     - target: {fileID: 1663277814199073492, guid: e45c807a8e8ae2d49bffbf3b9adefcce, type: 3}
       propertyPath: m_Navigation.m_SelectOnDown
       value: 
@@ -6833,11 +6851,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 42737588524664426, guid: 8b1858fadbbcfd14fa8ab21287d05e1f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.21
+      value: -14.23
       objectReference: {fileID: 0}
     - target: {fileID: 42737588524664426, guid: 8b1858fadbbcfd14fa8ab21287d05e1f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.81
+      value: -1.9
       objectReference: {fileID: 0}
     - target: {fileID: 42737588524664426, guid: 8b1858fadbbcfd14fa8ab21287d05e1f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6878,6 +6896,14 @@ PrefabInstance:
     - target: {fileID: 5035998730142991646, guid: 8b1858fadbbcfd14fa8ab21287d05e1f, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5035998730142991646, guid: 8b1858fadbbcfd14fa8ab21287d05e1f, type: 3}
+      propertyPath: m_ShadowIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5035998730142991646, guid: 8b1858fadbbcfd14fa8ab21287d05e1f, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 8.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b1858fadbbcfd14fa8ab21287d05e1f, type: 3}
@@ -6993,10 +7019,26 @@ PrefabInstance:
     - target: {fileID: 1663277814199073492, guid: e45c807a8e8ae2d49bffbf3b9adefcce, type: 3}
       propertyPath: m_Navigation.m_SelectOnDown
       value: 
-      objectReference: {fileID: 1946443653}
+      objectReference: {fileID: 1347673024}
     - target: {fileID: 3802688935978456257, guid: e45c807a8e8ae2d49bffbf3b9adefcce, type: 3}
       propertyPath: m_Name
       value: Button Main
+      objectReference: {fileID: 0}
+    - target: {fileID: 4784633747962253479, guid: e45c807a8e8ae2d49bffbf3b9adefcce, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4784633747962253479, guid: e45c807a8e8ae2d49bffbf3b9adefcce, type: 3}
+      propertyPath: m_Color.b
+      value: 0.07058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 4784633747962253479, guid: e45c807a8e8ae2d49bffbf3b9adefcce, type: 3}
+      propertyPath: m_Color.g
+      value: 0.058823533
+      objectReference: {fileID: 0}
+    - target: {fileID: 4784633747962253479, guid: e45c807a8e8ae2d49bffbf3b9adefcce, type: 3}
+      propertyPath: m_Color.r
+      value: 0.058823533
       objectReference: {fileID: 0}
     - target: {fileID: 5062308113126762760, guid: e45c807a8e8ae2d49bffbf3b9adefcce, type: 3}
       propertyPath: m_Pivot.x

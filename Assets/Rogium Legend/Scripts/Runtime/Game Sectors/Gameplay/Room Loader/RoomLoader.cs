@@ -21,7 +21,9 @@ namespace Rogium.Gameplay.DataLoading
         [SerializeField] private TileMapDataBuilder tilemapBuilder;
         [SerializeField] private ObjectMapDataBuilder objectBuilder;
         [SerializeField] private EnemyMapDataBuilder enemyBuilder;
-
+        [Space] 
+        [SerializeField] private TilemapShadowCaster2D wallShadowCaster; 
+        
         private RoomLight roomLight;
         private IList<ObjectAsset> objects;
 
@@ -66,6 +68,9 @@ namespace Rogium.Gameplay.DataLoading
             enemyBuilder.Load(originPos, room.EnemyGrid, dataPack.Enemies);
 
             roomLight.UpdateIntensity(ColorUtils.ConvertTo01(room.Lightness));
+            Invoke(nameof(GenerateShadows), 0.5f);
         }
+
+        private void GenerateShadows() => wallShadowCaster.Generate();
     }
 }

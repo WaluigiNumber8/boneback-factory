@@ -10,12 +10,25 @@ namespace Rogium.Gameplay.Core.Lighting
     public class AdaptiveLight : MonoBehaviour
     {
         [SerializeField, Range(0f, 1f)] private float visibilityLimit = 0.75f;
-        
+
+        private RoomLight globalLight;
         private new Light2D light;
 
-        private void Awake() => light = GetComponent<Light2D>();
-        private void OnEnable() => RoomLight.GetInstance().OnChangeIntensity += AdaptVisibility;
-        private void OnDisable() => RoomLight.GetInstance().OnChangeIntensity -= AdaptVisibility;
+        private void Awake()
+        {
+            globalLight = RoomLight.GetInstance();
+            light = GetComponent<Light2D>();
+        }
+
+        private void OnEnable()
+        {
+            if (globalLight != null) globalLight.OnChangeIntensity += AdaptVisibility;
+        }
+
+        private void OnDisable()
+        {
+            if (globalLight != null) globalLight.OnChangeIntensity -= AdaptVisibility;
+        }
 
         /// <summary>
         /// Adapts the visibility of the light.

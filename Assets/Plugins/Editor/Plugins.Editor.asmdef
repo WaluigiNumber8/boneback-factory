@@ -1,14 +1,12 @@
 {
-    "name": "Rogium.Runtime",
+    "name": "Plugins.Editor",
     "rootNamespace": "",
     "references": [
-        "GUID:6055be8ebefd69e48b49212b09b47b2f",
-        "GUID:75469ad4d38634e559750d17036d5f7c",
-        "GUID:15fc0a57446b3144c949da3e2b9737a9",
-        "GUID:47fd2bbca347f86429cf6a7f4b23d793",
         "GUID:ac792abc4df102e458ad935d15337074"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

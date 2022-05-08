@@ -80,6 +80,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/feaaa6313e32495d9f259b175aa6b59746a800/2c/d8d49d78/NullReferenceException.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/feaaa6313e32495d9f259b175aa6b59746a800/c2/ade1a1b6/AsyncMethodBuilderCore.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Boubak Productions/Scripts/Runtime/UI/Interactables/Toggles/TextToggleProperty.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Plugins/Editor/SeeksitSeeton/ShadowCastersGeneratorEditor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Core/AssetUtils.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Systems/Item Palette/ItemPaletteAsset.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Systems/Item Palette/ItemPaletteColor.cs" root0="FORCE_HIGHLIGHTING" />
@@ -134,10 +135,10 @@
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="2816">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="1228">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="2816" />
+      <option name="pid" value="1228" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -369,7 +370,9 @@
       <workItem from="1651648466166" duration="11654000" />
       <workItem from="1651742214527" duration="3353000" />
       <workItem from="1651915556601" duration="3207000" />
-      <workItem from="1651937113934" duration="6016000" />
+      <workItem from="1651937113934" duration="6422000" />
+      <workItem from="1652003277978" duration="2043000" />
+      <workItem from="1652006039457" duration="1586000" />
     </task>
     <servers />
   </component>
