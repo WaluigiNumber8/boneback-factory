@@ -263,7 +263,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   defaultData:
-    maxHealth: 6
+    maxHealth: 30
     invincibilityTime: 0.25
 --- !u!114 &691628062176777703
 MonoBehaviour:

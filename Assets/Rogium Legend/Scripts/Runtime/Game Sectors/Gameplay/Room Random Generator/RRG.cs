@@ -20,16 +20,14 @@ namespace Rogium.Gameplay.AssetRandomGenerator
 
         private IRandomizer randomizerNormal;
         private IRandomizer randomizerRare;
-
+        
         private int currentTier;
-        private int previousTier;
 
         public RRG(IList<RoomAsset> allRooms, int initialDifficultyTier)
         {
             SafetyNet.EnsureListIsNotNullOrEmpty(allRooms, "Campaign rooms to use for RRG");
             
             currentTier = initialDifficultyTier;
-            previousTier = currentTier;
             
             normalRooms = new Dictionary<int, IList<int>>();
             rareRooms = new Dictionary<int, IList<int>>();
@@ -38,6 +36,7 @@ namespace Rogium.Gameplay.AssetRandomGenerator
             shopRooms = new Dictionary<int, int>();
             
             LoadUpLists(allRooms);
+            UpdateRandomizers();
         }
 
         /// <summary>
@@ -51,11 +50,11 @@ namespace Rogium.Gameplay.AssetRandomGenerator
         {
             if (currentTier != difficultyTier)
             {
-                previousTier = currentTier;
                 currentTier = difficultyTier;
+                UpdateRandomizers();
             }
-
-            return roomType switch
+            
+            int index = roomType switch
             {
                 RoomType.Normal => TryReturnNormal(),
                 RoomType.Rare => TryReturnRare(),
@@ -64,6 +63,7 @@ namespace Rogium.Gameplay.AssetRandomGenerator
                 RoomType.Shop => TryReturnShop(),
                 _ => throw new ArgumentOutOfRangeException($"The Room Type of '{roomType}' is not supported.")
             };
+            return index;
         }
 
         /// <summary>
@@ -73,7 +73,6 @@ namespace Rogium.Gameplay.AssetRandomGenerator
         private int TryReturnNormal()
         {
             if (TierHasNoRooms(normalRooms)) return TryReturnEntrance();
-            if (previousTier != currentTier || randomizerNormal == null) randomizerNormal = new RandomizerRegion(0, normalRooms[currentTier].Count);
             return normalRooms[currentTier][randomizerNormal.GetNext()];
         }
         
@@ -84,7 +83,6 @@ namespace Rogium.Gameplay.AssetRandomGenerator
         private int TryReturnRare()
         {
             if (TierHasNoRooms(rareRooms)) return TryReturnNormal();
-            if (previousTier != currentTier || randomizerRare == null) randomizerRare = new RandomizerRegion(0, rareRooms[currentTier].Count);
             return rareRooms[currentTier][randomizerRare.GetNext()];
         }
         
@@ -164,6 +162,15 @@ namespace Rogium.Gameplay.AssetRandomGenerator
                         continue;
                 }
             }
+        }
+
+        /// <summary>
+        /// Update randomizers to current difficulty tier.
+        /// </summary>
+        private void UpdateRandomizers()
+        {
+            if (!TierHasNoRooms(normalRooms)) randomizerNormal = new RandomizerRegion(0, normalRooms[currentTier].Count, 0.05f);
+            if (!TierHasNoRooms(rareRooms)) randomizerRare = new RandomizerRegion(0, rareRooms[currentTier].Count, 0.05f);
         }
         
         /// <summary>

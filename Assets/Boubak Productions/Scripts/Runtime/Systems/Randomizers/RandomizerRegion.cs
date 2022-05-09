@@ -48,58 +48,53 @@ namespace BoubakProductions.Systems.Randomization
             this.leadway = leadway;
             this.rerolls = rerolls;
             
-            this.regions = (int)Mathf.Floor(Mathf.Sqrt(max));
-            this.regionMemoryPortion = max / (regions+leadway+1);
+            regions = (int)Mathf.Floor(Mathf.Sqrt(max));
+            regionMemoryPortion = max / (regions+leadway);
+
+            if ((regions - leadway) <= 0) leadway = 0;
             
             regionValuesMemory = InitArray(regionMemoryPortion * regions);
             regionValuesMemoryPositions = new int[regions - leadway];
             
             regionMemory = InitArray(regions - leadway);
         }
-        
+
         public int GetNext()
         {
             allowedRerolls = rerolls;
-            
+            return GetNextLoop();
+        }
+        
+        /// <summary>
+        /// Tries to pick a value that is not saved in memory.
+        /// </summary>
+        /// <returns>A new random value.</returns>
+        private int GetNextLoop()
+        {
             int newValue = Random.Range(min, max);
             int address = newValue % regions;
 
-            if (regions <= 1) return newValue;
-            
-            for (int i = 0; i < regionMemory.Length; i++)
+            foreach (int region in regionMemory)
             {
-                if (regionMemory[i] != EmptyValue)
+                if (region == EmptyValue) break;
+                if (errorChance != 0 && ErrorCheckIsPositive(newValue)) return newValue;
+                if (address != region) continue;
+                    
+                //Region is same => process it's values memory
+                int start = address * regionMemoryPortion;
+                int end = start + regionMemoryPortion;
+                for (int j = start; j < end; j++)
                 {
+                    if (regionValuesMemory[j] == EmptyValue) break;
                     if (errorChance != 0 && ErrorCheckIsPositive(newValue)) return newValue;
-                    if (address != regionMemory[i]) continue;
-                    
-                    //Region is same => process it's values memory
-                    int start = address * regionMemoryPortion;
-                    int end = start + regionMemoryPortion;
-                    for (int j = start; j < end; j++)
-                    {
-                        if (regionValuesMemory[j] != EmptyValue)
-                        {
-                            if (errorChance != 0 && ErrorCheckIsPositive(newValue)) return newValue;
-                            if (newValue != regionValuesMemory[j]) continue;
+                    if (newValue != regionValuesMemory[j]) continue;
                         
-                            //If value is already in memory, reroll it.
-                            return DecideReroll(newValue, address);
-                        }
-                    
-                        //If empty slots exist in region values memory.
-                        RegisterValue(address, newValue);
-                        return newValue;
-                    }
-                
-                    //If not in memory, register and return it.
-                    RegisterValue(address, newValue);
-                    return newValue;
-                    
+                    //If value is already in memory, reroll it.
+                    return DecideReroll(newValue, address);
                 }
                 
-                //Is from a new region, return it.
-                RegisterRegion(address, newValue);
+                //If not in memory, register and return it.
+                RegisterValue(address, newValue);
                 return newValue;
             }
 
@@ -151,7 +146,7 @@ namespace BoubakProductions.Systems.Randomization
             }
 
             allowedRerolls--;
-            return GetNext();
+            return GetNextLoop();
         }
 
         /// <summary>

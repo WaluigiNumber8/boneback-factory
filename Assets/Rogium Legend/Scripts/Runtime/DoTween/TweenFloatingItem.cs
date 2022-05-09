@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -9,7 +8,7 @@ namespace Rogium.Systems.TweenAnimations
     /// <summary>
     /// Animate a transform as an floating item.
     /// </summary>
-    public class TweenAnimFloating : MonoBehaviour
+    public class TweenFloatingItem : MonoBehaviour
     {
         [SerializeField] private Vector3 offset;
         [SerializeField] private float duration = 2f;
