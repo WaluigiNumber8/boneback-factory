@@ -12,7 +12,11 @@ namespace Rogium.Editors.Projectiles
     /// </summary>
     public class ProjectileAsset : EntityAssetBase
     {
-
+        private float flightSpeed;
+        private float acceleration;
+        private float brakeForce;
+        private PierceType pierceType;
+        
         #region Constructors
         public ProjectileAsset()
         {
@@ -33,6 +37,11 @@ namespace Rogium.Editors.Projectiles
             knockbackForceOther = EditorDefaults.ProjectileKnockbackForceOther;
             knockbackTimeOther = EditorDefaults.ProjectileKnockbackTimeOther;
             knockbackLockDirectionOther = EditorDefaults.ProjectileKnockbackLockDirectionOther;
+
+            flightSpeed = EditorDefaults.ProjectileFlightSpeed;
+            acceleration = EditorDefaults.ProjectileAcceleration;
+            brakeForce = EditorDefaults.ProjectileBrakeForce;
+            pierceType = EditorDefaults.ProjectilePierceType;
             
             GenerateID(EditorAssetIDs.ProjectileIdentifier);
         }
@@ -55,16 +64,22 @@ namespace Rogium.Editors.Projectiles
             useDelay = asset.UseDelay;
             knockbackForceSelf = asset.KnockbackForceSelf;
             knockbackTimeSelf = asset.KnockbackTimeSelf;
-            knockbackLockDirectionSelf = asset.knockbackLockDirectionSelf;
+            knockbackLockDirectionSelf = asset.KnockbackLockDirectionSelf;
             knockbackForceOther = asset.KnockbackForceOther;
             knockbackTimeOther = asset.KnockbackTimeOther;
-            knockbackLockDirectionOther = asset.knockbackLockDirectionOther;
+            knockbackLockDirectionOther = asset.KnockbackLockDirectionOther;
+
+            flightSpeed = asset.FlightSpeed;
+            acceleration = asset.Acceleration;
+            brakeForce = asset.BrakeForce;
+            pierceType = asset.PierceType;
         }
 
         public ProjectileAsset(string id, string title, Sprite icon, string author, AnimationType animationType, 
                                int frameDuration, Sprite iconAlt, int baseDamage, float useDelay, float knockbackForceSelf, 
                                float knockbackTimeSelf, bool knockbackLockDirectionSelf, float knockbackForceOther,
-                               float knockbackTimeOther, bool knockbackLockDirectionOther, DateTime creationDate)
+                               float knockbackTimeOther, bool knockbackLockDirectionOther, float flightSpeed, float acceleration,
+                               float brakeForce, PierceType pierceType, DateTime creationDate)
         {
             AssetValidation.ValidateTitle(title);
             
@@ -87,14 +102,27 @@ namespace Rogium.Editors.Projectiles
             this.knockbackTimeOther = knockbackTimeOther;
             this.knockbackLockDirectionOther = knockbackLockDirectionOther;
 
+            this.flightSpeed = flightSpeed;
+            this.acceleration = acceleration;
+            this.brakeForce = brakeForce;
+            this.pierceType = pierceType;
         }
         #endregion
 
         #region Update Values
 
-
+        public void UpdateFlightSpeed(float newFlightSpeed) => flightSpeed = newFlightSpeed;
+        public void UpdateAcceleration(float newAcceleration) => acceleration = newAcceleration;
+        public void UpdateBrakeForce(float newBrakeForce) => brakeForce = newBrakeForce;
+        public void UpdatePierceType(int newPierceType) => UpdatePierceType((PierceType)newPierceType);
+        public void UpdatePierceType(PierceType newPierceType) => pierceType = newPierceType;
 
         #endregion
+        
+        public float FlightSpeed { get => flightSpeed; }
+        public float Acceleration { get => acceleration; }
+        public float BrakeForce { get => brakeForce; }
+        public PierceType PierceType { get => pierceType; }
 
     }
 }

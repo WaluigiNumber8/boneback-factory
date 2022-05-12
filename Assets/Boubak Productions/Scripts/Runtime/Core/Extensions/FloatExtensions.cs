@@ -1,4 +1,6 @@
-﻿namespace BoubakProductions.Core
+﻿using UnityEngine;
+
+namespace BoubakProductions.Core
 {
     /// <summary>
     /// Extension methods for the float type.
@@ -21,6 +23,18 @@
         public static int ToMilliseconds(this float seconds)
         {
             return (int) seconds * 1000;
+        }
+        
+        /// <summary>
+        /// Round a float value to a specific amount of decimal places.
+        /// </summary>
+        /// <param name="value">The value to round.</param>
+        /// <param name="decimals">Amount of decimals.</param>
+        /// <returns></returns>
+        public static float Round(this float value, int decimals)
+        {
+            float mult = Mathf.Pow(10.0f, decimals);
+            return Mathf.Round(value * mult) / mult;
         }
     }
 }

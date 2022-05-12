@@ -18,7 +18,7 @@ namespace Rogium.Core
         /// <param name="keepEmpty">If on, will add assets with empty or not found IDs as null.</param>
         /// <typeparam name="T">Any type of <see cref="IIDHolder"/>.</typeparam>
         /// <returns>A List of assets.</returns>
-        public static IList<T> ConvertToAssets<T>(this IEnumerable<string> ids, IList<T> allAssets, bool keepEmpty = false) where T : IIDHolder
+        public static IList<T> ConvertToAssetsFrom<T>(this IEnumerable<string> ids, IList<T> allAssets, bool keepEmpty = false) where T : IIDHolder
         {
             if (allAssets == null || allAssets.Count <= 0) return new List<T>();
             

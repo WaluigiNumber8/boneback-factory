@@ -43,10 +43,11 @@ namespace Rogium.Gameplay.Sequencer
         public void RunIntro(int difficultyTier)
         {   
             roomLoader.Init();
+            
             StartCoroutine(RunIntroCoroutine(difficultyTier));
             IEnumerator RunIntroCoroutine(int tier)
             {
-                player.SetCollideMode(false);
+                player.ChangeCollideMode(false);
                 startingPoints.Clear();
 
                 roomLoader.LoadNext(RoomType.Entrance, tier);
@@ -57,7 +58,7 @@ namespace Rogium.Gameplay.Sequencer
                 yield return sas.FadeIn(2, false);
                 yield return sas.Transport(playerTransform, playerTransform.position + (Vector3)dir * 3, transportWalkSpeed * 0.5f);
             
-                player.SetCollideMode(true);
+                player.ChangeCollideMode(true);
             }
         }
 
@@ -69,7 +70,7 @@ namespace Rogium.Gameplay.Sequencer
             StartCoroutine(RunTransitionCoroutine(nextRoomType, direction, difficultyTier));
             IEnumerator RunTransitionCoroutine(RoomType roomType, Vector2 direction, int tier)
             {
-                player.SetCollideMode(false);
+                player.ChangeCollideMode(false);
                 startingPoints.Clear();
             
                 yield return sas.FadeOut(0.5f, true);
@@ -81,7 +82,7 @@ namespace Rogium.Gameplay.Sequencer
                 yield return sas.Transport(playerTransform, pos, transportRunSpeed);
                 yield return sas.FadeIn(1f, false);
                 yield return sas.Transport(playerTransform, playerTransform.position + (Vector3)dir, transportWalkSpeed);
-                player.SetCollideMode(true);
+                player.ChangeCollideMode(true);
             }
         }
 
@@ -90,7 +91,7 @@ namespace Rogium.Gameplay.Sequencer
         /// </summary>
         public IEnumerator RunEndCoroutine(Vector2 direction)
         {
-            player.SetCollideMode(false);
+            player.ChangeCollideMode(false);
             startingPoints.Clear();
             
             yield return sas.Transport(playerTransform, playerTransform.position + (Vector3)direction, transportWalkSpeed);
@@ -115,5 +116,6 @@ namespace Rogium.Gameplay.Sequencer
             if (startingPoints.Count == 1) return 0;
             return Random.Range(0, startingPoints.Count);
         }
+
     }
 }

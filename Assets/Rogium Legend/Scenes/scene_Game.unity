@@ -942,7 +942,7 @@ GameObject:
   - component: {fileID: 337157931}
   - component: {fileID: 337157930}
   - component: {fileID: 337157933}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

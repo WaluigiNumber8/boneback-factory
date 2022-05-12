@@ -39,7 +39,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             slider.minValue = minValue;
             slider.maxValue = maxValue;
             slider.value = startingValue;
-            slider.onValueChanged.AddListener(delegate { whenValueChange(slider.value); });
+            slider.onValueChanged.AddListener(_ => whenValueChange(slider.value));
             
         }
         

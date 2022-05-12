@@ -1,4 +1,5 @@
 ﻿using System;
+using BoubakProductions.Core;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -68,9 +69,7 @@ namespace BoubakProductions.UI.Sliders
         /// <param name="value">The value to enter.</param>
         private void UpdateValue(float value)
         {
-            value = Mathf.Min(value, slider.maxValue);
-            value = Mathf.Max(slider.minValue, value);
-            
+            value = Mathf.Clamp(value, slider.minValue, slider.maxValue);
             SetSameValue(value);
         }
 

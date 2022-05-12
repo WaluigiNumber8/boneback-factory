@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using BoubakProductions.Core;
 using BoubakProductions.Safety;
 using Rogium.Editors.Weapons;
 using UnityEngine;
@@ -21,14 +23,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
 
         private void Awake() => weapons = new List<WeaponAsset>(new WeaponAsset[startingSlots]);
 
-        private void Update()
-        {
-            if (entity.FaceDirection == Vector2.up) UpdateWeaponPosRot(weaponPositions.north, 0);
-            else if (entity.FaceDirection == Vector2.down) UpdateWeaponPosRot(weaponPositions.south, 180);
-            else if (entity.FaceDirection == Vector2.right) UpdateWeaponPosRot(weaponPositions.east, 270);
-            else if (entity.FaceDirection == Vector2.left) UpdateWeaponPosRot(weaponPositions.west, 90);
-            
-        }
+        private void Update() => UpdateWeaponPosRot();
 
         /// <summary>
         /// Constructs the characteristic.
@@ -67,8 +62,9 @@ namespace Rogium.Gameplay.Entities.Characteristics
 
             WeaponAsset weapon = weapons[slot];
             if (weapon.FreezeUser) entity.LockMovement(weapon.UseDuration + weapon.UseStartDelay);
+            useDelayTimer = Time.time + weapon.UseDuration + weapon.UseStartDelay;
+            
             StartCoroutine(ActivateCoroutine());
-
             IEnumerator ActivateCoroutine()
             {
                 yield return new WaitForSeconds(weapon.UseStartDelay);
@@ -76,7 +72,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
                 weaponEntity.LoadUp(weapon);
                 weaponEntity.Activate();
                 entity.ForceMove(-entity.FaceDirection, weapon.KnockbackForceSelf, weapon.KnockbackTimeSelf, weapon.KnockbackLockDirectionSelf);
-                useDelayTimer = Time.time + defaultData.useDelay;
+                
             }
         }
 
@@ -103,10 +99,10 @@ namespace Rogium.Gameplay.Entities.Characteristics
         /// <summary>
         /// Updates the position and rotation of the weapon entity.
         /// </summary>
-        private void UpdateWeaponPosRot(Vector3 pos, float rotZ)
+        private void UpdateWeaponPosRot()
         {
-            weaponEntity.transform.localPosition = pos;
-            weaponEntity.transform.localRotation = Quaternion.Euler(Vector3.forward * rotZ);
+            weaponEntity.Transform.localPosition = entity.FaceDirection;
+            TransformUtils.SetRotation2D(weaponEntity.Transform, entity.FaceDirection);
         }
         
         public int WeaponCount { get => weapons.Count; }

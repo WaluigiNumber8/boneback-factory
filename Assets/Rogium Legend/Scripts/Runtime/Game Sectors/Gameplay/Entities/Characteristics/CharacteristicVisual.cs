@@ -46,16 +46,16 @@ namespace Rogium.Gameplay.Entities.Characteristics
                 AnimationType.SpriteSwap => ProcessSpriteSwap,
                 _ => throw new ArgumentOutOfRangeException($"The Animation Type of '{defaultData.animationType}' is not supported.")
             };
-            SwitchRenderState(true);
+            ChangeRenderState(true);
         }
 
         /// <summary>
         /// Change the visibility status of the renderer.
         /// </summary>
-        /// <param name="doRender">If true, rendering wil be enabled.</param>
-        public void SwitchRenderState(bool doRender)
+        /// <param name="isEnabled">If true, rendering wil be enabled.</param>
+        public void ChangeRenderState(bool isEnabled)
         {
-            renderer.enabled = doRender;
+            renderer.enabled = isEnabled;
         }
         
         /// <summary>

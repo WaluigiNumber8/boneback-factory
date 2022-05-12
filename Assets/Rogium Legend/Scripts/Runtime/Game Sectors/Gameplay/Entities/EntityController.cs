@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections;
+using BoubakProductions.Core;
 using Rogium.Gameplay.Core;
 using UnityEngine;
 
 namespace Rogium.Gameplay.Entities
 {
+    /// <summary>
+    /// The base for all entities.
+    /// </summary>
     [RequireComponent(typeof(Rigidbody2D))]
     public abstract class EntityController : MonoBehaviour
     {
@@ -26,6 +30,7 @@ namespace Rogium.Gameplay.Entities
         protected bool faceDirectionLocked;
         protected bool actionsLocked;
         protected bool movementLocked;
+        private Coroutine movementLockCoroutine;
         
         protected virtual void Awake()
         {
@@ -44,12 +49,12 @@ namespace Rogium.Gameplay.Entities
         /// <summary>
         /// Enables/Disables the entities ability to collide with objects and trigger events.
         /// </summary>
-        /// <param name="enable">When on, collision is enabled.</param>
-        public void SetCollideMode(bool enable)
+        /// <param name="isEnabled">Changes the collision state.</param>
+        public void ChangeCollideMode(bool isEnabled)
         {
-            actionsLocked = !enable;
-            collider.enabled = enable;
-            trigger.enabled = enable;
+            actionsLocked = !isEnabled;
+            if (collider != null) collider.enabled = isEnabled;
+            if (trigger != null) trigger.enabled = isEnabled;
         }
 
         /// <summary>
@@ -58,7 +63,8 @@ namespace Rogium.Gameplay.Entities
         /// <param name="time">The time to lock movement for.</param>
         public void LockMovement(float time)
         {
-            StartCoroutine(MovementLockCoroutine());
+            if (movementLockCoroutine != null) StopCoroutine(movementLockCoroutine);
+            movementLockCoroutine = StartCoroutine(MovementLockCoroutine());
             IEnumerator MovementLockCoroutine()
             {
                 movementLocked = true;
@@ -125,8 +131,8 @@ namespace Rogium.Gameplay.Entities
             
             void UpdateFaceDirection()
             {
-                if (faceDirectionLocked || movementLocked) return;
-                faceDirection = (Vector3.Distance(velocityChange, Vector3.zero) > 0.01f) ? velocityChange.normalized : faceDirection;
+                if (faceDirectionLocked) return;
+                faceDirection = (Vector3.Distance(velocityChange, Vector3.zero) > 0.01f) ? velocityChange.normalized.Round() : faceDirection;
             }
         }
 

@@ -2,6 +2,7 @@
 using BoubakProductions.UI;
 using Rogium.Core;
 using Rogium.Editors.Core;
+using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Projectiles;
 using UnityEngine;
@@ -37,7 +38,13 @@ namespace Rogium.Editors.PropertyEditor.Builders
             b.BuildHeader("General", content);
             b.BuildInputField("Damage", asset.BaseDamage.ToString(), content, s => asset.UpdateBaseDamage(int.Parse(s)),false, TMP_InputField.CharacterValidation.Integer);
             b.BuildInputField("Lifetime", asset.UseDelay.ToString(), content, s => asset.UpdateUseDelay(float.Parse(s)),false, TMP_InputField.CharacterValidation.Decimal);
-           
+            b.BuildDropdown("Pierce", Enum.GetNames(typeof(PierceType)), (int)asset.PierceType, content, asset.UpdatePierceType);
+
+            b.BuildHeader("Movement", content);
+            b.BuildInputField("Flight Speed", asset.FlightSpeed.ToString(), content, s => asset.UpdateFlightSpeed(float.Parse(s)));
+            b.BuildSlider("Acceleration", 0, EditorDefaults.ProjectileMaxAcceleration, asset.Acceleration, content, asset.UpdateAcceleration);
+            b.BuildSlider("Brake Force", 0, EditorDefaults.ProjectileMaxBrakeForce, asset.BrakeForce, content, asset.UpdateBrakeForce);
+            
             b.BuildHeader("Knockback", content);
             b.BuildInputField("Self Force", asset.KnockbackForceSelf.ToString(), content, s => asset.UpdateKnockbackForceSelf(float.Parse(s)), false, TMP_InputField.CharacterValidation.Decimal);
             b.BuildInputField("Self Time", asset.KnockbackTimeSelf.ToString(), content, s => asset.UpdateKnockbackTimeSelf(float.Parse(s)), false, TMP_InputField.CharacterValidation.Decimal);

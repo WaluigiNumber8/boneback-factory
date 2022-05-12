@@ -1,7 +1,6 @@
 ﻿using System;
 using BoubakProductions.Core;
 using Rogium.Gameplay.Entities.Characteristics;
-using Rogium.Gameplay.Inventory;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -57,7 +56,7 @@ namespace Rogium.UserInterface.Gameplay.HUD
                     weaponSlots.dash.SetMain(icon);
                     break;
                 case 5:
-                    weaponSlots.dash.SetMain(icon);
+                    weaponSlots.dash.SetSub(icon);
                     break;
                 default:
                     throw new InvalidOperationException($"Slot number '{index}' is not supported.");

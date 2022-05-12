@@ -1,4 +1,5 @@
-﻿using Rogium.Editors.Rooms;
+﻿using Rogium.Editors.Projectiles;
+using Rogium.Editors.Rooms;
 using Rogium.Editors.Weapons;
 using UnityEngine;
 
@@ -37,7 +38,7 @@ namespace Rogium.Editors.Core.Defaults
         public static readonly Sprite WeaponIconAlt = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
         
         public const int WeaponBaseDamage = 2;
-        public const float WeaponUseDelay = 0.18f;
+        public const float WeaponUseDelay = 1.2f;
         public const float WeaponKnockbackForceSelf = 0;
         public const float WeaponKnockbackTimeSelf = 0f;
         public const bool WeaponKnockbackLockDirectionSelf = true;
@@ -64,13 +65,20 @@ namespace Rogium.Editors.Core.Defaults
         public static readonly Sprite ProjectileIconAlt = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
         
         public const int ProjectileBaseDamage = 1;
-        public const float ProjectileLifetime = 5;
+        public const float ProjectileLifetime = 0.5f;
         public const float ProjectileKnockbackForceSelf = 0;
         public const float ProjectileKnockbackTimeSelf = 0f;
         public const bool ProjectileKnockbackLockDirectionSelf = true;
         public const float ProjectileKnockbackForceOther = 2f;
         public const float ProjectileKnockbackTimeOther = 0.075f;
         public const bool ProjectileKnockbackLockDirectionOther = true;
+
+        public const float ProjectileFlightSpeed = 20;
+        public const float ProjectileAcceleration = 0.2f;
+        public const float ProjectileBrakeForce = 0.5f;
+        public const PierceType ProjectilePierceType = PierceType.None;
+        public const float ProjectileMaxAcceleration = 0.5f;
+        public const float ProjectileMaxBrakeForce = 0.5f;
         
         //Enemy
         public const string EnemyTitle = "New Enemy";

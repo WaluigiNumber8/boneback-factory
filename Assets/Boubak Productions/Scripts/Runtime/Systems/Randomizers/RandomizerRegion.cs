@@ -1,7 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using BoubakProductions.Core;
 using BoubakProductions.Safety;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace BoubakProductions.Systems.Randomization
 {
@@ -124,9 +126,13 @@ namespace BoubakProductions.Systems.Randomization
         private void RegisterValue(int regionAddress, int value)
         {
             int start = regionAddress * regionMemoryPortion;
-            regionValuesMemory[start + regionValuesMemoryPositions[regionAddress]] = value;
-            regionValuesMemoryPositions[regionAddress]++;
-            regionValuesMemoryPositions[regionAddress] = IntUtils.Wrap(regionValuesMemoryPositions[regionAddress], 0, regionMemoryPortion - leadway - 1);
+            try
+            {
+                regionValuesMemory[start + regionValuesMemoryPositions[regionAddress]] = value;
+                regionValuesMemoryPositions[regionAddress]++;
+                regionValuesMemoryPositions[regionAddress] = IntUtils.Wrap(regionValuesMemoryPositions[regionAddress], 0, regionMemoryPortion - leadway - 1);
+            }
+            catch (IndexOutOfRangeException) {}
         }
 
         /// <summary>

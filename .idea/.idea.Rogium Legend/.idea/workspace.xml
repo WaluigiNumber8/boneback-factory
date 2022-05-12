@@ -110,15 +110,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Discover.Launch.Via.Unity": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "rider.run.widget.enabled.cache": "false",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Discover.Launch.Via.Unity&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;rider.run.widget.enabled.cache&quot;: &quot;false&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor &amp; Play">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="$PROJECT_DIR$/../Builds/Alpha 0.2.2\Rogium Legend.exe" />
@@ -136,10 +136,10 @@
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="19316">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="19176">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="19316" />
+      <option name="pid" value="19176" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -375,7 +375,9 @@
       <workItem from="1652003277978" duration="2043000" />
       <workItem from="1652006039457" duration="2984000" />
       <workItem from="1652084330431" duration="315000" />
-      <workItem from="1652084704931" duration="14785000" />
+      <workItem from="1652084704931" duration="15651000" />
+      <workItem from="1652195435640" duration="738000" />
+      <workItem from="1652340342312" duration="23460000" />
     </task>
     <servers />
   </component>
@@ -550,17 +552,30 @@
           <option name="timeStamp" value="154" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Boubak Productions/Scripts/Runtime/Systems/Randomizers/RandomizerRegion.cs</url>
-          <line>73</line>
-          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Boubak Productions\Scripts\Runtime\Systems\Randomizers\RandomizerRegion.cs" initialLine="73" containingFunctionPresentation="method 'GetNextLoop'">
+          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Gameplay/Entities/Types/ProjectileController.cs</url>
+          <line>37</line>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Gameplay\Entities\Types\ProjectileController.cs" initialLine="35" containingFunctionPresentation="method 'OnTriggerEnter2D'">
             <startOffsets>
-              <option value="2718" />
+              <option value="1080" />
             </startOffsets>
             <endOffsets>
-              <option value="2756" />
+              <option value="1113" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="184" />
+          <option name="timeStamp" value="191" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Boubak Productions/Scripts/Runtime/Systems/Randomizers/RandomizerRegion.cs</url>
+          <line>126</line>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Boubak Productions\Scripts\Runtime\Systems\Randomizers\RandomizerRegion.cs" initialLine="126" containingFunctionPresentation="method 'RegisterValue'">
+            <startOffsets>
+              <option value="5052" />
+            </startOffsets>
+            <endOffsets>
+              <option value="5131" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="193" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

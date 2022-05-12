@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6507709000051811484}
   - component: {fileID: 7601419146444906514}
   - component: {fileID: 5727797397282415324}
+  - component: {fileID: 8891106330710725475}
   m_Layer: 0
   m_Name: pref_entity_Weapon
   m_TagString: Untagged
@@ -152,6 +153,7 @@ MonoBehaviour:
   trigger: {fileID: 8662828520708714079}
   showGizmos: 0
   damageGiver: {fileID: 7601419146444906514}
+  projectileShoot: {fileID: 8891106330710725475}
   visual: {fileID: 5727797397282415324}
 --- !u!114 &7601419146444906514
 MonoBehaviour:
@@ -171,9 +173,11 @@ MonoBehaviour:
     knockbackSelf:
       forceSpeed: 1
       time: 0.05
+      lockFaceDirection: 0
     knockbackOther:
       forceSpeed: 2
       time: 0.1
+      lockFaceDirection: 0
 --- !u!114 &5727797397282415324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,3 +197,17 @@ MonoBehaviour:
     animationType: 0
     frameDuration: 0
     spriteAlt: {fileID: 0}
+--- !u!114 &8891106330710725475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3808502605660081328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9f77152b3bb4f68b618a427809dd9b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: {fileID: 6507709000051811484}
+  vessel: {fileID: 6205885584784640561, guid: a7f2e89f1ef010645855c87d7a4f86e7, type: 3}

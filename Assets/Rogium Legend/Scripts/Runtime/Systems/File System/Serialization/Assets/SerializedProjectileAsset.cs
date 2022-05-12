@@ -10,9 +10,17 @@ namespace Rogium.ExternalStorage.Serialization
     [System.Serializable]
     public class SerializedProjectileAsset : SerializedEntityAssetBase<ProjectileAsset>
     {
+        private float flightSpeed;
+        private float acceleration;
+        private float brakeForce;
+        private int pierceType;
+        
         public SerializedProjectileAsset(ProjectileAsset asset) : base(asset)
         {
-            
+            flightSpeed = asset.FlightSpeed;
+            acceleration = asset.Acceleration;
+            brakeForce = asset.BrakeForce;
+            pierceType = (int)asset.PierceType;
         }
 
         public override ProjectileAsset Deserialize()
@@ -32,6 +40,10 @@ namespace Rogium.ExternalStorage.Serialization
                                        knockbackForceOther,
                                        knockbackTimeOther,
                                        knockbackLockDirectionOther,
+                                       flightSpeed,
+                                       acceleration,
+                                       brakeForce,
+                                       (PierceType)pierceType,
                                        DateTime.Parse(creationDate));
         }
     }

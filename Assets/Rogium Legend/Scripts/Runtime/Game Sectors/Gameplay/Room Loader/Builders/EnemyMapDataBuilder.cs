@@ -53,7 +53,7 @@ namespace Rogium.Gameplay.DataLoading
         private void Spawn(Vector3Int offsetPos, int x, int y, EnemyAsset data)
         {
             EnemyController en = Instantiate(vessel, offsetPos + new Vector3(x, y, 0) + new Vector3(0.5f, 0.5f, 0), Quaternion.identity, content);
-            IList<WeaponAsset> weapons = data.WeaponIDs.ConvertToAssets(this.weapons);
+            IList<WeaponAsset> weapons = data.WeaponIDs.ConvertToAssetsFrom(this.weapons);
             en.Construct(data, weapons);
         }
 
