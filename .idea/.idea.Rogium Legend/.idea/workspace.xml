@@ -377,7 +377,7 @@
       <workItem from="1652084330431" duration="315000" />
       <workItem from="1652084704931" duration="15651000" />
       <workItem from="1652195435640" duration="738000" />
-      <workItem from="1652340342312" duration="23460000" />
+      <workItem from="1652340342312" duration="24838000" />
     </task>
     <servers />
   </component>
@@ -550,32 +550,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="154" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Gameplay/Entities/Types/ProjectileController.cs</url>
-          <line>37</line>
-          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Gameplay\Entities\Types\ProjectileController.cs" initialLine="35" containingFunctionPresentation="method 'OnTriggerEnter2D'">
-            <startOffsets>
-              <option value="1080" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1113" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="191" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Boubak Productions/Scripts/Runtime/Systems/Randomizers/RandomizerRegion.cs</url>
-          <line>126</line>
-          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Boubak Productions\Scripts\Runtime\Systems\Randomizers\RandomizerRegion.cs" initialLine="126" containingFunctionPresentation="method 'RegisterValue'">
-            <startOffsets>
-              <option value="5052" />
-            </startOffsets>
-            <endOffsets>
-              <option value="5131" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="193" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

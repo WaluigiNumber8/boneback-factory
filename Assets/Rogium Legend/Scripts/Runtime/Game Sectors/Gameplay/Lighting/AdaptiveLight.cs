@@ -18,6 +18,7 @@ namespace Rogium.Gameplay.Core.Lighting
         {
             globalLight = RoomLight.GetInstance();
             light = GetComponent<Light2D>();
+            AdaptVisibility(0);
         }
 
         private void OnEnable()

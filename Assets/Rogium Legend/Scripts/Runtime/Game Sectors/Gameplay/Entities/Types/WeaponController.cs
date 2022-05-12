@@ -46,7 +46,7 @@ namespace Rogium.Gameplay.Entities
         /// </summary>
         public void Activate()
         {
-            ChangeActiveState(true);
+            ChangeActiveState(weapon.UseType != WeaponUseType.Hidden);
             projectileShoot.Fire(weapon.ProjectileIDs);
             
             switch (weapon.UseType)
