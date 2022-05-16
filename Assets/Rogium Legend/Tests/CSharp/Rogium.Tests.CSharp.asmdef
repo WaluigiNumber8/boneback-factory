@@ -4,7 +4,7 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "BoubakProductions.Runtime",
+        "RedRats.Runtime",
         "Rogium.Runtime"
     ],
     "includePlatforms": [

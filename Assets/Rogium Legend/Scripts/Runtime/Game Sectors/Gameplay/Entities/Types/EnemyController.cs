@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using RedRats.Core;
 using Rogium.Editors.Enemies;
 using Rogium.Editors.Weapons;
 using Rogium.Gameplay.Entities.Characteristics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Rogium.Gameplay.Entities.Enemy
 {
@@ -15,6 +18,16 @@ namespace Rogium.Gameplay.Entities.Enemy
         [SerializeField] private CharacteristicDamageReceiver damageReceiver;
         [SerializeField] private CharacteristicWeaponHold weaponHold;
         [SerializeField] private CharacteristicVisual visual;
+
+        private Transform playerTransform;
+        
+        private AIType ai;
+        private Vector2 startingDirection;
+        private float refreshFaceDirectionTime;
+        private float refreshFaceDirectionTimer;
+        private bool isLooking;
+        private Action updateFaceDirectionMethod;
+        private bool seamlessMovement;
 
         private float weaponUseTime;
         private float weaponUseTimer;
@@ -43,13 +56,24 @@ namespace Rogium.Gameplay.Entities.Enemy
         /// <param name="asset">The asset to take data from.</param>
         public void Construct(EnemyAsset asset, IList<WeaponAsset> weapons = null)
         {
-            faceDirection = Vector2.down;
+            playerTransform = GameObject.FindWithTag("Player").transform;
+            
+            ai = asset.AI;
+            startingDirection = RedRatUtils.DirectionTypeToVector(asset.StartingDirection);
+            refreshFaceDirectionTime = asset.NextStepTime;
+            seamlessMovement = asset.SeamlessMovement;
+            updateFaceDirectionMethod = ai switch
+            {
+                AIType.LookInDirection => FaceDirectionLook,
+                AIType.RotateTowardsPlayer => FaceDirectionRotate,
+                _ => throw new ArgumentOutOfRangeException($"The AI of type {ai} is not supported.")
+            };
             
             //Damage Giver
             if (damageGiver != null)
             {
-                ForcedMoveInfo knockbackSelf = new(asset.KnockbackForceSelf, asset.KnockbackForceSelf * 0.1f, asset.KnockbackLockDirectionSelf);
-                ForcedMoveInfo knockbackOther = new(asset.KnockbackForceOther, asset.KnockbackForceOther * 0.1f, asset.KnockbackLockDirectionOther);
+                ForcedMoveInfo knockbackSelf = new(asset.KnockbackForceSelf, asset.KnockbackTimeSelf, asset.KnockbackLockDirectionSelf);
+                ForcedMoveInfo knockbackOther = new(asset.KnockbackForceOther, asset.KnockbackTimeOther, asset.KnockbackLockDirectionOther);
                 CharDamageGiverInfo damageGiver = new(asset.BaseDamage, knockbackSelf, knockbackOther);
                 this.damageGiver.Construct(damageGiver);
             }
@@ -79,6 +103,12 @@ namespace Rogium.Gameplay.Entities.Enemy
             }
         }
 
+        protected override void UpdateFaceDirection()
+        {
+            if (actionsLocked) { base.UpdateFaceDirection(); }
+            else updateFaceDirectionMethod();
+        }
+
         /// <summary>
         /// Uses a random weapon.
         /// </summary>
@@ -99,6 +129,27 @@ namespace Rogium.Gameplay.Entities.Enemy
         private void Die()
         {
             Destroy(gameObject);
+        }
+
+        private void FaceDirectionLook() => faceDirection = startingDirection;
+
+        private void FaceDirectionRotate()
+        {
+            Vector2 direction = (ttransform.position - playerTransform.position).normalized * -1;
+            if (!seamlessMovement) direction = direction.Round();
+
+            if (!isLooking && faceDirection.DistanceTo(direction) > 0.1f)
+            {
+                refreshFaceDirectionTimer = Time.time + refreshFaceDirectionTime;
+                isLooking = true;
+                return;
+            }
+            
+            if (isLooking && refreshFaceDirectionTimer < Time.time)
+            {
+                faceDirection = direction;
+                isLooking = false;
+            }
         }
     }
 }

@@ -6756,7 +6756,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: -100
+  m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!1 &2138722444
 GameObject:
@@ -6888,22 +6888,6 @@ PrefabInstance:
     - target: {fileID: 42737588524664426, guid: 8b1858fadbbcfd14fa8ab21287d05e1f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 691628062176777703, guid: 8b1858fadbbcfd14fa8ab21287d05e1f, type: 3}
-      propertyPath: propertyNames.onKill
-      value: OnDeath
-      objectReference: {fileID: 0}
-    - target: {fileID: 5035998730142991646, guid: 8b1858fadbbcfd14fa8ab21287d05e1f, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5035998730142991646, guid: 8b1858fadbbcfd14fa8ab21287d05e1f, type: 3}
-      propertyPath: m_ShadowIntensity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5035998730142991646, guid: 8b1858fadbbcfd14fa8ab21287d05e1f, type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 8.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b1858fadbbcfd14fa8ab21287d05e1f, type: 3}

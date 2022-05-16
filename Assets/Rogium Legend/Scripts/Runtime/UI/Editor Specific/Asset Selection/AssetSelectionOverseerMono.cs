@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using BoubakProductions.Safety;
-using BoubakProductions.Systems.ObjectSwitching;
+using RedRats.Safety;
+using RedRats.Systems.ObjectSwitching;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Packs;

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using BoubakProductions.Core;
-using BoubakProductions.Safety;
+using RedRats.Core;
+using RedRats.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
+using Rogium.Editors.Objects;
 using Rogium.Systems.Validation;
 using UnityEngine;
 
@@ -18,6 +19,11 @@ namespace Rogium.Editors.Enemies
         private float attackProbability;
         private float invincibilityTime;
         private readonly List<string> weaponIDs;
+        
+        private AIType ai;
+        private DirectionType startingDirection;
+        private bool seamlessMovement;
+        private float nextStepTime;
 
         #region Constructors
         public EnemyAsset()
@@ -45,6 +51,11 @@ namespace Rogium.Editors.Enemies
             invincibilityTime = EditorDefaults.EnemyInvincibilityTime;
             weaponIDs = new List<string>();
             
+            ai = EditorDefaults.EnemyAI;
+            nextStepTime = EditorDefaults.EnemyNextStepTime;
+            seamlessMovement = EditorDefaults.EnemySeamlessMovement;
+            startingDirection = EditorDefaults.EnemyStartingDirection;
+            
             GenerateID(EditorAssetIDs.EnemyIdentifier);
         }
 
@@ -66,15 +77,20 @@ namespace Rogium.Editors.Enemies
             useDelay = asset.UseDelay;
             knockbackForceSelf = asset.KnockbackForceSelf;
             knockbackTimeSelf = asset.KnockbackTimeSelf;
-            knockbackLockDirectionSelf = asset.knockbackLockDirectionSelf;
+            knockbackLockDirectionSelf = asset.KnockbackLockDirectionSelf;
             knockbackForceOther = asset.KnockbackForceOther;
             knockbackTimeOther = asset.KnockbackTimeOther;
-            knockbackLockDirectionOther = asset.knockbackLockDirectionOther;
+            knockbackLockDirectionOther = asset.KnockbackLockDirectionOther;
 
             maxHealth = asset.MaxHealth;
             attackProbability = asset.AttackProbability;
             invincibilityTime = asset.InvincibilityTime;
-
+            
+            ai = asset.AI;
+            nextStepTime = asset.NextStepTime;
+            startingDirection = asset.StartingDirection;
+            seamlessMovement = asset.SeamlessMovement;
+            
             weaponIDs = new List<string>(asset.weaponIDs);
         }
 
@@ -82,7 +98,8 @@ namespace Rogium.Editors.Enemies
                           int frameDuration, Sprite iconAlt, int baseDamage, float useDelay, float knockbackForceSelf,
                           float knockbackTimeSelf, bool knockbackLockDirectionSelf, float knockbackForceOther, 
                           float knockbackTimeOther, bool knockbackLockDirectionOther, int maxHealth, float attackProbability, 
-                          float invincibilityTime, List<string> weaponIDs, DateTime creationDate)
+                          float invincibilityTime, IList<string> weaponIDs, AIType ai, float nextStepTime, 
+                          DirectionType startingDirection,bool seamlessMovement, DateTime creationDate)
         {
             AssetValidation.ValidateTitle(title);
             
@@ -108,30 +125,41 @@ namespace Rogium.Editors.Enemies
             this.maxHealth = maxHealth;
             this.attackProbability = attackProbability;
             this.invincibilityTime = invincibilityTime;
-
             this.weaponIDs = new List<string>(weaponIDs);
+            
+            this.ai = ai;
+            this.nextStepTime = nextStepTime;
+            this.startingDirection = startingDirection;
+            this.seamlessMovement = seamlessMovement;
         }
         #endregion
 
         #region Update Values
         public void UpdateMaxHealth(int newMaxHealth) => maxHealth = newMaxHealth;
-
         public void UpdateAttackProbability(float newAttackProbability) => attackProbability = newAttackProbability;
-
         public void UpdateInvincibilityTime(float newInvincibilityTime) => invincibilityTime = newInvincibilityTime;
-
         public void UpdateWeaponIDsLength(int newLength)
         {
             SafetyNet.EnsureIntIsBiggerOrEqualTo(newLength, 0, "New weapon IDs size");
             weaponIDs.Resize(newLength, EditorDefaults.EmptyAssetID);
         }
         public void UpdateWeaponIDPos(int pos, string value) => weaponIDs[pos] = value;
-
+        public void UpdateAI(int newAI) => UpdateAI((AIType)newAI);
+        public void UpdateAI(AIType newAI) => ai = newAI;
+        public void UpdateNextStepTime(float newNextStepTime) => nextStepTime = newNextStepTime;
+        public void UpdateStartingDirection(int newDirectionType) => UpdateStartingDirection((DirectionType)newDirectionType);
+        public void UpdateStartingDirection(DirectionType newStartingDirection) => startingDirection = newStartingDirection;
+        public void UpdateSeamlessMovement(bool newSeamlessMovementState) => seamlessMovement = newSeamlessMovementState;
         #endregion
 
         public List<string> WeaponIDs { get => weaponIDs; }
         public int MaxHealth { get => maxHealth; }
         public float AttackProbability { get => attackProbability; }
         public float InvincibilityTime { get => invincibilityTime; }
+        
+        public AIType AI { get => ai; }
+        public float NextStepTime { get => nextStepTime; }
+        public DirectionType StartingDirection { get => startingDirection; }
+        public bool SeamlessMovement { get => seamlessMovement; }
     }
 }

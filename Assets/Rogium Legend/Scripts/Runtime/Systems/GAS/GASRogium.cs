@@ -1,6 +1,6 @@
 ﻿using System;
-using BoubakProductions.Safety;
-using BoubakProductions.UI;
+using RedRats.Safety;
+using RedRats.UI;
 using Rogium.Core;
 using Rogium.Systems.ThemeSystem;
 using Rogium.UserInterface.Editors.AssetSelection;

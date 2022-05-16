@@ -1,6 +1,6 @@
 ﻿using System;
-using BoubakProductions.Core;
-using BoubakProductions.Safety;
+using RedRats.Core;
+using RedRats.Safety;
 using Rogium.Systems.Validation;
 using UnityEngine;
 using Random = UnityEngine.Random;

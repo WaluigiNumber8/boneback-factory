@@ -1,4 +1,6 @@
-﻿using Rogium.Editors.Projectiles;
+﻿using RedRats.Core;
+using Rogium.Editors.Enemies;
+using Rogium.Editors.Projectiles;
 using Rogium.Editors.Rooms;
 using Rogium.Editors.Weapons;
 using UnityEngine;
@@ -47,7 +49,7 @@ namespace Rogium.Editors.Core.Defaults
         public const bool WeaponKnockbackLockDirectionOther = true;
 
         public const WeaponUseType WeaponUseType = Weapons.WeaponUseType.PopUp;
-        public const float WeaponUseDuration = 0.05f;
+        public const float WeaponUseDuration = 0.2f;
         public const float WeaponUseStartDelay = 0f;
         public const bool WeaponIsEvasive = false;
         public const bool WeaponFreezeUser = true;
@@ -93,14 +95,19 @@ namespace Rogium.Editors.Core.Defaults
         public const float EnemyKnockbackForceSelf = 1;
         public const float EnemyKnockbackTimeSelf = 0.025f;
         public const bool EnemyKnockbackLockDirectionSelf = true;
-        public const float EnemyKnockbackForceOther = 2;
-        public const float EnemyKnockbackTimeOther = 0.075f;
+        public const float EnemyKnockbackForceOther = 1.75f;
+        public const float EnemyKnockbackTimeOther = 0.1f;
         public const bool EnemyKnockbackLockDirectionOther = true;
-        
+
         public const int EnemyMaxHealth = 5;
         public const float EnemyAttackProbability = 100;
-        public const float EnemyInvincibilityTime = 0.18f;
+        public const float EnemyInvincibilityTime = 0.25f;
         public const int EnemyWeaponMaxCount = 4;
+        
+        public const AIType EnemyAI = AIType.LookInDirection;
+        public const DirectionType EnemyStartingDirection = DirectionType.Down;
+        public const bool EnemySeamlessMovement = false;
+        public const float EnemyNextStepTime = 0.25f;
         
         //Room
         public const string RoomTitle = "New Room";

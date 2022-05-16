@@ -1,4 +1,4 @@
-﻿using BoubakProductions.Systems.Randomization;
+﻿using RedRats.Systems.Randomization;
 using NUnit.Framework;
 using Rogium.Gameplay.AssetRandomGenerator;
 using UnityEngine.TestTools;

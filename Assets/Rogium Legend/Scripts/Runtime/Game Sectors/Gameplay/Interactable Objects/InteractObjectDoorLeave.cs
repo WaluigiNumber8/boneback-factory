@@ -1,4 +1,5 @@
 ﻿using System;
+using RedRats.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Objects;
 using Rogium.Editors.Rooms;
@@ -20,15 +21,7 @@ namespace Rogium.Gameplay.InteractableObjects
         
         public void Construct(ObjectAsset data, ParameterInfo parameters)
         {
-            DirectionType dir = (DirectionType) parameters.intValue1;
-            direction = dir switch
-            {
-                DirectionType.Up => Vector2.up,
-                DirectionType.Down => Vector2.down,
-                DirectionType.Right => Vector2.right,
-                DirectionType.Left => Vector2.left,
-                _ => throw new ArgumentOutOfRangeException($"Direction of type '{dir}' is not supported.")
-            };
+            direction = RedRatUtils.DirectionTypeToVector((DirectionType)parameters.intValue1);
             nextRoomType = (RoomType)parameters.intValue2;
         }
 

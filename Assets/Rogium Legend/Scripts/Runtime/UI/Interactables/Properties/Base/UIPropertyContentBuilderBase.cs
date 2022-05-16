@@ -1,4 +1,4 @@
-﻿using BoubakProductions.Safety;
+﻿using RedRats.Safety;
 using UnityEngine;
 
 namespace Rogium.UserInterface.Interactables.Properties

@@ -1,4 +1,4 @@
-﻿using BoubakProductions.Core;
+﻿using RedRats.Core;
 using Rogium.Editors.Enemies;
 using Rogium.Editors.Projectiles;
 using Rogium.Editors.PropertyEditor.Builders;
@@ -113,6 +113,8 @@ namespace Rogium.Editors.PropertyEditor
         private void Init()
         {
             ReloadTheme();
+            ui.importantScrollbar.value = 1;
+            ui.propertyScrollbar.value = 1;
         }
 
         /// <summary>
@@ -137,6 +139,8 @@ namespace Rogium.Editors.PropertyEditor
             public InteractableButton undoButton;
             public InteractableButton redoButton;
             public InteractableButton resetButton;
+            public Scrollbar importantScrollbar;
+            public Scrollbar propertyScrollbar;
         }
     }
 }

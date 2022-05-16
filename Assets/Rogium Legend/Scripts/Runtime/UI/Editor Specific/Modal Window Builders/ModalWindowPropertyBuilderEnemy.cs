@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using BoubakProductions.Core;
-using BoubakProductions.UI;
+using RedRats.Core;
+using RedRats.UI;
 using Rogium.Editors.Enemies;
 using Rogium.Editors.Tiles;
 

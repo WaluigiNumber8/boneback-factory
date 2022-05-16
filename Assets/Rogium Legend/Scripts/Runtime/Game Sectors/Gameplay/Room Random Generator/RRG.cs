@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using BoubakProductions.Safety;
-using BoubakProductions.Systems.Randomization;
+using RedRats.Safety;
+using RedRats.Systems.Randomization;
 using Rogium.Editors.Rooms;
 
 namespace Rogium.Gameplay.AssetRandomGenerator

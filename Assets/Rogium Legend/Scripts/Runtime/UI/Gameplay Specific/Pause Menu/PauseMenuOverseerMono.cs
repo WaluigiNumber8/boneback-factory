@@ -1,6 +1,6 @@
-﻿using BoubakProductions.Core;
-using BoubakProductions.Systems.ClockOfTheGame;
-using BoubakProductions.UI;
+﻿using RedRats.Core;
+using RedRats.Systems.ClockOfTheGame;
+using RedRats.UI;
 using Rogium.Gameplay.Core;
 using Rogium.Systems.Input;
 using UnityEngine;

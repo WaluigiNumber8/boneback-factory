@@ -25,7 +25,6 @@ namespace Rogium.Gameplay.Entities.Characteristics
         public void Move(Vector2 direction)
         {
             CalculateAcceleration(direction);
-            
             lastDirection = (direction == Vector2.zero) ? lastDirection : direction;
             float speed = defaultData.maxSpeed * accel;
             

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using BoubakProductions.Safety;
-using BoubakProductions.Systems.FileSystem;
+using RedRats.Safety;
+using RedRats.Systems.FileSystem;
 using Rogium.Core;
 using Rogium.Editors.Sprites;
 using Rogium.Editors.Campaign;

@@ -1,4 +1,4 @@
-﻿using BoubakProductions.Core;
+﻿using RedRats.Core;
 using UnityEngine;
 
 namespace Rogium.UserInterface.Editors.AssetSelection

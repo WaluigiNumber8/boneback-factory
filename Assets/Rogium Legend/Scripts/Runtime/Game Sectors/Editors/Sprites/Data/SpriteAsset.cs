@@ -2,7 +2,7 @@
 using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.GridSystem;
 using System;
-using BoubakProductions.Safety;
+using RedRats.Safety;
 using Rogium.Systems.Validation;
 using UnityEngine;
 

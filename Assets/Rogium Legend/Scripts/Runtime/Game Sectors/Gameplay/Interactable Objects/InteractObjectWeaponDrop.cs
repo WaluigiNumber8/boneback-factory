@@ -1,5 +1,5 @@
 ﻿using System;
-using BoubakProductions.Safety;
+using RedRats.Safety;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Objects;

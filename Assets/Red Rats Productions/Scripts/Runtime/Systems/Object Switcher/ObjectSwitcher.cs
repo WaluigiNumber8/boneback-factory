@@ -1,0 +1,64 @@
+﻿using RedRats.Safety;
+using UnityEngine;
+
+namespace RedRats.Systems.ObjectSwitching
+{
+    /// <summary>
+    /// Switches between a given group of objects.
+    /// </summary>
+    public class ObjectSwitcher
+    {
+        private readonly GameObject[] objects;
+        private int lastIndex;
+
+        #region Constructors
+        public ObjectSwitcher(params GameObject[] objects)
+        {
+            lastIndex = -1;
+            this.objects = objects;
+            Switch(0);
+        }
+        public ObjectSwitcher(int defaultIndex, params GameObject[] objects)
+        {
+            lastIndex = -1;
+            this.objects = objects;
+            Switch(defaultIndex);
+        }
+        
+        #endregion
+
+        /// <summary>
+        /// Deselects all objects except one.
+        /// <param name="activatedObject">The object to activate.</param>
+        /// </summary>
+        public void Switch(GameObject activatedObject)
+        {
+            for (int i = 0; i < objects.Length; i++)
+            {
+                if (activatedObject != objects[i]) continue;
+                
+                Switch(i);
+                return;
+            }
+            throw new System.InvalidOperationException($"'{activatedObject.name}' was not found in this array.");
+        }
+        /// <summary>
+        /// Deselects all objects except one.
+        /// <param name="index">The index of the object to activate.</param>
+        /// </summary>
+        public void Switch(int index)
+        {
+            if (index == lastIndex) return;
+            if (index == -1) return;
+            SafetyNet.EnsureIntIsInRange(index, 0, objects.Length, "Default Tab Index");
+            
+            foreach (GameObject gObject in objects)
+            {
+                gObject.SetActive(false);
+            }
+            objects[index].SetActive(true);
+
+            lastIndex = index;
+        }
+    }
+}

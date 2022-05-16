@@ -1,4 +1,4 @@
-﻿using BoubakProductions.Safety;
+﻿using RedRats.Safety;
 
 namespace Rogium.Systems.Validation
 {

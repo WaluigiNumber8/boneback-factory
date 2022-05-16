@@ -1,4 +1,4 @@
-﻿using BoubakProductions.Core;
+﻿using RedRats.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.GridSystem;
 using UnityEngine;
@@ -18,7 +18,7 @@ namespace Rogium.Systems.IconBuilders
         public Sprite BuildFromArray(Color[] colors)
         {
             int texSize = CalculateSize(colors.Length);
-            Texture2D tex = BoubakBuilder.GenerateTexture(texSize, texSize);
+            Texture2D tex = RedRatBuilder.GenerateTexture(texSize, texSize);
 
             int counter = 0;
             for (int y = texSize-1; y >= 0; y--)
@@ -37,7 +37,7 @@ namespace Rogium.Systems.IconBuilders
             }
             tex.Apply();
             
-            return BoubakBuilder.GenerateSprite(tex, 16);
+            return RedRatBuilder.GenerateSprite(tex, 16);
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Rogium.Systems.IconBuilders
         /// <returns>A Sprite.</returns>
         public Sprite BuildFromGrid(ObjectGrid<int> grid, Color[] colors)
         {
-            Texture2D tex = BoubakBuilder.GenerateTexture(grid.Width, grid.Height);
+            Texture2D tex = RedRatBuilder.GenerateTexture(grid.Width, grid.Height);
             for (int y = 0; y < grid.Height; y++)
             {
                 for (int x = 0; x < grid.Width; x++)
@@ -70,7 +70,7 @@ namespace Rogium.Systems.IconBuilders
                     tex.SetPixel(x, y, colors[posValue]);
                 }
             }
-            return BoubakBuilder.GenerateSprite(tex, EditorDefaults.PixelsPerUnit);
+            return RedRatBuilder.GenerateSprite(tex, EditorDefaults.PixelsPerUnit);
         }
 
         private int CalculateSize(int arraySize)

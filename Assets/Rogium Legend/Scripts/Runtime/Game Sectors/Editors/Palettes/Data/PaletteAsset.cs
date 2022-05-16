@@ -1,5 +1,5 @@
 using System;
-using BoubakProductions.Core;
+using RedRats.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.Validation;
@@ -23,7 +23,7 @@ namespace Rogium.Editors.Palettes
             this.creationDate = DateTime.Now;
             GenerateID(EditorAssetIDs.PaletteIdentifier);
 
-            this.colors = BoubakBuilder.GenerateColorArray(EditorDefaults.PaletteSize, Color.black);
+            this.colors = RedRatBuilder.GenerateColorArray(EditorDefaults.PaletteSize, Color.black);
         }
 
         public PaletteAsset(PaletteAsset asset)

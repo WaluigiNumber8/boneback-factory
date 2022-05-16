@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using RedRats.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Enemies;
 
@@ -15,6 +16,11 @@ namespace Rogium.ExternalStorage.Serialization
         private float attackProbability;
         private float invincibilityTime;
         private List<string> weaponsIDs;
+        
+        private int ai;
+        private float nextStepTime;
+        private int startingDirection;
+        private bool seamlessMovement;
 
         public SerializedEnemyAsset(EnemyAsset asset) : base(asset)
         {
@@ -22,6 +28,11 @@ namespace Rogium.ExternalStorage.Serialization
             attackProbability = asset.AttackProbability;
             invincibilityTime = asset.InvincibilityTime;
             weaponsIDs = asset.WeaponIDs;
+            
+            ai = (int) asset.AI;
+            nextStepTime = asset.NextStepTime;
+            startingDirection = (int)asset.StartingDirection;
+            seamlessMovement = asset.SeamlessMovement;
         }
 
         public override EnemyAsset Deserialize()
@@ -45,6 +56,10 @@ namespace Rogium.ExternalStorage.Serialization
                                   attackProbability,
                                   invincibilityTime,
                                   weaponsIDs,
+                                  (AIType)ai,
+                                  nextStepTime,
+                                  (DirectionType)startingDirection,
+                                  seamlessMovement,
                                   DateTime.Parse(creationDate));
         }
     }

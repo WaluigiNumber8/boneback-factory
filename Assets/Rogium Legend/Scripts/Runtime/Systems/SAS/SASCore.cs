@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using BoubakProductions.Core;
-using BoubakProductions.Systems.ObjectTransport;
+using RedRats.Core;
+using RedRats.Systems.ObjectTransport;
 using Rogium.UserInterface.TransitionsCanvas;
 using UnityEngine;
 
@@ -29,10 +29,9 @@ namespace Rogium.Systems.SAS
         /// <param name="transform">The transform to transfer.</param>
         /// <param name="position">The position to move the transform to.</param>
         /// <param name="speed">Speed of the transport.</param>
-        /// <param name="order">Axis order to use.</param>
-        public IEnumerator Transport(Transform transform, Vector3 position, float speed, TransportOrderType order = TransportOrderType.XYZ)
+        public IEnumerator Transport(Transform transform, Vector3 position, float speed)
         {
-            yield return transporter.Transport(transform, position, speed, order);
+            yield return transporter.Transport(transform, position, speed, (TransportOrderType)Random.Range(0, 6));
         }
 
         public IEnumerator FadeIn(float duration, bool waitForCompletion)

@@ -3344,6 +3344,8 @@ MonoBehaviour:
     undoButton: {fileID: 1317521010}
     redoButton: {fileID: 1039904551}
     resetButton: {fileID: 810613729}
+    importantScrollbar: {fileID: 20675533}
+    propertyScrollbar: {fileID: 281788287}
 --- !u!1001 &281788285
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5650,8 +5652,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.287875, y: 0}
   m_AnchorMax: {x: 0.71220833, y: 1}
-  m_AnchoredPosition: {x: -0.5, y: -37.729004}
-  m_SizeDelta: {x: 140.4755, y: -129.8029}
+  m_AnchoredPosition: {x: -0.5, y: -18.051514}
+  m_SizeDelta: {x: 234.5087, y: -90.4479}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &523489864
 MonoBehaviour:
@@ -10865,7 +10867,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1098153480
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10883,8 +10885,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 477.59772, y: -809.5031}
-  m_SizeDelta: {x: 0, y: 1.388031}
+  m_AnchoredPosition: {x: 524.6143, y: -857.5521}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1098153481
 MonoBehaviour:
@@ -10902,9 +10904,9 @@ MonoBehaviour:
   m_MinWidth: -1
   m_MinHeight: -1
   m_PreferredWidth: -1
-  m_PreferredHeight: 2.63
+  m_PreferredHeight: -1
   m_FlexibleWidth: -1
-  m_FlexibleHeight: -1
+  m_FlexibleHeight: 1
   m_LayoutPriority: 1
 --- !u!1 &1111731812
 GameObject:
@@ -12714,8 +12716,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 477.59772, y: -80.92319}
-  m_SizeDelta: {x: 767.01, y: 65.846375}
+  m_AnchoredPosition: {x: 524.6143, y: -84.591064}
+  m_SizeDelta: {x: 767.01, y: 73.18214}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1334801298
 MonoBehaviour:
@@ -14430,6 +14432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   errorWindow: {fileID: 2061306424}
+  maxCharacters: 700
   acceptText: OK
 --- !u!1 &1452096012
 GameObject:
@@ -16110,7 +16113,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Alpha 1.0.1
+  m_text: Alpha 1.0.2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cf4879b37d976dc428255f939d628fa9, type: 2}
   m_sharedMaterial: {fileID: 43070750755529125, guid: cf4879b37d976dc428255f939d628fa9, type: 2}
@@ -16743,8 +16746,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 477.59772, y: -482.02173}
-  m_SizeDelta: {x: 850, y: 672.3507}
+  m_AnchoredPosition: {x: 524.6143, y: -489.36713}
+  m_SizeDelta: {x: 950, y: 672.37}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1682440132
 MonoBehaviour:
@@ -16791,8 +16794,8 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: 725
   m_MinHeight: 600
-  m_PreferredWidth: 850
-  m_PreferredHeight: 700
+  m_PreferredWidth: 950
+  m_PreferredHeight: 690
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -24347,11 +24350,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8378214599030717080, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 477.59772
+      value: 524.6143
       objectReference: {fileID: 0}
     - target: {fileID: 8378214599030717080, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -900.1971
+      value: -939.5521
       objectReference: {fileID: 0}
     - target: {fileID: 8378214599030717080, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

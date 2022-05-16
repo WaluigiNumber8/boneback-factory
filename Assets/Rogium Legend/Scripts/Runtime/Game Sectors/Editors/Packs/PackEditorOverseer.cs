@@ -1,6 +1,6 @@
 ﻿using System;
 using UnityEngine;
-using BoubakProductions.Safety;
+using RedRats.Safety;
 using Rogium.Editors.Enemies;
 using Rogium.Editors.Palettes;
 using Rogium.Editors.Projectiles;

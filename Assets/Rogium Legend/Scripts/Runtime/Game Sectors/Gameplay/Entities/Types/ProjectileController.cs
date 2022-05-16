@@ -1,4 +1,4 @@
-﻿using BoubakProductions.Core;
+﻿using RedRats.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Projectiles;
@@ -12,6 +12,8 @@ namespace Rogium.Gameplay.Entities
     /// </summary>
     public class ProjectileController : EntityController
     {
+        private const int deathTime = 6;
+        
         [SerializeField] private CharacteristicMove move;
         [SerializeField] private CharacteristicDamageGiver giver;
         [SerializeField] private CharacteristicVisual visual;
@@ -20,6 +22,7 @@ namespace Rogium.Gameplay.Entities
         
         private PierceType pierceType;
         private float lifeTimer;
+        private int deathTimer;
 
         protected override void Awake()
         {
@@ -39,6 +42,7 @@ namespace Rogium.Gameplay.Entities
             if (col.gameObject.layer == gameObject.layer) return;
             if (pierceType == PierceType.Entities && col.TryGetComponent(out EntityController _)) return;
             if (pierceType == PierceType.Walls && GameObjectUtils.IsInLayerMask(col.gameObject, wallMask)) return;
+            if (col.TryGetComponent(out WeaponController _)) return;
             Destruct();
         }
 
@@ -49,6 +53,7 @@ namespace Rogium.Gameplay.Entities
         public void Construct(ProjectileAsset asset)
         {
             lifeTimer = Time.time + asset.UseDelay;
+            deathTimer = -1;
             pierceType = asset.PierceType;
             
             move.Construct(new CharMoveInfo(asset.FlightSpeed, asset.Acceleration, asset.BrakeForce));
@@ -88,7 +93,16 @@ namespace Rogium.Gameplay.Entities
         private void HandleDeath()
         {
             if (lifeTimer > Time.time) return;
-            if (CurrentSpeed > 0.05f) return;
+            if (CurrentSpeed > 0.01f)
+            {
+                deathTimer = deathTime;
+                return;
+            }
+            if (deathTimer > 0)
+            {
+                deathTimer--;
+                return;
+            }
             Destruct();
         }
         
@@ -97,7 +111,7 @@ namespace Rogium.Gameplay.Entities
         /// </summary>
         private void Destruct()
         {
-            Destroy(gameObject);
+            Destroy(gameObject, 0.01f);
         }
 
         [System.Serializable]

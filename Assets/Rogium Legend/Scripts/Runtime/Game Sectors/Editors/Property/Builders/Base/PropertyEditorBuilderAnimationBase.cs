@@ -9,8 +9,13 @@ namespace Rogium.Editors.PropertyEditor.Builders
     {
         protected InteractablePropertyContentBlock animationBlock1Slot;
         protected InteractablePropertyContentBlock animationBlock2Slot;
-        
-        public PropertyEditorBuilderAnimationBase(Transform contentMain, Transform contentSecond) : base(contentMain, contentSecond) { }
+
+        protected readonly string[] animationOptions;
+
+        public PropertyEditorBuilderAnimationBase(Transform contentMain, Transform contentSecond) : base(contentMain, contentSecond)
+        {
+            animationOptions = new[] { "No Animation", "Horizontal Flip", "Vertical Flip" };
+        }
 
         protected abstract override void BuildImportant(Transform content);
 

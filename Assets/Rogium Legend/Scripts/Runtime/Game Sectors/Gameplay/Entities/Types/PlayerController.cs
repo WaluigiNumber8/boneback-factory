@@ -10,7 +10,7 @@ namespace Rogium.Gameplay.Entities.Player
     /// </summary>
     public class PlayerController : EntityController
     {
-        public override event Action OnDeath; 
+        public event Action OnDeath; 
 
         [SerializeField] private CharacteristicMove movement;
         [SerializeField] private CharacteristicDamageReceiver damageReceiver;
@@ -60,9 +60,17 @@ namespace Rogium.Gameplay.Entities.Player
         {
             base.FixedUpdate();
             
-            if (actionsLocked || movementLocked) return;
+            if (actionsLocked) return;
+            if (movementLocked) return;
             movement.Move(moveDirection);
-            
+        }
+
+        protected override void UpdateFaceDirection()
+        {
+            if (movementLocked) return;
+            if (actionsLocked || moveDirection == Vector2.zero)
+                base.UpdateFaceDirection();
+            else faceDirection = moveDirection;
         }
 
         /// <summary>
@@ -78,6 +86,7 @@ namespace Rogium.Gameplay.Entities.Player
         {
             ChangeCollideMode(false);
             actionsLocked = true;
+            movementLocked = true;
             visual.PlayDeath();
             OnDeath?.Invoke();
         }

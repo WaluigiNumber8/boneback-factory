@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using BoubakProductions.Core;
-using BoubakProductions.UI.Tabs;
+using RedRats.Core;
+using RedRats.UI.Tabs;
 using Rogium.Core;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Core;

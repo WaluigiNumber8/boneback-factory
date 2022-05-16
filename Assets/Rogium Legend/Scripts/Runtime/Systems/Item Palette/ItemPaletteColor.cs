@@ -1,8 +1,8 @@
-﻿using BoubakProductions.Safety;
+﻿using RedRats.Safety;
 using Rogium.Editors.Palettes;
 using System;
 using System.Collections.Generic;
-using BoubakProductions.UI.MenuFilling;
+using RedRats.UI.MenuFilling;
 using UnityEngine;
 using TMPro;
 

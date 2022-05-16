@@ -1,5 +1,5 @@
 ﻿using System;
-using BoubakProductions.UI;
+using RedRats.UI;
 using Rogium.Editors.Palettes;
 using Rogium.Editors.Sprites;
 

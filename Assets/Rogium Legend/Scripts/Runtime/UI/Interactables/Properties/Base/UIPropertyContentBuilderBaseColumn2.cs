@@ -1,5 +1,5 @@
-﻿using BoubakProductions.Core;
-using BoubakProductions.Safety;
+﻿using RedRats.Core;
+using RedRats.Safety;
 using UnityEngine;
 
 namespace Rogium.UserInterface.Interactables.Properties

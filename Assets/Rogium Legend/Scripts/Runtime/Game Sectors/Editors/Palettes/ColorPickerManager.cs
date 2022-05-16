@@ -1,5 +1,5 @@
-﻿using BoubakProductions.UI.InputFields;
-using BoubakProductions.UI.Sliders;
+﻿using RedRats.UI.InputFields;
+using RedRats.UI.Sliders;
 using UnityEngine;
 using UnityEngine.UI;
 

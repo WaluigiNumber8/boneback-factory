@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using BoubakProductions.Safety;
+using RedRats.Safety;
 using Rogium.Editors.Core;
 
 namespace Rogium.Core

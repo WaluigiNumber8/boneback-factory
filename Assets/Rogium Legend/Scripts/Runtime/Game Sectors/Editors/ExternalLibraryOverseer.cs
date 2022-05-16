@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using BoubakProductions.Safety;
+using RedRats.Safety;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Packs;
 using Rogium.ExternalStorage;

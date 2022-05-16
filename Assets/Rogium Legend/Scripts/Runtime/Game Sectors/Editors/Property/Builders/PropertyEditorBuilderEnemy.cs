@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using BoubakProductions.UI;
+using RedRats.Core;
+using RedRats.UI;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Enemies;
+using Rogium.Editors.Objects;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Weapons;
 using Rogium.UserInterface.Interactables.Properties;
@@ -22,9 +24,17 @@ namespace Rogium.Editors.PropertyEditor.Builders
         private PackAsset currentPack;
         private IList<WeaponAsset> packWeapons;
 
+        private readonly string[] aiOptions;
+
+        private InteractablePropertyContentBlock aiLookInDirectionBlock;
+        private InteractablePropertyContentBlock aiRotateTowardsBlock;
+        
         private InteractablePropertyContentBlock weaponSlotsBlock;
 
-        public PropertyEditorBuilderEnemy(Transform contentMain, Transform contentSecond) : base(contentMain, contentSecond) { }
+        public PropertyEditorBuilderEnemy(Transform contentMain, Transform contentSecond) : base(contentMain, contentSecond)
+        {
+            aiOptions = new[] {"Look", "Rotate"};
+        }
 
         public void Build(EnemyAsset asset)
         {
@@ -47,6 +57,8 @@ namespace Rogium.Editors.PropertyEditor.Builders
             animationBlock2Slot = b.CreateContentBlockColumn2(content, (asset.AnimationType != AnimationType.SpriteSwap));
             b.BuildAssetField("", AssetType.Sprite, asset, animationBlock2Slot.GetTransform, a => asset.UpdateIcon(a.Icon), !currentPack.ContainsAnySprites, ThemeType.Pink);
             b.BuildAssetField("", AssetType.Sprite, asset, animationBlock2Slot.GetTransform, a => asset.UpdateIconAlt(a.Icon), !currentPack.ContainsAnySprites, ThemeType.Pink);
+
+            b.BuildDropdown("AI", aiOptions, (int)asset.AI, content, ProcessAIType);
         }
 
         protected override void BuildProperty(Transform content)
@@ -63,11 +75,20 @@ namespace Rogium.Editors.PropertyEditor.Builders
             b.BuildInputField("Other Force", asset.KnockbackForceOther.ToString(), content, s => asset.UpdateKnockbackForceOther(float.Parse(s)), false, TMP_InputField.CharacterValidation.Decimal);
             b.BuildInputField("Other Time", asset.KnockbackTimeOther.ToString(), content, s => asset.UpdateKnockbackTimeOther(float.Parse(s)), false, TMP_InputField.CharacterValidation.Decimal);
             b.BuildToggle("Other Lock Direction", asset.KnockbackLockDirectionOther, content, asset.UpdateKnockbackLockDirectionOther);
+
+            b.BuildHeader("AI", content);
+            aiLookInDirectionBlock = b.CreateContentBlockVertical(content, (asset.AI == AIType.LookInDirection));
+            b.BuildDropdown("Direction", Enum.GetNames(typeof(DirectionType)), (int)asset.StartingDirection, aiLookInDirectionBlock.GetTransform, asset.UpdateStartingDirection);
+
+            aiRotateTowardsBlock = b.CreateContentBlockVertical(content, (asset.AI == AIType.RotateTowardsPlayer));
+            b.BuildInputField("Next Rotation Time", asset.NextStepTime.ToString(), aiRotateTowardsBlock.GetTransform, s => asset.UpdateNextStepTime(float.Parse(s)), false, TMP_InputField.CharacterValidation.Decimal);
+            b.BuildToggle("Smooth Rotation", asset.SeamlessMovement, aiRotateTowardsBlock.GetTransform, asset.UpdateSeamlessMovement);
             
             b.BuildHeader("Animation", content);
-            b.BuildDropdown("Type", Enum.GetNames(typeof(AnimationType)), (int) asset.AnimationType, content, ProcessAnimationType);
+            b.BuildDropdown("Type", animationOptions, (int) asset.AnimationType, content, ProcessAnimationType);
             b.BuildInputField("Frame Duration", asset.FrameDuration.ToString(), content, s => asset.UpdateFrameDuration(int.Parse(s)));
             
+            ProcessAIType((int)asset.AI);
             BuildWeaponContent(content);
         }
 
@@ -76,6 +97,13 @@ namespace Rogium.Editors.PropertyEditor.Builders
             AnimationType type = (AnimationType)animType;
             asset.UpdateAnimationType(type);
             SwitchAnimationSlots(type);
+        }
+        
+        private void ProcessAIType(int newAIType)
+        {
+            asset.UpdateAI(newAIType);
+            aiLookInDirectionBlock.SetDisabled((newAIType != (int)AIType.LookInDirection));
+            aiRotateTowardsBlock.SetDisabled((newAIType != (int)AIType.RotateTowardsPlayer));
         }
         
         private void BuildWeaponContent(Transform content)

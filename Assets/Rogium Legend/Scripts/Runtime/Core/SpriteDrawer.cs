@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using BoubakProductions.Core;
-using BoubakProductions.Safety;
+using RedRats.Core;
+using RedRats.Safety;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
@@ -42,8 +42,8 @@ namespace Rogium.Systems.GridSystem
         /// <param name="colorArray">The array of colors to take data from.</param>
         public Sprite Build(ObjectGrid<int> indexGrid, Color[] colorArray)
         {
-            Texture2D tex = BoubakBuilder.GenerateTexture(indexGrid.Width * pixelsPerUnit, indexGrid.Height * pixelsPerUnit);
-            Sprite sprite = BoubakBuilder.GenerateSprite(tex, pixelsPerUnit);
+            Texture2D tex = RedRatBuilder.GenerateTexture(indexGrid.Width * pixelsPerUnit, indexGrid.Height * pixelsPerUnit);
+            Sprite sprite = RedRatBuilder.GenerateSprite(tex, pixelsPerUnit);
             ClearAllCells(sprite);
             
             for (int y = 0; y < size.y; y++)
@@ -78,8 +78,8 @@ namespace Rogium.Systems.GridSystem
         /// <typeparam name="TS">Any type of <see cref="IComparable"/>.</typeparam>
         public Sprite Build<T, TS>(ObjectGrid<TS> IDGrid, IList<T> assetList) where T : IAsset where TS : IComparable
         {
-            Texture2D tex = BoubakBuilder.GenerateTexture(IDGrid.Width * pixelsPerUnit, IDGrid.Height * pixelsPerUnit);
-            Sprite sprite = BoubakBuilder.GenerateSprite(tex, pixelsPerUnit);
+            Texture2D tex = RedRatBuilder.GenerateTexture(IDGrid.Width * pixelsPerUnit, IDGrid.Height * pixelsPerUnit);
+            Sprite sprite = RedRatBuilder.GenerateSprite(tex, pixelsPerUnit);
             ClearAllCells(sprite);
             
             AssetUtils.UpdateFromGridByList(IDGrid, assetList, 
@@ -99,7 +99,7 @@ namespace Rogium.Systems.GridSystem
         /// <param name="value">The color to draw.</param>
         public void UpdateValue(Sprite sprite, Vector2Int pos, Color value)
         {
-            Sprite colorValue = BoubakBuilder.GenerateSprite(value, unitSize.x, unitSize.y, pixelsPerUnit);
+            Sprite colorValue = RedRatBuilder.GenerateSprite(value, unitSize.x, unitSize.y, pixelsPerUnit);
             UpdateValue(sprite, pos, colorValue);
         }
         

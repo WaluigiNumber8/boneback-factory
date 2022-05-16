@@ -1,8 +1,8 @@
 ﻿using System;
-using BoubakProductions.Core;
+using RedRats.Core;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using BoubakProductions.Safety;
+using RedRats.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.Validation;

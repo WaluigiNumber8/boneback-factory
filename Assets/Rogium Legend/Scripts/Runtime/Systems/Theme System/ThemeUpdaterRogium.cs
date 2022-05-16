@@ -1,4 +1,4 @@
-﻿using BoubakProductions.UI;
+﻿using RedRats.UI;
 using Rogium.UserInterface.Editors.AssetSelection.PickerVariant;
 using Rogium.UserInterface.Interactables;
 using Rogium.UserInterface.Interactables.Properties;

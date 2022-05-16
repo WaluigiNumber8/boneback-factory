@@ -1,8 +1,8 @@
 ﻿using System;
-using BoubakProductions.Systems.GASCore;
-using BoubakProductions.Safety;
-using BoubakProductions.UI;
-using BoubakProductions.UI.MenuSwitching;
+using RedRats.Systems.GASCore;
+using RedRats.Safety;
+using RedRats.UI;
+using RedRats.UI.MenuSwitching;
 using Rogium.Core;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Packs;

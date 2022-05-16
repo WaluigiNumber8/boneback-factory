@@ -1,5 +1,5 @@
 ﻿using System;
-using BoubakProductions.Core;
+using RedRats.Core;
 using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine;
 

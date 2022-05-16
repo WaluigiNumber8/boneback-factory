@@ -1,4 +1,4 @@
-﻿using BoubakProductions.Systems.FileSystem.Serialization;
+﻿using RedRats.Systems.FileSystem.Serialization;
 using Rogium.Editors.Core;
 
 namespace Rogium.ExternalStorage.Serialization
@@ -9,9 +9,9 @@ namespace Rogium.ExternalStorage.Serialization
     [System.Serializable]
     public abstract class SerializedAnimatedAssetBase<T> : SerializedAssetBase<T> where T : AnimatedAssetBase
     {
-        protected  int animationType;
-        protected  int frameDuration;
-        protected  SerializedSprite iconAlt;
+        protected int animationType;
+        protected int frameDuration;
+        protected SerializedSprite iconAlt;
         
         protected SerializedAnimatedAssetBase(T asset) : base(asset)
         {

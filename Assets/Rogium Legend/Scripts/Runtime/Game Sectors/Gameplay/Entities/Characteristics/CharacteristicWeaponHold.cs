@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using BoubakProductions.Core;
-using BoubakProductions.Safety;
+using RedRats.Core;
+using RedRats.Safety;
 using Rogium.Editors.Weapons;
 using UnityEngine;
 
@@ -15,7 +14,6 @@ namespace Rogium.Gameplay.Entities.Characteristics
     {
         [SerializeField] private WeaponController weaponEntity;
         [SerializeField] private int startingSlots = 0;
-        [SerializeField] private PositionInfo weaponPositions;
         [SerializeField] private CharWeaponHoldInfo defaultData;
 
         private IList<WeaponAsset> weapons;
@@ -68,11 +66,9 @@ namespace Rogium.Gameplay.Entities.Characteristics
             IEnumerator ActivateCoroutine()
             {
                 yield return new WaitForSeconds(weapon.UseStartDelay);
-                
                 weaponEntity.LoadUp(weapon);
                 weaponEntity.Activate();
                 entity.ForceMove(-entity.FaceDirection, weapon.KnockbackForceSelf, weapon.KnockbackTimeSelf, weapon.KnockbackLockDirectionSelf);
-                
             }
         }
 
@@ -101,19 +97,10 @@ namespace Rogium.Gameplay.Entities.Characteristics
         /// </summary>
         private void UpdateWeaponPosRot()
         {
-            weaponEntity.Transform.localPosition = entity.FaceDirection;
+            weaponEntity.Transform.localPosition = entity.FaceDirection.normalized;
             TransformUtils.SetRotation2D(weaponEntity.Transform, entity.FaceDirection);
         }
         
         public int WeaponCount { get => weapons.Count; }
-        
-        [System.Serializable]
-        private struct PositionInfo
-        {
-            public Vector3 north;
-            public Vector3 east;
-            public Vector3 south;
-            public Vector3 west;
-        }
     }
 }

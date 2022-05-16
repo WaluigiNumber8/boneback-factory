@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using BoubakProductions.UI;
+using RedRats.UI;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
@@ -70,7 +70,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
             b.BuildToggle("Other Lock Direction", asset.KnockbackLockDirectionOther, content, asset.UpdateKnockbackLockDirectionOther);
             
             b.BuildHeader("Animation", content);
-            b.BuildDropdown("Type", Enum.GetNames(typeof(AnimationType)), (int) asset.AnimationType, content, ProcessAnimationType);
+            b.BuildDropdown("Type", animationOptions, (int) asset.AnimationType, content, ProcessAnimationType);
             b.BuildInputField("Frame Duration", asset.FrameDuration.ToString(), content, s => asset.UpdateFrameDuration(int.Parse(s)));
             
             BuildProjectileContent(content);

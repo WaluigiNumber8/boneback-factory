@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using BoubakProductions.Core;
-using BoubakProductions.Safety;
+using RedRats.Core;
+using RedRats.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using UnityEngine;
@@ -13,7 +13,7 @@ namespace Rogium.Systems.GridSystem
     /// </summary>
     public class InteractableEditorGrid : InteractableEditorGridBase
     {
-        public override event Action<Vector2Int> OnClick;
+        public virtual event Action<Vector2Int> OnClick;
 
         [SerializeField] private GridCell cellPrefab;
         [SerializeField] private Vector2Int gridSize;

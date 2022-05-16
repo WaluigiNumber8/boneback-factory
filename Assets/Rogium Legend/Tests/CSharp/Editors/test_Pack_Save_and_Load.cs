@@ -1,4 +1,4 @@
-using BoubakProductions.Safety;
+using RedRats.Safety;
 using NUnit.Framework;
 using Rogium.Editors.Core;
 using Rogium.Editors.Packs;

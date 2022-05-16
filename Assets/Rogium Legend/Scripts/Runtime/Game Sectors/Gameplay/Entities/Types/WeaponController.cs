@@ -14,7 +14,7 @@ namespace Rogium.Gameplay.Entities
         [SerializeField] private CharacteristicDamageGiver damageGiver;
         [SerializeField] private CharacteristicProjectileShoot projectileShoot;
         [SerializeField] private CharacteristicVisual visual;
-        
+
         private WeaponAsset weapon;
         
         protected override void Awake()

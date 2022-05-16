@@ -1,5 +1,5 @@
 ﻿using System;
-using BoubakProductions.UI;
+using RedRats.UI;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
@@ -13,15 +13,17 @@ namespace Rogium.Editors.PropertyEditor.Builders
     /// <summary>
     /// Builds the property editor for <see cref="ProjectileAsset"/>.
     /// </summary>
-    public class PropertyEditorBuilderProjectile : PropertyEditorBuilderBase
+    public class PropertyEditorBuilderProjectile : PropertyEditorBuilderAnimationBase
     {
         private ProjectileAsset asset;
+        private PackAsset currentPack;
         
         public PropertyEditorBuilderProjectile(Transform contentMain, Transform contentSecond) : base(contentMain, contentSecond) { }
 
         public void Build(ProjectileAsset asset)
         {
             this.asset = asset;
+            currentPack = PackEditorOverseer.Instance.CurrentPack;
             Clear();
             BuildImportant(contentMain);
             BuildProperty(contentSecond);
@@ -30,7 +32,12 @@ namespace Rogium.Editors.PropertyEditor.Builders
         protected override void BuildImportant(Transform content)
         {
             b.BuildInputField("", asset.Title, content, asset.UpdateTitle);
-            b.BuildAssetField("", AssetType.Sprite, asset, content, delegate(IAsset a) { asset.UpdateIcon(a.Icon);}, !PackEditorOverseer.Instance.CurrentPack.ContainsAnyProjectiles, ThemeType.Teal);
+            animationBlock1Slot = b.CreateContentBlockVertical(content, (asset.AnimationType == AnimationType.SpriteSwap));
+            b.BuildAssetField("", AssetType.Sprite, asset, animationBlock1Slot.GetTransform, a => asset.UpdateIcon(a.Icon), !currentPack.ContainsAnySprites, ThemeType.Pink);
+            
+            animationBlock2Slot = b.CreateContentBlockColumn2(content, (asset.AnimationType != AnimationType.SpriteSwap));
+            b.BuildAssetField("", AssetType.Sprite, asset, animationBlock2Slot.GetTransform, a => asset.UpdateIcon(a.Icon), !currentPack.ContainsAnySprites, ThemeType.Pink);
+            b.BuildAssetField("", AssetType.Sprite, asset, animationBlock2Slot.GetTransform, a => asset.UpdateIconAlt(a.Icon), !currentPack.ContainsAnySprites, ThemeType.Pink);
         }
 
         protected override void BuildProperty(Transform content)
@@ -42,8 +49,8 @@ namespace Rogium.Editors.PropertyEditor.Builders
 
             b.BuildHeader("Movement", content);
             b.BuildInputField("Flight Speed", asset.FlightSpeed.ToString(), content, s => asset.UpdateFlightSpeed(float.Parse(s)));
-            b.BuildSlider("Acceleration", 0, EditorDefaults.ProjectileMaxAcceleration, asset.Acceleration, content, asset.UpdateAcceleration);
-            b.BuildSlider("Brake Force", 0, EditorDefaults.ProjectileMaxBrakeForce, asset.BrakeForce, content, asset.UpdateBrakeForce);
+            b.BuildSlider("Acceleration", 0.01f, EditorDefaults.ProjectileMaxAcceleration, asset.Acceleration, content, asset.UpdateAcceleration);
+            b.BuildSlider("Brake Force", 0.01f, EditorDefaults.ProjectileMaxBrakeForce, asset.BrakeForce, content, asset.UpdateBrakeForce);
             
             b.BuildHeader("Knockback", content);
             b.BuildInputField("Self Force", asset.KnockbackForceSelf.ToString(), content, s => asset.UpdateKnockbackForceSelf(float.Parse(s)), false, TMP_InputField.CharacterValidation.Decimal);
@@ -54,7 +61,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
             b.BuildToggle("Other Lock Direction", asset.KnockbackLockDirectionOther, content, asset.UpdateKnockbackLockDirectionOther);
             
             b.BuildHeader("Animation", content);
-            b.BuildDropdown("Type", Enum.GetNames(typeof(AnimationType)), (int) asset.AnimationType, content, i => asset.UpdateAnimationType((AnimationType) i));
+            b.BuildDropdown("Type", animationOptions, (int) asset.AnimationType, content, i => asset.UpdateAnimationType((AnimationType) i));
             b.BuildInputField("Frame Duration", asset.FrameDuration.ToString(), content, s => asset.UpdateFrameDuration(int.Parse(s)));
         }
     }

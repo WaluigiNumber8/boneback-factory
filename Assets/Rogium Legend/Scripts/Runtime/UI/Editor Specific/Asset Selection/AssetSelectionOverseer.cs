@@ -1,6 +1,6 @@
-﻿using BoubakProductions.Core;
-using BoubakProductions.Safety;
-using BoubakProductions.Systems.ObjectSwitching;
+﻿using RedRats.Core;
+using RedRats.Safety;
+using RedRats.Systems.ObjectSwitching;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using System;

@@ -1,6 +1,6 @@
 ﻿using System;
-using BoubakProductions.Core;
-using BoubakProductions.UI;
+using RedRats.Core;
+using RedRats.UI;
 using Rogium.Editors.Rooms;
 
 namespace Rogium.UserInterface.Editors.ModalWindowBuilding

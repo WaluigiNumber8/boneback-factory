@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Rogium.Editors.Core;
 using UnityEngine;
 
@@ -7,8 +6,6 @@ namespace Rogium.Systems.GridSystem
 {
     public abstract class InteractableEditorGridBase : MonoBehaviour
     {
-        public virtual event Action<Vector2Int> OnClick;
-        
         /// <summary>
         /// Loads sprites into the editor grid.
         /// </summary>

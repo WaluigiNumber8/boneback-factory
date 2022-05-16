@@ -1,5 +1,5 @@
 ﻿using System;
-using BoubakProductions.Core;
+using RedRats.Core;
 using UnityEngine;
 
 namespace Rogium.Gameplay.Entities.Characteristics
@@ -19,12 +19,9 @@ namespace Rogium.Gameplay.Entities.Characteristics
         private int health;
         private float invincibilityTimer;
 
-        private void Awake()
-        {
-            health = defaultData.maxHealth;
-        }
+        private void Awake() => health = defaultData.maxHealth;
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerStay2D(Collider2D other)
         {
             if (invincibilityTimer > Time.time) return;
             if (!other.TryGetComponent(out CharacteristicDamageGiver giver)) return;
@@ -68,8 +65,8 @@ namespace Rogium.Gameplay.Entities.Characteristics
                 return;
             }
             
-            giver.ReceiveKnockback(entity);
             invincibilityTimer = Time.time + defaultData.invincibilityTime;
+            giver.ReceiveKnockback(entity);
         }
         
         public int CurrentHealth { get => health; }

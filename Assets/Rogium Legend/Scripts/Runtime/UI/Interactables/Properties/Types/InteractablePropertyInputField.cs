@@ -1,5 +1,5 @@
 ﻿using System;
-using BoubakProductions.UI.Core;
+using RedRats.UI.Core;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;

@@ -264,7 +264,7 @@ MonoBehaviour:
     m_Bits: 8
   defaultData:
     maxHealth: 30
-    invincibilityTime: 0.25
+    invincibilityTime: 0.5
 --- !u!114 &691628062176777703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,11 +299,6 @@ MonoBehaviour:
   entity: {fileID: 42737588524664429}
   weaponEntity: {fileID: 6185820723040305167}
   startingSlots: 6
-  weaponPositions:
-    north: {x: 0, y: 1, z: 1}
-    east: {x: 1, y: 0, z: -1}
-    south: {x: 0, y: -1, z: -1}
-    west: {x: -1, y: 0, z: 1}
   defaultData:
     useDelay: 0.01
 --- !u!1 &3397263373556672839
@@ -368,7 +363,7 @@ MonoBehaviour:
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
   m_ShadowIntensityEnabled: 1
-  m_ShadowIntensity: 0.933
+  m_ShadowIntensity: 1
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_Vertices:
@@ -406,7 +401,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 8.87
+  m_PointLightOuterRadius: 8.25
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1

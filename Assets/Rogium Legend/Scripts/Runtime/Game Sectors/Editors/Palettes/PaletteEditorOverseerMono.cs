@@ -1,4 +1,4 @@
-﻿using BoubakProductions.Core;
+﻿using RedRats.Core;
 using Rogium.Systems.ItemPalette;
 using UnityEngine;
 using TMPro;

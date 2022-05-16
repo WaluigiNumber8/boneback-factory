@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using BoubakProductions.Core;
-using BoubakProductions.Safety;
+using RedRats.Core;
+using RedRats.Safety;
 using Rogium.Core;
 using Rogium.Editors.Projectiles;
 using Rogium.Editors.Weapons;
@@ -37,8 +37,8 @@ namespace Rogium.Gameplay.Entities.Characteristics
             {
                 yield return new WaitForSeconds(projectileData.SpawnDelay);
 
-                ProjectileController copy = Instantiate(vessel, entity.transform.position, Quaternion.identity);
-                TransformUtils.SetRotation2D(copy.transform, entity.FaceDirection, projectileData.AngleOffset);
+                ProjectileController copy = Instantiate(vessel, entity.transform.position, entity.transform.rotation);
+                copy.transform.eulerAngles += Vector3.forward * projectileData.AngleOffset;
                 copy.gameObject.layer = entity.gameObject.layer;
                 
                 if (RefreshLastProjectile(projectileData.ID))

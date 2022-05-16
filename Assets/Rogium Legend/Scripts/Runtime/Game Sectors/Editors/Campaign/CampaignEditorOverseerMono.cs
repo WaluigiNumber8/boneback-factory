@@ -1,10 +1,10 @@
-﻿using BoubakProductions.Core;
+﻿using RedRats.Core;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
 using System.Collections.Generic;
 using System.Linq;
-using BoubakProductions.Safety;
+using RedRats.Safety;
 using Rogium.UserInterface.Editors.AssetSelection.PickerVariant;
 using UnityEngine;
 

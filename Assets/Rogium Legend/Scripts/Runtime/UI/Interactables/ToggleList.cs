@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using BoubakProductions.Safety;
+using RedRats.Safety;
 using Rogium.UserInterface.Editors.AssetSelection;
 
 namespace Rogium.UserInterface.Core

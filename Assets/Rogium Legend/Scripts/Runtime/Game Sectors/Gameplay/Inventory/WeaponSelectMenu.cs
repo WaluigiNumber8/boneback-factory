@@ -1,6 +1,6 @@
 ﻿using System;
-using BoubakProductions.Core;
-using BoubakProductions.Systems.ObjectSwitching;
+using RedRats.Core;
+using RedRats.Systems.ObjectSwitching;
 using Rogium.Gameplay.Core;
 using UnityEngine;
 using UnityEngine.UI;

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using BoubakProductions.Core;
-using BoubakProductions.Safety;
+using RedRats.Core;
+using RedRats.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.Input;
@@ -17,7 +17,7 @@ namespace Rogium.Systems.GridSystem
     [RequireComponent(typeof(RectTransform))]
     public class InteractableEditorGridV2 : InteractableEditorGridBase, IPointerClickHandler, IPointerMoveHandler, IPointerEnterHandler, IPointerExitHandler
     {
-        public override event Action<Vector2Int> OnClick;
+        public event Action<Vector2Int> OnClick;
         public event Action<Vector2Int> OnClickAlternative;
         public event Action OnPointerLeave;
         public event Action OnPointerComeIn;
@@ -164,7 +164,7 @@ namespace Rogium.Systems.GridSystem
             foreach (LayerInfo info in layers)
             {
                 info.layer.color = Color.white;
-                info.layer.sprite = BoubakBuilder.GenerateSprite(EditorDefaults.NoColor,
+                info.layer.sprite = RedRatBuilder.GenerateSprite(EditorDefaults.NoColor,
                                                                  EditorDefaults.SpriteSize * gridSize.x,
                                                                  EditorDefaults.SpriteSize * gridSize.y,
                                                                  EditorDefaults.SpriteSize);
