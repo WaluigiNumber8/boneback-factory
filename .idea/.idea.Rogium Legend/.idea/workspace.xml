@@ -16,6 +16,26 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/IL/41d34619c06946aebeba0ca1ee6d765b144200/53/567b1259/020000F0.il" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/IL/6dfe35c3dc8d46a097eb33cfb1a9cd1a8000/85/3d023588/0200000B.il" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/109beb498e934204be8a5a52f9001eaf363d18/54/3235006f/SortedDictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
@@ -32,6 +52,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/13e6546058e340ada820e34dce3b245e157400/e0/e56fbb10/Color.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/15e405c9beda435fb78db5a973118bc4157200/14/5ac4395f/Vector2Int.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/351e49e2a5bf4fd6beabb458ce2255f3ff600/ca/7363510e/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/377d90b6a60246c8b0fcf7d6e7b8f936568ba0/29/80bfc0ac/Random.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/41d34619c06946aebeba0ca1ee6d765b144200/08/3b222b73/Random.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/41d34619c06946aebeba0ca1ee6d765b144200/20/0ae449ad/Vector2Int.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/41d34619c06946aebeba0ca1ee6d765b144200/d1/0c186fa8/Object.cs" root0="SKIP_HIGHLIGHTING" />
@@ -137,10 +158,10 @@
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="3348">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="17872">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="3348" />
+      <option name="pid" value="17872" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -384,7 +405,8 @@
       <workItem from="1652604119056" duration="11104000" />
       <workItem from="1652638054516" duration="406000" />
       <workItem from="1652638553860" duration="862000" />
-      <workItem from="1652688379293" duration="14338000" />
+      <workItem from="1652688379293" duration="15088000" />
+      <workItem from="1652771840172" duration="13830000" />
     </task>
     <servers />
   </component>
@@ -468,32 +490,6 @@
           <option name="timeStamp" value="99" />
         </line-breakpoint>
         <line-breakpoint type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Tests/CSharp/Gameplay/test_RRG.cs</url>
-          <line>64</line>
-          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Tests\CSharp\Gameplay\test_RRG.cs" initialLine="66" containingFunctionPresentation="method 'random_number_is_from_proper_difficulty_single_alt'">
-            <startOffsets>
-              <option value="2197" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2229" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="104" />
-        </line-breakpoint>
-        <line-breakpoint type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Tests/CSharp/Gameplay/test_RRG.cs</url>
-          <line>75</line>
-          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Tests\CSharp\Gameplay\test_RRG.cs" initialLine="75" containingFunctionPresentation="method 'random_number_is_from_proper_difficulty_multiple_alt'">
-            <startOffsets>
-              <option value="2550" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2582" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="106" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Systems/Grid System/ObjectGrid.cs</url>
           <line>96</line>
           <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Systems\Grid System\ObjectGrid.cs" initialLine="95" containingFunctionPresentation="method 'ClearAllCells'">
@@ -506,7 +502,7 @@
           </properties>
           <option name="timeStamp" value="112" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+        <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Editors/Core/Assets/AnimatedAssetBase.cs</url>
           <line>23</line>
           <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Editors\Core\Assets\AnimatedAssetBase.cs" initialLine="23" containingFunctionPresentation="method 'UpdateIconAlt'">
@@ -519,7 +515,7 @@
           </properties>
           <option name="timeStamp" value="123" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+        <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Editors/Property/Builders/PropertyEditorBuilderWeapon.cs</url>
           <line>115</line>
           <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Editors\Property\Builders\PropertyEditorBuilderWeapon.cs" initialLine="115" containingFunctionPresentation="lambda expression inside method 'LoadProjectileSlots'">
@@ -531,6 +527,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="152" />
+        </line-breakpoint>
+        <line-breakpoint type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Gameplay/Room Random Generator/RRG.cs</url>
+          <line>241</line>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Gameplay\Room Random Generator\RRG.cs" initialLine="240" containingFunctionPresentation="method 'CalculateRoomCountPerTier'">
+            <startOffsets>
+              <option value="9583" />
+            </startOffsets>
+            <endOffsets>
+              <option value="9639" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="159" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

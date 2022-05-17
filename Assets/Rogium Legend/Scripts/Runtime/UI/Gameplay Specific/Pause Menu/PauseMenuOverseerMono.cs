@@ -70,7 +70,7 @@ namespace Rogium.UserInterface.Gameplay.PauseMenu
         private void CloseGame()
         {
             SwitchMenuState();
-            GameplayOverseerMono.GetInstance().EndGame();
+            GameplayOverseerMono.GetInstance().EndGame(Vector2.down * 10); 
         }
     }
 }

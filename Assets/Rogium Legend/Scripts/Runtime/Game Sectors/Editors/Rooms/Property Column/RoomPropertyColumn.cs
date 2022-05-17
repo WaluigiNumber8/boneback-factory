@@ -24,8 +24,6 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         private RoomSettingsBuilder builderSettings;
 
         private AssetType lastType = AssetType.Tile;
-        private string currentRoomTitle;
-        private string lastAssetTitle;
         
         private void Awake()
         {
@@ -44,12 +42,10 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         /// <param name="type">The asset type.</param>
         public void ConstructAsset(IAsset asset, AssetType type)
         {
-            ui.titleText.text = asset.Title;
+            ui.assetTitleText.text = asset.Title;
             ui.iconImage.color = EditorDefaults.DefaultColor;
             ui.iconImage.sprite = asset.Icon;
 
-            lastAssetTitle = asset.Title;
-            
             if (type == lastType && ui.typeText.text != "") return;
             ui.typeText.text = type.ToString();
             lastType = type;
@@ -78,8 +74,8 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         /// </summary>
         public void ConstructSettings(RoomAsset data)
         {
+            ui.roomTitleText.text = data.Title;
             builderSettings.Build(settingsContent, data, true);
-            currentRoomTitle = data.Title;
         }
         
         /// <summary>
@@ -88,7 +84,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         public void ConstructEmpty()
         {
             assetContent.gameObject.KillChildren();
-            ui.titleText.text = defaultText;
+            ui.assetTitleText.text = defaultText;
             ui.typeText.text = "";
             ui.iconImage.color = EditorDefaults.NoColor;
             ui.iconImage.sprite = null;
@@ -99,7 +95,8 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         /// </summary>
         public void PreparePropertiesColumn()
         {
-            ui.titleText.text = lastAssetTitle;
+            ui.assetTitleText.gameObject.SetActive(true);
+            ui.roomTitleText.gameObject.SetActive(false);
             ui.typeText.gameObject.SetActive(true);
             ui.icon.gameObject.SetActive(true);
         }
@@ -109,7 +106,8 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         /// </summary>
         public void PrepareSettingsColumn()
         {
-            ui.titleText.text = currentRoomTitle;
+            ui.assetTitleText.gameObject.SetActive(false);
+            ui.roomTitleText.gameObject.SetActive(true);
             ui.typeText.gameObject.SetActive(false);
             ui.icon.SetActive(false);
         }
@@ -117,7 +115,8 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         [System.Serializable]
         public struct UIInfo
         {
-            public TextMeshProUGUI titleText;
+            public TextMeshProUGUI assetTitleText;
+            public TextMeshProUGUI roomTitleText;
             public TextMeshProUGUI typeText;
             public GameObject icon;
             public Image iconImage;

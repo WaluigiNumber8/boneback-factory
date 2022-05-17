@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Rogium.Editors.Rooms;
 using Rogium.Gameplay.DataLoading;
 using Rogium.Gameplay.Entities.Player;
 using Rogium.Gameplay.InteractableObjects;
@@ -40,17 +39,17 @@ namespace Rogium.Gameplay.Sequencer
         /// <summary>
         /// Runs the opening gameplay sequence.
         /// </summary>
-        public void RunIntro(int difficultyTier)
+        public void RunIntro(int nextRoomIndex)
         {   
             roomLoader.Init();
             
-            StartCoroutine(RunIntroCoroutine(difficultyTier));
-            IEnumerator RunIntroCoroutine(int tier)
+            StartCoroutine(RunIntroCoroutine(nextRoomIndex));
+            IEnumerator RunIntroCoroutine(int roomIndex)
             {
                 player.ChangeCollideMode(false);
                 startingPoints.Clear();
 
-                roomLoader.LoadNext(RoomType.Entrance, tier);
+                roomLoader.LoadNext(roomIndex);
                 (Vector2 pos, Vector2 dir) = startingPoints.ElementAt(GetPlayerStartPositionIndex());
 
                 playerTransform.position = pos - dir * 2;
@@ -65,10 +64,10 @@ namespace Rogium.Gameplay.Sequencer
         /// <summary>
         /// Runs the transition between rooms.
         /// </summary>
-        public void RunTransition(RoomType nextRoomType, Vector2 direction, int difficultyTier)
+        public void RunTransition(int nextRoomIndex, Vector2 direction)
         {
-            StartCoroutine(RunTransitionCoroutine(nextRoomType, direction, difficultyTier));
-            IEnumerator RunTransitionCoroutine(RoomType roomType, Vector2 direction, int tier)
+            StartCoroutine(RunTransitionCoroutine(nextRoomIndex, direction));
+            IEnumerator RunTransitionCoroutine(int roomIndex, Vector2 direction)
             {
                 player.ChangeCollideMode(false);
                 startingPoints.Clear();
@@ -76,7 +75,7 @@ namespace Rogium.Gameplay.Sequencer
                 yield return sas.FadeOut(0.5f, true);
                 yield return sas.Transport(playerTransform, playerTransform.position + (Vector3)direction, transportWalkSpeed);
             
-                roomLoader.LoadNext(roomType, tier);
+                roomLoader.LoadNext(roomIndex);
                 (Vector2 pos, Vector2 dir) = startingPoints.ElementAt(GetPlayerStartPositionIndex());
             
                 yield return sas.Transport(playerTransform, pos, transportRunSpeed);
@@ -94,8 +93,9 @@ namespace Rogium.Gameplay.Sequencer
             player.ChangeCollideMode(false);
             startingPoints.Clear();
             
+            yield return sas.FadeOut(1.75f, true);
+            yield return sas.Wait(0.15f);
             yield return sas.Transport(playerTransform, playerTransform.position + (Vector3)direction, transportWalkSpeed);
-            yield return sas.FadeOut(2.1f, true);
             
             player.gameObject.SetActive(false);
             yield return sas.Wait(0.25f);

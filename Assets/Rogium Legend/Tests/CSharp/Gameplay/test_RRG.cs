@@ -23,7 +23,7 @@ namespace Rogium_Legend.Tests.CSharp.Gameplay
             lib.ReloadFromExternalStorage();
             rooms = lib.GetCampaignsCopy[0].DataPack.Rooms;
             
-            rrg = new RRG(rooms, 0);
+            rrg = new RRG(rooms, 10);
         }
         
         [Test]
@@ -32,7 +32,7 @@ namespace Rogium_Legend.Tests.CSharp.Gameplay
             RoomType type = RoomType.Normal;
             int difficulty = 0;
             
-            RoomAsset room = rooms[rrg.LoadNext(type, difficulty)];
+            RoomAsset room = rooms[rrg.GetNext(type)];
             
             Assert.AreEqual(difficulty, room.DifficultyLevel);
         }
@@ -43,12 +43,12 @@ namespace Rogium_Legend.Tests.CSharp.Gameplay
             RoomType type = RoomType.Normal;
             int difficulty = 0;
             
-            RoomAsset room1 = rooms[rrg.LoadNext(type, difficulty)];
-            RoomAsset room2 = rooms[rrg.LoadNext(type, difficulty)];
-            RoomAsset room3 = rooms[rrg.LoadNext(type, difficulty)];
-            RoomAsset room4 = rooms[rrg.LoadNext(type, difficulty)];
-            RoomAsset room5 = rooms[rrg.LoadNext(type, difficulty)];
-            RoomAsset room6 = rooms[rrg.LoadNext(type, difficulty)];
+            RoomAsset room1 = rooms[rrg.GetNext(type)];
+            RoomAsset room2 = rooms[rrg.GetNext(type)];
+            RoomAsset room3 = rooms[rrg.GetNext(type)];
+            RoomAsset room4 = rooms[rrg.GetNext(type)];
+            RoomAsset room5 = rooms[rrg.GetNext(type)];
+            RoomAsset room6 = rooms[rrg.GetNext(type)];
             
             Assert.AreEqual(difficulty, room1.DifficultyLevel);
             Assert.AreEqual(difficulty, room2.DifficultyLevel);
@@ -65,7 +65,7 @@ namespace Rogium_Legend.Tests.CSharp.Gameplay
             RoomType type = RoomType.Normal;
             int difficulty = 2;
             
-            RoomAsset room = rooms[rrg.LoadNext(type, difficulty)];
+            RoomAsset room = rooms[rrg.GetNext(type)];
             
             Assert.AreEqual(difficulty, room.DifficultyLevel);
         }
@@ -76,12 +76,12 @@ namespace Rogium_Legend.Tests.CSharp.Gameplay
             RoomType type = RoomType.Normal;
             int difficulty = 2;
             
-            RoomAsset room1 = rooms[rrg.LoadNext(type, difficulty)];
-            RoomAsset room2 = rooms[rrg.LoadNext(type, difficulty)];
-            RoomAsset room3 = rooms[rrg.LoadNext(type, difficulty)];
-            RoomAsset room4 = rooms[rrg.LoadNext(type, difficulty)];
-            RoomAsset room5 = rooms[rrg.LoadNext(type, difficulty)];
-            RoomAsset room6 = rooms[rrg.LoadNext(type, difficulty)];
+            RoomAsset room1 = rooms[rrg.GetNext(type)];
+            RoomAsset room2 = rooms[rrg.GetNext(type)];
+            RoomAsset room3 = rooms[rrg.GetNext(type)];
+            RoomAsset room4 = rooms[rrg.GetNext(type)];
+            RoomAsset room5 = rooms[rrg.GetNext(type)];
+            RoomAsset room6 = rooms[rrg.GetNext(type)];
             
             Assert.AreEqual(difficulty, room1.DifficultyLevel);
             Assert.AreEqual(difficulty, room2.DifficultyLevel);

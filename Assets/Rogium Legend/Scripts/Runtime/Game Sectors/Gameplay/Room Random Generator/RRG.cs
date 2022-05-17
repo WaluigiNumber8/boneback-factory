@@ -4,6 +4,8 @@ using System.Linq;
 using RedRats.Safety;
 using RedRats.Systems.Randomization;
 using Rogium.Editors.Rooms;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Rogium.Gameplay.AssetRandomGenerator
 {
@@ -21,13 +23,21 @@ namespace Rogium.Gameplay.AssetRandomGenerator
         private IRandomizer randomizerNormal;
         private IRandomizer randomizerRare;
         
+        private SortedDictionary<int, int> difficultyData;
         private int currentTier;
+        private int previousTier;
+        private int currentDifficultyPos;
 
-        public RRG(IList<RoomAsset> allRooms, int initialDifficultyTier)
+        /// <summary>
+        /// The Room Random Generator, used for determining, what room to load next, based on it's type and difficulty. 
+        /// </summary>
+        /// <param name="allRooms">All the rooms to work with.</param>
+        /// <param name="roomAmount">How many rooms to allot, until teh finish state is reached.</param>
+        public RRG(IList<RoomAsset> allRooms, int roomAmount)
         {
             SafetyNet.EnsureListIsNotNullOrEmpty(allRooms, "Campaign rooms to use for RRG");
             
-            currentTier = initialDifficultyTier;
+            difficultyData = new SortedDictionary<int, int>();
             
             normalRooms = new Dictionary<int, IList<int>>();
             rareRooms = new Dictionary<int, IList<int>>();
@@ -36,23 +46,67 @@ namespace Rogium.Gameplay.AssetRandomGenerator
             shopRooms = new Dictionary<int, int>();
             
             LoadUpLists(allRooms);
+            IdentifyRoomDifficulties(allRooms);
+            CalculateRoomCountPerTier(roomAmount);
+            
+            SafetyNet.EnsureIntIsBiggerOrEqualTo(difficultyData.Count, 1, "Detected Room Difficulty Tiers");
+            currentTier = difficultyData.Keys.First();
+            
             UpdateRandomizers();
         }
 
         /// <summary>
+        /// Complete the current room and move to the next one.
+        /// If no more rooms can be loaded, will return -1.
+        /// </summary>
+        /// <param name="nextRoomType">The next room type.</param>
+        public int GetNext(RoomType nextRoomType)
+        {
+            if (difficultyData.Count <= 0) return -1;
+            
+            RoomType nextType = nextRoomType;
+            difficultyData[currentTier]--;
+
+            //If next room is an exit, shorten the difficulty.
+            if (nextType == RoomType.Exit && difficultyData[currentTier] > 1) difficultyData[currentTier] = 1;
+            
+            if (difficultyData[currentTier] <= 0)
+            {
+                //If next room is rare, prolong the current tier.
+                if (nextRoomType == RoomType.Rare) difficultyData[currentTier]++;
+                else
+                {
+                    difficultyData.Remove(currentTier);
+
+                    //Check if no more tiers exist, then finish the game.
+                    if (difficultyData.Count <= 0) { return -1; }
+                    
+                    //Begin next tier.
+                    currentTier = difficultyData.First().Key;
+                    nextType = RoomType.Entrance;
+                }
+            }
+
+            //Try to finish current tier in exit room.
+            if (difficultyData[currentTier] == 1)
+            {
+                //If next room is rare, prolong the current tier.
+                if (nextRoomType == RoomType.Rare) difficultyData[currentTier]++;
+                else nextType = RoomType.Exit;
+            }
+
+            return LoadNext(nextType);
+        }
+        
+        /// <summary>
         /// Grab the index of the next room.
         /// </summary>
         /// <param name="roomType">The type of room to grab.</param>
-        /// <param name="difficultyTier">The difficulty level of the room.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentOutOfRangeException">Is thrown when the room type is not supported.</exception>
-        public int LoadNext(RoomType roomType, int difficultyTier)
+        private int LoadNext(RoomType roomType)
         {
-            if (currentTier != difficultyTier)
-            {
-                currentTier = difficultyTier;
-                UpdateRandomizers();
-            }
+            if (currentTier != previousTier) UpdateRandomizers();
             
             int index = roomType switch
             {
@@ -63,6 +117,7 @@ namespace Rogium.Gameplay.AssetRandomGenerator
                 RoomType.Shop => TryReturnShop(),
                 _ => throw new ArgumentOutOfRangeException($"The Room Type of '{roomType}' is not supported.")
             };
+            previousTier = currentTier;
             return index;
         }
 
@@ -163,14 +218,60 @@ namespace Rogium.Gameplay.AssetRandomGenerator
                 }
             }
         }
+        
+        /// <summary>
+        /// Determines how many rooms are in each difficulty tier.
+        /// </summary>
+        /// <param name="rooms">All rooms of the campaign.</param>
+        private void IdentifyRoomDifficulties(IList<RoomAsset> rooms)
+        {
+            foreach (RoomAsset room in rooms)
+            {
+                int level = room.DifficultyLevel;
+                if (!difficultyData.ContainsKey(level)) difficultyData.Add(level, 0);
+                difficultyData[level]++;
+            }
+        }
+        
+        /// <summary>
+        /// Calculates how many rooms will appear in each difficulty tier.
+        /// </summary>
+        /// <param name="campaignLength">How many rooms will be visited in the campaign</param>
+        private void CalculateRoomCountPerTier(int campaignLength)
+        {
+            SortedDictionary<int, int> updateDifficultyData = new();
+
+            int totalRooms = difficultyData.Values.Sum();
+            foreach (int tier in difficultyData.Keys)
+            {
+                if (TierHasNoRooms(normalRooms, tier))
+                {
+                    if (TierHasNoRooms(entranceRooms, tier) || TierHasNoRooms(exitRooms, tier))
+                    {
+                        updateDifficultyData.Add(tier, 1);
+                        continue;
+                    }
+                    updateDifficultyData.Add(tier, 2);
+                    continue;
+                }
+                
+                float percentageOfTotal = (float)difficultyData[tier] / totalRooms;
+                int roomAmount = Mathf.RoundToInt(percentageOfTotal * campaignLength);
+                roomAmount += Random.Range(0, 3);
+                updateDifficultyData.Add(tier, roomAmount);
+            }
+            
+            difficultyData = updateDifficultyData;
+        }
+        
 
         /// <summary>
         /// Update randomizers to current difficulty tier.
         /// </summary>
         private void UpdateRandomizers()
         {
-            if (!TierHasNoRooms(normalRooms)) randomizerNormal = new RandomizerRegion(0, normalRooms[currentTier].Count, 0.05f);
-            if (!TierHasNoRooms(rareRooms)) randomizerRare = new RandomizerRegion(0, rareRooms[currentTier].Count, 0.05f);
+            if (!TierHasNoRooms(normalRooms)) randomizerNormal = new RandomizerRegion(0, normalRooms[currentTier].Count);
+            if (!TierHasNoRooms(rareRooms)) randomizerRare = new RandomizerRegion(0, rareRooms[currentTier].Count);
         }
         
         /// <summary>
@@ -180,7 +281,7 @@ namespace Rogium.Gameplay.AssetRandomGenerator
         /// <returns>TRUE if nothing was found in the dictionary.</returns>
         private bool TierHasNoRooms(IDictionary<int, IList<int>> roomsContainer)
         {
-            return (!roomsContainer.ContainsKey(currentTier) || roomsContainer[currentTier] == null || roomsContainer[currentTier].Count <= 0);
+            return TierHasNoRooms(roomsContainer, currentTier);
         }
         
         /// <summary>
@@ -190,7 +291,29 @@ namespace Rogium.Gameplay.AssetRandomGenerator
         /// <returns>TRUE if nothing was found in the dictionary.</returns>
         private bool TierHasNoRooms(IDictionary<int, int> roomsContainer)
         {
-            return (!roomsContainer.ContainsKey(currentTier) || roomsContainer[currentTier] == -1);
+            return TierHasNoRooms(roomsContainer, currentTier);
+        }
+
+        /// <summary>
+        /// Checks if a dictionary does not contain a specific difficulty tier.
+        /// </summary>
+        /// <param name="roomsContainer">The dictionary of rooms.</param>
+        /// <param name="tier">The tier to check.</param>
+        /// <returns>TRUE if nothing was found in the dictionary.</returns>
+        private bool TierHasNoRooms(IDictionary<int, IList<int>> roomsContainer, int tier)
+        {
+            return (!roomsContainer.ContainsKey(tier) || roomsContainer[tier] == null || roomsContainer[tier].Count <= 0);
+        }
+
+        /// <summary>
+        /// Checks if a dictionary does not contain a specific difficulty tier.
+        /// </summary>
+        /// <param name="roomsContainer">The dictionary of rooms.</param>
+        /// <param name="tier">The tier to check for.</param>
+        /// <returns>TRUE if nothing was found in the dictionary.</returns>
+        private bool TierHasNoRooms(IDictionary<int, int> roomsContainer, int tier)
+        {
+            return (!roomsContainer.ContainsKey(tier) || roomsContainer[tier] == -1);
         }
     }
 }

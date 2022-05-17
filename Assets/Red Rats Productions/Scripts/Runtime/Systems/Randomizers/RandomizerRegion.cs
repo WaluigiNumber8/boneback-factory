@@ -18,15 +18,14 @@ namespace RedRats.Systems.Randomization
         private readonly int min;
         private readonly int max;
         private readonly float errorChance;
-        private readonly int leadway;
         private readonly int rerolls;
         
         private readonly int regions;
-        private readonly int regionMemoryPortion;
+        private readonly int regionMemoryPortion; // How much memory does each region receive.
 
-        private readonly int[] regionMemory;
-        private readonly int[] regionValuesMemory;
-        private readonly int[] regionValuesMemoryPositions;
+        private readonly int[] regionMemory; // Memory holding already use regions.
+        private readonly int[] regionValuesMemory; // Memory holding values used for each region.
+        private readonly int[] regionValuesMemoryPositions; // For each region, contains current position in the memory.
 
         private int regionMemoryPosition;
         private int allowedRerolls;
@@ -41,24 +40,22 @@ namespace RedRats.Systems.Randomization
         /// <param name="leadway">The higher this value is, the less the randomizer depends on it's memory.</param>
         public RandomizerRegion(int min, int max, float errorChance = 0f, int rerolls = 2, int leadway = 0)
         {
+            SafetyNet.EnsureIntIsBiggerThan(max, 0, "max amount");
             SafetyNet.EnsureIntIsBiggerOrEqualTo(leadway, 0, "leadway");
             SafetyNet.EnsureFloatIsInRange(errorChance, 0, 1, "Error Chance");
             
             this.min = min;
             this.max = max;
             this.errorChance = errorChance;
-            this.leadway = leadway;
             this.rerolls = rerolls;
             
             regions = (int)Mathf.Floor(Mathf.Sqrt(max));
             regionMemoryPortion = max / (regions+leadway);
 
-            if ((regions - leadway) <= 0) leadway = 0;
-            
+            regionMemory = InitArray(regions);
             regionValuesMemory = InitArray(regionMemoryPortion * regions);
-            regionValuesMemoryPositions = new int[regions - leadway];
+            regionValuesMemoryPositions = new int[regions];
             
-            regionMemory = InitArray(regions - leadway);
         }
 
         public int GetNext()
@@ -70,10 +67,12 @@ namespace RedRats.Systems.Randomization
         /// <summary>
         /// Tries to pick a value that is not saved in memory.
         /// </summary>
+        /// <param name="throwoff">The amount to throw off teh random value.</param>
         /// <returns>A new random value.</returns>
-        private int GetNextLoop()
+        private int GetNextLoop(int throwoff = 0)
         {
-            int newValue = Random.Range(min, max);
+            int newValue = Random.Range(min, max) + throwoff;
+            newValue = IntUtils.Wrap(newValue, min, max-1);
             int address = newValue % regions;
 
             foreach (int region in regionMemory)
@@ -114,7 +113,7 @@ namespace RedRats.Systems.Randomization
         {
             regionMemory[regionMemoryPosition] = regionAddress;
             regionMemoryPosition++;
-            regionMemoryPosition = IntUtils.Wrap(regionMemoryPosition, 0, regions - leadway - 1);
+            regionMemoryPosition = IntUtils.Wrap(regionMemoryPosition, 0, regions - 1);
             RegisterValue(regionAddress, value);
         }
         
@@ -126,13 +125,9 @@ namespace RedRats.Systems.Randomization
         private void RegisterValue(int regionAddress, int value)
         {
             int start = regionAddress * regionMemoryPortion;
-            try
-            {
-                regionValuesMemory[start + regionValuesMemoryPositions[regionAddress]] = value;
-                regionValuesMemoryPositions[regionAddress]++;
-                regionValuesMemoryPositions[regionAddress] = IntUtils.Wrap(regionValuesMemoryPositions[regionAddress], 0, regionMemoryPortion - leadway - 1);
-            }
-            catch (IndexOutOfRangeException) {}
+            regionValuesMemory[start + regionValuesMemoryPositions[regionAddress]] = value;
+            regionValuesMemoryPositions[regionAddress]++;
+            regionValuesMemoryPositions[regionAddress] = IntUtils.Wrap(regionValuesMemoryPositions[regionAddress], 0, regionMemoryPortion - 1);
         }
 
         /// <summary>
@@ -147,12 +142,13 @@ namespace RedRats.Systems.Randomization
             
             if (allowedRerolls <= 0)
             {
-                RegisterValue(value, address);
+                RegisterValue(address, value);
                 return value;
             }
 
             allowedRerolls--;
-            return GetNextLoop();
+            int throwoffValue = (allowedRerolls <= 0) ? Random.Range(-2, 3) : 0;
+            return GetNextLoop(throwoffValue);
         }
 
         /// <summary>

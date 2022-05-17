@@ -1,21 +1,18 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using RedRats.Core;
-using RedRats.Safety;
 using RedRats.Systems.ClockOfTheGame;
 using RedRats.Systems.GASCore;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Core;
 using Rogium.Editors.Rooms;
+using Rogium.Gameplay.AssetRandomGenerator;
 using Rogium.Gameplay.Entities.Player;
 using Rogium.Gameplay.InteractableObjects;
 using Rogium.Gameplay.Sequencer;
 using Rogium.Systems.Input;
 using Rogium.Systems.SceneTransferService;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Rogium.Gameplay.Core
 {
@@ -26,18 +23,13 @@ namespace Rogium.Gameplay.Core
     {
         [SerializeField] private GameplaySequencer sequencer;
         [SerializeField] private PlayerController player;
-        
-        private CampaignAsset currentCampaign;
 
-        private SortedDictionary<int, int> difficultyData;
-        private int currentTier;
-        private int currentDifficultyPos;
+        private RRG rrg;
+        private CampaignAsset currentCampaign;
 
         protected override void Awake()
         {
             base.Awake();
-            difficultyData = new SortedDictionary<int, int>();
-            
             try { currentCampaign = new CampaignAsset(SceneTransferOverseer.GetInstance().PickUpCampaign()); }
             catch (Exception) { currentCampaign = ExternalLibraryOverseer.Instance.GetCampaignsCopy[0]; }
             
@@ -61,16 +53,32 @@ namespace Rogium.Gameplay.Core
         /// </summary>
         public void PrepareGame()
         {
-            PrepareDifficultyTiers(currentCampaign.DataPack.Rooms, currentCampaign.AdventureLength);
-            
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(difficultyData.Count, 1, "Detected Room Difficulty Tiers");
-            
+            rrg = new RRG(currentCampaign.DataPack.Rooms, currentCampaign.AdventureLength);
             InputSystem.Instance.EnablePlayerMap();
-            sequencer.RunIntro(currentTier);
+            sequencer.RunIntro(rrg.GetNext(RoomType.Entrance));
         }
 
-        public void EndGame() => StartCoroutine(FinishGameCoroutine(Vector2.down * 10));
-        public void GameOverGame() => StartCoroutine(GameOverGameCoroutine());
+        public void EndGame(Vector2 direction)
+        {
+            StartCoroutine(FinishGameCoroutine(direction));
+            IEnumerator FinishGameCoroutine(Vector2 dir)
+            {
+                yield return sequencer.RunEndCoroutine(dir);
+                InputSystem.Instance.EnableUIMap();
+                GAS.SwitchScene(0);
+            }
+        }
+
+        public void GameOverGame()
+        {
+            StartCoroutine(GameOverGameCoroutine());
+            IEnumerator GameOverGameCoroutine()
+            {
+                InputSystem.Instance.EnableUIMap();
+                yield return sequencer.RunGameOverCoroutine();
+                GAS.SwitchScene(0);
+            }
+        }
 
         /// <summary>
         /// Prepares the game for opening of UI.
@@ -102,103 +110,12 @@ namespace Rogium.Gameplay.Core
         /// <param name="direction">The direction of entrance.</param>
         private void AdvanceRoom(RoomType nextRoomType, Vector2 direction)
         {
-            if (difficultyData.Count <= 0) return;
+            int nextRoomIndex = rrg.GetNext(nextRoomType);
             
-            RoomType nextType = nextRoomType;
-            difficultyData[currentTier]--;
-
-            if (difficultyData[currentTier] <= 0)
-            {
-                //If next room is rare, prolong the current tier.
-                if (nextRoomType == RoomType.Rare) difficultyData[currentTier]++;
-                else
-                {
-                    difficultyData.Remove(currentTier);
-
-                    //Check if no more tiers exist, then finish the game.
-                    if (difficultyData.Count <= 0)
-                    {
-                        StartCoroutine(FinishGameCoroutine(direction));
-                        return;
-                    }
-                    
-                    //Begin next tier.
-                    currentTier = difficultyData.First().Key;
-                    nextType = RoomType.Entrance;
-                }
-            }
-
-            //Try to finish current tier in exit room.
-            if (difficultyData[currentTier] == 1)
-            {
-                //If next room is rare, prolong the current tier.
-                if (nextRoomType == RoomType.Rare) difficultyData[currentTier]++;
-                else nextType = RoomType.Exit;
-            }
-            
-            sequencer.RunTransition(nextType, direction, currentTier);
+            if (nextRoomIndex == -1) EndGame(Vector2.up * 10); 
+            else sequencer.RunTransition(nextRoomIndex, direction);
         }
 
-        /// <summary>
-        /// Prepares how many rooms will be played for each difficulty.
-        /// </summary>
-        /// <param name="rooms">All rooms of the campaign.</param>
-        /// <param name="campaignLength">The amount of rooms to visit in the campaign.</param>
-        private void PrepareDifficultyTiers(IList<RoomAsset> rooms, int campaignLength)
-        {
-            IdentifyRoomDifficulties(rooms);
-            CalculateRoomCountPerTier(campaignLength);
-            currentTier = difficultyData.First().Key;
-        }
-
-        /// <summary>
-        /// Determines how many rooms are in each difficulty tier.
-        /// </summary>
-        /// <param name="rooms">All rooms of the campaign.</param>
-        private void IdentifyRoomDifficulties(IList<RoomAsset> rooms)
-        {
-            foreach (RoomAsset room in rooms)
-            {
-                int level = room.DifficultyLevel;
-                if (!difficultyData.ContainsKey(level)) difficultyData.Add(level, 0);
-                difficultyData[level]++;
-            }
-        }
-
-        /// <summary>
-        /// Calculates how many rooms will appear in each difficulty tier.
-        /// </summary>
-        /// <param name="campaignLength">How many rooms will be visited in the campaign</param>
-        private void CalculateRoomCountPerTier(int campaignLength)
-        {
-            SortedDictionary<int, int> updateDifficultyData = new();
-            int average = 1 / difficultyData.Keys.Count;
-            int normalRoomAmount = campaignLength / difficultyData.Keys.Count - 1;
-            
-            foreach (int tier in difficultyData.Keys)
-            {
-                int percentageOfTotal = difficultyData[tier] / difficultyData.Count;
-                int roomAmount = (percentageOfTotal < average) ? normalRoomAmount * percentageOfTotal : normalRoomAmount;
-                roomAmount += Random.Range(0, 3);
-                updateDifficultyData.Add(tier, roomAmount);
-            }
-            difficultyData = updateDifficultyData;
-        }
-
-        private IEnumerator FinishGameCoroutine(Vector2 direction)
-        {
-            InputSystem.Instance.EnableUIMap();
-            yield return sequencer.RunEndCoroutine(direction);
-            GAS.SwitchScene(0);
-        }
-
-        private IEnumerator GameOverGameCoroutine()
-        {
-            InputSystem.Instance.EnableUIMap();
-            yield return sequencer.RunGameOverCoroutine();
-            GAS.SwitchScene(0);
-        }
-        
         public CampaignAsset CurrentCampaign
         {
             get 
