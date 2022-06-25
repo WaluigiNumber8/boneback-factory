@@ -5,6 +5,7 @@ namespace Rogium.UserInterface.Interactables
     {
         DoNothing = 0,
         OpenOptionsMenu = 75,
+        OpenChangelog = 81,
 
         #region Open Selection Menus
         SelectionOpenPack = 1,
@@ -23,6 +24,7 @@ namespace Rogium.UserInterface.Interactables
         ReturnToAssetTypeSelection = 11,
         ReturnToMainMenuFromSelection = 12,
         ReturnToMainMenuFromOptions = 74,
+        ReturnToMainMenuFromChangelog = 82,
 
         #endregion
 
@@ -131,6 +133,6 @@ namespace Rogium.UserInterface.Interactables
         Play = 10000,
         TEST = 10001
         
-        //Latest : 80
+        //Latest : 82
     }   
 }

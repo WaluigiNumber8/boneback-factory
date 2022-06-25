@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using RedRats.Core;
 using RedRats.Safety;
 using UnityEngine;
@@ -33,43 +32,43 @@ namespace RedRats.Systems.Randomization
         /// <summary>
         /// Constructor.
         /// </summary>
-        /// <param name="min">Minimum allowed value to roll (inclusive).</param>
         /// <param name="max">Maximum allowed value to roll (exclusive).</param>
+        /// <param name="min">Minimum allowed value to roll (inclusive).</param>
         /// <param name="errorChance">A chance to throw a totally random value, not based on memory.</param>
         /// <param name="rerolls">he amount of times a bad value can be rerolled.</param>
         /// <param name="leadway">The higher this value is, the less the randomizer depends on it's memory.</param>
-        public RandomizerRegion(int min, int max, float errorChance = 0f, int rerolls = 2, int leadway = 0)
+        public RandomizerRegion(int max, int min = 0, float errorChance = 0f, int rerolls = 2, int leadway = 0)
         {
-            SafetyNet.EnsureIntIsBiggerThan(max, 0, "max amount");
+            SafetyNet.EnsureIntIsBiggerOrEqualTo(rerolls, 0, "rerolls");
             SafetyNet.EnsureIntIsBiggerOrEqualTo(leadway, 0, "leadway");
-            SafetyNet.EnsureFloatIsInRange(errorChance, 0, 1, "Error Chance");
+            SafetyNet.EnsureFloatIsInRange(errorChance, 0, 1, "error chance");
             
             this.min = min;
             this.max = max;
             this.errorChance = errorChance;
             this.rerolls = rerolls;
-            
-            regions = (int)Mathf.Floor(Mathf.Sqrt(max));
-            regionMemoryPortion = max / (regions+leadway);
+
+            int range = Mathf.Abs(max - min);
+            regions = (int)Mathf.Floor(Mathf.Sqrt(range));
+            regionMemoryPortion = range / (regions+leadway);
 
             regionMemory = InitArray(regions);
             regionValuesMemory = InitArray(regionMemoryPortion * regions);
             regionValuesMemoryPositions = new int[regions];
-            
         }
 
         public int GetNext()
         {
             allowedRerolls = rerolls;
-            return GetNextLoop();
+            return GetFromNextLoop();
         }
         
         /// <summary>
         /// Tries to pick a value that is not saved in memory.
         /// </summary>
-        /// <param name="throwoff">The amount to throw off teh random value.</param>
+        /// <param name="throwoff">The amount to throw off the random value.</param>
         /// <returns>A new random value.</returns>
-        private int GetNextLoop(int throwoff = 0)
+        private int GetFromNextLoop(int throwoff = 0)
         {
             int newValue = Random.Range(min, max) + throwoff;
             newValue = IntUtils.Wrap(newValue, min, max-1);
@@ -148,7 +147,7 @@ namespace RedRats.Systems.Randomization
 
             allowedRerolls--;
             int throwoffValue = (allowedRerolls <= 0) ? Random.Range(-2, 3) : 0;
-            return GetNextLoop(throwoffValue);
+            return GetFromNextLoop(throwoffValue);
         }
 
         /// <summary>
@@ -164,9 +163,5 @@ namespace RedRats.Systems.Randomization
         /// <param name="length">The length of the array.</param>
         /// <returns>An array of full of empty values.</returns>
         private int[] InitArray(int length) => Enumerable.Repeat(EmptyValue, length).ToArray();
-        
-        public int Min { get => min; }
-
-        public int Max { get => max; }
     }
 }

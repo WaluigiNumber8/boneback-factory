@@ -1,5 +1,4 @@
-﻿using System;
-using RedRats.Systems.GASCore;
+﻿using RedRats.Systems.GASCore;
 using RedRats.Safety;
 using RedRats.UI;
 using RedRats.UI.MenuSwitching;
@@ -59,6 +58,11 @@ namespace Rogium.Systems.GASExtension
             GAS.SwitchMenu(MenuType.OptionsMenu);
         }
 
+        public static void OpenChangelog()
+        {
+            GAS.SwitchMenu(MenuType.Changelog);
+        }
+        
         public static void ReturnToMainMenuOptions()
         {
             ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
@@ -81,6 +85,11 @@ namespace Rogium.Systems.GASExtension
             GASRogium.ChangeTheme(ThemeType.Blue);
         }
 
+        public static void ReturnToMainMenuChangelog()
+        {
+            GAS.SwitchMenu(MenuType.MainMenu);
+        }
+        
         private static void ReturnToPackSelectionMenu()
         {
             GASRogium.ChangeTheme(ThemeType.Blue);
@@ -562,7 +571,7 @@ namespace Rogium.Systems.GASExtension
         public static void CancelChangesPalette()
         {
             ModalWindow window = CanvasOverseer.GetInstance().ModalWindow;
-            window.OpenAsMessage("Do you really not want to save changes?", ThemeType.Blue,"Yes","No", OpenSelectionPalette, true);
+            window.OpenAsMessage("Do you really not want to save changes?", ThemeType.Purple,"Yes","No", OpenSelectionPalette, true);
         }
         
         public static void CancelChangesSprite()
@@ -690,6 +699,6 @@ namespace Rogium.Systems.GASExtension
             WeaponSelectMenu.GetInstance().Select(index);
         }
         #endregion
-        
+
     }
 }

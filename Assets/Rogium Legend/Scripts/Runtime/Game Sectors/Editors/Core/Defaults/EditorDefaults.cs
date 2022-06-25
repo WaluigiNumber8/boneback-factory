@@ -114,7 +114,7 @@ namespace Rogium.Editors.Core.Defaults
         public static readonly Sprite RoomIcon = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
         public static readonly Vector2Int RoomSize = new Vector2Int(15, 10);
         public const int RoomDifficulty = 0;
-        public const RoomType RoomType = Rooms.RoomType.Normal;
+        public const RoomType RoomType = Rooms.RoomType.Common;
         public const int RoomLightness = 255;
         
         //Tile

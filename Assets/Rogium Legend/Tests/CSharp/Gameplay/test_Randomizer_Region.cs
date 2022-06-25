@@ -11,7 +11,7 @@ public class test_Randomizer_Region
     [Test]
     public void generate_random_number_region()
     {
-        randomizerRegion = new RandomizerRegion(0, 4);
+        randomizerRegion = new RandomizerRegion(4);
         
         int randomValue = randomizerRegion.GetNext();
         randomValue = randomizerRegion.GetNext();
@@ -28,7 +28,7 @@ public class test_Randomizer_Region
     [Test]
     public void generator_works_with_small_numbers()
     {
-        randomizerRegion = new RandomizerRegion(0, 1);
+        randomizerRegion = new RandomizerRegion(1);
         
         int randomValue = randomizerRegion.GetNext();
         randomValue = randomizerRegion.GetNext();

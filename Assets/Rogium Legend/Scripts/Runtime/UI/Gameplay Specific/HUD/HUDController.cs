@@ -18,17 +18,19 @@ namespace Rogium.UserInterface.Gameplay.HUD
         
         private void OnEnable()
         {
-            SetHealthSliderMaxValue(healthBar.trackedReceiver.MaxHealth);
-            SetHealthSliderValue(healthBar.trackedReceiver.MaxHealth);
-            healthBar.trackedReceiver.OnDamageReceived += SetHealthSliderValue;
-            healthBar.trackedReceiver.OnMaxHealthChange += SetHealthSliderMaxValue;
+            SetHealthBarMaxValue(healthBar.trackedReceiver.MaxHealth);
+            SetHealthBarValue(healthBar.trackedReceiver.MaxHealth);
+            healthBar.trackedReceiver.OnDamageReceived += SetHealthBarValue;
+            healthBar.trackedReceiver.OnMaxHealthChange += SetHealthBarMaxValue;
         }
 
         private void OnDisable()
         {
-            healthBar.trackedReceiver.OnDamageReceived -= SetHealthSliderValue;
-            healthBar.trackedReceiver.OnMaxHealthChange -= SetHealthSliderMaxValue;
+            healthBar.trackedReceiver.OnDamageReceived -= SetHealthBarValue;
+            healthBar.trackedReceiver.OnMaxHealthChange -= SetHealthBarMaxValue;
         }
+
+        private void Update() => healthBar.Animate();
 
         /// <summary>
         /// Updates a weapon slot.
@@ -64,14 +66,40 @@ namespace Rogium.UserInterface.Gameplay.HUD
             }
         }
         
-        private void SetHealthSliderValue(int value) => healthBar.slider.value = value;
-        private void SetHealthSliderMaxValue(int value) => healthBar.slider.maxValue = value;
+        /// <summary>
+        /// Set the value of the health slider.
+        /// </summary>
+        /// <param name="value">The new value of the slider.</param>
+        public void SetHealthBarValue(int value) => healthBar.targetValue = value;
+            
+        /// <summary>
+        /// Set the max value of the health slider.
+        /// </summary>
+        /// <param name="value">The new max value of the slider.</param>
+        public void SetHealthBarMaxValue(int value)
+        {
+            healthBar.slider.maxValue = value;
+            if (healthBar.slider.value > healthBar.slider.maxValue) SetHealthBarValue(value);
+        }
+        
 
         [System.Serializable]
         public struct HealthBarInfo
         {
             public Slider slider;
+            public float lerpSpeed;
             public CharacteristicDamageReceiver trackedReceiver;
+
+            [HideInInspector] public float targetValue;
+
+            /// <summary>
+            /// Animate the health bar.
+            /// </summary>
+            public void Animate()
+            {
+                if (Math.Abs(slider.value - targetValue) < 0.001f) return;
+                slider.value = Mathf.Lerp(slider.value, targetValue, lerpSpeed * Time.deltaTime);
+            }
         }
 
         [System.Serializable]

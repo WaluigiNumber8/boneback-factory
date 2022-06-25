@@ -7,8 +7,5 @@
         /// </summary>
         /// <returns>A new random value.</returns>
         public int GetNext();
-        
-        public int Min { get; }
-        public int Max { get; }
     }
 }

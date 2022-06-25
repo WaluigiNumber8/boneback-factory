@@ -29,7 +29,7 @@ namespace Rogium_Legend.Tests.CSharp.Gameplay
         [Test]
         public void random_number_is_from_proper_difficulty_single()
         {
-            RoomType type = RoomType.Normal;
+            RoomType type = RoomType.Common;
             int difficulty = 0;
             
             RoomAsset room = rooms[rrg.GetNext(type)];
@@ -40,7 +40,7 @@ namespace Rogium_Legend.Tests.CSharp.Gameplay
         [Test]
         public void random_number_is_from_proper_difficulty_multiple()
         {
-            RoomType type = RoomType.Normal;
+            RoomType type = RoomType.Common;
             int difficulty = 0;
             
             RoomAsset room1 = rooms[rrg.GetNext(type)];
@@ -62,7 +62,7 @@ namespace Rogium_Legend.Tests.CSharp.Gameplay
         [Test]
         public void random_number_is_from_proper_difficulty_single_alt()
         {
-            RoomType type = RoomType.Normal;
+            RoomType type = RoomType.Common;
             int difficulty = 2;
             
             RoomAsset room = rooms[rrg.GetNext(type)];
@@ -73,7 +73,7 @@ namespace Rogium_Legend.Tests.CSharp.Gameplay
         [Test]
         public void random_number_is_from_proper_difficulty_multiple_alt()
         {
-            RoomType type = RoomType.Normal;
+            RoomType type = RoomType.Common;
             int difficulty = 2;
             
             RoomAsset room1 = rooms[rrg.GetNext(type)];

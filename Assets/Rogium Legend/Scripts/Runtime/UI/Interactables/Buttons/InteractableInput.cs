@@ -23,6 +23,9 @@ namespace Rogium.UserInterface.Interactables
                 case ButtonType.OpenOptionsMenu:
                     GASButtonActions.OpenOptionsMenu();
                     break;
+                case ButtonType.OpenChangelog:
+                    GASButtonActions.OpenChangelog();
+                    break;
 
                 #region Return from Menus
                 case ButtonType.ReturnToAssetTypeSelection:
@@ -32,6 +35,9 @@ namespace Rogium.UserInterface.Interactables
                     break;
                 case ButtonType.ReturnToMainMenuFromOptions:
                     GASButtonActions.ReturnToMainMenuOptions();
+                    break;
+                case ButtonType.ReturnToMainMenuFromChangelog:
+                    GASButtonActions.ReturnToMainMenuChangelog();
                     break;
                 #endregion
 

@@ -26,6 +26,8 @@ namespace Rogium.Systems.GridSystem
         [SerializeField] private GridPreviewerToolInfoAsset toolInfoAsset;
         
         private RectTransform gridTransform;
+        private Vector2 gridScaleOffset;
+        
         private ToolType currentTool = ToolType.Eraser;
         private bool inPermanentState;
         private bool allowMaterialSwitching;
@@ -39,6 +41,10 @@ namespace Rogium.Systems.GridSystem
             gridTransform = grid.GetComponent<RectTransform>();
             gridPreviewer.transform.position = gridTransform.anchoredPosition;
             gridPreviewer.transform.sizeDelta = grid.CellSize;
+            gridScaleOffset = new Vector2(gridTransform.rect.width / gridTransform.rect.height,
+                                          gridTransform.rect.height / gridTransform.rect.width);
+            gridPreviewer.transform.localScale = new Vector3(1f / (grid.Size.x+1), 1f / (grid.Size.y+1));
+            
             followCursor = true;
             lastColor = EditorDefaults.DefaultColor;
             
@@ -94,9 +100,9 @@ namespace Rogium.Systems.GridSystem
         {
             if (!gridPreviewer.gameObject.activeSelf) return;
             
-            float x = gridTransform.position.x + grid.CellSize.x * grid.SelectedPosition.x + grid.SelectedPosition.x * 0.1f;
-            float y = gridTransform.position.y + grid.CellSize.y * grid.SelectedPosition.y + grid.SelectedPosition.y * 0.1f;
-            gridPreviewer.transform.position = new Vector3(x, y, 0);
+            float x = gridTransform.position.x + gridScaleOffset.x + grid.SelectedPosition.x * grid.CellSize.x + grid.CellSize.x * 0.5f;
+            float y = gridTransform.position.y + gridScaleOffset.y + grid.SelectedPosition.y * grid.CellSize.y + grid.CellSize.y * 0.5f;
+            gridPreviewer.transform.position = new Vector3(x, y);
         }
 
         #region Visibility Control

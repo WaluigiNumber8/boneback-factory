@@ -6228,7 +6228,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar:
     slider: {fileID: 1161645281}
+    lerpSpeed: 15
     trackedReceiver: {fileID: 42737587976820106}
+    targetValue: 0
   weaponSlots:
     main: {fileID: 6215273503585334383}
     sub: {fileID: 1602381852}

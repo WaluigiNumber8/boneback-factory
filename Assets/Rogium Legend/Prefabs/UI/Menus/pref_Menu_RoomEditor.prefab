@@ -56,7 +56,7 @@ MonoBehaviour:
   gridSize: {x: 15, y: 10}
   layers:
   - layer: {fileID: 6812759865210400632}
-    outOfFocusColor: {r: 1, g: 1, b: 1, a: 1}
+    outOfFocusColor: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
   - layer: {fileID: 7923800112985959155}
     outOfFocusColor: {r: 0.16078432, g: 0.16078432, b: 0.16078432, a: 0.70980394}
   - layer: {fileID: 6880890917361977280}
@@ -6947,15 +6947,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3088074663842832337, guid: 2602ffe91c5449a4f8cf4d887c55d908, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3088074663842832337, guid: 2602ffe91c5449a4f8cf4d887c55d908, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3088074663842832337, guid: 2602ffe91c5449a4f8cf4d887c55d908, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3088074663842832337, guid: 2602ffe91c5449a4f8cf4d887c55d908, type: 3}
       propertyPath: m_AnchoredPosition.x

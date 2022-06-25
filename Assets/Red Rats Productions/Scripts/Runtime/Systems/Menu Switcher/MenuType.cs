@@ -18,5 +18,7 @@
         PaletteEditor = 8,
         SpriteEditor = 9,
         PropertyEditor = 10,
+        
+        Changelog = 11,
     }
 }
