@@ -16,12 +16,12 @@ namespace Rogium.Editors.PropertyEditor.Builders
         /// <summary>
         /// Builds the Important column with properties.
         /// </summary>
-        protected abstract void BuildImportant(Transform content);
+        protected abstract void BuildColumnImportant(Transform content);
         
         /// <summary>
         /// Builds the Property column with properties.
         /// </summary>
-        protected abstract void BuildProperty(Transform content);
+        protected abstract void BuildColumnProperty(Transform content);
 
     }
 }

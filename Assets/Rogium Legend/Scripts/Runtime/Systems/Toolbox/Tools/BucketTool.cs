@@ -106,10 +106,7 @@ namespace Rogium.Systems.Toolbox
             if (currentPos.x <= 0) return currentPos;
             
             T valueToTheLeft = GetFrom(currentPos + Vector2Int.left);
-            if (valueToTheLeft.CompareTo(valueToOverride) != 0)
-            {
-                return currentPos;
-            }
+            if (valueToTheLeft.CompareTo(valueToOverride) != 0) return currentPos;
 
             return GetLeftmostPosition(currentPos + Vector2Int.left);
         }

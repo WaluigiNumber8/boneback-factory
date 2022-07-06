@@ -9,9 +9,10 @@ using UnityEngine;
 namespace Rogium.Systems.GridSystem
 {
     /// <summary>
-    /// A type of grid the player can interact with via a pointer. Stores references to assets
+    /// A type of grid the player can interact with via a pointer. Stores references to assets.
+    /// Is OBSOLETE. Replaced by <see cref="InteractableEditorGrid"/>.
     /// </summary>
-    public class InteractableEditorGrid : InteractableEditorGridBase
+    public class InteractableEditorGridOBSOLETE : InteractableEditorGridBase
     {
         public virtual event Action<Vector2Int> OnClick;
 

@@ -21,7 +21,7 @@ namespace Rogium.Editors.Rooms
     /// </summary>
     public class RoomEditorOverseerMono : MonoSingleton<RoomEditorOverseerMono>
     {
-        [SerializeField] private InteractableEditorGridV2 grid;
+        [SerializeField] private InteractableEditorGrid grid;
         [SerializeField] private TabGroup partsDrawer;
         [SerializeField] private RoomPropertyColumn propertyColumn;
         

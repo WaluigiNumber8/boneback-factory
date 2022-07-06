@@ -131,7 +131,7 @@
       <method v="2" />
     </configuration>
     <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="D:\Program Flies DX\Unity\Editor\2021.3.0f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="D:\Program Flies DX\Unity\Editor\2021.3.3f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath &quot;D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend&quot; -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -394,7 +394,14 @@
       <workItem from="1655801602217" duration="1196000" />
       <workItem from="1655971761944" duration="6174000" />
       <workItem from="1656169226583" duration="2009000" />
-      <workItem from="1656177588846" duration="869000" />
+      <workItem from="1656177588846" duration="870000" />
+      <workItem from="1656240378070" duration="609000" />
+      <workItem from="1656319804845" duration="2467000" />
+      <workItem from="1656402138209" duration="7845000" />
+      <workItem from="1656486929133" duration="1019000" />
+      <workItem from="1656671300580" duration="5855000" />
+      <workItem from="1656860362793" duration="2370000" />
+      <workItem from="1656941757772" duration="1593000" />
     </task>
     <servers />
   </component>
@@ -502,19 +509,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="123" />
-        </line-breakpoint>
-        <line-breakpoint type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Editors/Property/Builders/PropertyEditorBuilderWeapon.cs</url>
-          <line>115</line>
-          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Editors\Property\Builders\PropertyEditorBuilderWeapon.cs" initialLine="115" containingFunctionPresentation="lambda expression inside method 'LoadProjectileSlots'">
-            <startOffsets>
-              <option value="6651" />
-            </startOffsets>
-            <endOffsets>
-              <option value="6708" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="152" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Editors/Rooms/Data/RoomAsset.cs</url>

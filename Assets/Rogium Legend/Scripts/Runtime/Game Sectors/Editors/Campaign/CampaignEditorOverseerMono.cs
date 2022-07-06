@@ -31,8 +31,17 @@ namespace Rogium.Editors.Campaign
             selectedAssets = new List<IAsset>();
         }
         
-        private void OnEnable() => selectionPicker.OnAssetSelect += PreparePropertyColumn;
-        private void OnDisable() => selectionPicker.OnAssetSelect -= PreparePropertyColumn;
+        private void OnEnable()
+        {
+            selectionPicker.OnAssetSelect += PreparePropertyColumn;
+            selectionPicker.OnAssetDeselect += PreparePropertyColumn;
+        }
+
+        private void OnDisable()
+        {
+            selectionPicker.OnAssetSelect -= PreparePropertyColumn;
+            selectionPicker.OnAssetDeselect -= PreparePropertyColumn;
+        }
 
         /// <summary>
         /// Uses the currently selected packs from the editor to combine them into a campaign.
@@ -41,6 +50,7 @@ namespace Rogium.Editors.Campaign
         {
             PreselectAssetsFrom(overseer.CurrentCampaign);
             SelectionPicker.OpenForPacks(UpdatePacksFromSelection, selectedAssets);
+            if (selectedAssets != null && selectedAssets.Count > 0) PreparePropertyColumn(selectedAssets[0]);
         }
 
         /// <summary>

@@ -49,7 +49,7 @@ namespace Rogium.Systems.ItemPalette
         /// <param name="index">The index of the item.</param>
         public void Select(int index)
         {
-            if (holders?.Count <= 0) return;
+            if (holders == null || holders.Count <= 0) return;
             SafetyNet.EnsureIndexWithingCollectionRange(index, holders, "Item Index");
             holders[index].SetToggle(true);
             OnSelect?.Invoke(holders[index].Asset);

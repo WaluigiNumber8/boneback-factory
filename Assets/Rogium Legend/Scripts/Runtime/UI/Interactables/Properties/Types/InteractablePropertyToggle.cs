@@ -29,7 +29,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             if (ui.emptySpace != null) ui.emptySpace.SetActive((titleText != ""));
             
             toggle.isOn = toggleState;
-            toggle.onValueChanged.AddListener(delegate { WhenChangeValue(toggle.isOn); });
+            toggle.onValueChanged.AddListener(_ => WhenChangeValue(toggle.isOn));
         }
 
         /// <summary>
@@ -37,6 +37,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// </summary>
         /// <param name="toggleSpriteSet">The toggle graphics.</param>
         /// <param name="checkmark">The checkmark for activated toggle.</param>
+        /// <param name="titleFont">The font of the title text.</param>
         public void UpdateTheme(InteractableInfo toggleSpriteSet, Sprite checkmark, FontInfo titleFont)
         {
             UIExtensions.ChangeInteractableSprites(toggle, ui.backgroundImage, toggleSpriteSet);

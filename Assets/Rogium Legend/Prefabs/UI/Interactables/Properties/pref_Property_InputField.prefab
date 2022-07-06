@@ -348,6 +348,10 @@ PrefabInstance:
       value: 0.796875
       objectReference: {fileID: 0}
     - target: {fileID: 1382075352184070466, guid: 97ab44cab1fe6d14595c7e82a41c4386, type: 3}
+      propertyPath: m_Text
+      value: Inputted Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382075352184070466, guid: 97ab44cab1fe6d14595c7e82a41c4386, type: 3}
       propertyPath: m_InputType
       value: 0
       objectReference: {fileID: 0}
@@ -374,6 +378,10 @@ PrefabInstance:
     - target: {fileID: 2263708435165106215, guid: 97ab44cab1fe6d14595c7e82a41c4386, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4532976497923236489, guid: 97ab44cab1fe6d14595c7e82a41c4386, type: 3}
+      propertyPath: m_text
+      value: "Inputted Text\u200B"
       objectReference: {fileID: 0}
     - target: {fileID: 5892933663807651592, guid: 97ab44cab1fe6d14595c7e82a41c4386, type: 3}
       propertyPath: m_Name

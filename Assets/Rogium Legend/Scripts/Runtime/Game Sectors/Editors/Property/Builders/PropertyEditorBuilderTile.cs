@@ -22,17 +22,17 @@ namespace Rogium.Editors.PropertyEditor.Builders
         {
             this.asset = asset;
             Clear();
-            BuildImportant(contentMain);
-            BuildProperty(contentSecond);
+            BuildColumnImportant(contentMain);
+            BuildColumnProperty(contentSecond);
         }
         
-        protected override void BuildImportant(Transform content)
+        protected override void BuildColumnImportant(Transform content)
         {
             b.BuildInputField("", asset.Title, content, asset.UpdateTitle);
             b.BuildAssetField("", AssetType.Sprite, asset, content, delegate(IAsset a) { asset.UpdateIcon(a.Icon);}, !PackEditorOverseer.Instance.CurrentPack.ContainsAnyTiles, ThemeType.Yellow);
         }
 
-        protected override void BuildProperty(Transform content)
+        protected override void BuildColumnProperty(Transform content)
         {
             b.BuildHeader("General", content);
             b.BuildDropdown("Type", Enum.GetNames(typeof(TileType)), (int)asset.Type, content, asset.UpdateTileType);

@@ -18,7 +18,7 @@ namespace Rogium.Editors.Sprites
     /// </summary>
     public class SpriteEditorOverseerMono : MonoSingleton<SpriteEditorOverseerMono>
     {
-        [SerializeField] private InteractableEditorGridV2 grid;
+        [SerializeField] private InteractableEditorGrid grid;
         [SerializeField] private ItemPaletteColor palette;
         
         private SpriteEditorOverseer editor;
@@ -115,11 +115,8 @@ namespace Rogium.Editors.Sprites
         /// Changes the current color used for drawing on the grid.
         /// </summary>
         /// <param name="slot">The new slot holding the color.</param>
-        private void ChangeCurrentColor(ColorSlot slot)
-        {
-            currentSlot = slot;
-        }
-        
+        private void ChangeCurrentColor(ColorSlot slot) => currentSlot = slot;
+
         /// <summary>
         /// Selects a color from the colors palette.
         /// </summary>

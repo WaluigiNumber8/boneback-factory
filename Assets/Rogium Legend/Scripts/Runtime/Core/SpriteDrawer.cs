@@ -132,9 +132,6 @@ namespace Rogium.Systems.GridSystem
         /// Resets all cells to their empty state.
         /// </summary>
         /// <param name="sprite">The sprite to clear.</param>
-        public void ClearAllCells(Sprite sprite)
-        {
-            sprite.texture.SetPixels(emptyPixels);
-        }
+        public void ClearAllCells(Sprite sprite) => sprite.texture.SetPixels(emptyPixels);
     }
 }

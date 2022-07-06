@@ -90,7 +90,8 @@ namespace Rogium.Gameplay.AssetRandomGenerator
             if (nextType != RoomType.Exit && difficultyData[currentTier] == 1)
             {
                 //If next room is rare, prolong the current tier.
-                if (nextRoomType == RoomType.Rare) difficultyData[currentTier]++;
+                if (nextRoomType == RoomType.Rare) 
+                    difficultyData[currentTier]++;
                 else nextType = RoomType.Exit;
             }
 

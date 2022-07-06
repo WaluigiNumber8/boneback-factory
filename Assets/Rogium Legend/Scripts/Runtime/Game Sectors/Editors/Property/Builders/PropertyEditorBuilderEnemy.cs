@@ -43,11 +43,11 @@ namespace Rogium.Editors.PropertyEditor.Builders
             packWeapons = currentPack.Weapons;
             
             Clear();
-            BuildImportant(contentMain);
-            BuildProperty(contentSecond);
+            BuildColumnImportant(contentMain);
+            BuildColumnProperty(contentSecond);
         }
         
-        protected override void BuildImportant(Transform content)
+        protected override void BuildColumnImportant(Transform content)
         {
             b.BuildInputField("", asset.Title, content, asset.UpdateTitle);
             
@@ -61,7 +61,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
             b.BuildDropdown("AI", aiOptions, (int)asset.AI, content, ProcessAIType);
         }
 
-        protected override void BuildProperty(Transform content)
+        protected override void BuildColumnProperty(Transform content)
         {
             b.BuildHeader("General", content);
             b.BuildInputField("Max Health", asset.MaxHealth.ToString(), content, s => asset.UpdateMaxHealth(int.Parse(s)), false, TMP_InputField.CharacterValidation.Integer);

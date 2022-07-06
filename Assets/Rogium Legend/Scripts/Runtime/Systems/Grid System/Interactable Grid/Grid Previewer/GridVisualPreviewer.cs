@@ -14,7 +14,7 @@ namespace Rogium.Systems.GridSystem
     /// </summary>
     public class GridVisualPreviewer : MonoBehaviour
     {
-        [SerializeField] private InteractableEditorGridV2 grid;
+        [SerializeField] private InteractableEditorGrid grid;
         [SerializeField] private ToolBoxUIManagerBase toolbox;
         [SerializeField] private PreviewerInfo gridPreviewer;
         

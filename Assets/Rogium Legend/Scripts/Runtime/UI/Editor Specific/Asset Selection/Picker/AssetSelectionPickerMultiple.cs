@@ -15,6 +15,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
     public class AssetSelectionPickerMultiple : MonoBehaviour, IAssetSelectionPicker
     {
         public event Action<IAsset> OnAssetSelect; 
+        public event Action<IAsset> OnAssetDeselect; 
 
         [SerializeField] private AssetSelectionOverseerMono assetSelection;
         
@@ -56,6 +57,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
         {
             if (!selectedAssets.ContainsValue(asset)) return;
             selectedAssets.RemoveAt(selectedAssets.FindIndexFirst(asset.ID));
+            OnAssetDeselect?.Invoke(asset);
         }
 
         /// <summary>
@@ -71,13 +73,18 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
         /// <summary>
         /// Enable all the assets from the list.
         /// </summary>
-        public void WhenAssetSelectAll() => cardToggleList.ToggleAll(true);
+        public void SelectAll() => cardToggleList.ToggleAll(true);
 
         /// <summary>
         /// Disable all the assets from the list.
         /// </summary>
-        public void WhenAssetDeselectAll() => cardToggleList.ToggleAll(false);
+        public void DeselectAll() => cardToggleList.ToggleAll(false);
 
+        /// <summary>
+        /// Enable a random amount of assets from the list.
+        /// </summary>
+        public void SelectRandom() => cardToggleList.ToggleRandom();
+        
         public void ConfirmSelection()
         {
             SafetyNet.EnsureIsNotNull(targetMethod, "Method to Run");

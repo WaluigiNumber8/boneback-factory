@@ -32,7 +32,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             if (ui.emptySpace != null) ui.emptySpace.SetActive((titleText != ""));
             
             dropdown.value = startingValue;
-            dropdown.onValueChanged.AddListener(delegate { whenValueChange(dropdown.value); });
+            dropdown.onValueChanged.AddListener(_ => whenValueChange(dropdown.value));
         }
 
         /// <summary>

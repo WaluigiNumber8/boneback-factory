@@ -17,9 +17,9 @@ namespace Rogium.Editors.PropertyEditor.Builders
             animationOptions = new[] { "No Animation", "Horizontal Flip", "Vertical Flip" };
         }
 
-        protected abstract override void BuildImportant(Transform content);
+        protected abstract override void BuildColumnImportant(Transform content);
 
-        protected abstract override void BuildProperty(Transform content);
+        protected abstract override void BuildColumnProperty(Transform content);
 
         protected void SwitchAnimationSlots(AnimationType type)
         {

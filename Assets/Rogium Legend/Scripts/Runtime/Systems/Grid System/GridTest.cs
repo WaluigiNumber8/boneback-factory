@@ -5,14 +5,14 @@ namespace Rogium.Systems.GridSystem
 {
     public class GridTest : MonoBehaviour
     {
-        private InteractableEditorGrid grid;
+        private InteractableEditorGridOBSOLETE grid;
         private RectTransform gridRect;
 
         private Vector2 interval;
         private void Start()
         {
             gridRect = GetComponent<RectTransform>();
-            grid = GetComponent<InteractableEditorGrid>();
+            grid = GetComponent<InteractableEditorGridOBSOLETE>();
 
             Vector2Int gridSize = grid.GridSize;
             interval = new Vector2((gridRect.rect.width - gridRect.position.x) / gridSize.x,

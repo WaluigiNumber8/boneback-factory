@@ -297,6 +297,7 @@ namespace Rogium.UserInterface.Interactables
                     GASButtonActions.CampaignEditorSelectNone();
                     break;
                 case ButtonType.CampaignEditorSelectRandom:
+                    GASButtonActions.CampaignEditorSelectRandom();
                     break;
                 #endregion
 

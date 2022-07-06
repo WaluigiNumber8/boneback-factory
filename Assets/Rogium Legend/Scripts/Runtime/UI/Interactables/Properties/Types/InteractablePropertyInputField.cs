@@ -32,7 +32,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             inputField.text = inputtedText;
             inputField.characterValidation = characterValidation;
             
-            inputField.onValueChanged.AddListener( _ => { whenValueChange(inputField.text); });
+            inputField.onValueChanged.AddListener( _ => whenValueChange(inputField.text));
         }
 
         /// <summary>

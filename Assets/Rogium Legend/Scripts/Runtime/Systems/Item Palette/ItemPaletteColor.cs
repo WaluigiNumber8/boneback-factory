@@ -38,8 +38,8 @@ namespace Rogium.Systems.ItemPalette
         /// <param name="index">The index of the item.</param>
         public void Select(int index)
         {
+            if (slots == null || slots.Count <= 0) return;
             SafetyNet.EnsureIndexWithingCollectionRange(index, slots, "List of Slots");
-            if (slots == null && slots.Count <= 0) return;
             slots[index].SetToggle(true);
         }
         

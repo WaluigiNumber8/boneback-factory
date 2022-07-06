@@ -1,5 +1,4 @@
 using System;
-using System.ServiceModel.Configuration;
 using RedRats.Core;
 using RedRats.Safety;
 using RedRats.UI.Core;

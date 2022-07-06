@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Rogium.Systems.Toolbox
 {
     /// <summary>
-    /// Houses all the tools used on an <see cref="InteractableEditorGrid"/>.
+    /// Houses all the tools used on an <see cref="InteractableEditorGridOBSOLETE"/>.
     /// </summary>
     public class ToolBox<T, TS> : IToolBox where T : IComparable
     {

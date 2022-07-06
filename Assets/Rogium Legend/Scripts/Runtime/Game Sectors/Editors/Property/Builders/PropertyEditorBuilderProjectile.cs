@@ -25,11 +25,11 @@ namespace Rogium.Editors.PropertyEditor.Builders
             this.asset = asset;
             currentPack = PackEditorOverseer.Instance.CurrentPack;
             Clear();
-            BuildImportant(contentMain);
-            BuildProperty(contentSecond);
+            BuildColumnImportant(contentMain);
+            BuildColumnProperty(contentSecond);
         }
         
-        protected override void BuildImportant(Transform content)
+        protected override void BuildColumnImportant(Transform content)
         {
             b.BuildInputField("", asset.Title, content, asset.UpdateTitle);
             animationBlock1Slot = b.CreateContentBlockVertical(content, (asset.AnimationType == AnimationType.SpriteSwap));
@@ -40,7 +40,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
             b.BuildAssetField("", AssetType.Sprite, asset, animationBlock2Slot.GetTransform, a => asset.UpdateIconAlt(a.Icon), !currentPack.ContainsAnySprites, ThemeType.Pink);
         }
 
-        protected override void BuildProperty(Transform content)
+        protected override void BuildColumnProperty(Transform content)
         {
             b.BuildHeader("General", content);
             b.BuildInputField("Damage", asset.BaseDamage.ToString(), content, s => asset.UpdateBaseDamage(int.Parse(s)),false, TMP_InputField.CharacterValidation.Integer);

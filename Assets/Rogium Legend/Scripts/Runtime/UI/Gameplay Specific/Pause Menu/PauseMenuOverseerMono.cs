@@ -1,11 +1,10 @@
 ﻿using RedRats.Core;
-using RedRats.Systems.ClockOfTheGame;
 using RedRats.UI;
 using Rogium.Gameplay.Core;
 using Rogium.Systems.Input;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace Rogium.UserInterface.Gameplay.PauseMenu
 {
@@ -33,7 +32,6 @@ namespace Rogium.UserInterface.Gameplay.PauseMenu
             InputSystem.Instance.UI.Menu.OnPress -= SwitchMenuState;
         }
 
-        public void SwitchVisibilityStatus() => SwitchVisibilityStatus(!pauseMenuObject.activeSelf);
         public void SwitchVisibilityStatus(bool isVisible) => pauseMenuObject.SetActive(isVisible);
 
         /// <summary>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using RedRats.Safety;
 using Rogium.UserInterface.Editors.AssetSelection;
+using UnityEngine;
 
 namespace Rogium.UserInterface.Core
 {
@@ -45,6 +46,21 @@ namespace Rogium.UserInterface.Core
                     continue;
                 }
                 toggles[i].SetToggle(!value);
+            }
+        }
+
+        /// <summary>
+        /// Toggle on a random amount of toggles.
+        /// </summary>
+        public void ToggleRandom()
+        {
+            ToggleAll(false);
+            int amount = Random.Range(1, toggles.Count+1);
+
+            for (int i = 0; i < amount; i++)
+            {
+                int index = Random.Range(0, toggles.Count);
+                toggles[index].SetToggle(true);
             }
         }
 

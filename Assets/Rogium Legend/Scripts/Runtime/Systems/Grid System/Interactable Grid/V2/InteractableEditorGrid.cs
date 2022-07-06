@@ -12,10 +12,10 @@ using UnityEngine.UI;
 namespace Rogium.Systems.GridSystem
 {
     /// <summary>
-    /// An upgraded version of <see cref="InteractableEditorGrid"/>.
+    /// A type of grid the player can interact with via a pointer.
     /// </summary>
     [RequireComponent(typeof(RectTransform))]
-    public class InteractableEditorGridV2 : InteractableEditorGridBase, IPointerClickHandler, IPointerMoveHandler, IPointerEnterHandler, IPointerExitHandler
+    public class InteractableEditorGrid : InteractableEditorGridBase, IPointerClickHandler, IPointerMoveHandler, IPointerEnterHandler, IPointerExitHandler
     {
         public event Action<Vector2Int> OnClick;
         public event Action<Vector2Int> OnClickAlternative;
@@ -36,15 +36,17 @@ namespace Rogium.Systems.GridSystem
         
         private void Awake()
         {
+            SafetyNet.EnsureIntIsBiggerOrEqualTo(gridSize.x, 1, "Grid Size X");
+            SafetyNet.EnsureIntIsBiggerOrEqualTo(gridSize.y, 1, "Grid Size Y");
             SafetyNet.EnsureIntIsBiggerThan(layers.Length, 0, "Layers amount");
             
             ttransform = GetComponent<RectTransform>();
+            drawer = new SpriteDrawer(gridSize, new Vector2Int(EditorDefaults.SpriteSize, EditorDefaults.SpriteSize), EditorDefaults.SpriteSize);
+            
             cellSize = new Vector2Int((int)ttransform.rect.width / gridSize.x, (int)ttransform.rect.height / gridSize.y);
             
-            drawer = new SpriteDrawer(gridSize, new Vector2Int(EditorDefaults.SpriteSize, EditorDefaults.SpriteSize), EditorDefaults.SpriteSize);
             PrepareLayers();
             SwitchActiveLayer(0);
-            
         }
 
         public void OnPointerEnter(PointerEventData eventData) => OnPointerComeIn?.Invoke();
@@ -141,6 +143,21 @@ namespace Rogium.Systems.GridSystem
         }
         
         /// <summary>
+        /// Prepares the grid layers.
+        /// </summary>
+        private void PrepareLayers()
+        {
+            foreach (LayerInfo info in layers)
+            {
+                info.layer.color = Color.white;
+                info.layer.sprite = RedRatBuilder.GenerateSprite(EditorDefaults.NoColor,
+                                                                 EditorDefaults.SpriteSize * gridSize.x,
+                                                                 EditorDefaults.SpriteSize * gridSize.y,
+                                                                 EditorDefaults.SpriteSize);
+            }
+        }
+        
+        /// <summary>
         /// Updates the currently selected grid position based on the pointer.
         /// </summary>
         private void RecalculateSelectedPosition(Vector2 pointerPos)
@@ -154,21 +171,6 @@ namespace Rogium.Systems.GridSystem
             y = Mathf.Clamp(y, 0, gridSize.y - 1);
             
             selectedPos = new Vector2Int(x, y);
-        }
-
-        /// <summary>
-        /// Prepares the grid layers.
-        /// </summary>
-        private void PrepareLayers()
-        {
-            foreach (LayerInfo info in layers)
-            {
-                info.layer.color = Color.white;
-                info.layer.sprite = RedRatBuilder.GenerateSprite(EditorDefaults.NoColor,
-                                                                 EditorDefaults.SpriteSize * gridSize.x,
-                                                                 EditorDefaults.SpriteSize * gridSize.y,
-                                                                 EditorDefaults.SpriteSize);
-            }
         }
 
         /// <summary>

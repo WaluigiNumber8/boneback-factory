@@ -4,7 +4,7 @@ using UnityEngine.UI;
 namespace Rogium.Systems.GridSystem
 {
     /// <summary>
-    /// Holds data for a <see cref="InteractableEditorGridV2"/> layer.
+    /// Holds data for a <see cref="InteractableEditorGrid"/> layer.
     /// </summary>
     [System.Serializable]
     public struct LayerInfo

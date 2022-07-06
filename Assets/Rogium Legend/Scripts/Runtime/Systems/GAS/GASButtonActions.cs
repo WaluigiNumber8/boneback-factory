@@ -618,17 +618,17 @@ namespace Rogium.Systems.GASExtension
         }
         public static void CampaignEditorSelectAll()
         {
-            CampaignEditorOverseerMono.GetInstance().SelectionPicker.WhenAssetSelectAll();
+            CampaignEditorOverseerMono.GetInstance().SelectionPicker.SelectAll();
         }
         
         public static void CampaignEditorSelectNone()
         {
-            CampaignEditorOverseerMono.GetInstance().SelectionPicker.WhenAssetDeselectAll();
+            CampaignEditorOverseerMono.GetInstance().SelectionPicker.DeselectAll();
         }
         
         public static void CampaignEditorSelectRandom()
         {
-            
+            CampaignEditorOverseerMono.GetInstance().SelectionPicker.SelectRandom();
         }
         #endregion
         

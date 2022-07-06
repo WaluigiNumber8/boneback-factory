@@ -33,11 +33,11 @@ namespace Rogium.Editors.PropertyEditor.Builders
             packProjectiles = currentPack.Projectiles;
             
             Clear();
-            BuildImportant(contentMain);
-            BuildProperty(contentSecond);
+            BuildColumnImportant(contentMain);
+            BuildColumnProperty(contentSecond);
         }
         
-        protected override void BuildImportant(Transform content)
+        protected override void BuildColumnImportant(Transform content)
         {
             b.BuildInputField("", asset.Title, content, asset.UpdateTitle);
             
@@ -51,7 +51,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
             b.BuildDropdown("Use Type", Enum.GetNames(typeof(WeaponUseType)), (int)asset.UseType, content, asset.UpdateUseType);
         }
 
-        protected override void BuildProperty(Transform content)
+        protected override void BuildColumnProperty(Transform content)
         {
             b.BuildHeader("General", content);
             b.BuildInputField("Damage", asset.BaseDamage.ToString(), content, s => asset.UpdateBaseDamage(int.Parse(s)), false, TMP_InputField.CharacterValidation.Integer);
@@ -74,7 +74,6 @@ namespace Rogium.Editors.PropertyEditor.Builders
             b.BuildInputField("Frame Duration", asset.FrameDuration.ToString(), content, s => asset.UpdateFrameDuration(int.Parse(s)));
             
             BuildProjectileContent(content);
-            
         }
         
         private void ProcessAnimationType(int animType)
@@ -215,9 +214,6 @@ namespace Rogium.Editors.PropertyEditor.Builders
                 b.BuildInputField("Angle Offset", asset.ProjectileIDs[11].AngleOffset.ToString(), projectileSlotsBlock.GetTransform, s => asset.UpdateProjectileIDsPosAngleOffset(11, int.Parse(s)), !currentPack.ContainsAnyProjectiles, TMP_InputField.CharacterValidation.Integer);
                 asset.UpdateProjectileIDsPosID(11, projectile.ID);
             }
-            
-            
-            
         }
     }
 }
