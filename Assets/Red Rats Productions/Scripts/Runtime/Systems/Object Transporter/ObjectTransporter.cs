@@ -26,7 +26,7 @@ namespace RedRats.Systems.ObjectTransport
         {
             this.transform = transform;
             destination = newDestination;
-            this.speed = speed * 0.01f;
+            this.speed = speed * Time.deltaTime;
 
             IEnumerator moveX = MoveOnX();
             IEnumerator moveY = MoveOnY();

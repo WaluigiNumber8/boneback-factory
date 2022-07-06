@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using RedRats.Core;
 using UnityEngine;
 
@@ -36,12 +35,15 @@ namespace Rogium.Gameplay.Entities
             rb = GetComponent<Rigidbody2D>();
         }
 
-        private void Start() => StartCoroutine(CalculateVelocity());
+        protected virtual void Update()
+        {
+            UpdateParameters();
+        }
 
         protected virtual void FixedUpdate()
         {
             DoForceMovement();
-            UpdateParameters();
+            
         }
 
         /// <summary>
@@ -122,7 +124,12 @@ namespace Rogium.Gameplay.Entities
         /// </summary>
         private void UpdateParameters()
         {
+            if (Time.frameCount % 3 != 0) return;
             if (!faceDirectionLocked) UpdateFaceDirection();
+            
+            velocityChange = (rb.position - previousPos) / Time.deltaTime;
+            currentSpeed = velocityChange.magnitude;
+            previousPos = rb.position;
         }
         
         /// <summary>
@@ -139,16 +146,16 @@ namespace Rogium.Gameplay.Entities
             Gizmos.color = Color.yellow;
         }
 
-        private IEnumerator CalculateVelocity()
-        {
-            while( Application.isPlaying )
-            {
-                previousPos = rb.position;
-                yield return new WaitForFixedUpdate();
-                velocityChange = (rb.position - previousPos) / Time.deltaTime;
-                currentSpeed = velocityChange.magnitude;
-            }
-        }
+        // private IEnumerator CalculateVelocity()
+        // {
+        //     while(Application.isPlaying)
+        //     {
+        //         previousPos = rb.position;
+        //         yield return new WaitForFixedUpdate();
+        //         velocityChange = (rb.position - previousPos) / Time.deltaTime;
+        //         currentSpeed = velocityChange.magnitude;
+        //     }
+        // }
         
         public Transform Transform { get => ttransform; }
         public Rigidbody2D Rigidbody { get => rb; }

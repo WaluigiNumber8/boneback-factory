@@ -12,7 +12,7 @@ namespace Rogium.Gameplay.Entities
     /// </summary>
     public class ProjectileController : EntityController
     {
-        private const int deathTime = 6;
+        private const int deathTime = 4;
         
         [SerializeField] private CharacteristicMove move;
         [SerializeField] private CharacteristicDamageGiver giver;
@@ -30,10 +30,11 @@ namespace Rogium.Gameplay.Entities
             lifeTimer = Time.time + 100000;
         }
 
-        private void Update()
+        protected override void FixedUpdate()
         {
             HandleMovement();
             HandleDeath();
+            base.FixedUpdate();
         }
 
         private void OnTriggerEnter2D(Collider2D col)
@@ -69,6 +70,7 @@ namespace Rogium.Gameplay.Entities
         public void ConstructMissing()
         {
             lifeTimer = Time.time + missingInfo.lifetime;
+            deathTimer = -1;
             pierceType = missingInfo.pierce;
             
             move.Construct(new CharMoveInfo(EditorDefaults.ProjectileFlightSpeed, EditorDefaults.ProjectileAcceleration, EditorDefaults.ProjectileBrakeForce));

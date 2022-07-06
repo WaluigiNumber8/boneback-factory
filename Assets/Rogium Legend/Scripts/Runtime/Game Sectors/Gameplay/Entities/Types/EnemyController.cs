@@ -45,8 +45,9 @@ namespace Rogium.Gameplay.Entities.Enemy
             damageReceiver.OnDeath -= Die;
         }
 
-        private void Update()
+        protected override void Update()
         {
+            base.Update();
             UseWeapon();
         }
 

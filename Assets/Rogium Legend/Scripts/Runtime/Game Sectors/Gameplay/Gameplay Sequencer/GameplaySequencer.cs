@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using RedRats.Safety;
 using Rogium.Gameplay.DataLoading;
 using Rogium.Gameplay.Entities.Player;
 using Rogium.Gameplay.InteractableObjects;
@@ -21,6 +22,7 @@ namespace Rogium.Gameplay.Sequencer
         [Space]
         [SerializeField] private float transportRunSpeed;
         [SerializeField] private float transportWalkSpeed;
+        [SerializeField] private Vector2 defaultStartPos;
 
         private SASCore sas;
         private IDictionary<Vector2, Vector2> startingPoints;
@@ -112,7 +114,12 @@ namespace Rogium.Gameplay.Sequencer
         //Decides on, which position will the start in the next room.
         private int GetPlayerStartPositionIndex()
         {
-            if (startingPoints.Count <= 0) throw new InvalidOperationException("The list of starting positions cannot be empty.");
+            if (startingPoints.Count <= 0)
+            {
+                SafetyNet.ThrowMessage("There cannot be 0 starting points in a room!");
+                startingPoints.Add(defaultStartPos, Vector2.down);
+                return 0;
+            }
             if (startingPoints.Count == 1) return 0;
             return Random.Range(0, startingPoints.Count);
         }
