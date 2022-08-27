@@ -1,4 +1,5 @@
 ﻿using Rogium.Editors.Core.Defaults;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Rogium.Editors.Core
@@ -8,9 +9,12 @@ namespace Rogium.Editors.Core
     /// </summary>
     public abstract class AssetBaseSO : ScriptableObject, IAsset
     {
-        [SerializeField] private string id;
-        [SerializeField] private string title;
+        [HorizontalGroup("Base", 60, LabelWidth = 64, MarginRight = 32), HideLabel, PreviewField(60)] 
         [SerializeField] private Sprite icon;
+        [VerticalGroup("Base/Right")]
+        [SerializeField]  private string id;
+        [VerticalGroup("Base/Right")]
+        [SerializeField]  private string title;
         
         private string author;
 

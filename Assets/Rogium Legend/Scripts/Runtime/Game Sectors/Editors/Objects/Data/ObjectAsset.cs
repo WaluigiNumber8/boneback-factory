@@ -1,5 +1,6 @@
 ﻿using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Rogium.Editors.Objects
@@ -10,7 +11,9 @@ namespace Rogium.Editors.Objects
     [CreateAssetMenu(fileName = "New Interactable Object", menuName = EditorDefaults.AssetMenuAssets + "Interactable Object", order = 1)]
     public class ObjectAsset : AssetBaseSO, IParameterAsset
     {
+        [VerticalGroup("Base/Right")]
         [SerializeField] private GameObject prefab;
+        [PropertySpace]
         [SerializeField] private ParameterInfo defaultParameters;
 
         #region Update Values

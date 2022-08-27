@@ -90,8 +90,6 @@
     <setting file="file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Systems/Theme System/ThemeUpdaterRogium.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/UI/Transition Canvas/TransitionCanvas.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.tilemap@1.0.0/Editor/GridPaintPaletteClipboard.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.3.0/InputSystem/Actions/InputActionMap.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.3.0/InputSystem/Plugins/UI/InputSystemUIInputModule.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_Dropdown.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventSystem.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/ExecuteEvents.cs" root0="SKIP_HIGHLIGHTING" />
@@ -116,7 +114,6 @@
   &quot;keyToString&quot;: {
     &quot;Discover.Launch.Via.Unity&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;rider.run.widget.enabled.cache&quot;: &quot;false&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -131,17 +128,17 @@
       <method v="2" />
     </configuration>
     <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="D:\Program Flies DX\Unity\Editor\2021.3.5f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="D:\Program Flies DX\Unity\Editor\2021.3.8f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath &quot;D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend&quot; -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="27784">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="27784" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -404,6 +401,17 @@
       <workItem from="1656941757772" duration="1593000" />
       <workItem from="1657097687964" duration="3201000" />
       <workItem from="1657114027007" duration="3466000" />
+      <workItem from="1657185551259" duration="1293000" />
+      <workItem from="1657478015221" duration="1892000" />
+      <workItem from="1660044263788" duration="365000" />
+      <workItem from="1660558504919" duration="171000" />
+      <workItem from="1660558726378" duration="636000" />
+      <workItem from="1661098291514" duration="213000" />
+      <workItem from="1661165809098" duration="1528000" />
+      <workItem from="1661515153749" duration="756000" />
+      <workItem from="1661530859993" duration="596000" />
+      <workItem from="1661597239076" duration="1829000" />
+      <workItem from="1661613511928" duration="4478000" />
     </task>
     <servers />
   </component>
@@ -421,27 +429,13 @@
         <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Tests/CSharp/Editors/test_Pack_Library.cs</url>
           <line>43</line>
-          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Tests\CSharp\Editors\test_Pack_Library.cs" initialLine="42" containingFunctionPresentation="method 'create_new_pack_and_check_if_data_is_correct'">
-            <startOffsets>
-              <option value="1110" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1141" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Tests\CSharp\Editors\test_Pack_Library.cs" initialLine="42" containingFunctionPresentation="method 'create_new_pack_and_check_if_data_is_correct'" />
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Tests/CSharp/Editors/test_Pack_Save_and_Load.cs</url>
           <line>48</line>
-          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Tests\CSharp\Editors\test_Pack_Save_and_Load.cs" initialLine="47" containingFunctionPresentation="method 'save_pack_to_storage'">
-            <startOffsets>
-              <option value="1373" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1404" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Tests\CSharp\Editors\test_Pack_Save_and_Load.cs" initialLine="47" containingFunctionPresentation="method 'save_pack_to_storage'" />
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint type="DotNet Breakpoints">
@@ -489,40 +483,19 @@
         <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Systems/Grid System/ObjectGrid.cs</url>
           <line>96</line>
-          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Systems\Grid System\ObjectGrid.cs" initialLine="95" containingFunctionPresentation="method 'ClearAllCells'">
-            <startOffsets>
-              <option value="3087" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3103" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Systems\Grid System\ObjectGrid.cs" initialLine="95" containingFunctionPresentation="method 'ClearAllCells'" />
           <option name="timeStamp" value="112" />
         </line-breakpoint>
         <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Editors/Core/Assets/AnimatedAssetBase.cs</url>
           <line>23</line>
-          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Editors\Core\Assets\AnimatedAssetBase.cs" initialLine="23" containingFunctionPresentation="method 'UpdateIconAlt'">
-            <startOffsets>
-              <option value="759" />
-            </startOffsets>
-            <endOffsets>
-              <option value="779" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Editors\Core\Assets\AnimatedAssetBase.cs" initialLine="23" containingFunctionPresentation="method 'UpdateIconAlt'" />
           <option name="timeStamp" value="123" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Editors/Rooms/Data/RoomAsset.cs</url>
           <line>133</line>
-          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Editors\Rooms\Data\RoomAsset.cs" initialLine="133" containingFunctionPresentation="method 'UpdateLightness'">
-            <startOffsets>
-              <option value="5863" />
-            </startOffsets>
-            <endOffsets>
-              <option value="5932" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Editors\Rooms\Data\RoomAsset.cs" initialLine="133" containingFunctionPresentation="method 'UpdateLightness'" />
           <option name="timeStamp" value="157" />
         </line-breakpoint>
       </breakpoints>

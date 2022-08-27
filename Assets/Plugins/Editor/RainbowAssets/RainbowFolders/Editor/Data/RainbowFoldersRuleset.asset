@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1979333959, guid: 3bcb0d35ddf493043aaa14715c4ae5dc, type: 3}
+  m_Script: {fileID: -1467165876, guid: 3bcb0d35ddf493043aaa14715c4ae5dc, type: 3}
   m_Name: RainbowFoldersRuleset
   m_EditorClassIdentifier: 
   Rules:
@@ -33,9 +33,9 @@ MonoBehaviour:
     SmallIcon: {fileID: 0}
     LargeIcon: {fileID: 0}
     IsIconRecursive: 1
-    BackgroundType: 40
+    BackgroundType: 30
     BackgroundTexture: {fileID: 0}
-    IsBackgroundRecursive: 1
+    IsBackgroundRecursive: 0
     IsHidden: 0
   - Type: 0
     Key: Editor
@@ -116,8 +116,8 @@ MonoBehaviour:
     IconType: 2070
     SmallIcon: {fileID: 0}
     LargeIcon: {fileID: 0}
-    IsIconRecursive: 0
-    BackgroundType: 0
+    IsIconRecursive: 1
+    BackgroundType: 150
     BackgroundTexture: {fileID: 0}
     IsBackgroundRecursive: 0
     IsHidden: 0
@@ -153,7 +153,7 @@ MonoBehaviour:
     SmallIcon: {fileID: 0}
     LargeIcon: {fileID: 0}
     IsIconRecursive: 1
-    BackgroundType: 140
+    BackgroundType: 130
     BackgroundTexture: {fileID: 0}
     IsBackgroundRecursive: 0
     IsHidden: 0
@@ -170,8 +170,20 @@ MonoBehaviour:
     IsBackgroundRecursive: 0
     IsHidden: 0
   - Type: 0
-    Key: Resources
+    Key: RainbowFolders
     Ordinal: 13
+    Priority: 0
+    IconType: 2130
+    SmallIcon: {fileID: 0}
+    LargeIcon: {fileID: 0}
+    IsIconRecursive: 0
+    BackgroundType: 0
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
+  - Type: 0
+    Key: Resources
+    Ordinal: 14
     Priority: 0
     IconType: 2140
     SmallIcon: {fileID: 0}
@@ -183,7 +195,7 @@ MonoBehaviour:
     IsHidden: 0
   - Type: 0
     Key: Scenes
-    Ordinal: 14
+    Ordinal: 15
     Priority: 0
     IconType: 2150
     SmallIcon: {fileID: 0}
@@ -191,23 +203,23 @@ MonoBehaviour:
     IsIconRecursive: 1
     BackgroundType: 50
     BackgroundTexture: {fileID: 0}
-    IsBackgroundRecursive: 1
+    IsBackgroundRecursive: 0
     IsHidden: 0
   - Type: 0
     Key: Scripts
-    Ordinal: 15
+    Ordinal: 16
     Priority: 0
     IconType: 2160
     SmallIcon: {fileID: 0}
     LargeIcon: {fileID: 0}
     IsIconRecursive: 1
-    BackgroundType: 180
+    BackgroundType: 190
     BackgroundTexture: {fileID: 0}
     IsBackgroundRecursive: 0
     IsHidden: 0
   - Type: 0
     Key: Shaders
-    Ordinal: 16
+    Ordinal: 17
     Priority: 0
     IconType: 2170
     SmallIcon: {fileID: 0}
@@ -219,7 +231,7 @@ MonoBehaviour:
     IsHidden: 0
   - Type: 0
     Key: Terrains
-    Ordinal: 17
+    Ordinal: 18
     Priority: 0
     IconType: 2180
     SmallIcon: {fileID: 0}
@@ -231,7 +243,7 @@ MonoBehaviour:
     IsHidden: 0
   - Type: 0
     Key: Textures
-    Ordinal: 18
+    Ordinal: 19
     Priority: 0
     IconType: 2190
     SmallIcon: {fileID: 0}
@@ -243,7 +255,7 @@ MonoBehaviour:
     IsHidden: 0
   - Type: 0
     Key: Physics
-    Ordinal: 19
+    Ordinal: 20
     Priority: 0
     IconType: 2090
     SmallIcon: {fileID: 0}
@@ -255,7 +267,7 @@ MonoBehaviour:
     IsHidden: 0
   - Type: 0
     Key: Flares
-    Ordinal: 20
+    Ordinal: 21
     Priority: 0
     IconType: 2050
     SmallIcon: {fileID: 0}
@@ -267,7 +279,7 @@ MonoBehaviour:
     IsHidden: 0
   - Type: 0
     Key: Android
-    Ordinal: 21
+    Ordinal: 22
     Priority: 0
     IconType: 3000
     SmallIcon: {fileID: 0}
@@ -279,7 +291,7 @@ MonoBehaviour:
     IsHidden: 0
   - Type: 0
     Key: iOS
-    Ordinal: 22
+    Ordinal: 23
     Priority: 0
     IconType: 3010
     SmallIcon: {fileID: 0}
@@ -291,7 +303,7 @@ MonoBehaviour:
     IsHidden: 0
   - Type: 0
     Key: Windows
-    Ordinal: 23
+    Ordinal: 24
     Priority: 0
     IconType: 3040
     SmallIcon: {fileID: 0}
@@ -303,7 +315,7 @@ MonoBehaviour:
     IsHidden: 0
   - Type: 0
     Key: Mac
-    Ordinal: 24
+    Ordinal: 25
     Priority: 0
     IconType: 3020
     SmallIcon: {fileID: 0}
@@ -315,7 +327,7 @@ MonoBehaviour:
     IsHidden: 0
   - Type: 0
     Key: WebGL
-    Ordinal: 25
+    Ordinal: 26
     Priority: 0
     IconType: 3030
     SmallIcon: {fileID: 0}
@@ -326,32 +338,8 @@ MonoBehaviour:
     IsBackgroundRecursive: 0
     IsHidden: 0
   - Type: 1
-    Key: Assets/Rogium Legend/Assets
-    Ordinal: 26
-    Priority: 0
-    IconType: 1090
-    SmallIcon: {fileID: 0}
-    LargeIcon: {fileID: 0}
-    IsIconRecursive: 1
-    BackgroundType: 90
-    BackgroundTexture: {fileID: 0}
-    IsBackgroundRecursive: 0
-    IsHidden: 0
-  - Type: 1
-    Key: Assets/Rogium Legend/Sprites
-    Ordinal: 27
-    Priority: 0
-    IconType: 2190
-    SmallIcon: {fileID: 0}
-    LargeIcon: {fileID: 0}
-    IsIconRecursive: 1
-    BackgroundType: 30
-    BackgroundTexture: {fileID: 0}
-    IsBackgroundRecursive: 0
-    IsHidden: 0
-  - Type: 1
     Key: Assets/Rogium Legend
-    Ordinal: 28
+    Ordinal: 27
     Priority: 0
     IconType: 2130
     SmallIcon: {fileID: 0}
@@ -362,43 +350,55 @@ MonoBehaviour:
     IsBackgroundRecursive: 0
     IsHidden: 0
   - Type: 1
-    Key: Assets/Tests
+    Key: Assets/Rogium Legend/Sprites
+    Ordinal: 28
+    Priority: 0
+    IconType: 2190
+    SmallIcon: {fileID: 0}
+    LargeIcon: {fileID: 0}
+    IsIconRecursive: 1
+    BackgroundType: 40
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
+  - Type: 1
+    Key: Assets/Rogium Legend/Tests
     Ordinal: 29
     Priority: 0
     IconType: 2120
     SmallIcon: {fileID: 0}
     LargeIcon: {fileID: 0}
     IsIconRecursive: 1
-    BackgroundType: 150
+    BackgroundType: 160
     BackgroundTexture: {fileID: 0}
     IsBackgroundRecursive: 0
     IsHidden: 0
   - Type: 1
-    Key: Assets/Rogium Legend/Tiles
+    Key: Assets/Red Rats Productions
     Ordinal: 30
     Priority: 0
-    IconType: 1200
+    IconType: 2130
     SmallIcon: {fileID: 0}
     LargeIcon: {fileID: 0}
-    IsIconRecursive: 1
-    BackgroundType: 190
+    IsIconRecursive: 0
+    BackgroundType: 0
     BackgroundTexture: {fileID: 0}
     IsBackgroundRecursive: 0
     IsHidden: 0
   - Type: 1
-    Key: Assets/Tests Unity
+    Key: Assets/Rogium Legend/Assets
     Ordinal: 31
     Priority: 0
-    IconType: 2120
+    IconType: 1090
     SmallIcon: {fileID: 0}
     LargeIcon: {fileID: 0}
     IsIconRecursive: 1
-    BackgroundType: 140
+    BackgroundType: 90
     BackgroundTexture: {fileID: 0}
     IsBackgroundRecursive: 0
     IsHidden: 0
   - Type: 1
-    Key: Assets/Boubak Productions
+    Key: Assets/RedRat Productions
     Ordinal: 32
     Priority: 0
     IconType: 2130
@@ -410,25 +410,13 @@ MonoBehaviour:
     IsBackgroundRecursive: 0
     IsHidden: 0
   - Type: 1
-    Key: Assets/Rogium Legend/Tests
+    Key: Assets/AllIn1SpriteShader
     Ordinal: 33
     Priority: 0
-    IconType: 2120
+    IconType: 2100
     SmallIcon: {fileID: 0}
     LargeIcon: {fileID: 0}
     IsIconRecursive: 1
-    BackgroundType: 140
-    BackgroundTexture: {fileID: 0}
-    IsBackgroundRecursive: 0
-    IsHidden: 0
-  - Type: 1
-    Key: Assets/Red Rats Productions
-    Ordinal: 34
-    Priority: 0
-    IconType: 2130
-    SmallIcon: {fileID: 0}
-    LargeIcon: {fileID: 0}
-    IsIconRecursive: 0
     BackgroundType: 0
     BackgroundTexture: {fileID: 0}
     IsBackgroundRecursive: 0
