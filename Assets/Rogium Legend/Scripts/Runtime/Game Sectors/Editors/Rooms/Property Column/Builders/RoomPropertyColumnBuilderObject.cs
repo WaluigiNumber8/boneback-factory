@@ -74,9 +74,10 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         {
             IList<WeaponAsset> weapons = PackEditorOverseer.Instance.CurrentPack.Weapons;
             IAsset startValue = weapons.FindValueFirstOrReturnFirstOrDefault(data.Parameters.stringValue1);
-            bool isDisabled = (startValue == default);
+            bool noWeaponsExist = (startValue == default);
 
-            b.BuildAssetField("Weapon", AssetType.Weapon, startValue, contentMain, asset => data.UpdateStringValue1(asset.ID));
+            if (!noWeaponsExist) data.UpdateStringValue1(startValue.ID);
+            b.BuildAssetField("Weapon", AssetType.Weapon, startValue, contentMain, asset => data.UpdateStringValue1(asset.ID), noWeaponsExist);
             b.BuildToggle("Player only", data.Parameters.boolValue1, contentMain, data.UpdateBoolValue1);
         }
         

@@ -71,6 +71,7 @@ namespace Rogium.Editors.Campaign
         private void UpdatePacksFromSelection(IList<IAsset> finalSelectedAssets)
         {
             SafetyNet.EnsureListIsNotNullOrEmpty(finalSelectedAssets, "Selected Packs");
+            
             IList<PackAsset> finalSelectedPacks = finalSelectedAssets.Cast<PackAsset>().ToList();
             overseer.UpdateDataPack(finalSelectedPacks);
         }

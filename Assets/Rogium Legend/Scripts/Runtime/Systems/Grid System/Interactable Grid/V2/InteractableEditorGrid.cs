@@ -137,8 +137,8 @@ namespace Rogium.Systems.GridSystem
         public void SwitchActiveLayer(int layerIndex)
         {
             SafetyNet.EnsureIndexWithingCollectionRange(layerIndex, layers, nameof(layers));
+            
             activeLayer = layers[layerIndex].layer;
-
             RefreshLayerColors(layerIndex);
         }
         
@@ -181,13 +181,7 @@ namespace Rogium.Systems.GridSystem
         {
             for (int i = 0; i < layers.Length; i++)
             {
-                if (i == layerIndex)
-                {
-                    layers[i].layer.color = Color.white;
-                    continue;
-                }
-
-                layers[i].layer.color = layers[i].outOfFocusColor;
+                layers[i].layer.color = (i == layerIndex) ? Color.white : layers[i].outOfFocusColor;
             }
         }
         

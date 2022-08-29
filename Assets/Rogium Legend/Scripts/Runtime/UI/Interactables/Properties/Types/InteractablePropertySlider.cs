@@ -1,6 +1,5 @@
 ﻿using System;
 using RedRats.UI.Core;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 

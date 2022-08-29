@@ -56,7 +56,7 @@ namespace Rogium.Systems.IconBuilders
                     int posValue = grid.GetValue(x, y);
 
                     //When color ID is bigger than the color array.
-                    if (posValue >= colors.Length - 1)
+                    if (posValue > colors.Length - 1)
                     {
                         tex.SetPixel(x, y, EditorDefaults.MissingColor);
                         continue;

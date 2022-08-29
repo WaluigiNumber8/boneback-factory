@@ -14,8 +14,8 @@ namespace Rogium.Editors.Sprites
         public event Action OnCompleteEditingBefore, OnCompleteEditingAfter;
         public event Action<SpriteAsset, int> OnCompleteEditing;
 
-        private IconBuilder iconBuilder;
-        private PalettePicker palettePicker;
+        private readonly IconBuilder iconBuilder;
+        private readonly PalettePicker palettePicker;
         
         private SpriteAsset currentAsset;
         private int myIndex;
@@ -88,7 +88,7 @@ namespace Rogium.Editors.Sprites
             get 
             {
                 if (currentAsset == null) throw new MissingReferenceException("Current Sprite has not been set. Did you forget to activate the editor?");
-                return this.currentAsset;
+                return currentAsset;
             } 
         }
         

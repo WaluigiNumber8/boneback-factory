@@ -12,7 +12,7 @@ namespace RedRats.UI.InputFields
     {
         public event Action<Color> OnValueChanged;
 
-        [SerializeField] private bool addHash = false;
+        [SerializeField] private bool addHash;
         
         private TMP_InputField inputField;
         private bool ignoreValueChange;
@@ -21,13 +21,11 @@ namespace RedRats.UI.InputFields
         private void OnEnable()
         {
             inputField.onSubmit.AddListener(ProcessValue);
-            inputField.onDeselect.AddListener(ProcessValue);
         }
 
         private void OnDisable()
         {
             inputField.onSubmit.RemoveListener(ProcessValue);
-            inputField.onDeselect.RemoveListener(ProcessValue);
         }
 
         /// <summary>
