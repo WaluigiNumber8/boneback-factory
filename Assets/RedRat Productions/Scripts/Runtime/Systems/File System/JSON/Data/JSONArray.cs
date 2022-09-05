@@ -1,28 +1,27 @@
 ﻿using System;
 using System.Linq;
+using RedRats.Safety;
 
-namespace RedRats.Systems.FileSystem.Serialization
+namespace RedRats.Systems.FileSystem.JSON.Serialization
 {
     /// <summary>
-    /// A serialized array, ready for saving to external storage.
+    /// The <see cref="Array"/> object converted to JSON-understandable format.
     /// </summary>
     /// <typeparam name="T">Unity readable asset.</typeparam>
     /// <typeparam name="TS">Serialized form of the asset.</typeparam>
     [Serializable]
-    public class SerializedArray<T, TS> : ISerializedObject<T[]>
+    public class JSONArray<T, TS> : IEncodedObject<T[]>
     {
-        private TS[] serializedArray;
-        private readonly Func<TS, T> newDeserializedObject;
+        public TS[] serializedArray;
+        public Func<TS, T> newDeserializedObject;
 
         /// <summary>
         /// The Constructor.
         /// </summary>
         /// <param name="objectArray">The array we want to serialize.</param>
         /// <param name="newSerializedObject">A method creating the Serialized Data Object this list is going to contain.</param>
-        /// <param name="newDeserializedObject">A method that creates a deserialized form of the object.</param>
-        public SerializedArray(T[] objectArray, Func<T,TS> newSerializedObject, Func<TS,T> newDeserializedObject)
+        public JSONArray(T[] objectArray, Func<T,TS> newSerializedObject)
         {
-            this.newDeserializedObject = newDeserializedObject;
             serializedArray = new TS[objectArray.Length];
             for (int i = 0; i < objectArray.Length; i++)
             {
@@ -32,11 +31,21 @@ namespace RedRats.Systems.FileSystem.Serialization
         }
 
         /// <summary>
+        /// Sets the method for decoding the object.
+        /// </summary>
+        /// <param name="newDeserializedObject">The method that creates a decoded object from the encoded one.</param>
+        public void SetDecodingMethod(Func<TS, T> newDeserializedObject)
+        {
+            this.newDeserializedObject = newDeserializedObject;
+        }
+
+        /// <summary>
         /// Deserializes the array into a Unity readable format.
         /// </summary>
         /// <returns>An array of deserialized objects.</returns>
-        public T[] Deserialize()
+        public T[] Decode()
         {
+            SafetyNet.EnsureIsNotNull(newDeserializedObject, nameof(newDeserializedObject), "You need to set the decoder method before decoding.");
             return serializedArray.Select(newDeserializedObject).ToArray();
         }
         

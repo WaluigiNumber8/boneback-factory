@@ -3,15 +3,15 @@
 namespace Rogium.ExternalStorage.Serialization
 {
     [System.Serializable]
-    public class SerializedPackImportInfo
+    public class JSONPackImportInfo
     {
-        private string ID;
-        private bool weapons;
-        private bool enemies;
-        private bool rooms;
+        public string ID;
+        public bool weapons;
+        public bool enemies;
+        public bool rooms;
 
-        public SerializedPackImportInfo(PackImportInfo importInfo) : this(importInfo.ID, importInfo.weapons, importInfo.enemies, importInfo.rooms) { }
-        public SerializedPackImportInfo(string ID, bool weapons, bool enemies, bool rooms)
+        public JSONPackImportInfo(PackImportInfo importInfo) : this(importInfo.ID, importInfo.weapons, importInfo.enemies, importInfo.rooms) { }
+        public JSONPackImportInfo(string ID, bool weapons, bool enemies, bool rooms)
         {
             this.ID = ID;
             this.weapons = weapons;

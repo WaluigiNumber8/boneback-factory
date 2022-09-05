@@ -6,18 +6,18 @@ namespace Rogium.ExternalStorage.Serialization
     /// Serialized form of the <see cref="EntityAssetBase"/>.
     /// </summary>
     [System.Serializable]
-    public abstract class SerializedEntityAssetBase<T> : SerializedAnimatedAssetBase<T> where T : EntityAssetBase
+    public abstract class JSONEntityAssetBase<T> : JSONAnimatedAssetBase<T> where T : EntityAssetBase
     {
-        protected int baseDamage;
-        protected float useDelay;
-        protected float knockbackForceSelf;
-        protected float knockbackTimeSelf;
-        protected bool knockbackLockDirectionSelf;
-        protected float knockbackForceOther;
-        protected float knockbackTimeOther;
-        protected bool knockbackLockDirectionOther;
+        public int baseDamage;
+        public float useDelay;
+        public float knockbackForceSelf;
+        public float knockbackTimeSelf;
+        public bool knockbackLockDirectionSelf;
+        public float knockbackForceOther;
+        public float knockbackTimeOther;
+        public bool knockbackLockDirectionOther;
         
-        protected SerializedEntityAssetBase(T asset) : base(asset)
+        protected JSONEntityAssetBase(T asset) : base(asset)
         {
             baseDamage = asset.BaseDamage;
             useDelay = asset.UseDelay;

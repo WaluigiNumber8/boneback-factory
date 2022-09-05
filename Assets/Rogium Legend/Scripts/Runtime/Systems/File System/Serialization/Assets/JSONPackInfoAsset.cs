@@ -7,20 +7,20 @@ namespace Rogium.ExternalStorage.Serialization
     /// Serialized form of the <see cref="PackInfoAsset"/>.
     /// </summary>
     [System.Serializable]
-    public class SerializedPackInfoAsset : SerializedAssetBase<PackInfoAsset>
+    public class JSONPackInfoAsset : JSONAssetBase<PackInfoAsset>
     {
-        public readonly string description;
+        public string description;
 
-        public SerializedPackInfoAsset(PackInfoAsset asset) : base(asset)
+        public JSONPackInfoAsset(PackInfoAsset asset) : base(asset)
         {
-            this.description = asset.Description;
+            description = asset.Description;
         }
 
-        public override PackInfoAsset Deserialize()
+        public override PackInfoAsset Decode()
         {
             return new PackInfoAsset(id,
                                      title,
-                                     icon.Deserialize(),
+                                     icon.Decode(),
                                      author,
                                      description,
                                      DateTime.Parse(creationDate));

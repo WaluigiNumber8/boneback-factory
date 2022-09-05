@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 
-namespace RedRats.Systems.FileSystem.Serialization
+namespace RedRats.Systems.FileSystem.JSON.Serialization
 {
     [System.Serializable]
-    public class SerializedQuaternion : ISerializedObject<Quaternion>
+    public class JSONQuaternion : IEncodedObject<Quaternion>
     {
-        private float x, y, z, w;
+        public float x, y, z, w;
 
-        public SerializedQuaternion(Quaternion quaternion) : this(quaternion.x, quaternion.y, quaternion.z, quaternion.w) {}
-        public SerializedQuaternion(float x, float y, float z, float w)
+        public JSONQuaternion(Quaternion quaternion) : this(quaternion.x, quaternion.y, quaternion.z, quaternion.w) {}
+        public JSONQuaternion(float x, float y, float z, float w)
         {
             this.x = x;
             this.y = y;
@@ -20,7 +20,7 @@ namespace RedRats.Systems.FileSystem.Serialization
         /// Returns the quaternion in a Unity readable format.
         /// </summary>
         /// <returns></returns>
-        public Quaternion Deserialize()
+        public Quaternion Decode()
         {
             return new Quaternion(x, y, z, w);
         }

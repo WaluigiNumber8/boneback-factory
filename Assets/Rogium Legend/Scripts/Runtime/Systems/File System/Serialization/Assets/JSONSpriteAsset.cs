@@ -7,24 +7,25 @@ namespace Rogium.ExternalStorage.Serialization
     /// Serialized form of the <see cref="SpriteAsset"/>.
     /// </summary>
     [System.Serializable]
-    public class SerializedSpriteAsset : SerializedAssetBase<SpriteAsset>
+    public class JSONSpriteAsset : JSONAssetBase<SpriteAsset>
     {
-        private SerializedGrid<int> spriteData;
-        private string preferredPaletteID;
+        public JSONGrid<int> spriteData;
+        public string preferredPaletteID;
         
-        public SerializedSpriteAsset(SpriteAsset asset) : base(asset)
+        public JSONSpriteAsset(SpriteAsset asset) : base(asset)
         {
-            spriteData = new SerializedGrid<int>(asset.SpriteData);
+            spriteData = new JSONGrid<int>(asset.SpriteData);
             preferredPaletteID = asset.PreferredPaletteID;
         }
 
-        public override SpriteAsset Deserialize()
+        public override SpriteAsset Decode()
         {
+            spriteData.SetDefaultCreator(() => -1);
             return new SpriteAsset(id,
                                    title,
-                                   icon.Deserialize(),
+                                   icon.Decode(),
                                    author,
-                                   spriteData.Deserialize(() => -1),
+                                   spriteData.Decode(),
                                    preferredPaletteID,
                                    DateTime.Parse(creationDate));
         }

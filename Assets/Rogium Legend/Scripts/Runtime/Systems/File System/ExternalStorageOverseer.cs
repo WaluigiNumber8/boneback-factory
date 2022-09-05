@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using RedRats.Safety;
-using RedRats.Systems.FileSystem;
+using RedRats.Systems.FileSystem.JSON;
 using Rogium.Core;
 using Rogium.Editors.Sprites;
 using Rogium.Editors.Campaign;
+using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Enemies;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Palettes;
@@ -28,14 +29,14 @@ namespace Rogium.ExternalStorage
         private readonly IList<PackPathInfo> packPaths;
         private PackPathInfo currentPackInfo;
 
-        private readonly CRUDOperations<CampaignAsset, SerializedCampaignAsset> campaignCRUD;
-        private readonly CRUDOperations<PaletteAsset, SerializedPaletteAsset> paletteCRUD;
-        private readonly CRUDOperations<SpriteAsset, SerializedSpriteAsset> spriteCRUD;
-        private readonly CRUDOperations<WeaponAsset, SerializedWeaponAsset> weaponCRUD;
-        private readonly CRUDOperations<ProjectileAsset, SerializedProjectileAsset> projectileCRUD;
-        private readonly CRUDOperations<EnemyAsset, SerializedEnemyAsset> enemyCRUD;
-        private readonly CRUDOperations<RoomAsset, SerializedRoomAsset> roomCRUD;
-        private readonly CRUDOperations<TileAsset, SerializedTileAsset> tileCRUD;
+        private readonly CRUDOperations<CampaignAsset, JSONCampaignAsset> campaignCRUD;
+        private readonly CRUDOperations<PaletteAsset, JSONPaletteAsset> paletteCRUD;
+        private readonly CRUDOperations<SpriteAsset, JSONSpriteAsset> spriteCRUD;
+        private readonly CRUDOperations<WeaponAsset, JSONWeaponAsset> weaponCRUD;
+        private readonly CRUDOperations<ProjectileAsset, JSONProjectileAsset> projectileCRUD;
+        private readonly CRUDOperations<EnemyAsset, JSONEnemyAsset> enemyCRUD;
+        private readonly CRUDOperations<RoomAsset, JSONRoomAsset> roomCRUD;
+        private readonly CRUDOperations<TileAsset, JSONTileAsset> tileCRUD;
 
         #region Singleton Pattern
         private static ExternalStorageOverseer instance;
@@ -58,21 +59,21 @@ namespace Rogium.ExternalStorage
         
         private ExternalStorageOverseer()
         {
-            packData = new SaveableData("Packs", "bumpack");
-            campaignData = new SaveableData("Campaigns", "bumcamp");
+            packData = new SaveableData("Packs", EditorAssetIDs.PackIdentifier);
+            campaignData = new SaveableData("Campaigns", EditorAssetIDs.CampaignIdentifier);
             
             packPaths = new List<PackPathInfo>();
 
-            campaignCRUD = new CRUDOperations<CampaignAsset, SerializedCampaignAsset>(c => new SerializedCampaignAsset(c));
+            campaignCRUD = new CRUDOperations<CampaignAsset, JSONCampaignAsset>(c => new JSONCampaignAsset(c), EditorAssetIDs.CampaignIdentifier);
             campaignCRUD.RefreshSaveableData(campaignData);
             
-            paletteCRUD = new CRUDOperations<PaletteAsset, SerializedPaletteAsset>(p => new SerializedPaletteAsset(p));
-            spriteCRUD = new CRUDOperations<SpriteAsset, SerializedSpriteAsset>(s => new SerializedSpriteAsset(s));
-            weaponCRUD = new CRUDOperations<WeaponAsset, SerializedWeaponAsset>(w => new SerializedWeaponAsset(w));
-            projectileCRUD = new CRUDOperations<ProjectileAsset, SerializedProjectileAsset>(p => new SerializedProjectileAsset(p));
-            enemyCRUD = new CRUDOperations<EnemyAsset, SerializedEnemyAsset>(e => new SerializedEnemyAsset(e));
-            roomCRUD = new CRUDOperations<RoomAsset, SerializedRoomAsset>(r => new SerializedRoomAsset(r));
-            tileCRUD = new CRUDOperations<TileAsset, SerializedTileAsset>(t => new SerializedTileAsset(t));
+            paletteCRUD = new CRUDOperations<PaletteAsset, JSONPaletteAsset>(p => new JSONPaletteAsset(p), EditorAssetIDs.PaletteIdentifier);
+            spriteCRUD = new CRUDOperations<SpriteAsset, JSONSpriteAsset>(s => new JSONSpriteAsset(s), EditorAssetIDs.SpriteIdentifier);
+            weaponCRUD = new CRUDOperations<WeaponAsset, JSONWeaponAsset>(w => new JSONWeaponAsset(w), EditorAssetIDs.WeaponIdentifier);
+            projectileCRUD = new CRUDOperations<ProjectileAsset, JSONProjectileAsset>(p => new JSONProjectileAsset(p), EditorAssetIDs.ProjectileIdentifier);
+            enemyCRUD = new CRUDOperations<EnemyAsset, JSONEnemyAsset>(e => new JSONEnemyAsset(e), EditorAssetIDs.EnemyIdentifier);
+            roomCRUD = new CRUDOperations<RoomAsset, JSONRoomAsset>(r => new JSONRoomAsset(r), EditorAssetIDs.RoomIdentifier);
+            tileCRUD = new CRUDOperations<TileAsset, JSONTileAsset>(t => new JSONTileAsset(t), EditorAssetIDs.TileIdentifier);
             
             FileSystem.CreateDirectory(packData.Path);
             FileSystem.CreateDirectory(campaignData.Path);
@@ -96,7 +97,7 @@ namespace Rogium.ExternalStorage
             if (currentPackInfo.Title != pack.Title)
                 RenameCurrentPack(pack.Title);
             
-            FileSystem.SaveFile(currentPackInfo.FilePath, pack, p => new SerializedPackAsset(p));
+            FileSystem.SaveFile(currentPackInfo.FilePath, EditorAssetIDs.PackIdentifier, pack, p => new JSONPackAsset(p));
         }
         
         /// <summary>
@@ -105,7 +106,7 @@ namespace Rogium.ExternalStorage
         /// <returns>A list of all <see cref="PackAsset"/>s.</returns>
         public IList<PackAsset> LoadAllPacks()
         {
-            IList<PackAsset> packs = FileSystem.LoadAllFiles<PackAsset, SerializedPackAsset>(packData.Path, packData.Extension, true);
+            IList<PackAsset> packs = FileSystem.LoadAllFiles<PackAsset, JSONPackAsset>(packData.Path, packData.Identifier, true);
             foreach (PackAsset pack in packs)
             {
                 packPaths.Add(BuildPackInfo(pack));
@@ -160,10 +161,10 @@ namespace Rogium.ExternalStorage
         private void CreateSkeleton(PackAsset pack)
         {
             PackPathInfo packInfo = BuildPackInfo(pack);
-            string newPackPathFile = Path.Combine(packInfo.DirectoryPath, $"{pack.Title}.{packData.Extension}");
+            string newPackPathFile = Path.Combine(packInfo.DirectoryPath, pack.Title);
             
             FileSystem.CreateDirectory(packInfo.DirectoryPath);
-            FileSystem.SaveFile(newPackPathFile, pack, p => new SerializedPackAsset(p));
+            FileSystem.SaveFile(newPackPathFile, EditorAssetIDs.PackIdentifier, pack, p => new JSONPackAsset(p));
 
             FileSystem.CreateDirectory(packInfo.PalettesData.Path);
             FileSystem.CreateDirectory(packInfo.SpritesData.Path);
@@ -185,8 +186,8 @@ namespace Rogium.ExternalStorage
         {
             string oldPathDirectory = currentPackInfo.DirectoryPath;
             string newPathDirectory = Path.Combine(packData.Path, newTitle);
-            string oldPathFile = Path.Combine(newPathDirectory, $"{currentPackInfo.Title}.{packData.Extension}");
-            string newPathFile = Path.Combine(packData.Path, newTitle, $"{newTitle}.{packData.Extension}");
+            string oldPathFile = Path.Combine(newPathDirectory, currentPackInfo.Title);
+            string newPathFile = Path.Combine(packData.Path, newTitle, newTitle);
             
             currentPackInfo.UpdateTitle(newTitle);
             currentPackInfo.UpdatePath(newPathDirectory, newPathFile);
@@ -221,17 +222,17 @@ namespace Rogium.ExternalStorage
             return new PackPathInfo(pack.ID,
                                     pack.Title,
                                     Path.Combine(packData.Path, pack.Title),
-                                    Path.Combine(packData.Path, pack.Title, $"{pack.Title}.{packData.Extension}"));
+                                    Path.Combine(packData.Path, pack.Title, pack.Title));
         }
 
-        public CRUDOperations<CampaignAsset, SerializedCampaignAsset> Campaigns { get => campaignCRUD; }
-        public CRUDOperations<PaletteAsset, SerializedPaletteAsset> Palettes { get => paletteCRUD; }
-        public CRUDOperations<SpriteAsset, SerializedSpriteAsset> Sprites { get => spriteCRUD; }
-        public CRUDOperations<WeaponAsset, SerializedWeaponAsset> Weapons { get => weaponCRUD; }
-        public CRUDOperations<ProjectileAsset, SerializedProjectileAsset> Projectiles { get => projectileCRUD; }
-        public CRUDOperations<EnemyAsset, SerializedEnemyAsset> Enemies { get => enemyCRUD; }
-        public CRUDOperations<RoomAsset, SerializedRoomAsset> Rooms { get => roomCRUD; }
-        public CRUDOperations<TileAsset, SerializedTileAsset> Tiles { get => tileCRUD; }
+        public CRUDOperations<CampaignAsset, JSONCampaignAsset> Campaigns { get => campaignCRUD; }
+        public CRUDOperations<PaletteAsset, JSONPaletteAsset> Palettes { get => paletteCRUD; }
+        public CRUDOperations<SpriteAsset, JSONSpriteAsset> Sprites { get => spriteCRUD; }
+        public CRUDOperations<WeaponAsset, JSONWeaponAsset> Weapons { get => weaponCRUD; }
+        public CRUDOperations<ProjectileAsset, JSONProjectileAsset> Projectiles { get => projectileCRUD; }
+        public CRUDOperations<EnemyAsset, JSONEnemyAsset> Enemies { get => enemyCRUD; }
+        public CRUDOperations<RoomAsset, JSONRoomAsset> Rooms { get => roomCRUD; }
+        public CRUDOperations<TileAsset, JSONTileAsset> Tiles { get => tileCRUD; }
 
     }
 }

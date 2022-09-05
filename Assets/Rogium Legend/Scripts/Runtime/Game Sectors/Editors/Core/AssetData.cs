@@ -9,8 +9,8 @@ namespace Rogium.Editors.Core
     [Serializable]
     public class AssetData : IParameterAsset, IComparable
     {
-        private readonly string id;
-        private ParameterInfo parameters;
+        public string id;
+        public ParameterInfo parameters;
 
         #region Constructors
 

@@ -20,20 +20,8 @@ namespace Rogium.Editors.Core
         private readonly AssetList<CampaignAsset> campaigns;
 
         #region Singleton Pattern
-        private static ExternalLibraryOverseer instance;
-        private static readonly object padlock = new object();
-        public static ExternalLibraryOverseer Instance 
-        { 
-            get
-            {
-                // lock (padlock)
-                {
-                    if (instance == null)
-                        instance = new ExternalLibraryOverseer();
-                    return instance;
-                }
-            }
-        }
+        static ExternalLibraryOverseer() { }
+        public static ExternalLibraryOverseer Instance { get; } = new();
         #endregion
 
         private ExternalLibraryOverseer()

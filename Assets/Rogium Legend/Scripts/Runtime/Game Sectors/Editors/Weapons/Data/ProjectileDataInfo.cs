@@ -7,9 +7,9 @@ namespace Rogium.Editors.Weapons
     [System.Serializable]
     public class ProjectileDataInfo
     {
-        private string id;
-        private float spawnDelay;
-        private int angleOffset;
+        public string id;
+        public float spawnDelay;
+        public int angleOffset;
 
         public ProjectileDataInfo(string id, float spawnDelay, int angleOffset)
         {

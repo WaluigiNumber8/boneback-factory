@@ -88,7 +88,7 @@ namespace Rogium.Editors.Weapons
                            float knockbackTimeSelf, bool knockbackLockDirectionSelf, float knockbackForceOther,
                            float knockbackTimeOther, bool knockbackLockDirectionOther, WeaponUseType useType,
                            float useDuration, float useStartDelay, bool isEvasive, bool freezeUser, 
-                           List<ProjectileDataInfo> projectileIDs, DateTime creationDate)
+                           IList<ProjectileDataInfo> projectileIDs, DateTime creationDate)
         {
             AssetValidation.ValidateTitle(title);
             

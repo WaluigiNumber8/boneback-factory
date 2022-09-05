@@ -15,16 +15,7 @@ namespace Rogium.ExternalStorage
             this.path = path;
         }
 
-        /// <summary>
-        /// Updates the title.
-        /// </summary>
-        /// <param name="newTitle">The new title to use.</param>
         public void UpdateTitle(string newTitle) => title = newTitle;
-
-        /// <summary>
-        /// Updates the path.
-        /// </summary>
-        /// <param name="newPath">The new path.</param>
         public void UpdatePath(string newPath) => path = newPath;
         
         public string ID { get => id; }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using RedRats.Safety;
 using RedRats.Systems.FileSystem;
-using RedRats.Systems.FileSystem.Serialization;
+using RedRats.Systems.FileSystem.JSON;
 using Rogium.Editors.Core;
 
 namespace Rogium.ExternalStorage
@@ -13,12 +13,17 @@ namespace Rogium.ExternalStorage
     /// </summary>
     /// <typeparam name="T">The type of asset.</typeparam>
     /// <typeparam name="TS">Serialized form of the asset.</typeparam>
-    public class CRUDOperations<T, TS> where T : AssetBase where TS : ISerializedObject<T>
+    public class CRUDOperations<T, TS> where T : AssetBase where TS : IEncodedObject<T>
     {
         private SaveableData data;
         private readonly Func<T,TS> newSerializedObject;
+        private readonly string dataIdentifier;
 
-        public CRUDOperations(Func<T,TS> newSerializedObject) => this.newSerializedObject = newSerializedObject;
+        public CRUDOperations(Func<T,TS> newSerializedObject, string dataIdentifier)
+        {
+            this.newSerializedObject = newSerializedObject;
+            this.dataIdentifier = dataIdentifier;
+        }
 
         /// <summary>
         /// Saves a room under the currently edited pack.
@@ -29,7 +34,7 @@ namespace Rogium.ExternalStorage
             SafetyNet.EnsureIsNotNull(data, "Saveable Data");
             
             data.TryAddNewFilePath(asset.ID, asset.Title);
-            FileSystem.SaveFile(data.GetFilePath(asset.ID), asset, r => newSerializedObject(r));
+            FileSystem.SaveFile(data.GetFilePath(asset.ID), dataIdentifier, asset, r => newSerializedObject(r));
         }
 
         /// <summary>
@@ -38,7 +43,7 @@ namespace Rogium.ExternalStorage
         /// <returns>A list of those assets.</returns>
         public IList<T> LoadAll()
         {
-            IList<T> loadedData = FileSystem.LoadAllFiles<T, TS>(data.Path, data.Extension);
+            IList<T> loadedData = FileSystem.LoadAllFiles<T, TS>(data.Path, data.Identifier);
             loadedData = FindAndRemoveDuplicates(loadedData);
             foreach (T piece in loadedData)
             {

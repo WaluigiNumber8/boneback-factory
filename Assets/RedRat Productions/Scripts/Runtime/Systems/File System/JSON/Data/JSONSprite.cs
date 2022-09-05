@@ -1,23 +1,25 @@
-﻿using RedRats.Safety;
-using RedRats.Core;
+﻿using RedRats.Core;
 using UnityEngine;
 
-namespace RedRats.Systems.FileSystem.Serialization
+namespace RedRats.Systems.FileSystem.JSON.Serialization
 {
+    /// <summary>
+    /// The <see cref="Sprite"/> object converted to JSON-understandable format.
+    /// </summary>
     [System.Serializable]
-    public class SerializedSprite : ISerializedObject<Sprite>
+    public class JSONSprite : IEncodedObject<Sprite>
     {
-        public readonly float rectX;
-        public readonly float rectY;
-        public readonly float rectWidth;
-        public readonly float rectHeight;
-        public readonly float pivotX;
-        public readonly float pivotY;
-        public readonly int textureWidth;
-        public readonly int textureHeight;
-        public readonly byte[] textureBytes;
+        public float rectX;
+        public float rectY;
+        public float rectWidth;
+        public float rectHeight;
+        public float pivotX;
+        public float pivotY;
+        public int textureWidth;
+        public int textureHeight;
+        public byte[] textureBytes;
 
-        public SerializedSprite(Sprite sprite)
+        public JSONSprite(Sprite sprite)
         {
             Sprite spriteToUse = (sprite == null) ? RedRatBuilder.GenerateSprite(new Color(0, 0, 0, 1), 16, 16, 16) : sprite;
             rectX = spriteToUse.rect.x;
@@ -31,7 +33,7 @@ namespace RedRats.Systems.FileSystem.Serialization
             textureBytes = spriteToUse.texture.EncodeToPNG();
         }
 
-        public SerializedSprite(float rectX, float rectY, float rectWidth, float rectHeight, float pivotX, float pivotY, int textureWidth, int textureHeight, byte[] textureBytes)
+        public JSONSprite(float rectX, float rectY, float rectWidth, float rectHeight, float pivotX, float pivotY, int textureWidth, int textureHeight, byte[] textureBytes)
         {
             this.rectX = rectX;
             this.rectY = rectY;
@@ -45,10 +47,10 @@ namespace RedRats.Systems.FileSystem.Serialization
         }
 
         /// <summary>
-        /// Deserializes this serialized sprite and returns in the sprite format.
+        /// Decodes the sprite and returns in the sprite format.
         /// </summary>
         /// <returns>A Sprite that Unity can use.</returns>
-        public Sprite Deserialize()
+        public Sprite Decode()
         {
             Texture2D texture = new(textureWidth, textureHeight);
             texture.filterMode = FilterMode.Point;

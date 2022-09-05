@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using RedRats.Core;
 using RedRats.Safety;
 using Rogium.Core;
 using UnityEngine;
@@ -13,7 +12,7 @@ namespace Rogium.ExternalStorage
     public class SaveableData
     {
         private readonly string folderTitle;
-        private readonly string extension;
+        private readonly string identifier;
         private string path;
 
         private readonly IList<FilePathInfo> filePaths;
@@ -22,18 +21,18 @@ namespace Rogium.ExternalStorage
         /// The Constructor.
         /// </summary>
         /// <param name="folderTitle">Name of the folder that will store the files.</param>
-        /// <param name="extension">The extension of teh files.</param>
-        public SaveableData(string folderTitle, string extension) : this(folderTitle, extension, Application.persistentDataPath) { }
+        /// <param name="identifier">The unique identifier, differentiating data stored in the JSON file.</param>
+        public SaveableData(string folderTitle, string identifier) : this(folderTitle, identifier, Application.persistentDataPath) { }
         /// <summary>
         /// The Constructor.
         /// </summary>
         /// <param name="folderTitle">Name of the folder that will store the files.</param>
-        /// <param name="extension">The extension of teh files.</param>
+        /// <param name="identifier">The unique identifier, differentiating data stored in the JSON file.</param>
         /// <param name="path">The root location of the folder.</param>
-        public SaveableData(string folderTitle, string extension, string path)
+        public SaveableData(string folderTitle, string identifier, string path)
         {
             this.folderTitle = folderTitle;
-            this.extension = extension;
+            this.identifier = identifier;
             UpdatePath(path);
             
             filePaths = new List<FilePathInfo>();
@@ -133,11 +132,11 @@ namespace Rogium.ExternalStorage
         /// <returns>The file's path.</returns>
         private string CombineFilePath(string title)
         {
-            return System.IO.Path.Combine(path, $"{title}.{extension}");
+            return System.IO.Path.Combine(path, title);
         }
         
         public string FolderName { get => folderTitle; }
-        public string Extension { get => extension; }
+        public string Identifier { get => identifier; }
         public string Path { get => path; }
     }
 }

@@ -1,6 +1,6 @@
-﻿using RedRats.Systems.FileSystem.Serialization;
-using Rogium.Editors.Tiles;
+﻿using Rogium.Editors.Tiles;
 using System;
+using RedRats.Systems.FileSystem.JSON.Serialization;
 
 namespace Rogium.ExternalStorage.Serialization
 {
@@ -8,30 +8,30 @@ namespace Rogium.ExternalStorage.Serialization
     /// Serialized form of the <see cref="TileAsset"/>.
     /// </summary>
     [System.Serializable]
-    public class SerializedTileAsset : SerializedAssetBase<TileAsset>
+    public class JSONTileAsset : JSONAssetBase<TileAsset>
     {
-        public readonly int tileType;
-        public readonly SerializedColor color;
+        public int tileType;
+        public JSONColor color;
 
-        public SerializedTileAsset(TileAsset asset) : base(asset)
+        public JSONTileAsset(TileAsset asset) : base(asset)
         {
             tileType = (int)asset.Type;
-            icon = new SerializedSprite(asset.Tile.sprite);
-            color = new SerializedColor(asset.Tile.color);
+            icon = new JSONSprite(asset.Tile.sprite);
+            color = new JSONColor(asset.Tile.color);
         }
 
         /// <summary>
         /// Turns the Tile Asset into a Unity readable format.
         /// </summary>
         /// <returns></returns>
-        public override TileAsset Deserialize()
+        public override TileAsset Decode()
         {
             return new TileAsset(id,
                                  title,
-                                 icon.Deserialize(),
+                                 icon.Decode(),
                                  author,
                                  (TileType)tileType,
-                                 color.Deserialize(),
+                                 color.Decode(),
                                  DateTime.Parse(creationDate));
         }
     }

@@ -1,5 +1,5 @@
 ﻿using System;
-using RedRats.Systems.FileSystem.Serialization;
+using RedRats.Systems.FileSystem.JSON.Serialization;
 using Rogium.Editors.Palettes;
 using UnityEngine;
 
@@ -9,26 +9,27 @@ namespace Rogium.ExternalStorage.Serialization
     /// Serialized form of the <see cref="PaletteAsset"/>.
     /// </summary>
     [Serializable]
-    public class SerializedPaletteAsset : SerializedAssetBase<PaletteAsset>
+    public class JSONPaletteAsset : JSONAssetBase<PaletteAsset>
     {
-        public readonly SerializedArray<Color, SerializedColor> colors;
+        public JSONArray<Color, JSONColor> colors;
 
-        public SerializedPaletteAsset(PaletteAsset asset) : base(asset)
+        public JSONPaletteAsset(PaletteAsset asset) : base(asset)
         {
-            colors = new SerializedArray<Color, SerializedColor>(asset.Colors, c => new SerializedColor(c), c => c.Deserialize());
+            colors = new JSONArray<Color, JSONColor>(asset.Colors, c => new JSONColor(c));
         }
 
         /// <summary>
         /// Deserializes the asset into a Unity readable format.
         /// </summary>
         /// <returns>A deserialized asset.</returns>
-        public override PaletteAsset Deserialize()
+        public override PaletteAsset Decode()
         {
-            Color[] deserializedColors = colors.Deserialize();
+            colors.SetDecodingMethod(c => c.Decode());
+            Color[] deserializedColors = colors.Decode();
 
             return new PaletteAsset(id,
                                     title,
-                                    icon.Deserialize(),
+                                    icon.Decode(),
                                     author,
                                     deserializedColors,
                                     DateTime.Parse(creationDate));

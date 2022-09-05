@@ -10,24 +10,24 @@ namespace Rogium.ExternalStorage.Serialization
     /// Serialized form of the <see cref="EnemyAsset"/>.
     /// </summary>
     [System.Serializable]
-    public class SerializedEnemyAsset : SerializedEntityAssetBase<EnemyAsset>
+    public class JSONEnemyAsset : JSONEntityAssetBase<EnemyAsset>
     {
-        private int maxHealth;
-        private float attackProbability;
-        private float invincibilityTime;
-        private List<string> weaponsIDs;
+        public int maxHealth;
+        public float attackProbability;
+        public float invincibilityTime;
+        public string[] weaponsIDs;
         
-        private int ai;
-        private float nextStepTime;
-        private int startingDirection;
-        private bool seamlessMovement;
+        public int ai;
+        public float nextStepTime;
+        public int startingDirection;
+        public bool seamlessMovement;
 
-        public SerializedEnemyAsset(EnemyAsset asset) : base(asset)
+        public JSONEnemyAsset(EnemyAsset asset) : base(asset)
         {
             maxHealth = asset.MaxHealth;
             attackProbability = asset.AttackProbability;
             invincibilityTime = asset.InvincibilityTime;
-            weaponsIDs = asset.WeaponIDs;
+            weaponsIDs = asset.WeaponIDs.ToArray();
             
             ai = (int) asset.AI;
             nextStepTime = asset.NextStepTime;
@@ -35,15 +35,15 @@ namespace Rogium.ExternalStorage.Serialization
             seamlessMovement = asset.SeamlessMovement;
         }
 
-        public override EnemyAsset Deserialize()
+        public override EnemyAsset Decode()
         {
             return new EnemyAsset(id,
                                   title,
-                                  icon.Deserialize(),
+                                  icon.Decode(),
                                   author,
                                   (AnimationType)animationType,
                                   frameDuration,
-                                  iconAlt.Deserialize(),
+                                  iconAlt.Decode(),
                                   baseDamage,
                                   useDelay,
                                   knockbackForceSelf,

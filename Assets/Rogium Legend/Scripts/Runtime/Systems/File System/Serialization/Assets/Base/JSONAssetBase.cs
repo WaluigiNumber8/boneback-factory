@@ -1,4 +1,5 @@
-﻿using RedRats.Systems.FileSystem.Serialization;
+﻿using RedRats.Systems.FileSystem;
+using RedRats.Systems.FileSystem.JSON.Serialization;
 using Rogium.Editors.Core;
 
 namespace Rogium.ExternalStorage.Serialization
@@ -8,30 +9,30 @@ namespace Rogium.ExternalStorage.Serialization
     /// <typeparam name="T">The readable form of the asset.</typeparam>
     /// </summary>
     [System.Serializable]
-    public abstract class SerializedAssetBase<T> : ISerializedObject<T> where T : AssetBase
+    public abstract class JSONAssetBase<T> : IEncodedObject<T> where T : AssetBase
     {
-        protected string id;
-        protected string title;
-        protected SerializedSprite icon;
-        protected string author;
-        protected string creationDate;
+        public string id;
+        public string title;
+        public JSONSprite icon;
+        public string author;
+        public string creationDate;
 
-        protected SerializedAssetBase(T asset)
+        protected JSONAssetBase(T asset)
         {
             id = asset.ID;
             title = asset.Title;
-            icon = new SerializedSprite(asset.Icon);
+            icon = new JSONSprite(asset.Icon);
             author = asset.Author;
             creationDate = asset.CreationDate.ToString();
         }
 
-        T ISerializedObject<T>.Deserialize() => Deserialize();
+        T IEncodedObject<T>.Decode() => Decode();
         
        /// <summary>
        /// Deserializes the asset.
        /// </summary>
        /// <returns>The asset in a readable form.</returns>
-        public abstract T Deserialize();
+        public abstract T Decode();
 
     }
 }

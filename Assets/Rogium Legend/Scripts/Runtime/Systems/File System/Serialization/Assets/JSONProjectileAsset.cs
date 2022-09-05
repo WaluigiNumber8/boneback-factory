@@ -8,14 +8,14 @@ namespace Rogium.ExternalStorage.Serialization
     /// Serialized form of the <see cref="ProjectileAsset"/>.
     /// </summary>
     [System.Serializable]
-    public class SerializedProjectileAsset : SerializedEntityAssetBase<ProjectileAsset>
+    public class JSONProjectileAsset : JSONEntityAssetBase<ProjectileAsset>
     {
-        private float flightSpeed;
-        private float acceleration;
-        private float brakeForce;
-        private int pierceType;
+        public float flightSpeed;
+        public float acceleration;
+        public float brakeForce;
+        public int pierceType;
         
-        public SerializedProjectileAsset(ProjectileAsset asset) : base(asset)
+        public JSONProjectileAsset(ProjectileAsset asset) : base(asset)
         {
             flightSpeed = asset.FlightSpeed;
             acceleration = asset.Acceleration;
@@ -23,15 +23,15 @@ namespace Rogium.ExternalStorage.Serialization
             pierceType = (int)asset.PierceType;
         }
 
-        public override ProjectileAsset Deserialize()
+        public override ProjectileAsset Decode()
         {
             return new ProjectileAsset(id,
                                        title,
-                                       icon.Deserialize(),
+                                       icon.Decode(),
                                        author,
                                        (AnimationType)animationType,
                                        frameDuration,
-                                       iconAlt.Deserialize(),
+                                       iconAlt.Decode(),
                                        baseDamage,
                                        useDelay,
                                        knockbackForceSelf,

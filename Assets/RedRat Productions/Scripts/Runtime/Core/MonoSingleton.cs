@@ -14,18 +14,16 @@ namespace RedRats.Core
 
         public static T GetInstance()
         {
-            if (applicationIsQuitting) { return null; }
-
-            if (instance == null)
-            {
-                instance = FindObjectOfType<T>();
-                if (instance == null)
-                {
-                    GameObject obj = new GameObject();
-                    obj.name = typeof(T).Name;
-                    instance = obj.AddComponent<T>();
-                }
-            }
+            if (applicationIsQuitting) return null;
+            if (instance != null) return instance;
+            
+            instance = FindObjectOfType<T>();
+            
+            if (instance != null) return instance;
+            
+            GameObject obj = new GameObject();
+            obj.name = typeof(T).Name;
+            instance = obj.AddComponent<T>();
             return instance;
         }
 
@@ -41,9 +39,6 @@ namespace RedRats.Core
             }
         }
 
-        private void OnApplicationQuit()
-        {
-            applicationIsQuitting = true;
-        }
+        private void OnApplicationQuit() => applicationIsQuitting = true;
     }
 }

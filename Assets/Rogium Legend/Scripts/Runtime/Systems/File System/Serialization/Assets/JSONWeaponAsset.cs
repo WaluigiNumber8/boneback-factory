@@ -9,34 +9,34 @@ namespace Rogium.ExternalStorage.Serialization
     /// Serialized form of the <see cref="WeaponAsset"/>.
     /// </summary>
     [System.Serializable]
-    public class SerializedWeaponAsset : SerializedEntityAssetBase<WeaponAsset>
+    public class JSONWeaponAsset : JSONEntityAssetBase<WeaponAsset>
     {
-        private int useType;
-        private float useDuration;
-        private float useStartDelay;
-        private bool isEvasive;
-        private bool freezeUser;
-        private List<ProjectileDataInfo> projectileIDs;
+        public int useType;
+        public float useDuration;
+        public float useStartDelay;
+        public bool isEvasive;
+        public bool freezeUser;
+        public ProjectileDataInfo[] projectileIDs;
 
-        public SerializedWeaponAsset(WeaponAsset asset) : base(asset)
+        public JSONWeaponAsset(WeaponAsset asset) : base(asset)
         {
             useType = (int)asset.UseType;
             useDuration = asset.UseDuration;
             useStartDelay = asset.UseStartDelay;
             isEvasive = asset.IsEvasive;
             freezeUser = asset.FreezeUser;
-            projectileIDs = asset.ProjectileIDs;
+            projectileIDs = asset.ProjectileIDs.ToArray();
         }
 
-        public override WeaponAsset Deserialize()
+        public override WeaponAsset Decode()
         {
             return new WeaponAsset(id,
                                    title,
-                                   icon.Deserialize(),
+                                   icon.Decode(),
                                    author,
                                    (AnimationType)animationType,
                                    frameDuration,
-                                   iconAlt.Deserialize(),
+                                   iconAlt.Decode(),
                                    baseDamage,
                                    useDelay,
                                    knockbackForceSelf,

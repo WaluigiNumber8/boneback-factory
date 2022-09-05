@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
 using RedRats.Safety;
-using RedRats.Systems.FileSystem.Serialization;
+using UnityEngine;
 
-namespace RedRats.Systems.FileSystem
+namespace RedRats.Systems.FileSystem.JSON
 {
     /// <summary>
-    /// Handles Saving, Loading and Removing packs from external storage.
+    /// Saves, loads and removes data from external storage using the <see cref="JsonUtility"/>.
     /// </summary>
     public static class FileSystem
     {
-
+        public const string JSON_EXTENSION = ".json";
+        
         /// <summary>
         /// If it doesn't exist, creates a directory at specific path.
         /// </summary>
@@ -32,27 +33,26 @@ namespace RedRats.Systems.FileSystem
             if (Directory.Exists(path)) return;
             Directory.CreateDirectory(path);
         }
-        
+
         /// <summary>
-        /// Save an asset to external storage.
+        /// Save a file to external storage.
         /// </summary>
-        /// <param name="path">Destination of the save.</param>
+        /// <param name="path">Destination of the save. (without extension)</param>
+        /// <param name="identifier">The unique identifier, differentiating data stored in the JSON file.</param>
         /// <param name="data">The data object to save.</param>
-        /// <param name="newSerializedObject">A method that will create the create the serialized form of the object.</param>
-        /// <typeparam name="T">The object to serialize.</typeparam>
-        /// <typeparam name="TS">Serialized form of the object.</typeparam>
-        public static void SaveFile<T,TS>(string path, T data, Func<T,TS> newSerializedObject)
+        /// <param name="newJSONFormat">Function that will create a data version of the object.</param>
+        /// <typeparam name="T">The object to convert to JSON.</typeparam>
+        /// <typeparam name="TS">The data class to convert to JSON.</typeparam>
+        public static void SaveFile<T,TS>(string path, string identifier, T data, Func<T, TS> newJSONFormat)
         {
+            path += JSON_EXTENSION;
             SafetyNetIO.EnsurePathNotContainsInvalidCharacters(path);
 
             try
             {
-                BinaryFormatter formatter = new();
-                FileStream stream = new(path, FileMode.Create);
-                TS formattedAsset = newSerializedObject(data);
-
-                formatter.Serialize(stream, formattedAsset);
-                stream.Close();
+                StringBuilder JSONFormat = new();
+                JSONFormat.Append(identifier.Length).Append(identifier).Append(JsonUtility.ToJson(newJSONFormat(data)));
+                File.WriteAllText(path, JSONFormat.ToString());
             }
             catch (IOException)
             {
@@ -61,25 +61,54 @@ namespace RedRats.Systems.FileSystem
         }
 
         /// <summary>
-        /// Loads all objects under a path.
+        /// Load a file under a specific path.
         /// </summary>
-        /// <param name="path">Destination of the data.</param>
-        /// <param name="typeExtension">The extension of the files that will be read.</param>
-        /// <param name="deepSearch">If enabled, will also search all subdirectories.</param>
-        /// <typeparam name="T">Unity readable Asset.</typeparam>
-        /// <typeparam name="TS">Serialized form of the Asset.</typeparam>
-        public static IList<T> LoadAllFiles<T, TS>(string path, string typeExtension, bool deepSearch = false) where TS : ISerializedObject<T>
+        /// <param name="path">The path of the file.</param>
+        /// <typeparam name="T">Any type.</typeparam>
+        /// <typeparam name="TS">A Serialized form of <see cref="T"/>.</typeparam>
+        /// <returns>A deserialized form of the object.</returns>
+        /// <exception cref="IOException">IS thrown when the object could not be loaded.</exception>
+        public static T LoadFile<T, TS>(string path, string identifier) where TS : IEncodedObject<T>
         {
-            SafetyNetIO.EnsurePathNotContainsInvalidCharacters(path);
-            return new FileLoader<T, TS>().LoadAllFiles(path, typeExtension, deepSearch);
+            path += JSON_EXTENSION;
+            SafetyNetIO.EnsureFileExists(path);
+            try
+            {
+                string allData = File.ReadAllText(path);
+                string id = allData.Substring(1, allData[0]);
+
+                if (id != identifier) throw new InvalidDataException($"The file is not of the required type ({id} != {identifier})");
+                    
+                TS data = JsonUtility.FromJson<TS>(allData[(allData[0]-1)..]);
+                return data.Decode();
+            }
+            catch (IOException)
+            {
+                throw new IOException($"File under the path '{path}' could not be loaded.");
+            }
         }
 
         /// <summary>
-        /// Removes a file under a specific path.
+        /// Loads all objects under a path.
+        /// </summary>
+        /// <param name="path">Destination of the data.</param>
+        /// <param name="identifier">The unique identifier, differentiating data between JSON assets.</param>
+        /// <param name="deepSearch">If enabled, will also search all subdirectories.</param>
+        /// <typeparam name="T">Unity readable Asset.</typeparam>
+        /// <typeparam name="TS">Serialized form of the Asset.</typeparam>
+        public static IList<T> LoadAllFiles<T, TS>(string path, string identifier, bool deepSearch = false) where TS : IEncodedObject<T>
+        {
+            SafetyNetIO.EnsurePathNotContainsInvalidCharacters(path);
+            return new FileLoader<T,TS>().LoadAllFiles(path, identifier, deepSearch);
+        }
+
+        /// <summary>
+        /// Removes a file under a specific path. (No extension)
         /// </summary>
         /// <param name="path">The path to the file.</param>
         public static void DeleteFile(string path)
         {
+            path += JSON_EXTENSION;
             SafetyNetIO.EnsurePathNotContainsInvalidCharacters(path);
             SafetyNetIO.EnsureFileExists(path);
             File.Delete(path);
@@ -99,10 +128,12 @@ namespace RedRats.Systems.FileSystem
         /// <summary>
         /// Renames a specific file.
         /// </summary>
-        /// <param name="oldPath">The full path of the old file.</param>
-        /// <param name="newPath">The full path of the new file.</param>
+        /// <param name="oldPath">The full path of the old file. (no extension)</param>
+        /// <param name="newPath">The full path of the new file. (no extension)</param>
         public static void RenameFile(string oldPath, string newPath)
         {
+            oldPath += JSON_EXTENSION;
+            newPath += JSON_EXTENSION;
             SafetyNetIO.EnsurePathNotContainsInvalidCharacters(newPath);
             SafetyNetIO.EnsureFileExists(oldPath);
             File.Move(oldPath, newPath);
@@ -119,6 +150,5 @@ namespace RedRats.Systems.FileSystem
             SafetyNetIO.EnsureDirectoryExists(oldPath);
             Directory.Move(oldPath, newPath);
         }
-
     }
 }

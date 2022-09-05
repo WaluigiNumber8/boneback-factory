@@ -76,6 +76,10 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c6fa23676f944c398bd600b2ec7308582e000/42/08e0b4ca/SpriteAsset.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cb62560c330e4d74aa195b471206277f17a320/2f/308956ca/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/de1f8ef4975b4eacbeb0accc1b22c9b02a000/d3/a62fec26/LoopType.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/edef46c9b2db4b878c98495bfdc516fa568ba8/56/0656fcdd/FileInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/edef46c9b2db4b878c98495bfdc516fa568ba8/b6/c57e6314/Array.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/edef46c9b2db4b878c98495bfdc516fa568ba8/c8/50fb14e9/Path.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/edef46c9b2db4b878c98495bfdc516fa568ba8/df/dfac01fc/Exception.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f3f7c110cc4f4368b2178688b4211faa1f800/47/67d842ed/Collider2D.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f3f7c110cc4f4368b2178688b4211faa1f800/da/4460fd06/BoxCollider2D.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/fba5aa1b264f4dc2b2603fe377d3e76653a00/92/80ce6046/Reflect.cs" root0="SKIP_HIGHLIGHTING" />
@@ -86,6 +90,8 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/feaaa6313e32495d9f259b175aa6b59746a800/c2/ade1a1b6/AsyncMethodBuilderCore.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Editor/SeeksitSeeton/ShadowCastersGeneratorEditor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Core/AssetUtils.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Systems/File System/Serialization/Assets/JSONCampaignAsset.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Systems/File System/Serialization/Assets/JSONEnemyAsset.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Systems/Item Palette/ItemPaletteAsset.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Systems/Item Palette/ItemPaletteColor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Systems/Theme System/ThemeUpdaterRogium.cs" root0="FORCE_HIGHLIGHTING" />
@@ -97,6 +103,7 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/UIBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Button.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Layout/HorizontalOrVerticalLayoutGroup.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Layout/LayoutGroup.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Selectable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Toggle.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -129,17 +136,17 @@
       <method v="2" />
     </configuration>
     <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="D:\Program Flies DX\Unity\Editor\2021.3.8f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="D:\Program Flies DX\Unity\Editor\2021.3.9f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath &quot;D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend&quot; -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="19348">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="19348" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -415,7 +422,21 @@
       <workItem from="1661613511928" duration="6524000" />
       <workItem from="1661681277999" duration="593000" />
       <workItem from="1661768277575" duration="2008000" />
-      <workItem from="1661785841514" duration="2035000" />
+      <workItem from="1661785841514" duration="2746000" />
+      <workItem from="1661849776128" duration="739000" />
+      <workItem from="1661856478212" duration="1113000" />
+      <workItem from="1661870413656" duration="2661000" />
+      <workItem from="1661934981485" duration="1918000" />
+      <workItem from="1661957834235" duration="4815000" />
+      <workItem from="1662040666067" duration="4074000" />
+      <workItem from="1662208375127" duration="845000" />
+      <workItem from="1662209270488" duration="1804000" />
+      <workItem from="1662219915913" duration="1017000" />
+      <workItem from="1662220966342" duration="237000" />
+      <workItem from="1662221248875" duration="3651000" />
+      <workItem from="1662298070149" duration="1420000" />
+      <workItem from="1662299864145" duration="7051000" />
+      <workItem from="1662384915924" duration="1116000" />
     </task>
     <servers />
   </component>
@@ -485,63 +506,18 @@
           <option name="timeStamp" value="99" />
         </line-breakpoint>
         <line-breakpoint type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Systems/Grid System/ObjectGrid.cs</url>
-          <line>96</line>
-          <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Systems\Grid System\ObjectGrid.cs" initialLine="95" containingFunctionPresentation="method 'ClearAllCells'" />
-          <option name="timeStamp" value="112" />
-        </line-breakpoint>
-        <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Editors/Core/Assets/AnimatedAssetBase.cs</url>
           <line>23</line>
           <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Editors\Core\Assets\AnimatedAssetBase.cs" initialLine="23" containingFunctionPresentation="method 'UpdateIconAlt'" />
           <option name="timeStamp" value="123" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+        <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Editors/Rooms/Data/RoomAsset.cs</url>
           <line>133</line>
           <properties documentPath="D:\User Files\Ostravská univerzita\Bakalářská práce\Unity Project\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Editors\Rooms\Data\RoomAsset.cs" initialLine="133" containingFunctionPresentation="method 'UpdateLightness'" />
           <option name="timeStamp" value="157" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Gameplay/Room Loader/Builders/ObjectMapDataBuilder.cs</url>
-          <line>52</line>
-          <properties documentPath="D:\User Files\Moje Projekty\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Gameplay\Room Loader\Builders\ObjectMapDataBuilder.cs" initialLine="52" containingFunctionPresentation="method 'Spawn'">
-            <startOffsets>
-              <option value="2308" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2427" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="158" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Gameplay/Room Loader/Builders/ObjectMapDataBuilder.cs</url>
-          <line>29</line>
-          <properties documentPath="D:\User Files\Moje Projekty\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Gameplay\Room Loader\Builders\ObjectMapDataBuilder.cs" initialLine="29" containingFunctionPresentation="method 'Load'">
-            <startOffsets>
-              <option value="1062" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1362" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="160" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Core/AssetUtils.cs</url>
-          <line>49</line>
-          <properties documentPath="D:\User Files\Moje Projekty\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Core\AssetUtils.cs" initialLine="49" containingFunctionPresentation="method 'UpdateFromGridByList'">
-            <startOffsets>
-              <option value="2438" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2467" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="161" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+        <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Editors/Campaign/CampaignEditorOverseer.cs</url>
           <line>85</line>
           <properties documentPath="D:\User Files\Moje Projekty\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Editors\Campaign\CampaignEditorOverseer.cs" initialLine="85" containingFunctionPresentation="method 'UpdateDataPack'">
@@ -554,7 +530,7 @@
           </properties>
           <option name="timeStamp" value="162" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+        <line-breakpoint type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Game Sectors/Editors/Rooms/RoomEditorOverseer.cs</url>
           <line>74</line>
           <properties documentPath="D:\User Files\Moje Projekty\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Game Sectors\Editors\Rooms\RoomEditorOverseer.cs" initialLine="74" containingFunctionPresentation="method 'CompleteEditing'">
@@ -566,6 +542,71 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="163" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Systems/File System/Serialization/Assets/JSONSpriteAsset.cs</url>
+          <line>22</line>
+          <properties documentPath="D:\User Files\Moje Projekty\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Systems\File System\Serialization\Assets\JSONSpriteAsset.cs" initialLine="22" containingFunctionPresentation="method 'Decode'">
+            <startOffsets>
+              <option value="648" />
+            </startOffsets>
+            <endOffsets>
+              <option value="687" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="216" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Systems/File System/Serialization/Classes/JSONGrid.cs</url>
+          <line>45</line>
+          <properties documentPath="D:\User Files\Moje Projekty\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Systems\File System\Serialization\Classes\JSONGrid.cs" initialLine="42" containingFunctionPresentation="method 'Decode'">
+            <startOffsets>
+              <option value="1353" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1411" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="217" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Systems/File System/Serialization/Classes/JSONGrid.cs</url>
+          <line>32</line>
+          <properties documentPath="D:\User Files\Moje Projekty\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Systems\File System\Serialization\Classes\JSONGrid.cs" initialLine="29" containingFunctionPresentation="constructor 'JSONGrid'">
+            <startOffsets>
+              <option value="929" />
+            </startOffsets>
+            <endOffsets>
+              <option value="930" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="218" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Systems/File System/CRUDOperations.cs</url>
+          <line>35</line>
+          <properties documentPath="D:\User Files\Moje Projekty\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Systems\File System\CRUDOperations.cs" initialLine="35" containingFunctionPresentation="method 'Save'">
+            <startOffsets>
+              <option value="1199" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1245" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="219" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Rogium Legend/Scripts/Runtime/Systems/File System/ExternalStorageOverseer.cs</url>
+          <line>96</line>
+          <properties documentPath="D:\User Files\Moje Projekty\Rogium Legend\Assets\Rogium Legend\Scripts\Runtime\Systems\File System\ExternalStorageOverseer.cs" initialLine="96" containingFunctionPresentation="method 'UpdatePack'">
+            <startOffsets>
+              <option value="4107" />
+            </startOffsets>
+            <endOffsets>
+              <option value="4147" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="220" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

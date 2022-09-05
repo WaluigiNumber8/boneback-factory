@@ -1,4 +1,5 @@
 ﻿using Rogium.Editors.Core;
+using Rogium.Editors.Core.Defaults;
 
 namespace Rogium.ExternalStorage
 {
@@ -28,13 +29,13 @@ namespace Rogium.ExternalStorage
             this.directoryPath = directoryPath;
             this.filePath = filePath;
             
-            palettesData = new SaveableData("Palettes", "bpalette", directoryPath);
-            spritesData = new SaveableData("Sprites", "bsprite", directoryPath);
-            weaponsData = new SaveableData("Weapons", "bweapon", directoryPath);
-            projectilesData = new SaveableData("Projectiles", "bprojectile", directoryPath);
-            enemiesData = new SaveableData("Enemies", "benemy", directoryPath);
-            roomsData = new SaveableData("Rooms", "broom", directoryPath);
-            tilesData = new SaveableData("Tiles", "btile", directoryPath);
+            palettesData = new SaveableData("Palettes", EditorAssetIDs.PaletteIdentifier, directoryPath);
+            spritesData = new SaveableData("Sprites", EditorAssetIDs.SpriteIdentifier, directoryPath);
+            weaponsData = new SaveableData("Weapons", EditorAssetIDs.WeaponIdentifier, directoryPath);
+            projectilesData = new SaveableData("Projectiles", EditorAssetIDs.ProjectileIdentifier, directoryPath);
+            enemiesData = new SaveableData("Enemies", EditorAssetIDs.EnemyIdentifier, directoryPath);
+            roomsData = new SaveableData("Rooms", EditorAssetIDs.RoomIdentifier, directoryPath);
+            tilesData = new SaveableData("Tiles", EditorAssetIDs.TileIdentifier, directoryPath);
         }
 
         /// <summary>
