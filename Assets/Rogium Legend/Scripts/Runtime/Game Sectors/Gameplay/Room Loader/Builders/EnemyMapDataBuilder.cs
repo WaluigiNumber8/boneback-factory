@@ -33,7 +33,7 @@ namespace Rogium.Gameplay.DataLoading
         public void Load(Vector3Int offsetPos, ObjectGrid<AssetData> IDGrid, IList<EnemyAsset> dataList)
         {
             Clear();
-            AssetUtils.UpdateFromGridByList(IDGrid, dataList,
+            AssetUtils.UpdateFromGridByDict(IDGrid, dataList,
                                             (x, y, asset) => Spawn(offsetPos, x, y, asset),
                                             (x, y) => SpawnMissing(offsetPos, x, y));
         }

@@ -16,12 +16,11 @@ namespace Rogium.Editors.Campaign
     public class CampaignEditorOverseer : IEditorOverseer
     {
         public event Action<CampaignAsset> OnAssignAsset; 
-        public event Action<CampaignAsset, int, string, string> OnSaveChanges;
+        public event Action<CampaignAsset, string, string> OnSaveChanges;
 
         private readonly PackCombiner packCombiner;
         
         private CampaignAsset currentCampaign;
-        private int myIndex;
         private string originalTitle; 
         private string originalAuthor;
 
@@ -55,11 +54,10 @@ namespace Rogium.Editors.Campaign
         /// <param name="campaign">The campaign to edit.</param>
         /// <param name="index">The index of the campaign in the library list.</param>
         /// <param name="prepareEditor">If true, load asset into the editor.</param>
-        public void AssignAsset(CampaignAsset campaign, int index, bool prepareEditor = true)
+        public void AssignAsset(CampaignAsset campaign, bool prepareEditor = true)
         {
             SafetyNet.EnsureIsNotNull(campaign, "Campaign to assign.");
             currentCampaign = new CampaignAsset(campaign);
-            myIndex = index;
             originalTitle = campaign.Title;
             originalAuthor = campaign.Author;
 
@@ -101,7 +99,7 @@ namespace Rogium.Editors.Campaign
         /// </summary>
         private void SaveChanges()
         {
-            OnSaveChanges?.Invoke(CurrentCampaign, myIndex, originalTitle, originalAuthor);
+            OnSaveChanges?.Invoke(CurrentCampaign, originalTitle, originalAuthor);
         }
 
         /// <summary>
@@ -111,7 +109,7 @@ namespace Rogium.Editors.Campaign
         /// <returns></returns>
         private Sprite GetIconDirty(PackAsset dataPack)
         {
-            Sprite icon = dataPack.Rooms.FirstOrDefault(rm => rm.Type == RoomType.Entrance)?.Icon;
+            Sprite icon = dataPack.Rooms.Values.FirstOrDefault(rm => rm.Type == RoomType.Entrance)?.Icon;
             return icon;
         }
         
@@ -120,7 +118,7 @@ namespace Rogium.Editors.Campaign
             get 
             {
                 if (currentCampaign == null) throw new MissingReferenceException("Current Campaign has not been set. Did you forget to activate the editor?");
-                return this.currentCampaign;
+                return currentCampaign;
             }
         }
     }

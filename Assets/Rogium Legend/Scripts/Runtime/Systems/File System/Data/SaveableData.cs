@@ -54,7 +54,7 @@ namespace Rogium.ExternalStorage
         /// <param name="title">The title of the file.</param>
         public void TryAddNewFilePath(string id, string title)
         {
-            try {filePaths.FindValueFirst(id);}
+            try {filePaths.FindValue(id);}
             catch (SafetyNetCollectionException)
             {
                 FilePathInfo filePathInfo = ConvertToFileInfo(id, title);
@@ -68,7 +68,7 @@ namespace Rogium.ExternalStorage
         /// <param name="id">The id of the file to remove.</param>
         public void RemoveFilePath(string id)
         {
-            filePaths.RemoveAt(filePaths.FindIndexFirst(id));
+            filePaths.RemoveAt(filePaths.FindIndex(id));
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Rogium.ExternalStorage
         /// <param name="newTitle">The nw to title to use.</param>
         public void UpdateFileTitle(string id, string newTitle)
         {
-            SafetyNet.EnsureListIsNotNullOrEmpty(filePaths, "filePaths");
+            SafetyNet.EnsureCollectionIsNotNullOrEmpty(filePaths, "filePaths");
             foreach (FilePathInfo pathInfo in filePaths)
             {
                 if (pathInfo.ID != id) continue;
@@ -97,7 +97,7 @@ namespace Rogium.ExternalStorage
         /// <returns>Path of the file with the same title.</returns>
         public string GetFilePath(string id)
         {
-            return filePaths.FindValueFirst(id).Path;
+            return filePaths.FindValue(id).Path;
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace Rogium.ExternalStorage
         /// <returns>Title of the file with the same id.</returns>
         public void GetFileTitleAndPath(string id, out string title, out string path)
         {
-            FilePathInfo info = filePaths.FindValueFirst(id);
+            FilePathInfo info = filePaths.FindValue(id);
             title = info.Title;
             path = info.Path;
         }

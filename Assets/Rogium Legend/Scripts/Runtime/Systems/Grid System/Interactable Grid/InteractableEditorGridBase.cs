@@ -9,17 +9,17 @@ namespace Rogium.Systems.GridSystem
         /// <summary>
         /// Loads sprites into the editor grid.
         /// </summary>
-        /// <param name="assetList">From which list of assets to load from.</param>
+        /// <param name="assets">From which list of assets to load from.</param>
         /// <param name="IDGrid">The grid of IDs to read.</param>
         /// <typeparam name="T">Is a type of Asset.</typeparam>
-        public abstract void LoadWithSprites<T>(ObjectGrid<string> IDGrid, IList<T> assetList) where T : IAsset;
+        public abstract void LoadWithSprites<T>(ObjectGrid<string> IDGrid, IDictionary<string, T> assets) where T : IAsset;
 
         /// <summary>
         /// Loads UI tiles into the editor grid.
         /// </summary>
-        /// <param name="colorArray">A color array to read from.</param>
+        /// <param name="colors">A color array to read from.</param>
         /// <param name="indexGrid">The grid of indexes to read.</param>
-        public abstract void LoadWithColors(ObjectGrid<int> indexGrid, Color[] colorArray);
+        public abstract void LoadWithColors(ObjectGrid<int> indexGrid, Color[] colors);
 
         /// <summary>
         /// Updates a cell with a new value.

@@ -41,15 +41,18 @@ namespace Rogium.ExternalStorage
         /// Loads all assets.
         /// </summary>
         /// <returns>A list of those assets.</returns>
-        public IList<T> LoadAll()
+        public IDictionary<string, T> LoadAll()
         {
+            IDictionary<string, T> dataDictionary = new Dictionary<string, T>();
             IList<T> loadedData = FileSystem.LoadAllFiles<T, TS>(data.Path, data.Identifier);
             loadedData = FindAndRemoveDuplicates(loadedData);
+            
             foreach (T piece in loadedData)
             {
                 data.TryAddNewFilePath(piece.ID, piece.Title);
+                dataDictionary.Add(piece.ID, piece);
             }
-            return loadedData;
+            return dataDictionary;
         }
         
         /// <summary>

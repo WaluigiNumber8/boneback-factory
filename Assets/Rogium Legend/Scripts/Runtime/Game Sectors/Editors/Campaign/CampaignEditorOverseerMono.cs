@@ -70,7 +70,7 @@ namespace Rogium.Editors.Campaign
         /// <param name="finalSelectedAssets">The packs to update with.</param>
         private void UpdatePacksFromSelection(IList<IAsset> finalSelectedAssets)
         {
-            SafetyNet.EnsureListIsNotNullOrEmpty(finalSelectedAssets, "Selected Packs");
+            SafetyNet.EnsureCollectionIsNotNullOrEmpty(finalSelectedAssets, "Selected Packs");
             
             IList<PackAsset> finalSelectedPacks = finalSelectedAssets.Cast<PackAsset>().ToList();
             overseer.UpdateDataPack(finalSelectedPacks);

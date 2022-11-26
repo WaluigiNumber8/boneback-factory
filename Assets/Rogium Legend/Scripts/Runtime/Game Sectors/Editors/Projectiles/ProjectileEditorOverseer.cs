@@ -10,10 +10,9 @@ namespace Rogium.Editors.Projectiles
     public class ProjectileEditorOverseer : IEditorOverseer
     {
         public event Action<ProjectileAsset> OnAssignAsset; 
-        public event Action<ProjectileAsset, int> OnCompleteEditing;
+        public event Action<ProjectileAsset> OnCompleteEditing;
         
         private ProjectileAsset currentAsset;
-        private int myIndex;
 
         #region Singleton Pattern
         private static ProjectileEditorOverseer instance;
@@ -37,15 +36,12 @@ namespace Rogium.Editors.Projectiles
         /// Assign an asset, that is going to be edited.
         /// </summary>
         /// <param name="asset">The asset that is going to be edited.</param>
-        /// <param name="index">Asset's list index. (For updating)</param>
         /// <param name="prepareEditor">If true, load asset into the editor.</param>
-        public void AssignAsset(ProjectileAsset asset, int index, bool prepareEditor = true)
+        public void AssignAsset(ProjectileAsset asset, bool prepareEditor = true)
         {
             SafetyNet.EnsureIsNotNull(asset, "Assigned Tile");
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(index, 0, "Assigned asset index");
             
             currentAsset = new ProjectileAsset(asset);
-            myIndex = index;
 
             if (!prepareEditor) return;
             OnAssignAsset?.Invoke(currentAsset);
@@ -63,7 +59,7 @@ namespace Rogium.Editors.Projectiles
         
         public void CompleteEditing()
         {
-            OnCompleteEditing?.Invoke(CurrentAsset, myIndex);
+            OnCompleteEditing?.Invoke(CurrentAsset);
         }
         
         public ProjectileAsset CurrentAsset 

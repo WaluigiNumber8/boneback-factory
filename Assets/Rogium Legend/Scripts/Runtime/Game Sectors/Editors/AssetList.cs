@@ -55,10 +55,10 @@ namespace Rogium.Editors.Core
         {
             SafetyNet.EnsureIsNotNull(assets, "List of assets to add.");
             
-            List<T> newAssets = new List<T>(list);
+            List<T> newAssets = new(list);
             newAssets.AddRange(assets);
             
-            SafetyNet.EnsureListDoesNotHaveDuplicities(newAssets, "Newly Added Assets");
+            SafetyNet.EnsureListDoesNotHaveDuplicates(newAssets, "Newly Added Assets");
             
             list.AddRange(assets);
         }

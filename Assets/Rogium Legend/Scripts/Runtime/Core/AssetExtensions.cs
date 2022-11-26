@@ -41,7 +41,7 @@ namespace Rogium.Core
 
                 try
                 {
-                    lastAsset = allAssets.FindValueFirst(id);
+                    lastAsset = allAssets.FindValue(id);
                     lastID = lastAsset.ID;
                     assets.Add(lastAsset);
                     

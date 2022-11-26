@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using RedRats.UI;
 using Rogium.Core;
 using Rogium.Editors.Core;
@@ -20,7 +21,8 @@ namespace Rogium.Editors.PropertyEditor.Builders
     {
         private WeaponAsset asset;
         private PackAsset currentPack;
-        private IList<ProjectileAsset> packProjectiles;
+        private IDictionary<string, ProjectileAsset> packProjectiles;
+        private ProjectileAsset defaultProjectile;
         
         private InteractablePropertyContentBlock projectileSlotsBlock;
         
@@ -31,6 +33,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
             this.asset = asset;
             currentPack = PackEditorOverseer.Instance.CurrentPack;
             packProjectiles = currentPack.Projectiles;
+            defaultProjectile = packProjectiles.Values.First();
             
             Clear();
             BuildColumnImportant(contentMain);
@@ -109,8 +112,8 @@ namespace Rogium.Editors.PropertyEditor.Builders
             projectileSlotsBlock.SetDisabled(false);
 
             if (packProjectiles == null || packProjectiles.Count <= 0) return;
-            
-            IAsset projectile = packProjectiles.FindValueFirstOrReturnFirst(asset.ProjectileIDs[0].ID);
+
+            IAsset projectile = packProjectiles.ReturnValueOr(asset.ProjectileIDs[0].ID, defaultProjectile);
             b.BuildAssetField("Projectile #1", AssetType.Projectile, projectile, projectileSlotsBlock.GetTransform, a => asset.UpdateProjectileIDsPosID(0, a.ID), !currentPack.ContainsAnyProjectiles);
             b.BuildInputField("Spawn Delay", asset.ProjectileIDs[0].SpawnDelay.ToString(), projectileSlotsBlock.GetTransform, s => asset.UpdateProjectileIDsPosSpawnDelay(0, float.Parse(s)), !currentPack.ContainsAnyProjectiles, TMP_InputField.CharacterValidation.Decimal);
             b.BuildInputField("Angle Offset", asset.ProjectileIDs[0].AngleOffset.ToString(), projectileSlotsBlock.GetTransform, s => asset.UpdateProjectileIDsPosAngleOffset(0, int.Parse(s)), !currentPack.ContainsAnyProjectiles, TMP_InputField.CharacterValidation.Integer);
@@ -118,7 +121,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
 
             if (amount >= 2)
             {
-                projectile = packProjectiles.FindValueFirstOrReturnFirst(asset.ProjectileIDs[1].ID);
+                projectile = packProjectiles.ReturnValueOr(asset.ProjectileIDs[1].ID, defaultProjectile); 
                 b.BuildAssetField("Projectile #2", AssetType.Projectile, projectile, projectileSlotsBlock.GetTransform, a => asset.UpdateProjectileIDsPosID(1, a.ID), !currentPack.ContainsAnyProjectiles);
                 b.BuildInputField("Spawn Delay", asset.ProjectileIDs[1].SpawnDelay.ToString(), projectileSlotsBlock.GetTransform, s => asset.UpdateProjectileIDsPosSpawnDelay(1, float.Parse(s)), !currentPack.ContainsAnyProjectiles, TMP_InputField.CharacterValidation.Decimal);
                 b.BuildInputField("Angle Offset", asset.ProjectileIDs[1].AngleOffset.ToString(), projectileSlotsBlock.GetTransform, s => asset.UpdateProjectileIDsPosAngleOffset(1, int.Parse(s)), !currentPack.ContainsAnyProjectiles, TMP_InputField.CharacterValidation.Integer);
@@ -127,7 +130,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
             
             if (amount >= 3)
             {
-                projectile = packProjectiles.FindValueFirstOrReturnFirst(asset.ProjectileIDs[2].ID);
+                projectile = packProjectiles.ReturnValueOr(asset.ProjectileIDs[2].ID, defaultProjectile);
                 b.BuildAssetField("Projectile #3", AssetType.Projectile, projectile, projectileSlotsBlock.GetTransform, a => asset.UpdateProjectileIDsPosID(2, a.ID), !currentPack.ContainsAnyProjectiles);
                 b.BuildInputField("Spawn Delay", asset.ProjectileIDs[2].SpawnDelay.ToString(), projectileSlotsBlock.GetTransform, s => asset.UpdateProjectileIDsPosSpawnDelay(2, float.Parse(s)), !currentPack.ContainsAnyProjectiles, TMP_InputField.CharacterValidation.Decimal);
                 b.BuildInputField("Angle Offset", asset.ProjectileIDs[2].AngleOffset.ToString(), projectileSlotsBlock.GetTransform, s => asset.UpdateProjectileIDsPosAngleOffset(2, int.Parse(s)), !currentPack.ContainsAnyProjectiles, TMP_InputField.CharacterValidation.Integer);
@@ -136,7 +139,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
             
             if (amount >= 4)
             {
-                projectile = packProjectiles.FindValueFirstOrReturnFirst(asset.ProjectileIDs[3].ID);
+              projectile = packProjectiles.ReturnValueOr(asset.ProjectileIDs[3].ID, defaultProjectile);
                 b.BuildAssetField("Projectile #4", AssetType.Projectile, projectile, projectileSlotsBlock.GetTransform, a => asset.UpdateProjectileIDsPosID(3, a.ID), !currentPack.ContainsAnyProjectiles);
                 b.BuildInputField("Spawn Delay", asset.ProjectileIDs[3].SpawnDelay.ToString(), projectileSlotsBlock.GetTransform, s => asset.UpdateProjectileIDsPosSpawnDelay(3, float.Parse(s)), !currentPack.ContainsAnyProjectiles, TMP_InputField.CharacterValidation.Decimal);
                 b.BuildInputField("Angle Offset", asset.ProjectileIDs[3].AngleOffset.ToString(), projectileSlotsBlock.GetTransform, s => asset.UpdateProjectileIDsPosAngleOffset(3, int.Parse(s)), !currentPack.ContainsAnyProjectiles, TMP_InputField.CharacterValidation.Integer);
@@ -145,7 +148,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
             
             if (amount >= 5)
             {
-                projectile = packProjectiles.FindValueFirstOrReturnFirst(asset.ProjectileIDs[4].ID);
+              projectile = packProjectiles.ReturnValueOr(asset.ProjectileIDs[4].ID, defaultProjectile);
                 b.BuildAssetField("Projectile #5", AssetType.Projectile, projectile, projectileSlotsBlock.GetTransform, a => asset.UpdateProjectileIDsPosID(4, a.ID), !currentPack.ContainsAnyProjectiles);
                 b.BuildInputField("Spawn Delay", asset.ProjectileIDs[4].SpawnDelay.ToString(), projectileSlotsBlock.GetTransform, s => asset.UpdateProjectileIDsPosSpawnDelay(4, float.Parse(s)), !currentPack.ContainsAnyProjectiles, TMP_InputField.CharacterValidation.Decimal);
                 b.BuildInputField("Angle Offset", asset.ProjectileIDs[4].AngleOffset.ToString(), projectileSlotsBlock.GetTransform, s => asset.UpdateProjectileIDsPosAngleOffset(4, int.Parse(s)), !currentPack.ContainsAnyProjectiles, TMP_InputField.CharacterValidation.Integer);
@@ -154,7 +157,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
             
             if (amount >= 6)
             {
-                projectile = packProjectiles.FindValueFirstOrReturnFirst(asset.ProjectileIDs[5].ID);
+              projectile = packProjectiles.ReturnValueOr(asset.ProjectileIDs[5].ID, defaultProjectile);
                 b.BuildAssetField("Projectile #6", AssetType.Projectile, projectile, projectileSlotsBlock.GetTransform, a => asset.UpdateProjectileIDsPosID(5, a.ID), !currentPack.ContainsAnyProjectiles);
                 b.BuildInputField("Spawn Delay", asset.ProjectileIDs[5].SpawnDelay.ToString(), projectileSlotsBlock.GetTransform, s => asset.UpdateProjectileIDsPosSpawnDelay(5, float.Parse(s)), !currentPack.ContainsAnyProjectiles, TMP_InputField.CharacterValidation.Decimal);
                 b.BuildInputField("Angle Offset", asset.ProjectileIDs[5].AngleOffset.ToString(), projectileSlotsBlock.GetTransform, s => asset.UpdateProjectileIDsPosAngleOffset(5, int.Parse(s)), !currentPack.ContainsAnyProjectiles, TMP_InputField.CharacterValidation.Integer);
@@ -163,7 +166,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
             
             if (amount >= 7)
             {
-                projectile = packProjectiles.FindValueFirstOrReturnFirst(asset.ProjectileIDs[6].ID);
+              projectile = packProjectiles.ReturnValueOr(asset.ProjectileIDs[6].ID, defaultProjectile);
                 b.BuildAssetField("Projectile #7", AssetType.Projectile, projectile, projectileSlotsBlock.GetTransform, a => asset.UpdateProjectileIDsPosID(6, a.ID), !currentPack.ContainsAnyProjectiles);
                 b.BuildInputField("Spawn Delay", asset.ProjectileIDs[6].SpawnDelay.ToString(), projectileSlotsBlock.GetTransform, s => asset.UpdateProjectileIDsPosSpawnDelay(6, float.Parse(s)), !currentPack.ContainsAnyProjectiles, TMP_InputField.CharacterValidation.Decimal);
                 b.BuildInputField("Angle Offset", asset.ProjectileIDs[6].AngleOffset.ToString(), projectileSlotsBlock.GetTransform, s => asset.UpdateProjectileIDsPosAngleOffset(6, int.Parse(s)), !currentPack.ContainsAnyProjectiles, TMP_InputField.CharacterValidation.Integer);
@@ -172,7 +175,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
             
             if (amount >= 8)
             {
-                projectile = packProjectiles.FindValueFirstOrReturnFirst(asset.ProjectileIDs[7].ID);
+              projectile = packProjectiles.ReturnValueOr(asset.ProjectileIDs[7].ID, defaultProjectile);
                 b.BuildAssetField("Projectile #8", AssetType.Projectile, projectile, projectileSlotsBlock.GetTransform, a => asset.UpdateProjectileIDsPosID(7, a.ID), !currentPack.ContainsAnyProjectiles);
                 b.BuildInputField("Spawn Delay", asset.ProjectileIDs[7].SpawnDelay.ToString(), projectileSlotsBlock.GetTransform, s => asset.UpdateProjectileIDsPosSpawnDelay(7, float.Parse(s)), !currentPack.ContainsAnyProjectiles, TMP_InputField.CharacterValidation.Decimal);
                 b.BuildInputField("Angle Offset", asset.ProjectileIDs[7].AngleOffset.ToString(), projectileSlotsBlock.GetTransform, s => asset.UpdateProjectileIDsPosAngleOffset(7, int.Parse(s)), !currentPack.ContainsAnyProjectiles, TMP_InputField.CharacterValidation.Integer);
@@ -181,7 +184,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
             
             if (amount >= 9)
             {
-                projectile = packProjectiles.FindValueFirstOrReturnFirst(asset.ProjectileIDs[8].ID);
+              projectile = packProjectiles.ReturnValueOr(asset.ProjectileIDs[8].ID, defaultProjectile);
                 b.BuildAssetField("Projectile #9", AssetType.Projectile, projectile, projectileSlotsBlock.GetTransform, a => asset.UpdateProjectileIDsPosID(8, a.ID), !currentPack.ContainsAnyProjectiles);
                 b.BuildInputField("Spawn Delay", asset.ProjectileIDs[8].SpawnDelay.ToString(), projectileSlotsBlock.GetTransform, s => asset.UpdateProjectileIDsPosSpawnDelay(8, float.Parse(s)), !currentPack.ContainsAnyProjectiles, TMP_InputField.CharacterValidation.Decimal);
                 b.BuildInputField("Angle Offset", asset.ProjectileIDs[8].AngleOffset.ToString(), projectileSlotsBlock.GetTransform, s => asset.UpdateProjectileIDsPosAngleOffset(8, int.Parse(s)), !currentPack.ContainsAnyProjectiles, TMP_InputField.CharacterValidation.Integer);
@@ -190,7 +193,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
             
             if (amount >= 10)
             {
-                projectile = packProjectiles.FindValueFirstOrReturnFirst(asset.ProjectileIDs[9].ID);
+              projectile = packProjectiles.ReturnValueOr(asset.ProjectileIDs[9].ID, defaultProjectile);
                 b.BuildAssetField("Projectile #10", AssetType.Projectile, projectile, projectileSlotsBlock.GetTransform, a => asset.UpdateProjectileIDsPosID(9, a.ID), !currentPack.ContainsAnyProjectiles);
                 b.BuildInputField("Spawn Delay", asset.ProjectileIDs[9].SpawnDelay.ToString(), projectileSlotsBlock.GetTransform, s => asset.UpdateProjectileIDsPosSpawnDelay(9, float.Parse(s)), !currentPack.ContainsAnyProjectiles, TMP_InputField.CharacterValidation.Decimal);
                 b.BuildInputField("Angle Offset", asset.ProjectileIDs[9].AngleOffset.ToString(), projectileSlotsBlock.GetTransform, s => asset.UpdateProjectileIDsPosAngleOffset(9, int.Parse(s)), !currentPack.ContainsAnyProjectiles, TMP_InputField.CharacterValidation.Integer);
@@ -199,7 +202,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
             
             if (amount >= 11)
             {
-                projectile = packProjectiles.FindValueFirstOrReturnFirst(asset.ProjectileIDs[10].ID);
+                projectile = packProjectiles.ReturnValueOr(asset.ProjectileIDs[10].ID, defaultProjectile);
                 b.BuildAssetField("Projectile #11", AssetType.Projectile, projectile, projectileSlotsBlock.GetTransform, a => asset.UpdateProjectileIDsPosID(10, a.ID), !currentPack.ContainsAnyProjectiles);
                 b.BuildInputField("Spawn Delay", asset.ProjectileIDs[10].SpawnDelay.ToString(), projectileSlotsBlock.GetTransform, s => asset.UpdateProjectileIDsPosSpawnDelay(10, float.Parse(s)), !currentPack.ContainsAnyProjectiles, TMP_InputField.CharacterValidation.Decimal);
                 b.BuildInputField("Angle Offset", asset.ProjectileIDs[10].AngleOffset.ToString(), projectileSlotsBlock.GetTransform, s => asset.UpdateProjectileIDsPosAngleOffset(10, int.Parse(s)), !currentPack.ContainsAnyProjectiles, TMP_InputField.CharacterValidation.Integer);
@@ -208,7 +211,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
             
             if (amount >= 12)
             {
-                projectile = packProjectiles.FindValueFirstOrReturnFirst(asset.ProjectileIDs[11].ID);
+                projectile = packProjectiles.ReturnValueOr(asset.ProjectileIDs[11].ID, defaultProjectile);
                 b.BuildAssetField("Projectile #12", AssetType.Projectile, projectile, projectileSlotsBlock.GetTransform, a => asset.UpdateProjectileIDsPosID(11, a.ID), !currentPack.ContainsAnyProjectiles);
                 b.BuildInputField("Spawn Delay", asset.ProjectileIDs[11].SpawnDelay.ToString(), projectileSlotsBlock.GetTransform, s => asset.UpdateProjectileIDsPosSpawnDelay(11, float.Parse(s)), !currentPack.ContainsAnyProjectiles, TMP_InputField.CharacterValidation.Decimal);
                 b.BuildInputField("Angle Offset", asset.ProjectileIDs[11].AngleOffset.ToString(), projectileSlotsBlock.GetTransform, s => asset.UpdateProjectileIDsPosAngleOffset(11, int.Parse(s)), !currentPack.ContainsAnyProjectiles, TMP_InputField.CharacterValidation.Integer);

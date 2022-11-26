@@ -42,7 +42,7 @@ public class test_Pack_Library
     public void create_new_pack_and_check_if_data_is_correct()
     {
         lib.CreateAndAddPack(packInfo);
-        PackAsset foundPack = lib.GetPacksCopy.FindValueFirst(packInfo.ID);
+        PackAsset foundPack = lib.GetPacksCopy.FindValue(packInfo.ID);
         Assert.AreEqual(packInfo.Title, foundPack.Title);
     }
 }

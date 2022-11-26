@@ -312,7 +312,7 @@ namespace RedRats.Safety
         /// <param name="variableName">The name of the list</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
         /// <exception cref="SafetyNetCollectionException"></exception>
-        public static void EnsureListIsNotNullOrEmpty<T>(IList<T> list, string variableName, string customMessage = "")
+        public static void EnsureCollectionIsNotNullOrEmpty<T>(ICollection<T> list, string variableName, string customMessage = "")
         {
             if (list == null || list.Count <= 0)
                 ThrowException(s => new SafetyNetException(s), customMessage, $"The list '{variableName}' cannot be empty or null.");
@@ -425,7 +425,7 @@ namespace RedRats.Safety
         /// <param name="list"></param>
         /// <param name="variableName"></param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        public static void EnsureListDoesNotHaveDuplicities<T>(IList<T> list, string variableName, string customMessage = "")
+        public static void EnsureListDoesNotHaveDuplicates<T>(IList<T> list, string variableName, string customMessage = "")
         {
             int foundDuplicates = list.GetDuplicatesCount();
             if (foundDuplicates > 0)
@@ -439,6 +439,105 @@ namespace RedRats.Safety
         }
         #endregion
 
+        #region Dictionary Checks
+
+        /// <summary>
+        /// Checks if a given dictionary is not empty.
+        /// </summary>
+        /// <param name="dict">The dictionary to check.</param>
+        /// <param name="variableName">The name of the dictionary</param>
+        /// <param name="customMessage">The message of the error. If blank will use default.</param>
+        /// <exception cref="SafetyNetCollectionException"></exception>
+        public static void EnsureDictionaryIsNotEmpty<T, TS>(IDictionary<T, TS> dict, string variableName, string customMessage = "")
+        {
+            if (dict.Count <= 0)
+                ThrowException(s => new SafetyNetException(s), customMessage, $"The dictionary '{variableName}' cannot be empty.");
+        }
+
+        /// <summary>
+        /// Checks if a given dictionary is not null.
+        /// </summary>
+        /// <param name="dict">The dictionary to check.</param>
+        /// <param name="variableName">The name of the dictionary</param>
+        /// <param name="customMessage">The message of the error. If blank will use default.</param>
+        /// <exception cref="SafetyNetCollectionException"></exception>
+        public static void EnsureDictionaryIsNotNullOrEmpty<T, TS>(IDictionary<T, TS> dict, string variableName, string customMessage = "")
+        {
+            if (dict == null || dict.Count <= 0)
+                ThrowException(s => new SafetyNetException(s), customMessage, $"The dictionary '{variableName}' cannot be empty or null.");
+        }
+
+        /// <summary>
+        /// Checks if a given dictionary has a size lower than a specific size.
+        /// </summary>
+        /// <param name="dict">The dictionary to check.</param>
+        /// <param name="maxAllowedSize">Max allowed size for the dictionary.</param>
+        /// <param name="variableName">The name of the dictionary</param>
+        /// <param name="customMessage">The message of the error. If blank will use default.</param>
+        /// <exception cref="SafetyNetCollectionException"></exception>
+        public static void EnsureDictionaryIsNotLongerThan<T, TS>(IDictionary<T, TS> dict, int maxAllowedSize, string variableName, string customMessage = "")
+        {
+            if (dict.Count > maxAllowedSize)
+                ThrowException(s => new SafetyNetException(s), customMessage, $"The dictionary '{variableName}' cannot have more than {maxAllowedSize.ToString()} elements. ({dict.Count.ToString()})");
+        }
+
+        /// <summary>
+        /// Checks if a given dictionary has a size lower or equal to a specific size.
+        /// </summary>
+        /// <param name="dict">The dictionary to check.</param>
+        /// <param name="maxAllowedSize">Max allowed size for the dictionary.</param>
+        /// <param name="variableName">The name of the dictionary</param>
+        /// <param name="customMessage">The message of the error. If blank will use default.</param>
+        /// <exception cref="SafetyNetCollectionException"></exception>
+        public static void EnsureDictionaryIsNotLongerOrEqualThan<T, TS>(IDictionary<T, TS> dict, int maxAllowedSize, string variableName, string customMessage = "")
+        {
+            if (dict.Count >= maxAllowedSize)
+                ThrowException(s => new SafetyNetException(s), customMessage, $"The dictionary '{variableName}' cannot have more or equal to {maxAllowedSize.ToString()} elements. ({dict.Count.ToString()})");
+        }
+
+        /// <summary>
+        /// Checks if a given dictionary has a size bigger than a specific value.
+        /// </summary>
+        /// <param name="dict">The dictionary to check.</param>
+        /// <param name="minAllowedSize">Min allowed size for the dictionary.</param>
+        /// <param name="variableName">The name of the dictionary</param>
+        /// <param name="customMessage">The message of the error. If blank will use default.</param>
+        /// <exception cref="SafetyNetCollectionException"></exception>
+        public static void EnsureDictionaryIsNotShorterThan<T, TS>(IDictionary<T, TS> dict, int minAllowedSize, string variableName, string customMessage = "")
+        {
+            if (dict.Count < minAllowedSize)
+                ThrowException(s => new SafetyNetException(s), customMessage, $"The dictionary '{variableName}' cannot have less than {minAllowedSize.ToString()} elements. ({dict.Count.ToString()})");
+        }
+
+        /// <summary>
+        /// Checks if a given dictionary has a size bigger or equal to a specific value.
+        /// </summary>
+        /// <param name="dict">The dictionary to check.</param>
+        /// <param name="minAllowedSize">Min allowed size for the dictionary.</param>
+        /// <param name="variableName">The name of the dictionary</param>
+        /// <param name="customMessage">The message of the error. If blank will use default.</param>
+        /// <exception cref="SafetyNetCollectionException"></exception>
+        public static void EnsureDictionaryIsNotShorterOrEqualThan<T, TS>(IDictionary<T, TS> dict, int minAllowedSize, string variableName, string customMessage = "")
+        {
+            if (dict.Count <= minAllowedSize)
+                ThrowException(s => new SafetyNetException(s), customMessage, $"The dictionary '{variableName}' cannot have less or equal to {minAllowedSize.ToString()} elements. ({dict.Count.ToString()})");
+        }
+
+        /// <summary>
+        /// Checks if a given dictionary has a specific size.
+        /// </summary>
+        /// <param name="dict">The dictionary to check.</param>
+        /// <param name="size">The allowed size for the dictionary.</param>
+        /// <param name="variableName">The name of the dictionary</param>
+        /// <param name="customMessage">The message of the error. If blank will use default.</param>
+        /// <exception cref="SafetyNetCollectionException"></exception>
+        public static void EnsureDictionaryIsLongExactly<T, TS>(IDictionary<T, TS> dict, int size, string variableName, string customMessage = "")
+        {
+            if (dict.Count == size)
+                ThrowException(s => new SafetyNetException(s), customMessage, $"The dictionary '{variableName}' must have exactly {size.ToString()} elements. ({dict.Count.ToString()})");
+        }
+        #endregion
+        
         /// <summary>
         /// Throw a custom error message, without raising an exception.
         /// </summary>

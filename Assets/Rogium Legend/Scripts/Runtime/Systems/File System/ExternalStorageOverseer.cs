@@ -104,15 +104,17 @@ namespace Rogium.ExternalStorage
         /// Loads all packs stored at application persistent path.
         /// </summary>
         /// <returns>A list of all <see cref="PackAsset"/>s.</returns>
-        public IList<PackAsset> LoadAllPacks()
+        public IDictionary<string, PackAsset> LoadAllPacks()
         {
             IList<PackAsset> packs = FileSystem.LoadAllFiles<PackAsset, JSONPackAsset>(packData.Path, packData.Identifier, true);
+            IDictionary<string, PackAsset> packDictionary = new Dictionary<string, PackAsset>();
             foreach (PackAsset pack in packs)
             {
                 packPaths.Add(BuildPackInfo(pack));
+                packDictionary.Add(pack.ID, pack);
             }
 
-            return packs;
+            return packDictionary;
         }
 
         /// <summary>
@@ -124,7 +126,7 @@ namespace Rogium.ExternalStorage
         {
             try
             {
-                int index = packPaths.FindIndexFirst(pack.ID);
+                int index = packPaths.FindIndex(pack.ID);
                 FileSystem.DeleteDirectory(packPaths[index].DirectoryPath);
                 packPaths.RemoveAt(index);
                 currentPackInfo = null;
@@ -142,7 +144,7 @@ namespace Rogium.ExternalStorage
         public PackAsset LoadPack(PackAsset pack)
         {
             //Update current pack info.
-            try {currentPackInfo = packPaths.FindValueFirst(pack.ID); }
+            try {currentPackInfo = packPaths.FindValue(pack.ID); }
             catch (SafetyNetCollectionException)
             {
                CreateSkeleton(pack);

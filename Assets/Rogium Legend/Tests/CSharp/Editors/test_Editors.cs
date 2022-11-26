@@ -43,7 +43,7 @@ namespace Rogium_Legend.Tests.CSharp.Editors
         {
             editor.CreateNewTile();
             editor.CreateNewTile(new TileAsset("Devil Tile", EditorDefaults.TileIcon, "TestAuthor", TileType.Floor));
-            TileAsset foundTile = editor.CurrentPack.Tiles.FindValueFirst(editor.CurrentPack.Tiles[0].ID);
+            TileAsset foundTile = editor.CurrentPack.Tiles.FindValue(editor.CurrentPack.Tiles[0].ID);
             
             Assert.AreEqual(editor.CurrentPack.Tiles[0].ID, foundTile.ID);
         }
@@ -57,7 +57,7 @@ namespace Rogium_Legend.Tests.CSharp.Editors
 
             try
             {
-                editor.CurrentPack.Tiles.FindValueFirst(tile.ID);
+                editor.CurrentPack.Tiles.FindValue(tile.ID);
                 Assert.Fail();
             }
             catch (InvalidOperationException) { }

@@ -1,5 +1,6 @@
 using System;
 using RedRats.Core;
+using RedRats.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.Validation;
@@ -12,7 +13,7 @@ namespace Rogium.Editors.Palettes
     /// </summary>
     public class PaletteAsset : AssetBase
     {
-        private Color[] colors;
+        private readonly Color[] colors;
 
         #region Constructors
         public PaletteAsset()
@@ -54,6 +55,11 @@ namespace Rogium.Editors.Palettes
         #endregion
         
         #region Update Values
+        public void UpdateColorSlot(int slot, Color color)
+        {
+            SafetyNet.EnsureIndexWithingCollectionRange(slot, colors, "Color Palette");
+            colors[slot] = color;
+        }
         #endregion
         
         public Color[] Colors { get => colors; }

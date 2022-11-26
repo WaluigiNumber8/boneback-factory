@@ -114,7 +114,7 @@ public class test_Pack_Save_and_Load
         lib.CreateAndAddPack(packInfo);
         lib.ReloadFromExternalStorage();
 
-        PackAsset foundPack = lib.GetPacksCopy.FindValueFirst(packInfo.ID);
+        PackAsset foundPack = lib.GetPacksCopy.FindValue(packInfo.ID);
 
         byte[] currentBytes = ImageConversion.EncodeToPNG(packInfo.Icon.texture);
         byte[] foundBytes = ImageConversion.EncodeToPNG(foundPack.Icon.texture);

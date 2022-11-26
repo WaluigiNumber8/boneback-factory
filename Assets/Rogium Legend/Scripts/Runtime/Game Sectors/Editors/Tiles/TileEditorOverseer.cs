@@ -12,10 +12,9 @@ namespace Rogium.Editors.Tiles
     public class TileEditorOverseer : IEditorOverseer
     {
         public event Action<TileAsset> OnAssignAsset; 
-        public event Action<TileAsset, int> OnCompleteEditing;
+        public event Action<TileAsset> OnCompleteEditing;
         
         private TileAsset currentAsset;
-        private int myIndex;
 
         #region Singleton Pattern
         private static TileEditorOverseer instance;
@@ -39,15 +38,12 @@ namespace Rogium.Editors.Tiles
         /// Assign an asset, that is going to be edited.
         /// </summary>
         /// <param name="asset">The asset that is going to be edited.</param>
-        /// <param name="index">Asset's list index. (For updating)</param>
         /// <param name="prepareEditor">If true, load asset into the editor.</param>
-        public void AssignAsset(TileAsset asset, int index, bool prepareEditor = true)
+        public void AssignAsset(TileAsset asset, bool prepareEditor = true)
         {
             SafetyNet.EnsureIsNotNull(asset, "Assigned Tile");
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(index, 0, "Assigned asset index");
             
             currentAsset = new TileAsset(asset);
-            myIndex = index;
 
             if (!prepareEditor) return;
             OnAssignAsset?.Invoke(currentAsset);
@@ -65,7 +61,7 @@ namespace Rogium.Editors.Tiles
         
         public void CompleteEditing()
         {
-            OnCompleteEditing?.Invoke(CurrentAsset, myIndex);
+            OnCompleteEditing?.Invoke(CurrentAsset);
         }
         
         public TileAsset CurrentAsset 
@@ -73,7 +69,7 @@ namespace Rogium.Editors.Tiles
             get 
             {
                 if (currentAsset == null) throw new MissingReferenceException("Current Tile has not been set. Did you forget to activate the editor?");
-                return this.currentAsset;
+                return currentAsset;
             } 
         }
     }

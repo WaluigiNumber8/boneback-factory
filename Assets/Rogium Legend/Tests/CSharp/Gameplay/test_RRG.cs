@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using Rogium.Editors.Core;
 using Rogium.Editors.Rooms;
@@ -21,7 +22,7 @@ namespace Rogium_Legend.Tests.CSharp.Gameplay
         {
             lib = ExternalLibraryOverseer.Instance;
             lib.ReloadFromExternalStorage();
-            rooms = lib.GetCampaignsCopy[0].DataPack.Rooms;
+            rooms = lib.GetCampaignsCopy[0];
             
             rrg = new RRG(rooms, 10);
         }

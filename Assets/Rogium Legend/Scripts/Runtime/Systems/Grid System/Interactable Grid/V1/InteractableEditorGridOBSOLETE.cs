@@ -47,11 +47,11 @@ namespace Rogium.Systems.GridSystem
         }
         
         
-        public override void LoadWithColors(ObjectGrid<int> indexGrid, Color[] colorArray)
+        public override void LoadWithColors(ObjectGrid<int> indexGrid, Color[] colors)
         {
             SafetyNet.EnsureIntIsEqual(indexGrid.Width, gridSize.x, "Grid Width");
             SafetyNet.EnsureIntIsEqual(indexGrid.Height, gridSize.y, "Grid Height");
-            GridLoader.LoadByColor(cells, indexGrid, colorArray);
+            GridLoader.LoadByColor(cells, indexGrid, colors);
         }
         
         public override void UpdateCell(Vector2Int cellPosition, Sprite sprite)

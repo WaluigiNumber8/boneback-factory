@@ -1,5 +1,7 @@
 ﻿using RedRats.Safety;
 using System;
+using Rogium.Core;
+using Rogium.Editors.Packs;
 using Rogium.Systems.IconBuilders;
 using UnityEngine;
 
@@ -12,13 +14,11 @@ namespace Rogium.Editors.Sprites
     {
         public event Action<SpriteAsset> OnAssignAsset;
         public event Action OnCompleteEditingBefore, OnCompleteEditingAfter;
-        public event Action<SpriteAsset, int> OnCompleteEditing;
+        public event Action<SpriteAsset> OnCompleteEditing;
 
         private readonly IconBuilder iconBuilder;
-        private readonly PalettePicker palettePicker;
         
         private SpriteAsset currentAsset;
-        private int myIndex;
         
         #region Singleton Pattern
         private static SpriteEditorOverseer instance;
@@ -38,25 +38,18 @@ namespace Rogium.Editors.Sprites
 
         #endregion
 
-        private SpriteEditorOverseer()
-        {
-            iconBuilder = new IconBuilder();
-            palettePicker = new PalettePicker();
-        }
+        private SpriteEditorOverseer() => iconBuilder = new IconBuilder();
 
         /// <summary>
         /// Assign an asset, that is going to be edited.
         /// </summary>
         /// <param name="asset">The asset that is going to be edited.</param>
-        /// <param name="index">Asset's list index. (For updating)</param>
         /// <param name="prepareEditor"></param>
-        public void AssignAsset(SpriteAsset asset, int index, bool prepareEditor = true)
+        public void AssignAsset(SpriteAsset asset, bool prepareEditor = true)
         {
             SafetyNet.EnsureIsNotNull(asset, "Assigned Sprite");
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(index, 0, "Assigned asset index");
             
             currentAsset = new SpriteAsset(asset);
-            myIndex = index;
             
             if (!prepareEditor) return;
             OnAssignAsset?.Invoke(currentAsset);
@@ -76,10 +69,10 @@ namespace Rogium.Editors.Sprites
         {
             OnCompleteEditingBefore?.Invoke();
 
-            Sprite newIcon = iconBuilder.BuildFromGrid(currentAsset.SpriteData, palettePicker.GrabBasedOn(currentAsset.PreferredPaletteID));
+            Sprite newIcon = iconBuilder.BuildFromGrid(currentAsset.SpriteData, PackEditorOverseer.Instance.CurrentPack.Palettes.FindValueOrReturnFirst(currentAsset.PreferredPaletteID).Colors);
             currentAsset.UpdateIcon(newIcon);
             
-            OnCompleteEditing?.Invoke(currentAsset, myIndex);
+            OnCompleteEditing?.Invoke(currentAsset);
             OnCompleteEditingAfter?.Invoke();
         }
         

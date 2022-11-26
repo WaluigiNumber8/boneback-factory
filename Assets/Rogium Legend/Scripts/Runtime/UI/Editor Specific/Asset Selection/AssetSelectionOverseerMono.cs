@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Linq;
-using RedRats.Safety;
 using RedRats.Systems.ObjectSwitching;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
-using Rogium.ExternalStorage;
 using UnityEngine;
 
 namespace Rogium.UserInterface.Editors.AssetSelection
@@ -44,7 +42,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection
             overseer.Setup(AssetType.Pack,
                            layouts.grid,
                            selectionMenus.pack,
-                           lib.GetPacksCopy.ToList<IAsset>(),
+                           lib.GetPacksCopy.Values.ToList<IAsset>(),
                            layoutSwitcher);
         }
         
@@ -53,7 +51,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection
             overseer.Setup(AssetType.Palette,
                            layouts.grid,
                            selectionMenus.palette,
-                           editor.CurrentPack.Palettes.ToList<IAsset>(),
+                           editor.CurrentPack.Palettes.Values.ToList<IAsset>(),
                            layoutSwitcher);
         }
 
@@ -62,7 +60,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection
             overseer.Setup(AssetType.Sprite,
                            layouts.grid,
                            selectionMenus.sprite,
-                           editor.CurrentPack.Sprites.ToList<IAsset>(),
+                           editor.CurrentPack.Sprites.Values.ToList<IAsset>(),
                            layoutSwitcher);
         }
         
@@ -71,7 +69,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection
             overseer.Setup(AssetType.Weapon,
                            layouts.grid,
                            selectionMenus.weapon,
-                           editor.CurrentPack.Weapons.ToList<IAsset>(),
+                           editor.CurrentPack.Weapons.Values.ToList<IAsset>(),
                            layoutSwitcher);
         }
 
@@ -80,7 +78,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection
             overseer.Setup(AssetType.Projectile,
                            layouts.grid,
                            selectionMenus.projectile,
-                           editor.CurrentPack.Projectiles.ToList<IAsset>(),
+                           editor.CurrentPack.Projectiles.Values.ToList<IAsset>(),
                            layoutSwitcher);
         }
 
@@ -89,7 +87,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection
             overseer.Setup(AssetType.Enemy,
                            layouts.grid,
                            selectionMenus.enemy,
-                           editor.CurrentPack.Enemies.ToList<IAsset>(),
+                           editor.CurrentPack.Enemies.Values.ToList<IAsset>(),
                            layoutSwitcher);
         }
 
@@ -98,7 +96,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection
             overseer.Setup(AssetType.Room,
                            layouts.list,
                            selectionMenus.room,
-                           editor.CurrentPack.Rooms.ToList<IAsset>(),
+                           editor.CurrentPack.Rooms.Values.ToList<IAsset>(),
                            layoutSwitcher);
         }
         
@@ -107,7 +105,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection
             overseer.Setup(AssetType.Tile,
                            layouts.grid,
                            selectionMenus.tile,
-                           editor.CurrentPack.Tiles.ToList<IAsset>(),
+                           editor.CurrentPack.Tiles.Values.ToList<IAsset>(),
                            layoutSwitcher);
         }
 

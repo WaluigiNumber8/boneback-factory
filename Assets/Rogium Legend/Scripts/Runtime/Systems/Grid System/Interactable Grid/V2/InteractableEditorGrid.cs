@@ -86,30 +86,30 @@ namespace Rogium.Systems.GridSystem
         /// <summary>
         /// Loads sprites into the editor grid.
         /// </summary>
-        /// <param name="assetList">From which list of assets to load from.</param>
+        /// <param name="assets">From which list of assets to load from.</param>
         /// <param name="IDGrid">The grid of IDs to read.</param>
         /// <param name="layerIndex">The index of the layer to load on.</param>
         /// <typeparam name="T">Is a type of <see cref="IAsset"/>.</typeparam>
         /// <typeparam name="TS">Any type of <see cref="IComparable"/>.</typeparam>
-        public void LoadWithSprites<T, TS>(ObjectGrid<TS> IDGrid, IList<T> assetList, int layerIndex) where T : IAsset where TS : IComparable
+        public void LoadWithSprites<T, TS>(ObjectGrid<TS> IDGrid, IDictionary<string, T> assets, int layerIndex) where T : IAsset where TS : IComparable
         {
             SafetyNet.EnsureIntIsEqual(IDGrid.Width, gridSize.x, "Grid Width");
             SafetyNet.EnsureIntIsEqual(IDGrid.Height, gridSize.y, "Grid Height");
-            layers[layerIndex].layer.sprite = drawer.Build(IDGrid, assetList);
+            layers[layerIndex].layer.sprite = drawer.Build(IDGrid, assets);
         }
         
-        public override void LoadWithSprites<T>(ObjectGrid<string> IDGrid, IList<T> assetList)
+        public override void LoadWithSprites<T>(ObjectGrid<string> IDGrid, IDictionary<string, T> assets)
         {
             SafetyNet.EnsureIntIsEqual(IDGrid.Width, gridSize.x, "Grid Width");
             SafetyNet.EnsureIntIsEqual(IDGrid.Height, gridSize.y, "Grid Height");
-            activeLayer.sprite = drawer.Build(IDGrid, assetList);
+            activeLayer.sprite = drawer.Build(IDGrid, assets);
         }
         
-        public override void LoadWithColors(ObjectGrid<int> indexGrid, Color[] colorArray)
+        public override void LoadWithColors(ObjectGrid<int> indexGrid, Color[] colors)
         {
             SafetyNet.EnsureIntIsEqual(indexGrid.Width, gridSize.x, "Grid Width");
             SafetyNet.EnsureIntIsEqual(indexGrid.Height, gridSize.y, "Grid Height");
-            activeLayer.sprite = drawer.Build(indexGrid, colorArray);
+            activeLayer.sprite = drawer.Build(indexGrid, colors);
         }
         
         public override void UpdateCell(Vector2Int position, Color value)

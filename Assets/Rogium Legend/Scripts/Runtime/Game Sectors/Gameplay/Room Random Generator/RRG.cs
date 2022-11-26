@@ -35,7 +35,7 @@ namespace Rogium.Gameplay.AssetRandomGenerator
         /// <param name="roomAmount">How many rooms to allot, until teh finish state is reached.</param>
         public RRG(IList<RoomAsset> allRooms, int roomAmount)
         {
-            SafetyNet.EnsureListIsNotNullOrEmpty(allRooms, "Campaign rooms to use for RRG");
+            SafetyNet.EnsureIsNotNull(allRooms, "Campaign rooms to use for RRG");
             
             difficultyData = new SortedDictionary<int, int>();
             
@@ -45,7 +45,7 @@ namespace Rogium.Gameplay.AssetRandomGenerator
             exitRooms = new Dictionary<int, int>();
             periodicRooms = new Dictionary<int, int>();
             
-            LoadUpLists(allRooms);
+            LoadUpRoomData(allRooms);
             CalculateRoomCountPerTier(allRooms.Count, roomAmount);
             
             SafetyNet.EnsureIntIsBiggerOrEqualTo(difficultyData.Count, 1, "Detected Room Difficulty Tiers");
@@ -180,7 +180,7 @@ namespace Rogium.Gameplay.AssetRandomGenerator
         /// Categorizes all rooms into different lists.
         /// </summary>
         /// <param name="allRooms">A list containing all rooms.</param>
-        private void LoadUpLists(IList<RoomAsset> allRooms)
+        private void LoadUpRoomData(IList<RoomAsset> allRooms)
         {
             for (int i = 0; i < allRooms.Count; i++)
             {

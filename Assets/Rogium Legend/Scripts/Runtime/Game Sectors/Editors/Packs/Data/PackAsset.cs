@@ -18,13 +18,13 @@ namespace Rogium.Editors.Packs
     public class PackAsset : AssetBase
     {
         private PackInfoAsset packInfo;
-        private readonly AssetList<PaletteAsset> palettes;
-        private readonly AssetList<SpriteAsset> sprites;
-        private readonly AssetList<WeaponAsset> weapons;
-        private readonly AssetList<ProjectileAsset> projectiles;
-        private readonly AssetList<EnemyAsset> enemies;
-        private readonly AssetList<RoomAsset> rooms;
-        private readonly AssetList<TileAsset> tiles;
+        private readonly AssetDictionary<PaletteAsset> palettes;
+        private readonly AssetDictionary<SpriteAsset> sprites;
+        private readonly AssetDictionary<WeaponAsset> weapons;
+        private readonly AssetDictionary<ProjectileAsset> projectiles;
+        private readonly AssetDictionary<EnemyAsset> enemies;
+        private readonly AssetDictionary<RoomAsset> rooms;
+        private readonly AssetDictionary<TileAsset> tiles;
 
         private readonly ExternalStorageOverseer ex = ExternalStorageOverseer.Instance;
         
@@ -38,26 +38,26 @@ namespace Rogium.Editors.Packs
                                          EditorDefaults.PackDescription);
            
             GatherValuesFromInfo(packInfo);
-            palettes = new AssetList<PaletteAsset>(ex.Palettes.Save, ex.Palettes.UpdateTitle, ex.Palettes.Delete);
-            sprites = new AssetList<SpriteAsset>(ex.Sprites.Save, ex.Sprites.UpdateTitle, ex.Sprites.Delete);
-            weapons = new AssetList<WeaponAsset>(ex.Weapons.Save, ex.Weapons.UpdateTitle, ex.Weapons.Delete);
-            projectiles = new AssetList<ProjectileAsset>(ex.Projectiles.Save, ex.Projectiles.UpdateTitle, ex.Projectiles.Delete);
-            enemies = new AssetList<EnemyAsset>(ex.Enemies.Save, ex.Enemies.UpdateTitle, ex.Enemies.Delete);
-            rooms = new AssetList<RoomAsset>(ex.Rooms.Save, ex.Rooms.UpdateTitle, ex.Rooms.Delete);
-            tiles = new AssetList<TileAsset>(ex.Tiles.Save, ex.Tiles.UpdateTitle, ex.Tiles.Delete);
+            palettes = new AssetDictionary<PaletteAsset>(ex.Palettes.Save, ex.Palettes.UpdateTitle, ex.Palettes.Delete);
+            sprites = new AssetDictionary<SpriteAsset>(ex.Sprites.Save, ex.Sprites.UpdateTitle, ex.Sprites.Delete);
+            weapons = new AssetDictionary<WeaponAsset>(ex.Weapons.Save, ex.Weapons.UpdateTitle, ex.Weapons.Delete);
+            projectiles = new AssetDictionary<ProjectileAsset>(ex.Projectiles.Save, ex.Projectiles.UpdateTitle, ex.Projectiles.Delete);
+            enemies = new AssetDictionary<EnemyAsset>(ex.Enemies.Save, ex.Enemies.UpdateTitle, ex.Enemies.Delete);
+            rooms = new AssetDictionary<RoomAsset>(ex.Rooms.Save, ex.Rooms.UpdateTitle, ex.Rooms.Delete);
+            tiles = new AssetDictionary<TileAsset>(ex.Tiles.Save, ex.Tiles.UpdateTitle, ex.Tiles.Delete);
         }
         public PackAsset(PackInfoAsset packInfo)
         {
             this.packInfo = new PackInfoAsset(packInfo);
             
             GatherValuesFromInfo(packInfo);
-            palettes = new AssetList<PaletteAsset>(ex.Palettes.Save, ex.Palettes.UpdateTitle, ex.Palettes.Delete);
-            sprites = new AssetList<SpriteAsset>(ex.Sprites.Save, ex.Sprites.UpdateTitle, ex.Sprites.Delete);
-            weapons = new AssetList<WeaponAsset>(ex.Weapons.Save, ex.Weapons.UpdateTitle, ex.Weapons.Delete);
-            projectiles = new AssetList<ProjectileAsset>(ex.Projectiles.Save, ex.Projectiles.UpdateTitle, ex.Projectiles.Delete);
-            enemies = new AssetList<EnemyAsset>(ex.Enemies.Save, ex.Enemies.UpdateTitle, ex.Enemies.Delete);
-            rooms = new AssetList<RoomAsset>(ex.Rooms.Save, ex.Rooms.UpdateTitle, ex.Rooms.Delete);
-            tiles = new AssetList<TileAsset>(ex.Tiles.Save, ex.Tiles.UpdateTitle, ex.Tiles.Delete);
+            palettes = new AssetDictionary<PaletteAsset>(ex.Palettes.Save, ex.Palettes.UpdateTitle, ex.Palettes.Delete);
+            sprites = new AssetDictionary<SpriteAsset>(ex.Sprites.Save, ex.Sprites.UpdateTitle, ex.Sprites.Delete);
+            weapons = new AssetDictionary<WeaponAsset>(ex.Weapons.Save, ex.Weapons.UpdateTitle, ex.Weapons.Delete);
+            projectiles = new AssetDictionary<ProjectileAsset>(ex.Projectiles.Save, ex.Projectiles.UpdateTitle, ex.Projectiles.Delete);
+            enemies = new AssetDictionary<EnemyAsset>(ex.Enemies.Save, ex.Enemies.UpdateTitle, ex.Enemies.Delete);
+            rooms = new AssetDictionary<RoomAsset>(ex.Rooms.Save, ex.Rooms.UpdateTitle, ex.Rooms.Delete);
+            tiles = new AssetDictionary<TileAsset>(ex.Tiles.Save, ex.Tiles.UpdateTitle, ex.Tiles.Delete);
         }
         
         public PackAsset(PackAsset asset)
@@ -65,28 +65,28 @@ namespace Rogium.Editors.Packs
             packInfo = new PackInfoAsset(asset.packInfo);
             
             GatherValuesFromInfo(packInfo);
-            palettes = new AssetList<PaletteAsset>(ex.Palettes.Save, ex.Palettes.UpdateTitle, ex.Palettes.Delete, asset.Palettes);
-            sprites = new AssetList<SpriteAsset>(ex.Sprites.Save, ex.Sprites.UpdateTitle, ex.Sprites.Delete, asset.Sprites);
-            weapons = new AssetList<WeaponAsset>(ex.Weapons.Save, ex.Weapons.UpdateTitle, ex.Weapons.Delete, asset.Weapons);
-            projectiles = new AssetList<ProjectileAsset>(ex.Projectiles.Save, ex.Projectiles.UpdateTitle, ex.Projectiles.Delete, asset.Projectiles);
-            enemies = new AssetList<EnemyAsset>(ex.Enemies.Save, ex.Enemies.UpdateTitle, ex.Enemies.Delete, asset.Enemies);
-            rooms = new AssetList<RoomAsset>(ex.Rooms.Save, ex.Rooms.UpdateTitle, ex.Rooms.Delete, asset.Rooms);
-            tiles = new AssetList<TileAsset>(ex.Tiles.Save, ex.Tiles.UpdateTitle, ex.Tiles.Delete, asset.Tiles);
+            palettes = new AssetDictionary<PaletteAsset>(ex.Palettes.Save, ex.Palettes.UpdateTitle, ex.Palettes.Delete, asset.Palettes);
+            sprites = new AssetDictionary<SpriteAsset>(ex.Sprites.Save, ex.Sprites.UpdateTitle, ex.Sprites.Delete, asset.Sprites);
+            weapons = new AssetDictionary<WeaponAsset>(ex.Weapons.Save, ex.Weapons.UpdateTitle, ex.Weapons.Delete, asset.Weapons);
+            projectiles = new AssetDictionary<ProjectileAsset>(ex.Projectiles.Save, ex.Projectiles.UpdateTitle, ex.Projectiles.Delete, asset.Projectiles);
+            enemies = new AssetDictionary<EnemyAsset>(ex.Enemies.Save, ex.Enemies.UpdateTitle, ex.Enemies.Delete, asset.Enemies);
+            rooms = new AssetDictionary<RoomAsset>(ex.Rooms.Save, ex.Rooms.UpdateTitle, ex.Rooms.Delete, asset.Rooms);
+            tiles = new AssetDictionary<TileAsset>(ex.Tiles.Save, ex.Tiles.UpdateTitle, ex.Tiles.Delete, asset.Tiles);
         }
-        public PackAsset(PackInfoAsset packInfo, IList<PaletteAsset> palettes, IList<SpriteAsset> sprites,
-                        IList<WeaponAsset> weapons, IList<ProjectileAsset> projectiles, IList<EnemyAsset> enemies,
-                        IList<RoomAsset> rooms, IList<TileAsset> tiles)
+        public PackAsset(PackInfoAsset packInfo, IDictionary<string, PaletteAsset> palettes, IDictionary<string, SpriteAsset> sprites,
+                         IDictionary<string,WeaponAsset> weapons, IDictionary<string,ProjectileAsset> projectiles, 
+                         IDictionary<string,EnemyAsset> enemies, IDictionary<string,RoomAsset> rooms, IDictionary<string,TileAsset> tiles)
         {
             this.packInfo = packInfo;
             
             GatherValuesFromInfo(packInfo);
-            this.palettes = new AssetList<PaletteAsset>(ex.Palettes.Save, ex.Palettes.UpdateTitle, ex.Palettes.Delete, palettes);
-            this.sprites = new AssetList<SpriteAsset>(ex.Sprites.Save, ex.Sprites.UpdateTitle, ex.Sprites.Delete, sprites);
-            this.weapons = new AssetList<WeaponAsset>(ex.Weapons.Save, ex.Weapons.UpdateTitle, ex.Weapons.Delete, weapons);
-            this.projectiles = new AssetList<ProjectileAsset>(ex.Projectiles.Save, ex.Projectiles.UpdateTitle, ex.Projectiles.Delete, projectiles);
-            this.enemies = new AssetList<EnemyAsset>(ex.Enemies.Save, ex.Enemies.UpdateTitle, ex.Enemies.Delete, enemies);
-            this.rooms = new AssetList<RoomAsset>(ex.Rooms.Save, ex.Rooms.UpdateTitle, ex.Rooms.Delete, rooms);
-            this.tiles = new AssetList<TileAsset>(ex.Tiles.Save, ex.Tiles.UpdateTitle, ex.Tiles.Delete, tiles);
+            this.palettes = new AssetDictionary<PaletteAsset>(ex.Palettes.Save, ex.Palettes.UpdateTitle, ex.Palettes.Delete, palettes);
+            this.sprites = new AssetDictionary<SpriteAsset>(ex.Sprites.Save, ex.Sprites.UpdateTitle, ex.Sprites.Delete, sprites);
+            this.weapons = new AssetDictionary<WeaponAsset>(ex.Weapons.Save, ex.Weapons.UpdateTitle, ex.Weapons.Delete, weapons);
+            this.projectiles = new AssetDictionary<ProjectileAsset>(ex.Projectiles.Save, ex.Projectiles.UpdateTitle, ex.Projectiles.Delete, projectiles);
+            this.enemies = new AssetDictionary<EnemyAsset>(ex.Enemies.Save, ex.Enemies.UpdateTitle, ex.Enemies.Delete, enemies);
+            this.rooms = new AssetDictionary<RoomAsset>(ex.Rooms.Save, ex.Rooms.UpdateTitle, ex.Rooms.Delete, rooms);
+            this.tiles = new AssetDictionary<TileAsset>(ex.Tiles.Save, ex.Tiles.UpdateTitle, ex.Tiles.Delete, tiles);
         }
         #endregion
 
@@ -118,10 +118,7 @@ namespace Rogium.Editors.Packs
             return false;
         }
 
-        public override int GetHashCode()
-        {
-            return int.Parse(packInfo.ID);
-        }
+        public override int GetHashCode() => int.Parse(packInfo.ID);
 
         public bool ContainsAnyPalettes => (palettes?.Count > 0);
         public bool ContainsAnySprites => (sprites?.Count > 0);
@@ -132,13 +129,13 @@ namespace Rogium.Editors.Packs
         public bool ContainsAnyTiles => (tiles?.Count > 0);
         
         public PackInfoAsset PackInfo { get => packInfo; }
-        public AssetList<PaletteAsset> Palettes { get => palettes; }
-        public AssetList<SpriteAsset> Sprites { get => sprites; }
-        public AssetList<WeaponAsset> Weapons { get => weapons; }
-        public AssetList<ProjectileAsset> Projectiles { get => projectiles; }
-        public AssetList<EnemyAsset> Enemies { get => enemies; }
-        public AssetList<RoomAsset> Rooms { get => rooms; }
-        public AssetList<TileAsset> Tiles { get => tiles; }
+        public AssetDictionary<PaletteAsset> Palettes { get => palettes; }
+        public AssetDictionary<SpriteAsset> Sprites { get => sprites; }
+        public AssetDictionary<WeaponAsset> Weapons { get => weapons; }
+        public AssetDictionary<ProjectileAsset> Projectiles { get => projectiles; }
+        public AssetDictionary<EnemyAsset> Enemies { get => enemies; }
+        public AssetDictionary<RoomAsset> Rooms { get => rooms; }
+        public AssetDictionary<TileAsset> Tiles { get => tiles; }
     }
 }
 

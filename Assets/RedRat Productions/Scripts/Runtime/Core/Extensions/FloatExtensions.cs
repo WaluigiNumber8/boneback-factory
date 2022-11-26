@@ -31,7 +31,7 @@ namespace RedRats.Core
         /// <param name="value">The value to round.</param>
         /// <param name="decimals">Amount of decimals.</param>
         /// <returns></returns>
-        public static float Round(this float value, int decimals)
+        public static float Round(this float value, int decimals = 2)
         {
             float mult = Mathf.Pow(10.0f, decimals);
             return Mathf.Round(value * mult) / mult;

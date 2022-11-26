@@ -24,10 +24,10 @@ namespace Rogium.Gameplay.DataLoading
         /// <param name="offsetPos">The offset from center, where to start spawning.</param>
         /// <param name="IDGrid">The grid object IDs.</param>
         /// <param name="dataList">The list of assets to take data from.</param>
-        public void Load(Vector3Int offsetPos, ObjectGrid<AssetData> IDGrid, IList<ObjectAsset> dataList)
+        public void Load(Vector3Int offsetPos, ObjectGrid<AssetData> IDGrid, IDictionary<string, ObjectAsset> dataList)
         {
             Clear();
-            AssetUtils.UpdateFromGridByList(IDGrid, dataList,
+            AssetUtils.UpdateFromGridByDict(IDGrid, dataList,
                                             (x, y, asset, data) => Spawn(offsetPos, x, y, asset, data.Parameters),
                                             (x, y) => throw new InvalidOperationException("This interactable object does not exist."));
         }

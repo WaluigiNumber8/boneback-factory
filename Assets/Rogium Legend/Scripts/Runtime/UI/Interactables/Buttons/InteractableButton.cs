@@ -13,6 +13,7 @@ namespace Rogium.UserInterface.Interactables
     {
         [SerializeField] private ButtonType action;
         [SerializeField] private int index = -1;
+        [SerializeField] private string stringID = "";
         [SerializeField] private UIInfo ui;
         
         private Button button;
@@ -23,7 +24,7 @@ namespace Rogium.UserInterface.Interactables
 
         public void OnButtonClicked()
         {
-            InteractableInput.Handle(action, index);
+            InteractableInput.Handle(action, index, stringID);
         }
 
         /// <summary>
@@ -40,6 +41,7 @@ namespace Rogium.UserInterface.Interactables
 
         public ButtonType Action { get => action; set => action = value; }
         public int Index { get => index; set => index = value; }
+        public string StringID { get => stringID; set => stringID = value; }
 
         [System.Serializable]
         public struct UIInfo

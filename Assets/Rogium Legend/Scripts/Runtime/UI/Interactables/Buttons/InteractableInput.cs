@@ -10,7 +10,7 @@ namespace Rogium.UserInterface.Interactables
     /// </summary>
     public static class InteractableInput
     {
-        public static void Handle(ButtonType action, int index)
+        public static void Handle(ButtonType action, int index = -1, string stringID = "")
         {
             switch (action)
             {

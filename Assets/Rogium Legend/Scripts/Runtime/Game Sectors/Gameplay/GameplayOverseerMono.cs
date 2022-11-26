@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using RedRats.Core;
 using RedRats.Systems.ClockOfTheGame;
 using RedRats.Systems.GASCore;
@@ -53,7 +54,7 @@ namespace Rogium.Gameplay.Core
         /// </summary>
         public void PrepareGame()
         {
-            rrg = new RRG(currentCampaign.DataPack.Rooms, currentCampaign.AdventureLength);
+            rrg = new RRG(currentCampaign.DataPack.Rooms.Values.ToList(), currentCampaign.AdventureLength);
             InputSystem.Instance.EnablePlayerMap();
             sequencer.RunIntro(rrg.GetNext(RoomType.Entrance));
         }

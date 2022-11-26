@@ -12,12 +12,11 @@ namespace Rogium.Editors.Palettes
     {
         public event Action<PaletteAsset> OnAssignAsset;
         public event Action OnCompleteEditingBefore, OnCompleteEditingAfter;
-        public event Action<PaletteAsset, int> OnCompleteEditing;
+        public event Action<PaletteAsset> OnCompleteEditing;
 
         private readonly IconBuilder iconBuilder;
         
         private PaletteAsset currentAsset;
-        private int myIndex;
         
         #region Singleton Pattern
         private static PaletteEditorOverseer instance;
@@ -37,24 +36,18 @@ namespace Rogium.Editors.Palettes
 
         #endregion
 
-        private PaletteEditorOverseer()
-        {
-            iconBuilder = new IconBuilder();
-        }
+        private PaletteEditorOverseer() => iconBuilder = new IconBuilder();
 
         /// <summary>
         /// Assign an asset, that is going to be edited.
         /// </summary>
         /// <param name="asset">The asset that is going to be edited.</param>
-        /// <param name="index">Asset's list index. (For updating)</param>
         /// <param name="prepareEditor">If true, load asset into the editor.</param>
-        public void AssignAsset(PaletteAsset asset, int index, bool prepareEditor = true)
+        public void AssignAsset(PaletteAsset asset, bool prepareEditor = true)
         {
             SafetyNet.EnsureIsNotNull(asset, "Assigned Palette");
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(index, 0, "Assigned asset index");
             
             currentAsset = new PaletteAsset(asset);
-            myIndex = index;
 
             if (!prepareEditor) return;
             OnAssignAsset?.Invoke(currentAsset);
@@ -77,8 +70,7 @@ namespace Rogium.Editors.Palettes
         /// <param name="posIndex">The position for the color.</param>
         public void UpdateColor(Color color, int posIndex)
         {
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(posIndex, 0, "posIndex");
-            currentAsset.Colors[posIndex] = color;
+            currentAsset.UpdateColorSlot(posIndex, color);
         }
         
         public void CompleteEditing()
@@ -86,7 +78,7 @@ namespace Rogium.Editors.Palettes
             OnCompleteEditingBefore?.Invoke();
             
             currentAsset.UpdateIcon(iconBuilder.BuildFromArray(currentAsset.Colors));
-            OnCompleteEditing?.Invoke(currentAsset, myIndex);
+            OnCompleteEditing?.Invoke(currentAsset);
             
             OnCompleteEditingAfter?.Invoke();
         }
@@ -96,7 +88,7 @@ namespace Rogium.Editors.Palettes
             get 
             {
                 if (currentAsset == null) throw new MissingReferenceException("Current Palette has not been set. Did you forget to activate the editor?");
-                return this.currentAsset;
+                return currentAsset;
             } 
         }
         

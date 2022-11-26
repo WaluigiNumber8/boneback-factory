@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using RedRats.Core;
 using RedRats.UI;
 using Rogium.Core;
@@ -22,7 +23,8 @@ namespace Rogium.Editors.PropertyEditor.Builders
     {
         private EnemyAsset asset;
         private PackAsset currentPack;
-        private IList<WeaponAsset> packWeapons;
+        private IDictionary<string, WeaponAsset> packWeapons;
+        private WeaponAsset defaultWeapon;
 
         private readonly string[] aiOptions;
 
@@ -41,6 +43,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
             this.asset = asset;
             currentPack = PackEditorOverseer.Instance.CurrentPack;
             packWeapons = currentPack.Weapons;
+            defaultWeapon = packWeapons.Values.First();
             
             Clear();
             BuildColumnImportant(contentMain);
@@ -134,28 +137,28 @@ namespace Rogium.Editors.PropertyEditor.Builders
             weaponSlotsBlock.SetDisabled(false);
 
             if (packWeapons == null || packWeapons.Count <= 0) return;
-            
-            IAsset weapon = packWeapons.FindValueFirstOrReturnFirst(asset.WeaponIDs[0]);
+
+            IAsset weapon = packWeapons.ReturnValueOr(asset.WeaponIDs[0], defaultWeapon);
             b.BuildAssetField($"Weapon #1", AssetType.Weapon, weapon, weaponSlotsBlock.GetTransform, a => asset.UpdateWeaponIDPos(0, a.ID), !currentPack.ContainsAnyWeapons);
             asset.UpdateWeaponIDPos(0, weapon.ID);
 
             if (amount >= 2)
             {
-                weapon = packWeapons.FindValueFirstOrReturnFirst(asset.WeaponIDs[1]);
+                weapon = packWeapons.ReturnValueOr(asset.WeaponIDs[1], defaultWeapon);
                 b.BuildAssetField($"Weapon #2", AssetType.Weapon, weapon, weaponSlotsBlock.GetTransform, a => asset.UpdateWeaponIDPos(1, a.ID), !currentPack.ContainsAnyWeapons);
                 asset.UpdateWeaponIDPos(1, weapon.ID);
             }
             
             if (amount >= 3)
             {
-                weapon = packWeapons.FindValueFirstOrReturnFirst(asset.WeaponIDs[2]);
+                weapon = packWeapons.ReturnValueOr(asset.WeaponIDs[2], defaultWeapon);
                 b.BuildAssetField($"Weapon #3", AssetType.Weapon, weapon, weaponSlotsBlock.GetTransform, a => asset.UpdateWeaponIDPos(2, a.ID), !currentPack.ContainsAnyWeapons);
                 asset.UpdateWeaponIDPos(2, weapon.ID);
             }
             
             if (amount >= 4)
             {
-                weapon = packWeapons.FindValueFirstOrReturnFirst(asset.WeaponIDs[3]);
+                weapon = packWeapons.ReturnValueOr(asset.WeaponIDs[3], defaultWeapon);
                 b.BuildAssetField($"Weapon #4", AssetType.Weapon, weapon, weaponSlotsBlock.GetTransform, a => asset.UpdateWeaponIDPos(3, a.ID), !currentPack.ContainsAnyWeapons);
                 asset.UpdateWeaponIDPos(3, weapon.ID);
             }

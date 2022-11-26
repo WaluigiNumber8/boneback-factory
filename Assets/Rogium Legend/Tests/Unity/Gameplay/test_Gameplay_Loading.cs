@@ -41,6 +41,6 @@ public class test_Gameplay_Loading
     {
         gameplay.PrepareGame();
         yield return new WaitForSeconds(2f);
-        Assert.AreEqual(campaign.DataPack.Tiles[0].Tile, tilemaps[0].Tilemap.GetTile(new Vector3Int(-18, 11, 0)));
+        Assert.AreEqual(campaign.DataPack.Tiles.Values, tilemaps[0].Tilemap.GetTile(new Vector3Int(-18, 11, 0)));
     }
 }

@@ -20,7 +20,7 @@ namespace Rogium.Systems.GridSystem
         /// <param name="assetList">A list of assets from which to pick the sprites.</param>
         public static void LoadBySprites<T>(GridCell[,] cells, ObjectGrid<string> IDGrid, IList<T> assetList) where T : IAsset
         {
-            AssetUtils.UpdateFromGridByList(IDGrid, assetList, 
+            AssetUtils.UpdateFromGridByDict(IDGrid, assetList, 
                                             (x, y, asset) => cells[x, y].UpdateSprite(asset.Icon),
                                             (x, y) => cells[x, y].UpdateSprite(EditorDefaults.MissingSprite), 
                                             (x, y, _) => cells[x, y].Clear());

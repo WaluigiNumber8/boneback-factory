@@ -24,7 +24,7 @@ namespace Rogium.Gameplay.DataLoading
         {
             Clear();
             
-            AssetUtils.UpdateFromGridByList(IDGrid, dataList,
+            AssetUtils.UpdateFromGridByDict(IDGrid, dataList,
                 (x, y, asset) => DecideAddition(originPos + new Vector3Int(x, y, 0), asset),
                 (x, y) => Debug.LogError($"Did not find tile in position [{x}, {y}]."));
             

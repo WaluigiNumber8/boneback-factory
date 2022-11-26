@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using RedRats.Core;
 using RedRats.Safety;
 using Rogium.Core;
@@ -72,8 +73,8 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         /// <param name="data">The data to use.</param>
         private void BuildWeaponDrop(AssetData data)
         {
-            IList<WeaponAsset> weapons = PackEditorOverseer.Instance.CurrentPack.Weapons;
-            IAsset startValue = weapons.FindValueFirstOrReturnFirstOrDefault(data.Parameters.stringValue1);
+            IDictionary<string, WeaponAsset> weapons = PackEditorOverseer.Instance.CurrentPack.Weapons;
+            IAsset startValue = weapons.ReturnValueOr(data.Parameters.stringValue1, weapons.Values.First());
             bool noWeaponsExist = (startValue == default);
 
             if (!noWeaponsExist) data.UpdateStringValue1(startValue.ID);

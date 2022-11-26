@@ -19815,10 +19815,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6865054230660667279, guid: f97e52675ef439041acd930501beee72, type: 3}
       propertyPath: m_text
-      value: "<b><color=#E32121>Features<color=#E6E6E6></b>\n* The Grid Item previewer
-        now has a hologram shader.\n\n<b><color=#F46247>Bug Fixes<color=#E6E6E6></b>\n 
-        * Default weapon was not loaded correctly.\n  * Last palette slot was unusable.\n 
-        * Some colors for palettes were unusable."
+      value: "<b><color=#E32121>Features<color=#E6E6E6></b>\n* Switched format of
+        user content from Binary to JSON.\n* The Grid Item previewer now has a hologram
+        shader.\n\n<b><color=#F46247>Bug Fixes<color=#E6E6E6></b>\n  * Default weapon
+        was not loaded correctly.\n  * Last palette slot was unusable.\n  * Some
+        colors for palettes were unusable."
       objectReference: {fileID: 0}
     - target: {fileID: 6865054230660667279, guid: f97e52675ef439041acd930501beee72, type: 3}
       propertyPath: m_fontColor.b
@@ -26640,11 +26641,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4248916057170918143, guid: c899ef6895fdaed43aa1d8fed8721cd6, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 501.8708
+      value: 501.87085
       objectReference: {fileID: 0}
     - target: {fileID: 4248916057170918143, guid: c899ef6895fdaed43aa1d8fed8721cd6, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -46.316227
+      value: -46.316284
       objectReference: {fileID: 0}
     - target: {fileID: 4248916057222170615, guid: c899ef6895fdaed43aa1d8fed8721cd6, type: 3}
       propertyPath: m_AnchorMax.y
@@ -26960,11 +26961,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8757387353865918462, guid: c899ef6895fdaed43aa1d8fed8721cd6, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 250.9354
+      value: 250.93542
       objectReference: {fileID: 0}
     - target: {fileID: 8757387353865918462, guid: c899ef6895fdaed43aa1d8fed8721cd6, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -46.316227
+      value: -46.316284
       objectReference: {fileID: 0}
     - target: {fileID: 8992052613090284974, guid: c899ef6895fdaed43aa1d8fed8721cd6, type: 3}
       propertyPath: m_AnchorMax.y

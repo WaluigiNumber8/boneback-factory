@@ -16,7 +16,7 @@ namespace Rogium.Editors.Packs
     /// </summary>
     public class PackEditorOverseer : IEditorOverseer
     {
-        public event Action<PackAsset, int, string, string> OnSaveChanges;
+        public event Action<PackAsset, string, string> OnSaveChanges;
 
         private readonly PaletteEditorOverseer paletteEditor;
         private readonly SpriteEditorOverseer spriteEditor;
@@ -27,7 +27,6 @@ namespace Rogium.Editors.Packs
         private readonly TileEditorOverseer tileEditor;
 
         private PackAsset currentPack;
-        private int myIndex;
         private string startingTitle;
         private string startingAuthor;
 
@@ -73,11 +72,10 @@ namespace Rogium.Editors.Packs
         /// Assigns a new pack for editing.
         /// </summary>
         /// <param name="pack">The new pack that will be edited.</param>
-        public void AssignAsset(PackAsset pack, int index)
+        public void AssignAsset(PackAsset pack)
         {
             SafetyNet.EnsureIsNotNull(pack, "Pack to assign");
             currentPack = new PackAsset(pack);
-            myIndex = index;
             startingTitle = currentPack.Title;
             startingAuthor = currentPack.Author;
         }
@@ -89,14 +87,14 @@ namespace Rogium.Editors.Packs
         /// </summary>
         public void CreateNewPalette(PaletteAsset newAsset)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureIsNotNull(currentPack.Palettes, "Pack Editor - List of Palettes");
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - collection Pack");
+            SafetyNet.EnsureIsNotNull(currentPack.Palettes, "Pack Editor - Collection of Palettes");
             CurrentPack.Palettes.Add(newAsset);
         }
         public void CreateNewPalette()
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureIsNotNull(currentPack.Palettes, "Pack Editor - List of Palettes");
+            SafetyNet.EnsureIsNotNull(currentPack.Palettes, "Pack Editor - Collection of Palettes");
             CurrentPack.Palettes.Add(new PaletteAsset());
         }
 
@@ -104,37 +102,35 @@ namespace Rogium.Editors.Packs
         /// Updates the palette in the given pack.
         /// </summary>
         /// <param name="newAsset">Palette Asset with the new details.</param>
-        /// <param name="positionIndex">Which palette to override.</param>
-        public void UpdatePalette(PaletteAsset newAsset, int positionIndex)
+        public void UpdatePalette(PaletteAsset newAsset)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Palettes, "List of Palettes");
+            SafetyNet.EnsureCollectionIsNotNullOrEmpty(currentPack.Palettes, "Collection of Palettes");
             
-            CurrentPack.Palettes.Update(positionIndex, newAsset);
+            CurrentPack.Palettes.Update(newAsset);
         } 
 
         /// <summary>
         /// Deletes a palette from the pack.
-        /// <param name="assetIndex">The index of the palette to be deleted.</param>
+        /// <param name="assetID">The index of the palette to be deleted.</param>
         /// </summary>
-        public void RemovePalette(int assetIndex)
+        public void RemovePalette(string assetID)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Palettes, "List of Palettes");
-            currentPack.Palettes.Remove(assetIndex);
+            SafetyNet.EnsureCollectionIsNotNullOrEmpty(currentPack.Palettes, "Collection of Palettes");
+            currentPack.Palettes.Remove(assetID);
         }
 
         /// <summary>
         /// Send Command to the Palette Editor, to start editing a palette.
         /// </summary>
-        /// <param name="assetIndex">Palette index from the list.</param>
+        /// <param name="assetID">Palette index from the collection.</param>
         /// <param name="prepareEditor"></param>
-        public void ActivatePaletteEditor(int assetIndex, bool prepareEditor = true)
+        public void ActivatePaletteEditor(string assetID, bool prepareEditor = true)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Palettes, "List of Palettes");
-            SafetyNet.EnsureIntIsInRange(assetIndex, 0, currentPack.Palettes.Count, "Palette Index");
-            paletteEditor.AssignAsset(CurrentPack.Palettes[assetIndex], assetIndex, prepareEditor);
+            SafetyNet.EnsureCollectionIsNotNullOrEmpty(currentPack.Palettes, "Collection of Palettes");
+            paletteEditor.AssignAsset(CurrentPack.Palettes[assetID], prepareEditor);
         }
 
         #endregion
@@ -147,13 +143,13 @@ namespace Rogium.Editors.Packs
         public void CreateNewSprite(SpriteAsset newAsset)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureIsNotNull(currentPack.Sprites, "Pack Editor - List of Sprites");
+            SafetyNet.EnsureIsNotNull(currentPack.Sprites, "Pack Editor - Collection of Sprites");
             CurrentPack.Sprites.Add(newAsset);
         }
         public void CreateNewSprite()
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureIsNotNull(currentPack.Sprites, "Pack Editor - List of Sprites");
+            SafetyNet.EnsureIsNotNull(currentPack.Sprites, "Pack Editor - Collection of Sprites");
             CurrentPack.Sprites.Add(new SpriteAsset());
         }
 
@@ -161,36 +157,34 @@ namespace Rogium.Editors.Packs
         /// Updates the sprite in the given pack.
         /// </summary>
         /// <param name="newAsset">Sprite Asset with the new details.</param>
-        /// <param name="positionIndex">Which sprite to override.</param>
-        public void UpdateSprite(SpriteAsset newAsset, int positionIndex)
+        public void UpdateSprite(SpriteAsset newAsset)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Sprites, "List of Sprites");
-            CurrentPack.Sprites.Update(positionIndex, newAsset);
+            SafetyNet.EnsureCollectionIsNotNullOrEmpty(currentPack.Sprites, "Collection of Sprites");
+            CurrentPack.Sprites.Update(newAsset);
         } 
 
         /// <summary>
         /// Deletes a sprite from the pack.
-        /// <param name="assetIndex">The index of the sprite to be deleted.</param>
+        /// <param name="assetID">The id of the sprite to be deleted.</param>
         /// </summary>
-        public void RemoveSprite(int assetIndex)
+        public void RemoveSprite(string assetID)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Sprites, "List of Sprites");
-            currentPack.Sprites.Remove(assetIndex);
+            SafetyNet.EnsureCollectionIsNotNullOrEmpty(currentPack.Sprites, "Collection of Sprites");
+            currentPack.Sprites.Remove(assetID);
         }
 
         /// <summary>
         /// Send Command to the Sprite Editor, to start editing a palette.
         /// </summary>
-        /// <param name="assetIndex">Sprite index from the list.</param>
+        /// <param name="assetID">Sprite index from the collection.</param>
         /// <param name="prepareEditor">If true, load asset into the editor.</param>
-        public void ActivateSpriteEditor(int assetIndex, bool prepareEditor = true)
+        public void ActivateSpriteEditor(string assetID, bool prepareEditor = true)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Sprites, "List of Sprites");
-            SafetyNet.EnsureIntIsInRange(assetIndex, 0, currentPack.Sprites.Count, "Sprite Index");
-            spriteEditor.AssignAsset(CurrentPack.Sprites[assetIndex], assetIndex, prepareEditor);
+            SafetyNet.EnsureCollectionIsNotNullOrEmpty(currentPack.Sprites, "Collection of Sprites");
+            spriteEditor.AssignAsset(CurrentPack.Sprites[assetID], prepareEditor);
         }
 
         #endregion
@@ -203,13 +197,13 @@ namespace Rogium.Editors.Packs
         public void CreateNewWeapon(WeaponAsset newAsset)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureIsNotNull(currentPack.Weapons, "Pack Editor - List of Weapons");
+            SafetyNet.EnsureIsNotNull(currentPack.Weapons, "Pack Editor - Collection of Weapons");
             CurrentPack.Weapons.Add(newAsset);
         }
         public void CreateNewWeapon()
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureIsNotNull(currentPack.Weapons, "Pack Editor - List of Weapons");
+            SafetyNet.EnsureIsNotNull(currentPack.Weapons, "Pack Editor - Collection of Weapons");
             CurrentPack.Weapons.Add(new WeaponAsset());
         }
 
@@ -217,36 +211,34 @@ namespace Rogium.Editors.Packs
         /// Updates a weapon in the given pack.
         /// </summary>
         /// <param name="newAsset">Weapon Asset with the new details.</param>
-        /// <param name="positionIndex">Which weapon to override.</param>
-        public void UpdateWeapon(WeaponAsset newAsset, int positionIndex)
+        public void UpdateWeapon(WeaponAsset newAsset)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Weapons, "List of Weapons");
-            CurrentPack.Weapons.Update(positionIndex, newAsset);
+            SafetyNet.EnsureCollectionIsNotNullOrEmpty(currentPack.Weapons, "Collection of Weapons");
+            CurrentPack.Weapons.Update(newAsset);
         } 
 
         /// <summary>
         /// Deletes a weapon from the pack.
-        /// <param name="assetIndex">The index of the weapon to be deleted.</param>
+        /// <param name="assetID">The index of the weapon to be deleted.</param>
         /// </summary>
-        public void RemoveWeapon(int assetIndex)
+        public void RemoveWeapon(string assetID)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Weapons, "List of Weapons");
-            currentPack.Weapons.Remove(assetIndex);
+            SafetyNet.EnsureCollectionIsNotNullOrEmpty(currentPack.Weapons, "Collection of Weapons");
+            currentPack.Weapons.Remove(assetID);
         }
 
         /// <summary>
         /// Send Command to the Weapon Editor, to start editing a weapon.
         /// </summary>
-        /// <param name="assetIndex">Weapon index from the list.</param>
+        /// <param name="assetID">Weapon index from the collection.</param>
         /// <param name="prepareEditor">If true, load asset into the editor.</param>
-        public void ActivateWeaponEditor(int assetIndex, bool prepareEditor = true)
+        public void ActivateWeaponEditor(string assetID, bool prepareEditor = true)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Weapons, "List of Weapons");
-            SafetyNet.EnsureIntIsInRange(assetIndex, 0, currentPack.Weapons.Count, "Weapon Index");
-            weaponEditor.AssignAsset(CurrentPack.Weapons[assetIndex], assetIndex, prepareEditor);
+            SafetyNet.EnsureCollectionIsNotNullOrEmpty(currentPack.Weapons, "Collection of Weapons");
+            weaponEditor.AssignAsset(CurrentPack.Weapons[assetID], prepareEditor);
         }
 
         #endregion
@@ -259,13 +251,13 @@ namespace Rogium.Editors.Packs
         public void CreateNewProjectile(ProjectileAsset newAsset)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureIsNotNull(currentPack.Projectiles, "Pack Editor - List of Projectiles");
+            SafetyNet.EnsureIsNotNull(currentPack.Projectiles, "Pack Editor - Collection of Projectiles");
             CurrentPack.Projectiles.Add(newAsset);
         }
         public void CreateNewProjectile()
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureIsNotNull(currentPack.Projectiles, "Pack Editor - List of Projectiles");
+            SafetyNet.EnsureIsNotNull(currentPack.Projectiles, "Pack Editor - Collection of Projectiles");
             CurrentPack.Projectiles.Add(new ProjectileAsset());
         }
 
@@ -273,36 +265,34 @@ namespace Rogium.Editors.Packs
         /// Updates the projectile in the given pack.
         /// </summary>
         /// <param name="newAsset">Projectile Asset with the new details.</param>
-        /// <param name="positionIndex">Which projectile to override.</param>
-        public void UpdateProjectile(ProjectileAsset newAsset, int positionIndex)
+        public void UpdateProjectile(ProjectileAsset newAsset)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Projectiles, "List of Projectiles");
-            CurrentPack.Projectiles.Update(positionIndex, newAsset);
+            SafetyNet.EnsureCollectionIsNotNullOrEmpty(currentPack.Projectiles, "Collection of Projectiles");
+            CurrentPack.Projectiles.Update(newAsset);
         } 
 
         /// <summary>
         /// Deletes a projectile from the pack.
-        /// <param name="assetIndex">The index of the projectile to be deleted.</param>
+        /// <param name="assetID">The id of the projectile to be deleted.</param>
         /// </summary>
-        public void RemoveProjectile(int assetIndex)
+        public void RemoveProjectile(string assetID)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Projectiles, "List of Projectiles");
-            currentPack.Projectiles.Remove(assetIndex);
+            SafetyNet.EnsureCollectionIsNotNullOrEmpty(currentPack.Projectiles, "Collection of Projectiles");
+            currentPack.Projectiles.Remove(assetID);
         }
 
         /// <summary>
         /// Send Command to the Projectile Editor, to start editing a tile.
         /// </summary>
-        /// <param name="assetIndex">Projectile index from the list.</param>
+        /// <param name="assetID">Projectile id from the collection.</param>
         /// <param name="prepareEditor">If true, load asset into the editor.</param>
-        public void ActivateProjectileEditor(int assetIndex, bool prepareEditor = true)
+        public void ActivateProjectileEditor(string assetID, bool prepareEditor = true)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Projectiles, "List of Projectiles");
-            SafetyNet.EnsureIntIsInRange(assetIndex, 0, currentPack.Projectiles.Count, "Projectile Index");
-            projectileEditor.AssignAsset(CurrentPack.Projectiles[assetIndex], assetIndex, prepareEditor);
+            SafetyNet.EnsureCollectionIsNotNullOrEmpty(currentPack.Projectiles, "Collection of Projectiles");
+            projectileEditor.AssignAsset(CurrentPack.Projectiles[assetID], prepareEditor);
         }
 
         #endregion
@@ -315,13 +305,13 @@ namespace Rogium.Editors.Packs
         public void CreateNewEnemy(EnemyAsset newAsset)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureIsNotNull(currentPack.Enemies, "Pack Editor - List of Enemies");
+            SafetyNet.EnsureIsNotNull(currentPack.Enemies, "Pack Editor - Collection of Enemies");
             CurrentPack.Enemies.Add(newAsset);
         }
         public void CreateNewEnemy()
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureIsNotNull(currentPack.Enemies, "Pack Editor - List of Enemies");
+            SafetyNet.EnsureIsNotNull(currentPack.Enemies, "Pack Editor - Collection of Enemies");
             CurrentPack.Enemies.Add(new EnemyAsset());
         }
 
@@ -329,36 +319,34 @@ namespace Rogium.Editors.Packs
         /// Updates the enemy in the given pack.
         /// </summary>
         /// <param name="newAsset">Enemy Asset with the new details.</param>
-        /// <param name="positionIndex">Which enemy to override.</param>
-        public void UpdateEnemy(EnemyAsset newAsset, int positionIndex)
+        public void UpdateEnemy(EnemyAsset newAsset)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Enemies, "List of Enemies");
-            CurrentPack.Enemies.Update(positionIndex, newAsset);
+            SafetyNet.EnsureCollectionIsNotNullOrEmpty(currentPack.Enemies, "Collection of Enemies");
+            CurrentPack.Enemies.Update(newAsset);
         } 
 
         /// <summary>
         /// Deletes a enemy from the pack.
-        /// <param name="assetIndex">The index of the enemy to be deleted.</param>
+        /// <param name="assetID">The id of the enemy to be deleted.</param>
         /// </summary>
-        public void RemoveEnemy(int assetIndex)
+        public void RemoveEnemy(string assetID)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Enemies, "List of Enemies");
-            currentPack.Enemies.Remove(assetIndex);
+            SafetyNet.EnsureCollectionIsNotNullOrEmpty(currentPack.Enemies, "Collection of Enemies");
+            currentPack.Enemies.Remove(assetID);
         }
 
         /// <summary>
         /// Send Command to the Enemy Editor, to start editing a enemy.
         /// </summary>
-        /// <param name="assetIndex">Enemy index from the list.</param>
+        /// <param name="assetID">Enemy index from the collection.</param>
         /// <param name="prepareEditor">If true, load asset into the editor.</param>
-        public void ActivateEnemyEditor(int assetIndex, bool prepareEditor = true)
+        public void ActivateEnemyEditor(string assetID, bool prepareEditor = true)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Enemies, "List of Enemies");
-            SafetyNet.EnsureIntIsInRange(assetIndex, 0, currentPack.Enemies.Count, "Enemy Index");
-            enemyEditor.AssignAsset(CurrentPack.Enemies[assetIndex], assetIndex, prepareEditor);
+            SafetyNet.EnsureCollectionIsNotNullOrEmpty(currentPack.Enemies, "Collection of Enemies");
+            enemyEditor.AssignAsset(CurrentPack.Enemies[assetID], prepareEditor);
         }
 
         #endregion
@@ -371,13 +359,13 @@ namespace Rogium.Editors.Packs
         public void CreateNewTile(TileAsset newAsset)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureIsNotNull(currentPack.Tiles, "Pack Editor - List of Tiles");
+            SafetyNet.EnsureIsNotNull(currentPack.Tiles, "Pack Editor - Collection of Tiles");
             CurrentPack.Tiles.Add(newAsset);
         }
         public void CreateNewTile()
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureIsNotNull(currentPack.Tiles, "Pack Editor - List of Tiles");
+            SafetyNet.EnsureIsNotNull(currentPack.Tiles, "Pack Editor - Collection of Tiles");
             CurrentPack.Tiles.Add(new TileAsset());
         }
 
@@ -385,36 +373,34 @@ namespace Rogium.Editors.Packs
         /// Updates the tile in the given pack.
         /// </summary>
         /// <param name="newAsset">Tile Asset with the new details.</param>
-        /// <param name="positionIndex">Which tile to override.</param>
-        public void UpdateTile(TileAsset newAsset, int positionIndex)
+        public void UpdateTile(TileAsset newAsset)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Tiles, "List of Tiles");
-            CurrentPack.Tiles.Update(positionIndex, newAsset);
+            SafetyNet.EnsureCollectionIsNotNullOrEmpty(currentPack.Tiles, "Collection of Tiles");
+            CurrentPack.Tiles.Update(newAsset);
         } 
 
         /// <summary>
         /// Deletes a tile from the pack.
-        /// <param name="assetIndex">The index of the tile to be deleted.</param>
+        /// <param name="assetID">The id of the tile to be deleted.</param>
         /// </summary>
-        public void RemoveTile(int assetIndex)
+        public void RemoveTile(string assetID)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Tiles, "List of Tiles");
-            currentPack.Tiles.Remove(assetIndex);
+            SafetyNet.EnsureCollectionIsNotNullOrEmpty(currentPack.Tiles, "Collection Tiles");
+            currentPack.Tiles.Remove(assetID);
         }
 
         /// <summary>
         /// Send Command to the Tile Editor, to start editing a tile.
         /// </summary>
-        /// <param name="assetIndex">Tile index from the list.</param>
+        /// <param name="assetID">Tile id from the collection.</param>
         /// <param name="prepareEditor">If true, load asset into the editor.</param>
-        public void ActivateTileEditor(int assetIndex, bool prepareEditor = true)
+        public void ActivateTileEditor(string assetID, bool prepareEditor = true)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Tiles, "List of Tiles");
-            SafetyNet.EnsureIntIsInRange(assetIndex, 0, currentPack.Tiles.Count, "Tile Index");
-            tileEditor.AssignAsset(CurrentPack.Tiles[assetIndex], assetIndex, prepareEditor);
+            SafetyNet.EnsureCollectionIsNotNullOrEmpty(currentPack.Tiles, "Collection of Tiles");
+            tileEditor.AssignAsset(CurrentPack.Tiles[assetID], prepareEditor);
         }
 
         #endregion
@@ -427,13 +413,13 @@ namespace Rogium.Editors.Packs
         public void CreateNewRoom(RoomAsset newAsset)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureIsNotNull(currentPack.Rooms, "Pack Editor - List of Rooms");
+            SafetyNet.EnsureIsNotNull(currentPack.Rooms, "Pack Editor - Collection of Rooms");
             CurrentPack.Rooms.Add(newAsset);
         }
         public void CreateNewRoom()
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureIsNotNull(currentPack.Rooms, "Pack Editor - List of Rooms");
+            SafetyNet.EnsureIsNotNull(currentPack.Rooms, "Pack Editor - Collection of Rooms");
             CurrentPack.Rooms.Add(new RoomAsset());
         }
 
@@ -441,36 +427,34 @@ namespace Rogium.Editors.Packs
         /// Updates the room in the given pack.
         /// </summary>
         /// <param name="newAsset">Room Asset with the new details.</param>
-        /// <param name="positionIndex">Which room to override.</param>
-        public void UpdateRoom(RoomAsset newAsset, int positionIndex)
+        public void UpdateRoom(RoomAsset newAsset)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Rooms, "List of Rooms");
-            CurrentPack.Rooms.Update(positionIndex, newAsset);
+            SafetyNet.EnsureCollectionIsNotNullOrEmpty(currentPack.Rooms, "Collection of Rooms");
+            CurrentPack.Rooms.Update(newAsset);
         } 
 
         /// <summary>
         /// Deletes a room from the pack.
-        /// <param name="assetIndex">The index of the room to be deleted.</param>
+        /// <param name="assetID">The index of the room to be deleted.</param>
         /// </summary>
-        public void RemoveRoom(int assetIndex)
+        public void RemoveRoom(string assetID)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Rooms, "List of Rooms");
-            currentPack.Rooms.Remove(assetIndex);
+            SafetyNet.EnsureCollectionIsNotNullOrEmpty(currentPack.Rooms, "Collection of Rooms");
+            currentPack.Rooms.Remove(assetID);
         }
 
         /// <summary>
         /// Send Command to Room Editor, to start editing a room.
         /// </summary>
-        /// <param name="assetIndex">Room index from the list</param>
+        /// <param name="assetID">Room index from the collection</param>
         /// <param name="prepareEditor"></param>
-        public void ActivateRoomEditor(int assetIndex, bool prepareEditor = true)
+        public void ActivateRoomEditor(string assetID, bool prepareEditor = true)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Rooms, "List of Rooms");
-            SafetyNet.EnsureIntIsInRange(assetIndex, 0, currentPack.Rooms.Count, "Room Index");
-            roomEditor.AssignAsset(CurrentPack.Rooms[assetIndex], assetIndex, prepareEditor);
+            SafetyNet.EnsureCollectionIsNotNullOrEmpty(currentPack.Rooms, "Collection of Rooms");
+            roomEditor.AssignAsset(CurrentPack.Rooms[assetID], prepareEditor);
         }
 
         #endregion
@@ -489,7 +473,7 @@ namespace Rogium.Editors.Packs
         /// </summary>
         private void SavePackChanges()
         {
-            OnSaveChanges?.Invoke(currentPack, myIndex, startingTitle, startingAuthor);
+            OnSaveChanges?.Invoke(currentPack, startingTitle, startingAuthor);
         }
 
         public PackAsset CurrentPack { get => currentPack; }

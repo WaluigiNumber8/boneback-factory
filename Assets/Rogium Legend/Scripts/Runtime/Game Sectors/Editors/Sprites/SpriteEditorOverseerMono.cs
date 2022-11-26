@@ -4,6 +4,7 @@ using RedRats.UI;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
+using Rogium.Editors.Packs;
 using Rogium.Editors.Palettes;
 using Rogium.Systems.GridSystem;
 using Rogium.Systems.ItemPalette;
@@ -22,7 +23,6 @@ namespace Rogium.Editors.Sprites
         [SerializeField] private ItemPaletteColor palette;
         
         private SpriteEditorOverseer editor;
-        private PalettePicker palettePicker;
         private ToolBox<int, Color> toolbox;
 
         private SpriteAsset currentSprite;
@@ -33,7 +33,6 @@ namespace Rogium.Editors.Sprites
         {
             base.Awake();
             editor = SpriteEditorOverseer.Instance;
-            palettePicker = new PalettePicker();
             toolbox = new ToolBox<int, Color>(grid, EditorDefaults.EmptyColorID, EditorDefaults.NoColor, grid.UpdateCell);
         }
 
@@ -104,7 +103,7 @@ namespace Rogium.Editors.Sprites
         /// <param name="sprite">The sprite to read from.</param>
         private void PrepareEditor(SpriteAsset sprite)
         {
-            Color[] colorArray = palettePicker.GrabBasedOn(sprite.PreferredPaletteID);
+            Color[] colorArray = PackEditorOverseer.Instance.CurrentPack.Palettes.FindValueOrReturnFirst(sprite.PreferredPaletteID).Colors;
             currentSprite = sprite;
             
             SwitchPalette(colorArray);

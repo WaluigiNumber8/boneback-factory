@@ -57,7 +57,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
             if (lastProjectile != null && lastProjectile.ID == id) return true;
             try
             {
-                lastProjectile = allProjectiles.FindValueFirst(id);
+                lastProjectile = allProjectiles.FindValue(id);
                 return true;
             }
             catch (SafetyNetCollectionException) {return false;}

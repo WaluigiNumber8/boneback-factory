@@ -16,8 +16,8 @@ namespace Rogium.Editors.Core
     {
         private readonly ExternalStorageOverseer ex;
         
-        private readonly AssetList<PackAsset> packs;
-        private readonly AssetList<CampaignAsset> campaigns;
+        private readonly AssetDictionary<PackAsset> packs;
+        private readonly AssetDictionary<CampaignAsset> campaigns;
 
         #region Singleton Pattern
         static ExternalLibraryOverseer() { }
@@ -27,8 +27,8 @@ namespace Rogium.Editors.Core
         private ExternalLibraryOverseer()
         {
             ex = ExternalStorageOverseer.Instance;
-            packs = new AssetList<PackAsset>(ex.CreatePack, ex.UpdatePack, ex.DeletePack);
-            campaigns = new AssetList<CampaignAsset>(ex.Campaigns.Save, ex.Campaigns.UpdateTitle, ex.Campaigns.Delete);
+            packs = new AssetDictionary<PackAsset>(ex.CreatePack, ex.UpdatePack, ex.DeletePack);
+            campaigns = new AssetDictionary<CampaignAsset>(ex.Campaigns.Save, ex.Campaigns.UpdateTitle, ex.Campaigns.Delete);
             
             PackEditorOverseer.Instance.OnSaveChanges += UpdatePack;
             CampaignEditorOverseer.Instance.OnSaveChanges += UpdateCampaign;
@@ -62,38 +62,28 @@ namespace Rogium.Editors.Core
         /// <param name="index">Position to override.</param>
         /// <param name="originalTitle">Pack's Title before updating.</param>
         /// <param name="originalAuthor">Pack's Author before updating.</param>
-        public void UpdatePack(PackAsset pack, int index, string originalTitle, string originalAuthor)
+        public void UpdatePack(PackAsset pack, string originalTitle, string originalAuthor)
         {
-            packs.Update(index, pack);
+            packs.Update(pack);
         }
         
         /// <summary>
         /// Remove pack from the library.
         /// </summary>
-        /// <param name="packIndex">Pack ID in the list.</param>
-        public void DeletePack(int packIndex)
+        /// <param name="assetID">Pack ID in the dictionary.</param>
+        public void DeletePack(string assetID)
         {
-            packs.Remove(packIndex);
-        }
-        /// <summary>
-        /// Remove pack from the library.
-        /// </summary>
-        /// <param name="title">Pack's Title</param>
-        /// <param name="author">Pack's Author</param>
-        public void DeletePack(string title, string author)
-        {
-            packs.Remove(title, author);
+            packs.Remove(assetID);
         }
 
         /// <summary>
         /// Prepare one of the packs in the library for editing.
         /// </summary>
-        public void ActivatePackEditor(int packIndex)
+        public void ActivatePackEditor(string packID)
         {
-            SafetyNet.EnsureListIsNotNullOrEmpty(packs, "Pack Library");
-            SafetyNet.EnsureIntIsInRange(packIndex, 0, packs.Count, "packIndex for activating Pack Editor");
-            packs[packIndex] = ex.LoadPack(packs[packIndex]);
-            PackEditorOverseer.Instance.AssignAsset(packs[packIndex], packIndex);
+            SafetyNet.EnsureDictionaryIsNotNullOrEmpty(packs, "Pack Library");
+            packs[packID] = ex.LoadPack(packs[packID]);
+            PackEditorOverseer.Instance.AssignAsset(packs[packID]);
         }
         #endregion
 
@@ -120,51 +110,39 @@ namespace Rogium.Editors.Core
         /// Updates the campaign on a specific position in the library.
         /// </summary>
         /// <param name="campaign">The new data for the campaign.</param>
-        /// <param name="index">Position to override.</param>
         /// <param name="originalTitle">Campaign's title before updating.</param>
         /// <param name="originalAuthor">Campaign's author before updating.</param>
-        public void UpdateCampaign(CampaignAsset campaign, int index, string originalTitle, string originalAuthor)
+        public void UpdateCampaign(CampaignAsset campaign, string originalTitle, string originalAuthor)
         {
-            campaigns.Update(index, campaign);
+            campaigns.Update(campaign);
         }
         
         /// <summary>
         /// Remove campaign from the library.
         /// </summary>
-        /// <param name="campaignIndex">Campaign ID in the list.</param>
-        public void DeleteCampaign(int campaignIndex)
+        /// <param name="campaignID">Campaign ID in the collection.</param>
+        public void DeleteCampaign(string campaignID)
         {
-            campaigns.Remove(campaignIndex);
-        }
-        /// <summary>
-        /// Remove Campaign from the library.
-        /// </summary>
-        /// <param name="title">Campaign's Title</param>
-        /// <param name="author">Campaign's Author</param>
-        public void DeleteCampaign(string title, string author)
-        {
-            campaigns.Remove(title, author);
+            campaigns.Remove(campaignID);
         }
         
         /// <summary>
         /// Prepare one of the campaigns in the library for editing.
         /// </summary>
-        public void ActivateCampaignEditor(int campaignIndex, bool prepareEditor = true)
+        public void ActivateCampaignEditor(string campaignID, bool prepareEditor = true)
         {
-            SafetyNet.EnsureListIsNotNullOrEmpty(campaigns, "Campaign Library");
-            SafetyNet.EnsureIntIsInRange(campaignIndex, 0, campaigns.Count, "campaignIndex for activating Campaign Editor");
-            CampaignEditorOverseer.Instance.AssignAsset(campaigns[campaignIndex], campaignIndex, prepareEditor);
+            SafetyNet.EnsureDictionaryIsNotNullOrEmpty(campaigns, "Campaign Library");
+            CampaignEditorOverseer.Instance.AssignAsset(campaigns[campaignID], prepareEditor);
         }
 
         /// <summary>
         /// Prepares one of the campaign for transfer to gameplay.
         /// </summary>
-        /// <param name="campaignIndex"></param>
-        public void ActivateCampaignPlaythrough(int campaignIndex)
+        /// <param name="campaignID"></param>
+        public void ActivateCampaignPlaythrough(string campaignID)
         {
-            SafetyNet.EnsureListIsNotNullOrEmpty(campaigns, "Campaign Library");
-            SafetyNet.EnsureIntIsInRange(campaignIndex, 0, campaigns.Count, "campaignIndex for activating Campaign Playthrough");
-            SceneTransferOverseer.GetInstance().LoadUp(campaigns[campaignIndex]);
+            SafetyNet.EnsureDictionaryIsNotNullOrEmpty(campaigns, "Campaign Library");
+            SceneTransferOverseer.GetInstance().LoadUp(campaigns[campaignID]);
         }
         #endregion
         
@@ -177,7 +155,7 @@ namespace Rogium.Editors.Core
         /// Returns a copy of the list of packs stored here.
         /// </summary>
         /// <returns>A copy of Pack Library.</returns>
-        public IList<PackAsset> GetPacksCopy => new List<PackAsset>(packs);
+        public IDictionary<string, PackAsset> GetPacksCopy => new Dictionary<string, PackAsset>(packs);
         
         /// <summary>
         /// Amount of campaigns stored in the library.
@@ -188,6 +166,6 @@ namespace Rogium.Editors.Core
         /// Returns a copy of the list of campaigns stored here.
         /// </summary>
         /// <returns>A copy of Pack Library.</returns>
-        public IList<CampaignAsset> GetCampaignsCopy => new List<CampaignAsset>(campaigns);
+        public IDictionary<string, CampaignAsset> GetCampaignsCopy => new Dictionary<string, CampaignAsset>(campaigns);
     }
 }

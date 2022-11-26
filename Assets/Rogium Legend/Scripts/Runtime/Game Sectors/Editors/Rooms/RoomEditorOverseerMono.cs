@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using RedRats.Core;
 using RedRats.UI.Tabs;
 using Rogium.Core;
@@ -34,7 +35,7 @@ namespace Rogium.Editors.Rooms
         private RoomEditorOverseer editor;
         private ToolBox<AssetData, Sprite> toolbox;
 
-        private IList<ObjectAsset> objects;
+        private IDictionary<string, ObjectAsset> objects;
         
         private GridData<AssetData> currentData;
         private GridData<AssetData> tileData;
@@ -47,7 +48,7 @@ namespace Rogium.Editors.Rooms
             packEditor = PackEditorOverseer.Instance;
             editor = RoomEditorOverseer.Instance;
             toolbox = new ToolBox<AssetData, Sprite>(grid, new AssetData(ParameterDefaults.ParamsEmpty), EditorDefaults.EmptyGridSprite, grid.UpdateCell);
-            objects = InternalLibraryOverseer.GetInstance().GetObjectsCopy();
+            objects = InternalLibraryOverseer.GetInstance().GetObjectsCopyAsDictionary();
 
             paletteTile.OnSelect += asset => SelectedValue(asset, AssetType.Tile);
             paletteObject.OnSelect += asset => SelectedValue(asset, AssetType.Object);
@@ -131,9 +132,9 @@ namespace Rogium.Editors.Rooms
             enemyData = new GridData<AssetData>(editor.CurrentAsset.EnemyGrid, paletteEnemy, AssetType.Enemy, AssetDataBuilder.ForEnemy);
             currentData = new GridData<AssetData>(editor.CurrentAsset.EnemyGrid, paletteEnemy, AssetType.None);
             
-            paletteTile.Fill(packEditor.CurrentPack.Tiles, AssetType.Tile);
-            paletteObject.Fill(objects, AssetType.Object);
-            paletteEnemy.Fill(packEditor.CurrentPack.Enemies, AssetType.Enemy);
+            paletteTile.Fill(packEditor.CurrentPack.Tiles.Values.ToList(), AssetType.Tile);
+            paletteObject.Fill(objects.Values.ToList(), AssetType.Object);
+            paletteEnemy.Fill(packEditor.CurrentPack.Enemies.Values.ToList(), AssetType.Enemy);
 
             StartCoroutine(SwitchLayer0Delay(0.1f));
             
@@ -168,9 +169,9 @@ namespace Rogium.Editors.Rooms
         {
             AssetData data = type switch
             {
-                AssetType.Tile => AssetDataBuilder.ForTile(packEditor.CurrentPack.Tiles.FindValueFirst(asset.ID)),
+                AssetType.Tile => AssetDataBuilder.ForTile(packEditor.CurrentPack.Tiles[asset.ID]),
                 AssetType.Object => AssetDataBuilder.ForObject(asset),
-                AssetType.Enemy => AssetDataBuilder.ForEnemy(packEditor.CurrentPack.Enemies.FindValueFirst(asset.ID)),
+                AssetType.Enemy => AssetDataBuilder.ForEnemy(packEditor.CurrentPack.Enemies[asset.ID]),
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };
             SelectedValue(data, type, asset);
@@ -203,15 +204,15 @@ namespace Rogium.Editors.Rooms
             {
                 case AssetType.Tile:
                     propertyColumn.ConstructAssetPropertiesTile(data);
-                    asset ??= packEditor.CurrentPack.Tiles.FindValueFirst(data.ID);
+                    asset ??= packEditor.CurrentPack.Tiles[data.ID];
                     break;
                 case AssetType.Object:
                     propertyColumn.ConstructAssetPropertiesObject(data);
-                    asset ??= objects.FindValueFirst(data.ID);
+                    asset ??= objects[data.ID];
                     break;
                 case AssetType.Enemy:
                     propertyColumn.ConstructAssetPropertiesEnemies(data);
-                    asset ??= packEditor.CurrentPack.Enemies.FindValueFirst(data.ID);
+                    asset ??= packEditor.CurrentPack.Enemies[data.ID];
                     break;
                 default:
                     throw new ArgumentOutOfRangeException($"Layer with type '{type}' is not supported.");

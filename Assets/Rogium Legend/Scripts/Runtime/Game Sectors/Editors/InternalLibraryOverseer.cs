@@ -22,6 +22,23 @@ namespace Rogium.Editors.Core
         /// Returns a copy of the array of interactable objects stored here.
         /// </summary>
         /// <returns>A copy of Pack Library.</returns>
-        public IList<ObjectAsset> GetObjectsCopy() => objects.GetObjectsCopy();
+        public IList<ObjectAsset> GetObjectsCopy()
+        {
+            return objects.GetObjectsCopy();
+        }
+        
+        /// <summary>
+        /// Returns a copy of the array of interactable objects stored here.
+        /// </summary>
+        /// <returns>A copy of Pack Library.</returns>
+        public IDictionary<string, ObjectAsset> GetObjectsCopyAsDictionary()
+        {
+            IDictionary<string, ObjectAsset> objectDict = new Dictionary<string, ObjectAsset>();
+            foreach (ObjectAsset obj in objects.GetObjectsCopy())
+            {
+                objectDict.Add(obj.ID, obj);
+            }
+            return objectDict;
+        }
     }
 }

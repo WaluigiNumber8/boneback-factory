@@ -14,17 +14,17 @@ namespace Rogium.Core
     public static class AssetUtils
     {
         /// <summary>
-        /// Call an action, using a loaded asset from a list based on a grid of IDs.
+        /// Call an action, using a loaded asset from a dictionary based on a grid of IDs.
         /// </summary>
         /// <param name="IDGrid">The grid of IDs to read data from.</param>
-        /// <param name="dataList">The list of data, corresponding to the ID grid.</param>
+        /// <param name="dataDict">The dictionary of data, corresponding to the ID grid.</param>
         /// <param name="whenIDSame">Method that gets called when an asset is found on a specific ID gird position. (x, y, value)</param>
         /// <param name="whenIDInvalid">Method that gets called when no asset with a specific ID was found on the list. (x, y)</param>
         /// <param name="whenIDEmpty">Method that gets called when ID is empty. (x, y, lastValue)</param>
         /// <param name="flipY">If on, the Y gets called flipped.</param>
         /// <typeparam name="T">Any type of <see cref="IIDHolder"/>.</typeparam>
         /// <typeparam name="TS">Any type of <see cref="IIDHolder"/>.</typeparam>
-        public static void UpdateFromGridByList<T, TS>( ObjectGrid<TS> IDGrid, IList<T> dataList,
+        public static void UpdateFromGridByDict<T, TS>( ObjectGrid<TS> IDGrid, IDictionary<string, T> dataDict,
                                                         Action<int, int, T, TS> whenIDSame,
                                                         Action<int, int> whenIDInvalid,
                                                         Action<int, int, T, TS> whenIDEmpty = null,
@@ -56,7 +56,7 @@ namespace Rogium.Core
                     //Try searching for id.
                     try
                     {
-                        lastValue = dataList.FindValueFirst(data.ID);
+                        lastValue = dataDict[data.ID];
                         whenIDSame?.Invoke(x, Y, lastValue, data);
                     }
                     //When the tile is missing.
@@ -73,14 +73,14 @@ namespace Rogium.Core
         /// Call an action, using a loaded asset from a list based on a grid of IDs.
         /// </summary>
         /// <param name="IDGrid">The grid of IDs to read data from.</param>
-        /// <param name="dataList">The list of data, corresponding to the ID grid.</param>
+        /// <param name="dataDict">The dictionary of data, corresponding to the ID grid.</param>
         /// <param name="whenIDSame">Method that gets called when an asset is found on a specific ID gird position. (x, y, value)</param>
         /// <param name="whenIDInvalid">Method that gets called when no asset with a specific ID was found on the list. (x, y)</param>
         /// <param name="whenIDEmpty">Method that gets called when ID is empty. (x, y, lastValue)</param>
         /// <param name="flipY">If on, the Y gets called flipped.</param>
         /// <typeparam name="T">Any type of <see cref="IIDHolder"/>.</typeparam>
         /// <typeparam name="TS">Any type of <see cref="IComparable"/>. (string, int, etc.)</typeparam>
-        public static void UpdateFromGridByList<T, TS>( ObjectGrid<TS> IDGrid, IList<T> dataList,
+        public static void UpdateFromGridByDict<T, TS>( ObjectGrid<TS> IDGrid, IDictionary<string, T> dataDict,
                                                         Action<int, int, T> whenIDSame,
                                                         Action<int, int> whenIDInvalid,
                                                         Action<int, int, T> whenIDEmpty = null,
@@ -112,8 +112,13 @@ namespace Rogium.Core
                     //Try searching for id.
                     try
                     {
-                        lastValue = dataList.FindValueFirst(id);
-                        whenIDSame?.Invoke(x, Y, lastValue);
+                        foreach (KeyValuePair<string,T> item in dataDict)
+                        {
+                            if (id.CompareTo(item.Key) != 0) continue;
+                            lastValue = item.Value;
+                            whenIDSame?.Invoke(x, Y, lastValue);
+                        }
+                        
                     }
                     //When the tile is missing.
                     catch (SafetyNetCollectionException)

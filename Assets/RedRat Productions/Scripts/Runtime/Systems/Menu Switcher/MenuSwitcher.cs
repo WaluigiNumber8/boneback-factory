@@ -31,7 +31,7 @@ namespace RedRats.UI.MenuSwitching
         private List<MenuObject> GatherMenus()
         {
             List<MenuObject> gatheredMenus = GetComponentsInChildren<MenuObject>(true).ToList();
-            SafetyNet.EnsureListDoesNotHaveDuplicities(gatheredMenus, nameof(gatheredMenus));
+            SafetyNet.EnsureListDoesNotHaveDuplicates(gatheredMenus, nameof(gatheredMenus));
             return gatheredMenus;
         }
 

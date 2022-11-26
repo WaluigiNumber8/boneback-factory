@@ -41,11 +41,11 @@ namespace Rogium.Editors.Campaign
         public PackAsset Combine(IList<PackImportInfo> packs)
         {
             PackAsset ultimatePack = new PackAsset();
-            IList<PackAsset> allPacks = ExternalLibraryOverseer.Instance.GetPacksCopy;
+            IDictionary<string, PackAsset> allPacks = ExternalLibraryOverseer.Instance.GetPacksCopy;
 
             foreach (PackImportInfo importInfo in packs)
             {
-                PackAsset foundPack = allPacks[allPacks.FindIndexFirst(importInfo.ID)];
+                PackAsset foundPack = allPacks[importInfo.ID];
                 CombinePack(ultimatePack, foundPack, importInfo);
             }
 

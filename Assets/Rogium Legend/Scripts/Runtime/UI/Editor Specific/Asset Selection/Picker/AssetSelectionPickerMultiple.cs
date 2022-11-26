@@ -56,7 +56,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
         public void WhenAssetDeselected(IAsset asset)
         {
             if (!selectedAssets.ContainsValue(asset)) return;
-            selectedAssets.RemoveAt(selectedAssets.FindIndexFirst(asset.ID));
+            selectedAssets.RemoveAt(selectedAssets.FindIndex(asset.ID));
             OnAssetDeselect?.Invoke(asset);
         }
 
