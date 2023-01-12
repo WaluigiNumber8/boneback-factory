@@ -39,7 +39,7 @@ namespace Rogium.Core
                     TS data = IDGrid.GetValue(x, y);
 
                     //Id is empty.
-                    if (data.ID == EditorDefaults.EmptyAssetID)
+                    if (data.ID == EditorConstants.EmptyAssetID)
                     {
                         if (lastValue == null) continue;
                         whenIDEmpty?.Invoke(x, Y, lastValue, data);
@@ -95,7 +95,7 @@ namespace Rogium.Core
                     TS id = IDGrid.GetValue(x, y);
 
                     //Id is empty.
-                    if (id.CompareTo(EditorDefaults.EmptyAssetID) == 0)
+                    if (id.CompareTo(EditorConstants.EmptyAssetID) == 0)
                     {
                         if (lastValue == null) continue;
                         whenIDEmpty?.Invoke(x, Y, lastValue);

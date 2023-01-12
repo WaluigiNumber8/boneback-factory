@@ -18,7 +18,7 @@ namespace Rogium.Editors.Core
         
         private string author;
 
-        private void Awake() => author = EditorDefaults.AuthorGame;
+        private void Awake() => author = EditorConstants.AuthorGame;
 
         public string ID { get => id; }
         public string Title { get => title; }

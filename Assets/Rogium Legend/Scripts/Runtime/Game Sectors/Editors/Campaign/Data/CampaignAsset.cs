@@ -20,25 +20,25 @@ namespace Rogium.Editors.Campaign
         #region Constructors
         public CampaignAsset()
         {
-            this.title = EditorDefaults.CampaignTitle;
-            this.icon = EditorDefaults.RoomIcon;
-            this.author = EditorDefaults.Author;
+            this.title = EditorConstants.CampaignTitle;
+            this.icon = EditorConstants.RoomIcon;
+            this.author = EditorConstants.Author;
             this.creationDate = DateTime.Now;
             GenerateID(EditorAssetIDs.CampaignIdentifier);
 
-            this.adventureLength = EditorDefaults.CampaignLength;
+            this.adventureLength = EditorConstants.CampaignLength;
             this.dataPack = new PackAsset();
             this.packReferences = new List<string>();
         }
         public CampaignAsset(PackAsset pack)
         {
-            this.title = EditorDefaults.CampaignTitle;
-            this.icon = EditorDefaults.RoomIcon;
-            this.author = EditorDefaults.Author;
+            this.title = EditorConstants.CampaignTitle;
+            this.icon = EditorConstants.RoomIcon;
+            this.author = EditorConstants.Author;
             this.creationDate = DateTime.Now;
             GenerateID(EditorAssetIDs.CampaignIdentifier);
 
-            this.adventureLength = EditorDefaults.CampaignLength;
+            this.adventureLength = EditorConstants.CampaignLength;
             this.dataPack = new PackAsset(pack);
             this.packReferences = new List<string>();
         }
@@ -64,7 +64,7 @@ namespace Rogium.Editors.Campaign
             this.creationDate = DateTime.Now;
             GenerateID(EditorAssetIDs.CampaignIdentifier);
 
-            this.adventureLength = EditorDefaults.CampaignLength;
+            this.adventureLength = EditorConstants.CampaignLength;
             this.dataPack = new PackAsset(pack);
             this.packReferences = new List<string>();
         }

@@ -40,7 +40,7 @@ namespace Rogium.Editors.Rooms
 
         private RoomEditorOverseer()
         {
-            drawer = new SpriteDrawer(EditorDefaults.RoomSize, new Vector2Int(EditorDefaults.SpriteSize, EditorDefaults.SpriteSize), EditorDefaults.SpriteSize);
+            drawer = new SpriteDrawer(EditorConstants.RoomSize, new Vector2Int(EditorConstants.SpriteSize, EditorConstants.SpriteSize), EditorConstants.SpriteSize);
         }
 
         /// <summary>

@@ -5,7 +5,7 @@ namespace Rogium.Gameplay.Core
     /// <summary>
     /// Contains all default values used by the gameplay section.
     /// </summary>
-    public static class GameplayDefaults
+    public static class GameplayConstants
     {
         //Randomizer
         public const int EmptyMemoryValue = -1;

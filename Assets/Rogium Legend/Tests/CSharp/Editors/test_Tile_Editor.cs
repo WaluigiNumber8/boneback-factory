@@ -27,7 +27,7 @@ namespace Rogium_Legend.Tests.CSharp.Editors
             tileEditor = TileEditorOverseer.Instance;
             
             if (lib.GetPacksCopy.FindAssetFirst("Test Pack", "NO_AUTHOR") != null)  lib.DeletePack("Test Pack", "NO_AUTHOR");
-            lib.CreateAndAddPack(new PackInfoAsset("Test Pack", EditorDefaults.PackIcon, "NO_AUTHOR", "Blalalala"));
+            lib.CreateAndAddPack(new PackInfoAsset("Test Pack", EditorConstants.PackIcon, "NO_AUTHOR", "Blalalala"));
             lib.ActivatePackEditor(0);
         }
 
@@ -40,7 +40,7 @@ namespace Rogium_Legend.Tests.CSharp.Editors
         [Test]
         public void tile_data_save_load_correctly()
         {
-            TileAsset tile = new TileAsset("Test Tile", EditorDefaults.TileIcon, "NO AUTHOR", TileType.Floor);
+            TileAsset tile = new TileAsset("Test Tile", EditorConstants.TileIcon, "NO AUTHOR", TileType.Floor);
             editor.CreateNewTile(tile);
             editor.CompleteEditing();
             lib.ReloadFromExternalStorage();

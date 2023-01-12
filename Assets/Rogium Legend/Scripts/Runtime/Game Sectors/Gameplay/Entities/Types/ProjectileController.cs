@@ -73,10 +73,10 @@ namespace Rogium.Gameplay.Entities
             deathTimer = -1;
             pierceType = missingInfo.pierce;
             
-            move.Construct(new CharMoveInfo(EditorDefaults.ProjectileFlightSpeed, EditorDefaults.ProjectileAcceleration, EditorDefaults.ProjectileBrakeForce));
-            ForcedMoveInfo selfKnockback = new(EditorDefaults.ProjectileKnockbackForceSelf, EditorDefaults.ProjectileKnockbackTimeSelf, EditorDefaults.ProjectileKnockbackLockDirectionSelf);
-            ForcedMoveInfo otherKnockback = new(EditorDefaults.ProjectileKnockbackForceOther, EditorDefaults.ProjectileKnockbackTimeOther, EditorDefaults.ProjectileKnockbackLockDirectionOther);
-            giver.Construct(new CharDamageGiverInfo(EditorDefaults.ProjectileBaseDamage, selfKnockback, otherKnockback));
+            move.Construct(new CharMoveInfo(EditorConstants.ProjectileFlightSpeed, EditorConstants.ProjectileAcceleration, EditorConstants.ProjectileBrakeForce));
+            ForcedMoveInfo selfKnockback = new(EditorConstants.ProjectileKnockbackForceSelf, EditorConstants.ProjectileKnockbackTimeSelf, EditorConstants.ProjectileKnockbackLockDirectionSelf);
+            ForcedMoveInfo otherKnockback = new(EditorConstants.ProjectileKnockbackForceOther, EditorConstants.ProjectileKnockbackTimeOther, EditorConstants.ProjectileKnockbackLockDirectionOther);
+            giver.Construct(new CharDamageGiverInfo(EditorConstants.ProjectileBaseDamage, selfKnockback, otherKnockback));
             visual.Construct(new CharVisualInfo(missingInfo.missingSprite, AnimationType.NoAnimation, 0, null));
         }
 

@@ -28,33 +28,33 @@ namespace Rogium.Editors.Enemies
         #region Constructors
         public EnemyAsset()
         {
-            title = EditorDefaults.EnemyTitle;
-            icon = EditorDefaults.EnemyIcon;
-            author = EditorDefaults.Author;
+            title = EditorConstants.EnemyTitle;
+            icon = EditorConstants.EnemyIcon;
+            author = EditorConstants.Author;
             creationDate = DateTime.Now;
 
-            animationType = EditorDefaults.EnemyAnimationType;
-            frameDuration = EditorDefaults.EnemyFrameDuration;
-            iconAlt = EditorDefaults.EnemyIconAlt;
+            animationType = EditorConstants.EnemyAnimationType;
+            frameDuration = EditorConstants.EnemyFrameDuration;
+            iconAlt = EditorConstants.EnemyIconAlt;
             
-            baseDamage = EditorDefaults.EnemyBaseDamage;
-            useDelay = EditorDefaults.EnemyAttackDelay;
-            knockbackForceSelf = EditorDefaults.EnemyKnockbackForceSelf;
-            knockbackTimeSelf = EditorDefaults.EnemyKnockbackTimeSelf;
-            knockbackLockDirectionSelf = EditorDefaults.EnemyKnockbackLockDirectionSelf;
-            knockbackForceOther = EditorDefaults.EnemyKnockbackForceOther;
-            knockbackTimeOther = EditorDefaults.EnemyKnockbackTimeOther;
-            knockbackLockDirectionOther = EditorDefaults.EnemyKnockbackLockDirectionOther;
+            baseDamage = EditorConstants.EnemyBaseDamage;
+            useDelay = EditorConstants.EnemyAttackDelay;
+            knockbackForceSelf = EditorConstants.EnemyKnockbackForceSelf;
+            knockbackTimeSelf = EditorConstants.EnemyKnockbackTimeSelf;
+            knockbackLockDirectionSelf = EditorConstants.EnemyKnockbackLockDirectionSelf;
+            knockbackForceOther = EditorConstants.EnemyKnockbackForceOther;
+            knockbackTimeOther = EditorConstants.EnemyKnockbackTimeOther;
+            knockbackLockDirectionOther = EditorConstants.EnemyKnockbackLockDirectionOther;
 
-            maxHealth = EditorDefaults.EnemyMaxHealth;
-            attackProbability = EditorDefaults.EnemyAttackProbability;
-            invincibilityTime = EditorDefaults.EnemyInvincibilityTime;
+            maxHealth = EditorConstants.EnemyMaxHealth;
+            attackProbability = EditorConstants.EnemyAttackProbability;
+            invincibilityTime = EditorConstants.EnemyInvincibilityTime;
             weaponIDs = new List<string>();
             
-            ai = EditorDefaults.EnemyAI;
-            nextStepTime = EditorDefaults.EnemyNextStepTime;
-            seamlessMovement = EditorDefaults.EnemySeamlessMovement;
-            startingDirection = EditorDefaults.EnemyStartingDirection;
+            ai = EditorConstants.EnemyAI;
+            nextStepTime = EditorConstants.EnemyNextStepTime;
+            seamlessMovement = EditorConstants.EnemySeamlessMovement;
+            startingDirection = EditorConstants.EnemyStartingDirection;
             
             GenerateID(EditorAssetIDs.EnemyIdentifier);
         }
@@ -141,7 +141,7 @@ namespace Rogium.Editors.Enemies
         public void UpdateWeaponIDsLength(int newLength)
         {
             SafetyNet.EnsureIntIsBiggerOrEqualTo(newLength, 0, "New weapon IDs size");
-            weaponIDs.Resize(newLength, EditorDefaults.EmptyAssetID);
+            weaponIDs.Resize(newLength, EditorConstants.EmptyAssetID);
         }
         public void UpdateWeaponIDPos(int pos, string value) => weaponIDs[pos] = value;
         public void UpdateAI(int newAI) => UpdateAI((AIType)newAI);

@@ -31,7 +31,7 @@ namespace Rogium.Systems.GridSystem
             emptyPixels = new Color[width * height];
             for (int index = 0; index < emptyPixels.Length; index++)
             {
-                emptyPixels[index] = EditorDefaults.NoColor;
+                emptyPixels[index] = EditorConstants.NoColor;
             }
         }
 
@@ -52,7 +52,7 @@ namespace Rogium.Systems.GridSystem
                 {
                     int id = indexGrid.GetValue(x, y);
                     
-                    if (id == EditorDefaults.EmptyColorID) continue;
+                    if (id == EditorConstants.EmptyColorID) continue;
 
                     try
                     {
@@ -60,7 +60,7 @@ namespace Rogium.Systems.GridSystem
                     }
                     catch (InvalidOperationException)
                     {
-                        UpdateValue(sprite, new Vector2Int(x, y), EditorDefaults.MissingColor);
+                        UpdateValue(sprite, new Vector2Int(x, y), EditorConstants.MissingColor);
                     }
                 }
             }
@@ -84,8 +84,8 @@ namespace Rogium.Systems.GridSystem
             
             AssetUtils.UpdateFromGridByList(IDGrid, assetList, 
                 (x, y, asset) => UpdateValue(sprite, new Vector2Int(x, y), asset.Icon),
-                (x, y) => UpdateValue(sprite, new Vector2Int(x, y), EditorDefaults.MissingSprite),
-                (x, y, asset) => UpdateValue(sprite, new Vector2Int(x, y), EditorDefaults.EmptyGridSprite));
+                (x, y) => UpdateValue(sprite, new Vector2Int(x, y), EditorConstants.MissingSprite),
+                (x, y, asset) => UpdateValue(sprite, new Vector2Int(x, y), EditorConstants.EmptyGridSprite));
             
             Apply(sprite);
             return sprite;

@@ -47,17 +47,17 @@ public class test_Room_Editor_UI
         #endregion
 
         #region Build Pack & Room
-        string packTitle = EditorDefaults.PackTitle;
-        string packDescription = EditorDefaults.PackDescription;
-        string packAuthor = EditorDefaults.Author;
-        Sprite packIcon = EditorDefaults.PackIcon;
+        string packTitle = EditorConstants.PackTitle;
+        string packDescription = EditorConstants.PackDescription;
+        string packAuthor = EditorConstants.Author;
+        Sprite packIcon = EditorConstants.PackIcon;
 
-        string roomTitle = EditorDefaults.RoomTitle;
-        Sprite roomIcon = EditorDefaults.RoomIcon;
-        int roomDifficulty = EditorDefaults.RoomDifficulty;
+        string roomTitle = EditorConstants.RoomTitle;
+        Sprite roomIcon = EditorConstants.RoomIcon;
+        int roomDifficulty = EditorConstants.RoomDifficulty;
 
-        string tileTitle = EditorDefaults.TileTitle;
-        Sprite tileIcon = EditorDefaults.TileIcon;
+        string tileTitle = EditorConstants.TileTitle;
+        Sprite tileIcon = EditorConstants.TileIcon;
         
         ExternalLibraryOverseer.Instance.CreateAndAddPack(new PackInfoAsset(packTitle, packIcon, packAuthor, packDescription));
         ExternalLibraryOverseer.Instance.ActivatePackEditor(0);
@@ -74,7 +74,7 @@ public class test_Room_Editor_UI
     [TearDown]
     public void Teardown()
     {
-        ExternalLibraryOverseer.Instance.DeletePack(EditorDefaults.PackTitle, EditorDefaults.Author);
+        ExternalLibraryOverseer.Instance.DeletePack(EditorConstants.PackTitle, EditorConstants.Author);
     }
     
     [UnityTest]

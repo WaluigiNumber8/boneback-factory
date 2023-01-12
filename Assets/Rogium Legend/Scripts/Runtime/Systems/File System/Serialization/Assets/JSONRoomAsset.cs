@@ -34,9 +34,9 @@ namespace Rogium.ExternalStorage.Serialization
         /// <returns>A deserialized asset.</returns>
         public override RoomAsset Decode()
         {
-            tileGrid.SetDefaultCreator(() => new AssetData(ParameterDefaults.ParamsTile));
-            objectGrid.SetDefaultCreator(() => new AssetData(ParameterDefaults.ParamsEmpty));
-            enemyGrid.SetDefaultCreator(() => new AssetData(ParameterDefaults.ParamsEnemy));
+            tileGrid.SetDefaultCreator(() => new AssetData(ParameterInfoConstants.ParamsTile));
+            objectGrid.SetDefaultCreator(() => new AssetData(ParameterInfoConstants.ParamsEmpty));
+            enemyGrid.SetDefaultCreator(() => new AssetData(ParameterInfoConstants.ParamsEnemy));
             
             return new RoomAsset(id,
                                  title,

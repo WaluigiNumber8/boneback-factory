@@ -24,29 +24,29 @@ namespace Rogium.Editors.Weapons
         #region Constructors
         public WeaponAsset()
         {
-            title = EditorDefaults.WeaponTitle;
-            icon = EditorDefaults.WeaponIcon;
-            author = EditorDefaults.Author;
+            title = EditorConstants.WeaponTitle;
+            icon = EditorConstants.WeaponIcon;
+            author = EditorConstants.Author;
             creationDate = DateTime.Now;
 
-            animationType = EditorDefaults.WeaponAnimationType;
-            frameDuration = EditorDefaults.WeaponFrameDuration;
-            iconAlt = EditorDefaults.WeaponIconAlt;
+            animationType = EditorConstants.WeaponAnimationType;
+            frameDuration = EditorConstants.WeaponFrameDuration;
+            iconAlt = EditorConstants.WeaponIconAlt;
             
-            baseDamage = EditorDefaults.WeaponBaseDamage;
-            useDelay = EditorDefaults.WeaponUseDelay;
-            knockbackForceSelf = EditorDefaults.WeaponKnockbackForceSelf;
-            knockbackTimeSelf = EditorDefaults.WeaponKnockbackTimeSelf;
-            knockbackLockDirectionSelf = EditorDefaults.WeaponKnockbackLockDirectionSelf;
-            knockbackForceOther = EditorDefaults.WeaponKnockbackForceOther;
-            knockbackTimeOther = EditorDefaults.WeaponKnockbackTimeOther;
-            knockbackLockDirectionOther = EditorDefaults.WeaponKnockbackLockDirectionOther;
+            baseDamage = EditorConstants.WeaponBaseDamage;
+            useDelay = EditorConstants.WeaponUseDelay;
+            knockbackForceSelf = EditorConstants.WeaponKnockbackForceSelf;
+            knockbackTimeSelf = EditorConstants.WeaponKnockbackTimeSelf;
+            knockbackLockDirectionSelf = EditorConstants.WeaponKnockbackLockDirectionSelf;
+            knockbackForceOther = EditorConstants.WeaponKnockbackForceOther;
+            knockbackTimeOther = EditorConstants.WeaponKnockbackTimeOther;
+            knockbackLockDirectionOther = EditorConstants.WeaponKnockbackLockDirectionOther;
 
-            useType = EditorDefaults.WeaponUseType;
-            useDuration = EditorDefaults.WeaponUseDuration;
-            useStartDelay = EditorDefaults.WeaponUseStartDelay;
-            isEvasive = EditorDefaults.WeaponIsEvasive;
-            freezeUser = EditorDefaults.WeaponFreezeUser;
+            useType = EditorConstants.WeaponUseType;
+            useDuration = EditorConstants.WeaponUseDuration;
+            useStartDelay = EditorConstants.WeaponUseStartDelay;
+            isEvasive = EditorConstants.WeaponIsEvasive;
+            freezeUser = EditorConstants.WeaponFreezeUser;
             projectileIDs = new List<ProjectileDataInfo>();
             
             GenerateID(EditorAssetIDs.WeaponIdentifier);
@@ -141,9 +141,9 @@ namespace Rogium.Editors.Weapons
         {
             SafetyNet.EnsureIntIsBiggerOrEqualTo(newLength, 0, "New weapon IDs size");
 
-            ProjectileDataInfo data = new(EditorDefaults.EmptyAssetID, 
-                                          EditorDefaults.WeaponProjectileSpawnDelay,
-                                          EditorDefaults.WeaponProjectileAngleOffset);
+            ProjectileDataInfo data = new(EditorConstants.EmptyAssetID, 
+                                          EditorConstants.WeaponProjectileSpawnDelay,
+                                          EditorConstants.WeaponProjectileAngleOffset);
             
             projectileIDs.Resize(newLength, data);
         }

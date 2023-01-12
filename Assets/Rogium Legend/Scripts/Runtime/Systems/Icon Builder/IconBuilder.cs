@@ -58,19 +58,19 @@ namespace Rogium.Systems.IconBuilders
                     //When color ID is bigger than the color array.
                     if (posValue > colors.Length - 1)
                     {
-                        tex.SetPixel(x, y, EditorDefaults.MissingColor);
+                        tex.SetPixel(x, y, EditorConstants.MissingColor);
                         continue;
                     }
                     //if color ID is empty = transparent.
                     if (posValue < 0)
                     {
-                        tex.SetPixel(x, y, EditorDefaults.NoColor);
+                        tex.SetPixel(x, y, EditorConstants.NoColor);
                         continue;
                     }
                     tex.SetPixel(x, y, colors[posValue]);
                 }
             }
-            return RedRatBuilder.GenerateSprite(tex, EditorDefaults.PixelsPerUnit);
+            return RedRatBuilder.GenerateSprite(tex, EditorConstants.PixelsPerUnit);
         }
 
         private int CalculateSize(int arraySize)

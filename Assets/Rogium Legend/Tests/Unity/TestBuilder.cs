@@ -18,18 +18,18 @@ public static class TestBuilder
     /// <returns></returns>
     public static PackAsset SetupPackAsset()
     {
-        TileAsset tile = new TileAsset("Test Tile", EditorDefaults.TileIcon, "Test Author", TileType.Floor);
+        TileAsset tile = new TileAsset("Test Tile", EditorConstants.TileIcon, "Test Author", TileType.Floor);
 
-        ObjectGrid<AssetData> tileGrid = new(10, 15, () => new AssetData(ParameterDefaults.ParamsTile));
-        ObjectGrid<AssetData> objectGrid = new(10, 15, () => new AssetData(ParameterDefaults.ParamsEmpty));
-        ObjectGrid<AssetData> enemyGrid = new(10, 15, () => new AssetData(ParameterDefaults.ParamsEnemy));
-        tileGrid.SetValue(1, 1, new AssetData(tile.ID, ParameterDefaults.ParamsTile));
-        tileGrid.SetValue(8, 5, new AssetData(tile.ID, ParameterDefaults.ParamsTile));
-        tileGrid.SetValue(2, 1, new AssetData(tile.ID, ParameterDefaults.ParamsTile));
-        tileGrid.SetValue(5, 1, new AssetData(tile.ID, ParameterDefaults.ParamsTile));
+        ObjectGrid<AssetData> tileGrid = new(10, 15, () => new AssetData(ParameterInfoConstants.ParamsTile));
+        ObjectGrid<AssetData> objectGrid = new(10, 15, () => new AssetData(ParameterInfoConstants.ParamsEmpty));
+        ObjectGrid<AssetData> enemyGrid = new(10, 15, () => new AssetData(ParameterInfoConstants.ParamsEnemy));
+        tileGrid.SetValue(1, 1, new AssetData(tile.ID, ParameterInfoConstants.ParamsTile));
+        tileGrid.SetValue(8, 5, new AssetData(tile.ID, ParameterInfoConstants.ParamsTile));
+        tileGrid.SetValue(2, 1, new AssetData(tile.ID, ParameterInfoConstants.ParamsTile));
+        tileGrid.SetValue(5, 1, new AssetData(tile.ID, ParameterInfoConstants.ParamsTile));
 
-        RoomAsset room = new RoomAsset("Devil Room", EditorDefaults.RoomIcon, "Test Author", 0, RoomType.Common, 255, tileGrid, objectGrid, enemyGrid);
-        PackAsset pack = new PackAsset(new PackInfoAsset("Test Pack", EditorDefaults.PackIcon, "Test Author", "Just a pack"));
+        RoomAsset room = new RoomAsset("Devil Room", EditorConstants.RoomIcon, "Test Author", 0, RoomType.Common, 255, tileGrid, objectGrid, enemyGrid);
+        PackAsset pack = new PackAsset(new PackInfoAsset("Test Pack", EditorConstants.PackIcon, "Test Author", "Just a pack"));
         pack.Tiles.Add(tile);
         pack.Rooms.Add(room);
         return pack;

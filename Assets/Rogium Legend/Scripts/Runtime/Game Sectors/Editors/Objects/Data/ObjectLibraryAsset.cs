@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Rogium.Editors.Objects
 {
-    [CreateAssetMenu(fileName = "New Object Library", menuName = EditorDefaults.AssetMenuAssets + "Object Library", order = 0)]
+    [CreateAssetMenu(fileName = "New Object Library", menuName = EditorConstants.AssetMenuAssets + "Object Library", order = 0)]
     public class ObjectLibraryAsset : ScriptableObject
     {
         [SerializeField] private List<ObjectAsset> interactableObjects;

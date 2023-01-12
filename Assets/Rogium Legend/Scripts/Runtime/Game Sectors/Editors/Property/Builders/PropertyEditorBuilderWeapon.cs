@@ -86,7 +86,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
         private void BuildProjectileContent(Transform content)
         {
             b.BuildHeader("Projectiles", content);
-            b.BuildSlider("Projectile Amount", 0, EditorDefaults.WeaponProjectileMaxCount, asset.ProjectileIDs.Count, content, f => LoadProjectileSlots((int)f), !currentPack.ContainsAnyProjectiles);
+            b.BuildSlider("Projectile Amount", 0, EditorConstants.WeaponProjectileMaxCount, asset.ProjectileIDs.Count, content, f => LoadProjectileSlots((int)f), !currentPack.ContainsAnyProjectiles);
             projectileSlotsBlock = b.CreateContentBlockVertical(content, true);
             LoadProjectileSlots(asset.ProjectileIDs.Count);
         }

@@ -23,7 +23,7 @@ public class test_Room_Editor
         const string packName = "Test Pack";
         const string packDescription = "Created this pack for testing purposes.";
         const string packAuthor = "TestAuthor";
-        Sprite packIcon = EditorDefaults.PackIcon;
+        Sprite packIcon = EditorConstants.PackIcon;
 
         lib.CreateAndAddPack(new PackInfoAsset(packName, packIcon, packAuthor, packDescription));
         lib.ActivatePackEditor(0);

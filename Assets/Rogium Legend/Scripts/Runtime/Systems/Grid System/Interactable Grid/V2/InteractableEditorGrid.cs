@@ -41,7 +41,7 @@ namespace Rogium.Systems.GridSystem
             SafetyNet.EnsureIntIsBiggerThan(layers.Length, 0, "Layers amount");
             
             ttransform = GetComponent<RectTransform>();
-            drawer = new SpriteDrawer(gridSize, new Vector2Int(EditorDefaults.SpriteSize, EditorDefaults.SpriteSize), EditorDefaults.SpriteSize);
+            drawer = new SpriteDrawer(gridSize, new Vector2Int(EditorConstants.SpriteSize, EditorConstants.SpriteSize), EditorConstants.SpriteSize);
             
             cellSize = new Vector2Int((int)ttransform.rect.width / gridSize.x, (int)ttransform.rect.height / gridSize.y);
             
@@ -150,10 +150,10 @@ namespace Rogium.Systems.GridSystem
             foreach (LayerInfo info in layers)
             {
                 info.layer.color = Color.white;
-                info.layer.sprite = RedRatBuilder.GenerateSprite(EditorDefaults.NoColor,
-                                                                 EditorDefaults.SpriteSize * gridSize.x,
-                                                                 EditorDefaults.SpriteSize * gridSize.y,
-                                                                 EditorDefaults.SpriteSize);
+                info.layer.sprite = RedRatBuilder.GenerateSprite(EditorConstants.NoColor,
+                                                                 EditorConstants.SpriteSize * gridSize.x,
+                                                                 EditorConstants.SpriteSize * gridSize.y,
+                                                                 EditorConstants.SpriteSize);
             }
         }
         

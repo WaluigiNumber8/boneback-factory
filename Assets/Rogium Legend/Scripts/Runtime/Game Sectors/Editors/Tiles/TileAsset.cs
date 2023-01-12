@@ -19,9 +19,9 @@ namespace Rogium.Editors.Tiles
         #region Constructors
         public TileAsset()
         {
-            this.title = EditorDefaults.TileTitle;
-            this.icon = EditorDefaults.TileIcon;
-            this.author = EditorDefaults.Author;
+            this.title = EditorConstants.TileTitle;
+            this.icon = EditorConstants.TileIcon;
+            this.author = EditorConstants.Author;
             this.creationDate = DateTime.Now;
             this.tile = new TileObject(ScriptableObject.CreateInstance<Tile>(), TileType.Wall);
             this.tile.Tile.sprite = this.icon;

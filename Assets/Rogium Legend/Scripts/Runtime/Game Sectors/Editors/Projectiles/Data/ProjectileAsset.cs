@@ -20,28 +20,28 @@ namespace Rogium.Editors.Projectiles
         #region Constructors
         public ProjectileAsset()
         {
-            title = EditorDefaults.ProjectileTitle;
-            icon = EditorDefaults.ProjectileIcon;
-            author = EditorDefaults.Author;
+            title = EditorConstants.ProjectileTitle;
+            icon = EditorConstants.ProjectileIcon;
+            author = EditorConstants.Author;
             creationDate = DateTime.Now;
 
-            animationType = EditorDefaults.ProjectileAnimationType;
-            frameDuration = EditorDefaults.ProjectileFrameDuration;
-            iconAlt = EditorDefaults.ProjectileIconAlt;
+            animationType = EditorConstants.ProjectileAnimationType;
+            frameDuration = EditorConstants.ProjectileFrameDuration;
+            iconAlt = EditorConstants.ProjectileIconAlt;
             
-            baseDamage = EditorDefaults.ProjectileBaseDamage;
-            useDelay = EditorDefaults.ProjectileLifetime;
-            knockbackForceSelf = EditorDefaults.ProjectileKnockbackForceSelf;
-            knockbackTimeSelf = EditorDefaults.ProjectileKnockbackTimeSelf;
-            knockbackLockDirectionSelf = EditorDefaults.ProjectileKnockbackLockDirectionSelf;
-            knockbackForceOther = EditorDefaults.ProjectileKnockbackForceOther;
-            knockbackTimeOther = EditorDefaults.ProjectileKnockbackTimeOther;
-            knockbackLockDirectionOther = EditorDefaults.ProjectileKnockbackLockDirectionOther;
+            baseDamage = EditorConstants.ProjectileBaseDamage;
+            useDelay = EditorConstants.ProjectileLifetime;
+            knockbackForceSelf = EditorConstants.ProjectileKnockbackForceSelf;
+            knockbackTimeSelf = EditorConstants.ProjectileKnockbackTimeSelf;
+            knockbackLockDirectionSelf = EditorConstants.ProjectileKnockbackLockDirectionSelf;
+            knockbackForceOther = EditorConstants.ProjectileKnockbackForceOther;
+            knockbackTimeOther = EditorConstants.ProjectileKnockbackTimeOther;
+            knockbackLockDirectionOther = EditorConstants.ProjectileKnockbackLockDirectionOther;
 
-            flightSpeed = EditorDefaults.ProjectileFlightSpeed;
-            acceleration = EditorDefaults.ProjectileAcceleration;
-            brakeForce = EditorDefaults.ProjectileBrakeForce;
-            pierceType = EditorDefaults.ProjectilePierceType;
+            flightSpeed = EditorConstants.ProjectileFlightSpeed;
+            acceleration = EditorConstants.ProjectileAcceleration;
+            brakeForce = EditorConstants.ProjectileBrakeForce;
+            pierceType = EditorConstants.ProjectilePierceType;
             
             GenerateID(EditorAssetIDs.ProjectileIdentifier);
         }

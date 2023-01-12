@@ -14,11 +14,11 @@ namespace Rogium.Editors.Packs
         #region Constructors
         public PackInfoAsset()
         {
-            this.title = EditorDefaults.PackTitle;
-            this.icon = EditorDefaults.PackIcon;
-            this.author = EditorDefaults.Author;
+            this.title = EditorConstants.PackTitle;
+            this.icon = EditorConstants.PackIcon;
+            this.author = EditorConstants.Author;
             this.creationDate = DateTime.Now;
-            this.description = EditorDefaults.PackDescription;
+            this.description = EditorConstants.PackDescription;
             GenerateID(EditorAssetIDs.PackIdentifier);
         }
 

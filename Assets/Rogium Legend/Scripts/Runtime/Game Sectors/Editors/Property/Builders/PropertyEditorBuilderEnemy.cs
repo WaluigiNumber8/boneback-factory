@@ -111,7 +111,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
             b.BuildHeader("Weapons", content);
             b.BuildInputField("Attack Delay", asset.UseDelay.ToString(), content, s => asset.UpdateUseDelay(float.Parse(s)), false, TMP_InputField.CharacterValidation.Decimal);
             b.BuildSlider("Attack Probability", 0, 100, (int)(asset.AttackProbability * 100), content, f => asset.UpdateAttackProbability(f * 0.01f));
-            b.BuildSlider("Weapon Amount", 0, EditorDefaults.EnemyWeaponMaxCount, asset.WeaponIDs.Count, content, f => LoadWeaponSlots((int)f), !currentPack.ContainsAnyWeapons);
+            b.BuildSlider("Weapon Amount", 0, EditorConstants.EnemyWeaponMaxCount, asset.WeaponIDs.Count, content, f => LoadWeaponSlots((int)f), !currentPack.ContainsAnyWeapons);
             weaponSlotsBlock = b.CreateContentBlockVertical(content, true);
             LoadWeaponSlots(asset.WeaponIDs.Count);
         }
