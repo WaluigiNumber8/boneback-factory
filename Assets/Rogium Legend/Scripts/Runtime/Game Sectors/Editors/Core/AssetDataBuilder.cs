@@ -23,11 +23,11 @@ namespace Rogium.Editors.Core
         /// <returns>AssetData for that specific asset.</returns>
         public static AssetData ForTile(IAsset asset)
         {
-            if (asset.ID == EditorDefaults.EmptyAssetID) return new AssetData(ParameterDefaults.ParamsEmpty);
+            if (asset.ID == EditorConstants.EmptyAssetID) return new AssetData(ParameterInfoConstants.ParamsEmpty);
             if (asset.ID == lastID && lastType == AssetType.Tile) return lastData;
 
             TileAsset tile = (TileAsset) asset;
-            ParameterInfo parameters = ParameterDefaults.ParamsTile;
+            ParameterInfo parameters = ParameterInfoConstants.ParamsTile;
             
             parameters.intValue1 = (int)tile.Type;
 
@@ -45,7 +45,7 @@ namespace Rogium.Editors.Core
         /// <returns>AssetData for that specific asset.</returns>
         public static AssetData ForObject(IAsset asset)
         {
-            if (asset.ID == EditorDefaults.EmptyAssetID) return new AssetData(ParameterDefaults.ParamsEmpty);
+            if (asset.ID == EditorConstants.EmptyAssetID) return new AssetData(ParameterInfoConstants.ParamsEmpty);
             if (asset.ID == lastID && lastType == AssetType.Object) return lastData;
             
             ObjectAsset iobject = (ObjectAsset)asset;
@@ -65,11 +65,11 @@ namespace Rogium.Editors.Core
         /// <returns>AssetData for that specific asset.</returns>
         public static AssetData ForEnemy(IAsset asset)
         {
-            if (asset.ID == EditorDefaults.EmptyAssetID) return new AssetData(ParameterDefaults.ParamsEmpty);
+            if (asset.ID == EditorConstants.EmptyAssetID) return new AssetData(ParameterInfoConstants.ParamsEmpty);
             if (asset.ID == lastID && lastType == AssetType.Enemy) return lastData;
             
             EnemyAsset enemy = (EnemyAsset)asset;
-            ParameterInfo parameters = ParameterDefaults.ParamsEnemy;
+            ParameterInfo parameters = ParameterInfoConstants.ParamsEnemy;
             
             parameters.intValue1 = enemy.BaseDamage;
 

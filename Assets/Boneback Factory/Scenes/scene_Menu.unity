@@ -19816,9 +19816,9 @@ PrefabInstance:
     - target: {fileID: 6865054230660667279, guid: f97e52675ef439041acd930501beee72, type: 3}
       propertyPath: m_text
       value: "<b><color=#E32121>Features<color=#E6E6E6></b>\n* The Grid Item previewer
-        now has a hologram shader.\n\n<b><color=#F46247>Bug Fixes<color=#E6E6E6></b>\n 
-        * Default weapon was not loaded correctly.\n  * Last palette slot was unusable.\n 
-        * Some colors for palettes were unusable."
+        now has a hologram shader.\n* All user assets are now stored in JSON format.\n\n<b><color=#F46247>Bug
+        Fixes<color=#E6E6E6></b>\n  * Default weapon was not loaded correctly.\n 
+        * Last palette slot was unusable.\n  * Some colors for palettes were unusable."
       objectReference: {fileID: 0}
     - target: {fileID: 6865054230660667279, guid: f97e52675ef439041acd930501beee72, type: 3}
       propertyPath: m_fontColor.b

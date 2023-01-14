@@ -35,7 +35,7 @@ namespace Rogium.Editors.Rooms
             this.palette = palette;
             this.type = type;
 
-            this.palette.OnSelect += (asset => new AssetData(asset.ID, ParameterDefaults.ParamsEmpty));
+            this.palette.OnSelect += (asset => new AssetData(asset.ID, ParameterInfoConstants.ParamsEmpty));
         }
         #endregion
 

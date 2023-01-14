@@ -17,13 +17,13 @@ namespace Rogium.Editors.Palettes
         #region Constructors
         public PaletteAsset()
         {
-            this.title = EditorDefaults.PaletteTitle;
-            this.icon = EditorDefaults.EmptyGridSprite;
-            this.author = EditorDefaults.Author;
+            this.title = EditorConstants.PaletteTitle;
+            this.icon = EditorConstants.EmptyGridSprite;
+            this.author = EditorConstants.Author;
             this.creationDate = DateTime.Now;
             GenerateID(EditorAssetIDs.PaletteIdentifier);
 
-            this.colors = RedRatBuilder.GenerateColorArray(EditorDefaults.PaletteSize, Color.black);
+            this.colors = RedRatBuilder.GenerateColorArray(EditorConstants.PaletteSize, Color.black);
         }
 
         public PaletteAsset(PaletteAsset asset)

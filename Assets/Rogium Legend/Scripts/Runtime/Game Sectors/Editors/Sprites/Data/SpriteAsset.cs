@@ -19,13 +19,13 @@ namespace Rogium.Editors.Sprites
         #region Constructors
         public SpriteAsset()
         {
-            this.title = EditorDefaults.SpriteTitle;
-            this.icon = EditorDefaults.SpriteIcon;
-            this.author = EditorDefaults.Author;
+            this.title = EditorConstants.SpriteTitle;
+            this.icon = EditorConstants.SpriteIcon;
+            this.author = EditorConstants.Author;
             this.creationDate = DateTime.Now;
             GenerateID(EditorAssetIDs.SpriteIdentifier);
 
-            this.spriteData = new ObjectGrid<int>(EditorDefaults.SpriteSize, EditorDefaults.SpriteSize, () => -1);
+            this.spriteData = new ObjectGrid<int>(EditorConstants.SpriteSize, EditorConstants.SpriteSize, () => -1);
         }
 
         public SpriteAsset(SpriteAsset asset)

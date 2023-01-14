@@ -23,17 +23,17 @@ namespace Rogium.Editors.Rooms
         #region Constructors
         public RoomAsset()
         {
-            this.title = EditorDefaults.RoomTitle;
-            this.icon = EditorDefaults.RoomIcon;
-            this.author = EditorDefaults.Author;
+            this.title = EditorConstants.RoomTitle;
+            this.icon = EditorConstants.RoomIcon;
+            this.author = EditorConstants.Author;
             this.creationDate = DateTime.Now;
             
-            this.difficultyLevel = EditorDefaults.RoomDifficulty;
-            this.type = EditorDefaults.RoomType;
-            this.lightness = EditorDefaults.RoomLightness;
-            this.tileGrid = new ObjectGrid<AssetData>(EditorDefaults.RoomSize.x, EditorDefaults.RoomSize.y, () => new AssetData(ParameterDefaults.ParamsTile));
-            this.objectGrid = new ObjectGrid<AssetData>(EditorDefaults.RoomSize.x, EditorDefaults.RoomSize.y, () => new AssetData(ParameterDefaults.ParamsEmpty));
-            this.enemyGrid = new ObjectGrid<AssetData>(EditorDefaults.RoomSize.x, EditorDefaults.RoomSize.y, () => new AssetData(ParameterDefaults.ParamsEnemy));
+            this.difficultyLevel = EditorConstants.RoomDifficulty;
+            this.type = EditorConstants.RoomType;
+            this.lightness = EditorConstants.RoomLightness;
+            this.tileGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ParamsTile));
+            this.objectGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ParamsEmpty));
+            this.enemyGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ParamsEnemy));
             
             GenerateID(EditorAssetIDs.RoomIdentifier);
         }
@@ -65,11 +65,11 @@ namespace Rogium.Editors.Rooms
             this.creationDate = DateTime.Now;
             
             this.difficultyLevel = difficultyLevel;
-            this.type = EditorDefaults.RoomType;
-            this.lightness = EditorDefaults.RoomLightness;
-            this.tileGrid = new ObjectGrid<AssetData>(EditorDefaults.RoomSize.x, EditorDefaults.RoomSize.y, () => new AssetData(ParameterDefaults.ParamsTile));
-            this.objectGrid = new ObjectGrid<AssetData>(EditorDefaults.RoomSize.x, EditorDefaults.RoomSize.y, () => new AssetData(ParameterDefaults.ParamsEmpty));
-            this.enemyGrid = new ObjectGrid<AssetData>(EditorDefaults.RoomSize.x, EditorDefaults.RoomSize.y, () => new AssetData(ParameterDefaults.ParamsEnemy));
+            this.type = EditorConstants.RoomType;
+            this.lightness = EditorConstants.RoomLightness;
+            this.tileGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ParamsTile));
+            this.objectGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ParamsEmpty));
+            this.enemyGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ParamsEnemy));
             
             GenerateID(EditorAssetIDs.RoomIdentifier);
         }

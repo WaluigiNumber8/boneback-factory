@@ -46,7 +46,7 @@ namespace Rogium.Editors.Rooms
             base.Awake();
             packEditor = PackEditorOverseer.Instance;
             editor = RoomEditorOverseer.Instance;
-            toolbox = new ToolBox<AssetData, Sprite>(grid, new AssetData(ParameterDefaults.ParamsEmpty), EditorDefaults.EmptyGridSprite, grid.UpdateCell);
+            toolbox = new ToolBox<AssetData, Sprite>(grid, new AssetData(ParameterInfoConstants.ParamsEmpty), EditorConstants.EmptyGridSprite, grid.UpdateCell);
             objects = InternalLibraryOverseer.GetInstance().GetObjectsCopy();
 
             paletteTile.OnSelect += asset => SelectedValue(asset, AssetType.Tile);
@@ -99,7 +99,7 @@ namespace Rogium.Editors.Rooms
         /// <param name="position">The grid position to affect.</param>
         public void UpdateGridCell(Vector2Int position)
         {
-            if (currentData.BrushValue.ID == EditorDefaults.EmptyAssetID) return;
+            if (currentData.BrushValue.ID == EditorConstants.EmptyAssetID) return;
             toolbox.ApplyCurrent(currentData.Grid, position, new AssetData(currentData.BrushValue), currentData.BrushSprite);
         }
 
@@ -150,7 +150,7 @@ namespace Rogium.Editors.Rooms
         /// <param name="data">The id of the asset to pick.</param>
         private void PickFrom(AssetData data)
         {
-            if (data.ID == EditorDefaults.EmptyAssetID)
+            if (data.ID == EditorConstants.EmptyAssetID)
             {
                 toolbox.SwitchTool(ToolType.Eraser);
                 return;
@@ -193,7 +193,7 @@ namespace Rogium.Editors.Rooms
         /// <param name="asset">The asset to use.</param>
         private void SelectedValue(AssetData data, AssetType type, IAsset asset = null)
         {
-            if (data.ID == EditorDefaults.EmptyAssetID)
+            if (data.ID == EditorConstants.EmptyAssetID)
             {
                 propertyColumn.ConstructEmpty();
                 return;

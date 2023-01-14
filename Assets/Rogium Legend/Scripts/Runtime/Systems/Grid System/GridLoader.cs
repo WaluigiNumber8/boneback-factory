@@ -22,7 +22,7 @@ namespace Rogium.Systems.GridSystem
         {
             AssetUtils.UpdateFromGridByList(IDGrid, assetList, 
                                             (x, y, asset) => cells[x, y].UpdateSprite(asset.Icon),
-                                            (x, y) => cells[x, y].UpdateSprite(EditorDefaults.MissingSprite), 
+                                            (x, y) => cells[x, y].UpdateSprite(EditorConstants.MissingSprite), 
                                             (x, y, _) => cells[x, y].Clear());
             
         }
@@ -57,7 +57,7 @@ namespace Rogium.Systems.GridSystem
                     //If Asset not found, replace with empty tile.
                     catch (InvalidOperationException)
                     {
-                        cells[x, y].UpdateColor(EditorDefaults.MissingColor);
+                        cells[x, y].UpdateColor(EditorConstants.MissingColor);
                     }
                 }
             }

@@ -68,7 +68,7 @@ namespace Rogium.Systems.GridSystem
         public void Clear()
         {
             UpdateSprite(null);
-            UpdateColor(EditorDefaults.NoColor);
+            UpdateColor(EditorConstants.NoColor);
         }
 
         public void OnPointerDown(PointerEventData eventData)

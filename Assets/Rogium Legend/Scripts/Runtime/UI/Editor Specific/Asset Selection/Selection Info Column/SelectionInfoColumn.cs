@@ -35,7 +35,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection
         /// </summary>
         public void ConstructEmpty()
         {
-            ui.previewImage.sprite = EditorDefaults.RoomIcon;
+            ui.previewImage.sprite = EditorConstants.RoomIcon;
             ui.content.KillChildren();
         }
         

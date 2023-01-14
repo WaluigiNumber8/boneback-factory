@@ -32,10 +32,10 @@ namespace Rogium.Editors.Packs
         public PackAsset()
         {
             
-            packInfo = new PackInfoAsset(EditorDefaults.PackTitle,
-                                         EditorDefaults.PackIcon,
-                                         EditorDefaults.Author,
-                                         EditorDefaults.PackDescription);
+            packInfo = new PackInfoAsset(EditorConstants.PackTitle,
+                                         EditorConstants.PackIcon,
+                                         EditorConstants.Author,
+                                         EditorConstants.PackDescription);
            
             GatherValuesFromInfo(packInfo);
             palettes = new AssetList<PaletteAsset>(ex.Palettes.Save, ex.Palettes.UpdateTitle, ex.Palettes.Delete);

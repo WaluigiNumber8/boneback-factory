@@ -23,17 +23,17 @@ namespace Rogium.Core
             if (allAssets == null || allAssets.Count <= 0) return new List<T>();
             
             IList<T> assets = new List<T>();
-            string lastID = EditorDefaults.EmptyAssetID;
+            string lastID = EditorConstants.EmptyAssetID;
             T lastAsset = default;
             
             foreach (string id in ids)
             {
-                if (id == EditorDefaults.EmptyAssetID)
+                if (id == EditorConstants.EmptyAssetID)
                 {
                     if (!keepEmpty) assets.Add(default);
                     continue;
                 }
-                if (lastID != EditorDefaults.EmptyAssetID && lastID == id)
+                if (lastID != EditorConstants.EmptyAssetID && lastID == id)
                 {
                     assets.Add(lastAsset);
                     continue;

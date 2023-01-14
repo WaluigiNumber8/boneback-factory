@@ -22,7 +22,7 @@ namespace Rogium.Editors.Core
         
         public AssetData(ParameterInfo parameters)
         {
-            id = EditorDefaults.EmptyAssetID;
+            id = EditorConstants.EmptyAssetID;
             this.parameters = parameters;
         }
         
@@ -67,7 +67,7 @@ namespace Rogium.Editors.Core
         
         public override int GetHashCode()
         {
-            return (string.IsNullOrEmpty(id)) ? EditorDefaults.EmptyAssetID.GetHashCode() : id.GetHashCode();
+            return (string.IsNullOrEmpty(id)) ? EditorConstants.EmptyAssetID.GetHashCode() : id.GetHashCode();
         }
 
         public int CompareTo(object obj)

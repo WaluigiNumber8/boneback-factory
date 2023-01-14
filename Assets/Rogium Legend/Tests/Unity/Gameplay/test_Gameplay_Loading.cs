@@ -26,7 +26,7 @@ public class test_Gameplay_Loading
     {
         PackAsset pack = TestBuilder.SetupPackAsset();
         
-        campaign = new CampaignAsset("New Campaign", EditorDefaults.CampaignIcon, "Test Author", DateTime.Now, 25, pack);
+        campaign = new CampaignAsset("New Campaign", EditorConstants.CampaignIcon, "Test Author", DateTime.Now, 25, pack);
         
         grid = Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Gameplay_Grid.prefab")).GetComponent<Grid>();
         

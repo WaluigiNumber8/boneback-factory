@@ -34,7 +34,7 @@ namespace Rogium.Editors.Sprites
             base.Awake();
             editor = SpriteEditorOverseer.Instance;
             palettePicker = new PalettePicker();
-            toolbox = new ToolBox<int, Color>(grid, EditorDefaults.EmptyColorID, EditorDefaults.NoColor, grid.UpdateCell);
+            toolbox = new ToolBox<int, Color>(grid, EditorConstants.EmptyColorID, EditorConstants.NoColor, grid.UpdateCell);
         }
 
         private void OnEnable()
@@ -123,7 +123,7 @@ namespace Rogium.Editors.Sprites
         /// <param name="id">The id of the color to select.</param>
         private void SelectFrom(int id)
         {
-            if (id == EditorDefaults.EmptyColorID)
+            if (id == EditorConstants.EmptyColorID)
             {
                 toolbox.SwitchTool(ToolType.Eraser);
                 return;

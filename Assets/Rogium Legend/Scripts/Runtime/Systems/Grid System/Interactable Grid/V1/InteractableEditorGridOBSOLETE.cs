@@ -78,7 +78,7 @@ namespace Rogium.Systems.GridSystem
                 for (int x = 0; x < gridSize.x; x++)
                 {
                     cells[x, y] = Instantiate(cellPrefab, transform);
-                    cells[x, y].Construct(x, y, EditorDefaults.EmptyGridColor);
+                    cells[x, y].Construct(x, y, EditorConstants.EmptyGridColor);
                 }
             }
         }

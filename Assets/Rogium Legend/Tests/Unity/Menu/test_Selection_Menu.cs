@@ -20,10 +20,10 @@ public class test_Selection_Menu
     public void Setup()
     {
         #region Prepare Test Pack
-        string packTitle = EditorDefaults.PackTitle;
-        string packDescription = EditorDefaults.PackDescription;
-        string packAuthor = EditorDefaults.Author;
-        Sprite packIcon = EditorDefaults.PackIcon;
+        string packTitle = EditorConstants.PackTitle;
+        string packDescription = EditorConstants.PackDescription;
+        string packAuthor = EditorConstants.Author;
+        Sprite packIcon = EditorConstants.PackIcon;
 
         packInfo = new PackInfoAsset(packTitle, packIcon, packAuthor, packDescription);
         #endregion
