@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using RedRats.Safety;
+using RedRats.Systems.FileSystem.Compression;
 
-namespace RedRats.Systems.FileSystem.JSON
+namespace RedRats.Systems.FileSystem
 {
     /// <summary>
     /// Saves, reads and removes files and directories.
@@ -37,12 +38,16 @@ namespace RedRats.Systems.FileSystem.JSON
         /// </summary>
         /// <param name="path">Destination of the save. (without extension)</param>
         /// <param name="data">The string of data to save.</param>
-        public static void SaveFile(string path, string data)
+        /// <param name="compression">Method to use for compressing the file.</param>
+        /// <param name="overrideByCompression">If TRUE, keep onl the compressed file.</param>
+        public static void SaveFile(string path, string data, ICompressionSystem compression = null, bool overrideByCompression = true)
         {
             SafetyNetIO.EnsurePathNotContainsInvalidCharacters(path);
             try
             {
                 File.WriteAllText(path, data);
+                compression?.Compress(path);
+                if (overrideByCompression) DeleteFile(path);
             }
             catch (IOException)
             {
@@ -54,23 +59,12 @@ namespace RedRats.Systems.FileSystem.JSON
         /// Load a file under a specific path.
         /// </summary>
         /// <param name="path">The path of the file.</param>
-        /// <typeparam name="T">Any type.</typeparam>
-        /// <typeparam name="TS">A Serialized form of <see cref="T"/>.</typeparam>
+        /// <param name="expectedExtension">The extension of the file.</param>
+        /// <param name="compression">The method used to compress the file.</param>
         /// <returns>A deserialized form of the object.</returns>
-        /// <exception cref="IOException">IS thrown when the object could not be loaded.</exception>
-        public static string LoadFile<T, TS>(string path) where TS : IEncodedObject<T>
+        public static string LoadFile(string path, string expectedExtension, ICompressionSystem compression = null)
         {
-            SafetyNetIO.EnsurePathNotContainsInvalidCharacters(path);
-            SafetyNetIO.EnsureFileExists(path);
-            try
-            {
-                string allData = File.ReadAllText(path);
-                return allData;
-            }
-            catch (IOException)
-            {
-                throw new IOException($"File under the path '{path}' could not be loaded.");
-            }
+            return loader.LoadFile(path, expectedExtension, compression);
         }
 
         /// <summary>
@@ -79,10 +73,10 @@ namespace RedRats.Systems.FileSystem.JSON
         /// <param name="path">Destination of the data.</param>
         /// <param name="extension">The extension of files to take into consideration.</param>
         /// <param name="deepSearch">If enabled, will also search all subdirectories.</param>
-        public static IList<string> LoadAllFiles(string path, string extension, bool deepSearch = false)
+        /// <param name="compression">Method used for compressing wanted files.</param>
+        public static IList<string> LoadAllFiles(string path, string extension, bool deepSearch = false, ICompressionSystem compression = null)
         {
-            SafetyNetIO.EnsurePathNotContainsInvalidCharacters(path);
-            return loader.LoadAllFiles(path, extension, deepSearch);
+            return loader.LoadAllFiles(path, extension, deepSearch, compression);
         }
 
         /// <summary>

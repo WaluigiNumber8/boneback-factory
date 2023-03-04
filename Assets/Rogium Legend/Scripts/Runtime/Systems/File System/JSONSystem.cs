@@ -2,6 +2,7 @@
 using System.Text;
 using RedRats.Core;
 using RedRats.Systems.FileSystem;
+using RedRats.Systems.FileSystem.Compression;
 using RedRats.Systems.FileSystem.JSON;
 using Unity.Plastic.Newtonsoft.Json.Serialization;
 using UnityEngine;
@@ -31,7 +32,7 @@ namespace Rogium.ExternalStorage
             
             StringBuilder JSONFormat = new();
             JSONFormat.Append(identifier.Length).Append(identifier).Append(JsonUtility.ToJson(newJSONFormat(data)));
-            FileSystem.SaveFile(path, JSONFormat.ToString());
+            FileSystem.SaveFile(path, JSONFormat.ToString(), new DFLCompression());
         }
 
         /// <summary>
@@ -44,11 +45,12 @@ namespace Rogium.ExternalStorage
         /// <typeparam name="TS">Serialized form of the Asset.</typeparam>
         public static IList<T> LoadAll<T,TS>(string path, string identifier, bool deepSearch = false) where TS : IEncodedObject<T>
         {
-            IList<string> data = FileSystem.LoadAllFiles(path, JSON_EXTENSION, deepSearch);
+            IList<string> data = FileSystem.LoadAllFiles(path, JSON_EXTENSION, deepSearch, new DFLCompression());
             IList<T> objects = new List<T>();
             foreach (string line in data)
             {
                 if (!HasSameIdentifier(line, identifier)) continue;
+                
                 int lengthToCut = StringUtils.GrabIntFrom(line, 0) + 1;
                 string jsonText = line[lengthToCut..];
                 TS obj = JsonUtility.FromJson<TS>(jsonText);
