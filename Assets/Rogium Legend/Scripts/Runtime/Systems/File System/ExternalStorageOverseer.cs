@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using RedRats.Safety;
+using RedRats.Systems.FileSystem;
 using RedRats.Systems.FileSystem.JSON;
 using Rogium.Core;
 using Rogium.Editors.Sprites;
@@ -94,10 +95,8 @@ namespace Rogium.ExternalStorage
         /// <param name="pack"></param>
         public void UpdatePack(PackAsset pack)
         {
-            if (currentPackInfo.Title != pack.Title)
-                RenameCurrentPack(pack.Title);
-            
-            FileSystem.SaveFile(currentPackInfo.FilePath, EditorAssetIDs.PackIdentifier, pack, p => new JSONPackAsset(p));
+            if (currentPackInfo.Title != pack.Title) RenameCurrentPack(pack.Title);
+            JSONSystem.Save(currentPackInfo.FilePath, EditorAssetIDs.PackIdentifier, pack, p => new JSONPackAsset(p));
         }
         
         /// <summary>
@@ -106,7 +105,7 @@ namespace Rogium.ExternalStorage
         /// <returns>A list of all <see cref="PackAsset"/>s.</returns>
         public IList<PackAsset> LoadAllPacks()
         {
-            IList<PackAsset> packs = FileSystem.LoadAllFiles<PackAsset, JSONPackAsset>(packData.Path, packData.Identifier, true);
+            IList<PackAsset> packs = JSONSystem.LoadAll<PackAsset, JSONPackAsset>(packData.Path, packData.Identifier, true);
             foreach (PackAsset pack in packs)
             {
                 packPaths.Add(BuildPackInfo(pack));
@@ -164,7 +163,7 @@ namespace Rogium.ExternalStorage
             string newPackPathFile = Path.Combine(packInfo.DirectoryPath, pack.Title);
             
             FileSystem.CreateDirectory(packInfo.DirectoryPath);
-            FileSystem.SaveFile(newPackPathFile, EditorAssetIDs.PackIdentifier, pack, p => new JSONPackAsset(p));
+            JSONSystem.Save(newPackPathFile, EditorAssetIDs.PackIdentifier, pack, p => new JSONPackAsset(p));
 
             FileSystem.CreateDirectory(packInfo.PalettesData.Path);
             FileSystem.CreateDirectory(packInfo.SpritesData.Path);

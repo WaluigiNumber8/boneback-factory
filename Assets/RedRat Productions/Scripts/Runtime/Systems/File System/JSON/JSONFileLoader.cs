@@ -11,13 +11,13 @@ namespace RedRats.Systems.FileSystem.JSON
     /// </summary>
     /// <typeparam name="T">Any Type</typeparam>
     /// <typeparam name="TS">A Serialized form of <see cref="T"/>.</typeparam>
-    public class FileLoader<T,TS> where TS : IEncodedObject<T>
+    public class JSONFileLoader<T,TS> where TS : IEncodedObject<T>
     {
         private readonly List<T> dataList;
         private string typeIdentifier;
         private bool deepSearchEnabled;
 
-        public FileLoader()
+        public JSONFileLoader()
         {
             dataList = new List<T>();
         }
@@ -101,7 +101,7 @@ namespace RedRats.Systems.FileSystem.JSON
         private bool IsJSON(FileSystemInfo file)
         {
             string fileExtension = Path.GetExtension(file.Name);
-            return (fileExtension == FileSystem.JSON_EXTENSION);
+            return (fileExtension == JSONFileSystem.JSON_EXTENSION);
         }
 
         /// <summary>
