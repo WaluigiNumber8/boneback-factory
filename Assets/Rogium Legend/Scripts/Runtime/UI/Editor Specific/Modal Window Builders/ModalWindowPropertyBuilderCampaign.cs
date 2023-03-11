@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using RedRats.UI;
 using Rogium.Editors.Campaign;
-using Rogium.Editors.Packs;
 using Rogium.Systems.GASExtension;
 using Rogium.UserInterface.Editors.AssetSelection;
 

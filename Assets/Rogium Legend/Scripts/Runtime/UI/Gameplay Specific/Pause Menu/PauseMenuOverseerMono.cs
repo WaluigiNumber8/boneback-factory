@@ -1,5 +1,6 @@
 ﻿using RedRats.Core;
 using RedRats.UI;
+using RedRats.UI.ModalWindows;
 using Rogium.Gameplay.Core;
 using Rogium.Systems.Input;
 using UnityEngine;

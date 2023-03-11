@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-namespace RedRats.UI
+namespace RedRats.UI.ModalWindows
 {
     /// <summary>
     /// Draws a modal window on the screen.

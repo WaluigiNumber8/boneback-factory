@@ -2,6 +2,7 @@
 using RedRats.Safety;
 using RedRats.UI;
 using RedRats.UI.MenuSwitching;
+using RedRats.UI.ModalWindows;
 using Rogium.Core;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Packs;
