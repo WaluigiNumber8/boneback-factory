@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using RedRats.UI;
+using RedRats.UI.ModalWindows;
 using Rogium.Editors.Campaign;
 using Rogium.Systems.GASExtension;
 using Rogium.UserInterface.Editors.AssetSelection;
@@ -33,7 +34,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             conversionData.Add(2, 35);
             conversionData.Add(3, 50);
         }
-        
+
         public override void OpenForCreate()
         {
             OpenWindow(new CampaignAsset(), CreateAsset, "Creating a new campaign");
@@ -41,30 +42,32 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
 
         public override void OpenForUpdate()
         {
-            OpenWindow(new CampaignAsset(campaignEditor.CurrentCampaign), UpdateAsset, $"Updating {campaignEditor.CurrentCampaign.Title}");
+            OpenWindow(new CampaignAsset(campaignEditor.CurrentCampaign), UpdateAsset,
+                $"Updating {campaignEditor.CurrentCampaign.Title}");
         }
 
         private void OpenWindow(CampaignAsset asset, Action onConfirmButton, string headerText)
         {
-            b.BuildInputField("Name", asset.Title, window.FirstColumnContent, asset.UpdateTitle);
-            b.BuildDropdown("Length", lengthOptions, QuickConvertToTier(asset.AdventureLength), window.FirstColumnContent, i => asset.UpdateLength(QuickConvertToRoomCount(i)));
-            b.BuildPlainText("Created by", asset.Author, window.FirstColumnContent);
-            b.BuildPlainText("Created on", asset.CreationDate.ToString(), window.FirstColumnContent);
+            b.BuildInputField("Name", asset.Title, windowColumn1, asset.UpdateTitle);
+            b.BuildDropdown("Length", lengthOptions, QuickConvertToTier(asset.AdventureLength), windowColumn1,
+                i => asset.UpdateLength(QuickConvertToRoomCount(i)));
+            b.BuildPlainText("Created by", asset.Author, windowColumn1);
+            b.BuildPlainText("Created on", asset.CreationDate.ToString(), windowColumn1);
 
             editedAssetBase = asset;
-            window.OpenAsPropertiesColumn1(headerText, ThemeType.Red, "Done", "Cancel", onConfirmButton, true);
+            Open(new PropertyWindowInfo(headerText, PropertyLayoutType.Column1, ThemeType.Red, "Done", "Cancel", onConfirmButton));
         }
-        
+
         protected override void CreateAsset()
         {
-            lib.CreateAndAddCampaign((CampaignAsset)editedAssetBase);
+            lib.CreateAndAddCampaign((CampaignAsset) editedAssetBase);
             CampaignAssetSelectionOverseer.Instance.SelectCampaignLast();
-            GASButtonActions.OpenEditorCampaign(lib.CampaignCount-1);
+            GASButtonActions.OpenEditorCampaign(lib.CampaignCount - 1);
         }
 
         protected override void UpdateAsset()
         {
-            campaignEditor.UpdateAsset((CampaignAsset)editedAssetBase);
+            campaignEditor.UpdateAsset((CampaignAsset) editedAssetBase);
             campaignEditor.CompleteEditing();
             CampaignAssetSelectionOverseer.Instance.SelectAgain();
         }
@@ -75,6 +78,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         /// <param name="lengthTier">The length tier chosen from a dropdown.</param>
         /// <returns>Returns the proper amount of rooms.</returns>
         private int QuickConvertToRoomCount(int lengthTier) => conversionData[lengthTier];
+
         /// <summary>
         /// Quickly (dirtily) converts the chosen room count to a difficulty tier.
         /// </summary>

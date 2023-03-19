@@ -64,7 +64,7 @@ namespace Rogium.ExternalStorage
             if (asset.Title == title) return;
 
             data.UpdateFileTitle(asset.ID, asset.Title);
-            FileSystem.RenameFile(oldPath, data.GetFilePath(asset.ID));
+            JSONSystem.RenameFile(oldPath, data.GetFilePath(asset.ID));
         }
         
         /// <summary>

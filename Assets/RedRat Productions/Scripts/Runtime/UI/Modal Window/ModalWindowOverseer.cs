@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using RedRats.Core;
+using RedRats.Safety;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -12,65 +13,103 @@ namespace RedRats.UI.ModalWindows
     {
         [SerializeField] private ModalWindow windowPrefab;
 
-        private IDictionary<int, ModalWindow> windows;
+        private Dictionary<string, ModalWindow> identifiedWindows;
+        private ObjectPool<ModalWindow> windowPool;
 
         protected override void Awake()
         {
             base.Awake();
-            windows = new Dictionary<int, ModalWindow>();
+            identifiedWindows = new Dictionary<string, ModalWindow>();
+            windowPool = new ObjectPool<ModalWindow>(() =>
+            {
+                ModalWindow window = Instantiate(windowPrefab, transform);
+                window.OnClose += () =>
+                {
+                    if (identifiedWindows.ContainsValue(window)) return;
+                    windowPool.Release(window);
+                };
+                return window;
+            }, w => w.gameObject.SetActive(true), w => w.gameObject.SetActive(false), Destroy, true, 2, 6);
         }
 
-        public void Open(int id, ModalWindowInfoBase windowData)
+        /// <summary>
+        /// Open a modal window.
+        /// </summary>
+        /// <param name="data">The data to prepare the window with.</param>
+        /// <param name="key">The key that identifies the window. (Is used when updating the window information is needed.)</param>
+        public void OpenWindow(ModalWindowInfoBase data, string key)
         {
-            EnsureWindowExists(id);
-            ModalWindow window = windows[id];
+            SafetyNet.EnsureStringNotNullOrEmpty(key, nameof(key));
 
-            if (windowData is MessageWindowInfo mData)
-            {
-                // window.OpenAsMessage();
-                return;
-            }
+            PrepareWindowIfNotExists(key);
+            ModalWindow window = identifiedWindows[key];
+            Open(window, data);
+        }
 
-            if (windowData is PropertyWindowInfo pData)
-            {
-                // if (pData.Layout == PropertyLayoutType.Column1) window.OpenAsPropertiesColumn1();
-                // else if (pData.Layout == PropertyLayoutType.Columns2) window.OpenAsPropertiesColumn2();
-                return;
-            }
-
-            //Create new window under id if it does not exist.
-            //If it exists, override the window.
+        /// <summary>
+        /// Open a modal window.
+        /// </summary>
+        /// <param name="data">The data to prepare the window with.</param>
+        public void OpenWindow(ModalWindowInfoBase data)
+        {
+            ModalWindow window = windowPool.Get();
+            Open(window, data);
         }
 
         /// <summary>
         /// Returns a modal window's first column <see cref="Transform"/>.
         /// </summary>
-        /// <param name="id">The ID of the window.</param>
+        /// <param name="key">The ID of the window.</param>
         /// <returns><see cref="Transform"/> of the left-most column.</returns>
-        public Transform GetColumn1(int id)
+        public Transform GetColumn1(string key)
         {
-            EnsureWindowExists(id);
-            return windows[id].FirstColumnContent;
-        }
-        
-        /// <summary>
-        /// Returns a modal window's second column <see cref="Transform"/>.
-        /// </summary>
-        /// <param name="id">The ID of the window.</param>
-        /// <returns><see cref="Transform"/> of the right-most column.</returns>
-        public Transform GetColumn2(int id)
-        {
-            EnsureWindowExists(id);
-            return windows[id].SecondColumnContent;
+            SafetyNet.EnsureStringNotNullOrEmpty(key, nameof(key));
+
+            PrepareWindowIfNotExists(key);
+            return identifiedWindows[key].FirstColumnContent;
         }
 
         /// <summary>
-        /// Makes sure that a window under a specific ID is created,
+        /// Returns a modal window's second column <see cref="Transform"/>.
         /// </summary>
-        /// <param name="id">The ID of the window to check.</param>
-        private void EnsureWindowExists(int id)
+        /// <param name="key">The ID of the window.</param>
+        /// <returns><see cref="Transform"/> of the right-most column.</returns>
+        public Transform GetColumn2(string key)
         {
-            if (!windows.ContainsKey(id)) windows.Add(id, Instantiate(windowPrefab, transform));
+            SafetyNet.EnsureStringNotNullOrEmpty(key, nameof(key));
+
+            PrepareWindowIfNotExists(key);
+            return identifiedWindows[key].SecondColumnContent;
+        }
+
+        /// <summary>
+        /// Opens a Modal Window with the correct layout.
+        /// </summary>
+        /// <param name="window">The Modal Window object to activate.</param>
+        /// <param name="data">The data for setting up the window.</param>
+        private void Open(ModalWindow window, ModalWindowInfoBase data)
+        {
+            if (data is MessageWindowInfo mData)
+            {
+                window.OpenAsMessage(mData);
+                return;
+            }
+
+            if (data is PropertyWindowInfo pData)
+            {
+                if (pData.Layout == PropertyLayoutType.Column1) window.OpenAsPropertiesColumn1(pData);
+                else if (pData.Layout == PropertyLayoutType.Columns2) window.OpenAsPropertiesColumn2(pData);
+                return;
+            }
+        }
+
+        /// <summary>
+        /// Makes sure that a window under a specific key is created.
+        /// </summary>
+        /// <param name="key">The key of the window to check.</param>
+        private void PrepareWindowIfNotExists(string key)
+        {
+            if (!identifiedWindows.ContainsKey(key)) identifiedWindows.Add(key, windowPool.Get());
         }
     }
 }

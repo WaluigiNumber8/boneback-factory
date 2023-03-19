@@ -16,7 +16,17 @@ namespace RedRats.UI.ModalWindows
         private readonly Action onDenyAction;
         private readonly Action onSpecialAction;
 
-        public ModalWindowInfoBase(ThemeType theme, string acceptButtonText, string denyButtonText, string specialButtonText, Action onAcceptAction, Action onDenyAction = null, Action onSpecialAction = null)
+        /// <summary>
+        /// Stores data for a message type modal window.
+        /// </summary>
+        /// <param name="theme">The graphic theme of the window.</param>
+        /// <param name="acceptButtonText">Text in the Accept Button.</param>
+        /// <param name="denyButtonText">Text in the Deny Button.</param>
+        /// <param name="specialButtonText">Text in the Special Button.</param>
+        /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked. If is NULL, the window will only close itself.</param>
+        /// <param name="onDenyAction">Method, that happens when the Deny Button is clicked. If is NULL, the window will only close itself.</param>
+        /// <param name="onSpecialAction">Method, that happens when the Special Button is clicked. If is NULL, the window will only close itself.</param>
+        public ModalWindowInfoBase(ThemeType theme, string acceptButtonText, string denyButtonText, string specialButtonText, Action onAcceptAction = null, Action onDenyAction = null, Action onSpecialAction = null)
         {
             this.theme = theme;
             this.acceptButtonText = acceptButtonText;
@@ -27,7 +37,15 @@ namespace RedRats.UI.ModalWindows
             this.onSpecialAction = onSpecialAction;
         }
         
-        public ModalWindowInfoBase(ThemeType theme, string acceptButtonText, string denyButtonText, Action onAcceptAction, Action onDenyAction = null)
+        /// <summary>
+        /// Stores data for a message type modal window.
+        /// </summary>
+        /// <param name="theme">The graphic theme of the window.</param>
+        /// <param name="acceptButtonText">Text in the Accept Button.</param>
+        /// <param name="denyButtonText">Text in the Deny Button.</param>
+        /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked. If is NULL, the window will only close itself.</param>
+        /// <param name="onDenyAction">Method, that happens when the Deny Button is clicked. If is NULL, the window will only close itself.</param>
+        public ModalWindowInfoBase(ThemeType theme, string acceptButtonText, string denyButtonText, Action onAcceptAction = null, Action onDenyAction = null)
         {
             this.theme = theme;
             this.acceptButtonText = acceptButtonText;
@@ -37,8 +55,14 @@ namespace RedRats.UI.ModalWindows
             this.onDenyAction = onDenyAction;
             this.onSpecialAction = null;
         }
-        
-        public ModalWindowInfoBase(ThemeType theme, string acceptButtonText, Action onAcceptAction)
+
+        /// <summary>
+        /// Stores data for a message type modal window.
+        /// </summary>
+        /// <param name="theme">The graphic theme of the window.</param>
+        /// <param name="acceptButtonText">Text in the Accept Button.</param>
+        /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked. If is NULL, the window will only close itself.</param>
+        public ModalWindowInfoBase(ThemeType theme, string acceptButtonText, Action onAcceptAction = null)
         {
             this.theme = theme;
             this.acceptButtonText = acceptButtonText;

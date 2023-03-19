@@ -1,11 +1,10 @@
-﻿using RedRats.UI;
-using RedRats.UI.ModalWindows;
+﻿using RedRats.UI.ModalWindows;
 using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
 using Rogium.Systems.GASExtension;
 using Rogium.UserInterface.Editors.AssetSelection;
-using Rogium.UserInterface.Core;
 using Rogium.UserInterface.Interactables.Properties;
+using UnityEngine;
 
 namespace Rogium.UserInterface.Editors.ModalWindowBuilding
 {
@@ -14,20 +13,37 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     /// </summary>
     public abstract class ModalWindowPropertyBuilder
     {
-        protected readonly ModalWindow window;
+        private const string ModalWindowKey = "PropertyBuilder";
+        
         protected readonly UIPropertyBuilder b;
         protected readonly PackEditorOverseer editor;
         protected readonly ExternalLibraryOverseer lib;
         protected readonly AssetSelectionMenu selectionMenu;
         protected AssetBase editedAssetBase;
 
+        protected readonly Transform windowColumn1;
+        protected readonly Transform windowColumn2;
+        private readonly ModalWindowOverseer windowOverseer;
+
         protected ModalWindowPropertyBuilder()
         {
-            window = CanvasOverseer.GetInstance().ModalWindow;
             b = UIPropertyBuilder.GetInstance();
             lib = ExternalLibraryOverseer.Instance;
             editor = PackEditorOverseer.Instance;
             selectionMenu = GASContainer.GetInstance().AssetSelection;
+            
+            windowOverseer = ModalWindowOverseer.GetInstance();
+            windowColumn1 = windowOverseer.GetColumn1(ModalWindowKey);
+            windowColumn2 = windowOverseer.GetColumn2(ModalWindowKey);
+        }
+
+        /// <summary>
+        /// Opens the assigned modal window.
+        /// </summary>
+        /// <param name="data">Data to use for the window.</param>
+        protected void Open(ModalWindowInfoBase data)
+        {
+            windowOverseer.OpenWindow(data, ModalWindowKey);
         }
 
         /// <summary>

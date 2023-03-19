@@ -40,7 +40,7 @@ namespace Rogium.UserInterface.Gameplay.PauseMenu
         /// </summary>
         public void ReturnToMainMenu()
         {
-            modalWindow.OpenAsMessage("Are you sure? All progress will be lost!", ThemeType.Blue, "Yes", CloseGame, true);
+            ModalWindowOverseer.GetInstance().OpenWindow(new MessageWindowInfo("Are you sure? All progress will be lost!", ThemeType.Blue, "Yes", "No", CloseGame));
         }
         
         /// <summary>

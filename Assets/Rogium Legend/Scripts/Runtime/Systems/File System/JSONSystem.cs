@@ -61,12 +61,24 @@ namespace Rogium.ExternalStorage
         }
 
         /// <summary>
+        /// Rename a .dfl file.
+        /// </summary>
+        /// <param name="oldPath">Path of the original file.</param>
+        /// <param name="newPath">Path of the new file.</param>
+        public static void RenameFile(string oldPath, string newPath)
+        {
+            oldPath += DFLCompression.COMPRESSED_EXTENSION;
+            newPath += DFLCompression.COMPRESSED_EXTENSION;
+            FileSystem.RenameFile(oldPath, newPath);
+        }
+        
+        /// <summary>
         /// Removes a file under a specific path.
         /// </summary>
         /// <param name="path">The path to the file. (No extension)</param>
         public static void Delete(string path)
         {
-            path += JSON_EXTENSION;
+            path += DFLCompression.COMPRESSED_EXTENSION;
             FileSystem.DeleteFile(path);
         }
 

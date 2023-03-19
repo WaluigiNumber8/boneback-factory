@@ -9,7 +9,7 @@ namespace RedRats.Systems.FileSystem.Compression
     /// </summary>
     public class DFLCompression : ICompressionSystem
     {
-        private const string COMPRESSED_EXTENSION = ".dfl";
+        public const string COMPRESSED_EXTENSION = ".dfl";
 
         public void Compress(string filePath)
         {

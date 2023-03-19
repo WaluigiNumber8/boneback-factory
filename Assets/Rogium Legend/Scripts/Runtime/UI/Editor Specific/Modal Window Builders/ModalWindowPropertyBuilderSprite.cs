@@ -1,5 +1,6 @@
 ﻿using System;
 using RedRats.UI;
+using RedRats.UI.ModalWindows;
 using Rogium.Editors.Palettes;
 using Rogium.Editors.Sprites;
 
@@ -29,12 +30,12 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
 
         private void OpenWindow(SpriteAsset sprite, Action onConfirmAction, string headerText)
         {
-            b.BuildInputField("Title", sprite.Title, window.FirstColumnContent, sprite.UpdateTitle);
-            b.BuildPlainText("Created by", sprite.Author, window.FirstColumnContent);
-            b.BuildPlainText("Created on", sprite.CreationDate.ToString(), window.FirstColumnContent);
+            b.BuildInputField("Title", sprite.Title, windowColumn1, sprite.UpdateTitle);
+            b.BuildPlainText("Created by", sprite.Author, windowColumn1);
+            b.BuildPlainText("Created on", sprite.CreationDate.ToString(), windowColumn1);
             
             editedAssetBase = sprite;
-            window.OpenAsPropertiesColumn1(headerText, ThemeType.Pink, "Done", "Cancel", onConfirmAction, true);
+            Open(new PropertyWindowInfo(headerText, PropertyLayoutType.Column1, ThemeType.Pink, "Done", "Cancel", onConfirmAction));
         }
         
         protected override void CreateAsset()
