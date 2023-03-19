@@ -6,149 +6,49 @@ using Rogium.Systems.ThemeSystem;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Pool;
 
-namespace RedRats.UI
+namespace RedRats.UI.ModalWindows
 {
     /// <summary>
     /// Draws a modal window on the screen.
     /// </summary>
     public class ModalWindow : MonoBehaviour
     {
-        [SerializeField] private string denyButtonDefault = "Cancel";
-        [SerializeField] private string specialButtonDefault = "NONE";
+        public event Action OnClose;
+        
         [SerializeField] private UIInfo ui;
 
-        private bool isOpened;
-
-        #region Open As Message
-
         /// <summary>
         /// Opens the Modal Window as a message window.
         /// </summary>
-        /// <param name="message">Text in the header.</param>
-        /// <param name="theme">The graphic theme of the window.</param>
-        /// <param name="acceptButtonText">Text in the Accept Button.</param>
-        /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.</param>
-        /// <param name="denyButtonClosesWindow">If on, the Deny Button just closes the window.</param>
-        public void OpenAsMessage(string message, ThemeType theme, string acceptButtonText, Action onAcceptAction,
-            bool denyButtonClosesWindow = false)
+        /// <param name="data">Data used to create the window.</param>
+        public void OpenAsMessage(MessageWindowInfo data)
         {
-            if (denyButtonClosesWindow)
-                OpenAsMessage(message, theme, acceptButtonText, denyButtonDefault, specialButtonDefault, onAcceptAction,
-                    Close);
-            else
-                OpenAsMessage(message, theme, acceptButtonText, denyButtonDefault, specialButtonDefault,
-                    onAcceptAction);
-        }
+            SafetyNet.EnsureStringNotNullOrEmpty(data.Message, "Modal Window Title");
 
-        /// <summary>
-        /// Opens the Modal Window as a message window.
-        /// </summary>
-        /// <param name="message">Text in the header.</param>
-        /// <param name="theme">The graphic theme of the window.</param>
-        /// <param name="acceptButtonText">Text in the Accept Button.</param>
-        /// /// <param name="denyButtonText">Text in the Deny Button.</param>
-        /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.</param>
-        /// <param name="denyButtonClosesWindow">The method that runs when the modal window is closed.</param>
-        public void OpenAsMessage(string message, ThemeType theme, string acceptButtonText, string denyButtonText,
-            Action onAcceptAction, bool denyButtonClosesWindow = false)
-        {
-            if (denyButtonClosesWindow)
-                OpenAsMessage(message, theme, acceptButtonText, denyButtonText, specialButtonDefault, onAcceptAction,
-                    Close);
-            else
-                OpenAsMessage(message, theme, acceptButtonText, denyButtonText, specialButtonDefault, onAcceptAction);
-        }
-
-        /// <summary>
-        /// Opens the Modal Window as a message window.
-        /// </summary>
-        /// <param name="message">Text in the header.</param>
-        /// <param name="theme">The graphic theme of the window.</param>
-        /// <param name="acceptButtonText">Text in the Accept Button.</param>
-        /// <param name="denyButtonText">Text in the Deny Button.</param>
-        /// <param name="specialButtonText">Text in the Special Button.</param>
-        /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.</param>
-        /// <param name="onDenyAction">Method, that happens when the Dccept Button is clicked.</param>
-        /// <param name="onSpecialAction">Method, that happens when the Special Button is clicked.</param>
-        public void OpenAsMessage(string message, ThemeType theme, string acceptButtonText, string denyButtonText,
-            string specialButtonText, Action onAcceptAction, Action onDenyAction = null, Action onSpecialAction = null)
-        {
-            SafetyNet.EnsureStringNotNullOrEmpty(message, "Modal Window Title");
-
-            WindowSetup(theme);
+            WindowSetup(data.Theme);
 
             ui.layout.area.gameObject.SetActive(true);
             ui.layout.message.area.gameObject.SetActive(true);
             ui.layout.message.text.gameObject.SetActive(true);
 
-            ui.layout.message.text.text = message;
+            ui.layout.message.text.text = data.Message;
 
-            DrawFooter(acceptButtonText, denyButtonText, specialButtonText, onAcceptAction, onDenyAction,
-                onSpecialAction);
-            ui.area.GetComponent<RectTransform>().ForceUpdateRectTransforms();
-            Canvas.ForceUpdateCanvases();
+            DrawFooter(data.AcceptButtonText, data.DenyButtonText, data.SpecialButtonText, data.OnAcceptAction, 
+                       data.OnDenyAction, data.OnSpecialAction);
+            UpdateRect();
             ui.windowBox.gameObject.SetActive(true);
-            isOpened = true;
-        }
-
-        #endregion
-
-        #region Open As Properties
-
-        /// <summary>
-        /// Draws the window as a properties window.
-        /// </summary>
-        /// <param name="headerText">Text in the header.</param>
-        /// <param name="theme">The graphic theme of the window.</param>
-        /// <param name="acceptButtonText">Text in the Accept Button.</param>
-        /// <param name="denyButtonText">Text in the Deny Button.</param>
-        /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.</param>
-        /// <param name="denyActionClosesWindow">If true, clicking the deny button will just close the window. Otherwise is null.</param>
-        public void OpenAsPropertiesColumn2(string headerText, ThemeType theme, string acceptButtonText,
-            string denyButtonText, Action onAcceptAction, bool denyActionClosesWindow = false)
-        {
-            if (denyActionClosesWindow)
-                OpenAsPropertiesColumn2(headerText, theme, acceptButtonText, denyButtonText, specialButtonDefault,
-                    onAcceptAction, Close, null);
-            else
-                OpenAsPropertiesColumn2(headerText, theme, acceptButtonText, denyButtonText, specialButtonDefault,
-                    onAcceptAction, null, null);
         }
 
         /// <summary>
-        /// Draws the window as a properties window.
+        /// Draws the window as a properties window with 2 columns.
         /// </summary>
-        /// <param name="headerText">Text in the header.</param>
-        /// <param name="theme">The graphic theme of the window.</param>
-        /// <param name="acceptButtonText">Text in the Accept Button.</param>
-        /// <param name="denyButtonText">Text in the Deny Button.</param>
-        /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.</param>
-        /// <param name="onDenyAction">Method, that happens when the Deny Button is clicked.</param>
-        public void OpenAsPropertiesColumn2(string headerText, ThemeType theme, string acceptButtonText,
-            string denyButtonText, Action onAcceptAction, Action onDenyAction)
+        /// <param name="data">Data used to create the window.</param>
+        public void OpenAsPropertiesColumn2(PropertyWindowInfo data)
         {
-            OpenAsPropertiesColumn2(headerText, theme, acceptButtonText, denyButtonText, specialButtonDefault,
-                onAcceptAction, onDenyAction, null);
-        }
-
-        /// <summary>
-        /// Draws the window as a properties window.
-        /// </summary>
-        /// <param name="headerText">Text in the header.</param>
-        /// <param name="theme">The graphic theme of the window.</param>
-        /// <param name="acceptButtonText">Text in the Accept Button.</param>
-        /// <param name="denyButtonText">Text in the Deny Button.</param>
-        /// <param name="specialButtonText">Text in the Special Button.</param>
-        /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.</param>
-        /// <param name="onDenyAction">Method, that happens when the Deny Button is clicked.</param>
-        /// <param name="onSpecialAction">Method, that happens when the Special Button is clicked.</param>
-        public void OpenAsPropertiesColumn2(string headerText, ThemeType theme, string acceptButtonText,
-            string denyButtonText, string specialButtonText, Action onAcceptAction, Action onDenyAction,
-            Action onSpecialAction)
-        {
-            WindowSetup(theme);
-            DrawHeader(headerText);
+            WindowSetup(data.Theme);
+            DrawHeader(data.HeaderText);
 
             ui.layout.properties.area.gameObject.SetActive(true);
             ui.layout.properties.firstColumn.gameObject.SetActive(true);
@@ -158,56 +58,20 @@ namespace RedRats.UI
 
             ui.layout.area.gameObject.SetActive(true);
 
-            DrawFooter(acceptButtonText, denyButtonText, specialButtonText, onAcceptAction, onDenyAction,
-                onSpecialAction);
-            ui.area.GetComponent<RectTransform>().ForceUpdateRectTransforms();
-            Canvas.ForceUpdateCanvases();
+            DrawFooter(data.AcceptButtonText, data.DenyButtonText, data.SpecialButtonText, data.OnAcceptAction, 
+                       data.OnDenyAction, data.OnSpecialAction);
+            UpdateRect();
             ui.windowBox.gameObject.SetActive(true);
-            isOpened = true;
         }
 
         /// <summary>
-        /// Draws the window as a properties window.
+        /// Draws the window as a properties window with 1 column.
         /// </summary>
-        /// <param name="headerText">Text in the header.</param>
-        /// <param name="theme">The graphic theme of the window.</param>
-        /// <param name="acceptButtonText">Text in the Accept Button.</param>
-        /// <param name="denyButtonText">Text in the Deny Button.</param>
-        /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.</param>
-        /// <param name="denyActionClosesWindow">If true, clicking the deny button will just close the window. Otherwise is null.</param>
-        public void OpenAsPropertiesColumn1(string headerText, ThemeType theme, string acceptButtonText,
-            string denyButtonText, Action onAcceptAction, bool denyActionClosesWindow = false)
+        /// <param name="data">Data used to create the window.</param>
+        public void OpenAsPropertiesColumn1(PropertyWindowInfo data)
         {
-            if (denyActionClosesWindow)
-                OpenAsPropertiesColumn1(headerText, theme, acceptButtonText, denyButtonText, specialButtonDefault,
-                    onAcceptAction, Close, null);
-            else
-                OpenAsPropertiesColumn1(headerText, theme, acceptButtonText, denyButtonText, specialButtonDefault,
-                    onAcceptAction, null, null);
-        }
-
-        /// <summary>
-        /// Draws the window as a properties window.
-        /// </summary>
-        /// <param name="headerText">Text in the header.</param>
-        /// <param name="theme">The graphic theme of the window.</param>
-        /// <param name="acceptButtonText">Text in the Accept Button.</param>
-        /// <param name="denyButtonText">Text in the Deny Button.</param>
-        /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.</param>
-        /// <param name="onDenyAction">Method, that happens when the Deny Button is clicked.</param>
-        public void OpenAsPropertiesColumn1(string headerText, ThemeType theme, string acceptButtonText,
-            string denyButtonText, Action onAcceptAction, Action onDenyAction)
-        {
-            OpenAsPropertiesColumn1(headerText, theme, acceptButtonText, denyButtonText, specialButtonDefault,
-                onAcceptAction, onDenyAction, null);
-        }
-
-        public void OpenAsPropertiesColumn1(string headerText, ThemeType theme, string acceptButtonText,
-            string denyButtonText, string specialButtonText, Action onAcceptAction, Action onDenyAction,
-            Action onSpecialAction)
-        {
-            WindowSetup(theme);
-            DrawHeader(headerText);
+            WindowSetup(data.Theme);
+            DrawHeader(data.HeaderText);
 
             ui.layout.properties.area.gameObject.SetActive(true);
             ui.layout.properties.firstColumn.gameObject.SetActive(true);
@@ -217,73 +81,10 @@ namespace RedRats.UI
 
             ui.layout.area.gameObject.SetActive(true);
 
-            DrawFooter(acceptButtonText, denyButtonText, specialButtonText, onAcceptAction, onDenyAction,
-                onSpecialAction);
-            ui.area.GetComponent<RectTransform>().ForceUpdateRectTransforms();
-            Canvas.ForceUpdateCanvases();
+            DrawFooter(data.AcceptButtonText, data.DenyButtonText, data.SpecialButtonText, data.OnAcceptAction, 
+                       data.OnDenyAction, data.OnSpecialAction);
+            UpdateRect();
             ui.windowBox.gameObject.SetActive(true);
-        }
-
-        #endregion
-
-        #region Window Part Drawing
-
-        /// <summary>
-        /// Draws the Header part of the Window.
-        /// </summary>
-        /// <param name="headerText"></param>
-        private void DrawHeader(string headerText)
-        {
-            ui.header.text.text = headerText;
-            ui.header.text.gameObject.SetActive(true);
-            ui.header.area.gameObject.SetActive(true);
-        }
-
-        /// <summary>
-        /// Draws the Footer of the Window.
-        /// </summary>
-        /// <param name="acceptButtonText">Text in the Accept Button.</param>
-        /// <param name="denyButtonText">Text in the Deny Button.</param>
-        /// <param name="specialButtonText">Text in the Special Button.</param>
-        /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.</param>
-        /// <param name="onDenyAction">Method, that happens when the Dccept Button is clicked.</param>
-        /// <param name="onSpecialAction">Method, that happens when the Special Button is clicked.</param>
-        private void DrawFooter(string acceptButtonText, string denyButtonText, string specialButtonText,
-            Action onAcceptAction, Action onDenyAction, Action onSpecialAction)
-        {
-            ui.footer.area.gameObject.SetActive(true);
-
-            ui.footer.acceptButtonText.text = acceptButtonText;
-            ui.footer.OnAcceptButtonClick = onAcceptAction;
-
-            bool usesDeny = (onDenyAction != null);
-            ui.footer.denyButton.gameObject.SetActive(usesDeny);
-            ui.footer.denyButtonText.text = denyButtonText;
-            ui.footer.OnDenyButtonClick = onDenyAction;
-
-            bool usesSpecial = (onSpecialAction != null);
-            ui.footer.specialButton.gameObject.SetActive(usesSpecial);
-            ui.footer.specialButtonText.text = specialButtonText;
-            ui.footer.OnSpecialButtonClick = onSpecialAction;
-        }
-
-        #endregion
-
-        /// <summary>
-        /// Prepares the window.
-        /// </summary>
-        private void WindowSetup(ThemeType theme)
-        {
-            ui.header.area.gameObject.SetActive(false);
-            ui.layout.area.gameObject.SetActive(false);
-            ui.layout.message.area.gameObject.SetActive(false);
-            ui.layout.properties.area.gameObject.SetActive(false);
-            ui.footer.area.gameObject.SetActive(false);
-
-            ui.area.gameObject.SetActive(true);
-            ui.background.gameObject.SetActive(true);
-            ui.windowBox.gameObject.SetActive(false);
-            ThemeUpdater.UpdateModalWindow(this, theme);
         }
 
         /// <summary>
@@ -348,27 +149,89 @@ namespace RedRats.UI
         public void Close()
         {
             ui.windowBox.gameObject.SetActive(false);
-
+            
             ui.layout.message.area.gameObject.SetActive(false);
-
             ui.layout.properties.area.gameObject.SetActive(false);
             ui.layout.properties.firstColumnContent.gameObject.KillChildren();
             ui.layout.properties.secondColumnContent.gameObject.KillChildren();
-
+            
             ui.background.gameObject.SetActive(false);
             ui.area.gameObject.SetActive(false);
-            isOpened = false;
+            OnClose?.Invoke();
+        }
+
+         #region Window Part Drawing
+
+        /// <summary>
+        /// Draws the Header part of the Window.
+        /// </summary>
+        /// <param name="headerText"></param>
+        private void DrawHeader(string headerText)
+        {
+            ui.header.text.text = headerText;
+            ui.header.text.gameObject.SetActive(true);
+            ui.header.area.gameObject.SetActive(true);
         }
 
         /// <summary>
-        /// Get the text from
+        /// Draws the Footer of the Window.
+        /// </summary>
+        /// <param name="acceptButtonText">Text in the Accept Button.</param>
+        /// <param name="denyButtonText">Text in the Deny Button.</param>
+        /// <param name="specialButtonText">Text in the Special Button.</param>
+        /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.</param>
+        /// <param name="onDenyAction">Method, that happens when the Dccept Button is clicked.</param>
+        /// <param name="onSpecialAction">Method, that happens when the Special Button is clicked.</param>
+        private void DrawFooter(string acceptButtonText, string denyButtonText, string specialButtonText,
+                                Action onAcceptAction, Action onDenyAction, Action onSpecialAction)
+        {
+            ui.footer.acceptButtonText.text = acceptButtonText;
+            ui.footer.OnAcceptButtonClick = onAcceptAction;
+
+            bool usesDeny = !string.IsNullOrEmpty(denyButtonText);
+            ui.footer.denyButton.gameObject.SetActive(usesDeny);
+            ui.footer.denyButtonText.text = denyButtonText;
+            ui.footer.OnDenyButtonClick = onDenyAction;
+
+            bool usesSpecial = !string.IsNullOrEmpty(specialButtonText);
+            ui.footer.specialButton.gameObject.SetActive(usesSpecial);
+            ui.footer.specialButtonText.text = specialButtonText;
+            ui.footer.OnSpecialButtonClick = onSpecialAction;
+            
+            ui.footer.area.gameObject.SetActive(true);
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Prepares the window.
+        /// </summary>
+        private void WindowSetup(ThemeType theme)
+        {
+            ui.header.area.gameObject.SetActive(false);
+            ui.layout.area.gameObject.SetActive(false);
+            ui.layout.message.area.gameObject.SetActive(false);
+            ui.layout.properties.area.gameObject.SetActive(false);
+            ui.footer.area.gameObject.SetActive(false);
+
+            ui.area.gameObject.SetActive(true);
+            ui.background.gameObject.SetActive(true);
+            ui.windowBox.gameObject.SetActive(false);
+            ThemeUpdater.UpdateModalWindow(this, theme);
+        }
+        
+        private void UpdateRect()
+        {
+            ui.area.GetComponent<RectTransform>().ForceUpdateRectTransforms();
+            Canvas.ForceUpdateCanvases();
+        }
+
+        /// <summary>
+        /// Get the message text.
         /// </summary>
         public string GetMessageText => ui.layout.message.text.text;
-
-
         public Transform FirstColumnContent { get =>ui.layout.properties.firstColumnContent; }
         public Transform SecondColumnContent {get => ui.layout.properties.secondColumnContent; }
-        public bool IsOpened { get => isOpened; }
 
         [Serializable]
         public struct UIInfo

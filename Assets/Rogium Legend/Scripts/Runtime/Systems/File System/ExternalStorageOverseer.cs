@@ -192,7 +192,7 @@ namespace Rogium.ExternalStorage
             currentPackInfo.UpdatePath(newPathDirectory, newPathFile);
             
             FileSystem.RenameDirectory(oldPathDirectory, newPathDirectory);
-            FileSystem.RenameFile(oldPathFile, newPathFile);
+            JSONSystem.RenameFile(oldPathFile, newPathFile);
             
             RefreshAssetSaveableData();
         }

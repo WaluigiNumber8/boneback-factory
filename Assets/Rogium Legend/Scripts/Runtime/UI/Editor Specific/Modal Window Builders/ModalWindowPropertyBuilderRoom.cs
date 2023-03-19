@@ -1,6 +1,7 @@
 ﻿using System;
 using RedRats.Core;
 using RedRats.UI;
+using RedRats.UI.ModalWindows;
 using Rogium.Editors.Rooms;
 
 namespace Rogium.UserInterface.Editors.ModalWindowBuilding
@@ -31,15 +32,15 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
 
         private void OpenWindow(RoomAsset data, Action onConfirmAction, string headerText)
         {
-            window.FirstColumnContent.gameObject.KillChildren();
+            windowColumn1.gameObject.KillChildren();
             
-            b.BuildInputField("Title", data.Title, window.FirstColumnContent, data.UpdateTitle);
-            roomBuilder.BuildEssentials(window.FirstColumnContent, data, false);
-            b.BuildPlainText("Created by", data.Author, window.FirstColumnContent);
-            b.BuildPlainText("Created on", data.CreationDate.ToString(), window.FirstColumnContent);
+            b.BuildInputField("Title", data.Title, windowColumn1, data.UpdateTitle);
+            roomBuilder.BuildEssentials(windowColumn1, data, false);
+            b.BuildPlainText("Created by", data.Author, windowColumn1);
+            b.BuildPlainText("Created on", data.CreationDate.ToString(), windowColumn1);
             
             editedAssetBase = data;
-            window.OpenAsPropertiesColumn1(headerText, ThemeType.Blue, "Done", "Cancel", onConfirmAction, true);
+            Open(new PropertyWindowInfo(headerText, PropertyLayoutType.Column1, ThemeType.Blue, "Done", "Cancel", onConfirmAction));
         }
 
         protected override void CreateAsset()

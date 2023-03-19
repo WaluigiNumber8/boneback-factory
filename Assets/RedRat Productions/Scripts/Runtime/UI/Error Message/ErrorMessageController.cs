@@ -1,5 +1,6 @@
 ﻿using RedRats.Core;
 using RedRats.Safety;
+using RedRats.UI.ModalWindows;
 using Rogium.Systems.ThemeSystem;
 using UnityEngine;
 
@@ -10,10 +11,16 @@ namespace RedRats.UI.ErrorMessageWindow
     /// </summary>
     public class ErrorMessageController : MonoSingleton<ErrorMessageController>
     {
-        [SerializeField] private ModalWindow errorWindow;
-        [SerializeField] private int maxCharacters = 700;
         [SerializeField] private string acceptText;
-        
+
+        private ModalWindowOverseer windowOverseer;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            windowOverseer = ModalWindowOverseer.GetInstance();
+        }
+
         private void OnEnable()
         {
             SafetyNet.OnFireErrorMessage += Open;
@@ -32,11 +39,7 @@ namespace RedRats.UI.ErrorMessageWindow
         /// <param name="errorMessage">The message of the error.</param>
         public void Open(string errorMessage)
         {
-            string text = errorMessage;
-            if (errorWindow.IsOpened)
-                text = (errorWindow.GetMessageText.Length + errorMessage.Length > maxCharacters) ? errorMessage : $"{errorWindow.GetMessageText} \n\n {errorMessage}";
-            errorWindow.OpenAsMessage(text, ThemeOverseerMono.GetInstance().CurrentTheme, acceptText, errorWindow.Close);
+            windowOverseer.OpenWindow(new MessageWindowInfo(errorMessage, ThemeOverseerMono.GetInstance().CurrentTheme, acceptText));
         }
-        
     }
 }
