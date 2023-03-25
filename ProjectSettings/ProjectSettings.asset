@@ -134,7 +134,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: a1.0.6
+  bundleVersion: Alpha 1.0.6
   preloadedAssets:
   - {fileID: 11400000, guid: ae83f0144a53cbe49a8f9f0f6b328297, type: 2}
   metroInputSource: 0
@@ -599,7 +599,7 @@ PlayerSettings:
   assemblyVersionValidation: 1
   gcWBarrierValidation: 0
   apiCompatibilityLevelPerPlatform:
-    Standalone: 3
+    Standalone: 6
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: 2D_BuiltInRenderer

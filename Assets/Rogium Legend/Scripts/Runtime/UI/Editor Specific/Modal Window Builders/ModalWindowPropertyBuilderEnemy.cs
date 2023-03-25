@@ -2,6 +2,7 @@
 using System.Linq;
 using RedRats.Core;
 using RedRats.UI;
+using RedRats.UI.ModalWindows;
 using Rogium.Editors.Enemies;
 using Rogium.Editors.Tiles;
 
@@ -31,12 +32,12 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
 
         private void OpenWindow(EnemyAsset enemy, Action onConfirmAction, string headerText)
         {
-            b.BuildInputField("Title", enemy.Title, window.FirstColumnContent, enemy.UpdateTitle);
-            b.BuildPlainText("Created by", enemy.Author, window.FirstColumnContent);
-            b.BuildPlainText("Created on", enemy.CreationDate.ToString(), window.FirstColumnContent);
+            b.BuildInputField("Title", enemy.Title, windowColumn1, enemy.UpdateTitle);
+            b.BuildPlainText("Created by", enemy.Author, windowColumn1);
+            b.BuildPlainText("Created on", enemy.CreationDate.ToString(), windowColumn1);
             
             editedAssetBase = enemy;
-            window.OpenAsPropertiesColumn1(headerText, ThemeType.Red, "Done", "Cancel", onConfirmAction, true);
+            Open(new PropertyWindowInfo(headerText, PropertyLayoutType.Column1, ThemeType.Red, "Done", "Cancel", onConfirmAction));
         }
 
         protected override void CreateAsset()

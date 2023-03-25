@@ -1,5 +1,6 @@
 ﻿using System;
 using RedRats.UI;
+using RedRats.UI.ModalWindows;
 using Rogium.Core;
 using Rogium.Editors.Packs;
 
@@ -29,14 +30,14 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         {
             bool isDisabled = !editor.CurrentPack?.ContainsAnySprites ?? true;
             
-            b.BuildInputField("Name", currentPackInfo.Title, window.FirstColumnContent, currentPackInfo.UpdateTitle);
-            b.BuildInputFieldArea("Description", currentPackInfo.Description, window.FirstColumnContent, currentPackInfo.UpdateDescription);
-            b.BuildAssetField("", AssetType.Sprite, currentPackInfo, window.SecondColumnContent, a => editedAssetBase.UpdateIcon(a?.Icon), isDisabled, ThemeType.Pink);
-            b.BuildPlainText("Created by", currentPackInfo.Author, window.SecondColumnContent);
-            b.BuildPlainText("Created on", currentPackInfo.CreationDate.ToString(), window.SecondColumnContent);
+            b.BuildInputField("Name", currentPackInfo.Title, windowColumn1, currentPackInfo.UpdateTitle);
+            b.BuildInputFieldArea("Description", currentPackInfo.Description, windowColumn1, currentPackInfo.UpdateDescription);
+            b.BuildAssetField("", AssetType.Sprite, currentPackInfo, windowColumn2, a => editedAssetBase.UpdateIcon(a?.Icon), isDisabled, ThemeType.Pink);
+            b.BuildPlainText("Created by", currentPackInfo.Author, windowColumn2);
+            b.BuildPlainText("Created on", currentPackInfo.CreationDate.ToString(), windowColumn2);
 
             editedAssetBase = currentPackInfo;
-            window.OpenAsPropertiesColumn2(headerText, ThemeType.Blue, "Done", "Cancel", onConfirmButton, true);
+            Open( new PropertyWindowInfo(headerText, PropertyLayoutType.Columns2, ThemeType.Blue, "Done", "Cancel", onConfirmButton));
         }
 
         /// <summary>

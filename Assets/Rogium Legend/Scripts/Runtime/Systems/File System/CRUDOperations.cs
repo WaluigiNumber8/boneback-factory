@@ -34,7 +34,7 @@ namespace Rogium.ExternalStorage
             SafetyNet.EnsureIsNotNull(data, "Saveable Data");
             
             data.TryAddNewFilePath(asset.ID, asset.Title);
-            FileSystem.SaveFile(data.GetFilePath(asset.ID), dataIdentifier, asset, r => newSerializedObject(r));
+            JSONSystem.Save(data.GetFilePath(asset.ID), dataIdentifier, asset, r => newSerializedObject(r));
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace Rogium.ExternalStorage
         /// <returns>A list of those assets.</returns>
         public IList<T> LoadAll()
         {
-            IList<T> loadedData = FileSystem.LoadAllFiles<T, TS>(data.Path, data.Identifier);
+            IList<T> loadedData = JSONSystem.LoadAll<T, TS>(data.Path, data.Identifier);
             loadedData = FindAndRemoveDuplicates(loadedData);
             foreach (T piece in loadedData)
             {
@@ -64,7 +64,7 @@ namespace Rogium.ExternalStorage
             if (asset.Title == title) return;
 
             data.UpdateFileTitle(asset.ID, asset.Title);
-            FileSystem.RenameFile(oldPath, data.GetFilePath(asset.ID));
+            JSONSystem.RenameFile(oldPath, data.GetFilePath(asset.ID));
         }
         
         /// <summary>
@@ -75,7 +75,7 @@ namespace Rogium.ExternalStorage
         {
             SafetyNet.EnsureIsNotNull(data, "Saveable Data");
             
-            FileSystem.DeleteFile(data.GetFilePath(asset.ID));
+            JSONSystem.Delete(data.GetFilePath(asset.ID));
             data.RemoveFilePath(asset.ID);
         }
         
