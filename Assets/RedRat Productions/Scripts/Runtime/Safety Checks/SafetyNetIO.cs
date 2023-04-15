@@ -17,7 +17,7 @@ namespace RedRats.Safety
         {
             if (!Directory.Exists(path))
             {
-                string message = $"The directory of '{path}' doesn't exist.";
+                string message = $"'{path}' doesn't exist.";
                 OnFireErrorMessage?.Invoke(message);
                 throw new SafetyNetIOException(message);
             }
@@ -31,7 +31,7 @@ namespace RedRats.Safety
         {
             if (!File.Exists(path))
             {
-                string message = $"The file of '{path}' doesn't exist.";
+                string message = $"'{path}' doesn't exist.";
                 OnFireErrorMessage?.Invoke(message);
                 throw new SafetyNetIOException(message);
             }
@@ -46,7 +46,7 @@ namespace RedRats.Safety
         {
             if (Path.GetInvalidFileNameChars().All(path.Contains))
             {
-                throw new SafetyNetIOException($"The path of '{path}' contains invalid symbols.");
+                throw new SafetyNetIOException($"'{path}' contains invalid symbols.");
             }
         }
         
@@ -57,7 +57,7 @@ namespace RedRats.Safety
         public static void ThrowMessage(string message)
         {
             ErrorMessageController.GetInstance().Open(message);
-            // OnFireErrorMessage?.Invoke($"IO - {message}");
+            OnFireErrorMessage?.Invoke(message);
         }
     }
 }
