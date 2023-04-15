@@ -44,7 +44,7 @@ MonoBehaviour:
     inputField:
       normal: {fileID: -7223259809704958672, guid: d08454f067178654c9702b3b47e8fcf4, type: 3}
       highlighted: {fileID: 5358666918459266497, guid: d08454f067178654c9702b3b47e8fcf4, type: 3}
-      pressed: {fileID: 3939223057531117641, guid: adb2e3b0741779d45a850d588e420772, type: 3}
+      pressed: {fileID: 1437045503, guid: ffb3be43ead86ef49b07597d36a3072a, type: 3}
       selected: {fileID: 6711431833823839434, guid: d08454f067178654c9702b3b47e8fcf4, type: 3}
       disabled: {fileID: -3687998264897197731, guid: d08454f067178654c9702b3b47e8fcf4, type: 3}
     toggle:
@@ -68,13 +68,13 @@ MonoBehaviour:
   fonts:
     general:
       font: {fileID: 11400000, guid: 610b74f9f977953488aee31905a7d7c6, type: 2}
-      color: {r: 1, g: 1, b: 0, a: 1}
       size: 36
+      color: {r: 1, g: 0.7921569, b: 0.19215687, a: 1}
     inputted:
       font: {fileID: 11400000, guid: 7dcbf3f25fb09e840ab6875dff99cba5, type: 2}
-      color: {r: 1, g: 0.7921569, b: 0.19215687, a: 1}
       size: 46
+      color: {r: 1, g: 0.7921569, b: 0.19215687, a: 1}
     header:
       font: {fileID: 11400000, guid: cf4879b37d976dc428255f939d628fa9, type: 2}
-      color: {r: 1, g: 1, b: 0, a: 1}
       size: 65
+      color: {r: 1, g: 1, b: 0, a: 1}
