@@ -18,15 +18,8 @@ namespace RedRats.UI.InputFields
         private bool ignoreValueChange;
 
         private void Awake() => inputField = GetComponent<TMP_InputField>();
-        private void OnEnable()
-        {
-            inputField.onSubmit.AddListener(ProcessValue);
-        }
-
-        private void OnDisable()
-        {
-            inputField.onSubmit.RemoveListener(ProcessValue);
-        }
+        private void OnEnable() => inputField.onValueChanged.AddListener(ProcessValue);
+        private void OnDisable() => inputField.onValueChanged.RemoveListener(ProcessValue);
 
         /// <summary>
         /// Sets a new HTML code into the input field based on color.
@@ -44,16 +37,19 @@ namespace RedRats.UI.InputFields
         /// <param name="value">The value from the Input Field.</param>
         private void ProcessValue(string value)
         {
-            if (ignoreValueChange)
+            if (ignoreValueChange) { ignoreValueChange = false; return; }
+            
+            if (value.Length < 6)
             {
-                ignoreValueChange = false; 
-                return;
+                string v = value + new string('F', 6 - value.Length);
+                value = v;
             }
             if (addHash) value = "#" + value;
             if (ColorUtility.TryParseHtmlString(value, out Color color))
+            {
                 OnValueChanged?.Invoke(color);
+            }
         }
-        
     }
 }
 

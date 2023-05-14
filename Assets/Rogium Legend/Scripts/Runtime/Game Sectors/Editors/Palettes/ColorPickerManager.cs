@@ -18,6 +18,7 @@ namespace Rogium.Editors.Palettes
         
         private Color currentColor;
         private Image otherGuideImage;
+        private bool cannotUpdateHTML;
 
         private void OnEnable()
         {
@@ -76,7 +77,7 @@ namespace Rogium.Editors.Palettes
         /// </summary>
         private void RefreshHTMLField()
         {
-            htmlField.ChangeValue(currentColor);
+            if (!cannotUpdateHTML) htmlField.ChangeValue(currentColor);
             RefreshColorGuide();
         }
 
@@ -128,7 +129,9 @@ namespace Rogium.Editors.Palettes
         private void UpdateColorHTML(Color color)
         {
             currentColor = color;
+            cannotUpdateHTML = true;
             RefreshSliders();
+            cannotUpdateHTML = false;
         }
 
         #endregion
