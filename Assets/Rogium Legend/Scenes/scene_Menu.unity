@@ -16340,10 +16340,34 @@ MonoBehaviour:
     BackgroundTexture: {fileID: 0}
     IsBackgroundRecursive: 0
     IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 913386665}
+    Ordinal: 22
+    Priority: 0
+    IconType: 22000
+    IconTexture: {fileID: 0}
+    IsIconRecursive: 1
+    BackgroundType: 21000
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
   - Type: 1
     Name: Modal Window(Clone)
     GameObject: {fileID: 0}
-    Ordinal: 22
+    Ordinal: 23
+    Priority: 10
+    IconType: 212000
+    IconTexture: {fileID: 0}
+    IsIconRecursive: 1
+    BackgroundType: 21000
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 473035411}
+    Ordinal: 24
     Priority: 0
     IconType: 212000
     IconTexture: {fileID: 0}
