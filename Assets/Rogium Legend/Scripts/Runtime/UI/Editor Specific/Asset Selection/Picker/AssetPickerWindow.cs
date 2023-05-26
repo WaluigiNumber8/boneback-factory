@@ -105,6 +105,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
         private void Open(ThemeType theme)
         {
             ThemeUpdaterRogium.UpdateAssetPickerWindow(this, theme);
+            ui.windowPrefab.GetComponentInParent<Transform>().SetAsLastSibling();
             ui.windowPrefab.SetActive(true);
         }
 
