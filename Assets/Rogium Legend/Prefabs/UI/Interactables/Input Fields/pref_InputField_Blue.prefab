@@ -222,7 +222,7 @@ RectTransform:
   m_Children:
   - {fileID: 1157742913728338298}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -343,7 +343,7 @@ MonoBehaviour:
   m_HideMobileInput: 0
   m_HideSoftKeyboard: 0
   m_CharacterValidation: 6
-  m_RegexValue: '[a-zA-Z0-9\.\-\+ ]+'
+  m_RegexValue: '[a-zA-Z0-9\n $&+,:;=?@#|''<>.^*()%!-\/]+'
   m_GlobalPointSize: 14
   m_CharacterLimit: 0
   m_OnEndEdit:
