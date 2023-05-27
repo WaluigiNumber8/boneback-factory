@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using RedRats.Core;
 using RedRats.Systems.FileSystem;
 using RedRats.Systems.FileSystem.Compression;
-using RedRats.Systems.FileSystem.JSON;
-using Unity.Plastic.Newtonsoft.Json.Serialization;
 using UnityEngine;
 
 namespace Rogium.ExternalStorage
