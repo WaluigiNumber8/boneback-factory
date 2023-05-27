@@ -36,14 +36,14 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
         /// Open the Selection Picker menu and grab an asset.
         /// </summary>
         /// <param name="type">The type of asset to grab.</param>
-        /// <param name="WhenAssetGrabbed">The method that runs when the asset is grabbed.</param>
+        /// <param name="whenAssetGrabbed">The method that runs when the asset is grabbed.</param>
         /// <param name="preselectedAsset">The asset that will be selected on window open.</param>
         /// <param name="theme">The graphic theme to set.</param>
         /// <exception cref="InvalidOperationException">Is thrown when the asset is set to "None".</exception>
         /// <exception cref="ArgumentOutOfRangeException">Is thrown when an unsupported type appears.</exception>
-        public void GrabAsset(AssetType type, Action<IAsset> WhenAssetGrabbed, IAsset preselectedAsset = null, ThemeType theme = ThemeType.Blue)
+        public void GrabAsset(AssetType type, Action<IAsset> whenAssetGrabbed, IAsset preselectedAsset = null, ThemeType theme = ThemeType.Blue)
         {
-            targetMethod = WhenAssetGrabbed;
+            targetMethod = whenAssetGrabbed;
             Open(theme);
 
             switch (type)
@@ -105,6 +105,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
         private void Open(ThemeType theme)
         {
             ThemeUpdaterRogium.UpdateAssetPickerWindow(this, theme);
+            ui.windowPrefab.GetComponentInParent<Transform>().SetAsLastSibling();
             ui.windowPrefab.SetActive(true);
         }
 
