@@ -89,6 +89,7 @@ namespace RedRats.UI.ModalWindows
         /// <param name="data">The data for setting up the window.</param>
         private void Open(ModalWindow window, ModalWindowInfoBase data)
         {
+            window.transform.SetAsLastSibling();
             if (data is MessageWindowInfo mData)
             {
                 window.OpenAsMessage(mData);
