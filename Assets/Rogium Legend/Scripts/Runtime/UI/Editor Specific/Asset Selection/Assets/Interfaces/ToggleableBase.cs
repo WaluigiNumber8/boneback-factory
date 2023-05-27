@@ -28,5 +28,10 @@ namespace Rogium.UserInterface.Editors.AssetSelection
             SafetyNet.EnsureIsNotNull(toggleGroup, "New Toggle Group");
             toggle.group = toggleGroup;
         }
+
+        /// <summary>
+        /// Returns the value of the toggle.
+        /// </summary>
+        public bool IsOn => toggle.isOn;
     }
 }
