@@ -8,7 +8,7 @@ namespace Rogium.Systems.Validation
     public static class AssetValidation
     {
         public const int TitleMinAllowedCharacters = 2;
-        public const int TitleMaxAllowedCharacters = 64;
+        public const int TitleMaxAllowedCharacters = 24;
         public const int DescriptionMinAllowedCharacters = 0;
         public const int DescriptionMaxAllowedCharacters = 2000;
 
