@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using RedRats.Safety;
 using RedRats.Systems.FileSystem;
-using RedRats.Systems.FileSystem.JSON;
 using Rogium.Core;
 using Rogium.Editors.Sprites;
 using Rogium.Editors.Campaign;
