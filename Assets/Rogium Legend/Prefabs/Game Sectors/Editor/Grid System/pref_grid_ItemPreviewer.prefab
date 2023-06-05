@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5285869699213976461}
   - component: {fileID: 5386048962397726314}
   m_Layer: 5
-  m_Name: pref_grid_Previewer
+  m_Name: pref_grid_ItemPreviewer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
