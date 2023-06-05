@@ -43,7 +43,7 @@ namespace Rogium.Systems.GridSystem
             gridPreviewer.transform.sizeDelta = grid.CellSize;
             gridScaleOffset = new Vector2(gridTransform.rect.width / gridTransform.rect.height,
                                           gridTransform.rect.height / gridTransform.rect.width);
-            gridPreviewer.transform.localScale = new Vector3(1f / (grid.Size.x+1), 1f / (grid.Size.y+1));
+            gridPreviewer.transform.localScale = new Vector3(1f / (grid.Size.x+1), 1f / (grid.Size.y+1), 1);
             
             followCursor = true;
             lastColor = EditorConstants.DefaultColor;
