@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 77853640}
   - component: {fileID: 77853639}
   m_Layer: 5
-  m_Name: UI Canvas
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -252,7 +252,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1023
 --- !u!114 &77853640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,7 +288,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 6643382496672123198}
   m_PlaneDistance: -1
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -437,9 +437,69 @@ MonoBehaviour:
     BackgroundTexture: {fileID: 0}
     IsBackgroundRecursive: 0
     IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 77853637}
+    Ordinal: 9
+    Priority: 0
+    IconType: 160000
+    IconTexture: {fileID: 0}
+    IsIconRecursive: 0
+    BackgroundType: 0
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 618825316}
+    Ordinal: 10
+    Priority: 0
+    IconType: 310000
+    IconTexture: {fileID: 0}
+    IsIconRecursive: 0
+    BackgroundType: 0
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 337157926}
+    Ordinal: 11
+    Priority: 0
+    IconType: 310000
+    IconTexture: {fileID: 0}
+    IsIconRecursive: 0
+    BackgroundType: 0
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 1962549084}
+    Ordinal: 12
+    Priority: 0
+    IconType: 310000
+    IconTexture: {fileID: 0}
+    IsIconRecursive: 0
+    BackgroundType: 0
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 1279519985}
+    Ordinal: 13
+    Priority: 0
+    IconType: 170000
+    IconTexture: {fileID: 0}
+    IsIconRecursive: 0
+    BackgroundType: 0
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
 --- !u!4 &79096551
 Transform:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -3658,106 +3718,106 @@ MonoBehaviour:
   - position: {x: -7.8649273, y: 4.866697, z: 0}
     color: {r: 0, g: 0, b: 0, a: 1}
     uv: {x: 0, y: 0}
-  - position: {x: -8.2544, y: -4.8692, z: 0}
+  - position: {x: -8.2592, y: -4.8758, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -8.2448, y: -4.9562, z: 0}
+  - position: {x: -8.2496, y: -4.9627, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -8.2166, y: -5.039, z: 0}
+  - position: {x: -8.2213, y: -5.0456, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -8.171, y: -5.1137, z: 0}
+  - position: {x: -8.1757, y: -5.1202, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -8.1102, y: -5.1767, z: 0}
+  - position: {x: -8.115, y: -5.1832, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -8.0372, y: -5.225, z: 0}
+  - position: {x: -8.042, y: -5.2315, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -7.9555, y: -5.2562, z: 0}
+  - position: {x: -7.9603, y: -5.2627, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -7.8542, y: -5.2692, z: 0}
+  - position: {x: -7.8588, y: -5.2757, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 6.8469, y: -5.2623, z: 0}
+  - position: {x: 6.8584, y: -5.2609, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 6.9339, y: -5.2527, z: 0}
+  - position: {x: 6.9454, y: -5.2512, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 7.0167, y: -5.2244, z: 0}
+  - position: {x: 7.0282, y: -5.2229, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 7.0913, y: -5.1788, z: 0}
+  - position: {x: 7.1028, y: -5.1772, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 7.1543, y: -5.118, z: 0}
+  - position: {x: 7.1657, y: -5.1164, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 7.2025, y: -5.045, z: 0}
+  - position: {x: 7.2139, y: -5.0434, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 7.2338, y: -4.9633, z: 0}
+  - position: {x: 7.2451, y: -4.9616, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 7.2467, y: -4.8632, z: 0}
+  - position: {x: 7.258, y: -4.8618, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 7.2681, y: 4.9081, z: 0}
+  - position: {x: 7.2798, y: 4.9058, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 7.2587, y: 4.9951, z: 0}
+  - position: {x: 7.2704, y: 4.9928, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 7.2306, y: 5.078, z: 0}
+  - position: {x: 7.2424, y: 5.0757, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 7.1852, y: 5.1528, z: 0}
+  - position: {x: 7.1969, y: 5.1505, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 7.1246, y: 5.2159, z: 0}
+  - position: {x: 7.1363, y: 5.2136, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 7.0517, y: 5.2644, z: 0}
+  - position: {x: 7.0635, y: 5.262, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 6.9701, y: 5.2958, z: 0}
+  - position: {x: 6.9818, y: 5.2935, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: 6.8671, y: 5.309, z: 0}
+  - position: {x: 6.8787, y: 5.3067, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -7.8566, y: 5.2708, z: 0}
+  - position: {x: -7.862, y: 5.2678, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -7.9436, y: 5.261, z: 0}
+  - position: {x: -7.9489, y: 5.258, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -8.0263, y: 5.2325, z: 0}
+  - position: {x: -8.0317, y: 5.2295, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -8.1009, y: 5.1868, z: 0}
+  - position: {x: -8.1062, y: 5.1837, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -8.1637, y: 5.1258, z: 0}
+  - position: {x: -8.1691, y: 5.1228, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -8.2118, y: 5.0527, z: 0}
+  - position: {x: -8.2171, y: 5.0497, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -8.2429, y: 4.9709, z: 0}
+  - position: {x: -8.2482, y: 4.9679, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
-  - position: {x: -8.2556, y: 4.8708, z: 0}
+  - position: {x: -8.2609, y: 4.8677, z: 0}
     color: {r: 0, g: 0, b: 0, a: 0}
     uv: {x: 0, y: 0}
   m_Triangles: 000003000100010003000200040008000800040008000900040009000a0004000a000b0004000b000c0004000c000d0004000d000e0004000e000f0004000500100004000f001000050010001100050011001200050012001300050013001400050014001500050015001600050016001700050006001800050017001800060018001900060019001a0006001a001b0006001b001c0006001c001d0006001d001e0006001e001f0006000700200006001f002000070020002100070021002200070022002300070023002400070024002500070025002600070026002700080004000700080027000700
   m_LocalBounds:
-    m_Center: {x: -0.4937501, y: 0.019900084, z: 0}
-    m_Extent: {x: 7.76185, y: 5.2890997, z: 0}
+    m_Center: {x: -0.4905498, y: 0.015500069, z: 0}
+    m_Extent: {x: 7.7703495, y: 5.2912, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -8758,6 +8818,7 @@ MonoBehaviour:
   m_Dithering: 0
   m_ClearDepth: 1
   m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
   m_UseScreenCoordOverride: 0
   m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
   m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
