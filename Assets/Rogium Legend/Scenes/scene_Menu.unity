@@ -4724,7 +4724,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4638710111537411323, guid: 2602ffe91c5449a4f8cf4d887c55d908, type: 3}
       propertyPath: m_Name
-      value: Grid Previewer
+      value: Grid item Previewer
       objectReference: {fileID: 0}
     - target: {fileID: 5386048962397726314, guid: 2602ffe91c5449a4f8cf4d887c55d908, type: 3}
       propertyPath: m_Material
@@ -26479,6 +26479,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1594718112}
     m_Modifications:
+    - target: {fileID: 178063321526028164, guid: c899ef6895fdaed43aa1d8fed8721cd6, type: 3}
+      propertyPath: m_Name
+      value: Grid Item Previewer
+      objectReference: {fileID: 0}
     - target: {fileID: 178063321526028164, guid: c899ef6895fdaed43aa1d8fed8721cd6, type: 3}
       propertyPath: m_IsActive
       value: 0

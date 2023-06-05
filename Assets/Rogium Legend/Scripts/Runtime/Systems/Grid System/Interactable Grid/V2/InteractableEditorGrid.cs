@@ -31,7 +31,7 @@ namespace Rogium.Systems.GridSystem
         
         private Image activeLayer;
         
-        private Vector2Int cellSize;
+        private Vector2 cellSize;
         private Vector2Int selectedPos;
         
         private void Awake()
@@ -43,7 +43,7 @@ namespace Rogium.Systems.GridSystem
             ttransform = GetComponent<RectTransform>();
             drawer = new SpriteDrawer(gridSize, new Vector2Int(EditorConstants.SpriteSize, EditorConstants.SpriteSize), EditorConstants.SpriteSize);
             
-            cellSize = new Vector2Int((int)ttransform.rect.width / gridSize.x, (int)ttransform.rect.height / gridSize.y);
+            cellSize = new Vector2(ttransform.rect.width / gridSize.x, ttransform.rect.height / gridSize.y);
             
             PrepareLayers();
             SwitchActiveLayer(0);
@@ -162,15 +162,18 @@ namespace Rogium.Systems.GridSystem
         /// </summary>
         private void RecalculateSelectedPosition(Vector2 pointerPos)
         {
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(ttransform, pointerPos, null, out Vector2 pos);
+            if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(ttransform, pointerPos, null, out Vector2 pos)) return;
             
             int x = (int)Mathf.Abs(Mathf.Floor(pos.x / cellSize.x));
             int y = (int)Mathf.Abs(Mathf.Floor(pos.y / cellSize.y));
             
+            Debug.Log($"{x}, {y}");
             x = Mathf.Clamp(x, 0, gridSize.x - 1);
             y = Mathf.Clamp(y, 0, gridSize.y - 1);
+            Debug.Log($"{x}, {y}");
             
             selectedPos = new Vector2Int(x, y);
+            Debug.Log(selectedPos);
         }
 
         /// <summary>
@@ -186,7 +189,7 @@ namespace Rogium.Systems.GridSystem
         }
         
         public Vector2Int Size { get => gridSize; }
-        public Vector2Int CellSize { get => cellSize; }
+        public Vector2 CellSize { get => cellSize; }
         public Vector2Int SelectedPosition { get => selectedPos; }
     }
 }
