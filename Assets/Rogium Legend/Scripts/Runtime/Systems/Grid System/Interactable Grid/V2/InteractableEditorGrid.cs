@@ -164,16 +164,12 @@ namespace Rogium.Systems.GridSystem
         {
             if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(ttransform, pointerPos, null, out Vector2 pos)) return;
             
-            int x = (int)Mathf.Abs(Mathf.Floor(pos.x / cellSize.x));
-            int y = (int)Mathf.Abs(Mathf.Floor(pos.y / cellSize.y));
-            
-            Debug.Log($"{x}, {y}");
+            int x = (int)Mathf.Floor(pos.x / cellSize.x);
+            int y = (int)Mathf.Floor(pos.y / cellSize.y);
             x = Mathf.Clamp(x, 0, gridSize.x - 1);
             y = Mathf.Clamp(y, 0, gridSize.y - 1);
-            Debug.Log($"{x}, {y}");
             
             selectedPos = new Vector2Int(x, y);
-            Debug.Log(selectedPos);
         }
 
         /// <summary>
