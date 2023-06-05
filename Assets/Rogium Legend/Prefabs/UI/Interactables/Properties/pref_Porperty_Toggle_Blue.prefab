@@ -36,7 +36,7 @@ RectTransform:
   - {fileID: 1162400870823001876}
   - {fileID: 1469570520711322657}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -83,7 +83,7 @@ MonoBehaviour:
   m_ChildAlignment: 3
   m_Spacing: 24
   m_ChildForceExpandWidth: 0
-  m_ChildForceExpandHeight: 1
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
@@ -316,6 +316,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 964999139751242715}
     m_Modifications:
     - target: {fileID: 1801627869591338538, guid: 48e5a852812c59b44a2bd1c827e68bb9, type: 3}
@@ -419,6 +420,12 @@ PrefabInstance:
       value: -25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1801627869591338539, guid: 48e5a852812c59b44a2bd1c827e68bb9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7997529135032660398}
   m_SourcePrefab: {fileID: 100100000, guid: 48e5a852812c59b44a2bd1c827e68bb9, type: 3}
 --- !u!114 &1469570520418833877 stripped
 MonoBehaviour:
