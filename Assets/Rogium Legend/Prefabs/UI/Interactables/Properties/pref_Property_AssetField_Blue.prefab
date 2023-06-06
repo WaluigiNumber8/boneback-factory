@@ -93,7 +93,7 @@ RectTransform:
   - {fileID: 8665854332553887019}
   - {fileID: 7839678746368645448}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_Spacing: 24
   m_ChildForceExpandWidth: 0
-  m_ChildForceExpandHeight: 1
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
@@ -316,6 +316,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8992736525272972704}
     m_Modifications:
     - target: {fileID: 739223052116082640, guid: 678680c637e49b3449f41daaced82cbc, type: 3}
@@ -419,6 +420,9 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 678680c637e49b3449f41daaced82cbc, type: 3}
 --- !u!114 &1579749751652238242 stripped
 MonoBehaviour:
