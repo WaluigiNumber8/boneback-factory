@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using RedRats.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
@@ -120,8 +121,13 @@ namespace Rogium.Gameplay.Entities
         private void Kill()
         {
             if (isDead) return;
-            OnDie?.Invoke();
             isDead = true;
+            StartCoroutine(DeathCoroutine());
+            IEnumerator DeathCoroutine()
+            {
+                yield return new WaitForSeconds(0.01f);
+                OnDie?.Invoke();
+            }
         }
 
         [System.Serializable]

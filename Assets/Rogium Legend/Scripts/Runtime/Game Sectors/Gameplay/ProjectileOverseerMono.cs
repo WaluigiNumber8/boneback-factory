@@ -21,7 +21,6 @@ namespace Rogium.Gameplay.Core
         private IList<ProjectileAsset> allProjectiles;
         private ProjectileAsset lastProjectile;
         private ObjectPool<ProjectileController> pool;
-        private Transform currentEntity;
 
         private void Start()
         {
@@ -29,15 +28,11 @@ namespace Rogium.Gameplay.Core
             pool = new ObjectPool<ProjectileController>(
                 () =>
                 {
-                    ProjectileController controller = Instantiate(vessel, currentEntity.position, currentEntity.rotation);
+                    ProjectileController controller = Instantiate(vessel);
                     controller.OnDie += () => pool.Release(controller);
                     return controller;
                 },
-                p =>
-                {
-                    p.Transform.SetPositionAndRotation(currentEntity.position, currentEntity.rotation);
-                    p.gameObject.SetActive(true);
-                },
+                null,
                 p => p.gameObject.SetActive(false),
                 Destroy,
                 true, 30
@@ -53,7 +48,6 @@ namespace Rogium.Gameplay.Core
         {
             if (data == null || data.Count <= 0) return;
             
-            currentEntity = entity;
             foreach (ProjectileDataInfo projectileData in data)
             {
                 StartCoroutine(FireProjectileCoroutine(projectileData));
@@ -64,12 +58,15 @@ namespace Rogium.Gameplay.Core
                 yield return new WaitForSeconds(projectileData.SpawnDelay);
 
                 ProjectileController p = pool.Get();
+                p.transform.SetPositionAndRotation(entity.position, entity.rotation);
                 p.transform.eulerAngles += Vector3.forward * projectileData.AngleOffset;
                 p.gameObject.layer = entity.gameObject.layer;
 
                 if (UseExistingProjectile(projectileData.ID))
                     p.Construct(lastProjectile);
                 else p.ConstructMissing();
+                 
+                p.gameObject.SetActive(true);
             }
         }
 
