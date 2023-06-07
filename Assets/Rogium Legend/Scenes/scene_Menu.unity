@@ -18564,7 +18564,14 @@ PrefabInstance:
         * <indent=2ep>HTML
         field in the Palette Editor updates properly.</indent>
 
+        * <indent=2ep>The
+        grid item previewer now fits properly in the grid''s cells and doesn''t jump
+        inward when mouse is moved outside the grid.</indent>
+
         * <indent=2ep>text</indent>
+
+        *
+        <indent=2ep>text</indent>
 
         </margin>'
       objectReference: {fileID: 0}
