@@ -1,12 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using RedRats.Core;
-using RedRats.Safety;
-using Rogium.Core;
-using Rogium.Editors.Projectiles;
+﻿using System.Collections.Generic;
 using Rogium.Editors.Weapons;
 using Rogium.Gameplay.Core;
-using UnityEngine;
 
 namespace Rogium.Gameplay.Entities.Characteristics
 {
@@ -15,52 +9,14 @@ namespace Rogium.Gameplay.Entities.Characteristics
     /// </summary>
     public class CharacteristicProjectileShoot : CharacteristicBase
     {
-        [SerializeField] private ProjectileController vessel;
-        
-        private IList<ProjectileAsset> allProjectiles;
-        private ProjectileAsset lastProjectile;
-        
-        private void Start()
-        {
-            allProjectiles = GameplayOverseerMono.GetInstance().CurrentCampaign.DataPack.Projectiles;
-        }
+        private ProjectileOverseerMono projectileOverseer;
 
-        public void Fire(IList<ProjectileDataInfo> data)
-        {
-            if (data == null || data.Count <= 0) return;
-            foreach (ProjectileDataInfo projectileData in data)
-            {
-                StartCoroutine(FireProjectileCoroutine(projectileData));
-            }
-
-            IEnumerator FireProjectileCoroutine(ProjectileDataInfo projectileData)
-            {
-                yield return new WaitForSeconds(projectileData.SpawnDelay);
-
-                ProjectileController copy = Instantiate(vessel, entity.transform.position, entity.transform.rotation);
-                copy.transform.eulerAngles += Vector3.forward * projectileData.AngleOffset;
-                copy.gameObject.layer = entity.gameObject.layer;
-                
-                if (RefreshLastProjectile(projectileData.ID))
-                    copy.Construct(lastProjectile);
-                else copy.ConstructMissing();
-            }
-        }
+        private void Awake() => projectileOverseer = ProjectileOverseerMono.GetInstance();
 
         /// <summary>
-        /// Refreshes the last projectile.
+        /// Fires a projectile from this entity.
         /// </summary>
-        /// <param name="id">The ID to refresh the projectile with.</param>
-        /// <returns>TRUE if projectile was successfully refreshed,</returns>
-        private bool RefreshLastProjectile(string id)
-        {
-            if (lastProjectile != null && lastProjectile.ID == id) return true;
-            try
-            {
-                lastProjectile = allProjectiles.FindValueFirst(id);
-                return true;
-            }
-            catch (SafetyNetCollectionException) {return false;}
-        }
+        /// <param name="data">The projectile that gets fired.</param>
+        public void Fire(IList<ProjectileDataInfo> data) => projectileOverseer.Fire(entity.Transform, data);
     }
 }
