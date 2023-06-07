@@ -52,7 +52,7 @@ namespace RedRats.UI.Sliders
             ignoreValueChange = true;
             slider.value = value;
         }
-        
+
         /// <summary>
         /// Updates the value of the Slider and Input Field based on the input value & limits. 
         /// </summary>
@@ -78,8 +78,8 @@ namespace RedRats.UI.Sliders
         /// <param name="value">The value to check.</param>
         private void FixValue(string value)
         {
-            if (EqualsToSpecialSymbol(value))
-                SetSameValue(0);
+            if (!EqualsToSpecialSymbol(value)) return;
+            SetSameValue(0);
         }
         
         /// <summary>
@@ -87,12 +87,8 @@ namespace RedRats.UI.Sliders
         /// </summary>
         /// <param name="value">The value of the Input Field.</param>
         /// <returns>Is true if is equal to any special value.</returns>
-        private bool EqualsToSpecialSymbol(string value)
-        {
-            if (value == "-") return true;
-            return false;
-        }
-        
+        private bool EqualsToSpecialSymbol(string value) => value == "-";
+
         /// <summary>
         /// Sets a same value to both the Slider & the Input Field.
         /// </summary>
@@ -102,11 +98,8 @@ namespace RedRats.UI.Sliders
             inputField.text = value.ToString();
             slider.value = value;
 
-            if (ignoreValueChange)
-            {
-                ignoreValueChange = false;
-                return;
-            }
+            if (ignoreValueChange) { ignoreValueChange = false; return; }
+            
             OnValueChanged?.Invoke(value);
         }
     }
