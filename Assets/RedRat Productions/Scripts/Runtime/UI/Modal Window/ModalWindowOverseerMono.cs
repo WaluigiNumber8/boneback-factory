@@ -9,7 +9,7 @@ namespace RedRats.UI.ModalWindows
     /// <summary>
     /// Overseers the Modal Window system.
     /// </summary>
-    public class ModalWindowOverseer : MonoSingleton<ModalWindowOverseer>
+    public class ModalWindowOverseerMono : MonoSingleton<ModalWindowOverseerMono>
     {
         [SerializeField] private ModalWindow windowPrefab;
 
@@ -20,16 +20,22 @@ namespace RedRats.UI.ModalWindows
         {
             base.Awake();
             identifiedWindows = new Dictionary<string, ModalWindow>();
-            windowPool = new ObjectPool<ModalWindow>(() =>
-            {
-                ModalWindow window = Instantiate(windowPrefab, transform);
-                window.OnClose += () =>
+            windowPool = new ObjectPool<ModalWindow>(
+                () =>
                 {
-                    if (identifiedWindows.ContainsValue(window)) return;
-                    windowPool.Release(window);
-                };
-                return window;
-            }, w => w.gameObject.SetActive(true), w => w.gameObject.SetActive(false), Destroy, true, 2, 6);
+                    ModalWindow window = Instantiate(windowPrefab, transform);
+                    window.OnClose += () =>
+                    {
+                        if (identifiedWindows.ContainsValue(window)) return;
+                        windowPool.Release(window);
+                    };
+                    return window;
+                },
+                w => w.gameObject.SetActive(true),
+                w => w.gameObject.SetActive(false),
+                Destroy,
+                true, 2, 6
+            );
         }
 
         /// <summary>

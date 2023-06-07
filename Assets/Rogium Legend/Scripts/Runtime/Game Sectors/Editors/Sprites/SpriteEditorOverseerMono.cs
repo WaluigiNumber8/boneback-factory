@@ -87,6 +87,7 @@ namespace Rogium.Editors.Sprites
         {
             grid.LoadWithColors(currentSprite.SpriteData, colors);
             palette.Fill(colors);
+            palette.Select(0);
         }
         
         /// <summary>

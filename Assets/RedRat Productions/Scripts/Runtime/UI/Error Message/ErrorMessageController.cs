@@ -13,12 +13,12 @@ namespace RedRats.UI.ErrorMessageWindow
     {
         [SerializeField] private string acceptText;
 
-        private ModalWindowOverseer windowOverseer;
+        private ModalWindowOverseerMono windowOverseer;
 
         protected override void Awake()
         {
             base.Awake();
-            windowOverseer = ModalWindowOverseer.GetInstance();
+            windowOverseer = ModalWindowOverseerMono.GetInstance();
         }
 
         private void OnEnable()

@@ -66,7 +66,7 @@ namespace Rogium.Systems.GASExtension
         public static void ReturnToMainMenuOptions()
         {
             MessageWindowInfo data = new("Return to Main Menu without confirming changes?", ThemeType.Blue,"Yes","No", ReturnToMainMenuOptionsConfirm);
-            ModalWindowOverseer.GetInstance().OpenWindow(data);
+            ModalWindowOverseerMono.GetInstance().OpenWindow(data);
         }
         
         private static void ReturnToMainMenuOptionsConfirm()
@@ -301,7 +301,7 @@ namespace Rogium.Systems.GASExtension
         {
             storedIndex = packIndex;
             MessageWindowInfo data = new("Do you really want to remove this pack?", ThemeType.Blue,"Yes","No", RemovePackAccept);
-            ModalWindowOverseer.GetInstance().OpenWindow(data);
+            ModalWindowOverseerMono.GetInstance().OpenWindow(data);
         }
         private static void RemovePackAccept()
         {
@@ -315,7 +315,7 @@ namespace Rogium.Systems.GASExtension
         {
             storedIndex = campaignIndex;
             MessageWindowInfo data = new("Do you really want to remove this campaign?", ThemeType.Red,"Yes","No", RemoveCampaignAccept);
-            ModalWindowOverseer.GetInstance().OpenWindow(data);
+            ModalWindowOverseerMono.GetInstance().OpenWindow(data);
         }
         
         private static void RemoveCampaignAccept()
@@ -330,7 +330,7 @@ namespace Rogium.Systems.GASExtension
         {
             storedIndex = assetIndex;
             MessageWindowInfo data = new("Do you really want to remove this palette?", ThemeType.Purple, "Yes", "No", RemovePaletteAccept);
-            ModalWindowOverseer.GetInstance().OpenWindow(data);
+            ModalWindowOverseerMono.GetInstance().OpenWindow(data);
         }
         private static void RemovePaletteAccept()
         {
@@ -345,7 +345,7 @@ namespace Rogium.Systems.GASExtension
         {
             storedIndex = assetIndex;
             MessageWindowInfo data = new("Do you really want to remove this sprite?", ThemeType.Blue, "Yes", "No", RemoveSpriteAccept);
-            ModalWindowOverseer.GetInstance().OpenWindow(data);
+            ModalWindowOverseerMono.GetInstance().OpenWindow(data);
         }
         private static void RemoveSpriteAccept()
         {
@@ -360,7 +360,7 @@ namespace Rogium.Systems.GASExtension
         {
             storedIndex = assetIndex;
             MessageWindowInfo data = new("Do you really want to remove this weapon?", ThemeType.Green, "Yes", "No", RemoveWeaponAccept);
-            ModalWindowOverseer.GetInstance().OpenWindow(data);
+            ModalWindowOverseerMono.GetInstance().OpenWindow(data);
         }
         private static void RemoveWeaponAccept()
         {
@@ -375,7 +375,7 @@ namespace Rogium.Systems.GASExtension
         {
             storedIndex = assetIndex;
             MessageWindowInfo data = new("Do you really want to remove this projectile?", ThemeType.Teal, "Yes", "No", RemoveProjectileAccept);
-            ModalWindowOverseer.GetInstance().OpenWindow(data);
+            ModalWindowOverseerMono.GetInstance().OpenWindow(data);
         }
         private static void RemoveProjectileAccept()
         {
@@ -390,7 +390,7 @@ namespace Rogium.Systems.GASExtension
         {
             storedIndex = assetIndex;
             MessageWindowInfo data = new("Do you really want to remove this sprite?", ThemeType.Red, "Yes", "No", RemoveEnemyAccept);
-            ModalWindowOverseer.GetInstance().OpenWindow(data);
+            ModalWindowOverseerMono.GetInstance().OpenWindow(data);
         }
         private static void RemoveEnemyAccept()
         {
@@ -405,7 +405,7 @@ namespace Rogium.Systems.GASExtension
         {
             storedIndex = assetIndex;
             MessageWindowInfo data = new("Do you really want to remove this room?", ThemeType.Blue, "Yes", "No", RemoveRoomAccept);
-            ModalWindowOverseer.GetInstance().OpenWindow(data);
+            ModalWindowOverseerMono.GetInstance().OpenWindow(data);
         }
         private static void RemoveRoomAccept()
         {
@@ -419,7 +419,7 @@ namespace Rogium.Systems.GASExtension
         {
             storedIndex = assetIndex;
             MessageWindowInfo data = new("Do you really want to remove this tile?", ThemeType.Yellow, "Yes", "No", RemoveTileAccept);
-            ModalWindowOverseer.GetInstance().OpenWindow(data);
+            ModalWindowOverseerMono.GetInstance().OpenWindow(data);
         }
         private static void RemoveTileAccept()
         {
@@ -502,7 +502,7 @@ namespace Rogium.Systems.GASExtension
         {
             //TODO Make sure you cannot combine a campaign, when no assets are selected.
             MessageWindowInfo data = new("Combine selected packs into a Campaign? Changes made to the packs after this combination will not effect this campaign.", ThemeType.Red,"Combine","Cancel", SaveChangesCampaignConfirm);
-            ModalWindowOverseer.GetInstance().OpenWindow(data);
+            ModalWindowOverseerMono.GetInstance().OpenWindow(data);
         }
 
         private static void SaveChangesCampaignConfirm()
@@ -559,7 +559,7 @@ namespace Rogium.Systems.GASExtension
         public static void CancelChangesCampaign()
         {
             MessageWindowInfo data = new("Do you really not want to save changes?", ThemeType.Red,"Yes","No", CancelChangesCampaignConfirm);
-            ModalWindowOverseer.GetInstance().OpenWindow(data);
+            ModalWindowOverseerMono.GetInstance().OpenWindow(data);
         }
         
         private static void CancelChangesCampaignConfirm()
@@ -571,43 +571,43 @@ namespace Rogium.Systems.GASExtension
         public static void CancelChangesPalette()
         {
             MessageWindowInfo data = new("Do you really not want to save changes?", ThemeType.Purple,"Yes","No", OpenSelectionPalette);
-            ModalWindowOverseer.GetInstance().OpenWindow(data);
+            ModalWindowOverseerMono.GetInstance().OpenWindow(data);
         }
         
         public static void CancelChangesSprite()
         {
             MessageWindowInfo data = new("Do you really not want to save changes?", ThemeType.Pink,"Yes","No", OpenSelectionSprite);
-            ModalWindowOverseer.GetInstance().OpenWindow(data);
+            ModalWindowOverseerMono.GetInstance().OpenWindow(data);
         }
         
         public static void CancelChangesWeapon()
         {
             MessageWindowInfo data = new("Do you really not want to save changes?", ThemeType.Green,"Yes","No", OpenSelectionWeapon);
-            ModalWindowOverseer.GetInstance().OpenWindow(data);
+            ModalWindowOverseerMono.GetInstance().OpenWindow(data);
         }
         
         public static void CancelChangesProjectile()
         {
             MessageWindowInfo data = new("Do you really not want to save changes?", ThemeType.Teal,"Yes","No", OpenSelectionProjectile);
-            ModalWindowOverseer.GetInstance().OpenWindow(data);
+            ModalWindowOverseerMono.GetInstance().OpenWindow(data);
         }
         
         public static void CancelChangesEnemy()
         {
             MessageWindowInfo data = new("Do you really not want to save changes?", ThemeType.Red,"Yes","No", OpenSelectionEnemy);
-            ModalWindowOverseer.GetInstance().OpenWindow(data);
+            ModalWindowOverseerMono.GetInstance().OpenWindow(data);
         }
         
         public static void CancelChangesRoom()
         {
             MessageWindowInfo data = new("Do you really not want to save changes?", ThemeType.Blue,"Yes","No", OpenSelectionRoom);
-            ModalWindowOverseer.GetInstance().OpenWindow(data);
+            ModalWindowOverseerMono.GetInstance().OpenWindow(data);
         }
 
         public static void CancelChangesTile()
         {
             MessageWindowInfo data = new("Do you really not want to save changes?", ThemeType.Yellow,"Yes","No", OpenSelectionTile);
-            ModalWindowOverseer.GetInstance().OpenWindow(data);
+            ModalWindowOverseerMono.GetInstance().OpenWindow(data);
         }
         #endregion
 

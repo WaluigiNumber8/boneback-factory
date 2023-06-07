@@ -6,7 +6,6 @@ using Rogium.Systems.ThemeSystem;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.Pool;
 
 namespace RedRats.UI.ModalWindows
 {
