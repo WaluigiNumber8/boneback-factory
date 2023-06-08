@@ -1,5 +1,6 @@
 ﻿using System;
 using RedRats.UI.Core;
+using RedRats.UI.Sliders;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,8 +13,18 @@ namespace Rogium.UserInterface.Interactables.Properties
     {
         [SerializeField] private Slider slider;
         [SerializeField] private InteractablePropertyInputField inputField;
+
+        [SerializeField] private DecimalInfo decimals;
         [SerializeField] private UIInfo ui;
-        
+
+        private int decimalMultiplier;
+
+        private void OnEnable()
+        {
+            decimalMultiplier = 1;
+            for (int i = 0; i < decimals.allowedDecimals; i++) decimalMultiplier *= 10;
+        }
+
         public override void SetDisabled(bool isDisabled)
         {
             slider.interactable = !isDisabled;
@@ -33,13 +44,12 @@ namespace Rogium.UserInterface.Interactables.Properties
             title.text = titleText;
             title.gameObject.SetActive((titleText != ""));
             if (ui.emptySpace != null) ui.emptySpace.SetActive((titleText != ""));
-
-            slider.wholeNumbers = false;
-            slider.minValue = minValue;
-            slider.maxValue = maxValue;
-            slider.value = startingValue;
-            slider.onValueChanged.AddListener(_ => whenValueChange(slider.value));
             
+            decimals.sliderWithInput.OverrideDecimalMultiplier(decimalMultiplier);
+            slider.maxValue = Mathf.RoundToInt(maxValue * decimalMultiplier);
+            slider.value = Mathf.RoundToInt(startingValue * decimalMultiplier);
+            slider.minValue = Mathf.RoundToInt(minValue * decimalMultiplier);
+            slider.onValueChanged.AddListener(_ => whenValueChange(slider.value / decimalMultiplier));
         }
         
         /// <summary>
@@ -55,11 +65,11 @@ namespace Rogium.UserInterface.Interactables.Properties
             title.text = titleText;
             title.gameObject.SetActive((titleText != ""));
             if (ui.emptySpace != null) ui.emptySpace.SetActive((titleText != ""));
-
-            slider.wholeNumbers = true;
-            slider.minValue = minValue;
+            
+            decimals.sliderWithInput.ResetDecimalMultiplier();
             slider.maxValue = maxValue;
             slider.value = startingValue;
+            slider.minValue = minValue;
             slider.onValueChanged.AddListener(_ => whenValueChange(slider.value));
         }
 
@@ -79,6 +89,13 @@ namespace Rogium.UserInterface.Interactables.Properties
         }
         
         public InteractablePropertyInputField InputField { get => inputField; }
+
+        [Serializable]
+        public struct DecimalInfo
+        {
+            public int allowedDecimals;
+            public SliderWithInput sliderWithInput;
+        }
         
         [Serializable]
         public struct UIInfo
