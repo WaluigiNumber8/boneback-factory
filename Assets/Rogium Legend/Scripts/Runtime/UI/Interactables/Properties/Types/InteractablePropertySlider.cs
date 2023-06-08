@@ -1,5 +1,6 @@
 ﻿using System;
 using RedRats.UI.Core;
+using RedRats.UI.Sliders;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -44,6 +45,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             title.gameObject.SetActive((titleText != ""));
             if (ui.emptySpace != null) ui.emptySpace.SetActive((titleText != ""));
             
+            decimals.sliderWithInput.OverrideDecimalMultiplier(decimalMultiplier);
             slider.maxValue = Mathf.RoundToInt(maxValue * decimalMultiplier);
             slider.value = Mathf.RoundToInt(startingValue * decimalMultiplier);
             slider.minValue = Mathf.RoundToInt(minValue * decimalMultiplier);
@@ -63,7 +65,8 @@ namespace Rogium.UserInterface.Interactables.Properties
             title.text = titleText;
             title.gameObject.SetActive((titleText != ""));
             if (ui.emptySpace != null) ui.emptySpace.SetActive((titleText != ""));
-
+            
+            decimals.sliderWithInput.ResetDecimalMultiplier();
             slider.maxValue = maxValue;
             slider.value = startingValue;
             slider.minValue = minValue;
@@ -91,6 +94,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         public struct DecimalInfo
         {
             public int allowedDecimals;
+            public SliderWithInput sliderWithInput;
         }
         
         [Serializable]

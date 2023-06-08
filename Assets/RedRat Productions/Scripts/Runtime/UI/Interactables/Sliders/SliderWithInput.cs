@@ -1,4 +1,5 @@
 ﻿using System;
+using RedRats.Core;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -18,6 +19,7 @@ namespace RedRats.UI.Sliders
 
         private Slider slider;
         private bool changingValue;
+        private int decimalMultiplier = 1;
 
         private void Awake()
         {
@@ -33,12 +35,14 @@ namespace RedRats.UI.Sliders
         {
             slider.onValueChanged.AddListener(SetToInputField);
             inputField.onValueChanged.AddListener(SetToSlider);
+            inputField.onEndEdit.AddListener(ClampValue);
         }
 
         private void OnDisable()
         {
             slider.onValueChanged.RemoveListener(SetToInputField);
             inputField.onValueChanged.RemoveListener(SetToSlider);
+            inputField.onEndEdit.AddListener(ClampValue);
         }
 
         /// <summary>
@@ -50,12 +54,14 @@ namespace RedRats.UI.Sliders
             if (changingValue) return;
 
             changingValue = true;
-            slider.value = value;
+            slider.value = value * decimalMultiplier;
             inputField.text = value.ToString();
-            changingValue = false;
-
             OnValueChanged?.Invoke(value);
+            changingValue = false;
         }
+
+        public void OverrideDecimalMultiplier(int multiplier) => decimalMultiplier = multiplier;
+        public void ResetDecimalMultiplier() => decimalMultiplier = 1;
 
         /// <summary>
         /// Set a value into the attached input field only.
@@ -66,10 +72,11 @@ namespace RedRats.UI.Sliders
             if (changingValue) return;
 
             changingValue = true;
-            inputField.text = value.ToString();
-            changingValue = false;
-
+            value /= decimalMultiplier;
+            inputField.text = (value).ToString();
+            
             OnValueChanged?.Invoke(value);
+            changingValue = false;
         }
 
         /// <summary>
@@ -82,12 +89,22 @@ namespace RedRats.UI.Sliders
             if (EqualsToSpecialSymbol(stringValue)) return;
 
             changingValue = true;
-            float value = Mathf.Clamp(float.Parse(stringValue), slider.minValue, slider.maxValue);
+            float value =  float.Parse(stringValue).RoundM(decimalMultiplier);
+            value *= decimalMultiplier;
             slider.value = value;
-            inputField.text = value.ToString();
-            changingValue = false;
-
+            
             OnValueChanged?.Invoke(value);
+            changingValue = false;
+        }
+
+        /// <summary>
+        /// Clamps a value between the slider's min and max values.
+        /// </summary>
+        /// <param name="value">The value to clamp.</param>
+        private void ClampValue(string value)
+        {
+            if (EqualsToSpecialSymbol(value)) value = 0.ToString();
+            SetValue(Mathf.Clamp(float.Parse(value), slider.minValue / decimalMultiplier, slider.maxValue / decimalMultiplier));
         }
 
         /// <summary>
@@ -95,6 +112,11 @@ namespace RedRats.UI.Sliders
         /// </summary>
         /// <param name="value">The value of the Input Field.</param>
         /// <returns>Is true if is equal to any special value.</returns>
-        private bool EqualsToSpecialSymbol(string value) => value == "-";
+        private bool EqualsToSpecialSymbol(string value)
+        {
+            if (value == "-") return true;
+            if (string.IsNullOrEmpty(value)) return true;
+            return false;
+        }
     }
 }
