@@ -3,6 +3,7 @@ using RedRats.UI.Core;
 using RedRats.UI.Sliders;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace Rogium.UserInterface.Interactables.Properties
 {
@@ -46,6 +47,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             if (ui.emptySpace != null) ui.emptySpace.SetActive((titleText != ""));
             
             decimals.sliderWithInput.OverrideDecimalMultiplier(decimalMultiplier);
+            inputField.UpdateContentType(TMP_InputField.ContentType.DecimalNumber);
             slider.maxValue = Mathf.RoundToInt(maxValue * decimalMultiplier);
             slider.value = Mathf.RoundToInt(startingValue * decimalMultiplier);
             slider.minValue = Mathf.RoundToInt(minValue * decimalMultiplier);
@@ -67,6 +69,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             if (ui.emptySpace != null) ui.emptySpace.SetActive((titleText != ""));
             
             decimals.sliderWithInput.ResetDecimalMultiplier();
+            inputField.UpdateContentType(TMP_InputField.ContentType.IntegerNumber);
             slider.maxValue = maxValue;
             slider.value = startingValue;
             slider.minValue = minValue;

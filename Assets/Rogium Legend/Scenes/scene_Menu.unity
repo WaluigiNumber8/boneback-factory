@@ -18568,7 +18568,8 @@ PrefabInstance:
         grid item previewer now fits properly in the grid''s cells and doesn''t jump
         inward when mouse is moved outside the grid.</indent>
 
-        * <indent=2ep>text</indent>
+        * <indent=2ep>The
+        slider Input Field no longer displays way too many decimals.</indent>
 
         *
         <indent=2ep>text</indent>
