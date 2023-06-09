@@ -47,6 +47,12 @@ namespace Rogium.UserInterface.Interactables.Properties
             UIExtensions.ChangeFont(title, titleFont);
             UIExtensions.ChangeFont(ui.inputtedText, inputFont);
         }
+
+        /// <summary>
+        /// Updates the content type of the held InputField.
+        /// </summary>
+        /// <param name="contentType">The new content type to use.</param>
+        public void UpdateContentType(TMP_InputField.ContentType contentType) => inputField.contentType = contentType;
         
         public string Property { get => inputField.text; }
 
