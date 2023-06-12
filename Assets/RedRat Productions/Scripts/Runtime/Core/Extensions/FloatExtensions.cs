@@ -36,5 +36,16 @@ namespace RedRats.Core
             float mult = Mathf.Pow(10.0f, decimals);
             return Mathf.Round(value * mult) / mult;
         }
+        
+        /// <summary>
+        /// Round a float value to a specific amount of decimal places.
+        /// </summary>
+        /// <param name="value">The value to round.</param>
+        /// <param name="decimalMultiplier">The decimal multiplier to use.</param>
+        /// <returns></returns>
+        public static float RoundM(this float value, int decimalMultiplier)
+        {
+            return Mathf.Round(value * decimalMultiplier) / decimalMultiplier;
+        }
     }
 }

@@ -40,6 +40,7 @@ namespace Rogium.Systems.ItemPalette
         {
             if (slots == null || slots.Count <= 0) return;
             SafetyNet.EnsureIndexWithingCollectionRange(index, slots, "List of Slots");
+            if (slots[index].IsOn) slots[index].SetToggle(false);
             slots[index].SetToggle(true);
         }
         

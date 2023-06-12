@@ -79,7 +79,7 @@ namespace RedRats.UI.MenuFilling
         /// <param name="endIndex">The position to end with.</param>
         private void DestroyHolders(int startIndex, int endIndex)
         {
-            for (int i = startIndex; i < endIndex; i++)
+            for (int i = endIndex - 1; i >= startIndex; i--)
             {
                 Object.Destroy(list[i].gameObject);
                 list.RemoveAt(i);

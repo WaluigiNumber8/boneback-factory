@@ -42,7 +42,9 @@ namespace Rogium.UserInterface.Editors.AssetSelection
             if (!value) return;
             OnSelectedAny?.Invoke(index);
         }
-        
+
+        public override string ToString() => $"Contains: {asset.Title}";
+
         public string ID { get => asset.ID; }
         
         public AssetType Type { get => type; }

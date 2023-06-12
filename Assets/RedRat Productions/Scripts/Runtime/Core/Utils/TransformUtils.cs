@@ -22,6 +22,5 @@ namespace RedRats.Core
             angle += offsetAngle;
             transform.rotation = Quaternion.Euler(0, 0, angle);
         }
-        
     }
 }

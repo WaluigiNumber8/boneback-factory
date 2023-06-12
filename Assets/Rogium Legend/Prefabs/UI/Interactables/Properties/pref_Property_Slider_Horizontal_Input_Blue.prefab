@@ -35,7 +35,7 @@ RectTransform:
   - {fileID: 2276904330879872606}
   - {fileID: 2734938462604968530}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -82,7 +82,7 @@ MonoBehaviour:
   m_ChildAlignment: 3
   m_Spacing: 32
   m_ChildForceExpandWidth: 0
-  m_ChildForceExpandHeight: 1
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
@@ -103,6 +103,9 @@ MonoBehaviour:
   title: {fileID: 4626861850363456292}
   slider: {fileID: 2581116495457060495}
   inputField: {fileID: 9017797171851898855}
+  decimals:
+    allowedDecimals: 2
+    sliderWithInput: {fileID: 4981338279605200912}
   ui:
     fillImage: {fileID: 2581116493516406032}
     backgroundImage: {fileID: 2581116493851391231}
@@ -326,8 +329,25 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 1358262212855251225}
     m_Modifications:
+    - target: {fileID: 2531339080314716122, guid: b611d89d05bab7845860dae45376cf45, type: 3}
+      propertyPath: m_ContentType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2531339080314716122, guid: b611d89d05bab7845860dae45376cf45, type: 3}
+      propertyPath: m_KeyboardType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2531339080314716122, guid: b611d89d05bab7845860dae45376cf45, type: 3}
+      propertyPath: m_CharacterLimit
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2531339080314716122, guid: b611d89d05bab7845860dae45376cf45, type: 3}
+      propertyPath: m_CharacterValidation
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2635566739676275451, guid: b611d89d05bab7845860dae45376cf45, type: 3}
       propertyPath: m_Name
       value: Input Slider
@@ -411,6 +431,14 @@ PrefabInstance:
     - target: {fileID: 8855780641189191006, guid: b611d89d05bab7845860dae45376cf45, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8855780641189191007, guid: b611d89d05bab7845860dae45376cf45, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8855780641189191007, guid: b611d89d05bab7845860dae45376cf45, type: 3}
+      propertyPath: m_WholeNumbers
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8855780641253369567, guid: b611d89d05bab7845860dae45376cf45, type: 3}
       propertyPath: m_AnchorMax.x
@@ -517,6 +545,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2635566739676275451, guid: b611d89d05bab7845860dae45376cf45, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1950791999958915997}
+    - targetCorrespondingSourceObject: {fileID: 7046135326238826896, guid: b611d89d05bab7845860dae45376cf45, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9017797171851898855}
   m_SourcePrefab: {fileID: 100100000, guid: b611d89d05bab7845860dae45376cf45, type: 3}
 --- !u!114 &2581116493516406032 stripped
 MonoBehaviour:
@@ -590,6 +627,17 @@ MonoBehaviour:
     inputFieldImage: {fileID: 6580602302995351523}
     inputtedText: {fileID: 6327738901701273537}
     emptySpace: {fileID: 0}
+--- !u!114 &4981338279605200912 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2024014615224923072, guid: b611d89d05bab7845860dae45376cf45, type: 3}
+  m_PrefabInstance: {fileID: 6428882232940846032}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 633df83c62b84cf2a12a1b2fd3840a92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6327738901701273537 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1073931855332473873, guid: b611d89d05bab7845860dae45376cf45, type: 3}

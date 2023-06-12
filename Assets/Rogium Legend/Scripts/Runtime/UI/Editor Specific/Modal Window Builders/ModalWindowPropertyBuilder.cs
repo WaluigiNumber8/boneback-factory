@@ -23,7 +23,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
 
         protected readonly Transform windowColumn1;
         protected readonly Transform windowColumn2;
-        private readonly ModalWindowOverseer windowOverseer;
+        private readonly ModalWindowOverseerMono windowOverseer;
 
         protected ModalWindowPropertyBuilder()
         {
@@ -32,7 +32,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             editor = PackEditorOverseer.Instance;
             selectionMenu = GASContainer.GetInstance().AssetSelection;
             
-            windowOverseer = ModalWindowOverseer.GetInstance();
+            windowOverseer = ModalWindowOverseerMono.GetInstance();
             windowColumn1 = windowOverseer.GetColumn1(ModalWindowKey);
             windowColumn2 = windowOverseer.GetColumn2(ModalWindowKey);
         }

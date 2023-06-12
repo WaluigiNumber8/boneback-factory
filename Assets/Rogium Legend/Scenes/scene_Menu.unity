@@ -4724,7 +4724,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4638710111537411323, guid: 2602ffe91c5449a4f8cf4d887c55d908, type: 3}
       propertyPath: m_Name
-      value: Grid Previewer
+      value: Grid item Previewer
       objectReference: {fileID: 0}
     - target: {fileID: 5386048962397726314, guid: 2602ffe91c5449a4f8cf4d887c55d908, type: 3}
       propertyPath: m_Material
@@ -15519,13 +15519,13 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 2836801277648981171}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: -7
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -16340,10 +16340,34 @@ MonoBehaviour:
     BackgroundTexture: {fileID: 0}
     IsBackgroundRecursive: 0
     IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 913386665}
+    Ordinal: 22
+    Priority: 0
+    IconType: 22000
+    IconTexture: {fileID: 0}
+    IsIconRecursive: 1
+    BackgroundType: 21000
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
   - Type: 1
     Name: Modal Window(Clone)
     GameObject: {fileID: 0}
-    Ordinal: 22
+    Ordinal: 23
+    Priority: 10
+    IconType: 212000
+    IconTexture: {fileID: 0}
+    IsIconRecursive: 1
+    BackgroundType: 21000
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 473035411}
+    Ordinal: 24
     Priority: 0
     IconType: 212000
     IconTexture: {fileID: 0}
@@ -18540,7 +18564,15 @@ PrefabInstance:
         * <indent=2ep>HTML
         field in the Palette Editor updates properly.</indent>
 
-        * <indent=2ep>text</indent>
+        * <indent=2ep>The
+        grid item previewer now fits properly in the grid''s cells and doesn''t jump
+        inward when mouse is moved outside the grid.</indent>
+
+        * <indent=2ep>The
+        slider Input Field no longer displays way too many decimals.</indent>
+
+        *
+        <indent=2ep>text</indent>
 
         </margin>'
       objectReference: {fileID: 0}
@@ -26455,6 +26487,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1594718112}
     m_Modifications:
+    - target: {fileID: 178063321526028164, guid: c899ef6895fdaed43aa1d8fed8721cd6, type: 3}
+      propertyPath: m_Name
+      value: Grid Item Previewer
+      objectReference: {fileID: 0}
     - target: {fileID: 178063321526028164, guid: c899ef6895fdaed43aa1d8fed8721cd6, type: 3}
       propertyPath: m_IsActive
       value: 0

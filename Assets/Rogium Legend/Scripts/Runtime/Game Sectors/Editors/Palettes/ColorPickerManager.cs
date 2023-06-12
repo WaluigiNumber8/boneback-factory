@@ -86,9 +86,9 @@ namespace Rogium.Editors.Palettes
         /// </summary>
         private void RefreshSliders()
         {
-            sliders.r.ChangeValue(currentColor.r * ConversionValue);
-            sliders.g.ChangeValue(currentColor.g * ConversionValue);
-            sliders.b.ChangeValue(currentColor.b * ConversionValue);
+            sliders.r.SetValue(currentColor.r * ConversionValue);
+            sliders.g.SetValue(currentColor.g * ConversionValue);
+            sliders.b.SetValue(currentColor.b * ConversionValue);
             RefreshColorGuide();
         }
 
