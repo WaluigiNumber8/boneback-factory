@@ -68,13 +68,13 @@ MonoBehaviour:
   fonts:
     general:
       font: {fileID: 11400000, guid: 610b74f9f977953488aee31905a7d7c6, type: 2}
-      color: {r: 1, g: 1, b: 0, a: 1}
       size: 36
+      color: {r: 1, g: 0.7921569, b: 0.19215687, a: 1}
     inputted:
       font: {fileID: 11400000, guid: 7dcbf3f25fb09e840ab6875dff99cba5, type: 2}
-      color: {r: 1, g: 0.7921569, b: 0.19215687, a: 1}
       size: 46
+      color: {r: 0.91764706, g: 0.61960787, b: 0.03529412, a: 1}
     header:
       font: {fileID: 11400000, guid: cf4879b37d976dc428255f939d628fa9, type: 2}
-      color: {r: 1, g: 1, b: 0, a: 1}
       size: 65
+      color: {r: 1, g: 1, b: 0, a: 1}
