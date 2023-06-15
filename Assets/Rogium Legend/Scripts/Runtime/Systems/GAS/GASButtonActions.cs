@@ -344,7 +344,7 @@ namespace Rogium.Systems.GASExtension
         public static void DeleteSprite(int assetIndex)
         {
             storedIndex = assetIndex;
-            MessageWindowInfo data = new("Do you really want to remove this sprite?", ThemeType.Blue, "Yes", "No", RemoveSpriteAccept);
+            MessageWindowInfo data = new("Do you really want to remove this sprite?", ThemeType.Pink, "Yes", "No", RemoveSpriteAccept);
             ModalWindowOverseerMono.GetInstance().OpenWindow(data);
         }
         private static void RemoveSpriteAccept()
