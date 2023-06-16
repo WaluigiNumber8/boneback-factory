@@ -19,7 +19,7 @@ MonoBehaviour:
     toggleBorder: {fileID: 8590992100134328239, guid: 2a72d9c48666e2b418883adfde98ec3e, type: 3}
     toggleCheckmark: {fileID: 21300000, guid: 3cd73286c1f01624db45bb8e89411a87, type: 3}
     sliderBackground: {fileID: 315398547, guid: 8441d7dbcf0234141b3d9f7570bc8f4c, type: 3}
-    sliderHandle: {fileID: -2041491271, guid: 8441d7dbcf0234141b3d9f7570bc8f4c, type: 3}
+    sliderHandle: {fileID: 462267757, guid: 8441d7dbcf0234141b3d9f7570bc8f4c, type: 3}
     editorBackground: {fileID: 1368429471079001065, guid: e50d80b8e1c34224b9ee862e699a1f30, type: 3}
     modalWindowBackground: {fileID: 21300000, guid: 9096323d655982f4686d4fec37cd0018, type: 3}
   interactables:
