@@ -69,7 +69,7 @@ namespace Rogium.Systems.ThemeSystem
         {
             UpdateUsedTheme(theme);
             dropdown.UpdateTheme(t.Interactables.inputField,
-                                 t.Interactables.inputField,
+                                 t.Interactables.dropdownItem,
                                  t.Elements.dropdownHeader,
                                  t.Elements.dropdownBackground,
                                  t.Elements.dropdownArrow,

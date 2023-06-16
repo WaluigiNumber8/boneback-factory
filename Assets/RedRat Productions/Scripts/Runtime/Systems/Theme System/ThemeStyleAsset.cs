@@ -41,6 +41,8 @@ namespace Rogium.Systems.ThemeSystem
             [BoxGroup]
             public InteractableInfo inputField;
             [BoxGroup]
+            public InteractableInfo dropdownItem;
+            [BoxGroup]
             public InteractableInfo toggle;
             [BoxGroup]
             public InteractableInfo assetField;
