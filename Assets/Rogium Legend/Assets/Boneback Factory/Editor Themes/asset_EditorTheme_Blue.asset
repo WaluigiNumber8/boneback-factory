@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elements:
     dropdownHeader: {fileID: 261891270192738181, guid: adb2e3b0741779d45a850d588e420772, type: 3}
-    dropdownBackground: {fileID: 261891270192738181, guid: adb2e3b0741779d45a850d588e420772, type: 3}
+    dropdownBackground: {fileID: 961621925, guid: d80272f128d03f74f947d152abf3e875, type: 3}
     dropdownArrow: {fileID: 2335134593134040340, guid: c0e0f11f630bab34c849d3f3899b8662, type: 3}
     toggleBorder: {fileID: 8590992100134328239, guid: 2a72d9c48666e2b418883adfde98ec3e, type: 3}
     toggleCheckmark: {fileID: 21300000, guid: 3cd73286c1f01624db45bb8e89411a87, type: 3}
@@ -47,6 +47,12 @@ MonoBehaviour:
       pressed: {fileID: 3939223057531117641, guid: adb2e3b0741779d45a850d588e420772, type: 3}
       selected: {fileID: 8316493006528375462, guid: adb2e3b0741779d45a850d588e420772, type: 3}
       disabled: {fileID: -356838629410685956, guid: adb2e3b0741779d45a850d588e420772, type: 3}
+    dropdownItem:
+      normal: {fileID: 961621925, guid: d80272f128d03f74f947d152abf3e875, type: 3}
+      highlighted: {fileID: 1844942686, guid: d80272f128d03f74f947d152abf3e875, type: 3}
+      pressed: {fileID: -1039066188, guid: d80272f128d03f74f947d152abf3e875, type: 3}
+      selected: {fileID: -21404680, guid: d80272f128d03f74f947d152abf3e875, type: 3}
+      disabled: {fileID: 1408313868, guid: d80272f128d03f74f947d152abf3e875, type: 3}
     toggle:
       normal: {fileID: 8590992100134328239, guid: 2a72d9c48666e2b418883adfde98ec3e, type: 3}
       highlighted: {fileID: 6652248115344873176, guid: 2a72d9c48666e2b418883adfde98ec3e, type: 3}
