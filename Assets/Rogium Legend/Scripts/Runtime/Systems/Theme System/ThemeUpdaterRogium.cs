@@ -38,6 +38,16 @@ namespace Rogium.Systems.ThemeSystem
         }
         
         /// <summary>
+        /// Updates a scrollbar with correct data from the current theme.
+        /// </summary>
+        /// <param name="scrollbar">The scrollbar to update.</param>
+        public static void UpdateScrollbar(InteractableScrollbar scrollbar, ThemeType theme = ThemeType.NoTheme)
+        {
+            UpdateUsedTheme(theme);
+            scrollbar.UpdateTheme(t.Interactables.scrollbarHandle);
+        }
+        
+        /// <summary>
         /// Updates an input field with correct data from the current theme.
         /// </summary>
         /// <param name="inputField">The input field to update.</param>

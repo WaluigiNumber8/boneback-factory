@@ -88,7 +88,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
         /// <param name="buttonSet">The buttons of the window.</param>
         /// <param name="headerFont">Font of the header text.</param>
         /// <param name="emptyTextFont">Empty window text.</param>
-        public void UpdateTheme(Sprite backgroundSprite, Sprite headerSprite, InteractableInfo buttonSet, FontInfo headerFont, FontInfo emptyTextFont)
+        public void UpdateTheme(Sprite backgroundSprite, Sprite headerSprite, InteractableSpriteInfo buttonSet, FontInfo headerFont, FontInfo emptyTextFont)
         {
             UIExtensions.ChangeInteractableSprites(ui.footer.acceptButton, ui.footer.acceptButtonImage, buttonSet);
             UIExtensions.ChangeInteractableSprites(ui.footer.cancelButton, ui.footer.cancelButtonImage, buttonSet);

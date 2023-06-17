@@ -7,7 +7,7 @@ namespace RedRats.UI.Core
     /// Contains UI data for an interactable.
     /// </summary>
     [System.Serializable]
-    public struct InteractableInfo
+    public struct InteractableSpriteInfo
     {
         [HorizontalGroup("ButtonSprites"), PreviewField(60), HideLabel]
         public Sprite normal;

@@ -31,7 +31,7 @@ namespace Rogium.UserInterface.Interactables
         /// Updates the toggle buttons theme.
         /// </summary>
         /// <param name="toggleButtonSet">The main toggle.</param>
-        public void UpdateTheme(InteractableInfo toggleButtonSet)
+        public void UpdateTheme(InteractableSpriteInfo toggleButtonSet)
         {
             UIExtensions.ChangeInteractableSprites(button, ui.backgroundImage, toggleButtonSet);
             ui.toggleImage.sprite = toggleButtonSet.selected;
