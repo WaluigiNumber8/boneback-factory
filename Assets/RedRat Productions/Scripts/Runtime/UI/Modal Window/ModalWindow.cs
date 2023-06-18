@@ -111,6 +111,9 @@ namespace RedRats.UI.ModalWindows
             UIExtensions.ChangeInteractableSprites(ui.footer.specialButton, ui.footer.specialButtonImage, buttonSet);
             UIExtensions.ChangeFont(ui.header.text, headerFont);
             UIExtensions.ChangeFont(ui.layout.message.text, textFont);
+            UIExtensions.ChangeFont(ui.footer.acceptButtonText, headerFont);
+            UIExtensions.ChangeFont(ui.footer.denyButtonText, headerFont);
+            UIExtensions.ChangeFont(ui.footer.specialButtonText, headerFont);
             ui.windowBoxImage.sprite = backgroundSprite;
             ui.header.headerImage.sprite = headerSprite;
         }

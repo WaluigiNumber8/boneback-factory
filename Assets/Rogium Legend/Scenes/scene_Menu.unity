@@ -6499,10 +6499,10 @@ MonoBehaviour:
       scrollbarList: {fileID: 1775916129}
     footer:
       area: {fileID: 2560046142060967454}
-      acceptButtonImage: {fileID: 4801197184214703913}
       acceptButton: {fileID: 6016028724644009571}
-      cancelButtonImage: {fileID: 2560046143282476695}
       cancelButton: {fileID: 2560046143282476694}
+      acceptButtonText: {fileID: 3707671727620469244}
+      cancelButtonText: {fileID: 2560046142735740555}
 --- !u!1001 &506606755
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -91,11 +91,13 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
         /// <param name="emptyTextFont">Empty window text.</param>
         public void UpdateTheme(Sprite backgroundSprite, Sprite headerSprite, InteractableSpriteInfo buttonSet, FontInfo headerFont, FontInfo emptyTextFont)
         {
-            UIExtensions.ChangeInteractableSprites(ui.footer.acceptButton, ui.footer.acceptButtonImage, buttonSet);
-            UIExtensions.ChangeInteractableSprites(ui.footer.cancelButton, ui.footer.cancelButtonImage, buttonSet);
+            UIExtensions.ChangeInteractableSprites(ui.footer.acceptButton, ui.footer.acceptButton.image, buttonSet);
+            UIExtensions.ChangeInteractableSprites(ui.footer.cancelButton, ui.footer.cancelButton.image, buttonSet);
             UIExtensions.ChangeFont(ui.header.text, headerFont);
             UIExtensions.ChangeFont(ui.layout.emptyMessageCard, emptyTextFont);
             UIExtensions.ChangeFont(ui.layout.emptyMessageList, emptyTextFont);
+            UIExtensions.ChangeFont(ui.footer.acceptButtonText, headerFont);
+            UIExtensions.ChangeFont(ui.footer.cancelButtonText, headerFont);
             ThemeUpdaterRogium.UpdateScrollbar(ui.layout.scrollbarList);
             ThemeUpdaterRogium.UpdateScrollbar(ui.layout.scrollbarCard);
             ui.header.headerImage.sprite = headerSprite;
@@ -169,10 +171,10 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
         public struct FooterInfo
         {
             public Transform area;
-            public Image acceptButtonImage;
             public Button acceptButton;
-            public Image cancelButtonImage;
             public Button cancelButton;
+            public TextMeshProUGUI acceptButtonText;
+            public TextMeshProUGUI cancelButtonText;
 
         }
     }
