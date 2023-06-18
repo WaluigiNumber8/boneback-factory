@@ -8,12 +8,10 @@ namespace Rogium.UserInterface.Interactables
     /// <summary>
     /// Allows updating the theme of scrollbars.
     /// </summary>
-    [RequireComponent(typeof(Scrollbar))]
     public class InteractableScrollbar : MonoBehaviour
     {
+        [SerializeField] private Scrollbar scrollbar;
         [SerializeField] private UIInfo ui;
-
-        private Scrollbar scrollbar;
 
         private void Awake() => scrollbar = GetComponent<Scrollbar>();
 

@@ -4,6 +4,7 @@ using RedRats.UI.Core;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Systems.ThemeSystem;
+using Rogium.UserInterface.Interactables;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -95,6 +96,8 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
             UIExtensions.ChangeFont(ui.header.text, headerFont);
             UIExtensions.ChangeFont(ui.layout.emptyMessageCard, emptyTextFont);
             UIExtensions.ChangeFont(ui.layout.emptyMessageList, emptyTextFont);
+            ThemeUpdaterRogium.UpdateScrollbar(ui.layout.scrollbarList);
+            ThemeUpdaterRogium.UpdateScrollbar(ui.layout.scrollbarCard);
             ui.header.headerImage.sprite = headerSprite;
             ui.windowBoxImage.sprite = backgroundSprite;
         }
@@ -158,6 +161,8 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
             public Transform area;
             public TextMeshProUGUI emptyMessageCard;
             public TextMeshProUGUI emptyMessageList;
+            public InteractableScrollbar scrollbarCard;
+            public InteractableScrollbar scrollbarList;
         }
 
         [Serializable]

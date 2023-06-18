@@ -207,6 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373684885c054d91911457af3485b218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scrollbar: {fileID: 3877380354456385579}
   ui:
     handle: {fileID: 3877380355893009185}
 --- !u!1 &3877380355893009215
