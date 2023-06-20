@@ -17631,10 +17631,13 @@ PrefabInstance:
         is now properly tabbed.</indent>
 
         * <indent=2ep>Asset title character
-        range expanded from 4-25 to 2-64.</indent>
+        range changed from 4-25 to 2-24.</indent>
 
         * <indent=2ep>Various
         graphical improvements to almost all UI elements.</indent>
+
+        * <indent=2ep>Now
+        runs in DirectX 12 by default.</indent>
 
         </margin>
 
