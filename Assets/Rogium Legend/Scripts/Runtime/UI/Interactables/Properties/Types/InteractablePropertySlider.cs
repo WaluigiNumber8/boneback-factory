@@ -83,7 +83,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="backgroundSprite">Background of the slider.</param>
         /// <param name="handleSprite">Slider's handle.</param>
         /// <param name="titleFont">Font of the property title.</param>
-        public void UpdateTheme(InteractableInfo sliderSet, Sprite backgroundSprite, Sprite handleSprite, FontInfo titleFont)
+        public void UpdateTheme(InteractableSpriteInfo sliderSet, Sprite backgroundSprite, Sprite handleSprite, FontInfo titleFont)
         {
             UIExtensions.ChangeInteractableSprites(slider, ui.fillImage, sliderSet);
             UIExtensions.ChangeFont(title, titleFont);

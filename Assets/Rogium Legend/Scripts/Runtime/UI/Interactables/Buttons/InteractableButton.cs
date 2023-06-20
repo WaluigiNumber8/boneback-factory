@@ -18,10 +18,10 @@ namespace Rogium.UserInterface.Interactables
         private Button button;
 
         private void Awake() => button = GetComponent<Button>();
-        private void OnEnable() => button.onClick.AddListener(OnButtonClicked);
-        private void OnDisable() => button.onClick.RemoveListener(OnButtonClicked);
+        private void OnEnable() => button.onClick.AddListener(WhenButtonClicked);
+        private void OnDisable() => button.onClick.RemoveListener(WhenButtonClicked);
 
-        public void OnButtonClicked()
+        public void WhenButtonClicked()
         {
             InteractableInput.Handle(action, index);
         }
@@ -31,7 +31,7 @@ namespace Rogium.UserInterface.Interactables
         /// </summary>
         /// <param name="buttonSet">The main button.</param>
         /// <param name="buttonFont">The text of the button (if it exists).</param>
-        public void UpdateTheme(InteractableInfo buttonSet, FontInfo buttonFont)
+        public void UpdateTheme(InteractableSpriteInfo buttonSet, FontInfo buttonFont)
         {
             UIExtensions.ChangeInteractableSprites(button, ui.buttonImage, buttonSet);
             if (ui.buttonText == null) return;

@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 3877380354456385581}
   - component: {fileID: 6904868392368096890}
   - component: {fileID: 3877380354456385579}
+  - component: {fileID: 1056626421539438251}
   m_Layer: 5
   m_Name: pref_Scrollbar_Ver
   m_TagString: Untagged
@@ -110,7 +111,7 @@ RectTransform:
   m_Children:
   - {fileID: 3877380353989297297}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -194,6 +195,21 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1056626421539438251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3877380354456385577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373684885c054d91911457af3485b218, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollbar: {fileID: 3877380354456385579}
+  ui:
+    handle: {fileID: 3877380355893009185}
 --- !u!1 &3877380355893009215
 GameObject:
   m_ObjectHideFlags: 0

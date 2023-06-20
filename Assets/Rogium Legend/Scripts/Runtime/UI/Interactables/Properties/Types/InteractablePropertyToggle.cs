@@ -38,7 +38,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="toggleSpriteSet">The toggle graphics.</param>
         /// <param name="checkmark">The checkmark for activated toggle.</param>
         /// <param name="titleFont">The font of the title text.</param>
-        public void UpdateTheme(InteractableInfo toggleSpriteSet, Sprite checkmark, FontInfo titleFont)
+        public void UpdateTheme(InteractableSpriteInfo toggleSpriteSet, Sprite checkmark, FontInfo titleFont)
         {
             UIExtensions.ChangeInteractableSprites(toggle, ui.backgroundImage, toggleSpriteSet);
             UIExtensions.ChangeFont(title, titleFont);

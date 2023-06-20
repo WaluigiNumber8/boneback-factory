@@ -4,6 +4,7 @@ using RedRats.UI.Core;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Systems.ThemeSystem;
+using Rogium.UserInterface.Interactables;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -88,13 +89,17 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
         /// <param name="buttonSet">The buttons of the window.</param>
         /// <param name="headerFont">Font of the header text.</param>
         /// <param name="emptyTextFont">Empty window text.</param>
-        public void UpdateTheme(Sprite backgroundSprite, Sprite headerSprite, InteractableInfo buttonSet, FontInfo headerFont, FontInfo emptyTextFont)
+        public void UpdateTheme(Sprite backgroundSprite, Sprite headerSprite, InteractableSpriteInfo buttonSet, FontInfo headerFont, FontInfo emptyTextFont)
         {
-            UIExtensions.ChangeInteractableSprites(ui.footer.acceptButton, ui.footer.acceptButtonImage, buttonSet);
-            UIExtensions.ChangeInteractableSprites(ui.footer.cancelButton, ui.footer.cancelButtonImage, buttonSet);
+            UIExtensions.ChangeInteractableSprites(ui.footer.acceptButton, ui.footer.acceptButton.image, buttonSet);
+            UIExtensions.ChangeInteractableSprites(ui.footer.cancelButton, ui.footer.cancelButton.image, buttonSet);
             UIExtensions.ChangeFont(ui.header.text, headerFont);
             UIExtensions.ChangeFont(ui.layout.emptyMessageCard, emptyTextFont);
             UIExtensions.ChangeFont(ui.layout.emptyMessageList, emptyTextFont);
+            UIExtensions.ChangeFont(ui.footer.acceptButtonText, headerFont);
+            UIExtensions.ChangeFont(ui.footer.cancelButtonText, headerFont);
+            ThemeUpdaterRogium.UpdateScrollbar(ui.layout.scrollbarList);
+            ThemeUpdaterRogium.UpdateScrollbar(ui.layout.scrollbarCard);
             ui.header.headerImage.sprite = headerSprite;
             ui.windowBoxImage.sprite = backgroundSprite;
         }
@@ -158,16 +163,18 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
             public Transform area;
             public TextMeshProUGUI emptyMessageCard;
             public TextMeshProUGUI emptyMessageList;
+            public InteractableScrollbar scrollbarCard;
+            public InteractableScrollbar scrollbarList;
         }
 
         [Serializable]
         public struct FooterInfo
         {
             public Transform area;
-            public Image acceptButtonImage;
             public Button acceptButton;
-            public Image cancelButtonImage;
             public Button cancelButton;
+            public TextMeshProUGUI acceptButtonText;
+            public TextMeshProUGUI cancelButtonText;
 
         }
     }

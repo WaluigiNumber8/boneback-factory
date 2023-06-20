@@ -41,7 +41,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="inputFieldSpriteSet">Sprites to use for the input field.</param>
         /// <param name="titleFont">Font for property title.</param>
         /// <param name="inputFont">Font for input text.</param>
-        public void UpdateTheme(InteractableInfo inputFieldSpriteSet, FontInfo titleFont, FontInfo inputFont)
+        public void UpdateTheme(InteractableSpriteInfo inputFieldSpriteSet, FontInfo titleFont, FontInfo inputFont)
         {
             UIExtensions.ChangeInteractableSprites(inputField, ui.inputFieldImage, inputFieldSpriteSet);
             UIExtensions.ChangeFont(title, titleFont);

@@ -71,6 +71,12 @@ MonoBehaviour:
       pressed: {fileID: -1126494227, guid: 8441d7dbcf0234141b3d9f7570bc8f4c, type: 3}
       selected: {fileID: -2041491271, guid: 8441d7dbcf0234141b3d9f7570bc8f4c, type: 3}
       disabled: {fileID: 315398547, guid: 8441d7dbcf0234141b3d9f7570bc8f4c, type: 3}
+    scrollbarHandle:
+      normal: {fileID: -4271988431060051694, guid: 1a9b11cc4e1c3bc479f31faa68266624, type: 3}
+      highlighted: {fileID: 414729955651042257, guid: 1a9b11cc4e1c3bc479f31faa68266624, type: 3}
+      pressed: {fileID: 2730928265610731746, guid: 1a9b11cc4e1c3bc479f31faa68266624, type: 3}
+      selected: {fileID: 2050768783, guid: 1a9b11cc4e1c3bc479f31faa68266624, type: 3}
+      disabled: {fileID: -1324826487, guid: 1a9b11cc4e1c3bc479f31faa68266624, type: 3}
   fonts:
     general:
       font: {fileID: 11400000, guid: 610b74f9f977953488aee31905a7d7c6, type: 2}
