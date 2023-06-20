@@ -9407,7 +9407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 867da7e820b04b53b91e4607be0627a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windowPrefab: {fileID: 8235633001557058205, guid: 4ed7771a46fa79d47b6ad8147723fe9b, type: 3}
+  windowPrefab: {fileID: 1053597741724360686, guid: 4ed7771a46fa79d47b6ad8147723fe9b, type: 3}
 --- !u!1 &916165524 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3394840216358424932, guid: c04113f03b7e48e47a48229ec71f67ca, type: 3}
