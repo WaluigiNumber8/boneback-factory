@@ -37,7 +37,7 @@ RectTransform:
   m_Children:
   - {fileID: 9204884854702923427}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 6, y: -4}
+  m_EffectDistance: {x: 6, y: -5.5}
   m_UseGraphicAlpha: 1
 --- !u!1 &9000432377099674298
 GameObject:

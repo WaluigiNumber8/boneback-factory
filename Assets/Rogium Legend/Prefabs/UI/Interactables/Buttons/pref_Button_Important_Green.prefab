@@ -150,6 +150,7 @@ GameObject:
   - component: {fileID: 8378214599030717081}
   - component: {fileID: 2888812313508978133}
   - component: {fileID: 8378214599030717077}
+  - component: {fileID: 1094751285210834099}
   m_Layer: 5
   m_Name: pref_Button_Important_Green
   m_TagString: Untagged
@@ -309,3 +310,18 @@ MonoBehaviour:
   ui:
     buttonImage: {fileID: 0}
     buttonText: {fileID: 0}
+--- !u!114 &1094751285210834099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8378214599030717083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 6, y: -5.5}
+  m_UseGraphicAlpha: 1

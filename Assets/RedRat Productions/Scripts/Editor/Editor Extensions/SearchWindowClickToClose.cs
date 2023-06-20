@@ -1,9 +1,9 @@
 using UnityEditor;
 using UnityEditor.Search;
 
-namespace UnityEditorExtensions
+namespace RedRats.Editor.UnityEditorExtensions
 {
-    public class SearchWindowClickToClose
+    public static class SearchWindowClickToClose
     {
         [MenuItem("Window/Search/New Window (close by clicking)", priority = 1)]
         public static void OpenPopupWindow()

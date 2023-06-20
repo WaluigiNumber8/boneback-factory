@@ -16,7 +16,6 @@ namespace Rogium.UserInterface.Gameplay.PauseMenu
     {
         [SerializeField] private GameObject pauseMenuObject;
         [SerializeField] private Selectable firstSelectedButton;
-        [SerializeField] private ModalWindow modalWindow;
 
         private bool isActive;
         
