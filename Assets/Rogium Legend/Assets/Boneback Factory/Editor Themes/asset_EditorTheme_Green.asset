@@ -16,8 +16,9 @@ MonoBehaviour:
     dropdownHeader: {fileID: 235463844, guid: 01c91bc4ba9a7794c8189e81366f987d, type: 3}
     dropdownBackground: {fileID: -1928930435, guid: 15d0a375d2c69b643a7086ae1195aac4, type: 3}
     dropdownArrow: {fileID: 182467184, guid: 3fe585dc3dcccb04e95e6a6b3a86e777, type: 3}
+    dropdownCheckmark: {fileID: 21300000, guid: 3cd73286c1f01624db45bb8e89411a87, type: 3}
     toggleBorder: {fileID: -502231663, guid: 1ccda4d4cc84a65459cfd5ad5d31cc58, type: 3}
-    toggleCheckmark: {fileID: 21300000, guid: 3cd73286c1f01624db45bb8e89411a87, type: 3}
+    toggleCheckmark: {fileID: -319974302, guid: 1abf6ad819805b740841dc5b73ba4957, type: 3}
     sliderBackground: {fileID: 136112058, guid: 6ec9fe6f0c67f8d46ae44c21be44ec6d, type: 3}
     sliderHandle: {fileID: 2133273183, guid: 6ec9fe6f0c67f8d46ae44c21be44ec6d, type: 3}
     editorBackground: {fileID: -481559791, guid: ca3d2f3be3cc5014792c1cbc8859d42a, type: 3}
