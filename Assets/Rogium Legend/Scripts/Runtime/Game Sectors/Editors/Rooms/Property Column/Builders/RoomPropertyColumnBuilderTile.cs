@@ -12,12 +12,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
     /// </summary>
     public class RoomPropertyColumnBuilderTile : UIPropertyContentBuilderBaseColumn1
     {
-        private readonly IList<string> tileTypes;
-
-        public RoomPropertyColumnBuilderTile(Transform contentMain) : base(contentMain)
-        {
-            tileTypes = Enum.GetNames(typeof(TileType));
-        }
+        public RoomPropertyColumnBuilderTile(Transform contentMain) : base(contentMain) { }
 
         /// <summary>
         /// Build properties.
@@ -27,7 +22,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         {
             Clear();
             
-            b.BuildDropdown("Type", tileTypes, data.Parameters.intValue1, contentMain, data.UpdateIntValue1, true);
+            b.BuildPlainText("Type", Enum.GetNames(typeof(TileType))[data.Parameters.intValue1], contentMain);
         }
 
     }
