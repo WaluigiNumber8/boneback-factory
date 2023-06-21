@@ -21,6 +21,7 @@ namespace Rogium.Systems.ThemeSystem
             [PreviewField(60)] public Sprite dropdownHeader;
             [PreviewField(60)] public Sprite dropdownBackground;
             [PreviewField(60)] public Sprite dropdownArrow;
+            [PreviewField(60)] public Sprite dropdownCheckmark;
             [PreviewField(60)] public Sprite toggleBorder;
             [PreviewField(60)] public Sprite toggleCheckmark;
             [PreviewField(60)] public Sprite sliderBackground;

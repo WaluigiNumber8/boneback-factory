@@ -83,7 +83,7 @@ namespace Rogium.Systems.ThemeSystem
                                  t.Elements.dropdownHeader,
                                  t.Elements.dropdownBackground,
                                  t.Elements.dropdownArrow,
-                                 t.Elements.toggleCheckmark,
+                                 t.Elements.dropdownCheckmark,
                                  t.Fonts.general,
                                  t.Fonts.inputted);
         }
