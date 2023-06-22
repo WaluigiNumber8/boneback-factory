@@ -147,7 +147,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_Menu_BigIcons_0_ToggleCheck
+      name: sprset_Menu_BigIcons_1_ToggleCheck
       rect:
         serializedVersion: 2
         x: 16
@@ -168,7 +168,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_Menu_BigIcons_0
+      name: sprset_Menu_BigIcons_2_GridBlue
       rect:
         serializedVersion: 2
         x: 32
@@ -188,6 +188,69 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: sprset_Menu_BigIcons_5_TrashRed
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff5ca57d3b2c4a24a8e055b32bfc4c83
+      internalID: -524451728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprset_Menu_BigIcons_3_GridRed
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3ceff3232e1439409fd792519c40b91
+      internalID: 617456209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprset_Menu_BigIcons_4_TrashBlue
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8112324dfbd971f4fb9e2c10abcda648
+      internalID: -517134802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -199,10 +262,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      sprset_Menu_BigIcons_0: 153804624
       sprset_Menu_BigIcons_0_Changelog: -395961763
       sprset_Menu_BigIcons_0_PackAmount: 6901379020178165124
-      sprset_Menu_BigIcons_0_ToggleCheck: -319974302
+      sprset_Menu_BigIcons_1_ToggleCheck: -319974302
+      sprset_Menu_BigIcons_2_GridBlue: 153804624
+      sprset_Menu_BigIcons_3_GridRed: 617456209
+      sprset_Menu_BigIcons_4_TrashBlue: -517134802
+      sprset_Menu_BigIcons_5_TrashRed: -524451728
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
