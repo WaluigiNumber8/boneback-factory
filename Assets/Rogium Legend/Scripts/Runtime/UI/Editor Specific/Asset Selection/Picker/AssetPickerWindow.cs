@@ -45,7 +45,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
         public void GrabAsset(AssetType type, Action<IAsset> whenAssetGrabbed, IAsset preselectedAsset = null, ThemeType theme = ThemeType.Blue)
         {
             targetMethod = whenAssetGrabbed;
-            Open(theme);
+            Open(theme, type);
 
             switch (type)
             {
@@ -106,11 +106,14 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
         
         /// <summary>
         /// Opens the window UI.
+        /// <param name="theme">The theme of the window.</param>
+        /// <param name="type">For what <see cref="AssetType"/> is the window opened.</param>
         /// </summary>
-        private void Open(ThemeType theme)
+        private void Open(ThemeType theme, AssetType type)
         {
             ThemeUpdaterRogium.UpdateAssetPickerWindow(this, theme);
             ui.windowPrefab.GetComponentInParent<Transform>().SetAsLastSibling();
+            ui.header.text.text = $"Select a {type.ToString().ToLower()}.";
             ui.windowPrefab.SetActive(true);
         }
 
