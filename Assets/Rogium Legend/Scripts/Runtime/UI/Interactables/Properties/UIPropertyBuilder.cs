@@ -45,14 +45,16 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="title">Name of the property.</param>
         /// <param name="value">Starting value of the property</param>
         /// <param name="parent">Under which transform is this property going to be created.</param>
-        /// <param name="whenValueChange">What happens when the property changes value.</param>
+        /// <param name="whenFinishEditing">Is called when the user finishes editing the InputField.</param>
         /// <param name="isDisabled">Initialize the property as a non-interactable.</param>
         /// <param name="characterValidation">The validation to use for inputted symbols.</param>
+        /// <param name="minLimit">The minimum allowed value (when InputField deals with numbers).</param>
+        /// <param name="maxLimit">The maximum allowed value (when InputField deals with numbers).</param>
         /// <returns>The property itself.</returns>
-        public void BuildInputField(string title, string value, Transform parent, Action<string> whenValueChange, bool isDisabled = false, TMP_InputField.CharacterValidation characterValidation = TMP_InputField.CharacterValidation.Regex)
+        public void BuildInputField(string title, string value, Transform parent, Action<string> whenFinishEditing, bool isDisabled = false, TMP_InputField.CharacterValidation characterValidation = TMP_InputField.CharacterValidation.Regex, float minLimit = float.MinValue, float maxLimit = float.MaxValue)
         {
             InteractablePropertyInputField inputField = Instantiate(inputFieldProperty, parent);
-            inputField.Construct(title, value, whenValueChange, characterValidation);
+            inputField.Construct(title, value, whenFinishEditing, characterValidation, minLimit, maxLimit);
             inputField.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateInputField(inputField);
         }
@@ -63,14 +65,16 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="title">Name of the property.</param>
         /// <param name="value">Starting value of the property</param>
         /// <param name="parent">Under which transform is this property going to be created.</param>
-        /// <param name="whenValueChange">What happens when the property changes value.</param>
+        /// <param name="whenFinishEditing">Is called when the user finishes editing the InputField.</param>
         /// <param name="isDisabled">Initialize the property as a non-interactable.</param>
         /// <param name="characterValidation">The validation to use for inputted symbols.</param>
+        /// <param name="minLimit">The minimum allowed value (when InputField deals with numbers).</param>
+        /// <param name="maxLimit">The maximum allowed value (when InputField deals with numbers).</param>
         /// <returns>The property itself.</returns>
-        public void BuildInputFieldArea(string title, string value, Transform parent, Action<string> whenValueChange, bool isDisabled = false, TMP_InputField.CharacterValidation characterValidation = TMP_InputField.CharacterValidation.Regex)
+        public void BuildInputFieldArea(string title, string value, Transform parent, Action<string> whenFinishEditing, bool isDisabled = false, TMP_InputField.CharacterValidation characterValidation = TMP_InputField.CharacterValidation.Regex, float minLimit = float.MinValue, float maxLimit = float.MaxValue)
         {
             InteractablePropertyInputField inputField = Instantiate(inputFieldAreaProperty, parent);
-            inputField.Construct(title, value, whenValueChange, characterValidation);
+            inputField.Construct(title, value, whenFinishEditing, characterValidation, minLimit, maxLimit);
             inputField.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateInputField(inputField);
         }
