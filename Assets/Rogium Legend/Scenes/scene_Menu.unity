@@ -17651,7 +17651,14 @@ PrefabInstance:
         inward when mouse is moved outside the grid.</indent>
 
         * <indent=2ep>The
-        slider Input Field no longer displays way too many decimals.</indent>
+        grid item previewer disappears properly when the user switches to a tool
+        without a previewer.</indent>
+
+        * <indent=2ep>Selection tool''s item
+        previewer follows the mouse when is it dragged across the screen.</indent>
+
+        *
+        <indent=2ep>The slider Input Field no longer displays way too many decimals.</indent>
 
         *
         <indent=2ep>text</indent>
