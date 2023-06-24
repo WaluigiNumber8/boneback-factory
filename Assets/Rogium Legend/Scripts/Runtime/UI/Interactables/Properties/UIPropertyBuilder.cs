@@ -164,6 +164,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             slider.Construct(title, minValue, maxValue, startingValue, whenValueChange);
             slider.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateSlider(slider);
+            if (slider.InputField != null) ThemeUpdaterRogium.UpdateInputField(slider.InputField);
         }
 
         /// <summary>

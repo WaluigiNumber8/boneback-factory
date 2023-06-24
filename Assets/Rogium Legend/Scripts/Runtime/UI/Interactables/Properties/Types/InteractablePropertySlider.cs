@@ -49,8 +49,8 @@ namespace Rogium.UserInterface.Interactables.Properties
             decimals.sliderWithInput.OverrideDecimalMultiplier(decimalMultiplier);
             inputField.UpdateContentType(TMP_InputField.ContentType.DecimalNumber);
             slider.maxValue = Mathf.RoundToInt(maxValue * decimalMultiplier);
-            slider.value = Mathf.RoundToInt(startingValue * decimalMultiplier);
             slider.minValue = Mathf.RoundToInt(minValue * decimalMultiplier);
+            slider.value = Mathf.RoundToInt(startingValue * decimalMultiplier);
             slider.onValueChanged.AddListener(_ => whenValueChange(slider.value / decimalMultiplier));
         }
         
@@ -71,8 +71,8 @@ namespace Rogium.UserInterface.Interactables.Properties
             decimals.sliderWithInput.ResetDecimalMultiplier();
             inputField.UpdateContentType(TMP_InputField.ContentType.IntegerNumber);
             slider.maxValue = maxValue;
-            slider.value = startingValue;
             slider.minValue = minValue;
+            slider.value = startingValue;
             slider.onValueChanged.AddListener(_ => whenValueChange(slider.value));
         }
 

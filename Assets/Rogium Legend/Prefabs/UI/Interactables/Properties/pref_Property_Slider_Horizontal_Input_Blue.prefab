@@ -80,7 +80,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 3
-  m_Spacing: 32
+  m_Spacing: 24
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
@@ -358,11 +358,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4495980182056552940, guid: b611d89d05bab7845860dae45376cf45, type: 3}
       propertyPath: m_FlexibleWidth
-      value: 1
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4495980182056552940, guid: b611d89d05bab7845860dae45376cf45, type: 3}
       propertyPath: m_PreferredWidth
-      value: -1
+      value: 9999
       objectReference: {fileID: 0}
     - target: {fileID: 6558426538797818887, guid: b611d89d05bab7845860dae45376cf45, type: 3}
       propertyPath: m_AnchorMax.y
@@ -691,8 +691,8 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: 120
   m_MinHeight: 28
-  m_PreferredWidth: 350
+  m_PreferredWidth: 500
   m_PreferredHeight: 50
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
-  m_LayoutPriority: 1
+  m_LayoutPriority: 2
