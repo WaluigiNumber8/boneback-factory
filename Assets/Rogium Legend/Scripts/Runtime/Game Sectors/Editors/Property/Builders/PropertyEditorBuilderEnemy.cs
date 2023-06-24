@@ -6,7 +6,6 @@ using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Enemies;
-using Rogium.Editors.Objects;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Weapons;
 using Rogium.UserInterface.Interactables.Properties;
@@ -65,15 +64,15 @@ namespace Rogium.Editors.PropertyEditor.Builders
         {
             b.BuildHeader("General", content);
             b.BuildInputField("Max Health", asset.MaxHealth.ToString(), content, s => asset.UpdateMaxHealth(int.Parse(s)), false, TMP_InputField.CharacterValidation.Integer, 1);
-            b.BuildInputField("Invincibility Time", asset.InvincibilityTime.ToString(), content, s => asset.UpdateInvincibilityTime(float.Parse(s)), false, TMP_InputField.CharacterValidation.Decimal);
             b.BuildInputField("Damage", asset.BaseDamage.ToString(), content, s => asset.UpdateBaseDamage(int.Parse(s)), false, TMP_InputField.CharacterValidation.Integer);
+            b.BuildSlider("Invincibility Time", 0f, EditorConstants.EnemyInvincibilityTimeMax, asset.InvincibilityTime, content, f => asset.UpdateInvincibilityTime(f));
             
             b.BuildHeader("Knockback", content);
-            b.BuildInputField("Self Force", asset.KnockbackForceSelf.ToString(), content, s => asset.UpdateKnockbackForceSelf(float.Parse(s)), false, TMP_InputField.CharacterValidation.Decimal);
-            b.BuildInputField("Self Time", asset.KnockbackTimeSelf.ToString(), content, s => asset.UpdateKnockbackTimeSelf(float.Parse(s)), false, TMP_InputField.CharacterValidation.Decimal);
+            b.BuildSlider("Self Force", -EditorConstants.EnemyKnockbackForceMax, EditorConstants.EnemyKnockbackForceMax, asset.KnockbackForceSelf, content, f => asset.UpdateKnockbackForceSelf(f));
+            b.BuildSlider("Self Time", 0f, EditorConstants.EnemyKnockbackTimeMax, asset.KnockbackTimeSelf, content, f => asset.UpdateKnockbackTimeSelf(f));
             b.BuildToggle("Self Lock Direction", asset.KnockbackLockDirectionSelf, content, asset.UpdateKnockbackLockDirectionSelf);
-            b.BuildInputField("Other Force", asset.KnockbackForceOther.ToString(), content, s => asset.UpdateKnockbackForceOther(float.Parse(s)), false, TMP_InputField.CharacterValidation.Decimal);
-            b.BuildInputField("Other Time", asset.KnockbackTimeOther.ToString(), content, s => asset.UpdateKnockbackTimeOther(float.Parse(s)), false, TMP_InputField.CharacterValidation.Decimal);
+            b.BuildSlider("Other Force", -EditorConstants.EnemyKnockbackForceMax, EditorConstants.EnemyKnockbackForceMax, asset.KnockbackForceOther, content, f => asset.UpdateKnockbackForceOther(f));
+            b.BuildSlider("Other Time", 0f, EditorConstants.EnemyKnockbackTimeMax, asset.KnockbackTimeOther, content, f => asset.UpdateKnockbackTimeOther(f));
             b.BuildToggle("Other Lock Direction", asset.KnockbackLockDirectionOther, content, asset.UpdateKnockbackLockDirectionOther);
 
             b.BuildHeader("AI", content);
@@ -81,12 +80,12 @@ namespace Rogium.Editors.PropertyEditor.Builders
             b.BuildDropdown("Direction", Enum.GetNames(typeof(DirectionType)), (int)asset.StartingDirection, aiLookInDirectionBlock.GetTransform, asset.UpdateStartingDirection);
 
             aiRotateTowardsBlock = b.CreateContentBlockVertical(content, (asset.AI == AIType.RotateTowardsPlayer));
-            b.BuildInputField("Next Rotation Time", asset.NextStepTime.ToString(), aiRotateTowardsBlock.GetTransform, s => asset.UpdateNextStepTime(float.Parse(s)), false, TMP_InputField.CharacterValidation.Decimal);
+            b.BuildSlider("Next Rotation Time", 0f, EditorConstants.EnemyNextStepTimeMax, asset.NextStepTime, aiRotateTowardsBlock.GetTransform, f => asset.UpdateNextStepTime(f));
             b.BuildToggle("Smooth Rotation", asset.SeamlessMovement, aiRotateTowardsBlock.GetTransform, asset.UpdateSeamlessMovement);
             
             b.BuildHeader("Animation", content);
             b.BuildDropdown("Type", animationOptions, (int) asset.AnimationType, content, ProcessAnimationType);
-            b.BuildInputField("Frame Duration", asset.FrameDuration.ToString(), content, s => asset.UpdateFrameDuration(int.Parse(s)));
+            b.BuildSlider("Frame Duration", 0, EditorConstants.EnemyFrameDurationMax, asset.FrameDuration, content, i => asset.UpdateFrameDuration((int)i));
             
             ProcessAIType((int)asset.AI);
             BuildWeaponContent(content);
@@ -109,7 +108,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
         private void BuildWeaponContent(Transform content)
         {
             b.BuildHeader("Weapons", content);
-            b.BuildInputField("Attack Delay", asset.UseDelay.ToString(), content, s => asset.UpdateUseDelay(float.Parse(s)), false, TMP_InputField.CharacterValidation.Decimal);
+            b.BuildSlider("Attack Delay", 0f, EditorConstants.EnemyAttackDelayMax, asset.UseDelay, content, f => asset.UpdateUseDelay(f));
             b.BuildSlider("Attack Probability", 0, 100, (int)(asset.AttackProbability * 100), content, f => asset.UpdateAttackProbability(f * 0.01f));
             b.BuildSlider("Weapon Amount", 0, EditorConstants.EnemyWeaponMaxCount, asset.WeaponIDs.Count, content, f => LoadWeaponSlots((int)f), !currentPack.ContainsAnyWeapons);
             weaponSlotsBlock = b.CreateContentBlockVertical(content, true);
@@ -134,30 +133,13 @@ namespace Rogium.Editors.PropertyEditor.Builders
             weaponSlotsBlock.SetDisabled(false);
 
             if (packWeapons == null || packWeapons.Count <= 0) return;
-            
-            IAsset weapon = packWeapons.FindValueFirstOrReturnFirst(asset.WeaponIDs[0]);
-            b.BuildAssetField($"Weapon #1", AssetType.Weapon, weapon, weaponSlotsBlock.GetTransform, a => asset.UpdateWeaponIDPos(0, a.ID), !currentPack.ContainsAnyWeapons);
-            asset.UpdateWeaponIDPos(0, weapon.ID);
 
-            if (amount >= 2)
+            for (int i = 0; i < amount; i++)
             {
-                weapon = packWeapons.FindValueFirstOrReturnFirst(asset.WeaponIDs[1]);
-                b.BuildAssetField($"Weapon #2", AssetType.Weapon, weapon, weaponSlotsBlock.GetTransform, a => asset.UpdateWeaponIDPos(1, a.ID), !currentPack.ContainsAnyWeapons);
-                asset.UpdateWeaponIDPos(1, weapon.ID);
-            }
-            
-            if (amount >= 3)
-            {
-                weapon = packWeapons.FindValueFirstOrReturnFirst(asset.WeaponIDs[2]);
-                b.BuildAssetField($"Weapon #3", AssetType.Weapon, weapon, weaponSlotsBlock.GetTransform, a => asset.UpdateWeaponIDPos(2, a.ID), !currentPack.ContainsAnyWeapons);
-                asset.UpdateWeaponIDPos(2, weapon.ID);
-            }
-            
-            if (amount >= 4)
-            {
-                weapon = packWeapons.FindValueFirstOrReturnFirst(asset.WeaponIDs[3]);
-                b.BuildAssetField($"Weapon #4", AssetType.Weapon, weapon, weaponSlotsBlock.GetTransform, a => asset.UpdateWeaponIDPos(3, a.ID), !currentPack.ContainsAnyWeapons);
-                asset.UpdateWeaponIDPos(3, weapon.ID);
+                int index = i;
+                IAsset w = packWeapons.FindValueFirstOrReturnFirst(asset.WeaponIDs[i]);
+                b.BuildAssetField($"Weapon #{index+1}", AssetType.Weapon, w, weaponSlotsBlock.GetTransform, a => asset.UpdateWeaponIDPos(index, a.ID), !currentPack.ContainsAnyWeapons);
+                asset.UpdateWeaponIDPos(i, w.ID);
             }
         }
         

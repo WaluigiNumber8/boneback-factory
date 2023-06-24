@@ -88,16 +88,21 @@ namespace Rogium.Editors.Core.Defaults
 
         public const AnimationType EnemyAnimationType = AnimationType.HorizontalFlip;
         public const int EnemyFrameDuration = 50;
+        public const int EnemyFrameDurationMax = 1200;
         public static readonly Sprite EnemyIconAlt = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
         
         public const int EnemyBaseDamage = 1;
+        public const float EnemyInvincibilityTimeMax = 20;
         public const float EnemyAttackDelay = 2f;
+        public const float EnemyAttackDelayMax = 20f;
         public const float EnemyKnockbackForceSelf = 1;
         public const float EnemyKnockbackTimeSelf = 0.025f;
         public const bool EnemyKnockbackLockDirectionSelf = true;
         public const float EnemyKnockbackForceOther = 1.75f;
         public const float EnemyKnockbackTimeOther = 0.1f;
         public const bool EnemyKnockbackLockDirectionOther = true;
+        public const float EnemyKnockbackTimeMax = 0.5f;
+        public const float EnemyKnockbackForceMax = 10f;
 
         public const int EnemyMaxHealth = 5;
         public const float EnemyAttackProbability = 100;
@@ -108,6 +113,7 @@ namespace Rogium.Editors.Core.Defaults
         public const DirectionType EnemyStartingDirection = DirectionType.Down;
         public const bool EnemySeamlessMovement = false;
         public const float EnemyNextStepTime = 0.25f;
+        public const float EnemyNextStepTimeMax = 20f;
         
         //Room
         public const string RoomTitle = "New Room";
