@@ -27,10 +27,10 @@ namespace Rogium.Systems.GridSystem
         
         private RectTransform gridTransform;
         private ToolType currentTool = ToolType.Eraser;
-        private bool inPermanentState;
+
+        private bool isVisible;
         private bool allowMaterialSwitching;
         private bool followCursor;
-
         private Sprite lastMaterial;
         private Color lastColor;
 
@@ -45,15 +45,14 @@ namespace Rogium.Systems.GridSystem
             lastColor = EditorConstants.DefaultColor;
             
             PrepareForTool(ToolType.Brush);
-            Hide();
-            EnablePermanent();
+            Show();
         }
         
         private void OnEnable()
         {
             grid.OnPointerComeIn += Show;
             grid.OnPointerLeave += Hide;
-            grid.OnPointerClicked += UpdatePositionOnGrid;
+            grid.OnClick += UpdatePositionOnGrid;
             toolbox.OnSwitchTool += PrepareForTool;
             
             foreach (ItemPaletteAsset palette in assetPalettes)
@@ -70,7 +69,7 @@ namespace Rogium.Systems.GridSystem
         {
             grid.OnPointerComeIn -= Show;
             grid.OnPointerLeave -= Hide;
-            grid.OnPointerClicked -= UpdatePositionOnGrid;
+            grid.OnClick -= UpdatePositionOnGrid;
             toolbox.OnSwitchTool -= PrepareForTool;
             
             foreach (ItemPaletteAsset palette in assetPalettes)
@@ -90,7 +89,12 @@ namespace Rogium.Systems.GridSystem
         }
 
         /// <summary>
-        /// Handles Grid Previewers following on the grid.
+        /// Updates the Grid Previewer's position on the grid.
+        /// </summary>
+        /// <param name="position">not used.</param>
+        private void UpdatePositionOnGrid(Vector2Int position) => UpdatePositionOnGrid();
+        /// <summary>
+        /// Updates the Grid Previewer's position on the grid.
         /// </summary>
         private void UpdatePositionOnGrid()
         {
@@ -108,7 +112,7 @@ namespace Rogium.Systems.GridSystem
         /// </summary>
         private void Show()
         {
-            if (!inPermanentState) return;
+            if (!isVisible) return;
             gridPreviewer.gameObject.SetActive(true);
         }
 
@@ -117,19 +121,9 @@ namespace Rogium.Systems.GridSystem
         /// </summary>
         private void Hide()
         {
-            if (inPermanentState) return;
+            if (isVisible) return;
             gridPreviewer.gameObject.SetActive(false);
         }
-
-        /// <summary>
-        /// Show the previewer permanently.
-        /// </summary>
-        private void EnablePermanent() => inPermanentState = true;
-
-        /// <summary>
-        /// Hide the previewer permanently.
-        /// </summary>
-        private void DisablePermanent() => inPermanentState = false;
         #endregion
 
         #region Material Change
@@ -171,10 +165,10 @@ namespace Rogium.Systems.GridSystem
             {
                 if (type != info.tool) continue;
     
-                if (info.isVisible) Show(); else Hide();
-                if (info.permanentState) EnablePermanent(); else DisablePermanent();
+                isVisible = info.isVisible;
                 followCursor = info.followCursor;
                 allowMaterialSwitching = info.autoMaterial;
+                if (info.isVisible) Show(); else Hide();
                 if (!allowMaterialSwitching)
                 {
                     gridPreviewer.image.sprite = info.customSprite;

@@ -180,10 +180,7 @@ namespace Rogium.Editors.Rooms
         /// Select a value from the current grid.
         /// </summary>
         /// <param name="data">The data of the value on the grid.</param>
-        private void SelectedValue(AssetData data)
-        {
-            SelectedValue(data, currentData.Type);
-        }
+        private void SelectedValue(AssetData data) => SelectedValue(data, currentData.Type);
 
         /// <summary>
         /// Select a value from the current grid.
