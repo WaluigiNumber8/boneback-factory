@@ -27,10 +27,10 @@ namespace Rogium.Systems.GridSystem
         
         private RectTransform gridTransform;
         private ToolType currentTool = ToolType.Eraser;
+        
         private bool inPermanentState;
         private bool allowMaterialSwitching;
         private bool followCursor;
-
         private Sprite lastMaterial;
         private Color lastColor;
 
@@ -53,7 +53,7 @@ namespace Rogium.Systems.GridSystem
         {
             grid.OnPointerComeIn += Show;
             grid.OnPointerLeave += Hide;
-            grid.OnPointerClicked += UpdatePositionOnGrid;
+            grid.OnClick += UpdatePositionOnGrid;
             toolbox.OnSwitchTool += PrepareForTool;
             
             foreach (ItemPaletteAsset palette in assetPalettes)
@@ -70,7 +70,7 @@ namespace Rogium.Systems.GridSystem
         {
             grid.OnPointerComeIn -= Show;
             grid.OnPointerLeave -= Hide;
-            grid.OnPointerClicked -= UpdatePositionOnGrid;
+            grid.OnClick -= UpdatePositionOnGrid;
             toolbox.OnSwitchTool -= PrepareForTool;
             
             foreach (ItemPaletteAsset palette in assetPalettes)
@@ -90,7 +90,12 @@ namespace Rogium.Systems.GridSystem
         }
 
         /// <summary>
-        /// Handles Grid Previewers following on the grid.
+        /// Updates the Grid Previewer's position on the grid.
+        /// </summary>
+        /// <param name="position">not used.</param>
+        private void UpdatePositionOnGrid(Vector2Int position) => UpdatePositionOnGrid();
+        /// <summary>
+        /// Updates the Grid Previewer's position on the grid.
         /// </summary>
         private void UpdatePositionOnGrid()
         {

@@ -21,7 +21,6 @@ namespace Rogium.Systems.GridSystem
         public event Action<Vector2Int> OnClickAlternative;
         public event Action OnPointerLeave;
         public event Action OnPointerComeIn;
-        public event Action OnPointerClicked;
         
         [SerializeField] private Vector2Int gridSize;
         [SerializeField] private LayerInfo[] layers;
@@ -71,7 +70,6 @@ namespace Rogium.Systems.GridSystem
         public void OnPointerClick(PointerEventData eventData)
         {
             RecalculateSelectedPosition(eventData.position);
-            OnPointerClicked?.Invoke();
             switch (eventData.button)
             {
                 case PointerEventData.InputButton.Left:
