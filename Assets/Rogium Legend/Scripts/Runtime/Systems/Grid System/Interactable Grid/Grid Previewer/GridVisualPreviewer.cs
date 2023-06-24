@@ -27,8 +27,8 @@ namespace Rogium.Systems.GridSystem
         
         private RectTransform gridTransform;
         private ToolType currentTool = ToolType.Eraser;
-        
-        private bool inPermanentState;
+
+        private bool isVisible;
         private bool allowMaterialSwitching;
         private bool followCursor;
         private Sprite lastMaterial;
@@ -45,8 +45,7 @@ namespace Rogium.Systems.GridSystem
             lastColor = EditorConstants.DefaultColor;
             
             PrepareForTool(ToolType.Brush);
-            Hide();
-            EnablePermanent();
+            Show();
         }
         
         private void OnEnable()
@@ -113,7 +112,7 @@ namespace Rogium.Systems.GridSystem
         /// </summary>
         private void Show()
         {
-            if (!inPermanentState) return;
+            if (!isVisible) return;
             gridPreviewer.gameObject.SetActive(true);
         }
 
@@ -122,19 +121,9 @@ namespace Rogium.Systems.GridSystem
         /// </summary>
         private void Hide()
         {
-            if (inPermanentState) return;
+            if (isVisible) return;
             gridPreviewer.gameObject.SetActive(false);
         }
-
-        /// <summary>
-        /// Show the previewer permanently.
-        /// </summary>
-        private void EnablePermanent() => inPermanentState = true;
-
-        /// <summary>
-        /// Hide the previewer permanently.
-        /// </summary>
-        private void DisablePermanent() => inPermanentState = false;
         #endregion
 
         #region Material Change
@@ -176,10 +165,10 @@ namespace Rogium.Systems.GridSystem
             {
                 if (type != info.tool) continue;
     
-                if (info.isVisible) Show(); else Hide();
-                if (info.permanentState) EnablePermanent(); else DisablePermanent();
+                isVisible = info.isVisible;
                 followCursor = info.followCursor;
                 allowMaterialSwitching = info.autoMaterial;
+                if (info.isVisible) Show(); else Hide();
                 if (!allowMaterialSwitching)
                 {
                     gridPreviewer.image.sprite = info.customSprite;

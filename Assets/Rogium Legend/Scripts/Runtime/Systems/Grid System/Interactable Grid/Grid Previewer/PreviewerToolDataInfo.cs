@@ -12,7 +12,6 @@ namespace Rogium.Systems.GridSystem
     {
         public ToolType tool;
         public bool isVisible;
-        public bool permanentState;
         public bool followCursor;
         [PropertySpace]
         public bool autoMaterial;
