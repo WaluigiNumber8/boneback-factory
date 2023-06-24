@@ -37,26 +37,34 @@ namespace Rogium.Editors.Core.Defaults
         
         public const AnimationType WeaponAnimationType = AnimationType.NoAnimation;
         public const int WeaponFrameDuration = 40;
+        public const int WeaponFrameDurationMax = 1200;
         public static readonly Sprite WeaponIconAlt = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
         
         public const int WeaponBaseDamage = 2;
         public const float WeaponUseDelay = 1.2f;
-        public const float WeaponKnockbackForceSelf = 0;
+        public const float WeaponUseCooldownMax = 1.2f;
+        public const float WeaponKnockbackForceSelf = 0f;
         public const float WeaponKnockbackTimeSelf = 0f;
         public const bool WeaponKnockbackLockDirectionSelf = true;
         public const float WeaponKnockbackForceOther = 0.5f;
         public const float WeaponKnockbackTimeOther = 0.05f;
         public const bool WeaponKnockbackLockDirectionOther = true;
+        public const float WeaponKnockbackForceMax = 10f;
+        public const float WeaponKnockbackTimeMax = 0.5f;
 
         public const WeaponUseType WeaponUseType = Weapons.WeaponUseType.PopUp;
         public const float WeaponUseDuration = 0.2f;
+        public const float WeaponUseDurationMax = 20f;
         public const float WeaponUseStartDelay = 0f;
+        public const float WeaponUseStartDelayMax = 20f;
         public const bool WeaponIsEvasive = false;
         public const bool WeaponFreezeUser = true;
         
         public const int WeaponProjectileMaxCount = 12;
         public const int WeaponProjectileAngleOffset = 0;
+        public const int WeaponProjectileAngleOffsetMax = 180;
         public const float WeaponProjectileSpawnDelay = 0;
+        public const float WeaponProjectileSpawnDelayMax = 20f;
         
         //Projectile
         public const string ProjectileTitle = "New Projectile";
@@ -101,8 +109,8 @@ namespace Rogium.Editors.Core.Defaults
         public const float EnemyKnockbackForceOther = 1.75f;
         public const float EnemyKnockbackTimeOther = 0.1f;
         public const bool EnemyKnockbackLockDirectionOther = true;
-        public const float EnemyKnockbackTimeMax = 0.5f;
         public const float EnemyKnockbackForceMax = 10f;
+        public const float EnemyKnockbackTimeMax = 0.5f;
 
         public const int EnemyMaxHealth = 5;
         public const float EnemyAttackProbability = 100;
