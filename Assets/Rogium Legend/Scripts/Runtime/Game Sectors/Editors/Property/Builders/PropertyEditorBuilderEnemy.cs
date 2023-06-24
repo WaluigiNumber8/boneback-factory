@@ -80,12 +80,12 @@ namespace Rogium.Editors.PropertyEditor.Builders
             b.BuildDropdown("Direction", Enum.GetNames(typeof(DirectionType)), (int)asset.StartingDirection, aiLookInDirectionBlock.GetTransform, asset.UpdateStartingDirection);
 
             aiRotateTowardsBlock = b.CreateContentBlockVertical(content, (asset.AI == AIType.RotateTowardsPlayer));
-            b.BuildSlider("Next Rotation Time", 0f, EditorConstants.EnemyNextStepTimeMax, asset.NextStepTime, aiRotateTowardsBlock.GetTransform, f => asset.UpdateNextStepTime(f));
+            b.BuildSlider("Next Rotation Time", 0.01f, EditorConstants.EnemyNextStepTimeMax, asset.NextStepTime, aiRotateTowardsBlock.GetTransform, f => asset.UpdateNextStepTime(f));
             b.BuildToggle("Smooth Rotation", asset.SeamlessMovement, aiRotateTowardsBlock.GetTransform, asset.UpdateSeamlessMovement);
             
             b.BuildHeader("Animation", content);
             b.BuildDropdown("Type", animationOptions, (int) asset.AnimationType, content, ProcessAnimationType);
-            b.BuildSlider("Frame Duration", 0, EditorConstants.EnemyFrameDurationMax, asset.FrameDuration, content, i => asset.UpdateFrameDuration((int)i));
+            b.BuildSlider("Frame Duration", 1, EditorConstants.EnemyFrameDurationMax, asset.FrameDuration, content, i => asset.UpdateFrameDuration((int)i));
             
             ProcessAIType((int)asset.AI);
             BuildWeaponContent(content);

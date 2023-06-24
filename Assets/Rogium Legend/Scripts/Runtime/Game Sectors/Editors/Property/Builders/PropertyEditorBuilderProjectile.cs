@@ -44,7 +44,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
         {
             b.BuildHeader("General", content);
             b.BuildInputField("Damage", asset.BaseDamage.ToString(), content, s => asset.UpdateBaseDamage(int.Parse(s)),false, TMP_InputField.CharacterValidation.Integer);
-            b.BuildInputField("Lifetime", asset.UseDelay.ToString(), content, s => asset.UpdateUseDelay(float.Parse(s)),false, TMP_InputField.CharacterValidation.Decimal);
+            b.BuildInputField("Lifetime", asset.UseDelay.ToString(), content, s => asset.UpdateUseDelay(float.Parse(s)),false, TMP_InputField.CharacterValidation.Decimal, 0.01f, EditorConstants.ProjectileLifetimeMax);
             b.BuildDropdown("Pierce", Enum.GetNames(typeof(PierceType)), (int)asset.PierceType, content, asset.UpdatePierceType);
 
             b.BuildHeader("Movement", content);
@@ -53,16 +53,16 @@ namespace Rogium.Editors.PropertyEditor.Builders
             b.BuildSlider("Brake Force", 0.01f, EditorConstants.ProjectileMaxBrakeForce, asset.BrakeForce, content, asset.UpdateBrakeForce);
             
             b.BuildHeader("Knockback", content);
-            b.BuildInputField("Self Force", asset.KnockbackForceSelf.ToString(), content, s => asset.UpdateKnockbackForceSelf(float.Parse(s)), false, TMP_InputField.CharacterValidation.Decimal);
-            b.BuildInputField("Self Time", asset.KnockbackTimeSelf.ToString(), content, s => asset.UpdateKnockbackTimeSelf(float.Parse(s)), false, TMP_InputField.CharacterValidation.Decimal);
+            b.BuildSlider("Self Force", -EditorConstants.ProjectileKnockbackForceMax, EditorConstants.ProjectileKnockbackForceMax, asset.KnockbackForceSelf, content, f => asset.UpdateKnockbackForceSelf(f));
+            b.BuildSlider("Self Time", 0, EditorConstants.ProjectileKnockbackTimeMax, asset.KnockbackTimeSelf, content, f => asset.UpdateKnockbackTimeSelf(f));
             b.BuildToggle("Self Lock Direction", asset.KnockbackLockDirectionSelf, content, asset.UpdateKnockbackLockDirectionSelf);
-            b.BuildInputField("Other Force", asset.KnockbackForceOther.ToString(), content, s => asset.UpdateKnockbackForceOther(float.Parse(s)), false, TMP_InputField.CharacterValidation.Decimal);
-            b.BuildInputField("Other Time", asset.KnockbackTimeOther.ToString(), content, s => asset.UpdateKnockbackTimeOther(float.Parse(s)), false, TMP_InputField.CharacterValidation.Decimal);
+            b.BuildSlider("Other Force", -EditorConstants.ProjectileKnockbackForceMax, EditorConstants.ProjectileKnockbackForceMax, asset.KnockbackForceOther, content, f => asset.UpdateKnockbackForceOther(f));
+            b.BuildSlider("Other Time", 0, EditorConstants.ProjectileKnockbackTimeMax, asset.KnockbackTimeOther, content, f => asset.UpdateKnockbackTimeOther(f));
             b.BuildToggle("Other Lock Direction", asset.KnockbackLockDirectionOther, content, asset.UpdateKnockbackLockDirectionOther);
             
             b.BuildHeader("Animation", content);
             b.BuildDropdown("Type", animationOptions, (int) asset.AnimationType, content, i => asset.UpdateAnimationType((AnimationType) i));
-            b.BuildInputField("Frame Duration", asset.FrameDuration.ToString(), content, s => asset.UpdateFrameDuration(int.Parse(s)));
+            b.BuildSlider("Frame Duration", 0, EditorConstants.ProjectileFrameDurationMax, asset.FrameDuration, content, f => asset.UpdateFrameDuration((int) f));
         }
     }
 }

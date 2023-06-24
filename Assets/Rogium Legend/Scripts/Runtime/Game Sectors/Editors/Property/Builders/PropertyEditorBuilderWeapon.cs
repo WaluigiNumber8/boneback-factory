@@ -59,7 +59,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
             b.BuildSlider("Attack Start Delay", 0, EditorConstants.WeaponUseStartDelayMax, asset.UseStartDelay, content, f => asset.UpdateUseStartDelay(f));
             b.BuildSlider("Attack Duration", 0, EditorConstants.WeaponUseDurationMax, asset.UseDuration, content, f => asset.UpdateUseDuration(f));
             b.BuildToggle("Is Evasive", asset.IsEvasive, content, asset.UpdateIsEvasive);
-            b.BuildToggle("Stops Movement", asset.FreezeUser, content, asset.UpdateFreezeUser);
+            b.BuildToggle("Stops User's Movement", asset.FreezeUser, content, asset.UpdateFreezeUser);
 
             b.BuildHeader("Knockback", content);
             b.BuildSlider("Self Force", -EditorConstants.WeaponKnockbackForceMax, EditorConstants.WeaponKnockbackForceMax, asset.KnockbackForceSelf, content, f => asset.UpdateKnockbackForceSelf(f));
@@ -71,7 +71,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
             
             b.BuildHeader("Animation", content);
             b.BuildDropdown("Type", animationOptions, (int) asset.AnimationType, content, ProcessAnimationType);
-            b.BuildSlider("Frame Duration", 0, EditorConstants.WeaponFrameDurationMax, asset.FrameDuration, content, f => asset.UpdateFrameDuration((int) f));
+            b.BuildSlider("Frame Duration", 1, EditorConstants.WeaponFrameDurationMax, asset.FrameDuration, content, f => asset.UpdateFrameDuration((int) f));
             
             BuildProjectileContent(content);
         }

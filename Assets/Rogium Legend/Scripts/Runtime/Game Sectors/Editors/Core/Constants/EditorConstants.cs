@@ -72,16 +72,20 @@ namespace Rogium.Editors.Core.Defaults
         
         public const AnimationType ProjectileAnimationType = AnimationType.NoAnimation;
         public const int ProjectileFrameDuration = 40;
+        public const int ProjectileFrameDurationMax = 1200;
         public static readonly Sprite ProjectileIconAlt = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
         
         public const int ProjectileBaseDamage = 1;
         public const float ProjectileLifetime = 0.5f;
+        public const float ProjectileLifetimeMax = 120f;
         public const float ProjectileKnockbackForceSelf = 0;
         public const float ProjectileKnockbackTimeSelf = 0f;
         public const bool ProjectileKnockbackLockDirectionSelf = true;
         public const float ProjectileKnockbackForceOther = 2f;
         public const float ProjectileKnockbackTimeOther = 0.075f;
         public const bool ProjectileKnockbackLockDirectionOther = true;
+        public const float ProjectileKnockbackForceMax = 10f;
+        public const float ProjectileKnockbackTimeMax = 20f;
 
         public const float ProjectileFlightSpeed = 20;
         public const float ProjectileAcceleration = 0.2f;
