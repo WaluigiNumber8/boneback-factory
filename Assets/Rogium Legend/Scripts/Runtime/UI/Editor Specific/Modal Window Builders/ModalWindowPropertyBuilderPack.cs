@@ -30,7 +30,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         {
             bool isDisabled = !editor.CurrentPack?.ContainsAnySprites ?? true;
             
-            b.BuildInputField("Name", currentPackInfo.Title, windowColumn1, currentPackInfo.UpdateTitle);
+            b.BuildInputField("Name", currentPackInfo.Title, windowColumn1, currentPackInfo.UpdateTitle, false, true);
             b.BuildInputFieldArea("Description", currentPackInfo.Description, windowColumn1, currentPackInfo.UpdateDescription);
             b.BuildAssetField("", AssetType.Sprite, currentPackInfo, windowColumn2, a => editedAssetBase.UpdateIcon(a?.Icon), isDisabled, ThemeType.Blue);
             b.BuildPlainText("Created by", currentPackInfo.Author, windowColumn2);
