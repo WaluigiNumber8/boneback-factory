@@ -113,7 +113,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
         {
             ThemeUpdaterRogium.UpdateAssetPickerWindow(this, theme);
             ui.windowPrefab.GetComponentInParent<Transform>().SetAsLastSibling();
-            ui.header.text.text = $"Select a {type.ToString().ToLower()}.";
+            ui.header.text.text = $"Select a {type.ToString().ToLower()}";
             ui.windowPrefab.SetActive(true);
         }
 

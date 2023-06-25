@@ -54,7 +54,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
         protected override void BuildColumnProperty(Transform content)
         {
             b.BuildHeader("General", content);
-            b.BuildInputField("Damage", asset.BaseDamage.ToString(), content, s => asset.UpdateBaseDamage(int.Parse(s)), false, TMP_InputField.CharacterValidation.Integer);
+            b.BuildInputField("Damage", asset.BaseDamage.ToString(), content, s => asset.UpdateBaseDamage(int.Parse(s)), false, false, TMP_InputField.CharacterValidation.Integer);
             b.BuildSlider("Attack Cooldown", 0, EditorConstants.WeaponUseCooldownMax, asset.UseDelay, content, f => asset.UpdateUseDelay(f));
             b.BuildSlider("Attack Start Delay", 0, EditorConstants.WeaponUseStartDelayMax, asset.UseStartDelay, content, f => asset.UpdateUseStartDelay(f));
             b.BuildSlider("Attack Duration", 0, EditorConstants.WeaponUseDurationMax, asset.UseDuration, content, f => asset.UpdateUseDuration(f));

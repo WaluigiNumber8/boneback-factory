@@ -43,8 +43,8 @@ namespace Rogium.Editors.PropertyEditor.Builders
         protected override void BuildColumnProperty(Transform content)
         {
             b.BuildHeader("General", content);
-            b.BuildInputField("Damage", asset.BaseDamage.ToString(), content, s => asset.UpdateBaseDamage(int.Parse(s)),false, TMP_InputField.CharacterValidation.Integer);
-            b.BuildInputField("Lifetime", asset.UseDelay.ToString(), content, s => asset.UpdateUseDelay(float.Parse(s)),false, TMP_InputField.CharacterValidation.Decimal, 0.01f, EditorConstants.ProjectileLifetimeMax);
+            b.BuildInputField("Damage", asset.BaseDamage.ToString(), content, s => asset.UpdateBaseDamage(int.Parse(s)),false, false, TMP_InputField.CharacterValidation.Integer);
+            b.BuildInputField("Lifetime", asset.UseDelay.ToString(), content, s => asset.UpdateUseDelay(float.Parse(s)),false, false, TMP_InputField.CharacterValidation.Decimal, 0.01f, EditorConstants.ProjectileLifetimeMax);
             b.BuildDropdown("Pierce", Enum.GetNames(typeof(PierceType)), (int)asset.PierceType, content, asset.UpdatePierceType);
 
             b.BuildHeader("Movement", content);

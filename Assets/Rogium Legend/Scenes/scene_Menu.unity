@@ -179,6 +179,10 @@ MonoBehaviour:
     vertical: {fileID: 6676184992414329906, guid: 989ea3128eb11db43a4b4162653a693c, type: 3}
     horizontal: {fileID: -7927541557845290291, guid: 0221749ea3ade4d46a297f60b2ec512f, type: 3}
     column2: {fileID: 3691919326314073163, guid: 0a66110e27c3a4e4fb78b16a9e671551, type: 3}
+  verticalVariants:
+    inputFieldProperty: {fileID: 5932541054002328674, guid: aab14b08ae511324380d3d54462b3102, type: 3}
+    dropdownProperty: {fileID: 4062276745958601212, guid: d2614c1f0468ee741b492da29ad8714b, type: 3}
+    plainTextProperty: {fileID: 9087219946852298221, guid: 063de68fd2f163940a1053de1636413c, type: 3}
 --- !u!1 &18096767
 GameObject:
   m_ObjectHideFlags: 0
