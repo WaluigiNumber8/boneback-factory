@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8c5685d2b44be3aaf584592f4c005b, type: 3}
   m_Name: asset_InteractableObject_WeaponDrop
   m_EditorClassIdentifier: 
+  icon: {fileID: 1813950321, guid: bdee64bad52a01946aeeeceacf6e6699, type: 3}
   id: 003
   title: Weapon Drop
-  icon: {fileID: 21300000, guid: 8c038998b78d74c4e93fd715f231ed43, type: 3}
   prefab: {fileID: 4152887547633084623, guid: b40ec8407dc92ab4dbde142843d24397, type: 3}
   defaultParameters:
     intValue1: 0
@@ -23,21 +23,21 @@ MonoBehaviour:
     intValue4: 0
     intValue5: 0
     intValue6: 0
-    intValue7: 0
-    intValue8: 0
     floatValue1: 0
     floatValue2: 0
     floatValue3: 0
     floatValue4: 0
     floatValue5: 0
     floatValue6: 0
-    floatValue7: 0
-    floatValue8: 0
     boolValue1: 0
     boolValue2: 0
     boolValue3: 0
     boolValue4: 0
     boolValue5: 0
     boolValue6: 0
-    boolValue7: 0
-    boolValue8: 0
+    stringValue1: 
+    stringValue2: 
+    stringValue3: 
+    stringValue4: 
+    stringValue5: 
+    stringValue6: 

@@ -12,32 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8c5685d2b44be3aaf584592f4c005b, type: 3}
   m_Name: asset_InteractableObject_DoorLeave
   m_EditorClassIdentifier: 
-  id: 001
-  title: Door (Leave)
   icon: {fileID: 21300000, guid: fe8b8523471148d40ae5d3cd37315cad, type: 3}
+  id: 001
+  title: Exit Gate
   prefab: {fileID: 3237167547994554368, guid: 023618c2e3c40794e8dfe78749fe530f, type: 3}
-  parameters:
+  defaultParameters:
     intValue1: 0
     intValue2: 0
     intValue3: 0
     intValue4: 0
     intValue5: 0
     intValue6: 0
-    intValue7: 0
-    intValue8: 0
     floatValue1: 0
     floatValue2: 0
     floatValue3: 0
     floatValue4: 0
     floatValue5: 0
     floatValue6: 0
-    floatValue7: 0
-    floatValue8: 0
     boolValue1: 0
     boolValue2: 0
     boolValue3: 0
     boolValue4: 0
     boolValue5: 0
     boolValue6: 0
-    boolValue7: 0
-    boolValue8: 0
+    stringValue1: 
+    stringValue2: 
+    stringValue3: 
+    stringValue4: 
+    stringValue5: 
+    stringValue6: 

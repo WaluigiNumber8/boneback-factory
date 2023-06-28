@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8c5685d2b44be3aaf584592f4c005b, type: 3}
   m_Name: asset_InteractableObject_Chest_Gold
   m_EditorClassIdentifier: 
-  id: 004
-  title: Chest (gold)
   icon: {fileID: 21300000, guid: dab4b28d34ef3cf44addff195d17c32d, type: 3}
+  id: 004
+  title: Chest
   prefab: {fileID: 5988159429956871631, guid: 43b99c8ba78f5444480a83486a4ab3ed, type: 3}
   defaultParameters:
     intValue1: 0
@@ -23,21 +23,21 @@ MonoBehaviour:
     intValue4: 0
     intValue5: 0
     intValue6: 0
-    intValue7: 0
-    intValue8: 0
     floatValue1: 0
     floatValue2: 0
     floatValue3: 0
     floatValue4: 0
     floatValue5: 0
     floatValue6: 0
-    floatValue7: 0
-    floatValue8: 0
     boolValue1: 0
     boolValue2: 0
     boolValue3: 0
     boolValue4: 0
     boolValue5: 0
     boolValue6: 0
-    boolValue7: 0
-    boolValue8: 0
+    stringValue1: 
+    stringValue2: 
+    stringValue3: 
+    stringValue4: 
+    stringValue5: 
+    stringValue6: 
