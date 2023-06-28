@@ -70,12 +70,20 @@ namespace Rogium.Editors.Core
             return (string.IsNullOrEmpty(id)) ? EditorConstants.EmptyAssetID.GetHashCode() : id.GetHashCode();
         }
 
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            AssetData other = (AssetData) obj;
+            return ID == other.ID;
+        }
+
         public int CompareTo(object obj)
         {
             int hashMe = GetHashCode();
             int other = obj.GetHashCode();
             return hashMe.CompareTo(other);
         }
+        
 
         public string ID { get => id; }
         public ParameterInfo Parameters { get => parameters; }

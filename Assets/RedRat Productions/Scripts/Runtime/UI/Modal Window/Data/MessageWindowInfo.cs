@@ -50,6 +50,17 @@ namespace RedRats.UI.ModalWindows
         {
             this.message = message;
         }
+        
+        /// <summary>
+        /// Stores data for a message type modal window.
+        /// </summary>
+        /// <param name="message">Text in the header.</param>
+        /// <param name="acceptButtonText">Text in the Accept Button.</param>
+        /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.  If is NULL, the window will only close itself.</param>
+        public MessageWindowInfo(string message, string acceptButtonText, Action onAcceptAction = null) : base(acceptButtonText, onAcceptAction)
+        {
+            this.message = message;
+        }
 
         public string Message { get => message; }
     }
