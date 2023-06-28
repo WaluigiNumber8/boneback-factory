@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using RedRats.Safety;
-using UnityEngine;
 
 namespace RedRats.Core
 {
@@ -105,6 +103,23 @@ namespace RedRats.Core
             
             if (size > list.Capacity) list.Capacity = size;
             list.AddRange(Enumerable.Repeat(element, size - count));
+        }
+
+        /// <summary>
+        /// Removes all elements from the list, if they pass a specific condition.
+        /// </summary>
+        /// <param name="list">The list to remove from.</param>
+        /// <param name="condition">Each element for which this ends TRUE gets removed from the list.</param>
+        /// <typeparam name="T">Any type.</typeparam>
+        public static void RemoveAll<T>(this IList<T> list, Predicate<T> condition)
+        {
+            SafetyNet.EnsureIsNotNull(list, nameof(list));
+            if (list.Count <= 0) return;
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (!condition(list[i])) continue;
+                list.RemoveAt(i);
+            }
         }
     }
 }
