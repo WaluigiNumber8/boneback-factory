@@ -57,6 +57,19 @@ namespace RedRats.UI.ModalWindows
             this.headerText = headerText;
             this.layout = layout;
         }
+        
+        /// <summary>
+        ///Stores data for a properties type modal window.
+        /// </summary>
+        /// <param name="headerText">Text in the header.</param>
+        /// <param name="layout">The type of layout the window uses.</param>
+        /// <param name="acceptButtonText">Text in the Accept Button.</param>
+        /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.  If is NULL, the window will only close itself.</param>
+        public PropertyWindowInfo(string headerText, PropertyLayoutType layout, string acceptButtonText, Action onAcceptAction = null) : base(acceptButtonText, onAcceptAction)
+        {
+            this.headerText = headerText;
+            this.layout = layout;
+        }
 
         public string HeaderText { get => headerText; }
         public PropertyLayoutType Layout { get =>layout; }

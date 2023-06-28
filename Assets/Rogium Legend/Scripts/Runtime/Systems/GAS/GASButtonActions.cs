@@ -544,6 +544,12 @@ namespace Rogium.Systems.GASExtension
         
         public static void SaveChangesRoom()
         {
+            RoomAsset currentAsset = RoomEditorOverseer.Instance.CurrentAsset;
+            if (!currentAsset.ObjectGrid.Contains(AssetDataBuilder.ForObject(InternalLibraryOverseer.GetInstance().GetObjectByID("001"))) || !currentAsset.ObjectGrid.Contains(AssetDataBuilder.ForObject(InternalLibraryOverseer.GetInstance().GetObjectByID("002"))))
+            {
+                ModalWindowOverseerMono.GetInstance().OpenWindow(new MessageWindowInfo("Cannot save room until it has at least 1 Exit Gate and 1 Starting Point.", "OK"));
+                return;
+            }
             RoomEditorOverseer.Instance.CompleteEditing();
             OpenSelectionRoom();
         }

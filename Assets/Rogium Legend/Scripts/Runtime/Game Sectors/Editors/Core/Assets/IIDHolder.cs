@@ -8,7 +8,5 @@ namespace Rogium.Editors.Core
     public interface IIDHolder
     {
         string ID { get; }
-        
-        
     }
 }

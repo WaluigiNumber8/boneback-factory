@@ -96,6 +96,23 @@ namespace Rogium.Systems.GridSystem
         /// </summary>
         public void ClearAllCells() => InitializeGrid();
 
+        /// <summary>
+        /// Returns TRUE if the grid contains a specific value.
+        /// </summary>
+        /// <param name="value">The value to check for.</param>
+        /// <returns>TRUE if the value is contained on the grid at least once.</returns>
+        public bool Contains(T value)
+        {
+            for (int i = 0; i < cellArray.GetLength(0); i++)
+            {
+                for (int j = 0; j < cellArray.GetLength(1); j++)
+                {
+                    if (cellArray[i, j].Equals(value)) return true;
+                }
+            }
+            return false;
+        }
+
         public int Width { get => width; }
         public int Height { get => height; }
     }
