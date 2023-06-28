@@ -431,17 +431,22 @@ namespace Rogium.Editors.Packs
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureIsNotNull(currentPack.Rooms, "Pack Editor - List of Rooms");
-            
-            IList<ObjectAsset> objects = InternalLibraryOverseer.GetInstance().GetObjectsCopy();
-            newAsset.ObjectGrid.SetValue(new Vector2Int(6, 5), AssetDataBuilder.ForObject(objects[1]));
-            newAsset.ObjectGrid.SetValue(new Vector2Int(8, 5), AssetDataBuilder.ForObject(objects[0]));
+
+            InternalLibraryOverseer library = InternalLibraryOverseer.GetInstance();
+            newAsset.ObjectGrid.SetValue(new Vector2Int(6, 5), AssetDataBuilder.ForObject(library.GetObjectByID("001")));
+            newAsset.ObjectGrid.SetValue(new Vector2Int(8, 5), AssetDataBuilder.ForObject(library.GetObjectByID("001")));
             CurrentPack.Rooms.Add(newAsset);
         }
         public void CreateNewRoom()
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureIsNotNull(currentPack.Rooms, "Pack Editor - List of Rooms");
-            CurrentPack.Rooms.Add(new RoomAsset());
+            
+            RoomAsset newAsset = new();
+            InternalLibraryOverseer library = InternalLibraryOverseer.GetInstance();
+            newAsset.ObjectGrid.SetValue(new Vector2Int(6, 5), AssetDataBuilder.ForObject(library.GetObjectByID("001")));
+            newAsset.ObjectGrid.SetValue(new Vector2Int(8, 5), AssetDataBuilder.ForObject(library.GetObjectByID("001")));
+            CurrentPack.Rooms.Add(newAsset);
         }
 
         /// <summary>
