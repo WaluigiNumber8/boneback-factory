@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using RedRats.Core;
 using RedRats.Safety;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Packs;
@@ -42,6 +44,7 @@ namespace Rogium.Editors.Core
         {
             packs.ReplaceAll(ex.LoadAllPacks());
             campaigns.ReplaceAll(ex.Campaigns.LoadAll());
+            campaigns.RemoveAll(campaign => campaign.PackReferences.Count <= 0);
         }
 
         #region Packs

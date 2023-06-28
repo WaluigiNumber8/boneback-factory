@@ -101,7 +101,7 @@ namespace Rogium.Editors.Campaign
         /// </summary>
         private void SaveChanges()
         {
-            OnSaveChanges?.Invoke(CurrentCampaign, myIndex, originalTitle, originalAuthor);
+            OnSaveChanges?.Invoke(CurrentAsset, myIndex, originalTitle, originalAuthor);
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace Rogium.Editors.Campaign
             return icon;
         }
         
-        public CampaignAsset CurrentCampaign
+        public CampaignAsset CurrentAsset
         {
             get 
             {

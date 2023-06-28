@@ -48,7 +48,7 @@ namespace Rogium.Editors.Campaign
         /// </summary>
         public void FillMenu()
         {
-            PreselectAssetsFrom(overseer.CurrentCampaign);
+            PreselectAssetsFrom(overseer.CurrentAsset);
             SelectionPicker.OpenForPacks(UpdatePacksFromSelection, selectedAssets);
             if (selectedAssets != null && selectedAssets.Count > 0) PreparePropertyColumn(selectedAssets[0]);
         }

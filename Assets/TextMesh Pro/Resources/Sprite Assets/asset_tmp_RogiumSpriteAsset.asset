@@ -109,8 +109,8 @@ MonoBehaviour:
     m_Unicode: 65534
     m_GlyphIndex: 4
     m_Scale: 1
-    m_Name: sprset_InteractableObjects_4_Bad
-    m_HashCode: 2084020993
+    m_Name: CardAmount
+    m_HashCode: -1787763720
   m_SpriteGlyphTable:
   - m_Index: 0
     m_Metrics:
@@ -180,15 +180,15 @@ MonoBehaviour:
     m_Metrics:
       m_Width: 16
       m_Height: 16
-      m_HorizontalBearingX: -8
-      m_HorizontalBearingY: 8
-      m_HorizontalAdvance: 16
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 11.27
+      m_HorizontalAdvance: 14
     m_GlyphRect:
-      m_X: 64
+      m_X: 66
       m_Y: 0
-      m_Width: 16
-      m_Height: 16
-    m_Scale: 1
+      m_Width: 14
+      m_Height: 14
+    m_Scale: 1.5
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
     sprite: {fileID: 599565483, guid: e9877a2f42a82e947a3b73202bf25dba, type: 3}
