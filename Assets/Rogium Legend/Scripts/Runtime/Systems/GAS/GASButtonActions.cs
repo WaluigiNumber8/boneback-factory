@@ -500,8 +500,9 @@ namespace Rogium.Systems.GASExtension
         #region Save Editor Changes
         public static void SaveChangesCampaign()
         {
-            //TODO Make sure you cannot combine a campaign, when no assets are selected.
-            MessageWindowInfo data = new("Combine selected packs into a Campaign? Changes made to the packs after this combination will not effect this campaign.", ThemeType.Red,"Combine","Cancel", SaveChangesCampaignConfirm);
+            MessageWindowInfo data = (CampaignEditorOverseerMono.GetInstance().SelectionPicker.SelectionCount <= 0) 
+                ? new MessageWindowInfo("Cannot save the campaign without selecting any <style=\"CardAmount\"> packs</style>.", "OK")
+                : new("Combine selected packs into a Campaign?\n\nChanges made to any packs will not affect this campaign.", ThemeType.Red,"Combine","Cancel", SaveChangesCampaignConfirm);
             ModalWindowOverseerMono.GetInstance().OpenWindow(data);
         }
 

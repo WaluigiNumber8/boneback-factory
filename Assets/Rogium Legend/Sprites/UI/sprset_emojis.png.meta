@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sprset_InteractableObjects_0_StartingPoint
+      name: sprset_emojis_0_StartingPoint
       rect:
         serializedVersion: 2
         x: 0
@@ -118,7 +118,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -131,7 +131,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_InteractableObjects_1_ExitGate
+      name: sprset_emojis_1_ExitGate
       rect:
         serializedVersion: 2
         x: 16
@@ -139,7 +139,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -152,7 +152,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_InteractableObjects_2_WeaponDrop
+      name: sprset_emojis_2_WeaponDrop
       rect:
         serializedVersion: 2
         x: 32
@@ -160,7 +160,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -173,7 +173,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_InteractableObjects_3_ChestGold
+      name: sprset_emojis_3_ChestGold
       rect:
         serializedVersion: 2
         x: 48
@@ -181,7 +181,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -189,6 +189,27 @@ TextureImporter:
       bones: []
       spriteID: 42380f13e194ae3409c1a881b05159e9
       internalID: 379041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprset_emojis_4_CardAmount
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 240dc4eabc0f2964999cb88c63e719c2
+      internalID: -2126587326
       vertices: []
       indices: 
       edges: []
@@ -204,11 +225,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      sprset_InteractableObjects_0_StartingPoint: -322661264
-      sprset_InteractableObjects_1_ExitGate: 1509590613
-      sprset_InteractableObjects_2_WeaponDrop: -1548110563
-      sprset_InteractableObjects_3_ChestGold: 379041
       sprset_InteractableObjects_4_Bad: 599565483
+      sprset_emojis_0_StartingPoint: -322661264
+      sprset_emojis_1_ExitGate: 1509590613
+      sprset_emojis_2_WeaponDrop: -1548110563
+      sprset_emojis_3_ChestGold: 379041
+      sprset_emojis_4_CardAmount: -2126587326
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
