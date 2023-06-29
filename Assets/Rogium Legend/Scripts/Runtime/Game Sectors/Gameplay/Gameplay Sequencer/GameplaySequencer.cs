@@ -79,9 +79,9 @@ namespace Rogium.Gameplay.Sequencer
                 roomLoader.LoadNext(roomIndex);
                 (Vector2 pos, Vector2 dir) = startingPoints.ElementAt(GetPlayerStartPositionIndex());
             
-                yield return sas.Transport(playerTransform, pos, transportRunSpeed);
+                yield return sas.Transport(playerTransform, pos - dir * 2f, transportRunSpeed);
                 yield return sas.FadeIn(1f, false);
-                yield return sas.Transport(playerTransform, playerTransform.position + (Vector3)dir * 0.05f, transportWalkSpeed);
+                yield return sas.Transport(playerTransform, pos, transportWalkSpeed);
                 player.ChangeCollideMode(true);
             }
         }

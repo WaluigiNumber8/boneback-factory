@@ -35,22 +35,14 @@ namespace Rogium.Gameplay.Entities
             rb = GetComponent<Rigidbody2D>();
         }
 
-        protected virtual void Update()
-        {
-            UpdateParameters();
-        }
-
-        protected virtual void FixedUpdate()
-        {
-            DoForceMovement();
-            
-        }
+        protected virtual void Update() => UpdateParameters();
+        protected virtual void FixedUpdate() => DoForceMovement();
 
         /// <summary>
         /// Enables/Disables the entities ability to collide with objects and trigger events.
         /// </summary>
         /// <param name="isEnabled">Changes the collision state.</param>
-        public void ChangeCollideMode(bool isEnabled)
+        public virtual void ChangeCollideMode(bool isEnabled)
         {
             actionsLocked = !isEnabled;
             if (collider != null) collider.enabled = isEnabled;
@@ -107,15 +99,13 @@ namespace Rogium.Gameplay.Entities
         private void DoForceMovement()
         {
             if (!forceMove.activated) return;
-            
             if (Time.time > forceMove.timer)
             {
-                actionsLocked = false;
                 faceDirectionLocked = false;
+                actionsLocked = false;
                 forceMove.activated = false;
                 return;
             }
-            
             rb.MovePosition(rb.position + forceMove.force * 10 * Time.fixedDeltaTime * forceMove.moveDirection);
         }
 
@@ -145,17 +135,6 @@ namespace Rogium.Gameplay.Entities
             if (!showGizmos) return;
             Gizmos.color = Color.yellow;
         }
-
-        // private IEnumerator CalculateVelocity()
-        // {
-        //     while(Application.isPlaying)
-        //     {
-        //         previousPos = rb.position;
-        //         yield return new WaitForFixedUpdate();
-        //         velocityChange = (rb.position - previousPos) / Time.deltaTime;
-        //         currentSpeed = velocityChange.magnitude;
-        //     }
-        // }
         
         public Transform Transform { get => ttransform; }
         public Rigidbody2D Rigidbody { get => rb; }
