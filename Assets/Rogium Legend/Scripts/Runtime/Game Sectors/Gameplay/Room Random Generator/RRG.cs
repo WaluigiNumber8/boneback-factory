@@ -152,7 +152,7 @@ namespace Rogium.Gameplay.AssetRandomGenerator
         /// <returns>An index of an entrance room.</returns>
         private int TryReturnEntrance()
         {
-            if (TierHasNoRooms(entranceRooms)) TryReturnCommon();
+            if (TierHasNoRooms(entranceRooms)) return TryReturnCommon();
             return entranceRooms[currentTier];
         }
         
