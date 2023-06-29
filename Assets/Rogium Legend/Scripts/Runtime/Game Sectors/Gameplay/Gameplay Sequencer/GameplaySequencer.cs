@@ -78,7 +78,8 @@ namespace Rogium.Gameplay.Sequencer
             
                 roomLoader.LoadNext(roomIndex);
                 (Vector2 pos, Vector2 dir) = startingPoints.ElementAt(GetPlayerStartPositionIndex());
-            
+
+                yield return sas.Transport(playerTransform, new Vector2(Random.Range(-7.5f, 6.5f), Random.Range(-4.5f, 4.5f)), transportRunSpeed);
                 yield return sas.Transport(playerTransform, pos - dir * 2f, transportRunSpeed);
                 yield return sas.FadeIn(1f, false);
                 yield return sas.Transport(playerTransform, pos, transportWalkSpeed);
