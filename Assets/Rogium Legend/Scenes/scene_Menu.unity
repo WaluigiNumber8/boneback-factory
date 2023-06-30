@@ -17526,7 +17526,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 360317498918457727, guid: f97e52675ef439041acd930501beee72, type: 3}
       propertyPath: m_text
-      value: Alpha 1.0.7
+      value: Alpha 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 819058666766221195, guid: f97e52675ef439041acd930501beee72, type: 3}
       propertyPath: m_AnchorMax.y
@@ -17578,7 +17578,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3966598790733817240, guid: f97e52675ef439041acd930501beee72, type: 3}
       propertyPath: m_Name
-      value: Update Log Alpha 1.0.7
+      value: Update Log Alpha 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 5747240307525224012, guid: f97e52675ef439041acd930501beee72, type: 3}
       propertyPath: m_AnchorMax.y
