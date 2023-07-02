@@ -2,7 +2,8 @@
     "name": "Rogium.Editor",
     "rootNamespace": "",
     "references": [
-        "GUID:e6dfa6ef797391d40a06df7cf055f449"
+        "GUID:e6dfa6ef797391d40a06df7cf055f449",
+        "GUID:cea76a9eed1704b438ac9f13f530b179"
     ],
     "includePlatforms": [
         "Editor"

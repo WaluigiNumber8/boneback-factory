@@ -1,4 +1,5 @@
 using System;
+using RedRats.Editor.UnityEditorExtensions;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using UnityEditor;
@@ -37,17 +38,29 @@ namespace Rogium.Editor.UI
         [ResponsiveButtonGroup("Editor"), Button, GUIColor(0.4f, 0.4f, 1f)] public void PropertyEditor() => Select(editorObjects.propertyEditorUI);
         [ResponsiveButtonGroup("Editor"), Button, GUIColor(0.4f, 0.4f, 1f)] public void RoomEditor() => Select(editorObjects.roomEditorUI);
         
-        [HideInInspector] public MenuInfo editorObjects;
+        public MenuInfo editorObjects;
 
+        private GameObject lastObject;
+        
+        /// <summary>
+        /// Activates a specific menu.
+        /// </summary>
+        /// <param name="menu">The menu object to activate.</param>
         private void Select(GameObject menu)
         {
             DeselectAll();
             menu.SetActive(true);
-            Selection.activeGameObject = (menu.transform.childCount <= 0) ? menu : menu.transform.GetChild(0).gameObject;
+            SceneHierarchyController.Select((menu.transform.childCount <= 0) ? menu : menu.transform.GetChild(0).gameObject);
+            lastObject = menu;
         }
         
+        /// <summary>
+        /// Disables all menu objects.
+        /// </summary>
         private void DeselectAll()
         {
+            if (lastObject != null) SceneHierarchyController.SetExpanded(lastObject.transform.parent.gameObject, false);
+            
             editorObjects.mainMenuUI.SetActive(false);
             editorObjects.optionsMenuUI.SetActive(false);
             editorObjects.changelogUI.SetActive(false);
