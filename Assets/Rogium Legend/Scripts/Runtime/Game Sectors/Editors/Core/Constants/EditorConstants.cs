@@ -157,5 +157,8 @@ namespace Rogium.Editors.Core.Defaults
         public const string AssetMenuAssets = "Rogium Legend/Assets/";
         public const string AssetMenuEditor = "Rogium Legend/Editor/";
         public const string AssetMenuGameplay = "Rogium Legend/Gameplay/";
+        
+        //Tools SubMenu
+        public const string ToolMenuBase = "Tools/Rogium Legend/";
     }
 }

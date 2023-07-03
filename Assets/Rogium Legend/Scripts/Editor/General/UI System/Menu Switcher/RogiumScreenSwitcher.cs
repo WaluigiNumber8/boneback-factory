@@ -26,48 +26,48 @@ namespace Rogium.Editor.UI
         
         [Title("Game Menus")]
         [OnInspectorGUI] private void S3() => GUILayout.Space(0);
-        [ResponsiveButtonGroup("Game"), Button(ButtonSizes.Large), GUIColor(1f, 0.45f, 0.15f)] public void CampaignSelection() => Select(campaignSelectionMenuUI, gameBackground);
-        [ResponsiveButtonGroup("Game"), Button(ButtonSizes.Large), GUIColor(1f, 0.45f, 0.15f)] public void CampaignEditor() => Select(campaignEditorUI, gameBackground);
+        [ResponsiveButtonGroup("Game"), Button(ButtonSizes.Large), GUIColor(1f, 0.65f, 0.4f)] public void CampaignSelection() => Select(campaignSelectionMenuUI, gameBackground);
+        [ResponsiveButtonGroup("Game"), Button(ButtonSizes.Large), GUIColor(1f, 0.65f, 0.4f)] public void CampaignEditor() => Select(campaignEditorUI, gameBackground);
         [OnInspectorGUI] private void S4() => GUILayout.Space(8);
         
         [Title("Editor Menus")]
         [OnInspectorGUI] private void S5() => GUILayout.Space(0);
-        [ResponsiveButtonGroup("Editor"), Button(ButtonSizes.Large), GUIColor(0.4f, 0.4f, 1f)] public void SelectionMenu() => Select(selectionMenuUI, editorBackground);
-        [ResponsiveButtonGroup("Editor"), Button(ButtonSizes.Large), GUIColor(0.4f, 0.4f, 1f)] public void PaletteEditor() => Select(paletteEditorUI, editorBackground);
-        [ResponsiveButtonGroup("Editor"), Button(ButtonSizes.Large), GUIColor(0.4f, 0.4f, 1f)] public void SpriteEditor() => Select(spriteEditorUI, editorBackground);
-        [ResponsiveButtonGroup("Editor"), Button(ButtonSizes.Large), GUIColor(0.4f, 0.4f, 1f)] public void PropertyEditor() => Select(propertyEditorUI, editorBackground);
-        [ResponsiveButtonGroup("Editor"), Button(ButtonSizes.Large), GUIColor(0.4f, 0.4f, 1f)] public void RoomEditor() => Select(roomEditorUI, editorBackground);
+        [ResponsiveButtonGroup("Editor"), Button(ButtonSizes.Large), GUIColor(0.45f, 0.45f, 1f)] public void SelectionMenu() => Select(selectionMenuUI, editorBackground);
+        [ResponsiveButtonGroup("Editor"), Button(ButtonSizes.Large), GUIColor(0.45f, 0.45f, 1f)] public void PaletteEditor() => Select(paletteEditorUI, editorBackground);
+        [ResponsiveButtonGroup("Editor"), Button(ButtonSizes.Large), GUIColor(0.45f, 0.45f, 1f)] public void SpriteEditor() => Select(spriteEditorUI, editorBackground);
+        [ResponsiveButtonGroup("Editor"), Button(ButtonSizes.Large), GUIColor(0.45f, 0.45f, 1f)] public void PropertyEditor() => Select(propertyEditorUI, editorBackground);
+        [ResponsiveButtonGroup("Editor"), Button(ButtonSizes.Large), GUIColor(0.45f, 0.45f, 1f)] public void RoomEditor() => Select(roomEditorUI, editorBackground);
         
-        [FoldoutGroup("EditorObjects")]public GameObject mainMenuUI;
-        [FoldoutGroup("EditorObjects")]public GameObject optionsMenuUI;
-        [FoldoutGroup("EditorObjects")]public GameObject changelogUI;
-        [FoldoutGroup("EditorObjects")]public GameObject menuBackground;
+        [SerializeField, FoldoutGroup("EditorObjects"), GUIColor(1f, 0.5f, 0.5f)] public GameObject menuBackground;
+        [SerializeField, FoldoutGroup("EditorObjects"), GUIColor(1f, 0.5f, 0.5f)] public GameObject mainMenuUI;
+        [SerializeField, FoldoutGroup("EditorObjects"), GUIColor(1f, 0.5f, 0.5f)] public GameObject optionsMenuUI;
+        [SerializeField, FoldoutGroup("EditorObjects"), GUIColor(1f, 0.5f, 0.5f)] public GameObject changelogUI;
         [Space]
-        [FoldoutGroup("EditorObjects")]public GameObject campaignSelectionMenuUI;
-        [FoldoutGroup("EditorObjects")]public GameObject campaignEditorUI;
-        [FoldoutGroup("EditorObjects")]public GameObject gameBackground;
+        [SerializeField, FoldoutGroup("EditorObjects"), GUIColor(1f, 0.65f, 0.4f)] public GameObject gameBackground;
+        [SerializeField, FoldoutGroup("EditorObjects"), GUIColor(1f, 0.65f, 0.4f)] public GameObject campaignSelectionMenuUI;
+        [SerializeField, FoldoutGroup("EditorObjects"), GUIColor(1f, 0.65f, 0.4f)] public GameObject campaignEditorUI;
         [Space]
-        [FoldoutGroup("EditorObjects")]public GameObject selectionMenuUI;
-        [FoldoutGroup("EditorObjects")]public GameObject paletteEditorUI;
-        [FoldoutGroup("EditorObjects")]public GameObject spriteEditorUI;
-        [FoldoutGroup("EditorObjects")]public GameObject propertyEditorUI;
-        [FoldoutGroup("EditorObjects")]public GameObject roomEditorUI;
-        [FoldoutGroup("EditorObjects")]public GameObject editorBackground;
+        [SerializeField, FoldoutGroup("EditorObjects"), GUIColor(0.45f, 0.45f, 1f)] public GameObject editorBackground;
+        [SerializeField, FoldoutGroup("EditorObjects"), GUIColor(0.45f, 0.45f, 1f)] public GameObject selectionMenuUI;
+        [SerializeField, FoldoutGroup("EditorObjects"), GUIColor(0.45f, 0.45f, 1f)] public GameObject paletteEditorUI;
+        [SerializeField, FoldoutGroup("EditorObjects"), GUIColor(0.45f, 0.45f, 1f)] public GameObject spriteEditorUI;
+        [SerializeField, FoldoutGroup("EditorObjects"), GUIColor(0.45f, 0.45f, 1f)] public GameObject propertyEditorUI;
+        [SerializeField, FoldoutGroup("EditorObjects"), GUIColor(0.45f, 0.45f, 1f)] public GameObject roomEditorUI;
 
         private GameObject lastObject;
 
         protected override void OnEnable()
         {
+            base.OnEnable();
             string data = EditorPrefs.GetString("RogiumMenuSwitcher", JsonUtility.ToJson(this));
             JsonUtility.FromJsonOverwrite(data, this);
-            base.OnEnable();
         }
 
         protected override void OnDisable()
         {
-            base.OnDisable();
             string data = JsonUtility.ToJson(this, false);
             EditorPrefs.SetString("RogiumMenuSwitcher", data);
+            base.OnDisable();
         }
 
         /// <summary>
