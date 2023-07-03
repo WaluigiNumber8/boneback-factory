@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Rogium.UserInterface.Editors.AssetSelection
 {
     [CustomEditor(typeof(SelectionMenuLayout))]
-    public class SelectionMenuLayoutEditor : Editor
+    public class SelectionMenuLayoutEditor : UnityEditor.Editor
     {
         private SerializedProperty menu;
         private SerializedProperty content;
