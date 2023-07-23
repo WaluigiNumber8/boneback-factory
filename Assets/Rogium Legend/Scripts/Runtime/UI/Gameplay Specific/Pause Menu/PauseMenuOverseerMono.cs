@@ -17,19 +17,27 @@ namespace Rogium.UserInterface.Gameplay.PauseMenu
         [SerializeField] private GameObject pauseMenuObject;
         [SerializeField] private Selectable firstSelectedButton;
 
+        private InputSystem inputSystem;
         private bool isActive;
-        
+
+        protected override void Awake()
+        {
+            base.Awake();
+            inputSystem = InputSystem.GetInstance();
+        }
+
         private void Start() => SwitchVisibilityStatus(false);
         private void OnEnable()
         {
-            InputSystem.Instance.Player.ButtonStart.OnPress += SwitchMenuState;
-            InputSystem.Instance.UI.Menu.OnPress += SwitchMenuState;
+            inputSystem.Player.ButtonStart.OnPress += SwitchMenuState;
+            inputSystem.UI.Menu.OnPress += SwitchMenuState;
         }
 
         private void OnDisable()
         {
-            InputSystem.Instance.Player.ButtonStart.OnPress -= SwitchMenuState;
-            InputSystem.Instance.UI.Menu.OnPress -= SwitchMenuState;
+            if (inputSystem == null) return;
+            inputSystem.Player.ButtonStart.OnPress -= SwitchMenuState;
+            inputSystem.UI.Menu.OnPress -= SwitchMenuState;
         }
 
         public void SwitchVisibilityStatus(bool isVisible) => pauseMenuObject.SetActive(isVisible);

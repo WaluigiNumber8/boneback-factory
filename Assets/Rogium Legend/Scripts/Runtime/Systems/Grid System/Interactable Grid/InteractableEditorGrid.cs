@@ -54,13 +54,13 @@ namespace Rogium.Systems.GridSystem
         public void OnPointerMove(PointerEventData eventData)
         {
             RecalculateSelectedPosition(eventData.position);
-            if (InputSystem.Instance.UI.Click.IsHeld)
+            if (InputSystem.GetInstance().UI.Click.IsHeld)
             {
                 OnClick?.Invoke(selectedPos);
                 return;
             }
             
-            if (InputSystem.Instance.UI.ClickAlternative.IsHeld)
+            if (InputSystem.GetInstance().UI.ClickAlternative.IsHeld)
             {
                 OnClickAlternative?.Invoke(selectedPos);
                 return;

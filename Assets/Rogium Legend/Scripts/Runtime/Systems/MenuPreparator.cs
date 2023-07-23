@@ -11,7 +11,7 @@ namespace Rogium.Core
     {
         protected void Awake()
         {
-            InputSystem.Instance.EnableUIMap();
+            InputSystem.GetInstance().EnableUIMap();
             GASButtonActions.GameStart();
         }
 

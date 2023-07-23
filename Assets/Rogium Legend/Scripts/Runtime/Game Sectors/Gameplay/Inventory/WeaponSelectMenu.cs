@@ -2,18 +2,22 @@
 using RedRats.Core;
 using RedRats.Systems.ObjectSwitching;
 using Rogium.Gameplay.Core;
+using Rogium.Systems.Input;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Rogium.Gameplay.Inventory
 {
     /// <summary>
-    /// Controls the Weapon Select Menu.
+    /// Represents the Weapon Select Menu where the player decides into which slot the newly picked up weapon goes.
     /// </summary>
     public class WeaponSelectMenu : MonoSingleton<WeaponSelectMenu>
     {
         [SerializeField] private Transform snapTransform;
         [SerializeField] private ObjectSwitcherMono layoutSwitcher;
+        [Range(0f, 4f)]
+        [SerializeField] private float inputStartDelay = 1;
+        
         [SerializeField] private UIInfo ui;
 
         private Action<int> methodToRun;
@@ -66,6 +70,7 @@ namespace Rogium.Gameplay.Inventory
             ui.parent.position = snapTransform.position;
             ui.ui.SetActive(true);
             GameplayOverseerMono.GetInstance().EnableUI();
+            InputSystem.GetInstance().DisableInput(this, inputStartDelay);
         }
 
         /// <summary>

@@ -44,8 +44,11 @@ namespace Rogium.Gameplay.Entities
 
         private void OnTriggerEnter2D(Collider2D col)
         {
+            if (col.gameObject.CompareTag("Blocks Everything")) Kill();
+            
             if (pierceType == PierceType.All) return;
             if (col.gameObject.layer == gameObject.layer) return;
+            if (col.gameObject.CompareTag("Blocks Everything")) return;
             if (pierceType == PierceType.Entities && col.TryGetComponent(out EntityController _)) return;
             if (pierceType == PierceType.Walls && GameObjectUtils.IsInLayerMask(col.gameObject, wallMask)) return;
             if (col.TryGetComponent(out WeaponController _)) return;
