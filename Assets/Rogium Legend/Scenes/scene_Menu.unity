@@ -17646,7 +17646,10 @@ PrefabInstance:
         Point & an Exit Gate get added automatically to every new room.</indent>
 
         *
-        <indent=2ep>text</indent>
+        <indent=2ep>The Weapon Selection Dialog now has a small delay before accepting
+        input.</indent>
+
+        * <indent=2ep>text</indent>
 
         * <indent=2ep>text</indent>
 
@@ -17659,9 +17662,6 @@ PrefabInstance:
         <indent=2ep>text</indent>
 
         * <indent=2ep>text</indent>
-
-        *
-        <indent=2ep>text</indent>
 
 
         </margin>
