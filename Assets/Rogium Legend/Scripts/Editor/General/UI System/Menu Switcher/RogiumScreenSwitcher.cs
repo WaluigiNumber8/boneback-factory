@@ -19,6 +19,11 @@ namespace Rogium.Editor.UI
             window.Show();
         }
 
+        [Title("Scenes")]
+        [OnInspectorGUI] private void S0() => GUILayout.Space(0);
+        [ResponsiveButtonGroup("Scenes"), Button(ButtonSizes.Large)] public void Menu() => SwitchScene(menuScenePath);
+        [ResponsiveButtonGroup("Scenes"), Button(ButtonSizes.Large)] public void Game() => SwitchScene(gameScenePath);
+        
         [Title("Menus")] 
         [OnInspectorGUI] private void S1() => GUILayout.Space(0);
         [ResponsiveButtonGroup("Main"), Button(ButtonSizes.Large), DisableIf("@" + nameof(mainMenuUI) + "== null"), GUIColor(1f, 0.65f, 0.4f)] public void MainMenu() => Select(mainMenuUI, menuBackground);
@@ -34,7 +39,10 @@ namespace Rogium.Editor.UI
         [OnInspectorGUI] private void S2() => GUILayout.Space(8);
         [Title("Settings")]
         [OnInspectorGUI] private void S3() => GUILayout.Space(0);
-        [SerializeField, FoldoutGroup("Labels", order:5), GUIColor(1f, 0.65f, 0.4f)] public string menuBackgroundLabel;
+        [SerializeField, FoldoutGroup("Labels", order:5)] public string menuScenePath;
+        [SerializeField, FoldoutGroup("Labels")] public string gameScenePath;
+        [Space]
+        [SerializeField, FoldoutGroup("Labels"), GUIColor(1f, 0.65f, 0.4f)] public string menuBackgroundLabel;
         [SerializeField, FoldoutGroup("Labels"), GUIColor(1f, 0.65f, 0.4f)] public string mainMenuLabel;
         [SerializeField, FoldoutGroup("Labels"), GUIColor(1f, 0.65f, 0.4f)] public string optionsMenuLabel;
         [SerializeField, FoldoutGroup("Labels"), GUIColor(1f, 0.65f, 0.4f)] public string changelogLabel;
@@ -72,6 +80,12 @@ namespace Rogium.Editor.UI
             EditorPrefs.SetString("RogiumMenuSwitcher", data);
             base.OnDisable();
         }
+
+        /// <summary>
+        /// Switches to a scene under path.
+        /// </summary>
+        /// <param name="path">The path of the scene asset to switch to.</param>
+        private void SwitchScene(string path) => EditorSceneManager.OpenScene(path, OpenSceneMode.Single);
 
         /// <summary>
         /// Activates a specific menu.
