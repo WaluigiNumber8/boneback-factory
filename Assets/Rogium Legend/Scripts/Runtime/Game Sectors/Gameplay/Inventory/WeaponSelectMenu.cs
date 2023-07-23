@@ -8,15 +8,19 @@ using UnityEngine.UI;
 namespace Rogium.Gameplay.Inventory
 {
     /// <summary>
-    /// Controls the Weapon Select Menu.
+    /// Represents the Weapon Select Menu where the player decides into which slot the newly picked up weapon goes.
     /// </summary>
     public class WeaponSelectMenu : MonoSingleton<WeaponSelectMenu>
     {
         [SerializeField] private Transform snapTransform;
         [SerializeField] private ObjectSwitcherMono layoutSwitcher;
+        [Range(0f, 4f)]
+        [SerializeField] private float inputStartDelay = 1;
+        
         [SerializeField] private UIInfo ui;
 
         private Action<int> methodToRun;
+        private float inputDelayTimer;
 
         protected override void Awake()
         {
@@ -54,6 +58,7 @@ namespace Rogium.Gameplay.Inventory
         /// <param name="index">The index pf the slot to select.</param>
         public void Select(int index)
         {
+            if (inputDelayTimer > Time.unscaledTime) return;
             methodToRun.Invoke(index);
             Hide();
         }
@@ -66,6 +71,7 @@ namespace Rogium.Gameplay.Inventory
             ui.parent.position = snapTransform.position;
             ui.ui.SetActive(true);
             GameplayOverseerMono.GetInstance().EnableUI();
+            inputDelayTimer = Time.unscaledTime + inputStartDelay;
         }
 
         /// <summary>
