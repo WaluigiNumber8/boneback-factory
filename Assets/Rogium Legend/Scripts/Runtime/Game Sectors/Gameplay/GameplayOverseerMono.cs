@@ -54,7 +54,7 @@ namespace Rogium.Gameplay.Core
         public void PrepareGame()
         {
             rrg = new RRG(currentCampaign.DataPack.Rooms, currentCampaign.AdventureLength);
-            InputSystem.Instance.EnablePlayerMap();
+            InputSystem.GetInstance().EnablePlayerMap();
             sequencer.RunIntro(rrg.GetNext(RoomType.Entrance));
         }
 
@@ -64,7 +64,7 @@ namespace Rogium.Gameplay.Core
             IEnumerator FinishGameCoroutine(Vector2 dir)
             {
                 yield return sequencer.RunEndCoroutine(dir);
-                InputSystem.Instance.EnableUIMap();
+                InputSystem.GetInstance().EnableUIMap();
                 GAS.SwitchScene(0);
             }
         }
@@ -74,7 +74,7 @@ namespace Rogium.Gameplay.Core
             StartCoroutine(GameOverGameCoroutine());
             IEnumerator GameOverGameCoroutine()
             {
-                InputSystem.Instance.EnableUIMap();
+                InputSystem.GetInstance().EnableUIMap();
                 yield return sequencer.RunGameOverCoroutine();
                 GAS.SwitchScene(0);
             }
@@ -86,7 +86,7 @@ namespace Rogium.Gameplay.Core
         public void EnableUI()
         {
             GameClock.Instance.Pause();
-            InputSystem.Instance.EnableUIMap();
+            InputSystem.GetInstance().EnableUIMap();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace Rogium.Gameplay.Core
             IEnumerator EnableMap()
             {
                 yield return new WaitForSeconds(0.1f);
-                InputSystem.Instance.EnablePlayerMap();
+                InputSystem.GetInstance().EnablePlayerMap();
             }
         }
         
