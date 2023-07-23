@@ -2,6 +2,7 @@
 using RedRats.Core;
 using RedRats.Systems.ObjectSwitching;
 using Rogium.Gameplay.Core;
+using Rogium.Systems.Input;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,7 +21,6 @@ namespace Rogium.Gameplay.Inventory
         [SerializeField] private UIInfo ui;
 
         private Action<int> methodToRun;
-        private float inputDelayTimer;
 
         protected override void Awake()
         {
@@ -58,7 +58,6 @@ namespace Rogium.Gameplay.Inventory
         /// <param name="index">The index pf the slot to select.</param>
         public void Select(int index)
         {
-            if (inputDelayTimer > Time.unscaledTime) return;
             methodToRun.Invoke(index);
             Hide();
         }
@@ -71,7 +70,7 @@ namespace Rogium.Gameplay.Inventory
             ui.parent.position = snapTransform.position;
             ui.ui.SetActive(true);
             GameplayOverseerMono.GetInstance().EnableUI();
-            inputDelayTimer = Time.unscaledTime + inputStartDelay;
+            InputSystem.GetInstance().DisableInput(this, inputStartDelay);
         }
 
         /// <summary>

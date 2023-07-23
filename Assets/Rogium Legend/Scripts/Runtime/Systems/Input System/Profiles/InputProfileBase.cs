@@ -5,12 +5,9 @@
     /// </summary>
     public abstract class InputProfileBase
     {
-        protected RogiumInputActions input;
+        protected readonly RogiumInputActions input;
 
-        protected InputProfileBase()
-        {
-            input = new RogiumInputActions();
-        }
+        protected InputProfileBase(RogiumInputActions input) => this.input = input;
 
         /// <summary>
         /// Enables the profile.
