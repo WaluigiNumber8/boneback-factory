@@ -97,6 +97,8 @@ namespace Rogium.Editor.UI
         /// <param name="background">The background the editor uses.</param>
         private void Select(GameObject menu, GameObject background)
         {
+            if (EditorApplication.isPlayingOrWillChangePlaymode) throw new System.InvalidOperationException("Cannot switch between menus in playmode.");
+            
             DeselectAll();
             menu.SetActive(true);
             if (background != null) background.SetActive(true);
