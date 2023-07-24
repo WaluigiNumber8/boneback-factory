@@ -1,11 +1,9 @@
-using System;
 using RedRats.Editor.UnityEditorExtensions;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Rogium.Editor.UI
 {
@@ -64,9 +62,9 @@ namespace Rogium.Editor.UI
         [SerializeField, FoldoutGroup("Actual Objects"), ReadOnly] private GameObject editorBackground, selectionMenuUI, paletteEditorUI, spriteEditorUI, propertyEditorUI, roomEditorUI;
 
         private GameObject lastObject;
-        
-        private void OnBecameVisible() => EditorSceneManager.sceneOpened += DetectObjects;
-        private void OnBecameInvisible() => EditorSceneManager.sceneOpened -= DetectObjects;
+
+        private void OnDidOpenScene() => DetectObjects();
+
         protected override void OnEnable()
         {
             base.OnEnable();
@@ -80,7 +78,12 @@ namespace Rogium.Editor.UI
             EditorPrefs.SetString("RogiumMenuSwitcher", data);
             base.OnDisable();
         }
-
+        
+        /// <summary>
+        /// Switches the scene to the menu.
+        /// </summary>
+        public void SwitchSceneToDefault() => EditorSceneManager.OpenScene(menuScenePath, OpenSceneMode.Single);
+        
         /// <summary>
         /// Switches to a scene under path.
         /// </summary>
@@ -125,11 +128,7 @@ namespace Rogium.Editor.UI
             propertyEditorUI.SetActive(false);
             roomEditorUI.SetActive(false);
         }
-
-        /// <summary>
-        /// Tries to detect menu objects in the scene (override for event).
-        /// </summary>
-        private void DetectObjects(Scene scene, OpenSceneMode mode) => DetectObjects();
+        
         /// <summary>
         /// Tries to detect menu objects in the scene.
         /// </summary>
