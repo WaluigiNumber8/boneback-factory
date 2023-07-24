@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using RedRats.Core;
 using UnityEngine;
 using RedRats.Safety;
 using Rogium.Editors.Core;
@@ -17,7 +18,7 @@ namespace Rogium.Editors.Packs
     /// <summary>
     /// Overseers the work on a given pack.
     /// </summary>
-    public class PackEditorOverseer : IEditorOverseer
+    public sealed class PackEditorOverseer : Singleton<PackEditorOverseer>, IEditorOverseer
     {
         public event Action<PackAsset, int, string, string> OnSaveChanges;
 
@@ -33,25 +34,6 @@ namespace Rogium.Editors.Packs
         private int myIndex;
         private string startingTitle;
         private string startingAuthor;
-
-        #region Singleton Pattern
-        private static PackEditorOverseer instance;
-        private static readonly object padlock = new object();
-
-        public static PackEditorOverseer Instance
-        {
-            get
-            {
-                lock (padlock)
-                {
-                    if (instance == null)
-                        instance = new PackEditorOverseer();
-                    return instance;
-                }
-            }
-        }
-
-        #endregion
 
         private PackEditorOverseer() 
         {

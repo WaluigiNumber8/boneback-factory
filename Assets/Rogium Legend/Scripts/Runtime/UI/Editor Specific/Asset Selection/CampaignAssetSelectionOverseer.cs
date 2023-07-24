@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using RedRats.Core;
 using RedRats.Safety;
 using Rogium.Core;
 using Rogium.Editors.Core;
@@ -9,7 +10,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection
     /// <summary>
     /// Overseers asset selection for Campaigns.
     /// </summary>
-    public class CampaignAssetSelectionOverseer
+    public sealed class CampaignAssetSelectionOverseer : Singleton<CampaignAssetSelectionOverseer>
     {
         private readonly ExternalLibraryOverseer lib;
         
@@ -17,25 +18,6 @@ namespace Rogium.UserInterface.Editors.AssetSelection
         private IList<CampaignAsset> campaigns;
         private int currentIndex;
         
-        #region Singleton Pattern
-        private static CampaignAssetSelectionOverseer instance;
-        private static readonly object padlock = new object();
-
-        public static CampaignAssetSelectionOverseer Instance
-        {
-            get
-            {
-                lock (padlock)
-                {
-                    if (instance == null)
-                        instance = new CampaignAssetSelectionOverseer();
-                    return instance;
-                }
-            }
-        }
-
-        #endregion
-
         private CampaignAssetSelectionOverseer()
         {
             lib = ExternalLibraryOverseer.Instance;

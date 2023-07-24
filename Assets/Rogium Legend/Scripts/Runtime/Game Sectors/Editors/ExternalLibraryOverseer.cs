@@ -14,17 +14,12 @@ namespace Rogium.Editors.Core
     /// Overseers the main in-game saveable assets library and controls their content.
     /// This library is also synced with asset data files located on the external hard drive.
     /// </summary>
-    public class ExternalLibraryOverseer
+    public sealed class ExternalLibraryOverseer : Singleton<ExternalLibraryOverseer>
     {
         private readonly ExternalStorageOverseer ex;
         
         private readonly AssetList<PackAsset> packs;
         private readonly AssetList<CampaignAsset> campaigns;
-
-        #region Singleton Pattern
-        static ExternalLibraryOverseer() { }
-        public static ExternalLibraryOverseer Instance { get; } = new();
-        #endregion
 
         private ExternalLibraryOverseer()
         {

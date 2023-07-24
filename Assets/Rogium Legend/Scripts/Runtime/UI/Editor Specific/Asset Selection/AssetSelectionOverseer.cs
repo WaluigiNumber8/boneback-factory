@@ -13,7 +13,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection
     /// <summary>
     /// Is responsible for controlling the Asset Selection Menu, and switching out content as needed in it.
     /// </summary>
-    public class AssetSelectionOverseer
+    public sealed class AssetSelectionOverseer : Singleton<AssetSelectionOverseer>
     {
         public event Action<AssetHolderBase> OnSpawnCard;
         public event Action OnFinishedFilling;
@@ -23,25 +23,6 @@ namespace Rogium.UserInterface.Editors.AssetSelection
         private ObjectSwitcherMono layoutSwitcher;
         private AssetType lastTypeOpen;
         
-        #region Singleton Pattern
-        private static AssetSelectionOverseer instance;
-        private static readonly object padlock = new object();
-
-        public static AssetSelectionOverseer Instance
-        {
-            get
-            {
-                lock (padlock)
-                {
-                    if (instance == null)
-                        instance = new AssetSelectionOverseer();
-                    return instance;
-                }
-            }
-        }
-
-        #endregion
-
         private AssetSelectionOverseer()
         {
             assets = new List<AssetHolderBase>();

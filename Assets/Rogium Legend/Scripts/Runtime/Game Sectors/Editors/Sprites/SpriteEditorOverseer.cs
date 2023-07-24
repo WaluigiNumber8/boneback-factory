@@ -1,5 +1,6 @@
 ﻿using RedRats.Safety;
 using System;
+using RedRats.Core;
 using Rogium.Systems.IconBuilders;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ namespace Rogium.Editors.Sprites
     /// <summary>
     /// Overseers the Sprite Editor.
     /// </summary>
-    public class SpriteEditorOverseer : IEditorOverseer
+    public sealed class SpriteEditorOverseer : Singleton<SpriteEditorOverseer>, IEditorOverseer
     {
         public event Action<SpriteAsset> OnAssignAsset;
         public event Action OnCompleteEditingBefore, OnCompleteEditingAfter;
@@ -20,24 +21,6 @@ namespace Rogium.Editors.Sprites
         private SpriteAsset currentAsset;
         private int myIndex;
         
-        #region Singleton Pattern
-        private static SpriteEditorOverseer instance;
-        private static readonly object padlock = new object();
-        public static SpriteEditorOverseer Instance
-        {
-            get
-            {
-                lock (padlock)
-                {
-                    if (instance == null)
-                        instance = new SpriteEditorOverseer();
-                    return instance;
-                }
-            }
-        }
-
-        #endregion
-
         private SpriteEditorOverseer()
         {
             iconBuilder = new IconBuilder();

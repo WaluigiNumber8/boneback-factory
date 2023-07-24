@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using RedRats.Core;
 using RedRats.Safety;
 using Rogium.Core;
-using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Rooms;
 using UnityEngine;
@@ -13,7 +13,7 @@ namespace Rogium.Editors.Campaign
     /// <summary>
     /// Overseers the work on a given campaign.
     /// </summary>
-    public class CampaignEditorOverseer : IEditorOverseer
+    public sealed class CampaignEditorOverseer : Singleton<CampaignEditorOverseer>, IEditorOverseer
     {
         public event Action<CampaignAsset> OnAssignAsset; 
         public event Action<CampaignAsset, int, string, string> OnSaveChanges;
@@ -24,30 +24,7 @@ namespace Rogium.Editors.Campaign
         private int myIndex;
         private string originalTitle; 
         private string originalAuthor;
-
-        #region Singleton Pattern
-        private static CampaignEditorOverseer instance;
-        private static readonly object padlock = new object();
-
-        public static CampaignEditorOverseer Instance
-        {
-            get
-            {
-                lock (padlock)
-                {
-                    if (instance == null)
-                        instance = new CampaignEditorOverseer();
-                    return instance;
-                }
-            }
-        }
-
-        #endregion
-
-        private CampaignEditorOverseer()
-        {
-            packCombiner = new PackCombiner();
-        }
+        private CampaignEditorOverseer() => packCombiner = new PackCombiner();
 
         /// <summary>
         /// Feeds the Campaign Editor data to edit.

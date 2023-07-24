@@ -1,4 +1,5 @@
 ﻿using System;
+using RedRats.Core;
 using RedRats.Safety;
 using Rogium.Systems.IconBuilders;
 using UnityEngine;
@@ -8,7 +9,7 @@ namespace Rogium.Editors.Palettes
     /// <summary>
     /// Overseers the Palette Editor.
     /// </summary>
-    public class PaletteEditorOverseer : IEditorOverseer
+    public sealed class PaletteEditorOverseer : Singleton<PaletteEditorOverseer>, IEditorOverseer
     {
         public event Action<PaletteAsset> OnAssignAsset;
         public event Action OnCompleteEditingBefore, OnCompleteEditingAfter;
@@ -19,28 +20,7 @@ namespace Rogium.Editors.Palettes
         private PaletteAsset currentAsset;
         private int myIndex;
         
-        #region Singleton Pattern
-        private static PaletteEditorOverseer instance;
-        private static readonly object padlock = new object();
-        public static PaletteEditorOverseer Instance
-        {
-            get
-            {
-                lock (padlock)
-                {
-                    if (instance == null)
-                        instance = new PaletteEditorOverseer();
-                    return instance;
-                }
-            }
-        }
-
-        #endregion
-
-        private PaletteEditorOverseer()
-        {
-            iconBuilder = new IconBuilder();
-        }
+        private PaletteEditorOverseer() => iconBuilder = new IconBuilder();
 
         /// <summary>
         /// Assign an asset, that is going to be edited.

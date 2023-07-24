@@ -1,4 +1,5 @@
 ﻿using System;
+using RedRats.Core;
 using RedRats.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Rooms;
@@ -9,7 +10,7 @@ namespace Rogium.Editors.Tiles
     /// <summary>
     /// Overseers everything happening in the Tile Editor.
     /// </summary>
-    public class TileEditorOverseer : IEditorOverseer
+    public sealed class TileEditorOverseer : Singleton<TileEditorOverseer>, IEditorOverseer
     {
         public event Action<TileAsset> OnAssignAsset; 
         public event Action<TileAsset, int> OnCompleteEditing;
@@ -17,24 +18,8 @@ namespace Rogium.Editors.Tiles
         private TileAsset currentAsset;
         private int myIndex;
 
-        #region Singleton Pattern
-        private static TileEditorOverseer instance;
-        private static readonly object padlock = new object();
-        public static TileEditorOverseer Instance
-        {
-            get
-            {
-                lock (padlock)
-                {
-                    if (instance == null)
-                        instance = new TileEditorOverseer();
-                    return instance;
-                }
-            }
-        }
-
-        #endregion
-
+        private TileEditorOverseer() {}
+        
         /// <summary>
         /// Assign an asset, that is going to be edited.
         /// </summary>

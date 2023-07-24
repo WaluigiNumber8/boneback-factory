@@ -1,4 +1,5 @@
 ﻿using System;
+using RedRats.Core;
 using RedRats.Safety;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ namespace Rogium.Editors.Enemies
     /// <summary>
     /// Overseers everything happening in the Weapon Editor.
     /// </summary>
-    public class EnemyEditorOverseer : IEditorOverseer
+    public sealed class EnemyEditorOverseer : Singleton<EnemyEditorOverseer>, IEditorOverseer
     {
         public event Action<EnemyAsset> OnAssignAsset; 
         public event Action<EnemyAsset, int> OnCompleteEditing;
@@ -15,24 +16,8 @@ namespace Rogium.Editors.Enemies
         private EnemyAsset currentAsset;
         private int myIndex;
 
-        #region Singleton Pattern
-        private static EnemyEditorOverseer instance;
-        private static readonly object padlock = new object();
-        public static EnemyEditorOverseer Instance
-        {
-            get
-            {
-                lock (padlock)
-                {
-                    if (instance == null)
-                        instance = new EnemyEditorOverseer();
-                    return instance;
-                }
-            }
-        }
-
-        #endregion
-
+        private EnemyEditorOverseer() {}
+        
         /// <summary>
         /// Assign an asset, that is going to be edited.
         /// </summary>

@@ -10,13 +10,15 @@ namespace Rogium.Editor.Core
     [InitializeOnLoad]
     public class Autorun
     {
-        static Autorun() => EditorApplication.update += InitWhenEditorLoad;
+        static Autorun() => EditorApplication.delayCall += InitWhenEditorLoad;
 
         private static void InitWhenEditorLoad()
         {
+            if (EditorApplication.isPlayingOrWillChangePlaymode) return;
+            
             RogiumScreenSwitcher screenSwitcher = ScriptableObject.CreateInstance<RogiumScreenSwitcher>();
             screenSwitcher.SwitchSceneToDefault();
-            EditorApplication.update -= InitWhenEditorLoad;
+            EditorApplication.delayCall -= InitWhenEditorLoad;
         }
     }
 }
