@@ -126,7 +126,6 @@ namespace Rogium.Gameplay.Entities
         protected virtual void UpdateFaceDirection()
         {
             faceDirection = (velocityChange.IsZero(0.05f)) ? velocityChange.normalized.Round() : faceDirection;
-            Debug.Log(faceDirection);
         }
 
         protected void OnDrawGizmos()

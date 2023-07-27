@@ -108,7 +108,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2107557191573780117, guid: 3ce3a28cdae4b604691bc77e57a1b6df, type: 3}
+      propertyPath: m_Name
+      value: pref_Button_Properties_Green
+      objectReference: {fileID: 0}
     - target: {fileID: 2813450576382091328, guid: 3ce3a28cdae4b604691bc77e57a1b6df, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -115370567, guid: a76fa23c2c4ce5143ab2016a0fca02b0, type: 3}
+    - target: {fileID: 5861990959663372431, guid: 3ce3a28cdae4b604691bc77e57a1b6df, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -115370567, guid: a76fa23c2c4ce5143ab2016a0fca02b0, type: 3}
@@ -116,8 +124,39 @@ PrefabInstance:
       propertyPath: m_Name
       value: pref_Button_Properties_Green
       objectReference: {fileID: 0}
+    - target: {fileID: 8882849320914530229, guid: 3ce3a28cdae4b604691bc77e57a1b6df, type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 3109940380215473901}
+    - target: {fileID: 8882849320914530229, guid: 3ce3a28cdae4b604691bc77e57a1b6df, type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: -733293881, guid: a76fa23c2c4ce5143ab2016a0fca02b0, type: 3}
+    - target: {fileID: 8882849320914530229, guid: 3ce3a28cdae4b604691bc77e57a1b6df, type: 3}
+      propertyPath: m_SpriteState.m_DisabledSprite
+      value: 
+      objectReference: {fileID: -1003367695, guid: a76fa23c2c4ce5143ab2016a0fca02b0, type: 3}
+    - target: {fileID: 8882849320914530229, guid: 3ce3a28cdae4b604691bc77e57a1b6df, type: 3}
+      propertyPath: m_SpriteState.m_SelectedSprite
+      value: 
+      objectReference: {fileID: -1698541586, guid: a76fa23c2c4ce5143ab2016a0fca02b0, type: 3}
+    - target: {fileID: 8882849320914530229, guid: 3ce3a28cdae4b604691bc77e57a1b6df, type: 3}
+      propertyPath: m_SpriteState.m_HighlightedSprite
+      value: 
+      objectReference: {fileID: -1525768045, guid: a76fa23c2c4ce5143ab2016a0fca02b0, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ce3a28cdae4b604691bc77e57a1b6df, type: 3}
+--- !u!114 &3109940380215473901 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5861990959663372431, guid: 3ce3a28cdae4b604691bc77e57a1b6df, type: 3}
+  m_PrefabInstance: {fileID: 8822907861457415778}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
