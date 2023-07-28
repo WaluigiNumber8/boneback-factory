@@ -48,7 +48,6 @@ namespace Rogium.Editors.PropertyEditor.Builders
         
         protected override void BuildColumnImportant(Transform content)
         {
-            b.BuildInputField("", asset.Title, content, asset.UpdateTitle);
             
             animationBlock1Slot = b.CreateContentBlockVertical(content, (asset.AnimationType == AnimationType.SpriteSwap));
             b.BuildAssetField("", AssetType.Sprite, asset, animationBlock1Slot.GetTransform, a => asset.UpdateIcon(a.Icon), !currentPack.ContainsAnySprites, ThemeType.Red);
@@ -57,6 +56,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
             b.BuildAssetField("", AssetType.Sprite, asset, animationBlock2Slot.GetTransform, a => asset.UpdateIcon(a.Icon), !currentPack.ContainsAnySprites, ThemeType.Red);
             b.BuildAssetField("", AssetType.Sprite, asset, animationBlock2Slot.GetTransform, a => asset.UpdateIconAlt(a.Icon), !currentPack.ContainsAnySprites, ThemeType.Red);
 
+            b.BuildInputField("", asset.Title, content, asset.UpdateTitle);
             b.BuildDropdown("AI", aiOptions, (int)asset.AI, content, ProcessAIType);
         }
 

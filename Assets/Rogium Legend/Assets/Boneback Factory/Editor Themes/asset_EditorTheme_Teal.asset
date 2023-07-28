@@ -21,7 +21,7 @@ MonoBehaviour:
     toggleCheckmark: {fileID: -319974302, guid: 1abf6ad819805b740841dc5b73ba4957, type: 3}
     sliderBackground: {fileID: -711906910, guid: aaa101711eef6374bba38ee057fd5eff, type: 3}
     sliderHandle: {fileID: 2092432594, guid: aaa101711eef6374bba38ee057fd5eff, type: 3}
-    editorBackground: {fileID: 937064283, guid: 03977cfb793b1df4f967627d37f27b4a, type: 3}
+    editorBackground: {fileID: -481559791, guid: ca3d2f3be3cc5014792c1cbc8859d42a, type: 3}
     modalWindowBackground: {fileID: 21300000, guid: 4c3839678c1297a4e89937136c50a427, type: 3}
   interactables:
     buttonMenu:
