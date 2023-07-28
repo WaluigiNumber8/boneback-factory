@@ -2,6 +2,7 @@ using RedRats.Editor.UnityEditorExtensions;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using UnityEditor;
+using UnityEditor.Callbacks;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
@@ -78,17 +79,16 @@ namespace Rogium.Editor.UI
             EditorPrefs.SetString("RogiumMenuSwitcher", data);
             base.OnDisable();
         }
-        
-        /// <summary>
-        /// Switches the scene to the menu.
-        /// </summary>
-        public void SwitchSceneToDefault() => EditorSceneManager.OpenScene(menuScenePath, OpenSceneMode.Single);
-        
+
         /// <summary>
         /// Switches to a scene under path.
         /// </summary>
         /// <param name="path">The path of the scene asset to switch to.</param>
-        private void SwitchScene(string path) => EditorSceneManager.OpenScene(path, OpenSceneMode.Single);
+        private void SwitchScene(string path)
+        {
+            EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
+            EditorSceneManager.OpenScene(path, OpenSceneMode.Single);
+        }
 
         /// <summary>
         /// Activates a specific menu.
