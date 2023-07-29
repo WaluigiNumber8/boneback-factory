@@ -46,7 +46,7 @@ namespace Rogium.Editors.Sprites
         }
         
         public SpriteAsset(string id, string title, Sprite icon, string author, ObjectGrid<int> spriteData, 
-                           string preferredPaletteID, IList<string> associatedAssets, DateTime creationDate)
+                           string preferredPaletteID, ISet<string> associatedAssets, DateTime creationDate)
         {
             AssetValidation.ValidateTitle(title);
             
@@ -70,16 +70,10 @@ namespace Rogium.Editors.Sprites
         #endregion
         
         public void TryAddAssociation(IIDHolder newReferencedAsset) => TryAddAssociation(newReferencedAsset.ID);
-        public void TryAddAssociation(string id)
-        {
-            associatedAssetsIDs.Add(id);
-        }
-
+        public void TryAddAssociation(string id) => associatedAssetsIDs.Add(id);
+        
         public void TryRemoveAssociation(IIDHolder referencedAsset) => TryRemoveAssociation(referencedAsset.ID);
-        public void TryRemoveAssociation(string id)
-        {
-            associatedAssetsIDs.Remove(id);
-        }
+        public void TryRemoveAssociation(string id) => associatedAssetsIDs.Remove(id);
 
         public ObjectGrid<int> SpriteData { get => spriteData; }
         public string PreferredPaletteID { get => preferredPaletteID; }

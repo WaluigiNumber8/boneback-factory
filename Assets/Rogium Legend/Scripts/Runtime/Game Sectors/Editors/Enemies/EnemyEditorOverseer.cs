@@ -11,10 +11,11 @@ namespace Rogium.Editors.Enemies
     public sealed class EnemyEditorOverseer : Singleton<EnemyEditorOverseer>, IEditorOverseer
     {
         public event Action<EnemyAsset> OnAssignAsset; 
-        public event Action<EnemyAsset, int> OnCompleteEditing;
+        public event Action<EnemyAsset, int, string> OnCompleteEditing;
         
         private EnemyAsset currentAsset;
         private int myIndex;
+        private string lastAssociatedSpriteID;
 
         private EnemyEditorOverseer() {}
         
@@ -31,6 +32,7 @@ namespace Rogium.Editors.Enemies
             
             currentAsset = new EnemyAsset(asset);
             myIndex = index;
+            lastAssociatedSpriteID = asset.AssociatedSpriteID;
 
             if (!prepareEditor) return;
             OnAssignAsset?.Invoke(currentAsset);
@@ -48,7 +50,7 @@ namespace Rogium.Editors.Enemies
         
         public void CompleteEditing()
         {
-            OnCompleteEditing?.Invoke(CurrentAsset, myIndex);
+            OnCompleteEditing?.Invoke(CurrentAsset, myIndex, lastAssociatedSpriteID);
         }
         
         public EnemyAsset CurrentAsset 

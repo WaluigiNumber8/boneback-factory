@@ -19,7 +19,7 @@ namespace Rogium.Editors.Weapons
         private float useDuration;
         private bool freezeUser;
         private bool isEvasive;
-        private List<ProjectileDataInfo> projectileIDs;
+        private readonly List<ProjectileDataInfo> projectileIDs;
 
         #region Constructors
         public WeaponAsset()

@@ -13,10 +13,11 @@ namespace Rogium.Editors.Tiles
     public sealed class TileEditorOverseer : Singleton<TileEditorOverseer>, IEditorOverseer
     {
         public event Action<TileAsset> OnAssignAsset; 
-        public event Action<TileAsset, int> OnCompleteEditing;
+        public event Action<TileAsset, int, string> OnCompleteEditing;
         
         private TileAsset currentAsset;
         private int myIndex;
+        private string lastAssociatedSpriteID;
 
         private TileEditorOverseer() {}
         
@@ -33,6 +34,7 @@ namespace Rogium.Editors.Tiles
             
             currentAsset = new TileAsset(asset);
             myIndex = index;
+            lastAssociatedSpriteID = asset.AssociatedSpriteID;
 
             if (!prepareEditor) return;
             OnAssignAsset?.Invoke(currentAsset);
@@ -50,7 +52,7 @@ namespace Rogium.Editors.Tiles
         
         public void CompleteEditing()
         {
-            OnCompleteEditing?.Invoke(CurrentAsset, myIndex);
+            OnCompleteEditing?.Invoke(CurrentAsset, myIndex, lastAssociatedSpriteID);
         }
         
         public TileAsset CurrentAsset 

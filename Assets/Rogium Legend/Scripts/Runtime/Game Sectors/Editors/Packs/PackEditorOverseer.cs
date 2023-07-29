@@ -52,8 +52,6 @@ namespace Rogium.Editors.Packs
             enemyEditor.OnCompleteEditing += UpdateEnemy;
             roomEditor.OnCompleteEditing += UpdateRoom;
             tileEditor.OnCompleteEditing += UpdateTile;
-
-            AssetWithReferencedSpriteBase.OnRemoveAssociation += TryBreakAssociationWithSprite;
         }
 
         /// <summary>
@@ -215,6 +213,7 @@ namespace Rogium.Editors.Packs
         #endregion
         
         #region Weapons
+        
         /// <summary>
         /// Creates a new weapon, and adds it to the Pack Asset.
         /// <param name="newAsset">The new Weapon Asset to Add.</param>
@@ -237,10 +236,12 @@ namespace Rogium.Editors.Packs
         /// </summary>
         /// <param name="newAsset">Weapon Asset with the new details.</param>
         /// <param name="positionIndex">Which weapon to override.</param>
-        public void UpdateWeapon(WeaponAsset newAsset, int positionIndex)
+        /// <param name="lastAssociatedSpriteID">The weapon's sprite before it was edited.</param>
+        public void UpdateWeapon(WeaponAsset newAsset, int positionIndex, string lastAssociatedSpriteID)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Weapons, "List of Weapons");
+            ProcessSpriteAssociations(newAsset, lastAssociatedSpriteID);
             CurrentPack.Weapons.Update(positionIndex, newAsset);
         } 
 
@@ -293,10 +294,12 @@ namespace Rogium.Editors.Packs
         /// </summary>
         /// <param name="newAsset">Projectile Asset with the new details.</param>
         /// <param name="positionIndex">Which projectile to override.</param>
-        public void UpdateProjectile(ProjectileAsset newAsset, int positionIndex)
+        /// /// <param name="lastAssociatedSpriteID">The projectile's sprite before it was edited.</param>
+        public void UpdateProjectile(ProjectileAsset newAsset, int positionIndex, string lastAssociatedSpriteID)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Projectiles, "List of Projectiles");
+            ProcessSpriteAssociations(newAsset, lastAssociatedSpriteID);
             CurrentPack.Projectiles.Update(positionIndex, newAsset);
         } 
 
@@ -349,10 +352,12 @@ namespace Rogium.Editors.Packs
         /// </summary>
         /// <param name="newAsset">Enemy Asset with the new details.</param>
         /// <param name="positionIndex">Which enemy to override.</param>
-        public void UpdateEnemy(EnemyAsset newAsset, int positionIndex)
+        /// /// <param name="lastAssociatedSpriteID">The enemy's sprite before it was edited.</param>
+        public void UpdateEnemy(EnemyAsset newAsset, int positionIndex, string lastAssociatedSpriteID)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Enemies, "List of Enemies");
+            ProcessSpriteAssociations(newAsset, lastAssociatedSpriteID);
             CurrentPack.Enemies.Update(positionIndex, newAsset);
         } 
 
@@ -405,10 +410,12 @@ namespace Rogium.Editors.Packs
         /// </summary>
         /// <param name="newAsset">Tile Asset with the new details.</param>
         /// <param name="positionIndex">Which tile to override.</param>
-        public void UpdateTile(TileAsset newAsset, int positionIndex)
+        /// /// <param name="lastAssociatedSpriteID">The tile's sprite before it was edited.</param>
+        public void UpdateTile(TileAsset newAsset, int positionIndex, string lastAssociatedSpriteID)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Tiles, "List of Tiles");
+            ProcessSpriteAssociations(newAsset, lastAssociatedSpriteID);
             CurrentPack.Tiles.Update(positionIndex, newAsset);
         } 
 
@@ -504,13 +511,19 @@ namespace Rogium.Editors.Packs
         #endregion
 
         /// <summary>
-        /// Tries to break an association between a sprite and an asset. 
+        /// Adds/Removes sprite associations if necessary.
         /// </summary>
-        /// <param name="spriteID">The ID of the sprite, that associated with the asset.</param>
-        /// <param name="assetID">The ID of teh asset which uses the sprite.</param>
-        private void TryBreakAssociationWithSprite(string spriteID, string assetID)
+        /// <param name="asset">The asset to process the associations for.</param>
+        /// <param name="lastAssociatedSpriteID">The asset's old sprite (given to it before editing).</param>
+        private void ProcessSpriteAssociations(AssetWithReferencedSpriteBase asset, string lastAssociatedSpriteID)
         {
-            currentPack.Sprites.FindValueFirst(spriteID).TryRemoveAssociation(assetID);
+            //Add association if possible.
+            if (asset.AssociatedSpriteID == lastAssociatedSpriteID) return;
+            CurrentPack.Sprites.FindValueFirst(asset.AssociatedSpriteID).TryAddAssociation(asset);
+            
+            //Remove association of older sprite.
+            if (string.IsNullOrEmpty(lastAssociatedSpriteID)) return;
+            currentPack.Sprites.FindValueFirst(lastAssociatedSpriteID).TryRemoveAssociation(asset.ID);
         }
         
         /// <summary>

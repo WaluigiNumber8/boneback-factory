@@ -1,4 +1,3 @@
-using System;
 using RedRats.Safety;
 using Rogium.Editors.Sprites;
 
@@ -9,21 +8,13 @@ namespace Rogium.Editors.Core
     /// </summary>
     public abstract class AssetWithReferencedSpriteBase : AssetBase
     {
-        public static event Action<string, string> OnRemoveAssociation; 
-        
         protected string associatedSpriteID;
         
         public virtual void UpdateIcon(IAsset newSprite)
         {
             SafetyNet.EnsureIsType<SpriteAsset>(newSprite, nameof(newSprite));
             SpriteAsset s = (SpriteAsset) newSprite;
-
-            if (!string.IsNullOrEmpty(associatedSpriteID) && associatedSpriteID != newSprite.ID)
-            {
-                OnRemoveAssociation?.Invoke(associatedSpriteID, ID);
-            }
             associatedSpriteID = newSprite.ID;
-            s.TryAddAssociation(this);
             icon = s.Icon;
         }
         
