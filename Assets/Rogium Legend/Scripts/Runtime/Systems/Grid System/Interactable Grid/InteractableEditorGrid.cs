@@ -41,7 +41,6 @@ namespace Rogium.Systems.GridSystem
             
             ttransform = GetComponent<RectTransform>();
             drawer = new SpriteDrawer(gridSize, new Vector2Int(EditorConstants.SpriteSize, EditorConstants.SpriteSize), EditorConstants.SpriteSize);
-            
             cellSize = new Vector2(ttransform.rect.width / gridSize.x, ttransform.rect.height / gridSize.y);
             
             PrepareLayers();
