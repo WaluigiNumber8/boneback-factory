@@ -7,7 +7,7 @@ using Rogium.Systems.Validation;
 
 namespace Rogium.Editors.Packs
 {
-    public class PackInfoAsset : AssetBase
+    public class PackInfoAsset : AssetWithReferencedSpriteBase
     {
         private string description;
 

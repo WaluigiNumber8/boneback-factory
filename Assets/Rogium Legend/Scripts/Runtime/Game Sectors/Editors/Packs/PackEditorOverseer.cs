@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using RedRats.Core;
 using UnityEngine;
 using RedRats.Safety;
+using Rogium.Core;
 using Rogium.Editors.Core;
+using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Enemies;
-using Rogium.Editors.Objects;
 using Rogium.Editors.Palettes;
 using Rogium.Editors.Projectiles;
 using Rogium.Editors.Rooms;
@@ -52,6 +52,8 @@ namespace Rogium.Editors.Packs
             enemyEditor.OnCompleteEditing += UpdateEnemy;
             roomEditor.OnCompleteEditing += UpdateRoom;
             tileEditor.OnCompleteEditing += UpdateTile;
+
+            AssetWithReferencedSpriteBase.OnRemoveAssociation += TryBreakAssociationWithSprite;
         }
 
         /// <summary>
@@ -152,6 +154,38 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Sprites, "List of Sprites");
             CurrentPack.Sprites.Update(positionIndex, newAsset);
+            
+            foreach (string id in newAsset.AssociatedAssetsIDs)
+            {
+                string identifier = id[..2];
+                switch (identifier)
+                {
+                    case EditorAssetIDs.PackIdentifier:
+                        currentPack.UpdateIcon(newAsset);
+                        break;
+                    case EditorAssetIDs.PaletteIdentifier:
+                        currentPack.Palettes.FindValueFirst(id).UpdateIcon(newAsset);
+                        break;
+                    case EditorAssetIDs.SpriteIdentifier:
+                        currentPack.Sprites.FindValueFirst(id).UpdateIcon(newAsset);
+                        break;
+                    case EditorAssetIDs.WeaponIdentifier:
+                        currentPack.Weapons.FindValueFirst(id).UpdateIcon(newAsset);
+                        break;
+                    case EditorAssetIDs.ProjectileIdentifier:
+                        currentPack.Projectiles.FindValueFirst(id).UpdateIcon(newAsset);
+                        break;
+                    case EditorAssetIDs.EnemyIdentifier:
+                        currentPack.Enemies.FindValueFirst(id).UpdateIcon(newAsset);
+                        break;
+                    case EditorAssetIDs.RoomIdentifier:
+                        currentPack.Rooms.FindValueFirst(id).UpdateIcon(newAsset);
+                        break;
+                    case EditorAssetIDs.TileIdentifier:
+                        currentPack.Tiles.FindValueFirst(id).UpdateIcon(newAsset);
+                        break;
+                }
+            }
         } 
 
         /// <summary>
@@ -469,6 +503,16 @@ namespace Rogium.Editors.Packs
 
         #endregion
 
+        /// <summary>
+        /// Tries to break an association between a sprite and an asset. 
+        /// </summary>
+        /// <param name="spriteID">The ID of the sprite, that associated with the asset.</param>
+        /// <param name="assetID">The ID of teh asset which uses the sprite.</param>
+        private void TryBreakAssociationWithSprite(string spriteID, string assetID)
+        {
+            currentPack.Sprites.FindValueFirst(spriteID).TryRemoveAssociation(assetID);
+        }
+        
         /// <summary>
         /// Saves all edits done to a pack and "returns" it to the library.
         /// </summary>

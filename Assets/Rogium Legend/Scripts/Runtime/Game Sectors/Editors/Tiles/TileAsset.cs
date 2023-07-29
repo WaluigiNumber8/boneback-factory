@@ -5,6 +5,7 @@ using UnityEngine.Tilemaps;
 using RedRats.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
+using Rogium.Editors.Sprites;
 using Rogium.Systems.Validation;
 
 namespace Rogium.Editors.Tiles
@@ -12,7 +13,7 @@ namespace Rogium.Editors.Tiles
     /// <summary>
     /// Contains all data needed for a tile in a pack.
     /// </summary>
-    public class TileAsset : AssetBase
+    public class TileAsset : AssetWithReferencedSpriteBase
     {
         private readonly TileObject tile;
 
@@ -67,12 +68,12 @@ namespace Rogium.Editors.Tiles
         #endregion
 
         #region Update Values
-        public override void UpdateIcon(Sprite newIcon)
+        public override void UpdateIcon(IAsset newSprite)
         {
+            base.UpdateIcon(newSprite);
             SafetyNet.EnsureIsNotNull(tile, "TileObject");
             SafetyNet.EnsureIsNotNull(tile.Tile, "Tile in TileObject");
-            icon = newIcon;
-            tile.Tile.sprite = newIcon;
+            tile.Tile.sprite = newSprite.Icon;
         }
 
         public void UpdateTileType(int newType)

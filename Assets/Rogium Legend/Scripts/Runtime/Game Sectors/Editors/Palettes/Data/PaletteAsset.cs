@@ -10,7 +10,7 @@ namespace Rogium.Editors.Palettes
     /// <summary>
     /// Contains all data needed for a palette.
     /// </summary>
-    public class PaletteAsset : AssetBase
+    public class PaletteAsset : AssetWithDirectSpriteBase
     {
         private Color[] colors;
 

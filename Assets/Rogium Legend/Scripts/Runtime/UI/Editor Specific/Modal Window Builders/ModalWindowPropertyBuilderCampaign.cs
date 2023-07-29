@@ -4,6 +4,7 @@ using System.Linq;
 using RedRats.UI;
 using RedRats.UI.ModalWindows;
 using Rogium.Editors.Campaign;
+using Rogium.Editors.Core;
 using Rogium.Systems.GASExtension;
 using Rogium.UserInterface.Editors.AssetSelection;
 

@@ -2,6 +2,7 @@
 using RedRats.UI;
 using RedRats.UI.ModalWindows;
 using Rogium.Core;
+using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
 
 namespace Rogium.UserInterface.Editors.ModalWindowBuilding
@@ -11,6 +12,8 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     /// </summary>
     public class ModalWindowPropertyBuilderPack : ModalWindowPropertyBuilder
     {
+        private new AssetWithReferencedSpriteBase editedAssetBase;
+        
         public override void OpenForCreate()
         {
             OpenWindow(new PackInfoAsset(), CreateAsset, "Creating a new pack");
@@ -32,7 +35,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             
             b.BuildInputField("Name", currentPackInfo.Title, windowColumn1, currentPackInfo.UpdateTitle, false, true);
             b.BuildInputFieldArea("Description", currentPackInfo.Description, windowColumn1, currentPackInfo.UpdateDescription);
-            b.BuildAssetField("", AssetType.Sprite, currentPackInfo, windowColumn2, a => editedAssetBase.UpdateIcon(a?.Icon), isDisabled, ThemeType.Blue);
+            b.BuildAssetField("", AssetType.Sprite, currentPackInfo, windowColumn2, a => editedAssetBase.UpdateIcon(a), isDisabled, ThemeType.Blue);
             b.BuildPlainText("Created by", currentPackInfo.Author, windowColumn2);
             b.BuildPlainText("Created on", currentPackInfo.CreationDate.ToString(), windowColumn2);
 

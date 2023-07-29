@@ -1,5 +1,6 @@
 ﻿using Rogium.Editors.Sprites;
 using System;
+using System.Collections.Generic;
 
 namespace Rogium.ExternalStorage.Serialization
 {
@@ -27,6 +28,7 @@ namespace Rogium.ExternalStorage.Serialization
                                    author,
                                    spriteData.Decode(),
                                    preferredPaletteID,
+                                   new List<string>(), //TODO Add save support fort associated sprites
                                    DateTime.Parse(creationDate));
         }
     }

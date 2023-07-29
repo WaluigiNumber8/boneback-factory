@@ -7,7 +7,7 @@ namespace Rogium.Editors.Core
     /// <summary>
     /// A base for all animated assets.
     /// </summary>
-    public class AnimatedAssetBase : AssetBase
+    public class AnimatedAssetBase : AssetWithReferencedSpriteBase
     {
         protected AnimationType animationType;
         protected int frameDuration;

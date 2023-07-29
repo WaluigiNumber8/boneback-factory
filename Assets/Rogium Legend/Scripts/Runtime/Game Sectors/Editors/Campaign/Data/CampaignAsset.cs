@@ -11,7 +11,7 @@ namespace Rogium.Editors.Campaign
     /// <summary>
     /// Contains everything important to an individual Campaign.
     /// </summary>
-    public class CampaignAsset : AssetBase
+    public class CampaignAsset : AssetWithDirectSpriteBase
     {
         private int adventureLength;
         private PackAsset dataPack;

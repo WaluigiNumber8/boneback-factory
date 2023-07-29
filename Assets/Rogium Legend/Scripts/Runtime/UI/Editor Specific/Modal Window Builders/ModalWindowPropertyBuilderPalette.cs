@@ -1,6 +1,7 @@
 ﻿using System;
 using RedRats.UI;
 using RedRats.UI.ModalWindows;
+using Rogium.Editors.Core;
 using Rogium.Editors.Palettes;
 
 namespace Rogium.UserInterface.Editors.ModalWindowBuilding
@@ -10,7 +11,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     /// </summary>
     public class ModalWindowPropertyBuilderPalette : ModalWindowPropertyBuilder
     {
-        private PaletteEditorOverseer paletteEditor;
+        private readonly PaletteEditorOverseer paletteEditor;
 
         public ModalWindowPropertyBuilderPalette()
         {

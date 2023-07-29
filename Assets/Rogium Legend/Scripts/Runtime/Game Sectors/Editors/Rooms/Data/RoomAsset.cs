@@ -11,7 +11,7 @@ namespace Rogium.Editors.Rooms
     /// <summary>
     /// Contains all data needed for a pack room.
     /// </summary>
-    public class RoomAsset : AssetBase
+    public class RoomAsset : AssetWithDirectSpriteBase
     {
         private int difficultyLevel;
         private RoomType type;

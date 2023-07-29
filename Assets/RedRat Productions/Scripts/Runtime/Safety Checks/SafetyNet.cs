@@ -14,7 +14,7 @@ namespace RedRats.Safety
         #region Object Checks
 
         /// <summary>
-        /// Checks if a given object is not null.
+        /// Ensures a given object is not null.
         /// </summary>
         /// <param name="obj">The object to check.</param>
         /// <param name="variableName">Name of the checked variable.</param>
@@ -28,12 +28,27 @@ namespace RedRats.Safety
             }
         }
 
+        /// <summary>
+        /// Ensures a given object is of a specific type.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="variableName"></param>
+        /// <param name="customMessage"></param>
+        /// <typeparam name="T"></typeparam>
+        public static void EnsureIsType<T>(object obj, string variableName, string customMessage = "")
+        {
+            if (obj is not T)
+            {
+                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} must be of type {typeof(T)}.");
+            }
+        }
+        
         #endregion
 
         #region Int Checks
 
         /// <summary>
-        /// Checks if an number is not equal to a specific value.
+        /// Ensures an number is not equal to a specific value.
         /// </summary>
         /// <param name="number">The number to check.</param>
         /// <param name="allowedValue">The value it cannot equal to.</param>
@@ -45,7 +60,7 @@ namespace RedRats.Safety
         }
         
         /// <summary>
-        /// Checks if an number is not equal to a specific value.
+        /// Ensures an number is not equal to a specific value.
         /// </summary>
         /// <param name="number">The number to check.</param>
         /// <param name="disallowedValue">The value it cannot equal to.</param>
@@ -60,7 +75,7 @@ namespace RedRats.Safety
         }
 
         /// <summary>
-        /// Checks if an number is bigger than a specific value.
+        /// Ensures an number is bigger than a specific value.
         /// </summary>
         /// <param name="number">The number to check.</param>
         /// <param name="minSize">Minimum value allowed.</param>
@@ -75,7 +90,7 @@ namespace RedRats.Safety
         }
 
         /// <summary>
-        /// Checks if an number is bigger than or equal to a specific value.
+        /// Ensures an number is bigger than or equal to a specific value.
         /// </summary>
         /// <param name="number">The number to check.</param>
         /// <param name="minSize">Minimum value allowed.</param>
@@ -90,7 +105,7 @@ namespace RedRats.Safety
         }
 
         /// <summary>
-        /// Checks if an number is smaller than a specific value.
+        /// Ensures an number is smaller than a specific value.
         /// </summary>
         /// <param name="number">The number to check.</param>
         /// <param name="maxSize">Maximum value allowed.</param>
@@ -105,7 +120,7 @@ namespace RedRats.Safety
         }
 
         /// <summary>
-        /// Checks if an number is smaller than or equal to a specific value.
+        /// Ensures an number is smaller than or equal to a specific value.
         /// </summary>
         /// <param name="number">The number to check.</param>
         /// <param name="maxSize">Maximum value allowed.</param>
@@ -120,7 +135,7 @@ namespace RedRats.Safety
         }
 
         /// <summary>
-        /// Checks if an number is within a given range (both inclusive).
+        /// Ensures an number is within a given range (both inclusive).
         /// </summary>
         /// <param name="number">The number to check.</param>
         /// <param name="lowBounds">Minimum value allowed.</param>
@@ -140,7 +155,7 @@ namespace RedRats.Safety
         #region Float Checks
 
         /// <summary>
-        /// Checks if a number is not equal to a specific value.
+        /// Ensures a number is not equal to a specific value.
         /// </summary>
         /// <param name="number">The number to check.</param>
         /// <param name="allowedValue">The value it cannot equal to.</param>
@@ -155,7 +170,7 @@ namespace RedRats.Safety
         }
         
         /// <summary>
-        /// Checks if a number is not equal to a specific value.
+        /// Ensures a number is not equal to a specific value.
         /// </summary>
         /// <param name="number">The number to check.</param>
         /// <param name="disallowedValue">The value it cannot equal to.</param>
@@ -170,7 +185,7 @@ namespace RedRats.Safety
         }
 
         /// <summary>
-        /// Checks if an number is bigger than a specific value.
+        /// Ensures an number is bigger than a specific value.
         /// </summary>
         /// <param name="number">The number to check.</param>
         /// <param name="minSize">Minimum value allowed.</param>
@@ -185,7 +200,7 @@ namespace RedRats.Safety
         }
 
         /// <summary>
-        /// Checks if an number is bigger than or equal to a specific value.
+        /// Ensures an number is bigger than or equal to a specific value.
         /// </summary>
         /// <param name="number">The number to check.</param>
         /// <param name="minSize">Minimum value allowed.</param>
@@ -200,7 +215,7 @@ namespace RedRats.Safety
         }
 
         /// <summary>
-        /// Checks if an number is smaller than a specific value.
+        /// Ensures an number is smaller than a specific value.
         /// </summary>
         /// <param name="number">The number to check.</param>
         /// <param name="maxSize">Maximum value allowed.</param>
@@ -215,7 +230,7 @@ namespace RedRats.Safety
         }
 
         /// <summary>
-        /// Checks if an number is smaller than or equal to a specific value.
+        /// Ensures an number is smaller than or equal to a specific value.
         /// </summary>
         /// <param name="number">The number to check.</param>
         /// <param name="maxSize">Maximum value allowed.</param>
@@ -230,7 +245,7 @@ namespace RedRats.Safety
         }
 
         /// <summary>
-        /// Checks if an number is within a given range (both inclusive).
+        /// Ensures an number is within a given range (both inclusive).
         /// </summary>
         /// <param name="number">The number to check.</param>
         /// <param name="lowBounds">Minimum value allowed.</param>
@@ -246,7 +261,7 @@ namespace RedRats.Safety
         }
 
         /// <summary>
-        /// Checks if an number is within a given range (both inclusive).
+        /// Ensures an number is within a given range (both inclusive).
         /// </summary>
         /// <param name="number">The number to check.</param>
         /// <param name="lowBounds">Minimum value allowed.</param>
@@ -264,7 +279,7 @@ namespace RedRats.Safety
         
         #region String Checks
         /// <summary>
-        /// Checks if a given string is not null or empty.
+        /// Ensures a given string is not null or empty.
         /// </summary>
         /// <param name="stringObject">The string to check.</param>
         /// <param name="variableName">Name of the variable.</param>
@@ -308,7 +323,7 @@ namespace RedRats.Safety
         }
 
         /// <summary>
-        /// Checks if a string's amount of characters is within a given range.
+        /// Ensures a string's amount of characters is within a given range.
         /// </summary>
         /// <param name="stringObject">The string to check.</param>
         /// <param name="minLimit">Range minimum.</param>
@@ -326,7 +341,7 @@ namespace RedRats.Safety
         #region List Checks
 
         /// <summary>
-        /// Checks if a given list is not empty.
+        /// Ensures a given list is not empty.
         /// </summary>
         /// <param name="list">The list to check.</param>
         /// <param name="variableName">The name of the list</param>
@@ -341,7 +356,7 @@ namespace RedRats.Safety
         }
 
         /// <summary>
-        /// Checks if a given list is not null.
+        /// Ensures a given list is not null.
         /// </summary>
         /// <param name="list">The list to check.</param>
         /// <param name="variableName">The name of the list</param>
@@ -356,7 +371,7 @@ namespace RedRats.Safety
         }
 
         /// <summary>
-        /// Checks if a given list has a size lower than a specific size.
+        /// Ensures a given list has a size lower than a specific size.
         /// </summary>
         /// <param name="list">The list to check.</param>
         /// <param name="maxAllowedSize">Max allowed size for the list.</param>
@@ -372,7 +387,7 @@ namespace RedRats.Safety
         }
 
         /// <summary>
-        /// Checks if a given list has a size lower or equal to a specific size.
+        /// Ensures a given list has a size lower or equal to a specific size.
         /// </summary>
         /// <param name="list">The list to check.</param>
         /// <param name="maxAllowedSize">Max allowed size for the list.</param>
@@ -388,7 +403,7 @@ namespace RedRats.Safety
         }
 
         /// <summary>
-        /// Checks if a given list has a size bigger than a specific value.
+        /// Ensures a given list has a size bigger than a specific value.
         /// </summary>
         /// <param name="list">The list to check.</param>
         /// <param name="minAllowedSize">Min allowed size for the list.</param>
@@ -404,7 +419,7 @@ namespace RedRats.Safety
         }
 
         /// <summary>
-        /// Checks if a given list has a size bigger or equal to a specific value.
+        /// Ensures a given list has a size bigger or equal to a specific value.
         /// </summary>
         /// <param name="list">The list to check.</param>
         /// <param name="minAllowedSize">Min allowed size for the list.</param>
@@ -420,7 +435,7 @@ namespace RedRats.Safety
         }
 
         /// <summary>
-        /// Checks if a given list has a specific size.
+        /// Ensures a given list has a specific size.
         /// </summary>
         /// <param name="list">The list to check.</param>
         /// <param name="size">The allowed size for the list.</param>
@@ -470,7 +485,7 @@ namespace RedRats.Safety
         }
 
         /// <summary>
-        /// Checks if a given list does not have any duplicates.
+        /// Ensures a given list does not have any duplicates.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="list"></param>
