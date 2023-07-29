@@ -7,7 +7,7 @@ namespace Rogium.ExternalStorage.Serialization
     /// Serialized form of the <see cref="PackInfoAsset"/>.
     /// </summary>
     [System.Serializable]
-    public class JSONPackInfoAsset : JSONAssetBase<PackInfoAsset>
+    public class JSONPackInfoAsset : JSONAssetWithReferencedSpriteBase<PackInfoAsset>
     {
         public string description;
 
@@ -22,6 +22,7 @@ namespace Rogium.ExternalStorage.Serialization
                                      title,
                                      icon.Decode(),
                                      author,
+                                     associatedSpriteID,
                                      description,
                                      DateTime.Parse(creationDate));
         }

@@ -56,6 +56,8 @@ namespace Rogium.Editors.Projectiles
             author = asset.Author;
             creationDate = asset.CreationDate;
 
+            associatedSpriteID = asset.AssociatedSpriteID;
+            
             animationType = asset.AnimationType;
             frameDuration = asset.FrameDuration;
             iconAlt = asset.IconAlt;
@@ -75,7 +77,7 @@ namespace Rogium.Editors.Projectiles
             pierceType = asset.PierceType;
         }
 
-        public ProjectileAsset(string id, string title, Sprite icon, string author, AnimationType animationType, 
+        public ProjectileAsset(string id, string title, Sprite icon, string author, string associatedSpriteID, AnimationType animationType, 
                                int frameDuration, Sprite iconAlt, int baseDamage, float useDelay, float knockbackForceSelf, 
                                float knockbackTimeSelf, bool knockbackLockDirectionSelf, float knockbackForceOther,
                                float knockbackTimeOther, bool knockbackLockDirectionOther, float flightSpeed, float acceleration,
@@ -89,6 +91,8 @@ namespace Rogium.Editors.Projectiles
             this.author = author;
             this.creationDate = creationDate;
 
+            this.associatedSpriteID = associatedSpriteID;
+            
             this.animationType = animationType;
             this.frameDuration = frameDuration;
             this.iconAlt = iconAlt;

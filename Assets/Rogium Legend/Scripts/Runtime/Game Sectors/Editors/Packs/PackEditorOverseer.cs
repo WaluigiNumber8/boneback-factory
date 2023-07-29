@@ -161,7 +161,7 @@ namespace Rogium.Editors.Packs
                 switch (identifier)
                 {
                     case EditorAssetIDs.PackIdentifier:
-                        currentPack.UpdateIcon(newAsset);
+                        currentPack.PackInfo.UpdateIcon(newAsset);
                         break;
                     case EditorAssetIDs.PaletteIdentifier:
                         currentPack.Palettes.FindValueFirst(id).UpdateIcon(newAsset);

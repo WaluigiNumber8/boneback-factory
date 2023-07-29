@@ -41,6 +41,7 @@ namespace Rogium.ExternalStorage.Serialization
                                   title,
                                   icon.Decode(),
                                   author,
+                                  associatedSpriteID,
                                   (AnimationType)animationType,
                                   frameDuration,
                                   iconAlt.Decode(),

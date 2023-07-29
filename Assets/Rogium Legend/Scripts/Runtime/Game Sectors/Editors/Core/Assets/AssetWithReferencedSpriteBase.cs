@@ -10,7 +10,8 @@ namespace Rogium.Editors.Core
     public abstract class AssetWithReferencedSpriteBase : AssetBase
     {
         public static event Action<string, string> OnRemoveAssociation; 
-        private string associatedSpriteID;
+        
+        protected string associatedSpriteID;
         
         public virtual void UpdateIcon(IAsset newSprite)
         {
@@ -19,11 +20,13 @@ namespace Rogium.Editors.Core
 
             if (!string.IsNullOrEmpty(associatedSpriteID) && associatedSpriteID != newSprite.ID)
             {
-                OnRemoveAssociation?.Invoke(newSprite.ID, ID);
+                OnRemoveAssociation?.Invoke(associatedSpriteID, ID);
             }
             associatedSpriteID = newSprite.ID;
             s.TryAddAssociation(this);
             icon = s.Icon;
         }
+        
+        public string AssociatedSpriteID { get => associatedSpriteID; }
     }
 }

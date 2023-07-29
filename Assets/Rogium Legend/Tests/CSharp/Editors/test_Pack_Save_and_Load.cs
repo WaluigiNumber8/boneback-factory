@@ -128,7 +128,7 @@ public class test_Pack_Save_and_Load
     [Test]
     public void update_pack_details()
     {
-        PackInfoAsset newInfo = new PackInfoAsset(packInfo.ID, packInfo.Title, packInfo.Icon, packInfo.Author, "This pack has now been updated", packInfo.CreationDate);
+        PackInfoAsset newInfo = new PackInfoAsset(packInfo.ID, packInfo.Title, packInfo.Icon, packInfo.Author, packInfo.AssociatedSpriteID, "This pack has now been updated", packInfo.CreationDate);
         lib.CreateAndAddPack(packInfo);
         lib.ActivatePackEditor(0);
         PackInfoAsset oldInfo = editor.CurrentPack.PackInfo;

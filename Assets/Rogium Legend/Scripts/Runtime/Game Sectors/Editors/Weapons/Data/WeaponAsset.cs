@@ -62,6 +62,8 @@ namespace Rogium.Editors.Weapons
             author = asset.Author;
             creationDate = asset.CreationDate;
 
+            associatedSpriteID = asset.AssociatedSpriteID;
+            
             animationType = asset.AnimationType;
             frameDuration = asset.FrameDuration;
             iconAlt = asset.IconAlt;
@@ -83,7 +85,7 @@ namespace Rogium.Editors.Weapons
             projectileIDs = new List<ProjectileDataInfo>(asset.ProjectileIDs);
         }
 
-        public WeaponAsset(string id, string title, Sprite icon, string author, AnimationType animationType, 
+        public WeaponAsset(string id, string title, Sprite icon, string author, string associatedSpriteID, AnimationType animationType, 
                            int frameDuration, Sprite iconAlt,int baseDamage, float useDelay, float knockbackForceSelf,
                            float knockbackTimeSelf, bool knockbackLockDirectionSelf, float knockbackForceOther,
                            float knockbackTimeOther, bool knockbackLockDirectionOther, WeaponUseType useType,
@@ -98,6 +100,8 @@ namespace Rogium.Editors.Weapons
             this.author = author;
             this.creationDate = creationDate;
 
+            this.associatedSpriteID = associatedSpriteID;
+            
             this.animationType = animationType;
             this.frameDuration = frameDuration;
             this.iconAlt = iconAlt;

@@ -31,6 +31,9 @@ namespace Rogium.Editors.Packs
             this.title = asset.Title;
             this.icon = asset.Icon;
             this.author = asset.Author;
+
+            this.associatedSpriteID = asset.AssociatedSpriteID;
+            
             this.creationDate = asset.CreationDate;
             this.description = asset.Description;
         }
@@ -47,7 +50,7 @@ namespace Rogium.Editors.Packs
             this.description = description;
             GenerateID(EditorAssetIDs.PackIdentifier);
         }
-        public PackInfoAsset(string id, string title, Sprite icon, string author, string description, DateTime creationDateTime)
+        public PackInfoAsset(string id, string title, Sprite icon, string author, string associatedSpriteID, string description, DateTime creationDateTime)
         {
             AssetValidation.ValidateTitle(title);
             AssetValidation.ValidateDescription(description);
@@ -56,8 +59,9 @@ namespace Rogium.Editors.Packs
             this.title = title;
             this.icon = icon;
             this.author = author;
-            this.creationDate = creationDateTime;
+            this.associatedSpriteID = associatedSpriteID;
             this.description = description;
+            this.creationDate = creationDateTime;
         }
         #endregion
         

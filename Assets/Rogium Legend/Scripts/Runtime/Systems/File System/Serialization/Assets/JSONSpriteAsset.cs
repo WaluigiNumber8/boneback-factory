@@ -10,8 +10,8 @@ namespace Rogium.ExternalStorage.Serialization
     [System.Serializable]
     public class JSONSpriteAsset : JSONAssetBase<SpriteAsset>
     {
-        public JSONGrid<int> spriteData;
-        public string preferredPaletteID;
+        public  JSONGrid<int> spriteData;
+        public  string preferredPaletteID;
         
         public JSONSpriteAsset(SpriteAsset asset) : base(asset)
         {

@@ -2,7 +2,6 @@
 using RedRats.UI;
 using RedRats.UI.ModalWindows;
 using Rogium.Core;
-using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
 
 namespace Rogium.UserInterface.Editors.ModalWindowBuilding
@@ -12,7 +11,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     /// </summary>
     public class ModalWindowPropertyBuilderPack : ModalWindowPropertyBuilder
     {
-        private new AssetWithReferencedSpriteBase editedAssetBase;
+        private new PackInfoAsset editedAssetBase;
         
         public override void OpenForCreate()
         {
@@ -48,7 +47,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         /// </summary>
         protected override void CreateAsset()
         {
-            lib.CreateAndAddPack((PackInfoAsset)editedAssetBase);
+            lib.CreateAndAddPack(editedAssetBase);
             selectionMenu.OpenForPacks();
         }
 
@@ -57,7 +56,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         /// </summary>
         protected override void UpdateAsset()
         {
-            editor.CurrentPack.UpdatePackInfo((PackInfoAsset)editedAssetBase);
+            editor.CurrentPack.UpdatePackInfo(editedAssetBase);
             editor.CompleteEditing();
             selectionMenu.OpenForPacks();
         }

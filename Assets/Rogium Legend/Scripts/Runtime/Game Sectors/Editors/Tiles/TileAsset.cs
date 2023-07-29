@@ -37,6 +37,9 @@ namespace Rogium.Editors.Tiles
             this.title = asset.Title;
             this.author = asset.Author;
             this.creationDate = asset.CreationDate;
+
+            this.associatedSpriteID = asset.AssociatedSpriteID;
+            
             this.tile = new TileObject(asset.Tile, asset.Type);
             this.tile.Tile.sprite = this.icon;
         }
@@ -52,7 +55,8 @@ namespace Rogium.Editors.Tiles
             this.tile.Tile.sprite = icon;
             GenerateID(EditorAssetIDs.TileIdentifier);
         }
-        public TileAsset(string id, string title, Sprite icon, string author, TileType type, Color tileColor, DateTime creationDate)
+        public TileAsset(string id, string title, Sprite icon, string author, string associatedSpriteID, TileType type,
+                         Color tileColor, DateTime creationDate)
         {
             AssetValidation.ValidateTitle(title);
             
@@ -61,6 +65,9 @@ namespace Rogium.Editors.Tiles
             this.icon = icon;
             this.author = author;
             this.creationDate = creationDate;
+            
+            this.associatedSpriteID = associatedSpriteID;
+            
             this.tile = new TileObject(ScriptableObject.CreateInstance<Tile>(), type);
             this.tile.Tile.sprite = icon;
             this.tile.Tile.color = tileColor;
