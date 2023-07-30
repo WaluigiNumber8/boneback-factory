@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using RedRats.Core;
 using RedRats.Safety;
+using Rogium.Core;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Packs;
 using Rogium.ExternalStorage;
 using Rogium.Systems.SceneTransferService;
 using UnityEngine;
+using static Rogium.Editors.Packs.SpriteAssociation;
 
 namespace Rogium.Editors.Core
 {
@@ -58,10 +59,13 @@ namespace Rogium.Editors.Core
         /// </summary>
         /// <param name="pack">The new data for the pack.</param>
         /// <param name="index">Position to override.</param>
-        /// <param name="originalTitle">Pack's Title before updating.</param>
-        /// <param name="originalAuthor">Pack's Author before updating.</param>
-        public void UpdatePack(PackAsset pack, int index, string originalTitle, string originalAuthor)
+        /// <param name="lastTitle">Pack's Title before updating.</param>
+        /// <param name="lastAuthor">Pack's Author before updating.</param>
+        /// <param name="lastAssociatedSpriteID">Pack's referenced sprite before updating.</param>
+        public void UpdatePack(PackAsset pack, int index, string lastTitle, string lastAuthor, string lastAssociatedSpriteID)
         {
+            ProcessSpriteAssociations(pack, pack.PackInfo, lastAssociatedSpriteID);
+            RefreshAndSaveAssetSprite(packs, pack.ID, pack.Sprites.FindValueFirst(pack.PackInfo.AssociatedSpriteID));
             packs.Update(index, pack);
         }
         
@@ -71,6 +75,7 @@ namespace Rogium.Editors.Core
         /// <param name="packIndex">Pack ID in the list.</param>
         public void DeletePack(int packIndex)
         {
+            RemoveAssociation(packs[packIndex], packs[packIndex].PackInfo);
             packs.Remove(packIndex);
         }
         /// <summary>
