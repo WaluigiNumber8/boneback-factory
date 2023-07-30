@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using RedRats.Core;
 using RedRats.Safety;
 using Rogium.Core;
@@ -47,10 +48,10 @@ namespace Rogium.Editors.Core
         /// <summary>
         /// Creates a new Pack, and adds it to the library.
         /// </summary>
-        /// <param name="packInfo">Information about the pack.</param>
-        public void CreateAndAddPack(PackInfoAsset packInfo)
+        /// <param name="pack">Information about the pack.</param>
+        public void CreateAndAddPack(PackAsset pack)
         {
-            PackAsset newPack = new(packInfo);
+            PackAsset newPack = new(pack.ID, pack.Title, pack.Icon, pack.Author, pack.AssociatedSpriteID, pack.Description, pack.CreationDate);
             packs.Add(newPack);
         }
 
@@ -64,8 +65,8 @@ namespace Rogium.Editors.Core
         /// <param name="lastAssociatedSpriteID">Pack's referenced sprite before updating.</param>
         public void UpdatePack(PackAsset pack, int index, string lastTitle, string lastAuthor, string lastAssociatedSpriteID)
         {
-            ProcessSpriteAssociations(pack, pack.PackInfo, lastAssociatedSpriteID);
-            RefreshAndSaveAssetSprite(packs, pack.ID, pack.Sprites.FindValueFirst(pack.PackInfo.AssociatedSpriteID));
+            ProcessSpriteAssociations(pack, pack, lastAssociatedSpriteID);
+            RefreshAndSaveAssetSprite(packs, pack.ID, pack.Sprites.FindValueFirstOrDefault(pack.AssociatedSpriteID));
             packs.Update(index, pack);
         }
         
@@ -75,7 +76,7 @@ namespace Rogium.Editors.Core
         /// <param name="packIndex">Pack ID in the list.</param>
         public void DeletePack(int packIndex)
         {
-            RemoveAssociation(packs[packIndex], packs[packIndex].PackInfo);
+            RemoveAssociation(packs[packIndex], packs[packIndex]);
             packs.Remove(packIndex);
         }
         /// <summary>

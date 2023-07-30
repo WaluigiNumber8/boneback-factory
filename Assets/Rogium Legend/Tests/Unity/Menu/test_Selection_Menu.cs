@@ -12,20 +12,19 @@ using UnityEngine.TestTools;
 public class test_Selection_Menu
 {
     private GameObject canvas;
-    private PackInfoAsset packInfo;
     private AssetSelectionOverseer assetSelection;
     private AssetSelectionOverseerMono assetSelectionMono;
+    private string packTitle;
+    private string packDescription;
+    private string packAuthor;
 
     [SetUp]
     public void Setup()
     {
         #region Prepare Test Pack
-        string packTitle = EditorConstants.PackTitle;
-        string packDescription = EditorConstants.PackDescription;
-        string packAuthor = EditorConstants.Author;
-        Sprite packIcon = EditorConstants.PackIcon;
-
-        packInfo = new PackInfoAsset(packTitle, packIcon, packAuthor, packDescription);
+        packTitle = EditorConstants.PackTitle;
+        packDescription = EditorConstants.PackDescription;
+        packAuthor = EditorConstants.Author;
         #endregion
 
         #region Prepare Menu
@@ -53,7 +52,7 @@ public class test_Selection_Menu
     [UnityTest]
     public IEnumerator menu_correctly_sets_up_grid_pack_selection()
     {
-        ExternalLibraryOverseer.Instance.CreateAndAddPack(packInfo);
+        ExternalLibraryOverseer.Instance.CreateAndAddPack(new PackAsset(packTitle, packAuthor, packDescription));
 
         assetSelectionMono.OpenForPacks();
         yield return new WaitForSeconds(0.1f);
@@ -66,7 +65,7 @@ public class test_Selection_Menu
     [UnityTest]
     public IEnumerator open_same_selection_menu_after_the_last_one_was_loaded()
     {
-        ExternalLibraryOverseer.Instance.CreateAndAddPack(packInfo);
+        ExternalLibraryOverseer.Instance.CreateAndAddPack(new PackAsset(packTitle, packAuthor, packDescription));
 
         assetSelectionMono.OpenForPacks();
         yield return new WaitForSeconds(0.5f);
@@ -80,7 +79,7 @@ public class test_Selection_Menu
     [UnityTest]
     public IEnumerator reload_selection_menu_with_room_assets()
     {
-        ExternalLibraryOverseer.Instance.CreateAndAddPack(packInfo);
+        ExternalLibraryOverseer.Instance.CreateAndAddPack(new PackAsset(packTitle, packAuthor, packDescription));
 
         assetSelectionMono.OpenForPacks();
         
@@ -103,7 +102,7 @@ public class test_Selection_Menu
     [UnityTest]
     public IEnumerator menu_correctly_sets_up_room_selection_list_menu()
     {
-        ExternalLibraryOverseer.Instance.CreateAndAddPack(packInfo);
+        ExternalLibraryOverseer.Instance.CreateAndAddPack(new PackAsset(packTitle, packAuthor, packDescription));
 
         ExternalLibraryOverseer.Instance.ActivatePackEditor(0);
         PackEditorOverseer.Instance.CreateNewRoom();

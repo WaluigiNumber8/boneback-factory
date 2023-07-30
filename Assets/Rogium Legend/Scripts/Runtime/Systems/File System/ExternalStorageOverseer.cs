@@ -127,10 +127,10 @@ namespace Rogium.ExternalStorage
             {
                CreateSkeleton(pack);
             }
-            PackInfoAsset packInfo = new(pack.PackInfo);
             RefreshAssetSaveableData();
             
-            return new PackAsset(packInfo, paletteCRUD.LoadAll(), spriteCRUD.LoadAll(), weaponCRUD.LoadAll(),
+            return new PackAsset(pack.ID, pack.Title, pack.Icon, pack.Author, pack.AssociatedSpriteID, pack.Description, 
+                                 pack.CreationDate, paletteCRUD.LoadAll(), spriteCRUD.LoadAll(), weaponCRUD.LoadAll(),
                                  projectileCRUD.LoadAll(), enemyCRUD.LoadAll(), roomCRUD.LoadAll(), tileCRUD.LoadAll());
         }
 

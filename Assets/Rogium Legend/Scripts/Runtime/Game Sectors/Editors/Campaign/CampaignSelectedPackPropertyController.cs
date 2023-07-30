@@ -54,7 +54,7 @@ namespace Rogium.Editors.Campaign
         {
             ui.titleText.text = currentPack.Title;
             ui.icon.sprite = currentPack.Icon;
-            ui.descriptionText.text = currentPack.PackInfo.Description;
+            ui.descriptionText.text = currentPack.Description;
             ui.weaponsToggle.isOn = currentImportInfo.weapons;
             ui.enemiesToggle.isOn = currentImportInfo.enemies;
             ui.roomsToggle.isOn = currentImportInfo.rooms;

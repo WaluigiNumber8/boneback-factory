@@ -64,11 +64,22 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(pack, "Pack to assign");
             currentPack = new PackAsset(pack);
             myIndex = index;
-            lastAssociatedSpriteID = pack.PackInfo.AssociatedSpriteID;
+            lastAssociatedSpriteID = pack.AssociatedSpriteID;
             lastTitle = currentPack.Title;
             lastAuthor = currentPack.Author;
         }
 
+        /// <summary>
+        /// Updates the asset with new data. Not allowed when no asset is assigned.
+        /// </summary>
+        /// <param name="updatedAsset">Asset, containing new data.</param>
+        public void UpdateAsset(PackAsset updatedAsset)
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Currently active asset.");
+            currentPack = new PackAsset(updatedAsset);
+            ProcessSpriteAssociations(currentPack, currentPack, lastAssociatedSpriteID);
+        }
+        
         #region Palettes
         /// <summary>
         /// Creates a new palette, and adds it to the Pack Asset.
@@ -203,7 +214,7 @@ namespace Rogium.Editors.Packs
                 switch (identifier)
                 {
                     case EditorAssetIDs.PackIdentifier:
-                        currentPack.PackInfo.ClearAssociatedSprite();
+                        currentPack.ClearAssociatedSprite();
                         SavePackChanges();
                         break;
                     case EditorAssetIDs.WeaponIdentifier:
@@ -554,7 +565,7 @@ namespace Rogium.Editors.Packs
         /// </summary>
         private void SavePackChanges()
         {
-            ProcessSpriteAssociations(currentPack, currentPack.PackInfo, lastAssociatedSpriteID);
+            ProcessSpriteAssociations(currentPack, currentPack, lastAssociatedSpriteID);
             OnSaveChanges?.Invoke(currentPack, myIndex, lastTitle, lastAuthor, lastAssociatedSpriteID);
         }
 

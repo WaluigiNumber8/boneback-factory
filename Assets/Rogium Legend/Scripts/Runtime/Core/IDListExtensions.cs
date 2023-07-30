@@ -57,6 +57,7 @@ namespace Rogium.Core
         public static T FindValueFirst<T, TS>(this IEnumerable<T> list, TS id) where T : IIDHolder where TS : IComparable
         {
             SafetyNet.EnsureIsNotNull(list, "List ot search");
+            SafetyNet.EnsureIsNotNull(id, "Value to find cannot be null");
             foreach (T value in list)
             {
                 if (id.CompareTo(value.ID) != 0) continue;

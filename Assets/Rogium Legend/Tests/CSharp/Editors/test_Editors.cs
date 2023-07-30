@@ -25,9 +25,8 @@ namespace Rogium_Legend.Tests.CSharp.Editors
             const string packName = "Test Pack";
             const string packDescription = "Created this pack for testing purposes.";
             const string packAuthor = "TestAuthor";
-            Sprite packIcon = EditorConstants.PackIcon;
 
-            ExternalLibraryOverseer.Instance.CreateAndAddPack(new PackInfoAsset(packName, packIcon, packAuthor, packDescription));
+            ExternalLibraryOverseer.Instance.CreateAndAddPack(new PackAsset(packName, packAuthor, packDescription));
             ExternalLibraryOverseer.Instance.ActivatePackEditor(0);
         }
 

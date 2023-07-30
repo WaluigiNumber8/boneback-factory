@@ -36,6 +36,7 @@ namespace Rogium.Editors.Packs
         /// <typeparam name="T">Any type of <see cref="IAssetWithIcon"/>.</typeparam>
         public static void RefreshAndSaveAssetSprite<T>(AssetList<T> list, string id, SpriteAsset sprite) where T : IAssetWithIcon
         {
+            if (sprite == null) return;
             try
             {
                 (T asset, int index) = list.FindValueAndIndexFirst(id);
