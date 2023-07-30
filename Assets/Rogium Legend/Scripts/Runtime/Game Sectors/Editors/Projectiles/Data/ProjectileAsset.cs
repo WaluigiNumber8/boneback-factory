@@ -123,6 +123,12 @@ namespace Rogium.Editors.Projectiles
 
         #endregion
         
+        public override void ClearAssociatedSprite()
+        {
+            base.ClearAssociatedSprite();
+            icon = EditorConstants.ProjectileIcon;
+        }
+        
         public float FlightSpeed { get => flightSpeed; }
         public float Acceleration { get => acceleration; }
         public float BrakeForce { get => brakeForce; }

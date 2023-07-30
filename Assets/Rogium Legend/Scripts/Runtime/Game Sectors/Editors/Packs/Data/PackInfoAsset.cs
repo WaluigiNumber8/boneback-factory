@@ -70,6 +70,12 @@ namespace Rogium.Editors.Packs
 
         #endregion
         
+        public override void ClearAssociatedSprite()
+        {
+            base.ClearAssociatedSprite();
+            icon = EditorConstants.PackIcon;
+        }
+        
         public string Description { get => description; }
     }
 }

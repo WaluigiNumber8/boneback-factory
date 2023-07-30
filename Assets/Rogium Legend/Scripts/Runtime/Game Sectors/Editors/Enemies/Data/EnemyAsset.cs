@@ -156,6 +156,12 @@ namespace Rogium.Editors.Enemies
         public void UpdateSeamlessMovement(bool newSeamlessMovementState) => seamlessMovement = newSeamlessMovementState;
         #endregion
 
+        public override void ClearAssociatedSprite()
+        {
+            base.ClearAssociatedSprite();
+            icon = EditorConstants.EnemyIcon;
+        }
+        
         public List<string> WeaponIDs { get => weaponIDs; }
         public int MaxHealth { get => maxHealth; }
         public float AttackProbability { get => attackProbability; }

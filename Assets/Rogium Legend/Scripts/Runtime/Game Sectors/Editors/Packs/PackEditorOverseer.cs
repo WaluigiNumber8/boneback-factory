@@ -151,8 +151,8 @@ namespace Rogium.Editors.Packs
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Sprites, "List of Sprites");
-            CurrentPack.Sprites.Update(positionIndex, newAsset);
             
+            CurrentPack.Sprites.Update(positionIndex, newAsset);
             foreach (string id in newAsset.AssociatedAssetsIDs)
             {
                 string identifier = id[..2];
@@ -160,31 +160,32 @@ namespace Rogium.Editors.Packs
                 {
                     case EditorAssetIDs.PackIdentifier:
                         currentPack.PackInfo.UpdateIcon(newAsset);
+                        SavePackChanges();
                         break;
                     case EditorAssetIDs.PaletteIdentifier:
-                        currentPack.Palettes.FindValueFirst(id).UpdateIcon(newAsset);
+                        RefreshAndSaveAssetSprite(currentPack.Palettes, id, newAsset);
                         break;
                     case EditorAssetIDs.SpriteIdentifier:
-                        currentPack.Sprites.FindValueFirst(id).UpdateIcon(newAsset);
+                        RefreshAndSaveAssetSprite(currentPack.Sprites, id, newAsset);
                         break;
                     case EditorAssetIDs.WeaponIdentifier:
-                        currentPack.Weapons.FindValueFirst(id).UpdateIcon(newAsset);
+                        RefreshAndSaveAssetSprite(currentPack.Weapons, id, newAsset);
                         break;
                     case EditorAssetIDs.ProjectileIdentifier:
-                        currentPack.Projectiles.FindValueFirst(id).UpdateIcon(newAsset);
+                        RefreshAndSaveAssetSprite(currentPack.Projectiles, id, newAsset);
                         break;
                     case EditorAssetIDs.EnemyIdentifier:
-                        currentPack.Enemies.FindValueFirst(id).UpdateIcon(newAsset);
+                        RefreshAndSaveAssetSprite(currentPack.Enemies, id, newAsset);
                         break;
                     case EditorAssetIDs.RoomIdentifier:
-                        currentPack.Rooms.FindValueFirst(id).UpdateIcon(newAsset);
+                        RefreshAndSaveAssetSprite(currentPack.Rooms, id, newAsset);
                         break;
                     case EditorAssetIDs.TileIdentifier:
-                        currentPack.Tiles.FindValueFirst(id).UpdateIcon(newAsset);
+                        RefreshAndSaveAssetSprite(currentPack.Tiles, id, newAsset);
                         break;
                 }
             }
-        } 
+        }
 
         /// <summary>
         /// Deletes a sprite from the pack.
@@ -194,6 +195,30 @@ namespace Rogium.Editors.Packs
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Sprites, "List of Sprites");
+            SpriteAsset sprite = currentPack.Sprites[assetIndex];
+            foreach (string id in sprite.AssociatedAssetsIDs)
+            {
+                string identifier = id[..2];
+                switch (identifier)
+                {
+                    case EditorAssetIDs.PackIdentifier:
+                        currentPack.PackInfo.ClearAssociatedSprite();
+                        SavePackChanges();
+                        break;
+                    case EditorAssetIDs.WeaponIdentifier:
+                        RemoveAndSaveAssetSprite(currentPack.Weapons, id);
+                        break;
+                    case EditorAssetIDs.ProjectileIdentifier:
+                        RemoveAndSaveAssetSprite(currentPack.Projectiles, id);
+                        break;
+                    case EditorAssetIDs.EnemyIdentifier:
+                        RemoveAndSaveAssetSprite(currentPack.Enemies, id);
+                        break;
+                    case EditorAssetIDs.TileIdentifier:
+                        RemoveAndSaveAssetSprite(currentPack.Tiles, id);
+                        break;
+                }
+            }
             currentPack.Sprites.Remove(assetIndex);
         }
 
@@ -253,6 +278,7 @@ namespace Rogium.Editors.Packs
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Weapons, "List of Weapons");
+            RemoveAssociation(currentPack.Weapons[assetIndex]);
             currentPack.Weapons.Remove(assetIndex);
         }
 
@@ -311,6 +337,7 @@ namespace Rogium.Editors.Packs
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Projectiles, "List of Projectiles");
+            RemoveAssociation(currentPack.Weapons[assetIndex]);
             currentPack.Projectiles.Remove(assetIndex);
         }
 
@@ -369,6 +396,7 @@ namespace Rogium.Editors.Packs
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Enemies, "List of Enemies");
+            RemoveAssociation(currentPack.Weapons[assetIndex]);
             currentPack.Enemies.Remove(assetIndex);
         }
 
@@ -427,6 +455,7 @@ namespace Rogium.Editors.Packs
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Tiles, "List of Tiles");
+            RemoveAssociation(currentPack.Weapons[assetIndex]);
             currentPack.Tiles.Remove(assetIndex);
         }
 
@@ -523,7 +552,58 @@ namespace Rogium.Editors.Packs
             
             //Remove association of older sprite.
             if (string.IsNullOrEmpty(lastAssociatedSpriteID)) return;
-            currentPack.Sprites.FindValueFirst(lastAssociatedSpriteID).TryRemoveAssociation(asset.ID);
+            currentPack.Sprites.FindValueFirst(lastAssociatedSpriteID).TryRemoveAssociation(asset);
+        }
+
+        /// <summary>
+        /// Updates the icon of an assets and calls for saving to external storage.
+        /// </summary>
+        /// <param name="list">The list of assets the asset is located on.</param>
+        /// <param name="id">The ID of the asset, who's sprite will be refreshed.</param>
+        /// <param name="sprite">The new sprite to refresh with.</param>
+        /// <typeparam name="T">Any type of <see cref="IAssetWithIcon"/>.</typeparam>
+        private void RefreshAndSaveAssetSprite<T>(AssetList<T> list, string id, SpriteAsset sprite) where T : IAssetWithIcon
+        {
+            try
+            {
+                (T asset, int index) = list.FindValueAndIndexFirst(id);
+                asset.UpdateIcon(sprite);
+                list.Update(index, asset);
+            }
+            catch (SafetyNetCollectionException)
+            {
+                sprite.TryRemoveAssociation(id);
+            }
+        }
+
+        /// <summary>
+        /// Removes an associated sprite from any kind <see cref="AssetWithReferencedSpriteBase"/>.
+        /// </summary>
+        /// <param name="list">The list of assets the asset is located on.</param>
+        /// <param name="id">The ID of the asset to remove the reference from.</param>
+        /// <typeparam name="T">Any type of <see cref="AssetWithReferencedSpriteBase"/>.</typeparam>
+        private void RemoveAndSaveAssetSprite<T>(AssetList<T> list, string id) where T : AssetWithReferencedSpriteBase
+        {
+            try
+            {
+                (T asset, int index) = list.FindValueAndIndexFirst(id);
+                asset.ClearAssociatedSprite();
+                list.Update(index, asset);
+            }
+            catch (SafetyNetCollectionException)
+            {
+                //Intentionally blank (doesn't matter if asset does not exist, since we are removing the sprite anyway).
+            }
+        }
+        
+        /// <summary>
+        /// Removes an association between asset and it's associated sprite.
+        /// </summary>
+        /// <param name="asset">The, who's sprite association to sewer.</param>
+        private void RemoveAssociation(AssetWithReferencedSpriteBase asset)
+        {
+            if (string.IsNullOrEmpty(asset.AssociatedSpriteID)) return;
+            currentPack.Sprites.FindValueFirst(asset.AssociatedSpriteID).TryRemoveAssociation(asset);
         }
         
         /// <summary>

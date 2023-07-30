@@ -89,6 +89,12 @@ namespace Rogium.Editors.Tiles
         }
         #endregion
 
+        public override void ClearAssociatedSprite()
+        {
+            base.ClearAssociatedSprite();
+            icon = EditorConstants.TileIcon;
+        }
+
         public Tile Tile { get => tile.Tile; }
         public TileType Type { get => tile.Type;}
     }

@@ -6,7 +6,7 @@ namespace Rogium.Editors.Core
     /// <summary>
     /// A base for all assets, which contain a reference to a <see cref="SpriteAsset"/>.
     /// </summary>
-    public abstract class AssetWithReferencedSpriteBase : AssetBase
+    public abstract class AssetWithReferencedSpriteBase : AssetBase, IAssetWithIcon
     {
         protected string associatedSpriteID;
         
@@ -17,7 +17,15 @@ namespace Rogium.Editors.Core
             associatedSpriteID = newSprite.ID;
             icon = s.Icon;
         }
-        
+
+        /// <summary>
+        /// Clears the associated sprite reference and replaces assets icon with it's default.
+        /// </summary>
+        public virtual void ClearAssociatedSprite()
+        {
+            associatedSpriteID = string.Empty;
+        }
+
         public string AssociatedSpriteID { get => associatedSpriteID; }
     }
 }

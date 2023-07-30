@@ -168,6 +168,12 @@ namespace Rogium.Editors.Weapons
 
         #endregion
 
+        public override void ClearAssociatedSprite()
+        {
+            base.ClearAssociatedSprite();
+            icon = EditorConstants.WeaponIcon;
+        }
+        
         public WeaponUseType UseType { get => useType; }
         public float UseDuration { get => useDuration; }
         public float UseStartDelay { get => useStartDelay; }
