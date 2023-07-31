@@ -15,7 +15,7 @@ namespace Rogium.Editors.Core.Defaults
         //Pack
         public const string PackTitle = "New Pack";
         public const string PackDescription = "A new pack filled with adventure!";
-        public static readonly Sprite PackIcon = Resources.Load<Sprite>("Defaults/spr_Default_Weapon");
+        public static readonly Sprite PackIcon = Resources.Load<Sprite>("Defaults/spr_Default_Pack");
         
         //Campaign
         public const string CampaignTitle = "New Campaign";
@@ -68,7 +68,7 @@ namespace Rogium.Editors.Core.Defaults
         
         //Projectile
         public const string ProjectileTitle = "New Projectile";
-        public static readonly Sprite ProjectileIcon = Resources.Load<Sprite>("Defaults/spr_Default_Weapon");
+        public static readonly Sprite ProjectileIcon = Resources.Load<Sprite>("Defaults/spr_Default_Projectile");
         
         public const AnimationType ProjectileAnimationType = AnimationType.NoAnimation;
         public const int ProjectileFrameDuration = 40;
@@ -96,7 +96,7 @@ namespace Rogium.Editors.Core.Defaults
         
         //Enemy
         public const string EnemyTitle = "New Enemy";
-        public static readonly Sprite EnemyIcon = Resources.Load<Sprite>("Defaults/spr_TestDummy");
+        public static readonly Sprite EnemyIcon = Resources.Load<Sprite>("Defaults/spr_Default_Enemy");
 
         public const AnimationType EnemyAnimationType = AnimationType.HorizontalFlip;
         public const int EnemyFrameDuration = 50;
