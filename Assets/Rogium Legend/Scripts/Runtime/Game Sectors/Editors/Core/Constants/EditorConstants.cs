@@ -15,7 +15,7 @@ namespace Rogium.Editors.Core.Defaults
         //Pack
         public const string PackTitle = "New Pack";
         public const string PackDescription = "A new pack filled with adventure!";
-        public static readonly Sprite PackIcon = Resources.Load<Sprite>("Defaults/spr_Default_Weapon");
+        public static readonly Sprite PackIcon = Resources.Load<Sprite>("Defaults/spr_Default_Pack");
         
         //Campaign
         public const string CampaignTitle = "New Campaign";
