@@ -18,6 +18,7 @@ namespace Rogium.Editors.Core
     /// </summary>
     public sealed class ExternalLibraryOverseer : Singleton<ExternalLibraryOverseer>
     {
+        private readonly PackEditorOverseer packEditor = PackEditorOverseer.Instance;
         private readonly ExternalStorageOverseer ex;
         
         private readonly AssetList<PackAsset> packs;
@@ -29,7 +30,8 @@ namespace Rogium.Editors.Core
             packs = new AssetList<PackAsset>(ex.CreatePack, ex.UpdatePack, ex.DeletePack);
             campaigns = new AssetList<CampaignAsset>(ex.Campaigns.Save, ex.Campaigns.UpdateTitle, ex.Campaigns.Delete);
             
-            PackEditorOverseer.Instance.OnSaveChanges += UpdatePack;
+            packEditor.OnSaveChanges += UpdatePack;
+            packEditor.OnRemoveSprite += RemoveSpriteAssociation;
             CampaignEditorOverseer.Instance.OnSaveChanges += UpdateCampaign;
             ReloadFromExternalStorage();
         }
@@ -66,7 +68,10 @@ namespace Rogium.Editors.Core
         public void UpdatePack(PackAsset pack, int index, string lastTitle, string lastAuthor, string lastAssociatedSpriteID)
         {
             ProcessSpriteAssociations(pack, pack, lastAssociatedSpriteID);
-            RefreshAndSaveAssetSprite(packs, pack.ID, pack.Sprites.FindValueFirstOrDefault(pack.AssociatedSpriteID));
+            if (!string.IsNullOrEmpty(pack.AssociatedSpriteID))
+            {
+                RefreshSpriteAndSaveAsset(packs, pack.ID, pack.Sprites.FindValueFirstOrDefault(pack.AssociatedSpriteID));
+            }
             packs.Update(index, pack);
         }
         
@@ -97,8 +102,11 @@ namespace Rogium.Editors.Core
             SafetyNet.EnsureListIsNotNullOrEmpty(packs, "Pack Library");
             SafetyNet.EnsureIntIsInRange(packIndex, 0, packs.Count, "packIndex for activating Pack Editor");
             packs[packIndex] = ex.LoadPack(packs[packIndex]);
-            PackEditorOverseer.Instance.AssignAsset(packs[packIndex], packIndex);
+            packEditor.AssignAsset(packs[packIndex], packIndex);
         }
+
+        private void RemoveSpriteAssociation(string id) => RemoveSpriteAssociationsAndSaveAsset(packs, id);
+
         #endregion
 
         #region Campaigns

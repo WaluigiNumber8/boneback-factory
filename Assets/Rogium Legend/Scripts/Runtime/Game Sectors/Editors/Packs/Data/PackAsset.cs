@@ -187,6 +187,12 @@ namespace Rogium.Editors.Packs
             return false;
         }
 
+        public override void ClearAssociatedSprite()
+        {
+            base.ClearAssociatedSprite();
+            icon = EditorConstants.PackIcon;
+        }
+        
         public override int GetHashCode()
         {
             return int.Parse(ID);

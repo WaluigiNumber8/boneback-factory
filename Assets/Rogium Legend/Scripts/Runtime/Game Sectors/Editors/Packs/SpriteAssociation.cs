@@ -18,23 +18,29 @@ namespace Rogium.Editors.Packs
         /// <param name="lastAssociatedSpriteID">The asset's old sprite (given to it before editing).</param>
         public static void ProcessSpriteAssociations(PackAsset currentPack, AssetWithReferencedSpriteBase asset, string lastAssociatedSpriteID)
         {
-            //Add association if possible.
             if (asset.AssociatedSpriteID == lastAssociatedSpriteID) return;
-            currentPack.Sprites.FindValueFirst(asset.AssociatedSpriteID).TryAddAssociation(asset);
+            if (string.IsNullOrEmpty(asset.AssociatedSpriteID) && !string.IsNullOrEmpty(lastAssociatedSpriteID)) return;
             
             //Remove association of older sprite.
-            if (string.IsNullOrEmpty(lastAssociatedSpriteID)) return;
-            currentPack.Sprites.FindValueFirst(lastAssociatedSpriteID).TryRemoveAssociation(asset);
+            if (!string.IsNullOrEmpty(lastAssociatedSpriteID))
+            {
+                currentPack.Sprites.FindValueFirst(lastAssociatedSpriteID).TryRemoveAssociation(asset);
+            }
+            
+            //Add association if possible.
+            (SpriteAsset associatedSprite, int index) = currentPack.Sprites.FindValueAndIndexFirst(asset.AssociatedSpriteID);
+            associatedSprite.TryAddAssociation(asset);
+            currentPack.Sprites.Update(index, associatedSprite);
         }
 
         /// <summary>
-        /// Updates the icon of an assets and calls for saving to external storage.
+        /// Updates the icon of an asset and calls for saving the asset to external storage.
         /// </summary>
         /// <param name="list">The list of assets the asset is located on.</param>
         /// <param name="id">The ID of the asset, who's sprite will be refreshed.</param>
         /// <param name="sprite">The new sprite to refresh with.</param>
         /// <typeparam name="T">Any type of <see cref="IAssetWithIcon"/>.</typeparam>
-        public static void RefreshAndSaveAssetSprite<T>(AssetList<T> list, string id, SpriteAsset sprite) where T : IAssetWithIcon
+        public static void RefreshSpriteAndSaveAsset<T>(AssetList<T> list, string id, SpriteAsset sprite) where T : IAssetWithIcon
         {
             if (sprite == null) return;
             try
@@ -50,12 +56,12 @@ namespace Rogium.Editors.Packs
         }
 
         /// <summary>
-        /// Removes an associated sprite from any kind <see cref="AssetWithReferencedSpriteBase"/>.
+        /// Removes an associated sprite from any kind of <see cref="AssetWithReferencedSpriteBase"/>.
         /// </summary>
         /// <param name="list">The list of assets the asset is located on.</param>
         /// <param name="id">The ID of the asset to remove the reference from.</param>
         /// <typeparam name="T">Any type of <see cref="AssetWithReferencedSpriteBase"/>.</typeparam>
-        public static void RemoveAndSaveAssetSprite<T>(AssetList<T> list, string id) where T : AssetWithReferencedSpriteBase
+        public static void RemoveSpriteAssociationsAndSaveAsset<T>(AssetList<T> list, string id) where T : AssetWithReferencedSpriteBase
         {
             try
             {

@@ -21,6 +21,7 @@ namespace Rogium.Editors.Packs
     public sealed class PackEditorOverseer : Singleton<PackEditorOverseer>, IEditorOverseer
     {
         public event Action<PackAsset, int, string, string, string> OnSaveChanges;
+        public event Action<string> OnRemoveSprite;
         
         private readonly PaletteEditorOverseer paletteEditor;
         private readonly SpriteEditorOverseer spriteEditor;
@@ -77,7 +78,6 @@ namespace Rogium.Editors.Packs
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Currently active asset.");
             currentPack = new PackAsset(updatedAsset);
-            ProcessSpriteAssociations(currentPack, currentPack, lastAssociatedSpriteID);
         }
         
         #region Palettes
@@ -175,25 +175,25 @@ namespace Rogium.Editors.Packs
                         SavePackChanges();
                         break;
                     case EditorAssetIDs.PaletteIdentifier:
-                        RefreshAndSaveAssetSprite(currentPack.Palettes, id, newAsset);
+                        RefreshSpriteAndSaveAsset(currentPack.Palettes, id, newAsset);
                         break;
                     case EditorAssetIDs.SpriteIdentifier:
-                        RefreshAndSaveAssetSprite(currentPack.Sprites, id, newAsset);
+                        RefreshSpriteAndSaveAsset(currentPack.Sprites, id, newAsset);
                         break;
                     case EditorAssetIDs.WeaponIdentifier:
-                        RefreshAndSaveAssetSprite(currentPack.Weapons, id, newAsset);
+                        RefreshSpriteAndSaveAsset(currentPack.Weapons, id, newAsset);
                         break;
                     case EditorAssetIDs.ProjectileIdentifier:
-                        RefreshAndSaveAssetSprite(currentPack.Projectiles, id, newAsset);
+                        RefreshSpriteAndSaveAsset(currentPack.Projectiles, id, newAsset);
                         break;
                     case EditorAssetIDs.EnemyIdentifier:
-                        RefreshAndSaveAssetSprite(currentPack.Enemies, id, newAsset);
+                        RefreshSpriteAndSaveAsset(currentPack.Enemies, id, newAsset);
                         break;
                     case EditorAssetIDs.RoomIdentifier:
-                        RefreshAndSaveAssetSprite(currentPack.Rooms, id, newAsset);
+                        RefreshSpriteAndSaveAsset(currentPack.Rooms, id, newAsset);
                         break;
                     case EditorAssetIDs.TileIdentifier:
-                        RefreshAndSaveAssetSprite(currentPack.Tiles, id, newAsset);
+                        RefreshSpriteAndSaveAsset(currentPack.Tiles, id, newAsset);
                         break;
                 }
             }
@@ -215,19 +215,19 @@ namespace Rogium.Editors.Packs
                 {
                     case EditorAssetIDs.PackIdentifier:
                         currentPack.ClearAssociatedSprite();
-                        SavePackChanges();
+                        OnRemoveSprite?.Invoke(currentPack.ID);
                         break;
                     case EditorAssetIDs.WeaponIdentifier:
-                        RemoveAndSaveAssetSprite(currentPack.Weapons, id);
+                        RemoveSpriteAssociationsAndSaveAsset(currentPack.Weapons, id);
                         break;
                     case EditorAssetIDs.ProjectileIdentifier:
-                        RemoveAndSaveAssetSprite(currentPack.Projectiles, id);
+                        RemoveSpriteAssociationsAndSaveAsset(currentPack.Projectiles, id);
                         break;
                     case EditorAssetIDs.EnemyIdentifier:
-                        RemoveAndSaveAssetSprite(currentPack.Enemies, id);
+                        RemoveSpriteAssociationsAndSaveAsset(currentPack.Enemies, id);
                         break;
                     case EditorAssetIDs.TileIdentifier:
-                        RemoveAndSaveAssetSprite(currentPack.Tiles, id);
+                        RemoveSpriteAssociationsAndSaveAsset(currentPack.Tiles, id);
                         break;
                 }
             }
@@ -565,7 +565,6 @@ namespace Rogium.Editors.Packs
         /// </summary>
         private void SavePackChanges()
         {
-            ProcessSpriteAssociations(currentPack, currentPack, lastAssociatedSpriteID);
             OnSaveChanges?.Invoke(currentPack, myIndex, lastTitle, lastAuthor, lastAssociatedSpriteID);
         }
 
