@@ -72,7 +72,7 @@ namespace Rogium.Editors.Core
             {
                 RefreshSpriteAndSaveAsset(packs, pack.ID, pack.Sprites.FindValueFirstOrDefault(pack.AssociatedSpriteID));
             }
-            packs.Update(index, pack);
+            else packs.Update(index, pack);
         }
         
         /// <summary>
