@@ -11,7 +11,7 @@
         private readonly InputButton clickAlternative;
         private readonly InputButton menu;
 
-        public InputProfileUI()
+        public InputProfileUI(RogiumInputActions input) : base(input)
         {
             map = input.UI;
 

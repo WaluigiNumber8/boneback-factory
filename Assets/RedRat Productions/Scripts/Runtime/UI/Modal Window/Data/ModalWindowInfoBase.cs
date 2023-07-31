@@ -1,4 +1,5 @@
 using System;
+using Rogium.Systems.ThemeSystem;
 
 namespace RedRats.UI.ModalWindows
 {
@@ -65,6 +66,22 @@ namespace RedRats.UI.ModalWindows
         public ModalWindowInfoBase(ThemeType theme, string acceptButtonText, Action onAcceptAction = null)
         {
             this.theme = theme;
+            this.acceptButtonText = acceptButtonText;
+            this.denyButtonText = "";
+            this.specialButtonText = "";
+            this.onAcceptAction = onAcceptAction;
+            this.onDenyAction = null;
+            this.onSpecialAction = null;
+        }
+        
+        /// <summary>
+        /// Stores data for a message type modal window.
+        /// </summary>
+        /// <param name="acceptButtonText">Text in the Accept Button.</param>
+        /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked. If is NULL, the window will only close itself.</param>
+        public ModalWindowInfoBase(string acceptButtonText, Action onAcceptAction = null)
+        {
+            this.theme = ThemeOverseerMono.GetInstance().CurrentTheme;
             this.acceptButtonText = acceptButtonText;
             this.denyButtonText = "";
             this.specialButtonText = "";

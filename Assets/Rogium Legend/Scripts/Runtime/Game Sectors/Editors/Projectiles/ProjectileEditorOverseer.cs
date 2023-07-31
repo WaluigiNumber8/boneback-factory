@@ -1,4 +1,5 @@
 ﻿using System;
+using RedRats.Core;
 using RedRats.Safety;
 using UnityEngine;
 
@@ -7,32 +8,17 @@ namespace Rogium.Editors.Projectiles
     /// <summary>
     /// Overseers everything happening in the Projectile Editor.
     /// </summary>
-    public class ProjectileEditorOverseer : IEditorOverseer
+    public sealed class ProjectileEditorOverseer : Singleton<ProjectileEditorOverseer>, IEditorOverseer
     {
         public event Action<ProjectileAsset> OnAssignAsset; 
-        public event Action<ProjectileAsset, int> OnCompleteEditing;
+        public event Action<ProjectileAsset, int, string> OnCompleteEditing;
         
         private ProjectileAsset currentAsset;
         private int myIndex;
+        private string lastAssociatedSpriteID;
 
-        #region Singleton Pattern
-        private static ProjectileEditorOverseer instance;
-        private static readonly object padlock = new object();
-        public static ProjectileEditorOverseer Instance
-        {
-            get
-            {
-                lock (padlock)
-                {
-                    if (instance == null)
-                        instance = new ProjectileEditorOverseer();
-                    return instance;
-                }
-            }
-        }
-
-        #endregion
-
+        private ProjectileEditorOverseer() {}
+        
         /// <summary>
         /// Assign an asset, that is going to be edited.
         /// </summary>
@@ -46,6 +32,7 @@ namespace Rogium.Editors.Projectiles
             
             currentAsset = new ProjectileAsset(asset);
             myIndex = index;
+            lastAssociatedSpriteID = asset.AssociatedSpriteID;
 
             if (!prepareEditor) return;
             OnAssignAsset?.Invoke(currentAsset);
@@ -63,7 +50,7 @@ namespace Rogium.Editors.Projectiles
         
         public void CompleteEditing()
         {
-            OnCompleteEditing?.Invoke(CurrentAsset, myIndex);
+            OnCompleteEditing?.Invoke(CurrentAsset, myIndex, lastAssociatedSpriteID);
         }
         
         public ProjectileAsset CurrentAsset 

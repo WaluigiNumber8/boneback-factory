@@ -2,6 +2,7 @@
 using RedRats.Core;
 using RedRats.UI;
 using RedRats.UI.ModalWindows;
+using Rogium.Editors.Core;
 using Rogium.Editors.Rooms;
 
 namespace Rogium.UserInterface.Editors.ModalWindowBuilding

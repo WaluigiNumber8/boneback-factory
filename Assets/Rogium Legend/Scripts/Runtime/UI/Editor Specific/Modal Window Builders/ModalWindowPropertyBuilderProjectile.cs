@@ -3,6 +3,7 @@ using System.Linq;
 using RedRats.Core;
 using RedRats.UI;
 using RedRats.UI.ModalWindows;
+using Rogium.Editors.Core;
 using Rogium.Editors.Projectiles;
 using Rogium.Editors.Tiles;
 using Rogium.Editors.Weapons;
@@ -14,7 +15,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     /// </summary>
     public class ModalWindowPropertyBuilderProjectile : ModalWindowPropertyBuilder
     {
-        private ProjectileEditorOverseer projectileEditor;
+        private readonly ProjectileEditorOverseer projectileEditor;
 
         public ModalWindowPropertyBuilderProjectile()
         {

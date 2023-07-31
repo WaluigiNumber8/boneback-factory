@@ -1,21 +1,25 @@
 ﻿using Rogium.Editors.Sprites;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Rogium.ExternalStorage.Serialization
 {
     /// <summary>
     /// Serialized form of the <see cref="SpriteAsset"/>.
     /// </summary>
-    [System.Serializable]
+    [Serializable]
     public class JSONSpriteAsset : JSONAssetBase<SpriteAsset>
     {
         public JSONGrid<int> spriteData;
         public string preferredPaletteID;
-        
+        public string[] associatedAssetIDs;
+
         public JSONSpriteAsset(SpriteAsset asset) : base(asset)
         {
             spriteData = new JSONGrid<int>(asset.SpriteData);
             preferredPaletteID = asset.PreferredPaletteID;
+            associatedAssetIDs = asset.AssociatedAssetsIDs.ToArray();
         }
 
         public override SpriteAsset Decode()
@@ -27,6 +31,7 @@ namespace Rogium.ExternalStorage.Serialization
                                    author,
                                    spriteData.Decode(),
                                    preferredPaletteID,
+                                   (associatedAssetIDs == null) ? new HashSet<string>() : associatedAssetIDs.ToHashSet(),
                                    DateTime.Parse(creationDate));
         }
     }

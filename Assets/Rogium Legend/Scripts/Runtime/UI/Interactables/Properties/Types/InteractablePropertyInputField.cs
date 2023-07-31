@@ -14,6 +14,9 @@ namespace Rogium.UserInterface.Interactables.Properties
         [SerializeField] private TMP_InputField inputField;
         [SerializeField] private UIInfo ui;
 
+        private Action<string> whenFinishEditing;
+        private float minLimit, maxLimit;
+        
         public override void SetDisabled(bool isDisabled) => inputField.interactable = !isDisabled;
 
         /// <summary>
@@ -21,18 +24,25 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// </summary>
         /// <param name="titleText">Property Title.</param>
         /// <param name="inputtedText">Text in the input field.</param>
-        /// <param name="whenValueChange">Method that runs when value in the field changes.</param>
+        /// <param name="whenFinishEditing">Method that runs when value in the field changes.</param>
         /// <param name="characterValidation">The validation to use for inputted symbols.</param>
-        public void Construct(string titleText, string inputtedText, Action<string> whenValueChange, TMP_InputField.CharacterValidation characterValidation)
+        /// <param name="minLimit">The minimum allowed value (when InputField deals with numbers).</param>
+        /// <param name="maxLimit">The maximum allowed value (when InputField deals with numbers).</param>
+        public void Construct(string titleText, string inputtedText, Action<string> whenFinishEditing, TMP_InputField.CharacterValidation characterValidation, float minLimit, float maxLimit)
         {
+            this.minLimit = minLimit;
+            this.maxLimit = maxLimit;
+            
             title.text = titleText;
             title.gameObject.SetActive((titleText != ""));
             if (ui.emptySpace != null) ui.emptySpace.SetActive((titleText != ""));
             
             inputField.text = inputtedText;
             inputField.characterValidation = characterValidation;
+            this.whenFinishEditing = whenFinishEditing;
             
-            inputField.onValueChanged.AddListener( _ => whenValueChange(inputField.text));
+            inputField.onEndEdit.AddListener(WhenFinishEditing);
+            // inputField.onValueChanged.AddListener( text => whenValueChange(text));
         }
 
         /// <summary>
@@ -41,11 +51,31 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="inputFieldSpriteSet">Sprites to use for the input field.</param>
         /// <param name="titleFont">Font for property title.</param>
         /// <param name="inputFont">Font for input text.</param>
-        public void UpdateTheme(InteractableInfo inputFieldSpriteSet, FontInfo titleFont, FontInfo inputFont)
+        public void UpdateTheme(InteractableSpriteInfo inputFieldSpriteSet, FontInfo titleFont, FontInfo inputFont)
         {
             UIExtensions.ChangeInteractableSprites(inputField, ui.inputFieldImage, inputFieldSpriteSet);
             UIExtensions.ChangeFont(title, titleFont);
             UIExtensions.ChangeFont(ui.inputtedText, inputFont);
+        }
+
+        /// <summary>
+        /// Updates the content type of the held InputField.
+        /// </summary>
+        /// <param name="contentType">The new content type to use.</param>
+        public void UpdateContentType(TMP_InputField.ContentType contentType) => inputField.contentType = contentType;
+
+        /// <summary>
+        /// Runs when the user finished editing the InputField.
+        /// </summary>
+        /// <param name="content">The final content of the InputField.</param>
+        private void WhenFinishEditing(string content)
+        {
+            if (inputField.characterValidation is TMP_InputField.CharacterValidation.Integer or TMP_InputField.CharacterValidation.Decimal or TMP_InputField.CharacterValidation.Digit)
+            {
+                content = Mathf.Clamp(float.Parse(content), minLimit, maxLimit).ToString();
+                inputField.text = content;
+            }
+            whenFinishEditing?.Invoke(content);
         }
         
         public string Property { get => inputField.text; }

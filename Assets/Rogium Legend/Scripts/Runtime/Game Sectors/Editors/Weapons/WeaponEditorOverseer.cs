@@ -1,4 +1,5 @@
 ﻿using System;
+using RedRats.Core;
 using RedRats.Safety;
 using UnityEngine;
 
@@ -7,32 +8,17 @@ namespace Rogium.Editors.Weapons
     /// <summary>
     /// Overseers everything happening in the Weapon Editor.
     /// </summary>
-    public class WeaponEditorOverseer : IEditorOverseer
+    public sealed class WeaponEditorOverseer : Singleton<WeaponEditorOverseer>, IEditorOverseer
     {
         public event Action<WeaponAsset> OnAssignAsset; 
-        public event Action<WeaponAsset, int> OnCompleteEditing;
+        public event Action<WeaponAsset, int, string> OnCompleteEditing;
         
         private WeaponAsset currentAsset;
         private int myIndex;
+        private string lastAssociatedSpriteID;
 
-        #region Singleton Pattern
-        private static WeaponEditorOverseer instance;
-        private static readonly object padlock = new object();
-        public static WeaponEditorOverseer Instance
-        {
-            get
-            {
-                lock (padlock)
-                {
-                    if (instance == null)
-                        instance = new WeaponEditorOverseer();
-                    return instance;
-                }
-            }
-        }
-
-        #endregion
-
+        private WeaponEditorOverseer() {}
+        
         /// <summary>
         /// Assign an asset, that is going to be edited.
         /// </summary>
@@ -43,9 +29,9 @@ namespace Rogium.Editors.Weapons
         {
             SafetyNet.EnsureIsNotNull(asset, "Assigned Tile");
             SafetyNet.EnsureIntIsBiggerOrEqualTo(index, 0, "Assigned asset index");
-            
             currentAsset = new WeaponAsset(asset);
             myIndex = index;
+            lastAssociatedSpriteID = asset.AssociatedSpriteID;
 
             if (!prepareEditor) return;
             OnAssignAsset?.Invoke(currentAsset);
@@ -63,7 +49,7 @@ namespace Rogium.Editors.Weapons
         
         public void CompleteEditing()
         {
-            OnCompleteEditing?.Invoke(CurrentAsset, myIndex);
+            OnCompleteEditing?.Invoke(CurrentAsset, myIndex, lastAssociatedSpriteID);
         }
         
         public WeaponAsset CurrentAsset 

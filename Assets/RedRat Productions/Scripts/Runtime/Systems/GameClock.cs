@@ -1,33 +1,16 @@
-﻿using UnityEngine;
+﻿using RedRats.Core;
+using UnityEngine;
 
 namespace RedRats.Systems.ClockOfTheGame
 {
     /// <summary>
     /// Controls the game clock.
     /// </summary>
-    public class GameClock
+    public sealed class GameClock : Singleton<GameClock>
     {
         private const float DefaultTimeScale = 1f;
         private float currentTimeScale;
         
-        #region Singleton Pattern
-        private static GameClock instance;
-        private static readonly object padlock = new object();
-        public static GameClock Instance
-        {
-            get
-            {
-                lock (padlock)
-                {
-                    if (instance == null)
-                        instance = new GameClock();
-                    return instance;
-                }
-            }
-        }
-
-        #endregion
-
         private GameClock() => currentTimeScale = DefaultTimeScale;
 
         /// <summary>

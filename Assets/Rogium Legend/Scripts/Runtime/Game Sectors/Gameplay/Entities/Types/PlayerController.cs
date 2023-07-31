@@ -23,7 +23,7 @@ namespace Rogium.Gameplay.Entities.Player
         protected override void Awake()
         {
             base.Awake();
-            input = InputSystem.Instance.Player;
+            input = InputSystem.GetInstance().Player;
         }
 
         private void OnEnable()
@@ -59,10 +59,15 @@ namespace Rogium.Gameplay.Entities.Player
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
-            
-            if (actionsLocked) return;
             if (movementLocked) return;
+            if (actionsLocked) return;
             movement.Move(moveDirection);
+        }
+
+        public override void ChangeCollideMode(bool isEnabled)
+        {
+            if (isEnabled) movement.Reset();
+            base.ChangeCollideMode(isEnabled);
         }
 
         protected override void UpdateFaceDirection()

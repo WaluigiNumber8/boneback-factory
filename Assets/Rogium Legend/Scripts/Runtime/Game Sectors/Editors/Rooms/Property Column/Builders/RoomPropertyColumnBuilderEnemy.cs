@@ -20,7 +20,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         {
             Clear();
 
-            b.BuildInputField("Damage", data.Parameters.intValue1.ToString(), contentMain, s => data.UpdateIntValue1(int.Parse(s)), true, TMP_InputField.CharacterValidation.Decimal);
+            b.BuildPlainText("Damage", data.Parameters.intValue1.ToString(), contentMain);
         }
         
     }

@@ -1,5 +1,6 @@
-﻿using RedRats.Systems.FileSystem;
+﻿using System;
 using Rogium.Editors.Packs;
+using UnityEngine;
 
 namespace Rogium.ExternalStorage.Serialization
 {
@@ -7,18 +8,31 @@ namespace Rogium.ExternalStorage.Serialization
     /// Serialized form of the <see cref="PackAsset"/>.
     /// </summary>
     [System.Serializable]
-    public class JSONPackAsset : IEncodedObject<PackAsset>
+    public class JSONPackAsset : JSONAssetWithReferencedSpriteBase<PackAsset>
     {
-        public JSONPackInfoAsset packInfo;
+        public string description;
 
-        public JSONPackAsset(PackAsset asset)
+        public JSONPackAsset(PackAsset asset) : base(asset)
         {
-            packInfo = new JSONPackInfoAsset(asset.PackInfo);
+            description = asset.Description;
         }
 
-        public PackAsset Decode()
+        public override PackAsset Decode()
         {
-            return new PackAsset(packInfo.Decode());
+            string titleHere = title;
+            Sprite decode = icon.Decode();
+            string au = author;
+            string spriteID = associatedSpriteID;
+            string descr = description;
+            DateTime creationDateTime = DateTime.Parse(creationDate);
+            return new PackAsset(id,
+                titleHere,
+                decode,
+                au,
+                spriteID,
+                descr,
+                creationDateTime);
         }
+        
     }
 }

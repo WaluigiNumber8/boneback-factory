@@ -113,8 +113,8 @@ namespace Rogium.Editors.PropertyEditor
         private void Init()
         {
             ReloadTheme();
-            ui.importantScrollbar.value = 1;
-            ui.propertyScrollbar.value = 1;
+            ui.importantScrollbar.SetValue(1);
+            ui.propertyScrollbar.SetValue(1);
         }
 
         /// <summary>
@@ -125,6 +125,8 @@ namespace Rogium.Editors.PropertyEditor
             ThemeUpdaterRogium.UpdateElement(ui.importantColumnBackground);
             ThemeUpdaterRogium.UpdateButtonCard(ui.saveButton);
             ThemeUpdaterRogium.UpdateButtonCard(ui.cancelButton);
+            ThemeUpdaterRogium.UpdateScrollbar(ui.importantScrollbar);
+            ThemeUpdaterRogium.UpdateScrollbar(ui.propertyScrollbar);
             // ThemeUpdaterRogium.UpdateButtonMenu(ui.undoButton);
             // ThemeUpdaterRogium.UpdateButtonMenu(ui.redoButton);
             // ThemeUpdaterRogium.UpdateButtonMenu(ui.resetButton);
@@ -139,8 +141,8 @@ namespace Rogium.Editors.PropertyEditor
             public InteractableButton undoButton;
             public InteractableButton redoButton;
             public InteractableButton resetButton;
-            public Scrollbar importantScrollbar;
-            public Scrollbar propertyScrollbar;
+            public InteractableScrollbar importantScrollbar;
+            public InteractableScrollbar propertyScrollbar;
         }
     }
 }

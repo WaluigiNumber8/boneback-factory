@@ -1,12 +1,13 @@
-﻿using RedRats.Core;
-using Rogium.Systems.ThemeSystem;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using RedRats.Core;
 using RedRats.UI;
 using Rogium.Core;
 using Rogium.Editors.Core;
-using UnityEngine;
+using Rogium.Systems.ThemeSystem;
+using Sirenix.OdinInspector;
 using TMPro;
+using UnityEngine;
 
 namespace Rogium.UserInterface.Interactables.Properties
 {
@@ -15,7 +16,7 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// </summary>
     public class UIPropertyBuilder : MonoSingleton<UIPropertyBuilder>
     {
-        [Header("Property prefabs")] 
+        [Title("Property prefabs")] 
         [SerializeField] private InteractablePropertyHeader headerProperty;
         [SerializeField] private InteractablePropertyPlainText plainTextProperty;
         [SerializeField] private InteractablePropertyInputField inputFieldProperty;
@@ -24,7 +25,12 @@ namespace Rogium.UserInterface.Interactables.Properties
         [SerializeField] private InteractablePropertyToggle toggleProperty;
         [SerializeField] private InteractablePropertyDropdown dropdownProperty;
         [SerializeField] private InteractablePropertySlider sliderProperty;
+        [Title("Other properties")]
         [SerializeField] private ContentBlockInfo contentBlocks;
+        [SerializeField] private VerticalVariantsInfo verticalVariants;
+
+
+        #region Properties
 
         /// <summary>
         /// Builds the Header Property.
@@ -45,14 +51,17 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="title">Name of the property.</param>
         /// <param name="value">Starting value of the property</param>
         /// <param name="parent">Under which transform is this property going to be created.</param>
-        /// <param name="whenValueChange">What happens when the property changes value.</param>
+        /// <param name="whenFinishEditing">Is called when the user finishes editing the InputField.</param>
         /// <param name="isDisabled">Initialize the property as a non-interactable.</param>
+        /// <param name="isVertical">Use the vertical variant (title text is above field)?</param>
         /// <param name="characterValidation">The validation to use for inputted symbols.</param>
+        /// <param name="minLimit">The minimum allowed value (when InputField deals with numbers).</param>
+        /// <param name="maxLimit">The maximum allowed value (when InputField deals with numbers).</param>
         /// <returns>The property itself.</returns>
-        public void BuildInputField(string title, string value, Transform parent, Action<string> whenValueChange, bool isDisabled = false, TMP_InputField.CharacterValidation characterValidation = TMP_InputField.CharacterValidation.Regex)
+        public void BuildInputField(string title, string value, Transform parent, Action<string> whenFinishEditing, bool isDisabled = false, bool isVertical = false, TMP_InputField.CharacterValidation characterValidation = TMP_InputField.CharacterValidation.Regex, float minLimit = float.MinValue, float maxLimit = float.MaxValue)
         {
-            InteractablePropertyInputField inputField = Instantiate(inputFieldProperty, parent);
-            inputField.Construct(title, value, whenValueChange, characterValidation);
+            InteractablePropertyInputField inputField = Instantiate((isVertical) ? verticalVariants.inputFieldProperty : inputFieldProperty, parent);
+            inputField.Construct(title, value, whenFinishEditing, characterValidation, minLimit, maxLimit);
             inputField.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateInputField(inputField);
         }
@@ -63,14 +72,16 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="title">Name of the property.</param>
         /// <param name="value">Starting value of the property</param>
         /// <param name="parent">Under which transform is this property going to be created.</param>
-        /// <param name="whenValueChange">What happens when the property changes value.</param>
+        /// <param name="whenFinishEditing">Is called when the user finishes editing the InputField.</param>
         /// <param name="isDisabled">Initialize the property as a non-interactable.</param>
         /// <param name="characterValidation">The validation to use for inputted symbols.</param>
+        /// <param name="minLimit">The minimum allowed value (when InputField deals with numbers).</param>
+        /// <param name="maxLimit">The maximum allowed value (when InputField deals with numbers).</param>
         /// <returns>The property itself.</returns>
-        public void BuildInputFieldArea(string title, string value, Transform parent, Action<string> whenValueChange, bool isDisabled = false, TMP_InputField.CharacterValidation characterValidation = TMP_InputField.CharacterValidation.Regex)
+        public void BuildInputFieldArea(string title, string value, Transform parent, Action<string> whenFinishEditing, bool isDisabled = false, TMP_InputField.CharacterValidation characterValidation = TMP_InputField.CharacterValidation.Regex, float minLimit = float.MinValue, float maxLimit = float.MaxValue)
         {
             InteractablePropertyInputField inputField = Instantiate(inputFieldAreaProperty, parent);
-            inputField.Construct(title, value, whenValueChange, characterValidation);
+            inputField.Construct(title, value, whenFinishEditing, characterValidation, minLimit, maxLimit);
             inputField.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateInputField(inputField);
         }
@@ -101,10 +112,11 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="parent">Under which transform is this property going to be created.</param>
         /// <param name="whenValueChange">What happens when the property changes value.</param>
         /// <param name="isDisabled">Initialize the property as a non-interactable.</param>
+        /// <param name="isVertical">Use the vertical variant (title text is above field)?</param>
         /// <returns>The property itself.</returns>
-        public void BuildDropdown(string title, IEnumerable<string> options, int value, Transform parent, Action<int> whenValueChange, bool isDisabled = false)
+        public void BuildDropdown(string title, IEnumerable<string> options, int value, Transform parent, Action<int> whenValueChange, bool isDisabled = false, bool isVertical = false)
         {
-            InteractablePropertyDropdown dropdown = Instantiate(dropdownProperty, parent);
+            InteractablePropertyDropdown dropdown = Instantiate((isVertical) ? verticalVariants.dropdownProperty : dropdownProperty, parent);
             dropdown.Construct(title, options, value, whenValueChange);
             dropdown.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateDropdown(dropdown);
@@ -116,10 +128,11 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="title">Name of the property.</param>
         /// <param name="value">Starting value of the property</param>
         /// <param name="parent">Under which transform is this property going to be created.</param>
+        /// <param name="isVertical">Use the vertical variant (title text is above field)?</param>
         /// <returns>The property itself.</returns>
-        public void BuildPlainText(string title, string value, Transform parent)
+        public void BuildPlainText(string title, string value, Transform parent, bool isVertical = false)
         {
-            InteractablePropertyPlainText plainText = Instantiate(plainTextProperty, parent);
+            InteractablePropertyPlainText plainText = Instantiate((isVertical) ? verticalVariants.plainTextProperty : plainTextProperty, parent);
             plainText.Construct(title, value);
             ThemeUpdaterRogium.UpdatePlainText(plainText);
         }
@@ -160,6 +173,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             slider.Construct(title, minValue, maxValue, startingValue, whenValueChange);
             slider.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateSlider(slider);
+            if (slider.InputField != null) ThemeUpdaterRogium.UpdateInputField(slider.InputField);
         }
 
         /// <summary>
@@ -181,6 +195,10 @@ namespace Rogium.UserInterface.Interactables.Properties
             ThemeUpdaterRogium.UpdateSlider(slider);
             if (slider.InputField != null) ThemeUpdaterRogium.UpdateInputField(slider.InputField);
         }
+
+        #endregion
+
+        #region Content Blocks
 
         /// <summary>
         /// Build the Horizontal Content Block.
@@ -220,13 +238,23 @@ namespace Rogium.UserInterface.Interactables.Properties
             contentBlock.SetDisabled(isDisabled);
             return contentBlock;
         }
+
+        #endregion
         
-        [System.Serializable]
+        [Serializable]
         public struct ContentBlockInfo
         {
             public InteractablePropertyContentBlock vertical;
             public InteractablePropertyContentBlock horizontal;
             public InteractablePropertyContentBlock column2;
+        }
+
+        [Serializable]
+        public struct VerticalVariantsInfo
+        {
+            public InteractablePropertyInputField inputFieldProperty;
+            public InteractablePropertyDropdown dropdownProperty;
+            public InteractablePropertyPlainText plainTextProperty;
         }
     }
 }

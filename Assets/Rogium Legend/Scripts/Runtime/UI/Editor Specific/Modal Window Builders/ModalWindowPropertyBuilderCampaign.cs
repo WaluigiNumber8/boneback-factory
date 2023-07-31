@@ -4,6 +4,7 @@ using System.Linq;
 using RedRats.UI;
 using RedRats.UI.ModalWindows;
 using Rogium.Editors.Campaign;
+using Rogium.Editors.Core;
 using Rogium.Systems.GASExtension;
 using Rogium.UserInterface.Editors.AssetSelection;
 
@@ -42,8 +43,8 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
 
         public override void OpenForUpdate()
         {
-            OpenWindow(new CampaignAsset(campaignEditor.CurrentCampaign), UpdateAsset,
-                $"Updating {campaignEditor.CurrentCampaign.Title}");
+            OpenWindow(new CampaignAsset(campaignEditor.CurrentAsset), UpdateAsset,
+                $"Updating {campaignEditor.CurrentAsset.Title}");
         }
 
         private void OpenWindow(CampaignAsset asset, Action onConfirmButton, string headerText)

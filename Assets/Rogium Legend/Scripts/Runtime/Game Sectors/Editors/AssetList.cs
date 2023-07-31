@@ -9,7 +9,7 @@ namespace Rogium.Editors.Core
     /// <summary>
     /// Special distinct List variant. Is synced with external storage.
     /// </summary>
-    public class AssetList<T> : IList<T> where T : AssetBase
+    public class AssetList<T> : IList<T> where T : IAsset
     {
         private List<T> list;
         private readonly Action<T> saveToExternalStorage;
@@ -120,7 +120,7 @@ namespace Rogium.Editors.Core
         /// <returns>the pack asset with the given name.</returns>
         private T TryFinding(string title, string author, int excludePos = -1)
         {
-            if (list.Count == 0) return null;
+            if (list.Count == 0) return default;
             IList<T> foundAssets = list.Where((_, counter) => counter != excludePos)
                                        .Where(asset => asset.Title == title && asset.Author == author)
                                        .ToList();

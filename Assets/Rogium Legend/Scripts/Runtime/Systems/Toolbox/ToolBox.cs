@@ -10,7 +10,6 @@ namespace Rogium.Systems.Toolbox
     public class ToolBox<T, TS> : IToolBox where T : IComparable
     {
         public event Action<ToolType> OnSwitchTool;
-        
         public event Action<T> OnChangePaletteValue;
         public event Action<T> OnSelectValue;
 

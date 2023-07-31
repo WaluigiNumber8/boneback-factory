@@ -19,7 +19,7 @@ namespace Rogium.Systems.Input
         
         private readonly InputButton buttonStart;
 
-        public InputProfilePlayer()
+        public InputProfilePlayer(RogiumInputActions input) : base(input)
         {
             map = input.Player;
             movement = new InputVector2(map.Movement);

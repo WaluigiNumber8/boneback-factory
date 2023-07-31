@@ -46,7 +46,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="checkmark">The selected option checkmark sprite.</param>
         /// <param name="titleFont">The font of the descriptive text.</param>
         /// <param name="labelFont">The font of the value label text.</param>
-        public void UpdateTheme(InteractableInfo dropdownSpriteSet, InteractableInfo itemSpriteSet, Sprite headerBackground, Sprite background, Sprite dropdownArrow, Sprite checkmark, FontInfo titleFont, FontInfo labelFont)
+        public void UpdateTheme(InteractableSpriteInfo dropdownSpriteSet, InteractableSpriteInfo itemSpriteSet, Sprite headerBackground, Sprite background, Sprite dropdownArrow, Sprite checkmark, FontInfo titleFont, FontInfo labelFont)
         {
             UIExtensions.ChangeInteractableSprites(dropdown, ui.headerBackgroundImage, dropdownSpriteSet);
             UIExtensions.ChangeInteractableSprites(ui.itemToggle, ui.toggleBackgroundImage, itemSpriteSet);

@@ -12,11 +12,10 @@ namespace Rogium.Systems.GridSystem
     {
         public ToolType tool;
         public bool isVisible;
-        public bool permanentState;
         public bool followCursor;
         [PropertySpace]
         public bool autoMaterial;
-        [HideIf(nameof(autoMaterial), true)]
+        [HideIf(nameof(autoMaterial))]
         public Sprite customSprite;
         public Color customColor;
     }

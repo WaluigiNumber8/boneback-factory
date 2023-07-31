@@ -1,35 +1,27 @@
-﻿namespace Rogium.Systems.Input
+﻿using System.Collections;
+using RedRats.Core;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+
+namespace Rogium.Systems.Input
 {
     /// <summary>
     /// Overseers all input profiles and deals with their switching.
     /// </summary>
-    public class InputSystem
+    public class InputSystem : PersistentMonoSingleton<InputSystem>
     {
-        private readonly InputProfilePlayer inputPlayer;
-        private readonly InputProfileUI inputUI;
-        
-        #region Singleton Pattern
-        private static InputSystem instance;
-        private static readonly object padlock = new object();
-        public static InputSystem Instance
-        {
-            get
-            {
-                lock (padlock)
-                {
-                    if (instance == null)
-                        instance = new InputSystem();
-                    return instance;
-                }
-            }
-        }
+        private InputProfilePlayer inputPlayer;
+        private InputProfileUI inputUI;
+        private EventSystem eventSystem;
 
-        #endregion
-
-        private InputSystem()
+        protected override void Awake()
         {
-            inputPlayer = new InputProfilePlayer();
-            inputUI = new InputProfileUI();
+            base.Awake();
+            RogiumInputActions input = new();
+            inputPlayer = new InputProfilePlayer(input);
+            inputUI = new InputProfileUI(input);
+            SceneManager.sceneLoaded += (_, __) => eventSystem = FindObjectOfType<EventSystem>();
         }
 
         /// <summary>
@@ -48,6 +40,22 @@
         {
             DisableAll();
             inputPlayer.Enable();
+        }
+        
+        /// <summary>
+        /// Disables all input for a specified amount of time.
+        /// </summary>
+        /// <param name="caller">The <see cref="MonoBehaviour"/> that called for this method.</param>
+        /// <param name="delay">How long to suspend all input for.</param>
+        public void DisableInput(MonoBehaviour caller, float delay)
+        {
+            caller.StartCoroutine(DisableAllCoroutine(delay));
+            IEnumerator DisableAllCoroutine(float delayTime)
+            {
+                eventSystem.sendNavigationEvents = false;
+                yield return new WaitForSecondsRealtime(delayTime);
+                eventSystem.sendNavigationEvents = true;
+            }
         }
         
         /// <summary>

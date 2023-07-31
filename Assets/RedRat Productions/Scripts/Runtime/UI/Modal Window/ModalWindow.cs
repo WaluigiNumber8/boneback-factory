@@ -6,7 +6,6 @@ using Rogium.Systems.ThemeSystem;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.Pool;
 
 namespace RedRats.UI.ModalWindows
 {
@@ -104,7 +103,7 @@ namespace RedRats.UI.ModalWindows
         /// <param name="buttonSet">Buttons of teh window.</param>
         /// <param name="headerFont">Font of the header text.</param>
         /// <param name="textFont">Font of text in the content section.</param>
-        public void UpdateTheme(Sprite backgroundSprite, Sprite headerSprite, InteractableInfo buttonSet,
+        public void UpdateTheme(Sprite backgroundSprite, Sprite headerSprite, InteractableSpriteInfo buttonSet,
             FontInfo headerFont, FontInfo textFont)
         {
             UIExtensions.ChangeInteractableSprites(ui.footer.acceptButton, ui.footer.acceptButtonImage, buttonSet);
@@ -112,6 +111,9 @@ namespace RedRats.UI.ModalWindows
             UIExtensions.ChangeInteractableSprites(ui.footer.specialButton, ui.footer.specialButtonImage, buttonSet);
             UIExtensions.ChangeFont(ui.header.text, headerFont);
             UIExtensions.ChangeFont(ui.layout.message.text, textFont);
+            UIExtensions.ChangeFont(ui.footer.acceptButtonText, headerFont);
+            UIExtensions.ChangeFont(ui.footer.denyButtonText, headerFont);
+            UIExtensions.ChangeFont(ui.footer.specialButtonText, headerFont);
             ui.windowBoxImage.sprite = backgroundSprite;
             ui.header.headerImage.sprite = headerSprite;
         }

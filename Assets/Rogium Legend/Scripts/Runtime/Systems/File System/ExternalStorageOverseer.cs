@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using RedRats.Core;
 using RedRats.Safety;
 using RedRats.Systems.FileSystem;
 using Rogium.Core;
@@ -21,7 +22,7 @@ namespace Rogium.ExternalStorage
     /// <summary>
     /// Overseers files stored on external storage.
     /// </summary>
-    public class ExternalStorageOverseer
+    public sealed class ExternalStorageOverseer : Singleton<ExternalStorageOverseer>
     {
         private readonly SaveableData packData;
         private readonly SaveableData campaignData;
@@ -38,25 +39,6 @@ namespace Rogium.ExternalStorage
         private readonly CRUDOperations<RoomAsset, JSONRoomAsset> roomCRUD;
         private readonly CRUDOperations<TileAsset, JSONTileAsset> tileCRUD;
 
-        #region Singleton Pattern
-        private static ExternalStorageOverseer instance;
-        private static readonly object padlock = new object();
-
-        public static ExternalStorageOverseer Instance
-        {
-            get
-            {
-                lock (padlock)
-                {
-                    if (instance == null)
-                        instance = new ExternalStorageOverseer();
-                    return instance;
-                }
-            }
-        }
-
-        #endregion
-        
         private ExternalStorageOverseer()
         {
             packData = new SaveableData("Packs", EditorAssetIDs.PackIdentifier);
@@ -145,10 +127,10 @@ namespace Rogium.ExternalStorage
             {
                CreateSkeleton(pack);
             }
-            PackInfoAsset packInfo = new(pack.PackInfo);
             RefreshAssetSaveableData();
             
-            return new PackAsset(packInfo, paletteCRUD.LoadAll(), spriteCRUD.LoadAll(), weaponCRUD.LoadAll(),
+            return new PackAsset(pack.ID, pack.Title, pack.Icon, pack.Author, pack.AssociatedSpriteID, pack.Description, 
+                                 pack.CreationDate, paletteCRUD.LoadAll(), spriteCRUD.LoadAll(), weaponCRUD.LoadAll(),
                                  projectileCRUD.LoadAll(), enemyCRUD.LoadAll(), roomCRUD.LoadAll(), tileCRUD.LoadAll());
         }
 
@@ -231,6 +213,5 @@ namespace Rogium.ExternalStorage
         public CRUDOperations<EnemyAsset, JSONEnemyAsset> Enemies { get => enemyCRUD; }
         public CRUDOperations<RoomAsset, JSONRoomAsset> Rooms { get => roomCRUD; }
         public CRUDOperations<TileAsset, JSONTileAsset> Tiles { get => tileCRUD; }
-
     }
 }

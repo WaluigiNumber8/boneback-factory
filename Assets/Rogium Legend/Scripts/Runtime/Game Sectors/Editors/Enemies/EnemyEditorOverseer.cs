@@ -1,4 +1,5 @@
 ﻿using System;
+using RedRats.Core;
 using RedRats.Safety;
 using UnityEngine;
 
@@ -7,32 +8,17 @@ namespace Rogium.Editors.Enemies
     /// <summary>
     /// Overseers everything happening in the Weapon Editor.
     /// </summary>
-    public class EnemyEditorOverseer : IEditorOverseer
+    public sealed class EnemyEditorOverseer : Singleton<EnemyEditorOverseer>, IEditorOverseer
     {
         public event Action<EnemyAsset> OnAssignAsset; 
-        public event Action<EnemyAsset, int> OnCompleteEditing;
+        public event Action<EnemyAsset, int, string> OnCompleteEditing;
         
         private EnemyAsset currentAsset;
         private int myIndex;
+        private string lastAssociatedSpriteID;
 
-        #region Singleton Pattern
-        private static EnemyEditorOverseer instance;
-        private static readonly object padlock = new object();
-        public static EnemyEditorOverseer Instance
-        {
-            get
-            {
-                lock (padlock)
-                {
-                    if (instance == null)
-                        instance = new EnemyEditorOverseer();
-                    return instance;
-                }
-            }
-        }
-
-        #endregion
-
+        private EnemyEditorOverseer() {}
+        
         /// <summary>
         /// Assign an asset, that is going to be edited.
         /// </summary>
@@ -46,6 +32,7 @@ namespace Rogium.Editors.Enemies
             
             currentAsset = new EnemyAsset(asset);
             myIndex = index;
+            lastAssociatedSpriteID = asset.AssociatedSpriteID;
 
             if (!prepareEditor) return;
             OnAssignAsset?.Invoke(currentAsset);
@@ -63,7 +50,7 @@ namespace Rogium.Editors.Enemies
         
         public void CompleteEditing()
         {
-            OnCompleteEditing?.Invoke(CurrentAsset, myIndex);
+            OnCompleteEditing?.Invoke(CurrentAsset, myIndex, lastAssociatedSpriteID);
         }
         
         public EnemyAsset CurrentAsset 

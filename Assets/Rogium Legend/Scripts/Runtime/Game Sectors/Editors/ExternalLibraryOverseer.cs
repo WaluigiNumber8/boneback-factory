@@ -1,10 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using RedRats.Core;
 using RedRats.Safety;
+using Rogium.Core;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Packs;
 using Rogium.ExternalStorage;
 using Rogium.Systems.SceneTransferService;
 using UnityEngine;
+using static Rogium.Editors.Packs.SpriteAssociation;
 
 namespace Rogium.Editors.Core
 {
@@ -12,17 +16,13 @@ namespace Rogium.Editors.Core
     /// Overseers the main in-game saveable assets library and controls their content.
     /// This library is also synced with asset data files located on the external hard drive.
     /// </summary>
-    public class ExternalLibraryOverseer
+    public sealed class ExternalLibraryOverseer : Singleton<ExternalLibraryOverseer>
     {
+        private readonly PackEditorOverseer packEditor = PackEditorOverseer.Instance;
         private readonly ExternalStorageOverseer ex;
         
         private readonly AssetList<PackAsset> packs;
         private readonly AssetList<CampaignAsset> campaigns;
-
-        #region Singleton Pattern
-        static ExternalLibraryOverseer() { }
-        public static ExternalLibraryOverseer Instance { get; } = new();
-        #endregion
 
         private ExternalLibraryOverseer()
         {
@@ -30,7 +30,8 @@ namespace Rogium.Editors.Core
             packs = new AssetList<PackAsset>(ex.CreatePack, ex.UpdatePack, ex.DeletePack);
             campaigns = new AssetList<CampaignAsset>(ex.Campaigns.Save, ex.Campaigns.UpdateTitle, ex.Campaigns.Delete);
             
-            PackEditorOverseer.Instance.OnSaveChanges += UpdatePack;
+            packEditor.OnSaveChanges += UpdatePack;
+            packEditor.OnRemoveSprite += RemoveSpriteAssociation;
             CampaignEditorOverseer.Instance.OnSaveChanges += UpdateCampaign;
             ReloadFromExternalStorage();
         }
@@ -42,16 +43,17 @@ namespace Rogium.Editors.Core
         {
             packs.ReplaceAll(ex.LoadAllPacks());
             campaigns.ReplaceAll(ex.Campaigns.LoadAll());
+            campaigns.RemoveAll(campaign => campaign.PackReferences.Count <= 0);
         }
 
         #region Packs
         /// <summary>
         /// Creates a new Pack, and adds it to the library.
         /// </summary>
-        /// <param name="packInfo">Information about the pack.</param>
-        public void CreateAndAddPack(PackInfoAsset packInfo)
+        /// <param name="pack">Information about the pack.</param>
+        public void CreateAndAddPack(PackAsset pack)
         {
-            PackAsset newPack = new(packInfo);
+            PackAsset newPack = new(pack.ID, pack.Title, pack.Icon, pack.Author, pack.AssociatedSpriteID, pack.Description, pack.CreationDate);
             packs.Add(newPack);
         }
 
@@ -60,11 +62,17 @@ namespace Rogium.Editors.Core
         /// </summary>
         /// <param name="pack">The new data for the pack.</param>
         /// <param name="index">Position to override.</param>
-        /// <param name="originalTitle">Pack's Title before updating.</param>
-        /// <param name="originalAuthor">Pack's Author before updating.</param>
-        public void UpdatePack(PackAsset pack, int index, string originalTitle, string originalAuthor)
+        /// <param name="lastTitle">Pack's Title before updating.</param>
+        /// <param name="lastAuthor">Pack's Author before updating.</param>
+        /// <param name="lastAssociatedSpriteID">Pack's referenced sprite before updating.</param>
+        public void UpdatePack(PackAsset pack, int index, string lastTitle, string lastAuthor, string lastAssociatedSpriteID)
         {
-            packs.Update(index, pack);
+            ProcessSpriteAssociations(pack, pack, lastAssociatedSpriteID);
+            if (!string.IsNullOrEmpty(pack.AssociatedSpriteID))
+            {
+                RefreshSpriteAndSaveAsset(packs, pack.ID, pack.Sprites.FindValueFirstOrDefault(pack.AssociatedSpriteID));
+            }
+            else packs.Update(index, pack);
         }
         
         /// <summary>
@@ -73,6 +81,7 @@ namespace Rogium.Editors.Core
         /// <param name="packIndex">Pack ID in the list.</param>
         public void DeletePack(int packIndex)
         {
+            RemoveAssociation(packs[packIndex], packs[packIndex]);
             packs.Remove(packIndex);
         }
         /// <summary>
@@ -93,8 +102,11 @@ namespace Rogium.Editors.Core
             SafetyNet.EnsureListIsNotNullOrEmpty(packs, "Pack Library");
             SafetyNet.EnsureIntIsInRange(packIndex, 0, packs.Count, "packIndex for activating Pack Editor");
             packs[packIndex] = ex.LoadPack(packs[packIndex]);
-            PackEditorOverseer.Instance.AssignAsset(packs[packIndex], packIndex);
+            packEditor.AssignAsset(packs[packIndex], packIndex);
         }
+
+        private void RemoveSpriteAssociation(string id) => RemoveSpriteAssociationsAndSaveAsset(packs, id);
+
         #endregion
 
         #region Campaigns

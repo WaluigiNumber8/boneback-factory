@@ -14,14 +14,12 @@ namespace Rogium.Gameplay.Entities
         [SerializeField] private Collider2D trigger;
         [SerializeField] private bool showGizmos;
 
+        protected Transform ttransform;
+        private Rigidbody2D rb;
         private ForceMoveInfo forceMove;
 
         private Vector2 previousPos;
         private float currentSpeed;
-        
-        protected Transform ttransform;
-        private Rigidbody2D rb;
-
         private Vector2 velocityChange;
         protected Vector2 faceDirection;
         protected bool faceDirectionLocked;
@@ -35,22 +33,14 @@ namespace Rogium.Gameplay.Entities
             rb = GetComponent<Rigidbody2D>();
         }
 
-        protected virtual void Update()
-        {
-            UpdateParameters();
-        }
-
-        protected virtual void FixedUpdate()
-        {
-            DoForceMovement();
-            
-        }
+        protected virtual void Update() => UpdateParameters();
+        protected virtual void FixedUpdate() => DoForceMovement();
 
         /// <summary>
         /// Enables/Disables the entities ability to collide with objects and trigger events.
         /// </summary>
         /// <param name="isEnabled">Changes the collision state.</param>
-        public void ChangeCollideMode(bool isEnabled)
+        public virtual void ChangeCollideMode(bool isEnabled)
         {
             actionsLocked = !isEnabled;
             if (collider != null) collider.enabled = isEnabled;
@@ -107,15 +97,13 @@ namespace Rogium.Gameplay.Entities
         private void DoForceMovement()
         {
             if (!forceMove.activated) return;
-            
             if (Time.time > forceMove.timer)
             {
-                actionsLocked = false;
                 faceDirectionLocked = false;
+                actionsLocked = false;
                 forceMove.activated = false;
                 return;
             }
-            
             rb.MovePosition(rb.position + forceMove.force * 10 * Time.fixedDeltaTime * forceMove.moveDirection);
         }
 
@@ -137,7 +125,7 @@ namespace Rogium.Gameplay.Entities
         /// </summary>
         protected virtual void UpdateFaceDirection()
         {
-            faceDirection = (Vector2.Distance(velocityChange, Vector2.zero) > 0.01f) ? velocityChange.normalized.Round() : faceDirection;
+            faceDirection = (velocityChange.IsZero(0.05f)) ? velocityChange.normalized.Round() : faceDirection;
         }
 
         protected void OnDrawGizmos()
@@ -145,17 +133,6 @@ namespace Rogium.Gameplay.Entities
             if (!showGizmos) return;
             Gizmos.color = Color.yellow;
         }
-
-        // private IEnumerator CalculateVelocity()
-        // {
-        //     while(Application.isPlaying)
-        //     {
-        //         previousPos = rb.position;
-        //         yield return new WaitForFixedUpdate();
-        //         velocityChange = (rb.position - previousPos) / Time.deltaTime;
-        //         currentSpeed = velocityChange.magnitude;
-        //     }
-        // }
         
         public Transform Transform { get => ttransform; }
         public Rigidbody2D Rigidbody { get => rb; }

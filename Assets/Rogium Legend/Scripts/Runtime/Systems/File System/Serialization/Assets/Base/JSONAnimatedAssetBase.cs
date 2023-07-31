@@ -7,7 +7,7 @@ namespace Rogium.ExternalStorage.Serialization
     /// Serialized form of the <see cref="AnimatedAssetBase"/>.
     /// </summary>
     [System.Serializable]
-    public abstract class JSONAnimatedAssetBase<T> : JSONAssetBase<T> where T : AnimatedAssetBase
+    public abstract class JSONAnimatedAssetBase<T> : JSONAssetWithReferencedSpriteBase<T> where T : AnimatedAssetBase
     {
         public int animationType;
         public int frameDuration;

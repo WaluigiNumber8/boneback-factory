@@ -56,7 +56,7 @@ namespace Rogium.Gameplay.Sequencer
                 playerTransform.position = pos - dir * 2;
                 yield return sas.Wait(0.5f);
                 yield return sas.FadeIn(2, false);
-                yield return sas.Transport(playerTransform, playerTransform.position + (Vector3)dir * 3, transportWalkSpeed * 0.5f);
+                yield return sas.Transport(playerTransform, playerTransform.position + (Vector3)dir * 2, transportWalkSpeed * 0.5f);
             
                 player.ChangeCollideMode(true);
             }
@@ -74,14 +74,15 @@ namespace Rogium.Gameplay.Sequencer
                 startingPoints.Clear();
             
                 yield return sas.FadeOut(0.5f, true);
-                yield return sas.Transport(playerTransform, playerTransform.position + (Vector3)direction, transportWalkSpeed);
+                yield return sas.Transport(playerTransform, playerTransform.position + (Vector3)direction * Random.Range(2, 6), transportWalkSpeed);
             
                 roomLoader.LoadNext(roomIndex);
                 (Vector2 pos, Vector2 dir) = startingPoints.ElementAt(GetPlayerStartPositionIndex());
-            
-                yield return sas.Transport(playerTransform, pos, transportRunSpeed);
+
+                yield return sas.Transport(playerTransform, new Vector2(Random.Range(-7.5f, 6.5f), Random.Range(-4.5f, 4.5f)), transportRunSpeed);
+                yield return sas.Transport(playerTransform, pos - dir * 2f, transportRunSpeed);
                 yield return sas.FadeIn(1f, false);
-                yield return sas.Transport(playerTransform, playerTransform.position + (Vector3)dir, transportWalkSpeed);
+                yield return sas.Transport(playerTransform, pos, transportWalkSpeed);
                 player.ChangeCollideMode(true);
             }
         }

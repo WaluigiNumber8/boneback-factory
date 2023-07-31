@@ -32,6 +32,15 @@ namespace Rogium.Gameplay.Entities.Characteristics
         }
 
         /// <summary>
+        /// Resets all movement.
+        /// </summary>
+        public void Reset()
+        {
+            lastDirection = Vector2.zero;
+            accel = 0;
+        }
+        
+        /// <summary>
         /// Calculates the acceleration of the movement.
         /// </summary>
         /// <param name="direction">The direction to move in.</param>

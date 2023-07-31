@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.IO.Compression;
+using RedRats.Safety;
 
 namespace RedRats.Systems.FileSystem.Compression
 {
@@ -13,8 +14,9 @@ namespace RedRats.Systems.FileSystem.Compression
 
         public void Compress(string filePath)
         {
+            SafetyNetIO.EnsurePathNotContainsInvalidCharacters(filePath);
+            
             string compressedPath = Path.ChangeExtension(filePath, COMPRESSED_EXTENSION);
-
             using FileStream originalFileStream = File.Open(filePath, FileMode.Open);
             using FileStream compressedFileStream = File.Create(compressedPath);
             using DeflateStream compressor = new(compressedFileStream, CompressionMode.Compress);
@@ -23,6 +25,8 @@ namespace RedRats.Systems.FileSystem.Compression
 
         public void Decompress(string filePath, string originalExtension)
         {
+            SafetyNetIO.EnsurePathNotContainsInvalidCharacters(filePath);
+            
             string decompressedPath = Path.ChangeExtension(filePath, originalExtension);
             using FileStream compressedFileStream = File.Open(filePath, FileMode.Open);
             using FileStream outputFileStream = File.Create(decompressedPath);

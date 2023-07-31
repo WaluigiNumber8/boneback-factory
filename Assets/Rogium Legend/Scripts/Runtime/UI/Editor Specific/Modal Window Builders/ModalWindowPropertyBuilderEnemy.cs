@@ -3,6 +3,7 @@ using System.Linq;
 using RedRats.Core;
 using RedRats.UI;
 using RedRats.UI.ModalWindows;
+using Rogium.Editors.Core;
 using Rogium.Editors.Enemies;
 using Rogium.Editors.Tiles;
 
@@ -13,7 +14,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     /// </summary>
     public class ModalWindowPropertyBuilderEnemy : ModalWindowPropertyBuilder
     {
-        private EnemyEditorOverseer enemyEditor;
+        private readonly EnemyEditorOverseer enemyEditor;
 
         public ModalWindowPropertyBuilderEnemy()
         {

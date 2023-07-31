@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elements:
     dropdownHeader: {fileID: 1854030663, guid: ffb3be43ead86ef49b07597d36a3072a, type: 3}
-    dropdownBackground: {fileID: 1854030663, guid: ffb3be43ead86ef49b07597d36a3072a, type: 3}
+    dropdownBackground: {fileID: 147985974, guid: fed5e6a8296d7ca4bb8a7f8623a0f091, type: 3}
     dropdownArrow: {fileID: 182467184, guid: 3fe585dc3dcccb04e95e6a6b3a86e777, type: 3}
+    dropdownCheckmark: {fileID: 21300000, guid: 3cd73286c1f01624db45bb8e89411a87, type: 3}
     toggleBorder: {fileID: 560576857, guid: a965327408ba7cf408d7bbdd97a59157, type: 3}
-    toggleCheckmark: {fileID: 21300000, guid: 3cd73286c1f01624db45bb8e89411a87, type: 3}
+    toggleCheckmark: {fileID: -319974302, guid: 1abf6ad819805b740841dc5b73ba4957, type: 3}
     sliderBackground: {fileID: -1039666700, guid: 8c34cd1eb911fa340b19a528efaa2b23, type: 3}
-    sliderHandle: {fileID: -907753610, guid: 8c34cd1eb911fa340b19a528efaa2b23, type: 3}
+    sliderHandle: {fileID: -947663316, guid: 8c34cd1eb911fa340b19a528efaa2b23, type: 3}
     editorBackground: {fileID: 763664610205319021, guid: 97189544436cefd4b8dc05ed78c091aa, type: 3}
     modalWindowBackground: {fileID: 21300000, guid: e1244b8103fbae447a7ce1a4295d665c, type: 3}
   interactables:
@@ -47,6 +48,12 @@ MonoBehaviour:
       pressed: {fileID: 1437045503, guid: ffb3be43ead86ef49b07597d36a3072a, type: 3}
       selected: {fileID: -302035138, guid: ffb3be43ead86ef49b07597d36a3072a, type: 3}
       disabled: {fileID: -964773360, guid: ffb3be43ead86ef49b07597d36a3072a, type: 3}
+    dropdownItem:
+      normal: {fileID: 147985974, guid: fed5e6a8296d7ca4bb8a7f8623a0f091, type: 3}
+      highlighted: {fileID: 89911612, guid: fed5e6a8296d7ca4bb8a7f8623a0f091, type: 3}
+      pressed: {fileID: -11637143, guid: fed5e6a8296d7ca4bb8a7f8623a0f091, type: 3}
+      selected: {fileID: -1752104106, guid: fed5e6a8296d7ca4bb8a7f8623a0f091, type: 3}
+      disabled: {fileID: -603651968, guid: fed5e6a8296d7ca4bb8a7f8623a0f091, type: 3}
     toggle:
       normal: {fileID: 560576857, guid: a965327408ba7cf408d7bbdd97a59157, type: 3}
       highlighted: {fileID: -1212998039, guid: a965327408ba7cf408d7bbdd97a59157, type: 3}
@@ -65,16 +72,22 @@ MonoBehaviour:
       pressed: {fileID: 1177784857, guid: 8c34cd1eb911fa340b19a528efaa2b23, type: 3}
       selected: {fileID: -907753610, guid: 8c34cd1eb911fa340b19a528efaa2b23, type: 3}
       disabled: {fileID: -1039666700, guid: 8c34cd1eb911fa340b19a528efaa2b23, type: 3}
+    scrollbarHandle:
+      normal: {fileID: 525168189, guid: 1e127baf3afef224b9d13a72f98d6cc3, type: 3}
+      highlighted: {fileID: -1225292359, guid: 1e127baf3afef224b9d13a72f98d6cc3, type: 3}
+      pressed: {fileID: 1759310195, guid: 1e127baf3afef224b9d13a72f98d6cc3, type: 3}
+      selected: {fileID: 969836053, guid: 1e127baf3afef224b9d13a72f98d6cc3, type: 3}
+      disabled: {fileID: 453069512, guid: 1e127baf3afef224b9d13a72f98d6cc3, type: 3}
   fonts:
     general:
       font: {fileID: 11400000, guid: 610b74f9f977953488aee31905a7d7c6, type: 2}
-      color: {r: 0.8509804, g: 0.27058825, b: 0.7529412, a: 1}
       size: 36
+      color: {r: 1, g: 0.7921569, b: 0.19215687, a: 1}
     inputted:
       font: {fileID: 11400000, guid: 7dcbf3f25fb09e840ab6875dff99cba5, type: 2}
-      color: {r: 0.67058825, g: 0.34901962, b: 1, a: 1}
       size: 46
+      color: {r: 0.91764706, g: 0.61960787, b: 0.03529412, a: 1}
     header:
       font: {fileID: 11400000, guid: cf4879b37d976dc428255f939d628fa9, type: 2}
-      color: {r: 0.8509804, g: 0.27058825, b: 0.7529412, a: 1}
       size: 65
+      color: {r: 1, g: 1, b: 0, a: 1}

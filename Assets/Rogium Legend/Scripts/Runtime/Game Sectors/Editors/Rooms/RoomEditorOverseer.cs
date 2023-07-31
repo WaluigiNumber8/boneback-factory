@@ -1,5 +1,6 @@
 ﻿using RedRats.Safety;
 using System;
+using RedRats.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Packs;
 using Rogium.Systems.GridSystem;
@@ -10,7 +11,7 @@ namespace Rogium.Editors.Rooms
     /// <summary>
     /// Overseers everything happening in the room editor.
     /// </summary>
-    public class RoomEditorOverseer : IEditorOverseer
+    public sealed class RoomEditorOverseer : Singleton<RoomEditorOverseer>, IEditorOverseer
     {
         public event Action<RoomAsset> OnAssignAsset;
         public event Action<RoomAsset, int> OnCompleteEditing;
@@ -19,24 +20,6 @@ namespace Rogium.Editors.Rooms
         
         private RoomAsset currentAsset;
         private int myIndex;
-
-        #region Singleton Pattern
-        private static RoomEditorOverseer instance;
-        private static readonly object padlock = new object();
-        public static RoomEditorOverseer Instance
-        {
-            get
-            {
-                lock (padlock)
-                {
-                    if (instance == null)
-                        instance = new RoomEditorOverseer();
-                    return instance;
-                }
-            }
-        }
-
-        #endregion
 
         private RoomEditorOverseer()
         {

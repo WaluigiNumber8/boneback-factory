@@ -1,4 +1,6 @@
-﻿using RedRats.Core;
+﻿using System;
+using System.Collections;
+using RedRats.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Projectiles;
@@ -12,6 +14,8 @@ namespace Rogium.Gameplay.Entities
     /// </summary>
     public class ProjectileController : EntityController
     {
+        public event Action OnDie;
+
         private const int deathTime = 4;
         
         [SerializeField] private CharacteristicMove move;
@@ -23,11 +27,12 @@ namespace Rogium.Gameplay.Entities
         private PierceType pierceType;
         private float lifeTimer;
         private int deathTimer;
+        private bool isDead;
 
         protected override void Awake()
         {
             base.Awake();
-            lifeTimer = Time.time + 100000;
+            lifeTimer = Time.time + 100_000;
         }
 
         protected override void FixedUpdate()
@@ -39,12 +44,15 @@ namespace Rogium.Gameplay.Entities
 
         private void OnTriggerEnter2D(Collider2D col)
         {
+            if (col.gameObject.CompareTag("Blocks Everything")) Kill();
+            
             if (pierceType == PierceType.All) return;
             if (col.gameObject.layer == gameObject.layer) return;
+            if (col.gameObject.CompareTag("Blocks Everything")) return;
             if (pierceType == PierceType.Entities && col.TryGetComponent(out EntityController _)) return;
             if (pierceType == PierceType.Walls && GameObjectUtils.IsInLayerMask(col.gameObject, wallMask)) return;
             if (col.TryGetComponent(out WeaponController _)) return;
-            Destruct();
+            Kill();
         }
 
         /// <summary>
@@ -56,6 +64,7 @@ namespace Rogium.Gameplay.Entities
             lifeTimer = Time.time + asset.UseDelay;
             deathTimer = -1;
             pierceType = asset.PierceType;
+            isDead = false;
             
             move.Construct(new CharMoveInfo(asset.FlightSpeed, asset.Acceleration, asset.BrakeForce));
             ForcedMoveInfo selfKnockback = new(asset.KnockbackForceSelf, asset.KnockbackTimeSelf, asset.KnockbackLockDirectionSelf);
@@ -72,6 +81,7 @@ namespace Rogium.Gameplay.Entities
             lifeTimer = Time.time + missingInfo.lifetime;
             deathTimer = -1;
             pierceType = missingInfo.pierce;
+            isDead = false;
             
             move.Construct(new CharMoveInfo(EditorConstants.ProjectileFlightSpeed, EditorConstants.ProjectileAcceleration, EditorConstants.ProjectileBrakeForce));
             ForcedMoveInfo selfKnockback = new(EditorConstants.ProjectileKnockbackForceSelf, EditorConstants.ProjectileKnockbackTimeSelf, EditorConstants.ProjectileKnockbackLockDirectionSelf);
@@ -105,15 +115,22 @@ namespace Rogium.Gameplay.Entities
                 deathTimer--;
                 return;
             }
-            Destruct();
+            Kill();
         }
         
         /// <summary>
-        /// Destroy the projectile.
+        /// Finish the life of the projectile.
         /// </summary>
-        private void Destruct()
+        private void Kill()
         {
-            Destroy(gameObject, 0.01f);
+            if (isDead) return;
+            isDead = true;
+            StartCoroutine(DeathCoroutine());
+            IEnumerator DeathCoroutine()
+            {
+                yield return new WaitForSeconds(0.01f);
+                OnDie?.Invoke();
+            }
         }
 
         [System.Serializable]

@@ -77,6 +77,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -89,6 +90,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -101,6 +103,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -121,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 48bc5054eed04274e8ee331f70c6a399
-      internalID: -203117973
+      spriteID: 6251cb77ab78ac849a08203b59084e24
+      internalID: 925054236
       vertices: []
       indices: 
       edges: []
@@ -142,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6251cb77ab78ac849a08203b59084e24
-      internalID: 925054236
+      spriteID: 3e518b593f9eb034fa74dcf7dbb7d6df
+      internalID: -1820635022
       vertices: []
       indices: 
       edges: []
@@ -163,8 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e518b593f9eb034fa74dcf7dbb7d6df
-      internalID: -1820635022
+      spriteID: b9badb58f775e9f48be96ace59b1f8d5
+      internalID: -917808211
       vertices: []
       indices: 
       edges: []
@@ -184,8 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e1c38f74a071cd459443237bf6d9e22
-      internalID: 115274202
+      spriteID: fbb851441c095a549a8e480727661805
+      internalID: -375139211
       vertices: []
       indices: 
       edges: []
@@ -195,48 +198,6 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b9badb58f775e9f48be96ace59b1f8d5
-      internalID: -917808211
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprset_Menu_Icons_5
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fbb851441c095a549a8e480727661805
-      internalID: -375139211
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprset_Menu_Icons_6
-      rect:
-        serializedVersion: 2
-        x: 48
         y: 0
         width: 8
         height: 8
@@ -257,54 +218,12 @@ TextureImporter:
       name: sprset_Menu_Icons_7
       rect:
         serializedVersion: 2
-        x: 56
+        x: 40
         y: 0
         width: 8
         height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6daa70164a9b0db4fab7c0f3e4d6f1b9
-      internalID: 1967343671
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprset_Menu_Icons_8
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a4a57532a4a608945acdca8a127803e6
-      internalID: -1655104440
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprset_Menu_Icons_9
-      rect:
-        serializedVersion: 2
-        x: 72
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -327,16 +246,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      sprset_Menu_Icons_0: -203117973
-      sprset_Menu_Icons_1: 925054236
-      sprset_Menu_Icons_2: -1820635022
-      sprset_Menu_Icons_3: 115274202
-      sprset_Menu_Icons_4: -917808211
-      sprset_Menu_Icons_5: -375139211
-      sprset_Menu_Icons_6: 1300377024
-      sprset_Menu_Icons_7: 1967343671
-      sprset_Menu_Icons_8: -1655104440
-      sprset_Menu_Icons_9: -1488724766
+      sprset_Menu_Icons_0: 925054236
+      sprset_Menu_Icons_1: -1820635022
+      sprset_Menu_Icons_2: -917808211
+      sprset_Menu_Icons_3: -375139211
+      sprset_Menu_Icons_4: 1300377024
+      sprset_Menu_Icons_5: 1967343671
+      sprset_Menu_Icons_6: -1655104440
+      sprset_Menu_Icons_7: -1488724766
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -17,7 +17,14 @@ namespace Rogium.Editors.Core
             base.Awake();
             DontDestroyOnLoad(this);
         }
-        
+
+        /// <summary>
+        /// Returns an object with a specific ID.
+        /// </summary>
+        /// <param name="id">The ID of the object to return.</param>
+        /// <returns>The object with the same id.</returns>
+        public ObjectAsset GetObjectByID(string id) => objects.GetObjectByID(id);
+
         /// <summary>
         /// Returns a copy of the array of interactable objects stored here.
         /// </summary>

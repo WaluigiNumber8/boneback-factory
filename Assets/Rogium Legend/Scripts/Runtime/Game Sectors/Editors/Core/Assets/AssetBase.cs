@@ -1,7 +1,4 @@
 ﻿using System;
-using RedRats.Core;
-using RedRats.Safety;
-using Rogium.Systems.Validation;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -33,11 +30,10 @@ namespace Rogium.Editors.Core
 
         #region Update Values
         public void UpdateTitle(string newTitle) => title = newTitle.Trim();
-
-        public virtual void UpdateIcon(Sprite newIcon) => icon = newIcon;
-
         #endregion
-        
+
+        public override string ToString() => $"{Title} ({ID})";
+
         public string ID { get => id; }
         public string Title { get => title; }
         public Sprite Icon { get => icon; }

@@ -3,6 +3,7 @@ using System.Linq;
 using RedRats.Core;
 using RedRats.UI;
 using RedRats.UI.ModalWindows;
+using Rogium.Editors.Core;
 using Rogium.Editors.Tiles;
 using Rogium.Editors.Weapons;
 

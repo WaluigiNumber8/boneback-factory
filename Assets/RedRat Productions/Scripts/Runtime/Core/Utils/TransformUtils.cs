@@ -20,8 +20,10 @@ namespace RedRats.Core
             
             float angle = Vector2.SignedAngle(Vector2.up, direction);
             angle += offsetAngle;
+
+            if (float.IsNaN(angle)) return;
+            
             transform.rotation = Quaternion.Euler(0, 0, angle);
         }
-        
     }
 }
