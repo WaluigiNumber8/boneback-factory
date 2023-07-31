@@ -68,7 +68,7 @@ namespace Rogium.Editors.Core.Defaults
         
         //Projectile
         public const string ProjectileTitle = "New Projectile";
-        public static readonly Sprite ProjectileIcon = Resources.Load<Sprite>("Defaults/spr_Default_Weapon");
+        public static readonly Sprite ProjectileIcon = Resources.Load<Sprite>("Defaults/spr_Default_Projectile");
         
         public const AnimationType ProjectileAnimationType = AnimationType.NoAnimation;
         public const int ProjectileFrameDuration = 40;
