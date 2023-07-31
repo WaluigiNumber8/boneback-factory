@@ -57,6 +57,7 @@ namespace Rogium.Core
         public static T FindValueFirst<T, TS>(this IEnumerable<T> list, TS id) where T : IIDHolder where TS : IComparable
         {
             SafetyNet.EnsureIsNotNull(list, "List ot search");
+            SafetyNet.EnsureIsNotNull(id, "Value to find cannot be null");
             foreach (T value in list)
             {
                 if (id.CompareTo(value.ID) != 0) continue;
@@ -64,6 +65,27 @@ namespace Rogium.Core
             }
 
             throw new SafetyNetCollectionException($"No asset with the ID '{id}' was found in the list.");
+        }
+        
+        /// <summary>
+        /// Finds the value and index of the first asset with the same ID.
+        /// </summary>
+        /// <param name="list">The list to search in.</param>
+        /// <param name="id">The ID of the asset to search for.</param>
+        /// <typeparam name="T">Type is <see cref="IIDHolder"/> or any of it's children.</typeparam>
+        /// <typeparam name="TS">Any type of <see cref="IComparable"/>. (string, int, etc.)</typeparam>
+        /// <returns>Value the first found asset.</returns>
+        /// <exception cref="SafetyNetCollectionException">Is thrown when no asset with ID was found.</exception>
+        public static (T, int) FindValueAndIndexFirst<T, TS>(this IList<T> list, TS id) where T : IIDHolder where TS : IComparable
+        {
+            SafetyNet.EnsureIsNotNull(list, "List ot search");
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (id.CompareTo(list[i].ID) != 0) continue;
+                return (list[i], i);
+            }
+
+            throw new SafetyNetCollectionException($"No asset position with the ID '{id}' was found in the list.");
         }
 
         /// <summary>

@@ -34,9 +34,9 @@ namespace  Rogium.UserInterface.Editors.Navigation
             Hide();
             ui.area.gameObject.SetActive(true);
 
-            DrawReturnButton(onReturnClick);
-            DrawPackInfo(packTitle, packIcon);
-            DrawConfigButton(onConfigClick);
+            ShowReturnButton(onReturnClick);
+            ShowPackInfo(packTitle, packIcon);
+            ShowConfigButton(onConfigClick);
         }
         
         /// <summary>
@@ -60,7 +60,7 @@ namespace  Rogium.UserInterface.Editors.Navigation
         /// </summary>
         /// <param name="packTitle">Title of the pack that will show up.</param>
         /// <param name="packIcon">Icon of the pack, that will show up.</param>
-        private void DrawPackInfo(string packTitle, Sprite packIcon)
+        private void ShowPackInfo(string packTitle, Sprite packIcon)
         {
             if (packTitle == null && packIcon == null) return;
             
@@ -75,7 +75,7 @@ namespace  Rogium.UserInterface.Editors.Navigation
         /// Draws the "Return" button.
         /// </summary>
         /// <param name="onReturnClick">Method that will run, once the "Return" Button is pressed.</param>
-        private void DrawReturnButton(Action onReturnClick)
+        private void ShowReturnButton(Action onReturnClick)
         {
             ui.returnButton.gameObject.SetActive(true);
             ui.onReturnClick = onReturnClick;
@@ -85,7 +85,7 @@ namespace  Rogium.UserInterface.Editors.Navigation
         /// Draws the "Config" button.
         /// </summary>
         /// <param name="onConfigClick">Method that will run, once the "Config" Button is pressed.</param>
-        private void DrawConfigButton(Action onConfigClick)
+        private void ShowConfigButton(Action onConfigClick)
         {
             if (onConfigClick == null) return;
             

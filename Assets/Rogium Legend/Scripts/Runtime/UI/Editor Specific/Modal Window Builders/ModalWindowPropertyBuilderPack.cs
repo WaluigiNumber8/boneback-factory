@@ -11,14 +11,15 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     /// </summary>
     public class ModalWindowPropertyBuilderPack : ModalWindowPropertyBuilder
     {
+        private new PackAsset editedAssetBase;
         public override void OpenForCreate()
         {
-            OpenWindow(new PackInfoAsset(), CreateAsset, "Creating a new pack");
+            OpenWindow(new PackAsset(), CreateAsset, "Creating a new pack");
         }
 
         public override void OpenForUpdate()
         {
-            OpenWindow(new PackInfoAsset(editor.CurrentPack.PackInfo), UpdateAsset, $"Editing {editor.CurrentPack.Title}");
+            OpenWindow(new PackAsset(editor.CurrentPack), UpdateAsset, $"Editing {editor.CurrentPack.Title}");
         }
 
         /// <summary>
@@ -26,13 +27,13 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         /// <param name="currentPackInfo">The PackInfo to edit.</param>
         /// <param name="onConfirmButton">What happens when the 'Confirm' button is pressed.</param>
         /// </summary>
-        private void OpenWindow(PackInfoAsset currentPackInfo, Action onConfirmButton, string headerText)
+        private void OpenWindow(PackAsset currentPackInfo, Action onConfirmButton, string headerText)
         {
             bool isDisabled = !editor.CurrentPack?.ContainsAnySprites ?? true;
             
             b.BuildInputField("Name", currentPackInfo.Title, windowColumn1, currentPackInfo.UpdateTitle, false, true);
             b.BuildInputFieldArea("Description", currentPackInfo.Description, windowColumn1, currentPackInfo.UpdateDescription);
-            b.BuildAssetField("", AssetType.Sprite, currentPackInfo, windowColumn2, a => editedAssetBase.UpdateIcon(a?.Icon), isDisabled, ThemeType.Blue);
+            b.BuildAssetField("", AssetType.Sprite, currentPackInfo, windowColumn2, a => editedAssetBase.UpdateIcon(a), isDisabled, ThemeType.Blue);
             b.BuildPlainText("Created by", currentPackInfo.Author, windowColumn2);
             b.BuildPlainText("Created on", currentPackInfo.CreationDate.ToString(), windowColumn2);
 
@@ -45,7 +46,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         /// </summary>
         protected override void CreateAsset()
         {
-            lib.CreateAndAddPack((PackInfoAsset)editedAssetBase);
+            lib.CreateAndAddPack(editedAssetBase);
             selectionMenu.OpenForPacks();
         }
 
@@ -54,7 +55,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         /// </summary>
         protected override void UpdateAsset()
         {
-            editor.CurrentPack.UpdatePackInfo((PackInfoAsset)editedAssetBase);
+            PackEditorOverseer.Instance.UpdateAsset(editedAssetBase);
             editor.CompleteEditing();
             selectionMenu.OpenForPacks();
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using RedRats.UI;
 using RedRats.UI.ModalWindows;
+using Rogium.Editors.Core;
 using Rogium.Editors.Palettes;
 using Rogium.Editors.Sprites;
 

@@ -11,10 +11,11 @@ namespace Rogium.Editors.Projectiles
     public sealed class ProjectileEditorOverseer : Singleton<ProjectileEditorOverseer>, IEditorOverseer
     {
         public event Action<ProjectileAsset> OnAssignAsset; 
-        public event Action<ProjectileAsset, int> OnCompleteEditing;
+        public event Action<ProjectileAsset, int, string> OnCompleteEditing;
         
         private ProjectileAsset currentAsset;
         private int myIndex;
+        private string lastAssociatedSpriteID;
 
         private ProjectileEditorOverseer() {}
         
@@ -31,6 +32,7 @@ namespace Rogium.Editors.Projectiles
             
             currentAsset = new ProjectileAsset(asset);
             myIndex = index;
+            lastAssociatedSpriteID = asset.AssociatedSpriteID;
 
             if (!prepareEditor) return;
             OnAssignAsset?.Invoke(currentAsset);
@@ -48,7 +50,7 @@ namespace Rogium.Editors.Projectiles
         
         public void CompleteEditing()
         {
-            OnCompleteEditing?.Invoke(CurrentAsset, myIndex);
+            OnCompleteEditing?.Invoke(CurrentAsset, myIndex, lastAssociatedSpriteID);
         }
         
         public ProjectileAsset CurrentAsset 

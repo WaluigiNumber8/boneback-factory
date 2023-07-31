@@ -59,9 +59,8 @@ namespace Rogium.ExternalStorage.Serialization
             rooms.SetDecodingMethod(r => r.Decode());
             tiles.SetDecodingMethod(t => t.Decode());
             
-            PackAsset dataPack = new(new PackInfoAsset(), palettes.Decode(), sprites.Decode(), 
-                                     weapons.Decode(), projectiles.Decode(), enemies.Decode(),
-                                     rooms.Decode(), tiles.Decode());
+            PackAsset dataPack = new(palettes.Decode(), sprites.Decode(), weapons.Decode(), projectiles.Decode(), 
+                                     enemies.Decode(), rooms.Decode(), tiles.Decode());
             
             return new CampaignAsset(id,
                                      title,

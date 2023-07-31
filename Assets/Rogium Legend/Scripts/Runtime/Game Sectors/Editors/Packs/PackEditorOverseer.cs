@@ -1,17 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using RedRats.Core;
 using UnityEngine;
 using RedRats.Safety;
 using Rogium.Editors.Core;
+using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Enemies;
-using Rogium.Editors.Objects;
 using Rogium.Editors.Palettes;
 using Rogium.Editors.Projectiles;
 using Rogium.Editors.Rooms;
 using Rogium.Editors.Sprites;
 using Rogium.Editors.Tiles;
 using Rogium.Editors.Weapons;
+using static Rogium.Editors.Packs.SpriteAssociation;
 
 namespace Rogium.Editors.Packs
 {
@@ -20,8 +20,9 @@ namespace Rogium.Editors.Packs
     /// </summary>
     public sealed class PackEditorOverseer : Singleton<PackEditorOverseer>, IEditorOverseer
     {
-        public event Action<PackAsset, int, string, string> OnSaveChanges;
-
+        public event Action<PackAsset, int, string, string, string> OnSaveChanges;
+        public event Action<string> OnRemoveSprite;
+        
         private readonly PaletteEditorOverseer paletteEditor;
         private readonly SpriteEditorOverseer spriteEditor;
         private readonly WeaponEditorOverseer weaponEditor;
@@ -32,8 +33,9 @@ namespace Rogium.Editors.Packs
 
         private PackAsset currentPack;
         private int myIndex;
-        private string startingTitle;
-        private string startingAuthor;
+        private string lastTitle;
+        private string lastAuthor;
+        private string lastAssociatedSpriteID;
 
         private PackEditorOverseer() 
         {
@@ -63,10 +65,21 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(pack, "Pack to assign");
             currentPack = new PackAsset(pack);
             myIndex = index;
-            startingTitle = currentPack.Title;
-            startingAuthor = currentPack.Author;
+            lastAssociatedSpriteID = pack.AssociatedSpriteID;
+            lastTitle = currentPack.Title;
+            lastAuthor = currentPack.Author;
         }
 
+        /// <summary>
+        /// Updates the asset with new data. Not allowed when no asset is assigned.
+        /// </summary>
+        /// <param name="updatedAsset">Asset, containing new data.</param>
+        public void UpdateAsset(PackAsset updatedAsset)
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Currently active asset.");
+            currentPack = new PackAsset(updatedAsset);
+        }
+        
         #region Palettes
         /// <summary>
         /// Creates a new palette, and adds it to the Pack Asset.
@@ -151,8 +164,41 @@ namespace Rogium.Editors.Packs
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Sprites, "List of Sprites");
+            
             CurrentPack.Sprites.Update(positionIndex, newAsset);
-        } 
+            foreach (string id in newAsset.AssociatedAssetsIDs)
+            {
+                string identifier = id[..2];
+                switch (identifier)
+                {
+                    case EditorAssetIDs.PackIdentifier:
+                        currentPack.UpdateIcon(newAsset);
+                        SavePackChanges();
+                        break;
+                    case EditorAssetIDs.PaletteIdentifier:
+                        RefreshSpriteAndSaveAsset(currentPack.Palettes, id, newAsset);
+                        break;
+                    case EditorAssetIDs.SpriteIdentifier:
+                        RefreshSpriteAndSaveAsset(currentPack.Sprites, id, newAsset);
+                        break;
+                    case EditorAssetIDs.WeaponIdentifier:
+                        RefreshSpriteAndSaveAsset(currentPack.Weapons, id, newAsset);
+                        break;
+                    case EditorAssetIDs.ProjectileIdentifier:
+                        RefreshSpriteAndSaveAsset(currentPack.Projectiles, id, newAsset);
+                        break;
+                    case EditorAssetIDs.EnemyIdentifier:
+                        RefreshSpriteAndSaveAsset(currentPack.Enemies, id, newAsset);
+                        break;
+                    case EditorAssetIDs.RoomIdentifier:
+                        RefreshSpriteAndSaveAsset(currentPack.Rooms, id, newAsset);
+                        break;
+                    case EditorAssetIDs.TileIdentifier:
+                        RefreshSpriteAndSaveAsset(currentPack.Tiles, id, newAsset);
+                        break;
+                }
+            }
+        }
 
         /// <summary>
         /// Deletes a sprite from the pack.
@@ -162,6 +208,30 @@ namespace Rogium.Editors.Packs
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Sprites, "List of Sprites");
+            SpriteAsset sprite = currentPack.Sprites[assetIndex];
+            foreach (string id in sprite.AssociatedAssetsIDs)
+            {
+                string identifier = id[..2];
+                switch (identifier)
+                {
+                    case EditorAssetIDs.PackIdentifier:
+                        currentPack.ClearAssociatedSprite();
+                        OnRemoveSprite?.Invoke(currentPack.ID);
+                        break;
+                    case EditorAssetIDs.WeaponIdentifier:
+                        RemoveSpriteAssociationsAndSaveAsset(currentPack.Weapons, id);
+                        break;
+                    case EditorAssetIDs.ProjectileIdentifier:
+                        RemoveSpriteAssociationsAndSaveAsset(currentPack.Projectiles, id);
+                        break;
+                    case EditorAssetIDs.EnemyIdentifier:
+                        RemoveSpriteAssociationsAndSaveAsset(currentPack.Enemies, id);
+                        break;
+                    case EditorAssetIDs.TileIdentifier:
+                        RemoveSpriteAssociationsAndSaveAsset(currentPack.Tiles, id);
+                        break;
+                }
+            }
             currentPack.Sprites.Remove(assetIndex);
         }
 
@@ -181,6 +251,7 @@ namespace Rogium.Editors.Packs
         #endregion
         
         #region Weapons
+        
         /// <summary>
         /// Creates a new weapon, and adds it to the Pack Asset.
         /// <param name="newAsset">The new Weapon Asset to Add.</param>
@@ -203,10 +274,12 @@ namespace Rogium.Editors.Packs
         /// </summary>
         /// <param name="newAsset">Weapon Asset with the new details.</param>
         /// <param name="positionIndex">Which weapon to override.</param>
-        public void UpdateWeapon(WeaponAsset newAsset, int positionIndex)
+        /// <param name="lastAssociatedSpriteID">The weapon's sprite before it was edited.</param>
+        public void UpdateWeapon(WeaponAsset newAsset, int positionIndex, string lastAssociatedSpriteID)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Weapons, "List of Weapons");
+            ProcessSpriteAssociations(currentPack, newAsset, lastAssociatedSpriteID);
             CurrentPack.Weapons.Update(positionIndex, newAsset);
         } 
 
@@ -218,6 +291,7 @@ namespace Rogium.Editors.Packs
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Weapons, "List of Weapons");
+            RemoveAssociation(currentPack, currentPack.Weapons[assetIndex]);
             currentPack.Weapons.Remove(assetIndex);
         }
 
@@ -259,10 +333,12 @@ namespace Rogium.Editors.Packs
         /// </summary>
         /// <param name="newAsset">Projectile Asset with the new details.</param>
         /// <param name="positionIndex">Which projectile to override.</param>
-        public void UpdateProjectile(ProjectileAsset newAsset, int positionIndex)
+        /// /// <param name="lastAssociatedSpriteID">The projectile's sprite before it was edited.</param>
+        public void UpdateProjectile(ProjectileAsset newAsset, int positionIndex, string lastAssociatedSpriteID)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Projectiles, "List of Projectiles");
+            ProcessSpriteAssociations(currentPack, newAsset, lastAssociatedSpriteID);
             CurrentPack.Projectiles.Update(positionIndex, newAsset);
         } 
 
@@ -274,6 +350,7 @@ namespace Rogium.Editors.Packs
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Projectiles, "List of Projectiles");
+            RemoveAssociation(currentPack, currentPack.Weapons[assetIndex]);
             currentPack.Projectiles.Remove(assetIndex);
         }
 
@@ -315,10 +392,12 @@ namespace Rogium.Editors.Packs
         /// </summary>
         /// <param name="newAsset">Enemy Asset with the new details.</param>
         /// <param name="positionIndex">Which enemy to override.</param>
-        public void UpdateEnemy(EnemyAsset newAsset, int positionIndex)
+        /// /// <param name="lastAssociatedSpriteID">The enemy's sprite before it was edited.</param>
+        public void UpdateEnemy(EnemyAsset newAsset, int positionIndex, string lastAssociatedSpriteID)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Enemies, "List of Enemies");
+            ProcessSpriteAssociations(currentPack, newAsset, lastAssociatedSpriteID);
             CurrentPack.Enemies.Update(positionIndex, newAsset);
         } 
 
@@ -330,6 +409,7 @@ namespace Rogium.Editors.Packs
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Enemies, "List of Enemies");
+            RemoveAssociation(currentPack, currentPack.Weapons[assetIndex]);
             currentPack.Enemies.Remove(assetIndex);
         }
 
@@ -371,10 +451,12 @@ namespace Rogium.Editors.Packs
         /// </summary>
         /// <param name="newAsset">Tile Asset with the new details.</param>
         /// <param name="positionIndex">Which tile to override.</param>
-        public void UpdateTile(TileAsset newAsset, int positionIndex)
+        /// /// <param name="lastAssociatedSpriteID">The tile's sprite before it was edited.</param>
+        public void UpdateTile(TileAsset newAsset, int positionIndex, string lastAssociatedSpriteID)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Tiles, "List of Tiles");
+            ProcessSpriteAssociations(currentPack, newAsset, lastAssociatedSpriteID);
             CurrentPack.Tiles.Update(positionIndex, newAsset);
         } 
 
@@ -386,6 +468,7 @@ namespace Rogium.Editors.Packs
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Tiles, "List of Tiles");
+            RemoveAssociation(currentPack, currentPack.Weapons[assetIndex]);
             currentPack.Tiles.Remove(assetIndex);
         }
 
@@ -483,7 +566,7 @@ namespace Rogium.Editors.Packs
         /// </summary>
         private void SavePackChanges()
         {
-            OnSaveChanges?.Invoke(currentPack, myIndex, startingTitle, startingAuthor);
+            OnSaveChanges?.Invoke(currentPack, myIndex, lastTitle, lastAuthor, lastAssociatedSpriteID);
         }
 
         public PackAsset CurrentPack { get => currentPack; }

@@ -8,10 +8,12 @@ using UnityEngine.TestTools;
 
 public class test_Room_Editor
 {
+    private const string packTitle = "Test Pack";
+    private const string packDescription = "Created this pack for testing purposes.";
+    private const string packAuthor = "TestAuthor";
     private ExternalLibraryOverseer lib;
     private PackEditorOverseer editor;
     private RoomEditorOverseer roomEditor;
-    private PackInfoAsset packInfo;
 
     [SetUp]
     public void Setup()
@@ -20,19 +22,14 @@ public class test_Room_Editor
         editor = PackEditorOverseer.Instance;
         roomEditor = RoomEditorOverseer.Instance;
 
-        const string packName = "Test Pack";
-        const string packDescription = "Created this pack for testing purposes.";
-        const string packAuthor = "TestAuthor";
-        Sprite packIcon = EditorConstants.PackIcon;
-
-        lib.CreateAndAddPack(new PackInfoAsset(packName, packIcon, packAuthor, packDescription));
+        lib.CreateAndAddPack(new PackAsset(packTitle, packAuthor, packDescription));
         lib.ActivatePackEditor(0);
     }
 
     [TearDown]
     public void Teardown()
     {
-        lib.DeletePack(packInfo.Title, packInfo.Author);
+        lib.DeletePack(packTitle, packAuthor);
     }
 
     [Test]

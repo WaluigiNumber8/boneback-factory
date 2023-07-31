@@ -27,7 +27,7 @@ namespace Rogium_Legend.Tests.CSharp.Editors
             tileEditor = TileEditorOverseer.Instance;
             
             // if (lib.GetPacksCopy.FindAssetFirst("Test Pack", "NO_AUTHOR") != null)  lib.DeletePack("Test Pack", "NO_AUTHOR");
-            lib.CreateAndAddPack(new PackInfoAsset("Test Pack", EditorConstants.PackIcon, "NO_AUTHOR", "Blalalala"));
+            lib.CreateAndAddPack(new PackAsset("Test Pack", "NO_AUTHOR", "Blalalala"));
             lib.ActivatePackEditor(0);
         }
 

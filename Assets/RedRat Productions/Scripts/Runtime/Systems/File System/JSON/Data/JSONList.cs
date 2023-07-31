@@ -6,10 +6,10 @@ using RedRats.Safety;
 namespace RedRats.Systems.FileSystem.JSON.Serialization
 {
     /// <summary>
-    /// A Serialized List, ready for saving on external storage.
+    /// A serialized List, ready for saving on external storage.
     /// </summary>
-    /// <typeparam name="T">Unity readable Asset.</typeparam>
-    /// <typeparam name="TS">Serialized Form of <see cref="T"/>Asset.</typeparam>
+    /// <typeparam name="T">Unity readable asset.</typeparam>
+    /// <typeparam name="TS">Serialized form of <see cref="T"/>asset.</typeparam>
     [Serializable]
     public class JSONList<T,TS> : IEncodedObject<IList<T>>
     {
