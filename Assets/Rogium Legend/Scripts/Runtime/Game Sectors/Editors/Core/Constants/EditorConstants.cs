@@ -96,7 +96,7 @@ namespace Rogium.Editors.Core.Defaults
         
         //Enemy
         public const string EnemyTitle = "New Enemy";
-        public static readonly Sprite EnemyIcon = Resources.Load<Sprite>("Defaults/spr_TestDummy");
+        public static readonly Sprite EnemyIcon = Resources.Load<Sprite>("Defaults/spr_Default_Enemy");
 
         public const AnimationType EnemyAnimationType = AnimationType.HorizontalFlip;
         public const int EnemyFrameDuration = 50;
