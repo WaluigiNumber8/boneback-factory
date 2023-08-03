@@ -17,7 +17,7 @@ namespace Rogium.ExternalStorage.Serialization
     /// <summary>
     /// Serialized form of the <see cref="CampaignAsset"/>.
     /// </summary>
-    [System.Serializable]
+    [Serializable]
     public class JSONCampaignAsset : JSONAssetBase<CampaignAsset>
     {
         public JSONList<PaletteAsset, JSONPaletteAsset> palettes;

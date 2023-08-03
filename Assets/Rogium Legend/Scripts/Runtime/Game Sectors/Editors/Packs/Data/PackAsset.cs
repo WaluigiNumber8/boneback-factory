@@ -126,9 +126,6 @@ namespace Rogium.Editors.Packs
             IList<WeaponAsset> weapons, IList<ProjectileAsset> projectiles, IList<EnemyAsset> enemies,
             IList<RoomAsset> rooms, IList<TileAsset> tiles)
         {
-            AssetValidation.ValidateTitle(title);
-            AssetValidation.ValidateDescription(description);
-
             this.title = EditorConstants.PackTitle;
             this.icon = EditorConstants.PackIcon;
             this.author = EditorConstants.Author;
