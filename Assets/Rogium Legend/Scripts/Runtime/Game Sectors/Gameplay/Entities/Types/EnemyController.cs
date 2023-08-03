@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using RedRats.Core;
 using Rogium.Editors.Enemies;
 using Rogium.Editors.Weapons;
+using Rogium.Gameplay.Core;
 using Rogium.Gameplay.Entities.Characteristics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -19,6 +20,7 @@ namespace Rogium.Gameplay.Entities.Enemy
         [SerializeField] private CharacteristicWeaponHold weaponHold;
         [SerializeField] private CharacteristicVisual visual;
 
+        private GameplayOverseerMono gameplayOverseer;
         private Transform playerTransform;
         
         private AIType ai;
@@ -32,7 +34,13 @@ namespace Rogium.Gameplay.Entities.Enemy
         private float weaponUseTime;
         private float weaponUseTimer;
         private float attackProbability;
-        
+
+        protected override void Awake()
+        {
+            base.Awake();
+            gameplayOverseer = GameplayOverseerMono.GetInstance();
+        }
+
         private void OnEnable()
         {
             if (damageReceiver == null) return;
@@ -115,6 +123,7 @@ namespace Rogium.Gameplay.Entities.Enemy
         /// </summary>
         private void UseWeapon()
         {
+            if (gameplayOverseer.IsInSafePeriod()) return;
             if (weaponUseTimer > Time.time) return;
             if (weaponHold == null) return;
             if (weaponHold.WeaponCount <= 0) return;

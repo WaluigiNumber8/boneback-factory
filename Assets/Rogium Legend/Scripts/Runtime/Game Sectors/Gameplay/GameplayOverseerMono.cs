@@ -21,11 +21,15 @@ namespace Rogium.Gameplay.Core
     /// </summary>
     public class GameplayOverseerMono : MonoSingleton<GameplayOverseerMono>
     {
+        public event Action<float> OnSafePeriodActivate;
+        
         [SerializeField] private GameplaySequencer sequencer;
         [SerializeField] private PlayerController player;
-
+        [SerializeField] private float safePeriodTime = 1f;
+        
         private RRG rrg;
         private CampaignAsset currentCampaign;
+        private float safePeriodTimer;
 
         protected override void Awake()
         {
@@ -38,12 +42,14 @@ namespace Rogium.Gameplay.Core
         {
             InteractObjectDoorLeave.OnTrigger += AdvanceRoom;
             player.OnDeath += GameOverGame;
+            sequencer.OnRoomLoaded += ActivateSafePeriod;
         }
 
         private void OnDisable()
         {
             InteractObjectDoorLeave.OnTrigger -= AdvanceRoom;
             player.OnDeath -= GameOverGame;
+            sequencer.OnRoomLoaded -= ActivateSafePeriod;
         }
 
         private void Start() => PrepareGame();
@@ -102,6 +108,12 @@ namespace Rogium.Gameplay.Core
                 InputSystem.GetInstance().EnablePlayerMap();
             }
         }
+
+        /// <summary>
+        /// Is the game currently in safe period? (Short amount of time after loading a room.)
+        /// </summary>
+        /// <returns>TRUE if it is.</returns>
+        public bool IsInSafePeriod() => safePeriodTimer > Time.time;
         
         /// <summary>
         /// Complete the current room and move to the next one.
@@ -114,6 +126,15 @@ namespace Rogium.Gameplay.Core
             
             if (nextRoomIndex == -1) EndGame(Vector2.up * 10); 
             else sequencer.RunTransition(nextRoomIndex, direction);
+        }
+
+        /// <summary>
+        /// Activates a safe period, during which the player cannot be attacked.
+        /// </summary>
+        private void ActivateSafePeriod()
+        {
+            safePeriodTimer = Time.time + safePeriodTime;
+            OnSafePeriodActivate?.Invoke(safePeriodTime);
         }
 
         public CampaignAsset CurrentCampaign
