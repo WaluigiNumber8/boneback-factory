@@ -113,8 +113,8 @@ namespace Rogium.Systems.GridSystem
         {
             Texture2D layer = sprite.texture;
             Texture2D tex = value.texture;
-            SafetyNet.EnsureIntIsEqual(tex.width, 16, "Sprite Width");
-            SafetyNet.EnsureIntIsEqual(tex.height, 16, "Sprite Height");
+            SafetyNet.EnsureIntIsEqual(tex.width, 16, $"{sprite.name}'s width");
+            SafetyNet.EnsureIntIsEqual(tex.height, 16, $"{sprite.name}'s height");
 
             int startX = pos.x * unitSize.x;
             int startY = pos.y * unitSize.y;
