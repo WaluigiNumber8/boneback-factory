@@ -49,7 +49,17 @@ namespace Rogium.Gameplay.Entities.Characteristics
             defaultData.maxHealth += amount;
             OnMaxHealthChange?.Invoke(defaultData.maxHealth);
         }
-        
+
+        /// <summary>
+        /// Become invincible for a period of time. (uses default invincibility time)
+        /// </summary>
+        public void BecomeInvincible() => BecomeInvincible(defaultData.invincibilityTime);
+        /// <summary>
+        /// Become invincible for a period of time.
+        /// </summary>
+        /// <param name="time">How long to stay invincible.</param>
+        public void BecomeInvincible(float time) => invincibilityTimer = Time.time + time;
+
         /// <summary>
         /// Receive damage.
         /// </summary>

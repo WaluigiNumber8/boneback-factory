@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using RedRats.Safety;
@@ -16,6 +17,8 @@ namespace Rogium.Gameplay.Sequencer
     /// </summary>
     public class GameplaySequencer : MonoBehaviour
     {
+        public event Action OnRoomLoaded;
+        
         [SerializeField] private RoomLoader roomLoader;
         [SerializeField] private PlayerController player;
         [Space]
@@ -51,6 +54,7 @@ namespace Rogium.Gameplay.Sequencer
                 startingPoints.Clear();
 
                 roomLoader.LoadNext(roomIndex);
+                OnRoomLoaded?.Invoke();
                 (Vector2 pos, Vector2 dir) = startingPoints.ElementAt(GetPlayerStartPositionIndex());
 
                 playerTransform.position = pos - dir * 2;
@@ -77,6 +81,7 @@ namespace Rogium.Gameplay.Sequencer
                 yield return sas.Transport(playerTransform, playerTransform.position + (Vector3)direction * Random.Range(2, 6), transportWalkSpeed);
             
                 roomLoader.LoadNext(roomIndex);
+                OnRoomLoaded?.Invoke();
                 (Vector2 pos, Vector2 dir) = startingPoints.ElementAt(GetPlayerStartPositionIndex());
 
                 yield return sas.Transport(playerTransform, new Vector2(Random.Range(-7.5f, 6.5f), Random.Range(-4.5f, 4.5f)), transportRunSpeed);

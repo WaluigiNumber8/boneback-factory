@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8c5685d2b44be3aaf584592f4c005b, type: 3}
   m_Name: asset_InteractableObject_WeaponDrop
   m_EditorClassIdentifier: 
-  icon: {fileID: 1813950321, guid: bdee64bad52a01946aeeeceacf6e6699, type: 3}
+  icon: {fileID: 21300000, guid: 8c038998b78d74c4e93fd715f231ed43, type: 3}
   id: 003
   title: Weapon Drop
   prefab: {fileID: 4152887547633084623, guid: b40ec8407dc92ab4dbde142843d24397, type: 3}
