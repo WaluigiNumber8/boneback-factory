@@ -99,7 +99,6 @@ namespace Rogium.Systems.GridSystem
         private void UpdatePositionOnGrid()
         {
             if (!gridPreviewer.gameObject.activeSelf) return;
-            
             float x = gridTransform.position.x + grid.SelectedPosition.x * grid.CellSize.x + grid.CellSize.x * 0.5f;
             float y = gridTransform.position.y + grid.SelectedPosition.y * grid.CellSize.y + grid.CellSize.y * 0.5f;
             gridPreviewer.transform.position = new Vector3(x, y);
