@@ -1,7 +1,19 @@
 fileFormatVersion: 2
-guid: 9982117715ef32742bb10e1673e9a966
+guid: cac46778708b27b49a2ee7dd0fbb30a7
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -3077443614068609604
+    second: sprset_Menu_SmallIcons_0_MapIndividual
+  - first:
+      213: 7612675492157768007
+    second: sprset_Menu_SmallIcons_1_MapIndividualActive
+  - first:
+      213: 1902810623860997257
+    second: sprset_Menu_SmallIcons_2_MapSector
+  - first:
+      213: 6888885125828322033
+    second: sprset_Menu_SmallIcons_3_MapSectorActive
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -82,10 +94,23 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -95,10 +120,10 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Server
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -110,13 +135,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sprset_Menu_Icons_0
+      name: sprset_Icons_Menu_Tiny_MapIndividual
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 8
-        height: 8
+        width: 4
+        height: 4
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +149,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6251cb77ab78ac849a08203b59084e24
-      internalID: 925054236
+      spriteID: cbd65278659ba45d0800000000000000
+      internalID: -3077443614068609604
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_Menu_Icons_1
+      name: sprset_Icons_Menu_Tiny_MapIndividualActive
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 0
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 741c264c608a5a960800000000000000
+      internalID: 7612675492157768007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprset_Icons_Menu_Tiny_MapSector
       rect:
         serializedVersion: 2
         x: 8
         y: 0
-        width: 8
-        height: 8
+        width: 4
+        height: 4
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +191,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e518b593f9eb034fa74dcf7dbb7d6df
-      internalID: -1820635022
+      spriteID: 98cf21e4e24286a10800000000000000
+      internalID: 1902810623860997257
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_Menu_Icons_2
+      name: sprset_Icons_Menu_Tiny_MapSectorActive
       rect:
         serializedVersion: 2
-        x: 16
+        x: 12
         y: 0
-        width: 8
-        height: 8
+        width: 4
+        height: 4
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,71 +212,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9badb58f775e9f48be96ace59b1f8d5
-      internalID: -917808211
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprset_Menu_Icons_3
-      rect:
-        serializedVersion: 2
-        x: 24
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fbb851441c095a549a8e480727661805
-      internalID: -375139211
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprset_Menu_Icons_4
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 521628d95f591af48946ecefcaec7ebc
-      internalID: 1300377024
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprset_Menu_Icons_7
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 307667d3157c4774ba2e3d333b9036ab
-      internalID: -1488724766
+      spriteID: 1f22877e58c3a9f50800000000000000
+      internalID: 6888885125828322033
       vertices: []
       indices: 
       edges: []
@@ -246,14 +229,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      sprset_Menu_Icons_0: 925054236
-      sprset_Menu_Icons_1: -1820635022
-      sprset_Menu_Icons_2: -917808211
-      sprset_Menu_Icons_3: -375139211
-      sprset_Menu_Icons_4: 1300377024
-      sprset_Menu_Icons_5: 1967343671
-      sprset_Menu_Icons_6: -1655104440
-      sprset_Menu_Icons_7: -1488724766
+      sprset_Icons_Menu_Tiny_MapIndividual: -3077443614068609604
+      sprset_Icons_Menu_Tiny_MapIndividualActive: 7612675492157768007
+      sprset_Icons_Menu_Tiny_MapSector: 1902810623860997257
+      sprset_Icons_Menu_Tiny_MapSectorActive: 6888885125828322033
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

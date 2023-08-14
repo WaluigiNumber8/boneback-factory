@@ -65,7 +65,7 @@ namespace Rogium.Systems.GASExtension
         
         public static void ReturnToMainMenuOptions()
         {
-            MessageWindowInfo data = new("Return to Main Menu without confirming changes?", ThemeType.Blue,"Yes","No", ReturnToMainMenuOptionsConfirm);
+            MessageWindowInfo data = new("Return to Main Menu without confirming changes?", ThemeType.Red,"Yes","No", ReturnToMainMenuOptionsConfirm);
             ModalWindowOverseerMono.GetInstance().OpenWindow(data);
         }
         

@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using RedRats.Safety;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace RedRats.UI.Tabs
@@ -13,6 +14,7 @@ namespace RedRats.UI.Tabs
         public event Action<GameObject> onTabSwitch;
         
         [SerializeField] private int defaultTabIndex;
+        [BoxGroup]
         [SerializeField] private ButtonVisualInfo visuals;
         [SerializeField] private TabPageButton[] buttons;
 
@@ -75,9 +77,9 @@ namespace RedRats.UI.Tabs
         [Serializable]
         private struct ButtonVisualInfo
         {
-            public Sprite tabIdle;
-            public Sprite tabHover;
-            public Sprite tabActive;
+            [PreviewField(60)]public Sprite tabIdle;
+            [PreviewField(60)]public Sprite tabHover;
+            [PreviewField(60)]public Sprite tabActive;
         }
     }
 }
