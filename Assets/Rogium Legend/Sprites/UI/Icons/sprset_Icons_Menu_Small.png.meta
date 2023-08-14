@@ -1,10 +1,7 @@
 fileFormatVersion: 2
-guid: 1abf6ad819805b740841dc5b73ba4957
+guid: 9982117715ef32742bb10e1673e9a966
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 6901379020178165124
-    second: sprset_Menu_BigIcons_0_PackAmount
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -85,23 +82,10 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 1024
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -111,10 +95,10 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Server
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -126,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sprset_Menu_BigIcons_0_PackAmount
+      name: sprset_Menu_Icons_0_Undo
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,20 +124,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 48d8d0e57af96cf50800000000000000
-      internalID: 6901379020178165124
+      spriteID: 6251cb77ab78ac849a08203b59084e24
+      internalID: 925054236
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_Menu_BigIcons_1_ToggleCheck
+      name: sprset_Menu_Icons_1_Redo
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e518b593f9eb034fa74dcf7dbb7d6df
+      internalID: -1820635022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprset_Menu_Icons_2_Back_Arrow_Red
       rect:
         serializedVersion: 2
         x: 16
         y: 0
-        width: 16
-        height: 16
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,20 +166,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9caeb1bf52011764f8264bf21b302d11
-      internalID: -319974302
+      spriteID: b9badb58f775e9f48be96ace59b1f8d5
+      internalID: -917808211
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_Menu_BigIcons_2_GridBlue
+      name: sprset_Menu_Icons_3_Back_Arrow_Yellow
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbb851441c095a549a8e480727661805
+      internalID: -375139211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprset_Menu_Icons_4_Add
       rect:
         serializedVersion: 2
         x: 32
         y: 0
-        width: 16
-        height: 16
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,20 +208,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 93cb093711308134eab8761b4f1eb311
-      internalID: 153804624
+      spriteID: 521628d95f591af48946ecefcaec7ebc
+      internalID: 1300377024
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_Menu_BigIcons_5_TrashRed
+      name: sprset_Menu_Icons_5_Checkmark
       rect:
         serializedVersion: 2
-        x: 80
+        x: 40
         y: 0
-        width: 16
-        height: 16
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,20 +229,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff5ca57d3b2c4a24a8e055b32bfc4c83
-      internalID: -524451728
+      spriteID: 307667d3157c4774ba2e3d333b9036ab
+      internalID: -1488724766
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_Menu_BigIcons_3_GridRed
+      name: sprset_Menu_Icons_6_Refresh
       rect:
         serializedVersion: 2
         x: 48
         y: 0
-        width: 16
-        height: 16
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -224,20 +250,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f3ceff3232e1439409fd792519c40b91
-      internalID: 617456209
+      spriteID: 043d85cd21f736e4c8e3c93d839b1353
+      internalID: -1721975210
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_Menu_BigIcons_4_TrashBlue
+      name: sprset_Menu_Icons_7_RefreshAll
       rect:
         serializedVersion: 2
-        x: 64
+        x: 56
         y: 0
-        width: 16
-        height: 16
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -245,71 +271,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8112324dfbd971f4fb9e2c10abcda648
-      internalID: -517134802
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprset_Menu_BigIcons_6_Dice
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e143f7d282beab04fad66a3d6b42d02c
-      internalID: 1009117715
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprset_Menu_BigIcons_7_SelectAll
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cdd65fdc71d4ce8468b9c3775e65ae14
-      internalID: 572318144
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprset_Menu_BigIcons_8_DeselectAll
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b0743d95a7950a244ab3cd3c6b0c928e
-      internalID: 175408103
+      spriteID: 8c4e73d80e586174a9a9fe8e6b0084d5
+      internalID: 201350076
       vertices: []
       indices: 
       edges: []
@@ -325,16 +288,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      sprset_Menu_BigIcons_0_Changelog: -395961763
-      sprset_Menu_BigIcons_0_PackAmount: 6901379020178165124
-      sprset_Menu_BigIcons_1_ToggleCheck: -319974302
-      sprset_Menu_BigIcons_2_GridBlue: 153804624
-      sprset_Menu_BigIcons_3_GridRed: 617456209
-      sprset_Menu_BigIcons_4_TrashBlue: -517134802
-      sprset_Menu_BigIcons_5_TrashRed: -524451728
-      sprset_Menu_BigIcons_6_Dice: 1009117715
-      sprset_Menu_BigIcons_7_SelectAll: 572318144
-      sprset_Menu_BigIcons_8_DeselectAll: 175408103
+      sprset_Menu_Icons_0_Undo: 925054236
+      sprset_Menu_Icons_1_Redo: -1820635022
+      sprset_Menu_Icons_2_Back_Arrow_Red: -917808211
+      sprset_Menu_Icons_3_Back_Arrow_Yellow: -375139211
+      sprset_Menu_Icons_4_Add: 1300377024
+      sprset_Menu_Icons_5: 1967343671
+      sprset_Menu_Icons_5_Checkmark: -1488724766
+      sprset_Menu_Icons_6_Refresh: -1721975210
+      sprset_Menu_Icons_7_RefreshAll: 201350076
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -86,7 +86,7 @@ namespace Rogium.Editor.UI
         /// <param name="path">The path of the scene asset to switch to.</param>
         private void SwitchScene(string path)
         {
-            EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
+            if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
             EditorSceneManager.OpenScene(path, OpenSceneMode.Single);
         }
 
