@@ -346,6 +346,13 @@ namespace Rogium.UserInterface.Interactables
                     GASButtonActions.GameplaySelectWeapon(index);
                     break;
                 #endregion
+
+                #region Options Menu
+                case ButtonType.OptionsSavePreferences:
+                    GASButtonActions.OptionsSavePreferences();
+                    break;
+
+                #endregion
                 
                 case ButtonType.Play:
                     SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - PLAY CAMPAIGN");

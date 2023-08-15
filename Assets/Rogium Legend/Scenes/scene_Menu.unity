@@ -139,6 +139,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Accept Button
       objectReference: {fileID: 0}
+    - target: {fileID: 1443352348720174731, guid: dca05af6cd94d8e4b9877c8e9ef9b2e7, type: 3}
+      propertyPath: action
+      value: 83
+      objectReference: {fileID: 0}
     - target: {fileID: 6249019918453611824, guid: dca05af6cd94d8e4b9877c8e9ef9b2e7, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -10073,7 +10077,7 @@ PrefabInstance:
     - target: {fileID: 6249019918453611824, guid: dca05af6cd94d8e4b9877c8e9ef9b2e7, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -917808211, guid: 9982117715ef32742bb10e1673e9a966, type: 3}
+      objectReference: {fileID: -2090347973, guid: 1abf6ad819805b740841dc5b73ba4957, type: 3}
     - target: {fileID: 7926430007820340852, guid: dca05af6cd94d8e4b9877c8e9ef9b2e7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -15046,7 +15050,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4a4ea634ab04fc5b6af0b9031517b70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  propertiesColumn: {fileID: 0}
+  graphicsColumn: {fileID: 274397601}
 --- !u!1001 &1352780012
 PrefabInstance:
   m_ObjectHideFlags: 0

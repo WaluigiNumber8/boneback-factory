@@ -15,6 +15,7 @@ using Rogium.Editors.Sprites;
 using Rogium.Editors.Tiles;
 using Rogium.Editors.Weapons;
 using Rogium.Gameplay.Inventory;
+using Rogium.Options.Core;
 using Rogium.Systems.Toolbox;
 using Rogium.UserInterface.Editors.AssetSelection;
 using Rogium.UserInterface.Containers;
@@ -55,6 +56,7 @@ namespace Rogium.Systems.GASExtension
 
         public static void OpenOptionsMenu()
         {
+            OptionsMenuOverseerMono.GetInstance().Prepare();
             GAS.SwitchMenu(MenuType.OptionsMenu);
         }
 
@@ -704,6 +706,16 @@ namespace Rogium.Systems.GASExtension
         }
         #endregion
 
+        #region Options Menu
+
+        public static void OptionsSavePreferences()
+        {
+            OptionsMenuOverseerMono.GetInstance().Save();
+            ReturnToMainMenuOptionsConfirm();
+        }
+
+        #endregion
+
         #region Gameplay Menu
 
         public static void GameplayPauseResume()
@@ -721,6 +733,5 @@ namespace Rogium.Systems.GASExtension
             WeaponSelectMenu.GetInstance().Select(index);
         }
         #endregion
-
     }
 }
