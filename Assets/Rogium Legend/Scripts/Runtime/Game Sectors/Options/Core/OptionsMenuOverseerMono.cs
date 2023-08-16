@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using RedRats.Core;
-using Rogium.ExternalStorage;
+﻿using RedRats.Core;
+using Rogium.Options.OptionControllers;
 using UnityEngine;
 
 namespace Rogium.Options.Core
@@ -11,51 +10,30 @@ namespace Rogium.Options.Core
     public class OptionsMenuOverseerMono : MonoSingleton<OptionsMenuOverseerMono>
     {
         [SerializeField] private Transform graphicsColumn;
-
-        private ExternalStorageOverseer externalStorage;
+        
         private OptionsGraphicsPropertyBuilder graphicsPropertyBuilder;
-
-        private GameDataAsset gameData;
-
+        
+        private OptionsMenuOverseer editor;
+        private GraphicsOptionsController graphics;
+        
         protected override void Awake()
         {
             base.Awake();
-            externalStorage = ExternalStorageOverseer.Instance;
-            LoadPreferences();
+            editor = OptionsMenuOverseer.Instance;
+            graphicsPropertyBuilder = new OptionsGraphicsPropertyBuilder(graphicsColumn);
         }
 
-        private void Start()
-        {
-            graphicsPropertyBuilder = new OptionsGraphicsPropertyBuilder(graphicsColumn);
-            graphicsPropertyBuilder.Build(gameData);
-        }
+        private void OnEnable() => editor.OnAssignAsset += PrepareEditor;
+        private void OnDisable() => editor.OnAssignAsset -= PrepareEditor;
+
 
         /// <summary>
         /// Prepares the Options menu for the user. 
         /// </summary>
-        public void Prepare()
+        private void PrepareEditor(GameDataAsset asset)
         {
-            LoadPreferences();
+            graphicsPropertyBuilder.Build(asset);
         }
         
-        /// <summary>
-        /// Saves the current preferences.
-        /// </summary>
-        public void Save()
-        {
-            externalStorage.Preferences.Save(gameData);
-        }
-
-        /// <summary>
-        /// Loads preferences from external storage.
-        /// <p>If no data was found, returns default preferences.</p>
-        /// </summary>
-        private void LoadPreferences()
-        {
-            IList<GameDataAsset> data = externalStorage.Preferences.LoadAll();
-            gameData = (data == null || data.Count <= 0) ? new GameDataAsset() : data[0];
-        }
-        
-        public GameDataAsset GameData { get => gameData; }
     }
 }

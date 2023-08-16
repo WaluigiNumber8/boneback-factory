@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using RedRats.Core;
 using RedRats.Safety;
 using Rogium.Core;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Packs;
 using Rogium.ExternalStorage;
+using Rogium.Options.Core;
 using Rogium.Systems.SceneTransferService;
 using UnityEngine;
 using static Rogium.Editors.Packs.SpriteAssociation;
@@ -18,21 +18,24 @@ namespace Rogium.Editors.Core
     /// </summary>
     public sealed class ExternalLibraryOverseer : Singleton<ExternalLibraryOverseer>
     {
+        private readonly ExternalStorageOverseer ex = ExternalStorageOverseer.Instance;
         private readonly PackEditorOverseer packEditor = PackEditorOverseer.Instance;
-        private readonly ExternalStorageOverseer ex;
+        private readonly CampaignEditorOverseer campaignEditor = CampaignEditorOverseer.Instance;
+        private readonly OptionsMenuOverseer optionsEditor = OptionsMenuOverseer.Instance;
         
         private readonly AssetList<PackAsset> packs;
         private readonly AssetList<CampaignAsset> campaigns;
+        private GameDataAsset preferences;
 
         private ExternalLibraryOverseer()
         {
-            ex = ExternalStorageOverseer.Instance;
             packs = new AssetList<PackAsset>(ex.CreatePack, ex.UpdatePack, ex.DeletePack);
             campaigns = new AssetList<CampaignAsset>(ex.Campaigns.Save, ex.Campaigns.UpdateTitle, ex.Campaigns.Delete);
             
             packEditor.OnSaveChanges += UpdatePack;
             packEditor.OnRemoveSprite += RemoveSpriteAssociation;
-            CampaignEditorOverseer.Instance.OnSaveChanges += UpdateCampaign;
+            campaignEditor.OnSaveChanges += UpdateCampaign;
+            optionsEditor.OnSaveChanges += UpdatePreferences;
             ReloadFromExternalStorage();
         }
 
@@ -44,6 +47,9 @@ namespace Rogium.Editors.Core
             packs.ReplaceAll(ex.LoadAllPacks());
             campaigns.ReplaceAll(ex.Campaigns.LoadAll());
             campaigns.RemoveAll(campaign => campaign.PackReferences.Count <= 0);
+            
+            IList<GameDataAsset> data = ex.Preferences.LoadAll();
+            preferences = (data == null || data.Count <= 0) ? new GameDataAsset() : data[0];
         }
 
         #region Packs
@@ -165,7 +171,7 @@ namespace Rogium.Editors.Core
         {
             SafetyNet.EnsureListIsNotNullOrEmpty(campaigns, "Campaign Library");
             SafetyNet.EnsureIntIsInRange(campaignIndex, 0, campaigns.Count, "campaignIndex for activating Campaign Editor");
-            CampaignEditorOverseer.Instance.AssignAsset(campaigns[campaignIndex], campaignIndex, prepareEditor);
+            campaignEditor.AssignAsset(campaigns[campaignIndex], campaignIndex, prepareEditor);
         }
 
         /// <summary>
@@ -178,6 +184,21 @@ namespace Rogium.Editors.Core
             SafetyNet.EnsureIntIsInRange(campaignIndex, 0, campaigns.Count, "campaignIndex for activating Campaign Playthrough");
             SceneTransferOverseer.GetInstance().LoadUp(campaigns[campaignIndex]);
         }
+        #endregion
+
+        #region Preferences
+
+        public void UpdatePreferences(GameDataAsset gameData)
+        {
+            preferences = gameData;
+            ex.Preferences.Save(preferences);
+        }
+
+        public void ActivateOptionsEditor()
+        {
+            optionsEditor.AssignAsset(preferences);
+        }
+
         #endregion
         
         /// <summary>

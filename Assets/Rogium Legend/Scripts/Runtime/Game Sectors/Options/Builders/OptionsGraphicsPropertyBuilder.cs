@@ -13,6 +13,7 @@ namespace Rogium.Options.Core
 
         public void Build(GameDataAsset gameData)
         {
+            Clear();
             b.BuildDropdown("Screen", Enum.GetNames(typeof(FullScreenMode)), (int)gameData.ScreenMode, contentMain, gameData.UpdateScreenMode);
         }
     }

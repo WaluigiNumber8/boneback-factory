@@ -21901,7 +21901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b1e3281c7a8420581dc1a21ecd05826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultThemeIndex: 0
+  defaultThemeIndex: 1
   themes:
   - {fileID: 11400000, guid: 9f446412e9a55b54a83920f9c3419bef, type: 2}
   - {fileID: 11400000, guid: ec6b3ee36de81cb47a70999fd7947499, type: 2}

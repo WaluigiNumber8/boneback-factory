@@ -54,26 +54,9 @@ namespace Rogium.Systems.GASExtension
             GAS.SwitchScene(1);
         }
 
-        public static void OpenOptionsMenu()
-        {
-            OptionsMenuOverseerMono.GetInstance().Prepare();
-            GAS.SwitchMenu(MenuType.OptionsMenu);
-        }
-
         public static void OpenChangelog()
         {
             GAS.SwitchMenu(MenuType.Changelog);
-        }
-        
-        public static void ReturnToMainMenuOptions()
-        {
-            MessageWindowInfo data = new("Return to Main Menu without confirming changes?", ThemeType.Red,"Yes","No", ReturnToMainMenuOptionsConfirm);
-            ModalWindowOverseerMono.GetInstance().OpenWindow(data);
-        }
-        
-        private static void ReturnToMainMenuOptionsConfirm()
-        {
-            GAS.SwitchMenu(MenuType.MainMenu);
         }
         
         #region Return from menus
@@ -506,6 +489,12 @@ namespace Rogium.Systems.GASExtension
             PackEditorOverseer.Instance.ActivateTileEditor(assetIndex);
             storedIndex = assetIndex;
         }
+        
+        public static void OpenOptionsMenu()
+        {
+            ExternalLibraryOverseer.Instance.ActivateOptionsEditor();
+            GAS.SwitchMenu(MenuType.OptionsMenu);
+        }
         #endregion
 
         #region Save Editor Changes
@@ -571,6 +560,12 @@ namespace Rogium.Systems.GASExtension
             TileEditorOverseer.Instance.CompleteEditing();
             OpenSelectionTile();
         }
+        
+        public static void OptionsSavePreferences()
+        {
+            OptionsMenuOverseer.Instance.CompleteEditing();
+            ReturnToMainMenuOptionsConfirm();
+        }
         #endregion
 
         #region Cancel Editor Changes
@@ -633,6 +628,14 @@ namespace Rogium.Systems.GASExtension
             MessageWindowInfo data = new("Leave without saving changes?", ThemeType.Yellow,"Yes","No", OpenSelectionTile);
             ModalWindowOverseerMono.GetInstance().OpenWindow(data);
         }
+        
+        public static void CancelChangesOptions()
+        {
+            MessageWindowInfo data = new("Leave without saving changes?", ThemeType.Red,"Yes","No", ReturnToMainMenuOptionsConfirm);
+            ModalWindowOverseerMono.GetInstance().OpenWindow(data);
+        }
+        
+        private static void ReturnToMainMenuOptionsConfirm() => GAS.SwitchMenu(MenuType.MainMenu);
         #endregion
 
         #region Campaign Editor Menu
@@ -705,17 +708,7 @@ namespace Rogium.Systems.GASExtension
             RoomEditorOverseerMono.GetInstance().ClearActiveLayer();
         }
         #endregion
-
-        #region Options Menu
-
-        public static void OptionsSavePreferences()
-        {
-            OptionsMenuOverseerMono.GetInstance().Save();
-            ReturnToMainMenuOptionsConfirm();
-        }
-
-        #endregion
-
+        
         #region Gameplay Menu
 
         public static void GameplayPauseResume()

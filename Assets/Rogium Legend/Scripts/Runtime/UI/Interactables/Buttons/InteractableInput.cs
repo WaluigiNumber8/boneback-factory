@@ -34,7 +34,7 @@ namespace Rogium.UserInterface.Interactables
                     GASButtonActions.ReturnToMainMenuSelection();
                     break;
                 case ButtonType.ReturnToMainMenuFromOptions:
-                    GASButtonActions.ReturnToMainMenuOptions();
+                    GASButtonActions.CancelChangesOptions();
                     break;
                 case ButtonType.ReturnToMainMenuFromChangelog:
                     GASButtonActions.ReturnToMainMenuChangelog();
