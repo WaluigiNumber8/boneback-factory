@@ -492,6 +492,7 @@ namespace Rogium.Systems.GASExtension
         
         public static void OpenOptionsMenu()
         {
+            GASRogium.ChangeTheme(ThemeType.Red);
             ExternalLibraryOverseer.Instance.ActivateOptionsEditor();
             GAS.SwitchMenu(MenuType.OptionsMenu);
         }
