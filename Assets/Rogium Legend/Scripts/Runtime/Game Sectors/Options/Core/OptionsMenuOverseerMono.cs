@@ -1,4 +1,5 @@
-﻿using RedRats.Core;
+﻿using System;
+using RedRats.Core;
 using Rogium.Options.OptionControllers;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -46,7 +47,8 @@ namespace Rogium.Options.Core
         /// <param name="asset">The data to apply to settings.</param>
         public void ApplyAllSettings(GameDataAsset asset)
         {
-            graphics.SetScreen(asset.ScreenMode);
+            graphics.UpdateScreen(asset.ScreenMode);
+            graphics.UpdateResolution(asset.GetResolution());
         }
         
         /// <summary>

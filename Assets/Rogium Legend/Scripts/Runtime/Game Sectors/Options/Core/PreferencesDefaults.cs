@@ -9,5 +9,6 @@ namespace Rogium.Options.Core
     public static class PreferencesDefaults
     {
         public const ScreenType ScreenMode = ScreenType.Fullscreen;
+        public static readonly Vector2Int Resolution = new(Screen.currentResolution.width, Screen.currentResolution.height);
     }
 }

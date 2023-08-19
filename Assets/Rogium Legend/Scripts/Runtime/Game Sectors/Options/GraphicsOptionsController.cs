@@ -11,15 +11,24 @@ namespace Rogium.Options.OptionControllers
         /// Set the screen type.
         /// </summary>
         /// <param name="mode">The mode the game is switching to.</param>
-        public void SetScreen(ScreenType mode)
+        public void UpdateScreen(ScreenType mode)
         {
-            Screen.fullScreen = (mode is ScreenType.Fullscreen);
+            Screen.fullScreen = mode == ScreenType.Fullscreen;
             Screen.fullScreenMode = mode switch
             {
                 ScreenType.Fullscreen => FullScreenMode.ExclusiveFullScreen,
                 ScreenType.Borderless => FullScreenMode.FullScreenWindow,
                 _ => FullScreenMode.Windowed
             };
+        }
+
+        /// <summary>
+        /// Set the current resolution.
+        /// </summary>
+        /// <param name="resolution">The new resolution of the game.</param>
+        public void UpdateResolution(Resolution resolution)
+        {
+            Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreenMode, resolution.refreshRateRatio);
         }
     }
 }

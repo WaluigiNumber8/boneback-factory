@@ -30,10 +30,9 @@ namespace Rogium.Options.Core
         }
 
         /// <summary>
-        /// Apply all settings to the game for the current asset.
+        /// Apply all settings to the game for a specific asset.
         /// </summary>
-        public void ApplyAllSettings() => OnApplySettings?.Invoke(CurrentAsset);
-        
+        public void ApplyAllSettings(GameDataAsset gameData) =>  OnApplySettings?.Invoke(gameData);
         public void CompleteEditing()
         {
             OnSaveChanges?.Invoke(CurrentAsset);

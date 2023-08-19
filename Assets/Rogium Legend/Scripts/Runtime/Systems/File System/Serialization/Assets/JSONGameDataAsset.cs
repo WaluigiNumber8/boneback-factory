@@ -2,6 +2,7 @@ using System;
 using RedRats.Systems.FileSystem;
 using Rogium.Options.Core;
 using Rogium.Options.OptionControllers;
+using UnityEngine;
 
 namespace Rogium.ExternalStorage.Serialization
 {
@@ -11,16 +12,21 @@ namespace Rogium.ExternalStorage.Serialization
     [Serializable]
     public class JSONGameDataAsset : IEncodedObject<GameDataAsset>
     {
+        public int ResolutionX, ResolutionY;
         public int ScreenMode;
 
         public JSONGameDataAsset(GameDataAsset gameData)
         {
+            ResolutionX = gameData.Resolution.x;
+            ResolutionY = gameData.Resolution.y;
             ScreenMode = (int) gameData.ScreenMode;
         }
         
         public GameDataAsset Decode()
         {
-            return new GameDataAsset((ScreenType) ScreenMode);
+            return new GameDataAsset(new Vector2Int(ResolutionX, ResolutionY), 
+                                     (ScreenType) ScreenMode
+                                     );
         }
     }
 }

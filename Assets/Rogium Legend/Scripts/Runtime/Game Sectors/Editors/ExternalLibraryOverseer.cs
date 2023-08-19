@@ -38,8 +38,7 @@ namespace Rogium.Editors.Core
             optionsEditor.OnSaveChanges += UpdatePreferences;
             ReloadFromExternalStorage();
             
-            ActivateOptionsEditor();
-            optionsEditor.ApplyAllSettings();
+            optionsEditor.ApplyAllSettings(preferences);
         }
 
         /// <summary>
@@ -209,7 +208,7 @@ namespace Rogium.Editors.Core
         public void RefreshSettings()
         {
             ActivateOptionsEditor();
-            optionsEditor.ApplyAllSettings();
+            optionsEditor.ApplyAllSettings(preferences);
         }
 
         #endregion
@@ -235,5 +234,10 @@ namespace Rogium.Editors.Core
         /// </summary>
         /// <returns>A copy of Pack Library.</returns>
         public IList<CampaignAsset> GetCampaignsCopy => new List<CampaignAsset>(campaigns);
+
+        /// <summary>
+        /// Returns the saved preferences.
+        /// </summary>
+        public GameDataAsset GetPreferences => preferences;
     }
 }
