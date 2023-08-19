@@ -23,7 +23,7 @@ namespace RedRats.UI.Tabs
         private void Start()
         {
             SafetyNet.EnsureIntIsInRange(defaultTabIndex, 0, buttons.Length, "Default Tab Index");
-            OnTabSelect(buttons[defaultTabIndex]);
+            Switch(defaultTabIndex);
         }
 
         public void OnTabEnter(TabPageButton button)
@@ -81,6 +81,8 @@ namespace RedRats.UI.Tabs
             [PreviewField(60)]public Sprite tabHover;
             [PreviewField(60)]public Sprite tabActive;
         }
+        
+        public int DefaultTabIndex { get => defaultTabIndex; }
     }
 }
 

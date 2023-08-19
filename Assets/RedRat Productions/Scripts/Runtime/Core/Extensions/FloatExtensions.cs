@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace RedRats.Core
 {
@@ -46,6 +47,19 @@ namespace RedRats.Core
         public static float RoundM(this float value, int decimalMultiplier)
         {
             return Mathf.Round(value * decimalMultiplier) / decimalMultiplier;
+        }
+        
+        /// <summary>
+        /// Returns TRUE if 2 <see cref="float"/>s are the same.
+        /// <p>Uses <see cref="float"/></p>.Distance to measure sameness.
+        /// </summary>
+        /// <param name="number">Float A</param>
+        /// <param name="other">Float B</param>
+        /// <param name="tolerance">How far from each other can the floats be, to be considered the same.</param>
+        /// <returns>TRUE if floats are the same.</returns>
+        public static bool IsSameAs(this float number, float other, float tolerance = 0.001f)
+        {
+            return Math.Abs(number - other) < tolerance;
         }
     }
 }

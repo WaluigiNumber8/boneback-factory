@@ -15,7 +15,7 @@ namespace RedRats.UI.Tabs
         private void Start()
         {
             tabGroup = GetComponent<TabGroup>();
-            switcher = new ObjectSwitcher(tabGroup.GetButtonsAsArray());
+            switcher = new ObjectSwitcher(tabGroup.DefaultTabIndex, tabGroup.GetButtonsAsArray());
             tabGroup.onTabSwitch += switcher.Switch;
         }
     }

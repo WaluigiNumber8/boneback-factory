@@ -15,23 +15,24 @@ namespace Rogium.ExternalStorage
     public static class JSONSystem
     {
         private const string JSON_EXTENSION = ".json";
-        
+
         /// <summary>
-        /// Save a file to external storage in a compressed JSON format.
+        /// Save a file to external storage in a JSON format.
         /// </summary>
         /// <param name="path">Destination of the save. (without extension)</param>
         /// <param name="identifier">The unique identifier, differentiating data stored in the JSON file.</param>
         /// <param name="data">The data object to save.</param>
         /// <param name="newJSONFormat">Function that will create a data version of the object.</param>
+        /// <param name="useCompression">Should the JSOn file be compressed to DFL?</param>
         /// <typeparam name="T">The object to convert to JSON.</typeparam>
         /// <typeparam name="TS">The data class to convert to JSON.</typeparam>
-        public static void Save<T,TS>(string path, string identifier, T data, Func<T, TS> newJSONFormat)
+        public static void Save<T,TS>(string path, string identifier, T data, Func<T, TS> newJSONFormat, bool useCompression = true)
         {
             path += JSON_EXTENSION;
             
             StringBuilder JSONFormat = new();
-            JSONFormat.Append(identifier.Length).Append(identifier).Append(JsonUtility.ToJson(newJSONFormat(data)));
-            FileSystem.SaveFile(path, JSONFormat.ToString(), new DFLCompression());
+            JSONFormat.Append(identifier.Length).Append(identifier).Append(JsonUtility.ToJson(newJSONFormat(data), !useCompression));
+            FileSystem.SaveFile(path, JSONFormat.ToString(), (useCompression) ? new DFLCompression() : null);
         }
 
         /// <summary>
@@ -40,11 +41,12 @@ namespace Rogium.ExternalStorage
         /// <param name="path">Destination of the data.</param>
         /// <param name="identifier">Load only JSON files with this specific identifier.</param>
         /// <param name="deepSearch">If enabled, will also search all subdirectories.</param>
+        /// <param name="areCompressed">Are the wanted files compressed in the DFL format?</param>
         /// <typeparam name="T">Unity readable Asset.</typeparam>
         /// <typeparam name="TS">Serialized form of the Asset.</typeparam>
-        public static IList<T> LoadAll<T,TS>(string path, string identifier, bool deepSearch = false) where TS : IEncodedObject<T>
+        public static IList<T> LoadAll<T,TS>(string path, string identifier, bool deepSearch = false, bool areCompressed = true) where TS : IEncodedObject<T>
         {
-            IList<string> data = FileSystem.LoadAllFiles(path, JSON_EXTENSION, deepSearch, new DFLCompression());
+            IList<string> data = FileSystem.LoadAllFiles(path, JSON_EXTENSION, deepSearch, areCompressed ? new DFLCompression() : null);
             IList<T> objects = new List<T>();
             foreach (string line in data)
             {
@@ -64,20 +66,22 @@ namespace Rogium.ExternalStorage
         /// </summary>
         /// <param name="oldPath">Path of the original file.</param>
         /// <param name="newPath">Path of the new file.</param>
-        public static void RenameFile(string oldPath, string newPath)
+        /// <param name="isCompressed">Is the file compressed in the DFL format?</param>
+        public static void RenameFile(string oldPath, string newPath, bool isCompressed = true)
         {
-            oldPath += DFLCompression.COMPRESSED_EXTENSION;
-            newPath += DFLCompression.COMPRESSED_EXTENSION;
+            oldPath += (isCompressed) ? DFLCompression.COMPRESSED_EXTENSION : JSON_EXTENSION;
+            newPath += (isCompressed) ? DFLCompression.COMPRESSED_EXTENSION : JSON_EXTENSION;
             FileSystem.RenameFile(oldPath, newPath);
         }
-        
+
         /// <summary>
         /// Removes a file under a specific path.
         /// </summary>
         /// <param name="path">The path to the file. (No extension)</param>
-        public static void Delete(string path)
+        /// <param name="isCompressed">Is the file compressed in the DFL format.</param>
+        public static void Delete(string path, bool isCompressed = true)
         {
-            path += DFLCompression.COMPRESSED_EXTENSION;
+            path += (isCompressed) ? DFLCompression.COMPRESSED_EXTENSION : JSON_EXTENSION;
             FileSystem.DeleteFile(path);
         }
 

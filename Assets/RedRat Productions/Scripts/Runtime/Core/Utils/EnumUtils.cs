@@ -57,11 +57,7 @@ namespace RedRats.Core
         {
             if (field == null) return null;
 
-            if (Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute)) is DescriptionAttribute attr)
-            {
-                return attr.Description;
-            }
-            return null;
+            return (Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute)) is DescriptionAttribute attr) ? attr.Description: null;
         }
     }
 }

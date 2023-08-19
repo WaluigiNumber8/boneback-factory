@@ -34,7 +34,7 @@ namespace Rogium.UserInterface.Interactables
                     GASButtonActions.ReturnToMainMenuSelection();
                     break;
                 case ButtonType.ReturnToMainMenuFromOptions:
-                    GASButtonActions.ReturnToMainMenuOptions();
+                    GASButtonActions.CancelChangesOptions();
                     break;
                 case ButtonType.ReturnToMainMenuFromChangelog:
                     GASButtonActions.ReturnToMainMenuChangelog();
@@ -345,6 +345,13 @@ namespace Rogium.UserInterface.Interactables
                     SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - GAMEPLAY SELECT WEAPON");
                     GASButtonActions.GameplaySelectWeapon(index);
                     break;
+                #endregion
+
+                #region Options Menu
+                case ButtonType.OptionsSavePreferences:
+                    GASButtonActions.OptionsSavePreferences();
+                    break;
+
                 #endregion
                 
                 case ButtonType.Play:

@@ -54,11 +54,11 @@ namespace RedRats.Core
         /// </summary>
         /// <param name="vector2">Vector2 A</param>
         /// <param name="other">Vector2 B</param>
-        /// <param name="distance">How far from each other can the vectors be, to be considered the same.</param>
+        /// <param name="tolerance">How far from each other can the vectors be, to be considered the same.</param>
         /// <returns>TRUE if vectors are the same.</returns>
-        public static bool IsSameAs(this Vector2 vector2, Vector2 other, float distance = 0.01f)
+        public static bool IsSameAs(this Vector2 vector2, Vector2 other, float tolerance = 0.01f)
         {
-            return (Vector2.Distance(vector2, other) > distance);
+            return (Vector2.Distance(vector2, other) > tolerance);
         }
         
         /// <summary>

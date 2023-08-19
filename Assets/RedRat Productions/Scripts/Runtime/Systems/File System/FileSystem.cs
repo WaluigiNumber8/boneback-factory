@@ -46,7 +46,10 @@ namespace RedRats.Systems.FileSystem
             try
             {
                 File.WriteAllText(path, data);
-                compression?.Compress(path);
+                
+                if (compression == null) return;
+                
+                compression.Compress(path);
                 if (overrideByCompression) DeleteFile(path);
             }
             catch (IOException)

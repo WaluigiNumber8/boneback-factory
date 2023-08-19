@@ -128,11 +128,15 @@ namespace Rogium.UserInterface.Interactables
         GameplayPauseQuit = 79,
         GameplaySelectWeapon = 80,
         #endregion
+
+        #region Options Menu
+        OptionsSavePreferences = 83,
+        #endregion
         
         QuitGame = 9999,
         Play = 10000,
         TEST = 10001
         
-        //Latest : 82
+        //Latest used : 83
     }   
 }
