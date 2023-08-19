@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Rogium.Options.OptionControllers;
 using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine;
@@ -19,10 +20,10 @@ namespace Rogium.Options.Core
         public void Build(GameDataAsset gameData)
         {
             Clear();
-            b.BuildDropdown("Screen", Enum.GetNames(typeof(FullScreenMode)), (int)gameData.ScreenMode, contentMain, (value) =>
+            b.BuildDropdown("Screen", Enum.GetNames(typeof(ScreenType)), (int)gameData.ScreenMode, contentMain, (value) =>
             {
                 gameData.UpdateScreenMode(value);
-                graphics.SetScreen((FullScreenMode) value);
+                graphics.SetScreen((ScreenType) value);
             });
         }
     }

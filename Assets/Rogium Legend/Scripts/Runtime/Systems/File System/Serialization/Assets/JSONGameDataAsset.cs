@@ -1,7 +1,7 @@
 using System;
 using RedRats.Systems.FileSystem;
 using Rogium.Options.Core;
-using UnityEngine;
+using Rogium.Options.OptionControllers;
 
 namespace Rogium.ExternalStorage.Serialization
 {
@@ -20,7 +20,7 @@ namespace Rogium.ExternalStorage.Serialization
         
         public GameDataAsset Decode()
         {
-            return new GameDataAsset((FullScreenMode) ScreenMode);
+            return new GameDataAsset((ScreenType) ScreenMode);
         }
     }
 }

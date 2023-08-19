@@ -1,5 +1,5 @@
 using Rogium.Editors.Core;
-using UnityEngine;
+using Rogium.Options.OptionControllers;
 
 namespace Rogium.Options.Core
 {
@@ -8,7 +8,7 @@ namespace Rogium.Options.Core
     /// </summary>
     public class GameDataAsset : IDataAsset
     {
-        private FullScreenMode screenMode;
+        private ScreenType screenMode;
 
         #region Constructors
 
@@ -22,7 +22,7 @@ namespace Rogium.Options.Core
             screenMode = asset.ScreenMode;
         }
 
-        public GameDataAsset(FullScreenMode screenMode)
+        public GameDataAsset(ScreenType screenMode)
         {
             this.screenMode = screenMode;
         }
@@ -31,13 +31,13 @@ namespace Rogium.Options.Core
         
         #region Update Values
 
-        public void UpdateScreenMode(int newValue) => UpdateScreenMode((FullScreenMode)newValue);
-        public void UpdateScreenMode(FullScreenMode newValue) => screenMode = newValue;
+        public void UpdateScreenMode(int newValue) => UpdateScreenMode((ScreenType)newValue);
+        public void UpdateScreenMode(ScreenType newValue) => screenMode = newValue;
 
         #endregion
         
         public string ID { get => "ZX"; }
         public string Title { get => "Preferences"; }
-        public FullScreenMode ScreenMode { get => screenMode; }
+        public ScreenType ScreenMode { get => screenMode; }
     }
 }

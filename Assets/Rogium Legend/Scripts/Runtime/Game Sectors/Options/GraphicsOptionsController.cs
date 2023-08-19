@@ -10,11 +10,16 @@ namespace Rogium.Options.OptionControllers
         /// <summary>
         /// Set the screen type.
         /// </summary>
-        /// <param name="mode"></param>
-        public void SetScreen(FullScreenMode mode)
+        /// <param name="mode">The mode the game is switching to.</param>
+        public void SetScreen(ScreenType mode)
         {
-            Screen.fullScreenMode = mode;
-            Screen.fullScreen = mode is FullScreenMode.FullScreenWindow or FullScreenMode.ExclusiveFullScreen;
+            Screen.fullScreen = (mode is ScreenType.Fullscreen);
+            Screen.fullScreenMode = mode switch
+            {
+                ScreenType.Fullscreen => FullScreenMode.ExclusiveFullScreen,
+                ScreenType.Borderless => FullScreenMode.FullScreenWindow,
+                _ => FullScreenMode.Windowed
+            };
         }
     }
 }

@@ -1,3 +1,4 @@
+using Rogium.Options.OptionControllers;
 using UnityEngine;
 
 namespace Rogium.Options.Core
@@ -7,6 +8,6 @@ namespace Rogium.Options.Core
     /// </summary>
     public static class PreferencesDefaults
     {
-        public const FullScreenMode ScreenMode = FullScreenMode.FullScreenWindow;
+        public const ScreenType ScreenMode = ScreenType.Fullscreen;
     }
 }
