@@ -47,8 +47,8 @@ namespace Rogium.Options.Core
         /// <param name="asset">The data to apply to settings.</param>
         public void ApplyAllSettings(GameDataAsset asset)
         {
-            graphics.UpdateScreen(asset.ScreenMode);
             graphics.UpdateResolution(asset.GetResolution());
+            graphics.UpdateScreen(asset.ScreenMode);
         }
         
         /// <summary>

@@ -13,7 +13,6 @@ namespace Rogium.Options.OptionControllers
         /// <param name="mode">The mode the game is switching to.</param>
         public void UpdateScreen(ScreenType mode)
         {
-            Screen.fullScreen = mode == ScreenType.Fullscreen;
             Screen.fullScreenMode = mode switch
             {
                 ScreenType.Fullscreen => FullScreenMode.ExclusiveFullScreen,
