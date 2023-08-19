@@ -10,5 +10,6 @@ namespace Rogium.Options.Core
     {
         public const ScreenType ScreenMode = ScreenType.Fullscreen;
         public static readonly Vector2Int Resolution = new(Screen.currentResolution.width, Screen.currentResolution.height);
+        public const bool VSync = false;
     }
 }

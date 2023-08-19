@@ -29,5 +29,14 @@ namespace Rogium.Options.OptionControllers
         {
             Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreenMode, resolution.refreshRateRatio);
         }
+
+        /// <summary>
+        /// Enable/Disable VSync.
+        /// </summary>
+        /// <param name="enable">If TRUE, VSync will be enabled.</param>
+        public void UpdateVSync(bool enable)
+        {
+            QualitySettings.vSyncCount = (enable) ? 1 : 0;
+        }
     }
 }

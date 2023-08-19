@@ -11,6 +11,7 @@ namespace Rogium.Options.Core
     {
         private Vector2Int resolution;
         private ScreenType screenMode;
+        private bool vSync;
 
         #region Constructors
 
@@ -18,18 +19,21 @@ namespace Rogium.Options.Core
         {
             resolution = PreferencesDefaults.Resolution;
             screenMode = PreferencesDefaults.ScreenMode;
+            vSync = PreferencesDefaults.VSync;
         }
 
         public GameDataAsset(GameDataAsset asset)
         {
             resolution = asset.Resolution;
             screenMode = asset.ScreenMode;
+            vSync = asset.VSync;
         }
 
-        public GameDataAsset(Vector2Int resolution, ScreenType screenMode)
+        public GameDataAsset(Vector2Int resolution, ScreenType screenMode, bool vSync)
         {
             this.resolution = resolution;
             this.screenMode = screenMode;
+            this.vSync = vSync;
         }
 
         #endregion
@@ -40,6 +44,7 @@ namespace Rogium.Options.Core
         public void UpdateResolution(Vector2Int newValue) => resolution = newValue;
         public void UpdateScreenMode(int newValue) => UpdateScreenMode((ScreenType)newValue);
         public void UpdateScreenMode(ScreenType newValue) => screenMode = newValue;
+        public void UpdateVSync(bool newValue) => vSync = newValue;
 
         #endregion
 
@@ -62,5 +67,6 @@ namespace Rogium.Options.Core
         public string Title { get => "Preferences"; }
         public ScreenType ScreenMode { get => screenMode; }
         public Vector2Int Resolution { get => resolution; }
+        public bool VSync { get => vSync; }
     }
 }

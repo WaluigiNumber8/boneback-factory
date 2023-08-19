@@ -35,6 +35,11 @@ namespace Rogium.Options.Core
                 gameData.UpdateScreenMode(value);
                 graphics.UpdateScreen((ScreenType) value);
             });
+            b.BuildToggle("VSync", gameData.VSync, contentMain, value =>
+            {
+                gameData.UpdateVSync(value);
+                graphics.UpdateVSync(value);
+            });
         }
 
         private void BuildResolutionsDropdown(GameDataAsset gameData)

@@ -49,6 +49,7 @@ namespace Rogium.Options.Core
         {
             graphics.UpdateResolution(asset.GetResolution());
             graphics.UpdateScreen(asset.ScreenMode);
+            graphics.UpdateVSync(asset.VSync);
         }
         
         /// <summary>
