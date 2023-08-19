@@ -1,4 +1,5 @@
 ﻿using System;
+using Rogium.Options.OptionControllers;
 using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine;
 
@@ -9,12 +10,20 @@ namespace Rogium.Options.Core
     /// </summary>
     public class OptionsGraphicsPropertyBuilder : UIPropertyContentBuilderBaseColumn1
     {
-        public OptionsGraphicsPropertyBuilder(Transform contentMain) : base(contentMain) { }
+        private readonly GraphicsOptionsController graphics;
+        public OptionsGraphicsPropertyBuilder(Transform contentMain, GraphicsOptionsController graphics) : base(contentMain)
+        {
+            this.graphics = graphics;
+        }
 
         public void Build(GameDataAsset gameData)
         {
             Clear();
-            b.BuildDropdown("Screen", Enum.GetNames(typeof(FullScreenMode)), (int)gameData.ScreenMode, contentMain, gameData.UpdateScreenMode);
+            b.BuildDropdown("Screen", Enum.GetNames(typeof(FullScreenMode)), (int)gameData.ScreenMode, contentMain, (value) =>
+            {
+                gameData.UpdateScreenMode(value);
+                graphics.SetScreen((FullScreenMode) value);
+            });
         }
     }
 }

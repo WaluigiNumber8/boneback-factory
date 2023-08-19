@@ -12,6 +12,7 @@ namespace Rogium.Options.Core
     public class OptionsMenuOverseer : Singleton<OptionsMenuOverseer>, IEditorOverseer
     {
         public event Action<GameDataAsset> OnAssignAsset;
+        public event Action<GameDataAsset> OnApplySettings;
         public event Action<GameDataAsset> OnSaveChanges;
 
         private GameDataAsset currentAsset;
@@ -25,12 +26,17 @@ namespace Rogium.Options.Core
             SafetyNet.EnsureIsNotNull(asset, "Preferences Asset");
             currentAsset = new GameDataAsset(asset);
             
-            OnAssignAsset?.Invoke(currentAsset);
+            OnAssignAsset?.Invoke(CurrentAsset);
         }
+
+        /// <summary>
+        /// Apply all settings to the game for the current asset.
+        /// </summary>
+        public void ApplyAllSettings() => OnApplySettings?.Invoke(CurrentAsset);
         
         public void CompleteEditing()
         {
-            OnSaveChanges?.Invoke(currentAsset);
+            OnSaveChanges?.Invoke(CurrentAsset);
         }
         
         public GameDataAsset CurrentAsset 

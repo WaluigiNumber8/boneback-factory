@@ -1,5 +1,6 @@
 ﻿using RedRats.Core;
 using Rogium.Options.OptionControllers;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Rogium.Options.Core
@@ -9,24 +10,45 @@ namespace Rogium.Options.Core
     /// </summary>
     public class OptionsMenuOverseerMono : MonoSingleton<OptionsMenuOverseerMono>
     {
+        [FoldoutGroup("Controllers")]
+        [SerializeField] private GraphicsOptionsController graphics;
+        
+        [FoldoutGroup("Columns")]
         [SerializeField] private Transform graphicsColumn;
         
         private OptionsGraphicsPropertyBuilder graphicsPropertyBuilder;
         
         private OptionsMenuOverseer editor;
-        private GraphicsOptionsController graphics;
         
         protected override void Awake()
         {
             base.Awake();
             editor = OptionsMenuOverseer.Instance;
-            graphicsPropertyBuilder = new OptionsGraphicsPropertyBuilder(graphicsColumn);
+            graphicsPropertyBuilder = new OptionsGraphicsPropertyBuilder(graphicsColumn, graphics);
         }
 
-        private void OnEnable() => editor.OnAssignAsset += PrepareEditor;
-        private void OnDisable() => editor.OnAssignAsset -= PrepareEditor;
+        private void OnEnable()
+        {
+            editor.OnAssignAsset += PrepareEditor;
+            editor.OnApplySettings += ApplyAllSettings;
+        }
+
+        private void OnDisable()
+        {
+            editor.OnAssignAsset -= PrepareEditor;
+            editor.OnApplySettings -= ApplyAllSettings;
+        }
 
 
+        /// <summary>
+        /// Applies all settings from a specific <see cref="GameDataAsset"/>.
+        /// </summary>
+        /// <param name="asset">The data to apply to settings.</param>
+        public void ApplyAllSettings(GameDataAsset asset)
+        {
+            graphics.SetScreen(asset.ScreenMode);
+        }
+        
         /// <summary>
         /// Prepares the Options menu for the user. 
         /// </summary>

@@ -631,11 +631,16 @@ namespace Rogium.Systems.GASExtension
         
         public static void CancelChangesOptions()
         {
-            MessageWindowInfo data = new("Leave without saving changes?", ThemeType.Red,"Yes","No", ReturnToMainMenuOptionsConfirm);
+            MessageWindowInfo data = new("Leave without saving changes?", ThemeType.Red,"Yes","No", () =>
+                {
+                    ExternalLibraryOverseer.Instance.RefreshSettings();
+                    ReturnToMainMenuOptionsConfirm();
+                });
             ModalWindowOverseerMono.GetInstance().OpenWindow(data);
         }
         
         private static void ReturnToMainMenuOptionsConfirm() => GAS.SwitchMenu(MenuType.MainMenu);
+
         #endregion
 
         #region Campaign Editor Menu

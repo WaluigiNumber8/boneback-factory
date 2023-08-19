@@ -37,6 +37,9 @@ namespace Rogium.Editors.Core
             campaignEditor.OnSaveChanges += UpdateCampaign;
             optionsEditor.OnSaveChanges += UpdatePreferences;
             ReloadFromExternalStorage();
+            
+            ActivateOptionsEditor();
+            optionsEditor.ApplyAllSettings();
         }
 
         /// <summary>
@@ -191,12 +194,22 @@ namespace Rogium.Editors.Core
         public void UpdatePreferences(GameDataAsset gameData)
         {
             preferences = gameData;
+            // optionsEditor.ApplyAllSettings();
             ex.Preferences.Save(preferences);
         }
 
         public void ActivateOptionsEditor()
         {
             optionsEditor.AssignAsset(preferences);
+        }
+
+        /// <summary>
+        /// Refresh game settings from the currently saved data.
+        /// </summary>
+        public void RefreshSettings()
+        {
+            ActivateOptionsEditor();
+            optionsEditor.ApplyAllSettings();
         }
 
         #endregion
