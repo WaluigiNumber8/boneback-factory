@@ -18,7 +18,6 @@ namespace Rogium.Options.Core
         [SerializeField] private Transform graphicsColumn;
         
         private OptionsGraphicsPropertyBuilder graphicsPropertyBuilder;
-        
         private OptionsMenuOverseer editor;
         
         protected override void Awake()
