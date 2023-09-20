@@ -28,6 +28,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: prefvar_Button_Menu_Red
       objectReference: {fileID: 0}
+    - target: {fileID: 6015063896489588956, guid: bf2a66882a3c4594abcba676cf0b90a1, type: 3}
+      propertyPath: managedReferences[4073376580876107780].RemapCurveOne
+      value: 1.075
+      objectReference: {fileID: 0}
     - target: {fileID: 7009068785161423821, guid: bf2a66882a3c4594abcba676cf0b90a1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
