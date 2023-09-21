@@ -443,6 +443,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1811705422, guid: e34e9b4d57199da4298fc49a350b69f6, type: 3}
+    - target: {fileID: 7271722871233547930, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dc83a4db9a8a8648b76e4a13cd7e995, type: 2}
     - target: {fileID: 8603769841665868365, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
       propertyPath: m_SpriteState.m_PressedSprite
       value: 
