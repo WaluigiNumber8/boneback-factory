@@ -31,8 +31,7 @@ RectTransform:
   m_Children:
   - {fileID: 3052964439474684399}
   - {fileID: 929761438042895626}
-  m_Father: {fileID: 7134389994600939335}
-  m_RootOrder: 2
+  m_Father: {fileID: 7398818805230620359}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.1935405, y: 0.05185189}
   m_AnchorMax: {x: 0.73263156, y: 0.4613316}
@@ -97,7 +96,6 @@ RectTransform:
   - {fileID: 564754819824552781}
   - {fileID: 2977829864575603517}
   m_Father: {fileID: 8632252973103006007}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -608,6 +606,10 @@ PrefabInstance:
       propertyPath: ui.buttonGroup
       value: 
       objectReference: {fileID: 1625272663878255212}
+    - target: {fileID: 7271722871233547930, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 3351329231242313606, guid: 6514d83202009ec42a835046214cc2d8, type: 3}
     - target: {fileID: 8603769841665868365, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
       propertyPath: m_SpriteState.m_PressedSprite
       value: 
@@ -627,7 +629,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 61901961728102060, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 393072003734470444, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8632252973103006007}
     m_AddedComponents: []
@@ -643,9 +645,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07530fd6b18bba242846b1b4b6e06ff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &7134389994600939335 stripped
+--- !u!224 &7398818805230620359 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 61901961728102060, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
+  m_CorrespondingSourceObject: {fileID: 393072003734470444, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
   m_PrefabInstance: {fileID: 7194951647192035819}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7658748085498886616
