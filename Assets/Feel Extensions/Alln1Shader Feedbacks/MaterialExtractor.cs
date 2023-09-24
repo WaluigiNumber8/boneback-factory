@@ -5,16 +5,12 @@ using UnityEngine.UI;
 namespace RedRats.Plugins
 {
     /// <summary>
-    /// Exposes the properties of an AllIn1Shader material (for animating).
+    /// Grabs a material from the current object.
     /// </summary>
-    public class AllIn1ShaderExposer : MonoBehaviour
+    public class MaterialExtractor : MonoBehaviour
     {
-        private static readonly int AttributeShineLocation = Shader.PropertyToID("_ShineLocation");
-        
         [SerializeField, HideIf("meshRenderer")] private Image image;
         [SerializeField, HideIf("image")] private MeshRenderer meshRenderer;
-        
-        [HideInInspector] public float shineLocation;
         
         private Material material;
 
@@ -25,9 +21,11 @@ namespace RedRats.Plugins
                 throw new MissingReferenceException("You must assign an Image or MeshRenderer Component for animating.");
         }
 
-        private void Update()
-        {
-            material.SetFloat(AttributeShineLocation, shineLocation);
-        }
+        /// <summary>
+        /// Returns the extracted material.
+        /// </summary>
+        /// <returns></returns>
+        public Material Get() => material;
+
     }
 }

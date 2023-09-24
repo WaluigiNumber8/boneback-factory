@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 393072003734470444}
   - component: {fileID: 6132400502502971882}
   - component: {fileID: 7271722871233547930}
-  - component: {fileID: 7142638923633907762}
+  - component: {fileID: 8154878584373394233}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -234,7 +234,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7142638923633907762
+--- !u!114 &8154878584373394233
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -243,12 +243,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1588980645648499762}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92ae16af2c3749119a8f70ff5082749b, type: 3}
+  m_Script: {fileID: 11500000, guid: a0a197422a0f47ae832323f7f9e3499a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 7271722871233547930}
   meshRenderer: {fileID: 0}
-  shineLocation: 1
 --- !u!1 &2612968348006528707
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,10 +375,10 @@ MonoBehaviour:
   FeedbacksList:
   - rid: 4073376580876107780
   - rid: 4073376580876107781
-  - rid: 4073376612440080384
+  - rid: 4073376674493235213
   - rid: 4073376612440080387
   - rid: 4073376612440080390
-  - rid: 4073376612440080389
+  - rid: 4073376674493235214
   - rid: 4073376612440080388
   KeepPlayModeChanges: 0
   PerformanceMode: 0
@@ -763,152 +762,6 @@ MonoBehaviour:
           ButtonText: Debug Stop Sound
         ResetSequentialIndexButton:
           ButtonText: Reset Sequential Index
-    - rid: 4073376612440080384
-      type: {class: MMF_Property, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks.MMTools}
-      data:
-        Active: 1
-        UniqueID: 836132009
-        Label: Fast Shine
-        ChannelMode: 0
-        Channel: 0
-        MMChannelDefinition: {fileID: 0}
-        Chance: 100
-        DisplayColor: {r: 0, g: 0, b: 0, a: 1}
-        Timing:
-          TimescaleMode: 0
-          ExcludeFromHoldingPauses: 0
-          ContributeToTotalDuration: 1
-          InitialDelay: 0
-          CooldownDuration: 0
-          InterruptsOnStop: 1
-          NumberOfRepeats: 0
-          RepeatForever: 0
-          DelayBetweenRepeats: 1
-          MMFeedbacksDirectionCondition: 0
-          PlayDirection: 0
-          ConstantIntensity: 0
-          UseIntensityInterval: 0
-          IntensityIntervalMin: 0
-          IntensityIntervalMax: 0
-          Sequence: {fileID: 0}
-          TrackID: 0
-          Quantized: 0
-          TargetBPM: 120
-        AutomatedTargetAcquisition:
-          Mode: 0
-          ChildIndex: 0
-        RandomizeOutput: 0
-        RandomMultiplier: {x: 0.8, y: 1}
-        RandomizeDuration: 0
-        RandomDurationMultiplier: {x: 0.5, y: 2}
-        UseRange: 0
-        RangeDistance: 5
-        UseRangeFalloff: 0
-        RangeFalloff:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        RemapRangeFalloff: {x: 0, y: 1}
-        Owner: {fileID: 2000422163601269326}
-        DebugActive: 0
-        Target:
-          TargetObject: {fileID: 1588980645648499762}
-          TargetComponent: {fileID: 7142638923633907762}
-          TargetScriptableObject: {fileID: 0}
-          TargetPropertyName: shineLocation
-          ShouldModifyValue: 1
-          RelativeValue: 0
-          ModifyX: 1
-          ModifyY: 1
-          ModifyZ: 1
-          ModifyW: 1
-          Threshold: 0.5
-          BoolRemapZero: 0
-          BoolRemapOne: 1
-          StringRemapZero: Zero
-          StringRemapOne: One
-          IntRemapZero: 0
-          IntRemapOne: 1
-          FloatRemapZero: 0.75
-          FloatRemapOne: 0
-          Vector2RemapZero: {x: 0, y: 0}
-          Vector2RemapOne: {x: 1, y: 1}
-          Vector3RemapZero: {x: 0, y: 0, z: 0}
-          Vector3RemapOne: {x: 1, y: 1, z: 1}
-          Vector4RemapZero: {x: 0, y: 0, z: 0, w: 0}
-          Vector4RemapOne: {x: 1, y: 1, z: 1, w: 1}
-          QuaternionRemapZero: {x: 0, y: 0, z: 0}
-          QuaternionRemapOne: {x: 180, y: 180, z: 180}
-          ColorRemapZero: {r: 1, g: 1, b: 1, a: 1}
-          ColorRemapOne: {r: 0, g: 0, b: 0, a: 1}
-          Level: 0
-        Mode: 0
-        Duration: 0.175
-        StartsOff: 0
-        RelativeValues: 1
-        AllowAdditivePlays: 0
-        DetermineInitialValueOnPlay: 0
-        LevelCurve:
-          MMTweenDefinitionType: 0
-          MMTweenCurve: 0
-          Curve:
-            serializedVersion: 2
-            m_Curve:
-            - serializedVersion: 3
-              time: 0
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 0.3
-              value: 1
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 1
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-          Initialized: 0
-        RemapLevelZero: 0
-        RemapLevelOne: 1
-        InstantLevel: 0
-        ToDestinationLevel: 5
     - rid: 4073376612440080387
       type: {class: MMF_HoldingPause, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
@@ -1065,154 +918,8 @@ MonoBehaviour:
         LoopAtLastLoopStart: 1
         InfiniteLoop: 1
         NumberOfLoops: 2
-        NumberOfLoopsLeft: 1
-        InInfiniteLoop: 0
-    - rid: 4073376612440080389
-      type: {class: MMF_Property, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks.MMTools}
-      data:
-        Active: 1
-        UniqueID: -217588177
-        Label: Shining
-        ChannelMode: 0
-        Channel: 0
-        MMChannelDefinition: {fileID: 0}
-        Chance: 100
-        DisplayColor: {r: 0, g: 0, b: 0, a: 1}
-        Timing:
-          TimescaleMode: 0
-          ExcludeFromHoldingPauses: 0
-          ContributeToTotalDuration: 1
-          InitialDelay: 0
-          CooldownDuration: 0
-          InterruptsOnStop: 1
-          NumberOfRepeats: 0
-          RepeatForever: 0
-          DelayBetweenRepeats: 1
-          MMFeedbacksDirectionCondition: 0
-          PlayDirection: 0
-          ConstantIntensity: 0
-          UseIntensityInterval: 0
-          IntensityIntervalMin: 0
-          IntensityIntervalMax: 0
-          Sequence: {fileID: 0}
-          TrackID: 0
-          Quantized: 0
-          TargetBPM: 120
-        AutomatedTargetAcquisition:
-          Mode: 0
-          ChildIndex: 0
-        RandomizeOutput: 0
-        RandomMultiplier: {x: 0.8, y: 1}
-        RandomizeDuration: 0
-        RandomDurationMultiplier: {x: 0.5, y: 2}
-        UseRange: 0
-        RangeDistance: 5
-        UseRangeFalloff: 0
-        RangeFalloff:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        RemapRangeFalloff: {x: 0, y: 1}
-        Owner: {fileID: 2000422163601269326}
-        DebugActive: 0
-        Target:
-          TargetObject: {fileID: 1588980645648499762}
-          TargetComponent: {fileID: 7142638923633907762}
-          TargetScriptableObject: {fileID: 0}
-          TargetPropertyName: shineLocation
-          ShouldModifyValue: 1
-          RelativeValue: 0
-          ModifyX: 1
-          ModifyY: 1
-          ModifyZ: 1
-          ModifyW: 1
-          Threshold: 0.5
-          BoolRemapZero: 0
-          BoolRemapOne: 1
-          StringRemapZero: Zero
-          StringRemapOne: One
-          IntRemapZero: 0
-          IntRemapOne: 1
-          FloatRemapZero: 0.75
-          FloatRemapOne: 0
-          Vector2RemapZero: {x: 0, y: 0}
-          Vector2RemapOne: {x: 1, y: 1}
-          Vector3RemapZero: {x: 0, y: 0, z: 0}
-          Vector3RemapOne: {x: 1, y: 1, z: 1}
-          Vector4RemapZero: {x: 0, y: 0, z: 0, w: 0}
-          Vector4RemapOne: {x: 1, y: 1, z: 1, w: 1}
-          QuaternionRemapZero: {x: 0, y: 0, z: 0}
-          QuaternionRemapOne: {x: 180, y: 180, z: 180}
-          ColorRemapZero: {r: 1, g: 1, b: 1, a: 1}
-          ColorRemapOne: {r: 0, g: 0, b: 0, a: 1}
-          Level: 0
-        Mode: 0
-        Duration: 3
-        StartsOff: 0
-        RelativeValues: 1
-        AllowAdditivePlays: 0
-        DetermineInitialValueOnPlay: 0
-        LevelCurve:
-          MMTweenDefinitionType: 0
-          MMTweenCurve: 0
-          Curve:
-            serializedVersion: 2
-            m_Curve:
-            - serializedVersion: 3
-              time: 0
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 0.3
-              value: 1
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 1
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-          Initialized: 0
-        RemapLevelZero: 0
-        RemapLevelOne: 1
-        InstantLevel: 0
-        ToDestinationLevel: 5
+        NumberOfLoopsLeft: 2
+        InInfiniteLoop: 1
     - rid: 4073376612440080390
       type: {class: MMF_LooperStart, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
@@ -1289,6 +996,200 @@ MonoBehaviour:
         ScriptDriven: 0
         AutoResume: 0
         AutoResumeAfter: 0.25
+    - rid: 4073376674493235213
+      type: {class: MMF_Shine_AllIn1Shader, ns: RedRats.Plugins.FeelAllIn1Shader, asm: Feel.Extensions.Runtime}
+      data:
+        Active: 1
+        UniqueID: 910897601
+        Label: Fast Shine
+        ChannelMode: 0
+        Channel: 0
+        MMChannelDefinition: {fileID: 0}
+        Chance: 100
+        DisplayColor: {r: 0, g: 0, b: 0, a: 1}
+        Timing:
+          TimescaleMode: 0
+          ExcludeFromHoldingPauses: 0
+          ContributeToTotalDuration: 1
+          InitialDelay: 0
+          CooldownDuration: 0
+          InterruptsOnStop: 1
+          NumberOfRepeats: 0
+          RepeatForever: 0
+          DelayBetweenRepeats: 1
+          MMFeedbacksDirectionCondition: 0
+          PlayDirection: 0
+          ConstantIntensity: 0
+          UseIntensityInterval: 0
+          IntensityIntervalMin: 0
+          IntensityIntervalMax: 0
+          Sequence: {fileID: 0}
+          TrackID: 0
+          Quantized: 0
+          TargetBPM: 120
+        AutomatedTargetAcquisition:
+          Mode: 0
+          ChildIndex: 0
+        RandomizeOutput: 0
+        RandomMultiplier: {x: 0.8, y: 1}
+        RandomizeDuration: 0
+        RandomDurationMultiplier: {x: 0.5, y: 2}
+        UseRange: 0
+        RangeDistance: 5
+        UseRangeFalloff: 0
+        RangeFalloff:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        RemapRangeFalloff: {x: 0, y: 1}
+        Owner: {fileID: 2000422163601269326}
+        DebugActive: 0
+        targetMaterial: {fileID: 8154878584373394233}
+        duration: 0.175
+        resetAfterStop: 1
+        shinePositionCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 1
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        shinePositionZero: 0.75
+        shinePositionOne: 0
+    - rid: 4073376674493235214
+      type: {class: MMF_Shine_AllIn1Shader, ns: RedRats.Plugins.FeelAllIn1Shader, asm: Feel.Extensions.Runtime}
+      data:
+        Active: 1
+        UniqueID: 2126441712
+        Label: Shining
+        ChannelMode: 0
+        Channel: 0
+        MMChannelDefinition: {fileID: 0}
+        Chance: 100
+        DisplayColor: {r: 0, g: 0, b: 0, a: 1}
+        Timing:
+          TimescaleMode: 0
+          ExcludeFromHoldingPauses: 0
+          ContributeToTotalDuration: 1
+          InitialDelay: 0
+          CooldownDuration: 0
+          InterruptsOnStop: 1
+          NumberOfRepeats: 0
+          RepeatForever: 0
+          DelayBetweenRepeats: 1
+          MMFeedbacksDirectionCondition: 0
+          PlayDirection: 0
+          ConstantIntensity: 0
+          UseIntensityInterval: 0
+          IntensityIntervalMin: 0
+          IntensityIntervalMax: 0
+          Sequence: {fileID: 0}
+          TrackID: 0
+          Quantized: 0
+          TargetBPM: 120
+        AutomatedTargetAcquisition:
+          Mode: 0
+          ChildIndex: 0
+        RandomizeOutput: 0
+        RandomMultiplier: {x: 0.8, y: 1}
+        RandomizeDuration: 0
+        RandomDurationMultiplier: {x: 0.5, y: 2}
+        UseRange: 0
+        RangeDistance: 5
+        UseRangeFalloff: 0
+        RangeFalloff:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        RemapRangeFalloff: {x: 0, y: 1}
+        Owner: {fileID: 2000422163601269326}
+        DebugActive: 0
+        targetMaterial: {fileID: 8154878584373394233}
+        duration: 3
+        resetAfterStop: 1
+        shinePositionCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 1
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        shinePositionZero: 0.75
+        shinePositionOne: 0
 --- !u!1 &4429977919134225443
 GameObject:
   m_ObjectHideFlags: 0
@@ -1427,7 +1328,7 @@ MonoBehaviour:
     - rid: 4073376580876107779
       type: {class: MMF_Scale, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
-        Active: 1
+        Active: 0
         UniqueID: -710097522
         Label: Scale
         ChannelMode: 0
@@ -2440,7 +2341,7 @@ MonoBehaviour:
             m_RotationOrder: 4
           Initialized: 0
         OffsetMinRemapZero: {x: 0, y: 0}
-        OffsetMinRemapOne: {x: 0, y: 5}
+        OffsetMinRemapOne: {x: 0, y: 10}
         ModifyOffsetMax: 1
         OffsetMaxCurve:
           MMTweenDefinitionType: 1
@@ -2480,7 +2381,7 @@ MonoBehaviour:
             m_RotationOrder: 4
           Initialized: 0
         OffsetMaxRemapZero: {x: 0, y: 0}
-        OffsetMaxRemapOne: {x: 0, y: 10}
+        OffsetMaxRemapOne: {x: 0, y: 20}
 --- !u!1 &8193541468941101487
 GameObject:
   m_ObjectHideFlags: 0
