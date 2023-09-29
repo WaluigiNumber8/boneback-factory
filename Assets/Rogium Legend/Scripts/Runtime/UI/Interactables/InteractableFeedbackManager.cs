@@ -16,16 +16,16 @@ namespace Rogium.UserInterface.Interactables
 
         private void OnEnable()
         {
-            interactable.OnClick += onClickPlayer.PlayFeedbacks;
-            interactable.OnSelect += onSelectPlayer.PlayFeedbacks;
-            interactable.OnDeselect += onDeselectPlayer.PlayFeedbacks;
+            if (onClickPlayer != null) interactable.OnClick += onClickPlayer.PlayFeedbacks;
+            if (onSelectPlayer != null) interactable.OnSelect += onSelectPlayer.PlayFeedbacks;
+            if (onDeselectPlayer != null) interactable.OnDeselect += onDeselectPlayer.PlayFeedbacks;
         }
 
         private void OnDisable()
         {
-            interactable.OnClick -= onClickPlayer.PlayFeedbacks;
-            interactable.OnSelect -= onSelectPlayer.PlayFeedbacks;
-            interactable.OnDeselect -= onDeselectPlayer.PlayFeedbacks;
+            if (onClickPlayer != null) interactable.OnClick -= onClickPlayer.PlayFeedbacks;
+            if (onSelectPlayer != null) interactable.OnSelect -= onSelectPlayer.PlayFeedbacks;
+            if (onDeselectPlayer != null) interactable.OnDeselect -= onDeselectPlayer.PlayFeedbacks;
         }
 
     }

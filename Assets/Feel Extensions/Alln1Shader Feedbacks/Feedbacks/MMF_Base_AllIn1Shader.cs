@@ -41,6 +41,7 @@ namespace RedRats.Plugins.FeelAllIn1Shader
         {
             base.Initialization(owner, index);
             _material = targetMaterial.Get();
+            InitializeValues();
         }
         
         protected override void CustomPlayFeedback(Vector3 position, float feedbacksIntensity = 1)
@@ -99,7 +100,12 @@ namespace RedRats.Plugins.FeelAllIn1Shader
         }
 
         /// <summary>
-        /// Runs every frame. Use it together with <see cref="SetMaterialValue"/> to move a material's shader value.
+        /// Runs at Start. Initializes all values.
+        /// </summary>
+        protected abstract void InitializeValues();
+        
+        /// <summary>
+        /// Runs every frame. Use it together with <see cref="SetMaterialFloat"/> to move a material's shader value.
         /// </summary>
         /// <param name="time">The current time of the animation.</param>
         /// <param name="intensityMultiplier">Multiplier for randomness settings.</param>
@@ -111,7 +117,7 @@ namespace RedRats.Plugins.FeelAllIn1Shader
         protected abstract void ResetValues();
 
         /// <summary>
-        /// Sets a shader value to a material according to it's position on an <see cref="AnimationCurve"/> in the current time.
+        /// Sets a shader float value to a material according to it's position on an <see cref="AnimationCurve"/> in the current time.
         /// </summary>
         /// <param name="shaderAttribute">The attribute of the shader to modify.</param>
         /// <param name="curve">The attributes <see cref="AnimationCurve"/>.</param>
@@ -119,10 +125,21 @@ namespace RedRats.Plugins.FeelAllIn1Shader
         /// <param name="position1">Ending position of the attribute.</param>
         /// <param name="currentTime">Current time of the transition.</param>
         /// <param name="intensityMultiplier">intensityMultiplier for randomness.</param>
-        protected void SetMaterialValue(int shaderAttribute, AnimationCurve curve, float position0, float position1, float currentTime, float intensityMultiplier = 1)
+        protected void SetMaterialFloat(int shaderAttribute, AnimationCurve curve, float position0, float position1, float currentTime, float intensityMultiplier = 1)
         {
             float value = MMFeedbacksHelpers.Remap(curve.Evaluate(currentTime), 0f, 1f, position0, position1);
             _material.SetFloat(shaderAttribute, value * intensityMultiplier);
+        }
+
+        /// <summary>
+        /// Sets a shader color value to a material according to current time.
+        /// </summary>
+        /// <param name="shaderAttribute">The attribute of the shader to modify.</param>
+        /// <param name="colorOverTime">The gradient showing color changes over time.</param>
+        /// <param name="currentTime">Current time of the transition.</param>
+        protected void SetMaterialColor(int shaderAttribute, Gradient colorOverTime, float currentTime)
+        {
+            _material.SetColor(shaderAttribute, colorOverTime.Evaluate(currentTime));
         }
     }
 }

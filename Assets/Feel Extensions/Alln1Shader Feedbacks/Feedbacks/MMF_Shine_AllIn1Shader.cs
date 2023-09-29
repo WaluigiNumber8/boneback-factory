@@ -29,12 +29,11 @@ namespace RedRats.Plugins.FeelAllIn1Shader
 
         private float _initialShinePosition;
 
-        public override void Initialization(MMF_Player owner, int index)
+        protected override void InitializeValues()
         {
-            base.Initialization(owner, index);
             _initialShinePosition = _material.GetFloat(AttributeShineLocation);
         }
-
+        
         /// <summary>
         /// Sets the value of the material parameter.
         /// </summary>
@@ -42,12 +41,14 @@ namespace RedRats.Plugins.FeelAllIn1Shader
         /// <param name="intensityMultiplier"></param>
         protected override void SetMaterialValues(float time, float intensityMultiplier)
         {
-            SetMaterialValue(AttributeShineLocation, shinePositionCurve, shinePositionZero, shinePositionOne, time, intensityMultiplier);
+            SetMaterialFloat(AttributeShineLocation, shinePositionCurve, shinePositionZero, shinePositionOne, time, intensityMultiplier);
         }
 
         protected override void ResetValues()
         {
             _material.SetFloat(AttributeShineLocation, _initialShinePosition);
         }
+
+       
     }
 }
