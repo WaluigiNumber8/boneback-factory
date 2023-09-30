@@ -8,20 +8,20 @@ namespace Rogium.UserInterface.Interactables
     /// </summary>
     public class InteractableFeedbackManager : MonoBehaviour
     {
-        [SerializeField] private InteractableEventCaller interactable;
+        [SerializeField] protected InteractableEventCaller interactable;
         [Space]
         [SerializeField] private MMF_Player onClickPlayer;
         [SerializeField] private MMF_Player onSelectPlayer;
         [SerializeField] private MMF_Player onDeselectPlayer;
 
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
             if (onClickPlayer != null) interactable.OnClick += onClickPlayer.PlayFeedbacks;
             if (onSelectPlayer != null) interactable.OnSelect += onSelectPlayer.PlayFeedbacks;
             if (onDeselectPlayer != null) interactable.OnDeselect += onDeselectPlayer.PlayFeedbacks;
         }
 
-        private void OnDisable()
+        protected virtual void OnDisable()
         {
             if (onClickPlayer != null) interactable.OnClick -= onClickPlayer.PlayFeedbacks;
             if (onSelectPlayer != null) interactable.OnSelect -= onSelectPlayer.PlayFeedbacks;
