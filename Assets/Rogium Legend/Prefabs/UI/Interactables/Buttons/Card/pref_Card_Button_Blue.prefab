@@ -154,7 +154,7 @@ MonoBehaviour:
   action: 0
   index: -1
   ui:
-    buttonImage: {fileID: 0}
+    buttonImage: {fileID: 6473774808908048863}
     buttonText: {fileID: 661851586290184786}
 --- !u!1 &1537772467897407666
 GameObject:
