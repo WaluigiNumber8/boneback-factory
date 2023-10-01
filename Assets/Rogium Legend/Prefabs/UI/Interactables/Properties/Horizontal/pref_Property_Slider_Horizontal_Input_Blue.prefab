@@ -35,7 +35,6 @@ RectTransform:
   - {fileID: 2276904330879872606}
   - {fileID: 2734938462604968530}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -143,7 +142,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1358262212855251225}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -297,7 +295,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1358262212855251225}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -624,7 +621,7 @@ MonoBehaviour:
   title: {fileID: 4626861850363456292}
   inputField: {fileID: 8797470912769860618}
   ui:
-    inputFieldImage: {fileID: 6580602302995351523}
+    inputFieldImage: {fileID: 7115420588120318494}
     inputtedText: {fileID: 6327738901701273537}
     emptySpace: {fileID: 0}
 --- !u!114 &4981338279605200912 stripped
@@ -649,12 +646,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6580602302995351523 stripped
+--- !u!114 &7115420588120318494 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 172549355812002867, guid: b611d89d05bab7845860dae45376cf45, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4289950255097313742, guid: b611d89d05bab7845860dae45376cf45, type: 3}
   m_PrefabInstance: {fileID: 6428882232940846032}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4107033180870654528}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
