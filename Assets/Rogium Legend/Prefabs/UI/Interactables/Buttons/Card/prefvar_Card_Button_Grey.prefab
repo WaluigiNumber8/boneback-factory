@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_SpriteState.m_HighlightedSprite
       value: 
       objectReference: {fileID: 8472094461035193205, guid: 908ef75392a959640a304c50437ff61d, type: 3}
+    - target: {fileID: 6473774808908048863, guid: 315dcab41b264f74194b91f1aa21028b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6477362695771261007, guid: 908ef75392a959640a304c50437ff61d, type: 3}
     - target: {fileID: 8139803418870760900, guid: 315dcab41b264f74194b91f1aa21028b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

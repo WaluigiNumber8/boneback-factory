@@ -32,7 +32,6 @@ RectTransform:
   - {fileID: 2473803080542764232}
   - {fileID: 5498025962628314987}
   m_Father: {fileID: 7662722960400641172}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -96,8 +95,7 @@ RectTransform:
   m_Children:
   - {fileID: 5482516788495552154}
   - {fileID: 2778555775387726930}
-  m_Father: {fileID: 7412841231284645526}
-  m_RootOrder: 2
+  m_Father: {fileID: 7165262969328983830}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.1935405, y: 0.05185189}
   m_AnchorMax: {x: 0.73263156, y: 0.4613316}
@@ -445,6 +443,14 @@ PrefabInstance:
       propertyPath: ui.buttonGroup
       value: 
       objectReference: {fileID: 7864159974126477323}
+    - target: {fileID: 7271722871233547930, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 471541081165078545, guid: 9a0e08d0e3f0ca641978915b28c9eb54, type: 3}
+    - target: {fileID: 7271722871233547930, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: d2531880b8db9084091c4e21380f3111, type: 2}
     - target: {fileID: 8603769841665868365, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
       propertyPath: m_SpriteState.m_PressedSprite
       value: 
@@ -464,7 +470,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 61901961728102060, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 393072003734470444, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7662722960400641172}
     m_AddedComponents: []
@@ -480,9 +486,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07530fd6b18bba242846b1b4b6e06ff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &7412841231284645526 stripped
+--- !u!224 &7165262969328983830 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 61901961728102060, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
+  m_CorrespondingSourceObject: {fileID: 393072003734470444, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
   m_PrefabInstance: {fileID: 7351097604083753018}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7983573631183824720
