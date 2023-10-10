@@ -20,8 +20,8 @@ namespace Rogium.UserInterface.Interactables.Feedbacks
         [Tooltip("Does the pitch of the first MMSoundManagerSound found on the feedback change according to the slider?")]
         [SerializeField] private bool affectPitch;
 
-        [SerializeField, HorizontalGroup, ShowIf("affectPitch"), LabelText("Pitch Min/Max")] private float pitchMin;
-        [SerializeField, HorizontalGroup, ShowIf("affectPitch"), HideLabel] private float pitchMax;
+        [SerializeField, HorizontalGroup(Width = 0.7f), LabelText("Pitch Min/Max"), ShowIf("affectPitch")] private float pitchMin;
+        [SerializeField, HorizontalGroup(Width = 0.3f), ShowIf("affectPitch"), HideLabel] private float pitchMax;
         
         private MMF_MMSoundManagerSound soundFeedback;
 
