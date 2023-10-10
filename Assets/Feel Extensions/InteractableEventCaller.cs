@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Rogium.UserInterface.Interactables.Feedbacks
+namespace RedRats.FeelExtension
 {
     /// <summary>
     /// Calls out different events for a <see cref="Selectable"/>.

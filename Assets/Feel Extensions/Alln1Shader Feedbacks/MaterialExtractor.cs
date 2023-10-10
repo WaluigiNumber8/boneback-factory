@@ -1,19 +1,24 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace RedRats.Plugins
+namespace RedRats.FeelExtension
 {
     /// <summary>
     /// Grabs a material from the current object.
     /// </summary>
     public class MaterialExtractor : MonoBehaviour
     {
+        [InfoBox("If you're getting material being null, assign the Image or MeshRenderer manually here.", InfoMessageType.Warning)]
+        [SerializeField, HideIf("assignedImage")] private Renderer assignedRenderer;
+        [SerializeField, HideIf("assignedRenderer")] private Image assignedImage;
+        
         private Material material;
 
         private void Awake()
         {
-            Image image = GetComponent<Image>();
-            Renderer render = GetComponent<Renderer>();
+            Image image = (assignedImage == null) ? GetComponent<Image>() : assignedImage;
+            Renderer render = (assignedRenderer == null) ? GetComponent<Renderer>() : assignedRenderer;
             
             material = (image != null) ? image.material = new Material(image.material) :
                 (render != null) ? render.material :

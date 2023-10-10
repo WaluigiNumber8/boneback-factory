@@ -2,7 +2,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Rogium.UserInterface.Interactables.Feedbacks
+namespace RedRats.FeelExtension
 {
     /// <summary>
     /// Associates <see cref="MMF_Player"/>s with a UI component.

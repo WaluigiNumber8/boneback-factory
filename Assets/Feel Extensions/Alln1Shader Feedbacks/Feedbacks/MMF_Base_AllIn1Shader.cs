@@ -2,7 +2,7 @@ using System.Collections;
 using MoreMountains.Feedbacks;
 using UnityEngine;
 
-namespace RedRats.Plugins.FeelAllIn1Shader
+namespace RedRats.FeelExtension.AllIn1ShaderFeedbacks
 {
     public abstract class MMF_Base_AllIn1Shader : MMF_Feedback
     {

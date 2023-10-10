@@ -4,7 +4,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Rogium.UserInterface.Interactables.Feedbacks
+namespace RedRats.FeelExtension.Effectors
 {
     /// <summary>
     /// The assigned <see cref="MMF_Player"/> is affected by the assigned <see cref="Slider"/>.

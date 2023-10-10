@@ -1,7 +1,7 @@
 using MoreMountains.Feedbacks;
 using UnityEngine;
 
-namespace RedRats.Plugins.FeelAllIn1Shader
+namespace RedRats.FeelExtension.AllIn1ShaderFeedbacks
 {
     [FeedbackHelp("Allows for animating the hologram effect of the renderer.")]
     [FeedbackPath("AllIn1Shader/Hologram")]

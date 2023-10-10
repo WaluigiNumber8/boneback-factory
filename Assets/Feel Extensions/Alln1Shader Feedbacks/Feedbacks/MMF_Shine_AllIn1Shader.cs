@@ -1,7 +1,7 @@
 using MoreMountains.Feedbacks;
 using UnityEngine;
 
-namespace RedRats.Plugins.FeelAllIn1Shader
+namespace RedRats.FeelExtension.AllIn1ShaderFeedbacks
 {
     [AddComponentMenu("")]
     [FeedbackHelp("Allows for animating the shine effect of renderer.")]
