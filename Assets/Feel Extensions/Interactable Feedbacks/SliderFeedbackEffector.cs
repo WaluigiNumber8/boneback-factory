@@ -1,3 +1,4 @@
+using System.Collections;
 using MoreMountains.Feedbacks;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -30,7 +31,15 @@ namespace Rogium.UserInterface.Interactables.Feedbacks
             soundFeedback = feedback.GetFeedbackOfType<MMF_MMSoundManagerSound>();
         }
 
-        private void OnEnable() => slider.onValueChanged.AddListener(WhenValueChange);
+        private void OnEnable()
+        {
+            StartCoroutine(EnableSliderListeningCoroutine());
+            IEnumerator EnableSliderListeningCoroutine()
+            {
+                yield return new WaitForSeconds(0.01f);
+                slider.onValueChanged.AddListener(WhenValueChange);
+            }
+        }
 
         private void OnDisable() => slider.onValueChanged.RemoveListener(WhenValueChange);
 

@@ -2061,7 +2061,7 @@ MonoBehaviour:
         RemapRangeFalloff: {x: 0, y: 1}
         Owner: {fileID: 5687085822962180052}
         DebugActive: 0
-        Sfx: {fileID: 8300000, guid: 653cd57fcc7740b4b957e117b8b880a3, type: 3}
+        Sfx: {fileID: 8300000, guid: 9aa3ef20ec85aff489ff787bb7413674, type: 3}
         RandomSfx: []
         SequentialOrder: 0
         SequentialOrderHoldLast: 0
@@ -2583,7 +2583,7 @@ MonoBehaviour:
     - rid: 4073376580876107782
       type: {class: MMF_MMSoundManagerSound, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks.MMTools}
       data:
-        Active: 1
+        Active: 0
         UniqueID: -1306627748
         Label: MMSoundManager Sound
         ChannelMode: 0
