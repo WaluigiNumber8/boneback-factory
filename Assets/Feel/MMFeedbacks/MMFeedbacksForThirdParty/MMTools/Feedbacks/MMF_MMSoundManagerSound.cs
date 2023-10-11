@@ -322,11 +322,6 @@ namespace MoreMountains.Feedbacks
             
 			float intensityMultiplier = ComputeIntensity(feedbacksIntensity, position);
             
-			if (Sfx != null)
-			{
-				PlaySound(Sfx, position, intensityMultiplier);
-				return;
-			}
 
 			if (RandomSfx.Length > 0)
 			{
@@ -335,7 +330,14 @@ namespace MoreMountains.Feedbacks
 				if (_randomClip != null)
 				{
 					PlaySound(_randomClip, position, intensityMultiplier);
+					return;
 				}
+			}
+			
+			if (Sfx != null)
+			{
+				PlaySound(Sfx, position, intensityMultiplier);
+				return;
 			}
 		}
 

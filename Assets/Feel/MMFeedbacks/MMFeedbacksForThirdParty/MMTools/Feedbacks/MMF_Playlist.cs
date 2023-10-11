@@ -23,7 +23,7 @@ namespace MoreMountains.Feedbacks
 		public override bool HasChannel => true;
 		#endif
 		
-		public enum Modes { Play, PlayNext, PlayPrevious, Stop, Pause, PlaySongAt }
+		public enum Modes { Play, PlayNext, PlayPrevious, Stop, Pause, PlaySongAt, SetVolumeMultiplier }
  
 		[MMFInspectorGroup("MMPlaylist", true, 13)]
 		/// the action to call on the playlist
@@ -33,6 +33,14 @@ namespace MoreMountains.Feedbacks
 		[Tooltip("the index of the song to play")]
 		[MMEnumCondition("Mode", (int)Modes.PlaySongAt)]
 		public int SongIndex = 0;
+		/// the volume multiplier to apply
+		[Tooltip("the volume multiplier to apply")]
+		[MMEnumCondition("Mode", (int)Modes.SetVolumeMultiplier)]
+		public float VolumeMultiplier = 1f;
+		/// whether to apply the volume multiplier instantly (true) or only when the next song starts playing (false)
+		[Tooltip("whether to apply the volume multiplier instantly (true) or only when the next song starts playing (false)")]
+		[MMEnumCondition("Mode", (int)Modes.SetVolumeMultiplier)]
+		public bool ApplyVolumeMultiplierInstantly = false;
         
 		protected Coroutine _coroutine;
 
@@ -67,6 +75,9 @@ namespace MoreMountains.Feedbacks
 					break;
 				case Modes.PlaySongAt:
 					MMPlaylistPlayIndexEvent.Trigger(Channel, SongIndex);
+					break;
+				case Modes.SetVolumeMultiplier:
+					MMPlaylistVolumeMultiplierEvent.Trigger(Channel, VolumeMultiplier, ApplyVolumeMultiplierInstantly);
 					break;
 				default:
 					throw new ArgumentOutOfRangeException();

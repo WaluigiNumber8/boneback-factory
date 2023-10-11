@@ -743,7 +743,7 @@ namespace MoreMountains.Tools
 		public virtual void StopFadeSound(AudioSource source)
 		{
 			Coroutine outCoroutine;
-			if (_fadeSoundCoroutines.TryGetValue(source, out outCoroutine))
+			if ((source != null) && (_fadeSoundCoroutines.TryGetValue(source, out outCoroutine)))
 			{
 				StopCoroutine(outCoroutine);
 				_fadeSoundCoroutines.Remove(source);

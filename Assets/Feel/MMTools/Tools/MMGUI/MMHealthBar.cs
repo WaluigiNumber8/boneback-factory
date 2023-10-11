@@ -336,7 +336,8 @@ namespace MoreMountains.Tools
 
 			if (Billboard)
 			{
-				_progressBar.gameObject.AddComponent<MMBillboard>();
+				MMBillboard billboard = _progressBar.gameObject.AddComponent<MMBillboard>();
+				billboard.NestObject = !NestDrawnHealthBar;
 			}
 
 			_progressBar.LerpDecreasingDelayedBar = LerpDelayedBar;
