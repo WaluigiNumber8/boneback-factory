@@ -23,12 +23,12 @@ namespace RedRats.FeelExtension.AllIn1ShaderFeedbacks
         /// Starting position of the glow.
         /// </summary>
         [Tooltip("Starting position of the glow")]
-        [Range(1f, 100f)] public float glowZero = 0f;
+        [Range(1f, 100f)] public float glowZero = 1f;
         /// <summary>
         /// Ending position of the glow.
         /// </summary>
         [Tooltip("Ending position of the glow.")]
-        [Range(1f, 100f)] public float glowOne = 1f;
+        [Range(1f, 100f)] public float glowOne = 2.5f;
         
         private float _initialGlowGlobal;
         
