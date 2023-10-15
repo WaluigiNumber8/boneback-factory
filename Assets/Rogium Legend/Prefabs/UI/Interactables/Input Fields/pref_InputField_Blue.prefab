@@ -108,7 +108,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5908458279906050815
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1640,6 +1640,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactable: {fileID: 2793063254862731474}
-  onClickPlayer: {fileID: 1859246404426493701}
   onSelectPlayer: {fileID: 3945409855347688749}
-  onDeselectPlayer: {fileID: 7412732218358457939}
+  onDeselectPlayer: {fileID: 0}
+  onClickPlayer: {fileID: 1859246404426493701}
+  onClickDownPlayer: {fileID: 0}
+  onClickUpPlayer: {fileID: 0}
