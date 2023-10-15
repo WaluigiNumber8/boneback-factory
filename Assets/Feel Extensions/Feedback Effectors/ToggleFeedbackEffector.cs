@@ -1,3 +1,4 @@
+using System.Collections;
 using MoreMountains.Feedbacks;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,22 +11,30 @@ namespace RedRats.FeelExtension.Effectors
     public class ToggleFeedbackEffector : MonoBehaviour
     {
         [SerializeField] private Toggle toggle;
-        [SerializeField] private MMF_Player feedback;
+        [SerializeField] private MMF_Player turnOnFeedback;
+        [SerializeField] private MMF_Player turnOffFeedback;
+        [SerializeField] private MMF_Player isOnFeedback;
 
-        /// <summary>
-        /// The feedback's <see cref="GameObject"/> is only active when the toggle is on. 
-        /// </summary>
-        [Tooltip("The feedback's GameObject is only active when the toggle is on.")]
-        [SerializeField] private bool onlyActiveWhenToggleOn = true;
-        
-        private void OnEnable() => toggle.onValueChanged.AddListener(WhenValueChange);
+        private void OnEnable()
+        {
+            StartCoroutine(EnableCoroutine());
+            IEnumerator EnableCoroutine()
+            {
+                yield return new WaitForSeconds(0.01f);
+                toggle.onValueChanged.AddListener(WhenValueChange);
+            }
+        }
+
         private void OnDisable() => toggle.onValueChanged.RemoveListener(WhenValueChange);
         
         private void WhenValueChange(bool value)
         {
-            if (!onlyActiveWhenToggleOn) return;
-            if (value) feedback.PlayFeedbacks();
-            else feedback.StopFeedbacks();
+            if (value && turnOnFeedback != null) turnOnFeedback.PlayFeedbacks();
+            if (!value && turnOffFeedback != null) turnOffFeedback.PlayFeedbacks();
+            
+            if (isOnFeedback == null) return;
+            if (value) isOnFeedback.PlayFeedbacks();
+            else isOnFeedback.StopFeedbacks();
         }
     }
 }

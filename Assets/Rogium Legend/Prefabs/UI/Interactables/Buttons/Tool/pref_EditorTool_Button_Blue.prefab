@@ -1043,6 +1043,7 @@ MonoBehaviour:
         targetMaterial: {fileID: 5504626887511682813}
         duration: 1.5
         resetAfterStop: 1
+        animateGlow: 1
         glowCurve:
           serializedVersion: 2
           m_Curve:
@@ -1078,6 +1079,33 @@ MonoBehaviour:
           m_RotationOrder: 4
         glowZero: 1
         glowOne: 4
+        animateGlowColor: 0
+        glowColorCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        glowColorZero: 0
+        glowColorOne: 2
 --- !u!1 &4050105449600755858
 GameObject:
   m_ObjectHideFlags: 0
@@ -1785,6 +1813,8 @@ MonoBehaviour:
     AmplitudeMax: {x: 1, y: 1, z: 1}
     RelativeAmplitude: 1
     UniformValues: 0
+    ForceVectorLength: 0
+    ForcedVectorLength: 1
     Curve:
       serializedVersion: 2
       m_Curve:
@@ -1886,6 +1916,8 @@ MonoBehaviour:
     AmplitudeMax: {x: 1, y: 1, z: 1}
     RelativeAmplitude: 1
     UniformValues: 0
+    ForceVectorLength: 0
+    ForcedVectorLength: 1
     Curve:
       serializedVersion: 2
       m_Curve:
@@ -1987,6 +2019,8 @@ MonoBehaviour:
     AmplitudeMax: {x: 1, y: 1, z: 1}
     RelativeAmplitude: 1
     UniformValues: 0
+    ForceVectorLength: 0
+    ForcedVectorLength: 1
     Curve:
       serializedVersion: 2
       m_Curve:
@@ -2366,8 +2400,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggle: {fileID: 1203139928923892669}
-  feedback: {fileID: 336854599283221925}
-  onlyActiveWhenToggleOn: 1
+  turnOnFeedback: {fileID: 0}
+  turnOffFeedback: {fileID: 0}
+  isOnFeedback: {fileID: 336854599283221925}
 --- !u!1 &8144564699744018373
 GameObject:
   m_ObjectHideFlags: 0
