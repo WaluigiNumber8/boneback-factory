@@ -42,6 +42,10 @@ namespace Rogium.Options.Core
             });
         }
 
+        /// <summary>
+        /// Builds the dropdown for resolutions.
+        /// </summary>
+        /// <param name="gameData">The game settings asset.</param>
         private void BuildResolutionsDropdown(GameDataAsset gameData)
         {
             Resolution startingResolution;

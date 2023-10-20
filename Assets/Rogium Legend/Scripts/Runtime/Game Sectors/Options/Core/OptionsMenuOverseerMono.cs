@@ -1,5 +1,4 @@
-﻿using System;
-using RedRats.Core;
+﻿using RedRats.Core;
 using Rogium.Options.OptionControllers;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -11,12 +10,13 @@ namespace Rogium.Options.Core
     /// </summary>
     public class OptionsMenuOverseerMono : MonoSingleton<OptionsMenuOverseerMono>
     {
-        [FoldoutGroup("Controllers")]
-        [SerializeField] private GraphicsOptionsController graphics;
+        [SerializeField, FoldoutGroup("Controllers")] private AudioOptionsController audio;
+        [SerializeField, FoldoutGroup("Controllers")] private GraphicsOptionsController graphics;
         
-        [FoldoutGroup("Columns")]
-        [SerializeField] private Transform graphicsColumn;
+        [SerializeField, FoldoutGroup("Columns")] private Transform audioColumn;
+        [SerializeField, FoldoutGroup("Columns")] private Transform graphicsColumn;
         
+        private OptionsAudioPropertyBuilder audioPropertyBuilder;
         private OptionsGraphicsPropertyBuilder graphicsPropertyBuilder;
         
         private OptionsMenuOverseer editor;
@@ -25,6 +25,7 @@ namespace Rogium.Options.Core
         {
             base.Awake();
             editor = OptionsMenuOverseer.Instance;
+            audioPropertyBuilder = new OptionsAudioPropertyBuilder(audioColumn, audio);
             graphicsPropertyBuilder = new OptionsGraphicsPropertyBuilder(graphicsColumn, graphics);
         }
 
@@ -47,6 +48,11 @@ namespace Rogium.Options.Core
         /// <param name="asset">The data to apply to settings.</param>
         public void ApplyAllSettings(GameDataAsset asset)
         {
+            audio.UpdateMasterVolume(asset.MasterVolume);
+            audio.UpdateMusicVolume(asset.MusicVolume);
+            audio.UpdateSoundVolume(asset.SoundVolume);
+            audio.UpdateUIVolume(asset.UIVolume);
+            
             graphics.UpdateResolution(asset.GetResolution());
             graphics.UpdateScreen(asset.ScreenMode);
             graphics.UpdateVSync(asset.VSync);
@@ -57,6 +63,7 @@ namespace Rogium.Options.Core
         /// </summary>
         private void PrepareEditor(GameDataAsset asset)
         {
+            audioPropertyBuilder.Build(asset);
             graphicsPropertyBuilder.Build(asset);
         }
         
