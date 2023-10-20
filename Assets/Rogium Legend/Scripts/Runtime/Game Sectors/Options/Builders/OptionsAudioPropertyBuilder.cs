@@ -21,11 +21,12 @@ namespace Rogium.Options.Core
                 data.UpdateMasterVolume(value);
                 audio.UpdateMasterVolume(value);
             });
-            b.BuildSlider("Music", 0f, 1f, data.MusicVolume, contentMain, value =>
-            {
-                data.UpdateMusicVolume(value);
-                audio.UpdateMusicVolume(value);
-            });
+            //TODO Enable when music is added.
+            // b.BuildSlider("Music", 0f, 1f, data.MusicVolume, contentMain, value =>
+            // {
+            //     data.UpdateMusicVolume(value);
+            //     audio.UpdateMusicVolume(value);
+            // });
             b.BuildSlider("Sound", 0f, 1f, data.SoundVolume, contentMain, value =>
             {
                 data.UpdateSoundVolume(value);
