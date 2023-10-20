@@ -109,7 +109,7 @@ MonoBehaviour:
     fillImage: {fileID: 2581116493516406032}
     backgroundImage: {fileID: 2581116493851391231}
     handleImage: {fileID: 2581116493588064456}
-    emptySpace: {fileID: 0}
+    emptySpace: {fileID: 5250572828375549892}
 --- !u!1 &2906917225875761720
 GameObject:
   m_ObjectHideFlags: 0

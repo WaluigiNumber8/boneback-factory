@@ -15,9 +15,9 @@ namespace RedRats.UI.Sliders
     {
         public event Action<float> OnValueChanged;
 
+        [SerializeField] private Slider slider;
         [SerializeField] private TMP_InputField inputField;
 
-        private Slider slider;
         private bool changingValue;
         private int decimalMultiplier = 1;
 
