@@ -25,6 +25,13 @@ namespace Rogium.Gameplay.Sequencer
         [SerializeField] private float transportRunSpeed;
         [SerializeField] private float transportWalkSpeed;
         [SerializeField] private Vector2 defaultStartPos;
+        /// <summary>
+        /// The delay before the player enters the scene.
+        /// </summary>
+        [Tooltip("The delay before the player enters the scene.")]
+        [Space]
+        [SerializeField, Min(0)] private float beforeIntroDelay;
+        
 
         private SASCore sas;
         private IDictionary<Vector2, Vector2> startingPoints;
@@ -56,10 +63,11 @@ namespace Rogium.Gameplay.Sequencer
                 roomLoader.LoadNext(roomIndex);
                 OnRoomLoaded?.Invoke();
                 (Vector2 pos, Vector2 dir) = startingPoints.ElementAt(GetPlayerStartPositionIndex());
-
+                
                 playerTransform.position = pos - dir * 2;
                 yield return sas.Wait(0.5f);
                 yield return sas.FadeIn(2, false);
+                yield return sas.Wait(beforeIntroDelay);
                 yield return sas.Transport(playerTransform, playerTransform.position + (Vector3)dir * 2, transportWalkSpeed * 0.5f);
             
                 player.ChangeCollideMode(true);

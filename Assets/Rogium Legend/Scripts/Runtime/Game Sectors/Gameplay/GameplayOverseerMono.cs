@@ -25,6 +25,11 @@ namespace Rogium.Gameplay.Core
         
         [SerializeField] private GameplaySequencer sequencer;
         [SerializeField] private PlayerController player;
+
+        /// <summary>
+        /// Time during which the player cannot be attacked after loading a room.
+        /// </summary>
+        [Tooltip("Time during which the player cannot be attacked after loading a room.")]
         [SerializeField] private float safePeriodTime = 1f;
         
         private RRG rrg;
