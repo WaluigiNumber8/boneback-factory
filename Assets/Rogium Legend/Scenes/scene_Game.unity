@@ -1151,7 +1151,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2836801278012683311, guid: b11d9ead2700a20429d836a0539abeb5, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2836801278012683311, guid: b11d9ead2700a20429d836a0539abeb5, type: 3}
       propertyPath: m_AssetsPPU
@@ -1159,7 +1159,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2836801278012683473, guid: b11d9ead2700a20429d836a0539abeb5, type: 3}
       propertyPath: orthographic size
-      value: 5.6
+      value: 5.625
       objectReference: {fileID: 0}
     - target: {fileID: 2836801278012683473, guid: b11d9ead2700a20429d836a0539abeb5, type: 3}
       propertyPath: m_BackGroundColor.b
@@ -4052,8 +4052,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.49520016, y: 0.024699926, z: 0}
-    m_Extent: {x: 7.7655, y: 5.293, z: 0}
+    m_Center: {x: -0.49320006, y: 0.020099878, z: 0}
+    m_Extent: {x: 7.7711, y: 5.2932997, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
