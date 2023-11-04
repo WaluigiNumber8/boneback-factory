@@ -13,7 +13,6 @@ namespace RedRats.FeelExtension.Effectors
         [SerializeField] private Toggle toggle;
         [SerializeField] private MMF_Player turnOnFeedback;
         [SerializeField] private MMF_Player turnOffFeedback;
-        [SerializeField] private MMF_Player isOnFeedback;
 
         private void OnEnable()
         {
@@ -31,10 +30,6 @@ namespace RedRats.FeelExtension.Effectors
         {
             if (value && turnOnFeedback != null) turnOnFeedback.PlayFeedbacks();
             if (!value && turnOffFeedback != null) turnOffFeedback.PlayFeedbacks();
-            
-            if (isOnFeedback == null) return;
-            if (value) isOnFeedback.PlayFeedbacks();
-            else isOnFeedback.StopFeedbacks();
         }
     }
 }
