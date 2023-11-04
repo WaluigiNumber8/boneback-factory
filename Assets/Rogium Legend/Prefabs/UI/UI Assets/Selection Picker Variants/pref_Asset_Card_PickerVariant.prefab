@@ -616,7 +616,6 @@ MonoBehaviour:
   toggle: {fileID: 2114998893701717382}
   turnOnFeedback: {fileID: 8635609100203091771}
   turnOffFeedback: {fileID: 2470757486218865822}
-  isOnFeedback: {fileID: 2089935291396556958}
 --- !u!1 &4301355757755336928
 GameObject:
   m_ObjectHideFlags: 0
@@ -1302,7 +1301,7 @@ MonoBehaviour:
         Owner: {fileID: 2089935291396556958}
         DebugActive: 0
         targetMaterial: {fileID: 6313457283178645468}
-        duration: 1
+        duration: 1.25
         resetAfterStop: 1
         animateGlow: 0
         glowCurve:
@@ -1339,7 +1338,7 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         glowZero: 1
-        glowOne: 2.5
+        glowOne: 2
         animateGlowColor: 1
         glowColorCurve:
           serializedVersion: 2
@@ -1375,7 +1374,7 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         glowColorZero: 0
-        glowColorOne: 1
+        glowColorOne: 0.5
 --- !u!1 &6839595613071192398
 GameObject:
   m_ObjectHideFlags: 0
