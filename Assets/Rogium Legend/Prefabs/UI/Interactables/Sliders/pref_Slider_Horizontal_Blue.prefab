@@ -2672,7 +2672,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   RemapRangeFalloff: {x: 0, y: 1}
   IgnoreRangeEvents: 0
-  CooldownDuration: 0
+  CooldownDuration: 0.075
   InitialDelay: 0
   CanPlay: 1
   CanPlayWhileAlreadyPlaying: 1
@@ -2797,7 +2797,7 @@ MonoBehaviour:
         RecycleAudioSource: {fileID: 0}
         Loop: 0
         Persistent: 0
-        DoNotPlayIfClipAlreadyPlaying: 1
+        DoNotPlayIfClipAlreadyPlaying: 0
         StopSoundOnFeedbackStop: 1
         Fade: 0
         FadeInitialVolume: 0
