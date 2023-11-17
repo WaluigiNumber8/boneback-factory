@@ -3,7 +3,7 @@ namespace RedRats.Systems.Effectors.Effects
     /// <summary>
     /// The different types Effects can be controlled.
     /// </summary>
-    public enum EffectControlType
+    public enum EffectorControlType
     {
         /// <summary>
         /// Stops the effect.

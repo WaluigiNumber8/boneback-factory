@@ -11,12 +11,9 @@ namespace RedRats.Systems.Effectors.Effects
     /// </summary>
     public class AudioEffect : EffectBase
     {
-        [Header("Clips")]
+        [Title("Audio clips & sources")]
         [SerializeField] private AudioClipSO[] clips;
-        
-        [Header("Audio Source")] 
-        [SerializeField] private int id;
-        [SerializeField] private bool playOnlyWhenNotPlaying;
+        [SerializeField] private AudioSourceSettingsInfo sourceSettings;
         
         [Header("Override Settings")] 
         [SerializeField] private bool overrideMixerGroup;
@@ -42,14 +39,14 @@ namespace RedRats.Systems.Effectors.Effects
             float vol = (overrideVolume) ? volume : clip.Volume;
             float pMin = (overridePitch) ? pitchMin : clip.PitchMin;
             float pMax = (overridePitch) ? pitchMax : clip.PitchMax;
-            mySource = audioSystem.PlaySound(clip.Clip, mixer, id, playOnlyWhenNotPlaying, vol, pMin, pMax);
+            mySource = audioSystem.PlaySound(clip.Clip, mixer, sourceSettings, vol, pMin, pMax);
         }
 
         protected override void StopSelf()
         {
-            if (id != 0)
+            if (sourceSettings.id != 0)
             {
-                audioSystem.StopSound(id);
+                audioSystem.StopSound(sourceSettings.id);
                 return;
             }
             if (mySource != null) audioSystem.StopSound(mySource);

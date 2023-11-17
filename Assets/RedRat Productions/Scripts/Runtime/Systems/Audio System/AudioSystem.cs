@@ -38,25 +38,23 @@ namespace RedRats.Systems.Audio
         /// Plays a single sound.
         /// </summary>
         /// <param name="clipsSO">The clip along with it's settings. If multiple are provided a random one is chosen.</param>
-        /// <param name="id">The id of the source to use. If 0 is used, a random <see cref="AudioSource"/> will be picked instead.</param>
-        /// <param name="playOnlyWhenNotPlaying">Only play the given clip if it's not being played already.</param>
+        /// <param name="sourceSettings">The settings used for the next playback.</param>
         /// <returns>The <see cref="AudioSource"/> that plays the clip.</returns>
-        public AudioSource PlaySound(AudioClipSO[] clipsSO, int id = 0, bool playOnlyWhenNotPlaying = false)
+        public AudioSource PlaySound(AudioClipSO[] clipsSO, AudioSourceSettingsInfo sourceSettings)
         {
             AudioClipSO clipSO = clipsSO[Random.Range(0, clipsSO.Length)];
-            return PlaySound(clipSO.Clip, clipSO.MixerGroup, id, playOnlyWhenNotPlaying, clipSO.Volume, clipSO.PitchMin, clipSO.PitchMax);
+            return PlaySound(clipSO.Clip, clipSO.MixerGroup, sourceSettings, volume: clipSO.Volume, pitchMin: clipSO.PitchMin, pitchMax: clipSO.PitchMax);
         }
 
         /// <summary>
         /// Plays a single sound.
         /// </summary>
         /// <param name="clipSO">The clip along with it's settings.</param>
-        /// <param name="id">The id of the source to use. If 0 is used, a random <see cref="AudioSource"/> will be picked instead.</param>
-        /// <param name="playOnlyWhenNotPlaying">Only play the given clip if it's not being played already.</param>
+        /// <param name="sourceSettings">The settings used for the next playback.</param>
         /// <returns>The <see cref="AudioSource"/> that plays the clip.</returns>
-        public AudioSource PlaySound(AudioClipSO clipSO, int id = 0, bool playOnlyWhenNotPlaying = false)
+        public AudioSource PlaySound(AudioClipSO clipSO, AudioSourceSettingsInfo sourceSettings)
         {
-            return PlaySound(clipSO.Clip, clipSO.MixerGroup, id, playOnlyWhenNotPlaying, clipSO.Volume, clipSO.PitchMin, clipSO.PitchMax);
+            return PlaySound(clipSO.Clip, clipSO.MixerGroup, sourceSettings, clipSO.Volume, clipSO.PitchMin, clipSO.PitchMax);
         }
 
         /// <summary>
@@ -64,51 +62,51 @@ namespace RedRats.Systems.Audio
         /// </summary>
         /// <param name="clips">The <see cref="AudioClip"/> to play. If multiple are provided, plays a random one.</param>
         /// <param name="mixerGroup">Which group the sound played</param>
-        /// <param name="id">The id of the source to use. If 0 is used, a random <see cref="AudioSource"/> will be picked instead.</param>
-        /// <param name="playOnlyWhenNotPlaying">Only play the given clip if it's not being played already.</param>
+        /// <param name="sourceSettings">The settings used for the next playback.</param>
         /// <param name="volume">How loud the sound is.</param>
         /// <param name="pitchMin">Minimum allowed pitch.</param>
         /// <param name="pitchMax">Maximum allowed pitch.</param>
         /// <returns>The <see cref="AudioSource"/> that plays the clip.</returns>
-        public AudioSource PlaySound(AudioClip[] clips, AudioMixerGroup mixerGroup, int id = 0, bool playOnlyWhenNotPlaying = false, float volume = 1, float pitchMin = 1, float pitchMax = 1)
+        public AudioSource PlaySound(AudioClip[] clips, AudioMixerGroup mixerGroup, AudioSourceSettingsInfo sourceSettings, float volume = 1, float pitchMin = 1, float pitchMax = 1)
         {
             AudioClip clip = clips[Random.Range(0, clips.Length)];
-            return PlaySound(clip, mixerGroup, id, playOnlyWhenNotPlaying, volume, pitchMin, pitchMax);
+            return PlaySound(clip, mixerGroup, sourceSettings, volume, pitchMin, pitchMax);
         }
-        
+
         /// <summary>
         /// Play a single sound.
         /// </summary>
         /// <param name="clip">The <see cref="AudioClip"/> to play.</param>
         /// <param name="mixerGroup">Which group the sound played</param>
-        /// <param name="id">The id of the source to use. If 0 is used, a random <see cref="AudioSource"/> will be picked instead.</param>
-        /// <param name="playOnlyWhenNotPlaying">Only play the given clip if it's not being played already.</param>
+        /// <param name="sourceSettings">The settings used for the next playback.</param>
         /// <param name="volume">How loud the sound is.</param>
         /// <param name="pitchMin">Minimum allowed pitch.</param>
         /// <param name="pitchMax">Maximum allowed pitch.</param>
         /// <returns>The <see cref="AudioSource"/> that plays the clip.</returns>
-        public AudioSource PlaySound(AudioClip clip, AudioMixerGroup mixerGroup, int id = 0, bool playOnlyWhenNotPlaying = false,
-            float volume = 1, float pitchMin = 1, float pitchMax = 1)
+        public AudioSource PlaySound(AudioClip clip, AudioMixerGroup mixerGroup, AudioSourceSettingsInfo sourceSettings, float volume = 1, float pitchMin = 1, float pitchMax = 1)
         {
             if (clip == null) return null;
+            
             // If the clip is already playing, don't play it again.
-            if (playOnlyWhenNotPlaying && sourcePool.GetActive().Any(s => s.isPlaying && s.clip == clip)) return null;
+            if (sourceSettings.playOnlyWhenNotPlaying && sourcePool.GetActive().Any(s => s.isPlaying && s.clip == clip)) return null;
 
-            AudioSource source = (id == 0) ? sourcePool.Get() : sourcePool.Get(id);
+            AudioSource source = (sourceSettings.id == 0) ? sourcePool.Get() : sourcePool.Get(sourceSettings.id);
             source.clip = clip;
             source.outputAudioMixerGroup = mixerGroup;
+            source.loop = sourceSettings.loop;
             source.volume = volume;
             source.pitch = Random.Range(pitchMin, pitchMax);
             source.Play();
 
+            if (source.loop) return source;
+            
             StartCoroutine(ReleaseSourceCoroutine());
             IEnumerator ReleaseSourceCoroutine()
             {
                 yield return new WaitForSeconds(source.clip.length);
-                if (id == 0) sourcePool.Release(source);
-                else sourcePool.Release(id);
+                if (sourceSettings.id == 0) sourcePool.Release(source);
+                else sourcePool.Release(sourceSettings.id);
             }
-
             return source;
         }
 
@@ -125,6 +123,7 @@ namespace RedRats.Systems.Audio
         public void StopSound(AudioSource source)
         {
             source.Stop();
+            if (source.gameObject.activeSelf) sourcePool.Release(source);
         }
 
         public AudioMixer AudioMixer { get => audioMixer; }
