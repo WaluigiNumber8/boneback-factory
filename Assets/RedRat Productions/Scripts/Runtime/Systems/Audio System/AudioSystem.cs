@@ -40,13 +40,13 @@ namespace RedRats.Systems.Audio
         /// <param name="volume">How loud the sound is.</param>
         /// <param name="pitchMin">Minimum allowed pitch.</param>
         /// <param name="pitchMax">Maximum allowed pitch.</param>
-        public void PlaySound(AudioClip[] clips, AudioMixerGroup mixerGroup, int id, bool playOnlyWhenNotPlaying = false,
+        public AudioSource PlaySound(AudioClip[] clips, AudioMixerGroup mixerGroup, int id, bool playOnlyWhenNotPlaying = false,
             float volume = 1, float pitchMin = 1, float pitchMax = 1)
         {
             AudioClip clip = clips[Random.Range(0, clips.Length)];
 
             // If the clip is already playing, don't play it again.
-            if (playOnlyWhenNotPlaying && sourcePool.GetActive().Any(s => s.isPlaying && s.clip == clip)) return;
+            if (playOnlyWhenNotPlaying && sourcePool.GetActive().Any(s => s.isPlaying && s.clip == clip)) return null;
 
             AudioSource source = (id == 0) ? sourcePool.Get() : sourcePool.Get(id);
             source.clip = clip;
@@ -62,6 +62,23 @@ namespace RedRats.Systems.Audio
                 if (id == 0) sourcePool.Release(source);
                 else sourcePool.Release(id);
             }
+
+            return source;
+        }
+
+        /// <summary>
+        /// Stops a sound with a specific id from playing.
+        /// </summary>
+        /// <param name="id">The id of the <see cref="AudioSource"/> to stop.</param>
+        public void StopSound(int id) => StopSound(sourcePool.Get(id));
+
+        /// <summary>
+        /// Stops a sound from playing.
+        /// </summary>
+        /// <param name="source">The <see cref="AudioSource"/> to stop.</param>
+        public void StopSound(AudioSource source)
+        {
+            source.Stop();
         }
     }
 }

@@ -19,18 +19,27 @@ namespace RedRats.Systems.Effectors.Effects
         
         [Header("Settings")]
         [SerializeField, Range(0f, 1f)] private float volume = 1f;
-        [SerializeField, Range(0f, 2f)] private float pitchMin = 1f;
-        [SerializeField, Range(0f, 2f)] private float pitchMax = 1f;
+        [SerializeField, Range(0f, 2f)] private float pitchMin = 0.95f;
+        [SerializeField, Range(0f, 2f)] private float pitchMax = 1.05f;
+        
         private AudioSystem audioSystem;
+        private AudioSource mySource;
 
         private void Awake() => audioSystem = AudioSystem.GetInstance();
 
-        /// <summary>
-        /// Plays the audio.
-        /// </summary>
-        protected override void PlayEffects()
+        protected override void PlaySelf()
         {
-            audioSystem.PlaySound(clips, mixerGroup, id, playOnlyWhenNotPlaying, volume, pitchMin, pitchMax);
+            mySource = audioSystem.PlaySound(clips, mixerGroup, id, playOnlyWhenNotPlaying, volume, pitchMin, pitchMax);
+        }
+
+        protected override void StopSelf()
+        {
+            if (id != 0)
+            {
+                audioSystem.StopSound(id);
+                return;
+            }
+            if (mySource != null) audioSystem.StopSound(mySource);
         }
     }
 }

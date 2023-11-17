@@ -25,14 +25,26 @@ namespace RedRats.Systems.Effectors.Effects
             IEnumerator PlayCoroutine()
             {
                 yield return new WaitForSeconds(Random.Range(settings.initialDelayMin, settings.initialDelayMax));
-                PlayEffects();
+                PlaySelf();
             }
+        }
+        
+        /// <summary>
+        /// Stop the effect.
+        /// </summary>
+        public void Stop()
+        {
+            StopSelf();
         }
         
         /// <summary>
         /// Activates the effect.
         /// </summary>
-        protected abstract void PlayEffects();
+        protected abstract void PlaySelf();
+        /// <summary>
+        /// Disables the effect.
+        /// </summary>
+        protected abstract void StopSelf();
 
         [Serializable]
         public struct SettingsInfo
@@ -41,5 +53,6 @@ namespace RedRats.Systems.Effectors.Effects
             public float initialDelayMin;
             public float initialDelayMax;
         }
+
     }
 }
