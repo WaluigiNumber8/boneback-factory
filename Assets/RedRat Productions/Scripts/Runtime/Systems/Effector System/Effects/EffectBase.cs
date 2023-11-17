@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using RedRats.Systems.Effectors.Core;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -25,7 +26,8 @@ namespace RedRats.Systems.Effectors.Effects
             StartCoroutine(PlayCoroutine());
             IEnumerator PlayCoroutine()
             {
-                yield return new WaitForSeconds(Random.Range(settings.initialDelayMin, settings.initialDelayMax));
+                float delay = (settings.randomizeDelay) ? Random.Range(settings.initialDelayMin, settings.initialDelayMax) : settings.initialDelayMin;
+                yield return new WaitForSeconds(delay);
                 PlaySelf();
             }
         }
@@ -51,8 +53,9 @@ namespace RedRats.Systems.Effectors.Effects
         public struct SettingsInfo
         {
             public bool playOnEnable;
-            public float initialDelayMin;
-            public float initialDelayMax;
+            public bool randomizeDelay;
+            [HorizontalGroup, LabelText("Initial Delay")] public float initialDelayMin;
+            [HorizontalGroup(MaxWidth = 0.3f), ShowIf("randomizeDelay"), HideLabel] public float initialDelayMax;
         }
 
     }
