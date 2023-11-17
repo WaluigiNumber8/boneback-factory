@@ -49,7 +49,8 @@ namespace RedRats.Systems.Audio
             IEnumerator ReleaseSourceCoroutine()
             {
                 yield return new WaitForSeconds(source.clip.length);
-                sourcePool.Release(source);
+                if (id == 0) sourcePool.Release(source);
+                else sourcePool.Release(id);
             }
         }
     }

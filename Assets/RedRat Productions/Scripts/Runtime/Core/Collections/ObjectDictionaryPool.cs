@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using RedRats.Safety;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -14,12 +15,16 @@ namespace RedRats.Core
     {
         private readonly IDictionary<T, TS> items;
         private readonly ObjectPool<TS> pool;
+        private readonly Action<TS> onGetAction;
+        private readonly Action<TS> onReleaseAction;
 
         public ObjectDictionaryPool(Func<TS> createFunc, Action<TS> actionOnGet, Action<TS> actionOnRelease,
             Action<TS> actionOnDestroy, bool collectionCheck = true, int defaultCapacity = 10, int maxSize = 100)
         {
             items = new Dictionary<T, TS>();
             pool = new ObjectPool<TS>(createFunc, actionOnGet, actionOnRelease, actionOnDestroy, collectionCheck, defaultCapacity, maxSize);
+            onGetAction = actionOnGet;
+            onReleaseAction = actionOnRelease;
         }
         
         /// <summary>
@@ -29,7 +34,11 @@ namespace RedRats.Core
         /// <returns>The found/new item.</returns>
         public TS Get(T key)
         {
-            if (items.TryGetValue(key, out TS value)) return value;
+            if (items.TryGetValue(key, out TS value))
+            {
+                onGetAction(value);
+                return value;
+            }
             TS item = pool.Get();
             items.Add(key, item);
             return item;
@@ -46,6 +55,16 @@ namespace RedRats.Core
         /// </summary>
         /// <param name="item">The item to release.</param>
         public void Release(TS item) => pool.Release(item);
+
+        /// <summary>
+        /// Releases the item with the given key from the pool.
+        /// </summary>
+        /// <param name="key">The key under which the item is stored.</param>
+        public void Release(T key)
+        {
+            if (!items.ContainsKey(key)) return;
+            onReleaseAction(items[key]);
+        }
         
         /// <summary>
         /// How many items are in the pool.
