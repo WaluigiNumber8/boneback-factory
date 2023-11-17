@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Linq;
 using RedRats.Core;
 using UnityEngine;
 using UnityEngine.Audio;
+using Random = UnityEngine.Random;
 
 namespace RedRats.Systems.Audio
 {
@@ -11,6 +13,9 @@ namespace RedRats.Systems.Audio
     /// </summary>
     public class AudioSystem : PersistentMonoSingleton<AudioSystem>
     {
+        [SerializeField] private AudioMixer audioMixer;
+        [SerializeField] private AudioMixerParamsInfo mixerParameters;
+        
         private ObjectDictionaryPool<int, AudioSource> sourcePool;
 
         protected override void Awake()
@@ -120,6 +125,18 @@ namespace RedRats.Systems.Audio
         public void StopSound(AudioSource source)
         {
             source.Stop();
+        }
+
+        public AudioMixer AudioMixer { get => audioMixer; }
+        public AudioMixerParamsInfo MixerParameters { get => mixerParameters; }
+        
+        [Serializable]
+        public struct AudioMixerParamsInfo
+        {
+            public string masterVolume;
+            public string musicVolume;
+            public string sfxVolume;
+            public string uiVolume;
         }
     }
 }
