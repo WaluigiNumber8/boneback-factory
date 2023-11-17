@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using RedRats.Systems.Effectors.Core;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace RedRats.Systems.Effectors.Effects
 {
@@ -23,7 +24,7 @@ namespace RedRats.Systems.Effectors.Effects
             StartCoroutine(PlayCoroutine());
             IEnumerator PlayCoroutine()
             {
-                yield return new WaitForSeconds(settings.initialDelay);
+                yield return new WaitForSeconds(Random.Range(settings.initialDelayMin, settings.initialDelayMax));
                 PlayEffects();
             }
         }
@@ -37,7 +38,8 @@ namespace RedRats.Systems.Effectors.Effects
         public struct SettingsInfo
         {
             public bool playOnEnable;
-            public float initialDelay;
+            public float initialDelayMin;
+            public float initialDelayMax;
         }
     }
 }
