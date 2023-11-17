@@ -31,7 +31,9 @@ namespace RedRats.Systems.Effectors.Effects
 
         protected override void PlaySelf()
         {
+            if (mySource != null && mySource.isPlaying && mySource.loop) return;
             SafetyNet.EnsureListIsNotNullOrEmpty(clips, nameof(clips));
+            
             AudioClipSO clip = clips[Random.Range(0, clips.Length)];
             
             SafetyNet.EnsureIsNotNull(clip, nameof(clip));

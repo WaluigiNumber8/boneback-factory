@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88e3503930334824ba6de320d323bd49, type: 3}
   m_Name: asset_SFX_Menu_Interactable_Dropdown_Close
   m_EditorClassIdentifier: 
-  clip: {fileID: 0}
-  mixerGroup: {fileID: 0}
+  clip: {fileID: 8300000, guid: f551e7fe6b9bece4bbc24c79a10c4fb0, type: 3}
+  mixerGroup: {fileID: -4267756410639095346, guid: 15e85eab3684ad9409d53f645746215d, type: 2}
   volume: 1
   pitchMin: 0.95
   pitchMax: 1.05
