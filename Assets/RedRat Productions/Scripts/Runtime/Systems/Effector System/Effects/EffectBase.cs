@@ -21,6 +21,7 @@ namespace RedRats.Systems.Effectors.Effects
         /// </summary>
         public void Play()
         {
+            if (!isActiveAndEnabled) return;
             StartCoroutine(PlayCoroutine());
             IEnumerator PlayCoroutine()
             {

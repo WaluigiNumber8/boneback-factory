@@ -36,6 +36,8 @@ namespace RedRats.Systems.Effectors.Effects
         {
             SafetyNet.EnsureListIsNotNullOrEmpty(clips, nameof(clips));
             AudioClipSO clip = clips[Random.Range(0, clips.Length)];
+            
+            SafetyNet.EnsureIsNotNull(clip, nameof(clip));
             AudioMixerGroup mixer = (overrideMixerGroup) ? mixerGroup : clip.MixerGroup;
             float vol = (overrideVolume) ? volume : clip.Volume;
             float pMin = (overridePitch) ? pitchMin : clip.PitchMin;
