@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: asset_SFX_Enemy_Hit_2
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: b84b496e8701b644a988af9786573e58, type: 3}
-  mixerGroup: {fileID: -3165942800488051908, guid: 7e984f512e89b60468e829489e8883e3, type: 2}
+  mixerGroup: {fileID: -7128948430085313062, guid: 15e85eab3684ad9409d53f645746215d, type: 2}
   volume: 0.46
   pitchMin: 0.95
   pitchMax: 1.05
