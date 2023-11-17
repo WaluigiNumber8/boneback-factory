@@ -1,5 +1,6 @@
-using MoreMountains.Tools;
+using RedRats.Systems.Audio;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace Rogium.Options.OptionControllers
 {
@@ -8,42 +9,48 @@ namespace Rogium.Options.OptionControllers
     /// </summary>
     public class AudioOptionsController : MonoBehaviour
     {
-        [SerializeField] private MMSoundManager soundManager;
+        private AudioMixer mixer;
+        private AudioSystem.AudioMixerParamsInfo parameters;
         
+        private void Awake()
+        {
+            mixer = AudioSystem.GetInstance().AudioMixer;
+            parameters = AudioSystem.GetInstance().MixerParameters;
+        }
+
         /// <summary>
         /// Changes the volume of the master channel.
         /// </summary>
         /// <param name="newVolume">The new volume to use.</param>
-        public void UpdateMasterVolume(float newVolume)
-        {
-            soundManager.SetVolumeMaster(newVolume);
-        }
-        
+        public void UpdateMasterVolume(float newVolume) => UpdateVolume(parameters.masterVolume, newVolume);
+
         /// <summary>
         /// Changes the volume of the music channel.
         /// </summary>
         /// <param name="newVolume">The new volume to use.</param>
-        public void UpdateMusicVolume(float newVolume)
-        {
-            soundManager.SetVolumeMusic(newVolume);
-        }
-        
+        public void UpdateMusicVolume(float newVolume) => UpdateVolume(parameters.musicVolume, newVolume);
+
         /// <summary>
         /// Changes the volume of the sound effects channel.
         /// </summary>
         /// <param name="newVolume">The new volume to use.</param>
-        public void UpdateSoundVolume(float newVolume)
-        {
-            soundManager.SetVolumeSfx(newVolume);
-        }
-        
+        public void UpdateSoundVolume(float newVolume) => UpdateVolume(parameters.sfxVolume, newVolume);
+
         /// <summary>
         /// Changes the volume of the UI channel.
         /// </summary>
         /// <param name="newVolume">The new volume to use.</param>
-        public void UpdateUIVolume(float newVolume)
+        public void UpdateUIVolume(float newVolume) => UpdateVolume(parameters.uiVolume, newVolume);
+
+        /// <summary>
+        /// Updates the volume on the <see cref="AudioMixer"/>.
+        /// </summary>
+        /// <param name="parameter">The volume parameter to update.</param>
+        /// <param name="newVolume">The new volume to set.</param>
+        private void UpdateVolume(string parameter, float newVolume)
         {
-            soundManager.SetVolumeUI(newVolume);
+            newVolume = Mathf.Max(0.0001f, newVolume);
+            mixer.SetFloat(parameter, Mathf.Log10(newVolume) * 20);
         }
 
     }
