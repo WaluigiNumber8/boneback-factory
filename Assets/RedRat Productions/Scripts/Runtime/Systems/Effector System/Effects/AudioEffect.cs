@@ -1,4 +1,6 @@
+using RedRats.Safety;
 using RedRats.Systems.Audio;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -10,17 +12,20 @@ namespace RedRats.Systems.Effectors.Effects
     public class AudioEffect : EffectBase
     {
         [Header("Clips")]
-        [SerializeField] private AudioClip[] clips;
+        [SerializeField] private AudioClipSO[] clips;
         
-        [Header("Mixing")]
-        [SerializeField] private AudioMixerGroup mixerGroup;
+        [Header("Audio Source")] 
         [SerializeField] private int id;
         [SerializeField] private bool playOnlyWhenNotPlaying;
         
-        [Header("Settings")]
-        [SerializeField, Range(0f, 1f)] private float volume = 1f;
-        [SerializeField, Range(0f, 2f)] private float pitchMin = 0.95f;
-        [SerializeField, Range(0f, 2f)] private float pitchMax = 1.05f;
+        [Header("Override Settings")] 
+        [SerializeField] private bool overrideMixerGroup;
+        [SerializeField, ShowIf("overrideMixerGroup")] private AudioMixerGroup mixerGroup;
+        [SerializeField] private bool overrideVolume;
+        [SerializeField, Range(0f, 1f), ShowIf("overrideVolume")] private float volume = 1f;
+        [SerializeField] private bool overridePitch;
+        [SerializeField, Range(0f, 2f), ShowIf("overridePitch")] private float pitchMin = 0.95f;
+        [SerializeField, Range(0f, 2f), ShowIf("overridePitch")] private float pitchMax = 1.05f;
         
         private AudioSystem audioSystem;
         private AudioSource mySource;
@@ -29,7 +34,13 @@ namespace RedRats.Systems.Effectors.Effects
 
         protected override void PlaySelf()
         {
-            mySource = audioSystem.PlaySound(clips, mixerGroup, id, playOnlyWhenNotPlaying, volume, pitchMin, pitchMax);
+            SafetyNet.EnsureListIsNotNullOrEmpty(clips, nameof(clips));
+            AudioClipSO clip = clips[Random.Range(0, clips.Length)];
+            AudioMixerGroup mixer = (overrideMixerGroup) ? mixerGroup : clip.MixerGroup;
+            float vol = (overrideVolume) ? volume : clip.Volume;
+            float pMin = (overridePitch) ? pitchMin : clip.PitchMin;
+            float pMax = (overridePitch) ? pitchMax : clip.PitchMax;
+            mySource = audioSystem.PlaySound(clip.Clip, mixer, id, playOnlyWhenNotPlaying, vol, pMin, pMax);
         }
 
         protected override void StopSelf()
