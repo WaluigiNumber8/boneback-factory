@@ -15,7 +15,7 @@ namespace RedRats.Systems.Effectors.Effects
         [SerializeField] private bool restartOnReplay = true;
         [SerializeField] private bool smoothReset;
 
-        [Header("Transposition")] 
+        [Header("Rotation")] 
         [SerializeField] private TransitionType mode = TransitionType.AtoB;
         [SerializeField, HideIf("mode", TransitionType.ToDestination)] private Vector3 startRotation;
         [SerializeField] private Vector3 endRotation;
