@@ -14,8 +14,10 @@ namespace RedRats.Systems.Effectors.Effects
         [SerializeField] private float duration = 0.2f;
         [SerializeField] private bool restartOnReplay = true;
         [SerializeField] private bool smoothReset;
-        
-        [Header("Transposition")]
+
+        [Header("Transposition")] 
+        [SerializeField] private TransitionType mode = TransitionType.AtoB;
+        [SerializeField, HideIf("mode", TransitionType.ToDestination)] private Vector3 startPosition;
         [SerializeField] private Vector3 endPosition;
         [SerializeField] private SmoothingType smoothing = SmoothingType.Tween;
         [SerializeField, HideIf("smoothing", SmoothingType.AnimationCurve)] private Ease easing = Ease.InOutSine;
@@ -28,13 +30,13 @@ namespace RedRats.Systems.Effectors.Effects
         [SerializeField, HideIf("infiniteLoop")] private int loops;
         [SerializeField] private LoopType loopType = LoopType.Restart;
 
-        private Vector3 startPosition;
-        private Vector3 startLocalPosition;
+        private Vector3 startPos;
+        private Vector3 startLocalPos;
 
         private void Awake()
         {
-            startPosition = target.position;
-            startLocalPosition = target.localPosition;
+            startPos = (mode == TransitionType.AtoB) ? ((movement == MovementType.Relative) ? target.position + startPosition : startPosition) : target.position;
+            startLocalPos = (mode == TransitionType.AtoB) ? ((movement == MovementType.Relative) ? target.localPosition + startPosition : startPosition) : target.localPosition;
         }
 
         protected override void PlaySelf()
@@ -79,14 +81,14 @@ namespace RedRats.Systems.Effectors.Effects
         /// </summary>
         private void ResetTargetPosition()
         {
-            target.position = startPosition;
-            target.localPosition = startLocalPosition;
+            target.position = startPos;
+            target.localPosition = startLocalPos;
         }
         
         /// <summary>
         /// Returns the starting position of the target, depending on the world type.
         /// </summary>
-        private Vector3 GetStartingPosition() => (worldType == WorldType.World) ? startPosition : startLocalPosition;
+        private Vector3 GetStartingPosition() => (worldType == WorldType.World) ? startPos : startLocalPos;
         /// <summary>
         /// Returns the current position of the target, depending on the world type.
         /// </summary>
