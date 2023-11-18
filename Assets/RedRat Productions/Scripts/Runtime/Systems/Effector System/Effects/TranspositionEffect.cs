@@ -27,11 +27,12 @@ namespace RedRats.Systems.Effectors.Effects
         
         [Header("Looping")] 
         [SerializeField] private bool infiniteLoop;
-        [SerializeField, HideIf("infiniteLoop")] private int loops;
+        [SerializeField, Min(1), HideIf("infiniteLoop")] private int loops;
         [SerializeField] private LoopType loopType = LoopType.Restart;
 
         private Vector3 startPos;
         private Vector3 startLocalPos;
+        private Tween tween;
 
         private void Awake()
         {
@@ -41,7 +42,7 @@ namespace RedRats.Systems.Effectors.Effects
 
         protected override void PlaySelf()
         {
-            target.DOKill();
+            tween.Kill();
             if (restartOnReplay) ResetTargetPosition();
             int loopAmount = (infiniteLoop) ? -1 : loops;
             TweenMove(endPosition, duration, loopAmount, smoothing, movement, worldType);
@@ -49,7 +50,7 @@ namespace RedRats.Systems.Effectors.Effects
 
         protected override void StopSelf()
         {
-            target.DOKill();
+            tween.Kill();
             if (smoothReset)
             {
                 TweenMove(GetStartingPosition(), duration * 0.5f);
@@ -70,7 +71,7 @@ namespace RedRats.Systems.Effectors.Effects
             MovementType movementType = MovementType.Absolute, WorldType worldType = WorldType.World)
         {
             Vector3 targetPos = (movementType == MovementType.Relative) ? GetPosition() + targetPosition : targetPosition;
-            var tween = (worldType == WorldType.World) ? target.DOMove(targetPos, duration) : target.DOLocalMove(targetPos, duration);
+            tween = (worldType == WorldType.World) ? target.DOMove(targetPos, duration) : target.DOLocalMove(targetPos, duration);
             var easedTween = (smoothingType == SmoothingType.Tween) ? tween.SetEase(easing) : tween.SetEase(movementCurve);
             easedTween.SetLoops(loopAmount, loopType);
             easedTween.OnComplete(StopSelf);
