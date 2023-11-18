@@ -1,4 +1,3 @@
-using System;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -18,24 +17,32 @@ namespace RedRats.Systems.Effectors.Effects
         
         [Header("Transposition")]
         [SerializeField] private Vector3 endPosition;
-        [SerializeField] private Ease easing = Ease.InOutSine;
-        [SerializeField] private MovementType movement = MovementType.Relative;
-        [SerializeField] private WorldType worldType = WorldType.World;
+        [SerializeField] private SmoothingType smoothing = SmoothingType.Tween;
+        [SerializeField, HideIf("smoothing", SmoothingType.AnimationCurve)] private Ease easing = Ease.InOutSine;
+        [SerializeField, HideIf("smoothing", SmoothingType.Tween)] private AnimationCurve movementCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
+        [SerializeField, EnumToggleButtons] private MovementType movement = MovementType.Relative;
+        [SerializeField, EnumToggleButtons] private WorldType worldType = WorldType.World;
         
         [Header("Looping")] 
         [SerializeField] private bool infiniteLoop;
-        [SerializeField] private int loops;
+        [SerializeField, HideIf("infiniteLoop")] private int loops;
         [SerializeField] private LoopType loopType = LoopType.Restart;
 
         private Vector3 startPosition;
+        private Vector3 startLocalPosition;
 
-        private void Awake() => startPosition = target.position;
+        private void Awake()
+        {
+            startPosition = target.position;
+            startLocalPosition = target.localPosition;
+        }
 
         protected override void PlaySelf()
         {
-            if (restartOnReplay) target.DOKill();
+            target.DOKill();
+            if (restartOnReplay) ResetTargetPosition();
             int loopAmount = (infiniteLoop) ? -1 : loops;
-            TweenMove(endPosition, duration, loopAmount, movement, worldType);
+            TweenMove(endPosition, duration, loopAmount, smoothing, movement, worldType);
         }
 
         protected override void StopSelf()
@@ -43,11 +50,10 @@ namespace RedRats.Systems.Effectors.Effects
             target.DOKill();
             if (smoothReset)
             {
-                TweenMove(startPosition, duration * 0.5f);
+                TweenMove(GetStartingPosition(), duration * 0.5f);
                 return;
             }
-
-            target.position = startPosition;
+            ResetTargetPosition();
         }
 
         /// <summary>
@@ -58,29 +64,32 @@ namespace RedRats.Systems.Effectors.Effects
         /// <param name="loopAmount">How many times to loop the tween (-1 for infinite).</param>
         /// <param name="movementType">Is the movement done in absolute or relative coordinates.</param>
         /// <param name="worldType">Does the movement happen in world space or relative to parent.</param>
-        private void TweenMove(Vector3 targetPosition, float duration, int loopAmount = 0,
+        private void TweenMove(Vector3 targetPosition, float duration, int loopAmount = 0, SmoothingType smoothingType = SmoothingType.Tween,
             MovementType movementType = MovementType.Absolute, WorldType worldType = WorldType.World)
         {
-            Vector3 targetPos = movementType switch
-            {
-                MovementType.Relative => startPosition + target.position,
-                MovementType.Absolute => targetPosition,
-                _ => throw new ArgumentOutOfRangeException(nameof(movementType), movementType, null)
-            };
-
-            switch (worldType)
-            {
-                case WorldType.World:
-                    target.DOMove(targetPos, duration).SetEase(easing).SetLoops(loopAmount, loopType)
-                        .OnComplete(StopSelf);
-                    break;
-                case WorldType.Local:
-                    target.DOLocalMove(targetPos, duration).SetEase(easing).SetLoops(loopAmount, loopType)
-                        .OnComplete(StopSelf);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(worldType), worldType, null);
-            }
+            Vector3 targetPos = (movementType == MovementType.Relative) ? GetPosition() + targetPosition : targetPosition;
+            var tween = (worldType == WorldType.World) ? target.DOMove(targetPos, duration) : target.DOLocalMove(targetPos, duration);
+            var easedTween = (smoothingType == SmoothingType.Tween) ? tween.SetEase(easing) : tween.SetEase(movementCurve);
+            easedTween.SetLoops(loopAmount, loopType);
+            easedTween.OnComplete(StopSelf);
         }
+        
+        /// <summary>
+        /// Resets the position of the target.
+        /// </summary>
+        private void ResetTargetPosition()
+        {
+            target.position = startPosition;
+            target.localPosition = startLocalPosition;
+        }
+        
+        /// <summary>
+        /// Returns the starting position of the target, depending on the world type.
+        /// </summary>
+        private Vector3 GetStartingPosition() => (worldType == WorldType.World) ? startPosition : startLocalPosition;
+        /// <summary>
+        /// Returns the current position of the target, depending on the world type.
+        /// </summary>
+        private Vector3 GetPosition() => (worldType == WorldType.World) ? target.position : target.localPosition;
     }
 }
