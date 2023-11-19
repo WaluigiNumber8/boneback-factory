@@ -12,7 +12,8 @@ namespace RedRats.Systems.LiteFeel.Effects
         [Header("Target")]
         [SerializeField] private Transform target;
         [SerializeField] private float duration = 0.2f;
-        [SerializeField] private bool restartOnReplay = true;
+        [SerializeField] private bool additivePlay;
+        [SerializeField] private bool resetOnEnd;
         [SerializeField] private bool smoothReset;
 
         [Header("Scale")] 
@@ -40,7 +41,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         protected override void PlaySelf()
         {
             tween.Kill();
-            if (restartOnReplay) ResetTargetScale();
+            if (!additivePlay) ResetTargetScale();
             int loopAmount = (infiniteLoop) ? -1 : loops;
             TweenScale(endScale, duration, loopAmount, smoothing, movement);
         }
@@ -68,9 +69,9 @@ namespace RedRats.Systems.LiteFeel.Effects
         {
             Vector3 targetScl = (movementType == MovementType.Relative) ? GetScale() + targetScale : targetScale;
             tween = target.DOScale(targetScl, duration);
-            var easedTween = (smoothingType == SmoothingType.Tween) ? tween.SetEase(easing) : tween.SetEase(movementCurve);
-            easedTween.SetLoops(loopAmount, loopType);
-            easedTween.OnComplete(StopSelf);
+            tween = (smoothingType == SmoothingType.Tween) ? tween.SetEase(easing) : tween.SetEase(movementCurve);
+            tween.SetLoops(loopAmount, loopType);
+            if (resetOnEnd) tween.OnComplete(StopSelf);
         }
         
         /// <summary>

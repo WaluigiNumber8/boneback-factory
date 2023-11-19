@@ -12,7 +12,8 @@ namespace RedRats.Systems.LiteFeel.Effects
         [Header("Target")]
         [SerializeField] private Transform target;
         [SerializeField] private float duration = 0.2f;
-        [SerializeField] private bool restartOnReplay = true;
+        [SerializeField] private bool additivePlay;
+        [SerializeField] private bool resetOnEnd;
         [SerializeField] private bool smoothReset;
 
         [Header("Rotation")] 
@@ -43,7 +44,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         protected override void PlaySelf()
         {
             tween.Kill();
-            if (restartOnReplay) ResetTargetRotation();
+            if (!additivePlay) ResetTargetRotation();
             int loopAmount = (infiniteLoop) ? -1 : loops;
             TweenRotate(endRotation, duration, loopAmount, smoothing, movement, worldType);
         }
@@ -72,9 +73,9 @@ namespace RedRats.Systems.LiteFeel.Effects
         {
             Vector3 targetRot = (movementType == MovementType.Relative) ? GetRotation() + targetRotation : targetRotation;
             tween = (worldType == WorldType.World) ? target.DORotate(targetRot, duration, RotateMode.FastBeyond360) : target.DOLocalRotate(targetRot, duration, RotateMode.FastBeyond360);
-            var easedTween = (smoothingType == SmoothingType.Tween) ? tween.SetEase(easing) : tween.SetEase(movementCurve);
-            easedTween.SetLoops(loopAmount, loopType);
-            easedTween.OnComplete(StopSelf);
+            tween = (smoothingType == SmoothingType.Tween) ? tween.SetEase(easing) : tween.SetEase(movementCurve);
+            tween.SetLoops(loopAmount, loopType);
+            if (resetOnEnd) tween.OnComplete(StopSelf);
         }
         
         /// <summary>
