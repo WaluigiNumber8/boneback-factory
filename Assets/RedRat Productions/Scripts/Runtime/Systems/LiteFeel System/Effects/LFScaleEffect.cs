@@ -2,12 +2,12 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace RedRats.Systems.Effectors.Effects
+namespace RedRats.Systems.LiteFeel.Effects
 {
     /// <summary>
     /// Allows to scale a specific target.
     /// </summary>
-    public class ScaleEffect : EffectBase
+    public class LFScaleEffect : LFEffectBase
     {
         [Header("Target")]
         [SerializeField] private Transform target;

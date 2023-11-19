@@ -1,15 +1,15 @@
 using System;
-using RedRats.Systems.Effectors.Core;
+using RedRats.Systems.LiteFeel.Core;
 using UnityEngine;
 
-namespace RedRats.Systems.Effectors.Effects
+namespace RedRats.Systems.LiteFeel.Effects
 {
     /// <summary>
     /// An effect that controls other effectors.
     /// </summary>
-    public class ControlEffect : EffectBase
+    public class LFControlEffect : LFEffectBase
     {
-        [SerializeField] private Effector effector;
+        [SerializeField] private LFEffector effector;
         [SerializeField] private EffectorControlType control;
         
         protected override void PlaySelf()

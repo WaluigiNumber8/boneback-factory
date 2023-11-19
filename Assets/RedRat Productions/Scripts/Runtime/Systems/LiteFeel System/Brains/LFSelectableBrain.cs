@@ -1,19 +1,19 @@
-using RedRats.Systems.Effectors.Core;
+using RedRats.Systems.LiteFeel.Core;
 using RedRats.UI.Core;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace RedRats.Systems.Effectors.Brains
+namespace RedRats.Systems.LiteFeel.Brains
 {
     /// <summary>
     /// Allocates effects to a <see cref="Button"/>.
     /// </summary>
-    public class SelectableEffectsBrain : MonoBehaviour
+    public class LFSelectableBrain : MonoBehaviour
     {
         [SerializeField] private SelectableEventCaller eventCaller;
-        [SerializeField] private Effector onClickEffector;
-        [SerializeField] private Effector onSelectEffector;
-        [SerializeField] private Effector onDeselectEffector;
+        [SerializeField] private LFEffector onClickEffector;
+        [SerializeField] private LFEffector onSelectEffector;
+        [SerializeField] private LFEffector onDeselectEffector;
 
         private void OnEnable()
         {

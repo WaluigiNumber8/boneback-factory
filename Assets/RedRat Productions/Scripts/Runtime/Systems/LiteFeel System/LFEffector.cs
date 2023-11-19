@@ -1,17 +1,17 @@
 using RedRats.Safety;
-using RedRats.Systems.Effectors.Effects;
+using RedRats.Systems.LiteFeel.Effects;
 using UnityEngine;
 
-namespace RedRats.Systems.Effectors.Core
+namespace RedRats.Systems.LiteFeel.Core
 {
     /// <summary>
     /// Detects all effectors on the same <see cref="GameObject"/> and plays them when needed.
     /// </summary>
-    public class Effector : MonoBehaviour
+    public class LFEffector : MonoBehaviour
     {
-        private EffectBase[] effects;
+        private LFEffectBase[] effects;
         
-        private void Awake() => effects = GetComponents<EffectBase>();
+        private void Awake() => effects = GetComponents<LFEffectBase>();
 
         /// <summary>
         /// Plays all detected effectors on this <see cref="GameObject"/>.
@@ -20,7 +20,7 @@ namespace RedRats.Systems.Effectors.Core
         {
             SafetyNet.EnsureIsNotNull(effects, nameof(effects));
             if (effects.Length <= 0) return;
-            foreach (EffectBase effect in effects)
+            foreach (LFEffectBase effect in effects)
             {
                 effect.Play();
             }
@@ -33,7 +33,7 @@ namespace RedRats.Systems.Effectors.Core
         {
             SafetyNet.EnsureIsNotNull(effects, nameof(effects));
             if (effects.Length <= 0) return;
-            foreach (EffectBase effect in effects)
+            foreach (LFEffectBase effect in effects)
             {
                 effect.Stop();
             }

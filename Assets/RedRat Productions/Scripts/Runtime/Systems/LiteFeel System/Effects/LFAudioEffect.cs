@@ -4,12 +4,12 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Audio;
 
-namespace RedRats.Systems.Effectors.Effects
+namespace RedRats.Systems.LiteFeel.Effects
 {
     /// <summary>
     /// Plays audio.
     /// </summary>
-    public class AudioEffect : EffectBase
+    public class LFAudioEffect : LFEffectBase
     {
         [Title("Audio clips & sources")]
         [SerializeField] private AudioClipSO[] clips;

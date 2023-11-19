@@ -1,4 +1,4 @@
-namespace RedRats.Systems.Effectors.Effects
+namespace RedRats.Systems.LiteFeel.Effects
 {
     /// <summary>
     /// The different types of transitions between 2 parameters. 

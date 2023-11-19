@@ -2,12 +2,12 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace RedRats.Systems.Effectors.Effects
+namespace RedRats.Systems.LiteFeel.Effects
 {
     /// <summary>
     /// Allows moving a specific target.
     /// </summary>
-    public class TranspositionEffect : EffectBase
+    public class LFTranspositionEffect : LFEffectBase
     {
         [Header("Target")]
         [SerializeField] private Transform target;

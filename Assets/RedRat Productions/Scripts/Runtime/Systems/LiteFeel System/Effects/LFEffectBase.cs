@@ -1,14 +1,14 @@
 using System;
 using System.Collections;
-using RedRats.Systems.Effectors.Core;
+using RedRats.Systems.LiteFeel.Core;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace RedRats.Systems.Effectors.Effects
+namespace RedRats.Systems.LiteFeel.Effects
 {
-    [RequireComponent(typeof(Effector))]
-    public abstract class EffectBase : MonoBehaviour
+    [RequireComponent(typeof(LFEffector))]
+    public abstract class LFEffectBase : MonoBehaviour
     {
         [SerializeField] private SettingsInfo settings;
         

@@ -1,4 +1,4 @@
-namespace RedRats.Systems.Effectors.Effects
+namespace RedRats.Systems.LiteFeel.Effects
 {
     /// <summary>
     /// The types something can be smoothed.
