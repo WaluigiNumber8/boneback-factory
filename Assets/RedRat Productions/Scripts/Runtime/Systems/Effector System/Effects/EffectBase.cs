@@ -12,6 +12,11 @@ namespace RedRats.Systems.Effectors.Effects
     {
         [SerializeField] private SettingsInfo settings;
         
+        [ButtonGroup, Button("Play", ButtonSizes.Medium), GUIColor(0.5f, 0.95f, 0.4f)]
+        public void TestPlay() => Play(); 
+        [ButtonGroup, Button("Stop", ButtonSizes.Medium)]
+        public void TestStop() => Stop();
+        
         private void OnEnable()
         {
             if (settings.playOnEnable) Play();
