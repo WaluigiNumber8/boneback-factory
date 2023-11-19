@@ -25,9 +25,9 @@ namespace RedRats.Systems.LiteFeel.Effects
             startValue = (mode == TransitionType.AtoB) ? ((movement == MovementType.Relative) ? GetTransformValue() + beginValue : beginValue) : GetTransformValue();
         }
         
-        protected override void Tween(Vector3 valueToReach, float duration)
+        protected override void Tween(Vector3 valueToReach, float duration, bool forceAbsolute = false)
         {
-            Vector3 targetValue = (movement == MovementType.Relative) ? GetCurrentValue() + valueToReach : valueToReach;
+            Vector3 targetValue = (!forceAbsolute && movement == MovementType.Relative) ? GetCurrentValue() + valueToReach : valueToReach;
             tween = GetTween(targetValue, duration);
             tween = (smoothing == SmoothingType.Tween) ? tween.SetEase(easing) : tween.SetEase(movementCurve);
             tween.SetLoops(loopAmount, loopType);

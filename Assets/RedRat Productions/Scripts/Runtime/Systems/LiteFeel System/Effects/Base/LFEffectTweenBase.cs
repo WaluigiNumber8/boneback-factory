@@ -38,7 +38,7 @@ namespace RedRats.Systems.LiteFeel.Effects
             tween.Kill();
             if (smoothReset)
             {
-                Tween(GetTargetStartingValue(), duration * 0.5f);
+                Tween(GetTargetStartingValue(), duration * 0.5f, true);
                 return;
             }
             ResetTargetState();
@@ -49,7 +49,8 @@ namespace RedRats.Systems.LiteFeel.Effects
         /// </summary>
         /// <param name="valueToReach">The value to tween tha target to.</param>
         /// <param name="duration">How long will the tween last.</param>
-        protected abstract void Tween(T valueToReach, float duration);
+        /// <param name="forceAbsolute">If TRUE the tween will be of type absolute.</param>
+        protected abstract void Tween(T valueToReach, float duration, bool forceAbsolute = false);
         /// <summary>
         /// Get the value the target had originally before the tween.
         /// </summary>
