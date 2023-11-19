@@ -12,9 +12,9 @@ namespace RedRats.Systems.LiteFeel.Effects
     {
         [SerializeField] private SettingsInfo settings;
         
-        [ButtonGroup, Button("Play", ButtonSizes.Medium), GUIColor(0.5f, 0.95f, 0.4f)]
+        [ButtonGroup, Button("Play", ButtonSizes.Medium), GUIColor(0.5f, 0.95f, 0.4f), DisableInEditorMode]
         public void TestPlay() => Play(); 
-        [ButtonGroup, Button("Stop", ButtonSizes.Medium)]
+        [ButtonGroup, Button("Stop", ButtonSizes.Medium), DisableInEditorMode]
         public void TestStop() => Stop();
         
         private void OnEnable()
