@@ -7,6 +7,9 @@ using Random = UnityEngine.Random;
 
 namespace RedRats.Systems.LiteFeel.Effects
 {
+    /// <summary>
+    /// A base for all LF effects.
+    /// </summary>
     [RequireComponent(typeof(LFEffector))]
     public abstract class LFEffectBase : MonoBehaviour
     {
