@@ -10,11 +10,10 @@ namespace RedRats.Systems.LiteFeel.Effects
     /// <typeparam name="T">Any type that can be tweened.</typeparam>
     public abstract class LFEffectTweenBase<T> : LFEffectBase
     {
-        [Header("Target")]
-        [SerializeField] protected Transform target;
+        [Header("General")]
         [SerializeField] protected float duration = 0.2f;
         [SerializeField] protected bool additivePlay;
-        [SerializeField] protected bool resetOnEnd;
+        [SerializeField] protected bool resetOnEnd = true;
         [SerializeField] protected bool smoothReset;
         
         [Header("Looping")] 
@@ -30,7 +29,7 @@ namespace RedRats.Systems.LiteFeel.Effects
             tween.Kill();
             if (!additivePlay) ResetTargetState();
             loopAmount = (infiniteLoop) ? -1 : loops;
-            Tween(GetTweenEndValue(), duration);
+            DoTween(GetTargetValue(), duration);
         }
 
         protected override void StopSelf()
@@ -38,12 +37,19 @@ namespace RedRats.Systems.LiteFeel.Effects
             tween.Kill();
             if (smoothReset)
             {
-                Tween(GetTargetStartingValue(), duration * 0.5f, true);
+                DoTween(GetStartingValue(), duration * 0.5f, true);
                 return;
             }
             ResetTargetState();
         }
 
+        private void DoTween(T valueToReach, float duration, bool forceAbsolute = false)
+        {
+            Tween(valueToReach, duration, forceAbsolute);
+            tween.SetLoops(loopAmount, loopType);
+            if (resetOnEnd) tween.OnComplete(StopSelf);
+        }
+        
         /// <summary>
         /// Tween the target.
         /// </summary>
@@ -54,11 +60,11 @@ namespace RedRats.Systems.LiteFeel.Effects
         /// <summary>
         /// Get the value the target had originally before the tween.
         /// </summary>
-        protected abstract T GetTargetStartingValue();
+        protected abstract T GetStartingValue();
         /// <summary>
         /// Returns the value to tween to.
         /// </summary>
-        protected abstract T GetTweenEndValue();
+        protected abstract T GetTargetValue();
         /// <summary>
         /// Reset the target to its state before the tween happened.
         /// </summary>
