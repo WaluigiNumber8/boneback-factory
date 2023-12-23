@@ -18,7 +18,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         
         [Header("Looping")] 
         [SerializeField] private bool infiniteLoop;
-        [SerializeField, Min(1), HideIf("infiniteLoop")] private int loops;
+        [SerializeField, Min(1), HideIf("infiniteLoop")] private int loops = 1;
         [SerializeField] protected LoopType loopType = LoopType.Restart;
         
         protected Tween tween;
