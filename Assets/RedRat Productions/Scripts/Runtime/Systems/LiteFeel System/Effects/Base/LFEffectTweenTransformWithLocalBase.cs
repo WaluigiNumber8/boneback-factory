@@ -22,8 +22,8 @@ namespace RedRats.Systems.LiteFeel.Effects
         {
             return (worldType == WorldType.World) ? GetTweenForWorldSpace(targetValue, duration) : GetTweenForLocalSpace(targetValue, duration);
         }
-        protected override Vector3 GetTargetStartingValue() => (worldType == WorldType.World) ? startValue : startLocalValue;
-        protected override Vector3 GetTweenEndValue() => endValue;
+        protected override Vector3 GetStartingValue() => (worldType == WorldType.World) ? startValue : startLocalValue;
+        protected override Vector3 GetTargetValue() => endValue;
         /// <summary>
         /// Resets target world and local values to their original state.
         /// </summary>

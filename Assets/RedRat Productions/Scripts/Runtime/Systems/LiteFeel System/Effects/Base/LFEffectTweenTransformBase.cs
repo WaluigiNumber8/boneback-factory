@@ -9,6 +9,9 @@ namespace RedRats.Systems.LiteFeel.Effects
     /// </summary>
     public abstract class LFEffectTweenTransformBase : LFEffectTweenBase<Vector3>
     {
+        [Header("Target")]
+        [SerializeField] protected Transform target;
+        
         [Header("Transform")] 
         [SerializeField] protected TransitionType mode = TransitionType.AtoB;
         [SerializeField, HideIf("mode", TransitionType.ToDestination)] protected Vector3 beginValue;
@@ -30,8 +33,6 @@ namespace RedRats.Systems.LiteFeel.Effects
             Vector3 targetValue = (!forceAbsolute && movement == MovementType.Relative) ? GetCurrentValue() + valueToReach : valueToReach;
             tween = GetTween(targetValue, duration);
             tween = (smoothing == SmoothingType.Tween) ? tween.SetEase(easing) : tween.SetEase(movementCurve);
-            tween.SetLoops(loopAmount, loopType);
-            if (resetOnEnd) tween.OnComplete(StopSelf);
         }
         
         /// <summary>
@@ -41,8 +42,8 @@ namespace RedRats.Systems.LiteFeel.Effects
         /// <param name="duration">How long will the tween last.</param>
         /// <returns>The tween itself.</returns>
         protected virtual Tween GetTween(Vector3 targetValue, float duration) => GetTweenForWorldSpace(targetValue, duration);
-        protected override Vector3 GetTargetStartingValue() => startValue;
-        protected override Vector3 GetTweenEndValue() => endValue;
+        protected override Vector3 GetStartingValue() => startValue;
+        protected override Vector3 GetTargetValue() => endValue;
         /// <summary>
         /// Resets target world values to their original state.
         /// </summary>
