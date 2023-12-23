@@ -15,6 +15,8 @@ namespace RedRats.Systems.LiteFeel.Effects
         [SerializeField, HideIf("uniform")] private Vector3 strengthVector = Vector3.one * 0.1f;
         [SerializeField, Min(0)] private int vibration = 20;
         [SerializeField, Range(0f, 90f)] private float randomness = 90;
+        [SerializeField] private bool fadeout;
+        
         
         private Vector3 startValue;
 
@@ -22,7 +24,7 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         protected override void Tween(Vector3 valueToReach, float duration, bool forceAbsolute = false)
         {
-            tween = target.DOShakePosition(duration, valueToReach, vibration, randomness, false, false);
+            tween = target.DOShakePosition(duration, valueToReach, vibration, randomness, false, fadeout);
         }
 
         protected override Vector3 GetStartingValue() => startValue;
