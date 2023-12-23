@@ -10,9 +10,6 @@ namespace RedRats.Systems.LiteFeel.Effects
         [Header("Orthographic Size")]
         [SerializeField] protected float targetSize = 6f;
         [SerializeField, EnumToggleButtons] protected MovementType mode = MovementType.Absolute;
-        [SerializeField] protected SmoothingType smoothing = SmoothingType.Tween;
-        [SerializeField, HideIf("smoothing", SmoothingType.AnimationCurve)] protected Ease easing = Ease.InOutSine;
-        [SerializeField, HideIf("smoothing", SmoothingType.Tween)] protected AnimationCurve movementCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
 
         private CinemachineVirtualCamera cam;
         private float startOrthographicSize;
@@ -24,7 +21,6 @@ namespace RedRats.Systems.LiteFeel.Effects
             cam = GetActiveCamera();
             float targetValue = (!forceAbsolute && mode == MovementType.Relative) ? cam.m_Lens.OrthographicSize + valueToReach : valueToReach;
             tween = DOTween.To(() => cam.m_Lens.OrthographicSize, x => cam.m_Lens.OrthographicSize = x, targetValue, duration);
-            tween = (smoothing == SmoothingType.Tween) ? tween.SetEase(easing) : tween.SetEase(movementCurve);
         }
 
         protected override float GetStartingValue() => startOrthographicSize;

@@ -16,9 +16,6 @@ namespace RedRats.Systems.LiteFeel.Effects
         [SerializeField] protected TransitionType mode = TransitionType.AtoB;
         [SerializeField, HideIf("mode", TransitionType.ToDestination)] protected Vector3 beginValue;
         [SerializeField] protected Vector3 endValue;
-        [SerializeField] protected SmoothingType smoothing = SmoothingType.Tween;
-        [SerializeField, HideIf("smoothing", SmoothingType.AnimationCurve)] protected Ease easing = Ease.InOutSine;
-        [SerializeField, HideIf("smoothing", SmoothingType.Tween)] protected AnimationCurve movementCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
         [SerializeField, EnumToggleButtons] protected MovementType movement = MovementType.Relative;
         
         protected Vector3 startValue;
@@ -32,7 +29,6 @@ namespace RedRats.Systems.LiteFeel.Effects
         {
             Vector3 targetValue = (!forceAbsolute && movement == MovementType.Relative) ? GetCurrentValue() + valueToReach : valueToReach;
             tween = GetTween(targetValue, duration);
-            tween = (smoothing == SmoothingType.Tween) ? tween.SetEase(easing) : tween.SetEase(movementCurve);
         }
         
         /// <summary>

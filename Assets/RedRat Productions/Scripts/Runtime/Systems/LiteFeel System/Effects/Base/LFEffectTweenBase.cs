@@ -12,6 +12,9 @@ namespace RedRats.Systems.LiteFeel.Effects
     {
         [Header("General")]
         [SerializeField] protected float duration = 0.2f;
+        [SerializeField] protected SmoothingType smoothing = SmoothingType.Tween;
+        [SerializeField, HideIf("smoothing", SmoothingType.AnimationCurve)] protected Ease easing = Ease.InOutSine;
+        [SerializeField, HideIf("smoothing", SmoothingType.Tween)] protected AnimationCurve movementCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
         [SerializeField] protected bool additivePlay;
         [SerializeField] protected bool resetOnEnd = true;
         [SerializeField] protected bool smoothReset;
@@ -47,6 +50,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         {
             Tween(valueToReach, duration, forceAbsolute);
             tween.SetLoops(loopAmount, loopType);
+            tween = (smoothing == SmoothingType.Tween) ? tween.SetEase(easing) : tween.SetEase(movementCurve);
             if (resetOnEnd) tween.OnComplete(StopSelf);
         }
         
