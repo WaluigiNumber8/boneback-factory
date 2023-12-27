@@ -5,7 +5,7 @@ using UnityEngine;
 namespace RedRats.Systems.LiteFeel.Effects
 {
     /// <summary>
-    /// A base for all LF effects that use <see cref="DOTween"/> tweens for their functionality.
+    /// A base for all LF effects that use a single <see cref="DOTween"/> tween for their functionality.
     /// </summary>
     /// <typeparam name="T">Any type that can be tweened.</typeparam>
     public abstract class LFEffectTweenBase<T> : LFEffectBase
