@@ -27,6 +27,8 @@ namespace RedRats.Systems.LiteFeel.Effects
         protected Tween tween;
         protected int loopAmount;
 
+        protected virtual void Start() => UpdateStartingValues();
+
         protected override void PlaySelf()
         {
             tween.Kill();
@@ -48,6 +50,7 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         private void DoTween(T valueToReach, float duration, bool forceAbsolute = false)
         {
+            UpdateStartingValues();
             Tween(valueToReach, duration, forceAbsolute);
             tween.SetLoops(loopAmount, loopType);
             tween = (smoothing == SmoothingType.Tween) ? tween.SetEase(easing) : tween.SetEase(movementCurve);
@@ -73,5 +76,9 @@ namespace RedRats.Systems.LiteFeel.Effects
         /// Reset the target to its state before the tween happened.
         /// </summary>
         protected abstract void ResetTargetState();
+        /// <summary>
+        /// Updates starting values to current values of the current target.
+        /// </summary>
+        protected abstract void UpdateStartingValues();
     }
 }

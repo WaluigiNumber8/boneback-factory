@@ -12,12 +12,11 @@ namespace RedRats.Systems.LiteFeel.Effects
         [SerializeField, EnumToggleButtons] protected WorldType worldType = WorldType.World;
         protected Vector3 startLocalValue;
         
-        protected override void Awake()
+        protected override void UpdateStartingValues()
         {
-            base.Awake();
+            base.UpdateStartingValues();
             startLocalValue = (mode == TransitionType.AtoB) ? ((movement == MovementType.Relative) ? GetLocalTransformValue() + beginValue : beginValue) : GetLocalTransformValue();
         }
-        
         protected override Tween GetTween(Vector3 targetValue, float duration)
         {
             return (worldType == WorldType.World) ? GetTweenForWorldSpace(targetValue, duration) : GetTweenForLocalSpace(targetValue, duration);

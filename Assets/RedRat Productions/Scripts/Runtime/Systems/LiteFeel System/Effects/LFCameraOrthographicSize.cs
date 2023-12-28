@@ -13,11 +13,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         private float startOrthographicSize;
         private Camera cam;
 
-        private void Awake()
-        {
-            cam = Camera.main;
-            startOrthographicSize = cam.orthographicSize;
-        }
+        private void Awake() => cam = Camera.main;
 
         protected override void Tween(float valueToReach, float duration, bool forceAbsolute = false)
         {
@@ -28,5 +24,9 @@ namespace RedRats.Systems.LiteFeel.Effects
         protected override float GetStartingValue() => startOrthographicSize;
         protected override float GetTargetValue() => targetSize;
         protected override void ResetTargetState() => cam.orthographicSize = startOrthographicSize;
+        protected override void UpdateStartingValues()
+        {
+            startOrthographicSize = cam.orthographicSize;
+        }
     }
 }

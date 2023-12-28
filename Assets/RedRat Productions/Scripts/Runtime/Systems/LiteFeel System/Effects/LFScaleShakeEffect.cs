@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RedRats.Systems.LiteFeel.Effects
 {
-    public class LFPositionShakeEffect : LFEffectTweenBase<Vector3>
+    public class LFScaleShakeEffect : LFEffectTweenBase<Vector3>
     {
         [Header("Target")]
         [SerializeField] private Transform target;
@@ -17,19 +17,19 @@ namespace RedRats.Systems.LiteFeel.Effects
         [SerializeField, Range(0f, 90f)] private float randomness = 90;
         [SerializeField] private bool fadeout;
         
-        private Vector3 startLocalPosition;
+        private Vector3 startScale;
 
         protected override void Tween(Vector3 valueToReach, float duration, bool forceAbsolute = false)
         {
-            tween = target.DOShakePosition(duration, valueToReach, vibration, randomness, false, fadeout);
+            tween = target.DOShakeScale(duration, valueToReach, vibration, randomness, fadeout);
         }
 
-        protected override Vector3 GetStartingValue() => startLocalPosition;
+        protected override Vector3 GetStartingValue() => startScale;
         protected override Vector3 GetTargetValue() => (uniform) ? Vector3.one * strength : strengthVector;
-        protected override void ResetTargetState() => target.localPosition = startLocalPosition;
+        protected override void ResetTargetState() => target.localScale = startScale;
         protected override void UpdateStartingValues()
         {
-            startLocalPosition = target.localPosition;
+            startScale = target.localScale;
         }
     }
 }

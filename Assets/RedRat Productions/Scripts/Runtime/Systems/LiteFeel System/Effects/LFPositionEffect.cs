@@ -6,7 +6,7 @@ namespace RedRats.Systems.LiteFeel.Effects
     /// <summary>
     /// Allows moving a specific target.
     /// </summary>
-    public class LFTranspositionEffect : LFEffectTweenTransformWithLocalBase
+    public class LFPositionEffect : LFEffectTweenTransformWithLocalBase
     {
         protected override void ResetTargetState()
         {

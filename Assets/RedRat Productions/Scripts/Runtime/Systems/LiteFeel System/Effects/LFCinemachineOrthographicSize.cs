@@ -1,5 +1,6 @@
 using Cinemachine;
 using DG.Tweening;
+using RedRats.Core;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -14,7 +15,11 @@ namespace RedRats.Systems.LiteFeel.Effects
         private CinemachineVirtualCamera cam;
         private float startOrthographicSize;
 
-        private void Start() => cam = GetActiveCamera();
+        protected override void Start()
+        {
+            base.Start();
+            cam = GetActiveCamera();
+        }
 
         protected override void Tween(float valueToReach, float duration, bool forceAbsolute = false)
         {
@@ -26,13 +31,16 @@ namespace RedRats.Systems.LiteFeel.Effects
         protected override float GetStartingValue() => startOrthographicSize;
         protected override float GetTargetValue() => targetSize;
         protected override void ResetTargetState() => cam.m_Lens.OrthographicSize = startOrthographicSize;
-        
+        protected override void UpdateStartingValues()
+        {
+            CinemachineVirtualCamera vcam = GetActiveCamera();
+            startOrthographicSize = vcam.m_Lens.OrthographicSize;
+        }
+
         private CinemachineVirtualCamera GetActiveCamera()
         {
-            CinemachineVirtualCamera vcam = (CinemachineVirtualCamera) CinemachineCore.Instance.GetActiveBrain(0).ActiveVirtualCamera;
-            if (vcam == cam) return cam;
-            startOrthographicSize = vcam.m_Lens.OrthographicSize;
-            return vcam;
+            CinemachineVirtualCamera vcam = RedRatUtils.GetActiveVCam();
+            return (vcam == cam) ? cam : vcam;
         }
     }
 }

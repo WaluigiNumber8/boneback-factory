@@ -1,4 +1,5 @@
 ﻿using System;
+using Cinemachine;
 using UnityEngine;
 
 namespace RedRats.Core
@@ -24,6 +25,15 @@ namespace RedRats.Core
                 DirectionType.Left => Vector2.left,
                 _ => throw new ArgumentOutOfRangeException($"The direction of type {direction} is not supported.")
             };
+        }
+        
+        /// <summary>
+        /// Returns the current active <see cref="CinemachineVirtualCamera"/>.
+        /// </summary>
+        public static CinemachineVirtualCamera GetActiveVCam()
+        {
+            CinemachineVirtualCamera vcam = (CinemachineVirtualCamera) CinemachineCore.Instance.GetActiveBrain(0).ActiveVirtualCamera;
+            return vcam;
         }
         
     }

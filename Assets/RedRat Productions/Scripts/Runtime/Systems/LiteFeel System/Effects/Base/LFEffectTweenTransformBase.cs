@@ -20,15 +20,15 @@ namespace RedRats.Systems.LiteFeel.Effects
         
         protected Vector3 startValue;
         
-        protected virtual void Awake()
-        {
-            startValue = (mode == TransitionType.AtoB) ? ((movement == MovementType.Relative) ? GetTransformValue() + beginValue : beginValue) : GetTransformValue();
-        }
-        
         protected override void Tween(Vector3 valueToReach, float duration, bool forceAbsolute = false)
         {
             Vector3 targetValue = (!forceAbsolute && movement == MovementType.Relative) ? GetCurrentValue() + valueToReach : valueToReach;
             tween = GetTween(targetValue, duration);
+        }
+        
+        protected override void UpdateStartingValues()
+        {
+            startValue = (mode == TransitionType.AtoB) ? ((movement == MovementType.Relative) ? GetTransformValue() + beginValue : beginValue) : GetTransformValue();
         }
         
         /// <summary>
