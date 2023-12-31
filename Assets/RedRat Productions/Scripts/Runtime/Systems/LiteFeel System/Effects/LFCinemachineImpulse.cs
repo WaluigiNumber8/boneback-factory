@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace RedRats.Systems.LiteFeel.Effects
 {
-    public class LFCinemachineImpulse : LFEffectTweensBase
+    public class LFCinemachineImpulse : LFEffectTweenMultipleBase
     {
         [Header("Amplitude")] 
         [SerializeField] private float amplitudeGain = 1f;

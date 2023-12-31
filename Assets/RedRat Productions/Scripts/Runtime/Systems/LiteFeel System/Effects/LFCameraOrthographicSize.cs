@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RedRats.Systems.LiteFeel.Effects
 {
-    public class LFCameraOrthographicSize : LFEffectTweenBase<float>
+    public class LFCameraOrthographicSize : LFEffectTweenSingleBase<float>
     {
         [Header("Orthographic Size")]
         [SerializeField] protected float targetSize = 6f;

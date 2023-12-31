@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace RedRats.Systems.LiteFeel.Effects
 {
-    public class LFCinemachineOrthographicSize : LFEffectTweenBase<float>
+    public class LFCinemachineOrthographicSize : LFEffectTweenSingleBase<float>
     {
         [Header("Orthographic Size")]
         [SerializeField] protected float targetSize = 6f;

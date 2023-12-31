@@ -4,17 +4,10 @@ using UnityEngine;
 
 namespace RedRats.Systems.LiteFeel.Effects
 {
-    /// <summary>
-    /// A base for all LF effects that use a single <see cref="DOTween"/> tween for their functionality.
-    /// </summary>
-    /// <typeparam name="T">Any type that can be tweened.</typeparam>
-    public abstract class LFEffectTweenBase<T> : LFEffectBase
+    public abstract class LFEffectTweenBase : LFEffectBase
     {
         [Header("General")]
         [SerializeField] protected float duration = 0.2f;
-        [SerializeField] protected SmoothingType smoothing = SmoothingType.Tween;
-        [SerializeField, HideIf("smoothing", SmoothingType.AnimationCurve)] protected Ease easing = Ease.InOutSine;
-        [SerializeField, HideIf("smoothing", SmoothingType.Tween)] protected AnimationCurve movementCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
         [SerializeField] protected bool additivePlay;
         [SerializeField] protected bool resetOnEnd = true;
         [SerializeField] protected bool smoothReset;
@@ -23,55 +16,33 @@ namespace RedRats.Systems.LiteFeel.Effects
         [SerializeField] private bool infiniteLoop;
         [SerializeField, Min(1), HideIf("infiniteLoop")] private int loops = 1;
         [SerializeField] protected LoopType loopType = LoopType.Restart;
-        
-        protected Tween tween;
+
         protected int loopAmount;
 
         protected virtual void Start() => UpdateStartingValues();
 
         protected override void PlaySelf()
         {
-            tween.Kill();
             if (!additivePlay) ResetTargetState();
             loopAmount = (infiniteLoop) ? -1 : loops;
-            DoTween(GetTargetValue(), duration);
+            PlayTween();
         }
 
         protected override void StopSelf()
         {
-            tween.Kill();
-            if (smoothReset)
-            {
-                DoTween(GetStartingValue(), duration * 0.5f, true);
-                return;
-            }
+            StopTween();
             ResetTargetState();
-        }
-
-        private void DoTween(T valueToReach, float duration, bool forceAbsolute = false)
-        {
-            UpdateStartingValues();
-            Tween(valueToReach, duration, forceAbsolute);
-            tween.SetLoops(loopAmount, loopType);
-            tween = (smoothing == SmoothingType.Tween) ? tween.SetEase(easing) : tween.SetEase(movementCurve);
-            if (resetOnEnd) tween.OnComplete(StopSelf);
         }
         
         /// <summary>
-        /// Tween the target.
+        /// Plays the effect.
         /// </summary>
-        /// <param name="valueToReach">The value to tween tha target to.</param>
-        /// <param name="duration">How long will the tween last.</param>
-        /// <param name="forceAbsolute">If TRUE the tween will be of type absolute.</param>
-        protected abstract void Tween(T valueToReach, float duration, bool forceAbsolute = false);
+        protected abstract void PlayTween();
         /// <summary>
-        /// Get the value the target had originally before the tween.
+        /// Stops the effect.
         /// </summary>
-        protected abstract T GetStartingValue();
-        /// <summary>
-        /// Returns the value to tween to.
-        /// </summary>
-        protected abstract T GetTargetValue();
+        protected abstract void StopTween();
+
         /// <summary>
         /// Reset the target to its state before the tween happened.
         /// </summary>

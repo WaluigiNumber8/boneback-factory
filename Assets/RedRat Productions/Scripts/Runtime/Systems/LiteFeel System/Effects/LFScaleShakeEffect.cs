@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RedRats.Systems.LiteFeel.Effects
 {
-    public class LFScaleShakeEffect : LFEffectTweenBase<Vector3>
+    public class LFScaleShakeEffect : LFEffectTweenSingleBase<Vector3>
     {
         [Header("Target")]
         [SerializeField] private Transform target;

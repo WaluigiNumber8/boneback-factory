@@ -7,7 +7,7 @@ namespace RedRats.Systems.LiteFeel.Effects
     /// <summary>
     /// A base for all effects that tween transforms.
     /// </summary>
-    public abstract class LFEffectTweenTransformBase : LFEffectTweenBase<Vector3>
+    public abstract class LFEffectTweenTransformBase : LFEffectTweenSingleBase<Vector3>
     {
         [Header("Target")]
         [SerializeField] protected Transform target;
