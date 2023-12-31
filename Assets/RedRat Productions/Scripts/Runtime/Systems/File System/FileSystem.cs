@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using RedRats.Safety;
 using RedRats.Systems.FileSystem.Compression;
 
@@ -80,6 +81,16 @@ namespace RedRats.Systems.FileSystem
         public static IList<string> LoadAllFiles(string path, string extension, bool deepSearch = false, ICompressionSystem compression = null)
         {
             return loader.LoadAllFiles(path, extension, deepSearch, compression);
+        }
+        
+        /// <summary>
+        /// Returns a list of paths of all files with a specific extension from a specific folder.
+        /// </summary>
+        /// <param name="path">The path of the folder to search.</param>
+        /// <param name="extension">The extension of files to read.</param>
+        public static IList<string> LoadFilePaths(string path, string extension)
+        {
+            return Directory.GetFiles(path).Where(f => f.EndsWith(extension)).ToList();
         }
 
         /// <summary>
