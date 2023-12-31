@@ -24,6 +24,8 @@ namespace RedRats.Systems.LiteFeel.Effects
         protected int loopAmount;
 
         protected virtual void Awake() => sequence.SetAutoKill(false);
+        
+        protected virtual void Start() => UpdateStartingValues();
 
         protected override void PlaySelf()
         {
@@ -47,6 +49,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         private void Tween(float duration)
         {
             sequence = DOTween.Sequence();
+            UpdateStartingValues();
             SetupTweens(sequence, duration);
             sequence.SetLoops(loopAmount, loopType);
             if (resetOnEnd) sequence.OnComplete(StopSelf);
@@ -62,5 +65,9 @@ namespace RedRats.Systems.LiteFeel.Effects
         /// Reset the target to its state before the tween happened.
         /// </summary>
         protected abstract void ResetTargetState();
+        /// <summary>
+        /// Updates starting values to current values of the current target.
+        /// </summary>
+        protected abstract void UpdateStartingValues();
     }
 }
