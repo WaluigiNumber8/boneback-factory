@@ -37,7 +37,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _HologramTexture:
-        m_Texture: {fileID: 2800000, guid: b2ae57e82cd4b4d4ebfa9986f7c77c83, type: 3}
+        m_Texture: {fileID: 2800000, guid: d8cb128c897512e4da63dbd17de5c7fc, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -58,10 +58,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _HologramTiling: 3
+    - _HologramTiling: 4
     - _ScrollSpeed: 100
     m_Colors:
     - _FresnelColor: {r: 2.996079, g: 2.996079, b: 2.996079, a: 1}
     - _HologramTiling: {r: -4.1, g: 8, b: 0, a: 0}
-    - _MainColor: {r: 4.759382, g: 4.759382, b: 4.759382, a: 1}
+    - _MainColor: {r: 3.177074, g: 3.177074, b: 3.177074, a: 1}
   m_BuildTextureStacks: []
