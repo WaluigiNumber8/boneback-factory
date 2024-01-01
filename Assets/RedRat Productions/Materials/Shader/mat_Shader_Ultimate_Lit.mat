@@ -58,8 +58,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _HologramScrollSpeed: 1
-    - _HologramTiling: 8
+    - _HologramBlend: 0
+    - _HologramScrollSpeed: 100
+    - _HologramStrength: 1
+    - _HologramTiling: 2
     m_Colors:
     - _MainColor: {r: 1, g: 1, b: 1, a: 1}
     - _Tint: {r: 1, g: 1, b: 1, a: 1}

@@ -61,5 +61,10 @@ namespace RedRats.Systems.LiteFeel.Effects
         /// <param name="duration">How long will the tween last.</param>
         /// <returns>The tween itself.</returns>
         protected abstract Tween GetTweenForWorldSpace(Vector3 targetValue, float duration);
+
+        protected override void Initialize()
+        {
+            //Nothing to do here.
+        }
     }
 }

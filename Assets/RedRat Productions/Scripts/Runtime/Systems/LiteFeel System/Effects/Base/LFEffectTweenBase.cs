@@ -19,7 +19,11 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         protected int loopAmount;
 
-        protected virtual void Start() => UpdateStartingValues();
+        private void Start()
+        {
+            Initialize();
+            UpdateStartingValues();
+        }
 
         protected override void PlaySelf()
         {
@@ -42,7 +46,6 @@ namespace RedRats.Systems.LiteFeel.Effects
         /// Stops the effect.
         /// </summary>
         protected abstract void StopTween();
-
         /// <summary>
         /// Reset the target to its state before the tween happened.
         /// </summary>

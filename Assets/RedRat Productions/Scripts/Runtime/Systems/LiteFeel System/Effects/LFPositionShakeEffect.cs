@@ -26,6 +26,11 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         protected override Vector3 GetStartingValue() => startLocalPosition;
         protected override Vector3 GetTargetValue() => (uniform) ? Vector3.one * strength : strengthVector;
+        protected override void Initialize()
+        {
+            // Nothing to do here.
+        }
+
         protected override void ResetTargetState() => target.localPosition = startLocalPosition;
         protected override void UpdateStartingValues()
         {

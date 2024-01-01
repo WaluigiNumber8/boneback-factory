@@ -24,11 +24,10 @@ namespace RedRats.Systems.LiteFeel.Effects
         private float startAmplitudeGain;
         private float startFrequencyGain;
 
-        protected override void Start()
+        protected override void Initialize()
         {
             cam = (CinemachineVirtualCamera) CinemachineCore.Instance.GetActiveBrain(0).ActiveVirtualCamera;
             perlin = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-            base.Start();
         }
 
         protected override void SetupTweens(Sequence usedTweens, float duration)

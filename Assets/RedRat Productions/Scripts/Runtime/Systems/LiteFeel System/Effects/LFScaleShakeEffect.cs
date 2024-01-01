@@ -26,10 +26,12 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         protected override Vector3 GetStartingValue() => startScale;
         protected override Vector3 GetTargetValue() => (uniform) ? Vector3.one * strength : strengthVector;
-        protected override void ResetTargetState() => target.localScale = startScale;
-        protected override void UpdateStartingValues()
+        protected override void Initialize()
         {
-            startScale = target.localScale;
+            // Nothing to do here.
         }
+
+        protected override void ResetTargetState() => target.localScale = startScale;
+        protected override void UpdateStartingValues() => startScale = target.localScale;
     }
 }

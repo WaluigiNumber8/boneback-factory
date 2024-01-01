@@ -11,7 +11,12 @@ namespace RedRats.Systems.LiteFeel.Effects
     {
         [SerializeField] private LFEffector effector;
         [SerializeField] private EffectorControlType control;
-        
+
+        protected override void Initialize()
+        {
+            // Nothing to do here.
+        }
+
         protected override void PlaySelf()
         {
             switch (control)

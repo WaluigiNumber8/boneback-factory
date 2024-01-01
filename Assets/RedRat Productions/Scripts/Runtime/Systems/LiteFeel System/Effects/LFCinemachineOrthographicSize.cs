@@ -15,9 +15,8 @@ namespace RedRats.Systems.LiteFeel.Effects
         private CinemachineVirtualCamera cam;
         private float startOrthographicSize;
 
-        protected override void Start()
+        protected override void Initialize()
         {
-            base.Start();
             cam = GetActiveCamera();
         }
 
