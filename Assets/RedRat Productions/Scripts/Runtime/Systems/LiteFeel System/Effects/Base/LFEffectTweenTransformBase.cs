@@ -7,7 +7,7 @@ namespace RedRats.Systems.LiteFeel.Effects
     /// <summary>
     /// A base for all effects that tween transforms.
     /// </summary>
-    public abstract class LFEffectTweenTransformBase : LFEffectTweenBase<Vector3>
+    public abstract class LFEffectTweenTransformBase : LFEffectTweenSingleBase<Vector3>
     {
         [Header("Target")]
         [SerializeField] protected Transform target;
@@ -61,5 +61,10 @@ namespace RedRats.Systems.LiteFeel.Effects
         /// <param name="duration">How long will the tween last.</param>
         /// <returns>The tween itself.</returns>
         protected abstract Tween GetTweenForWorldSpace(Vector3 targetValue, float duration);
+
+        protected override void Initialize()
+        {
+            //Nothing to do here.
+        }
     }
 }

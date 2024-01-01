@@ -49,6 +49,10 @@ namespace RedRats.Systems.LiteFeel.Effects
         }
         
         /// <summary>
+        /// Initialize all values needed for the effect.
+        /// </summary>
+        protected abstract void Initialize();
+        /// <summary>
         /// Activates the effect.
         /// </summary>
         protected abstract void PlaySelf();
