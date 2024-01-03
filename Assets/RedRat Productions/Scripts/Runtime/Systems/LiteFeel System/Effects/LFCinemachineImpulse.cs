@@ -1,5 +1,7 @@
 using Cinemachine;
 using DG.Tweening;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -30,16 +32,13 @@ namespace RedRats.Systems.LiteFeel.Effects
             perlin = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         }
 
-        protected override void SetupTweens(Sequence usedTweens, float duration)
+        protected override void SetupTweens()
         {
             Tween amplitudeTween = DOTween.To(() => perlin.m_AmplitudeGain, x => perlin.m_AmplitudeGain = x, amplitudeGain, duration);
-            amplitudeTween = (amplitudeSmoothing == SmoothingType.Tween) ? amplitudeTween.SetEase(amplitudeEasing) : amplitudeTween.SetEase(amplitudeCurve);
+            AddTweenToSequence(amplitudeTween, (amplitudeSmoothing == SmoothingType.Tween), amplitudeEasing, amplitudeCurve);
             
             Tween frequencyTween = DOTween.To(() => perlin.m_FrequencyGain, x => perlin.m_FrequencyGain = x, frequencyGain, duration);
-            frequencyTween = (frequencySmoothing == SmoothingType.Tween) ? frequencyTween.SetEase(frequencyEasing) : frequencyTween.SetEase(frequencyCurve);
-            
-            usedTweens.Append(amplitudeTween);
-            usedTweens.Join(frequencyTween);
+            AddTweenToSequence(frequencyTween, (frequencySmoothing == SmoothingType.Tween), frequencyEasing, frequencyCurve);
         }
 
         protected override void ResetTargetState()

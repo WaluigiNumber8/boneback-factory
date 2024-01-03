@@ -1,4 +1,5 @@
 using DG.Tweening;
+using UnityEngine;
 
 namespace RedRats.Systems.LiteFeel.Effects
 {
@@ -14,7 +15,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         protected override void PlayTween()
         {
             sequence.Kill();
-            Tween(duration);
+            Tween();
         }
 
         protected override void StopTween()
@@ -24,11 +25,17 @@ namespace RedRats.Systems.LiteFeel.Effects
             sequence.Rewind();
         }
 
-        private void Tween(float duration)
+        protected void AddTweenToSequence(Tween tween, bool useEasingType, Ease easing, AnimationCurve curve)
+        {
+            tween = (useEasingType) ? tween.SetEase(easing) : tween.SetEase(curve);
+            sequence.Join(tween);
+        }
+
+        private void Tween()
         {
             sequence = DOTween.Sequence();
             UpdateStartingValues();
-            SetupTweens(sequence, duration);
+            SetupTweens();
             sequence.SetLoops(loopAmount, loopType);
             if (resetOnEnd) sequence.OnComplete(StopTween);
         }
@@ -36,7 +43,6 @@ namespace RedRats.Systems.LiteFeel.Effects
         /// <summary>
         /// Tweens used for the effect are added into a sequence.
         /// </summary>
-        /// <param name="usedTweens">The sequence, containing tween that will be played.</param>
-        protected abstract void SetupTweens(Sequence usedTweens, float duration);
+        protected abstract void SetupTweens();
     }
 }

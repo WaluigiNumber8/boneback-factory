@@ -16,21 +16,21 @@ namespace RedRats.Systems.LiteFeel.Effects
         [SerializeField, HideIf("smoothing", SmoothingType.Tween)] protected AnimationCurve blendCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
 
         private float startBlend;
-        private static readonly int HologramBlend = Shader.PropertyToID("_HologramBlend");
+        private static readonly int BlendProperty = Shader.PropertyToID("_HologramBlend");
 
-        protected override void SetupTweens(Sequence usedTweens, float duration)
+        protected override void SetupTweens()
         {
-            usedTweens.Append(DOTween.To(() => material.GetFloat(HologramBlend), x => material.SetFloat(HologramBlend, x), targetBlend, duration));
+            AddPropertyTween(BlendProperty, targetBlend, (smoothing == SmoothingType.Tween), easing, blendCurve);
         }
         
         protected override void ResetTargetState()
         {
-            material.SetFloat(HologramBlend, startBlend);
+            material.SetFloat(BlendProperty, startBlend);
         }
 
         protected override void UpdateStartingValues()
         {
-            startBlend = material.GetFloat(HologramBlend);
+            startBlend = material.GetFloat(BlendProperty);
         }
         
     }
