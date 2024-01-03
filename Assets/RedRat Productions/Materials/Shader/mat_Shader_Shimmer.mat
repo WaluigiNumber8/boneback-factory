@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: mat_Shader_Ultimate_Unlit
-  m_Shader: {fileID: -6465566751694194690, guid: 389aadf67837a5045b9b84210cf52f94, type: 3}
+  m_Name: mat_Shader_Shimmer
+  m_Shader: {fileID: -6465566751694194690, guid: cd961077858eee94ca472b039edb5003, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -23,16 +23,12 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _HologramTexture:
-        m_Texture: {fileID: 2800000, guid: d8cb128c897512e4da63dbd17de5c7fc, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 680589a0053c0a24aa1db3390f0cabaf, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_95be2b6d263d4f348debe4fbc893aba3_Texture_1_Texture2D:
         m_Texture: {fileID: 2800000, guid: fe26da67a7751a14bbf02cf2b0c36815, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Sprite:
+        m_Texture: {fileID: 2800000, guid: 9e166e266ae0a4649a8672d5066cf7e3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -49,20 +45,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _HologramBlend: 0
-    - _HologramScrollSpeed: 100
-    - _HologramStrength: 0
-    - _HologramTiling: 2
-    - _Shine_Crispness: 0.181
-    - _Shine_Position: 0.501
-    - _Shine_Rotation: 135
-    - _Shine_Width: 2
+    - _Shine_Crispness: 0.05
+    - _Shine_Position: 0.5
+    - _Shine_Rotation: 164
+    - _Shine_Width: 10
     m_Colors:
-    - _MainColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Shine_Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Tint: {r: 0, g: 0, b: 0, a: 1}
+    - _Shine_Color: {r: 1, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &7312147973029597612
+--- !u!114 &343418492722726055
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

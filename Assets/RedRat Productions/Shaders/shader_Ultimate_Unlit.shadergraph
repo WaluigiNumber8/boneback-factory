@@ -4,6 +4,21 @@
     "m_ObjectId": "4d3a35bd2dc74c2e9d126ec35123fa11",
     "m_Properties": [
         {
+            "m_Id": "2de15b8025d24769af7caa8f9e8021a0"
+        },
+        {
+            "m_Id": "ef45baf418ca4ecc95f647f9a1b62141"
+        },
+        {
+            "m_Id": "4aab0e71423549c5a319124ede118ad1"
+        },
+        {
+            "m_Id": "87d9e760bbde48f490c16cfd849632d5"
+        },
+        {
+            "m_Id": "1decd3b09b8c4cc8bd3154707366b74f"
+        },
+        {
             "m_Id": "c3c925ddc90c4b5a825a21174f29a3b2"
         },
         {
@@ -36,6 +51,9 @@
         },
         {
             "m_Id": "6cb6e5744bd34d439987c18758a4b3c6"
+        },
+        {
+            "m_Id": "e53fb1d05e684e06b15a5edcdf1c9a4d"
         }
     ],
     "m_Nodes": [
@@ -86,6 +104,24 @@
         },
         {
             "m_Id": "908324244c9d48e39a5d585fbfb7f83b"
+        },
+        {
+            "m_Id": "a8e7ca3c5b6d4816941cecedabc1e212"
+        },
+        {
+            "m_Id": "92366b87e9ec46d28c6b111f9ee5d3ef"
+        },
+        {
+            "m_Id": "9d9264ae27af40579416bc8a38794bd5"
+        },
+        {
+            "m_Id": "a7f78480017c4072a50bf1d95401a265"
+        },
+        {
+            "m_Id": "7494bb0b3d4649dc81984c342b3defa7"
+        },
+        {
+            "m_Id": "e941acf293d843e9b3c94bd3f4c9c30b"
         }
     ],
     "m_GroupDatas": [
@@ -97,6 +133,9 @@
         },
         {
             "m_Id": "0f4d4ac69e924df9af638257f1b443a0"
+        },
+        {
+            "m_Id": "ea6fbd8affab4312b33a90724e322f46"
         }
     ],
     "m_StickyNoteDatas": [],
@@ -106,27 +145,27 @@
                 "m_Node": {
                     "m_Id": "22499de3c55f4813be7a707e30ad41e1"
                 },
-                "m_SlotId": 1
+                "m_SlotId": 3
             },
             "m_InputSlot": {
                 "m_Node": {
-                    "m_Id": "db2a407f328d42bab9f15bf4c6002c3e"
+                    "m_Id": "a8e7ca3c5b6d4816941cecedabc1e212"
                 },
-                "m_SlotId": 0
+                "m_SlotId": -886846849
             }
         },
         {
             "m_OutputSlot": {
                 "m_Node": {
-                    "m_Id": "22499de3c55f4813be7a707e30ad41e1"
+                    "m_Id": "7494bb0b3d4649dc81984c342b3defa7"
                 },
-                "m_SlotId": 2
+                "m_SlotId": 0
             },
             "m_InputSlot": {
                 "m_Node": {
-                    "m_Id": "41c0dff9a8624bc59e0ee29c1897aa8c"
+                    "m_Id": "a8e7ca3c5b6d4816941cecedabc1e212"
                 },
-                "m_SlotId": 0
+                "m_SlotId": -904944452
             }
         },
         {
@@ -169,6 +208,76 @@
                     "m_Id": "ae76c8daf5b645d68557958a933d5c85"
                 },
                 "m_SlotId": -783847768
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "92366b87e9ec46d28c6b111f9ee5d3ef"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "a8e7ca3c5b6d4816941cecedabc1e212"
+                },
+                "m_SlotId": 2038983689
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "9d9264ae27af40579416bc8a38794bd5"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "a8e7ca3c5b6d4816941cecedabc1e212"
+                },
+                "m_SlotId": -571938372
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "a7f78480017c4072a50bf1d95401a265"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "a8e7ca3c5b6d4816941cecedabc1e212"
+                },
+                "m_SlotId": -1794507722
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "a8e7ca3c5b6d4816941cecedabc1e212"
+                },
+                "m_SlotId": 2
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "41c0dff9a8624bc59e0ee29c1897aa8c"
+                },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "a8e7ca3c5b6d4816941cecedabc1e212"
+                },
+                "m_SlotId": 3
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "db2a407f328d42bab9f15bf4c6002c3e"
+                },
+                "m_SlotId": 0
             }
         },
         {
@@ -268,12 +377,26 @@
                 },
                 "m_SlotId": 965439442
             }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "e941acf293d843e9b3c94bd3f4c9c30b"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "a8e7ca3c5b6d4816941cecedabc1e212"
+                },
+                "m_SlotId": 355415765
+            }
         }
     ],
     "m_VertexContext": {
         "m_Position": {
-            "x": -100.0,
-            "y": -3.0
+            "x": 597.0,
+            "y": -1.0000015497207642
         },
         "m_Blocks": [
             {
@@ -289,8 +412,8 @@
     },
     "m_FragmentContext": {
         "m_Position": {
-            "x": -100.0,
-            "y": 197.0
+            "x": 597.0,
+            "y": 199.0
         },
         "m_Blocks": [
             {
@@ -535,13 +658,56 @@
 }
 
 {
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "1decd3b09b8c4cc8bd3154707366b74f",
+    "m_Guid": {
+        "m_GuidSerialized": "b26ca9e1-1a4d-4080-9d48-8c5e46319b99"
+    },
+    "m_Name": "Shine Glow",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Shine Glow",
+    "m_DefaultReferenceName": "_Shine_Glow",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": 0.05000000074505806,
+    "m_FloatType": 1,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "1e6fbaea7181400db5acc69efc13afd1",
+    "m_Id": 0,
+    "m_DisplayName": "Shine Position",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.SubGraphNode",
     "m_ObjectId": "22499de3c55f4813be7a707e30ad41e1",
     "m_Group": {
         "m_Id": "0f4d4ac69e924df9af638257f1b443a0"
     },
-    "m_Name": "subshader_SpriteTint",
+    "m_Name": "snode_SpriteTint",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
@@ -558,6 +724,9 @@
         },
         {
             "m_Id": "9e46fcc378ae44569349fc3578db5fce"
+        },
+        {
+            "m_Id": "95b59d06e40547969356c9129f8afe8e"
         },
         {
             "m_Id": "9a57c8fefd974382a3e95596144500ce"
@@ -600,6 +769,36 @@
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 3,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.ColorShaderProperty",
+    "m_ObjectId": "2de15b8025d24769af7caa8f9e8021a0",
+    "m_Guid": {
+        "m_GuidSerialized": "09674a37-2775-4198-b81c-da7becbbbade"
+    },
+    "m_Name": "Shine Color",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Shine Color",
+    "m_DefaultReferenceName": "_Shine_Color",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+    },
+    "isMainColor": false,
+    "m_ColorMode": 0
 }
 
 {
@@ -659,6 +858,59 @@
         "m_SerializableColors": []
     },
     "m_SerializedDescriptor": "SurfaceDescription.Alpha"
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "4aab0e71423549c5a319124ede118ad1",
+    "m_Guid": {
+        "m_GuidSerialized": "8a70df88-e7c5-4ce9-ac98-eb1b34030559"
+    },
+    "m_Name": "Shine Width",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Shine Width",
+    "m_DefaultReferenceName": "_Shine_Width",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": 0.30000001192092898,
+    "m_FloatType": 0,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
+    "m_ObjectId": "4f6d6f96d67f471d92893fd703931b9b",
+    "m_Id": -886846849,
+    "m_DisplayName": "RGBA",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "_RGBA",
+    "m_StageCapability": 2,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_Labels": []
 }
 
 {
@@ -769,6 +1021,21 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "590265c4349447e9b0f281602e9de422",
+    "m_Id": -904944452,
+    "m_DisplayName": "Rotation (Deg)",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "_Rotation_Deg",
+    "m_StageCapability": 2,
+    "m_Value": 135.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
     "m_ObjectId": "5ca774cab4384529a689dc9d77dadf1e",
     "m_Id": 1,
@@ -816,6 +1083,29 @@
         "x": 0.0,
         "y": 1.0
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
+    "m_ObjectId": "5dffe50eb47646378a97531e5b45288f",
+    "m_Id": 3,
+    "m_DisplayName": "RGB",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "RGB",
+    "m_StageCapability": 2,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_Labels": []
 }
 
 {
@@ -889,6 +1179,42 @@
 {
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "7494bb0b3d4649dc81984c342b3defa7",
+    "m_Group": {
+        "m_Id": "ea6fbd8affab4312b33a90724e322f46"
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -213.00009155273438,
+            "y": 390.0000305175781,
+            "width": 151.0000762939453,
+            "height": 34.000030517578128
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "799814e985be4448b952027c435931e4"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "87d9e760bbde48f490c16cfd849632d5"
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
     "m_ObjectId": "79578980929243aa97f986b39602d4c3",
     "m_Group": {
         "m_Id": "c213f1af72a44edeb31c5e8e11e505ed"
@@ -920,6 +1246,36 @@
     "m_Property": {
         "m_Id": "dba56f82c2eb4efc8326830eac8d8a6d"
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "7993fa024f8f4a81b91f68558f97c888",
+    "m_Id": 0,
+    "m_DisplayName": "Shine Glow",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "799814e985be4448b952027c435931e4",
+    "m_Id": 0,
+    "m_DisplayName": "Shine Rotation",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
 }
 
 {
@@ -1004,6 +1360,34 @@
 }
 
 {
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "87d9e760bbde48f490c16cfd849632d5",
+    "m_Guid": {
+        "m_GuidSerialized": "d3994f6a-43d1-4cb4-8938-25f3352cb0ee"
+    },
+    "m_Name": "Shine Rotation",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Shine Rotation",
+    "m_DefaultReferenceName": "_Shine_Rotation",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": 135.0,
+    "m_FloatType": 1,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 360.0
+    }
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.CategoryData",
     "m_ObjectId": "8af7040782514b61b67b0c6333d6b9d3",
@@ -1078,6 +1462,67 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "92366b87e9ec46d28c6b111f9ee5d3ef",
+    "m_Group": {
+        "m_Id": "ea6fbd8affab4312b33a90724e322f46"
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -213.00009155273438,
+            "y": 264.0000305175781,
+            "width": 149.0,
+            "height": 33.999969482421878
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "1e6fbaea7181400db5acc69efc13afd1"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "ef45baf418ca4ecc95f647f9a1b62141"
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
+    "m_ObjectId": "92fd3a0c272941d1b10212ed8ac8fc03",
+    "m_Id": 0,
+    "m_DisplayName": "Shine Color",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.BlockNode",
     "m_ObjectId": "9401c64683e64796a8d530d8dea65594",
     "m_Group": {
@@ -1108,6 +1553,56 @@
         "m_SerializableColors": []
     },
     "m_SerializedDescriptor": "VertexDescription.Tangent"
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
+    "m_ObjectId": "941e5460e41b446d922a1321918c548f",
+    "m_Id": -571938372,
+    "m_DisplayName": "ShineColor",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "_ShineColor",
+    "m_StageCapability": 2,
+    "m_Value": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0,
+        "w": 1.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
+    "m_ObjectId": "95b59d06e40547969356c9129f8afe8e",
+    "m_Id": 3,
+    "m_DisplayName": "RGBA",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "RGBA",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_Labels": []
 }
 
 {
@@ -1223,6 +1718,42 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "9d9264ae27af40579416bc8a38794bd5",
+    "m_Group": {
+        "m_Id": "ea6fbd8affab4312b33a90724e322f46"
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -213.00009155273438,
+            "y": 304.0000305175781,
+            "width": 137.0000457763672,
+            "height": 33.999969482421878
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "92fd3a0c272941d1b10212ed8ac8fc03"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "2de15b8025d24769af7caa8f9e8021a0"
+    }
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "9e46fcc378ae44569349fc3578db5fce",
     "m_Id": 1801660374,
@@ -1282,6 +1813,42 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "a7f78480017c4072a50bf1d95401a265",
+    "m_Group": {
+        "m_Id": "ea6fbd8affab4312b33a90724e322f46"
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -213.00009155273438,
+            "y": 347.0000305175781,
+            "width": 138.00003051757813,
+            "height": 33.999969482421878
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "c80272e8d1d54c4e9c378a3220877374"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "4aab0e71423549c5a319124ede118ad1"
+    }
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.SamplerStateMaterialSlot",
     "m_ObjectId": "a88db0d37e8f42c1ad6cfc878102fd9d",
     "m_Id": 3,
@@ -1291,6 +1858,82 @@
     "m_ShaderOutputName": "Sampler",
     "m_StageCapability": 3,
     "m_BareResource": false
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.SubGraphNode",
+    "m_ObjectId": "a8e7ca3c5b6d4816941cecedabc1e212",
+    "m_Group": {
+        "m_Id": "ea6fbd8affab4312b33a90724e322f46"
+    },
+    "m_Name": "snode_Shimmer",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": 104.99996948242188,
+            "y": 198.0,
+            "width": 207.99996948242188,
+            "height": 399.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "4f6d6f96d67f471d92893fd703931b9b"
+        },
+        {
+            "m_Id": "f8abda7a7f9e4a629e5d95cc68bd816f"
+        },
+        {
+            "m_Id": "941e5460e41b446d922a1321918c548f"
+        },
+        {
+            "m_Id": "fde6cdb941034f99b2eb29d33a926a38"
+        },
+        {
+            "m_Id": "590265c4349447e9b0f281602e9de422"
+        },
+        {
+            "m_Id": "e98192a10079421bbcbd544d276a025e"
+        },
+        {
+            "m_Id": "ec03c403b40e469a82a2baf7373dd7ac"
+        },
+        {
+            "m_Id": "5dffe50eb47646378a97531e5b45288f"
+        },
+        {
+            "m_Id": "b953fdeb485748b5be35f0e64a0930e6"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_SerializedSubGraph": "{\n    \"subGraph\": {\n        \"fileID\": -5475051401550479605,\n        \"guid\": \"7d09641cdc638ad4096d5184a6553d4a\",\n        \"type\": 3\n    }\n}",
+    "m_PropertyGuids": [
+        "5fcec670-7ac9-4a63-aea7-ccbd68d14263",
+        "d82508ba-7338-49eb-ae65-0c4d25724aa5",
+        "3744c418-9092-4ff8-8fcb-a277b976f6d2",
+        "024b9afe-a72a-42a5-b5ed-1553572cf286",
+        "2143599a-b480-4511-9fd0-187b399945d5",
+        "49b84e3c-aa82-4cff-a5ea-80cece38e8de"
+    ],
+    "m_PropertyIds": [
+        -886846849,
+        2038983689,
+        -571938372,
+        -1794507722,
+        -904944452,
+        355415765
+    ],
+    "m_Dropdowns": [],
+    "m_DropdownSelectedEntries": []
 }
 
 {
@@ -1366,7 +2009,7 @@
     "m_Group": {
         "m_Id": "df4a77ba527b467f8b3a1be2b39392c7"
     },
-    "m_Name": "subshader_Hologram",
+    "m_Name": "snode_Hologram",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
@@ -1516,6 +2159,21 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "b953fdeb485748b5be35f0e64a0930e6",
+    "m_Id": 2,
+    "m_DisplayName": "Alpha",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Alpha",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.PositionMaterialSlot",
     "m_ObjectId": "ba5d705a13ac43b99d59b008c4cee7e7",
     "m_Id": 0,
@@ -1633,6 +2291,21 @@
         "x": 0.0,
         "y": 1.0
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "c80272e8d1d54c4e9c378a3220877374",
+    "m_Id": 0,
+    "m_DisplayName": "Shine Width",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
 }
 
 {
@@ -1934,6 +2607,30 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.CategoryData",
+    "m_ObjectId": "e53fb1d05e684e06b15a5edcdf1c9a4d",
+    "m_Name": "Shimmer",
+    "m_ChildObjectList": [
+        {
+            "m_Id": "2de15b8025d24769af7caa8f9e8021a0"
+        },
+        {
+            "m_Id": "ef45baf418ca4ecc95f647f9a1b62141"
+        },
+        {
+            "m_Id": "4aab0e71423549c5a319124ede118ad1"
+        },
+        {
+            "m_Id": "87d9e760bbde48f490c16cfd849632d5"
+        },
+        {
+            "m_Id": "1decd3b09b8c4cc8bd3154707366b74f"
+        }
+    ]
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Texture2DInputMaterialSlot",
     "m_ObjectId": "e79a213432a844c8ad9e508bb081e20f",
     "m_Id": 1775467011,
@@ -1995,6 +2692,121 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "e941acf293d843e9b3c94bd3f4c9c30b",
+    "m_Group": {
+        "m_Id": "ea6fbd8affab4312b33a90724e322f46"
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -213.00009155273438,
+            "y": 433.0000305175781,
+            "width": 159.0,
+            "height": 34.000030517578128
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "7993fa024f8f4a81b91f68558f97c888"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "1decd3b09b8c4cc8bd3154707366b74f"
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "e98192a10079421bbcbd544d276a025e",
+    "m_Id": 355415765,
+    "m_DisplayName": "Crispness",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "_Crispness",
+    "m_StageCapability": 2,
+    "m_Value": 0.05000000074505806,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.GroupData",
+    "m_ObjectId": "ea6fbd8affab4312b33a90724e322f46",
+    "m_Title": "Shimmer",
+    "m_Position": {
+        "x": -238.0001220703125,
+        "y": 138.99996948242188
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
+    "m_ObjectId": "ec03c403b40e469a82a2baf7373dd7ac",
+    "m_Id": 1,
+    "m_DisplayName": "RGBA",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "RGBA",
+    "m_StageCapability": 2,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "ef45baf418ca4ecc95f647f9a1b62141",
+    "m_Guid": {
+        "m_GuidSerialized": "136283fe-e26a-4e86-af25-bfc8acd97605"
+    },
+    "m_Name": "Shine Position",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Shine Position",
+    "m_DefaultReferenceName": "_Shine_Position",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": 0.0,
+    "m_FloatType": 1,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
+    }
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "f5dc3e6c74624bd5a516e90593eacc90",
     "m_Id": 0,
@@ -2030,6 +2842,36 @@
         "z": 0.0,
         "w": 0.0
     },
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "f8abda7a7f9e4a629e5d95cc68bd816f",
+    "m_Id": 2038983689,
+    "m_DisplayName": "Position",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "_Position",
+    "m_StageCapability": 2,
+    "m_Value": 0.5,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "fde6cdb941034f99b2eb29d33a926a38",
+    "m_Id": -1794507722,
+    "m_DisplayName": "Width",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "_Width",
+    "m_StageCapability": 2,
+    "m_Value": 0.30000001192092898,
+    "m_DefaultValue": 0.0,
     "m_Labels": []
 }
 
