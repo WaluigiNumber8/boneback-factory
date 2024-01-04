@@ -31,6 +31,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 680589a0053c0a24aa1db3390f0cabaf, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_95be2b6d263d4f348debe4fbc893aba3_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: fe26da67a7751a14bbf02cf2b0c36815, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -49,9 +53,20 @@ Material:
     - _HologramScrollSpeed: 100
     - _HologramStrength: 0
     - _HologramTiling: 2
+    - _ShimmerGlow: 0.05
+    - _ShimmerPosition: 0
+    - _ShimmerRotation: 135
+    - _ShimmerWidth: 0.3
+    - _Shine_Crispness: 0.181
+    - _Shine_Glow: 0.05
+    - _Shine_Position: 0.501
+    - _Shine_Rotation: 135
+    - _Shine_Width: 2
     m_Colors:
     - _MainColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Tint: {r: 1, g: 0, b: 0, a: 1}
+    - _ShimmerColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Shine_Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Tint: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &7312147973029597612
 MonoBehaviour:
