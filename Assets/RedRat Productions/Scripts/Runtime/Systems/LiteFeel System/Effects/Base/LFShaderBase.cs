@@ -1,5 +1,6 @@
 using DG.Tweening;
 using RedRats.Core.Utils;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace RedRats.Systems.LiteFeel.Effects
@@ -7,7 +8,7 @@ namespace RedRats.Systems.LiteFeel.Effects
     public abstract class LFShaderBase : LFEffectTweenMultipleBase
     {
         [Header("Target")] 
-        [SerializeField] private MaterialExtractor target;
+        [SerializeField, InfoBox("Missing target", InfoMessageType.Error, nameof(HasNoTarget))] private MaterialExtractor target;
 
         protected Material material;
 
@@ -44,5 +45,6 @@ namespace RedRats.Systems.LiteFeel.Effects
             AddFloatTweenToSequence(tween, useEasingType, easing, curve);
         }
         
+        private bool HasNoTarget() => target == null; 
     }
 }
