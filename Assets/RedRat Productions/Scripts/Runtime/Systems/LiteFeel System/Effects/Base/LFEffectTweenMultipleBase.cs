@@ -25,7 +25,7 @@ namespace RedRats.Systems.LiteFeel.Effects
             sequence.Rewind();
         }
 
-        protected void AddTweenToSequence(Tween tween, bool useEasingType, Ease easing, AnimationCurve curve)
+        protected void AddFloatTweenToSequence(Tween tween, bool useEasingType, Ease easing, AnimationCurve curve)
         {
             tween = (useEasingType) ? tween.SetEase(easing) : tween.SetEase(curve);
             sequence.Join(tween);

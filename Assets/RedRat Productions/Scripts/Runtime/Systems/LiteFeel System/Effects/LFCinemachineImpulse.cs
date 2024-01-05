@@ -35,10 +35,10 @@ namespace RedRats.Systems.LiteFeel.Effects
         protected override void SetupTweens()
         {
             Tween amplitudeTween = DOTween.To(() => perlin.m_AmplitudeGain, x => perlin.m_AmplitudeGain = x, amplitudeGain, duration);
-            AddTweenToSequence(amplitudeTween, (amplitudeSmoothing == SmoothingType.Tween), amplitudeEasing, amplitudeCurve);
+            AddFloatTweenToSequence(amplitudeTween, (amplitudeSmoothing == SmoothingType.Tween), amplitudeEasing, amplitudeCurve);
             
             Tween frequencyTween = DOTween.To(() => perlin.m_FrequencyGain, x => perlin.m_FrequencyGain = x, frequencyGain, duration);
-            AddTweenToSequence(frequencyTween, (frequencySmoothing == SmoothingType.Tween), frequencyEasing, frequencyCurve);
+            AddFloatTweenToSequence(frequencyTween, (frequencySmoothing == SmoothingType.Tween), frequencyEasing, frequencyCurve);
         }
 
         protected override void ResetTargetState()

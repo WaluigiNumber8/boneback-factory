@@ -66,12 +66,17 @@ Material:
     - _HologramScrollSpeed: 100
     - _HologramStrength: 1
     - _HologramTiling: 2
+    - _ShimmerGlow: 0.05
+    - _ShimmerPosition: 0
+    - _ShimmerRotation: 135
+    - _ShimmerWidth: 0.3
     - _Shine_Crispness: 0.05
     - _Shine_Position: 0
     - _Shine_Rotation: 135
     - _Shine_Width: 0.3
     m_Colors:
     - _MainColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ShimmerColor: {r: 1, g: 1, b: 1, a: 1}
     - _Shine_Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Tint: {r: 1, g: 1, b: 1, a: 1}
+    - _Tint: {r: 0, g: 0.3347354, b: 1, a: 1}
   m_BuildTextureStacks: []

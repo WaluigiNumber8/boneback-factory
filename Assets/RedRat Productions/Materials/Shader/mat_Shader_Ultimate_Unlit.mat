@@ -54,9 +54,9 @@ Material:
     - _HologramStrength: 0
     - _HologramTiling: 2
     - _ShimmerGlow: 0.05
-    - _ShimmerPosition: 0
+    - _ShimmerPosition: 0.404
     - _ShimmerRotation: 135
-    - _ShimmerWidth: 0.3
+    - _ShimmerWidth: 2.22
     - _Shine_Crispness: 0.181
     - _Shine_Glow: 0.05
     - _Shine_Position: 0.501
