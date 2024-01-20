@@ -49,6 +49,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _FullColorBlend: 0
+    - _FullColorGlow: 1
     - _HologramBlend: 0
     - _HologramScrollSpeed: 100
     - _HologramStrength: 0
@@ -63,6 +65,7 @@ Material:
     - _Shine_Rotation: 135
     - _Shine_Width: 2
     m_Colors:
+    - _FullBlendColor: {r: 1, g: 0, b: 0, a: 0}
     - _GlowColor: {r: 0, g: 0, b: 0, a: 0}
     - _MainColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShimmerColor: {r: 1, g: 1, b: 1, a: 1}
