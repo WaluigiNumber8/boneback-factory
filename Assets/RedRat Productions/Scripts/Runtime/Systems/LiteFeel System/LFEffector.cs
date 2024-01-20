@@ -7,6 +7,7 @@ namespace RedRats.Systems.LiteFeel.Core
     /// <summary>
     /// Detects all effectors on the same <see cref="GameObject"/> and plays them when needed.
     /// </summary>
+    [DisallowMultipleComponent]
     public class LFEffector : MonoBehaviour
     {
         private LFEffectBase[] effects;
