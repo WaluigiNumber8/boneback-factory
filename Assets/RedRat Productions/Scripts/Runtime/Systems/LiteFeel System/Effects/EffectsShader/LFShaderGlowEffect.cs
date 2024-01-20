@@ -26,9 +26,13 @@ namespace RedRats.Systems.LiteFeel.Effects
             startGlow = material.GetColor(GlowProperty);
         }
 
-        protected override void SetupTweens()
+        protected override void SetBeginState()
         {
             material.SetColor(GlowProperty, beginGlow);
+        }
+
+        protected override void SetupTweens()
+        {
             AddColorTween(GlowProperty, targetGlow, (smoothing == SmoothingType.Tween), easing, blendCurve);
         }
     }

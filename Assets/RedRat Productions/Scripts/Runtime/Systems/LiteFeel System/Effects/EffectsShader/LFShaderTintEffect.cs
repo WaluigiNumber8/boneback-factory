@@ -26,9 +26,13 @@ namespace RedRats.Systems.LiteFeel.Effects
             startTint = material.GetColor(TintProperty);
         }
 
-        protected override void SetupTweens()
+        protected override void SetBeginState()
         {
             material.SetColor(TintProperty, beginTint);
+        }
+
+        protected override void SetupTweens()
+        {
             AddColorTween(TintProperty, targetTint, (smoothing == SmoothingType.Tween), easing, blendCurve);
         }
     }

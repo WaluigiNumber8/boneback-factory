@@ -51,10 +51,14 @@ namespace RedRats.Systems.LiteFeel.Effects
             startColor = material.GetColor(ColorProperty);
         }
 
+        protected override void SetBeginState()
+        {
+            if (animateBlend) material.SetFloat(BlendProperty, beginBlend);
+            if (animateGlow) material.SetFloat(GlowProperty, beginGlow);
+        }
+
         protected override void SetupTweens()
         {
-            material.SetFloat(BlendProperty, beginBlend);
-            material.SetFloat(GlowProperty, beginGlow);
             AddFloatTween(BlendProperty, targetBlend, (blendSmoothing == SmoothingType.Tween), blendEasing, blendCurve);
             AddFloatTween(GlowProperty, targetGlow, (glowSmoothing == SmoothingType.Tween), glowEasing, glowCurve);
             AddColorTween(ColorProperty, targetColor, (colorSmoothing == SmoothingType.Tween), colorEasing, colorCurve);

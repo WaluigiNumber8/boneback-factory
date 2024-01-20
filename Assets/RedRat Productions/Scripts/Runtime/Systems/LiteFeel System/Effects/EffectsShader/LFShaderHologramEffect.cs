@@ -10,6 +10,7 @@ namespace RedRats.Systems.LiteFeel.Effects
     public class LFShaderHologramEffect : LFShaderBase
     {
         [Header("Hologram Blend")]
+        [SerializeField] private float beginBlend = 0f;
         [SerializeField] private float targetBlend = 1f;
         [SerializeField] protected SmoothingType smoothing = SmoothingType.Tween;
         [SerializeField, HideIf("smoothing", SmoothingType.AnimationCurve)] protected Ease easing = Ease.InOutSine;
@@ -17,6 +18,11 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         private float startBlend;
         private static readonly int BlendProperty = Shader.PropertyToID("_HologramBlend");
+
+        protected override void SetBeginState()
+        {
+            material.SetFloat(BlendProperty, beginBlend);
+        }
 
         protected override void SetupTweens()
         {

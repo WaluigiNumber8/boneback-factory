@@ -32,6 +32,11 @@ namespace RedRats.Systems.LiteFeel.Effects
             perlin = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         }
 
+        protected override void SetBeginState()
+        {
+            // Do nothing
+        }
+
         protected override void SetupTweens()
         {
             Tween amplitudeTween = DOTween.To(() => perlin.m_AmplitudeGain, x => perlin.m_AmplitudeGain = x, amplitudeGain, duration);

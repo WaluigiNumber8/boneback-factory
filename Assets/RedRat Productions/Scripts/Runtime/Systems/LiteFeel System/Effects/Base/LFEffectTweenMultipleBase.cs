@@ -41,6 +41,11 @@ namespace RedRats.Systems.LiteFeel.Effects
         }
         
         /// <summary>
+        /// Set parameters to beginning states before tweening.
+        /// </summary>
+        protected abstract void SetBeginState();
+        
+        /// <summary>
         /// Tweens used for the effect are added into a sequence.
         /// </summary>
         protected abstract void SetupTweens();
