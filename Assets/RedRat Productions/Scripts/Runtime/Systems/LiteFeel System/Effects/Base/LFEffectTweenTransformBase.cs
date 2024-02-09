@@ -16,7 +16,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         [SerializeField] protected TransitionType mode = TransitionType.AtoB;
         [SerializeField, HideIf("mode", TransitionType.ToDestination)] protected Vector3 beginValue;
         [SerializeField] protected Vector3 endValue;
-        [SerializeField, EnumToggleButtons] protected MovementType movement = MovementType.Relative;
+        [SerializeField, EnumToggleButtons] protected MovementType movement = MovementType.Absolute;
         
         protected Vector3 startValue;
         

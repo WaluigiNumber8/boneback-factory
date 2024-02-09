@@ -8,7 +8,7 @@ namespace RedRats.Systems.LiteFeel.Brains
     /// <summary>
     /// Allocates effects to a <see cref="Button"/>.
     /// </summary>
-    public class LFSelectableBrain : MonoBehaviour
+    public class LFBrainSelectable : MonoBehaviour
     {
         [SerializeField] private SelectableEventCaller eventCaller;
         [SerializeField] private LFEffector onClickEffector;

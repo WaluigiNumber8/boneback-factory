@@ -11,7 +11,7 @@ namespace RedRats.Systems.LiteFeel.Effects
     public abstract class LFEffectTweenSingleBase<T> : LFEffectTweenBase
     {
         [Header("Smoothing")]
-        [SerializeField] protected SmoothingType smoothing = SmoothingType.Tween;
+        [SerializeField] protected SmoothingType smoothing = SmoothingType.AnimationCurve;
         [SerializeField, HideIf("smoothing", SmoothingType.AnimationCurve)] protected Ease easing = Ease.InOutSine;
         [SerializeField, HideIf("smoothing", SmoothingType.Tween)] protected AnimationCurve movementCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
         

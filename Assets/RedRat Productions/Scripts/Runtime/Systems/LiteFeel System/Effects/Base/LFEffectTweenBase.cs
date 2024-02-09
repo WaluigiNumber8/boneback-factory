@@ -19,7 +19,7 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         protected int loopAmount;
 
-        private void Start()
+        protected override void Start()
         {
             Initialize();
             UpdateStartingValues();

@@ -19,7 +19,12 @@ namespace RedRats.Systems.LiteFeel.Effects
         public void TestPlay() => Play(); 
         [ButtonGroup, Button("Stop", ButtonSizes.Medium), DisableInEditorMode]
         public void TestStop() => Stop();
-        
+
+        protected virtual void Start()
+        {
+            Initialize();
+        }
+
         private void OnEnable()
         {
             if (settings.playOnEnable) Play();
