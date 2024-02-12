@@ -33,7 +33,7 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         protected override void SetupTweens()
         {
-            AddColorTween(TintProperty, targetTint, (smoothing == SmoothingType.Tween), easing, blendCurve);
+            AddColorTween(TintProperty, targetTint, smoothing, easing, blendCurve);
         }
     }
 }

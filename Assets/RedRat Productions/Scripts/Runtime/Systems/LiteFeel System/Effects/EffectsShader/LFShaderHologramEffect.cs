@@ -26,7 +26,7 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         protected override void SetupTweens()
         {
-            AddFloatTween(BlendProperty, targetBlend, (smoothing == SmoothingType.Tween), easing, blendCurve);
+            AddFloatTween(BlendProperty, targetBlend, smoothing, easing, blendCurve);
         }
         
         protected override void ResetTargetState()

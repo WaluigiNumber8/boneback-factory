@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -10,14 +11,16 @@ namespace RedRats.Systems.LiteFeel.Effects
         [SerializeField] protected float duration = 0.2f;
         [SerializeField] protected bool additivePlay;
         [SerializeField] protected bool resetOnEnd = true;
-        [SerializeField] protected bool smoothReset;
         
         [Header("Looping")] 
         [SerializeField] private bool infiniteLoop;
         [SerializeField, Min(1), HideIf("infiniteLoop")] private int loops = 1;
         [SerializeField] protected LoopType loopType = LoopType.Restart;
 
-        protected int loopAmount;
+        private Sequence sequence;
+        private int loopAmount;
+
+        private void Awake() => sequence.SetAutoKill(false);
 
         protected override void Start()
         {
@@ -29,23 +32,39 @@ namespace RedRats.Systems.LiteFeel.Effects
         {
             if (!additivePlay) ResetTargetState();
             loopAmount = (infiniteLoop) ? -1 : loops;
-            PlayTween();
+            sequence.Kill();
+            Tween();
         }
 
         protected override void StopSelf()
         {
-            StopTween();
+            sequence.Kill();
             ResetTargetState();
         }
         
+        protected void AddFloatTweenToSequence(Tween tween, SmoothingType smoothing, Ease easing, AnimationCurve curve)
+        {
+            tween = (smoothing == SmoothingType.Tween) ? tween.SetEase(easing) : tween.SetEase(curve);
+            sequence.Join(tween);
+        }
+        
+        private void Tween()
+        {
+            sequence = DOTween.Sequence();
+            UpdateStartingValues();
+            SetupTweens();
+            sequence.SetLoops(loopAmount, loopType);
+            if (resetOnEnd) sequence.OnComplete(StopSelf);
+        }
+
         /// <summary>
-        /// Plays the effect.
+        /// Set parameters to beginning states right before tweening.
         /// </summary>
-        protected abstract void PlayTween();
+        protected abstract void SetBeginState();
         /// <summary>
-        /// Stops the effect.
+        /// Tweens used for the effect are added into a sequence.
         /// </summary>
-        protected abstract void StopTween();
+        protected abstract void SetupTweens();
         /// <summary>
         /// Reset the target to its state before the tween happened.
         /// </summary>

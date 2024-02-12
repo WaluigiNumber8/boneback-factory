@@ -4,31 +4,36 @@ using UnityEngine;
 
 namespace RedRats.Systems.LiteFeel.Effects
 {
-    public class LFPositionShakeEffect : LFEffectTweenSingleBase<Vector3>
+    public class LFPositionShakeEffect : LFEffectTweenBase
     {
-        [Header("Target")]
+        [Header("Shake Position")] 
         [SerializeField] private Transform target;
-        
-        [Header("Shake")] 
         [SerializeField] private bool uniform = true;
         [SerializeField, ShowIf("uniform")] private float strength = 0.1f;
         [SerializeField, HideIf("uniform")] private Vector3 strengthVector = Vector3.one * 0.1f;
         [SerializeField, Min(0)] private int vibration = 20;
         [SerializeField, Range(0f, 90f)] private float randomness = 90;
         [SerializeField] private bool fadeout;
+        [SerializeField] protected SmoothingType smoothing = SmoothingType.AnimationCurve;
+        [SerializeField, HideIf("smoothing", SmoothingType.AnimationCurve)] protected Ease shakeEasing = Ease.InOutSine;
+        [SerializeField, HideIf("smoothing", SmoothingType.Tween)] protected AnimationCurve shakeCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
         
         private Vector3 startLocalPosition;
 
-        protected override void Tween(Vector3 valueToReach, float duration, bool forceAbsolute = false)
-        {
-            tween = target.DOShakePosition(duration, valueToReach, vibration, randomness, false, fadeout);
-        }
-
-        protected override Vector3 GetStartingValue() => startLocalPosition;
-        protected override Vector3 GetTargetValue() => (uniform) ? Vector3.one * strength : strengthVector;
         protected override void Initialize()
         {
             // Nothing to do here.
+        }
+
+        protected override void SetBeginState()
+        {
+            // Nothing to do here.
+        }
+
+        protected override void SetupTweens()
+        {
+            Tween tween = target.DOShakePosition(duration, GetTargetValue(), vibration, randomness, false, fadeout);
+            AddFloatTweenToSequence(tween, smoothing, shakeEasing, shakeCurve);
         }
 
         protected override void ResetTargetState() => target.localPosition = startLocalPosition;
@@ -36,5 +41,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         {
             startLocalPosition = target.localPosition;
         }
+        
+        private Vector3 GetTargetValue() => (uniform) ? Vector3.one * strength : strengthVector;
     }
 }

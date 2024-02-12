@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace RedRats.Systems.LiteFeel.Effects
 {
-    public class LFCinemachineImpulse : LFEffectTweenMultipleBase
+    public class LFCinemachineImpulse : LFEffectTweenBase
     {
         [Header("Amplitude")] 
         [SerializeField] private float amplitudeGain = 1f;
@@ -38,10 +38,10 @@ namespace RedRats.Systems.LiteFeel.Effects
         protected override void SetupTweens()
         {
             Tween amplitudeTween = DOTween.To(() => perlin.m_AmplitudeGain, x => perlin.m_AmplitudeGain = x, amplitudeGain, duration);
-            AddFloatTweenToSequence(amplitudeTween, (amplitudeSmoothing == SmoothingType.Tween), amplitudeEasing, amplitudeCurve);
+            AddFloatTweenToSequence(amplitudeTween, amplitudeSmoothing, amplitudeEasing, amplitudeCurve);
             
             Tween frequencyTween = DOTween.To(() => perlin.m_FrequencyGain, x => perlin.m_FrequencyGain = x, frequencyGain, duration);
-            AddFloatTweenToSequence(frequencyTween, (frequencySmoothing == SmoothingType.Tween), frequencyEasing, frequencyCurve);
+            AddFloatTweenToSequence(frequencyTween, frequencySmoothing, frequencyEasing, frequencyCurve);
         }
 
         protected override void ResetTargetState()

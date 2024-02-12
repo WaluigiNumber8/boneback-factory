@@ -51,8 +51,8 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         protected override void SetupTweens()
         {
-            AddFloatTween(PositionProperty, targetPosition, (positionSmoothing == SmoothingType.Tween), posEasing, positionCurve);
-            AddFloatTween(GlowProperty, targetGlow, (glowSmoothing == SmoothingType.Tween), glowEasing, glowCurve);
+            AddFloatTween(PositionProperty, targetPosition, positionSmoothing, posEasing, positionCurve);
+            AddFloatTween(GlowProperty, targetGlow, glowSmoothing, glowEasing, glowCurve);
         }
     }
 }

@@ -4,34 +4,42 @@ using UnityEngine;
 
 namespace RedRats.Systems.LiteFeel.Effects
 {
-    public class LFScaleShakeEffect : LFEffectTweenSingleBase<Vector3>
+    public class LFScaleShakeEffect : LFEffectTweenBase
     {
         [Header("Target")]
-        [SerializeField] private Transform target;
         
-        [Header("Shake")] 
+        [Header("Shake Scale")] 
+        [SerializeField] private Transform target;
         [SerializeField] private bool uniform = true;
         [SerializeField, ShowIf("uniform")] private float strength = 0.1f;
         [SerializeField, HideIf("uniform")] private Vector3 strengthVector = Vector3.one * 0.1f;
         [SerializeField, Min(0)] private int vibration = 20;
         [SerializeField, Range(0f, 90f)] private float randomness = 90;
         [SerializeField] private bool fadeout;
+        [SerializeField] protected SmoothingType smoothing = SmoothingType.AnimationCurve;
+        [SerializeField, HideIf("smoothing", SmoothingType.AnimationCurve)] protected Ease shakeEasing = Ease.InOutSine;
+        [SerializeField, HideIf("smoothing", SmoothingType.Tween)] protected AnimationCurve shakeCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
         
         private Vector3 startScale;
 
-        protected override void Tween(Vector3 valueToReach, float duration, bool forceAbsolute = false)
-        {
-            tween = target.DOShakeScale(duration, valueToReach, vibration, randomness, fadeout);
-        }
-
-        protected override Vector3 GetStartingValue() => startScale;
-        protected override Vector3 GetTargetValue() => (uniform) ? Vector3.one * strength : strengthVector;
         protected override void Initialize()
         {
             // Nothing to do here.
         }
 
+        protected override void SetBeginState()
+        {
+            // Nothing to do here.
+        }
+
+        protected override void SetupTweens()
+        {
+            Tween tween = target.DOShakeScale(duration, GetTargetValue(), vibration, randomness, fadeout);
+            AddFloatTweenToSequence(tween, smoothing, shakeEasing, shakeCurve);
+        }
+
         protected override void ResetTargetState() => target.localScale = startScale;
         protected override void UpdateStartingValues() => startScale = target.localScale;
+        private Vector3 GetTargetValue() => (uniform) ? Vector3.one * strength : strengthVector;
     }
 }
