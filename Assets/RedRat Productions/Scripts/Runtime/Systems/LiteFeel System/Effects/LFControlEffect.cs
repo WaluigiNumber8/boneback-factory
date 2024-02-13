@@ -1,5 +1,6 @@
 using System;
 using RedRats.Systems.LiteFeel.Core;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace RedRats.Systems.LiteFeel.Effects
@@ -9,7 +10,7 @@ namespace RedRats.Systems.LiteFeel.Effects
     /// </summary>
     public class LFControlEffect : LFEffectBase
     {
-        [SerializeField] private LFEffector effector;
+        [SerializeField, InfoBox("Missing effector", InfoMessageType.Error, "@effector == null")] private LFEffector effector;
         [SerializeField] private EffectorControlType control;
 
         protected override void Initialize()

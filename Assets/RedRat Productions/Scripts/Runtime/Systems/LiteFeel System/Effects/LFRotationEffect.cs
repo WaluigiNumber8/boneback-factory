@@ -10,7 +10,7 @@ namespace RedRats.Systems.LiteFeel.Effects
     public class LFRotationEffect : LFEffectTweenBase
     {
         [Header("Rotation")] 
-        [SerializeField] private Transform target;
+        [SerializeField, InfoBox("Missing target", InfoMessageType.Error, "@target == null")] private Transform target;
         [SerializeField, EnumToggleButtons] private MovementType movement = MovementType.Absolute;
         [SerializeField, EnumToggleButtons] private WorldType worldType = WorldType.Local;
         [SerializeField, EnumToggleButtons] private TransitionType mode = TransitionType.ToDestination;
