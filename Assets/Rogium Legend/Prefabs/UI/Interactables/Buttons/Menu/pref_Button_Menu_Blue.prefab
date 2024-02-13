@@ -160,43 +160,45 @@ MonoBehaviour:
     initialDelayMin: 0
     initialDelayMax: 0
   duration: 0.05
-  additivePlay: 0
   resetOnEnd: 0
-  smoothReset: 0
+  additivePlay: 0
   infiniteLoop: 0
   loops: 1
   loopType: 0
+  target: {fileID: 5863560967871305914}
+  movement: 0
+  mode: 1
+  uniform: 1
+  beginScale: {x: 0, y: 0, z: 0}
+  beginScaleU: 1
+  targetScale: {x: 0, y: 0, z: 0}
+  targetScaleU: 1.075
   smoothing: 1
-  easing: 4
-  movementCurve:
+  scaleEasing: 4
+  scaleCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  target: {fileID: 5863560967871305914}
-  mode: 1
-  beginValue: {x: 1, y: 1, z: 1}
-  endValue: {x: 1.075, y: 1.075, z: 1.075}
-  movement: 0
 --- !u!114 &3480807055365885564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,15 +454,22 @@ MonoBehaviour:
     initialDelayMin: 0
     initialDelayMax: 0
   duration: 0.05
-  additivePlay: 0
   resetOnEnd: 1
-  smoothReset: 0
+  additivePlay: 0
   infiniteLoop: 0
   loops: 1
   loopType: 0
+  target: {fileID: 5863560967871305914}
+  movement: 0
+  mode: 1
+  uniform: 1
+  beginScale: {x: 0, y: 0, z: 0}
+  beginScaleU: 1
+  targetScale: {x: 0, y: 0, z: 0}
+  targetScaleU: 0.9
   smoothing: 1
-  easing: 4
-  movementCurve:
+  scaleEasing: 4
+  scaleCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -473,17 +482,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.30722046
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
       time: 1
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -493,11 +493,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  target: {fileID: 5863560967871305914}
-  mode: 1
-  beginValue: {x: 1, y: 1, z: 1}
-  endValue: {x: 0.9, y: 0.9, z: 0.9}
-  movement: 0
 --- !u!114 &6649907328453327325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -595,43 +590,45 @@ MonoBehaviour:
     initialDelayMin: 0
     initialDelayMax: 0
   duration: 0.05
-  additivePlay: 0
   resetOnEnd: 0
-  smoothReset: 0
+  additivePlay: 0
   infiniteLoop: 0
   loops: 1
   loopType: 0
+  target: {fileID: 5863560967871305914}
+  movement: 0
+  mode: 1
+  uniform: 1
+  beginScale: {x: 0, y: 0, z: 0}
+  beginScaleU: 1.075
+  targetScale: {x: 0, y: 0, z: 0}
+  targetScaleU: 1
   smoothing: 1
-  easing: 4
-  movementCurve:
+  scaleEasing: 4
+  scaleCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  target: {fileID: 5863560967871305914}
-  mode: 1
-  beginValue: {x: 1.075, y: 1.075, z: 1.075}
-  endValue: {x: 1, y: 1, z: 1}
-  movement: 0
 --- !u!1 &7378815314568138818
 GameObject:
   m_ObjectHideFlags: 0

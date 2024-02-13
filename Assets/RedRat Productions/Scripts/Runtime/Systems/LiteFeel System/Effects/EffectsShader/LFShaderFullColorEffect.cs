@@ -10,7 +10,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         [SerializeField] private bool animateBlend = true;
         [SerializeField, EnableIf("animateBlend"), Range(0f, 1f)] private float beginBlend = 0f;
         [SerializeField, EnableIf("animateBlend"), Range(0f, 1f)] private float targetBlend = 1f;
-        [SerializeField, EnableIf("animateBlend")] protected SmoothingType blendSmoothing = SmoothingType.Tween;
+        [SerializeField, EnableIf("animateBlend")] protected SmoothingType blendSmoothing = SmoothingType.AnimationCurve;
         [SerializeField, EnableIf("animateBlend"), HideIf("blendSmoothing", SmoothingType.AnimationCurve)] protected Ease blendEasing = Ease.InOutSine;
         [SerializeField, EnableIf("animateBlend"), HideIf("blendSmoothing", SmoothingType.Tween)] protected AnimationCurve blendCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
         
@@ -18,14 +18,14 @@ namespace RedRats.Systems.LiteFeel.Effects
         [SerializeField] private bool animateGlow;
         [SerializeField, EnableIf("animateGlow"), Range(1f, 12f)] private float beginGlow = 1f;
         [SerializeField, EnableIf("animateGlow"), Range(1f, 12f)] private float targetGlow = 3f;
-        [SerializeField, EnableIf("animateGlow")] protected SmoothingType glowSmoothing = SmoothingType.Tween;
+        [SerializeField, EnableIf("animateGlow")] protected SmoothingType glowSmoothing = SmoothingType.AnimationCurve;
         [SerializeField, EnableIf("animateGlow"), HideIf("glowSmoothing", SmoothingType.AnimationCurve)] protected Ease glowEasing = Ease.InOutSine;
         [SerializeField, EnableIf("animateGlow"), HideIf("glowSmoothing", SmoothingType.Tween)] protected AnimationCurve glowCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
         
         [Header("Color")] 
         [SerializeField] private bool animateColor;
         [SerializeField, EnableIf("animateColor"), ColorUsage(false)] private Color targetColor = Color.red;
-        [SerializeField, EnableIf("animateColor")] protected SmoothingType colorSmoothing = SmoothingType.Tween;
+        [SerializeField, EnableIf("animateColor")] protected SmoothingType colorSmoothing = SmoothingType.AnimationCurve;
         [SerializeField, EnableIf("animateColor"), HideIf("colorSmoothing", SmoothingType.AnimationCurve)] protected Ease colorEasing = Ease.InOutSine;
         [SerializeField, EnableIf("animateColor"), HideIf("colorSmoothing", SmoothingType.Tween)] protected AnimationCurve colorCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
         

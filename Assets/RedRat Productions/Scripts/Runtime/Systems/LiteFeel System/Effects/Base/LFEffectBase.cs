@@ -50,6 +50,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         /// </summary>
         public void Stop()
         {
+            if (!isActiveAndEnabled) return;
             StopSelf();
         }
         

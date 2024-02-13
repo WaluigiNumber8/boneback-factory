@@ -9,7 +9,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         [Header("Tint")]
         [SerializeField] private Color beginTint = Color.white;
         [SerializeField] private Color targetTint = Color.white;
-        [SerializeField] protected SmoothingType smoothing = SmoothingType.Tween;
+        [SerializeField] protected SmoothingType smoothing = SmoothingType.AnimationCurve;
         [SerializeField, HideIf("smoothing", SmoothingType.AnimationCurve)] protected Ease easing = Ease.InOutSine;
         [SerializeField, HideIf("smoothing", SmoothingType.Tween)] protected AnimationCurve blendCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
         

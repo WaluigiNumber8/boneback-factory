@@ -1,4 +1,3 @@
-using System;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -9,8 +8,8 @@ namespace RedRats.Systems.LiteFeel.Effects
     {
         [Header("General")]
         [SerializeField] protected float duration = 0.2f;
-        [SerializeField] protected bool additivePlay;
         [SerializeField] protected bool resetOnEnd = true;
+        [SerializeField] protected bool additivePlay;
         
         [Header("Looping")] 
         [SerializeField] private bool infiniteLoop;
@@ -51,7 +50,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         private void Tween()
         {
             sequence = DOTween.Sequence();
-            UpdateStartingValues();
+            SetBeginState();
             SetupTweens();
             sequence.SetLoops(loopAmount, loopType);
             if (resetOnEnd) sequence.OnComplete(StopSelf);

@@ -13,7 +13,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         [SerializeField] private bool animatePosition = true;
         [SerializeField, EnableIf("animatePosition"), Range(0f, 1f)] private float beginPosition = 0f;
         [SerializeField, EnableIf("animatePosition"), Range(0f, 1f)] private float targetPosition = 1f;
-        [SerializeField, EnableIf("animatePosition")] protected SmoothingType positionSmoothing = SmoothingType.Tween;
+        [SerializeField, EnableIf("animatePosition")] protected SmoothingType positionSmoothing = SmoothingType.AnimationCurve;
         [SerializeField, EnableIf("animatePosition"), HideIf("positionSmoothing", SmoothingType.AnimationCurve)] protected Ease posEasing = Ease.InOutSine;
         [SerializeField, EnableIf("animatePosition"), HideIf("positionSmoothing", SmoothingType.Tween)] protected AnimationCurve positionCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
         
@@ -21,7 +21,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         [SerializeField] private bool animateGlow;
         [SerializeField, EnableIf("animateGlow"), Range(0f, 1f)] private float beginGlow = 0.1f;
         [SerializeField, EnableIf("animateGlow"), Range(0f, 1f)] private float targetGlow = 1f;
-        [SerializeField, EnableIf("animateGlow")] protected SmoothingType glowSmoothing = SmoothingType.Tween;
+        [SerializeField, EnableIf("animateGlow")] protected SmoothingType glowSmoothing = SmoothingType.AnimationCurve;
         [SerializeField, EnableIf("animateGlow"), HideIf("glowSmoothing", SmoothingType.AnimationCurve)] protected Ease glowEasing = Ease.InOutSine;
         [SerializeField, EnableIf("animateGlow"), HideIf("glowSmoothing", SmoothingType.Tween)] protected AnimationCurve glowCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
         

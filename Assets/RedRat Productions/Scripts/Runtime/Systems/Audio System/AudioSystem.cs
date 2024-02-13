@@ -103,9 +103,9 @@ namespace RedRats.Systems.Audio
             StartCoroutine(ReleaseSourceCoroutine());
             IEnumerator ReleaseSourceCoroutine()
             {
-                yield return new WaitForSeconds(source.clip.length);
-                if (sourceSettings.id == 0) sourcePool.Release(source);
-                else sourcePool.Release(sourceSettings.id);
+                yield return new WaitForSeconds(source.clip.length * 4);
+                if (sourceSettings.id == 0) TryReleaseSource(source);
+                else TryReleaseSource(sourceSettings.id);
             }
             return source;
         }
@@ -114,7 +114,11 @@ namespace RedRats.Systems.Audio
         /// Stops a sound with a specific id from playing.
         /// </summary>
         /// <param name="id">The id of the <see cref="AudioSource"/> to stop.</param>
-        public void StopSound(int id) => StopSound(sourcePool.Get(id));
+        public void StopSound(int id)
+        {
+            sourcePool.Get(id).Stop();
+            TryReleaseSource(id);
+        }
 
         /// <summary>
         /// Stops a sound from playing.
@@ -123,9 +127,22 @@ namespace RedRats.Systems.Audio
         public void StopSound(AudioSource source)
         {
             source.Stop();
-            if (source.gameObject.activeSelf) sourcePool.Release(source);
+            TryReleaseSource(source);
         }
 
+        private void TryReleaseSource(AudioSource source)
+        {
+            if (source.isPlaying || !source.gameObject.activeSelf) return;
+            sourcePool.Release(source);
+        }
+        
+        private void TryReleaseSource(int id)
+        {
+            AudioSource source = sourcePool.Get(id);
+            if (source.isPlaying || !source.gameObject.activeSelf) return;
+            sourcePool.Release(id);
+        }
+        
         public AudioMixer AudioMixer { get => audioMixer; }
         public AudioMixerParamsInfo MixerParameters { get => mixerParameters; }
         

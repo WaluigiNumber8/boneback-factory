@@ -12,7 +12,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         [Header("Hologram Blend")]
         [SerializeField] private float beginBlend = 0f;
         [SerializeField] private float targetBlend = 1f;
-        [SerializeField] protected SmoothingType smoothing = SmoothingType.Tween;
+        [SerializeField] protected SmoothingType smoothing = SmoothingType.AnimationCurve;
         [SerializeField, HideIf("smoothing", SmoothingType.AnimationCurve)] protected Ease easing = Ease.InOutSine;
         [SerializeField, HideIf("smoothing", SmoothingType.Tween)] protected AnimationCurve blendCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
 
