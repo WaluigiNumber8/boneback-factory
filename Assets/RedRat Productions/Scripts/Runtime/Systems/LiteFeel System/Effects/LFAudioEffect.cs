@@ -14,6 +14,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         [Title("Audio clips & sources")]
         [SerializeField] private AudioClipSO[] clips;
         [SerializeField] private AudioSourceSettingsInfo sourceSettings;
+        [SerializeField] private bool ignoreEffectStop = true;
         
         [Header("Override Settings")] 
         [SerializeField] private bool overrideMixerGroup;
@@ -46,6 +47,7 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         protected override void StopSelf()
         {
+            if (ignoreEffectStop) return;
             if (sourceSettings.id != 0)
             {
                 audioSystem.StopSound(sourceSettings.id);

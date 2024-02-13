@@ -76,7 +76,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 252862696741535743}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee72dd67a8324f278d349c64bfbc0f3c, type: 3}
   m_Name: 
@@ -614,6 +614,7 @@ MonoBehaviour:
     id: 0
     loop: 0
     playOnlyWhenNotPlaying: 0
+  ignoreEffectStop: 0
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
   overrideVolume: 0
@@ -899,6 +900,7 @@ MonoBehaviour:
     id: 0
     loop: 0
     playOnlyWhenNotPlaying: 0
+  ignoreEffectStop: 0
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
   overrideVolume: 0
@@ -929,6 +931,7 @@ MonoBehaviour:
     id: 154
     loop: 1
     playOnlyWhenNotPlaying: 1
+  ignoreEffectStop: 1
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
   overrideVolume: 0
