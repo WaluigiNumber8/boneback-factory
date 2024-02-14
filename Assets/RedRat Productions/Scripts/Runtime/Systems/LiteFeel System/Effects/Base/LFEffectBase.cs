@@ -16,11 +16,11 @@ namespace RedRats.Systems.LiteFeel.Effects
         public string GroupSettings => $"Settings (+{GetDelay} s)";
         [FoldoutGroup("$GroupSettings"), SerializeField] 
         private bool playOnEnable;
-        [FoldoutGroup("$GroupSettings"), HorizontalGroup("Settings/D"), SerializeField, LabelText("Initial Delay")] 
+        [FoldoutGroup("$GroupSettings"), HorizontalGroup("$GroupSettings/D"), SerializeField, LabelText("Initial Delay")] 
         private float initialDelayMin;
-        [FoldoutGroup("$GroupSettings"), HorizontalGroup("Settings/D", MaxWidth = 0.27f), SerializeField, ShowIf("randomizeDelay"), HideLabel] 
+        [FoldoutGroup("$GroupSettings"), HorizontalGroup("$GroupSettings/D", MaxWidth = 0.27f), SerializeField, ShowIf("randomizeDelay"), HideLabel] 
         private float initialDelayMax;
-        [FoldoutGroup("$GroupSettings"), HorizontalGroup("Settings/D", MaxWidth = 0.05f), Button("R")] 
+        [FoldoutGroup("$GroupSettings"), HorizontalGroup("$GroupSettings/D", MaxWidth = 0.05f), Button("R")] 
         public void ChangeRandomizeDelay() => randomizeDelay = !randomizeDelay;
         
         [ButtonGroup, Button("Play", ButtonSizes.Medium), GUIColor(0.5f, 0.95f, 0.4f), DisableInEditorMode]
