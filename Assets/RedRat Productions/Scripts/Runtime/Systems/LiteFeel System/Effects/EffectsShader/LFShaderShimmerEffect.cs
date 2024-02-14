@@ -9,19 +9,19 @@ namespace RedRats.Systems.LiteFeel.Effects
     /// </summary>
     public class LFShaderShimmerEffect : LFShaderBase
     {
-        [SerializeField, LabelText("Position", SdfIconType.SquareFill)] private bool animatePosition = true;
+        [SerializeField, LabelText(" Position", SdfIconType.SquareFill)] private bool animatePosition = true;
         [SerializeField, ShowIf("animatePosition"), Range(0f, 1f)] private float beginPosition = 0f;
         [SerializeField, ShowIf("animatePosition"), Range(0f, 1f)] private float targetPosition = 1f;
         [SerializeField, ShowIf("animatePosition")] protected SmoothingType positionSmoothing = SmoothingType.AnimationCurve;
-        [SerializeField, HideIf("positionSmoothing", SmoothingType.AnimationCurve), ShowIf("animatePosition")] protected Ease posEasing = Ease.InOutSine;
-        [SerializeField, HideIf("positionSmoothing", SmoothingType.Tween), ShowIf("animatePosition")] protected AnimationCurve positionCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
+        [SerializeField, ShowIf("@animatePosition && positionSmoothing == SmoothingType.Tween")] protected Ease posEasing = Ease.InOutSine;
+        [SerializeField, ShowIf("@animatePosition && positionSmoothing == SmoothingType.AnimationCurve")] protected AnimationCurve positionCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
         
-        [SerializeField, LabelText("Glow", SdfIconType.CircleFill)] private bool animateGlow;
+        [SerializeField, LabelText(" Glow", SdfIconType.CircleFill)] private bool animateGlow;
         [SerializeField, ShowIf("animateGlow"), Range(0f, 1f)] private float beginGlow = 0.1f;
         [SerializeField, ShowIf("animateGlow"), Range(0f, 1f)] private float targetGlow = 1f;
         [SerializeField, ShowIf("animateGlow")] protected SmoothingType glowSmoothing = SmoothingType.AnimationCurve;
-        [SerializeField, HideIf("glowSmoothing", SmoothingType.AnimationCurve), ShowIf("animateGlow")] protected Ease glowEasing = Ease.InOutSine;
-        [SerializeField, HideIf("glowSmoothing", SmoothingType.Tween), ShowIf("animateGlow")] protected AnimationCurve glowCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
+        [SerializeField, ShowIf("@animateGlow && glowSmoothing == SmoothingType.Tween")] protected Ease glowEasing = Ease.InOutSine;
+        [SerializeField, ShowIf("@animateGlow && glowSmoothing == SmoothingType.AnimationCurve")] protected AnimationCurve glowCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
         
         private static readonly int PositionProperty = Shader.PropertyToID("_ShimmerPosition");
         private static readonly int GlowProperty = Shader.PropertyToID("_ShimmerGlow");

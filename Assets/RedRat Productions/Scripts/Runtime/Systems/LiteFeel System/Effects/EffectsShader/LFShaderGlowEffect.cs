@@ -6,19 +6,19 @@ namespace RedRats.Systems.LiteFeel.Effects
 {
     public class LFShaderGlowEffect : LFShaderBase
     {
-        [SerializeField, LabelText("Intensity", SdfIconType.SquareFill)] private bool animateIntensity;
+        [SerializeField, LabelText(" Intensity", SdfIconType.SquareFill)] private bool animateIntensity;
         [SerializeField, ShowIf("animateIntensity"), Range(1f, 16f)] private float beginIntensity = 1;
         [SerializeField, ShowIf("animateIntensity"), Range(1f, 16f)] private float targetIntensity = 2;
         [SerializeField, ShowIf("animateIntensity")] protected SmoothingType intensitySmoothing = SmoothingType.AnimationCurve;
-        [SerializeField, HideIf("intensitySmoothing", SmoothingType.AnimationCurve), ShowIf("animateIntensity")] protected Ease intensityEasing = Ease.InOutSine;
-        [SerializeField, HideIf("intensitySmoothing", SmoothingType.Tween), ShowIf("animateIntensity")] protected AnimationCurve intensityCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
+        [SerializeField, ShowIf("@animateIntensity && intensitySmoothing == SmoothingType.Tween")] protected Ease intensityEasing = Ease.InOutSine;
+        [SerializeField, ShowIf("@animateIntensity && intensitySmoothing == SmoothingType.AnimationCurve")] protected AnimationCurve intensityCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
 
-        [SerializeField, LabelText("Saturation", SdfIconType.CircleFill)] private bool animateSaturation;
+        [SerializeField, LabelText(" Saturation", SdfIconType.CircleFill)] private bool animateSaturation;
         [SerializeField, ShowIf("animateSaturation"), Range(0f, 12f)] private float beginSaturation = 1;
         [SerializeField, ShowIf("animateSaturation"), Range(0f, 12f)] private float targetSaturation = 2;
         [SerializeField, ShowIf("animateSaturation")] protected SmoothingType saturationSmoothing = SmoothingType.AnimationCurve;
-        [SerializeField, HideIf("saturationSmoothing", SmoothingType.AnimationCurve), ShowIf("animateSaturation")] protected Ease saturationEasing = Ease.InOutSine;
-        [SerializeField, HideIf("saturationSmoothing", SmoothingType.Tween), ShowIf("animateSaturation")] protected AnimationCurve saturationCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
+        [SerializeField, ShowIf("@animateSaturation && saturationSmoothing == SmoothingType.Tween")] protected Ease saturationEasing = Ease.InOutSine;
+        [SerializeField, ShowIf("@animateSaturation && saturationSmoothing == SmoothingType.AnimationCurve")] protected AnimationCurve saturationCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
         
         private static readonly int IntensityProperty = Shader.PropertyToID("_GlowIntensity");
         private static readonly int SaturationProperty = Shader.PropertyToID("_GlowSaturation");
