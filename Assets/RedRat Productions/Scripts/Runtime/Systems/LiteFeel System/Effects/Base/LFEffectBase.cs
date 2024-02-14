@@ -15,6 +15,8 @@ namespace RedRats.Systems.LiteFeel.Effects
     {
         [SerializeField] private SettingsInfo settings;
         
+        private IEnumerator delayCoroutine;
+        
         [ButtonGroup, Button("Play", ButtonSizes.Medium), GUIColor(0.5f, 0.95f, 0.4f), DisableInEditorMode]
         public void TestPlay() => Play(); 
         [ButtonGroup, Button("Stop", ButtonSizes.Medium), DisableInEditorMode]
@@ -36,13 +38,8 @@ namespace RedRats.Systems.LiteFeel.Effects
         public void Play()
         {
             if (!isActiveAndEnabled) return;
-            StartCoroutine(PlayCoroutine());
-            IEnumerator PlayCoroutine()
-            {
-                float delay = (settings.randomizeDelay) ? Random.Range(settings.initialDelayMin, settings.initialDelayMax) : settings.initialDelayMin;
-                yield return new WaitForSeconds(delay);
-                PlaySelf();
-            }
+            delayCoroutine = PlayCoroutine();
+            StartCoroutine(delayCoroutine);
         }
         
         /// <summary>
@@ -51,7 +48,15 @@ namespace RedRats.Systems.LiteFeel.Effects
         public void Stop()
         {
             if (!isActiveAndEnabled) return;
+            StopCoroutine(delayCoroutine);
             StopSelf();
+        }
+        
+        private IEnumerator PlayCoroutine()
+        {
+            float delay = (settings.randomizeDelay) ? Random.Range(settings.initialDelayMin, settings.initialDelayMax) : settings.initialDelayMin;
+            yield return new WaitForSeconds(delay);
+            PlaySelf();
         }
         
         /// <summary>
@@ -75,6 +80,5 @@ namespace RedRats.Systems.LiteFeel.Effects
             [HorizontalGroup, LabelText("Initial Delay")] public float initialDelayMin;
             [HorizontalGroup(MaxWidth = 0.3f), ShowIf("randomizeDelay"), HideLabel] public float initialDelayMax;
         }
-
     }
 }
