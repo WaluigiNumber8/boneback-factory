@@ -6,21 +6,21 @@ namespace RedRats.Systems.LiteFeel.Effects
 {
     public class LFShaderFullColorEffect : LFShaderBase    
     {
-        [SerializeField] private bool animateBlend = true;
+        [SerializeField, LabelText("Blend", SdfIconType.SquareFill)] private bool animateBlend = true;
         [SerializeField, ShowIf("animateBlend"), Range(0f, 1f)] private float beginBlend = 0f;
         [SerializeField, ShowIf("animateBlend"), Range(0f, 1f)] private float targetBlend = 1f;
         [SerializeField, ShowIf("animateBlend")] protected SmoothingType blendSmoothing = SmoothingType.AnimationCurve;
         [SerializeField, HideIf("blendSmoothing", SmoothingType.AnimationCurve), ShowIf("animateBlend")] protected Ease blendEasing = Ease.InOutSine;
         [SerializeField, HideIf("blendSmoothing", SmoothingType.Tween), ShowIf("animateBlend")] protected AnimationCurve blendCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
 
-        [SerializeField] private bool animateGlow;
+        [SerializeField, LabelText("Glow", SdfIconType.CircleFill)] private bool animateGlow;
         [SerializeField, ShowIf("animateGlow"), Range(1f, 12f)] private float beginGlow = 1f;
         [SerializeField, ShowIf("animateGlow"), Range(1f, 12f)] private float targetGlow = 3f;
         [SerializeField, ShowIf("animateGlow")] protected SmoothingType glowSmoothing = SmoothingType.AnimationCurve;
         [SerializeField, HideIf("glowSmoothing", SmoothingType.AnimationCurve), ShowIf("animateGlow")] protected Ease glowEasing = Ease.InOutSine;
         [SerializeField, HideIf("glowSmoothing", SmoothingType.Tween), ShowIf("animateGlow")] protected AnimationCurve glowCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
 
-        [SerializeField] private bool animateColor;
+        [SerializeField, LabelText("Color", SdfIconType.TriangleFill)] private bool animateColor;
         [SerializeField, ShowIf("animateColor"), ColorUsage(false)] private Color targetColor = Color.red;
         [SerializeField, ShowIf("animateColor")] protected SmoothingType colorSmoothing = SmoothingType.AnimationCurve;
         [SerializeField, HideIf("colorSmoothing", SmoothingType.AnimationCurve), ShowIf("animateColor")] protected Ease colorEasing = Ease.InOutSine;
