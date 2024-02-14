@@ -1,5 +1,6 @@
 using RedRats.Systems.LiteFeel.Core;
 using RedRats.UI.Core;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,14 +11,14 @@ namespace RedRats.Systems.LiteFeel.Brains
     /// </summary>
     public class LFBrainSelectable : MonoBehaviour
     {
-        [SerializeField] private SelectableEventCaller eventCaller;
+        [SerializeField, GUIColor(0.85f, 0.8f, 0f)] private SelectableEventCaller eventCaller;
         [Space]
-        [SerializeField] private LFEffector onSelectEffector;
-        [SerializeField] private LFEffector onDeselectEffector;
+        [SerializeField, GUIColor(0.1f, 0.75f, 0f)] private LFEffector onSelectEffector;
+        [SerializeField, GUIColor(0.1f, 0.75f, 0f)] private LFEffector onDeselectEffector;
         [Space]
-        [SerializeField] private LFEffector onClickEffector;
-        [SerializeField] private LFEffector onClickUpEffector;
-        [SerializeField] private LFEffector onClickDownEffector;
+        [SerializeField, GUIColor(0f, 0.75f, 1f)] private LFEffector onClickEffector;
+        [SerializeField, GUIColor(0f, 0.75f, 1f)] private LFEffector onClickUpEffector;
+        [SerializeField, GUIColor(0f, 0.75f, 1f)] private LFEffector onClickDownEffector;
 
         private void OnEnable()
         {
