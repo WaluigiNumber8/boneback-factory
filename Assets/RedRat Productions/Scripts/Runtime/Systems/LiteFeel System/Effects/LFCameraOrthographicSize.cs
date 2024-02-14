@@ -22,7 +22,7 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         protected override void SetBeginState()
         {
-            if (mode != TransitionType.AtoB) return;
+            if (mode != TransitionType.AToB) return;
             cam.orthographicSize = beginSize;
         }
 

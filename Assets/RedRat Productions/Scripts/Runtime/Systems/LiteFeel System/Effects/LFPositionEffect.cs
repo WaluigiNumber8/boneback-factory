@@ -33,7 +33,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         
         protected override void SetBeginState()
         {
-            if (mode != TransitionType.AtoB) return;
+            if (mode != TransitionType.AToB) return;
             if (worldType == WorldType.World) target.position = GetBeginPosition();
             else target.localPosition = GetBeginPosition();
         }

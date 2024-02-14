@@ -29,7 +29,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         {
             cam = GetActiveCamera();
             
-            if (mode != TransitionType.AtoB) return;
+            if (mode != TransitionType.AToB) return;
             cam.m_Lens.OrthographicSize = beginSize;
         }
 

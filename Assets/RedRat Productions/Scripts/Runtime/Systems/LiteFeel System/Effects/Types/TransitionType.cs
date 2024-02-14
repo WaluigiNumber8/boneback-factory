@@ -12,6 +12,6 @@ namespace RedRats.Systems.LiteFeel.Effects
         /// <summary>
         /// Go between 2 set values.
         /// </summary>
-        AtoB = 1,
+        AToB = 1,
     }
 }

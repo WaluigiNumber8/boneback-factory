@@ -13,7 +13,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         [SerializeField, InfoBox("Missing target", InfoMessageType.Error, "@target == null")] private Transform target;
         [SerializeField, EnumToggleButtons] private MovementType movement = MovementType.Absolute;
         [SerializeField, EnumToggleButtons] private TransitionType mode = TransitionType.ToDestination;
-        [SerializeField] private bool uniform;
+        [SerializeField] private bool uniform = true;
         [SerializeField, HideIf("@uniform == true || mode == TransitionType.ToDestination")] private Vector3 beginScale;
         [SerializeField, HideIf("@uniform == false || mode == TransitionType.ToDestination")] private float beginScaleU = 1;
         [SerializeField, HideIf("uniform")] private Vector3 targetScale;
@@ -31,7 +31,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         
         protected override void SetBeginState()
         {
-            if (mode == TransitionType.AtoB) target.localScale = GetBeginScale();
+            if (mode == TransitionType.AToB) target.localScale = GetBeginScale();
         }
 
         protected override void SetupTweens()
