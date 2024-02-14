@@ -13,15 +13,24 @@ namespace RedRats.Systems.LiteFeel.Effects
     [RequireComponent(typeof(LFEffector))]
     public abstract class LFEffectBase : MonoBehaviour
     {
-        [SerializeField] private SettingsInfo settings;
-        
-        private IEnumerator delayCoroutine;
+        public string GroupSettings => $"Settings (+{GetDelay} s)";
+        [FoldoutGroup("$GroupSettings"), SerializeField] 
+        private bool playOnEnable;
+        [FoldoutGroup("$GroupSettings"), HorizontalGroup("Settings/D"), SerializeField, LabelText("Initial Delay")] 
+        private float initialDelayMin;
+        [FoldoutGroup("$GroupSettings"), HorizontalGroup("Settings/D", MaxWidth = 0.27f), SerializeField, ShowIf("randomizeDelay"), HideLabel] 
+        private float initialDelayMax;
+        [FoldoutGroup("$GroupSettings"), HorizontalGroup("Settings/D", MaxWidth = 0.05f), Button("R")] 
+        public void ChangeRandomizeDelay() => randomizeDelay = !randomizeDelay;
         
         [ButtonGroup, Button("Play", ButtonSizes.Medium), GUIColor(0.5f, 0.95f, 0.4f), DisableInEditorMode]
         public void TestPlay() => Play(); 
         [ButtonGroup, Button("Stop", ButtonSizes.Medium), DisableInEditorMode]
         public void TestStop() => Stop();
 
+        private bool randomizeDelay;
+        private IEnumerator delayCoroutine;
+        
         protected virtual void Start()
         {
             Initialize();
@@ -29,7 +38,7 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         private void OnEnable()
         {
-            if (settings.playOnEnable) Play();
+            if (playOnEnable) Play();
         }
 
         /// <summary>
@@ -54,7 +63,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         
         private IEnumerator PlayCoroutine()
         {
-            float delay = (settings.randomizeDelay) ? Random.Range(settings.initialDelayMin, settings.initialDelayMax) : settings.initialDelayMin;
+            float delay = (randomizeDelay) ? Random.Range(initialDelayMin, initialDelayMax) : initialDelayMin;
             yield return new WaitForSeconds(delay);
             PlaySelf();
         }
@@ -75,10 +84,9 @@ namespace RedRats.Systems.LiteFeel.Effects
         [Serializable]
         public struct SettingsInfo
         {
-            public bool playOnEnable;
-            public bool randomizeDelay;
-            [HorizontalGroup, LabelText("Initial Delay")] public float initialDelayMin;
-            [HorizontalGroup(MaxWidth = 0.3f), ShowIf("randomizeDelay"), HideLabel] public float initialDelayMax;
+            
         }
+        
+        private string GetDelay => (randomizeDelay) ? $"{initialDelayMin} - {initialDelayMax}" : initialDelayMin.ToString();
     }
 }
