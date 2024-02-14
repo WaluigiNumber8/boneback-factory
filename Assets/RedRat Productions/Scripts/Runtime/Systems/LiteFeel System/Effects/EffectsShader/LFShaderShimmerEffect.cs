@@ -9,21 +9,19 @@ namespace RedRats.Systems.LiteFeel.Effects
     /// </summary>
     public class LFShaderShimmerEffect : LFShaderBase
     {
-        [Header("Shimmer position")] 
         [SerializeField] private bool animatePosition = true;
-        [SerializeField, EnableIf("animatePosition"), Range(0f, 1f)] private float beginPosition = 0f;
-        [SerializeField, EnableIf("animatePosition"), Range(0f, 1f)] private float targetPosition = 1f;
-        [SerializeField, EnableIf("animatePosition")] protected SmoothingType positionSmoothing = SmoothingType.AnimationCurve;
-        [SerializeField, EnableIf("animatePosition"), HideIf("positionSmoothing", SmoothingType.AnimationCurve)] protected Ease posEasing = Ease.InOutSine;
-        [SerializeField, EnableIf("animatePosition"), HideIf("positionSmoothing", SmoothingType.Tween)] protected AnimationCurve positionCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
+        [SerializeField, ShowIf("animatePosition"), Range(0f, 1f)] private float beginPosition = 0f;
+        [SerializeField, ShowIf("animatePosition"), Range(0f, 1f)] private float targetPosition = 1f;
+        [SerializeField, ShowIf("animatePosition")] protected SmoothingType positionSmoothing = SmoothingType.AnimationCurve;
+        [SerializeField, HideIf("positionSmoothing", SmoothingType.AnimationCurve), ShowIf("animatePosition")] protected Ease posEasing = Ease.InOutSine;
+        [SerializeField, HideIf("positionSmoothing", SmoothingType.Tween), ShowIf("animatePosition")] protected AnimationCurve positionCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
         
-        [Header("Glow")]
         [SerializeField] private bool animateGlow;
-        [SerializeField, EnableIf("animateGlow"), Range(0f, 1f)] private float beginGlow = 0.1f;
-        [SerializeField, EnableIf("animateGlow"), Range(0f, 1f)] private float targetGlow = 1f;
-        [SerializeField, EnableIf("animateGlow")] protected SmoothingType glowSmoothing = SmoothingType.AnimationCurve;
-        [SerializeField, EnableIf("animateGlow"), HideIf("glowSmoothing", SmoothingType.AnimationCurve)] protected Ease glowEasing = Ease.InOutSine;
-        [SerializeField, EnableIf("animateGlow"), HideIf("glowSmoothing", SmoothingType.Tween)] protected AnimationCurve glowCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
+        [SerializeField, ShowIf("animateGlow"), Range(0f, 1f)] private float beginGlow = 0.1f;
+        [SerializeField, ShowIf("animateGlow"), Range(0f, 1f)] private float targetGlow = 1f;
+        [SerializeField, ShowIf("animateGlow")] protected SmoothingType glowSmoothing = SmoothingType.AnimationCurve;
+        [SerializeField, HideIf("glowSmoothing", SmoothingType.AnimationCurve), ShowIf("animateGlow")] protected Ease glowEasing = Ease.InOutSine;
+        [SerializeField, HideIf("glowSmoothing", SmoothingType.Tween), ShowIf("animateGlow")] protected AnimationCurve glowCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
         
         private static readonly int PositionProperty = Shader.PropertyToID("_ShimmerPosition");
         private static readonly int GlowProperty = Shader.PropertyToID("_ShimmerGlow");
@@ -51,8 +49,8 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         protected override void SetupTweens()
         {
-            AddFloatTween(PositionProperty, targetPosition, positionSmoothing, posEasing, positionCurve);
-            AddFloatTween(GlowProperty, targetGlow, glowSmoothing, glowEasing, glowCurve);
+            if (animatePosition) AddFloatTween(PositionProperty, targetPosition, positionSmoothing, posEasing, positionCurve);
+            if (animateGlow) AddFloatTween(GlowProperty, targetGlow, glowSmoothing, glowEasing, glowCurve);
         }
     }
 }

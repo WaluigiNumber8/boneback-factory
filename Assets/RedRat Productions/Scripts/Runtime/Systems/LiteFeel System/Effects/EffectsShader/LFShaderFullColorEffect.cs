@@ -6,28 +6,25 @@ namespace RedRats.Systems.LiteFeel.Effects
 {
     public class LFShaderFullColorEffect : LFShaderBase    
     {
-        [Header("Color Blend")] 
         [SerializeField] private bool animateBlend = true;
-        [SerializeField, EnableIf("animateBlend"), Range(0f, 1f)] private float beginBlend = 0f;
-        [SerializeField, EnableIf("animateBlend"), Range(0f, 1f)] private float targetBlend = 1f;
-        [SerializeField, EnableIf("animateBlend")] protected SmoothingType blendSmoothing = SmoothingType.AnimationCurve;
-        [SerializeField, EnableIf("animateBlend"), HideIf("blendSmoothing", SmoothingType.AnimationCurve)] protected Ease blendEasing = Ease.InOutSine;
-        [SerializeField, EnableIf("animateBlend"), HideIf("blendSmoothing", SmoothingType.Tween)] protected AnimationCurve blendCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
-        
-        [Header("Glow")]
+        [SerializeField, ShowIf("animateBlend"), Range(0f, 1f)] private float beginBlend = 0f;
+        [SerializeField, ShowIf("animateBlend"), Range(0f, 1f)] private float targetBlend = 1f;
+        [SerializeField, ShowIf("animateBlend")] protected SmoothingType blendSmoothing = SmoothingType.AnimationCurve;
+        [SerializeField, HideIf("blendSmoothing", SmoothingType.AnimationCurve), ShowIf("animateBlend")] protected Ease blendEasing = Ease.InOutSine;
+        [SerializeField, HideIf("blendSmoothing", SmoothingType.Tween), ShowIf("animateBlend")] protected AnimationCurve blendCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
+
         [SerializeField] private bool animateGlow;
-        [SerializeField, EnableIf("animateGlow"), Range(1f, 12f)] private float beginGlow = 1f;
-        [SerializeField, EnableIf("animateGlow"), Range(1f, 12f)] private float targetGlow = 3f;
-        [SerializeField, EnableIf("animateGlow")] protected SmoothingType glowSmoothing = SmoothingType.AnimationCurve;
-        [SerializeField, EnableIf("animateGlow"), HideIf("glowSmoothing", SmoothingType.AnimationCurve)] protected Ease glowEasing = Ease.InOutSine;
-        [SerializeField, EnableIf("animateGlow"), HideIf("glowSmoothing", SmoothingType.Tween)] protected AnimationCurve glowCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
-        
-        [Header("Color")] 
+        [SerializeField, ShowIf("animateGlow"), Range(1f, 12f)] private float beginGlow = 1f;
+        [SerializeField, ShowIf("animateGlow"), Range(1f, 12f)] private float targetGlow = 3f;
+        [SerializeField, ShowIf("animateGlow")] protected SmoothingType glowSmoothing = SmoothingType.AnimationCurve;
+        [SerializeField, HideIf("glowSmoothing", SmoothingType.AnimationCurve), ShowIf("animateGlow")] protected Ease glowEasing = Ease.InOutSine;
+        [SerializeField, HideIf("glowSmoothing", SmoothingType.Tween), ShowIf("animateGlow")] protected AnimationCurve glowCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
+
         [SerializeField] private bool animateColor;
-        [SerializeField, EnableIf("animateColor"), ColorUsage(false)] private Color targetColor = Color.red;
-        [SerializeField, EnableIf("animateColor")] protected SmoothingType colorSmoothing = SmoothingType.AnimationCurve;
-        [SerializeField, EnableIf("animateColor"), HideIf("colorSmoothing", SmoothingType.AnimationCurve)] protected Ease colorEasing = Ease.InOutSine;
-        [SerializeField, EnableIf("animateColor"), HideIf("colorSmoothing", SmoothingType.Tween)] protected AnimationCurve colorCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
+        [SerializeField, ShowIf("animateColor"), ColorUsage(false)] private Color targetColor = Color.red;
+        [SerializeField, ShowIf("animateColor")] protected SmoothingType colorSmoothing = SmoothingType.AnimationCurve;
+        [SerializeField, HideIf("colorSmoothing", SmoothingType.AnimationCurve), ShowIf("animateColor")] protected Ease colorEasing = Ease.InOutSine;
+        [SerializeField, HideIf("colorSmoothing", SmoothingType.Tween), ShowIf("animateColor")] protected AnimationCurve colorCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
         
         private static readonly int BlendProperty = Shader.PropertyToID("_FullColorBlend");
         private static readonly int GlowProperty = Shader.PropertyToID("_FullColorGlow");
