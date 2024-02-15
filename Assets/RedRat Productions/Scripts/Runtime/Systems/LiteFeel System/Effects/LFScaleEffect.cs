@@ -14,9 +14,9 @@ namespace RedRats.Systems.LiteFeel.Effects
         [SerializeField, EnumToggleButtons] private MovementType movement = MovementType.Absolute;
         [SerializeField, EnumToggleButtons] private TransitionType mode = TransitionType.ToDestination;
         [SerializeField] private bool uniform = true;
-        [SerializeField, HideIf("@uniform == true || mode == TransitionType.ToDestination")] private Vector3 beginScale;
+        [SerializeField, HideIf("@uniform == true || mode == TransitionType.ToDestination")] private Vector3 beginScale = Vector3.one;
         [SerializeField, HideIf("@uniform == false || mode == TransitionType.ToDestination")] private float beginScaleU = 1;
-        [SerializeField, HideIf("uniform")] private Vector3 targetScale;
+        [SerializeField, HideIf("uniform")] private Vector3 targetScale = Vector3.one;
         [SerializeField, ShowIf("uniform")] private float targetScaleU = 2;
         [SerializeField] private SmoothingType smoothing = SmoothingType.AnimationCurve;
         [SerializeField, HideIf("smoothing", SmoothingType.AnimationCurve)] private Ease scaleEasing = Ease.InOutSine;
