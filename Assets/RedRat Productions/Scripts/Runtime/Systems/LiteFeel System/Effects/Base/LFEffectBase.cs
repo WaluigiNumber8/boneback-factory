@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using RedRats.Systems.LiteFeel.Core;
 using Sirenix.OdinInspector;
@@ -16,6 +15,8 @@ namespace RedRats.Systems.LiteFeel.Effects
         public string GroupSettings => $"Settings (+{GetDelay} s)";
         [FoldoutGroup("$GroupSettings"), SerializeField] 
         private bool playOnEnable;
+        [FoldoutGroup("$GroupSettings"), SerializeField]
+        private bool restartOnPlay = true;
         [FoldoutGroup("$GroupSettings"), HorizontalGroup("$GroupSettings/D"), SerializeField, LabelText("Initial Delay")] 
         private float initialDelayMin;
         [FoldoutGroup("$GroupSettings"), HorizontalGroup("$GroupSettings/D"), SerializeField, ShowIf("randomizeDelay"), HideLabel] 
@@ -28,6 +29,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         [ButtonGroup, Button("Stop", ButtonSizes.Medium), DisableInEditorMode]
         public void TestStop() => Stop();
 
+        private bool isPlaying;
         private bool randomizeDelay;
         private IEnumerator delayCoroutine;
         
@@ -47,6 +49,8 @@ namespace RedRats.Systems.LiteFeel.Effects
         public void Play()
         {
             if (!isActiveAndEnabled) return;
+            if (!restartOnPlay && isPlaying) return;
+            isPlaying = true;
             delayCoroutine = PlayCoroutine();
             StartCoroutine(delayCoroutine);
         }
@@ -57,8 +61,9 @@ namespace RedRats.Systems.LiteFeel.Effects
         public void Stop()
         {
             if (!isActiveAndEnabled) return;
-            StopCoroutine(delayCoroutine);
+            if (delayCoroutine != null) StopCoroutine(delayCoroutine);
             StopSelf();
+            isPlaying = false;
         }
         
         private IEnumerator PlayCoroutine()
@@ -80,13 +85,9 @@ namespace RedRats.Systems.LiteFeel.Effects
         /// Disables the effect.
         /// </summary>
         protected abstract void StopSelf();
-
-        [Serializable]
-        public struct SettingsInfo
-        {
-            
-        }
         
         private string GetDelay => (randomizeDelay) ? $"{initialDelayMin} - {initialDelayMax}" : initialDelayMin.ToString();
+        
+        public bool IsPlaying { get => isPlaying; }
     }
 }

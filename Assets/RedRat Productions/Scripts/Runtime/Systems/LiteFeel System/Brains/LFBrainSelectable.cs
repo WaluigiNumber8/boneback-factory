@@ -7,7 +7,7 @@ using UnityEngine.UI;
 namespace RedRats.Systems.LiteFeel.Brains
 {
     /// <summary>
-    /// Allocates effects to a <see cref="Button"/>.
+    /// Allocates LF effects to a <see cref="Selectable"/>.
     /// </summary>
     public class LFBrainSelectable : MonoBehaviour
     {

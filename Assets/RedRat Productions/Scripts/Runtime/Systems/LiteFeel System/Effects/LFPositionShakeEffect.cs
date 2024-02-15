@@ -7,11 +7,11 @@ namespace RedRats.Systems.LiteFeel.Effects
     public class LFPositionShakeEffect : LFEffectTweenBase
     {
         [Header("Shake Position")] 
-        [SerializeField] private Transform target;
+        [SerializeField, InfoBox("Missing target", InfoMessageType.Error, "@target == null")] private Transform target;
         [SerializeField] private bool uniform = true;
         [SerializeField, ShowIf("uniform")] private float strength = 0.1f;
         [SerializeField, HideIf("uniform")] private Vector3 strengthVector = Vector3.one * 0.1f;
-        [SerializeField, Min(0)] private int vibration = 20;
+        [SerializeField] private int vibration = 20;
         [SerializeField, Range(0f, 90f)] private float randomness = 90;
         [SerializeField] private bool fadeout;
         [SerializeField] protected SmoothingType smoothing = SmoothingType.AnimationCurve;
