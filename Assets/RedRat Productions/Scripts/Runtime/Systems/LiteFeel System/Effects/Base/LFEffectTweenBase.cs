@@ -20,6 +20,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         private int loopAmount;
 
         private void Awake() => sequence.SetAutoKill(false);
+        private void OnDisable() => sequence.Kill();
 
         protected override void Start()
         {

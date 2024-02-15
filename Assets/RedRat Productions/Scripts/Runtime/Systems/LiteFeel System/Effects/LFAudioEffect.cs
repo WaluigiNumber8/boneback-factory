@@ -11,7 +11,6 @@ namespace RedRats.Systems.LiteFeel.Effects
     /// </summary>
     public class LFAudioEffect : LFEffectBase
     {
-        [Title("Audio clips & sources")]
         [SerializeField] private AudioClipSO[] clips;
         [SerializeField] private AudioSourceSettingsInfo sourceSettings;
         [SerializeField] private bool ignoreEffectStop = true;

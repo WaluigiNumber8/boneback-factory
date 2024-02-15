@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using RedRats.Systems.LiteFeel.Core;
 using Sirenix.OdinInspector;
@@ -13,8 +14,6 @@ namespace RedRats.Systems.LiteFeel.Effects
     public abstract class LFEffectBase : MonoBehaviour
     {
         public string GroupSettings => $"Settings (+{GetDelay} s)";
-        [FoldoutGroup("$GroupSettings"), SerializeField] 
-        private bool playOnEnable;
         [FoldoutGroup("$GroupSettings"), SerializeField]
         private bool restartOnPlay = true;
         [FoldoutGroup("$GroupSettings"), HorizontalGroup("$GroupSettings/D"), SerializeField, LabelText("Initial Delay")] 
@@ -28,6 +27,8 @@ namespace RedRats.Systems.LiteFeel.Effects
         public void TestPlay() => Play(); 
         [ButtonGroup, Button("Stop", ButtonSizes.Medium), DisableInEditorMode]
         public void TestStop() => Stop();
+        [ButtonGroup(), Button("Init", ButtonSizes.Medium), DisableInEditorMode]
+        public void TestInit() => Initialize();
 
         private bool isPlaying;
         private bool randomizeDelay;
@@ -38,17 +39,12 @@ namespace RedRats.Systems.LiteFeel.Effects
             Initialize();
         }
 
-        private void OnEnable()
-        {
-            if (playOnEnable) Play();
-        }
-
         /// <summary>
         /// Play the effect.
         /// </summary>
         public void Play()
         {
-            if (!isActiveAndEnabled) return;
+            // if (!isActiveAndEnabled) return;
             if (!restartOnPlay && isPlaying) return;
             isPlaying = true;
             delayCoroutine = PlayCoroutine();

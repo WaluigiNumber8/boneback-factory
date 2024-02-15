@@ -1,4 +1,3 @@
-using RedRats.Safety;
 using RedRats.Systems.LiteFeel.Effects;
 using UnityEngine;
 
@@ -10,16 +9,31 @@ namespace RedRats.Systems.LiteFeel.Core
     [DisallowMultipleComponent]
     public class LFEffector : MonoBehaviour
     {
+        [SerializeField] private bool playOnAwake;
+        [SerializeField] private bool playOnEnable;
+        
         private LFEffectBase[] effects;
         
-        private void Awake() => effects = GetComponents<LFEffectBase>();
+        private void Awake()
+        {
+            effects = GetComponents<LFEffectBase>();
+            if (!playOnAwake) return;
+            if (effects.Length <= 0) return;
+            Play();
+        }
 
+        private void OnEnable()
+        {
+            if (!playOnEnable) return;
+            if (effects.Length <= 0) return;
+            Play();
+        }
+        
         /// <summary>
         /// Plays all detected effectors on this <see cref="GameObject"/>.
         /// </summary>
         public void Play()
         {
-            SafetyNet.EnsureIsNotNull(effects, nameof(effects));
             if (effects.Length <= 0) return;
             foreach (LFEffectBase effect in effects)
             {
@@ -32,7 +46,6 @@ namespace RedRats.Systems.LiteFeel.Core
         /// </summary>
         public void Stop()
         {
-            SafetyNet.EnsureIsNotNull(effects, nameof(effects));
             if (effects.Length <= 0) return;
             foreach (LFEffectBase effect in effects)
             {
