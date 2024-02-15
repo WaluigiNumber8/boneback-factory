@@ -7,14 +7,16 @@ namespace RedRats.Systems.LiteFeel.Effects
     public class LFShaderGlowEffect : LFShaderBase
     {
         [SerializeField, LabelText(" Intensity", SdfIconType.SquareFill)] private bool animateIntensity;
-        [SerializeField, ShowIf("animateIntensity"), Range(1f, 16f)] private float beginIntensity = 1;
+        [SerializeField, ShowIf("animateIntensity"), EnumToggleButtons] private TransitionType intensityMode = TransitionType.AToB;
+        [SerializeField, ShowIf("@animateIntensity && intensityMode == TransitionType.AToB"), Range(1f, 16f)] private float beginIntensity = 1;
         [SerializeField, ShowIf("animateIntensity"), Range(1f, 16f)] private float targetIntensity = 2;
         [SerializeField, ShowIf("animateIntensity")] protected SmoothingType intensitySmoothing = SmoothingType.AnimationCurve;
         [SerializeField, ShowIf("@animateIntensity && intensitySmoothing == SmoothingType.Tween")] protected Ease intensityEasing = Ease.InOutSine;
         [SerializeField, ShowIf("@animateIntensity && intensitySmoothing == SmoothingType.AnimationCurve")] protected AnimationCurve intensityCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
 
         [SerializeField, LabelText(" Saturation", SdfIconType.CircleFill)] private bool animateSaturation;
-        [SerializeField, ShowIf("animateSaturation"), Range(0f, 12f)] private float beginSaturation = 1;
+        [SerializeField, ShowIf("animateSaturation"), EnumToggleButtons] private TransitionType saturationMode = TransitionType.AToB;
+        [SerializeField, ShowIf("@animateSaturation && saturationMode == TransitionType.AToB"), Range(0f, 12f)] private float beginSaturation = 1;
         [SerializeField, ShowIf("animateSaturation"), Range(0f, 12f)] private float targetSaturation = 2;
         [SerializeField, ShowIf("animateSaturation")] protected SmoothingType saturationSmoothing = SmoothingType.AnimationCurve;
         [SerializeField, ShowIf("@animateSaturation && saturationSmoothing == SmoothingType.Tween")] protected Ease saturationEasing = Ease.InOutSine;
@@ -40,8 +42,8 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         protected override void SetBeginState()
         {
-            if (animateIntensity) material.SetFloat(IntensityProperty, beginIntensity);
-            if (animateSaturation) material.SetFloat(SaturationProperty, beginSaturation);
+            if (animateIntensity && intensityMode == TransitionType.AToB) material.SetFloat(IntensityProperty, beginIntensity);
+            if (animateSaturation && saturationMode == TransitionType.AToB) material.SetFloat(SaturationProperty, beginSaturation);
         }
 
         protected override void SetupTweens()

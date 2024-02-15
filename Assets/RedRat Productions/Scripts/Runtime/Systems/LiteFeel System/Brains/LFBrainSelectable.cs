@@ -17,8 +17,8 @@ namespace RedRats.Systems.LiteFeel.Brains
         [SerializeField, GUIColor(0.1f, 0.75f, 0f)] private LFEffector onDeselectEffector;
         [Space]
         [SerializeField, GUIColor(0f, 0.75f, 1f)] private LFEffector onClickEffector;
-        [SerializeField, GUIColor(0f, 0.75f, 1f)] private LFEffector onClickUpEffector;
         [SerializeField, GUIColor(0f, 0.75f, 1f)] private LFEffector onClickDownEffector;
+        [SerializeField, GUIColor(0f, 0.75f, 1f)] private LFEffector onClickUpEffector;
 
         private void OnEnable()
         {

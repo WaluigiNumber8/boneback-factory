@@ -54,5 +54,13 @@ namespace RedRats.Systems.LiteFeel.Effects
             }
             if (mySource != null) audioSystem.StopSound(mySource);
         }
+        
+        public void ChangePitch(float newPitch) => ChangePitch(newPitch, newPitch);
+        public void ChangePitch(float newPitchMin, float newPitchMax)
+        {
+            overridePitch = true;
+            pitchMin = newPitchMin;
+            pitchMax = newPitchMax;
+        }
     }
 }
