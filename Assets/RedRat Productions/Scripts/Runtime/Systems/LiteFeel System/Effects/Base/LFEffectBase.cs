@@ -13,7 +13,9 @@ namespace RedRats.Systems.LiteFeel.Effects
     public abstract class LFEffectBase : MonoBehaviour
     {
         [SerializeField, HideLabel, GUIColor("GetEffectColor")] private string info;
-        public string GroupSettings => $"Settings (+{GetDelay} s)";
+        public string GroupSettings => $"{InactiveInfo}Settings (+{GetDelay} s) ";
+        [FoldoutGroup("$GroupSettings"), SerializeField]
+        private bool active = true;
         [FoldoutGroup("$GroupSettings"), SerializeField]
         private bool restartOnPlay = true;
         [FoldoutGroup("$GroupSettings"), HorizontalGroup("$GroupSettings/D"), SerializeField, LabelText("Initial Delay")] 
@@ -44,7 +46,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         /// </summary>
         public void Play()
         {
-            // if (!isActiveAndEnabled) return;
+            if (!active) return;
             if (!restartOnPlay && isPlaying) return;
             isPlaying = true;
             delayCoroutine = PlayCoroutine();
@@ -91,6 +93,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         protected abstract string FeedbackColor { get; }
         
         private string GetDelay => (randomizeDelay) ? $"{initialDelayMin} - {initialDelayMax}" : initialDelayMin.ToString();
+        private string InactiveInfo => (!active) ? "[INACTIVE] " : "";
         
         public bool IsPlaying { get => isPlaying; }
     }
