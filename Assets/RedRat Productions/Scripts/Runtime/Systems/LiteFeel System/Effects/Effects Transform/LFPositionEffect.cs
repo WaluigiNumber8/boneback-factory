@@ -19,9 +19,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         [SerializeField, HideIf("@uniform == false || mode == TransitionType.ToDestination")] private float beginPositionU;
         [SerializeField, HideIf("uniform")] private Vector3 targetPosition;
         [SerializeField, ShowIf("uniform")] private float targetPositionU = 1;
-        [SerializeField] private SmoothingType smoothing = SmoothingType.AnimationCurve;
-        [SerializeField, HideIf("smoothing", SmoothingType.AnimationCurve)] private Ease positionEasing = Ease.InOutSine;
-        [SerializeField, HideIf("smoothing", SmoothingType.Tween)] private AnimationCurve positionCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
+        [SerializeField] private AnimationCurve positionCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
         
         private Vector3 startPosition;
         private Vector3 startLocalPosition;
@@ -42,7 +40,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         {
             Vector3 targetValue = (movement == MovementType.Relative) ? GetPositionBasedOnSpace() + GetTargetPosition() : GetTargetPosition();
             Tween tween = (worldType == WorldType.World) ? target.DOMove(targetValue, duration) : target.DOLocalMove(targetValue, duration);
-            AddFloatTweenToSequence(tween, smoothing, positionEasing, positionCurve);
+            AddFloatTweenToSequence(tween, positionCurve);
         }
 
         protected override void ResetTargetState()

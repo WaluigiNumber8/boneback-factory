@@ -19,9 +19,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         [SerializeField, HideIf("@uniform == false || mode == TransitionType.ToDestination")] private float beginRotationU;
         [SerializeField, HideIf("uniform")] private Vector3 targetRotation;
         [SerializeField, ShowIf("uniform")] private float targetRotationU = 90;
-        [SerializeField] private SmoothingType smoothing = SmoothingType.AnimationCurve;
-        [SerializeField, HideIf("smoothing", SmoothingType.AnimationCurve)] private Ease rotationEasing = Ease.InOutSine;
-        [SerializeField, HideIf("smoothing", SmoothingType.Tween)] private AnimationCurve rotationCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
+        [SerializeField] private AnimationCurve rotationCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
         
         private Vector3 startRotation;
         private Vector3 startLocalRotation;
@@ -42,7 +40,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         {
             Vector3 targetValue = (movement == MovementType.Relative) ? GetRotationBasedOnSpace() + GetTargetRotation() : GetTargetRotation();
             Tween tween = (worldType == WorldType.World) ? target.DORotate(targetValue, duration, RotateMode.FastBeyond360) : target.DOLocalRotate(targetValue, duration, RotateMode.FastBeyond360);
-            AddFloatTweenToSequence(tween, smoothing, rotationEasing, rotationCurve);
+            AddFloatTweenToSequence(tween, rotationCurve);
         }
 
         protected override void ResetTargetState()

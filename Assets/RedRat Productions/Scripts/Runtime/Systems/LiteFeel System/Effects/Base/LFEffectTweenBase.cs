@@ -42,10 +42,9 @@ namespace RedRats.Systems.LiteFeel.Effects
             ResetTargetState();
         }
         
-        protected void AddFloatTweenToSequence(Tween tween, SmoothingType smoothing, Ease easing, AnimationCurve curve)
+        protected void AddFloatTweenToSequence(Tween tween, AnimationCurve curve)
         {
-            tween = (smoothing == SmoothingType.Tween) ? tween.SetEase(easing) : tween.SetEase(curve);
-            sequence.Join(tween);
+            sequence.Join(tween.SetEase(curve));
         }
         
         private void Tween()

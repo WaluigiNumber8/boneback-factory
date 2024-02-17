@@ -12,9 +12,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         [Header("Hologram Blend")]
         [SerializeField] private float beginBlend = 0f;
         [SerializeField] private float targetBlend = 1f;
-        [SerializeField] protected SmoothingType smoothing = SmoothingType.AnimationCurve;
-        [SerializeField, HideIf("smoothing", SmoothingType.AnimationCurve)] protected Ease easing = Ease.InOutSine;
-        [SerializeField, HideIf("smoothing", SmoothingType.Tween)] protected AnimationCurve blendCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
+        [SerializeField] protected AnimationCurve blendCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
 
         private float startBlend;
         private static readonly int BlendProperty = Shader.PropertyToID("_HologramBlend");
@@ -26,7 +24,7 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         protected override void SetupTweens()
         {
-            AddFloatTween(BlendProperty, targetBlend, smoothing, easing, blendCurve);
+            AddFloatTween(BlendProperty, targetBlend, blendCurve);
         }
         
         protected override void ResetTargetState()

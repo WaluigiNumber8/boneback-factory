@@ -9,15 +9,11 @@ namespace RedRats.Systems.LiteFeel.Effects
     {
         [Header("Amplitude")] 
         [SerializeField] private float amplitudeGain = 1f;
-        [SerializeField] protected SmoothingType amplitudeSmoothing = SmoothingType.Tween;
-        [SerializeField, HideIf("amplitudeSmoothing", SmoothingType.AnimationCurve)] protected Ease amplitudeEasing = Ease.InOutSine;
-        [SerializeField, HideIf("amplitudeSmoothing", SmoothingType.Tween)] protected AnimationCurve amplitudeCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
+        [SerializeField] protected AnimationCurve amplitudeCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
         
         [Header("Frequency")]
         [SerializeField] private float frequencyGain = 1f;
-        [SerializeField] protected SmoothingType frequencySmoothing = SmoothingType.Tween;
-        [SerializeField, HideIf("frequencySmoothing", SmoothingType.AnimationCurve)] protected Ease frequencyEasing = Ease.InOutSine;
-        [SerializeField, HideIf("frequencySmoothing", SmoothingType.Tween)] protected AnimationCurve frequencyCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
+        [SerializeField] protected AnimationCurve frequencyCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
         
         private CinemachineVirtualCamera cam;
         private CinemachineBasicMultiChannelPerlin perlin;
@@ -38,10 +34,10 @@ namespace RedRats.Systems.LiteFeel.Effects
         protected override void SetupTweens()
         {
             Tween amplitudeTween = DOTween.To(() => perlin.m_AmplitudeGain, x => perlin.m_AmplitudeGain = x, amplitudeGain, duration);
-            AddFloatTweenToSequence(amplitudeTween, amplitudeSmoothing, amplitudeEasing, amplitudeCurve);
+            AddFloatTweenToSequence(amplitudeTween, amplitudeCurve);
             
             Tween frequencyTween = DOTween.To(() => perlin.m_FrequencyGain, x => perlin.m_FrequencyGain = x, frequencyGain, duration);
-            AddFloatTweenToSequence(frequencyTween, frequencySmoothing, frequencyEasing, frequencyCurve);
+            AddFloatTweenToSequence(frequencyTween, frequencyCurve);
         }
 
         protected override void ResetTargetState()

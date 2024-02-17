@@ -18,9 +18,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         [SerializeField, HideIf("@uniform == false || mode == TransitionType.ToDestination")] private float beginScaleU = 1;
         [SerializeField, HideIf("uniform")] private Vector3 targetScale = Vector3.one;
         [SerializeField, ShowIf("uniform")] private float targetScaleU = 2;
-        [SerializeField] private SmoothingType smoothing = SmoothingType.AnimationCurve;
-        [SerializeField, HideIf("smoothing", SmoothingType.AnimationCurve)] private Ease scaleEasing = Ease.InOutSine;
-        [SerializeField, HideIf("smoothing", SmoothingType.Tween)] private AnimationCurve scaleCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
+        [SerializeField] private AnimationCurve scaleCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
         
         private Vector3 startScale;
         
@@ -38,7 +36,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         {
             Vector3 targetValue = (movement == MovementType.Relative) ? target.localScale + GetTargetScale() : GetTargetScale();
             Tween tween = target.DOScale(targetValue, duration);
-            AddFloatTweenToSequence(tween, smoothing, scaleEasing, scaleCurve);
+            AddFloatTweenToSequence(tween, scaleCurve);
         }
 
         

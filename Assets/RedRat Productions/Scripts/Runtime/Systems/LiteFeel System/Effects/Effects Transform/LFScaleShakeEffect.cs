@@ -16,9 +16,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         [SerializeField] private int vibration = 20;
         [SerializeField, Range(0f, 90f)] private float randomness = 90;
         [SerializeField] private bool fadeout;
-        [SerializeField] protected SmoothingType smoothing = SmoothingType.AnimationCurve;
-        [SerializeField, HideIf("smoothing", SmoothingType.AnimationCurve)] protected Ease shakeEasing = Ease.InOutSine;
-        [SerializeField, HideIf("smoothing", SmoothingType.Tween)] protected AnimationCurve shakeCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
+        [SerializeField] protected AnimationCurve shakeCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
         
         private Vector3 startScale;
 
@@ -35,7 +33,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         protected override void SetupTweens()
         {
             Tween tween = target.DOShakeScale(duration, GetTargetValue(), vibration, randomness, fadeout);
-            AddFloatTweenToSequence(tween, smoothing, shakeEasing, shakeCurve);
+            AddFloatTweenToSequence(tween, shakeCurve);
         }
 
         protected override void ResetTargetState() => target.localScale = startScale;

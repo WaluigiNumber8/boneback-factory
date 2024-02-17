@@ -12,9 +12,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         [SerializeField, HideIf("mode", TransitionType.ToDestination)] private float beginScale = 1;
         [SerializeField] private float targetScale = 2;
         [SerializeField, EnumToggleButtons] private AxisType affectedAxis = AxisType.Y;
-        [SerializeField] private SmoothingType smoothing = SmoothingType.AnimationCurve;
-        [SerializeField, HideIf("smoothing", SmoothingType.AnimationCurve)] private Ease deformEasing = Ease.InOutSine;
-        [SerializeField, HideIf("smoothing", SmoothingType.Tween)] private AnimationCurve deformCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
+        [SerializeField] private AnimationCurve deformCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
         
         private Vector3 startScale;
         
@@ -34,7 +32,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         {
             Vector3 endScale = GetSquashedVector(target.localScale, targetScale);
             Tween tween = target.DOScale(endScale, duration);
-            AddFloatTweenToSequence(tween, smoothing, deformEasing, deformCurve);
+            AddFloatTweenToSequence(tween, deformCurve);
         }
 
         protected override void ResetTargetState()
