@@ -2680,7 +2680,7 @@ MonoBehaviour:
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
-  duration: 0.4
+  duration: 0.2
   resetOnEnd: 1
   additivePlay: 0
   infiniteLoop: 0
@@ -2688,8 +2688,8 @@ MonoBehaviour:
   loopType: 0
   target: {fileID: 7760547673633438774}
   animatePosition: 1
-  beginPosition: 0.495
-  targetPosition: 0.52
+  beginPosition: 0.3
+  targetPosition: 0.8
   positionSmoothing: 1
   posEasing: 4
   positionCurve:
@@ -2759,7 +2759,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   info: Shining
   restartOnPlay: 1
-  initialDelayMin: 0.4
+  initialDelayMin: 0.2
   initialDelayMax: 0
   duration: 3
   resetOnEnd: 1
@@ -2769,8 +2769,8 @@ MonoBehaviour:
   loopType: 0
   target: {fileID: 7760547673633438774}
   animatePosition: 1
-  beginPosition: 0.495
-  targetPosition: 0.52
+  beginPosition: 0.3
+  targetPosition: 0.8
   positionSmoothing: 1
   posEasing: 4
   positionCurve:
