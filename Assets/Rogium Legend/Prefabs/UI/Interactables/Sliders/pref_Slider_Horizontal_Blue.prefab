@@ -64,6 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f0e4aaa8a44d6580d9d4fa329c2794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: Bump vertically
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -128,6 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: Slider click
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -639,6 +641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: Slider tick
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -723,6 +726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f0e4aaa8a44d6580d9d4fa329c2794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: Scale ip Y
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -778,6 +782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f0e4aaa8a44d6580d9d4fa329c2794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: Scale Handle Y more
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -833,6 +838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: Click
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -862,6 +868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa814ab21d984f298b6ea6d462e8acd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: Glow Start
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -944,6 +951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa814ab21d984f298b6ea6d462e8acd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: Glow Loop
   restartOnPlay: 1
   initialDelayMin: 0.5
   initialDelayMax: 0
@@ -1206,6 +1214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f0e4aaa8a44d6580d9d4fa329c2794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: Scale down Y
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -1261,6 +1270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f0e4aaa8a44d6580d9d4fa329c2794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: Scale down handle Y more
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -1316,6 +1326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: Select
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -1345,6 +1356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 115fa96f69f542309e8ec1093d609426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: Stop glow
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -1362,6 +1374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa814ab21d984f298b6ea6d462e8acd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: Stop glowing
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -1495,6 +1508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: Select
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0

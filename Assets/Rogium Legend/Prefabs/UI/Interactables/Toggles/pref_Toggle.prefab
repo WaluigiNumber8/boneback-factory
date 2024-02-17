@@ -344,6 +344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: 
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -373,6 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f0e4aaa8a44d6580d9d4fa329c2794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: Bump UI
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -437,6 +439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6b492337984a3295e59fb635b3b40a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: Squash Checkmark
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -568,6 +571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f0e4aaa8a44d6580d9d4fa329c2794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: Scale up
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -623,6 +627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: 
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -703,6 +708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f0e4aaa8a44d6580d9d4fa329c2794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: Scale down
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0

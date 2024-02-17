@@ -142,6 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playOnAwake: 0
+  playOnEnable: 0
 --- !u!114 &5453220561442207127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,11 +156,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f0e4aaa8a44d6580d9d4fa329c2794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings:
-    playOnEnable: 0
-    randomizeDelay: 0
-    initialDelayMin: 0
-    initialDelayMax: 0
+  info: Scale up
+  restartOnPlay: 1
+  initialDelayMin: 0
+  initialDelayMax: 0
   duration: 0.05
   resetOnEnd: 0
   additivePlay: 0
@@ -211,11 +212,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings:
-    playOnEnable: 0
-    randomizeDelay: 0
-    initialDelayMin: 0
-    initialDelayMax: 0
+  info: 
+  restartOnPlay: 1
+  initialDelayMin: 0
+  initialDelayMax: 0
   clips:
   - {fileID: 11400000, guid: 823bb3f51dc80df4888839737d733be4, type: 2}
   sourceSettings:
@@ -437,6 +437,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playOnAwake: 0
+  playOnEnable: 0
 --- !u!114 &2131945176404802888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,11 +451,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f0e4aaa8a44d6580d9d4fa329c2794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings:
-    playOnEnable: 0
-    randomizeDelay: 0
-    initialDelayMin: 0
-    initialDelayMax: 0
+  info: Bump
+  restartOnPlay: 1
+  initialDelayMin: 0
+  initialDelayMax: 0
   duration: 0.05
   resetOnEnd: 1
   additivePlay: 0
@@ -506,11 +507,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings:
-    playOnEnable: 0
-    randomizeDelay: 0
-    initialDelayMin: 0
-    initialDelayMax: 0
+  info: 
+  restartOnPlay: 1
+  initialDelayMin: 0
+  initialDelayMax: 0
   clips:
   - {fileID: 11400000, guid: 00367dfa8ad1cda4d9ad918bb082e438, type: 2}
   sourceSettings:
@@ -574,6 +574,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playOnAwake: 0
+  playOnEnable: 0
 --- !u!114 &830171959799575047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -586,11 +588,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f0e4aaa8a44d6580d9d4fa329c2794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings:
-    playOnEnable: 0
-    randomizeDelay: 0
-    initialDelayMin: 0
-    initialDelayMax: 0
+  info: Scale down
+  restartOnPlay: 1
+  initialDelayMin: 0
+  initialDelayMax: 0
   duration: 0.05
   resetOnEnd: 0
   additivePlay: 0
@@ -817,6 +818,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventCaller: {fileID: 8785065212953543268}
-  onClickEffector: {fileID: 4815202019486653338}
   onSelectEffector: {fileID: 8953241593038432876}
   onDeselectEffector: {fileID: 2003045733568778228}
+  onClickEffector: {fileID: 4815202019486653338}
+  onClickDownEffector: {fileID: 0}
+  onClickUpEffector: {fileID: 0}

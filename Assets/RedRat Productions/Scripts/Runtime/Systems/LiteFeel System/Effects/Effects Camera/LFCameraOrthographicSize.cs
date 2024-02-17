@@ -35,5 +35,6 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         protected override void ResetTargetState() => cam.orthographicSize = startOrthographicSize;
         protected override void UpdateStartingValues() => startOrthographicSize = cam.orthographicSize;
+        protected override string FeedbackColor { get => "#56CDFF"; }
     }
 }

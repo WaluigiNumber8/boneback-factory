@@ -41,8 +41,10 @@ namespace RedRats.Systems.LiteFeel.Effects
             AddFloatTweenToSequence(tween, smoothing, scaleEasing, scaleCurve);
         }
 
+        
         protected override void ResetTargetState() => target.localScale = startScale;
         protected override void UpdateStartingValues() => startScale = target.localScale;
+        protected override string FeedbackColor { get => "#00FF9B"; }
         private Vector3 GetBeginScale() => (uniform) ? Vector3.one * beginScaleU : beginScale;
         private Vector3 GetTargetScale() => (uniform) ? Vector3.one * targetScaleU : targetScale;
     }

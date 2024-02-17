@@ -50,6 +50,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playOnAwake: 0
+  playOnEnable: 0
 --- !u!114 &7660018842021028384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,11 +64,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 115fa96f69f542309e8ec1093d609426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings:
-    playOnEnable: 0
-    randomizeDelay: 0
-    initialDelayMin: 0
-    initialDelayMax: 0
+  info: Stop hologram
+  restartOnPlay: 1
+  initialDelayMin: 0
+  initialDelayMax: 0
   effector: {fileID: 2796663526883100940}
   control: 0
 --- !u!114 &8431204282772453451
@@ -81,11 +82,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee72dd67a8324f278d349c64bfbc0f3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings:
-    playOnEnable: 0
-    randomizeDelay: 0
-    initialDelayMin: 0
-    initialDelayMax: 0
+  info: 
+  restartOnPlay: 1
+  initialDelayMin: 0
+  initialDelayMax: 0
   id: 154
   mode: 0
 --- !u!1 &470206228570041717
@@ -250,6 +250,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playOnAwake: 0
+  playOnEnable: 0
 --- !u!114 &3481880800897146226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,11 +264,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f0e4aaa8a44d6580d9d4fa329c2794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings:
-    playOnEnable: 0
-    randomizeDelay: 0
-    initialDelayMin: 0
-    initialDelayMax: 0
+  info: Bump
+  restartOnPlay: 1
+  initialDelayMin: 0
+  initialDelayMax: 0
   duration: 0.075
   resetOnEnd: 1
   additivePlay: 0
@@ -328,11 +329,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings:
-    playOnEnable: 0
-    randomizeDelay: 0
-    initialDelayMin: 0
-    initialDelayMax: 0
+  info: 
+  restartOnPlay: 1
+  initialDelayMin: 0
+  initialDelayMax: 0
   clips:
   - {fileID: 11400000, guid: 8827021b16375d343ace337d48146e52, type: 2}
   sourceSettings:
@@ -510,9 +510,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventCaller: {fileID: 1994307648032125949}
-  onClickEffector: {fileID: 3157826702505419251}
   onSelectEffector: {fileID: 2796663526883100940}
   onDeselectEffector: {fileID: 3572038180110195124}
+  onClickEffector: {fileID: 3157826702505419251}
+  onClickDownEffector: {fileID: 0}
+  onClickUpEffector: {fileID: 0}
 --- !u!1 &5940631430206662313
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,6 +567,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playOnAwake: 0
+  playOnEnable: 0
 --- !u!114 &4226452629741012650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -577,11 +581,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings:
-    playOnEnable: 0
-    randomizeDelay: 0
-    initialDelayMin: 0
-    initialDelayMax: 0
+  info: 
+  restartOnPlay: 1
+  initialDelayMin: 0
+  initialDelayMax: 0
   clips:
   - {fileID: 11400000, guid: 823bb3f51dc80df4888839737d733be4, type: 2}
   sourceSettings:
@@ -608,11 +611,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings:
-    playOnEnable: 0
-    randomizeDelay: 0
-    initialDelayMin: 0
-    initialDelayMax: 0
+  info: 
+  restartOnPlay: 1
+  initialDelayMin: 0
+  initialDelayMax: 0
   clips:
   - {fileID: 11400000, guid: 18b553f4c33b62541930c0fcb3b28923, type: 2}
   sourceSettings:
@@ -639,11 +641,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be27881ae17a4a48b59a2017f85b7324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings:
-    playOnEnable: 0
-    randomizeDelay: 0
-    initialDelayMin: 0
-    initialDelayMax: 0
+  info: Start hologram
+  restartOnPlay: 1
+  initialDelayMin: 0
+  initialDelayMax: 0
   duration: 0.5
   resetOnEnd: 1
   additivePlay: 0
@@ -691,11 +692,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be27881ae17a4a48b59a2017f85b7324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings:
-    playOnEnable: 0
-    randomizeDelay: 0
-    initialDelayMin: 0.5
-    initialDelayMax: 0
+  info: Loop hologram
+  restartOnPlay: 1
+  initialDelayMin: 0
+  initialDelayMax: 0
   duration: 4
   resetOnEnd: 1
   additivePlay: 0

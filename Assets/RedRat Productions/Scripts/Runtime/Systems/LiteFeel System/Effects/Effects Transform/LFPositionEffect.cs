@@ -30,7 +30,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         {
             // Do nothing.
         }
-        
+
         protected override void SetBeginState()
         {
             if (mode != TransitionType.AToB) return;
@@ -57,6 +57,8 @@ namespace RedRats.Systems.LiteFeel.Effects
             startLocalPosition = target.localPosition;
         }
 
+        protected override string FeedbackColor { get => "#00FF9B"; }
+        
         private Vector3 GetPositionBasedOnSpace() => (worldType == WorldType.World) ? target.position : target.localPosition;
         private Vector3 GetBeginPosition() => (uniform) ? Vector3.one * beginPositionU : beginPosition;
         private Vector3 GetTargetPosition() => (uniform) ? Vector3.one * targetPositionU : targetPosition;

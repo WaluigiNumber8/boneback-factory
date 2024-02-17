@@ -40,6 +40,7 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         protected override void ResetTargetState() => target.localScale = startScale;
         protected override void UpdateStartingValues() => startScale = target.localScale;
+        protected override string FeedbackColor { get => "#00FF9B"; }
         private Vector3 GetTargetValue() => (uniform) ? Vector3.one * strength : strengthVector;
     }
 }

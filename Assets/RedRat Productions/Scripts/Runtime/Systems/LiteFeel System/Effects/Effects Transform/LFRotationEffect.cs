@@ -57,6 +57,7 @@ namespace RedRats.Systems.LiteFeel.Effects
             startLocalRotation = target.localEulerAngles;
         }
 
+        protected override string FeedbackColor { get => "#00FF9B"; }
         private Vector3 GetRotationBasedOnSpace() => (worldType == WorldType.World) ? target.eulerAngles : target.localEulerAngles;
         private Vector3 GetBeginRotation() => (uniform) ? Vector3.one * beginRotationU : beginRotation;
         private Vector3 GetTargetRotation() => (uniform) ? Vector3.one * targetRotationU : targetRotation;

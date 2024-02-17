@@ -62,5 +62,7 @@ namespace RedRats.Systems.LiteFeel.Effects
             pitchMin = newPitchMin;
             pitchMax = newPitchMax;
         }
+        
+        protected override string FeedbackColor { get => "#FFCD1C"; }
     }
 }

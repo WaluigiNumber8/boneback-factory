@@ -51,5 +51,7 @@ namespace RedRats.Systems.LiteFeel.Effects
             CinemachineVirtualCamera vcam = RedRatUtils.GetActiveVCam();
             return (vcam == cam) ? cam : vcam;
         }
+        
+        protected override string FeedbackColor { get => "#56CDFF"; }
     }
 }

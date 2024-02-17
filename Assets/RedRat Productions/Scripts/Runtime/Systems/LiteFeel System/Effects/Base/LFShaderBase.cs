@@ -45,6 +45,8 @@ namespace RedRats.Systems.LiteFeel.Effects
             AddFloatTweenToSequence(tween, smoothing, easing, curve);
         }
         
+        protected override string FeedbackColor { get => "#FD6180"; }
+        
         private bool HasNoTarget() => target == null; 
     }
 }

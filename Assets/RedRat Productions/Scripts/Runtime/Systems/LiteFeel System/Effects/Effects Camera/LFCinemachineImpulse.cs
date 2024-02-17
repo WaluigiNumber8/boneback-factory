@@ -55,5 +55,7 @@ namespace RedRats.Systems.LiteFeel.Effects
             startFrequencyGain = perlin.m_FrequencyGain;
             startAmplitudeGain = perlin.m_AmplitudeGain;
         }
+        
+        protected override string FeedbackColor { get => "#56CDFF"; }
     }
 }

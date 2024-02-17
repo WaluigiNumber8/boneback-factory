@@ -42,6 +42,8 @@ namespace RedRats.Systems.LiteFeel.Effects
             startLocalPosition = target.localPosition;
         }
         
+        protected override string FeedbackColor { get => "#00FF9B"; }
+        
         private Vector3 GetTargetValue() => (uniform) ? Vector3.one * strength : strengthVector;
     }
 }

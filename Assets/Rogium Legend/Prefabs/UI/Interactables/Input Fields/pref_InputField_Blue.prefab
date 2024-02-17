@@ -156,6 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f0e4aaa8a44d6580d9d4fa329c2794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: Bump Y
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -220,6 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: Field Click
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -351,6 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: Select
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -735,5 +738,5 @@ MonoBehaviour:
   onSelectEffector: {fileID: 4914150351514898110}
   onDeselectEffector: {fileID: 0}
   onClickEffector: {fileID: 7121426521612513913}
-  onClickUpEffector: {fileID: 0}
   onClickDownEffector: {fileID: 0}
+  onClickUpEffector: {fileID: 0}

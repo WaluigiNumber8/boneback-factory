@@ -33,5 +33,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         {
             // Nothing to do here.
         }
+        
+        protected override string FeedbackColor { get => "#FFCD1C"; }
     }
 }

@@ -47,6 +47,8 @@ namespace RedRats.Systems.LiteFeel.Effects
             startScale = target.localScale;
         }
 
+        protected override string FeedbackColor { get => "#00FF9B"; }
+        
         private Vector3 GetSquashedVector(Vector3 original, float squashValue)
         {
             return new()

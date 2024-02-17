@@ -156,6 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f0e4aaa8a44d6580d9d4fa329c2794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: Bump
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -272,6 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f0e4aaa8a44d6580d9d4fa329c2794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: Scale Y out
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -327,6 +329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: 
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -407,6 +410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: Select
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -478,8 +482,8 @@ MonoBehaviour:
   onSelectEffector: {fileID: 2102250716512009162}
   onDeselectEffector: {fileID: 0}
   onClickEffector: {fileID: 6571947834186396325}
-  onClickUpEffector: {fileID: 0}
   onClickDownEffector: {fileID: 0}
+  onClickUpEffector: {fileID: 0}
 --- !u!1 &5846223758240368173
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,6 +814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: Select
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -2123,8 +2128,8 @@ MonoBehaviour:
   onSelectEffector: {fileID: 317270547834782798}
   onDeselectEffector: {fileID: 0}
   onClickEffector: {fileID: 7493392320520587992}
-  onClickUpEffector: {fileID: 0}
   onClickDownEffector: {fileID: 0}
+  onClickUpEffector: {fileID: 0}
 --- !u!1 &8910339289924573856
 GameObject:
   m_ObjectHideFlags: 0
@@ -2189,6 +2194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f0e4aaa8a44d6580d9d4fa329c2794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: Bump
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -2253,6 +2259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: Click
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0

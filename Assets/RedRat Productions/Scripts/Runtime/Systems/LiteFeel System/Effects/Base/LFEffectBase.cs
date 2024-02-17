@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using RedRats.Systems.LiteFeel.Core;
 using Sirenix.OdinInspector;
@@ -13,6 +12,7 @@ namespace RedRats.Systems.LiteFeel.Effects
     [RequireComponent(typeof(LFEffector))]
     public abstract class LFEffectBase : MonoBehaviour
     {
+        [SerializeField, HideLabel, GUIColor("GetEffectColor")] private string info;
         public string GroupSettings => $"Settings (+{GetDelay} s)";
         [FoldoutGroup("$GroupSettings"), SerializeField]
         private bool restartOnPlay = true;
@@ -68,6 +68,12 @@ namespace RedRats.Systems.LiteFeel.Effects
             yield return new WaitForSeconds(delay);
             PlaySelf();
         }
+
+        private Color GetEffectColor()
+        {
+            ColorUtility.TryParseHtmlString(FeedbackColor, out Color c);
+            return c;
+        }
         
         /// <summary>
         /// Initialize all values needed for the effect.
@@ -81,6 +87,8 @@ namespace RedRats.Systems.LiteFeel.Effects
         /// Disables the effect.
         /// </summary>
         protected abstract void StopSelf();
+
+        protected abstract string FeedbackColor { get; }
         
         private string GetDelay => (randomizeDelay) ? $"{initialDelayMin} - {initialDelayMax}" : initialDelayMin.ToString();
         
