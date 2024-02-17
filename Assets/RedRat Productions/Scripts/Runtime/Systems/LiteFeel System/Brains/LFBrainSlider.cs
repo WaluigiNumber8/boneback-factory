@@ -25,7 +25,6 @@ namespace RedRats.Systems.LiteFeel.Brains
         [SerializeField, HorizontalGroup(Width = 0.7f, DisableAutomaticLabelWidth = true), LabelText("Pitch Min/Max"), ShowIf("affectPitch")] private float pitchMin;
         [SerializeField, HorizontalGroup(Width = 0.3f, DisableAutomaticLabelWidth = true), ShowIf("affectPitch"), HideLabel] private float pitchMax;
         
-
         private void OnEnable()
         {
             StartCoroutine(EnableSliderListeningCoroutine());
@@ -44,10 +43,6 @@ namespace RedRats.Systems.LiteFeel.Brains
             if (playOnValueChange) valueChangeEffect.Play();
         }
 
-        /// <summary>
-        /// Sets the pitch of the first found <see cref="MMF_MMSoundManagerSound"/> feedback to a specific value.
-        /// </summary>
-        /// <param name="value">Sound's new pitch.</param>
         private void SetPitch(float value)
         {
             if (audioEffect == null) return;
