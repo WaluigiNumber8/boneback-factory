@@ -299,6 +299,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playOnAwake: 0
+  playOnEnable: 0
 --- !u!114 &2501661875161694406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,11 +313,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f0e4aaa8a44d6580d9d4fa329c2794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings:
-    playOnEnable: 0
-    randomizeDelay: 0
-    initialDelayMin: 0
-    initialDelayMax: 0
+  info: 
+  active: 1
+  restartOnPlay: 1
+  initialDelayMin: 0
+  initialDelayMax: 0
   duration: 0.05
   resetOnEnd: 1
   additivePlay: 0
@@ -330,8 +332,6 @@ MonoBehaviour:
   beginScaleU: 1
   targetScale: {x: 0, y: 0, z: 0}
   targetScaleU: 0.9
-  smoothing: 1
-  scaleEasing: 4
   scaleCurve:
     serializedVersion: 2
     m_Curve:
@@ -368,11 +368,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings:
-    playOnEnable: 0
-    randomizeDelay: 0
-    initialDelayMin: 0
-    initialDelayMax: 0
+  info: 
+  active: 1
+  restartOnPlay: 1
+  initialDelayMin: 0
+  initialDelayMax: 0
   clips:
   - {fileID: 11400000, guid: 00367dfa8ad1cda4d9ad918bb082e438, type: 2}
   sourceSettings:
@@ -436,6 +436,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playOnAwake: 0
+  playOnEnable: 0
 --- !u!114 &3117009170412393379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,13 +450,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f0e4aaa8a44d6580d9d4fa329c2794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings:
-    playOnEnable: 0
-    randomizeDelay: 0
-    initialDelayMin: 0
-    initialDelayMax: 0
+  info: 
+  active: 1
+  restartOnPlay: 1
+  initialDelayMin: 0
+  initialDelayMax: 0
   duration: 0.05
-  resetOnEnd: 0
+  resetOnEnd: 1
   additivePlay: 0
   infiniteLoop: 0
   loops: 1
@@ -467,8 +469,6 @@ MonoBehaviour:
   beginScaleU: 1.075
   targetScale: {x: 0, y: 0, z: 0}
   targetScaleU: 1
-  smoothing: 1
-  scaleEasing: 4
   scaleCurve:
     serializedVersion: 2
     m_Curve:
@@ -545,9 +545,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventCaller: {fileID: 1810875663955269579}
-  onClickEffector: {fileID: 3068595608364080050}
   onSelectEffector: {fileID: 8168245511114837547}
   onDeselectEffector: {fileID: 2947905093503546400}
+  onClickEffector: {fileID: 3068595608364080050}
+  onClickDownEffector: {fileID: 0}
+  onClickUpEffector: {fileID: 0}
 --- !u!1 &8346429913055225796
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,6 +600,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playOnAwake: 0
+  playOnEnable: 0
 --- !u!114 &800439517765948020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -610,11 +614,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f0e4aaa8a44d6580d9d4fa329c2794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings:
-    playOnEnable: 0
-    randomizeDelay: 0
-    initialDelayMin: 0
-    initialDelayMax: 0
+  info: 
+  active: 1
+  restartOnPlay: 1
+  initialDelayMin: 0
+  initialDelayMax: 0
   duration: 0.05
   resetOnEnd: 0
   additivePlay: 0
@@ -629,8 +633,6 @@ MonoBehaviour:
   beginScaleU: 1
   targetScale: {x: 0, y: 0, z: 0}
   targetScaleU: 1.075
-  smoothing: 1
-  scaleEasing: 4
   scaleCurve:
     serializedVersion: 2
     m_Curve:
@@ -667,11 +669,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings:
-    playOnEnable: 0
-    randomizeDelay: 0
-    initialDelayMin: 0
-    initialDelayMax: 0
+  info: 
+  active: 1
+  restartOnPlay: 1
+  initialDelayMin: 0
+  initialDelayMax: 0
   clips:
   - {fileID: 11400000, guid: 823bb3f51dc80df4888839737d733be4, type: 2}
   sourceSettings:
