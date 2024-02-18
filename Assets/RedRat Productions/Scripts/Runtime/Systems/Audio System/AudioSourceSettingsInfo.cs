@@ -12,12 +12,14 @@ namespace RedRats.Systems.Audio
         public int id;
         public bool loop;
         public bool playOnlyWhenNotPlaying;
+        public bool muteSameSound;
 
-        public AudioSourceSettingsInfo(int id, bool loop, bool playOnlyWhenNotPlaying)
+        public AudioSourceSettingsInfo(int id, bool loop, bool playOnlyWhenNotPlaying, bool muteSameSound)
         {
             this.id = id;
             this.loop = loop;
             this.playOnlyWhenNotPlaying = playOnlyWhenNotPlaying;
+            this.muteSameSound = muteSameSound;
         }
     }
 }

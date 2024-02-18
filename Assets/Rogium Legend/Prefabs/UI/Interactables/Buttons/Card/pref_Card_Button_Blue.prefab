@@ -313,7 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f0e4aaa8a44d6580d9d4fa329c2794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info: 
+  info: Bump in
   active: 1
   restartOnPlay: 1
   initialDelayMin: 0
@@ -368,7 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info: 
+  info: Button click
   active: 1
   restartOnPlay: 1
   initialDelayMin: 0
@@ -379,6 +379,7 @@ MonoBehaviour:
     id: 0
     loop: 0
     playOnlyWhenNotPlaying: 0
+    muteSameSound: 0
   ignoreEffectStop: 1
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
@@ -450,7 +451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f0e4aaa8a44d6580d9d4fa329c2794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info: 
+  info: Scale down
   active: 1
   restartOnPlay: 1
   initialDelayMin: 0
@@ -614,7 +615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f0e4aaa8a44d6580d9d4fa329c2794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info: 
+  info: Scale up
   active: 1
   restartOnPlay: 1
   initialDelayMin: 0
@@ -669,7 +670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info: 
+  info: Select
   active: 1
   restartOnPlay: 1
   initialDelayMin: 0
@@ -680,6 +681,7 @@ MonoBehaviour:
     id: 0
     loop: 0
     playOnlyWhenNotPlaying: 0
+    muteSameSound: 0
   ignoreEffectStop: 1
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}

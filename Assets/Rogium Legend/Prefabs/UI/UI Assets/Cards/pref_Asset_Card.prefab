@@ -231,6 +231,7 @@ MonoBehaviour:
     id: 0
     loop: 0
     playOnlyWhenNotPlaying: 0
+    muteSameSound: 0
   ignoreEffectStop: 1
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
@@ -267,8 +268,6 @@ MonoBehaviour:
   beginScale: 1
   targetScale: 1.11
   affectedAxis: 2
-  smoothing: 1
-  deformEasing: 4
   deformCurve:
     serializedVersion: 2
     m_Curve:
@@ -587,8 +586,6 @@ MonoBehaviour:
   beginScaleU: 1.07
   targetScale: {x: 1, y: 1, z: 1}
   targetScaleU: 1
-  smoothing: 1
-  scaleEasing: 4
   scaleCurve:
     serializedVersion: 2
     m_Curve:
@@ -889,8 +886,6 @@ MonoBehaviour:
   beginScaleU: 1
   targetScale: {x: 1, y: 1, z: 1}
   targetScaleU: 1.07
-  smoothing: 1
-  scaleEasing: 4
   scaleCurve:
     serializedVersion: 2
     m_Curve:
@@ -927,7 +922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info: 
+  info: Card select
   active: 1
   restartOnPlay: 1
   initialDelayMin: 0
@@ -938,6 +933,7 @@ MonoBehaviour:
     id: 0
     loop: 0
     playOnlyWhenNotPlaying: 0
+    muteSameSound: 0
   ignoreEffectStop: 1
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
@@ -973,8 +969,6 @@ MonoBehaviour:
   animatePosition: 1
   beginPosition: 0.3
   targetPosition: 0.8
-  positionSmoothing: 1
-  posEasing: 4
   positionCurve:
     serializedVersion: 2
     m_Curve:
@@ -1002,8 +996,6 @@ MonoBehaviour:
   animateGlow: 0
   beginGlow: 0.1
   targetGlow: 1
-  glowSmoothing: 1
-  glowEasing: 4
   glowCurve:
     serializedVersion: 2
     m_Curve:
@@ -1031,8 +1023,6 @@ MonoBehaviour:
   animateRotation: 0
   beginRotation: 135
   targetRotation: 360
-  rotationSmoothing: 1
-  rotationEasing: 4
   rotationCurve:
     serializedVersion: 2
     m_Curve:
@@ -1084,8 +1074,6 @@ MonoBehaviour:
   animatePosition: 1
   beginPosition: 0.3
   targetPosition: 0.8
-  positionSmoothing: 1
-  posEasing: 4
   positionCurve:
     serializedVersion: 2
     m_Curve:
@@ -1113,8 +1101,6 @@ MonoBehaviour:
   animateGlow: 0
   beginGlow: 0.1
   targetGlow: 1
-  glowSmoothing: 1
-  glowEasing: 4
   glowCurve:
     serializedVersion: 2
     m_Curve:
@@ -1142,8 +1128,6 @@ MonoBehaviour:
   animateRotation: 0
   beginRotation: 135
   targetRotation: 360
-  rotationSmoothing: 1
-  rotationEasing: 4
   rotationCurve:
     serializedVersion: 2
     m_Curve:

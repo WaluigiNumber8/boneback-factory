@@ -15,7 +15,7 @@ namespace RedRats.Systems.Audio
     {
         [SerializeField] private AudioMixer audioMixer;
         [SerializeField] private AudioMixerParamsInfo mixerParameters;
-        
+
         private ObjectDictionaryPool<int, AudioSource> sourcePool;
 
         protected override void Awake()
@@ -86,9 +86,20 @@ namespace RedRats.Systems.Audio
         public AudioSource PlaySound(AudioClip clip, AudioMixerGroup mixerGroup, AudioSourceSettingsInfo sourceSettings, float volume = 1, float pitchMin = 1, float pitchMax = 1)
         {
             if (clip == null) return null;
-            
-            // If the clip is already playing, don't play it again.
+
+            // If playOnlyWhenNotPlaying and the clip is already playing, don't play it again.
             if (sourceSettings.playOnlyWhenNotPlaying && sourcePool.GetActive().Any(s => s.isPlaying && s.clip == clip)) return null;
+
+            // If muteSameSound and the clip is already playing, stop it.
+            if (sourceSettings.muteSameSound)
+            {
+                foreach (AudioSource s in sourcePool.GetActive())
+                {
+                    if (!s.isPlaying || s.clip != clip) continue;
+                    s.Stop();
+                    TryReleaseSource(s);
+                }
+            }
 
             AudioSource source = (sourceSettings.id == 0) ? sourcePool.Get() : sourcePool.Get(sourceSettings.id);
             source.clip = clip;
@@ -99,7 +110,7 @@ namespace RedRats.Systems.Audio
             source.Play();
 
             if (source.loop) return source;
-            
+
             StartCoroutine(ReleaseSourceCoroutine());
             IEnumerator ReleaseSourceCoroutine()
             {
@@ -107,6 +118,7 @@ namespace RedRats.Systems.Audio
                 if (sourceSettings.id == 0) TryReleaseSource(source);
                 else TryReleaseSource(sourceSettings.id);
             }
+
             return source;
         }
 
@@ -135,17 +147,17 @@ namespace RedRats.Systems.Audio
             if (source.isPlaying || !source.gameObject.activeSelf) return;
             sourcePool.Release(source);
         }
-        
+
         private void TryReleaseSource(int id)
         {
             AudioSource source = sourcePool.Get(id);
             if (source.isPlaying || !source.gameObject.activeSelf) return;
             sourcePool.Release(id);
         }
-        
+
         public AudioMixer AudioMixer { get => audioMixer; }
         public AudioMixerParamsInfo MixerParameters { get => mixerParameters; }
-        
+
         [Serializable]
         public struct AudioMixerParamsInfo
         {
