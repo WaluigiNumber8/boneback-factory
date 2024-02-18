@@ -88,16 +88,16 @@ Material:
     - _HologramBlend: 0
     - _HologramScrollSpeed: 100
     - _HologramTiling: 4
-    - _ShimmerGlow: 0.07
-    - _ShimmerPosition: 0.4
+    - _ShimmerGlow: 0.43
+    - _ShimmerPosition: 0.31
     - _ShimmerRotation: 135
-    - _ShimmerWidth: 1
+    - _ShimmerWidth: 0.54
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _FullBlendColor: {r: 0, g: 0, b: 0, a: 0}
     - _MainColor: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _ShimmerColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ShimmerColor: {r: 0.43137255, g: 0.85490197, b: 0.98039216, a: 1}
     - _Tint: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

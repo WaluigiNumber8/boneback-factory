@@ -39,5 +39,6 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats: []
-    m_Colors: []
+    m_Colors:
+    - _ShimmerColor: {r: 0.6862745, g: 0.6862745, b: 0.6862745, a: 1}
   m_BuildTextureStacks: []

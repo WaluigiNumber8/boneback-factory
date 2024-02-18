@@ -29816,6 +29816,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5739c7a8f977408bb94f9a164821c027, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: 
+  active: 1
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -29828,8 +29830,6 @@ MonoBehaviour:
   target: {fileID: 1195219374}
   beginTint: {r: 1, g: 1, b: 1, a: 0}
   targetTint: {r: 1, g: 0, b: 0, a: 1}
-  smoothing: 1
-  easing: 4
   blendCurve:
     serializedVersion: 2
     m_Curve:
