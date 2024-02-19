@@ -9,26 +9,22 @@ namespace RedRats.Systems.LiteFeel.Core
     [DisallowMultipleComponent]
     public class LFEffector : MonoBehaviour
     {
-        [SerializeField] private bool playOnStart;
-        [SerializeField] private bool playOnEnable;
+        [SerializeField] private AutoplayType autoplay;
         
         private LFEffectBase[] effects;
         
-        private void Awake()
-        {
-            effects = GetComponents<LFEffectBase>();
-        }
+        private void Awake() => effects = GetComponents<LFEffectBase>();
 
         private void Start()
         {
-            if (!playOnStart) return;
+            if (autoplay != AutoplayType.OnStart) return;
             if (effects.Length <= 0) return;
             Play();
         }
 
         private void OnEnable()
         {
-            if (!playOnEnable) return;
+            if (autoplay != AutoplayType.OnEnable) return;
             if (effects.Length <= 0) return;
             Play();
         }

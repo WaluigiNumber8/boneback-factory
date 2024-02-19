@@ -50,8 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnAwake: 0
-  playOnEnable: 0
+  autoplay: 0
 --- !u!114 &7660018842021028384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,6 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info: Stop hologram
+  active: 1
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -83,6 +83,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info: 
+  active: 1
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -250,8 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnAwake: 0
-  playOnEnable: 0
+  autoplay: 0
 --- !u!114 &3481880800897146226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,6 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info: Bump
+  active: 1
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -282,8 +283,6 @@ MonoBehaviour:
   beginScaleU: 1
   targetScale: {x: 0, y: 0, z: 0}
   targetScaleU: 1.1
-  smoothing: 1
-  scaleEasing: 4
   scaleCurve:
     serializedVersion: 2
     m_Curve:
@@ -330,6 +329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info: 
+  active: 1
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -339,6 +339,7 @@ MonoBehaviour:
     id: 0
     loop: 0
     playOnlyWhenNotPlaying: 0
+    muteSameSound: 0
   ignoreEffectStop: 0
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
@@ -426,7 +427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 9e85ff5776f679549a055156577323ed, type: 2}
+  m_Material: {fileID: 2100000, guid: f7957da1263642248883068d3fd3cb4d, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -567,8 +568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnAwake: 0
-  playOnEnable: 0
+  autoplay: 0
 --- !u!114 &4226452629741012650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -582,6 +582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info: 
+  active: 1
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -591,6 +592,7 @@ MonoBehaviour:
     id: 0
     loop: 0
     playOnlyWhenNotPlaying: 0
+    muteSameSound: 0
   ignoreEffectStop: 0
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
@@ -612,6 +614,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info: 
+  active: 1
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -621,6 +624,7 @@ MonoBehaviour:
     id: 154
     loop: 1
     playOnlyWhenNotPlaying: 1
+    muteSameSound: 0
   ignoreEffectStop: 1
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
@@ -642,6 +646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info: Start hologram
+  active: 1
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -653,9 +658,7 @@ MonoBehaviour:
   loopType: 0
   target: {fileID: 3164224714801167802}
   beginBlend: 0
-  targetBlend: 0.25
-  smoothing: 1
-  easing: 4
+  targetBlend: 0.4
   blendCurve:
     serializedVersion: 2
     m_Curve:
@@ -693,6 +696,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info: Loop hologram
+  active: 1
   restartOnPlay: 1
   initialDelayMin: 0
   initialDelayMax: 0
@@ -704,9 +708,7 @@ MonoBehaviour:
   loopType: 0
   target: {fileID: 3164224714801167802}
   beginBlend: 0.25
-  targetBlend: 0.25
-  smoothing: 1
-  easing: 4
+  targetBlend: 0.4
   blendCurve:
     serializedVersion: 2
     m_Curve:
@@ -742,7 +744,6 @@ GameObject:
   - component: {fileID: 739223052116082640}
   - component: {fileID: 6469395521216708047}
   - component: {fileID: 8314343363808421178}
-  - component: {fileID: 7636145937014655390}
   - component: {fileID: 1994307648032125949}
   m_Layer: 5
   m_Name: pref_AssetField_Blue
@@ -836,18 +837,6 @@ MonoBehaviour:
   type: 0
   ui:
     icon: {fileID: 8838267524414460830}
---- !u!114 &7636145937014655390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8464327280619493826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ad67da4878bcce4c8a448c42eb57e83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1994307648032125949
 MonoBehaviour:
   m_ObjectHideFlags: 0
