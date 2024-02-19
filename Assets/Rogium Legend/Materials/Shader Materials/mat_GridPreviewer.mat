@@ -85,9 +85,9 @@ Material:
     - _FullColorGlow: 1
     - _GlowIntensity: 1
     - _GlowSaturation: 1
-    - _HologramBlend: 0.482
-    - _HologramScrollSpeed: 100
-    - _HologramTiling: 4
+    - _HologramBlend: 0.45
+    - _HologramScrollSpeed: 1000
+    - _HologramTiling: 0.05
     - _ShimmerGlow: 1
     - _ShimmerPosition: 0
     - _ShimmerRotation: 135
