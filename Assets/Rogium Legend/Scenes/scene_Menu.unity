@@ -3186,7 +3186,6 @@ GameObject:
   m_Component:
   - component: {fileID: 180017606}
   - component: {fileID: 180017607}
-  - component: {fileID: 180017608}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -3249,67 +3248,6 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 426837165}
---- !u!114 &180017608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 180017605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0aded04d7fa45744fb33cc0a43b0d6ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ChannelMode: 0
-  Channel: 0
-  MMChannelDefinition: {fileID: 0}
-  ShakeDuration: 0.5
-  PlayOnAwake: 0
-  PermanentShake: 0
-  Interruptible: 1
-  AlwaysResetTargetValuesAfterShake: 0
-  OnlyUseShakerValues: 0
-  CooldownBetweenShakes: 0
-  Shaking: 0
-  ForwardDirection: 1
-  TimescaleMode: 0
-  RelativeOrthographicSize: 0
-  ShakeOrthographicSize:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.5
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  RemapOrthographicSizeZero: 5
-  RemapOrthographicSizeOne: 10
 --- !u!1001 &181756208
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4072,7 +4010,6 @@ GameObject:
   - component: {fileID: 220932539}
   - component: {fileID: 220932538}
   - component: {fileID: 220932537}
-  - component: {fileID: 220932536}
   m_Layer: 5
   m_Name: Fader
   m_TagString: Untagged
@@ -4099,58 +4036,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &220932536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 220932534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efe052b91c95c534b8bf0f64fb0b9151, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ID: 0
-  InactiveAlpha: 0
-  ActiveAlpha: 1
-  ForcedInitState: 2
-  DefaultDuration: 0.2
-  DefaultTween:
-    MMTweenDefinitionType: 0
-    MMTweenCurve: 0
-    Curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    Initialized: 0
-  IgnoreTimescale: 1
-  CanFadeToCurrentAlpha: 1
-  ShouldBlockRaycasts: 0
-  FadeIn1SecondButton: 0
-  FadeOut1SecondButton: 0
-  DefaultFadeButton: 0
-  ResetFaderButton: 0
 --- !u!225 &220932537
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -9039,102 +8924,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1184853988120367727, guid: d8a7527f0baad6346af8376f9ebf9692, type: 3}
   m_PrefabInstance: {fileID: 1184853989332836697}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &552895734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 552895731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 485e02e02c638cf4b9ca8344fd6213a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ChannelMode: 0
-  Channel: 0
-  MMChannelDefinition: {fileID: 0}
-  ShakeDuration: 0.2
-  PlayOnAwake: 0
-  PermanentShake: 0
-  Interruptible: 1
-  AlwaysResetTargetValuesAfterShake: 0
-  OnlyUseShakerValues: 0
-  CooldownBetweenShakes: 0
-  Shaking: 0
-  ForwardDirection: 1
-  TimescaleMode: 0
-  RelativeValues: 1
-  ShakeIntensity:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.5
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  RemapIntensityZero: 0
-  RemapIntensityOne: 1
-  ShakeThreshold:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.5
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  RemapThresholdZero: 0
-  RemapThresholdOne: 0
 --- !u!1001 &553786473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10593,17 +10382,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 630874119}
   m_CullTransparentMesh: 1
---- !u!114 &631014618 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8719139750394245766, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-  m_PrefabInstance: {fileID: 8378214598602530702}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6da43522623d4704e979466dc7650b65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &636199902
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13695,54 +13473,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 890174976}
   m_CullTransparentMesh: 1
---- !u!1 &890630078
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 890630080}
-  - component: {fileID: 890630079}
-  m_Layer: 0
-  m_Name: Audio System (FEEL)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &890630079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 890630078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 614edb33c38bcf949846d5675f29f9fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AutomaticallyUnparentOnAwake: 1
-  settingsSo: {fileID: 11400000, guid: 07ea3ff88e1ecb84d91f58aa804badc6, type: 2}
-  AudioSourcePoolSize: 50
-  PoolCanExpand: 1
---- !u!4 &890630080
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 890630078}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &908483413
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15575,17 +15305,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8091792251356209242, guid: f97e52675ef439041acd930501beee72, type: 3}
   m_PrefabInstance: {fileID: 1024368053}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1028438125 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6663531391695754142, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-  m_PrefabInstance: {fileID: 8378214598602530702}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0a197422a0f47ae832323f7f9e3499a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &1028438129 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4508757990027205650, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
@@ -25004,7 +24723,7 @@ MonoBehaviour:
     IsHidden: 0
   - Type: 0
     Name: 
-    GameObject: {fileID: 890630078}
+    GameObject: {fileID: 0}
     Ordinal: 26
     Priority: 0
     IconType: 138020
@@ -25298,17 +25017,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AllowSwitchOff: 0
---- !u!114 &1498255130 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-  m_PrefabInstance: {fileID: 8378214598602530702}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6da43522623d4704e979466dc7650b65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1502549805
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30208,17 +29916,6 @@ MonoBehaviour:
   colorSlotPrefab: {fileID: 16064623958222674, guid: 6dd316f406904b04a80def9ca0edf19e, type: 3}
   paletteParent: {fileID: 366163393}
   emptyText: {fileID: 0}
---- !u!114 &1800891859 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-  m_PrefabInstance: {fileID: 8378214598602530702}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6da43522623d4704e979466dc7650b65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1804944920
 GameObject:
   m_ObjectHideFlags: 0
@@ -35202,9 +34899,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1184853988599181680, guid: d8a7527f0baad6346af8376f9ebf9692, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1909326201}
-    - targetCorrespondingSourceObject: {fileID: 1184853988120367727, guid: d8a7527f0baad6346af8376f9ebf9692, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 552895734}
   m_SourcePrefab: {fileID: 100100000, guid: d8a7527f0baad6346af8376f9ebf9692, type: 3}
 --- !u!224 &1237910748097035827
 RectTransform:
@@ -41265,7 +40959,7 @@ PrefabInstance:
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209434].Owner
       value: 
-      objectReference: {fileID: 1498255130}
+      objectReference: {fileID: 0}
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209435].Label
       value: MMSoundManager Sound
@@ -41273,7 +40967,7 @@ PrefabInstance:
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209435].Owner
       value: 
-      objectReference: {fileID: 1498255130}
+      objectReference: {fileID: 0}
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209436].Label
       value: Orthographic Size
@@ -41281,7 +40975,7 @@ PrefabInstance:
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209436].Owner
       value: 
-      objectReference: {fileID: 1498255130}
+      objectReference: {fileID: 0}
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209437].Label
       value: Pause
@@ -41289,7 +40983,7 @@ PrefabInstance:
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209437].Owner
       value: 
-      objectReference: {fileID: 1498255130}
+      objectReference: {fileID: 0}
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209438].Label
       value: Fade
@@ -41297,7 +40991,7 @@ PrefabInstance:
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209438].Owner
       value: 
-      objectReference: {fileID: 1498255130}
+      objectReference: {fileID: 0}
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209447].Label
       value: Scale
@@ -41305,7 +40999,7 @@ PrefabInstance:
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209447].Owner
       value: 
-      objectReference: {fileID: 1498255130}
+      objectReference: {fileID: 0}
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209448].Label
       value: Glow
@@ -41313,7 +41007,7 @@ PrefabInstance:
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209448].Owner
       value: 
-      objectReference: {fileID: 1498255130}
+      objectReference: {fileID: 0}
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209449].Label
       value: MMSoundManager Sound
@@ -41321,7 +41015,7 @@ PrefabInstance:
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209449].Owner
       value: 
-      objectReference: {fileID: 1498255130}
+      objectReference: {fileID: 0}
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209450].Label
       value: MMSoundManager Sound
@@ -41329,7 +41023,7 @@ PrefabInstance:
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209450].Owner
       value: 
-      objectReference: {fileID: 1498255130}
+      objectReference: {fileID: 0}
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209451].Label
       value: Orthographic Size
@@ -41337,7 +41031,7 @@ PrefabInstance:
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209451].Owner
       value: 
-      objectReference: {fileID: 1498255130}
+      objectReference: {fileID: 0}
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209452].Label
       value: Pause
@@ -41345,7 +41039,7 @@ PrefabInstance:
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209452].Owner
       value: 
-      objectReference: {fileID: 1498255130}
+      objectReference: {fileID: 0}
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209453].Label
       value: Fade
@@ -41353,7 +41047,7 @@ PrefabInstance:
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209453].Owner
       value: 
-      objectReference: {fileID: 1498255130}
+      objectReference: {fileID: 0}
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209461].Label
       value: MMF Player Control
@@ -41361,7 +41055,7 @@ PrefabInstance:
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209461].Owner
       value: 
-      objectReference: {fileID: 1498255130}
+      objectReference: {fileID: 0}
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209434].Active
       value: 1
@@ -42417,7 +42111,7 @@ PrefabInstance:
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209448].targetMaterial
       value: 
-      objectReference: {fileID: 1028438125}
+      objectReference: {fileID: 0}
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209449].DisplayColor.a
       value: 1
@@ -44725,7 +44419,7 @@ PrefabInstance:
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209461].TargetPlayers.Array.data[0]
       value: 
-      objectReference: {fileID: 1800891859}
+      objectReference: {fileID: 0}
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209461].Timing.IntensityIntervalMax
       value: 0
@@ -57069,7 +56763,7 @@ PrefabInstance:
     - target: {fileID: 6873453182113789561, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209411].targetMaterial
       value: 
-      objectReference: {fileID: 1028438125}
+      objectReference: {fileID: 0}
     - target: {fileID: 6873453182113789561, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209412].DisplayColor.a
       value: 1
@@ -57137,7 +56831,7 @@ PrefabInstance:
     - target: {fileID: 6873453182113789561, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209414].targetMaterial
       value: 
-      objectReference: {fileID: 1028438125}
+      objectReference: {fileID: 0}
     - target: {fileID: 6873453182113789561, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209415].DisplayColor.a
       value: 1
@@ -58749,7 +58443,7 @@ PrefabInstance:
     - target: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209432].Owner
       value: 
-      objectReference: {fileID: 1800891859}
+      objectReference: {fileID: 0}
     - target: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209433].Label
       value: MMSoundManager Sound
@@ -58757,7 +58451,7 @@ PrefabInstance:
     - target: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209433].Owner
       value: 
-      objectReference: {fileID: 1800891859}
+      objectReference: {fileID: 0}
     - target: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209456].Label
       value: Scale
@@ -58765,7 +58459,7 @@ PrefabInstance:
     - target: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209456].Owner
       value: 
-      objectReference: {fileID: 1800891859}
+      objectReference: {fileID: 0}
     - target: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209457].Label
       value: Looper Start
@@ -58773,7 +58467,7 @@ PrefabInstance:
     - target: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209457].Owner
       value: 
-      objectReference: {fileID: 1800891859}
+      objectReference: {fileID: 0}
     - target: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209458].Label
       value: MMSoundManager Sound
@@ -58781,7 +58475,7 @@ PrefabInstance:
     - target: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209458].Owner
       value: 
-      objectReference: {fileID: 1800891859}
+      objectReference: {fileID: 0}
     - target: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209459].Label
       value: Glow
@@ -58789,7 +58483,7 @@ PrefabInstance:
     - target: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209459].Owner
       value: 
-      objectReference: {fileID: 1800891859}
+      objectReference: {fileID: 0}
     - target: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209460].Label
       value: Looper
@@ -58797,7 +58491,7 @@ PrefabInstance:
     - target: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209460].Owner
       value: 
-      objectReference: {fileID: 1800891859}
+      objectReference: {fileID: 0}
     - target: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209432].Active
       value: 1
@@ -59537,7 +59231,7 @@ PrefabInstance:
     - target: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209459].targetMaterial
       value: 
-      objectReference: {fileID: 1028438125}
+      objectReference: {fileID: 0}
     - target: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209460].DisplayColor.a
       value: 1
@@ -62557,7 +62251,7 @@ PrefabInstance:
     - target: {fileID: 8378214599030717081, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1498255130}
+      objectReference: {fileID: 0}
     - target: {fileID: 8378214599030717081, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -62617,7 +62311,7 @@ PrefabInstance:
     - target: {fileID: 8719139750394245766, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209454].Owner
       value: 
-      objectReference: {fileID: 631014618}
+      objectReference: {fileID: 0}
     - target: {fileID: 8719139750394245766, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209455].Label
       value: MMF Player Control
@@ -62625,7 +62319,7 @@ PrefabInstance:
     - target: {fileID: 8719139750394245766, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209455].Owner
       value: 
-      objectReference: {fileID: 631014618}
+      objectReference: {fileID: 0}
     - target: {fileID: 8719139750394245766, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209454].Active
       value: 1
@@ -63009,7 +62703,7 @@ PrefabInstance:
     - target: {fileID: 8719139750394245766, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209455].TargetPlayers.Array.data[0]
       value: 
-      objectReference: {fileID: 1800891859}
+      objectReference: {fileID: 0}
     - target: {fileID: 8719139750394245766, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: managedReferences[3731422998392209455].Timing.IntensityIntervalMax
       value: 0
@@ -64284,5 +63978,4 @@ SceneRoots:
   - {fileID: 1080488284}
   - {fileID: 1683025973}
   - {fileID: 677408024170729430}
-  - {fileID: 890630080}
   - {fileID: 1482565760}
