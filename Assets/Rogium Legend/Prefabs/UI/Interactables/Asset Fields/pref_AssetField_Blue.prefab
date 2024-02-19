@@ -50,8 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnStart: 0
-  playOnEnable: 0
+  autoplay: 0
 --- !u!114 &7660018842021028384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,8 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnStart: 0
-  playOnEnable: 0
+  autoplay: 0
 --- !u!114 &3481880800897146226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,7 +427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 9e85ff5776f679549a055156577323ed, type: 2}
+  m_Material: {fileID: 2100000, guid: f7957da1263642248883068d3fd3cb4d, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -570,8 +568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnStart: 0
-  playOnEnable: 0
+  autoplay: 0
 --- !u!114 &4226452629741012650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -661,7 +658,7 @@ MonoBehaviour:
   loopType: 0
   target: {fileID: 3164224714801167802}
   beginBlend: 0
-  targetBlend: 0.25
+  targetBlend: 0.4
   blendCurve:
     serializedVersion: 2
     m_Curve:
@@ -711,7 +708,7 @@ MonoBehaviour:
   loopType: 0
   target: {fileID: 3164224714801167802}
   beginBlend: 0.25
-  targetBlend: 0.25
+  targetBlend: 0.4
   blendCurve:
     serializedVersion: 2
     m_Curve:
