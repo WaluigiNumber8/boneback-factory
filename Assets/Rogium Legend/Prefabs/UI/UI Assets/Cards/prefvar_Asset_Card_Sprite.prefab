@@ -446,7 +446,7 @@ PrefabInstance:
     - target: {fileID: 7271722871233547930, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 2100000, guid: 9dc83a4db9a8a8648b76e4a13cd7e995, type: 2}
+      objectReference: {fileID: 2100000, guid: 02b646ddec153e944a67292c38316e2b, type: 2}
     - target: {fileID: 8603769841665868365, guid: 2fcd5d3f034f9a2489837fe14adb9adf, type: 3}
       propertyPath: m_SpriteState.m_PressedSprite
       value: 

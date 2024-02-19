@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using RedRats.Systems.LiteFeel.Core;
 using Sirenix.OdinInspector;
@@ -13,16 +12,33 @@ namespace RedRats.Systems.LiteFeel.Effects
     [RequireComponent(typeof(LFEffector))]
     public abstract class LFEffectBase : MonoBehaviour
     {
-        [SerializeField] private SettingsInfo settings;
+        [SerializeField, HideLabel, GUIColor("GetEffectColor")] private string info;
+        public string GroupSettings => $"{InactiveInfo}Settings (+{GetDelay} s) ";
+        [FoldoutGroup("$GroupSettings"), SerializeField]
+        private bool active = true;
+        [FoldoutGroup("$GroupSettings"), SerializeField]
+        private bool restartOnPlay = true;
+        [FoldoutGroup("$GroupSettings"), HorizontalGroup("$GroupSettings/D"), SerializeField, LabelText("Initial Delay")] 
+        private float initialDelayMin;
+        [FoldoutGroup("$GroupSettings"), HorizontalGroup("$GroupSettings/D"), SerializeField, ShowIf("randomizeDelay"), HideLabel] 
+        private float initialDelayMax;
+        [FoldoutGroup("$GroupSettings"), HorizontalGroup("$GroupSettings/D", Width = 0.05f), Button("R")] 
+        public void ChangeRandomizeDelay() => randomizeDelay = !randomizeDelay;
         
         [ButtonGroup, Button("Play", ButtonSizes.Medium), GUIColor(0.5f, 0.95f, 0.4f), DisableInEditorMode]
         public void TestPlay() => Play(); 
         [ButtonGroup, Button("Stop", ButtonSizes.Medium), DisableInEditorMode]
         public void TestStop() => Stop();
+        [ButtonGroup(), Button("Init", ButtonSizes.Medium), DisableInEditorMode]
+        public void TestInit() => Initialize();
+
+        private bool isPlaying;
+        private bool randomizeDelay;
+        private IEnumerator delayCoroutine;
         
-        private void OnEnable()
+        protected virtual void Start()
         {
-            if (settings.playOnEnable) Play();
+            Initialize();
         }
 
         /// <summary>
@@ -30,14 +46,11 @@ namespace RedRats.Systems.LiteFeel.Effects
         /// </summary>
         public void Play()
         {
-            if (!isActiveAndEnabled) return;
-            StartCoroutine(PlayCoroutine());
-            IEnumerator PlayCoroutine()
-            {
-                float delay = (settings.randomizeDelay) ? Random.Range(settings.initialDelayMin, settings.initialDelayMax) : settings.initialDelayMin;
-                yield return new WaitForSeconds(delay);
-                PlaySelf();
-            }
+            if (!active) return;
+            if (!restartOnPlay && isPlaying) return;
+            isPlaying = true;
+            delayCoroutine = PlayCoroutine();
+            StartCoroutine(delayCoroutine);
         }
         
         /// <summary>
@@ -45,7 +58,23 @@ namespace RedRats.Systems.LiteFeel.Effects
         /// </summary>
         public void Stop()
         {
+            if (!isActiveAndEnabled) return;
+            if (delayCoroutine != null) StopCoroutine(delayCoroutine);
             StopSelf();
+            isPlaying = false;
+        }
+        
+        private IEnumerator PlayCoroutine()
+        {
+            float delay = (randomizeDelay) ? Random.Range(initialDelayMin, initialDelayMax) : initialDelayMin;
+            yield return new WaitForSeconds(delay);
+            PlaySelf();
+        }
+
+        private Color GetEffectColor()
+        {
+            ColorUtility.TryParseHtmlString(FeedbackColor, out Color c);
+            return c;
         }
         
         /// <summary>
@@ -61,14 +90,11 @@ namespace RedRats.Systems.LiteFeel.Effects
         /// </summary>
         protected abstract void StopSelf();
 
-        [Serializable]
-        public struct SettingsInfo
-        {
-            public bool playOnEnable;
-            public bool randomizeDelay;
-            [HorizontalGroup, LabelText("Initial Delay")] public float initialDelayMin;
-            [HorizontalGroup(MaxWidth = 0.3f), ShowIf("randomizeDelay"), HideLabel] public float initialDelayMax;
-        }
-
+        protected abstract string FeedbackColor { get; }
+        
+        private string GetDelay => (randomizeDelay) ? $"{initialDelayMin} - {initialDelayMax}" : initialDelayMin.ToString();
+        private string InactiveInfo => (!active) ? "[INACTIVE] " : "";
+        
+        public bool IsPlaying { get => isPlaying; }
     }
 }

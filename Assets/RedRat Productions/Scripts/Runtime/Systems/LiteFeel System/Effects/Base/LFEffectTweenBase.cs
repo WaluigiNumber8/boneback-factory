@@ -6,20 +6,23 @@ namespace RedRats.Systems.LiteFeel.Effects
 {
     public abstract class LFEffectTweenBase : LFEffectBase
     {
-        [Header("General")]
-        [SerializeField] protected float duration = 0.2f;
-        [SerializeField] protected bool additivePlay;
-        [SerializeField] protected bool resetOnEnd = true;
-        [SerializeField] protected bool smoothReset;
+        public string GroupGeneral => $"General ({duration} s)";
+        [FoldoutGroup("$GroupGeneral"), SerializeField] protected float duration = 0.2f;
+        [FoldoutGroup("$GroupGeneral"), SerializeField] protected bool resetOnEnd = true;
+        [FoldoutGroup("$GroupGeneral"), SerializeField] protected bool additivePlay;
         
-        [Header("Looping")] 
-        [SerializeField] private bool infiniteLoop;
-        [SerializeField, Min(1), HideIf("infiniteLoop")] private int loops = 1;
-        [SerializeField] protected LoopType loopType = LoopType.Restart;
+        public string GroupLoop => $"Looping ({TotalLoops} L)";
+        [FoldoutGroup("$GroupLoop"), SerializeField] private bool infiniteLoop;
+        [FoldoutGroup("$GroupLoop"), SerializeField, Min(1), HideIf("infiniteLoop")] private int loops = 1;
+        [FoldoutGroup("$GroupLoop"), SerializeField] protected LoopType loopType = LoopType.Restart;
 
-        protected int loopAmount;
+        private Sequence sequence;
+        private int loopAmount;
 
-        private void Start()
+        private void Awake() => sequence.SetAutoKill(false);
+        private void OnDisable() => sequence.Kill();
+
+        protected override void Start()
         {
             Initialize();
             UpdateStartingValues();
@@ -29,23 +32,38 @@ namespace RedRats.Systems.LiteFeel.Effects
         {
             if (!additivePlay) ResetTargetState();
             loopAmount = (infiniteLoop) ? -1 : loops;
-            PlayTween();
+            sequence.Kill();
+            Tween();
         }
 
         protected override void StopSelf()
         {
-            StopTween();
+            sequence.Kill();
             ResetTargetState();
         }
         
+        protected void AddFloatTweenToSequence(Tween tween, AnimationCurve curve)
+        {
+            sequence.Join(tween.SetEase(curve));
+        }
+        
+        private void Tween()
+        {
+            sequence = DOTween.Sequence();
+            SetBeginState();
+            SetupTweens();
+            sequence.SetLoops(loopAmount, loopType);
+            if (resetOnEnd) sequence.OnComplete(StopSelf);
+        }
+
         /// <summary>
-        /// Plays the effect.
+        /// Set parameters to beginning states right before tweening.
         /// </summary>
-        protected abstract void PlayTween();
+        protected abstract void SetBeginState();
         /// <summary>
-        /// Stops the effect.
+        /// Tweens used for the effect are added into a sequence.
         /// </summary>
-        protected abstract void StopTween();
+        protected abstract void SetupTweens();
         /// <summary>
         /// Reset the target to its state before the tween happened.
         /// </summary>
@@ -54,5 +72,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         /// Updates starting values to current values of the current target.
         /// </summary>
         protected abstract void UpdateStartingValues();
+        
+        private string TotalLoops => (infiniteLoop) ? "∞" : loops.ToString();
     }
 }
