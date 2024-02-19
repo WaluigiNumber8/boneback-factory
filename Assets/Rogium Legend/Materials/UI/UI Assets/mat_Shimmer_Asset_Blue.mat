@@ -89,7 +89,7 @@ Material:
     - _HologramScrollSpeed: 100
     - _HologramTiling: 4
     - _ShimmerGlow: 0.43
-    - _ShimmerPosition: 0.31
+    - _ShimmerPosition: 0
     - _ShimmerRotation: 135
     - _ShimmerWidth: 0.54
     m_Colors:
