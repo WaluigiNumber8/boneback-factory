@@ -11,7 +11,7 @@ namespace RedRats.Systems.Audio
     /// <summary>
     /// Manages <see cref="AudioSource"/>s and played audio.
     /// </summary>
-    public class AudioSystem : PersistentMonoSingleton<AudioSystem>
+    public class AudioSystem : MonoSingleton<AudioSystem>
     {
         [SerializeField] private AudioMixer audioMixer;
         [SerializeField] private AudioMixerParamsInfo mixerParameters;

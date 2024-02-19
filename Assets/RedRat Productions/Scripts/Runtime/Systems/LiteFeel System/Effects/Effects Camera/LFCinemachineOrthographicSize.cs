@@ -1,3 +1,4 @@
+using System.Collections;
 using Cinemachine;
 using DG.Tweening;
 using RedRats.Core;
@@ -38,10 +39,24 @@ namespace RedRats.Systems.LiteFeel.Effects
             AddFloatTweenToSequence(tween, sizeCurve);
         }
 
-        protected override void ResetTargetState() => cam.m_Lens.OrthographicSize = startOrthographicSize;
+        protected override void ResetTargetState()
+        {
+            StartCoroutine(DelayCoroutine());
+            IEnumerator DelayCoroutine()
+            {
+                yield return null;
+                cam.m_Lens.OrthographicSize = startOrthographicSize;
+            }
+        }
+
         protected override void UpdateStartingValues()
         {
-            startOrthographicSize = GetActiveCamera().m_Lens.OrthographicSize;
+            StartCoroutine(DelayCoroutine());
+            IEnumerator DelayCoroutine()
+            {
+                yield return null;
+                startOrthographicSize = GetActiveCamera().m_Lens.OrthographicSize;
+            }
         }
 
         private CinemachineVirtualCamera GetActiveCamera()
