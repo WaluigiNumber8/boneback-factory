@@ -17,7 +17,7 @@ namespace RedRats.Core
             if (applicationIsQuitting) return null;
             if (instance != null) return instance;
             
-            instance = FindObjectOfType<T>();
+            instance = FindFirstObjectByType<T>();
             
             if (instance != null) return instance;
             

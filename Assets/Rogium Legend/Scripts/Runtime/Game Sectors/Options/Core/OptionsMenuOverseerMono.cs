@@ -10,8 +10,8 @@ namespace Rogium.Options.Core
     /// </summary>
     public class OptionsMenuOverseerMono : MonoSingleton<OptionsMenuOverseerMono>
     {
-        [SerializeField, FoldoutGroup("Controllers")] private AudioOptionsController audio;
-        [SerializeField, FoldoutGroup("Controllers")] private GraphicsOptionsController graphics;
+        [SerializeField, FoldoutGroup("Controllers")] private AudioOptionsController audioOptions;
+        [SerializeField, FoldoutGroup("Controllers")] private GraphicsOptionsController graphicsOptions;
         
         [SerializeField, FoldoutGroup("Columns")] private Transform audioColumn;
         [SerializeField, FoldoutGroup("Columns")] private Transform graphicsColumn;
@@ -25,8 +25,8 @@ namespace Rogium.Options.Core
         {
             base.Awake();
             editor = OptionsMenuOverseer.Instance;
-            audioPropertyBuilder = new OptionsAudioPropertyBuilder(audioColumn, audio);
-            graphicsPropertyBuilder = new OptionsGraphicsPropertyBuilder(graphicsColumn, graphics);
+            audioPropertyBuilder = new OptionsAudioPropertyBuilder(audioColumn, audioOptions);
+            graphicsPropertyBuilder = new OptionsGraphicsPropertyBuilder(graphicsColumn, graphicsOptions);
         }
 
         private void OnEnable()
@@ -48,14 +48,14 @@ namespace Rogium.Options.Core
         /// <param name="asset">The data to apply to settings.</param>
         public void ApplyAllSettings(GameDataAsset asset)
         {
-            audio.UpdateMasterVolume(asset.MasterVolume);
-            audio.UpdateMusicVolume(asset.MusicVolume);
-            audio.UpdateSoundVolume(asset.SoundVolume);
-            audio.UpdateUIVolume(asset.UIVolume);
+            audioOptions.UpdateMasterVolume(asset.MasterVolume);
+            audioOptions.UpdateMusicVolume(asset.MusicVolume);
+            audioOptions.UpdateSoundVolume(asset.SoundVolume);
+            audioOptions.UpdateUIVolume(asset.UIVolume);
             
-            graphics.UpdateResolution(asset.GetResolution());
-            graphics.UpdateScreen(asset.ScreenMode);
-            graphics.UpdateVSync(asset.VSync);
+            graphicsOptions.UpdateResolution(asset.GetResolution());
+            graphicsOptions.UpdateScreen(asset.ScreenMode);
+            graphicsOptions.UpdateVSync(asset.VSync);
         }
         
         /// <summary>

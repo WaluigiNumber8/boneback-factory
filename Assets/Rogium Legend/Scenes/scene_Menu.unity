@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 9
+  serializedVersion: 10
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -44,7 +44,6 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 12
-  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -67,9 +66,6 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
-    m_FinalGather: 0
-    m_FinalGatherFiltering: 1
-    m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
     m_BakeBackend: 0
@@ -659,15 +655,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -2128,15 +2126,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -3964,15 +3964,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -5420,14 +5422,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ComponentVersion: 1
+  m_ComponentVersion: 2
   m_LightType: 4
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_LightVolumeIntensity: 1
-  m_LightVolumeIntensityEnabled: 0
+  m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
@@ -5437,8 +5439,10 @@ MonoBehaviour:
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
-  m_ShadowIntensityEnabled: 0
+  m_ShadowsEnabled: 0
   m_ShadowIntensity: 0.75
+  m_ShadowSoftness: 0
+  m_ShadowSoftnessFalloffIntensity: 0.5
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
@@ -5864,15 +5868,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -9508,15 +9514,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -10763,15 +10771,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -14366,15 +14376,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -16404,15 +16416,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -18244,7 +18258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 593266831775203277, guid: bee283cd408938d47acbf136a6249267, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 32
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 593266831775203277, guid: bee283cd408938d47acbf136a6249267, type: 3}
       propertyPath: m_SizeDelta.y
@@ -19428,7 +19442,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 245.33331, y: -401}
+  m_AnchoredPosition: {x: 245.33333, y: -401}
   m_SizeDelta: {x: 490.66666, y: 802}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1250779994
@@ -20846,15 +20860,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -21000,15 +21016,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -21085,8 +21103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4a4ea634ab04fc5b6af0b9031517b70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio: {fileID: 1350027048}
-  graphics: {fileID: 1350027047}
+  audioOptions: {fileID: 1350027048}
+  graphicsOptions: {fileID: 1350027047}
   audioColumn: {fileID: 1647280569}
   graphicsColumn: {fileID: 274397601}
 --- !u!114 &1350027047
@@ -21564,15 +21582,15 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3445670653090152318, guid: 147803ef7a4c6784fb15e12eeab5c81d, type: 3}
-      propertyPath: FeedbacksList.Array.data[0]
+      propertyPath: 'FeedbacksList.Array.data[0]'
       value: 4073376580876107784
       objectReference: {fileID: 0}
     - target: {fileID: 3445670653090152318, guid: 147803ef7a4c6784fb15e12eeab5c81d, type: 3}
-      propertyPath: FeedbacksList.Array.data[1]
+      propertyPath: 'FeedbacksList.Array.data[1]'
       value: 4073376580876107783
       objectReference: {fileID: 0}
     - target: {fileID: 3445670653090152318, guid: 147803ef7a4c6784fb15e12eeab5c81d, type: 3}
-      propertyPath: FeedbacksList.Array.data[2]
+      propertyPath: 'FeedbacksList.Array.data[2]'
       value: 3731422747190886404
       objectReference: {fileID: 0}
     - target: {fileID: 3445670653090152318, guid: 147803ef7a4c6784fb15e12eeab5c81d, type: 3}
@@ -21913,15 +21931,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -26541,15 +26561,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -28213,15 +28235,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -28750,15 +28774,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -31745,15 +31771,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -32148,15 +32176,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -35327,15 +35357,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -37444,15 +37476,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -37533,15 +37567,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -39427,15 +39463,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -40019,15 +40057,15 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4986237933724653158, guid: 8f4ee0e6941aaf948a18da400dcd8bde, type: 3}
-      propertyPath: FeedbacksList.Array.data[0]
+      propertyPath: 'FeedbacksList.Array.data[0]'
       value: 4073376580876107784
       objectReference: {fileID: 0}
     - target: {fileID: 4986237933724653158, guid: 8f4ee0e6941aaf948a18da400dcd8bde, type: 3}
-      propertyPath: FeedbacksList.Array.data[1]
+      propertyPath: 'FeedbacksList.Array.data[1]'
       value: 4073376580876107783
       objectReference: {fileID: 0}
     - target: {fileID: 4986237933724653158, guid: 8f4ee0e6941aaf948a18da400dcd8bde, type: 3}
-      propertyPath: FeedbacksList.Array.data[2]
+      propertyPath: 'FeedbacksList.Array.data[2]'
       value: 3731422747190886404
       objectReference: {fileID: 0}
     - target: {fileID: 4986237933724653158, guid: 8f4ee0e6941aaf948a18da400dcd8bde, type: 3}
@@ -40278,15 +40316,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -40817,59 +40857,59 @@ PrefabInstance:
     m_TransformParent: {fileID: 792740418}
     m_Modifications:
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: FeedbacksList.Array.data[8]
+      propertyPath: 'FeedbacksList.Array.data[8]'
       value: 3883662047972950025
       objectReference: {fileID: 0}
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209434]
+      propertyPath: 'managedReferences[3731422998392209434]'
       value: MoreMountains.Feedbacks.MMTools MoreMountains.Feedbacks.MMF_MMSoundManagerSound
       objectReference: {fileID: 0}
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209435]
+      propertyPath: 'managedReferences[3731422998392209435]'
       value: MoreMountains.Feedbacks.MMTools MoreMountains.Feedbacks.MMF_MMSoundManagerSound
       objectReference: {fileID: 0}
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209436]
+      propertyPath: 'managedReferences[3731422998392209436]'
       value: MoreMountains.Feedbacks MoreMountains.Feedbacks.MMF_CameraOrthographicSize
       objectReference: {fileID: 0}
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209437]
+      propertyPath: 'managedReferences[3731422998392209437]'
       value: MoreMountains.Feedbacks MoreMountains.Feedbacks.MMF_Pause
       objectReference: {fileID: 0}
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209438]
+      propertyPath: 'managedReferences[3731422998392209438]'
       value: MoreMountains.Feedbacks.MMTools MoreMountains.Feedbacks.MMF_Fade
       objectReference: {fileID: 0}
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209447]
+      propertyPath: 'managedReferences[3731422998392209447]'
       value: MoreMountains.Feedbacks MoreMountains.Feedbacks.MMF_Scale
       objectReference: {fileID: 0}
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209448]
+      propertyPath: 'managedReferences[3731422998392209448]'
       value: Feel.Extensions.Runtime RedRats.FeelExtension.AllIn1ShaderFeedbacks.MMF_Glow_AllIn1Shader
       objectReference: {fileID: 0}
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209449]
+      propertyPath: 'managedReferences[3731422998392209449]'
       value: MoreMountains.Feedbacks.MMTools MoreMountains.Feedbacks.MMF_MMSoundManagerSound
       objectReference: {fileID: 0}
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209450]
+      propertyPath: 'managedReferences[3731422998392209450]'
       value: MoreMountains.Feedbacks.MMTools MoreMountains.Feedbacks.MMF_MMSoundManagerSound
       objectReference: {fileID: 0}
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209451]
+      propertyPath: 'managedReferences[3731422998392209451]'
       value: MoreMountains.Feedbacks MoreMountains.Feedbacks.MMF_CameraOrthographicSize
       objectReference: {fileID: 0}
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209452]
+      propertyPath: 'managedReferences[3731422998392209452]'
       value: MoreMountains.Feedbacks MoreMountains.Feedbacks.MMF_Pause
       objectReference: {fileID: 0}
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209453]
+      propertyPath: 'managedReferences[3731422998392209453]'
       value: MoreMountains.Feedbacks.MMTools MoreMountains.Feedbacks.MMF_Fade
       objectReference: {fileID: 0}
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209461]
+      propertyPath: 'managedReferences[3731422998392209461]'
       value: MoreMountains.Feedbacks MoreMountains.Feedbacks.MMF_PlayerControl
       objectReference: {fileID: 0}
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
@@ -44417,7 +44457,7 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209461].TargetPlayers.Array.data[0]
+      propertyPath: 'managedReferences[3731422998392209461].TargetPlayers.Array.data[0]'
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 572883064263641000, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
@@ -47045,103 +47085,103 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 720376002165293019, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: FeedbacksList.Array.data[0]
+      propertyPath: 'FeedbacksList.Array.data[0]'
       value: 3731422998392209416
       objectReference: {fileID: 0}
     - target: {fileID: 720376002165293019, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: FeedbacksList.Array.data[1]
+      propertyPath: 'FeedbacksList.Array.data[1]'
       value: 3731422998392209417
       objectReference: {fileID: 0}
     - target: {fileID: 720376002165293019, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: FeedbacksList.Array.data[2]
+      propertyPath: 'FeedbacksList.Array.data[2]'
       value: 3731422998392209418
       objectReference: {fileID: 0}
     - target: {fileID: 720376002165293019, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: FeedbacksList.Array.data[3]
+      propertyPath: 'FeedbacksList.Array.data[3]'
       value: 3731422998392209419
       objectReference: {fileID: 0}
     - target: {fileID: 720376002165293019, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: FeedbacksList.Array.data[4]
+      propertyPath: 'FeedbacksList.Array.data[4]'
       value: 3731422998392209420
       objectReference: {fileID: 0}
     - target: {fileID: 720376002165293019, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422977078853635]
+      propertyPath: 'managedReferences[3731422977078853635]'
       value: MoreMountains.Feedbacks MoreMountains.Feedbacks.MMF_CameraFieldOfView
       objectReference: {fileID: 0}
     - target: {fileID: 720376002165293019, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422977078853636]
+      propertyPath: 'managedReferences[3731422977078853636]'
       value: MoreMountains.Feedbacks MoreMountains.Feedbacks.MMF_CameraZoom
       objectReference: {fileID: 0}
     - target: {fileID: 720376002165293019, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422977078853637]
+      propertyPath: 'managedReferences[3731422977078853637]'
       value: MoreMountains.Feedbacks.MMTools MoreMountains.Feedbacks.MMF_MMSoundManagerSound
       objectReference: {fileID: 0}
     - target: {fileID: 720376002165293019, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422977078853638]
+      propertyPath: 'managedReferences[3731422977078853638]'
       value: MoreMountains.Feedbacks MoreMountains.Feedbacks.MMF_CameraZoom
       objectReference: {fileID: 0}
     - target: {fileID: 720376002165293019, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422977078853642]
+      propertyPath: 'managedReferences[3731422977078853642]'
       value: MoreMountains.Feedbacks.MMTools MoreMountains.Feedbacks.MMF_MMSoundManagerSound
       objectReference: {fileID: 0}
     - target: {fileID: 720376002165293019, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422977078853643]
+      propertyPath: 'managedReferences[3731422977078853643]'
       value: MoreMountains.Feedbacks MoreMountains.Feedbacks.MMF_CameraZoom
       objectReference: {fileID: 0}
     - target: {fileID: 720376002165293019, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422977078853644]
+      propertyPath: 'managedReferences[3731422977078853644]'
       value: MoreMountains.Feedbacks MoreMountains.Feedbacks.MMF_Pause
       objectReference: {fileID: 0}
     - target: {fileID: 720376002165293019, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422977078853645]
+      propertyPath: 'managedReferences[3731422977078853645]'
       value: MoreMountains.Feedbacks.MMTools MoreMountains.Feedbacks.MMF_Fade
       objectReference: {fileID: 0}
     - target: {fileID: 720376002165293019, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422977078853646]
+      propertyPath: 'managedReferences[3731422977078853646]'
       value: MoreMountains.Feedbacks MoreMountains.Feedbacks.MMF_CameraOrthographicSize
       objectReference: {fileID: 0}
     - target: {fileID: 720376002165293019, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422977078853647]
+      propertyPath: 'managedReferences[3731422977078853647]'
       value: MoreMountains.Feedbacks.MMTools MoreMountains.Feedbacks.MMF_MMSoundManagerSound
       objectReference: {fileID: 0}
     - target: {fileID: 720376002165293019, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422977078853648]
+      propertyPath: 'managedReferences[3731422977078853648]'
       value: MoreMountains.Feedbacks MoreMountains.Feedbacks.MMF_CameraZoom
       objectReference: {fileID: 0}
     - target: {fileID: 720376002165293019, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422977078853649]
+      propertyPath: 'managedReferences[3731422977078853649]'
       value: MoreMountains.Feedbacks MoreMountains.Feedbacks.MMF_CameraOrthographicSize
       objectReference: {fileID: 0}
     - target: {fileID: 720376002165293019, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422977078853650]
+      propertyPath: 'managedReferences[3731422977078853650]'
       value: MoreMountains.Feedbacks MoreMountains.Feedbacks.MMF_Pause
       objectReference: {fileID: 0}
     - target: {fileID: 720376002165293019, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422977078853651]
+      propertyPath: 'managedReferences[3731422977078853651]'
       value: MoreMountains.Feedbacks.MMTools MoreMountains.Feedbacks.MMF_Fade
       objectReference: {fileID: 0}
     - target: {fileID: 720376002165293019, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209408]
+      propertyPath: 'managedReferences[3731422998392209408]'
       value: MoreMountains.Feedbacks.MMTools MoreMountains.Feedbacks.MMF_MMSoundManagerSound
       objectReference: {fileID: 0}
     - target: {fileID: 720376002165293019, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209416]
+      propertyPath: 'managedReferences[3731422998392209416]'
       value: MoreMountains.Feedbacks.MMTools MoreMountains.Feedbacks.MMF_MMSoundManagerSound
       objectReference: {fileID: 0}
     - target: {fileID: 720376002165293019, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209417]
+      propertyPath: 'managedReferences[3731422998392209417]'
       value: MoreMountains.Feedbacks.MMTools MoreMountains.Feedbacks.MMF_MMSoundManagerSound
       objectReference: {fileID: 0}
     - target: {fileID: 720376002165293019, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209418]
+      propertyPath: 'managedReferences[3731422998392209418]'
       value: MoreMountains.Feedbacks MoreMountains.Feedbacks.MMF_CameraOrthographicSize
       objectReference: {fileID: 0}
     - target: {fileID: 720376002165293019, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209419]
+      propertyPath: 'managedReferences[3731422998392209419]'
       value: MoreMountains.Feedbacks MoreMountains.Feedbacks.MMF_Pause
       objectReference: {fileID: 0}
     - target: {fileID: 720376002165293019, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209420]
+      propertyPath: 'managedReferences[3731422998392209420]'
       value: MoreMountains.Feedbacks.MMTools MoreMountains.Feedbacks.MMF_Fade
       objectReference: {fileID: 0}
     - target: {fileID: 720376002165293019, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
@@ -56405,43 +56445,43 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6873453182113789561, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: FeedbacksList.Array.data[0]
+      propertyPath: 'FeedbacksList.Array.data[0]'
       value: 3731422998392209411
       objectReference: {fileID: 0}
     - target: {fileID: 6873453182113789561, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: FeedbacksList.Array.data[1]
+      propertyPath: 'FeedbacksList.Array.data[1]'
       value: 3731422998392209412
       objectReference: {fileID: 0}
     - target: {fileID: 6873453182113789561, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: FeedbacksList.Array.data[2]
+      propertyPath: 'FeedbacksList.Array.data[2]'
       value: 3731422998392209413
       objectReference: {fileID: 0}
     - target: {fileID: 6873453182113789561, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: FeedbacksList.Array.data[3]
+      propertyPath: 'FeedbacksList.Array.data[3]'
       value: 3731422998392209414
       objectReference: {fileID: 0}
     - target: {fileID: 6873453182113789561, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: FeedbacksList.Array.data[4]
+      propertyPath: 'FeedbacksList.Array.data[4]'
       value: 3731422998392209415
       objectReference: {fileID: 0}
     - target: {fileID: 6873453182113789561, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209411]
+      propertyPath: 'managedReferences[3731422998392209411]'
       value: Feel.Extensions.Runtime RedRats.FeelExtension.AllIn1ShaderFeedbacks.MMF_Glow_AllIn1Shader
       objectReference: {fileID: 0}
     - target: {fileID: 6873453182113789561, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209412]
+      propertyPath: 'managedReferences[3731422998392209412]'
       value: MoreMountains.Feedbacks MoreMountains.Feedbacks.MMF_HoldingPause
       objectReference: {fileID: 0}
     - target: {fileID: 6873453182113789561, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209413]
+      propertyPath: 'managedReferences[3731422998392209413]'
       value: MoreMountains.Feedbacks MoreMountains.Feedbacks.MMF_LooperStart
       objectReference: {fileID: 0}
     - target: {fileID: 6873453182113789561, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209414]
+      propertyPath: 'managedReferences[3731422998392209414]'
       value: Feel.Extensions.Runtime RedRats.FeelExtension.AllIn1ShaderFeedbacks.MMF_Glow_AllIn1Shader
       objectReference: {fileID: 0}
     - target: {fileID: 6873453182113789561, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209415]
+      propertyPath: 'managedReferences[3731422998392209415]'
       value: MoreMountains.Feedbacks MoreMountains.Feedbacks.MMF_Looper
       objectReference: {fileID: 0}
     - target: {fileID: 6873453182113789561, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
@@ -58329,59 +58369,59 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: FeedbacksList.Array.data[0]
+      propertyPath: 'FeedbacksList.Array.data[0]'
       value: 3731422998392209456
       objectReference: {fileID: 0}
     - target: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: FeedbacksList.Array.data[1]
+      propertyPath: 'FeedbacksList.Array.data[1]'
       value: 3731422998392209457
       objectReference: {fileID: 0}
     - target: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: FeedbacksList.Array.data[2]
+      propertyPath: 'FeedbacksList.Array.data[2]'
       value: 3731422998392209458
       objectReference: {fileID: 0}
     - target: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: FeedbacksList.Array.data[3]
+      propertyPath: 'FeedbacksList.Array.data[3]'
       value: 3731422998392209459
       objectReference: {fileID: 0}
     - target: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: FeedbacksList.Array.data[4]
+      propertyPath: 'FeedbacksList.Array.data[4]'
       value: 3731422998392209460
       objectReference: {fileID: 0}
     - target: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: FeedbacksList.Array.data[5]
+      propertyPath: 'FeedbacksList.Array.data[5]'
       value: 3731422998392209425
       objectReference: {fileID: 0}
     - target: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: FeedbacksList.Array.data[6]
+      propertyPath: 'FeedbacksList.Array.data[6]'
       value: 3731422998392209425
       objectReference: {fileID: 0}
     - target: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209432]
+      propertyPath: 'managedReferences[3731422998392209432]'
       value: MoreMountains.Feedbacks.MMTools MoreMountains.Feedbacks.MMF_MMSoundManagerSound
       objectReference: {fileID: 0}
     - target: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209433]
+      propertyPath: 'managedReferences[3731422998392209433]'
       value: MoreMountains.Feedbacks.MMTools MoreMountains.Feedbacks.MMF_MMSoundManagerSound
       objectReference: {fileID: 0}
     - target: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209456]
+      propertyPath: 'managedReferences[3731422998392209456]'
       value: MoreMountains.Feedbacks MoreMountains.Feedbacks.MMF_Scale
       objectReference: {fileID: 0}
     - target: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209457]
+      propertyPath: 'managedReferences[3731422998392209457]'
       value: MoreMountains.Feedbacks MoreMountains.Feedbacks.MMF_LooperStart
       objectReference: {fileID: 0}
     - target: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209458]
+      propertyPath: 'managedReferences[3731422998392209458]'
       value: MoreMountains.Feedbacks.MMTools MoreMountains.Feedbacks.MMF_MMSoundManagerSound
       objectReference: {fileID: 0}
     - target: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209459]
+      propertyPath: 'managedReferences[3731422998392209459]'
       value: Feel.Extensions.Runtime RedRats.FeelExtension.AllIn1ShaderFeedbacks.MMF_Glow_AllIn1Shader
       objectReference: {fileID: 0}
     - target: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209460]
+      propertyPath: 'managedReferences[3731422998392209460]'
       value: MoreMountains.Feedbacks MoreMountains.Feedbacks.MMF_Looper
       objectReference: {fileID: 0}
     - target: {fileID: 8266542452282721713, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
@@ -62281,19 +62321,19 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8719139750394245766, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: FeedbacksList.Array.data[0]
+      propertyPath: 'FeedbacksList.Array.data[0]'
       value: 3731422998392209454
       objectReference: {fileID: 0}
     - target: {fileID: 8719139750394245766, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: FeedbacksList.Array.data[1]
+      propertyPath: 'FeedbacksList.Array.data[1]'
       value: 3731422998392209455
       objectReference: {fileID: 0}
     - target: {fileID: 8719139750394245766, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209454]
+      propertyPath: 'managedReferences[3731422998392209454]'
       value: MoreMountains.Feedbacks MoreMountains.Feedbacks.MMF_Scale
       objectReference: {fileID: 0}
     - target: {fileID: 8719139750394245766, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209455]
+      propertyPath: 'managedReferences[3731422998392209455]'
       value: MoreMountains.Feedbacks MoreMountains.Feedbacks.MMF_PlayerControl
       objectReference: {fileID: 0}
     - target: {fileID: 8719139750394245766, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
@@ -62701,7 +62741,7 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8719139750394245766, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
-      propertyPath: managedReferences[3731422998392209455].TargetPlayers.Array.data[0]
+      propertyPath: 'managedReferences[3731422998392209455].TargetPlayers.Array.data[0]'
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8719139750394245766, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
@@ -63598,15 +63638,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -63914,15 +63956,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
