@@ -13,7 +13,7 @@ public class TilemapShadowCaster2D : MonoBehaviour
     private CompositeCollider2D tilemapCollider;
 
 
-    static readonly FieldInfo meshField = typeof(ShadowCaster2D).GetField("m_Mesh", BindingFlags.NonPublic | BindingFlags.Instance);
+    static readonly FieldInfo meshField = typeof(ShadowCaster2D).GetField("m_ShadowMesh", BindingFlags.NonPublic | BindingFlags.Instance);
     static readonly FieldInfo shapePathField = typeof(ShadowCaster2D).GetField("m_ShapePath", BindingFlags.NonPublic | BindingFlags.Instance);
     static readonly MethodInfo generateShadowMeshMethod = typeof(ShadowCaster2D)
                                     .Assembly

@@ -21,7 +21,7 @@ namespace Rogium.Systems.Input
             RogiumInputActions input = new();
             inputPlayer = new InputProfilePlayer(input);
             inputUI = new InputProfileUI(input);
-            SceneManager.sceneLoaded += (_, __) => eventSystem = FindObjectOfType<EventSystem>();
+            SceneManager.sceneLoaded += (_, __) => eventSystem = FindFirstObjectByType<EventSystem>();
         }
 
         /// <summary>
