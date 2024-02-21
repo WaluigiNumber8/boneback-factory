@@ -2,7 +2,8 @@
     "name": "RedRats.Editor",
     "rootNamespace": "",
     "references": [
-        "GUID:47fd2bbca347f86429cf6a7f4b23d793"
+        "GUID:47fd2bbca347f86429cf6a7f4b23d793",
+        "GUID:2bafac87e7f4b9b418d9448d219b01ab"
     ],
     "includePlatforms": [
         "Editor"
