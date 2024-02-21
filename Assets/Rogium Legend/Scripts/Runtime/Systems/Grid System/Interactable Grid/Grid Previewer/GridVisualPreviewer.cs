@@ -27,20 +27,19 @@ namespace Rogium.Systems.GridSystem
         [SerializeField] private GridPreviewerToolInfoAsset toolInfoAsset;
         
         private RectTransform gridTransform;
+        
         private ToolType currentTool = ToolType.Eraser;
-
         private bool isVisible;
         private bool allowMaterialSwitching;
         private bool followCursor;
         private Sprite lastMaterial;
         private Color lastColor;
-        private Vector2 resolutionRatio;
 
         private void Awake() => gridTransform = grid.GetComponent<RectTransform>();
 
         private void Start()
         {
-            gridPreviewer.transform.position = gridTransform.anchoredPosition;
+            gridPreviewer.transform.anchoredPosition = gridTransform.anchoredPosition;
             gridPreviewer.transform.sizeDelta = grid.CellSize;
             gridPreviewer.transform.localScale = new Vector3(1f / (grid.Size.x+1), 1f / (grid.Size.y+1), 1);
             
@@ -53,7 +52,6 @@ namespace Rogium.Systems.GridSystem
         
         private void OnEnable()
         {
-            resolutionRatio = UIExtensions.GetScalerRatioFromParent(gridTransform);
             grid.OnPointerComeIn += Show;
             grid.OnPointerLeave += Hide;
             grid.OnClick += UpdatePositionOnGrid;
@@ -103,9 +101,9 @@ namespace Rogium.Systems.GridSystem
         private void UpdatePositionOnGrid()
         {
             if (!gridPreviewer.gameObject.activeSelf) return;
-            float x = gridTransform.position.x + (grid.SelectedPosition.x * grid.CellSize.x + grid.CellSize.x * 0.5f) * resolutionRatio.x;
-            float y = gridTransform.position.y + (grid.SelectedPosition.y * grid.CellSize.y + grid.CellSize.y * 0.5f) * resolutionRatio.y;
-            gridPreviewer.transform.position = new Vector3(x, y);
+            float x = gridTransform.rect.x - gridTransform.rect.width * 0.5f + (grid.SelectedPosition.x * grid.CellSize.x + grid.CellSize.x * 0.5f);
+            float y = gridTransform.rect.y - gridTransform.rect.height * 0.5f + (grid.SelectedPosition.y * grid.CellSize.y + grid.CellSize.y * 0.5f);
+            gridPreviewer.transform.anchoredPosition = new Vector2(x, y);
         }
 
         #region Visibility Control

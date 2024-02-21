@@ -27,6 +27,7 @@ namespace Rogium.Systems.GridSystem
         
         private RectTransform ttransform;
         private SpriteDrawer drawer;
+        private Camera cam;
         
         private Image activeLayer;
         
@@ -41,6 +42,7 @@ namespace Rogium.Systems.GridSystem
             
             ttransform = GetComponent<RectTransform>();
             drawer = new SpriteDrawer(gridSize, new Vector2Int(EditorConstants.SpriteSize, EditorConstants.SpriteSize), EditorConstants.SpriteSize);
+            cam = Camera.main;
             
             cellSize = new Vector2(ttransform.rect.width / gridSize.x, ttransform.rect.height / gridSize.y);
             
@@ -160,7 +162,7 @@ namespace Rogium.Systems.GridSystem
         /// </summary>
         private void RecalculateSelectedPosition(Vector2 pointerPos)
         {
-            if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(ttransform, pointerPos, null, out Vector2 pos)) return;
+            if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(ttransform, pointerPos, cam, out Vector2 pos)) return;
             
             int x = (int)Mathf.Floor(pos.x / cellSize.x);
             int y = (int)Mathf.Floor(pos.y / cellSize.y);
