@@ -30,6 +30,7 @@ namespace RedRats.Editor
             foreach (ScrollRect rect in scrollRects)
             {
                 rect.scrollSensitivity = newScrollSpeed;
+                EditorUtility.SetDirty(rect);
             }
         }
 
