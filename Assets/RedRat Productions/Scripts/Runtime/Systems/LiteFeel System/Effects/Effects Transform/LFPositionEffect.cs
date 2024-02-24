@@ -40,7 +40,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         {
             Vector3 targetValue = (movement == MovementType.Relative) ? GetPositionBasedOnSpace() + GetTargetPosition() : GetTargetPosition();
             Tween tween = (worldType == WorldType.World) ? target.DOMove(targetValue, duration) : target.DOLocalMove(targetValue, duration);
-            AddFloatTweenToSequence(tween, positionCurve);
+            AddTweenToSequence(tween, positionCurve);
         }
 
         protected override void ResetTargetState()

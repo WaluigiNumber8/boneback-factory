@@ -40,7 +40,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         {
             Vector3 targetValue = (movement == MovementType.Relative) ? GetRotationBasedOnSpace() + GetTargetRotation() : GetTargetRotation();
             Tween tween = (worldType == WorldType.World) ? target.DORotate(targetValue, duration, RotateMode.FastBeyond360) : target.DOLocalRotate(targetValue, duration, RotateMode.FastBeyond360);
-            AddFloatTweenToSequence(tween, rotationCurve);
+            AddTweenToSequence(tween, rotationCurve);
         }
 
         protected override void ResetTargetState()

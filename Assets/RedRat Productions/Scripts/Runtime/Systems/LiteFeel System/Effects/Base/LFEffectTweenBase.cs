@@ -32,7 +32,7 @@ namespace RedRats.Systems.LiteFeel.Effects
             ResetTargetState();
         }
         
-        protected void AddFloatTweenToSequence(Tween tween, AnimationCurve curve)
+        protected void AddTweenToSequence(Tween tween, AnimationCurve curve)
         {
             sequence.Join(tween.SetEase(curve));
         }

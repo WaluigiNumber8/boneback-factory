@@ -26,7 +26,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         protected void AddFloatTween(int property, float targetValue, AnimationCurve curve)
         {
             Tween tween = DOTween.To(() => material.GetFloat(property), x => material.SetFloat(property, x), targetValue, duration);
-            AddFloatTweenToSequence(tween, curve);
+            AddTweenToSequence(tween, curve);
         }
         
         /// <summary>
@@ -38,7 +38,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         protected void AddColorTween(int property, Color targetValue, AnimationCurve curve)
         {
             Tween tween = DOTween.To(() => material.GetColor(property), x => material.SetColor(property, x), targetValue, duration);
-            AddFloatTweenToSequence(tween, curve);
+            AddTweenToSequence(tween, curve);
         }
         
         protected override string FeedbackColor { get => "#FD6180"; }

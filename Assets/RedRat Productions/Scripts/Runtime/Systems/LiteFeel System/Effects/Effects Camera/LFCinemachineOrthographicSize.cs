@@ -36,7 +36,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         {
             float targetValue = (movement == MovementType.Relative) ? cam.m_Lens.OrthographicSize + targetSize : targetSize;
             Tween tween = DOTween.To(() => cam.m_Lens.OrthographicSize, x => cam.m_Lens.OrthographicSize = x, targetValue, duration);
-            AddFloatTweenToSequence(tween, sizeCurve);
+            AddTweenToSequence(tween, sizeCurve);
         }
 
         protected override void ResetTargetState()

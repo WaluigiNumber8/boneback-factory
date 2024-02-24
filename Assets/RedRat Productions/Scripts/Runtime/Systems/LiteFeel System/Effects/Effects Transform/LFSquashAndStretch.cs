@@ -32,7 +32,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         {
             Vector3 endScale = GetSquashedVector(target.localScale, targetScale);
             Tween tween = target.DOScale(endScale, duration);
-            AddFloatTweenToSequence(tween, deformCurve);
+            AddTweenToSequence(tween, deformCurve);
         }
 
         protected override void ResetTargetState()

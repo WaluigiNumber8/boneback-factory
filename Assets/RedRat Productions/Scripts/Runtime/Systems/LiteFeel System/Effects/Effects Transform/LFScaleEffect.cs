@@ -36,7 +36,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         {
             Vector3 targetValue = (movement == MovementType.Relative) ? target.localScale + GetTargetScale() : GetTargetScale();
             Tween tween = target.DOScale(targetValue, duration);
-            AddFloatTweenToSequence(tween, scaleCurve);
+            AddTweenToSequence(tween, scaleCurve);
         }
 
         
