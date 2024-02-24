@@ -18,8 +18,6 @@ namespace Rogium.Gameplay.Entities.Player
         [SerializeField] private CharacteristicVisualPlayer visual;
         [SerializeField] private CharacteristicWeaponHold weaponHold;
 
-        private GameplayOverseerMono gameplayOverseer;
-        
         private Vector2 moveDirection;
         private InputProfilePlayer input;
 
@@ -27,7 +25,6 @@ namespace Rogium.Gameplay.Entities.Player
         {
             base.Awake();
             input = InputSystem.GetInstance().Player;
-            gameplayOverseer = GameplayOverseerMono.GetInstance();
         }
 
         private void OnEnable()
@@ -43,8 +40,6 @@ namespace Rogium.Gameplay.Entities.Player
             input.ButtonDashAlt.OnPress += UseWeaponDashAlt;
             
             damageReceiver.OnDeath += Die;
-
-            gameplayOverseer.OnSafePeriodActivate += damageReceiver.BecomeInvincible;
         }
 
         private void OnDisable()
@@ -60,7 +55,6 @@ namespace Rogium.Gameplay.Entities.Player
             input.ButtonDashAlt.OnPress -= UseWeaponDashAlt;
             
             damageReceiver.OnDeath -= Die;
-            gameplayOverseer.OnSafePeriodActivate -= damageReceiver.BecomeInvincible;
         }
 
         protected override void FixedUpdate()
@@ -77,6 +71,8 @@ namespace Rogium.Gameplay.Entities.Player
             base.ChangeCollideMode(isEnabled);
         }
 
+        public void BecomeInvincible(float time) => damageReceiver.BecomeInvincible(time);
+        
         protected override void UpdateFaceDirection()
         {
             if (movementLocked) return;

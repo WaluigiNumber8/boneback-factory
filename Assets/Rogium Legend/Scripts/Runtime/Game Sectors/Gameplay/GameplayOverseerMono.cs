@@ -21,8 +21,6 @@ namespace Rogium.Gameplay.Core
     /// </summary>
     public class GameplayOverseerMono : MonoSingleton<GameplayOverseerMono>
     {
-        public event Action<float> OnSafePeriodActivate;
-        
         [SerializeField] private GameplaySequencer sequencer;
         [SerializeField] private PlayerController player;
 
@@ -139,7 +137,7 @@ namespace Rogium.Gameplay.Core
         private void ActivateSafePeriod()
         {
             safePeriodTimer = Time.time + safePeriodTime;
-            OnSafePeriodActivate?.Invoke(safePeriodTime);
+            player.BecomeInvincible(safePeriodTime);
         }
 
         public CampaignAsset CurrentCampaign
