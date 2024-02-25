@@ -1,4 +1,5 @@
 using RedRats.Systems.LiteFeel.Effects;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace RedRats.Systems.LiteFeel.Core
@@ -10,6 +11,13 @@ namespace RedRats.Systems.LiteFeel.Core
     public class LFEffector : MonoBehaviour
     {
         [SerializeField] private AutoplayType autoplay;
+        
+        [ButtonGroup, Button("Play", ButtonSizes.Medium), GUIColor(0.5f, 0.95f, 0.4f), DisableInEditorMode]
+        public void TestPlay() => Play(); 
+        [ButtonGroup, Button("Stop", ButtonSizes.Medium), DisableInEditorMode]
+        public void TestStop() => Stop();
+        // [ButtonGroup(), Button("Init", ButtonSizes.Medium), DisableInEditorMode]
+        // public void TestInit() => Initialize();
         
         private LFEffectBase[] effects;
         
