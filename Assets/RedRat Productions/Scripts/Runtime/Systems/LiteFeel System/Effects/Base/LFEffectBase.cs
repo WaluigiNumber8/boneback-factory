@@ -58,7 +58,6 @@ namespace RedRats.Systems.LiteFeel.Effects
         /// </summary>
         public void Stop()
         {
-            if (!isActiveAndEnabled) return;
             if (delayCoroutine != null) StopCoroutine(delayCoroutine);
             StopSelf();
             isPlaying = false;
