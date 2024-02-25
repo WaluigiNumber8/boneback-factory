@@ -24,11 +24,6 @@ namespace RedRats.Systems.LiteFeel.Effects
         private Vector3 startRotation;
         private Vector3 startLocalRotation;
         
-        protected override void Initialize()
-        {
-            // Do nothing.
-        }
-
         protected override void SetBeginState()
         {
             if (mode != TransitionType.AToB) return;
@@ -39,7 +34,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         protected override void SetupTweens()
         {
             Vector3 targetValue = (movement == MovementType.Relative) ? GetRotationBasedOnSpace() + GetTargetRotation() : GetTargetRotation();
-            Tween tween = (worldType == WorldType.World) ? target.DORotate(targetValue, duration, RotateMode.FastBeyond360) : target.DOLocalRotate(targetValue, duration, RotateMode.FastBeyond360);
+            Tween tween = (worldType == WorldType.World) ? target.DORotate(targetValue, Duration, RotateMode.FastBeyond360) : target.DOLocalRotate(targetValue, Duration, RotateMode.FastBeyond360);
             AddTweenToSequence(tween, rotationCurve);
         }
 

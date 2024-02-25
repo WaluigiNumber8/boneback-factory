@@ -20,11 +20,6 @@ namespace RedRats.Systems.LiteFeel.Effects
         
         private Vector3 startScale;
 
-        protected override void Initialize()
-        {
-            // Nothing to do here.
-        }
-
         protected override void SetBeginState()
         {
             // Nothing to do here.
@@ -32,7 +27,7 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         protected override void SetupTweens()
         {
-            Tween tween = target.DOShakeScale(duration, GetTargetValue(), vibration, randomness, fadeout);
+            Tween tween = target.DOShakeScale(Duration, GetTargetValue(), vibration, randomness, fadeout);
             AddTweenToSequence(tween, shakeCurve);
         }
 

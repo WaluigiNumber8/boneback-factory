@@ -16,11 +16,6 @@ namespace RedRats.Systems.LiteFeel.Effects
         
         private Vector3 startScale;
         
-        protected override void Initialize()
-        {
-            // Do nothing.
-        }
-
         protected override void SetBeginState()
         {
             if (mode == TransitionType.ToDestination) return;
@@ -31,7 +26,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         protected override void SetupTweens()
         {
             Vector3 endScale = GetSquashedVector(target.localScale, targetScale);
-            Tween tween = target.DOScale(endScale, duration);
+            Tween tween = target.DOScale(endScale, Duration);
             AddTweenToSequence(tween, deformCurve);
         }
 

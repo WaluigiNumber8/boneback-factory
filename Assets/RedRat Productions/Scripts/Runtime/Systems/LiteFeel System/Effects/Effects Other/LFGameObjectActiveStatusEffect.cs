@@ -21,31 +21,33 @@ namespace RedRats.Systems.LiteFeel.Effects
             // Nothing to do here.
         }
 
-        protected override void PlaySetup()
+        protected override void PlaySelf()
         {
             stopped = false;
             playCoroutine = StartCoroutine(PlayCoroutine());
         }
 
-        protected override void StopSetup()
+        protected override void StopSelf()
         {
             stopped = true;
-            target.SetActive(initState);
             if (playCoroutine != null) StopCoroutine(playCoroutine);
+        }
+
+        protected override void ResetState()
+        {
+            target.SetActive(initState);
         }
 
         private IEnumerator PlayCoroutine()
         {
             int loops = 0;
-            int finalLoops = (loopAmount == -1) ? int.MaxValue : loopAmount;
-            while (loops < finalLoops)
+            while (loops < TotalLoops)
             {
                 initState = target.activeSelf;
                 target.SetActive(GetNewActiveState());
                 
-                yield return new WaitForSeconds(duration);
+                yield return new WaitForSeconds(Duration);
                 
-                if (resetOnEnd) target.SetActive(initState);
                 if (stopped) break;
                 loops++;
             }

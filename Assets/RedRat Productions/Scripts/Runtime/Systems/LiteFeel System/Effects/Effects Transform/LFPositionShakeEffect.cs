@@ -18,11 +18,6 @@ namespace RedRats.Systems.LiteFeel.Effects
         
         private Vector3 startLocalPosition;
 
-        protected override void Initialize()
-        {
-            // Nothing to do here.
-        }
-
         protected override void SetBeginState()
         {
             // Nothing to do here.
@@ -30,7 +25,7 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         protected override void SetupTweens()
         {
-            Tween tween = target.DOShakePosition(duration, GetTargetValue(), vibration, randomness, false, fadeout);
+            Tween tween = target.DOShakePosition(Duration, GetTargetValue(), vibration, randomness, false, fadeout);
             AddTweenToSequence(tween, shakeCurve);
         }
 

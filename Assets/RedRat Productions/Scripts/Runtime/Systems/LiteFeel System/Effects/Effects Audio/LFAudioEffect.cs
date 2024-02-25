@@ -26,6 +26,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         
         private AudioSystem audioSystem;
         private AudioSource mySource;
+        private float clipDuration;
 
         protected override void Initialize() => audioSystem = AudioSystem.GetInstance();
 
@@ -34,14 +35,15 @@ namespace RedRats.Systems.LiteFeel.Effects
             if (mySource != null && mySource.isPlaying && mySource.loop) return;
             SafetyNet.EnsureListIsNotNullOrEmpty(clips, nameof(clips));
             
-            AudioClipSO clip = clips[Random.Range(0, clips.Length)];
+            AudioClipSO c = clips[Random.Range(0, clips.Length)];
             
-            SafetyNet.EnsureIsNotNull(clip, nameof(clip));
-            AudioMixerGroup mixer = (overrideMixerGroup) ? mixerGroup : clip.MixerGroup;
-            float vol = (overrideVolume) ? volume : clip.Volume;
-            float pMin = (overridePitch) ? pitchMin : clip.PitchMin;
-            float pMax = (overridePitch) ? pitchMax : clip.PitchMax;
-            mySource = audioSystem.PlaySound(clip.Clip, mixer, sourceSettings, vol, pMin, pMax);
+            SafetyNet.EnsureIsNotNull(c, nameof(c));
+            clipDuration = c.Clip.length;
+            AudioMixerGroup mixer = (overrideMixerGroup) ? mixerGroup : c.MixerGroup;
+            float vol = (overrideVolume) ? volume : c.Volume;
+            float pMin = (overridePitch) ? pitchMin : c.PitchMin;
+            float pMax = (overridePitch) ? pitchMax : c.PitchMax;
+            mySource = audioSystem.PlaySound(c.Clip, mixer, sourceSettings, vol, pMin, pMax);
         }
 
         protected override void StopSelf()
@@ -54,7 +56,13 @@ namespace RedRats.Systems.LiteFeel.Effects
             }
             if (mySource != null) audioSystem.StopSound(mySource);
         }
-        
+
+        protected override void ResetState()
+        {
+            // Nothing to do here.
+        }
+
+
         public void ChangePitch(float newPitch) => ChangePitch(newPitch, newPitch);
         public void ChangePitch(float newPitchMin, float newPitchMax)
         {
@@ -63,6 +71,7 @@ namespace RedRats.Systems.LiteFeel.Effects
             pitchMax = newPitchMax;
         }
         
+        protected override float TotalDuration { get => clipDuration * ((sourceSettings.loop) ? int.MaxValue : 1); }
         protected override string FeedbackColor { get => "#FFCD1C"; }
     }
 }

@@ -16,7 +16,11 @@ namespace RedRats.Systems.LiteFeel.Effects
         private float startOrthographicSize;
         private Camera cam;
 
-        protected override void Initialize() => cam = Camera.main;
+        protected override void Initialize()
+        {
+            cam = Camera.main;
+            base.Initialize();
+        }
 
         protected override void SetBeginState()
         {
@@ -27,7 +31,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         protected override void SetupTweens()
         {
             float targetValue = (movement == MovementType.Relative) ? cam.orthographicSize + targetSize : targetSize;
-            Tween tween = cam.DOOrthoSize(targetValue, duration);
+            Tween tween = cam.DOOrthoSize(targetValue, Duration);
             AddTweenToSequence(tween, sizeCurve);
         }
 

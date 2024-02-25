@@ -11,19 +11,15 @@ public class LFUICanvasGroupEffect : LFEffectTweenBase
     
     private float startAlpha;
     
-    protected override void Initialize()
-    {
-        // Nothing to do here.
-    }
-
     protected override void SetBeginState()
     {
-       // Nothing to do here.
+        target.blocksRaycasts = true;
     }
 
     protected override void SetupTweens()
     {
-        Tween tween = DOTween.To(() => target.alpha, x => target.alpha = x, GetTargetValue(), duration);
+        Tween tween = DOTween.To(() => target.alpha, x => target.alpha = x, GetTargetValue(), Duration);
+        tween.OnComplete(() => target.blocksRaycasts = false);
         AddTweenToSequence(tween, fadeCurve);
     }
 

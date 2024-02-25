@@ -35,11 +35,6 @@ namespace RedRats.Systems.LiteFeel.Effects
         private float startRange;
         private Color startColor;
         
-        protected override void Initialize()
-        {
-            // Nothing to do here.
-        }
-
         protected override void SetBeginState()
         {
             if (animateIntensity && modeIntensity == TransitionType.AToB) target.intensity = beginIntensity;
@@ -52,18 +47,18 @@ namespace RedRats.Systems.LiteFeel.Effects
             if (animateIntensity)
             {
                 float targetValue = (movementIntensity == MovementType.Relative) ? target.intensity + targetIntensity : targetIntensity;
-                Tween tween = DOTween.To(() => target.intensity, x => target.intensity = x, targetValue, duration);
+                Tween tween = DOTween.To(() => target.intensity, x => target.intensity = x, targetValue, Duration);
                 AddTweenToSequence(tween, intensityCurve);
             }
             if (animateRadius)
             {
                 float targetValue = (movementRadius == MovementType.Relative) ? target.pointLightOuterRadius + targetRadius : targetRadius;
-                Tween tween = DOTween.To(() => target.pointLightOuterRadius, x => target.pointLightOuterRadius = x, targetValue, duration);
+                Tween tween = DOTween.To(() => target.pointLightOuterRadius, x => target.pointLightOuterRadius = x, targetValue, Duration);
                 AddTweenToSequence(tween, RadiusCurve);
             }
             if (animateColor)
             {
-                Tween tween = DOTween.To(() => target.color, x => target.color = x, targetColor, duration);
+                Tween tween = DOTween.To(() => target.color, x => target.color = x, targetColor, Duration);
                 AddTweenToSequence(tween, colorCurve);
             }
         }

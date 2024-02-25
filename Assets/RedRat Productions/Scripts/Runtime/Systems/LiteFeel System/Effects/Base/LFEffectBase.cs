@@ -18,6 +18,8 @@ namespace RedRats.Systems.LiteFeel.Effects
         private bool active = true;
         [FoldoutGroup("$GroupSettings"), SerializeField]
         private bool restartOnPlay = true;
+        [FoldoutGroup("$GroupSettings"), SerializeField] 
+        private bool keepStateOnStop;
         [FoldoutGroup("$GroupSettings"), HorizontalGroup("$GroupSettings/D"), SerializeField, LabelText("Initial Delay")] 
         private float initialDelayMin;
         [FoldoutGroup("$GroupSettings"), HorizontalGroup("$GroupSettings/D"), SerializeField, ShowIf("randomizeDelay"), HideLabel] 
@@ -36,10 +38,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         private bool randomizeDelay;
         private IEnumerator delayCoroutine;
         
-        protected virtual void Start()
-        {
-            Initialize();
-        }
+        private void Start() => Initialize();
 
         /// <summary>
         /// Play the effect.
@@ -47,7 +46,12 @@ namespace RedRats.Systems.LiteFeel.Effects
         public void Play()
         {
             if (!active) return;
-            if (!restartOnPlay && isPlaying) return;
+            if (restartOnPlay && isPlaying)
+            {
+                ResetState();
+                Stop();
+            }
+            if (isPlaying) return;
             isPlaying = true;
             delayCoroutine = PlayCoroutine();
             StartCoroutine(delayCoroutine);
@@ -60,6 +64,8 @@ namespace RedRats.Systems.LiteFeel.Effects
         {
             if (delayCoroutine != null) StopCoroutine(delayCoroutine);
             StopSelf();
+            if (!keepStateOnStop) ResetState();
+            else Initialize();
             isPlaying = false;
         }
         
@@ -68,6 +74,8 @@ namespace RedRats.Systems.LiteFeel.Effects
             float delay = (randomizeDelay) ? Random.Range(initialDelayMin, initialDelayMax) : initialDelayMin;
             yield return new WaitForSeconds(delay);
             PlaySelf();
+            yield return new WaitForSeconds(TotalDuration);
+            Stop();
         }
 
         private Color GetEffectColor()
@@ -88,7 +96,14 @@ namespace RedRats.Systems.LiteFeel.Effects
         /// Disables the effect.
         /// </summary>
         protected abstract void StopSelf();
-
+        /// <summary>
+        /// Reset the state to what it was before playing the effect.
+        /// </summary>
+        protected abstract void ResetState();
+        /// <summary>
+        /// The entire duration the effect is run.
+        /// </summary>
+        protected abstract float TotalDuration { get; }
         protected abstract string FeedbackColor { get; }
         
         private string GetDelay => (randomizeDelay) ? $"{initialDelayMin} - {initialDelayMax}" : initialDelayMin.ToString();

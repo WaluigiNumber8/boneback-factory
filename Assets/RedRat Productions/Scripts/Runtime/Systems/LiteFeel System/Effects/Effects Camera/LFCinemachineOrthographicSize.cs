@@ -22,6 +22,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         protected override void Initialize()
         {
             cam = GetActiveCamera();
+            base.Initialize();
         }
 
         protected override void SetBeginState()
@@ -35,7 +36,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         protected override void SetupTweens()
         {
             float targetValue = (movement == MovementType.Relative) ? cam.m_Lens.OrthographicSize + targetSize : targetSize;
-            Tween tween = DOTween.To(() => cam.m_Lens.OrthographicSize, x => cam.m_Lens.OrthographicSize = x, targetValue, duration);
+            Tween tween = DOTween.To(() => cam.m_Lens.OrthographicSize, x => cam.m_Lens.OrthographicSize = x, targetValue, Duration);
             AddTweenToSequence(tween, sizeCurve);
         }
 

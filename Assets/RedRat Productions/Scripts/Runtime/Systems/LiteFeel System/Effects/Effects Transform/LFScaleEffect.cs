@@ -22,11 +22,6 @@ namespace RedRats.Systems.LiteFeel.Effects
         
         private Vector3 startScale;
         
-        protected override void Initialize()
-        {
-            // Do nothing.
-        }
-        
         protected override void SetBeginState()
         {
             if (mode == TransitionType.AToB) target.localScale = GetBeginScale();
@@ -35,7 +30,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         protected override void SetupTweens()
         {
             Vector3 targetValue = (movement == MovementType.Relative) ? target.localScale + GetTargetScale() : GetTargetScale();
-            Tween tween = target.DOScale(targetValue, duration);
+            Tween tween = target.DOScale(targetValue, Duration);
             AddTweenToSequence(tween, scaleCurve);
         }
 

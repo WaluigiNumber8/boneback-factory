@@ -9,30 +9,15 @@ namespace RedRats.Systems.LiteFeel.Effects
     public abstract class LFEffectWithDurationBase : LFEffectBase
     {
         public string GroupGeneral => $"General ({duration} s)";
-        [FoldoutGroup("$GroupGeneral"), SerializeField] protected float duration = 0.2f;
-        [FoldoutGroup("$GroupGeneral"), SerializeField] protected bool resetOnEnd = true;
-        [FoldoutGroup("$GroupGeneral"), SerializeField] protected bool additivePlay;
-        
-        public string GroupLoop => $"Looping ({TotalLoops} L)";
+        [FoldoutGroup("$GroupGeneral"), SerializeField] private float duration = 0.2f;
+        public string GroupLoop => $"Looping ({TotalLoopsAsString} L)";
         [FoldoutGroup("$GroupLoop"), SerializeField] private bool infiniteLoop;
         [FoldoutGroup("$GroupLoop"), SerializeField, Min(1), HideIf("infiniteLoop")] private int loops = 1;
         
-        protected int loopAmount;
-
-        protected override void PlaySelf()
-        {
-            loopAmount = (infiniteLoop) ? -1 : loops;
-            PlaySetup();
-        }
-
-        protected override void StopSelf()
-        {
-            StopSetup();
-        }
-
-        protected abstract void PlaySetup();
-        protected abstract void StopSetup();
+        protected override float TotalDuration { get => duration * TotalLoops; }
+        protected float Duration { get => duration; }
         
-        private string TotalLoops => (infiniteLoop) ? "∞" : loops.ToString();
+        protected int TotalLoops => (infiniteLoop) ? int.MaxValue : loops;
+        private string TotalLoopsAsString => (infiniteLoop) ? "∞" : loops.ToString();
     }
 }
