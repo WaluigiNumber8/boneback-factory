@@ -18,11 +18,6 @@ namespace RedRats.Systems.LiteFeel.Effects
         
         private Vector3 startLocalPosition;
 
-        protected override void Initialize()
-        {
-            // Nothing to do here.
-        }
-
         protected override void SetBeginState()
         {
             // Nothing to do here.

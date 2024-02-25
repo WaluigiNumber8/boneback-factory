@@ -24,6 +24,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         {
             cam = (CinemachineVirtualCamera) CinemachineCore.Instance.GetActiveBrain(0).ActiveVirtualCamera;
             perlin = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+            base.Initialize();
         }
 
         protected override void SetBeginState()

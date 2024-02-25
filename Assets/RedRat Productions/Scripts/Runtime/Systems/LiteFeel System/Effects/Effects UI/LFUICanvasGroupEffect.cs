@@ -11,11 +11,6 @@ public class LFUICanvasGroupEffect : LFEffectTweenBase
     
     private float startAlpha;
     
-    protected override void Initialize()
-    {
-        // Nothing to do here.
-    }
-
     protected override void SetBeginState()
     {
        // Nothing to do here.

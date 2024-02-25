@@ -38,7 +38,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         private bool randomizeDelay;
         private IEnumerator delayCoroutine;
         
-        protected virtual void Start() => Initialize();
+        private void Start() => Initialize();
 
         /// <summary>
         /// Play the effect.
@@ -65,6 +65,7 @@ namespace RedRats.Systems.LiteFeel.Effects
             if (delayCoroutine != null) StopCoroutine(delayCoroutine);
             StopSelf();
             if (!keepStateOnStop) ResetState();
+            else Initialize();
             isPlaying = false;
         }
         

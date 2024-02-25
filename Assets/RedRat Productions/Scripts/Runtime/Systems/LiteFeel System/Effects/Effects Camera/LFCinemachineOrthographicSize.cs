@@ -22,6 +22,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         protected override void Initialize()
         {
             cam = GetActiveCamera();
+            base.Initialize();
         }
 
         protected override void SetBeginState()

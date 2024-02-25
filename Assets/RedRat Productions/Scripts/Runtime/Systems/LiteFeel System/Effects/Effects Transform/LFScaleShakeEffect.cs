@@ -20,11 +20,6 @@ namespace RedRats.Systems.LiteFeel.Effects
         
         private Vector3 startScale;
 
-        protected override void Initialize()
-        {
-            // Nothing to do here.
-        }
-
         protected override void SetBeginState()
         {
             // Nothing to do here.

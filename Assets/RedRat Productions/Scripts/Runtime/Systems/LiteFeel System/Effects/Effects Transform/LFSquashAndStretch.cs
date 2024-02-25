@@ -16,11 +16,6 @@ namespace RedRats.Systems.LiteFeel.Effects
         
         private Vector3 startScale;
         
-        protected override void Initialize()
-        {
-            // Do nothing.
-        }
-
         protected override void SetBeginState()
         {
             if (mode == TransitionType.ToDestination) return;

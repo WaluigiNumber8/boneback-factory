@@ -14,6 +14,7 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         protected override void Initialize()
         {
+            base.Initialize();
             material = target.Get();
         }
 

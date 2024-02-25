@@ -16,7 +16,11 @@ namespace RedRats.Systems.LiteFeel.Effects
         private float startOrthographicSize;
         private Camera cam;
 
-        protected override void Initialize() => cam = Camera.main;
+        protected override void Initialize()
+        {
+            cam = Camera.main;
+            base.Initialize();
+        }
 
         protected override void SetBeginState()
         {

@@ -35,11 +35,6 @@ namespace RedRats.Systems.LiteFeel.Effects
         private float startRange;
         private Color startColor;
         
-        protected override void Initialize()
-        {
-            // Nothing to do here.
-        }
-
         protected override void SetBeginState()
         {
             if (animateIntensity && modeIntensity == TransitionType.AToB) target.intensity = beginIntensity;
