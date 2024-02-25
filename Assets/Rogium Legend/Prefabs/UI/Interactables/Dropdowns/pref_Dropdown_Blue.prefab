@@ -158,10 +158,10 @@ MonoBehaviour:
   info: Bump
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
   duration: 0.05
-  resetOnEnd: 1
   infiniteLoop: 0
   loops: 1
   loopType: 0
@@ -272,10 +272,10 @@ MonoBehaviour:
   info: Scale Y out
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 1
   initialDelayMin: 0
   initialDelayMax: 0
   duration: 0.15
-  resetOnEnd: 0
   infiniteLoop: 0
   loops: 1
   loopType: 0
@@ -326,6 +326,7 @@ MonoBehaviour:
   info: 
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
   clips:
@@ -408,6 +409,7 @@ MonoBehaviour:
   info: Select
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
   clips:
@@ -743,7 +745,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 5846223758240368172}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.7822549
+  m_Size: 1
   m_NumberOfSteps: 1
   m_OnValueChanged:
     m_PersistentCalls:
@@ -813,6 +815,7 @@ MonoBehaviour:
   info: Select
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
   clips:
@@ -1721,7 +1724,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 0
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 15
+  m_ScrollSensitivity: 1200
   m_Viewport: {fileID: 7272976307757011934}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 5846223759949309241}
@@ -2202,10 +2205,10 @@ MonoBehaviour:
   info: Bump
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
   duration: 0.1
-  resetOnEnd: 1
   infiniteLoop: 0
   loops: 1
   loopType: 0
@@ -2265,6 +2268,7 @@ MonoBehaviour:
   info: Click
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
   clips:
