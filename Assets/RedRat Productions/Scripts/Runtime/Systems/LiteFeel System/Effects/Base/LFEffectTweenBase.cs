@@ -1,3 +1,4 @@
+using System.Collections;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -15,23 +16,26 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         protected override void Start()
         {
-            Initialize();
+            base.Start();
             UpdateStartingValues();
         }
 
-        protected override void PlaySetup()
+        protected override void PlaySelf()
         {
-            if (!additivePlay) ResetTargetState();
             sequence.Kill();
             Tween();
         }
 
-        protected override void StopSetup()
+        protected override void StopSelf()
         {
             sequence.Kill();
+        }
+
+        protected override void ResetState()
+        {
             ResetTargetState();
         }
-        
+
         protected void AddTweenToSequence(Tween tween, AnimationCurve curve)
         {
             sequence.Join(tween.SetEase(curve));
@@ -42,8 +46,8 @@ namespace RedRats.Systems.LiteFeel.Effects
             sequence = DOTween.Sequence();
             SetBeginState();
             SetupTweens();
-            sequence.SetLoops(loopAmount, loopType);
-            if (resetOnEnd) sequence.OnComplete(StopSelf);
+            int loops = (TotalLoops == int.MaxValue) ? -1 : TotalLoops;
+            sequence.SetLoops(loops, loopType);
         }
 
         /// <summary>

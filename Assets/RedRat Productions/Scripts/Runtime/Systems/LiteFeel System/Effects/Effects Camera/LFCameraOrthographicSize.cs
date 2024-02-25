@@ -27,7 +27,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         protected override void SetupTweens()
         {
             float targetValue = (movement == MovementType.Relative) ? cam.orthographicSize + targetSize : targetSize;
-            Tween tween = cam.DOOrthoSize(targetValue, duration);
+            Tween tween = cam.DOOrthoSize(targetValue, Duration);
             AddTweenToSequence(tween, sizeCurve);
         }
 

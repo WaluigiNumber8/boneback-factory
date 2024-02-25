@@ -39,7 +39,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         protected override void SetupTweens()
         {
             Vector3 targetValue = (movement == MovementType.Relative) ? GetRotationBasedOnSpace() + GetTargetRotation() : GetTargetRotation();
-            Tween tween = (worldType == WorldType.World) ? target.DORotate(targetValue, duration, RotateMode.FastBeyond360) : target.DOLocalRotate(targetValue, duration, RotateMode.FastBeyond360);
+            Tween tween = (worldType == WorldType.World) ? target.DORotate(targetValue, Duration, RotateMode.FastBeyond360) : target.DOLocalRotate(targetValue, Duration, RotateMode.FastBeyond360);
             AddTweenToSequence(tween, rotationCurve);
         }
 

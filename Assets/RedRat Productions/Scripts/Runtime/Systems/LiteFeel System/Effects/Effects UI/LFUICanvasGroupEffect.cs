@@ -23,7 +23,7 @@ public class LFUICanvasGroupEffect : LFEffectTweenBase
 
     protected override void SetupTweens()
     {
-        Tween tween = DOTween.To(() => target.alpha, x => target.alpha = x, GetTargetValue(), duration);
+        Tween tween = DOTween.To(() => target.alpha, x => target.alpha = x, GetTargetValue(), Duration);
         AddTweenToSequence(tween, fadeCurve);
     }
 

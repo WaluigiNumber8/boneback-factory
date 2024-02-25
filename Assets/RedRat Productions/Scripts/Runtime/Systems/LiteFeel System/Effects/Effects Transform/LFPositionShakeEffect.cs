@@ -30,7 +30,7 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         protected override void SetupTweens()
         {
-            Tween tween = target.DOShakePosition(duration, GetTargetValue(), vibration, randomness, false, fadeout);
+            Tween tween = target.DOShakePosition(Duration, GetTargetValue(), vibration, randomness, false, fadeout);
             AddTweenToSequence(tween, shakeCurve);
         }
 

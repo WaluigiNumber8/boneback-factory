@@ -31,7 +31,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         protected override void SetupTweens()
         {
             Vector3 endScale = GetSquashedVector(target.localScale, targetScale);
-            Tween tween = target.DOScale(endScale, duration);
+            Tween tween = target.DOScale(endScale, Duration);
             AddTweenToSequence(tween, deformCurve);
         }
 

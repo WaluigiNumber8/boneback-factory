@@ -25,7 +25,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         /// <param name="curve">Smoothing curve of the tween.</param>
         protected void AddFloatTween(int property, float targetValue, AnimationCurve curve)
         {
-            Tween tween = DOTween.To(() => material.GetFloat(property), x => material.SetFloat(property, x), targetValue, duration);
+            Tween tween = DOTween.To(() => material.GetFloat(property), x => material.SetFloat(property, x), targetValue, Duration);
             AddTweenToSequence(tween, curve);
         }
         
@@ -37,7 +37,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         /// <param name="curve">Smoothing curve of the tween.</param>
         protected void AddColorTween(int property, Color targetValue, AnimationCurve curve)
         {
-            Tween tween = DOTween.To(() => material.GetColor(property), x => material.SetColor(property, x), targetValue, duration);
+            Tween tween = DOTween.To(() => material.GetColor(property), x => material.SetColor(property, x), targetValue, Duration);
             AddTweenToSequence(tween, curve);
         }
         
