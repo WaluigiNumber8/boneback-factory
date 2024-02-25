@@ -50,8 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnAwake: 0
-  playOnEnable: 0
+  autoplay: 0
 --- !u!114 &2474162105964642333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,11 +66,10 @@ MonoBehaviour:
   info: Bump vertically
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
   duration: 0.05
-  resetOnEnd: 1
-  additivePlay: 0
   infiniteLoop: 0
   loops: 1
   loopType: 0
@@ -131,6 +129,7 @@ MonoBehaviour:
   info: Slider click
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
   clips:
@@ -139,6 +138,7 @@ MonoBehaviour:
     id: 0
     loop: 0
     playOnlyWhenNotPlaying: 0
+    muteSameSound: 0
   ignoreEffectStop: 1
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
@@ -627,8 +627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnAwake: 0
-  playOnEnable: 0
+  autoplay: 0
 --- !u!114 &7631422654813221528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -643,7 +642,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   info: Slider tick
   active: 1
-  restartOnPlay: 1
+  restartOnPlay: 0
+  keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
   clips:
@@ -652,6 +652,7 @@ MonoBehaviour:
     id: 0
     loop: 0
     playOnlyWhenNotPlaying: 1
+    muteSameSound: 0
   ignoreEffectStop: 1
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
@@ -713,8 +714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnAwake: 0
-  playOnEnable: 0
+  autoplay: 0
 --- !u!114 &1771192867671013130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -730,11 +730,10 @@ MonoBehaviour:
   info: Scale ip Y
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
   duration: 0.05
-  resetOnEnd: 0
-  additivePlay: 0
   infiniteLoop: 0
   loops: 1
   loopType: 0
@@ -785,11 +784,10 @@ MonoBehaviour:
   info: Scale Handle Y more
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
   duration: 0.05
-  resetOnEnd: 0
-  additivePlay: 0
   infiniteLoop: 0
   loops: 1
   loopType: 0
@@ -840,6 +838,7 @@ MonoBehaviour:
   info: Click
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
   clips:
@@ -848,6 +847,7 @@ MonoBehaviour:
     id: 0
     loop: 0
     playOnlyWhenNotPlaying: 0
+    muteSameSound: 0
   ignoreEffectStop: 1
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
@@ -871,11 +871,10 @@ MonoBehaviour:
   info: Glow Start
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 1
   initialDelayMin: 0
   initialDelayMax: 0
   duration: 0.2
-  resetOnEnd: 0
-  additivePlay: 0
   infiniteLoop: 0
   loops: 1
   loopType: 0
@@ -951,11 +950,10 @@ MonoBehaviour:
   info: Glow Loop
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
   initialDelayMin: 0.5
   initialDelayMax: 0
   duration: 1
-  resetOnEnd: 1
-  additivePlay: 0
   infiniteLoop: 1
   loops: 1
   loopType: 0
@@ -1191,8 +1189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnAwake: 0
-  playOnEnable: 0
+  autoplay: 0
 --- !u!114 &5888951461833551285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1208,11 +1205,10 @@ MonoBehaviour:
   info: Shrink Y
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
   duration: 0.025
-  resetOnEnd: 1
-  additivePlay: 0
   infiniteLoop: 0
   loops: 1
   loopType: 0
@@ -1301,8 +1297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnAwake: 0
-  playOnEnable: 0
+  autoplay: 0
 --- !u!114 &978061732914753637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1318,11 +1313,10 @@ MonoBehaviour:
   info: Scale down Y
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
   duration: 0.1
-  resetOnEnd: 1
-  additivePlay: 0
   infiniteLoop: 0
   loops: 1
   loopType: 0
@@ -1373,11 +1367,10 @@ MonoBehaviour:
   info: Scale down handle Y more
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
   duration: 0.025
-  resetOnEnd: 1
-  additivePlay: 0
   infiniteLoop: 0
   loops: 1
   loopType: 0
@@ -1428,6 +1421,7 @@ MonoBehaviour:
   info: Select
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
   clips:
@@ -1436,6 +1430,7 @@ MonoBehaviour:
     id: 0
     loop: 0
     playOnlyWhenNotPlaying: 0
+    muteSameSound: 0
   ignoreEffectStop: 1
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
@@ -1459,6 +1454,7 @@ MonoBehaviour:
   info: Stop glow
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
   effector: {fileID: 4737526970612659348}
@@ -1478,11 +1474,10 @@ MonoBehaviour:
   info: Stop glowing
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
   duration: 0.15
-  resetOnEnd: 1
-  additivePlay: 0
   infiniteLoop: 0
   loops: 1
   loopType: 0
@@ -1592,8 +1587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnAwake: 0
-  playOnEnable: 0
+  autoplay: 0
 --- !u!114 &899455453195513171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1609,11 +1603,10 @@ MonoBehaviour:
   info: Expand Y
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
   duration: 0.05
-  resetOnEnd: 0
-  additivePlay: 0
   infiniteLoop: 0
   loops: 1
   loopType: 0
