@@ -72,12 +72,19 @@ Material:
     - _ENABLE_HOLOGRAM: 1
     - _ENABLE_SHIMMER: 1
     - _ENABLE_TINT: 1
+    - _ENABLE_UVROTATE: 0
+    - _Enable_Scroll_And_Offset: 0
     - _FullColorBlend: 0
     - _FullColorGlow: 1
+    - _GlowIntensity: 1
+    - _GlowSaturation: 1
     - _HologramBlend: 1
     - _HologramScrollSpeed: 100
     - _HologramStrength: 1
     - _HologramTiling: 2
+    - _ManualAnimation: 0
+    - _RotationSpeed: 1
+    - _ScrollSpeed: 1
     - _ShimmerGlow: 0.05
     - _ShimmerPosition: 0
     - _ShimmerRotation: 135
@@ -86,12 +93,17 @@ Material:
     - _Shine_Position: 0
     - _Shine_Rotation: 135
     - _Shine_Width: 0.3
+    - _TextureSize: 1
+    - _UVRotation: 44.8
     m_Colors:
     - _FullBlendColor: {r: 0, g: 0, b: 0, a: 0}
     - _GlowColor: {r: 0, g: 0, b: 0, a: 0}
     - _MainColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ScrollDirection: {r: 0, g: 0, b: 0, a: 0}
     - _ShimmerColor: {r: 1, g: 1, b: 1, a: 1}
     - _Shine_Color: {r: 1, g: 1, b: 1, a: 1}
+    - _TextureOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _TextureSize: {r: 1, g: 1, b: 0, a: 0}
     - _Tint: {r: 0, g: 0.3347354, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

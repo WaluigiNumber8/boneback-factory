@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: mat_Test
+  m_Name: mat_UVRotate
   m_Shader: {fileID: -6465566751694194690, guid: 1e7ebd303f2c3f341afb1fe2439df59e, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -70,6 +70,7 @@ Material:
     - _ENABLE_TINT: 0
     - _ENABLE_UVROTATE: 1
     - _EnableExternalAlpha: 0
+    - _Enable_Scroll_And_Offset: 0
     - _FullColorBlend: 0
     - _FullColorGlow: 1
     - _GlowIntensity: 1
@@ -79,6 +80,7 @@ Material:
     - _HologramTiling: 4
     - _ManualAnimation: 0
     - _RotationSpeed: 1
+    - _ScrollSpeed: 1
     - _ShimmerGlow: 0.01
     - _ShimmerPosition: 0
     - _ShimmerRotation: 135
@@ -88,6 +90,7 @@ Material:
     - _StencilOp: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
+    - _TextureSize: 1
     - _UIMaskSoftnessX: 1
     - _UIMaskSoftnessY: 1
     - _UVRotation: 0
@@ -97,7 +100,10 @@ Material:
     - _FullBlendColor: {r: 0, g: 0, b: 0, a: 0}
     - _MainColor: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ScrollDirection: {r: 0, g: 0, b: 0, a: 0}
     - _ShimmerColor: {r: 1, g: 1, b: 1, a: 1}
+    - _TextureOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _TextureSize: {r: 1, g: 1, b: 0, a: 0}
     - _Tint: {r: 1, g: 0, b: 0.22343054, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
