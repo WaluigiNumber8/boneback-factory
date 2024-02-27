@@ -23,7 +23,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         [SerializeField, ShowIf("animateInfluence")] protected AnimationCurve influenceCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
 
         [SerializeField, LabelText(" Color", SdfIconType.TriangleFill)] private bool animateColor;
-        [SerializeField, ShowIf("animateColor"), LabelText("Mode"), EnumToggleButtons] protected TransitionType modeColor = TransitionType.AToB;
+        [SerializeField, ShowIf("animateColor"), LabelText("Mode"), EnumToggleButtons] protected TransitionType modeColor = TransitionType.ToDestination;
         [SerializeField, ShowIf("@animateColor && modeColor == TransitionType.AToB"), ColorUsage(false, true)] private Color beginColor01 = Color.yellow;
         [SerializeField, ShowIf("animateColor"), ColorUsage(false, true)] private Color targetColor01 = Color.red;
         [SerializeField, ShowIf("@animateColor && modeColor == TransitionType.AToB"), ColorUsage(false, true)] private Color beginColor02 = Color.yellow;
