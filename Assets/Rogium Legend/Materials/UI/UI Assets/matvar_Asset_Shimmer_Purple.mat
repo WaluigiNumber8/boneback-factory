@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: matvar_Shimmer_Asset_Red
+  m_Name: matvar_Asset_Shimmer_Purple
   m_Shader: {fileID: -6465566751694194690, guid: 389aadf67837a5045b9b84210cf52f94, type: 3}
   m_Parent: {fileID: 2100000, guid: cfb9f08d12a3f2643a82580eab28ef2e, type: 2}
   m_ModifiedSerializedProperties: 0
@@ -40,6 +40,6 @@ Material:
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _ShimmerColor: {r: 0.95686275, g: 0.38431373, b: 0.27450982, a: 1}
+    - _ShimmerColor: {r: 0.8509804, g: 0.26666668, b: 0.7529412, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
