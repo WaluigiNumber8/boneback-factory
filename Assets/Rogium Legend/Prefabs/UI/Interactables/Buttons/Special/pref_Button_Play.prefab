@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   assignedRenderer: {fileID: 0}
-  assignedImage: {fileID: 0}
+  assignedImage: {fileID: 8227217457077794985}
 --- !u!1 &2256306579597060915
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,6 +175,7 @@ GameObject:
   - component: {fileID: 1301177560327211980}
   - component: {fileID: 871065585281158058}
   - component: {fileID: 2957958397643176238}
+  - component: {fileID: 8778313921631300129}
   m_Layer: 5
   m_Name: Deselect Effect
   m_TagString: Untagged
@@ -213,8 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnAwake: 0
-  playOnEnable: 0
+  autoplay: 0
 --- !u!114 &2957958397643176238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,10 +230,33 @@ MonoBehaviour:
   info: Stop glowing
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   effector: {fileID: 1116888363972877752}
   control: 0
+--- !u!114 &8778313921631300129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2605623684965093226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee72dd67a8324f278d349c64bfbc0f3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: Stop hovering sound
+  active: 1
+  restartOnPlay: 1
+  keepStateOnStop: 0
+  initialDelayMin: 0
+  initialDelayMax: 0
+  randomizeDelay: 0
+  id: 12
+  mode: 0
 --- !u!1 &7174271431154582655
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,8 +267,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2824030468957032791}
   - component: {fileID: 1116888363972877752}
-  - component: {fileID: 5792034768759380098}
   - component: {fileID: 1267007140080658611}
+  - component: {fileID: 7583911756861167521}
   m_Layer: 5
   m_Name: Select Effect
   m_TagString: Untagged
@@ -284,97 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnAwake: 0
-  playOnEnable: 0
---- !u!114 &5792034768759380098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7174271431154582655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa814ab21d984f298b6ea6d462e8acd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  info: Start glow
-  active: 1
-  restartOnPlay: 1
-  initialDelayMin: 0
-  initialDelayMax: 0
-  duration: 1
-  resetOnEnd: 1
-  additivePlay: 0
-  infiniteLoop: 0
-  loops: 1
-  loopType: 0
-  target: {fileID: 7191041500696535794}
-  animateIntensity: 0
-  intensityMode: 1
-  beginIntensity: 1
-  targetIntensity: 2.5
-  intensityCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  animateSaturation: 1
-  saturationMode: 1
-  beginSaturation: 1
-  targetSaturation: 6
-  saturationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.5
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  autoplay: 0
 --- !u!114 &1267007140080658611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,11 +323,11 @@ MonoBehaviour:
   info: Glowing
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
-  duration: 2
-  resetOnEnd: 1
-  additivePlay: 0
+  randomizeDelay: 0
+  duration: 0.84
   infiniteLoop: 1
   loops: 1
   loopType: 0
@@ -437,24 +370,15 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.5
-      value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -464,6 +388,40 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7583911756861167521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7174271431154582655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: Mouse Hover
+  active: 1
+  restartOnPlay: 1
+  keepStateOnStop: 0
+  initialDelayMin: 0
+  initialDelayMax: 0
+  randomizeDelay: 0
+  clips:
+  - {fileID: 11400000, guid: b0e86d0155c44734da422d7edb84c796, type: 2}
+  sourceSettings:
+    id: 12
+    loop: 1
+    playOnlyWhenNotPlaying: 0
+    muteSameSound: 1
+  ignoreEffectStop: 1
+  overrideMixerGroup: 0
+  mixerGroup: {fileID: 0}
+  overrideVolume: 0
+  volume: 1
+  overridePitch: 0
+  pitchMin: 0.95
+  pitchMax: 1.05
 --- !u!1 &7519221745665080532
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,9 +437,9 @@ GameObject:
   - component: {fileID: 2334868480492109196}
   - component: {fileID: 1472761818097431760}
   - component: {fileID: 6145299972304660009}
-  - component: {fileID: 8322805463492700141}
+  - component: {fileID: 5209471408750133688}
   m_Layer: 5
-  m_Name: ClickUp Effect
+  m_Name: Click Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -518,8 +476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnAwake: 0
-  playOnEnable: 0
+  autoplay: 0
 --- !u!114 &7490160976168937122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -535,8 +492,10 @@ MonoBehaviour:
   info: Stop glowing
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   effector: {fileID: 1116888363972877752}
   control: 0
 --- !u!114 &8538597668877516773
@@ -551,14 +510,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f0e4aaa8a44d6580d9d4fa329c2794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info: Scale way up
+  info: Bump
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
-  duration: 0.4
-  resetOnEnd: 1
-  additivePlay: 0
+  randomizeDelay: 0
+  duration: 0.07
   infiniteLoop: 0
   loops: 1
   loopType: 0
@@ -569,7 +528,7 @@ MonoBehaviour:
   beginScale: {x: 0, y: 0, z: 0}
   beginScaleU: 1
   targetScale: {x: 0, y: 0, z: 0}
-  targetScaleU: 2
+  targetScaleU: 1.1
   scaleCurve:
     serializedVersion: 2
     m_Curve:
@@ -583,8 +542,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.036590576
-      value: 1.004631
+      time: 0.28260803
+      value: 0.98496246
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -618,11 +577,11 @@ MonoBehaviour:
   info: Glow
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
-  duration: 0.2
-  resetOnEnd: 1
-  additivePlay: 0
+  randomizeDelay: 0
+  duration: 4
   infiniteLoop: 0
   loops: 1
   loopType: 0
@@ -637,12 +596,21 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
+    - serializedVersion: 3
+      time: 0.066656485
+      value: 0.49567348
+      inSlope: 1.5131704
+      outSlope: 1.5131704
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.4648163
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
       value: 1
@@ -698,8 +666,10 @@ MonoBehaviour:
   info: Play Click
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   clips:
   - {fileID: 11400000, guid: e10070047d4dfb24d9230c017333c691, type: 2}
   sourceSettings:
@@ -730,8 +700,10 @@ MonoBehaviour:
   info: Echo
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   clips:
   - {fileID: 11400000, guid: cf58a0da14518074b9038d339b88a4ac, type: 2}
   sourceSettings:
@@ -747,7 +719,7 @@ MonoBehaviour:
   overridePitch: 0
   pitchMin: 0.95
   pitchMax: 1.05
---- !u!114 &8322805463492700141
+--- !u!114 &5209471408750133688
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -756,29 +728,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 7519221745665080532}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29f0e4aaa8a44d6580d9d4fa329c2794, type: 3}
+  m_Script: {fileID: 11500000, guid: f0650bc6627e5894aa5c557d8e95921c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info: Zoom in canvas
+  info: Fadeout screen
   active: 1
   restartOnPlay: 1
-  initialDelayMin: 1.75
+  keepStateOnStop: 0
+  initialDelayMin: 0
   initialDelayMax: 0
-  duration: 3
-  resetOnEnd: 1
-  additivePlay: 0
+  randomizeDelay: 0
+  duration: 4
   infiniteLoop: 0
   loops: 1
   loopType: 0
   target: {fileID: 0}
-  movement: 0
-  mode: 0
-  uniform: 1
-  beginScale: {x: 0, y: 0, z: 0}
-  beginScaleU: 1
-  targetScale: {x: 0, y: 0, z: 0}
-  targetScaleU: 2.5
-  scaleCurve:
+  fade: 0
+  fadeCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -910,15 +876,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
