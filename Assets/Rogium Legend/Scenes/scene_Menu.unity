@@ -6749,7 +6749,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -35.66504}
+  m_AnchoredPosition: {x: 960, y: -35.66501}
   m_SizeDelta: {x: 0, y: 7.3299966}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &364900359
@@ -9520,7 +9520,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -14762,7 +14762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 8a81968bd2e8cb04495b6a9924c4e41d, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -14770,7 +14770,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: de8fa8450733228438fc6a967bd34779, type: 3}
+  m_Sprite: {fileID: 7612675492157768007, guid: cac46778708b27b49a2ee7dd0fbb30a7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -19523,15 +19523,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.6698113, g: 0.20536669, b: 0.20536669, a: 1}
+  m_Material: {fileID: 2100000, guid: 4afc78f160f18734a9cb101564013bf7, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 725545caf2cf4a14a8aeef65d68f6ffd, type: 3}
+  m_Sprite: {fileID: 7612675492157768007, guid: cac46778708b27b49a2ee7dd0fbb30a7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -20870,7 +20870,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -32278,7 +32278,6 @@ GameObject:
   - component: {fileID: 2031445311}
   - component: {fileID: 2031445313}
   - component: {fileID: 2031445312}
-  - component: {fileID: 2031445314}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -32303,7 +32302,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 600.0503, y: 1244.549}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2031445312
 MonoBehaviour:
@@ -32317,7 +32316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: f34d30d3c6224bd4a81667ed06cec0c6, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -32325,7 +32324,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 725545caf2cf4a14a8aeef65d68f6ffd, type: 3}
+  m_Sprite: {fileID: 7612675492157768007, guid: cac46778708b27b49a2ee7dd0fbb30a7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -32343,21 +32342,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2031445310}
   m_CullTransparentMesh: 1
---- !u!114 &2031445314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2031445310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1a45353d4df5e44ea4a9e9ef57b8cef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotAmount: {x: 0, y: 0, z: 360}
-  rotTime: 8
-  ease: 1
 --- !u!1 &2035112831
 GameObject:
   m_ObjectHideFlags: 0
