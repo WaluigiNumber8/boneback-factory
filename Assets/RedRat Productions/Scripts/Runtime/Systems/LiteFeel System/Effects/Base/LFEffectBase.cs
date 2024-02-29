@@ -34,8 +34,8 @@ namespace RedRats.Systems.LiteFeel.Effects
         [ButtonGroup(), Button("Init", ButtonSizes.Medium), DisableInEditorMode]
         public void TestInit() => Initialize();
 
+        [SerializeField, HideInInspector] private bool randomizeDelay;
         private bool isPlaying;
-        private bool randomizeDelay;
         private IEnumerator delayCoroutine;
         
         private void Start() => Initialize();

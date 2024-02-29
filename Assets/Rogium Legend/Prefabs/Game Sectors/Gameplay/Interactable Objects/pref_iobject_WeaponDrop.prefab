@@ -63,7 +63,8 @@ MonoBehaviour:
   restartOnPlay: 1
   keepStateOnStop: 0
   initialDelayMin: 0
-  initialDelayMax: 0.2
+  initialDelayMax: 0.8
+  randomizeDelay: 1
   duration: 2
   infiniteLoop: 1
   loops: 1
