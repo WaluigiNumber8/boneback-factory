@@ -13,7 +13,6 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// </summary>
     public class InteractablePropertyAssetField : InteractablePropertyBase
     {
-        [SerializeField] private Image icon;
         [SerializeField] private AssetField assetField;
         [SerializeField] private UIInfo ui;
 
@@ -34,11 +33,8 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             asset = value;
 
-            title.text = titleText;
-            title.gameObject.SetActive((titleText != ""));
-            if (ui.emptySpace != null) ui.emptySpace.SetActive((titleText != ""));
-            
-            icon.sprite = asset.Icon;
+            ConstructTitle(titleText);
+            ui.icon.sprite = asset.Icon;
             
             assetField.SetType(type);
             assetField.SetTheme(theme);
@@ -59,13 +55,13 @@ namespace Rogium.UserInterface.Interactables.Properties
             UIExtensions.ChangeFont(title, titleFont);
         }
 
-        public Sprite Icon { get => icon.sprite; }
+        public Sprite Icon { get => ui.icon.sprite; }
 
         [Serializable]
         public struct UIInfo
         {
+            public Image icon;
             public Image borderImage;
-            public GameObject emptySpace;
         }
     }
 }

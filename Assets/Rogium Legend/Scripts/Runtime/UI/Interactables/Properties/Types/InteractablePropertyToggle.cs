@@ -23,9 +23,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="WhenChangeValue">The method that will run when the toggle changes it's value.</param>
         public void Construct(string titleText, bool toggleState, Action<bool> WhenChangeValue)
         {
-            title.text = titleText;
-            title.gameObject.SetActive((titleText != ""));
-            if (ui.emptySpace != null) ui.emptySpace.SetActive((titleText != ""));
+            ConstructTitle(titleText);
             
             toggle.isOn = toggleState;
             toggle.onValueChanged.AddListener(_ => WhenChangeValue(toggle.isOn));
@@ -51,7 +49,6 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             public Image backgroundImage;
             public Image checkmarkImage;
-            public GameObject emptySpace;
         }
     }
 }

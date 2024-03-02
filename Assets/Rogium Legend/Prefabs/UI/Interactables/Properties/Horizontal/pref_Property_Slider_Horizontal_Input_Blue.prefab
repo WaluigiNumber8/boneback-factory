@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   title: {fileID: 4626861850363456292}
+  middleSpace: {fileID: 5250572828375549892}
   slider: {fileID: 2581116495457060495}
   inputField: {fileID: 9017797171851898855}
   decimals:
@@ -109,7 +110,6 @@ MonoBehaviour:
     fillImage: {fileID: 2581116493516406032}
     backgroundImage: {fileID: 2581116493851391231}
     handleImage: {fileID: 2581116493588064456}
-    emptySpace: {fileID: 5250572828375549892}
 --- !u!1 &2906917225875761720
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,11 +657,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   title: {fileID: 4626861850363456292}
+  middleSpace: {fileID: 0}
   inputField: {fileID: 8797470912769860618}
   ui:
     inputFieldImage: {fileID: 7115420588120318494}
     inputtedText: {fileID: 6327738901701273537}
-    emptySpace: {fileID: 0}
 --- !u!114 &4981338279605200912 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2024014615224923072, guid: b611d89d05bab7845860dae45376cf45, type: 3}

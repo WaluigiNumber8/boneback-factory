@@ -491,7 +491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4236a0d1c2ed42b4b5ba20fb57adaad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventCaller: {fileID: 6907403129698086915}
+  eventCaller: {fileID: 7825200785422890374}
   onSelectEffector: {fileID: 3246777056830392251}
   onDeselectEffector: {fileID: 8164771850466178416}
   onClickEffector: {fileID: 3193900375487093101}
@@ -509,7 +509,7 @@ GameObject:
   - component: {fileID: 6861060242789374519}
   - component: {fileID: 1536168348206993820}
   m_Layer: 5
-  m_Name: Note Icon
+  m_Name: Icon Slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -574,10 +574,9 @@ GameObject:
   - component: {fileID: 6914119934038752742}
   - component: {fileID: 3275262152722755819}
   - component: {fileID: 7456464551631979140}
-  - component: {fileID: 9053481634615512995}
+  - component: {fileID: 8999066740876558848}
   - component: {fileID: 8788611343827207148}
-  - component: {fileID: 6907403129698086915}
-  - component: {fileID: 7529177442950953342}
+  - component: {fileID: 7825200785422890374}
   m_Layer: 5
   m_Name: pref_AssetField_Text_Blue
   m_TagString: Untagged
@@ -601,10 +600,10 @@ RectTransform:
   - {fileID: 2241822567166321252}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 600, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3275262152722755819
 CanvasRenderer:
@@ -634,7 +633,7 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!114 &9053481634615512995
+--- !u!114 &8999066740876558848
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -643,7 +642,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7127136707395119182}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 3134246776e9417d9bbb48dcc03f76b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -663,10 +662,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 5859310336560257863, guid: 36059e5069992c740b496603a94de3e5, type: 3}
-    m_PressedSprite: {fileID: -2898601567995641077, guid: 36059e5069992c740b496603a94de3e5, type: 3}
-    m_SelectedSprite: {fileID: -6978822509411700170, guid: 36059e5069992c740b496603a94de3e5, type: 3}
-    m_DisabledSprite: {fileID: -3446791080198967921, guid: 36059e5069992c740b496603a94de3e5, type: 3}
+    m_HighlightedSprite: {fileID: 6118942970413783228, guid: adb2e3b0741779d45a850d588e420772, type: 3}
+    m_PressedSprite: {fileID: 3939223057531117641, guid: adb2e3b0741779d45a850d588e420772, type: 3}
+    m_SelectedSprite: {fileID: 8316493006528375462, guid: adb2e3b0741779d45a850d588e420772, type: 3}
+    m_DisabledSprite: {fileID: -356838629410685956, guid: adb2e3b0741779d45a850d588e420772, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -675,9 +674,9 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 6968636731714621242}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
+  type: 0
+  ui:
+    icon: {fileID: 502211543549352805}
 --- !u!114 &8788611343827207148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -690,7 +689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34cb33770e184ea38dc983851a1dbfe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6907403129698086915
+--- !u!114 &7825200785422890374
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -702,24 +701,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a8061150b14197a9b0d990e72b6162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7529177442950953342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7127136707395119182}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdbd33c92c2034a44bc806bf077f3ef9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  action: 0
-  delay: 0
-  index: -1
-  ui:
-    buttonImage: {fileID: 6968636731714621242}
-    buttonText: {fileID: 3583391195902522661}
 --- !u!1 &8145388864969965583
 GameObject:
   m_ObjectHideFlags: 0

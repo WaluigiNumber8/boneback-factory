@@ -40,9 +40,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             for (int i = 0; i < decimals.allowedDecimals; i++) decimalMultiplier *= 10;
             decimals.sliderWithInput.OverrideDecimalMultiplier(decimalMultiplier);
             
-            title.text = titleText;
-            title.gameObject.SetActive((titleText != ""));
-            if (ui.emptySpace != null) ui.emptySpace.SetActive((titleText != ""));
+            ConstructTitle(titleText);
             
             inputField.UpdateContentType(TMP_InputField.ContentType.DecimalNumber);
             slider.maxValue = Mathf.RoundToInt(maxValue * decimalMultiplier);
@@ -62,9 +60,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="whenValueChange">Method that will run when the slider changes value.</param>
         public void Construct(string titleText, int minValue, int maxValue, int startingValue, Action<float> whenValueChange)
         {
-            title.text = titleText;
-            title.gameObject.SetActive((titleText != ""));
-            if (ui.emptySpace != null) ui.emptySpace.SetActive((titleText != ""));
+            ConstructTitle(titleText);
             
             decimals.sliderWithInput.ResetDecimalMultiplier();
             inputField.UpdateContentType(TMP_InputField.ContentType.IntegerNumber);
@@ -105,7 +101,6 @@ namespace Rogium.UserInterface.Interactables.Properties
             public Image fillImage;
             public Image backgroundImage;
             public Image handleImage;
-            public GameObject emptySpace;
         }
     }
 }

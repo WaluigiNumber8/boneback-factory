@@ -33,9 +33,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             this.minLimit = minLimit;
             this.maxLimit = maxLimit;
             
-            title.text = titleText;
-            title.gameObject.SetActive((titleText != ""));
-            if (ui.emptySpace != null) ui.emptySpace.SetActive((titleText != ""));
+            ConstructTitle(titleText);
             
             inputField.text = inputtedText;
             inputField.characterValidation = characterValidation;
@@ -85,7 +83,6 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             public Image inputFieldImage;
             public TextMeshProUGUI inputtedText;
-            public GameObject emptySpace;
         }
     }
 }
