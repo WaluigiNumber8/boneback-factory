@@ -1,5 +1,4 @@
-﻿using RedRats.Core;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 
 namespace Rogium.UserInterface.Interactables.Properties

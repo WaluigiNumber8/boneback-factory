@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using RedRats.UI.Core;
 using RedRats.UI.Sliders;
 using UnityEngine;

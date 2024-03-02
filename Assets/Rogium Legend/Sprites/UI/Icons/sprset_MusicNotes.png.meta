@@ -131,36 +131,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_Menu_Icons_1
-      rect:
-        serializedVersion: 2
-        x: 8
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6251cb77ab78ac849a08203b59084e24
-      internalID: 925054236
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprset_Menu_Icons_2
+      name: sprset_MusicNotes_Enemy
       rect:
         serializedVersion: 2
         x: 16
         y: 0
-        width: 8
-        height: 8
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -168,27 +147,6 @@ TextureImporter:
       bones: []
       spriteID: 3e518b593f9eb034fa74dcf7dbb7d6df
       internalID: -1820635022
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprset_Menu_Icons_3
-      rect:
-        serializedVersion: 2
-        x: 24
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4e1c38f74a071cd459443237bf6d9e22
-      internalID: 115274202
       vertices: []
       indices: 
       edges: []
@@ -331,7 +289,6 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       sprset_Menu_Icons_1: 925054236
-      sprset_Menu_Icons_2: -1820635022
       sprset_Menu_Icons_3: 115274202
       sprset_Menu_Icons_4: -917808211
       sprset_Menu_Icons_5: -375139211
@@ -339,6 +296,7 @@ TextureImporter:
       sprset_Menu_Icons_7: 1967343671
       sprset_Menu_Icons_8: -1655104440
       sprset_Menu_Icons_9: -1488724766
+      sprset_MusicNotes_Enemy: -1820635022
       sprset_MusicNotes_General: -203117973
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

@@ -131,8 +131,8 @@ GameObject:
   - component: {fileID: 2850692849457775100}
   - component: {fileID: 2506148299016922210}
   - component: {fileID: 6313914881177846159}
-  - component: {fileID: 6770091300173853827}
   - component: {fileID: 2929145534621164090}
+  - component: {fileID: -6442256854003865143}
   m_Layer: 5
   m_Name: pref_Property_SoundPicker_Blue
   m_TagString: Untagged
@@ -208,30 +208,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &6770091300173853827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3836223939569543873}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba7d3487ee279d7408b30359c63ec0bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title: {fileID: 2633623453000180668}
-  dropdown: {fileID: 0}
-  ui:
-    headerBackgroundImage: {fileID: 0}
-    labelText: {fileID: 0}
-    dropdownArrowImage: {fileID: 0}
-    dropdownImage: {fileID: 0}
-    itemToggle: {fileID: 0}
-    toggleLabelText: {fileID: 0}
-    toggleBackgroundImage: {fileID: 0}
-    toggleCheckmarkImage: {fileID: 0}
-    emptySpace: {fileID: 1057479197100194272}
 --- !u!114 &2929145534621164090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,6 +220,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34cb33770e184ea38dc983851a1dbfe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-6442256854003865143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3836223939569543873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17dd5e93a6134c259c034205fe07a0b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: {fileID: 2633623453000180668}
 --- !u!1 &5916930201562933575
 GameObject:
   m_ObjectHideFlags: 0

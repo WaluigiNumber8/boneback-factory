@@ -3,10 +3,8 @@ using RedRats.UI;
 using RedRats.UI.Core;
 using Rogium.Core;
 using Rogium.Editors.Core;
-using Rogium.Editors.Core.Defaults;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 namespace Rogium.UserInterface.Interactables.Properties
 {

@@ -8,16 +8,10 @@ namespace Rogium.Editors.Core
     /// <summary>
     /// Overseers the in-game prebuild assets, that can only be created in the editor.
     /// </summary>
-    public class InternalLibraryOverseer : MonoSingleton<InternalLibraryOverseer>
+    public class InternalLibraryOverseer : PersistentMonoSingleton<InternalLibraryOverseer>
     {
         [SerializeField] private ObjectLibraryAsset objects;
         
-        protected override void Awake()
-        {
-            base.Awake();
-            DontDestroyOnLoad(this);
-        }
-
         /// <summary>
         /// Returns an object with a specific ID.
         /// </summary>
