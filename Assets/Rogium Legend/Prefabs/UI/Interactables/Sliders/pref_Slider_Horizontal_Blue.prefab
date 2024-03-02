@@ -69,6 +69,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.05
   infiniteLoop: 0
   loops: 1
@@ -132,6 +133,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   clips:
   - {fileID: 11400000, guid: 00367dfa8ad1cda4d9ad918bb082e438, type: 2}
   sourceSettings:
@@ -147,6 +149,44 @@ MonoBehaviour:
   overridePitch: 0
   pitchMin: 0.95
   pitchMax: 1.05
+--- !u!1 &1577583935298452152
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1435471265365605716}
+  m_Layer: 5
+  m_Name: UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1435471265365605716
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577583935298452152}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2049710826239503808}
+  - {fileID: 2049710824590251104}
+  - {fileID: 2049710826294254362}
+  m_Father: {fileID: 2049710824627396528}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2049710824590251107
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +216,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2049710825905366065}
-  m_Father: {fileID: 2049710824627396528}
+  m_Father: {fileID: 1435471265365605716}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
@@ -213,9 +253,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2049710826239503808}
-  - {fileID: 2049710824590251104}
-  - {fileID: 2049710826294254362}
+  - {fileID: 1435471265365605716}
+  - {fileID: 6244669961131369885}
   m_Father: {fileID: 1898138526989523820}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -482,7 +521,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2049710824627396528}
+  m_Father: {fileID: 1435471265365605716}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
@@ -571,7 +610,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2049710826026775033}
-  m_Father: {fileID: 2049710824627396528}
+  m_Father: {fileID: 1435471265365605716}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -646,6 +685,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   clips:
   - {fileID: 11400000, guid: 7675cda56e224ce40a4f619e6ac040cb, type: 2}
   sourceSettings:
@@ -733,6 +773,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.05
   infiniteLoop: 0
   loops: 1
@@ -787,6 +828,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.05
   infiniteLoop: 0
   loops: 1
@@ -841,6 +883,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   clips:
   - {fileID: 11400000, guid: 00367dfa8ad1cda4d9ad918bb082e438, type: 2}
   sourceSettings:
@@ -874,6 +917,7 @@ MonoBehaviour:
   keepStateOnStop: 1
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.2
   infiniteLoop: 0
   loops: 1
@@ -953,6 +997,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0.5
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 1
   infiniteLoop: 1
   loops: 1
@@ -1052,7 +1097,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2049710824627396528}
-  - {fileID: 6244669961131369885}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1085,7 +1129,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5486499164468515139}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1096,7 +1140,7 @@ RectTransform:
   - {fileID: 1756471328947295174}
   - {fileID: 879180651436376453}
   - {fileID: 2545928356045008479}
-  m_Father: {fileID: 1898138526989523820}
+  m_Father: {fileID: 2049710824627396528}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1208,6 +1252,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.025
   infiniteLoop: 0
   loops: 1
@@ -1316,6 +1361,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.1
   infiniteLoop: 0
   loops: 1
@@ -1370,6 +1416,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.025
   infiniteLoop: 0
   loops: 1
@@ -1424,6 +1471,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   clips:
   - {fileID: 11400000, guid: 823bb3f51dc80df4888839737d733be4, type: 2}
   sourceSettings:
@@ -1457,6 +1505,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   effector: {fileID: 4737526970612659348}
   control: 0
 --- !u!114 &8615473144779058009
@@ -1477,6 +1526,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.15
   infiniteLoop: 0
   loops: 1
@@ -1606,6 +1656,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.05
   infiniteLoop: 0
   loops: 1

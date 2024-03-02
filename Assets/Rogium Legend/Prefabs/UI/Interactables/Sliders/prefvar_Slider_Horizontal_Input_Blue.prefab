@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_HorizontalAlignment
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4532976497923236489, guid: 97ab44cab1fe6d14595c7e82a41c4386, type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
+      objectReference: {fileID: 0}
     - target: {fileID: 5892933663807651592, guid: 97ab44cab1fe6d14595c7e82a41c4386, type: 3}
       propertyPath: m_Name
       value: Input Field
