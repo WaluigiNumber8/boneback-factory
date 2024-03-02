@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using RedRats.Core;
 using Rogium.Editors.Objects;
+using Rogium.Editors.Sounds;
 using UnityEngine;
 
 namespace Rogium.Editors.Core
@@ -10,19 +11,39 @@ namespace Rogium.Editors.Core
     /// </summary>
     public class InternalLibraryOverseer : PersistentMonoSingleton<InternalLibraryOverseer>
     {
-        [SerializeField] private ObjectLibraryAsset objects;
-        
+        [SerializeField] private ObjectCollectionAsset objects;
+        [SerializeField] private SoundCollectionAsset sounds;
+
+        #region Interactable Objects
+
         /// <summary>
         /// Returns an object with a specific ID.
         /// </summary>
         /// <param name="id">The ID of the object to return.</param>
         /// <returns>The object with the same id.</returns>
-        public ObjectAsset GetObjectByID(string id) => objects.GetObjectByID(id);
+        public ObjectAsset GetObjectByID(string id) => objects.GetAssetByID(id);
 
         /// <summary>
-        /// Returns a copy of the array of interactable objects stored here.
+        /// Returns a copy of all interactable objects.
         /// </summary>
-        /// <returns>A copy of Pack Library.</returns>
-        public IList<ObjectAsset> GetObjectsCopy() => objects.GetObjectsCopy();
+        public IList<ObjectAsset> GetObjectsCopy() => objects.GetAssetListCopy();
+
+        #endregion
+
+        #region Sound Asset
+
+        /// <summary>
+        /// Returns a sound with a specific ID.
+        /// </summary>
+        /// <param name="id">The ID of the sound to return.</param>
+        /// <returns>The sound with the same id.</returns>
+        public SoundAsset GetSoundByID(string id) => sounds.GetAssetByID(id);
+
+        /// <summary>
+        /// Returns a copy of the list of all sound assets.
+        /// </summary>
+        public IList<SoundAsset> GetSoundsCopy() => sounds.GetAssetListCopy();
+
+        #endregion
     }
 }
