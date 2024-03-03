@@ -39,28 +39,24 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
         public void Construct(Action<AssetData> onChangeValue, AssetData value)
         {
             currentAssetData = value;
-            this.onChangeValue = onChangeValue;
             SoundAsset asset = lib.GetSoundByID(value.ID);
             
             soundField.Construct("", AssetType.Sound, asset, WhenSoundFieldUpdated);
-            WhenSoundFieldUpdated(asset);
+            UpdateProperties(currentAssetData);
+            OnSoundSelected?.Invoke(asset);
+            
+            this.onChangeValue = onChangeValue; //Assign after everything is set up.
         }
 
         /// <summary>
         /// Opens the window.
         /// </summary>
-        public void Open()
-        {
-            ui.windowArea.SetActive(true);
-        }
-        
+        public void Open() => ui.windowArea.SetActive(true);
+
         /// <summary>
         /// Close the window.
         /// </summary>
-        public void Close()
-        {
-            ui.windowArea.SetActive(false);
-        }
+        public void Close() => ui.windowArea.SetActive(false);
 
         /// <summary>
         /// Update settings on all interactable properties on this asset.
@@ -81,33 +77,28 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
             OnSoundSelected?.Invoke(asset);
         }
         
+        private void WhenVolumeChanged(float newValue)
+        {
+            currentAssetData.UpdateFloatValue1(newValue);
+            UpdateOriginalValue();
+        }
+        
+        private void WhenPitchChanged(float newValue)
+        {
+            currentAssetData.UpdateFloatValue2(newValue);
+            UpdateOriginalValue();
+        }
+        
         private void WhenRandomPitchChanged(bool newValue)
         {
             currentAssetData.UpdateBoolValue1(newValue);
             UpdateOriginalValue();
         }
 
-
-        private void WhenPitchChanged(float newValue)
-        {
-            currentAssetData.UpdateFloatValue2(newValue);
-            UpdateOriginalValue();
-        }
-
-        private void WhenVolumeChanged(float newValue)
-        {
-            currentAssetData.UpdateFloatValue1(newValue);
-            UpdateOriginalValue();
-        }
-
-
         /// <summary>
         /// Call to update the original value.
         /// </summary>
-        private void UpdateOriginalValue()
-        {
-            onChangeValue?.Invoke(currentAssetData);
-        }
+        private void UpdateOriginalValue() => onChangeValue?.Invoke(currentAssetData);
 
         [Serializable]
         public struct UIInfo
