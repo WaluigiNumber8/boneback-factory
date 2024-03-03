@@ -54,6 +54,7 @@ namespace RedRats.Systems.LiteFeel.Effects
             if (isPlaying) return;
             isPlaying = true;
             delayCoroutine = PlayCoroutine();
+            if (!isActiveAndEnabled) return;
             StartCoroutine(delayCoroutine);
         }
         
