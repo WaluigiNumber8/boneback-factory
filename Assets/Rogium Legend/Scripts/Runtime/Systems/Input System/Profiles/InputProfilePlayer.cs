@@ -32,7 +32,7 @@ namespace Rogium.Systems.Input
             buttonStart = new InputButton(map.Start);
         }
         
-        public override void Enable()
+        protected override void WhenEnabled()
         {
             map.Enable();
             
@@ -46,7 +46,7 @@ namespace Rogium.Systems.Input
             buttonStart.Enable();
         }
 
-        public override void Disable()
+        protected override void WhenDisabled()
         {
             movement.Disable();
             buttonMain.Disable();

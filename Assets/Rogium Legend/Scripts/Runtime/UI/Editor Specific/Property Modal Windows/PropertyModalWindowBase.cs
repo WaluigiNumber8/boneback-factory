@@ -1,4 +1,5 @@
 using System;
+using Rogium.Systems.Input;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,11 +11,14 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
     public abstract class PropertyModalWindowBase : MonoBehaviour
     {
         [SerializeField] private UIInfo ui;
+        
+        private InputSystem inputSystem;
 
         protected virtual void Awake()
         {
             ui.backgroundArea.onClick.AddListener(Close);
             ui.closeButton.onClick.AddListener(Close);
+            inputSystem = InputSystem.GetInstance();
         }
 
         /// <summary>

@@ -14,6 +14,8 @@ namespace Rogium.Systems.Input
         private InputProfilePlayer inputPlayer;
         private InputProfileUI inputUI;
         private EventSystem eventSystem;
+        
+        private Vector2 pointerPosition;
 
         protected override void Awake()
         {
@@ -23,6 +25,10 @@ namespace Rogium.Systems.Input
             inputUI = new InputProfileUI(input);
             SceneManager.sceneLoaded += (_, __) => eventSystem = FindFirstObjectByType<EventSystem>();
         }
+
+        private void OnEnable() => inputUI.PointerPosition.OnPressed += UpdatePointerPosition;
+
+        private void OnDisable() => inputUI.PointerPosition.OnPressed -= UpdatePointerPosition;
 
         /// <summary>
         /// Enables the UI Action Map.
@@ -66,6 +72,9 @@ namespace Rogium.Systems.Input
             inputPlayer.Disable();
         }
         
+        private void UpdatePointerPosition(Vector2 value) => pointerPosition = value;
+
+        public Vector2 PointerPosition { get => pointerPosition; }
         public InputProfilePlayer Player { get => inputPlayer; }
         public InputProfileUI UI { get => inputUI; }
     }
