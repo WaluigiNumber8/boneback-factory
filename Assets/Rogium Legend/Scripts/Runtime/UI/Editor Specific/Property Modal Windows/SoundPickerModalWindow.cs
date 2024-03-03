@@ -13,6 +13,8 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
     /// </summary>
     public class SoundPickerModalWindow : MonoBehaviour
     {
+        public event Action<IAsset> OnSoundSelected;
+        
         [SerializeField] private InteractablePropertyAssetField soundField;
         [SerializeField] private InteractablePropertySlider volumeSlider;
         [SerializeField] private InteractablePropertySlider pitchSlider;
@@ -40,8 +42,8 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
             this.onChangeValue = onChangeValue;
             SoundAsset asset = lib.GetSoundByID(value.ID);
             
-            soundField.Construct("", AssetType.Sound, asset, WhenAssetFieldUpdated);
-            UpdateProperties(currentAssetData);
+            soundField.Construct("", AssetType.Sound, asset, WhenSoundFieldUpdated);
+            WhenSoundFieldUpdated(asset);
         }
 
         /// <summary>
@@ -71,11 +73,12 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
             randomPitchToggle.Construct("Randomize Pitch", data.Parameters.boolValue1, WhenRandomPitchChanged);
         }
 
-        private void WhenAssetFieldUpdated(IAsset asset)
+        private void WhenSoundFieldUpdated(IAsset asset)
         {
             currentAssetData = AssetDataBuilder.ForSound(asset);
             UpdateProperties(currentAssetData);
             UpdateOriginalValue();
+            OnSoundSelected?.Invoke(asset);
         }
         
         private void WhenRandomPitchChanged(bool newValue)

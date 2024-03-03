@@ -3,6 +3,7 @@ using RedRats.UI;
 using RedRats.UI.Core;
 using Rogium.Core;
 using Rogium.Editors.Core;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -35,6 +36,7 @@ namespace Rogium.UserInterface.Interactables.Properties
 
             ConstructTitle(titleText);
             ui.icon.sprite = asset.Icon;
+            if (ui.title != null) ui.title.text = asset.Title;
             
             assetField.SetType(type);
             assetField.SetTheme(theme);
@@ -62,6 +64,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             public Image icon;
             public Image borderImage;
+            public TextMeshProUGUI title;
         }
     }
 }

@@ -509,7 +509,7 @@ GameObject:
   - component: {fileID: 6861060242789374519}
   - component: {fileID: 1536168348206993820}
   m_Layer: 5
-  m_Name: Icon Slot
+  m_Name: Asset Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -677,6 +677,7 @@ MonoBehaviour:
   type: 0
   ui:
     icon: {fileID: 502211543549352805}
+    title: {fileID: 3583391195902522661}
 --- !u!114 &8788611343827207148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -714,7 +715,7 @@ GameObject:
   - component: {fileID: 5098669751585471389}
   - component: {fileID: 3583391195902522661}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Asset Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

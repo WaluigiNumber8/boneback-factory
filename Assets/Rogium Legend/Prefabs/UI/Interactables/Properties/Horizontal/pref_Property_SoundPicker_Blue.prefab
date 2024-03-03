@@ -536,6 +536,9 @@ MonoBehaviour:
   middleSpace: {fileID: 1057479197100194272}
   showWindowButton: {fileID: 5036281739022643912}
   playButton: {fileID: 3853299418750073932}
+  ui:
+    soundTitle: {fileID: 1153561556830742084}
+    soundIcon: {fileID: 2828458399449303044}
 --- !u!1 &4850421069650574127
 GameObject:
   m_ObjectHideFlags: 0
