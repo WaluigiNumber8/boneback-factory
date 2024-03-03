@@ -23,13 +23,13 @@ MonoBehaviour:
     intValue4: 0
     intValue5: 0
     intValue6: 0
-    floatValue1: 0
-    floatValue2: 0
+    floatValue1: 1
+    floatValue2: 1
     floatValue3: 0
     floatValue4: 0
     floatValue5: 0
     floatValue6: 0
-    boolValue1: 0
+    boolValue1: 1
     boolValue2: 0
     boolValue3: 0
     boolValue4: 0

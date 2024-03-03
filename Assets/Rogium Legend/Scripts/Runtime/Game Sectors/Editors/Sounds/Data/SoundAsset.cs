@@ -15,7 +15,7 @@ namespace Rogium.Editors.Sounds
         [VerticalGroup("Base/Right")]
         [SerializeField] private AudioClipSO soundData;
         [PropertySpace]
-        [SerializeField] private ParameterInfo defaultParameters;
+        [SerializeField] private ParameterInfo defaultParameters = ParameterInfoConstants.ForSound;
         
         #region Update Values
         public void UpdateParameters(ParameterInfo newParams) => defaultParameters = newParams;
