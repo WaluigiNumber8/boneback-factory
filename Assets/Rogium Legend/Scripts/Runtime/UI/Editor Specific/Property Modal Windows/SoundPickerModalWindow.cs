@@ -4,14 +4,13 @@ using Rogium.Editors.Core;
 using Rogium.Editors.Sounds;
 using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Rogium.UserInterface.Editors.PropertyModalWindows
 {
     /// <summary>
     /// Represents a modal window that allows the user to pick a sound from the sound library.
     /// </summary>
-    public class SoundPickerModalWindow : MonoBehaviour
+    public class SoundPickerModalWindow : PropertyModalWindowBase
     {
         public event Action<IAsset> OnSoundSelected;
         
@@ -19,16 +18,15 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
         [SerializeField] private InteractablePropertySlider volumeSlider;
         [SerializeField] private InteractablePropertySlider pitchSlider;
         [SerializeField] private InteractablePropertyToggle randomPitchToggle;
-        [SerializeField] private UIInfo ui;
         
         private InternalLibraryOverseer lib;
         private AssetData currentAssetData;
         private Action<AssetData> onChangeValue;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             lib = InternalLibraryOverseer.GetInstance();
-            ui.backgroundArea.onClick.AddListener(Close);
         }
 
         /// <summary>
@@ -47,16 +45,6 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
             
             this.onChangeValue = onChangeValue; //Assign after everything is set up.
         }
-
-        /// <summary>
-        /// Opens the window.
-        /// </summary>
-        public void Open() => ui.windowArea.SetActive(true);
-
-        /// <summary>
-        /// Close the window.
-        /// </summary>
-        public void Close() => ui.windowArea.SetActive(false);
 
         /// <summary>
         /// Update settings on all interactable properties on this asset.
@@ -99,12 +87,5 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
         /// Call to update the original value.
         /// </summary>
         private void UpdateOriginalValue() => onChangeValue?.Invoke(currentAssetData);
-
-        [Serializable]
-        public struct UIInfo
-        {
-            public GameObject windowArea;
-            public Button backgroundArea;
-        }
     }
 }
