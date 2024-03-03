@@ -46,7 +46,7 @@ namespace Rogium.Editors.Rooms
             base.Awake();
             packEditor = PackEditorOverseer.Instance;
             editor = RoomEditorOverseer.Instance;
-            toolbox = new ToolBox<AssetData, Sprite>(grid, new AssetData(ParameterInfoConstants.ParamsEmpty), EditorConstants.EmptyGridSprite, grid.UpdateCell);
+            toolbox = new ToolBox<AssetData, Sprite>(grid, new AssetData(ParameterInfoConstants.ForEmpty), EditorConstants.EmptyGridSprite, grid.UpdateCell);
             objects = InternalLibraryOverseer.GetInstance().GetObjectsCopy();
 
             paletteTile.OnSelect += asset => SelectedValue(asset, AssetType.Tile);

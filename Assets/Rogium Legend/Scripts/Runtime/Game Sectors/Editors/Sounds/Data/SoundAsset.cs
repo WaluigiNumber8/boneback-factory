@@ -49,6 +49,7 @@ namespace Rogium.Editors.Sounds
         public void UpdateStringValue6(string newValue) => defaultParameters.stringValue6 = newValue;
         #endregion
         
+        public AudioClipSO Data { get => soundData; }
         public ParameterInfo Parameters { get => defaultParameters; }
     }
 }

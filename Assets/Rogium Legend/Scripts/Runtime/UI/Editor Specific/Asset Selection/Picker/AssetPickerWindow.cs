@@ -75,6 +75,9 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
                 case AssetType.Tile:
                     selectionPicker.OpenForTiles(ConfirmSelection, preselectedAsset);
                     break;
+                case AssetType.Sound:
+                    selectionPicker.OpenForSounds(ConfirmSelection, preselectedAsset);
+                    break;
                 case AssetType.Campaign:
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, "Unsupported Asset Type");

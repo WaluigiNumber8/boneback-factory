@@ -976,7 +976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info: 
+  info: AssetSlot click
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
@@ -984,7 +984,7 @@ MonoBehaviour:
   initialDelayMax: 0
   randomizeDelay: 0
   clips:
-  - {fileID: 11400000, guid: 00367dfa8ad1cda4d9ad918bb082e438, type: 2}
+  - {fileID: 11400000, guid: 8827021b16375d343ace337d48146e52, type: 2}
   sourceSettings:
     id: 0
     loop: 0

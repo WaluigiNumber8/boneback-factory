@@ -19,6 +19,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         
         protected void ConstructTitle(string titleText)
         {
+            if (title == null) return;
             title.text = titleText;
             title.gameObject.SetActive((titleText != ""));
             if (middleSpace != null) middleSpace.SetActive((titleText != ""));

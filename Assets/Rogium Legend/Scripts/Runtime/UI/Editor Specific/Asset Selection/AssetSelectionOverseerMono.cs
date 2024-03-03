@@ -122,7 +122,11 @@ namespace Rogium.UserInterface.Editors.AssetSelection
         
         public void OpenForSounds()
         {
-            throw new NotImplementedException();
+            overseer.Setup(AssetType.Sound,
+                           layouts.grid,
+                           selectionMenus.sound,
+                           InternalLibraryOverseer.GetInstance().GetSoundsCopy().ToList<IAsset>(),
+                           layoutSwitcher);
         }
         #endregion
 

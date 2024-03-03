@@ -17,7 +17,7 @@ namespace Rogium.Editors.Core
         public AssetData()
         {
             id = EditorConstants.EmptyAssetID;
-            parameters = ParameterInfoConstants.ParamsEmpty;
+            parameters = ParameterInfoConstants.ForEmpty;
         }
         
         public AssetData(AssetData data)

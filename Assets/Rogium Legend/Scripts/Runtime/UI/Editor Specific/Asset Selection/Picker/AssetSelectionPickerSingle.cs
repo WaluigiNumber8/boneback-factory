@@ -173,6 +173,18 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
             Open(targetMethod, preselectedAsset);
             assetSelection.OpenForTiles();
         }
+        
+        /// <summary>
+        /// Opens the Picker Selection Menu for Sounds.
+        /// </summary>
+        /// <param name="targetMethod">The method, that requires results of the selection and
+        /// will run only after ConfirmSelection() has been called.</param>
+        /// <param name="preselectedAsset">The asset that will already be selected, after opening the menu.</param>
+        public void OpenForSounds(Action<IAsset> targetMethod, IAsset preselectedAsset = null)
+        {
+            Open(targetMethod, preselectedAsset);
+            assetSelection.OpenForSounds();
+        }
 
         #endregion
 
@@ -207,6 +219,5 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
             if (holder.Asset.ID == selectedAsset.ID)
                 holder.SetToggle(true);
         }
-        
     }
 }
