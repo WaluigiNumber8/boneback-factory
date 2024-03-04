@@ -40,6 +40,7 @@ namespace Rogium.Systems.GASExtension
             GAS.ObjectSetActive(false, UIEditorContainer.GetInstance().Background);
             GAS.ObjectSetActive(false, CanvasOverseer.GetInstance().NavigationBar.transform.GetChild(0).gameObject);
             GAS.ObjectSetActive(false, CanvasOverseer.GetInstance().PickerWindow.transform.GetChild(0).gameObject);
+            CanvasOverseer.GetInstance().SoundPickerWindow.Close();
             CanvasOverseer.GetInstance().NavigationBar.Hide();
         }
 
