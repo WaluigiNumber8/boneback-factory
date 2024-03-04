@@ -30,7 +30,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="value">Value of property.</param>
         /// <param name="WhenChangeValue">The method that will run, when the AssetField changes value.</param>
         /// <param name="theme">The theme of the Asset Picker Window.</param>
-        public void Construct(string titleText, AssetType type, IAsset value, Action<IAsset> WhenChangeValue, ThemeType theme = ThemeType.NoTheme)
+        public void Construct(string titleText, AssetType type, IAsset value, Action<IAsset> WhenChangeValue, ThemeType theme = ThemeType.Current)
         {
             asset = value;
 
@@ -54,7 +54,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         public void UpdateTheme(InteractableSpriteInfo fieldSpriteSet, FontInfo titleFont)
         {
             UIExtensions.ChangeInteractableSprites(assetField, ui.borderImage, fieldSpriteSet);
-            UIExtensions.ChangeFont(title, titleFont);
+            if (title != null) UIExtensions.ChangeFont(title, titleFont);
         }
 
         public Sprite Icon { get => ui.icon.sprite; }

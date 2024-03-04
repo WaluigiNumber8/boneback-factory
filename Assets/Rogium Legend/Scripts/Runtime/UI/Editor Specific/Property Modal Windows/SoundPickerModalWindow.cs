@@ -1,8 +1,10 @@
 using System;
 using RedRats.Systems.Audio;
+using RedRats.UI.Core;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Sounds;
+using Rogium.Systems.ThemeSystem;
 using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -16,7 +18,10 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
     public class SoundPickerModalWindow : PropertyModalWindowBase
     {
         public event Action<IAsset> OnSoundSelected;
-        
+
+        [SerializeField] private Image windowBackground;
+        [SerializeField] private Image propertiesBackground;
+        [Header("Interactables")]
         [SerializeField] private InteractablePropertyAssetField soundField;
         [SerializeField] private InteractablePropertySlider volumeSlider;
         [SerializeField] private InteractablePropertySlider pitchSlider;
@@ -71,7 +76,21 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
 
             audioSystem.PlaySound(clip, mixerGroup, settings, volume, pitchMin, pitchMax);
         }
-        
+
+        public void UpdateTheme(Sprite windowBackgroundSprite, Sprite propertiesBackgroundSprite, InteractableSpriteInfo soundFieldSet, InteractableSpriteInfo buttonSet)
+        {   
+            ThemeUpdaterRogium.UpdateAssetFieldText(soundField);
+            ThemeUpdaterRogium.UpdateSlider(volumeSlider);
+            ThemeUpdaterRogium.UpdateSlider(pitchSlider);
+            ThemeUpdaterRogium.UpdateToggle(randomPitchToggle);
+            UIExtensions.ChangeInteractableSprites(playSoundButton, playSoundButton.image, buttonSet);
+            UIExtensions.ChangeInteractableSprites(CloseButton, CloseButton.image, soundFieldSet);
+            windowBackground.sprite = windowBackgroundSprite;
+            propertiesBackground.sprite = propertiesBackgroundSprite;
+        }
+
+        protected override void UpdateTheme() => ThemeUpdaterRogium.UpdateSoundPickerModalWindow(this);
+
         /// <summary>
         /// Update settings on all interactable properties on this asset.
         /// </summary>

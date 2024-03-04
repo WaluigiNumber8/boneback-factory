@@ -150,7 +150,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="isDisabled">Initialize the property as a non-interactable.</param>
         /// <param name="theme">The theme for the Asset Picker Window.</param>
         /// <returns>The property itself.</returns>
-        public void BuildAssetField(string title, AssetType type, IAsset value, Transform parent, Action<IAsset> whenValueChange, bool isDisabled = false, ThemeType theme = ThemeType.NoTheme)
+        public void BuildAssetField(string title, AssetType type, IAsset value, Transform parent, Action<IAsset> whenValueChange, bool isDisabled = false, ThemeType theme = ThemeType.Current)
         {
             InteractablePropertyAssetField assetField = Instantiate(assetFieldProperty, parent);
             assetField.Construct(title, type, value, whenValueChange, theme);
@@ -195,7 +195,6 @@ namespace Rogium.UserInterface.Interactables.Properties
             slider.Construct(title, minValue, maxValue, startingValue, whenValueChange);
             slider.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateSlider(slider);
-            if (slider.InputField != null) ThemeUpdaterRogium.UpdateInputField(slider.InputField);
         }
 
         /// <summary>

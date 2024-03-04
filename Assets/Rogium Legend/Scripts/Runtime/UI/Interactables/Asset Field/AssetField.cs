@@ -21,7 +21,7 @@ namespace Rogium.UserInterface.Interactables
         [SerializeField] private UIInfo ui;
 
         private IAsset lastAsset;
-        private ThemeType themeToUse = ThemeType.NoTheme;
+        private ThemeType themeToUse = ThemeType.Current;
         
         public void OnPointerClick(PointerEventData eventData)
         {

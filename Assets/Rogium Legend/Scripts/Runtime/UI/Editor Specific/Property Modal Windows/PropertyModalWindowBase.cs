@@ -9,6 +9,7 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
     /// </summary>
     public abstract class PropertyModalWindowBase : MonoBehaviour
     {
+        [Header("UI")]
         [SerializeField] private UIInfo ui;
 
         protected virtual void Awake()
@@ -20,13 +21,21 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
         /// <summary>
         /// Opens the window.
         /// </summary>
-        public void Open() => ui.area.SetActive(true);
+        public void Open()
+        {
+            UpdateTheme();
+            ui.area.SetActive(true);
+        }
 
         /// <summary>
         /// Close the window.
         /// </summary>
         public void Close() => ui.area.SetActive(false);
 
+        protected abstract void UpdateTheme();
+        
+        public Button CloseButton { get => ui.closeButton; }
+        
         [Serializable]
         public struct UIInfo
         {
