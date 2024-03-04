@@ -621,6 +621,8 @@ MonoBehaviour:
   volumeSlider: {fileID: 5019503256200126149}
   pitchSlider: {fileID: 2712329787660536507}
   randomPitchToggle: {fileID: 5070891190366341484}
+  playSoundButton: {fileID: 4501663233494917435}
+  mixerGroup: {fileID: -7128948430085313062, guid: 15e85eab3684ad9409d53f645746215d, type: 2}
 --- !u!1 &7848250799805579499
 GameObject:
   m_ObjectHideFlags: 0
@@ -791,6 +793,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4706485927541822692, guid: 61c2173c271a00c45a7f4341e20276f9, type: 3}
+    - {fileID: 458042096699964939, guid: 61c2173c271a00c45a7f4341e20276f9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -800,6 +803,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4275969157202218011, guid: 61c2173c271a00c45a7f4341e20276f9, type: 3}
   m_PrefabInstance: {fileID: 2246551978916923736}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4501663233494917435 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2401621206897649763, guid: 61c2173c271a00c45a7f4341e20276f9, type: 3}
+  m_PrefabInstance: {fileID: 2246551978916923736}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3151299218875001559
 PrefabInstance:
   m_ObjectHideFlags: 0

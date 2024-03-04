@@ -1514,7 +1514,9 @@ PrefabInstance:
       propertyPath: m_PreferredWidth
       value: 76
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 458042096699964939, guid: 61c2173c271a00c45a7f4341e20276f9, type: 3}
+    - {fileID: 4706485927541822692, guid: 61c2173c271a00c45a7f4341e20276f9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

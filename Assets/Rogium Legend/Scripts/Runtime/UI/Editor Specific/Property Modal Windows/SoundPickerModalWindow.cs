@@ -1,9 +1,12 @@
 using System;
+using RedRats.Systems.Audio;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Sounds;
 using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 namespace Rogium.UserInterface.Editors.PropertyModalWindows
 {
@@ -18,8 +21,14 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
         [SerializeField] private InteractablePropertySlider volumeSlider;
         [SerializeField] private InteractablePropertySlider pitchSlider;
         [SerializeField] private InteractablePropertyToggle randomPitchToggle;
+        [Header("Audio")]
+        [SerializeField] private Button playSoundButton;
+        [SerializeField] private AudioMixerGroup mixerGroup;
         
         private InternalLibraryOverseer lib;
+        private AudioSystem audioSystem;
+        
+        private SoundAsset currentSoundAsset;
         private AssetData currentAssetData;
         private Action<AssetData> onChangeValue;
 
@@ -27,6 +36,8 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
         {
             base.Awake();
             lib = InternalLibraryOverseer.GetInstance();
+            audioSystem = AudioSystem.GetInstance();
+            playSoundButton.onClick.AddListener(PlayCurrentSound);
         }
 
         /// <summary>
@@ -37,15 +48,30 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
         public void Construct(Action<AssetData> onChangeValue, AssetData value)
         {
             currentAssetData = value;
-            SoundAsset asset = lib.GetSoundByID(value.ID);
+            currentSoundAsset = lib.GetSoundByID(value.ID);
             
-            soundField.Construct("", AssetType.Sound, asset, WhenSoundFieldUpdated);
+            soundField.Construct("", AssetType.Sound, currentSoundAsset, WhenSoundFieldUpdated);
             UpdateProperties(currentAssetData);
-            OnSoundSelected?.Invoke(asset);
+            OnSoundSelected?.Invoke(currentSoundAsset);
             
             this.onChangeValue = onChangeValue; //Assign after everything is set up.
         }
 
+        /// <summary>
+        /// Plays the currently selected sound with current parameters.
+        /// </summary>
+        public void PlayCurrentSound()
+        {
+            AudioClip clip = currentSoundAsset.Data.Clip;
+            AudioSourceSettingsInfo settings = new(0, false, false, false);
+            float volume = currentAssetData.Parameters.floatValue1;
+            float pitch = currentAssetData.Parameters.floatValue2;
+            float pitchMin = (currentAssetData.Parameters.boolValue1) ? pitch - 0.05f : pitch;
+            float pitchMax = (currentAssetData.Parameters.boolValue1) ? pitch + 0.05f : pitch;
+
+            audioSystem.PlaySound(clip, mixerGroup, settings, volume, pitchMin, pitchMax);
+        }
+        
         /// <summary>
         /// Update settings on all interactable properties on this asset.
         /// </summary>
@@ -60,6 +86,7 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
         private void WhenSoundFieldUpdated(IAsset asset)
         {
             currentAssetData = AssetDataBuilder.ForSound(asset);
+            currentSoundAsset = asset as SoundAsset;
             UpdateProperties(currentAssetData);
             UpdateOriginalValue();
             OnSoundSelected?.Invoke(asset);
