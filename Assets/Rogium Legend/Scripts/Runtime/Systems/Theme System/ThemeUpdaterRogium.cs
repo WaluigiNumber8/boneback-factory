@@ -146,6 +146,17 @@ namespace Rogium.Systems.ThemeSystem
             header.UpdateTheme(t.Fonts.header,
                                t.Elements.editorBackground);
         }
+        
+        /// <summary>
+        /// Updates the sound picker with correct data from the current theme.
+        /// </summary>
+        public static void UpdateSoundPicker(InteractablePropertySoundPicker soundPicker, ThemeType theme = ThemeType.Current)
+        {
+            UpdateUsedTheme(theme);
+            soundPicker.UpdateTheme(t.Interactables.inputField,
+                                    t.Interactables.buttonMenu, 
+                                    t.Fonts.general);
+        }
 
         /// <summary>
         /// Updates an editor element with correct data from the correct theme.

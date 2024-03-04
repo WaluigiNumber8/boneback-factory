@@ -212,7 +212,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             value = (value.ID == EditorConstants.EmptyAssetID) ? AssetDataBuilder.ForSound(InternalLibraryOverseer.GetInstance().GetSoundByID("001")) : value;
             soundPicker.Construct(title, value, whenValueChange);
             soundPicker.SetDisabled(isDisabled);
-            // ThemeUpdaterRogium.UpdateSoundPicker(soundPicker);
+            ThemeUpdaterRogium.UpdateSoundPicker(soundPicker);
         }
         #endregion
 

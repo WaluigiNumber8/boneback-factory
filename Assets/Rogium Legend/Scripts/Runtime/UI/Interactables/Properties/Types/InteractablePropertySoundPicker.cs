@@ -1,5 +1,7 @@
 using System;
+using RedRats.UI.Core;
 using Rogium.Editors.Core;
+using Rogium.Systems.ThemeSystem;
 using Rogium.UserInterface.Core;
 using Rogium.UserInterface.Editors.PropertyModalWindows;
 using TMPro;
@@ -43,6 +45,13 @@ namespace Rogium.UserInterface.Interactables.Properties
             playButton.interactable = !isDisabled;
         }
 
+        public void UpdateTheme(InteractableSpriteInfo openWindowButtonSet, InteractableSpriteInfo buttonSet, FontInfo titleFont)
+        {
+            UIExtensions.ChangeInteractableSprites(showWindowButton, showWindowButton.image, openWindowButtonSet);
+            UIExtensions.ChangeInteractableSprites(playButton, playButton.image, buttonSet);
+            UIExtensions.ChangeFont(title, titleFont);
+        }
+        
         private void RefreshOnChange(IAsset newAsset)
         {
             ui.soundTitle.text = newAsset.Title;
