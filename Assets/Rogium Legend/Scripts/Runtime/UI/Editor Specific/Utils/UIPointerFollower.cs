@@ -12,7 +12,7 @@ namespace Rogium.UserInterface.Editors.Utils
     public class UIPointerFollower : MonoBehaviour, IDragHandler
     {
         [SerializeField, EnumToggleButtons] private UIFollowType followType;
-
+        
         private RectTransform ttransform;
         private InputSystem inputSystem;
         private Canvas canvas;
@@ -47,8 +47,11 @@ namespace Rogium.UserInterface.Editors.Utils
         private void MoveToPointerPosition() => MoveToPointerPosition(inputSystem.PointerPosition);
         private void MoveToPointerPosition(Vector2 mousePosition)
         {
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasTransform, mousePosition, cam, out Vector2 newPos);
             (Vector2 minPos, Vector2 maxPos) = GetAllowedMinMaxPositions();
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasTransform, mousePosition, cam, out Vector2 newPos);
+            
+            newPos.x -= ttransform.rect.width  * 0.5f;
+            newPos.y -= ttransform.rect.height * 0.5f;
             
             newPos.x = Mathf.Clamp(newPos.x, minPos.x, maxPos.x);
             newPos.y = Mathf.Clamp(newPos.y, minPos.y, maxPos.y);
@@ -57,8 +60,8 @@ namespace Rogium.UserInterface.Editors.Utils
 
         private void DragBy(Vector2 delta)
         {
-            Vector2 newPos = ttransform.anchoredPosition + (delta / canvas.scaleFactor);
             (Vector2 minPos, Vector2 maxPos) = GetAllowedMinMaxPositions();
+            Vector2 newPos = ttransform.anchoredPosition + (delta / canvas.scaleFactor);
             
             newPos.x = Mathf.Clamp(newPos.x, minPos.x, maxPos.x);
             newPos.y = Mathf.Clamp(newPos.y, minPos.y, maxPos.y);
