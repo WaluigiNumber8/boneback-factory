@@ -14,6 +14,7 @@ public class LFUICanvasGroupEffect : LFEffectTweenBase
     protected override void SetBeginState()
     {
         target.blocksRaycasts = true;
+        target.alpha = (fade == ImageFadeType.FadeIn) ? 0f : 1f;
     }
 
     protected override void SetupTweens()

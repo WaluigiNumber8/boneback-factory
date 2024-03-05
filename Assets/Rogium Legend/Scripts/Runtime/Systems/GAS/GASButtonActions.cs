@@ -33,17 +33,6 @@ namespace Rogium.Systems.GASExtension
     {
         private static int storedIndex = -1; //Used for method traveling.
 
-        public static void GameStart()
-        {
-            GAS.ObjectSetActive(true, UIMainContainer.GetInstance().BackgroundMain);
-            GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundGameplayMenus);
-            GAS.ObjectSetActive(false, UIEditorContainer.GetInstance().Background);
-            GAS.ObjectSetActive(false, CanvasOverseer.GetInstance().NavigationBar.transform.GetChild(0).gameObject);
-            GAS.ObjectSetActive(false, CanvasOverseer.GetInstance().PickerWindow.transform.GetChild(0).gameObject);
-            CanvasOverseer.GetInstance().SoundPickerWindow.Close();
-            CanvasOverseer.GetInstance().NavigationBar.Hide();
-        }
-
         public static void GameQuit()
         {
             Application.Quit();
