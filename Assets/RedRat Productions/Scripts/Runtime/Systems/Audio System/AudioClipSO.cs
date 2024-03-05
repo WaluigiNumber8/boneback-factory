@@ -8,7 +8,7 @@ namespace RedRats.Systems.Audio
     /// <summary>
     /// Represents a playable audio clip with proper settings.
     /// </summary>
-    [CreateAssetMenu(fileName = "asset_SFX_NewSoundClip", menuName = "RedRat Productions/Sound Asset", order = 0)]
+    [CreateAssetMenu(fileName = "asset_SFX_NewSoundClip", menuName = "RedRat Productions/Sound Data", order = 0)]
     public class AudioClipSO : ScriptableObject
     {
         [Header("Clip")] 

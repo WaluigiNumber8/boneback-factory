@@ -39,6 +39,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         private IEnumerator delayCoroutine;
         
         private void Start() => Initialize();
+        private void OnDisable() => Stop();
 
         /// <summary>
         /// Play the effect.

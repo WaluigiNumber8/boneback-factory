@@ -3,6 +3,7 @@ using RedRats.UI;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.UserInterface.Core;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -20,7 +21,7 @@ namespace Rogium.UserInterface.Interactables
         [SerializeField] private UIInfo ui;
 
         private IAsset lastAsset;
-        private ThemeType themeToUse = ThemeType.NoTheme;
+        private ThemeType themeToUse = ThemeType.Current;
         
         public void OnPointerClick(PointerEventData eventData)
         {
@@ -48,6 +49,7 @@ namespace Rogium.UserInterface.Interactables
         {
             lastAsset = asset;
             ui.icon.sprite = asset.Icon;
+            if (ui.title != null) ui.title.text = asset.Title;
             OnValueChanged?.Invoke(asset);
         }
 
@@ -55,6 +57,7 @@ namespace Rogium.UserInterface.Interactables
         public struct UIInfo
         {
             public Image icon;
+            public TextMeshProUGUI title;
         }
     }
 }

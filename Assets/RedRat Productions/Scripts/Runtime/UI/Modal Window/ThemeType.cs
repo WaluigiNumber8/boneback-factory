@@ -5,7 +5,7 @@
     /// </summary>
     public enum ThemeType
     {
-        NoTheme = -1,
+        Current = -1,
         Blue = 0,
         Red = 1,
         Green = 2,

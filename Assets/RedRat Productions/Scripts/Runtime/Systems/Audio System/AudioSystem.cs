@@ -64,6 +64,21 @@ namespace RedRats.Systems.Audio
         /// <param name="mixerGroup">Which group the sound played</param>
         /// <param name="sourceSettings">The settings used for the next playback.</param>
         /// <param name="volume">How loud the sound is.</param>
+        /// <param name="pitch">Pitch of the sound.</param>
+        /// <returns>The <see cref="AudioSource"/> that plays the clip.</returns>
+        public AudioSource PlaySound(AudioClip[] clips, AudioMixerGroup mixerGroup, AudioSourceSettingsInfo sourceSettings, float volume = 1, float pitch = 1)
+        {
+            AudioClip clip = clips[Random.Range(0, clips.Length)];
+            return PlaySound(clip, mixerGroup, sourceSettings, volume, pitch, pitch);
+        }
+        
+        /// <summary>
+        /// Play a single sound.
+        /// </summary>
+        /// <param name="clips">The <see cref="AudioClip"/> to play. If multiple are provided, plays a random one.</param>
+        /// <param name="mixerGroup">Which group the sound played</param>
+        /// <param name="sourceSettings">The settings used for the next playback.</param>
+        /// <param name="volume">How loud the sound is.</param>
         /// <param name="pitchMin">Minimum allowed pitch.</param>
         /// <param name="pitchMax">Maximum allowed pitch.</param>
         /// <returns>The <see cref="AudioSource"/> that plays the clip.</returns>

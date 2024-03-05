@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9fe88623a69caab4d955b28b86e7b6b5, type: 3}
-  m_Name: asset_IObjectLibrary
+  m_Name: asset_Collection_InteractableObjects
   m_EditorClassIdentifier: 
   interactableObjects:
+  - {fileID: 11400000, guid: 1729872d82c482c4a93750b23a778d7b, type: 2}
   - {fileID: 11400000, guid: 4d1fcbcd9dcaf244fbb5773a02b2b67e, type: 2}
   - {fileID: 11400000, guid: dd29c9db4a3612d4ab424a769443bd7c, type: 2}
   - {fileID: 11400000, guid: 40f8ee64210fe1b44b8b0ce3c384f9f2, type: 2}
-  - {fileID: 11400000, guid: 1729872d82c482c4a93750b23a778d7b, type: 2}

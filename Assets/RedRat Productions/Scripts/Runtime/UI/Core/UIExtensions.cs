@@ -16,8 +16,7 @@ namespace RedRats.UI.Core
         /// <param name="interactable">The interactable itself.</param>
         /// <param name="interactableImage">Image of the interactable.</param>
         /// <param name="spriteData">The set of sprites to update with.</param>
-        public static void ChangeInteractableSprites(Selectable interactable, Image interactableImage,
-            InteractableSpriteInfo spriteData)
+        public static void ChangeInteractableSprites(Selectable interactable, Image interactableImage, InteractableSpriteInfo spriteData)
         {
             SafetyNet.EnsureIsNotNull(interactable, "Selectable to update.");
             SafetyNet.EnsureIsNotNull(interactableImage, "Selectable image");

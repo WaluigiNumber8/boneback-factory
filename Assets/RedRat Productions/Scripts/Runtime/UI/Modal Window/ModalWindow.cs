@@ -103,8 +103,7 @@ namespace RedRats.UI.ModalWindows
         /// <param name="buttonSet">Buttons of teh window.</param>
         /// <param name="headerFont">Font of the header text.</param>
         /// <param name="textFont">Font of text in the content section.</param>
-        public void UpdateTheme(Sprite backgroundSprite, Sprite headerSprite, InteractableSpriteInfo buttonSet,
-            FontInfo headerFont, FontInfo textFont)
+        public void UpdateTheme(Sprite backgroundSprite, Sprite headerSprite, InteractableSpriteInfo buttonSet, FontInfo headerFont, FontInfo textFont)
         {
             UIExtensions.ChangeInteractableSprites(ui.footer.acceptButton, ui.footer.acceptButtonImage, buttonSet);
             UIExtensions.ChangeInteractableSprites(ui.footer.denyButton, ui.footer.denyButtonImage, buttonSet);

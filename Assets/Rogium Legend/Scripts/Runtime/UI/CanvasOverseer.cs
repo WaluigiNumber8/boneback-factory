@@ -1,10 +1,8 @@
 ﻿using RedRats.Core;
-using RedRats.UI;
-using RedRats.UI.ModalWindows;
 using Rogium.UserInterface.Editors.AssetSelection.PickerVariant;
 using Rogium.UserInterface.Editors.Navigation;
+using Rogium.UserInterface.Editors.PropertyModalWindows;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Rogium.UserInterface.Core
 {
@@ -14,9 +12,11 @@ namespace Rogium.UserInterface.Core
     public class CanvasOverseer : MonoSingleton<CanvasOverseer>
     {
         [SerializeField] private AssetPickerWindow pickerWindow;
+        [SerializeField] private SoundPickerModalWindow soundPickerWindow;
         [SerializeField] private NavigationBar navigationBar;
         
         public AssetPickerWindow PickerWindow { get => pickerWindow; }
+        public SoundPickerModalWindow SoundPickerWindow { get => soundPickerWindow; }
         public NavigationBar NavigationBar { get => navigationBar; }
     }
 }

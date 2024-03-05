@@ -4,6 +4,7 @@ using RedRats.Core;
 using RedRats.UI;
 using Rogium.Core;
 using Rogium.Editors.Core;
+using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.ThemeSystem;
 using Sirenix.OdinInspector;
 using TMPro;
@@ -25,6 +26,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         [SerializeField] private InteractablePropertyToggle toggleProperty;
         [SerializeField] private InteractablePropertyDropdown dropdownProperty;
         [SerializeField] private InteractablePropertySlider sliderProperty;
+        [SerializeField] private InteractablePropertySoundPicker soundPickerProperty;
         [Title("Other properties")]
         [SerializeField] private ContentBlockInfo contentBlocks;
         [SerializeField] private VerticalVariantsInfo verticalVariants;
@@ -148,7 +150,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="isDisabled">Initialize the property as a non-interactable.</param>
         /// <param name="theme">The theme for the Asset Picker Window.</param>
         /// <returns>The property itself.</returns>
-        public void BuildAssetField(string title, AssetType type, IAsset value, Transform parent, Action<IAsset> whenValueChange, bool isDisabled = false, ThemeType theme = ThemeType.NoTheme)
+        public void BuildAssetField(string title, AssetType type, IAsset value, Transform parent, Action<IAsset> whenValueChange, bool isDisabled = false, ThemeType theme = ThemeType.Current)
         {
             InteractablePropertyAssetField assetField = Instantiate(assetFieldProperty, parent);
             assetField.Construct(title, type, value, whenValueChange, theme);
@@ -193,9 +195,25 @@ namespace Rogium.UserInterface.Interactables.Properties
             slider.Construct(title, minValue, maxValue, startingValue, whenValueChange);
             slider.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateSlider(slider);
-            if (slider.InputField != null) ThemeUpdaterRogium.UpdateInputField(slider.InputField);
         }
 
+        /// <summary>
+        /// Builds the Sound Picker property.
+        /// </summary>
+        /// <param name="title">The text of the property title.</param>
+        /// <param name="value">Starting value of the sound picker.</param>
+        /// <param name="parent">The parent under which to instantiate the property.</param>
+        /// <param name="whenValueChange">Method that runs when anything is updated by the property.</param>
+        /// <param name="isDisabled">Initialize the property as a non-interactable</param>
+        public void BuildSoundPicker(string title, AssetData value, Transform parent, Action<AssetData> whenValueChange, bool isDisabled = false)
+        {
+            InteractablePropertySoundPicker soundPicker = Instantiate(soundPickerProperty, parent);
+            //TODO Add support for null values to Asset Picker window.
+            value = (value.ID == EditorConstants.EmptyAssetID) ? AssetDataBuilder.ForSound(InternalLibraryOverseer.GetInstance().GetSoundByID("001")) : value;
+            soundPicker.Construct(title, value, whenValueChange);
+            soundPicker.SetDisabled(isDisabled);
+            ThemeUpdaterRogium.UpdateSoundPicker(soundPicker);
+        }
         #endregion
 
         #region Content Blocks

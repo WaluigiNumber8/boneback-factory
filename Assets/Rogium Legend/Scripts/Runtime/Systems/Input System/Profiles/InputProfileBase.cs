@@ -6,18 +6,39 @@
     public abstract class InputProfileBase
     {
         protected readonly RogiumInputActions input;
+        
+        private bool isEnabled;
 
         protected InputProfileBase(RogiumInputActions input) => this.input = input;
-
+        
         /// <summary>
         /// Enables the profile.
         /// </summary>
-        public abstract void Enable();
-
+        public void Enable()
+        {
+            WhenEnabled();
+            isEnabled = true;
+        }
+        
         /// <summary>
         /// Disables the profile.
         /// </summary>
-        public abstract void Disable();
+        public void Disable()
+        {
+            isEnabled = false;
+            WhenDisabled();
+        }
 
+        /// <summary>
+        /// Actions that happen when the profile is enabled.
+        /// </summary>
+        protected abstract void WhenEnabled();
+
+        /// <summary>
+        /// Actions that happen when the profile is disabled.
+        /// </summary>
+        protected abstract void WhenDisabled();
+        
+        public bool IsEnabled { get => isEnabled; }
     }
 }

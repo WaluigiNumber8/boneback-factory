@@ -22,6 +22,8 @@ namespace Rogium.ExternalStorage.Serialization
         public int startingDirection;
         public bool seamlessMovement;
 
+        public AssetData hurtSound;
+        
         public JSONEnemyAsset(EnemyAsset asset) : base(asset)
         {
             maxHealth = asset.MaxHealth;
@@ -33,6 +35,8 @@ namespace Rogium.ExternalStorage.Serialization
             nextStepTime = asset.NextStepTime;
             startingDirection = (int)asset.StartingDirection;
             seamlessMovement = asset.SeamlessMovement;
+
+            hurtSound = new AssetData(asset.HurtSound);
         }
 
         public override EnemyAsset Decode()
@@ -61,6 +65,7 @@ namespace Rogium.ExternalStorage.Serialization
                                   nextStepTime,
                                   (DirectionType)startingDirection,
                                   seamlessMovement,
+                                  hurtSound,
                                   DateTime.Parse(creationDate));
         }
     }

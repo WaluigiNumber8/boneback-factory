@@ -499,7 +499,7 @@ namespace Rogium.Editors.Packs
 
             InternalLibraryOverseer library = InternalLibraryOverseer.GetInstance();
             newAsset.ObjectGrid.SetValue(new Vector2Int(6, 5), AssetDataBuilder.ForObject(library.GetObjectByID("001")));
-            newAsset.ObjectGrid.SetValue(new Vector2Int(8, 5), AssetDataBuilder.ForObject(library.GetObjectByID("001")));
+            newAsset.ObjectGrid.SetValue(new Vector2Int(8, 5), AssetDataBuilder.ForObject(library.GetObjectByID("002")));
             CurrentPack.Rooms.Add(newAsset);
         }
         public void CreateNewRoom()
@@ -510,7 +510,7 @@ namespace Rogium.Editors.Packs
             RoomAsset newAsset = new();
             InternalLibraryOverseer library = InternalLibraryOverseer.GetInstance();
             newAsset.ObjectGrid.SetValue(new Vector2Int(6, 5), AssetDataBuilder.ForObject(library.GetObjectByID("001")));
-            newAsset.ObjectGrid.SetValue(new Vector2Int(8, 5), AssetDataBuilder.ForObject(library.GetObjectByID("001")));
+            newAsset.ObjectGrid.SetValue(new Vector2Int(8, 5), AssetDataBuilder.ForObject(library.GetObjectByID("002")));
             CurrentPack.Rooms.Add(newAsset);
         }
 

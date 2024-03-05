@@ -22,7 +22,7 @@
             menu = new InputButton(map.Menu);
         }
         
-        public override void Enable()
+        protected override void WhenEnabled()
         {
             map.Enable();
             
@@ -33,7 +33,7 @@
             menu.Enable();
         }
 
-        public override void Disable()
+        protected override void WhenDisabled()
         {
             map.Disable();
             

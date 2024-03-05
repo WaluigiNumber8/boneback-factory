@@ -89,7 +89,10 @@ namespace Rogium.Editors.PropertyEditor.Builders
             b.BuildSlider("Frame Duration", 1, EditorConstants.EnemyFrameDurationMax, asset.FrameDuration, content, i => asset.UpdateFrameDuration((int)i));
             
             ProcessAIType((int)asset.AI);
-            BuildWeaponContent(content);
+            BuildWeaponSection(content);
+            
+            b.BuildHeader("Sound", content);
+            b.BuildSoundPicker("Hurt", asset.HurtSound, content, asset.UpdateHurtSound);
         }
 
         private void ProcessAnimationType(int animType)
@@ -106,7 +109,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
             aiRotateTowardsBlock.SetDisabled((newAIType != (int)AIType.RotateTowardsPlayer));
         }
         
-        private void BuildWeaponContent(Transform content)
+        private void BuildWeaponSection(Transform content)
         {
             b.BuildHeader("Weapons", content);
             b.BuildSlider("Attack Delay", 0f, EditorConstants.EnemyAttackDelayMax, asset.UseDelay, content, f => asset.UpdateUseDelay(f));

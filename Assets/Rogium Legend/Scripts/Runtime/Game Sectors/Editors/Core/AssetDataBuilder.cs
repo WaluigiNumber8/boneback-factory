@@ -3,6 +3,7 @@ using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Enemies;
 using Rogium.Editors.Objects;
 using Rogium.Editors.Packs;
+using Rogium.Editors.Sounds;
 using Rogium.Editors.Tiles;
 
 namespace Rogium.Editors.Core
@@ -23,11 +24,11 @@ namespace Rogium.Editors.Core
         /// <returns>AssetData for that specific asset.</returns>
         public static AssetData ForTile(IAsset asset)
         {
-            if (asset.ID == EditorConstants.EmptyAssetID) return new AssetData(ParameterInfoConstants.ParamsEmpty);
+            if (asset.ID == EditorConstants.EmptyAssetID) return new AssetData(ParameterInfoConstants.ForEmpty);
             if (asset.ID == lastID && lastType == AssetType.Tile) return lastData;
 
             TileAsset tile = (TileAsset) asset;
-            ParameterInfo parameters = ParameterInfoConstants.ParamsTile;
+            ParameterInfo parameters = ParameterInfoConstants.ForTile;
             
             parameters.intValue1 = (int)tile.Type;
 
@@ -45,7 +46,7 @@ namespace Rogium.Editors.Core
         /// <returns>AssetData for that specific asset.</returns>
         public static AssetData ForObject(IAsset asset)
         {
-            if (asset.ID == EditorConstants.EmptyAssetID) return new AssetData(ParameterInfoConstants.ParamsEmpty);
+            if (asset.ID == EditorConstants.EmptyAssetID) return new AssetData(ParameterInfoConstants.ForEmpty);
             if (asset.ID == lastID && lastType == AssetType.Object) return lastData;
             
             ObjectAsset iobject = (ObjectAsset)asset;
@@ -65,11 +66,11 @@ namespace Rogium.Editors.Core
         /// <returns>AssetData for that specific asset.</returns>
         public static AssetData ForEnemy(IAsset asset)
         {
-            if (asset.ID == EditorConstants.EmptyAssetID) return new AssetData(ParameterInfoConstants.ParamsEmpty);
+            if (asset.ID == EditorConstants.EmptyAssetID) return new AssetData(ParameterInfoConstants.ForEmpty);
             if (asset.ID == lastID && lastType == AssetType.Enemy) return lastData;
             
             EnemyAsset enemy = (EnemyAsset)asset;
-            ParameterInfo parameters = ParameterInfoConstants.ParamsEnemy;
+            ParameterInfo parameters = ParameterInfoConstants.ForEnemy;
             
             parameters.intValue1 = enemy.BaseDamage;
 
@@ -80,6 +81,25 @@ namespace Rogium.Editors.Core
             return lastData;
         }
         
+        /// <summary>
+        /// Builds Asset data for a <see cref="SoundAsset"/> in the currently open pack.
+        /// </summary>
+        /// <param name="asset">The sound asset to build for.</param>
+        /// <returns>AssetData for that specific asset.</returns>
+        public static AssetData ForSound(IAsset asset)
+        {
+            if (asset.ID == EditorConstants.EmptyAssetID) return new AssetData(ParameterInfoConstants.ForEmpty);
+            if (asset.ID == lastID && lastType == AssetType.Sound) return lastData;
+
+            SoundAsset sound = (SoundAsset) asset;
+            ParameterInfo parameters = sound.Parameters;
+
+            lastID = asset.ID;
+            lastType = AssetType.Sound;
+            lastData = new AssetData(asset.ID, parameters);
+
+            return lastData;
+        }
         
     }
 }

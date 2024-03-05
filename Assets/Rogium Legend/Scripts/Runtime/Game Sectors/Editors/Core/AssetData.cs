@@ -14,6 +14,12 @@ namespace Rogium.Editors.Core
 
         #region Constructors
 
+        public AssetData()
+        {
+            id = EditorConstants.EmptyAssetID;
+            parameters = ParameterInfoConstants.ForEmpty;
+        }
+        
         public AssetData(AssetData data)
         {
             id = data.ID;
