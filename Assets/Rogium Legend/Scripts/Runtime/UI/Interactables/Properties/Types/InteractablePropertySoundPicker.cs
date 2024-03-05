@@ -45,11 +45,13 @@ namespace Rogium.UserInterface.Interactables.Properties
             playButton.interactable = !isDisabled;
         }
 
-        public void UpdateTheme(InteractableSpriteInfo openWindowButtonSet, InteractableSpriteInfo buttonSet, FontInfo titleFont)
+        public void UpdateTheme(InteractableSpriteInfo openWindowButtonSet, InteractableSpriteInfo buttonSet, Sprite playButtonIcon, FontInfo titleFont, FontInfo valueFont)
         {
             UIExtensions.ChangeInteractableSprites(showWindowButton, showWindowButton.image, openWindowButtonSet);
             UIExtensions.ChangeInteractableSprites(playButton, playButton.image, buttonSet);
             UIExtensions.ChangeFont(title, titleFont);
+            UIExtensions.ChangeFont(ui.soundTitle, valueFont);
+            ui.playSoundButtonIcon.sprite = playButtonIcon;
         }
         
         private void RefreshOnChange(IAsset newAsset)
@@ -63,6 +65,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             public TextMeshProUGUI soundTitle;
             public Image soundIcon;
+            public Image playSoundButtonIcon;
         }
     }
 }

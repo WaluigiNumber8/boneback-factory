@@ -575,7 +575,7 @@ GameObject:
   - component: {fileID: 7114358659187902311}
   - component: {fileID: 2980716121167271837}
   m_Layer: 5
-  m_Name: pref_ModalWindow_SoundProperty
+  m_Name: pref_ModalWindow_SoundPicker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -619,6 +619,7 @@ MonoBehaviour:
     closeButton: {fileID: 1665717588176354558}
   windowBackground: {fileID: 1526681669937998525}
   propertiesBackground: {fileID: 2560318672764430006}
+  playSoundButtonIcon: {fileID: 2753888600301772305}
   soundField: {fileID: 8114963910008588844}
   volumeSlider: {fileID: 5019503256200126149}
   pitchSlider: {fileID: 2712329787660536507}
@@ -805,6 +806,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4275969157202218011, guid: 61c2173c271a00c45a7f4341e20276f9, type: 3}
   m_PrefabInstance: {fileID: 2246551978916923736}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2753888600301772305 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4114772768186652489, guid: 61c2173c271a00c45a7f4341e20276f9, type: 3}
+  m_PrefabInstance: {fileID: 2246551978916923736}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4501663233494917435 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2401621206897649763, guid: 61c2173c271a00c45a7f4341e20276f9, type: 3}

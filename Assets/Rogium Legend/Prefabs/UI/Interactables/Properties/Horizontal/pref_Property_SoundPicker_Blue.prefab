@@ -560,6 +560,7 @@ MonoBehaviour:
   ui:
     soundTitle: {fileID: 1153561556830742084}
     soundIcon: {fileID: 2828458399449303044}
+    playSoundButtonIcon: {fileID: 3258198941351248742}
 --- !u!1 &4850421069650574127
 GameObject:
   m_ObjectHideFlags: 0
@@ -1570,6 +1571,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61c2173c271a00c45a7f4341e20276f9, type: 3}
+--- !u!114 &3258198941351248742 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4114772768186652489, guid: 61c2173c271a00c45a7f4341e20276f9, type: 3}
+  m_PrefabInstance: {fileID: 1454080645838722095}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &3421229315749861428 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4275969157202218011, guid: 61c2173c271a00c45a7f4341e20276f9, type: 3}

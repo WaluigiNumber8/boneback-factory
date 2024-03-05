@@ -155,7 +155,9 @@ namespace Rogium.Systems.ThemeSystem
             UpdateUsedTheme(theme);
             soundPicker.UpdateTheme(t.Interactables.inputField,
                                     t.Interactables.buttonMenu, 
-                                    t.Fonts.general);
+                                    t.Icons.play,
+                                    t.Fonts.general,
+                                    t.Fonts.inputted);
         }
 
         /// <summary>
@@ -190,7 +192,8 @@ namespace Rogium.Systems.ThemeSystem
             window.UpdateTheme(t.Elements.modalWindowBackground, 
                                t.Elements.toggleBorder, 
                                t.Interactables.inputField, 
-                               t.Interactables.buttonMenu);
+                               t.Interactables.buttonMenu,
+                               t.Icons.play);
         }
         
         /// <summary>

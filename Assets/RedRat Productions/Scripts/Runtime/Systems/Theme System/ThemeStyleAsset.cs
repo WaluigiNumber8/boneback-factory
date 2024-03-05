@@ -1,4 +1,5 @@
-﻿using RedRats.UI.Core;
+﻿using System;
+using RedRats.UI.Core;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -9,13 +10,15 @@ namespace Rogium.Systems.ThemeSystem
     {
         [SerializeField] private ElementsInfo elements;
         [SerializeField] private InteractablesInfo interactables;
+        [SerializeField] private IconsInfo icons;
         [SerializeField] private FontsInfo fonts;
 
         public ElementsInfo Elements { get => elements; }
         public InteractablesInfo Interactables { get => interactables; }
+        public IconsInfo Icons { get => icons; }
         public FontsInfo Fonts { get => fonts; }
         
-        [System.Serializable]
+        [Serializable]
         public struct ElementsInfo
         {
             [PreviewField(60)] public Sprite dropdownHeader;
@@ -30,7 +33,7 @@ namespace Rogium.Systems.ThemeSystem
             [PreviewField(60)] public Sprite modalWindowBackground;
         }
         
-        [System.Serializable]
+        [Serializable]
         public struct InteractablesInfo
         {
             [BoxGroup]
@@ -53,7 +56,14 @@ namespace Rogium.Systems.ThemeSystem
             public InteractableSpriteInfo scrollbarHandle;
         }
 
-        [System.Serializable]
+        [Serializable]
+        public struct IconsInfo
+        {
+            [PreviewField(60)] public Sprite play;
+            [PreviewField(60)] public Sprite stop;
+        }
+        
+        [Serializable]
         public struct FontsInfo
         {
             public FontInfo general;

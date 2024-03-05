@@ -21,6 +21,8 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
 
         [SerializeField] private Image windowBackground;
         [SerializeField] private Image propertiesBackground;
+        [SerializeField] private Image playSoundButtonIcon;
+        
         [Header("Interactables")]
         [SerializeField] private InteractablePropertyAssetField soundField;
         [SerializeField] private InteractablePropertySlider volumeSlider;
@@ -77,7 +79,7 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
             audioSystem.PlaySound(clip, mixerGroup, settings, volume, pitchMin, pitchMax);
         }
 
-        public void UpdateTheme(Sprite windowBackgroundSprite, Sprite propertiesBackgroundSprite, InteractableSpriteInfo soundFieldSet, InteractableSpriteInfo buttonSet)
+        public void UpdateTheme(Sprite windowBackgroundSprite, Sprite propertiesBackgroundSprite, InteractableSpriteInfo soundFieldSet, InteractableSpriteInfo buttonSet, Sprite playButtonSprite)
         {   
             ThemeUpdaterRogium.UpdateAssetFieldText(soundField);
             ThemeUpdaterRogium.UpdateSlider(volumeSlider);
@@ -87,6 +89,7 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
             UIExtensions.ChangeInteractableSprites(CloseButton, CloseButton.image, soundFieldSet);
             windowBackground.sprite = windowBackgroundSprite;
             propertiesBackground.sprite = propertiesBackgroundSprite;
+            playSoundButtonIcon.sprite = playButtonSprite;
         }
 
         protected override void UpdateTheme() => ThemeUpdaterRogium.UpdateSoundPickerModalWindow(this);
