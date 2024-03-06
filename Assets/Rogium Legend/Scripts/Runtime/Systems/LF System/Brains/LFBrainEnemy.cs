@@ -10,19 +10,21 @@ namespace Rogium.Systems.LiteFeel.Brains
     /// </summary>
     public class LFBrainEnemy : MonoBehaviour
     {
-        [Title("References")]
         [SerializeField, GUIColor(0.85f, 0.8f, 0f)] private EnemyController enemy;
         [Space] 
         [SerializeField, GUIColor(1f, 0.25f, 0f)] private LFEffector onHitEffector;
+        [SerializeField, GUIColor(1f, 0.25f, 0f)] private LFEffector onDeathEffector;
 
         private void OnEnable()
         {
             if (onHitEffector != null) enemy.DamageReceiver.OnDamageReceived += WhenHit;
+            if (onDeathEffector != null) enemy.DamageReceiver.OnDeath += onDeathEffector.Play;
         }
 
         private void OnDisable()
         {
             if (onHitEffector != null) enemy.DamageReceiver.OnDamageReceived -= WhenHit;
+            if (onDeathEffector != null) enemy.DamageReceiver.OnDeath -= onDeathEffector.Play;
         }
         
         private void WhenHit(int damage) => onHitEffector.Play();
