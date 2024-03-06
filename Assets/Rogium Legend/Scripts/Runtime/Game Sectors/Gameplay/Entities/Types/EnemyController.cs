@@ -39,18 +39,17 @@ namespace Rogium.Gameplay.Entities.Enemy
         {
             base.Awake();
             gameplayOverseer = GameplayOverseerMono.GetInstance();
+            updateFaceDirectionMethod = FaceDirectionLook;
         }
 
         private void OnEnable()
         {
-            if (damageReceiver == null) return;
-            damageReceiver.OnDeath += Die;
+            if (damageReceiver != null) damageReceiver.OnDeath += Die;
         }
 
         private void OnDisable()
         {
-            if (damageReceiver == null) return;
-            damageReceiver.OnDeath -= Die;
+            if (damageReceiver != null) damageReceiver.OnDeath -= Die;
         }
 
         protected override void Update()
@@ -161,5 +160,7 @@ namespace Rogium.Gameplay.Entities.Enemy
                 isLooking = false;
             }
         }
+        
+        public CharacteristicDamageReceiver DamageReceiver { get => damageReceiver; } 
     }
 }

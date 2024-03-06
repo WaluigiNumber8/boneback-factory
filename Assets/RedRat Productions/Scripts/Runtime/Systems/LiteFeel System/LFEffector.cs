@@ -13,11 +13,14 @@ namespace RedRats.Systems.LiteFeel.Core
         [SerializeField] private AutoplayType autoplay;
         
         [ButtonGroup, Button("Play", ButtonSizes.Medium), GUIColor(0.5f, 0.95f, 0.4f), DisableInEditorMode]
-        public void TestPlay() => Play(); 
+        public void TestPlay()
+        {
+            effects = GetComponents<LFEffectBase>();
+            Play();
+        }
+
         [ButtonGroup, Button("Stop", ButtonSizes.Medium), DisableInEditorMode]
         public void TestStop() => Stop();
-        // [ButtonGroup(), Button("Init", ButtonSizes.Medium), DisableInEditorMode]
-        // public void TestInit() => Initialize();
         
         private LFEffectBase[] effects;
         
