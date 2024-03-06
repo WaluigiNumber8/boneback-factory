@@ -6,7 +6,7 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// <summary>
     /// A base for all interactable properties.
     /// </summary>
-    public abstract class InteractablePropertyBase : MonoBehaviour
+    public abstract class InteractablePropertyBase<T> : MonoBehaviour
     {
         [SerializeField] protected TextMeshProUGUI title;
         [SerializeField] protected GameObject middleSpace;
@@ -26,5 +26,6 @@ namespace Rogium.UserInterface.Interactables.Properties
         }
         
         public string Title { get => title.text; }
+        public abstract T PropertyValue { get; }
     }
 }

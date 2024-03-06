@@ -8,7 +8,7 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// <summary>
     /// Overseers everything happening in a toggle interactable property.
     /// </summary>
-    public class InteractablePropertyToggle : InteractablePropertyBase
+    public class InteractablePropertyToggle : InteractablePropertyBase<bool>
     {
         [SerializeField] private Toggle toggle;
         [SerializeField] private UIInfo ui;
@@ -42,7 +42,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             ui.checkmarkImage.sprite = checkmark;
         }
         
-        public bool Property { get => toggle.isOn; }
+        public override bool PropertyValue { get => toggle.isOn; }
 
         [Serializable]
         public struct UIInfo

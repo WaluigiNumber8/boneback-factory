@@ -13,7 +13,7 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// <summary>
     /// Represents a sound picker property.
     /// </summary>
-    public class InteractablePropertySoundPicker : InteractablePropertyBase
+    public class InteractablePropertySoundPicker : InteractablePropertyBase<AssetData>
     {
         [SerializeField] private Button showWindowButton;
         [SerializeField] private Button playButton;
@@ -21,6 +21,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         
         private SoundPickerModalWindow soundPickerWindow;
         private Action<AssetData> onChangeValue;
+        private AssetData currentData;
 
         private void Awake()
         {
@@ -35,9 +36,10 @@ namespace Rogium.UserInterface.Interactables.Properties
 
         public void Construct(string titleText, AssetData value, Action<AssetData> whenSoundEdited)
         {
+            currentData = value;
             ConstructTitle(titleText);
             onChangeValue = whenSoundEdited;
-            soundPickerWindow.Construct(onChangeValue, value);
+            soundPickerWindow.Construct(onChangeValue, currentData);
         }
         
         public override void SetDisabled(bool isDisabled)
@@ -45,6 +47,8 @@ namespace Rogium.UserInterface.Interactables.Properties
             showWindowButton.interactable = !isDisabled;
             playButton.interactable = !isDisabled;
         }
+
+        public override AssetData PropertyValue { get => currentData; }
 
         public void UpdateTheme(InteractableSpriteInfo openWindowButtonSet, InteractableSpriteInfo buttonSet, Sprite playButtonIcon, FontInfo titleFont, FontInfo valueFont)
         {

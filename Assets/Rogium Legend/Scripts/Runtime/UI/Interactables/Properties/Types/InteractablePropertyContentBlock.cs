@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Rogium.UserInterface.Interactables.Properties
 {
-    public class InteractablePropertyContentBlock : InteractablePropertyBase
+    public class InteractablePropertyContentBlock : InteractablePropertyBase<bool>
     {
         [SerializeField] private new Transform transform;
         
@@ -15,5 +15,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         public void Clear() => transform.KillChildren();
 
         public Transform GetTransform => transform;
+        
+        public override bool PropertyValue { get => false; }
     }
 }

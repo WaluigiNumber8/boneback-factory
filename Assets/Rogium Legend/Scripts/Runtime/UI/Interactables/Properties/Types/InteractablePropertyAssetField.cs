@@ -12,7 +12,7 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// <summary>
     /// Overseers everything happening in a sprite interactable property.
     /// </summary>
-    public class InteractablePropertyAssetField : InteractablePropertyBase
+    public class InteractablePropertyAssetField : InteractablePropertyBase<IAsset>
     {
         [SerializeField] private AssetField assetField;
         [SerializeField] private UIInfo ui;
@@ -61,6 +61,8 @@ namespace Rogium.UserInterface.Interactables.Properties
         }
 
         public Sprite Icon { get => ui.icon.sprite; }
+
+        public override IAsset PropertyValue { get => asset; }
 
         [Serializable]
         public struct UIInfo

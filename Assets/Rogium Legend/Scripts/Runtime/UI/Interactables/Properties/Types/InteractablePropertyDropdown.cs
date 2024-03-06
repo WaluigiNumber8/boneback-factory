@@ -10,7 +10,7 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// <summary>
     /// Overseers everything happening in a dropdown interactable property.
     /// </summary>
-    public class InteractablePropertyDropdown : InteractablePropertyBase
+    public class InteractablePropertyDropdown : InteractablePropertyBase<int>
     {
         [SerializeField] private TMP_Dropdown dropdown;
         [SerializeField] private UIInfo ui;
@@ -70,7 +70,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             }
         }
 
-        public int Property { get => dropdown.value; }
+        public override int PropertyValue { get => dropdown.value; }
 
         [Serializable]
         public struct UIInfo

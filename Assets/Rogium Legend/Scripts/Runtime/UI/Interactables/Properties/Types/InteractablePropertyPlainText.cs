@@ -7,7 +7,7 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// <summary>
     /// Overseers everything happening in a plain text interactable property.
     /// </summary>
-    public class InteractablePropertyPlainText : InteractablePropertyBase
+    public class InteractablePropertyPlainText : InteractablePropertyBase<string>
     {
         [SerializeField] private TextMeshProUGUI plainText;
         
@@ -33,6 +33,6 @@ namespace Rogium.UserInterface.Interactables.Properties
             UIExtensions.ChangeFont(plainText, textFont);
         }
         
-        public string Property { get => plainText.text; }
+        public override string PropertyValue { get => plainText.text; }
     }
 }

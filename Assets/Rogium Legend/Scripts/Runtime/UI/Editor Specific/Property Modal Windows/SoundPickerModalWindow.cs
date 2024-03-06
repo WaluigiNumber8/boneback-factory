@@ -108,9 +108,16 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
         private void WhenSoundFieldUpdated(IAsset asset)
         {
             currentAssetData = AssetDataBuilder.ForSound(asset);
+            
+            //Set old values to new sound
+            currentAssetData.UpdateFloatValue1(volumeSlider.PropertyValue);
+            currentAssetData.UpdateFloatValue2(pitchSlider.PropertyValue);
+            currentAssetData.UpdateBoolValue1(randomPitchToggle.PropertyValue);
+            
             currentSoundAsset = asset as SoundAsset;
             UpdateProperties(currentAssetData);
             UpdateOriginalValue();
+            
             OnSoundSelected?.Invoke(asset);
         }
         
