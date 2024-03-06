@@ -109,7 +109,6 @@ GameObject:
   - component: {fileID: 8819414215520319242}
   - component: {fileID: 3442492309684909175}
   - component: {fileID: 6963719186325603469}
-  - component: {fileID: 9105955230948418169}
   - component: {fileID: 800511836377465160}
   - component: {fileID: 4747816953386754048}
   - component: {fileID: 4447298300965293656}
@@ -202,40 +201,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &9105955230948418169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1614907292258137287}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  info: Specific Hit  sound
-  active: 1
-  restartOnPlay: 1
-  keepStateOnStop: 0
-  initialDelayMin: 0
-  initialDelayMax: 0
-  randomizeDelay: 0
-  clips:
-  - {fileID: 11400000, guid: 62a9a56837b45154a9216fa91a14f27f, type: 2}
-  sourceSettings:
-    id: 0
-    loop: 0
-    playOnlyWhenNotPlaying: 0
-    muteSameSound: 0
-  ignoreEffectStop: 1
-  overrideMixerGroup: 0
-  mixerGroup: {fileID: 0}
-  overrideVolume: 0
-  volume: 1
-  overridePitch: 0
-  pitchMin: 0.95
-  pitchMax: 1.05
 --- !u!114 &800511836377465160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -689,6 +654,7 @@ GameObject:
   - component: {fileID: 9183867096112772868}
   - component: {fileID: 3558022585509365798}
   - component: {fileID: 8913236860743507462}
+  - component: {fileID: 3750483739617489822}
   m_Layer: 8
   m_Name: pref_entity_EnemyVessel
   m_TagString: Untagged
@@ -844,6 +810,7 @@ MonoBehaviour:
   damageReceiver: {fileID: 9183867096112772868}
   weaponHold: {fileID: 3558022585509365798}
   visual: {fileID: 8913236860743507462}
+  soundEmitter: {fileID: 3750483739617489822}
 --- !u!114 &8441394236413098015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -922,6 +889,20 @@ MonoBehaviour:
     animationType: 0
     frameDuration: 0
     spriteAlt: {fileID: 0}
+--- !u!114 &3750483739617489822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8749843501973659660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b61480e55656446ebc25d9daa3b19324, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: {fileID: 8749843501973659655}
+  mixerGroup: {fileID: -7128948430085313062, guid: 15e85eab3684ad9409d53f645746215d, type: 2}
 --- !u!1001 &4632323846034307966
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -62,7 +62,8 @@ namespace RedRats.Systems.LiteFeel.Effects
             // Nothing to do here.
         }
 
-
+        public void ChangeClip(AudioClipSO newClip) => clips = new[] {newClip};
+        public void ChangeClips(AudioClipSO[] newClips) => clips = newClips;
         public void ChangePitch(float newPitch) => ChangePitch(newPitch, newPitch);
         public void ChangePitch(float newPitchMin, float newPitchMax)
         {

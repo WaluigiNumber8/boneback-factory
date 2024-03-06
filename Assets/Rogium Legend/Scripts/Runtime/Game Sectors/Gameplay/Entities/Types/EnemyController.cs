@@ -19,6 +19,7 @@ namespace Rogium.Gameplay.Entities.Enemy
         [SerializeField] private CharacteristicDamageReceiver damageReceiver;
         [SerializeField] private CharacteristicWeaponHold weaponHold;
         [SerializeField] private CharacteristicVisual visual;
+        [SerializeField] private CharacteristicSoundEmitter soundEmitter;
 
         private GameplayOverseerMono gameplayOverseer;
         private Transform playerTransform;
@@ -34,7 +35,7 @@ namespace Rogium.Gameplay.Entities.Enemy
         private float weaponUseTime;
         private float weaponUseTimer;
         private float attackProbability;
-
+        
         protected override void Awake()
         {
             base.Awake();
@@ -45,11 +46,13 @@ namespace Rogium.Gameplay.Entities.Enemy
         private void OnEnable()
         {
             if (damageReceiver != null) damageReceiver.OnDeath += Die;
+            if (damageReceiver != null && soundEmitter != null) damageReceiver.OnDamageReceived += soundEmitter.PlayHurtSound;
         }
 
         private void OnDisable()
         {
             if (damageReceiver != null) damageReceiver.OnDeath -= Die;
+            if (damageReceiver != null && soundEmitter != null) damageReceiver.OnDamageReceived -= soundEmitter.PlayHurtSound;
         }
 
         protected override void Update()
@@ -100,6 +103,12 @@ namespace Rogium.Gameplay.Entities.Enemy
                 this.visual.Construct(visual);
             }
 
+            if (soundEmitter != null)
+            {
+                CharSoundInfo sound = new(asset.HurtSound);
+                this.soundEmitter.Construct(sound);
+            }
+            
             //Weapon Hold
             if (weaponHold != null)
             {
@@ -162,5 +171,6 @@ namespace Rogium.Gameplay.Entities.Enemy
         }
         
         public CharacteristicDamageReceiver DamageReceiver { get => damageReceiver; } 
+        public CharacteristicSoundEmitter SoundEmitter { get => soundEmitter; }
     }
 }

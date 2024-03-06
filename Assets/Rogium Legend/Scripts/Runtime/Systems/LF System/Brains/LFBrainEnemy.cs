@@ -10,6 +10,7 @@ namespace Rogium.Systems.LiteFeel.Brains
     /// </summary>
     public class LFBrainEnemy : MonoBehaviour
     {
+        [Title("References")]
         [SerializeField, GUIColor(0.85f, 0.8f, 0f)] private EnemyController enemy;
         [Space] 
         [SerializeField, GUIColor(1f, 0.25f, 0f)] private LFEffector onHitEffector;

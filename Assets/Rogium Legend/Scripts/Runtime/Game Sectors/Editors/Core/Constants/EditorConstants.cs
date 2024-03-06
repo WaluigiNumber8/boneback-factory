@@ -139,6 +139,9 @@ namespace Rogium.Editors.Core.Defaults
         public const string TileTitle = "New Tile";
         public static readonly Sprite TileIcon = Resources.Load<Sprite>("Defaults/spr_Default_Tile");
 
+        //Sound
+        public const float SoundPitchOffset = 0.05f;
+        
         //Other
         public const string EmptyAssetID = "-1";
         public const int EmptyColorID = -1;
