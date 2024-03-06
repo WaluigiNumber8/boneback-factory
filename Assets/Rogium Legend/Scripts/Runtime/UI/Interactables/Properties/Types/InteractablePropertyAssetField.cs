@@ -36,7 +36,7 @@ namespace Rogium.UserInterface.Interactables.Properties
 
             ConstructTitle(titleText);
             ui.icon.sprite = asset.Icon;
-            if (ui.title != null) ui.title.text = asset.Title;
+            if (ui.valueTitle != null) ui.valueTitle.text = asset.Title;
             
             assetField.SetType(type);
             assetField.SetTheme(theme);
@@ -51,10 +51,13 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// Updates the UI elements
         /// </summary>
         /// <param name="fieldSpriteSet">A Set of Sprites for the button.</param>
-        public void UpdateTheme(InteractableSpriteInfo fieldSpriteSet, FontInfo titleFont)
+        /// <param name="titleFont">The font of the title text.</param>
+        /// <param name="valueFont">The font of the asset title.</param>
+        public void UpdateTheme(InteractableSpriteInfo fieldSpriteSet, FontInfo titleFont, FontInfo valueFont)
         {
             UIExtensions.ChangeInteractableSprites(assetField, ui.borderImage, fieldSpriteSet);
             if (title != null) UIExtensions.ChangeFont(title, titleFont);
+            if (ui.valueTitle != null) UIExtensions.ChangeFont(ui.valueTitle, valueFont);
         }
 
         public Sprite Icon { get => ui.icon.sprite; }
@@ -64,7 +67,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             public Image icon;
             public Image borderImage;
-            public TextMeshProUGUI title;
+            public TextMeshProUGUI valueTitle;
         }
     }
 }

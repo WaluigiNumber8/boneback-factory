@@ -108,7 +108,8 @@ namespace Rogium.Systems.ThemeSystem
         {
             UpdateUsedTheme(theme);
             assetField.UpdateTheme(t.Interactables.assetField,
-                                   t.Fonts.general);
+                                   t.Fonts.general,
+                                   t.Fonts.inputted);
         }
         
         /// <summary>
@@ -119,7 +120,8 @@ namespace Rogium.Systems.ThemeSystem
         {
             UpdateUsedTheme(theme);
             assetField.UpdateTheme(t.Interactables.inputField,
-                                   t.Fonts.general);
+                                   t.Fonts.general,
+                                   t.Fonts.inputted);
         }
 
         /// <summary>
