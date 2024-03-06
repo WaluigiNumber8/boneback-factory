@@ -25,6 +25,7 @@ namespace Rogium.Editors.Enemies
         private float nextStepTime;
 
         private AssetData hurtSound;
+        private AssetData deathSound;
 
         #region Constructors
         public EnemyAsset()
@@ -58,6 +59,7 @@ namespace Rogium.Editors.Enemies
             startingDirection = EditorConstants.EnemyStartingDirection;
             
             hurtSound = new AssetData();
+            deathSound = new AssetData();
             
             GenerateID(EditorAssetIDs.EnemyIdentifier);
         }
@@ -97,6 +99,7 @@ namespace Rogium.Editors.Enemies
             seamlessMovement = asset.SeamlessMovement;
             
             hurtSound = new AssetData(asset.HurtSound);
+            deathSound = new AssetData(asset.DeathSound);
             
             weaponIDs = new List<string>(asset.weaponIDs);
         }
@@ -106,7 +109,8 @@ namespace Rogium.Editors.Enemies
                           float knockbackTimeSelf, bool knockbackLockDirectionSelf, float knockbackForceOther, 
                           float knockbackTimeOther, bool knockbackLockDirectionOther, int maxHealth, float attackProbability, 
                           float invincibilityTime, IList<string> weaponIDs, AIType ai, float nextStepTime, 
-                          DirectionType startingDirection,bool seamlessMovement, AssetData hurtSound, DateTime creationDate)
+                          DirectionType startingDirection,bool seamlessMovement, AssetData hurtSound, AssetData deathSound,
+                          DateTime creationDate)
         {
             AssetValidation.ValidateTitle(title);
             
@@ -142,6 +146,7 @@ namespace Rogium.Editors.Enemies
             this.seamlessMovement = seamlessMovement;
             
             this.hurtSound = new AssetData(hurtSound);
+            this.deathSound = new AssetData(deathSound);
         }
         #endregion
 
@@ -162,7 +167,7 @@ namespace Rogium.Editors.Enemies
         public void UpdateStartingDirection(DirectionType newStartingDirection) => startingDirection = newStartingDirection;
         public void UpdateSeamlessMovement(bool newSeamlessMovementState) => seamlessMovement = newSeamlessMovementState;
         public void UpdateHurtSound(AssetData newHurtSound) => hurtSound = newHurtSound;
-        
+        public void UpdateDeathSound(AssetData newDeathSound) => deathSound = newDeathSound;
         #endregion
 
         public override void ClearAssociatedSprite()
@@ -180,6 +185,8 @@ namespace Rogium.Editors.Enemies
         public float NextStepTime { get => nextStepTime; }
         public DirectionType StartingDirection { get => startingDirection; }
         public bool SeamlessMovement { get => seamlessMovement; }
+        
         public AssetData HurtSound { get => hurtSound; }
+        public AssetData DeathSound { get => deathSound; }
     }
 }

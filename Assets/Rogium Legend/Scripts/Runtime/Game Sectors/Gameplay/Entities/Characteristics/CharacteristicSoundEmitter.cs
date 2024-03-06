@@ -15,18 +15,25 @@ namespace Rogium.Gameplay.Entities.Characteristics
         
         private InternalLibraryOverseer iLib;
         private CharSoundEffectInfo hurtSoundData;
+        private CharSoundEffectInfo deathSoundData;
 
         private void Awake() => iLib = InternalLibraryOverseer.GetInstance();
 
         public void Construct(CharSoundInfo soundInfo)
         {
             hurtSoundData = BuildCharSoundEffectInfoFrom(soundInfo.hurtSound);
+            deathSoundData = BuildCharSoundEffectInfoFrom(soundInfo.deathSound);
         }
 
         /// <summary>
         /// Plays the hurt sound.
         /// </summary>
         public void PlayHurtSound(int damage = 0) => PlaySound(hurtSoundData);
+        
+        /// <summary>
+        /// Play the death sound.
+        /// </summary>
+        public void PlayDeathSound() => PlaySound(deathSoundData);
 
         /// <summary>
         /// Plays a sound.

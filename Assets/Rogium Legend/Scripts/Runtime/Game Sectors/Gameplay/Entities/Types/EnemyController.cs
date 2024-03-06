@@ -47,12 +47,14 @@ namespace Rogium.Gameplay.Entities.Enemy
         {
             if (damageReceiver != null) damageReceiver.OnDeath += Die;
             if (damageReceiver != null && soundEmitter != null) damageReceiver.OnDamageReceived += soundEmitter.PlayHurtSound;
+            if (damageReceiver != null && soundEmitter != null) damageReceiver.OnDeath += soundEmitter.PlayDeathSound;
         }
 
         private void OnDisable()
         {
             if (damageReceiver != null) damageReceiver.OnDeath -= Die;
             if (damageReceiver != null && soundEmitter != null) damageReceiver.OnDamageReceived -= soundEmitter.PlayHurtSound;
+            if (damageReceiver != null && soundEmitter != null) damageReceiver.OnDeath -= soundEmitter.PlayDeathSound;
         }
 
         protected override void Update()
@@ -103,9 +105,10 @@ namespace Rogium.Gameplay.Entities.Enemy
                 this.visual.Construct(visual);
             }
 
+            //Sound Emitter
             if (soundEmitter != null)
             {
-                CharSoundInfo sound = new(asset.HurtSound);
+                CharSoundInfo sound = new(asset.HurtSound, asset.DeathSound);
                 this.soundEmitter.Construct(sound);
             }
             

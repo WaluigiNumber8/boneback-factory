@@ -219,8 +219,8 @@ MonoBehaviour:
   restartOnPlay: 1
   keepStateOnStop: 0
   initialDelayMin: 0
-  initialDelayMax: 0
-  randomizeDelay: 0
+  initialDelayMax: 0.02
+  randomizeDelay: 1
   clips:
   - {fileID: 11400000, guid: 6a9bf45200576b444b5e95edc0976c0e, type: 2}
   sourceSettings:
@@ -625,6 +625,7 @@ GameObject:
   - component: {fileID: 6198664327715938178}
   - component: {fileID: 2028675658482439583}
   - component: {fileID: 4551623344001503377}
+  - component: {fileID: 53309820802338225}
   m_Layer: 8
   m_Name: OnDeath Effect
   m_TagString: Untagged
@@ -821,6 +822,40 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &53309820802338225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4113795225431489181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: General death sound
+  active: 1
+  restartOnPlay: 1
+  keepStateOnStop: 0
+  initialDelayMin: 0
+  initialDelayMax: 0.02
+  randomizeDelay: 1
+  clips:
+  - {fileID: 11400000, guid: 6b0976c536d9ddb4fa5396719fd22cfe, type: 2}
+  sourceSettings:
+    id: 0
+    loop: 0
+    playOnlyWhenNotPlaying: 0
+    muteSameSound: 0
+  ignoreEffectStop: 1
+  overrideMixerGroup: 0
+  mixerGroup: {fileID: 0}
+  overrideVolume: 0
+  volume: 1
+  overridePitch: 0
+  pitchMin: 0.95
+  pitchMax: 1.05
 --- !u!1 &8749843500556548428
 GameObject:
   m_ObjectHideFlags: 0
