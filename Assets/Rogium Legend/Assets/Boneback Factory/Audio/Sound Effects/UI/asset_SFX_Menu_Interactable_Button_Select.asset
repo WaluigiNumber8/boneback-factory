@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88e3503930334824ba6de320d323bd49, type: 3}
   m_Name: asset_SFX_Menu_Interactable_Button_Select
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: 9aa3ef20ec85aff489ff787bb7413674, type: 3}
+  clips:
+  - {fileID: 8300000, guid: 9aa3ef20ec85aff489ff787bb7413674, type: 3}
   mixerGroup: {fileID: -4267756410639095346, guid: 15e85eab3684ad9409d53f645746215d, type: 2}
   volume: 0.25
   pitchMin: 0.95

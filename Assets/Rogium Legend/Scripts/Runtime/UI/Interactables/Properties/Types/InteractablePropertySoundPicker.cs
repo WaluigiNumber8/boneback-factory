@@ -26,6 +26,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             soundPickerWindow = CanvasOverseer.GetInstance().SoundPickerWindow;
             showWindowButton.onClick.AddListener(soundPickerWindow.Open);
+            playButton.onClick.AddListener(soundPickerWindow.PlayCurrentSound);
         }
 
         private void OnEnable() => soundPickerWindow.OnSoundSelected += RefreshOnChange;

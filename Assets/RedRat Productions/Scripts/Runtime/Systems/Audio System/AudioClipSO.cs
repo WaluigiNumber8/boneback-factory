@@ -11,8 +11,8 @@ namespace RedRats.Systems.Audio
     [CreateAssetMenu(fileName = "asset_SFX_NewSoundClip", menuName = "RedRat Productions/Sound Data", order = 0)]
     public class AudioClipSO : ScriptableObject
     {
-        [Header("Clip")] 
-        [SerializeField] private AudioClip clip;
+        [Header("Clips")] 
+        [SerializeField] private AudioClip[] clips;
         [SerializeField] private AudioMixerGroup mixerGroup;
 
         [Header("Settings")] 
@@ -20,12 +20,18 @@ namespace RedRats.Systems.Audio
         [SerializeField, Range(0f, 2f)] private float pitchMin = 0.95f;
         [SerializeField, Range(0f, 2f)] private float pitchMax = 1.05f;
 
-        public AudioClip Clip { get => clip; }
+        public AudioClip Clip { get => GetClip(); }
         public AudioMixerGroup MixerGroup { get => mixerGroup; }
         public float Volume { get => volume; }
         public float PitchMin { get => pitchMin; }
         public float PitchMax { get => pitchMax; }
 
+        private void OnValidate()
+        {
+            if (pitchMin > pitchMax) pitchMax = pitchMin;
+        }
+
+        private AudioClip GetClip() => clips[Random.Range(0, clips.Length)];
 
         #region Editor Preview Code
 
@@ -49,10 +55,10 @@ namespace RedRats.Systems.Audio
 
         private void Play(AudioSource source)
         {
-            if (Clip == null) return;
+            if (clips == null || clips.Length == 0 || clips[0] == null) return;
 
             // set source config
-            source.clip = Clip;
+            source.clip = GetClip();
             source.volume = Volume;
             source.pitch = Random.Range(PitchMin, PitchMax);
 
