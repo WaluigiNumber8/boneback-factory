@@ -17,16 +17,14 @@ namespace Rogium.Systems.LiteFeel.Brains
 
         private void OnEnable()
         {
-            if (onHitEffector != null) enemy.DamageReceiver.OnDamageReceived += WhenHit;
+            if (onHitEffector != null) enemy.DamageReceiver.OnHit += onHitEffector.Play;
             if (onDeathEffector != null) enemy.DamageReceiver.OnDeath += onDeathEffector.Play;
         }
 
         private void OnDisable()
         {
-            if (onHitEffector != null) enemy.DamageReceiver.OnDamageReceived -= WhenHit;
+            if (onHitEffector != null) enemy.DamageReceiver.OnHit -= onHitEffector.Play;
             if (onDeathEffector != null) enemy.DamageReceiver.OnDeath -= onDeathEffector.Play;
         }
-        
-        private void WhenHit(int damage) => onHitEffector.Play();
     }
 }

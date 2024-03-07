@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using RedRats.Core;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Rogium.Gameplay.Entities
@@ -10,6 +11,7 @@ namespace Rogium.Gameplay.Entities
     [RequireComponent(typeof(Rigidbody2D))]
     public abstract class EntityController : MonoBehaviour
     {
+        [Title("Collision")]
         [SerializeField] private new Collider2D collider;
         [SerializeField] private Collider2D trigger;
         [SerializeField] private bool showGizmos;

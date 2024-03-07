@@ -16,10 +16,10 @@ namespace Rogium.Gameplay.Entities.Characteristics
         [SerializeField] private int startingSlots = 0;
         [SerializeField] private CharWeaponHoldInfo defaultData;
 
-        private IList<WeaponAsset> weapons;
+        private IList<WeaponAsset> currentWeapons;
         private float useDelayTimer;
 
-        private void Awake() => weapons = new List<WeaponAsset>(new WeaponAsset[startingSlots]);
+        private void Awake() => currentWeapons = new List<WeaponAsset>(new WeaponAsset[startingSlots]);
 
         private void Update() => UpdateWeaponPosRot();
 
@@ -33,7 +33,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
             defaultData = newInfo;
             
             if (presetWeapons == null || presetWeapons.Count <= 0) return;
-            weapons = new List<WeaponAsset>(presetWeapons);
+            currentWeapons = new List<WeaponAsset>(presetWeapons);
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
         public void Construct(CharWeaponHoldInfo newInfo, int slotAmount = 0)
         {
             defaultData = newInfo;
-            weapons = new List<WeaponAsset>(slotAmount);
+            currentWeapons = new List<WeaponAsset>(slotAmount);
         }
 
         /// <summary>
@@ -55,10 +55,10 @@ namespace Rogium.Gameplay.Entities.Characteristics
         {
             if (entity.ActionsLocked) return;
             if (useDelayTimer > Time.time) return;
-            if (weapons == null || weapons.Count <= 0) return;
-            if (weapons[slot] == null) return;
+            if (currentWeapons == null || currentWeapons.Count <= 0) return;
+            if (currentWeapons[slot] == null) return;
 
-            WeaponAsset weapon = weapons[slot];
+            WeaponAsset weapon = currentWeapons[slot];
             if (weapon.FreezeUser) entity.LockMovement(weapon.UseDuration + weapon.UseStartDelay);
             useDelayTimer = Time.time + weapon.UseDuration + weapon.UseStartDelay;
             
@@ -78,7 +78,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
         /// <param name="newWeapon">The new weapon to add.</param>
         public void Add(WeaponAsset newWeapon)
         {
-            weapons.Add(newWeapon);
+            currentWeapons.Add(newWeapon);
         }
 
         /// <summary>
@@ -88,8 +88,17 @@ namespace Rogium.Gameplay.Entities.Characteristics
         /// <param name="slot">The slot to equip to.</param>
         public void Equip(WeaponAsset newWeapon, int slot)
         {
-            SafetyNet.EnsureIndexWithingCollectionRange(slot, weapons, "List of usable weapons");
-            weapons[slot] = newWeapon;
+            SafetyNet.EnsureIndexWithingCollectionRange(slot, currentWeapons, "List of usable weapons");
+            currentWeapons[slot] = newWeapon;
+        }
+
+        /// <summary>
+        /// Wipes inventory and stops using the current weapon.
+        /// </summary>
+        public void WipeInventory()
+        {
+            weaponEntity.ChangeActiveState(false);
+            currentWeapons.Clear();
         }
 
         /// <summary>
@@ -101,6 +110,6 @@ namespace Rogium.Gameplay.Entities.Characteristics
             TransformUtils.SetRotation2D(weaponEntity.Transform, entity.FaceDirection);
         }
         
-        public int WeaponCount { get => weapons.Count; }
+        public int WeaponCount { get => currentWeapons.Count; }
     }
 }

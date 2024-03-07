@@ -2,6 +2,7 @@
 using Rogium.Gameplay.Core;
 using Rogium.Gameplay.Entities.Characteristics;
 using Rogium.Systems.Input;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Rogium.Gameplay.Entities.Player
@@ -13,6 +14,7 @@ namespace Rogium.Gameplay.Entities.Player
     {
         public event Action OnDeath; 
 
+        [Title("Characteristics")]
         [SerializeField] private CharacteristicMove movement;
         [SerializeField] private CharacteristicDamageReceiver damageReceiver;
         [SerializeField] private CharacteristicVisualPlayer visual;

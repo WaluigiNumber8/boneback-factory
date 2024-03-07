@@ -2,6 +2,7 @@
 using System.Collections;
 using Rogium.Editors.Weapons;
 using Rogium.Gameplay.Entities.Characteristics;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Rogium.Gameplay.Entities
@@ -11,6 +12,7 @@ namespace Rogium.Gameplay.Entities
     /// </summary>
     public class WeaponController : EntityController
     {
+        [Title("Characteristics")]
         [SerializeField] private CharacteristicDamageGiver damageGiver;
         [SerializeField] private CharacteristicProjectileShoot projectileShoot;
         [SerializeField] private CharacteristicVisual visual;
@@ -74,7 +76,7 @@ namespace Rogium.Gameplay.Entities
         /// Changes the whole active state for the weapon.
         /// </summary>
         /// <param name="isEnabled">Changes the state.</param>
-        private void ChangeActiveState(bool isEnabled)
+        public void ChangeActiveState(bool isEnabled)
         {
             ChangeCollideMode(isEnabled);
             visual.ChangeRenderState(isEnabled);
