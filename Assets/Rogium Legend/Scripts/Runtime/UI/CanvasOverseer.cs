@@ -11,11 +11,9 @@ namespace Rogium.UserInterface.Core
     /// </summary>
     public class CanvasOverseer : MonoSingleton<CanvasOverseer>
     {
-        [SerializeField] private AssetPickerWindow pickerWindow;
         [SerializeField] private SoundPickerModalWindow soundPickerWindow;
         [SerializeField] private NavigationBar navigationBar;
         
-        public AssetPickerWindow PickerWindow { get => pickerWindow; }
         public SoundPickerModalWindow SoundPickerWindow { get => soundPickerWindow; }
         public NavigationBar NavigationBar { get => navigationBar; }
     }

@@ -5,17 +5,17 @@ using UnityEngine.UI;
 namespace Rogium.UserInterface.Editors.PropertyModalWindows
 {
     /// <summary>
-    /// A base for all property modal windows.
+    /// A base for all modal windows.
     /// </summary>
-    public abstract class PropertyModalWindowBase : MonoBehaviour
+    public abstract class ModalWindowBase : MonoBehaviour
     {
         [Header("UI")]
-        [SerializeField] private UIInfo ui;
+        [SerializeField] protected GeneralUIInfo generalUI;
 
         protected virtual void Awake()
         {
-            ui.backgroundArea.onClick.AddListener(Close);
-            ui.closeButton.onClick.AddListener(Close);
+            generalUI.backgroundArea.onClick.AddListener(Close);
+            generalUI.closeButton.onClick.AddListener(Close);
         }
 
         /// <summary>
@@ -24,22 +24,23 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
         public void Open()
         {
             UpdateTheme();
-            ui.area.SetActive(true);
+            generalUI.entireArea.SetActive(true);
         }
 
         /// <summary>
         /// Close the window.
         /// </summary>
-        public void Close() => ui.area.SetActive(false);
+        public void Close() => generalUI.entireArea.SetActive(false);
 
         protected abstract void UpdateTheme();
         
-        public Button CloseButton { get => ui.closeButton; }
+        public Button CloseButton { get => generalUI.closeButton; }
         
         [Serializable]
-        public struct UIInfo
+        public struct GeneralUIInfo
         {
-            public GameObject area;
+            public GameObject entireArea;
+            public Image windowArea;
             public Button backgroundArea;
             public Button closeButton;
         }

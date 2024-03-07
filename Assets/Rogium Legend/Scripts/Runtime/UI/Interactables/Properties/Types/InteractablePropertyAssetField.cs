@@ -39,7 +39,6 @@ namespace Rogium.UserInterface.Interactables.Properties
             if (ui.valueTitle != null) ui.valueTitle.text = asset.Title;
             
             assetField.SetType(type);
-            assetField.SetTheme(theme);
             
             if (lastMethod != null) assetField.OnValueChanged -= lastMethod;
             

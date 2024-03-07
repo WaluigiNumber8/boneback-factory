@@ -15,13 +15,11 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
     /// <summary>
     /// Represents a modal window that allows the user to pick a sound from the sound library.
     /// </summary>
-    public class SoundPickerModalWindow : PropertyModalWindowBase
+    public class SoundPickerModalWindow : ModalWindowBase
     {
         public event Action<IAsset> OnSoundSelected;
 
-        [SerializeField] private Image windowBackground;
-        [SerializeField] private Image propertiesBackground;
-        [SerializeField] private Image playSoundButtonIcon;
+        [SerializeField] private UIInfo ui;
         
         [Header("Interactables")]
         [SerializeField] private InteractablePropertyAssetField soundField;
@@ -87,9 +85,9 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
             ThemeUpdaterRogium.UpdateToggle(randomPitchToggle);
             UIExtensions.ChangeInteractableSprites(playSoundButton, playSoundButton.image, buttonSet);
             UIExtensions.ChangeInteractableSprites(CloseButton, CloseButton.image, soundFieldSet);
-            windowBackground.sprite = windowBackgroundSprite;
-            propertiesBackground.sprite = propertiesBackgroundSprite;
-            playSoundButtonIcon.sprite = playButtonSprite;
+            generalUI.windowArea.sprite = windowBackgroundSprite;
+            ui.propertiesBackground.sprite = propertiesBackgroundSprite;
+            ui.playSoundButtonIcon.sprite = playButtonSprite;
         }
 
         protected override void UpdateTheme() => ThemeUpdaterRogium.UpdateSoundPickerModalWindow(this);
@@ -143,5 +141,12 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
         /// Call to update the original value.
         /// </summary>
         private void UpdateOriginalValue() => onChangeValue?.Invoke(currentAssetData);
+
+        [Serializable]
+        public struct UIInfo
+        {
+            public Image propertiesBackground;
+            public Image playSoundButtonIcon;
+        }
     }
 }

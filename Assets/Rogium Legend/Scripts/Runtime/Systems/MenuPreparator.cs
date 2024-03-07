@@ -21,7 +21,6 @@ namespace Rogium.Core
             GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundGameplayMenus);
             GAS.ObjectSetActive(false, UIEditorContainer.GetInstance().Background);
             GAS.ObjectSetActive(false, canvasOverseer.NavigationBar.transform.GetChild(0).gameObject);
-            GAS.ObjectSetActive(false, canvasOverseer.PickerWindow.transform.GetChild(0).gameObject);
             canvasOverseer.NavigationBar.Hide();
             canvasOverseer.SoundPickerWindow.Open();
             yield return null;

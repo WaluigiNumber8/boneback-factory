@@ -1,9 +1,9 @@
 ﻿using System;
-using RedRats.UI;
 using RedRats.UI.Core;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Systems.ThemeSystem;
+using Rogium.UserInterface.Editors.PropertyModalWindows;
 using Rogium.UserInterface.Interactables;
 using TMPro;
 using UnityEngine;
@@ -14,7 +14,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
     /// <summary>
     /// Controls the graphic window, it's actions and connects it with <see cref="AssetSelectionPickerMultiple"/>.
     /// </summary>
-    public class AssetPickerWindow : MonoBehaviour
+    public class AssetPickerWindow : ModalWindowBase
     {
         [SerializeField] private AssetSelectionPickerSingle selectionPicker;
         [SerializeField] private UIInfo ui;
@@ -39,13 +39,15 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
         /// <param name="type">The type of asset to grab.</param>
         /// <param name="whenAssetGrabbed">The method that runs when the asset is grabbed.</param>
         /// <param name="preselectedAsset">The asset that will be selected on window open.</param>
-        /// <param name="theme">The graphic theme to set.</param>
         /// <exception cref="InvalidOperationException">Is thrown when the asset is set to "None".</exception>
         /// <exception cref="ArgumentOutOfRangeException">Is thrown when an unsupported type appears.</exception>
-        public void GrabAsset(AssetType type, Action<IAsset> whenAssetGrabbed, IAsset preselectedAsset = null, ThemeType theme = ThemeType.Blue)
+        public void GrabAsset(AssetType type, Action<IAsset> whenAssetGrabbed, IAsset preselectedAsset = null)
         {
             targetMethod = whenAssetGrabbed;
-            Open(theme, type);
+            
+            generalUI.entireArea.GetComponentInParent<Transform>().SetAsLastSibling();
+            ui.header.text.text = $"Select a {type.ToString().ToLower()}";
+            Open();
 
             switch (type)
             {
@@ -104,26 +106,10 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
             ThemeUpdaterRogium.UpdateScrollbar(ui.layout.scrollbarList);
             ThemeUpdaterRogium.UpdateScrollbar(ui.layout.scrollbarCard);
             ui.header.headerImage.sprite = headerSprite;
-            ui.windowBoxImage.sprite = backgroundSprite;
+            generalUI.windowArea.sprite = backgroundSprite;
         }
         
-        /// <summary>
-        /// Opens the window UI.
-        /// <param name="theme">The theme of the window.</param>
-        /// <param name="type">For what <see cref="AssetType"/> is the window opened.</param>
-        /// </summary>
-        private void Open(ThemeType theme, AssetType type)
-        {
-            ThemeUpdaterRogium.UpdateAssetPickerWindow(this, theme);
-            ui.windowPrefab.GetComponentInParent<Transform>().SetAsLastSibling();
-            ui.header.text.text = $"Select a {type.ToString().ToLower()}";
-            ui.windowPrefab.SetActive(true);
-        }
-
-        /// <summary>
-        /// Closes the window UI.
-        /// </summary>
-        private void Close() => ui.windowPrefab.SetActive(false);
+        protected override void UpdateTheme() => ThemeUpdaterRogium.UpdateAssetPickerWindow(this);
 
         /// <summary>
         /// Runs when an asset is selected and the action is confirmed successfully.
@@ -148,8 +134,6 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
         [Serializable]
         public struct UIInfo
         {
-            public GameObject windowPrefab;
-            public Image windowBoxImage;
             public HeaderInfo header;
             public LayoutInfo layout;
             public FooterInfo footer;

@@ -31,7 +31,6 @@ namespace Rogium.UserInterface.Interactables.Properties
         [SerializeField] private ContentBlockInfo contentBlocks;
         [SerializeField] private VerticalVariantsInfo verticalVariants;
 
-
         #region Properties
 
         /// <summary>
