@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using Cinemachine;
 using DG.Tweening;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace RedRats.Systems.LiteFeel.Effects
