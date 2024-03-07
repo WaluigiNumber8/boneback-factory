@@ -4,6 +4,7 @@ using RedRats.UI.Core;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Sounds;
+using Rogium.Systems.Audio;
 using Rogium.Systems.ThemeSystem;
 using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine;
@@ -29,7 +30,6 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
         [SerializeField] private AudioMixerGroup mixerGroup;
         
         private InternalLibraryOverseer lib;
-        private AudioSystem audioSystem;
         
         private SoundAsset currentSoundAsset;
         private AssetData currentAssetData;
@@ -40,8 +40,7 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
         {
             base.Awake();
             lib = InternalLibraryOverseer.GetInstance();
-            audioSystem = AudioSystem.GetInstance();
-            playSoundButton.onClick.AddListener(PlayCurrentSound);
+            playSoundButton.onClick.AddListener(() => AudioSystemRogium.GetInstance().PlaySound(currentAssetData, mixerGroup, new AudioSourceSettingsInfo(0, false, false, false)));
         }
 
         /// <summary>
@@ -61,21 +60,6 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
             
             this.onChangeAnyValue = onChangeAnyValue; //Assign after everything is set up.
             this.onChangeSound = onChangeSound;
-        }
-
-        /// <summary>
-        /// Plays the currently selected sound with current parameters.
-        /// </summary>
-        public void PlayCurrentSound()
-        {
-            AudioClip clip = currentSoundAsset.Data.Clip;
-            AudioSourceSettingsInfo settings = new(0, false, false, false);
-            float volume = currentAssetData.Parameters.floatValue1;
-            float pitch = currentAssetData.Parameters.floatValue2;
-            float pitchMin = (currentAssetData.Parameters.boolValue1) ? pitch - 0.05f : pitch;
-            float pitchMax = (currentAssetData.Parameters.boolValue1) ? pitch + 0.05f : pitch;
-
-            audioSystem.PlaySound(clip, mixerGroup, settings, volume, pitchMin, pitchMax);
         }
 
         public void UpdateTheme(Sprite windowBackgroundSprite, Sprite propertiesBackgroundSprite, InteractableSpriteInfo soundFieldSet, InteractableSpriteInfo buttonSet, Sprite playButtonSprite)
