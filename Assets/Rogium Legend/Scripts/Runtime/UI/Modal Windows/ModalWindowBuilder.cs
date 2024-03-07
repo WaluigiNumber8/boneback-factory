@@ -15,12 +15,20 @@ namespace Rogium.UserInterface.ModalWindows
         [Title("Parent")]
         [SerializeField] private Transform windowParent;
         [Title("Modal Window Prefabs")]
-        [SerializeField] private AssetPickerWindow pickerWindow;
+        [SerializeField] private AssetPickerWindow assetPickerWindow;
         [SerializeField] private SoundPickerModalWindow soundPickerWindow;
+        
+        private AssetPickerWindow cachedAssetPickerWindow;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            cachedAssetPickerWindow = Instantiate(assetPickerWindow, windowParent);
+        }
 
         public AssetPickerWindow BuildAssetPickerWindow()
         {
-            AssetPickerWindow window = Instantiate(pickerWindow, windowParent);
+            AssetPickerWindow window = (cachedAssetPickerWindow.IsOpen) ? Instantiate(assetPickerWindow, windowParent) : cachedAssetPickerWindow;
             ThemeUpdaterRogium.UpdateAssetPickerWindow(window);
             return window;
         }

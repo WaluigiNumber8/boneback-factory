@@ -12,6 +12,8 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
         [Header("UI")]
         [SerializeField] protected GeneralUIInfo generalUI;
 
+        private bool isOpen;
+        
         protected virtual void Awake()
         {
             generalUI.backgroundArea.onClick.AddListener(Close);
@@ -25,16 +27,22 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
         {
             UpdateTheme();
             generalUI.entireArea.SetActive(true);
+            isOpen = true;
         }
 
         /// <summary>
         /// Close the window.
         /// </summary>
-        public void Close() => generalUI.entireArea.SetActive(false);
+        public void Close()
+        {
+            generalUI.entireArea.SetActive(false);
+            isOpen = false;
+        }
 
         protected abstract void UpdateTheme();
         
         public Button CloseButton { get => generalUI.closeButton; }
+        public bool IsOpen { get => isOpen; }
         
         [Serializable]
         public struct GeneralUIInfo
