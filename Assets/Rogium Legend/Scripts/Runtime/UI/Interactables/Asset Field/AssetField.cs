@@ -26,7 +26,7 @@ namespace Rogium.UserInterface.Interactables
         public void OnPointerClick(PointerEventData eventData)
         {
             if (!interactable) return;
-            ModalWindowBuilder.GetInstance().BuildAssetPickerWindow().GrabAsset(type, WhenAssetGrabbed, lastAsset);
+            ModalWindowBuilder.GetInstance().OpenAssetPickerWindow(type, WhenAssetGrabbed, lastAsset);
         }
 
         /// <summary>

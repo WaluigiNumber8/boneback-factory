@@ -19,7 +19,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
         [SerializeField] private AssetSelectionPickerSingle selectionPicker;
         [SerializeField] private UIInfo ui;
         
-        private Action<IAsset> targetMethod;
+        private Action<IAsset> whenAssetPicked;
 
         private void OnEnable()
         {
@@ -36,14 +36,14 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
         /// <summary>
         /// Open the Selection Picker menu and grab an asset.
         /// </summary>
-        /// <param name="type">The type of asset to grab.</param>
-        /// <param name="whenAssetGrabbed">The method that runs when the asset is grabbed.</param>
+        /// <param name="type">What types of assets to grab.</param>
+        /// <param name="whenAssetPicked">The method that runs when the asset is picked.</param>
         /// <param name="preselectedAsset">The asset that will be selected on window open.</param>
         /// <exception cref="InvalidOperationException">Is thrown when the asset is set to "None".</exception>
         /// <exception cref="ArgumentOutOfRangeException">Is thrown when an unsupported type appears.</exception>
-        public void GrabAsset(AssetType type, Action<IAsset> whenAssetGrabbed, IAsset preselectedAsset = null)
+        public void Construct(AssetType type, Action<IAsset> whenAssetPicked, IAsset preselectedAsset = null)
         {
-            targetMethod = whenAssetGrabbed;
+            this.whenAssetPicked = whenAssetPicked;
             
             generalUI.entireArea.GetComponentInParent<Transform>().SetAsLastSibling();
             ui.header.text.text = $"Select a {type.ToString().ToLower()}";
@@ -117,8 +117,8 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
         /// <param name="asset">The asset that was selected.</param>
         private void ConfirmSelection(IAsset asset)
         {
-            targetMethod.Invoke(asset);
-            targetMethod = null;
+            whenAssetPicked.Invoke(asset);
+            whenAssetPicked = null;
             CancelSelection();
         }
 

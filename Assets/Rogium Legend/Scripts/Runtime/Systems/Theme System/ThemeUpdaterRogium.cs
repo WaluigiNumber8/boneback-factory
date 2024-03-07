@@ -188,7 +188,7 @@ namespace Rogium.Systems.ThemeSystem
         /// <summary>
         /// Updates the Sound Picker Modal Window with correct data from the current theme.
         /// </summary>
-        public static void UpdateSoundPickerModalWindow(SoundPickerModalWindow window, ThemeType theme = ThemeType.Current)
+        public static void UpdateSoundPickerWindow(SoundPickerModalWindow window, ThemeType theme = ThemeType.Current)
         {
             UpdateUsedTheme(theme);
             window.UpdateTheme(t.Elements.modalWindowBackground, 

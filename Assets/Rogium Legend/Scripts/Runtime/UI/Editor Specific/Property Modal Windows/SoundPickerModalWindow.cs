@@ -17,8 +17,6 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
     /// </summary>
     public class SoundPickerModalWindow : ModalWindowBase
     {
-        public event Action<IAsset> OnSoundSelected;
-
         [SerializeField] private UIInfo ui;
         
         [Header("Interactables")]
@@ -35,7 +33,8 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
         
         private SoundAsset currentSoundAsset;
         private AssetData currentAssetData;
-        private Action<AssetData> onChangeValue;
+        private Action<AssetData> onChangeAnyValue;
+        private Action<SoundAsset> onChangeSound;
 
         protected override void Awake()
         {
@@ -48,18 +47,20 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
         /// <summary>
         /// Prepares the window for editing an asset.
         /// </summary>
-        /// <param name="onChangeValue">Method that runs when anything in the window is updated.</param>
-        /// <param name="value">Which value to load up into the window.</param>
-        public void Construct(Action<AssetData> onChangeValue, AssetData value)
+        /// <param name="onChangeSound">Method that runs when the currently edited sound is changed.</param>
+        /// <param name="onChangeAnyValue">Method that runs when any property in the window is updated.</param>
+        /// <param name="value">Which data to load up into the window.</param>
+        public void Construct(Action<SoundAsset> onChangeSound, Action<AssetData> onChangeAnyValue, AssetData value)
         {
             currentAssetData = value;
             currentSoundAsset = lib.GetSoundByID(value.ID);
             
             soundField.Construct("", AssetType.Sound, currentSoundAsset, WhenSoundFieldUpdated);
             UpdateProperties(currentAssetData);
-            OnSoundSelected?.Invoke(currentSoundAsset);
+            onChangeSound?.Invoke(currentSoundAsset);
             
-            this.onChangeValue = onChangeValue; //Assign after everything is set up.
+            this.onChangeAnyValue = onChangeAnyValue; //Assign after everything is set up.
+            this.onChangeSound = onChangeSound;
         }
 
         /// <summary>
@@ -90,7 +91,7 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
             ui.playSoundButtonIcon.sprite = playButtonSprite;
         }
 
-        protected override void UpdateTheme() => ThemeUpdaterRogium.UpdateSoundPickerModalWindow(this);
+        protected override void UpdateTheme() => ThemeUpdaterRogium.UpdateSoundPickerWindow(this);
 
         /// <summary>
         /// Update settings on all interactable properties on this asset.
@@ -116,7 +117,7 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
             UpdateProperties(currentAssetData);
             UpdateOriginalValue();
             
-            OnSoundSelected?.Invoke(asset);
+            onChangeSound?.Invoke(currentSoundAsset);
         }
         
         private void WhenVolumeChanged(float newValue)
@@ -140,7 +141,7 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
         /// <summary>
         /// Call to update the original value.
         /// </summary>
-        private void UpdateOriginalValue() => onChangeValue?.Invoke(currentAssetData);
+        private void UpdateOriginalValue() => onChangeAnyValue?.Invoke(currentAssetData);
 
         [Serializable]
         public struct UIInfo

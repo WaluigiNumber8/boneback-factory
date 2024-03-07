@@ -1,5 +1,4 @@
 ﻿using RedRats.Core;
-using Rogium.UserInterface.Editors.AssetSelection.PickerVariant;
 using Rogium.UserInterface.Editors.Navigation;
 using Rogium.UserInterface.Editors.PropertyModalWindows;
 using UnityEngine;
