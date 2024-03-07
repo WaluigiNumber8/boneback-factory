@@ -24,11 +24,8 @@ namespace Rogium.Systems.Input
             inputPlayer = new InputProfilePlayer(input);
             inputUI = new InputProfileUI(input);
             SceneManager.sceneLoaded += (_, __) => eventSystem = FindFirstObjectByType<EventSystem>();
+            inputUI.PointerPosition.OnPressed += UpdatePointerPosition;
         }
-
-        private void OnEnable() => inputUI.PointerPosition.OnPressed += UpdatePointerPosition;
-
-        private void OnDisable() => inputUI.PointerPosition.OnPressed -= UpdatePointerPosition;
 
         /// <summary>
         /// Enables the UI Action Map.
