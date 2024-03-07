@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using RedRats.Systems.GASCore;
+﻿using RedRats.Systems.GASCore;
 using Rogium.Systems.Input;
 using Rogium.UserInterface.Containers;
 using Rogium.UserInterface.Core;
@@ -12,7 +11,7 @@ namespace Rogium.Core
     /// </summary>
     public class MenuPreparator : MonoBehaviour
     {
-        private IEnumerator Start()
+        private void Start()
         {
             CanvasOverseer canvasOverseer = CanvasOverseer.GetInstance();
             
@@ -22,9 +21,6 @@ namespace Rogium.Core
             GAS.ObjectSetActive(false, UIEditorContainer.GetInstance().Background);
             GAS.ObjectSetActive(false, canvasOverseer.NavigationBar.transform.GetChild(0).gameObject);
             canvasOverseer.NavigationBar.Hide();
-            canvasOverseer.SoundPickerWindow.Open();
-            yield return null;
-            canvasOverseer.SoundPickerWindow.Close();
         }
 
     }
