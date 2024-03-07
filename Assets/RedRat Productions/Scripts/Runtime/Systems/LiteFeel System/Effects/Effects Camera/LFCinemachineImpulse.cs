@@ -1,6 +1,6 @@
+using System.Collections;
 using Cinemachine;
 using DG.Tweening;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace RedRats.Systems.LiteFeel.Effects
@@ -22,9 +22,14 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         protected override void Initialize()
         {
-            cam = (CinemachineVirtualCamera) CinemachineCore.Instance.GetActiveBrain(0).ActiveVirtualCamera;
-            perlin = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-            base.Initialize();
+            StartCoroutine(DelayCoroutine());
+            IEnumerator DelayCoroutine()
+            {
+                yield return new WaitForEndOfFrame();
+                cam = (CinemachineVirtualCamera) CinemachineCore.Instance.GetActiveBrain(0).ActiveVirtualCamera;
+                perlin = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+                base.Initialize();
+            }
         }
 
         protected override void SetBeginState()

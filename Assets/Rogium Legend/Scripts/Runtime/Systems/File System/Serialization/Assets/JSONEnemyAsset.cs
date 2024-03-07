@@ -23,6 +23,7 @@ namespace Rogium.ExternalStorage.Serialization
         public bool seamlessMovement;
 
         public AssetData hurtSound;
+        public AssetData deathSound;
         
         public JSONEnemyAsset(EnemyAsset asset) : base(asset)
         {
@@ -37,6 +38,7 @@ namespace Rogium.ExternalStorage.Serialization
             seamlessMovement = asset.SeamlessMovement;
 
             hurtSound = new AssetData(asset.HurtSound);
+            deathSound = new AssetData(asset.DeathSound);
         }
 
         public override EnemyAsset Decode()
@@ -66,6 +68,7 @@ namespace Rogium.ExternalStorage.Serialization
                                   (DirectionType)startingDirection,
                                   seamlessMovement,
                                   hurtSound,
+                                  deathSound,
                                   DateTime.Parse(creationDate));
         }
     }

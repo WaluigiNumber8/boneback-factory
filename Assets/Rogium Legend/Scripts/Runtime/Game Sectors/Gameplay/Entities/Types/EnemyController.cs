@@ -5,6 +5,7 @@ using Rogium.Editors.Enemies;
 using Rogium.Editors.Weapons;
 using Rogium.Gameplay.Core;
 using Rogium.Gameplay.Entities.Characteristics;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -15,11 +16,15 @@ namespace Rogium.Gameplay.Entities.Enemy
     /// </summary>
     public class EnemyController : EntityController
     {
+        [Title("Characteristics")]
         [SerializeField] private CharacteristicDamageGiver damageGiver;
         [SerializeField] private CharacteristicDamageReceiver damageReceiver;
         [SerializeField] private CharacteristicWeaponHold weaponHold;
         [SerializeField] private CharacteristicVisual visual;
         [SerializeField] private CharacteristicSoundEmitter soundEmitter;
+        [Title("Parameters")]
+        [SerializeField, Range(0f, 2f)] private float deathTime;
+        
 
         private GameplayOverseerMono gameplayOverseer;
         private Transform playerTransform;
@@ -47,12 +52,14 @@ namespace Rogium.Gameplay.Entities.Enemy
         {
             if (damageReceiver != null) damageReceiver.OnDeath += Die;
             if (damageReceiver != null && soundEmitter != null) damageReceiver.OnDamageReceived += soundEmitter.PlayHurtSound;
+            if (damageReceiver != null && soundEmitter != null) damageReceiver.OnDeath += soundEmitter.PlayDeathSound;
         }
 
         private void OnDisable()
         {
             if (damageReceiver != null) damageReceiver.OnDeath -= Die;
             if (damageReceiver != null && soundEmitter != null) damageReceiver.OnDamageReceived -= soundEmitter.PlayHurtSound;
+            if (damageReceiver != null && soundEmitter != null) damageReceiver.OnDeath -= soundEmitter.PlayDeathSound;
         }
 
         protected override void Update()
@@ -103,9 +110,10 @@ namespace Rogium.Gameplay.Entities.Enemy
                 this.visual.Construct(visual);
             }
 
+            //Sound Emitter
             if (soundEmitter != null)
             {
-                CharSoundInfo sound = new(asset.HurtSound);
+                CharSoundInfo sound = new(asset.HurtSound, asset.DeathSound);
                 this.soundEmitter.Construct(sound);
             }
             
@@ -146,7 +154,9 @@ namespace Rogium.Gameplay.Entities.Enemy
         
         private void Die()
         {
-            Destroy(gameObject);
+            ChangeCollideMode(false);
+            weaponHold.WipeInventory();
+            Destroy(gameObject, deathTime);
         }
 
         private void FaceDirectionLook() => faceDirection = startingDirection;

@@ -8,10 +8,12 @@ namespace Rogium.Gameplay.Entities.Characteristics
     public struct CharSoundInfo
     {
         public AssetData hurtSound;
+        public AssetData deathSound;
         
-        public CharSoundInfo(AssetData hurtSound)
+        public CharSoundInfo(AssetData hurtSound, AssetData deathSound)
         {
             this.hurtSound = hurtSound;
+            this.deathSound = deathSound;
         }
     }
 }

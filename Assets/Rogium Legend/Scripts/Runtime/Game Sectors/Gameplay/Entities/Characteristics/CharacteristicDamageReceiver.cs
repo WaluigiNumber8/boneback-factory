@@ -11,6 +11,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
     {
         public event Action<int> OnMaxHealthChange; 
         public event Action<int> OnDamageReceived;
+        public event Action OnHit; 
         public event Action OnDeath;
 
         [SerializeField] private LayerMask ignoredMask;
@@ -68,8 +69,12 @@ namespace Rogium.Gameplay.Entities.Characteristics
         {
             health -= giver.GetDamageTaken();
             OnDamageReceived?.Invoke(health);
-            
-            if (health <= 0)
+
+            if (health > 0)
+            {
+                OnHit?.Invoke();
+            }
+            else 
             {
                 OnDeath?.Invoke();
                 return;

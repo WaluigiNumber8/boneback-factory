@@ -47,6 +47,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         public void Play()
         {
             if (!active) return;
+            if (!gameObject.activeInHierarchy) return;
             if (restartOnPlay && isPlaying)
             {
                 ResetState();
