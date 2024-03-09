@@ -9,6 +9,8 @@ namespace RedRats.UI.ModalWindows
     /// </summary>
     public abstract class ModalWindowBase : MonoBehaviour
     {
+        public event Action OnClose;
+        
         [Header("UI")]
         [SerializeField] protected GeneralUIInfo generalUI;
 
@@ -17,7 +19,7 @@ namespace RedRats.UI.ModalWindows
         protected virtual void Awake()
         {
             generalUI.backgroundArea.onClick.AddListener(Close);
-            generalUI.closeButton.onClick.AddListener(Close);
+            if (generalUI.closeButton != null) generalUI.closeButton.onClick.AddListener(Close);
         }
 
         /// <summary>
@@ -36,6 +38,7 @@ namespace RedRats.UI.ModalWindows
         public void Close()
         {
             generalUI.entireArea.SetActive(false);
+            OnClose?.Invoke();
             isOpen = false;
         }
 
