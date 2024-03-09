@@ -35,6 +35,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
         {
             b.BuildHeader("General", content);
             b.BuildDropdown("Type", Enum.GetNames(typeof(TileType)), (int)asset.Type, content, asset.UpdateTileType);
+            if (asset.Type == TileType.Floor) b.BuildDropdown("Terrain", Enum.GetNames(typeof(TerrainType)), (int)asset.TerrainType, content, asset.UpdateTerrainType);
         }
     }
 }
