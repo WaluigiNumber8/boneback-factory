@@ -40,7 +40,7 @@ namespace Rogium_Legend.Tests.CSharp.Editors
         [Test]
         public void tile_data_save_load_correctly()
         {
-            TileAsset tile = new TileAsset("Test Tile", EditorConstants.TileIcon, "NO AUTHOR", TileType.Floor);
+            TileAsset tile = new();
             editor.CreateNewTile(tile);
             editor.CompleteEditing();
             lib.ReloadFromExternalStorage();

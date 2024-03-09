@@ -22,10 +22,10 @@ namespace Rogium.Gameplay.Entities.Enemy
         [SerializeField] private CharacteristicWeaponHold weaponHold;
         [SerializeField] private CharacteristicVisual visual;
         [SerializeField] private CharacteristicSoundEmitter soundEmitter;
+        [SerializeField] private CharacteristicFloorInteractor floorInteractor;
         [Title("Parameters")]
         [SerializeField, Range(0f, 2f)] private float deathTime;
         
-
         private GameplayOverseerMono gameplayOverseer;
         private Transform playerTransform;
         
@@ -53,6 +53,7 @@ namespace Rogium.Gameplay.Entities.Enemy
             if (damageReceiver != null) damageReceiver.OnDeath += Die;
             if (damageReceiver != null && soundEmitter != null) damageReceiver.OnDamageReceived += soundEmitter.PlayHurtSound;
             if (damageReceiver != null && soundEmitter != null) damageReceiver.OnDeath += soundEmitter.PlayDeathSound;
+            if (floorInteractor != null && visual != null) visual.OnFrameChange += floorInteractor.TakeStep;
         }
 
         private void OnDisable()
@@ -60,6 +61,7 @@ namespace Rogium.Gameplay.Entities.Enemy
             if (damageReceiver != null) damageReceiver.OnDeath -= Die;
             if (damageReceiver != null && soundEmitter != null) damageReceiver.OnDamageReceived -= soundEmitter.PlayHurtSound;
             if (damageReceiver != null && soundEmitter != null) damageReceiver.OnDeath -= soundEmitter.PlayDeathSound;
+            if (floorInteractor != null && visual != null) visual.OnFrameChange -= floorInteractor.TakeStep;
         }
 
         protected override void Update()

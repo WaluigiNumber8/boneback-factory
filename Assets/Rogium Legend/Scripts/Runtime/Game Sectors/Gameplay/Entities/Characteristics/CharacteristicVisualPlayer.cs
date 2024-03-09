@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Rogium.Gameplay.Entities.Characteristics
 {
@@ -7,6 +8,8 @@ namespace Rogium.Gameplay.Entities.Characteristics
     /// </summary>
     public class CharacteristicVisualPlayer : CharacteristicBase
     {
+        public event Action OnFrameChange;
+        
         [SerializeField] private Animator animator;
         [SerializeField] private AnimatorPropertyData propertyNames;
         
@@ -17,6 +20,11 @@ namespace Rogium.Gameplay.Entities.Characteristics
         /// </summary>
         public void PlayDeath() => animator.SetTrigger(propertyNames.onDeath);
 
+        /// <summary>
+        /// Calls when the frame changes. Intended to be used with the Animator.
+        /// </summary>
+        public void CallFrameChange() => OnFrameChange?.Invoke();
+        
         private void UpdateAnimator()
         {
             animator.SetFloat(propertyNames.FaceDirectionX, entity.FaceDirection.x);
@@ -24,7 +32,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
             animator.SetFloat(propertyNames.MoveSpeed, entity.CurrentSpeed);
         }
 
-        [System.Serializable]
+        [Serializable]
         public struct AnimatorPropertyData
         {
             public string FaceDirectionX;

@@ -10,6 +10,8 @@ namespace Rogium.Gameplay.Entities.Characteristics
     /// </summary>
     public class CharacteristicVisual : CharacteristicBase
     {
+        public event Action OnFrameChange;
+        
         [SerializeField] private new SpriteRenderer renderer;
         [SerializeField] private CharVisualInfo defaultData;
 
@@ -65,6 +67,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
         {
             if (frameCountdown > 0) return;
             whenFrameChanges?.Invoke();
+            OnFrameChange?.Invoke();
             frameCountdown = defaultData.frameDuration;
         }
         

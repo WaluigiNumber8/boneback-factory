@@ -19,6 +19,7 @@ namespace Rogium.Gameplay.Entities.Player
         [SerializeField] private CharacteristicDamageReceiver damageReceiver;
         [SerializeField] private CharacteristicVisualPlayer visual;
         [SerializeField] private CharacteristicWeaponHold weaponHold;
+        [SerializeField] private CharacteristicFloorInteractor floorInteractor;
 
         private Vector2 moveDirection;
         private InputProfilePlayer input;

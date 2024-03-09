@@ -2,6 +2,7 @@
 using Rogium.Editors.Enemies;
 using Rogium.Editors.Projectiles;
 using Rogium.Editors.Rooms;
+using Rogium.Editors.Tiles;
 using Rogium.Editors.Weapons;
 using UnityEngine;
 
@@ -138,6 +139,7 @@ namespace Rogium.Editors.Core.Defaults
         //Tile
         public const string TileTitle = "New Tile";
         public static readonly Sprite TileIcon = Resources.Load<Sprite>("Defaults/spr_Default_Tile");
+        public const TerrainType TileTerrainType = TerrainType.Tile;
 
         //Sound
         public const float SoundPitchOffset = 0.05f;

@@ -1102,6 +1102,7 @@ GameObject:
   - component: {fileID: 3558022585509365798}
   - component: {fileID: 8913236860743507462}
   - component: {fileID: 3750483739617489822}
+  - component: {fileID: 2470377531960544486}
   m_Layer: 8
   m_Name: pref_entity_EnemyVessel
   m_TagString: Untagged
@@ -1258,6 +1259,7 @@ MonoBehaviour:
   weaponHold: {fileID: 3558022585509365798}
   visual: {fileID: 8913236860743507462}
   soundEmitter: {fileID: 3750483739617489822}
+  floorInteractor: {fileID: 2470377531960544486}
   deathTime: 0.1
 --- !u!114 &8441394236413098015
 MonoBehaviour:
@@ -1351,6 +1353,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entity: {fileID: 8749843501973659655}
   mixerGroup: {fileID: -7128948430085313062, guid: 15e85eab3684ad9409d53f645746215d, type: 2}
+--- !u!114 &2470377531960544486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8749843501973659660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057b2cc1060d4ebabb98d917ddda40f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: {fileID: 8749843501973659655}
 --- !u!1001 &4632323846034307966
 PrefabInstance:
   m_ObjectHideFlags: 0
