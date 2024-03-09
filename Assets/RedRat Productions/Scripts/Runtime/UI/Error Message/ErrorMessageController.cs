@@ -11,14 +11,7 @@ namespace RedRats.UI.ErrorMessageWindow
     public class ErrorMessageController : MonoSingleton<ErrorMessageController>
     {
         [SerializeField] private string acceptText;
-
-        private ModalWindowOverseerMono windowOverseer;
-
-        protected override void Awake()
-        {
-            base.Awake();
-            windowOverseer = ModalWindowOverseerMono.GetInstance();
-        }
+        [SerializeField] private ModalWindowGenerator windowGenerator;
 
         private void OnEnable()
         {
@@ -38,7 +31,7 @@ namespace RedRats.UI.ErrorMessageWindow
         /// <param name="errorMessage">The message of the error.</param>
         public void Open(string errorMessage)
         {
-            windowOverseer.OpenWindow(new MessageWindowInfo(errorMessage, acceptText));
+            windowGenerator.Open(new MessageWindowInfo(errorMessage, acceptText));
         }
     }
 }

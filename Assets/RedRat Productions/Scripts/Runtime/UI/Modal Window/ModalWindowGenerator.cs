@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using RedRats.Core;
 using RedRats.Safety;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -7,18 +6,17 @@ using UnityEngine.Pool;
 namespace RedRats.UI.ModalWindows
 {
     /// <summary>
-    /// Overseers the Modal Window system.
+    /// Generates generic, customizable Modal Windows.
     /// </summary>
-    public class ModalWindowOverseerMono : MonoSingleton<ModalWindowOverseerMono>
+    public class ModalWindowGenerator : MonoBehaviour
     {
         [SerializeField] private ModalWindow windowPrefab;
 
         private Dictionary<string, ModalWindow> identifiedWindows;
         private ObjectPool<ModalWindow> windowPool;
 
-        protected override void Awake()
+        private void Awake()
         {
-            base.Awake();
             identifiedWindows = new Dictionary<string, ModalWindow>();
             windowPool = new ObjectPool<ModalWindow>(
                 () =>
@@ -43,23 +41,23 @@ namespace RedRats.UI.ModalWindows
         /// </summary>
         /// <param name="data">The data to prepare the window with.</param>
         /// <param name="key">The key that identifies the window. (Is used when updating the window information is needed.)</param>
-        public void OpenWindow(ModalWindowInfoBase data, string key)
+        public void Open(ModalWindowInfoBase data, string key)
         {
             SafetyNet.EnsureStringNotNullOrEmpty(key, nameof(key));
 
             PrepareWindowIfNotExists(key);
             ModalWindow window = identifiedWindows[key];
-            Open(window, data);
+            OpenWindow(window, data);
         }
 
         /// <summary>
         /// Open a modal window.
         /// </summary>
         /// <param name="data">The data to prepare the window with.</param>
-        public void OpenWindow(ModalWindowInfoBase data)
+        public void Open(ModalWindowInfoBase data)
         {
             ModalWindow window = windowPool.Get();
-            Open(window, data);
+            OpenWindow(window, data);
         }
 
         /// <summary>
@@ -93,7 +91,7 @@ namespace RedRats.UI.ModalWindows
         /// </summary>
         /// <param name="window">The Modal Window object to activate.</param>
         /// <param name="data">The data for setting up the window.</param>
-        private void Open(ModalWindow window, ModalWindowInfoBase data)
+        private void OpenWindow(ModalWindow window, ModalWindowInfoBase data)
         {
             window.transform.SetAsLastSibling();
             if (data is MessageWindowInfo mData)
