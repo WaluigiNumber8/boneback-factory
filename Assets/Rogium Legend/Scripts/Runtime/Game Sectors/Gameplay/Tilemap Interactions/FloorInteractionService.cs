@@ -22,7 +22,7 @@ namespace Rogium.Gameplay.TilemapInteractions
         private void Start()
         {
             IList<TileAsset> allTiles = GameplayOverseerMono.GetInstance().CurrentCampaign.DataPack.Tiles;
-            floorTiles = allTiles.ToDictionary(t => t.Tile, t => new FloorTileInfo(t.TerrainType));
+            floorTiles = allTiles.Where(t => t.Tile != null).ToDictionary(t => t.Tile, t => new FloorTileInfo(t.TerrainType));
         }
 
         /// <summary>
@@ -31,9 +31,10 @@ namespace Rogium.Gameplay.TilemapInteractions
         public void TriggerFloorEffect(Vector3 worldPosition)
         {
             Tile tile = GetTileFromCurrentPosition(worldPosition);
-            FloorTileInfo data = floorTiles[tile];
+            if (tile == null) return;
             
             //Apply effects
+            FloorTileInfo data = floorTiles[tile];
             OnFootstep?.Invoke(data.terrainType);
         }
 
