@@ -1,4 +1,4 @@
-﻿namespace RedRats.UI
+﻿namespace RedRats.Systems.Themes
 {
     /// <summary>
     /// The different theme types.

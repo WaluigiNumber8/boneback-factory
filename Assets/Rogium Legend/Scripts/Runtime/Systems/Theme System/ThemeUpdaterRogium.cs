@@ -1,8 +1,7 @@
-﻿using RedRats.UI;
-using Rogium.UserInterface.Editors.AssetSelection.PickerVariant;
-using Rogium.UserInterface.Editors.PropertyModalWindows;
+﻿using RedRats.Systems.Themes;
 using Rogium.UserInterface.Interactables;
 using Rogium.UserInterface.Interactables.Properties;
+using Rogium.UserInterface.ModalWindows;
 using UnityEngine.UI;
 
 namespace Rogium.Systems.ThemeSystem

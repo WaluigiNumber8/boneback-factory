@@ -1,6 +1,5 @@
 ﻿using System;
-using RedRats.Core;
-using RedRats.UI;
+using RedRats.Systems.Themes;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Packs;

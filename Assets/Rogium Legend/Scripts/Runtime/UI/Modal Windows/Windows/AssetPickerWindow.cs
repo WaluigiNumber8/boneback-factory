@@ -1,15 +1,16 @@
 ﻿using System;
 using RedRats.UI.Core;
+using RedRats.UI.ModalWindows;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Systems.ThemeSystem;
-using Rogium.UserInterface.Editors.PropertyModalWindows;
+using Rogium.UserInterface.Editors.AssetSelection.PickerVariant;
 using Rogium.UserInterface.Interactables;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
+namespace Rogium.UserInterface.ModalWindows
 {
     /// <summary>
     /// Controls the graphic window, it's actions and connects it with <see cref="AssetSelectionPickerMultiple"/>.

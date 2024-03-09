@@ -1,6 +1,7 @@
 using System;
 using RedRats.Systems.Audio;
 using RedRats.UI.Core;
+using RedRats.UI.ModalWindows;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Sounds;
@@ -11,7 +12,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-namespace Rogium.UserInterface.Editors.PropertyModalWindows
+namespace Rogium.UserInterface.ModalWindows
 {
     /// <summary>
     /// Represents a modal window that allows the user to pick a sound from the sound library.

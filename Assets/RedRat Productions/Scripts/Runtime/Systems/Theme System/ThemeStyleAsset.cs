@@ -3,7 +3,7 @@ using RedRats.UI.Core;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Rogium.Systems.ThemeSystem
+namespace RedRats.Systems.Themes
 {
     [CreateAssetMenu(fileName = "New Theme Asset", menuName = "RedRat Productions/Editor Theme", order = 0)]
     public class ThemeStyleAsset : ScriptableObject

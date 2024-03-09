@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Rogium.UserInterface.Editors.PropertyModalWindows
+namespace RedRats.UI.ModalWindows
 {
     /// <summary>
     /// A base for all modal windows.
