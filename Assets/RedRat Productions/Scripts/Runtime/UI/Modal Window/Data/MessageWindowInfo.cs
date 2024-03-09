@@ -20,7 +20,7 @@ namespace RedRats.UI.ModalWindows
         /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked. If is NULL, the window will only close itself.</param>
         /// <param name="onDenyAction">Method, that happens when the Deny Button is clicked. If is NULL, the window will only close itself.</param>
         /// <param name="onSpecialAction">Method, that happens when the Special Button is clicked. If is NULL, the window will only close itself.</param>
-        public MessageWindowInfo(string message, ThemeType theme, string acceptButtonText, string denyButtonText, string specialButtonText, Action onAcceptAction = null, Action onDenyAction = null, Action onSpecialAction = null) : base(theme, acceptButtonText, denyButtonText, specialButtonText, onAcceptAction, onDenyAction, onSpecialAction)
+        public MessageWindowInfo(string message, string acceptButtonText, string denyButtonText, string specialButtonText, Action onAcceptAction = null, Action onDenyAction = null, Action onSpecialAction = null, ThemeType theme = ThemeType.Current) : base(acceptButtonText, denyButtonText, specialButtonText, onAcceptAction, onDenyAction, onSpecialAction, theme)
         {
             this.message = message;
         }
@@ -34,22 +34,22 @@ namespace RedRats.UI.ModalWindows
         /// <param name="denyButtonText">Text in the Deny Button.</param>
         /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked. If is NULL, the window will only close itself.</param>
         /// <param name="onDenyAction">Method, that happens when the Deny Button is clicked. If is NULL, the window will only close itself.</param>
-        public MessageWindowInfo(string message, ThemeType theme, string acceptButtonText, string denyButtonText, Action onAcceptAction = null, Action onDenyAction = null) : base(theme, acceptButtonText, denyButtonText, onAcceptAction, onDenyAction)
+        public MessageWindowInfo(string message, string acceptButtonText, string denyButtonText, Action onAcceptAction = null, Action onDenyAction = null, ThemeType theme = ThemeType.Current) : base(acceptButtonText, denyButtonText, onAcceptAction, onDenyAction, theme)
         {
             this.message = message;
         }
 
-        /// <summary>
-        /// Stores data for a message type modal window.
-        /// </summary>
-        /// <param name="message">Text in the header.</param>
-        /// <param name="theme">The graphic theme of the window.</param>
-        /// <param name="acceptButtonText">Text in the Accept Button.</param>
-        /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.  If is NULL, the window will only close itself.</param>
-        public MessageWindowInfo(string message, ThemeType theme, string acceptButtonText, Action onAcceptAction = null) : base(theme, acceptButtonText, onAcceptAction)
-        {
-            this.message = message;
-        }
+        // /// <summary>
+        // /// Stores data for a message type modal window.
+        // /// </summary>
+        // /// <param name="message">Text in the header.</param>
+        // /// <param name="theme">The graphic theme of the window.</param>
+        // /// <param name="acceptButtonText">Text in the Accept Button.</param>
+        // /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.  If is NULL, the window will only close itself.</param>
+        // public MessageWindowInfo(string message, string acceptButtonText, Action onAcceptAction = null, ThemeType theme = ThemeType.Current) : base(acceptButtonText, onAcceptAction, theme)
+        // {
+        //     this.message = message;
+        // }
         
         /// <summary>
         /// Stores data for a message type modal window.

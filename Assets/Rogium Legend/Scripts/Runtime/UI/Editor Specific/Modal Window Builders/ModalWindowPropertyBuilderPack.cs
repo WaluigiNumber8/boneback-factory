@@ -1,5 +1,4 @@
 ﻿using System;
-using RedRats.UI;
 using RedRats.UI.ModalWindows;
 using Rogium.Core;
 using Rogium.Editors.Packs;
@@ -33,12 +32,12 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             
             b.BuildInputField("Name", currentPackInfo.Title, windowColumn1, currentPackInfo.UpdateTitle, false, true);
             b.BuildInputFieldArea("Description", currentPackInfo.Description, windowColumn1, currentPackInfo.UpdateDescription);
-            b.BuildAssetField("", AssetType.Sprite, currentPackInfo, windowColumn2, a => editedAssetBase.UpdateIcon(a), isDisabled, ThemeType.Blue);
+            b.BuildAssetField("", AssetType.Sprite, currentPackInfo, windowColumn2, a => editedAssetBase.UpdateIcon(a), isDisabled);
             b.BuildPlainText("Created by", currentPackInfo.Author, windowColumn2);
             b.BuildPlainText("Created on", currentPackInfo.CreationDate.ToString(), windowColumn2);
 
             editedAssetBase = currentPackInfo;
-            Open( new PropertyWindowInfo(headerText, PropertyLayoutType.Columns2, ThemeType.Blue, "Done", "Cancel", onConfirmButton));
+            Open( new PropertyWindowInfo(headerText, PropertyLayoutType.Columns2, "Done", "Cancel", onConfirmButton));
         }
 
         /// <summary>

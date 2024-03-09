@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Linq;
-using RedRats.Core;
-using RedRats.UI;
 using RedRats.UI.ModalWindows;
-using Rogium.Editors.Core;
 using Rogium.Editors.Projectiles;
-using Rogium.Editors.Tiles;
-using Rogium.Editors.Weapons;
 
 namespace Rogium.UserInterface.Editors.ModalWindowBuilding
 {
@@ -39,7 +33,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             b.BuildPlainText("Created on", projectile.CreationDate.ToString(), windowColumn1);
             
             editedAssetBase = projectile;
-            Open(new PropertyWindowInfo(headerText, PropertyLayoutType.Column1, ThemeType.Teal, "Done", "Cancel", onConfirmAction));
+            Open(new PropertyWindowInfo(headerText, PropertyLayoutType.Column1, "Done", "Cancel", onConfirmAction));
         }
 
         protected override void CreateAsset()

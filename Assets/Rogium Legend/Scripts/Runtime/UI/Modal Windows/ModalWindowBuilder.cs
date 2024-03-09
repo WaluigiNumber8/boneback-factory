@@ -1,5 +1,6 @@
 using System;
 using RedRats.Core;
+using RedRats.UI.ModalWindows;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Sounds;
@@ -34,6 +35,11 @@ namespace Rogium.UserInterface.ModalWindows
             cachedSoundPickerWindow.Close();
         }
 
+        public void OpenMessageWindow(MessageWindowInfo data)
+        {
+            ModalWindowOverseerMono.GetInstance().OpenWindow(data);
+        }
+        
         /// <summary>
         /// Opens the asset picker window.
         /// </summary>

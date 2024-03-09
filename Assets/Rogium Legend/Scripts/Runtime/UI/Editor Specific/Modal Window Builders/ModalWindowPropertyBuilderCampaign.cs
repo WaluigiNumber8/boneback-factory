@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using RedRats.UI;
 using RedRats.UI.ModalWindows;
 using Rogium.Editors.Campaign;
-using Rogium.Editors.Core;
 using Rogium.Systems.GASExtension;
 using Rogium.UserInterface.Editors.AssetSelection;
 
@@ -50,13 +48,12 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         private void OpenWindow(CampaignAsset asset, Action onConfirmButton, string headerText)
         {
             b.BuildInputField("Name", asset.Title, windowColumn1, asset.UpdateTitle);
-            b.BuildDropdown("Length", lengthOptions, QuickConvertToTier(asset.AdventureLength), windowColumn1,
-                i => asset.UpdateLength(QuickConvertToRoomCount(i)));
+            b.BuildDropdown("Length", lengthOptions, QuickConvertToTier(asset.AdventureLength), windowColumn1, i => asset.UpdateLength(QuickConvertToRoomCount(i)));
             b.BuildPlainText("Created by", asset.Author, windowColumn1);
             b.BuildPlainText("Created on", asset.CreationDate.ToString(), windowColumn1);
 
             editedAssetBase = asset;
-            Open(new PropertyWindowInfo(headerText, PropertyLayoutType.Column1, ThemeType.Red, "Done", "Cancel", onConfirmButton));
+            Open(new PropertyWindowInfo(headerText, PropertyLayoutType.Column1, "Done", "Cancel", onConfirmButton));
         }
 
         protected override void CreateAsset()

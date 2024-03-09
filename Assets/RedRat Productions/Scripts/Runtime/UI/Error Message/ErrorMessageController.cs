@@ -1,7 +1,6 @@
 ﻿using RedRats.Core;
 using RedRats.Safety;
 using RedRats.UI.ModalWindows;
-using Rogium.Systems.ThemeSystem;
 using UnityEngine;
 
 namespace RedRats.UI.ErrorMessageWindow
@@ -39,7 +38,7 @@ namespace RedRats.UI.ErrorMessageWindow
         /// <param name="errorMessage">The message of the error.</param>
         public void Open(string errorMessage)
         {
-            windowOverseer.OpenWindow(new MessageWindowInfo(errorMessage, ThemeOverseerMono.GetInstance().CurrentTheme, acceptText));
+            windowOverseer.OpenWindow(new MessageWindowInfo(errorMessage, acceptText));
         }
     }
 }
