@@ -23,12 +23,16 @@ namespace Rogium.UserInterface.ModalWindows
         [SerializeField] private AssetPickerWindow assetPickerWindow;
         [SerializeField] private SoundPickerModalWindow soundPickerWindow;
         
+        private ModalWindowOverseerMono windowOverseer;
+        
         private AssetPickerWindow cachedAssetPickerWindow;
         private SoundPickerModalWindow cachedSoundPickerWindow;
 
         protected override void Awake()
         {
             base.Awake();
+            windowOverseer = ModalWindowOverseerMono.GetInstance();
+            
             cachedAssetPickerWindow = Instantiate(assetPickerWindow, windowParent);
             cachedAssetPickerWindow.Close();
             cachedSoundPickerWindow = Instantiate(soundPickerWindow, windowParent);
@@ -37,7 +41,20 @@ namespace Rogium.UserInterface.ModalWindows
 
         public void OpenMessageWindow(MessageWindowInfo data)
         {
-            ModalWindowOverseerMono.GetInstance().OpenWindow(data);
+            windowOverseer.OpenWindow(data);
+        }
+        
+        public void OpenPropertyWindowColumns1(PropertyWindowInfo data, string key, out Transform column1)
+        {
+            windowOverseer.OpenWindow(data, key);
+            column1 = windowOverseer.GetColumn1(key);
+        }
+        
+        public void OpenPropertyWindowColumns2(PropertyWindowInfo data, string key, out Transform column1, out Transform column2)
+        {
+            windowOverseer.OpenWindow(data, key);
+            column1 = windowOverseer.GetColumn1(key);
+            column2 = windowOverseer.GetColumn2(key);
         }
         
         /// <summary>

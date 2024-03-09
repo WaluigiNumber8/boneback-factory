@@ -104,7 +104,7 @@ namespace RedRats.UI.ModalWindows
 
             if (data is PropertyWindowInfo pData)
             {
-                if (pData.Layout == PropertyLayoutType.Column1) window.OpenAsPropertiesColumn1(pData);
+                if (pData.Layout == PropertyLayoutType.Columns1) window.OpenAsPropertiesColumn1(pData);
                 else if (pData.Layout == PropertyLayoutType.Columns2) window.OpenAsPropertiesColumn2(pData);
                 return;
             }

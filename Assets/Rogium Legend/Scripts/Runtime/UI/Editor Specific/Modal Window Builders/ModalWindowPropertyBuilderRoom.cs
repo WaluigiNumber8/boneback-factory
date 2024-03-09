@@ -1,7 +1,6 @@
 ﻿using System;
-using RedRats.Core;
-using RedRats.UI.ModalWindows;
 using Rogium.Editors.Rooms;
+using UnityEngine;
 
 namespace Rogium.UserInterface.Editors.ModalWindowBuilding
 {
@@ -29,17 +28,16 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             OpenWindow(roomEditor.CurrentAsset, UpdateAsset, $"Editing {roomEditor.CurrentAsset.Title}");
         }
 
-        private void OpenWindow(RoomAsset data, Action onConfirmAction, string headerText)
+        private void OpenWindow(RoomAsset data, Action onConfirm, string headerText)
         {
-            windowColumn1.gameObject.KillChildren();
+            OpenForColumns1(headerText, onConfirm, out Transform col1);
             
-            b.BuildInputField("Title", data.Title, windowColumn1, data.UpdateTitle);
-            roomBuilder.BuildEssentials(windowColumn1, data, false);
-            b.BuildPlainText("Created by", data.Author, windowColumn1);
-            b.BuildPlainText("Created on", data.CreationDate.ToString(), windowColumn1);
+            b.BuildInputField("Title", data.Title, col1, data.UpdateTitle);
+            roomBuilder.BuildEssentials(col1, data, false);
+            b.BuildPlainText("Created by", data.Author, col1);
+            b.BuildPlainText("Created on", data.CreationDate.ToString(), col1);
             
             editedAssetBase = data;
-            Open(new PropertyWindowInfo(headerText, PropertyLayoutType.Column1, "Done", "Cancel", onConfirmAction));
         }
 
         protected override void CreateAsset()
@@ -54,6 +52,5 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             roomEditor.CompleteEditing();
             selectionMenu.OpenForRooms();
         }
-
     }
 }

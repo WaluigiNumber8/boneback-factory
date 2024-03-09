@@ -1,6 +1,6 @@
 ﻿using System;
-using RedRats.UI.ModalWindows;
 using Rogium.Editors.Weapons;
+using UnityEngine;
 
 namespace Rogium.UserInterface.Editors.ModalWindowBuilding
 {
@@ -23,14 +23,15 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             OpenWindow(new WeaponAsset(weaponEditor.CurrentAsset), UpdateAsset, $"Updating {weaponEditor.CurrentAsset.Title}");
         }
 
-        private void OpenWindow(WeaponAsset weapon, Action onConfirmAction, string headerText)
+        private void OpenWindow(WeaponAsset weapon, Action onConfirm, string headerText)
         {
-            b.BuildInputField("Title", weapon.Title, windowColumn1, weapon.UpdateTitle);
-            b.BuildPlainText("Created by", weapon.Author, windowColumn1);
-            b.BuildPlainText("Created on", weapon.CreationDate.ToString(), windowColumn1);
+            OpenForColumns1(headerText, onConfirm, out Transform col1);
+            
+            b.BuildInputField("Title", weapon.Title, col1, weapon.UpdateTitle);
+            b.BuildPlainText("Created by", weapon.Author, col1);
+            b.BuildPlainText("Created on", weapon.CreationDate.ToString(), col1);
             
             editedAssetBase = weapon;
-            Open(new PropertyWindowInfo(headerText, PropertyLayoutType.Column1, "Done", "Cancel", onConfirmAction));
         }
 
         protected override void CreateAsset()
