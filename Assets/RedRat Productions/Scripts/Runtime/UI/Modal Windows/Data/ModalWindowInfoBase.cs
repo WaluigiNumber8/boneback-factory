@@ -1,5 +1,5 @@
 using System;
-using Rogium.Systems.ThemeSystem;
+using RedRats.Systems.Themes;
 
 namespace RedRats.UI.ModalWindows
 {
@@ -27,7 +27,7 @@ namespace RedRats.UI.ModalWindows
         /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked. If is NULL, the window will only close itself.</param>
         /// <param name="onDenyAction">Method, that happens when the Deny Button is clicked. If is NULL, the window will only close itself.</param>
         /// <param name="onSpecialAction">Method, that happens when the Special Button is clicked. If is NULL, the window will only close itself.</param>
-        public ModalWindowInfoBase(ThemeType theme, string acceptButtonText, string denyButtonText, string specialButtonText, Action onAcceptAction = null, Action onDenyAction = null, Action onSpecialAction = null)
+        public ModalWindowInfoBase(string acceptButtonText, string denyButtonText, string specialButtonText, Action onAcceptAction = null, Action onDenyAction = null, Action onSpecialAction = null, ThemeType theme = ThemeType.Current)
         {
             this.theme = theme;
             this.acceptButtonText = acceptButtonText;
@@ -46,7 +46,7 @@ namespace RedRats.UI.ModalWindows
         /// <param name="denyButtonText">Text in the Deny Button.</param>
         /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked. If is NULL, the window will only close itself.</param>
         /// <param name="onDenyAction">Method, that happens when the Deny Button is clicked. If is NULL, the window will only close itself.</param>
-        public ModalWindowInfoBase(ThemeType theme, string acceptButtonText, string denyButtonText, Action onAcceptAction = null, Action onDenyAction = null)
+        public ModalWindowInfoBase(string acceptButtonText, string denyButtonText, Action onAcceptAction = null, Action onDenyAction = null, ThemeType theme = ThemeType.Current)
         {
             this.theme = theme;
             this.acceptButtonText = acceptButtonText;
@@ -63,7 +63,7 @@ namespace RedRats.UI.ModalWindows
         /// <param name="theme">The graphic theme of the window.</param>
         /// <param name="acceptButtonText">Text in the Accept Button.</param>
         /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked. If is NULL, the window will only close itself.</param>
-        public ModalWindowInfoBase(ThemeType theme, string acceptButtonText, Action onAcceptAction = null)
+        public ModalWindowInfoBase(string acceptButtonText, Action onAcceptAction = null, ThemeType theme = ThemeType.Current)
         {
             this.theme = theme;
             this.acceptButtonText = acceptButtonText;
@@ -81,7 +81,7 @@ namespace RedRats.UI.ModalWindows
         /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked. If is NULL, the window will only close itself.</param>
         public ModalWindowInfoBase(string acceptButtonText, Action onAcceptAction = null)
         {
-            this.theme = ThemeOverseerMono.GetInstance().CurrentTheme;
+            this.theme = ThemeType.Current;
             this.acceptButtonText = acceptButtonText;
             this.denyButtonText = "";
             this.specialButtonText = "";

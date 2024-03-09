@@ -1,8 +1,7 @@
 ﻿using System;
-using RedRats.UI;
-using RedRats.UI.ModalWindows;
 using Rogium.Core;
 using Rogium.Editors.Packs;
+using UnityEngine;
 
 namespace Rogium.UserInterface.Editors.ModalWindowBuilding
 {
@@ -25,20 +24,21 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         /// <summary>
         /// Opens a Modal Window as a Pack Properties Window.
         /// <param name="currentPackInfo">The PackInfo to edit.</param>
-        /// <param name="onConfirmButton">What happens when the 'Confirm' button is pressed.</param>
+        /// <param name="onConfirm">What happens when the 'Confirm' button is pressed.</param>
         /// </summary>
-        private void OpenWindow(PackAsset currentPackInfo, Action onConfirmButton, string headerText)
+        private void OpenWindow(PackAsset currentPackInfo, Action onConfirm, string headerText)
         {
+            OpenForColumns2(headerText, onConfirm, out Transform col1, out Transform col2);
+            
             bool isDisabled = !editor.CurrentPack?.ContainsAnySprites ?? true;
             
-            b.BuildInputField("Name", currentPackInfo.Title, windowColumn1, currentPackInfo.UpdateTitle, false, true);
-            b.BuildInputFieldArea("Description", currentPackInfo.Description, windowColumn1, currentPackInfo.UpdateDescription);
-            b.BuildAssetField("", AssetType.Sprite, currentPackInfo, windowColumn2, a => editedAssetBase.UpdateIcon(a), isDisabled, ThemeType.Blue);
-            b.BuildPlainText("Created by", currentPackInfo.Author, windowColumn2);
-            b.BuildPlainText("Created on", currentPackInfo.CreationDate.ToString(), windowColumn2);
+            b.BuildInputField("Name", currentPackInfo.Title, col1, currentPackInfo.UpdateTitle, false, true);
+            b.BuildInputFieldArea("Description", currentPackInfo.Description, col1, currentPackInfo.UpdateDescription);
+            b.BuildAssetField("", AssetType.Sprite, currentPackInfo, col2, a => editedAssetBase.UpdateIcon(a), isDisabled);
+            b.BuildPlainText("Created by", currentPackInfo.Author, col2);
+            b.BuildPlainText("Created on", currentPackInfo.CreationDate.ToString(), col2);
 
             editedAssetBase = currentPackInfo;
-            Open( new PropertyWindowInfo(headerText, PropertyLayoutType.Columns2, ThemeType.Blue, "Done", "Cancel", onConfirmButton));
         }
 
         /// <summary>

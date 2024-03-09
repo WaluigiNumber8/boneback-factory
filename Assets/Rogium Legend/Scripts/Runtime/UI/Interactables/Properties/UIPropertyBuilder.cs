@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using RedRats.Core;
-using RedRats.UI;
+using RedRats.Systems.Themes;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
@@ -30,7 +30,6 @@ namespace Rogium.UserInterface.Interactables.Properties
         [Title("Other properties")]
         [SerializeField] private ContentBlockInfo contentBlocks;
         [SerializeField] private VerticalVariantsInfo verticalVariants;
-
 
         #region Properties
 

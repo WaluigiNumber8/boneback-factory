@@ -3,7 +3,7 @@ using RedRats.Safety;
 using RedRats.UI;
 using UnityEngine;
 
-namespace Rogium.Systems.ThemeSystem
+namespace RedRats.Systems.Themes
 {
     public class ThemeOverseerMono : MonoSingleton<ThemeOverseerMono>
     {

@@ -9,6 +9,7 @@ using Rogium.Systems.GridSystem;
 using Rogium.Systems.ItemPalette;
 using Rogium.Systems.Toolbox;
 using Rogium.UserInterface.Core;
+using Rogium.UserInterface.ModalWindows;
 using UnityEngine;
 
 namespace Rogium.Editors.Sprites
@@ -70,13 +71,13 @@ namespace Rogium.Editors.Sprites
         /// </summary>
         public void SwitchPaletteViaWindow()
         {
-            CanvasOverseer.GetInstance().PickerWindow.GrabAsset(AssetType.Palette, asset =>
+            ModalWindowBuilder.GetInstance().OpenAssetPickerWindow(AssetType.Palette, asset =>
             {
                 lastPaletteAsset = asset;
                 PaletteAsset pal = (PaletteAsset) asset;
                 SwitchPalette(pal.Colors);
                 currentSprite.UpdatePreferredPaletteID(pal.ID);
-            }, lastPaletteAsset, ThemeType.Pink);
+            }, lastPaletteAsset);
         }
         
         /// <summary>

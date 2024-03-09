@@ -1,8 +1,8 @@
 using System;
 using RedRats.Core;
 using RedRats.Safety;
+using RedRats.Systems.Themes;
 using RedRats.UI.Core;
-using Rogium.Systems.ThemeSystem;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -12,11 +12,10 @@ namespace RedRats.UI.ModalWindows
     /// <summary>
     /// Draws a modal window on the screen.
     /// </summary>
-    public class ModalWindow : MonoBehaviour
+    public class ModalWindow : ModalWindowBase
     {
-        public event Action OnClose;
-        
         [SerializeField] private UIInfo ui;
+        private ThemeType lastTheme = ThemeType.Current;
 
         /// <summary>
         /// Opens the Modal Window as a message window.
@@ -37,7 +36,7 @@ namespace RedRats.UI.ModalWindows
             DrawFooter(data.AcceptButtonText, data.DenyButtonText, data.SpecialButtonText, data.OnAcceptAction, 
                        data.OnDenyAction, data.OnSpecialAction);
             UpdateRect();
-            ui.windowBox.gameObject.SetActive(true);
+            Open();
         }
 
         /// <summary>
@@ -60,7 +59,7 @@ namespace RedRats.UI.ModalWindows
             DrawFooter(data.AcceptButtonText, data.DenyButtonText, data.SpecialButtonText, data.OnAcceptAction, 
                        data.OnDenyAction, data.OnSpecialAction);
             UpdateRect();
-            ui.windowBox.gameObject.SetActive(true);
+            Open();
         }
 
         /// <summary>
@@ -83,7 +82,7 @@ namespace RedRats.UI.ModalWindows
             DrawFooter(data.AcceptButtonText, data.DenyButtonText, data.SpecialButtonText, data.OnAcceptAction, 
                        data.OnDenyAction, data.OnSpecialAction);
             UpdateRect();
-            ui.windowBox.gameObject.SetActive(true);
+            Open();
         }
 
         /// <summary>
@@ -113,7 +112,7 @@ namespace RedRats.UI.ModalWindows
             UIExtensions.ChangeFont(ui.footer.acceptButtonText, headerFont);
             UIExtensions.ChangeFont(ui.footer.denyButtonText, headerFont);
             UIExtensions.ChangeFont(ui.footer.specialButtonText, headerFont);
-            ui.windowBoxImage.sprite = backgroundSprite;
+            generalUI.windowArea.sprite = backgroundSprite;
             ui.header.headerImage.sprite = headerSprite;
         }
 
@@ -123,7 +122,7 @@ namespace RedRats.UI.ModalWindows
         public void OnAccept()
         {
             ui.footer.OnAcceptButtonClick?.Invoke();
-            Close();
+            CloseWindow();
         }
 
         /// <summary>
@@ -132,7 +131,7 @@ namespace RedRats.UI.ModalWindows
         public void OnDeny()
         {
             ui.footer.OnDenyButtonClick?.Invoke();
-            Close();
+            CloseWindow();
         }
 
         /// <summary>
@@ -141,27 +140,24 @@ namespace RedRats.UI.ModalWindows
         public void OnSpecial()
         {
             ui.footer.OnSpecialButtonClick?.Invoke();
-            Close();
+            CloseWindow();
         }
 
         /// <summary>
         /// Closes the Window.
         /// </summary>
-        public void Close()
+        private void CloseWindow()
         {
-            ui.windowBox.gameObject.SetActive(false);
-            
+            Close();
             ui.layout.message.area.gameObject.SetActive(false);
             ui.layout.properties.area.gameObject.SetActive(false);
             ui.layout.properties.firstColumnContent.gameObject.KillChildren();
             ui.layout.properties.secondColumnContent.gameObject.KillChildren();
-            
-            ui.background.gameObject.SetActive(false);
-            ui.area.gameObject.SetActive(false);
-            OnClose?.Invoke();
         }
 
-         #region Window Part Drawing
+        protected override void UpdateTheme() => ThemeUpdater.UpdateModalWindow(this, lastTheme);
+
+        #region Window Part Drawing
 
         /// <summary>
         /// Draws the Header part of the Window.
@@ -209,21 +205,17 @@ namespace RedRats.UI.ModalWindows
         /// </summary>
         private void WindowSetup(ThemeType theme)
         {
+            lastTheme = theme;
             ui.header.area.gameObject.SetActive(false);
             ui.layout.area.gameObject.SetActive(false);
             ui.layout.message.area.gameObject.SetActive(false);
             ui.layout.properties.area.gameObject.SetActive(false);
             ui.footer.area.gameObject.SetActive(false);
-
-            ui.area.gameObject.SetActive(true);
-            ui.background.gameObject.SetActive(true);
-            ui.windowBox.gameObject.SetActive(false);
-            ThemeUpdater.UpdateModalWindow(this, theme);
         }
         
         private void UpdateRect()
         {
-            ui.area.GetComponent<RectTransform>().ForceUpdateRectTransforms();
+            generalUI.windowArea.GetComponent<RectTransform>().ForceUpdateRectTransforms();
             Canvas.ForceUpdateCanvases();
         }
 
@@ -237,10 +229,6 @@ namespace RedRats.UI.ModalWindows
         [Serializable]
         public struct UIInfo
         {
-            public Transform area;
-            public Image background;
-            public Transform windowBox;
-            public Image windowBoxImage;
             public HeaderInfo header;
             public LayoutInfo layout;
             public FooterInfo footer;

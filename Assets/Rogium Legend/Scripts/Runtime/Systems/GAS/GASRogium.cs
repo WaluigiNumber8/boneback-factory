@@ -1,10 +1,8 @@
 ﻿using System;
 using RedRats.Safety;
-using RedRats.UI;
+using RedRats.Systems.Themes;
 using Rogium.Core;
-using Rogium.Systems.ThemeSystem;
 using Rogium.UserInterface.Editors.AssetSelection;
-using Rogium.UserInterface.Core;
 
 namespace Rogium.Systems.GASExtension
 {

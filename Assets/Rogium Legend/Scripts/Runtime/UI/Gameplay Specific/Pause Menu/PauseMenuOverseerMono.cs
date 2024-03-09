@@ -1,8 +1,8 @@
 ﻿using RedRats.Core;
-using RedRats.UI;
 using RedRats.UI.ModalWindows;
 using Rogium.Gameplay.Core;
 using Rogium.Systems.Input;
+using Rogium.UserInterface.ModalWindows;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -47,7 +47,8 @@ namespace Rogium.UserInterface.Gameplay.PauseMenu
         /// </summary>
         public void ReturnToMainMenu()
         {
-            ModalWindowOverseerMono.GetInstance().OpenWindow(new MessageWindowInfo("Are you sure? All progress will be lost!", ThemeType.Blue, "Yes", "No", CloseGame));
+            MessageWindowInfo data = new("Are you sure? All progress will be lost!", "Yes", "No", CloseGame);
+            ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
         }
         
         /// <summary>

@@ -5,7 +5,7 @@ namespace RedRats.UI.ModalWindows
     /// </summary>
     public enum PropertyLayoutType
     {
-        Column1 = 0,
+        Columns1 = 0,
         Columns2 = 1,
     }
 }

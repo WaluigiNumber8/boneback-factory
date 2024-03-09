@@ -1,27 +1,25 @@
 using System;
 using RedRats.Systems.Audio;
 using RedRats.UI.Core;
+using RedRats.UI.ModalWindows;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Sounds;
+using Rogium.Systems.Audio;
 using Rogium.Systems.ThemeSystem;
 using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-namespace Rogium.UserInterface.Editors.PropertyModalWindows
+namespace Rogium.UserInterface.ModalWindows
 {
     /// <summary>
     /// Represents a modal window that allows the user to pick a sound from the sound library.
     /// </summary>
-    public class SoundPickerModalWindow : PropertyModalWindowBase
+    public class SoundPickerModalWindow : ModalWindowBase
     {
-        public event Action<IAsset> OnSoundSelected;
-
-        [SerializeField] private Image windowBackground;
-        [SerializeField] private Image propertiesBackground;
-        [SerializeField] private Image playSoundButtonIcon;
+        [SerializeField] private UIInfo ui;
         
         [Header("Interactables")]
         [SerializeField] private InteractablePropertyAssetField soundField;
@@ -33,50 +31,36 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
         [SerializeField] private AudioMixerGroup mixerGroup;
         
         private InternalLibraryOverseer lib;
-        private AudioSystem audioSystem;
         
         private SoundAsset currentSoundAsset;
         private AssetData currentAssetData;
-        private Action<AssetData> onChangeValue;
+        private Action<AssetData> onChangeAnyValue;
+        private Action<SoundAsset> onChangeSound;
 
         protected override void Awake()
         {
             base.Awake();
             lib = InternalLibraryOverseer.GetInstance();
-            audioSystem = AudioSystem.GetInstance();
-            playSoundButton.onClick.AddListener(PlayCurrentSound);
+            playSoundButton.onClick.AddListener(() => AudioSystemRogium.GetInstance().PlaySound(currentAssetData, mixerGroup, new AudioSourceSettingsInfo(0, false, false, false)));
         }
 
         /// <summary>
         /// Prepares the window for editing an asset.
         /// </summary>
-        /// <param name="onChangeValue">Method that runs when anything in the window is updated.</param>
-        /// <param name="value">Which value to load up into the window.</param>
-        public void Construct(Action<AssetData> onChangeValue, AssetData value)
+        /// <param name="onChangeSound">Method that runs when the currently edited sound is changed.</param>
+        /// <param name="onChangeAnyValue">Method that runs when any property in the window is updated.</param>
+        /// <param name="value">Which data to load up into the window.</param>
+        public void Construct(Action<SoundAsset> onChangeSound, Action<AssetData> onChangeAnyValue, AssetData value)
         {
             currentAssetData = value;
             currentSoundAsset = lib.GetSoundByID(value.ID);
             
             soundField.Construct("", AssetType.Sound, currentSoundAsset, WhenSoundFieldUpdated);
             UpdateProperties(currentAssetData);
-            OnSoundSelected?.Invoke(currentSoundAsset);
+            onChangeSound?.Invoke(currentSoundAsset);
             
-            this.onChangeValue = onChangeValue; //Assign after everything is set up.
-        }
-
-        /// <summary>
-        /// Plays the currently selected sound with current parameters.
-        /// </summary>
-        public void PlayCurrentSound()
-        {
-            AudioClip clip = currentSoundAsset.Data.Clip;
-            AudioSourceSettingsInfo settings = new(0, false, false, false);
-            float volume = currentAssetData.Parameters.floatValue1;
-            float pitch = currentAssetData.Parameters.floatValue2;
-            float pitchMin = (currentAssetData.Parameters.boolValue1) ? pitch - 0.05f : pitch;
-            float pitchMax = (currentAssetData.Parameters.boolValue1) ? pitch + 0.05f : pitch;
-
-            audioSystem.PlaySound(clip, mixerGroup, settings, volume, pitchMin, pitchMax);
+            this.onChangeAnyValue = onChangeAnyValue; //Assign after everything is set up.
+            this.onChangeSound = onChangeSound;
         }
 
         public void UpdateTheme(Sprite windowBackgroundSprite, Sprite propertiesBackgroundSprite, InteractableSpriteInfo soundFieldSet, InteractableSpriteInfo buttonSet, Sprite playButtonSprite)
@@ -87,12 +71,12 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
             ThemeUpdaterRogium.UpdateToggle(randomPitchToggle);
             UIExtensions.ChangeInteractableSprites(playSoundButton, playSoundButton.image, buttonSet);
             UIExtensions.ChangeInteractableSprites(CloseButton, CloseButton.image, soundFieldSet);
-            windowBackground.sprite = windowBackgroundSprite;
-            propertiesBackground.sprite = propertiesBackgroundSprite;
-            playSoundButtonIcon.sprite = playButtonSprite;
+            generalUI.windowArea.sprite = windowBackgroundSprite;
+            ui.propertiesBackground.sprite = propertiesBackgroundSprite;
+            ui.playSoundButtonIcon.sprite = playButtonSprite;
         }
 
-        protected override void UpdateTheme() => ThemeUpdaterRogium.UpdateSoundPickerModalWindow(this);
+        protected override void UpdateTheme() => ThemeUpdaterRogium.UpdateSoundPickerWindow(this);
 
         /// <summary>
         /// Update settings on all interactable properties on this asset.
@@ -118,7 +102,7 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
             UpdateProperties(currentAssetData);
             UpdateOriginalValue();
             
-            OnSoundSelected?.Invoke(asset);
+            onChangeSound?.Invoke(currentSoundAsset);
         }
         
         private void WhenVolumeChanged(float newValue)
@@ -142,6 +126,13 @@ namespace Rogium.UserInterface.Editors.PropertyModalWindows
         /// <summary>
         /// Call to update the original value.
         /// </summary>
-        private void UpdateOriginalValue() => onChangeValue?.Invoke(currentAssetData);
+        private void UpdateOriginalValue() => onChangeAnyValue?.Invoke(currentAssetData);
+
+        [Serializable]
+        public struct UIInfo
+        {
+            public Image propertiesBackground;
+            public Image playSoundButtonIcon;
+        }
     }
 }

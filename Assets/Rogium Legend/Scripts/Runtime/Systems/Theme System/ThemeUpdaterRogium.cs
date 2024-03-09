@@ -1,8 +1,7 @@
-﻿using RedRats.UI;
-using Rogium.UserInterface.Editors.AssetSelection.PickerVariant;
-using Rogium.UserInterface.Editors.PropertyModalWindows;
+﻿using RedRats.Systems.Themes;
 using Rogium.UserInterface.Interactables;
 using Rogium.UserInterface.Interactables.Properties;
+using Rogium.UserInterface.ModalWindows;
 using UnityEngine.UI;
 
 namespace Rogium.Systems.ThemeSystem
@@ -188,7 +187,7 @@ namespace Rogium.Systems.ThemeSystem
         /// <summary>
         /// Updates the Sound Picker Modal Window with correct data from the current theme.
         /// </summary>
-        public static void UpdateSoundPickerModalWindow(SoundPickerModalWindow window, ThemeType theme = ThemeType.Current)
+        public static void UpdateSoundPickerWindow(SoundPickerModalWindow window, ThemeType theme = ThemeType.Current)
         {
             UpdateUsedTheme(theme);
             window.UpdateTheme(t.Elements.modalWindowBackground, 

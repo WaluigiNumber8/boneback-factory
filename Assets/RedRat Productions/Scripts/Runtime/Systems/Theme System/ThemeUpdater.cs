@@ -1,8 +1,7 @@
-﻿using RedRats.UI;
-using RedRats.UI.ModalWindows;
+﻿using RedRats.UI.ModalWindows;
 using UnityEngine.UI;
 
-namespace Rogium.Systems.ThemeSystem
+namespace RedRats.Systems.Themes
 {
     /// <summary>
     /// Updates various special UI elements with correct sprites based on the current theme.
