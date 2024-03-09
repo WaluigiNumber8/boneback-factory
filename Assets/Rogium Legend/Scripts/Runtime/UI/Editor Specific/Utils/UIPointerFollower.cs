@@ -12,12 +12,16 @@ namespace Rogium.UserInterface.Editors.Utils
     public class UIPointerFollower : MonoBehaviour, IDragHandler
     {
         [SerializeField, EnumToggleButtons] private UIFollowType followType;
+        [SerializeField] private bool rememberDraggedPosition;
+        
         
         private RectTransform ttransform;
         private InputSystem inputSystem;
         private Canvas canvas;
         private RectTransform canvasTransform;
         private Camera cam;
+        
+        private Vector2 originalPosition;
         
         private void Awake()
         {
@@ -26,10 +30,13 @@ namespace Rogium.UserInterface.Editors.Utils
             canvas = GetComponentInParent<Canvas>();
             canvasTransform = canvas.GetComponent<RectTransform>();
             cam = Camera.main;
+            
+            originalPosition = ttransform.anchoredPosition;
         }
 
         private void OnEnable()
         {
+            if (!rememberDraggedPosition) ttransform.anchoredPosition = originalPosition;
             if ((followType & UIFollowType.OnEnable) != 0 || (followType & UIFollowType.OnUpdate) != 0) MoveToPointerPosition();
             if ((followType & UIFollowType.OnUpdate) != 0) inputSystem.UI.PointerPosition.OnPressed += MoveToPointerPosition;
         }
