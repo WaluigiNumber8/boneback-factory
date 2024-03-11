@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88e3503930334824ba6de320d323bd49, type: 3}
-  m_Name: asset_SFX_Footstep_Carpet
+  m_Name: asset_SFX_Footstep_Wood
   m_EditorClassIdentifier: 
   clips:
   - {fileID: 8300000, guid: 6bfb2e1bbe04fc84aad03e22ebc4fb5c, type: 3}
