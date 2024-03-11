@@ -16,6 +16,7 @@ namespace Rogium.Editors.Tiles
     public class TileAsset : AssetWithReferencedSpriteBase
     {
         private readonly TileObject tile;
+        private TerrainType terrainType;
 
         #region Constructors
         public TileAsset()
@@ -26,6 +27,8 @@ namespace Rogium.Editors.Tiles
             this.creationDate = DateTime.Now;
             this.tile = new TileObject(ScriptableObject.CreateInstance<Tile>(), TileType.Wall);
             this.tile.Tile.sprite = this.icon;
+            this.terrainType = EditorConstants.TileTerrainType;
+            
             GenerateID(EditorAssetIDs.TileIdentifier);
         }
         public TileAsset(TileAsset asset)
@@ -42,21 +45,11 @@ namespace Rogium.Editors.Tiles
             
             this.tile = new TileObject(asset.Tile, asset.Type);
             this.tile.Tile.sprite = this.icon;
+            this.terrainType = asset.TerrainType;
         }
-        public TileAsset(string title, Sprite icon, string author, TileType type)
-        {
-            AssetValidation.ValidateTitle(title);
-            
-            this.title = title;
-            this.icon = icon;
-            this.author = author;
-            this.creationDate = DateTime.Now;
-            this.tile = new TileObject(ScriptableObject.CreateInstance<Tile>(), type);
-            this.tile.Tile.sprite = icon;
-            GenerateID(EditorAssetIDs.TileIdentifier);
-        }
+        
         public TileAsset(string id, string title, Sprite icon, string author, string associatedSpriteID, TileType type,
-                         Color tileColor, DateTime creationDate)
+                         Color tileColor, TerrainType terrainType, DateTime creationDate)
         {
             AssetValidation.ValidateTitle(title);
             
@@ -71,6 +64,7 @@ namespace Rogium.Editors.Tiles
             this.tile = new TileObject(ScriptableObject.CreateInstance<Tile>(), type);
             this.tile.Tile.sprite = icon;
             this.tile.Tile.color = tileColor;
+            this.terrainType = terrainType;
         }
         #endregion
 
@@ -83,10 +77,10 @@ namespace Rogium.Editors.Tiles
             tile.Tile.sprite = newSprite.Icon;
         }
 
-        public void UpdateTileType(int newType)
-        {
-            tile.UpdateType((TileType) newType);
-        }
+        public void UpdateTileType(int newType) => tile.UpdateType((TileType) newType);
+        public void UpdateTerrainType(int newType) => UpdateTerrainType((TerrainType) newType);
+        public void UpdateTerrainType(TerrainType newType) => terrainType = newType;
+
         #endregion
 
         public override void ClearAssociatedSprite()
@@ -97,5 +91,6 @@ namespace Rogium.Editors.Tiles
 
         public Tile Tile { get => tile.Tile; }
         public TileType Type { get => tile.Type;}
+        public TerrainType TerrainType { get => terrainType; } 
     }
 }

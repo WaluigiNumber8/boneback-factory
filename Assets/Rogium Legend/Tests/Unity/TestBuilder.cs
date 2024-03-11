@@ -18,7 +18,7 @@ public static class TestBuilder
     /// <returns></returns>
     public static PackAsset SetupPackAsset()
     {
-        TileAsset tile = new TileAsset("Test Tile", EditorConstants.TileIcon, "Test Author", TileType.Floor);
+        TileAsset tile = new TileAsset();
 
         ObjectGrid<AssetData> tileGrid = new(10, 15, () => new AssetData(ParameterInfoConstants.ForTile));
         ObjectGrid<AssetData> objectGrid = new(10, 15, () => new AssetData(ParameterInfoConstants.ForEmpty));

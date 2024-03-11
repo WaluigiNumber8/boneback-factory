@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Rogium.Gameplay.Entities.Characteristics
 {
@@ -9,14 +10,14 @@ namespace Rogium.Gameplay.Entities.Characteristics
     {
         [SerializeField] private Animator animator;
         [SerializeField] private AnimatorPropertyData propertyNames;
-        
+
         private void Update() => UpdateAnimator();
 
         /// <summary>
         /// Play the Death animation.
         /// </summary>
         public void PlayDeath() => animator.SetTrigger(propertyNames.onDeath);
-
+        
         private void UpdateAnimator()
         {
             animator.SetFloat(propertyNames.FaceDirectionX, entity.FaceDirection.x);
@@ -24,7 +25,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
             animator.SetFloat(propertyNames.MoveSpeed, entity.CurrentSpeed);
         }
 
-        [System.Serializable]
+        [Serializable]
         public struct AnimatorPropertyData
         {
             public string FaceDirectionX;
