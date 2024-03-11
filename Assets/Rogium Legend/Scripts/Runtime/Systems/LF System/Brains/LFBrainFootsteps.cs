@@ -14,12 +14,14 @@ namespace Rogium.Systems.LiteFeel.Brains
         [Space] 
         [SerializeField] private LFEffector tileStepEffector;
         [SerializeField] private LFEffector woodStepEffector;
-        [SerializeField] private LFEffector stoneStepEffector;
-        [SerializeField] private LFEffector grassStepEffector;
-        [SerializeField] private LFEffector dirtStepEffector;
-        [SerializeField] private LFEffector sandStepEffector;
+        [SerializeField] private LFEffector metalStepEffector;
+        [SerializeField] private LFEffector glassStepEffector;
         [SerializeField] private LFEffector carpetStepEffector;
+        [SerializeField] private LFEffector dirtStepEffector;
+        [SerializeField] private LFEffector grassStepEffector;
+        [SerializeField] private LFEffector sandStepEffector;
         [SerializeField] private LFEffector waterStepEffector;
+        [SerializeField] private LFEffector snowStepEffector;
 
         private void OnEnable() => interactionService.OnFootstep += PlayEffect;
         private void OnDisable() => interactionService.OnFootstep -= PlayEffect;
@@ -37,12 +39,14 @@ namespace Rogium.Systems.LiteFeel.Brains
             {
                 TerrainType.Tile => tileStepEffector,
                 TerrainType.Wood => woodStepEffector,
-                TerrainType.Stone => stoneStepEffector,
-                TerrainType.Grass => grassStepEffector,
-                TerrainType.Dirt => dirtStepEffector,
-                TerrainType.Sand => sandStepEffector,
+                TerrainType.Metal => metalStepEffector,
+                TerrainType.Glass => glassStepEffector,
                 TerrainType.Carpet => carpetStepEffector,
+                TerrainType.Dirt => dirtStepEffector,
+                TerrainType.Grass => grassStepEffector,
+                TerrainType.Sand => sandStepEffector,
                 TerrainType.ShallowWater => waterStepEffector,
+                TerrainType.Snow => snowStepEffector,
                 _ => null
             };
         }

@@ -7,11 +7,13 @@ namespace Rogium.Editors.Tiles
     {
         Tile = 0,
         Wood = 1,
-        Stone = 2,
-        Grass = 3,
-        Dirt = 4,
-        Sand = 5,
-        Carpet = 6,
-        ShallowWater = 7,
+        Metal = 3,
+        Glass = 4,
+        Carpet = 5,
+        Dirt = 6,
+        Grass = 7,
+        Sand = 8,
+        ShallowWater = 9,
+        Snow = 10,
     }
 }

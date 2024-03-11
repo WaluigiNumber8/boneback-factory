@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: asset_SFX_Footstep_Dirt
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 6bfb2e1bbe04fc84aad03e22ebc4fb5c, type: 3}
-  - {fileID: 8300000, guid: 65bfdad6946025947994bbf8115ded71, type: 3}
-  - {fileID: 8300000, guid: e900511c2441e8545ace02dfdeda06d6, type: 3}
+  - {fileID: 8300000, guid: fba5cdeb7eedad24b9b123a94551d758, type: 3}
+  - {fileID: 8300000, guid: 42447b4e3516bef48b27412cbf6360c3, type: 3}
+  - {fileID: 8300000, guid: 185c6a57d5ea6d84b8c4e6c97ab63e3a, type: 3}
   mixerGroup: {fileID: -7128948430085313062, guid: 15e85eab3684ad9409d53f645746215d, type: 2}
-  volume: 0.504
+  volume: 0.5
   pitchMin: 0.95
   pitchMax: 1.05
-  avoidLastPlayed: 0

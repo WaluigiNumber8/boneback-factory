@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: asset_SFX_Footstep_Tile
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 6bfb2e1bbe04fc84aad03e22ebc4fb5c, type: 3}
-  - {fileID: 8300000, guid: 65bfdad6946025947994bbf8115ded71, type: 3}
-  - {fileID: 8300000, guid: e900511c2441e8545ace02dfdeda06d6, type: 3}
+  - {fileID: 8300000, guid: 89f7a87ffd1b9fe49b1c7158878fc451, type: 3}
+  - {fileID: 8300000, guid: 023cd0564d6220b41b183154871c9162, type: 3}
+  - {fileID: 8300000, guid: 34b12d44669c46644bb231a27890b6f7, type: 3}
   mixerGroup: {fileID: -7128948430085313062, guid: 15e85eab3684ad9409d53f645746215d, type: 2}
-  volume: 0.504
+  volume: 0.75
   pitchMin: 0.95
   pitchMax: 1.05
-  avoidLastPlayed: 0
