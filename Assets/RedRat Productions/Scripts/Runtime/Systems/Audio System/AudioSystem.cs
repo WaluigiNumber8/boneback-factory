@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Linq;
 using RedRats.Core;
+using RedRats.Core.Helpers;
 using UnityEngine;
 using UnityEngine.Audio;
 using Random = UnityEngine.Random;
@@ -25,11 +26,17 @@ namespace RedRats.Systems.Audio
                 () =>
                 {
                     AudioSource source = new GameObject($"AudioSource").AddComponent<AudioSource>();
+                    source.gameObject.AddComponent<HardFollowTarget>();
                     source.playOnAwake = false;
                     return source;
                 },
                 c => c.gameObject.SetActive(true),
-                c => c.gameObject.SetActive(false),
+                c =>
+                {
+                    c.gameObject.SetActive(false);
+                    if (c.spatialBlend == 0) return;
+                    c.gameObject.GetComponent<HardFollowTarget>().ClearTarget();
+                },
                 Destroy,
                 true, 15);
         }
@@ -187,7 +194,7 @@ namespace RedRats.Systems.Audio
             source.minDistance = spatialSettings.minDistance;
             source.maxDistance = spatialSettings.maxDistance;
             source.transform.position = spatialSettings.soundTarget.position;
-            source.transform.parent = spatialSettings.soundTarget;
+            source.GetComponent<HardFollowTarget>().SetTarget(spatialSettings.soundTarget);
         }
 
         public AudioMixer AudioMixer { get => audioMixer; }
