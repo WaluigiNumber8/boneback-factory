@@ -70,16 +70,17 @@ namespace Rogium.Gameplay.Entities.Characteristics
             health -= giver.GetDamageTaken();
             OnDamageReceived?.Invoke(health);
 
-            if (health > 0)
-            {
-                OnHit?.Invoke();
-            }
-            else 
+            //Death
+            if (health <= 0)
             {
                 OnDeath?.Invoke();
+                invincibilityTimer = Time.time + defaultData.invincibilityTime * 10;
                 return;
+                
             }
             
+            //Hit
+            OnHit?.Invoke();
             invincibilityTimer = Time.time + defaultData.invincibilityTime;
             giver.ReceiveKnockback(entity);
         }
