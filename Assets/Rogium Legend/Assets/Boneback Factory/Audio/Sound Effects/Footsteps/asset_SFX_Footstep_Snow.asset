@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: asset_SFX_Footstep_Snow
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 6bfb2e1bbe04fc84aad03e22ebc4fb5c, type: 3}
-  - {fileID: 8300000, guid: 65bfdad6946025947994bbf8115ded71, type: 3}
-  - {fileID: 8300000, guid: e900511c2441e8545ace02dfdeda06d6, type: 3}
+  - {fileID: 8300000, guid: 5fe52f4103b2a4149ab58e7ff8541d2a, type: 3}
+  - {fileID: 8300000, guid: 651e857cf2ccc7a4294aa7f4599d9a58, type: 3}
+  - {fileID: 8300000, guid: 1e1cbe2d7797a3946b6d5c50bcfe050a, type: 3}
   mixerGroup: {fileID: -7128948430085313062, guid: 15e85eab3684ad9409d53f645746215d, type: 2}
-  volume: 0.504
+  volume: 1
   pitchMin: 0.95
   pitchMax: 1.05
-  avoidLastPlayed: 0

@@ -163,6 +163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 52272364}
   - component: {fileID: 52272365}
+  - component: {fileID: 52272366}
   m_Layer: 0
   m_Name: Sand Effect
   m_TagString: Untagged
@@ -198,6 +199,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoplay: 0
+--- !u!114 &52272366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52272363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: Sand step sound
+  active: 1
+  restartOnPlay: 1
+  keepStateOnStop: 0
+  initialDelayMin: 0
+  initialDelayMax: 0
+  randomizeDelay: 0
+  clips:
+  - {fileID: 11400000, guid: cdf8c76620d6f0d4eb8c1055676a471a, type: 2}
+  sourceSettings:
+    id: 0
+    loop: 0
+    playOnlyWhenNotPlaying: 0
+    muteSameSound: 0
+  ignoreEffectStop: 1
+  overrideMixerGroup: 0
+  mixerGroup: {fileID: 0}
+  overrideVolume: 0
+  volume: 1
+  overridePitch: 0
+  pitchMin: 0.95
+  pitchMax: 1.05
 --- !u!1 &63260818
 GameObject:
   m_ObjectHideFlags: 0
@@ -1445,7 +1480,7 @@ MonoBehaviour:
   initialDelayMax: 0
   randomizeDelay: 0
   clips:
-  - {fileID: 11400000, guid: 823bb3f51dc80df4888839737d733be4, type: 2}
+  - {fileID: 11400000, guid: a4ed668c65fe2004597f434265eba214, type: 2}
   sourceSettings:
     id: 0
     loop: 0
@@ -1965,7 +2000,7 @@ MonoBehaviour:
     rid: 4462825785202312006
   m_ShadowCastingSource: 2
   m_ShadowMesh:
-    m_Mesh: {fileID: 894031210}
+    m_Mesh: {fileID: 695760026}
     m_LocalBounds:
       m_Center: {x: -0.5000229, y: 0, z: 0}
       m_Extent: {x: 7.4999924, y: 5.0000153, z: 0}
@@ -2152,6 +2187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 422358939}
   - component: {fileID: 422358940}
+  - component: {fileID: 422358941}
   m_Layer: 0
   m_Name: Dirt Effect
   m_TagString: Untagged
@@ -2187,6 +2223,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoplay: 0
+--- !u!114 &422358941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422358938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: Dirt step sound
+  active: 1
+  restartOnPlay: 1
+  keepStateOnStop: 0
+  initialDelayMin: 0
+  initialDelayMax: 0
+  randomizeDelay: 0
+  clips:
+  - {fileID: 11400000, guid: a6530d7af68b21e4fac0e3053bf31ff3, type: 2}
+  sourceSettings:
+    id: 0
+    loop: 0
+    playOnlyWhenNotPlaying: 0
+    muteSameSound: 0
+  ignoreEffectStop: 1
+  overrideMixerGroup: 0
+  mixerGroup: {fileID: 0}
+  overrideVolume: 0
+  volume: 1
+  overridePitch: 0
+  pitchMin: 0.95
+  pitchMax: 1.05
 --- !u!1 &439417004
 GameObject:
   m_ObjectHideFlags: 0
@@ -2516,6 +2586,7 @@ GameObject:
   m_Component:
   - component: {fileID: 553383627}
   - component: {fileID: 553383628}
+  - component: {fileID: 553383629}
   m_Layer: 0
   m_Name: Grass Effect
   m_TagString: Untagged
@@ -2551,6 +2622,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoplay: 0
+--- !u!114 &553383629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553383626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: Grass step sound
+  active: 1
+  restartOnPlay: 1
+  keepStateOnStop: 0
+  initialDelayMin: 0
+  initialDelayMax: 0
+  randomizeDelay: 0
+  clips:
+  - {fileID: 11400000, guid: 338602ec0666dc94d83024fc45d66470, type: 2}
+  sourceSettings:
+    id: 0
+    loop: 0
+    playOnlyWhenNotPlaying: 0
+    muteSameSound: 0
+  ignoreEffectStop: 1
+  overrideMixerGroup: 0
+  mixerGroup: {fileID: 0}
+  overrideVolume: 0
+  volume: 1
+  overridePitch: 0
+  pitchMin: 0.95
+  pitchMax: 1.05
 --- !u!1 &582157540
 GameObject:
   m_ObjectHideFlags: 0
@@ -4732,6 +4837,171 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e45c807a8e8ae2d49bffbf3b9adefcce, type: 3}
+--- !u!43 &695760026
+Mesh:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 11
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 0
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 0
+    localAABB:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0, y: 0, z: 0}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_BonesAABB: []
+  m_VariableBoneCountWeights:
+    m_Data: 
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexFormat: 0
+  m_IndexBuffer: 
+  m_VertexData:
+    serializedVersion: 3
+    m_VertexCount: 0
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 0
+    _typelessdata: 
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_MeshUsageFlags: 0
+  m_CookingOptions: 30
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  'm_MeshMetrics[0]': 1
+  'm_MeshMetrics[1]': 1
+  m_MeshOptimizationFlags: 1
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 
 --- !u!1 &710312397
 GameObject:
   m_ObjectHideFlags: 0
@@ -4996,171 +5266,6 @@ Transform:
   - {fileID: 775408932}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!43 &894031210
-Mesh:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 11
-  m_SubMeshes:
-  - serializedVersion: 2
-    firstByte: 0
-    indexCount: 0
-    topology: 0
-    baseVertex: 0
-    firstVertex: 0
-    vertexCount: 0
-    localAABB:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0, y: 0, z: 0}
-  m_Shapes:
-    vertices: []
-    shapes: []
-    channels: []
-    fullWeights: []
-  m_BindPose: []
-  m_BoneNameHashes: 
-  m_RootBoneNameHash: 0
-  m_BonesAABB: []
-  m_VariableBoneCountWeights:
-    m_Data: 
-  m_MeshCompression: 0
-  m_IsReadable: 1
-  m_KeepVertices: 1
-  m_KeepIndices: 1
-  m_IndexFormat: 0
-  m_IndexBuffer: 
-  m_VertexData:
-    serializedVersion: 3
-    m_VertexCount: 0
-    m_Channels:
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 3
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    m_DataSize: 0
-    _typelessdata: 
-  m_CompressedMesh:
-    m_Vertices:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UV:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Normals:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Tangents:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Weights:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_NormalSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_TangentSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_FloatColors:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_BoneIndices:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Triangles:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UVInfo: 0
-  m_LocalAABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_MeshUsageFlags: 0
-  m_CookingOptions: 30
-  m_BakedConvexCollisionMesh: 
-  m_BakedTriangleCollisionMesh: 
-  'm_MeshMetrics[0]': 1
-  'm_MeshMetrics[1]': 1
-  m_MeshOptimizationFlags: 1
-  m_StreamData:
-    serializedVersion: 2
-    offset: 0
-    size: 0
-    path: 
 --- !u!4 &920923374 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4919760744038258572, guid: 3ee35e6610c6a464b95f0cdd82905209, type: 3}
@@ -5789,6 +5894,86 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e45c807a8e8ae2d49bffbf3b9adefcce, type: 3}
+--- !u!1 &1271205349
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1271205350}
+  - component: {fileID: 1271205352}
+  - component: {fileID: 1271205351}
+  m_Layer: 0
+  m_Name: Metal Effect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1271205350
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271205349}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1871462298}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1271205351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271205349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: Metal step sound
+  active: 1
+  restartOnPlay: 1
+  keepStateOnStop: 0
+  initialDelayMin: 0
+  initialDelayMax: 0
+  randomizeDelay: 0
+  clips:
+  - {fileID: 11400000, guid: 7292bfc6ab4b47b44bd4a4edf4b4f0cf, type: 2}
+  sourceSettings:
+    id: 0
+    loop: 0
+    playOnlyWhenNotPlaying: 0
+    muteSameSound: 0
+  ignoreEffectStop: 1
+  overrideMixerGroup: 0
+  mixerGroup: {fileID: 0}
+  overrideVolume: 0
+  volume: 1
+  overridePitch: 0
+  pitchMin: 0.95
+  pitchMax: 1.05
+--- !u!114 &1271205352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271205349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoplay: 0
 --- !u!1 &1279519985
 GameObject:
   m_ObjectHideFlags: 0
@@ -6084,8 +6269,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1341054203}
   - component: {fileID: 1341054204}
+  - component: {fileID: 1341054205}
   m_Layer: 0
-  m_Name: Stone Effect
+  m_Name: Glass Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6119,6 +6305,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoplay: 0
+--- !u!114 &1341054205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341054202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: Glass step sound
+  active: 1
+  restartOnPlay: 1
+  keepStateOnStop: 0
+  initialDelayMin: 0
+  initialDelayMax: 0
+  randomizeDelay: 0
+  clips:
+  - {fileID: 11400000, guid: 3c06ccc7d108eab408b9a3467d56df05, type: 2}
+  sourceSettings:
+    id: 0
+    loop: 0
+    playOnlyWhenNotPlaying: 0
+    muteSameSound: 0
+  ignoreEffectStop: 1
+  overrideMixerGroup: 0
+  mixerGroup: {fileID: 0}
+  overrideVolume: 0
+  volume: 1
+  overridePitch: 0
+  pitchMin: 0.95
+  pitchMax: 1.05
 --- !u!224 &1347673021 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5062308113126762760, guid: e45c807a8e8ae2d49bffbf3b9adefcce, type: 3}
@@ -7055,6 +7275,86 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1653145124
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1653145125}
+  - component: {fileID: 1653145127}
+  - component: {fileID: 1653145126}
+  m_Layer: 0
+  m_Name: Snow Effect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1653145125
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653145124}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1871462298}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1653145126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653145124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: Snow step sound
+  active: 1
+  restartOnPlay: 1
+  keepStateOnStop: 0
+  initialDelayMin: 0
+  initialDelayMax: 0
+  randomizeDelay: 0
+  clips:
+  - {fileID: 11400000, guid: 3d941c8a9cfd42646b31874819f7a4c3, type: 2}
+  sourceSettings:
+    id: 0
+    loop: 0
+    playOnlyWhenNotPlaying: 0
+    muteSameSound: 0
+  ignoreEffectStop: 1
+  overrideMixerGroup: 0
+  mixerGroup: {fileID: 0}
+  overrideVolume: 0
+  volume: 1
+  overridePitch: 0
+  pitchMin: 0.95
+  pitchMax: 1.05
+--- !u!114 &1653145127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653145124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoplay: 0
 --- !u!1 &1663569644
 GameObject:
   m_ObjectHideFlags: 0
@@ -7113,7 +7413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info: Play carpet sounds
+  info: Carpet step sound
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
@@ -7654,6 +7954,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1813177478}
   - component: {fileID: 1813177479}
+  - component: {fileID: 1813177480}
   m_Layer: 0
   m_Name: Wood Effect
   m_TagString: Untagged
@@ -7689,6 +7990,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoplay: 0
+--- !u!114 &1813177480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813177477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: Wood step sound
+  active: 1
+  restartOnPlay: 1
+  keepStateOnStop: 0
+  initialDelayMin: 0
+  initialDelayMax: 0
+  randomizeDelay: 0
+  clips:
+  - {fileID: 11400000, guid: 32d8d9340963a7643a8e1cc5af69f78f, type: 2}
+  sourceSettings:
+    id: 0
+    loop: 0
+    playOnlyWhenNotPlaying: 0
+    muteSameSound: 0
+  ignoreEffectStop: 1
+  overrideMixerGroup: 0
+  mixerGroup: {fileID: 0}
+  overrideVolume: 0
+  volume: 1
+  overridePitch: 0
+  pitchMin: 0.95
+  pitchMax: 1.05
 --- !u!1 &1871462297
 GameObject:
   m_ObjectHideFlags: 0
@@ -7721,12 +8056,14 @@ Transform:
   m_Children:
   - {fileID: 280942307}
   - {fileID: 1813177478}
+  - {fileID: 1271205350}
   - {fileID: 1341054203}
-  - {fileID: 553383627}
-  - {fileID: 422358939}
   - {fileID: 1663569645}
+  - {fileID: 422358939}
+  - {fileID: 553383627}
   - {fileID: 52272364}
   - {fileID: 2022190290}
+  - {fileID: 1653145125}
   m_Father: {fileID: 1455175583}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1871462299
@@ -7744,12 +8081,14 @@ MonoBehaviour:
   interactionService: {fileID: 1455175584}
   tileStepEffector: {fileID: 280942308}
   woodStepEffector: {fileID: 1813177479}
-  stoneStepEffector: {fileID: 1341054204}
-  grassStepEffector: {fileID: 553383628}
-  dirtStepEffector: {fileID: 422358940}
-  sandStepEffector: {fileID: 52272365}
+  metalStepEffector: {fileID: 1271205352}
+  glassStepEffector: {fileID: 1341054204}
   carpetStepEffector: {fileID: 1663569646}
+  dirtStepEffector: {fileID: 422358940}
+  grassStepEffector: {fileID: 553383628}
+  sandStepEffector: {fileID: 52272365}
   waterStepEffector: {fileID: 2022190291}
+  snowStepEffector: {fileID: 1653145127}
 --- !u!1 &1884322940
 GameObject:
   m_ObjectHideFlags: 0
@@ -8208,6 +8547,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2022190290}
   - component: {fileID: 2022190291}
+  - component: {fileID: 2022190292}
   m_Layer: 0
   m_Name: Water Effect
   m_TagString: Untagged
@@ -8243,6 +8583,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoplay: 0
+--- !u!114 &2022190292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022190289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: Water step sound
+  active: 1
+  restartOnPlay: 1
+  keepStateOnStop: 0
+  initialDelayMin: 0
+  initialDelayMax: 0
+  randomizeDelay: 0
+  clips:
+  - {fileID: 11400000, guid: 910cc19e6d228e341ac0a2de36c7ce48, type: 2}
+  sourceSettings:
+    id: 0
+    loop: 0
+    playOnlyWhenNotPlaying: 0
+    muteSameSound: 0
+  ignoreEffectStop: 1
+  overrideMixerGroup: 0
+  mixerGroup: {fileID: 0}
+  overrideVolume: 0
+  volume: 1
+  overridePitch: 0
+  pitchMin: 0.95
+  pitchMax: 1.05
 --- !u!1 &2039533158
 GameObject:
   m_ObjectHideFlags: 3

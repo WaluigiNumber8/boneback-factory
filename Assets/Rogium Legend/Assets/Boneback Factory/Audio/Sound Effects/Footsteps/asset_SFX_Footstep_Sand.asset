@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: asset_SFX_Footstep_Sand
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 6bfb2e1bbe04fc84aad03e22ebc4fb5c, type: 3}
-  - {fileID: 8300000, guid: 65bfdad6946025947994bbf8115ded71, type: 3}
-  - {fileID: 8300000, guid: e900511c2441e8545ace02dfdeda06d6, type: 3}
+  - {fileID: 8300000, guid: 247f56ceff3c19b42b547733a971132d, type: 3}
+  - {fileID: 8300000, guid: 8c1f798a68055154b823102cea09599d, type: 3}
+  - {fileID: 8300000, guid: b093e5787f38f394bab5918272dc6a73, type: 3}
   mixerGroup: {fileID: -7128948430085313062, guid: 15e85eab3684ad9409d53f645746215d, type: 2}
-  volume: 0.504
+  volume: 0.7
   pitchMin: 0.95
   pitchMax: 1.05
-  avoidLastPlayed: 0

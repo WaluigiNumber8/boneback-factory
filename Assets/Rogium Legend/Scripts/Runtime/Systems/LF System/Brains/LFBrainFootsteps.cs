@@ -1,6 +1,7 @@
 using RedRats.Systems.LiteFeel.Core;
 using Rogium.Editors.Tiles;
 using Rogium.Gameplay.TilemapInteractions;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Rogium.Systems.LiteFeel.Brains
@@ -10,18 +11,18 @@ namespace Rogium.Systems.LiteFeel.Brains
     /// </summary>
     public class LFBrainFootsteps : MonoBehaviour
     {
-        [SerializeField] private FloorInteractionService interactionService;
+        [SerializeField, GUIColor(0.85f, 0.8f, 0f)] private FloorInteractionService interactionService;
         [Space] 
-        [SerializeField] private LFEffector tileStepEffector;
-        [SerializeField] private LFEffector woodStepEffector;
-        [SerializeField] private LFEffector metalStepEffector;
-        [SerializeField] private LFEffector glassStepEffector;
-        [SerializeField] private LFEffector carpetStepEffector;
-        [SerializeField] private LFEffector dirtStepEffector;
-        [SerializeField] private LFEffector grassStepEffector;
-        [SerializeField] private LFEffector sandStepEffector;
-        [SerializeField] private LFEffector waterStepEffector;
-        [SerializeField] private LFEffector snowStepEffector;
+        [SerializeField, GUIColor(0.1f, 1f, 0f)] private LFEffector tileStepEffector;
+        [SerializeField, GUIColor(0.1f, 1f, 0f)] private LFEffector woodStepEffector;
+        [SerializeField, GUIColor(0.1f, 1f, 0f)] private LFEffector metalStepEffector;
+        [SerializeField, GUIColor(0.1f, 1f, 0f)] private LFEffector glassStepEffector;
+        [SerializeField, GUIColor(0.1f, 1f, 0f)] private LFEffector carpetStepEffector;
+        [SerializeField, GUIColor(0.1f, 1f, 0f)] private LFEffector dirtStepEffector;
+        [SerializeField, GUIColor(0.1f, 1f, 0f)] private LFEffector grassStepEffector;
+        [SerializeField, GUIColor(0.1f, 1f, 0f)] private LFEffector sandStepEffector;
+        [SerializeField, GUIColor(0.1f, 1f, 0f)] private LFEffector waterStepEffector;
+        [SerializeField, GUIColor(0.1f, 1f, 0f)] private LFEffector snowStepEffector;
 
         private void OnEnable() => interactionService.OnFootstep += PlayEffect;
         private void OnDisable() => interactionService.OnFootstep -= PlayEffect;
