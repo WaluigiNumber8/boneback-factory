@@ -13,7 +13,7 @@ namespace Rogium.Gameplay.TilemapInteractions
     /// </summary>
     public class FloorInteractionService : MonoBehaviour
     {
-        public event Action<TerrainType> OnFootstep;
+        public event Action<Transform, TerrainType> OnFootstep;
         
         [SerializeField] private Tilemap floorMap;
         
@@ -26,16 +26,16 @@ namespace Rogium.Gameplay.TilemapInteractions
         }
 
         /// <summary>
-        /// Triggers all floor effects for an entity that stepped on a specific tile.
+        /// Triggers all floor effects for an object that stepped on a specific tile.
         /// </summary>
-        public void TriggerFloorEffect(Vector3 worldPosition)
+        public void TriggerFloorEffect(Transform entity)
         {
-            Tile tile = GetTileFromCurrentPosition(worldPosition);
+            Tile tile = GetTileFromCurrentPosition(entity.position);
             if (tile == null) return;
             
             //Apply effects
             FloorTileInfo data = floorTiles[tile];
-            OnFootstep?.Invoke(data.terrainType);
+            OnFootstep?.Invoke(entity, data.terrainType);
         }
 
         private Tile GetTileFromCurrentPosition(Vector3 worldPosition)

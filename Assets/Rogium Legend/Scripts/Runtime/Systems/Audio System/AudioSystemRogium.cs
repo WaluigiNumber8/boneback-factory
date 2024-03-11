@@ -31,8 +31,20 @@ namespace Rogium.Systems.Audio
         /// </summary>
         /// <param name="soundData">Data of used sound, volume, pitch and others.</param>
         /// <param name="mixerGroup">The mixer group under which to play the sound.</param>
-        /// <param name="settings">Settings for the <see cref="AudioSource"/>.</param>
-        public void PlaySound(AssetData soundData, AudioMixerGroup mixerGroup, AudioSourceSettingsInfo settings)
+        /// <param name="sourceSettings">Settings for the <see cref="AudioSource"/>.</param>
+        public void PlaySound(AssetData soundData, AudioMixerGroup mixerGroup, AudioSourceSettingsInfo sourceSettings)
+        {
+            PlaySound(soundData, mixerGroup, sourceSettings, new AudioSpatialSettingsInfo(0f, null));
+        }
+        
+        /// <summary>
+        /// Plays a sound from the sound library based on the given <paramref name="soundData"/>.
+        /// </summary>
+        /// <param name="soundData">Data of used sound, volume, pitch and others.</param>
+        /// <param name="mixerGroup">The mixer group under which to play the sound.</param>
+        /// <param name="sourceSettings">Settings for the <see cref="AudioSource"/>.</param>
+        /// <param name="spatialSettings">Settings for 3D sound.</param>
+        public void PlaySound(AssetData soundData, AudioMixerGroup mixerGroup, AudioSourceSettingsInfo sourceSettings, AudioSpatialSettingsInfo spatialSettings)
         {
             if (soundData.ID == EditorConstants.EmptyAssetID) return;
             
@@ -42,7 +54,7 @@ namespace Rogium.Systems.Audio
             float pitchMin = (soundData.Parameters.boolValue1) ? pitch - EditorConstants.SoundPitchOffset : pitch;
             float pitchMax = (soundData.Parameters.boolValue1) ? pitch + EditorConstants.SoundPitchOffset : pitch;
             
-            audioSystem.PlaySound(clip, mixerGroup, settings, volume, pitchMin, pitchMax);
+            audioSystem.PlaySound(clip, mixerGroup, sourceSettings, spatialSettings, volume, pitchMin, pitchMax);
         }
     }
 }

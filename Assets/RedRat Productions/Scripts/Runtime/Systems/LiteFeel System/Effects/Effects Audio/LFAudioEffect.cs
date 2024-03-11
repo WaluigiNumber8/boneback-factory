@@ -13,6 +13,8 @@ namespace RedRats.Systems.LiteFeel.Effects
     {
         [SerializeField] private AudioClipSO[] clips;
         [SerializeField] private AudioSourceSettingsInfo sourceSettings;
+        [SerializeField] private AudioSpatialSettingsInfo spatialSettings;
+        
         [SerializeField] private bool ignoreEffectStop = true;
         
         [Header("Override Settings")] 
@@ -43,7 +45,7 @@ namespace RedRats.Systems.LiteFeel.Effects
             float vol = (overrideVolume) ? volume : c.Volume;
             float pMin = (overridePitch) ? pitchMin : c.PitchMin;
             float pMax = (overridePitch) ? pitchMax : c.PitchMax;
-            mySource = audioSystem.PlaySound(c.Clip, mixer, sourceSettings, vol, pMin, pMax);
+            mySource = audioSystem.PlaySound(c.Clip, mixer, sourceSettings, spatialSettings, vol, pMin, pMax);
         }
 
         protected override void StopSelf()
@@ -62,6 +64,8 @@ namespace RedRats.Systems.LiteFeel.Effects
             // Nothing to do here.
         }
 
+        #region Update values
+
         public void ChangeClip(AudioClipSO newClip) => clips = new[] {newClip};
         public void ChangeClips(AudioClipSO[] newClips) => clips = newClips;
         public void ChangePitch(float newPitch) => ChangePitch(newPitch, newPitch);
@@ -71,6 +75,9 @@ namespace RedRats.Systems.LiteFeel.Effects
             pitchMin = newPitchMin;
             pitchMax = newPitchMax;
         }
+        public void ChangeSoundTarget(Transform newTarget) => spatialSettings.soundTarget = newTarget;
+
+        #endregion
         
         protected override float TotalDuration { get => clipDuration * ((sourceSettings.loop) ? int.MaxValue : 1); }
         protected override string FeedbackColor { get => "#FFCD1C"; }
