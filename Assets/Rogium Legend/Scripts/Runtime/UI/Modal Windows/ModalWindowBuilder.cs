@@ -22,9 +22,12 @@ namespace Rogium.UserInterface.ModalWindows
         [Title("Modal Window Prefabs")]
         [SerializeField] private AssetPickerWindow assetPickerWindow;
         [SerializeField] private SoundPickerWindow soundPickerWindow;
+        [SerializeField] private ColorPickerWindow colorPickerWindow;
+        
         
         private AssetPickerWindow cachedAssetPickerWindow;
         private SoundPickerWindow cachedSoundPickerWindow;
+        private ColorPickerWindow cachedColorPickerWindow;
 
         protected override void Awake()
         {
@@ -33,6 +36,8 @@ namespace Rogium.UserInterface.ModalWindows
             cachedAssetPickerWindow.Close();
             cachedSoundPickerWindow = Instantiate(soundPickerWindow, windowParent);
             cachedSoundPickerWindow.Close();
+            cachedColorPickerWindow = Instantiate(colorPickerWindow, windowParent);
+            cachedColorPickerWindow.Close();
         }
 
         /// <summary>
@@ -87,14 +92,27 @@ namespace Rogium.UserInterface.ModalWindows
         /// <summary>
         /// Opens the sound picker window.
         /// </summary>
-        /// <param name="onChangeSound">Method that runs when the currently edited sound is changed.</param>
+        /// <param name="whenSoundChanged">Method that runs when the currently edited sound is changed.</param>
         /// <param name="onChangeAnyValue">Method that runs when any property in the window is updated.</param>
         /// <param name="value">Which data to load up into the window.</param>
-        public void OpenSoundPickerWindow(Action<SoundAsset> onChangeSound, Action<AssetData> onChangeAnyValue, AssetData value)
+        public void OpenSoundPickerWindow(Action<SoundAsset> whenSoundChanged, Action<AssetData> onChangeAnyValue, AssetData value)
         {
             SoundPickerWindow window = (cachedSoundPickerWindow.IsOpen) ? Instantiate(soundPickerWindow, windowParent) : cachedSoundPickerWindow;
-            window.Construct(onChangeSound, onChangeAnyValue, value);
+            window.Construct(whenSoundChanged, onChangeAnyValue, value);
             ThemeUpdaterRogium.UpdateSoundPickerWindow(window);
+            window.Open();
+        }
+        
+        /// <summary>
+        /// Opens a new color picker window.
+        /// </summary>
+        /// <param name="whenColorChanged">Method that runs when the edited color is changed.</param>
+        /// <param name="preselectedColor">Which data to load up into the window.</param>
+        public void OpenColorPickerWindow(Action<Color> whenColorChanged, Color preselectedColor)
+        {
+            ColorPickerWindow window = (cachedColorPickerWindow.IsOpen) ? Instantiate(colorPickerWindow, windowParent) : cachedColorPickerWindow;
+            window.Construct(whenColorChanged, preselectedColor);
+            // ThemeUpdaterRogium.UpdateColorPickerWindow(window);
             window.Open();
         }
        

@@ -1,4 +1,5 @@
 using System;
+using Rogium.UserInterface.ModalWindows;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -19,8 +20,7 @@ namespace Rogium.UserInterface.Interactables
         public override void OnPointerDown(PointerEventData eventData)
         {
             base.OnPointerDown(eventData);
-            
-            // Open ColorWindow
+            ModalWindowBuilder.GetInstance().OpenColorPickerWindow(WhenColorPicked, value);
         }
 
         /// <summary>

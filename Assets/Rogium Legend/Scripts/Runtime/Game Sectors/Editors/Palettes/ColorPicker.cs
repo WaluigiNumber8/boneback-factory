@@ -1,4 +1,5 @@
-﻿using RedRats.UI.InputFields;
+﻿using System;
+using RedRats.UI.InputFields;
 using RedRats.UI.Sliders;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,18 +7,21 @@ using UnityEngine.UI;
 namespace Rogium.Editors.Palettes
 {
     /// <summary>
-    /// Manages the color picker.
+    /// Represents a color picker, that allows the user to pick a color using sliders and a HTML field.
     /// </summary>
-    public class ColorPickerManager : MonoBehaviour
+    public class ColorPicker : MonoBehaviour
     {
         private const int ConversionValue = 255;
+
+        public event Action<Color> OnValueChanged;
         
         [SerializeField] private Image colorGuide;
         [SerializeField] private SliderInfo sliders;
         [SerializeField] private HTMLColorField htmlField;
         
-        private Color currentColor;
         private Image otherGuideImage;
+        
+        private Color currentColor;
         private bool cannotUpdateHTML;
 
         private void OnEnable()
@@ -68,8 +72,7 @@ namespace Rogium.Editors.Palettes
         private void RefreshColorGuide()
         {
             colorGuide.color = currentColor;
-            if (otherGuideImage != null)
-                otherGuideImage.color = currentColor;
+            if (otherGuideImage != null) otherGuideImage.color = currentColor;
         }
         
         /// <summary>
@@ -104,6 +107,7 @@ namespace Rogium.Editors.Palettes
         {
             currentColor.r = value / ConversionValue;
             RefreshHTMLField();
+            WhenValueChanged();
         }
         
         /// <summary>
@@ -114,6 +118,7 @@ namespace Rogium.Editors.Palettes
         {
             currentColor.g = value / ConversionValue;
             RefreshHTMLField();
+            WhenValueChanged();
         }
         
         /// <summary>
@@ -124,6 +129,7 @@ namespace Rogium.Editors.Palettes
         {
             currentColor.b = value / ConversionValue;
             RefreshHTMLField();
+            WhenValueChanged();
         }
 
         private void UpdateColorHTML(Color color)
@@ -132,9 +138,12 @@ namespace Rogium.Editors.Palettes
             cannotUpdateHTML = true;
             RefreshSliders();
             cannotUpdateHTML = false;
+            WhenValueChanged();
         }
 
         #endregion
+
+        private void WhenValueChanged() => OnValueChanged?.Invoke(currentColor);
 
         public Color CurrentColor { get => currentColor; }
         

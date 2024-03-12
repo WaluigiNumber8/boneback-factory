@@ -36,7 +36,7 @@ namespace RedRats.UI.ModalWindows
         /// <summary>
         /// Close the window.
         /// </summary>
-        public void Close()
+        public virtual void Close()
         {
             generalUI.entireArea.SetActive(false);
             OnClose?.Invoke();
