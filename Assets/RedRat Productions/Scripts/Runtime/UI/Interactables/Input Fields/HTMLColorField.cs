@@ -12,12 +12,17 @@ namespace RedRats.UI.InputFields
     {
         public event Action<Color> OnValueChanged;
 
+        [SerializeField] private TMP_InputField inputField;
+        
         [SerializeField] private bool addHash;
         
-        private TMP_InputField inputField;
         private bool ignoreValueChange;
 
-        private void Awake() => inputField = GetComponent<TMP_InputField>();
+        private void Awake()
+        {
+            if (inputField == null) inputField = GetComponent<TMP_InputField>();
+        }
+
         private void OnEnable() => inputField.onValueChanged.AddListener(ProcessValue);
         private void OnDisable() => inputField.onValueChanged.RemoveListener(ProcessValue);
 

@@ -93,8 +93,8 @@ namespace Rogium.Editors.PropertyEditor.Builders
             BuildWeaponSection(content);
             
             b.BuildHeader("Sound", content);
-            b.BuildSoundPicker("Hurt", asset.HurtSound, content, asset.UpdateHurtSound);
-            b.BuildSoundPicker("Death", asset.DeathSound, content, asset.UpdateDeathSound);
+            b.BuildSoundField("Hurt", asset.HurtSound, content, asset.UpdateHurtSound);
+            b.BuildSoundField("Death", asset.DeathSound, content, asset.UpdateDeathSound);
         }
 
         private void ProcessAnimationType(int animType)

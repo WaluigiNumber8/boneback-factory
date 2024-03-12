@@ -1,4 +1,5 @@
 ﻿using System;
+using RedRats.Systems.FileSystem.JSON.Serialization;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Rooms;
@@ -14,6 +15,7 @@ namespace Rogium.ExternalStorage.Serialization
         public int difficultyLevel;
         public int type;
         public int lightness;
+        public JSONColor lightnessColor;
         public JSONGrid<AssetData> tileGrid;
         public JSONGrid<AssetData> objectGrid;
         public JSONGrid<AssetData> enemyGrid;
@@ -23,6 +25,7 @@ namespace Rogium.ExternalStorage.Serialization
             difficultyLevel = asset.DifficultyLevel;
             type = (int)asset.Type;
             lightness = asset.Lightness;
+            lightnessColor = new JSONColor(asset.LightnessColor);
             tileGrid = new JSONGrid<AssetData>(asset.TileGrid);
             objectGrid = new JSONGrid<AssetData>(asset.ObjectGrid);
             enemyGrid = new JSONGrid<AssetData>(asset.EnemyGrid);
@@ -45,6 +48,7 @@ namespace Rogium.ExternalStorage.Serialization
                                  difficultyLevel,
                                  (RoomType)type,
                                  lightness,
+                                 lightnessColor.Decode(),
                                  tileGrid.Decode(),
                                  objectGrid.Decode(),
                                  enemyGrid.Decode(),

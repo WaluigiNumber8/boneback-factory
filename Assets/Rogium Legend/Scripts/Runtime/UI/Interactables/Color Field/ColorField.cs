@@ -27,9 +27,13 @@ namespace Rogium.UserInterface.Interactables
         /// Construct the ColorField with initial values.
         /// </summary>
         /// <param name="value">The <see cref="Color"/> value to hold.</param>
-        public void Construct(Color value) => this.value = value;
+        public void Construct(Color value)
+        {
+            this.value = value;
+            ui.color.color = value;
+        }
 
-        
+
         /// <summary>
         /// Update everything based on the grabbed color.
         /// </summary>

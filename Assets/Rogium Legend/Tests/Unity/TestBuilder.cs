@@ -28,7 +28,7 @@ public static class TestBuilder
         tileGrid.SetValue(2, 1, new AssetData(tile.ID, ParameterInfoConstants.ForTile));
         tileGrid.SetValue(5, 1, new AssetData(tile.ID, ParameterInfoConstants.ForTile));
 
-        RoomAsset room = new RoomAsset("Devil Room", EditorConstants.RoomIcon, "Test Author", 0, RoomType.Common, 255, tileGrid, objectGrid, enemyGrid);
+        RoomAsset room = new();
         PackAsset pack = new PackAsset("Test Pack", "Test Author", "Just a pack");
         pack.Tiles.Add(tile);
         pack.Rooms.Add(room);

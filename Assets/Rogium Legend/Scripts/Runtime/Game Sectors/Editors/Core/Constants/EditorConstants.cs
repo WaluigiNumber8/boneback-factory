@@ -17,7 +17,7 @@ namespace Rogium.Editors.Core.Defaults
         public const string PackTitle = "New Pack";
         public const string PackDescription = "A new pack filled with adventure!";
         public static readonly Sprite PackIcon = Resources.Load<Sprite>("Defaults/spr_Default_Pack");
-        
+
         //Campaign
         public const string CampaignTitle = "New Campaign";
         public static readonly Sprite CampaignIcon = Resources.Load<Sprite>("Defaults/spr_Default_Weapon");
@@ -26,21 +26,21 @@ namespace Rogium.Editors.Core.Defaults
         //Palette
         public const string PaletteTitle = "New Palette";
         public const int PaletteSize = 9;
-        
+
         //Sprite
         public const string SpriteTitle = "New Sprite";
         public static readonly Sprite SpriteIcon = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
         public const int SpriteSize = 16;
-        
+
         //Weapon
         public const string WeaponTitle = "New Weapon";
         public static readonly Sprite WeaponIcon = Resources.Load<Sprite>("Defaults/spr_Default_Weapon");
-        
+
         public const AnimationType WeaponAnimationType = AnimationType.NoAnimation;
         public const int WeaponFrameDuration = 40;
         public const int WeaponFrameDurationMax = 1200;
         public static readonly Sprite WeaponIconAlt = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
-        
+
         public const int WeaponBaseDamage = 2;
         public const float WeaponUseDelay = 1.2f;
         public const float WeaponUseCooldownMax = 1.2f;
@@ -60,22 +60,22 @@ namespace Rogium.Editors.Core.Defaults
         public const float WeaponUseStartDelayMax = 20f;
         public const bool WeaponIsEvasive = false;
         public const bool WeaponFreezeUser = true;
-        
+
         public const int WeaponProjectileMaxCount = 12;
         public const int WeaponProjectileAngleOffset = 0;
         public const int WeaponProjectileAngleOffsetMax = 180;
         public const float WeaponProjectileSpawnDelay = 0;
         public const float WeaponProjectileSpawnDelayMax = 20f;
-        
+
         //Projectile
         public const string ProjectileTitle = "New Projectile";
         public static readonly Sprite ProjectileIcon = Resources.Load<Sprite>("Defaults/spr_Default_Projectile");
-        
+
         public const AnimationType ProjectileAnimationType = AnimationType.NoAnimation;
         public const int ProjectileFrameDuration = 40;
         public const int ProjectileFrameDurationMax = 1200;
         public static readonly Sprite ProjectileIconAlt = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
-        
+
         public const int ProjectileBaseDamage = 1;
         public const float ProjectileLifetime = 0.5f;
         public const float ProjectileLifetimeMax = 120f;
@@ -94,7 +94,7 @@ namespace Rogium.Editors.Core.Defaults
         public const PierceType ProjectilePierceType = PierceType.None;
         public const float ProjectileMaxAcceleration = 0.5f;
         public const float ProjectileMaxBrakeForce = 0.5f;
-        
+
         //Enemy
         public const string EnemyTitle = "New Enemy";
         public static readonly Sprite EnemyIcon = Resources.Load<Sprite>("Defaults/spr_Default_Enemy");
@@ -103,7 +103,7 @@ namespace Rogium.Editors.Core.Defaults
         public const int EnemyFrameDuration = 50;
         public const int EnemyFrameDurationMax = 1200;
         public static readonly Sprite EnemyIconAlt = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
-        
+
         public const int EnemyBaseDamage = 1;
         public const float EnemyInvincibilityTimeMax = 20;
         public const float EnemyAttackDelay = 2f;
@@ -121,21 +121,22 @@ namespace Rogium.Editors.Core.Defaults
         public const float EnemyAttackProbability = 100;
         public const float EnemyInvincibilityTime = 0.25f;
         public const int EnemyWeaponMaxCount = 4;
-        
+
         public const AIType EnemyAI = AIType.LookInDirection;
         public const DirectionType EnemyStartingDirection = DirectionType.Down;
         public const bool EnemySeamlessMovement = false;
         public const float EnemyNextStepTime = 0.25f;
         public const float EnemyNextStepTimeMax = 20f;
-        
+
         //Room
         public const string RoomTitle = "New Room";
         public static readonly Sprite RoomIcon = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
-        public static readonly Vector2Int RoomSize = new Vector2Int(15, 10);
+        public static readonly Vector2Int RoomSize = new(15, 10);
         public const int RoomDifficulty = 0;
         public const RoomType RoomType = Rooms.RoomType.Common;
         public const int RoomLightness = 255;
-        
+        public static readonly Color RoomLightnessColor = new(1, 1, 1, 1);
+
         //Tile
         public const string TileTitle = "New Tile";
         public static readonly Sprite TileIcon = Resources.Load<Sprite>("Defaults/spr_Default_Tile");
@@ -143,7 +144,7 @@ namespace Rogium.Editors.Core.Defaults
 
         //Sound
         public const float SoundPitchOffset = 0.05f;
-        
+
         //Other
         public const string EmptyAssetID = "-1";
         public const int EmptyColorID = -1;
@@ -156,13 +157,13 @@ namespace Rogium.Editors.Core.Defaults
         public static readonly Sprite MissingSprite = Resources.Load<Sprite>("Defaults/spr_Missing");
         public static readonly Color MissingColor = new Color(255, 88, 227);
         public static readonly Color DefaultColor = Color.white;
-        
+
         //Asset SubMenu
         public const string AssetMenuBase = "Rogium Legend/";
         public const string AssetMenuAssets = "Rogium Legend/Assets/";
         public const string AssetMenuEditor = "Rogium Legend/Editor/";
         public const string AssetMenuGameplay = "Rogium Legend/Gameplay/";
-        
+
         //Tools SubMenu
         public const string ToolMenuBase = "Tools/Rogium Legend/";
     }
