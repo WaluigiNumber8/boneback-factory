@@ -105,6 +105,7 @@ namespace Rogium.Editors.Rooms
         
         public void UpdateLightnessColor(Color newColor)
         {
+            //TODO Remove once all old rooms are updated
             lightnessColor = new(newColor.r, newColor.g, newColor.b, 1);
         }
 
