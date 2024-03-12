@@ -108,8 +108,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8819414215520319242}
   - component: {fileID: 3442492309684909175}
-  - component: {fileID: 6963719186325603469}
   - component: {fileID: 800511836377465160}
+  - component: {fileID: 6963719186325603469}
   - component: {fileID: 4747816953386754048}
   - component: {fileID: 4447298300965293656}
   - component: {fileID: 2494973131124186035}
@@ -148,6 +148,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoplay: 0
+--- !u!114 &800511836377465160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614907292258137287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: General Hit Sound
+  active: 1
+  restartOnPlay: 1
+  keepStateOnStop: 0
+  initialDelayMin: 0
+  initialDelayMax: 0.02
+  randomizeDelay: 1
+  clips:
+  - {fileID: 11400000, guid: 6a9bf45200576b444b5e95edc0976c0e, type: 2}
+  sourceSettings:
+    id: 0
+    loop: 0
+    playOnlyWhenNotPlaying: 0
+    muteSameSound: 0
+  spatialSettings:
+    spatialBlend: 0
+    soundTarget: {fileID: 8749843501973659661}
+    minDistance: 2.5
+    maxDistance: 5
+  ignoreEffectStop: 1
+  overrideMixerGroup: 0
+  mixerGroup: {fileID: 0}
+  overrideVolume: 0
+  volume: 1
+  overridePitch: 0
+  pitchMin: 0.95
+  pitchMax: 1.05
 --- !u!114 &6963719186325603469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,45 +241,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &800511836377465160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1614907292258137287}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  info: General Hit Sound
-  active: 1
-  restartOnPlay: 1
-  keepStateOnStop: 0
-  initialDelayMin: 0
-  initialDelayMax: 0.02
-  randomizeDelay: 1
-  clips:
-  - {fileID: 11400000, guid: 6a9bf45200576b444b5e95edc0976c0e, type: 2}
-  sourceSettings:
-    id: 0
-    loop: 0
-    playOnlyWhenNotPlaying: 0
-    muteSameSound: 0
-  spatialSettings:
-    spatialBlend: 0
-    soundTarget: {fileID: 0}
-    minDistance: 0
-    maxDistance: 0
-  ignoreEffectStop: 1
-  overrideMixerGroup: 0
-  mixerGroup: {fileID: 0}
-  overrideVolume: 0
-  volume: 1
-  overridePitch: 0
-  pitchMin: 0.95
-  pitchMax: 1.05
 --- !u!114 &4747816953386754048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -695,9 +695,9 @@ MonoBehaviour:
     muteSameSound: 0
   spatialSettings:
     spatialBlend: 0
-    soundTarget: {fileID: 0}
-    minDistance: 0
-    maxDistance: 0
+    soundTarget: {fileID: 8749843501973659661}
+    minDistance: 2.5
+    maxDistance: 4
   ignoreEffectStop: 1
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
@@ -779,7 +779,7 @@ MonoBehaviour:
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
-  duration: 0.12
+  duration: 0.1
   infiniteLoop: 0
   loops: 1
   loopType: 0
