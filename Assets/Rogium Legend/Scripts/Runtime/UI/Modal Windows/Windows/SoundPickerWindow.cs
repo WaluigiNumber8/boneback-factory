@@ -17,7 +17,7 @@ namespace Rogium.UserInterface.ModalWindows
     /// <summary>
     /// Represents a modal window that allows the user to pick a sound from the sound library.
     /// </summary>
-    public class SoundPickerModalWindow : ModalWindowBase
+    public class SoundPickerWindow : ModalWindowBase
     {
         [SerializeField] private UIInfo ui;
         

@@ -21,10 +21,10 @@ namespace Rogium.UserInterface.ModalWindows
         
         [Title("Modal Window Prefabs")]
         [SerializeField] private AssetPickerWindow assetPickerWindow;
-        [SerializeField] private SoundPickerModalWindow soundPickerWindow;
+        [SerializeField] private SoundPickerWindow soundPickerWindow;
         
         private AssetPickerWindow cachedAssetPickerWindow;
-        private SoundPickerModalWindow cachedSoundPickerWindow;
+        private SoundPickerWindow cachedSoundPickerWindow;
 
         protected override void Awake()
         {
@@ -92,7 +92,7 @@ namespace Rogium.UserInterface.ModalWindows
         /// <param name="value">Which data to load up into the window.</param>
         public void OpenSoundPickerWindow(Action<SoundAsset> onChangeSound, Action<AssetData> onChangeAnyValue, AssetData value)
         {
-            SoundPickerModalWindow window = (cachedSoundPickerWindow.IsOpen) ? Instantiate(soundPickerWindow, windowParent) : cachedSoundPickerWindow;
+            SoundPickerWindow window = (cachedSoundPickerWindow.IsOpen) ? Instantiate(soundPickerWindow, windowParent) : cachedSoundPickerWindow;
             window.Construct(onChangeSound, onChangeAnyValue, value);
             ThemeUpdaterRogium.UpdateSoundPickerWindow(window);
             window.Open();

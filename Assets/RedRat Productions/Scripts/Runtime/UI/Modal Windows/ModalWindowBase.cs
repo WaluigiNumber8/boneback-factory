@@ -7,6 +7,7 @@ namespace RedRats.UI.ModalWindows
     /// <summary>
     /// A base for all modal windows.
     /// </summary>
+    
     public abstract class ModalWindowBase : MonoBehaviour
     {
         public event Action OnClose;
