@@ -388,6 +388,9 @@ MonoBehaviour:
     windowArea: {fileID: 8509377235587545543}
     backgroundArea: {fileID: 3802346785498051165}
     closeButton: {fileID: 6984820872842626005}
+  ui:
+    colorGuideBorder: {fileID: 453915636252785637}
+    topActionRowBackground: {fileID: 4669907829720401661}
   colorPicker: {fileID: 6130794669147391979}
 --- !u!114 &6130794669147391979
 MonoBehaviour:

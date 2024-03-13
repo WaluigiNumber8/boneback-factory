@@ -198,6 +198,20 @@ namespace Rogium.Systems.ThemeSystem
         }
         
         /// <summary>
+        /// Updates the Color Picker Modal Window with correct data from the current theme.
+        /// </summary>
+        public static void UpdateColorPickerWindow(ColorPickerWindow window, ThemeType theme = ThemeType.Current)
+        {
+            UpdateUsedTheme(theme);
+            window.UpdateTheme(t.Interactables.buttonMenu,
+                               t.Interactables.inputField,
+                               t.Elements.modalWindowBackground,
+                               t.Elements.toggleBorder,
+                               t.Elements.toggleBorder,
+                               t.Fonts.inputted);   
+        }
+        
+        /// <summary>
         /// Gets the correct theme to work with.
         /// </summary>
         /// <param name="theme">The theme to get.</param>

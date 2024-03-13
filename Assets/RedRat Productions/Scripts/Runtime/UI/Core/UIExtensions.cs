@@ -14,6 +14,16 @@ namespace RedRats.UI.Core
         /// Updates sprites to an interactable. (Button, Dropdown, Input Field, etc.)
         /// </summary>
         /// <param name="interactable">The interactable itself.</param>
+        /// <param name="spriteData">The set of sprites to update with.</param>
+        public static void ChangeInteractableSprites(Selectable interactable, InteractableSpriteInfo spriteData)
+        {
+            ChangeInteractableSprites(interactable, interactable.image, spriteData);
+        }
+        
+        /// <summary>
+        /// Updates sprites to an interactable. (Button, Dropdown, Input Field, etc.)
+        /// </summary>
+        /// <param name="interactable">The interactable itself.</param>
         /// <param name="interactableImage">Image of the interactable.</param>
         /// <param name="spriteData">The set of sprites to update with.</param>
         public static void ChangeInteractableSprites(Selectable interactable, Image interactableImage, InteractableSpriteInfo spriteData)
@@ -37,7 +47,7 @@ namespace RedRats.UI.Core
         /// </summary>
         /// <param name="textAsset">The asset to update.</param>
         /// <param name="fontData">The new data to update with.</param>
-        public static void ChangeFont(TextMeshProUGUI textAsset, FontInfo fontData)
+        public static void ChangeFont(TMP_Text textAsset, FontInfo fontData)
         {
             SafetyNet.EnsureIsNotNull(textAsset, "Text whose font will be updated");
 

@@ -68,7 +68,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
             b.BuildInputField("Max Health", asset.MaxHealth.ToString(), content, s => asset.UpdateMaxHealth(int.Parse(s)), false, false, TMP_InputField.CharacterValidation.Integer, 1);
             b.BuildInputField("Damage", asset.BaseDamage.ToString(), content, s => asset.UpdateBaseDamage(int.Parse(s)), false, false, TMP_InputField.CharacterValidation.Integer);
             b.BuildSlider("Invincibility Time", 0f, EditorConstants.EnemyInvincibilityTimeMax, asset.InvincibilityTime, content, f => asset.UpdateInvincibilityTime(f));
-            
+            b.BuildColorField("TEST", Color.cyan, content, c => Debug.Log(c));
             b.BuildHeader("Knockback", content);
             b.BuildSlider("Self Force", -EditorConstants.EnemyKnockbackForceMax, EditorConstants.EnemyKnockbackForceMax, asset.KnockbackForceSelf, content, f => asset.UpdateKnockbackForceSelf(f));
             b.BuildSlider("Self Time", 0f, EditorConstants.EnemyKnockbackTimeMax, asset.KnockbackTimeSelf, content, f => asset.UpdateKnockbackTimeSelf(f));
