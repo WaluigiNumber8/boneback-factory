@@ -119,7 +119,5 @@ namespace Rogium.Editors.Rooms
         public ObjectGrid<AssetData> ObjectGrid { get => objectGrid; }
         public ObjectGrid<AssetData> EnemyGrid { get => enemyGrid; }
 
-        
-
     }
 }
