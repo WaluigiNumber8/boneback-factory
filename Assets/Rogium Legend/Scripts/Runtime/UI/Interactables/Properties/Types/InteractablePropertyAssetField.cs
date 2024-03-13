@@ -40,12 +40,12 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <summary>
         /// Updates the UI elements
         /// </summary>
-        /// <param name="fieldSpriteSet">A Set of Sprites for the button.</param>
+        /// <param name="fieldSet">A Set of Sprites for the button.</param>
         /// <param name="titleFont">The font of the title text.</param>
         /// <param name="valueFont">The font of the asset title.</param>
-        public void UpdateTheme(InteractableSpriteInfo fieldSpriteSet, FontInfo titleFont, FontInfo valueFont)
+        public void UpdateTheme(InteractableSpriteInfo fieldSet, FontInfo titleFont, FontInfo valueFont)
         {
-            UIExtensions.ChangeInteractableSprites(assetField, assetField.image, fieldSpriteSet);
+            UIExtensions.ChangeInteractableSprites(assetField, fieldSet);
             if (title != null) UIExtensions.ChangeFont(title, titleFont);
             if (assetField.Title != null) UIExtensions.ChangeFont(assetField.Title, valueFont);
         }

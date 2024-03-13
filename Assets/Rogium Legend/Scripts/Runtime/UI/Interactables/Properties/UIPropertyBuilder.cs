@@ -26,7 +26,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         [SerializeField] private InteractablePropertyToggle toggleProperty;
         [SerializeField] private InteractablePropertyDropdown dropdownProperty;
         [SerializeField] private InteractablePropertySlider sliderProperty;
-        [SerializeField] private InteractablePropertySoundPicker soundFieldProperty;
+        [SerializeField] private InteractablePropertySoundField soundFieldProperty;
         [SerializeField] private InteractablePropertyColorField colorFieldProperty;
         
         [Title("Other properties")]
@@ -208,12 +208,12 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="isDisabled">Initialize the property as a non-interactable</param>
         public void BuildSoundField(string title, AssetData value, Transform parent, Action<AssetData> whenValueChange, bool isDisabled = false)
         {
-            InteractablePropertySoundPicker soundPicker = Instantiate(soundFieldProperty, parent);
+            InteractablePropertySoundField soundField = Instantiate(soundFieldProperty, parent);
             //TODO Add support for null values to Asset Picker window.
             value = (value.ID == EditorConstants.EmptyAssetID) ? AssetDataBuilder.ForSound(InternalLibraryOverseer.GetInstance().GetSoundByID("001")) : value;
-            soundPicker.Construct(title, value, whenValueChange);
-            soundPicker.SetDisabled(isDisabled);
-            ThemeUpdaterRogium.UpdateSoundPicker(soundPicker);
+            soundField.Construct(title, value, whenValueChange);
+            soundField.SetDisabled(isDisabled);
+            ThemeUpdaterRogium.UpdateSoundField(soundField);
         }
         
         /// <summary>
@@ -229,7 +229,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             InteractablePropertyColorField colorField = Instantiate(colorFieldProperty, parent);
             colorField.Construct(title, value, whenValueChange);
             colorField.SetDisabled(isDisabled);
-            // ThemeUpdaterRogium.UpdateColorField(colorField);
+            ThemeUpdaterRogium.UpdateColorField(colorField);
         }
         #endregion
 

@@ -36,24 +36,16 @@ namespace RedRats.Systems.Themes
         [Serializable]
         public struct InteractablesInfo
         {
-            [BoxGroup]
-            public InteractableSpriteInfo buttonMenu;
-            [BoxGroup]
-            public InteractableSpriteInfo buttonCard;
-            [BoxGroup]
-            public InteractableSpriteInfo buttonTool;
-            [BoxGroup]
-            public InteractableSpriteInfo inputField;
-            [BoxGroup]
-            public InteractableSpriteInfo dropdownItem;
-            [BoxGroup]
-            public InteractableSpriteInfo toggle;
-            [BoxGroup]
-            public InteractableSpriteInfo assetField;
-            [BoxGroup]
-            public InteractableSpriteInfo slider;
-            [BoxGroup]
-            public InteractableSpriteInfo scrollbarHandle;
+            [BoxGroup] public InteractableSpriteInfo buttonMenu;
+            [BoxGroup] public InteractableSpriteInfo buttonCard;
+            [BoxGroup] public InteractableSpriteInfo buttonTool;
+            [BoxGroup] public InteractableSpriteInfo inputField;
+            [BoxGroup] public InteractableSpriteInfo dropdownItem;
+            [BoxGroup] public InteractableSpriteInfo toggle;
+            [BoxGroup] public InteractableSpriteInfo slider;
+            [BoxGroup] public InteractableSpriteInfo assetField;
+            [BoxGroup] public InteractableSpriteInfo colorField;
+            [BoxGroup] public InteractableSpriteInfo scrollbarHandle;
         }
 
         [Serializable]

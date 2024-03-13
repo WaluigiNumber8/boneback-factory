@@ -14,7 +14,7 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// <summary>
     /// Represents a sound picker property.
     /// </summary>
-    public class InteractablePropertySoundPicker : InteractablePropertyBase<AssetData>
+    public class InteractablePropertySoundField : InteractablePropertyBase<AssetData>
     {
         [SerializeField] private Button showWindowButton;
         [SerializeField] private Button playButton;
@@ -46,10 +46,11 @@ namespace Rogium.UserInterface.Interactables.Properties
 
         public override AssetData PropertyValue { get => currentData; }
 
-        public void UpdateTheme(InteractableSpriteInfo openWindowButtonSet, InteractableSpriteInfo buttonSet, Sprite playButtonIcon, FontInfo titleFont, FontInfo valueFont)
+        public void UpdateTheme(InteractableSpriteInfo openWindowButtonSet, InteractableSpriteInfo buttonSet, 
+                                Sprite playButtonIcon, FontInfo titleFont, FontInfo valueFont)
         {
-            UIExtensions.ChangeInteractableSprites(showWindowButton, showWindowButton.image, openWindowButtonSet);
-            UIExtensions.ChangeInteractableSprites(playButton, playButton.image, buttonSet);
+            UIExtensions.ChangeInteractableSprites(showWindowButton, openWindowButtonSet);
+            UIExtensions.ChangeInteractableSprites(playButton, buttonSet);
             UIExtensions.ChangeFont(title, titleFont);
             UIExtensions.ChangeFont(ui.soundTitle, valueFont);
             ui.playSoundButtonIcon.sprite = playButtonIcon;

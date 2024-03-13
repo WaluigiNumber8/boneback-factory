@@ -63,7 +63,8 @@ namespace Rogium.UserInterface.ModalWindows
             this.whenSoundChanged = onChangeSound;
         }
 
-        public void UpdateTheme(Sprite windowBackgroundSprite, Sprite propertiesBackgroundSprite, InteractableSpriteInfo soundFieldSet, InteractableSpriteInfo buttonSet, Sprite playButtonSprite)
+        public void UpdateTheme(Sprite windowBackgroundSprite, Sprite propertiesBackgroundSprite, InteractableSpriteInfo soundFieldSet, 
+                                InteractableSpriteInfo buttonSet, Sprite playButtonSprite)
         {   
             ThemeUpdaterRogium.UpdateAssetFieldText(soundField);
             ThemeUpdaterRogium.UpdateSlider(volumeSlider);

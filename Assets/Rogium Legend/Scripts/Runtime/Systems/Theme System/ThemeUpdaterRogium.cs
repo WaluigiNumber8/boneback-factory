@@ -151,14 +151,25 @@ namespace Rogium.Systems.ThemeSystem
         /// <summary>
         /// Updates the sound picker with correct data from the current theme.
         /// </summary>
-        public static void UpdateSoundPicker(InteractablePropertySoundPicker soundPicker, ThemeType theme = ThemeType.Current)
+        public static void UpdateSoundField(InteractablePropertySoundField soundField, ThemeType theme = ThemeType.Current)
         {
             UpdateUsedTheme(theme);
-            soundPicker.UpdateTheme(t.Interactables.inputField,
+            soundField.UpdateTheme(t.Interactables.inputField,
                                     t.Interactables.buttonMenu, 
                                     t.Icons.play,
                                     t.Fonts.general,
                                     t.Fonts.inputted);
+        }
+        
+        /// <summary>
+        /// Updates a ColorField with correct data from the current theme.
+        /// </summary>
+        /// <param name="colorField">The ColorField to update.</param>
+        public static void UpdateColorField(InteractablePropertyColorField colorField, ThemeType theme = ThemeType.Current)
+        {
+            UpdateUsedTheme(theme);
+            colorField.UpdateTheme(t.Interactables.colorField,
+                                   t.Fonts.general);
         }
 
         /// <summary>
