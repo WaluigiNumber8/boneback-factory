@@ -61,5 +61,19 @@ namespace RedRats.Core
         {
             return Math.Abs(number - other) < tolerance;
         }
+        
+        /// <summary>
+        /// Remaps a value from one range to another.
+        /// </summary>
+        /// <param name="value">The value to remap</param>
+        /// <param name="from1">First Range min value.</param>
+        /// <param name="to1">First range max value.</param>
+        /// <param name="from2">Target range min value.</param>
+        /// <param name="to2">target range max value.</param>
+        /// <returns>The remapped value.</returns>
+        public static float Remap(this float value, float from1, float from2, float to1, float to2)
+        {
+            return to1 + (value - from1) * (to2 - to1) / (from2 - from1);
+        }
     }
 }

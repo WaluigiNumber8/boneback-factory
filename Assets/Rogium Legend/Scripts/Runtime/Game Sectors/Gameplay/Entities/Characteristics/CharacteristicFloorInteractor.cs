@@ -17,6 +17,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
         /// </summary>
         public void TakeStep()
         {
+            if (interactionService == null) return;
             interactionService.TriggerFloorEffect(entity.Transform);
         }
     }

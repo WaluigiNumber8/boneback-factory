@@ -19,6 +19,7 @@ namespace Rogium.Editors.Palettes
         [SerializeField] private Image colorGuide;
         [SerializeField] private SliderInfo sliders;
         [SerializeField] private HTMLColorField htmlField;
+        [SerializeField] private ColorWheel colorWheel;
         
         private Image otherGuideImage;
         
@@ -31,6 +32,7 @@ namespace Rogium.Editors.Palettes
             sliders.g.OnValueChanged += UpdateColorG;
             sliders.b.OnValueChanged += UpdateColorB;
             htmlField.OnValueChanged += UpdateColorHTML;
+            if (colorWheel != null) colorWheel.OnValueChanged += UpdateColor;
         }
 
         private void OnDisable()
@@ -39,6 +41,7 @@ namespace Rogium.Editors.Palettes
             sliders.g.OnValueChanged -= UpdateColorG;
             sliders.b.OnValueChanged -= UpdateColorB;
             htmlField.OnValueChanged -= UpdateColorHTML;
+            if (colorWheel != null) colorWheel.OnValueChanged -= UpdateColor;
         }
 
         /// <summary>
@@ -116,6 +119,14 @@ namespace Rogium.Editors.Palettes
 
         #region Update Color
 
+        private void UpdateColor(Color color)
+        {
+            currentColor = color;
+            RefreshSliders();
+            RefreshHTMLField();
+            WhenValueChanged();
+        }
+        
         /// <summary>
         /// Updates the red color of currentColor. Should be in range 0-255.
         /// </summary>
