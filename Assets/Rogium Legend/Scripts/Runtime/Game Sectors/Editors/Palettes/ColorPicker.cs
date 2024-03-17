@@ -91,7 +91,7 @@ namespace Rogium.Editors.Palettes
         /// </summary>
         private void RefreshColorGuide()
         {
-            colorGuide.color = currentColor;
+            if (colorGuide != null) colorGuide.color = currentColor;
             if (otherGuideImage != null) otherGuideImage.color = currentColor;
         }
         
