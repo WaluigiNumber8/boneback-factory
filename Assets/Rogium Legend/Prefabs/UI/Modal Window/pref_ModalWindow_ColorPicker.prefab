@@ -1440,6 +1440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83c586af284b4954ea9281c584d11e6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  title: {fileID: 7376035504726978677}
   inputField: {fileID: 529785665499502748}
   addHash: 1
 --- !u!224 &9187066207960826689 stripped

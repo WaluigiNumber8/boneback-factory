@@ -72,16 +72,16 @@ namespace Rogium.Editors.Palettes
         /// Updates the theme of the Color Picker.
         /// </summary>
         /// <param name="inputFieldSpriteSet">Sprite set used for all input fields.</param>
-        /// <param name="inputtedText">Font used for the input text.</param>
-        public void UpdateTheme(InteractableSpriteInfo inputFieldSpriteSet, FontInfo inputtedText)
+        /// <param name="inputFont">Font used for the input text.</param>
+        public void UpdateTheme(InteractableSpriteInfo inputFieldSpriteSet, FontInfo inputFont)
         {
             UIExtensions.ChangeInteractableSprites(sliders.r.InputField, sliders.r.InputField.image, inputFieldSpriteSet);
             UIExtensions.ChangeInteractableSprites(sliders.g.InputField, sliders.g.InputField.image, inputFieldSpriteSet);
             UIExtensions.ChangeInteractableSprites(sliders.b.InputField, sliders.b.InputField.image, inputFieldSpriteSet);
-            UIExtensions.ChangeFont(sliders.r.InputField.textComponent, inputtedText);
-            UIExtensions.ChangeFont(sliders.g.InputField.textComponent, inputtedText);
-            UIExtensions.ChangeFont(sliders.b.InputField.textComponent, inputtedText);
-            htmlField.UpdateTheme(inputFieldSpriteSet, inputtedText);
+            UIExtensions.ChangeFont(sliders.r.InputField.textComponent, inputFont);
+            UIExtensions.ChangeFont(sliders.g.InputField.textComponent, inputFont);
+            UIExtensions.ChangeFont(sliders.b.InputField.textComponent, inputFont);
+            htmlField.UpdateTheme(inputFieldSpriteSet, inputFont);
         }
         
         #region Refresh Methods

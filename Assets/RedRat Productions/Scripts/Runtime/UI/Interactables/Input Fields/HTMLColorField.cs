@@ -13,6 +13,7 @@ namespace RedRats.UI.InputFields
     {
         public event Action<Color> OnValueChanged;
 
+        [SerializeField] private TMP_Text title;
         [SerializeField] private TMP_InputField inputField;
         [SerializeField] private bool addHash;
         
@@ -64,6 +65,7 @@ namespace RedRats.UI.InputFields
         public void UpdateTheme(InteractableSpriteInfo htmlFieldSpriteSet, FontInfo inputFont)
         {
             UIExtensions.ChangeInteractableSprites(inputField, htmlFieldSpriteSet);
+            if (title != null) UIExtensions.ChangeFont(title, inputFont);
             UIExtensions.ChangeFont(inputField.textComponent, inputFont);
         }
     }
