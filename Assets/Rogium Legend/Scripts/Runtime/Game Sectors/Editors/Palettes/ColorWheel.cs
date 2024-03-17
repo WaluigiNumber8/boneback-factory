@@ -1,4 +1,5 @@
 using System;
+using Rogium.UserInterface.Editors.Utils;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -14,7 +15,7 @@ namespace Rogium.Editors.Palettes
         public event Action<Color> OnValueChanged;
 
         [SerializeField] private Color color;
-        [SerializeField] private RectTransform positionIndicator;
+        [SerializeField] private UIPositionFollower positionIndicator;
         
         private Camera cam;
         private Image pickerImage;
@@ -62,7 +63,7 @@ namespace Rogium.Editors.Palettes
             
             newPos.x = Mathf.Clamp(newPos.x, imageTransform.rect.x, imageTransform.rect.x + imageTransform.rect.width);
             newPos.y = Mathf.Clamp(newPos.y, imageTransform.rect.y, imageTransform.rect.y + imageTransform.rect.height);
-            positionIndicator.localPosition = newPos;
+            positionIndicator.SetTargetAndGo(newPos);
         }
 
     }
