@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Rogium.UserInterface.Editors.Utils
@@ -7,6 +8,8 @@ namespace Rogium.UserInterface.Editors.Utils
     /// </summary>
     public class UIPositionFollower : MonoBehaviour
     {
+        public event Action OnBeginMove;
+        
         [SerializeField] private float speed = 2f;
         
         private RectTransform ttransform;
@@ -29,6 +32,7 @@ namespace Rogium.UserInterface.Editors.Utils
         {
             targetPosition = position;
             follow = true;
+            OnBeginMove?.Invoke();
         }
         
         /// <summary>
