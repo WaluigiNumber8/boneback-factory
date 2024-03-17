@@ -26,7 +26,9 @@ namespace Rogium.UserInterface.Interactables.Properties
         [SerializeField] private InteractablePropertyToggle toggleProperty;
         [SerializeField] private InteractablePropertyDropdown dropdownProperty;
         [SerializeField] private InteractablePropertySlider sliderProperty;
-        [SerializeField] private InteractablePropertySoundPicker soundPickerProperty;
+        [SerializeField] private InteractablePropertySoundField soundFieldProperty;
+        [SerializeField] private InteractablePropertyColorField colorFieldProperty;
+        
         [Title("Other properties")]
         [SerializeField] private ContentBlockInfo contentBlocks;
         [SerializeField] private VerticalVariantsInfo verticalVariants;
@@ -204,14 +206,30 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="parent">The parent under which to instantiate the property.</param>
         /// <param name="whenValueChange">Method that runs when anything is updated by the property.</param>
         /// <param name="isDisabled">Initialize the property as a non-interactable</param>
-        public void BuildSoundPicker(string title, AssetData value, Transform parent, Action<AssetData> whenValueChange, bool isDisabled = false)
+        public void BuildSoundField(string title, AssetData value, Transform parent, Action<AssetData> whenValueChange, bool isDisabled = false)
         {
-            InteractablePropertySoundPicker soundPicker = Instantiate(soundPickerProperty, parent);
+            InteractablePropertySoundField soundField = Instantiate(soundFieldProperty, parent);
             //TODO Add support for null values to Asset Picker window.
             value = (value.ID == EditorConstants.EmptyAssetID) ? AssetDataBuilder.ForSound(InternalLibraryOverseer.GetInstance().GetSoundByID("001")) : value;
-            soundPicker.Construct(title, value, whenValueChange);
-            soundPicker.SetDisabled(isDisabled);
-            ThemeUpdaterRogium.UpdateSoundPicker(soundPicker);
+            soundField.Construct(title, value, whenValueChange);
+            soundField.SetDisabled(isDisabled);
+            ThemeUpdaterRogium.UpdateSoundField(soundField);
+        }
+        
+        /// <summary>
+        /// Builds the Color Field property.
+        /// </summary>
+        /// <param name="title">The text of the property title.</param>
+        /// <param name="value">Starting value of the color picker.</param>
+        /// <param name="parent">The parent under which to instantiate the property.</param>
+        /// <param name="whenValueChange">Method that runs when anything is updated by the property.</param>
+        /// <param name="isDisabled">Initialize the property as a non-interactable</param>
+        public void BuildColorField(string title, Color value, Transform parent, Action<Color> whenValueChange, bool isDisabled = false)
+        {
+            InteractablePropertyColorField colorField = Instantiate(colorFieldProperty, parent);
+            colorField.Construct(title, value, whenValueChange);
+            colorField.SetDisabled(isDisabled);
+            ThemeUpdaterRogium.UpdateColorField(colorField);
         }
         #endregion
 

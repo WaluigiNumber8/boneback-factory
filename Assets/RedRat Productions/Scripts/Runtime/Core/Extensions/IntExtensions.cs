@@ -14,6 +14,20 @@
         {
             return (float) milliseconds / 1000;
         }
+        
+        /// <summary>
+        /// Remaps a value from one range to another.
+        /// </summary>
+        /// <param name="value">The value to remap</param>
+        /// <param name="from1">First Range min value.</param>
+        /// <param name="to1">First range max value.</param>
+        /// <param name="from2">Target range min value.</param>
+        /// <param name="to2">target range max value.</param>
+        /// <returns>The remapped value.</returns>
+        public static int Remap(this int value, int from1, int from2, int to1, int to2)
+        {
+            return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
+        }
 
     }
 }

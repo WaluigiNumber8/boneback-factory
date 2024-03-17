@@ -46,6 +46,7 @@ namespace Rogium.Editors.Rooms
         {
             BuildEssentials(content, asset, clearContent);
             b.BuildSlider("Light", 0, 255, asset.Lightness, content, l => asset.UpdateLightness((int)l));
+            b.BuildColorField("Light Color", asset.LightnessColor, content, asset.UpdateLightnessColor);
         }
         
     }

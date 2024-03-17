@@ -118,5 +118,7 @@ namespace RedRats.UI.Sliders
             if (string.IsNullOrEmpty(value)) return true;
             return false;
         }
+        
+        public TMP_InputField InputField { get => inputField; }
     }
 }

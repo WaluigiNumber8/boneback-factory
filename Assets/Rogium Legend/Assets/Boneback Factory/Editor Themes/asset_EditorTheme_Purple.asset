@@ -60,18 +60,24 @@ MonoBehaviour:
       pressed: {fileID: 27531306, guid: c14ae50052bca6348b97cb6b002801ad, type: 3}
       selected: {fileID: 1076304836, guid: c14ae50052bca6348b97cb6b002801ad, type: 3}
       disabled: {fileID: 1899903828, guid: c14ae50052bca6348b97cb6b002801ad, type: 3}
-    assetField:
-      normal: {fileID: 272336893, guid: b867a7c093f4c374ebc8cb7b345a0f2d, type: 3}
-      highlighted: {fileID: 1863612767, guid: b867a7c093f4c374ebc8cb7b345a0f2d, type: 3}
-      pressed: {fileID: -612759392, guid: b867a7c093f4c374ebc8cb7b345a0f2d, type: 3}
-      selected: {fileID: 670810546, guid: b867a7c093f4c374ebc8cb7b345a0f2d, type: 3}
-      disabled: {fileID: 558482297, guid: b867a7c093f4c374ebc8cb7b345a0f2d, type: 3}
     slider:
       normal: {fileID: -787628387, guid: 04c4a6178bc5c7f47bf0ca513a394a31, type: 3}
       highlighted: {fileID: -417427851, guid: 04c4a6178bc5c7f47bf0ca513a394a31, type: 3}
       pressed: {fileID: 1821833887, guid: 04c4a6178bc5c7f47bf0ca513a394a31, type: 3}
       selected: {fileID: -947447350, guid: 04c4a6178bc5c7f47bf0ca513a394a31, type: 3}
       disabled: {fileID: 1287366117, guid: 04c4a6178bc5c7f47bf0ca513a394a31, type: 3}
+    assetField:
+      normal: {fileID: 272336893, guid: b867a7c093f4c374ebc8cb7b345a0f2d, type: 3}
+      highlighted: {fileID: 1863612767, guid: b867a7c093f4c374ebc8cb7b345a0f2d, type: 3}
+      pressed: {fileID: -612759392, guid: b867a7c093f4c374ebc8cb7b345a0f2d, type: 3}
+      selected: {fileID: 670810546, guid: b867a7c093f4c374ebc8cb7b345a0f2d, type: 3}
+      disabled: {fileID: 558482297, guid: b867a7c093f4c374ebc8cb7b345a0f2d, type: 3}
+    colorField:
+      normal: {fileID: 700083438, guid: bb485629a09fb73408f0efb5205ad2a6, type: 3}
+      highlighted: {fileID: 1215888037, guid: bb485629a09fb73408f0efb5205ad2a6, type: 3}
+      pressed: {fileID: -1818584508, guid: bb485629a09fb73408f0efb5205ad2a6, type: 3}
+      selected: {fileID: 813775834, guid: bb485629a09fb73408f0efb5205ad2a6, type: 3}
+      disabled: {fileID: -1376582469, guid: bb485629a09fb73408f0efb5205ad2a6, type: 3}
     scrollbarHandle:
       normal: {fileID: 1895312102, guid: cfd1d9aa63ed02f48a02ede668e7d287, type: 3}
       highlighted: {fileID: 471960323, guid: cfd1d9aa63ed02f48a02ede668e7d287, type: 3}

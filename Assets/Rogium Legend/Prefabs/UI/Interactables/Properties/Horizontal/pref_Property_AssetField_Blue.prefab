@@ -132,7 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding:
     m_Left: 8
-    m_Right: 16
+    m_Right: 8
     m_Top: 16
     m_Bottom: 16
   m_ChildAlignment: 4
@@ -159,9 +159,6 @@ MonoBehaviour:
   title: {fileID: 8992736525539253784}
   middleSpace: {fileID: 5663925727778319986}
   assetField: {fileID: 1579749751652238242}
-  ui:
-    icon: {fileID: 2029373318532658438}
-    borderImage: {fileID: 3685204394688434335}
 --- !u!114 &5067404990219432939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,28 +429,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3134246776e9417d9bbb48dcc03f76b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2029373318532658438 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8838267524414460830, guid: 678680c637e49b3449f41daaced82cbc, type: 3}
-  m_PrefabInstance: {fileID: 7389876180105766552}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3685204394688434335 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6172857172889695751, guid: 678680c637e49b3449f41daaced82cbc, type: 3}
-  m_PrefabInstance: {fileID: 7389876180105766552}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &7839678746368645448 stripped

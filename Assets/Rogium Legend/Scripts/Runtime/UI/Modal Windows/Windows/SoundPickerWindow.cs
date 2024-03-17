@@ -17,7 +17,7 @@ namespace Rogium.UserInterface.ModalWindows
     /// <summary>
     /// Represents a modal window that allows the user to pick a sound from the sound library.
     /// </summary>
-    public class SoundPickerModalWindow : ModalWindowBase
+    public class SoundPickerWindow : ModalWindowBase
     {
         [SerializeField] private UIInfo ui;
         
@@ -34,8 +34,8 @@ namespace Rogium.UserInterface.ModalWindows
         
         private SoundAsset currentSoundAsset;
         private AssetData currentAssetData;
-        private Action<AssetData> onChangeAnyValue;
-        private Action<SoundAsset> onChangeSound;
+        private Action<AssetData> whenAnyValueChanged;
+        private Action<SoundAsset> whenSoundChanged;
 
         protected override void Awake()
         {
@@ -59,11 +59,12 @@ namespace Rogium.UserInterface.ModalWindows
             UpdateProperties(currentAssetData);
             onChangeSound?.Invoke(currentSoundAsset);
             
-            this.onChangeAnyValue = onChangeAnyValue; //Assign after everything is set up.
-            this.onChangeSound = onChangeSound;
+            this.whenAnyValueChanged = onChangeAnyValue; //Assign after everything is set up.
+            this.whenSoundChanged = onChangeSound;
         }
 
-        public void UpdateTheme(Sprite windowBackgroundSprite, Sprite propertiesBackgroundSprite, InteractableSpriteInfo soundFieldSet, InteractableSpriteInfo buttonSet, Sprite playButtonSprite)
+        public void UpdateTheme(Sprite windowBackgroundSprite, Sprite propertiesBackgroundSprite, InteractableSpriteInfo soundFieldSet, 
+                                InteractableSpriteInfo buttonSet, Sprite playButtonSprite)
         {   
             ThemeUpdaterRogium.UpdateAssetFieldText(soundField);
             ThemeUpdaterRogium.UpdateSlider(volumeSlider);
@@ -102,7 +103,7 @@ namespace Rogium.UserInterface.ModalWindows
             UpdateProperties(currentAssetData);
             UpdateOriginalValue();
             
-            onChangeSound?.Invoke(currentSoundAsset);
+            whenSoundChanged?.Invoke(currentSoundAsset);
         }
         
         private void WhenVolumeChanged(float newValue)
@@ -126,7 +127,7 @@ namespace Rogium.UserInterface.ModalWindows
         /// <summary>
         /// Call to update the original value.
         /// </summary>
-        private void UpdateOriginalValue() => onChangeAnyValue?.Invoke(currentAssetData);
+        private void UpdateOriginalValue() => whenAnyValueChanged?.Invoke(currentAssetData);
 
         [Serializable]
         public struct UIInfo

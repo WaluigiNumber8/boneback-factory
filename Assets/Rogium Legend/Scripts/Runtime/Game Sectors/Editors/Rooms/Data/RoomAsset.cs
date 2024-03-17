@@ -16,6 +16,7 @@ namespace Rogium.Editors.Rooms
         private int difficultyLevel;
         private RoomType type;
         private int lightness;
+        private Color lightnessColor;
         private readonly ObjectGrid<AssetData> tileGrid;
         private readonly ObjectGrid<AssetData> objectGrid;
         private readonly ObjectGrid<AssetData> enemyGrid;
@@ -31,6 +32,7 @@ namespace Rogium.Editors.Rooms
             this.difficultyLevel = EditorConstants.RoomDifficulty;
             this.type = EditorConstants.RoomType;
             this.lightness = EditorConstants.RoomLightness;
+            this.lightnessColor = EditorConstants.RoomLightnessColor;
             this.tileGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForTile));
             this.objectGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForEmpty));
             this.enemyGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForEnemy));
@@ -50,52 +52,16 @@ namespace Rogium.Editors.Rooms
             this.difficultyLevel = asset.DifficultyLevel;
             this.type = asset.Type;
             this.lightness = asset.Lightness;
+            this.lightnessColor = asset.LightnessColor;
+            
             this.tileGrid = new ObjectGrid<AssetData>(asset.TileGrid);
             this.objectGrid = new ObjectGrid<AssetData>(asset.ObjectGrid);
             this.enemyGrid = new ObjectGrid<AssetData>(asset.EnemyGrid);
         }
-        public RoomAsset(string title, Sprite roomIcon, string author, int difficultyLevel)
-        {
-            AssetValidation.ValidateTitle(title);
-            SafetyNet.EnsureIntIsBiggerThan(difficultyLevel, 0, "Room Difficulty Level");
-
-            this.title = title;
-            this.icon = roomIcon;
-            this.author = author;
-            this.creationDate = DateTime.Now;
-            
-            this.difficultyLevel = difficultyLevel;
-            this.type = EditorConstants.RoomType;
-            this.lightness = EditorConstants.RoomLightness;
-            this.tileGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForTile));
-            this.objectGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForEmpty));
-            this.enemyGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForEnemy));
-            
-            GenerateID(EditorAssetIDs.RoomIdentifier);
-        }
-        public RoomAsset(string title, Sprite icon, string author, int difficultyLevel, RoomType type, int lightness,
-                         ObjectGrid<AssetData> tileGrid, ObjectGrid<AssetData> objectGrid, ObjectGrid<AssetData> enemyGrid)
-        {
-            AssetValidation.ValidateTitle(title);
-            SafetyNet.EnsureIntIsBiggerThan(difficultyLevel, 0, "New Room Difficulty Level");
-
-            this.title = title;
-            this.icon = icon;
-            this.author = author;
-            this.creationDate = DateTime.Now;
-            
-            this.difficultyLevel = difficultyLevel;
-            this.type = type;
-            this.lightness = lightness;
-            this.tileGrid = new ObjectGrid<AssetData>(tileGrid);
-            this.objectGrid = new ObjectGrid<AssetData>(objectGrid);
-            this.enemyGrid = new ObjectGrid<AssetData>(enemyGrid);
-            
-            GenerateID(EditorAssetIDs.RoomIdentifier);
-        }
+        
         public RoomAsset(string id, string title, Sprite icon, string author, int difficultyLevel, RoomType type, int lightness,
-                         ObjectGrid<AssetData> tileGrid, ObjectGrid<AssetData> objectGrid, ObjectGrid<AssetData> enemyGrid,
-                         DateTime creationDate)
+                         Color lightnessColor, ObjectGrid<AssetData> tileGrid, ObjectGrid<AssetData> objectGrid, 
+                         ObjectGrid<AssetData> enemyGrid, DateTime creationDate)
         {
             AssetValidation.ValidateTitle(title);
             SafetyNet.EnsureIntIsBiggerOrEqualTo(difficultyLevel, 0, "New Room Difficulty Level");
@@ -109,6 +75,8 @@ namespace Rogium.Editors.Rooms
             this.difficultyLevel = difficultyLevel;
             this.type = type;
             this.lightness = lightness;
+            this.lightnessColor = lightnessColor;
+            
             this.tileGrid = new ObjectGrid<AssetData>(tileGrid);
             this.objectGrid = new ObjectGrid<AssetData>(objectGrid);
             this.enemyGrid = new ObjectGrid<AssetData>(enemyGrid);
@@ -134,16 +102,22 @@ namespace Rogium.Editors.Rooms
             SafetyNet.EnsureIntIsInRange(newLightness, 0, 255, "Room Lightness");
             lightness = newLightness;
         }
+        
+        public void UpdateLightnessColor(Color newColor)
+        {
+            //TODO Remove once all old rooms are updated
+            lightnessColor = new(newColor.r, newColor.g, newColor.b, 1);
+        }
+
         #endregion
 
         public int DifficultyLevel { get => difficultyLevel; }
         public RoomType Type {get => type;}
         public int Lightness { get => lightness; }
+        public Color LightnessColor { get => lightnessColor; }
         public ObjectGrid<AssetData> TileGrid { get => tileGrid; }
         public ObjectGrid<AssetData> ObjectGrid { get => objectGrid; }
         public ObjectGrid<AssetData> EnemyGrid { get => enemyGrid; }
-
-        
 
     }
 }

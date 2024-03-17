@@ -3,9 +3,7 @@ using RedRats.Systems.Themes;
 using RedRats.UI.Core;
 using Rogium.Core;
 using Rogium.Editors.Core;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Rogium.UserInterface.Interactables.Properties
 {
@@ -15,10 +13,8 @@ namespace Rogium.UserInterface.Interactables.Properties
     public class InteractablePropertyAssetField : InteractablePropertyBase<IAsset>
     {
         [SerializeField] private AssetField assetField;
-        [SerializeField] private UIInfo ui;
 
-        private IAsset asset;
-        private Action<IAsset> lastMethod;
+        private Action<IAsset> whenValueChange;
 
         public override void SetDisabled(bool isDisabled) => assetField.interactable = !isDisabled;
 
@@ -32,43 +28,28 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="theme">The theme of the Asset Picker Window.</param>
         public void Construct(string titleText, AssetType type, IAsset value, Action<IAsset> WhenChangeValue, ThemeType theme = ThemeType.Current)
         {
-            asset = value;
-
             ConstructTitle(titleText);
-            ui.icon.sprite = asset.Icon;
-            if (ui.valueTitle != null) ui.valueTitle.text = asset.Title;
+            assetField.Construct(type, value);
             
-            assetField.SetType(type);
+            if (whenValueChange != null) assetField.OnValueChanged -= whenValueChange;
             
-            if (lastMethod != null) assetField.OnValueChanged -= lastMethod;
-            
-            lastMethod = WhenChangeValue;
-            assetField.OnValueChanged += lastMethod;
+            whenValueChange = WhenChangeValue;
+            assetField.OnValueChanged += whenValueChange;
         }
 
         /// <summary>
         /// Updates the UI elements
         /// </summary>
-        /// <param name="fieldSpriteSet">A Set of Sprites for the button.</param>
+        /// <param name="fieldSet">A Set of Sprites for the button.</param>
         /// <param name="titleFont">The font of the title text.</param>
         /// <param name="valueFont">The font of the asset title.</param>
-        public void UpdateTheme(InteractableSpriteInfo fieldSpriteSet, FontInfo titleFont, FontInfo valueFont)
+        public void UpdateTheme(InteractableSpriteInfo fieldSet, FontInfo titleFont, FontInfo valueFont)
         {
-            UIExtensions.ChangeInteractableSprites(assetField, ui.borderImage, fieldSpriteSet);
+            UIExtensions.ChangeInteractableSprites(assetField, fieldSet);
             if (title != null) UIExtensions.ChangeFont(title, titleFont);
-            if (ui.valueTitle != null) UIExtensions.ChangeFont(ui.valueTitle, valueFont);
+            if (assetField.Title != null) UIExtensions.ChangeFont(assetField.Title, valueFont);
         }
 
-        public Sprite Icon { get => ui.icon.sprite; }
-
-        public override IAsset PropertyValue { get => asset; }
-
-        [Serializable]
-        public struct UIInfo
-        {
-            public Image icon;
-            public Image borderImage;
-            public TextMeshProUGUI valueTitle;
-        }
+        public override IAsset PropertyValue { get => assetField.Value; }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using RedRats.UI.Core;
 using UnityEngine;
 using TMPro;
 
@@ -12,12 +13,16 @@ namespace RedRats.UI.InputFields
     {
         public event Action<Color> OnValueChanged;
 
+        [SerializeField] private TMP_InputField inputField;
         [SerializeField] private bool addHash;
         
-        private TMP_InputField inputField;
         private bool ignoreValueChange;
 
-        private void Awake() => inputField = GetComponent<TMP_InputField>();
+        private void Awake()
+        {
+            if (inputField == null) inputField = GetComponent<TMP_InputField>();
+        }
+
         private void OnEnable() => inputField.onValueChanged.AddListener(ProcessValue);
         private void OnDisable() => inputField.onValueChanged.RemoveListener(ProcessValue);
 
@@ -49,6 +54,17 @@ namespace RedRats.UI.InputFields
             {
                 OnValueChanged?.Invoke(color);
             }
+        }
+        
+        /// <summary>
+        /// Updates the elements sprites to match the editor theme.
+        /// </summary>
+        /// <param name="htmlFieldSpriteSet">Sprite set for InputFields.</param>
+        /// <param name="inputFont">Font used for input text.</param>
+        public void UpdateTheme(InteractableSpriteInfo htmlFieldSpriteSet, FontInfo inputFont)
+        {
+            UIExtensions.ChangeInteractableSprites(inputField, htmlFieldSpriteSet);
+            UIExtensions.ChangeFont(inputField.textComponent, inputFont);
         }
     }
 }
