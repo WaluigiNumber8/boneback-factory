@@ -43,7 +43,7 @@ namespace Rogium.Gameplay.DataLoading
             objectBuilder.Load(originPos, room.ObjectGrid, objects);
             enemyBuilder.Load(originPos, room.EnemyGrid, dataPack.Enemies);
 
-            roomLight.UpdateIntensity(ColorUtils.ConvertTo01(room.Lightness));
+            roomLight.Construct(ColorUtils.ConvertTo01(room.Lightness), room.LightnessColor);
         }
 
         /// <summary>
