@@ -103,11 +103,7 @@ namespace Rogium.Editors.Rooms
             lightness = newLightness;
         }
         
-        public void UpdateLightnessColor(Color newColor)
-        {
-            //TODO Remove once all old rooms are updated
-            lightnessColor = new(newColor.r, newColor.g, newColor.b, 1);
-        }
+        public void UpdateLightnessColor(Color newColor) => lightnessColor = newColor;
 
         #endregion
 

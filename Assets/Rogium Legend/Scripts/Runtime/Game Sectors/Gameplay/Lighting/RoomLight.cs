@@ -22,12 +22,14 @@ namespace Rogium.Gameplay.Core.Lighting
         }
 
         /// <summary>
-        /// Updates the room's intensity.
+        /// Constructs the Room Light with new parameters.
         /// </summary>
-        /// <param name="newIntensity">The new intensity to use.</param>
-        public void UpdateIntensity(float newIntensity)
+        /// <param name="intensity">The new intensity to use.</param>
+        /// <param name="color">The new color of te light.</param>
+        public void Construct(float intensity, Color color)
         {
-            roomLight.intensity = newIntensity;
+            roomLight.intensity = intensity;
+            roomLight.color = color;
             OnChangeIntensity?.Invoke(roomLight.intensity);
         }
     }
