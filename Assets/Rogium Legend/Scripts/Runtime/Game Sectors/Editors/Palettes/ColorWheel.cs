@@ -13,6 +13,7 @@ namespace Rogium.Editors.Palettes
     {
         public event Action<Color> OnValueChanged;
 
+        [SerializeField] private Color color;
         [SerializeField] private RectTransform positionIndicator;
         
         private Camera cam;
@@ -33,8 +34,9 @@ namespace Rogium.Editors.Palettes
 
         private void WhenColorPick(Vector2 mousePosition)
         {
+            color = Pick(mousePosition);
+            if (color.a == 0) return;
             MoveIndicatorToPointer(mousePosition);
-            Color color = Pick(mousePosition);
             OnValueChanged?.Invoke(color);
         }
         
