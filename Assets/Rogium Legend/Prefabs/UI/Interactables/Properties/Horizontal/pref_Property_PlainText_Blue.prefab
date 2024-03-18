@@ -366,7 +366,7 @@ MonoBehaviour:
   movement: 0
   mode: 1
   uniform: 0
-  beginScale: {x: 1, y: 0, z: 1}
+  beginScale: {x: 1, y: 0.9, z: 1}
   beginScaleU: 1
   targetScale: {x: 1, y: 1, z: 1}
   targetScaleU: 2
