@@ -68,6 +68,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 1.25
   infiniteLoop: 1
   loops: 1
@@ -143,6 +144,117 @@ MonoBehaviour:
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!1 &1766066226644401698
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7630506765491743176}
+  - component: {fileID: 1679548887370747189}
+  - component: {fileID: 4579568536183770241}
+  m_Layer: 5
+  m_Name: Show Effect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7630506765491743176
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766066226644401698}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7703724388068010820}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 640, y: 360}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1679548887370747189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766066226644401698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoplay: 2
+--- !u!114 &4579568536183770241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766066226644401698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e6b492337984a3295e59fb635b3b40a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: Squash out
+  active: 1
+  restartOnPlay: 1
+  keepStateOnStop: 1
+  initialDelayMin: 0
+  initialDelayMax: 0
+  randomizeDelay: 0
+  duration: 0.25
+  infiniteLoop: 0
+  loops: 1
+  loopType: 0
+  target: {fileID: 7445113012859686370}
+  mode: 1
+  beginScale: 1
+  targetScale: 1.01
+  affectedAxis: 2
+  deformCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.2694702
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.13397217
+      value: 0.94012
+      inSlope: 0.34763694
+      outSlope: 0.34763694
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.09944677
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -4.0226736
+      outSlope: -4.0226736
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.07843152
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -325,6 +437,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.025
   infiniteLoop: 0
   loops: 1
@@ -379,6 +492,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   effector: {fileID: 2790105775954087512}
   control: 0
 --- !u!1 &2226238698565490597
@@ -576,6 +690,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   clips:
   - {fileID: 11400000, guid: ed14565cdfd668d4a880cb06e0d9f126, type: 2}
   sourceSettings:
@@ -583,6 +698,11 @@ MonoBehaviour:
     loop: 0
     playOnlyWhenNotPlaying: 0
     muteSameSound: 1
+  spatialSettings:
+    spatialBlend: 0
+    soundTarget: {fileID: 0}
+    minDistance: 0
+    maxDistance: 0
   ignoreEffectStop: 1
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
@@ -609,6 +729,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.1
   infiniteLoop: 0
   loops: 1
@@ -673,6 +794,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0.15
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.3
   infiniteLoop: 0
   loops: 1
@@ -794,6 +916,7 @@ RectTransform:
   - {fileID: 1402545553861526106}
   - {fileID: 7406368909037002989}
   - {fileID: 4494611307380026498}
+  - {fileID: 7630506765491743176}
   m_Father: {fileID: 2226238698565490596}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -905,6 +1028,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.05
   infiniteLoop: 0
   loops: 1
@@ -959,6 +1083,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   clips:
   - {fileID: 11400000, guid: 5afa2f95297ce6a4b93e8b7ae33c24d4, type: 2}
   sourceSettings:
@@ -966,6 +1091,11 @@ MonoBehaviour:
     loop: 0
     playOnlyWhenNotPlaying: 0
     muteSameSound: 0
+  spatialSettings:
+    spatialBlend: 0
+    soundTarget: {fileID: 0}
+    minDistance: 0
+    maxDistance: 0
   ignoreEffectStop: 1
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
@@ -992,6 +1122,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.175
   infiniteLoop: 0
   loops: 1
@@ -1096,6 +1227,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0.19
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 3
   infiniteLoop: 1
   loops: 1
@@ -1325,6 +1457,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   clips:
   - {fileID: 11400000, guid: ed14565cdfd668d4a880cb06e0d9f126, type: 2}
   sourceSettings:
@@ -1332,6 +1465,11 @@ MonoBehaviour:
     loop: 0
     playOnlyWhenNotPlaying: 0
     muteSameSound: 0
+  spatialSettings:
+    spatialBlend: 0
+    soundTarget: {fileID: 0}
+    minDistance: 0
+    maxDistance: 0
   ignoreEffectStop: 1
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
