@@ -528,6 +528,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   clips:
   - {fileID: 11400000, guid: 34e5a029a99730741ad2c9dcb55f1572, type: 2}
   sourceSettings:
@@ -535,6 +536,11 @@ MonoBehaviour:
     loop: 0
     playOnlyWhenNotPlaying: 0
     muteSameSound: 0
+  spatialSettings:
+    spatialBlend: 0
+    soundTarget: {fileID: 0}
+    minDistance: 0
+    maxDistance: 0
   ignoreEffectStop: 1
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
@@ -561,6 +567,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.165
   infiniteLoop: 0
   loops: 1
@@ -621,6 +628,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   effector: {fileID: 5169716484814474722}
   control: 0
 --- !u!114 &5186326353110868419
@@ -641,6 +649,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.05
   infiniteLoop: 0
   loops: 1
@@ -796,6 +805,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   effector: {fileID: 5169716484814474722}
   control: 0
 --- !u!114 &2152186524441471497
@@ -816,6 +826,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.025
   infiniteLoop: 0
   loops: 1
@@ -923,6 +934,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.05
   infiniteLoop: 0
   loops: 1
@@ -977,6 +989,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   clips:
   - {fileID: 11400000, guid: 5afa2f95297ce6a4b93e8b7ae33c24d4, type: 2}
   sourceSettings:
@@ -984,6 +997,11 @@ MonoBehaviour:
     loop: 0
     playOnlyWhenNotPlaying: 0
     muteSameSound: 0
+  spatialSettings:
+    spatialBlend: 0
+    soundTarget: {fileID: 0}
+    minDistance: 0
+    maxDistance: 0
   ignoreEffectStop: 1
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
@@ -1010,6 +1028,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.2
   infiniteLoop: 0
   loops: 1
@@ -1114,6 +1133,7 @@ MonoBehaviour:
   keepStateOnStop: 0
   initialDelayMin: 0.22
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 3
   infiniteLoop: 1
   loops: 1
