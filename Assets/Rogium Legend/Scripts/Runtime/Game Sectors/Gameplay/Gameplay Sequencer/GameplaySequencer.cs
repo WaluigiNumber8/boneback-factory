@@ -108,12 +108,11 @@ namespace Rogium.Gameplay.Sequencer
             player.ChangeCollideMode(false);
             startingPoints.Clear();
             
-            yield return sas.FadeOut(1.75f, true);
-            yield return sas.Wait(0.15f);
+            yield return sas.FadeOut(1.25f, true);
+            yield return sas.Wait(0.4f);
             yield return sas.Transport(playerTransform, playerTransform.position + (Vector3)direction, transportWalkSpeed);
             
-            player.gameObject.SetActive(false);
-            yield return sas.Wait(0.25f);
+            yield return sas.Wait(0.7f);
             roomLoader.Clear();
         }
 

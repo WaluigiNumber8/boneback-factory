@@ -61883,7 +61883,7 @@ PrefabInstance:
       objectReference: {fileID: 2054863268}
     - target: {fileID: 8378214599030717077, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: delay
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8378214599030717077, guid: 568027d8b8ff3344099d98eb043857ba, type: 3}
       propertyPath: action
