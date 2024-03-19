@@ -64,7 +64,7 @@ namespace RedRats.UI.Core
         public static Vector2 GetScalerRatioFromParent(Component component)
         {
             CanvasScaler scaler = component.GetComponentInParent<CanvasScaler>();
-            if (scaler == null) scaler = Object.FindObjectOfType<CanvasScaler>();
+            if (scaler == null) scaler = Object.FindFirstObjectByType<CanvasScaler>();
             return (scaler != null) ? new Vector2(Screen.width / scaler.referenceResolution.x, Screen.height / scaler.referenceResolution.y) : Vector2.one;
         }
     }
