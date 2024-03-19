@@ -1190,7 +1190,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
-  initialDelayMin: 0.3
+  initialDelayMin: 0.36
   initialDelayMax: 0
   randomizeDelay: 0
   duration: 3
