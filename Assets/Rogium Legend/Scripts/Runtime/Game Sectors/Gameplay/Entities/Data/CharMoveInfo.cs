@@ -9,8 +9,8 @@ namespace Rogium.Gameplay.Entities.Characteristics
     public struct CharMoveInfo
     {
         public float maxSpeed;
-        [Range(0.005f, 0.2f)] public float acceleration;
-        [Range(0.005f, 0.2f)] public float brakeForce;
+        [Range(0.005f, 1f)] public float acceleration;
+        [Range(0.005f, 1f)] public float brakeForce;
 
         public CharMoveInfo(float maxSpeed, float acceleration, float brakeForce)
         {
