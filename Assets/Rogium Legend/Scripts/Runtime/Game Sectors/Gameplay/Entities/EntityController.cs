@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using RedRats.Core;
+using RedRats.Systems.Clocks;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -18,7 +19,6 @@ namespace Rogium.Gameplay.Entities
 
         protected Transform ttransform;
         private Rigidbody2D rb;
-        private ForceMoveInfo forceMove;
 
         private Vector2 previousPos;
         private float currentSpeed;
@@ -27,26 +27,36 @@ namespace Rogium.Gameplay.Entities
         protected bool faceDirectionLocked;
         protected bool actionsLocked;
         protected bool movementLocked;
-        private Coroutine movementLockCoroutine;
+        private CountdownTimer movementLockTimer;
+        private CountdownTimer faceDirectionLockTimer;
 
         protected virtual void Awake()
         {
             ttransform = transform;
             rb = GetComponent<Rigidbody2D>();
+            movementLockTimer = new CountdownTimer(() => movementLocked = true, () => movementLocked = false);
+            faceDirectionLockTimer = new CountdownTimer(() => faceDirectionLocked = true, () => faceDirectionLocked = false);
         }
 
         protected virtual void Update() => UpdateParameters();
-        protected virtual void FixedUpdate() => DoForceMovement();
 
         /// <summary>
         /// Enables/Disables the entities ability to collide with objects and trigger events.
         /// </summary>
         /// <param name="isEnabled">Changes the collision state.</param>
-        public virtual void ChangeCollideMode(bool isEnabled)
+        public void ChangeCollideMode(bool isEnabled)
         {
             actionsLocked = !isEnabled;
             if (collider != null) collider.enabled = isEnabled;
             if (trigger != null) trigger.enabled = isEnabled;
+        }
+        
+        /// <summary>
+        /// Stops the entity's movement.
+        /// </summary>
+        public void StopMoving()
+        {
+            rb.AddForce(-rb.velocity, ForceMode2D.Impulse);
         }
 
         /// <summary>
@@ -55,14 +65,20 @@ namespace Rogium.Gameplay.Entities
         /// <param name="time">The time to lock movement for.</param>
         public void LockMovement(float time)
         {
-            if (movementLockCoroutine != null) StopCoroutine(movementLockCoroutine);
-            movementLockCoroutine = StartCoroutine(MovementLockCoroutine());
-            IEnumerator MovementLockCoroutine()
-            {
-                movementLocked = true;
-                yield return new WaitForSeconds(time);
-                movementLocked = false;
-            }
+            // Do nothing if movement is locked and new time is less than the current time.
+            if (movementLocked && movementLockTimer.TimeLeft > time) return;
+            movementLockTimer.Start(time);
+        }
+        
+        /// <summary>
+        /// Locks the entity's direction facing for a certain amount of time.
+        /// </summary>
+        /// <param name="time">The time to lock face direction for.</param>
+        public void LockFaceDirection(float time)
+        {
+            // Do nothing if movement is locked and new time is less than the current time.
+            if (faceDirectionLocked && faceDirectionLockTimer.TimeLeft > time) return;
+            faceDirectionLockTimer.Start(time);
         }
         
         /// <summary>
@@ -72,41 +88,21 @@ namespace Rogium.Gameplay.Entities
         /// <param name="forceInfo">The data to use for the force.</param>
         public void ForceMove(Vector2 direction, ForcedMoveInfo forceInfo)
         {
-            ForceMove(direction, forceInfo.forceSpeed, forceInfo.time, forceInfo.lockFaceDirection);
+            ForceMove(direction, forceInfo.force, forceInfo.lockInputTime, forceInfo.lockFaceDirection);
         }
-
         /// <summary>
         /// Force movement in a specific direction.
         /// </summary>
         /// <param name="direction">The direction of the movement.</param>
         /// <param name="force">The force of the movement.</param>
-        /// <param name="time">The time to take for the movement.</param>
+        /// <param name="lockInputTime">The time to take for the movement.</param>
         /// <param name="lockFaceDirection">Lock the face direction during the movement.</param>
-        public void ForceMove(Vector2 direction, float force, float time, bool lockFaceDirection)
+        public void ForceMove(Vector2 direction, float force, float lockInputTime = 0f, bool lockFaceDirection = true)
         {
-            actionsLocked = true;
-            faceDirectionLocked = lockFaceDirection;
+            if (lockInputTime > 0) LockMovement(lockInputTime);
+            if (lockFaceDirection) LockFaceDirection(lockInputTime);
             
-            forceMove.moveDirection = direction.normalized;
-            forceMove.force = force;
-            forceMove.timer = Time.time + time;
-            forceMove.activated = true;
-        }
-
-        /// <summary>
-        /// Handles Forced Movement processing.
-        /// </summary>
-        private void DoForceMovement()
-        {
-            if (!forceMove.activated) return;
-            if (Time.time > forceMove.timer)
-            {
-                faceDirectionLocked = false;
-                actionsLocked = false;
-                forceMove.activated = false;
-                return;
-            }
-            rb.MovePosition(rb.position + forceMove.force * 10 * Time.fixedDeltaTime * forceMove.moveDirection);
+            rb.AddForce(rb.velocity + force * 10000 * direction);
         }
 
         /// <summary>
@@ -114,6 +110,9 @@ namespace Rogium.Gameplay.Entities
         /// </summary>
         private void UpdateParameters()
         {
+            movementLockTimer.Tick();
+            faceDirectionLockTimer.Tick();
+            
             if (Time.frameCount % 3 != 0) return;
             if (!faceDirectionLocked) UpdateFaceDirection();
             
@@ -141,13 +140,5 @@ namespace Rogium.Gameplay.Entities
         public Vector2 FaceDirection { get => faceDirection; }
         public float CurrentSpeed { get => currentSpeed; }
         public bool ActionsLocked { get => actionsLocked; }
-        
-        private struct ForceMoveInfo
-        {
-            public Vector2 moveDirection;
-            public float force;
-            public float timer;
-            public bool activated;
-        }
     }
 }

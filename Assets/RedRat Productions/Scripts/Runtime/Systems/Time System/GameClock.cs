@@ -1,7 +1,7 @@
 ﻿using RedRats.Core;
 using UnityEngine;
 
-namespace RedRats.Systems.ClockOfTheGame
+namespace RedRats.Systems.Clocks
 {
     /// <summary>
     /// Controls the game clock.

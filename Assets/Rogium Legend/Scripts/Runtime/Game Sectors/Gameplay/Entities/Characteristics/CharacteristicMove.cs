@@ -9,9 +9,6 @@ namespace Rogium.Gameplay.Entities.Characteristics
     {
         [SerializeField] private CharMoveInfo defaultData;
 
-        private Vector2 lastDirection;
-        private float accel;
-        
         /// <summary>
         /// Constructs the characteristic.
         /// </summary>
@@ -24,36 +21,18 @@ namespace Rogium.Gameplay.Entities.Characteristics
         /// <param name="direction">The direction of the movement.</param>
         public void Move(Vector2 direction)
         {
-            CalculateAcceleration(direction);
-            lastDirection = (direction == Vector2.zero) ? lastDirection : direction;
-            float speed = defaultData.maxSpeed * accel;
+            Rigidbody2D rb = entity.Rigidbody;
+            Vector2 force = (direction != Vector2.zero) ? rb.velocity + 100 * defaultData.acceleration * direction : rb.velocity * -defaultData.brakeForce;
+            float maxSpeed = (defaultData.maxSpeed * 0.01f * Vector2.one).magnitude;
             
-            entity.Rigidbody.MovePosition(entity.Rigidbody.position + lastDirection * (speed * Time.fixedDeltaTime));
-        }
-
-        /// <summary>
-        /// Resets all movement.
-        /// </summary>
-        public void Reset()
-        {
-            lastDirection = Vector2.zero;
-            accel = 0;
+            rb.AddForce(force, ForceMode2D.Force);
+            if (direction != Vector2.zero) rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);
         }
         
         /// <summary>
-        /// Calculates the acceleration of the movement.
+        /// Stops all movement.
         /// </summary>
-        /// <param name="direction">The direction to move in.</param>
-        private void CalculateAcceleration(Vector2 direction)
-        {
-            if (direction == Vector2.zero)
-            {
-                accel = Mathf.Max(0, accel -= defaultData.brakeForce);
-                return;
-            }
-
-            accel = Mathf.Min(accel += defaultData.acceleration, 1);
-        }
+        public void Stop() => entity.Rigidbody.velocity = Vector2.zero;
 
     }
 }

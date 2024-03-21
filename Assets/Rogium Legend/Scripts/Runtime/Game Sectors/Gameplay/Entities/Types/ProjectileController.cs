@@ -35,11 +35,10 @@ namespace Rogium.Gameplay.Entities
             lifeTimer = Time.time + 100_000;
         }
 
-        protected override void FixedUpdate()
+        protected void FixedUpdate()
         {
             HandleMovement();
             HandleDeath();
-            base.FixedUpdate();
         }
 
         private void OnTriggerEnter2D(Collider2D col)

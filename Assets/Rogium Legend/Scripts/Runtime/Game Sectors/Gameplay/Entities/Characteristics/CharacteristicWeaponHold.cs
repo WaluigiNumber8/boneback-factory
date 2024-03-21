@@ -59,7 +59,11 @@ namespace Rogium.Gameplay.Entities.Characteristics
             if (currentWeapons[slot] == null) return;
 
             WeaponAsset weapon = currentWeapons[slot];
-            if (weapon.FreezeUser) entity.LockMovement(weapon.UseDuration + weapon.UseStartDelay);
+            if (weapon.FreezeUser)
+            {
+                entity.LockMovement(weapon.UseDuration + weapon.UseStartDelay);
+                entity.StopMoving();
+            }
             useDelayTimer = Time.time + weapon.UseDuration + weapon.UseStartDelay;
             
             StartCoroutine(ActivateCoroutine());

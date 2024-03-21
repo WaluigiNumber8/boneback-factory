@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using RedRats.Core;
-using RedRats.Systems.ClockOfTheGame;
+using RedRats.Systems.Clocks;
 using RedRats.Systems.GASCore;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Core;

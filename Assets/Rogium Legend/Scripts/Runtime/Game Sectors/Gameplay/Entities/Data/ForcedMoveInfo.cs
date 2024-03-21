@@ -6,14 +6,14 @@
     [System.Serializable]
     public struct ForcedMoveInfo
     {
-        public float forceSpeed;
-        public float time;
+        public float force;
+        public float lockInputTime;
         public bool lockFaceDirection;
 
-        public ForcedMoveInfo(float forceSpeed, float time, bool lockFaceDirection)
+        public ForcedMoveInfo(float force, float lockInputTime, bool lockFaceDirection)
         {
-            this.forceSpeed = forceSpeed;
-            this.time = time;
+            this.force = force;
+            this.lockInputTime = lockInputTime;
             this.lockFaceDirection = lockFaceDirection;
         }
     }

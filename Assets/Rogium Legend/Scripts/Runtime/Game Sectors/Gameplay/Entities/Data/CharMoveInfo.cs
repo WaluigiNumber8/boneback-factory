@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Rogium.Gameplay.Entities.Characteristics
+﻿namespace Rogium.Gameplay.Entities.Characteristics
 {
     /// <summary>
     /// Contains data of the <see cref="CharacteristicMove"/> characteristic.
@@ -9,8 +7,8 @@ namespace Rogium.Gameplay.Entities.Characteristics
     public struct CharMoveInfo
     {
         public float maxSpeed;
-        [Range(0.005f, 1f)] public float acceleration;
-        [Range(0.005f, 1f)] public float brakeForce;
+        public float acceleration;
+        public float brakeForce;
 
         public CharMoveInfo(float maxSpeed, float acceleration, float brakeForce)
         {

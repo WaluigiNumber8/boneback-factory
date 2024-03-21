@@ -60,18 +60,11 @@ namespace Rogium.Gameplay.Entities.Player
             damageReceiver.OnDeath -= Die;
         }
 
-        protected override void FixedUpdate()
+        protected void FixedUpdate()
         {
-            base.FixedUpdate();
             if (movementLocked) return;
             if (actionsLocked) return;
             movement.Move(moveDirection);
-        }
-
-        public override void ChangeCollideMode(bool isEnabled)
-        {
-            if (isEnabled) movement.Reset();
-            base.ChangeCollideMode(isEnabled);
         }
 
         public void BecomeInvincible(float time) => damageReceiver.BecomeInvincible(time);

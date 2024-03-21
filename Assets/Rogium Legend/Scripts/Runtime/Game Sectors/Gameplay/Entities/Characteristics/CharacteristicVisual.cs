@@ -1,5 +1,5 @@
 ﻿using System;
-using RedRats.Systems.ClockOfTheGame;
+using RedRats.Systems.Clocks;
 using Rogium.Editors.Core;
 using UnityEngine;
 
