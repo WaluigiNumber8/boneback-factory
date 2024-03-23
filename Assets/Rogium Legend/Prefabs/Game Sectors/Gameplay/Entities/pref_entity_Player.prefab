@@ -293,7 +293,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 20
-  m_LinearDrag: 10
+  m_LinearDrag: 2
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 04a95963222f57c4b98796ae889399cb, type: 2}
@@ -341,9 +341,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entity: {fileID: 42737588524664429}
   defaultData:
-    maxSpeed: 4.2
-    acceleration: 1
-    brakeForce: 0.3
+    maxSpeed: 100
+    acceleration: 0.28
+    brakeForce: 4
 --- !u!114 &4680545751819740615
 MonoBehaviour:
   m_ObjectHideFlags: 0

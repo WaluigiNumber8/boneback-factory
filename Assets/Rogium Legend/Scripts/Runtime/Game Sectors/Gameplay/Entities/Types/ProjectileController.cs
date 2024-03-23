@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using RedRats.Core;
+using RedRats.Systems.Clocks;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Projectiles;
@@ -16,7 +17,7 @@ namespace Rogium.Gameplay.Entities
     {
         public event Action OnDie;
 
-        private const int deathTime = 4;
+        private const float deathTime = 0.06f;
         
         [SerializeField] private CharacteristicMove move;
         [SerializeField] private CharacteristicDamageGiver giver;
@@ -25,21 +26,18 @@ namespace Rogium.Gameplay.Entities
         [SerializeField] private LayerMask wallMask;
         
         private PierceType pierceType;
-        private float lifeTimer;
-        private int deathTimer;
+        private CountdownTimer lifeTimer;
+        private CountdownTimer deathTimer;
         private bool isDead;
 
         protected override void Awake()
         {
             base.Awake();
-            lifeTimer = Time.time + 100_000;
+            lifeTimer = new CountdownTimer(() => deathTimer.Start(deathTime));
+            deathTimer = new CountdownTimer(Kill);
         }
 
-        protected void FixedUpdate()
-        {
-            HandleMovement();
-            HandleDeath();
-        }
+        protected void FixedUpdate() => HandleMovement();
 
         private void OnTriggerEnter2D(Collider2D col)
         {
@@ -60,8 +58,7 @@ namespace Rogium.Gameplay.Entities
         /// <param name="asset"></param>
         public void Construct(ProjectileAsset asset)
         {
-            lifeTimer = Time.time + asset.UseDelay;
-            deathTimer = -1;
+            lifeTimer.Start(asset.UseDelay);
             pierceType = asset.PierceType;
             isDead = false;
             
@@ -77,8 +74,7 @@ namespace Rogium.Gameplay.Entities
         /// </summary>
         public void ConstructMissing()
         {
-            lifeTimer = Time.time + missingInfo.lifetime;
-            deathTimer = -1;
+            lifeTimer.Start(missingInfo.lifetime);
             pierceType = missingInfo.pierce;
             isDead = false;
             
@@ -94,29 +90,10 @@ namespace Rogium.Gameplay.Entities
         /// </summary>
         private void HandleMovement()
         {
-            Vector2 direction = (lifeTimer > Time.time) ? ttransform.up : Vector2.zero;
+            Vector2 direction = (lifeTimer.TimeLeft > 0) ? ttransform.up : Vector2.zero;
             move.Move(direction);
         }
 
-        /// <summary>
-        /// Process Death.
-        /// </summary>
-        private void HandleDeath()
-        {
-            if (lifeTimer > Time.time) return;
-            if (CurrentSpeed > 0.01f)
-            {
-                deathTimer = deathTime;
-                return;
-            }
-            if (deathTimer > 0)
-            {
-                deathTimer--;
-                return;
-            }
-            Kill();
-        }
-        
         /// <summary>
         /// Finish the life of the projectile.
         /// </summary>
@@ -132,7 +109,7 @@ namespace Rogium.Gameplay.Entities
             }
         }
 
-        [System.Serializable]
+        [Serializable]
         public struct MissingInfo
         {
             public Sprite missingSprite;

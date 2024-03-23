@@ -33,8 +33,8 @@ namespace Rogium.Gameplay.Entities
         {
             ttransform = transform;
             rb = GetComponent<Rigidbody2D>();
-            movementLockTimer = new CountdownTimer(() => movementLocked = true, () => movementLocked = false);
-            faceDirectionLockTimer = new CountdownTimer(() => faceDirectionLocked = true, () => faceDirectionLocked = false);
+            movementLockTimer = new CountdownTimer(() => movementLocked = false, () => movementLocked = true);
+            faceDirectionLockTimer = new CountdownTimer(() => faceDirectionLocked = false, () => faceDirectionLocked = true);
         }
 
         protected virtual void Update() => UpdateParameters();
