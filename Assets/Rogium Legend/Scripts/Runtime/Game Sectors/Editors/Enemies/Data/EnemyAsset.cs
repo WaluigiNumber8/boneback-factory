@@ -42,10 +42,8 @@ namespace Rogium.Editors.Enemies
             baseDamage = EditorConstants.EnemyBaseDamage;
             useDelay = EditorConstants.EnemyAttackDelay;
             knockbackForceSelf = EditorConstants.EnemyKnockbackForceSelf;
-            knockbackTimeSelf = EditorConstants.EnemyKnockbackTimeSelf;
             knockbackLockDirectionSelf = EditorConstants.EnemyKnockbackLockDirectionSelf;
             knockbackForceOther = EditorConstants.EnemyKnockbackForceOther;
-            knockbackTimeOther = EditorConstants.EnemyKnockbackTimeOther;
             knockbackLockDirectionOther = EditorConstants.EnemyKnockbackLockDirectionOther;
 
             maxHealth = EditorConstants.EnemyMaxHealth;
@@ -83,10 +81,8 @@ namespace Rogium.Editors.Enemies
             baseDamage = asset.BaseDamage;
             useDelay = asset.UseDelay;
             knockbackForceSelf = asset.KnockbackForceSelf;
-            knockbackTimeSelf = asset.KnockbackTimeSelf;
             knockbackLockDirectionSelf = asset.KnockbackLockDirectionSelf;
             knockbackForceOther = asset.KnockbackForceOther;
-            knockbackTimeOther = asset.KnockbackTimeOther;
             knockbackLockDirectionOther = asset.KnockbackLockDirectionOther;
 
             maxHealth = asset.MaxHealth;
@@ -105,12 +101,11 @@ namespace Rogium.Editors.Enemies
         }
 
         public EnemyAsset(string id, string title, Sprite icon, string author, string associatedSpriteID, AnimationType animationType, 
-                          int frameDuration, Sprite iconAlt, int baseDamage, float useDelay, float knockbackForceSelf,
-                          float knockbackTimeSelf, bool knockbackLockDirectionSelf, float knockbackForceOther, 
-                          float knockbackTimeOther, bool knockbackLockDirectionOther, int maxHealth, float attackProbability, 
-                          float invincibilityTime, IList<string> weaponIDs, AIType ai, float nextStepTime, 
-                          DirectionType startingDirection,bool seamlessMovement, AssetData hurtSound, AssetData deathSound,
-                          DateTime creationDate)
+                          int frameDuration, Sprite iconAlt, int baseDamage, float useDelay, float knockbackForceSelf, 
+                          bool knockbackLockDirectionSelf, float knockbackForceOther, bool knockbackLockDirectionOther, 
+                          int maxHealth, float attackProbability, float invincibilityTime, IList<string> weaponIDs, 
+                          AIType ai, float nextStepTime, DirectionType startingDirection,bool seamlessMovement, 
+                          AssetData hurtSound, AssetData deathSound, DateTime creationDate)
         {
             AssetValidation.ValidateTitle(title);
             
@@ -129,10 +124,8 @@ namespace Rogium.Editors.Enemies
             this.baseDamage = baseDamage;
             this.useDelay = useDelay;
             this.knockbackForceSelf = knockbackForceSelf;
-            this.knockbackTimeSelf = knockbackTimeSelf;
             this.knockbackLockDirectionSelf = knockbackLockDirectionSelf;
             this.knockbackForceOther = knockbackForceOther;
-            this.knockbackTimeOther = knockbackTimeOther;
             this.knockbackLockDirectionOther = knockbackLockDirectionOther;
 
             this.maxHealth = maxHealth;

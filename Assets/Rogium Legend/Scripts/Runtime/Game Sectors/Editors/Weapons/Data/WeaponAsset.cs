@@ -36,10 +36,8 @@ namespace Rogium.Editors.Weapons
             baseDamage = EditorConstants.WeaponBaseDamage;
             useDelay = EditorConstants.WeaponUseDelay;
             knockbackForceSelf = EditorConstants.WeaponKnockbackForceSelf;
-            knockbackTimeSelf = EditorConstants.WeaponKnockbackTimeSelf;
             knockbackLockDirectionSelf = EditorConstants.WeaponKnockbackLockDirectionSelf;
             knockbackForceOther = EditorConstants.WeaponKnockbackForceOther;
-            knockbackTimeOther = EditorConstants.WeaponKnockbackTimeOther;
             knockbackLockDirectionOther = EditorConstants.WeaponKnockbackLockDirectionOther;
 
             useType = EditorConstants.WeaponUseType;
@@ -71,10 +69,8 @@ namespace Rogium.Editors.Weapons
             baseDamage = asset.BaseDamage;
             useDelay = asset.UseDelay;
             knockbackForceSelf = asset.KnockbackForceSelf;
-            knockbackTimeSelf = asset.KnockbackTimeSelf;
             knockbackLockDirectionSelf = asset.KnockbackLockDirectionSelf;
             knockbackForceOther = asset.KnockbackForceOther;
-            knockbackTimeOther = asset.KnockbackTimeOther;
             knockbackLockDirectionOther = asset.KnockbackLockDirectionOther;
 
             useType = asset.UseType;
@@ -85,12 +81,11 @@ namespace Rogium.Editors.Weapons
             projectileIDs = new List<ProjectileDataInfo>(asset.ProjectileIDs);
         }
 
-        public WeaponAsset(string id, string title, Sprite icon, string author, string associatedSpriteID, AnimationType animationType, 
-                           int frameDuration, Sprite iconAlt,int baseDamage, float useDelay, float knockbackForceSelf,
-                           float knockbackTimeSelf, bool knockbackLockDirectionSelf, float knockbackForceOther,
-                           float knockbackTimeOther, bool knockbackLockDirectionOther, WeaponUseType useType,
-                           float useDuration, float useStartDelay, bool isEvasive, bool freezeUser, 
-                           IList<ProjectileDataInfo> projectileIDs, DateTime creationDate)
+        public WeaponAsset(string id, string title, Sprite icon, string author, string associatedSpriteID, 
+                           AnimationType animationType, int frameDuration, Sprite iconAlt,int baseDamage, float useDelay, 
+                           float knockbackForceSelf, bool knockbackLockDirectionSelf, float knockbackForceOther, 
+                           bool knockbackLockDirectionOther, WeaponUseType useType, float useDuration, float useStartDelay, 
+                           bool isEvasive, bool freezeUser, IList<ProjectileDataInfo> projectileIDs, DateTime creationDate)
         {
             AssetValidation.ValidateTitle(title);
             
@@ -109,10 +104,8 @@ namespace Rogium.Editors.Weapons
             this.baseDamage = baseDamage;
             this.useDelay = useDelay;
             this.knockbackForceSelf = knockbackForceSelf;
-            this.knockbackTimeSelf = knockbackTimeSelf;
             this.knockbackLockDirectionSelf = knockbackLockDirectionSelf;
             this.knockbackForceOther = knockbackForceOther;
-            this.knockbackTimeOther = knockbackTimeOther;
             this.knockbackLockDirectionOther = knockbackLockDirectionOther;
 
             this.useType = useType;

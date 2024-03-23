@@ -66,8 +66,8 @@ namespace Rogium.Gameplay.Entities
             isDead = false;
             
             move.Construct(new CharMoveInfo(asset.FlightSpeed, asset.Acceleration, asset.BrakeForce));
-            ForcedMoveInfo selfKnockback = new(asset.KnockbackForceSelf, asset.KnockbackTimeSelf, asset.KnockbackLockDirectionSelf);
-            ForcedMoveInfo otherKnockback = new(asset.KnockbackForceOther, asset.KnockbackTimeOther, asset.KnockbackLockDirectionOther);
+            ForcedMoveInfo selfKnockback = new(asset.KnockbackForceSelf, true, asset.KnockbackLockDirectionSelf);
+            ForcedMoveInfo otherKnockback = new(asset.KnockbackForceOther, true, asset.KnockbackLockDirectionOther);
             giver.Construct(new CharDamageGiverInfo(asset.BaseDamage, selfKnockback, otherKnockback));
             visual.Construct(new CharVisualInfo(asset.Icon, asset.AnimationType, asset.FrameDuration, asset.IconAlt));
         }
@@ -83,8 +83,8 @@ namespace Rogium.Gameplay.Entities
             isDead = false;
             
             move.Construct(new CharMoveInfo(EditorConstants.ProjectileFlightSpeed, EditorConstants.ProjectileAcceleration, EditorConstants.ProjectileBrakeForce));
-            ForcedMoveInfo selfKnockback = new(EditorConstants.ProjectileKnockbackForceSelf, EditorConstants.ProjectileKnockbackTimeSelf, EditorConstants.ProjectileKnockbackLockDirectionSelf);
-            ForcedMoveInfo otherKnockback = new(EditorConstants.ProjectileKnockbackForceOther, EditorConstants.ProjectileKnockbackTimeOther, EditorConstants.ProjectileKnockbackLockDirectionOther);
+            ForcedMoveInfo selfKnockback = new(EditorConstants.ProjectileKnockbackForceSelf, true, EditorConstants.ProjectileKnockbackLockDirectionSelf);
+            ForcedMoveInfo otherKnockback = new(EditorConstants.ProjectileKnockbackForceOther, true, EditorConstants.ProjectileKnockbackLockDirectionOther);
             giver.Construct(new CharDamageGiverInfo(EditorConstants.ProjectileBaseDamage, selfKnockback, otherKnockback));
             visual.Construct(new CharVisualInfo(missingInfo.missingSprite, AnimationType.NoAnimation, 0, null));
         }
