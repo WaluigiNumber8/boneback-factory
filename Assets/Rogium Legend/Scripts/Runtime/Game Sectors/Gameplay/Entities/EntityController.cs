@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using RedRats.Core;
+﻿using RedRats.Core;
 using RedRats.Systems.Clocks;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -24,9 +23,9 @@ namespace Rogium.Gameplay.Entities
         private float currentSpeed;
         private Vector2 velocityChange;
         protected Vector2 faceDirection;
-        protected bool faceDirectionLocked;
         protected bool actionsLocked;
         protected bool movementLocked;
+        protected bool faceDirectionLocked;
         private CountdownTimer movementLockTimer;
         private CountdownTimer faceDirectionLockTimer;
 
@@ -76,7 +75,7 @@ namespace Rogium.Gameplay.Entities
         /// <param name="time">The time to lock face direction for.</param>
         public void LockFaceDirection(float time)
         {
-            // Do nothing if movement is locked and new time is less than the current time.
+            // Do nothing if faceDirection is locked and new time is less than the current time.
             if (faceDirectionLocked && faceDirectionLockTimer.TimeLeft > time) return;
             faceDirectionLockTimer.Start(time);
         }
@@ -88,21 +87,25 @@ namespace Rogium.Gameplay.Entities
         /// <param name="forceInfo">The data to use for the force.</param>
         public void ForceMove(Vector2 direction, ForcedMoveInfo forceInfo)
         {
-            ForceMove(direction, forceInfo.force, forceInfo.lockInputTime, forceInfo.lockFaceDirection);
+            ForceMove(direction, forceInfo.force, forceInfo.lockInput, forceInfo.lockFaceDirection);
         }
+
         /// <summary>
         /// Force movement in a specific direction.
         /// </summary>
         /// <param name="direction">The direction of the movement.</param>
         /// <param name="force">The force of the movement.</param>
-        /// <param name="lockInputTime">The time to take for the movement.</param>
+        /// <param name="lockInput">Lock entity's movement inputs.</param>
         /// <param name="lockFaceDirection">Lock the face direction during the movement.</param>
-        public void ForceMove(Vector2 direction, float force, float lockInputTime = 0f, bool lockFaceDirection = true)
+        public void ForceMove(Vector2 direction, float force, bool lockInput = false, bool lockFaceDirection = false)
         {
-            if (lockInputTime > 0) LockMovement(lockInputTime);
-            if (lockFaceDirection) LockFaceDirection(lockInputTime);
-            
-            rb.AddForce(rb.velocity + force * 10000 * direction);
+            rb.AddForce(rb.velocity + force * 10 * direction, ForceMode2D.Impulse);
+
+            float f = (force * direction).magnitude;
+            float d = (f * f) / (100 * rb.drag * rb.mass);
+            float time = Mathf.Sqrt(2 * d / rb.mass);
+            if (lockInput) LockMovement(time);
+            if (lockFaceDirection) LockFaceDirection(time);
         }
 
         /// <summary>

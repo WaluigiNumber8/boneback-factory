@@ -1,5 +1,4 @@
 ﻿using System;
-using Rogium.Gameplay.Core;
 using Rogium.Gameplay.Entities.Characteristics;
 using Rogium.Systems.Input;
 using Sirenix.OdinInspector;
@@ -73,7 +72,9 @@ namespace Rogium.Gameplay.Entities.Player
         {
             if (movementLocked) return;
             if (actionsLocked || moveDirection == Vector2.zero)
+            {
                 base.UpdateFaceDirection();
+            }
             else faceDirection = moveDirection;
         }
 

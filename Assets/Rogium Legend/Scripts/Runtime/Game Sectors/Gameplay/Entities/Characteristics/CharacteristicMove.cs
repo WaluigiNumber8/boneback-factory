@@ -23,8 +23,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
         {
             Rigidbody2D rb = entity.Rigidbody;
             Vector2 force = (direction != Vector2.zero) ? rb.velocity + 100 * defaultData.acceleration * direction : rb.velocity * -defaultData.brakeForce;
-            float maxSpeed = (defaultData.maxSpeed * 0.01f * Vector2.one).magnitude;
-            
+            float maxSpeed = (defaultData.maxSpeed * 0.01f * direction).magnitude;
             rb.AddForce(force, ForceMode2D.Force);
             if (direction != Vector2.zero) rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);
         }

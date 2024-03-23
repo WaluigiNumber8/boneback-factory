@@ -50,7 +50,7 @@ namespace Rogium.Editors.Core.Defaults
         public const float WeaponKnockbackForceOther = 0.5f;
         public const float WeaponKnockbackTimeOther = 0.05f;
         public const bool WeaponKnockbackLockDirectionOther = true;
-        public const float WeaponKnockbackForceMax = 10f;
+        public const float WeaponKnockbackForceMax = 100f;
         public const float WeaponKnockbackTimeMax = 0.5f;
 
         public const WeaponUseType WeaponUseType = Weapons.WeaponUseType.PopUp;
