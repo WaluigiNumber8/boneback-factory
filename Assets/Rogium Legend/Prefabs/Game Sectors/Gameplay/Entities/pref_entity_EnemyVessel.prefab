@@ -1234,8 +1234,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 20
-  m_LinearDrag: 30
+  m_Mass: 10
+  m_LinearDrag: 20
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -1287,12 +1287,12 @@ MonoBehaviour:
   defaultData:
     baseDamage: 10
     knockbackSelf:
-      forceSpeed: 4
-      time: 0.05
+      force: 0
+      lockInput: 0
       lockFaceDirection: 0
     knockbackOther:
-      forceSpeed: 5
-      time: 0.07
+      force: 0
+      lockInput: 0
       lockFaceDirection: 0
 --- !u!114 &9183867096112772868
 MonoBehaviour:

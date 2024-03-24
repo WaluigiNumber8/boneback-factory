@@ -25,8 +25,8 @@ namespace Rogium.Gameplay.Entities.Characteristics
         private void OnTriggerStay2D(Collider2D other)
         {
             if (invincibilityTimer > Time.time) return;
-            if (!other.TryGetComponent(out CharacteristicDamageGiver giver)) return;
             if (GameObjectUtils.IsInLayerMask(other.gameObject, ignoredMask)) return;
+            if (!other.TryGetComponent(out CharacteristicDamageGiver giver)) return;
             
             TakeDamage(giver);
         }

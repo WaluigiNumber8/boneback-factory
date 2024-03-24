@@ -16,9 +16,9 @@ namespace Rogium.Gameplay.Entities
     public class ProjectileController : EntityController
     {
         public event Action OnDie;
-
-        private const float deathTime = 0.06f;
         
+        private const float deathTime = 0.04f;
+
         [SerializeField] private CharacteristicMove move;
         [SerializeField] private CharacteristicDamageGiver giver;
         [SerializeField] private CharacteristicVisual visual;
@@ -33,7 +33,7 @@ namespace Rogium.Gameplay.Entities
         protected override void Awake()
         {
             base.Awake();
-            lifeTimer = new CountdownTimer(() => deathTimer.Start(deathTime));
+            lifeTimer = new CountdownTimer(()=> deathTimer.Start(deathTime));
             deathTimer = new CountdownTimer(Kill);
         }
 
@@ -52,7 +52,6 @@ namespace Rogium.Gameplay.Entities
             
             if (pierceType == PierceType.All) return;
             if (col.gameObject.layer == gameObject.layer) return;
-            if (col.gameObject.CompareTag("Blocks Everything")) return;
             if (pierceType == PierceType.Entities && col.TryGetComponent(out EntityController _)) return;
             if (pierceType == PierceType.Walls && GameObjectUtils.IsInLayerMask(col.gameObject, wallMask)) return;
             if (col.TryGetComponent(out WeaponController _)) return;
@@ -68,10 +67,10 @@ namespace Rogium.Gameplay.Entities
             lifeTimer.Start(asset.UseDelay);
             pierceType = asset.PierceType;
             isDead = false;
-            
+            // float time = RedRatUtils.GetTimeOfForce((ttransform.up * asset.FlightSpeed).magnitude, Rigidbody);
             move.Construct(new CharMoveInfo(asset.FlightSpeed, asset.Acceleration, asset.BrakeForce));
-            ForcedMoveInfo selfKnockback = new(asset.KnockbackForceSelf, true, asset.KnockbackLockDirectionSelf);
-            ForcedMoveInfo otherKnockback = new(asset.KnockbackForceOther, true, asset.KnockbackLockDirectionOther);
+            ForcedMoveInfo selfKnockback = new(asset.KnockbackForceSelf, (asset.KnockbackForceSelf > 0), asset.KnockbackLockDirectionSelf);
+            ForcedMoveInfo otherKnockback = new(asset.KnockbackForceOther,(asset.KnockbackForceOther > 0), asset.KnockbackLockDirectionOther);
             giver.Construct(new CharDamageGiverInfo(asset.BaseDamage, selfKnockback, otherKnockback));
             visual.Construct(new CharVisualInfo(asset.Icon, asset.AnimationType, asset.FrameDuration, asset.IconAlt));
         }
@@ -86,8 +85,8 @@ namespace Rogium.Gameplay.Entities
             isDead = false;
             
             move.Construct(new CharMoveInfo(EditorConstants.ProjectileFlightSpeed, EditorConstants.ProjectileAcceleration, EditorConstants.ProjectileBrakeForce));
-            ForcedMoveInfo selfKnockback = new(EditorConstants.ProjectileKnockbackForceSelf, true, EditorConstants.ProjectileKnockbackLockDirectionSelf);
-            ForcedMoveInfo otherKnockback = new(EditorConstants.ProjectileKnockbackForceOther, true, EditorConstants.ProjectileKnockbackLockDirectionOther);
+            ForcedMoveInfo selfKnockback = new(EditorConstants.ProjectileKnockbackForceSelf, false, EditorConstants.ProjectileKnockbackLockDirectionSelf);
+            ForcedMoveInfo otherKnockback = new(EditorConstants.ProjectileKnockbackForceOther, false, EditorConstants.ProjectileKnockbackLockDirectionOther);
             giver.Construct(new CharDamageGiverInfo(EditorConstants.ProjectileBaseDamage, selfKnockback, otherKnockback));
             visual.Construct(new CharVisualInfo(missingInfo.missingSprite, AnimationType.NoAnimation, 0, null));
         }

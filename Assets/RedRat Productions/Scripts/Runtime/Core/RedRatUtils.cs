@@ -35,6 +35,18 @@ namespace RedRats.Core
             CinemachineVirtualCamera vcam = (CinemachineVirtualCamera) CinemachineCore.Instance.GetActiveBrain(0).ActiveVirtualCamera;
             return vcam;
         }
+
+        /// <summary>
+        /// Calculates the time it takes for a force to be applied to a <see cref="Rigidbody2D"/>.
+        /// </summary>
+        /// <param name="f">The force that is applied.</param>
+        /// <param name="rb">The <see cref="Rigidbody2D"/> that the force is applied to.</param>
+        /// <returns>Time of force in seconds.</returns>
+        public static float GetTimeOfForce(float f, Rigidbody2D rb)
+        {
+            float d = (f * f) / (100 * rb.drag * rb.mass);
+            return Mathf.Sqrt(2 * d / rb.mass); 
+        }
         
     }
 }

@@ -101,9 +101,8 @@ namespace Rogium.Gameplay.Entities
         {
             rb.AddForce(rb.velocity + 10 * force * direction, ForceMode2D.Impulse);
 
-            float f = (force * direction).magnitude;
-            float d = (f * f) / (100 * rb.drag * rb.mass);
-            float time = Mathf.Sqrt(2 * d / rb.mass);
+            if (!lockInput && !lockFaceDirection) return;
+            float time = RedRatUtils.GetTimeOfForce((force * direction).magnitude, rb);
             if (lockInput) LockMovement(time);
             if (lockFaceDirection) LockFaceDirection(time);
         }

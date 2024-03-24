@@ -11,7 +11,7 @@ namespace RedRats.Systems.Clocks
         private readonly Action whenStarted, whenFinished;
         private float timer;
 
-        public CountdownTimer(Action whenFinished, Action whenStarted = null)
+        public CountdownTimer(Action whenFinished = null, Action whenStarted = null)
         {
             this.whenStarted = whenStarted;
             this.whenFinished = whenFinished;

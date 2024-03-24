@@ -72,7 +72,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
                 yield return new WaitForSeconds(weapon.UseStartDelay);
                 weaponEntity.LoadUp(weapon);
                 weaponEntity.Activate();
-                entity.ForceMove(-entity.FaceDirection, weapon.KnockbackForceSelf, true, weapon.KnockbackLockDirectionSelf);
+                entity.ForceMove(-entity.FaceDirection, weapon.KnockbackForceSelf, weapon.FreezeUser, weapon.KnockbackLockDirectionSelf);
             }
         }
 
