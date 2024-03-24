@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Rogium.Gameplay.Entities.Characteristics
 {
@@ -8,6 +9,10 @@ namespace Rogium.Gameplay.Entities.Characteristics
     public class CharacteristicMove : CharacteristicBase
     {
         [SerializeField] private CharMoveInfo defaultData;
+        
+        private Rigidbody2D rb;
+
+        private void Start() => rb = entity.Rigidbody;
 
         /// <summary>
         /// Constructs the characteristic.
@@ -21,11 +26,15 @@ namespace Rogium.Gameplay.Entities.Characteristics
         /// <param name="direction">The direction of the movement.</param>
         public void Move(Vector2 direction)
         {
-            Rigidbody2D rb = entity.Rigidbody;
-            Vector2 force = (direction != Vector2.zero) ? rb.velocity + 10000 * defaultData.acceleration * direction : rb.velocity * (100 * -defaultData.brakeForce);
-            float maxSpeed = (defaultData.maxSpeed * 0.1f * direction).magnitude;
+            float maxSpeed = 0.1f * defaultData.maxSpeed;
+            float accel = 1000 * defaultData.acceleration;
+            float brakeForce = 100 * defaultData.brakeForce;
+            
+            Vector2 force = (direction != Vector2.zero) ? rb.velocity + accel * direction : rb.velocity * -brakeForce;
             rb.AddForce(force, ForceMode2D.Force);
-            if (direction != Vector2.zero) rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);
+            rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);
+            
+            Debug.Log($"{rb.velocity.magnitude}/{maxSpeed}");
         }
         
         /// <summary>
