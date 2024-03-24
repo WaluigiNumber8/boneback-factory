@@ -99,7 +99,7 @@ namespace Rogium.Gameplay.Entities
         /// <param name="lockFaceDirection">Lock the face direction during the movement.</param>
         public void ForceMove(Vector2 direction, float force, bool lockInput = false, bool lockFaceDirection = false)
         {
-            rb.AddForce(rb.velocity + force * 10 * direction, ForceMode2D.Impulse);
+            rb.AddForce(rb.velocity + 10 * force * direction, ForceMode2D.Impulse);
 
             float f = (force * direction).magnitude;
             float d = (f * f) / (100 * rb.drag * rb.mass);

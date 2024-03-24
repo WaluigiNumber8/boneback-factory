@@ -37,6 +37,13 @@ namespace Rogium.Gameplay.Entities
             deathTimer = new CountdownTimer(Kill);
         }
 
+        protected override void Update()
+        {
+            lifeTimer.Tick();
+            deathTimer.Tick();
+            base.Update();
+        }
+
         protected void FixedUpdate() => HandleMovement();
 
         private void OnTriggerEnter2D(Collider2D col)
