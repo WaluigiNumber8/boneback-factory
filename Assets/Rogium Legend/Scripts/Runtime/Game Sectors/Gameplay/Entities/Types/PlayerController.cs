@@ -68,15 +68,15 @@ namespace Rogium.Gameplay.Entities.Player
 
         public void BecomeInvincible(float time) => damageReceiver.BecomeInvincible(time);
         
-        protected override void UpdateFaceDirection()
-        {
-            if (movementLocked) return;
-            if (actionsLocked || moveDirection == Vector2.zero)
-            {
-                base.UpdateFaceDirection();
-            }
-            else faceDirection = moveDirection;
-        }
+        // protected override void UpdateFaceDirection()
+        // {
+        //     if (movementLocked) return;
+        //     if (actionsLocked || moveDirection == Vector2.zero)
+        //     {
+        //         base.UpdateFaceDirection();
+        //     }
+        //     else faceDirection = moveDirection;
+        // }
 
         /// <summary>
         /// Allow the player to move in a specific direction.

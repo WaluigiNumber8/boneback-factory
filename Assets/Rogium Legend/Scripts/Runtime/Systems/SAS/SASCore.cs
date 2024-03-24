@@ -24,14 +24,14 @@ namespace Rogium.Systems.SAS
         }
 
         /// <summary>
-        /// Transports a transform into a desired position in a specific axis order.
+        /// Transports a <see cref="Transform"/> into a desired position in a specific axis order.
         /// </summary>
-        /// <param name="transform">The transform to transfer.</param>
-        /// <param name="position">The position to move the transform to.</param>
+        /// <param name="transform">The <see cref="Transform"/> to transfer.</param>
+        /// <param name="position">The position to move to.</param>
         /// <param name="speed">Speed of the transport.</param>
         public IEnumerator Transport(Transform transform, Vector3 position, float speed)
         {
-            yield return transporter.Transport(transform, position, speed, (TransportOrderType)Random.Range(0, 6));
+            yield return transporter.Transport(transform, position, speed, (TransportOrderType)Random.Range(0, 1));
         }
 
         public IEnumerator FadeIn(float duration, bool waitForCompletion)

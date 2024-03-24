@@ -19,9 +19,9 @@ namespace Rogium.Gameplay.Entities
         protected Transform ttransform;
         private Rigidbody2D rb;
 
-        private Vector2 previousPos;
+        private float posChange;
+        private Vector3 lastPos;
         private float currentSpeed;
-        private Vector2 velocityChange;
         protected Vector2 faceDirection;
         protected bool actionsLocked;
         protected bool movementLocked;
@@ -115,12 +115,11 @@ namespace Rogium.Gameplay.Entities
             movementLockTimer.Tick();
             faceDirectionLockTimer.Tick();
             
-            if (Time.frameCount % 3 != 0) return;
+            // if (Time.frameCount % 3 != 0) return;
+            posChange = (ttransform.position - lastPos).magnitude.Round();
+            currentSpeed = rb.velocity.magnitude;
             if (!faceDirectionLocked) UpdateFaceDirection();
-            
-            velocityChange = (rb.position - previousPos) / Time.deltaTime;
-            currentSpeed = velocityChange.magnitude;
-            previousPos = rb.position;
+            lastPos = ttransform.position;
         }
         
         /// <summary>
@@ -128,7 +127,8 @@ namespace Rogium.Gameplay.Entities
         /// </summary>
         protected virtual void UpdateFaceDirection()
         {
-            faceDirection = (velocityChange.IsZero(0.05f)) ? velocityChange.normalized.Round() : faceDirection;
+            faceDirection = (posChange > 0) ? (ttransform.position - lastPos).normalized : faceDirection;
+            Debug.Log($"S: {posChange}, F {faceDirection}");
         }
 
         protected void OnDrawGizmos()
