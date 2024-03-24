@@ -33,8 +33,6 @@ namespace Rogium.Gameplay.Entities.Characteristics
             Vector2 force = (direction != Vector2.zero) ? rb.velocity + accel * direction : rb.velocity * -brakeForce;
             rb.AddForce(force, ForceMode2D.Force);
             rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);
-            
-            Debug.Log($"{rb.velocity.magnitude}/{maxSpeed}");
         }
         
         /// <summary>
