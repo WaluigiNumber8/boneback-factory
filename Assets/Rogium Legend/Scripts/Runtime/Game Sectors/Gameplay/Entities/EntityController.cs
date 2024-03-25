@@ -98,12 +98,14 @@ namespace Rogium.Gameplay.Entities
         /// <param name="lockFaceDirection">Lock the face direction during the movement.</param>
         public void ForceMove(Vector2 direction, float force, bool lockInput = false, bool lockFaceDirection = false)
         {
-            rb.AddForce(rb.velocity + 10 * force * direction, ForceMode2D.Impulse);
+            Vector2 f =  10 * force * direction;
+            rb.AddForce(rb.velocity + f, ForceMode2D.Impulse);
 
             if (!lockInput && !lockFaceDirection) return;
-            float time = RedRatUtils.GetTimeOfForce((force * direction).magnitude, rb);
+            float time = 0.21f * Mathf.Exp(0.05f * RedRatUtils.GetTimeOfForce(f.magnitude, rb) + 0.01f); // The time increases with time exponentially.
+                                                                                                         // For the love of god, DON'T TOUCH THE NUMBERS.
             if (lockInput) LockMovement(time);
-            if (lockFaceDirection) LockFaceDirection(time);
+            if (lockFaceDirection) LockFaceDirection(time * 1.6f);
         }
 
         /// <summary>
