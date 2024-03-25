@@ -165,10 +165,10 @@ namespace Rogium.Gameplay.Entities.Enemy
 
         private void FaceDirectionRotate()
         {
-            Vector2 direction = (ttransform.position - playerTransform.position).normalized * -1;
-            if (!seamlessMovement) direction = direction.Round();
+            Vector2 direction = (TTransform.position - playerTransform.position).normalized * -1;
+            // if (!seamlessMovement) direction = Vector2Int.FloorToInt(direction);
 
-            if (!isLooking && faceDirection.DistanceTo(direction) > 0.1f)
+            if (!isLooking && Vector2.Distance(faceDirection, direction) > 0.1f)
             {
                 refreshFaceDirectionTimer = Time.time + refreshFaceDirectionTime;
                 isLooking = true;

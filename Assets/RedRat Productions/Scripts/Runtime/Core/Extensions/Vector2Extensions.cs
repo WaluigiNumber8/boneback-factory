@@ -13,7 +13,7 @@ namespace RedRats.Core
         /// <param name="vector2">The <see cref="Vector2"/> to round.</param>
         /// <param name="decimalPlaces">Amount of decimal places.</param>
         /// <returns>The rounded <see cref="Vector2"/>.</returns>
-        public static Vector2 Round(this Vector2 vector2, int decimalPlaces = 0)
+        public static Vector2 Round(this Vector2 vector2, int decimalPlaces = 2)
         {
             float multiplier = 1;
             for (int i = 0; i < decimalPlaces; i++)
@@ -25,17 +25,6 @@ namespace RedRats.Core
                                Mathf.Round(vector2.y * multiplier) / multiplier);
         }
         
-        /// <summary>
-        /// Returns distance between 2 <see cref="Vector2"/>s.
-        /// </summary>
-        /// <param name="vector2">The first <see cref="Vector2"/>.</param>
-        /// <param name="other">The <see cref="Vector2"/> to compare to.</param>
-        /// <returns>The distance.</returns>
-        public static float DistanceTo(this Vector2 vector2, Vector2 other)
-        {
-            return Vector2.Distance(vector2, other);
-        }
-
         /// <summary>
         /// Returns TRUE if the <see cref="Vector2"/> is zero.
         /// <p>Uses <see cref="Vector2"/></p>.Distance to measure sameness.

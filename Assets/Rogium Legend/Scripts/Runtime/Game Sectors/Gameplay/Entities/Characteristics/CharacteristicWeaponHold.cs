@@ -110,8 +110,8 @@ namespace Rogium.Gameplay.Entities.Characteristics
         /// </summary>
         private void UpdateWeaponPosRot()
         {
-            weaponEntity.Transform.localPosition = entity.FaceDirection.normalized;
-            TransformUtils.SetRotation2D(weaponEntity.Transform, entity.FaceDirection);
+            weaponEntity.transform.localPosition = entity.FaceDirection.normalized;
+            TransformUtils.SetRotation2D(weaponEntity.transform, entity.FaceDirection);
         }
         
         public int WeaponCount { get => currentWeapons.Count; }

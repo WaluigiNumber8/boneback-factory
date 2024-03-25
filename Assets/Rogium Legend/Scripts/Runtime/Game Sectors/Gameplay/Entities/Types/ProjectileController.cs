@@ -96,7 +96,7 @@ namespace Rogium.Gameplay.Entities
         /// </summary>
         private void HandleMovement()
         {
-            Vector2 direction = (lifeTimer.TimeLeft > 0) ? ttransform.up : Vector2.zero;
+            Vector2 direction = (lifeTimer.TimeLeft > 0) ? TTransform.up : Vector2.zero;
             move.Move(direction);
         }
 

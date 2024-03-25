@@ -15,14 +15,14 @@ namespace RedRats.Core
         /// <param name="direction">The direction type to convert.</param>
         /// <returns>A <see cref="Vector2"/> representation of that direction.</returns>
         /// <exception cref="ArgumentOutOfRangeException">Is thrown when the <see cref="DirectionType"/> is not supported.</exception>
-        public static Vector2 DirectionTypeToVector(DirectionType direction)
+        public static Vector2Int DirectionTypeToVector(DirectionType direction)
         {
             return direction switch
             {
-                DirectionType.Up => Vector2.up,
-                DirectionType.Down => Vector2.down,
-                DirectionType.Right => Vector2.right,
-                DirectionType.Left => Vector2.left,
+                DirectionType.Up => Vector2Int.up,
+                DirectionType.Down => Vector2Int.down,
+                DirectionType.Right => Vector2Int.right,
+                DirectionType.Left => Vector2Int.left,
                 _ => throw new ArgumentOutOfRangeException($"The direction of type {direction} is not supported.")
             };
         }

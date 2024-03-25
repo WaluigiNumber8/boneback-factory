@@ -16,18 +16,17 @@ namespace Rogium.Gameplay.Entities
         [SerializeField] private Collider2D trigger;
         [SerializeField] private bool showGizmos;
 
-        protected Transform ttransform;
+        private Transform ttransform;
         private Rigidbody2D rb;
 
-        private float posChange;
-        private Vector3 lastPos;
-        private float currentSpeed;
         protected Vector2 faceDirection;
-        protected bool actionsLocked;
-        protected bool movementLocked;
-        protected bool faceDirectionLocked;
+        private Vector3 lastPos;
+        private float posChange;
         private CountdownTimer movementLockTimer;
         private CountdownTimer faceDirectionLockTimer;
+        protected bool movementLocked;
+        protected bool faceDirectionLocked;
+        protected bool actionsLocked;
 
         protected virtual void Awake()
         {
@@ -115,10 +114,9 @@ namespace Rogium.Gameplay.Entities
             movementLockTimer.Tick();
             faceDirectionLockTimer.Tick();
             
-            // if (Time.frameCount % 3 != 0) return;
-            posChange = (ttransform.position - lastPos).magnitude.Round();
-            currentSpeed = rb.velocity.magnitude;
+            posChange = (ttransform.position - lastPos).sqrMagnitude * 1000;
             if (!faceDirectionLocked) UpdateFaceDirection();
+            // if (Time.frameCount % 3 != 0) return;
             lastPos = ttransform.position;
         }
         
@@ -127,8 +125,7 @@ namespace Rogium.Gameplay.Entities
         /// </summary>
         protected virtual void UpdateFaceDirection()
         {
-            faceDirection = (posChange > 0) ? (ttransform.position - lastPos).normalized : faceDirection;
-            Debug.Log($"S: {posChange}, F {faceDirection}");
+            faceDirection = (posChange > 0.001) ? (ttransform.position - lastPos).normalized : faceDirection;
         }
 
         protected void OnDrawGizmos()
@@ -137,10 +134,10 @@ namespace Rogium.Gameplay.Entities
             Gizmos.color = Color.yellow;
         }
         
-        public Transform Transform { get => ttransform; }
+        public Transform TTransform { get => ttransform; }
         public Rigidbody2D Rigidbody { get => rb; }
         public Vector2 FaceDirection { get => faceDirection; }
-        public float CurrentSpeed { get => currentSpeed; }
+        public float CurrentSpeed { get => posChange; }
         public bool ActionsLocked { get => actionsLocked; }
     }
 }
