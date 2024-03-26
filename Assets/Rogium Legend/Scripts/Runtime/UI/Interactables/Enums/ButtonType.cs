@@ -102,7 +102,8 @@ namespace Rogium.UserInterface.Interactables
         #region Campaign Selection Menu
         CampaignShowNext = 64,
         CampaignShowPrevious = 65,
-        CampaignCurrentRefresh = 84,
+        CampaignRefresh = 84,
+        CampaignRefreshAll = 85,
         #endregion
         
         #region Campaign Editor
@@ -138,6 +139,6 @@ namespace Rogium.UserInterface.Interactables
         Play = 10000,
         TEST = 10001
         
-        //Latest used : 84
+        //Latest used : 85
     }   
 }

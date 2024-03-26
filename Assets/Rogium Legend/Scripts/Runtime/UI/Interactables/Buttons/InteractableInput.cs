@@ -283,8 +283,11 @@ namespace Rogium.UserInterface.Interactables
                 case ButtonType.CampaignShowPrevious:
                     GASButtonActions.CampaignShowPrevious();
                     break;
-                case ButtonType.CampaignCurrentRefresh:
+                case ButtonType.CampaignRefresh:
                     GASButtonActions.CampaignRefresh(index);
+                    break;
+                case ButtonType.CampaignRefreshAll:
+                    GASButtonActions.CampaignRefreshAll();
                     break;
                 #endregion
                 

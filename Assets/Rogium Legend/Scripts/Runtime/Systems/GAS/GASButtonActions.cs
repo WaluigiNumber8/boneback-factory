@@ -1,4 +1,5 @@
-﻿using RedRats.Systems.GASCore;
+﻿using System.Collections.Generic;
+using RedRats.Systems.GASCore;
 using RedRats.Safety;
 using RedRats.Systems.Themes;
 using RedRats.UI.MenuSwitching;
@@ -669,15 +670,41 @@ namespace Rogium.Systems.GASExtension
             CampaignAssetSelectionOverseer.Instance.SelectCampaignPrevious();
         }
 
+        public static void CampaignRefreshAll()
+        {
+            ModalWindowBuilder.GetInstance().OpenMessageWindow(new MessageWindowInfo("Refresh all campaigns?\nThis can take a while.", "Yes", "No", CampaignRefreshAllAccept));
+        }
+        
+        public static void CampaignRefreshAllAccept()
+        {
+            CampaignAssetSelectionOverseer overseer = CampaignAssetSelectionOverseer.Instance;
+            CampaignEditorOverseer editor = CampaignEditorOverseer.Instance;
+            ExternalLibraryOverseer lib = ExternalLibraryOverseer.Instance;
+            IList<CampaignAsset> campaigns = lib.GetCampaignsCopy;
+            foreach (CampaignAsset campaign in campaigns)
+            {
+                IList<PackAsset> packs = lib.GetPacksCopy.GrabBasedOn(campaign.PackReferences);
+                if (packs == null || packs.Count <= 0) continue;
+                
+                editor.AssignAsset(campaign, campaigns.IndexOf(campaign), false);
+                editor.UpdateDataPack(packs);
+                editor.CompleteEditing();
+            }
+            
+        }
+        
         public static void CampaignRefresh(int index)
         {
             CampaignAssetSelectionOverseer overseer = CampaignAssetSelectionOverseer.Instance;
             CampaignEditorOverseer editor = CampaignEditorOverseer.Instance;
             ExternalLibraryOverseer lib = ExternalLibraryOverseer.Instance;
-            
             CampaignAsset currentAsset = overseer.GetSelectedCampaign();
+            IList<PackAsset> packs = lib.GetPacksCopy.GrabBasedOn(currentAsset.PackReferences);
+
+            if (packs == null || packs.Count <= 0) return;
+            
             editor.AssignAsset(currentAsset, index, false);
-            editor.UpdateDataPack(lib.GetPacksCopy.GrabBasedOn(currentAsset.PackReferences));
+            editor.UpdateDataPack(packs);
             editor.CompleteEditing();
         }
 
