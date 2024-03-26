@@ -100,15 +100,17 @@ namespace Rogium.UserInterface.Interactables
         #endregion
 
         #region Campaign Selection Menu
+        CampaignShowNext = 64,
+        CampaignShowPrevious = 65,
+        CampaignRefresh = 84,
+        CampaignRefreshAll = 85,
+        #endregion
+        
+        #region Campaign Editor
         CampaignEditorSelectAll = 66,
         CampaignEditorSelectNone = 67,
         CampaignEditorSelectRandom = 68,
         CampaignEditorChangeImportState = 69,
-        #endregion
-        
-        #region Campaign Editor
-        CampaignShowNext = 64,
-        CampaignShowPrevious = 65,
         #endregion
 
         #region Sprite Editor
@@ -137,6 +139,6 @@ namespace Rogium.UserInterface.Interactables
         Play = 10000,
         TEST = 10001
         
-        //Latest used : 83
+        //Latest used : 85
     }   
 }

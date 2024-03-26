@@ -18,10 +18,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection
         private IList<CampaignAsset> campaigns;
         private int currentIndex;
         
-        private CampaignAssetSelectionOverseer()
-        {
-            lib = ExternalLibraryOverseer.Instance;
-        }
+        private CampaignAssetSelectionOverseer() => lib = ExternalLibraryOverseer.Instance;
 
         /// <summary>
         /// Initializes the overseer.
@@ -99,6 +96,8 @@ namespace Rogium.UserInterface.Editors.AssetSelection
             SelectCampaign();
         }
         
+        public CampaignAsset GetSelectedCampaign() => campaigns[currentIndex];
+        
         /// <summary>
         /// Loads a campaign located on the index into the wallpaper.
         /// </summary>
@@ -120,6 +119,5 @@ namespace Rogium.UserInterface.Editors.AssetSelection
             
             wallpaper.Construct(AssetType.Campaign, currentIndex, campaigns[currentIndex]);
         }
-
     }
 }
