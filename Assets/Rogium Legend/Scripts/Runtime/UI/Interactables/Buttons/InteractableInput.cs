@@ -276,20 +276,19 @@ namespace Rogium.UserInterface.Interactables
                     break;
                 #endregion
 
-                #region Campaign Selection
+                #region Campaign Selection Menu
                 case ButtonType.CampaignShowNext:
                     GASButtonActions.CampaignShowNext();
                     break;
                 case ButtonType.CampaignShowPrevious:
                     GASButtonActions.CampaignShowPrevious();
                     break;
-                case ButtonType.CampaignEditorChangeImportState:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - CHANGE PACK IMPORT STATE");
-                    GASButtonActions.ChangeImportStatus(index);
+                case ButtonType.CampaignRefresh:
+                    GASButtonActions.CampaignRefresh();
                     break;
                 #endregion
                 
-                #region Campaign Editor Menu
+                #region Campaign Editor
                 case ButtonType.CampaignEditorSelectAll:
                     GASButtonActions.CampaignEditorSelectAll();
                     break;
@@ -298,6 +297,10 @@ namespace Rogium.UserInterface.Interactables
                     break;
                 case ButtonType.CampaignEditorSelectRandom:
                     GASButtonActions.CampaignEditorSelectRandom();
+                    break;
+                case ButtonType.CampaignEditorChangeImportState:
+                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - CHANGE PACK IMPORT STATE");
+                    GASButtonActions.ChangeImportStatus(index);
                     break;
                 #endregion
 

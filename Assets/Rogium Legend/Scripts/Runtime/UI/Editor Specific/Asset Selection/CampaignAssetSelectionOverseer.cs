@@ -99,6 +99,8 @@ namespace Rogium.UserInterface.Editors.AssetSelection
             SelectCampaign();
         }
         
+        public CampaignAsset GetSelectedCampaign() => campaigns[currentIndex];
+        
         /// <summary>
         /// Loads a campaign located on the index into the wallpaper.
         /// </summary>
@@ -121,5 +123,6 @@ namespace Rogium.UserInterface.Editors.AssetSelection
             wallpaper.Construct(AssetType.Campaign, currentIndex, campaigns[currentIndex]);
         }
 
+        public int CurrentIndex { get => currentIndex; }
     }
 }
