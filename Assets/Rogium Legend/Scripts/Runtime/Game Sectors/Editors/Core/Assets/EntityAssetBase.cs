@@ -12,10 +12,8 @@ namespace Rogium.Editors.Core
         protected int baseDamage;
         protected float useDelay;
         protected float knockbackForceSelf;
-        protected float knockbackTimeSelf;
         protected bool knockbackLockDirectionSelf;
         protected float knockbackForceOther;
-        protected float knockbackTimeOther;
         protected bool knockbackLockDirectionOther;
 
         #region Update Values
@@ -31,28 +29,16 @@ namespace Rogium.Editors.Core
         }
 
         public void UpdateKnockbackForceSelf(float newKnockbackSelf) => knockbackForceSelf = newKnockbackSelf;
-        public void UpdateKnockbackTimeSelf(float newKnockbackTime)
-        {
-            newKnockbackTime = Mathf.Clamp(newKnockbackTime, 0f, AssetValidation.MaxKnockbackSelfTime);
-            knockbackTimeSelf = newKnockbackTime;
-        }
         public void UpdateKnockbackLockDirectionSelf(bool lockDirection) => knockbackLockDirectionSelf = lockDirection;
         public void UpdateKnockbackForceOther(float newKnockbackOther) => knockbackForceOther = newKnockbackOther;
-        public void UpdateKnockbackTimeOther(float newKnockbackTime)
-        {
-            newKnockbackTime = Mathf.Clamp(newKnockbackTime, 0f, AssetValidation.MaxKnockbackOtherTime);
-            knockbackTimeOther = newKnockbackTime;
-        }
         public void UpdateKnockbackLockDirectionOther(bool lockDirection) => knockbackLockDirectionOther = lockDirection;
         #endregion
         
         public int BaseDamage { get => baseDamage; }
         public float UseDelay { get => useDelay; }
         public float KnockbackForceSelf { get => knockbackForceSelf; }
-        public float KnockbackTimeSelf { get => knockbackTimeSelf; }
         public bool KnockbackLockDirectionSelf { get => knockbackLockDirectionSelf; }
         public float KnockbackForceOther { get => knockbackForceOther; }
-        public float KnockbackTimeOther { get => knockbackTimeOther; }
         public bool KnockbackLockDirectionOther { get => knockbackLockDirectionOther; }
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using RedRats.Systems.LiteFeel.Core;
 using Sirenix.OdinInspector;
@@ -21,6 +20,8 @@ namespace RedRats.Systems.LiteFeel.Effects
         private bool restartOnPlay = true;
         [FoldoutGroup("$GroupSettings"), SerializeField] 
         private bool keepStateOnStop;
+        [FoldoutGroup("$GroupSettings"), SerializeField] 
+        private bool noPlayWhenPlaying;
         [FoldoutGroup("$GroupSettings"), HorizontalGroup("$GroupSettings/D"), SerializeField, LabelText("Initial Delay")] 
         private float initialDelayMin;
         [FoldoutGroup("$GroupSettings"), HorizontalGroup("$GroupSettings/D"), SerializeField, ShowIf("randomizeDelay"), HideLabel] 
@@ -60,6 +61,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         {
             if (!active) return;
             if (!gameObject.activeInHierarchy) return;
+            if (noPlayWhenPlaying && isPlaying) return;
             if (restartOnPlay && isPlaying)
             {
                 ResetState();

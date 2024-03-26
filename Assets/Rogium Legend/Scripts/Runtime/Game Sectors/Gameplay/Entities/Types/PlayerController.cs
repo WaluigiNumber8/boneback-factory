@@ -1,5 +1,5 @@
 ﻿using System;
-using Rogium.Gameplay.Core;
+using RedRats.Core;
 using Rogium.Gameplay.Entities.Characteristics;
 using Rogium.Systems.Input;
 using Sirenix.OdinInspector;
@@ -12,7 +12,8 @@ namespace Rogium.Gameplay.Entities.Player
     /// </summary>
     public class PlayerController : EntityController
     {
-        public event Action OnDeath; 
+        public event Action OnDeath;
+        public event Action OnTurn;
 
         [Title("Characteristics")]
         [SerializeField] private CharacteristicMove movement;
@@ -21,8 +22,10 @@ namespace Rogium.Gameplay.Entities.Player
         [SerializeField] private CharacteristicWeaponHold weaponHold;
         [SerializeField] private CharacteristicFloorInteractor floorInteractor;
 
-        private Vector2 moveDirection;
         private InputProfilePlayer input;
+        
+        private Vector2 moveDirection;
+        private Vector2Int lastFaceDirection;
 
         protected override void Awake()
         {
@@ -60,30 +63,23 @@ namespace Rogium.Gameplay.Entities.Player
             damageReceiver.OnDeath -= Die;
         }
 
-        protected override void FixedUpdate()
+        protected override void Update()
         {
-            base.FixedUpdate();
+            base.Update();
+            
+            // if (Time.frameCount % 3 != 0) return;
+            DetectTurning();
+        }
+
+        protected void FixedUpdate()
+        {
             if (movementLocked) return;
             if (actionsLocked) return;
             movement.Move(moveDirection);
         }
 
-        public override void ChangeCollideMode(bool isEnabled)
-        {
-            if (isEnabled) movement.Reset();
-            base.ChangeCollideMode(isEnabled);
-        }
-
         public void BecomeInvincible(float time) => damageReceiver.BecomeInvincible(time);
         
-        protected override void UpdateFaceDirection()
-        {
-            if (movementLocked) return;
-            if (actionsLocked || moveDirection == Vector2.zero)
-                base.UpdateFaceDirection();
-            else faceDirection = moveDirection;
-        }
-
         /// <summary>
         /// Allow the player to move in a specific direction.
         /// </summary>
@@ -109,5 +105,24 @@ namespace Rogium.Gameplay.Entities.Player
         private void UseWeaponDash() => weaponHold.Use(4);
         private void UseWeaponDashAlt() => weaponHold.Use(5);
 
+        /// <summary>
+        /// Checks if the player turned and if so, fires the <see cref="OnTurn"/> event.
+        /// </summary>
+        private void DetectTurning()
+        {
+            int faceDirX = faceDirection.x.Round().Sign0();
+            int faceDirY = faceDirection.y.Round().Sign0();
+            int oldDirX = lastFaceDirection.x.Sign0();
+            int oldDirY = lastFaceDirection.y.Sign0();
+            
+            //Check if player turned to a different direction
+            if ((faceDirX == -oldDirX || (oldDirX == 0 && faceDirX != oldDirX)) && faceDirX != 0 ||
+                (faceDirY == -oldDirY || (oldDirY == 0 && faceDirY != oldDirY)) && faceDirY != 0)
+            {
+                OnTurn?.Invoke();
+            }
+            
+            lastFaceDirection = new Vector2Int(faceDirX, faceDirY);
+        }
     }
 }

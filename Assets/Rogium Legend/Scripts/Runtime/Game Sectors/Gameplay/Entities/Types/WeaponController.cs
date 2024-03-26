@@ -32,8 +32,8 @@ namespace Rogium.Gameplay.Entities
         {
             if (weapon != null && weapon.ID == asset.ID) return;
             
-            ForcedMoveInfo knockbackSelf = new(asset.KnockbackForceSelf, asset.KnockbackTimeSelf, asset.KnockbackLockDirectionSelf);
-            ForcedMoveInfo knockbackOther = new(asset.KnockbackForceOther, asset.KnockbackTimeOther, asset.KnockbackLockDirectionOther);
+            ForcedMoveInfo knockbackSelf = new(asset.KnockbackForceSelf, true, asset.KnockbackLockDirectionSelf);
+            ForcedMoveInfo knockbackOther = new(asset.KnockbackForceOther, true, asset.KnockbackLockDirectionOther);
             damageGiver.Construct(new CharDamageGiverInfo(asset.BaseDamage, knockbackSelf, knockbackOther));
             visual.Construct(new CharVisualInfo(asset.Icon, asset.AnimationType, asset.FrameDuration, asset.IconAlt));
             visual.ChangeRenderState(asset.UseType != WeaponUseType.Hidden);

@@ -11,10 +11,8 @@ namespace Rogium.ExternalStorage.Serialization
         public int baseDamage;
         public float useDelay;
         public float knockbackForceSelf;
-        public float knockbackTimeSelf;
         public bool knockbackLockDirectionSelf;
         public float knockbackForceOther;
-        public float knockbackTimeOther;
         public bool knockbackLockDirectionOther;
         
         protected JSONEntityAssetBase(T asset) : base(asset)
@@ -22,10 +20,8 @@ namespace Rogium.ExternalStorage.Serialization
             baseDamage = asset.BaseDamage;
             useDelay = asset.UseDelay;
             knockbackForceSelf = asset.KnockbackForceSelf;
-            knockbackTimeSelf = asset.KnockbackTimeSelf;
             knockbackLockDirectionSelf = asset.KnockbackLockDirectionSelf;
             knockbackForceOther = asset.KnockbackForceOther;
-            knockbackTimeOther = asset.KnockbackTimeOther;
             knockbackLockDirectionOther = asset.KnockbackLockDirectionOther;
         }
     }

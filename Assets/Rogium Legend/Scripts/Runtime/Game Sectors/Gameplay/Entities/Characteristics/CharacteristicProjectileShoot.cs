@@ -17,6 +17,6 @@ namespace Rogium.Gameplay.Entities.Characteristics
         /// Fires a projectile from this entity.
         /// </summary>
         /// <param name="data">The projectile that gets fired.</param>
-        public void Fire(IList<ProjectileDataInfo> data) => projectileOverseer.Fire(entity.Transform, data);
+        public void Fire(IList<ProjectileDataInfo> data) => projectileOverseer.Fire(entity.TTransform, data);
     }
 }

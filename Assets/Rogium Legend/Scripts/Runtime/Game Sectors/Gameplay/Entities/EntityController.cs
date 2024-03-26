@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using RedRats.Core;
+﻿using RedRats.Core;
+using RedRats.Systems.Clocks;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -16,37 +16,45 @@ namespace Rogium.Gameplay.Entities
         [SerializeField] private Collider2D trigger;
         [SerializeField] private bool showGizmos;
 
-        protected Transform ttransform;
+        private Transform ttransform;
         private Rigidbody2D rb;
-        private ForceMoveInfo forceMove;
 
-        private Vector2 previousPos;
-        private float currentSpeed;
-        private Vector2 velocityChange;
         protected Vector2 faceDirection;
+        private Vector3 lastPos;
+        private float currentSpeed;
+        private CountdownTimer movementLockTimer;
+        private CountdownTimer faceDirectionLockTimer;
+        protected bool movementLocked;
         protected bool faceDirectionLocked;
         protected bool actionsLocked;
-        protected bool movementLocked;
-        private Coroutine movementLockCoroutine;
 
         protected virtual void Awake()
         {
             ttransform = transform;
             rb = GetComponent<Rigidbody2D>();
+            movementLockTimer = new CountdownTimer(() => movementLocked = false, () => movementLocked = true);
+            faceDirectionLockTimer = new CountdownTimer(() => faceDirectionLocked = false, () => faceDirectionLocked = true);
         }
 
         protected virtual void Update() => UpdateParameters();
-        protected virtual void FixedUpdate() => DoForceMovement();
 
         /// <summary>
         /// Enables/Disables the entities ability to collide with objects and trigger events.
         /// </summary>
         /// <param name="isEnabled">Changes the collision state.</param>
-        public virtual void ChangeCollideMode(bool isEnabled)
+        public void ChangeCollideMode(bool isEnabled)
         {
             actionsLocked = !isEnabled;
             if (collider != null) collider.enabled = isEnabled;
             if (trigger != null) trigger.enabled = isEnabled;
+        }
+        
+        /// <summary>
+        /// Stops the entity's movement.
+        /// </summary>
+        public void StopMoving()
+        {
+            rb.AddForce(-rb.velocity, ForceMode2D.Impulse);
         }
 
         /// <summary>
@@ -55,14 +63,20 @@ namespace Rogium.Gameplay.Entities
         /// <param name="time">The time to lock movement for.</param>
         public void LockMovement(float time)
         {
-            if (movementLockCoroutine != null) StopCoroutine(movementLockCoroutine);
-            movementLockCoroutine = StartCoroutine(MovementLockCoroutine());
-            IEnumerator MovementLockCoroutine()
-            {
-                movementLocked = true;
-                yield return new WaitForSeconds(time);
-                movementLocked = false;
-            }
+            // Do nothing if movement is locked and new time is less than the current time.
+            if (movementLocked && movementLockTimer.TimeLeft > time) return;
+            movementLockTimer.Start(time);
+        }
+        
+        /// <summary>
+        /// Locks the entity's direction facing for a certain amount of time.
+        /// </summary>
+        /// <param name="time">The time to lock face direction for.</param>
+        public void LockFaceDirection(float time)
+        {
+            // Do nothing if faceDirection is locked and new time is less than the current time.
+            if (faceDirectionLocked && faceDirectionLockTimer.TimeLeft > time) return;
+            faceDirectionLockTimer.Start(time);
         }
         
         /// <summary>
@@ -72,7 +86,7 @@ namespace Rogium.Gameplay.Entities
         /// <param name="forceInfo">The data to use for the force.</param>
         public void ForceMove(Vector2 direction, ForcedMoveInfo forceInfo)
         {
-            ForceMove(direction, forceInfo.forceSpeed, forceInfo.time, forceInfo.lockFaceDirection);
+            ForceMove(direction, forceInfo.force, forceInfo.lockInput, forceInfo.lockFaceDirection);
         }
 
         /// <summary>
@@ -80,33 +94,18 @@ namespace Rogium.Gameplay.Entities
         /// </summary>
         /// <param name="direction">The direction of the movement.</param>
         /// <param name="force">The force of the movement.</param>
-        /// <param name="time">The time to take for the movement.</param>
+        /// <param name="lockInput">Lock entity's movement inputs.</param>
         /// <param name="lockFaceDirection">Lock the face direction during the movement.</param>
-        public void ForceMove(Vector2 direction, float force, float time, bool lockFaceDirection)
+        public void ForceMove(Vector2 direction, float force, bool lockInput = false, bool lockFaceDirection = false)
         {
-            actionsLocked = true;
-            faceDirectionLocked = lockFaceDirection;
-            
-            forceMove.moveDirection = direction.normalized;
-            forceMove.force = force;
-            forceMove.timer = Time.time + time;
-            forceMove.activated = true;
-        }
+            Vector2 f =  10 * force * direction;
+            rb.AddForce(rb.velocity + f, ForceMode2D.Impulse);
 
-        /// <summary>
-        /// Handles Forced Movement processing.
-        /// </summary>
-        private void DoForceMovement()
-        {
-            if (!forceMove.activated) return;
-            if (Time.time > forceMove.timer)
-            {
-                faceDirectionLocked = false;
-                actionsLocked = false;
-                forceMove.activated = false;
-                return;
-            }
-            rb.MovePosition(rb.position + forceMove.force * 10 * Time.fixedDeltaTime * forceMove.moveDirection);
+            if (!lockInput && !lockFaceDirection) return;
+            float time = 0.21f * Mathf.Exp(0.05f * RedRatUtils.GetTimeOfForce(f.magnitude, rb) + 0.01f); // The time increases with time exponentially.
+                                                                                                         // For the love of god, DON'T TOUCH THE NUMBERS.
+            if (lockInput) LockMovement(time);
+            if (lockFaceDirection) LockFaceDirection(time * 1.6f);
         }
 
         /// <summary>
@@ -114,12 +113,13 @@ namespace Rogium.Gameplay.Entities
         /// </summary>
         private void UpdateParameters()
         {
-            if (Time.frameCount % 3 != 0) return;
+            movementLockTimer.Tick();
+            faceDirectionLockTimer.Tick();
+            
+            currentSpeed = (ttransform.position - lastPos).sqrMagnitude * 1000;
             if (!faceDirectionLocked) UpdateFaceDirection();
             
-            velocityChange = (rb.position - previousPos) / Time.deltaTime;
-            currentSpeed = velocityChange.magnitude;
-            previousPos = rb.position;
+            lastPos = ttransform.position;
         }
         
         /// <summary>
@@ -127,7 +127,7 @@ namespace Rogium.Gameplay.Entities
         /// </summary>
         protected virtual void UpdateFaceDirection()
         {
-            faceDirection = (velocityChange.IsZero(0.05f)) ? velocityChange.normalized.Round() : faceDirection;
+            faceDirection = (currentSpeed > 0.001f) ? (ttransform.position - lastPos).normalized : faceDirection;
         }
 
         protected void OnDrawGizmos()
@@ -136,18 +136,10 @@ namespace Rogium.Gameplay.Entities
             Gizmos.color = Color.yellow;
         }
         
-        public Transform Transform { get => ttransform; }
+        public Transform TTransform { get => ttransform; }
         public Rigidbody2D Rigidbody { get => rb; }
         public Vector2 FaceDirection { get => faceDirection; }
         public float CurrentSpeed { get => currentSpeed; }
         public bool ActionsLocked { get => actionsLocked; }
-        
-        private struct ForceMoveInfo
-        {
-            public Vector2 moveDirection;
-            public float force;
-            public float timer;
-            public bool activated;
-        }
     }
 }

@@ -11,7 +11,7 @@ namespace RedRats.Core
         /// <summary>
         /// Works like Mathf.Sign but with a 0.
         /// </summary>
-        public static float Sign0(this float number)
+        public static int Sign0(this float number)
         {
             return number == 0 ? 0 : number > 0 ? 1 : -1;
         }
@@ -32,7 +32,7 @@ namespace RedRats.Core
         /// <param name="value">The value to round.</param>
         /// <param name="decimals">Amount of decimals.</param>
         /// <returns></returns>
-        public static float Round(this float value, int decimals)
+        public static float Round(this float value, int decimals = 2)
         {
             float mult = Mathf.Pow(10.0f, decimals);
             return Mathf.Round(value * mult) / mult;

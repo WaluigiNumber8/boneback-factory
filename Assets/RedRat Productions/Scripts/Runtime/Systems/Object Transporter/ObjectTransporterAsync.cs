@@ -11,24 +11,19 @@ namespace RedRats.Systems.ObjectTransport
     /// </summary>
     public class ObjectTransporterAsync
     {
-        private readonly IList<Task> moves;
+        private readonly IList<Task> moves = new List<Task>();
         
         private Transform transform;
         private Vector3 destination;
         private float speed;
-        
-        public ObjectTransporterAsync()
-        {
-            moves = new List<Task>();
-        }
 
         /// <summary>
-        /// Transports a transform into a specific position.
-        /// <param name="newDestination">The position to transport the transform to.</param>
+        /// Transports a <see cref="Transform"/> into a specific position.
+        /// <param name="newDestination">The position to transport to.</param>
         /// <param name="speed">The speed of the transport.</param>
         /// <param name="order">The order of movement on different axis. Axis not mentioned will happen in the background.</param>
         /// </summary>
-        public async Task Transport(Transform transform, Vector3 newDestination, float speed, TransportOrderType order = TransportOrderType.XYZ, Action finishMethod = null)
+        public async Task Transport(Transform transform, Vector3 newDestination, float speed, TransportOrderType order = TransportOrderType.XY, Action finishMethod = null)
         {
             this.transform = transform;
             destination = newDestination;
@@ -37,88 +32,15 @@ namespace RedRats.Systems.ObjectTransport
             
             switch (order)
             {
-                case TransportOrderType.XYZ:
-                    await MoveOnX();
-                    await MoveOnY();
-                    await MoveOnZ();
-                    break;
-                case TransportOrderType.XZY:
-                    await MoveOnX();
-                    await MoveOnZ();
-                    await MoveOnY();
-                    break;
-                case TransportOrderType.YXZ:
-                    await MoveOnY();
-                    await MoveOnX();
-                    await MoveOnZ();
-                    break;
-                case TransportOrderType.YZX:
-                    await MoveOnY();
-                    await MoveOnZ();
-                    await MoveOnX();
-                    break;
-                case TransportOrderType.ZXY:
-                    await MoveOnZ();
-                    await MoveOnX();
-                    await MoveOnY();
-                    break;
-                case TransportOrderType.ZYX:
-                    await MoveOnZ();
-                    await MoveOnY();
-                    await MoveOnX();
-                    break;
                 case TransportOrderType.XY:
-                    moves.Add(MoveOnZ());
                     await MoveOnX();
                     await MoveOnY();
-                    break;
-                case TransportOrderType.XZ:
-                    moves.Add(MoveOnY());
-                    await MoveOnX();
-                    await MoveOnZ();
                     break;
                 case TransportOrderType.YX:
-                    moves.Add(MoveOnZ());
                     await MoveOnY();
                     await MoveOnX();
                     break;
-                case TransportOrderType.YZ:
-                    moves.Add(MoveOnX());
-                    await MoveOnY();
-                    await MoveOnZ();
-                    break;
-                case TransportOrderType.ZX:
-                    moves.Add(MoveOnY());
-                    await MoveOnZ();
-                    await MoveOnX();
-                    break;
-                case TransportOrderType.ZY:
-                    moves.Add(MoveOnX());
-                    await MoveOnZ();
-                    await MoveOnY();
-                    break;
-                case TransportOrderType.X:
-                    moves.Add(MoveOnY());
-                    moves.Add(MoveOnZ());
-                    await MoveOnX();
-                    break;
-                case TransportOrderType.Y:
-                    moves.Add(MoveOnX());
-                    moves.Add(MoveOnZ());
-                    await MoveOnY();
-                    break;
-                case TransportOrderType.Z:
-                    moves.Add(MoveOnX());
-                    moves.Add(MoveOnY());
-                    await MoveOnZ();
-                    break;
-                case TransportOrderType.All:
-                    moves.Add(MoveOnX());
-                    moves.Add(MoveOnY());
-                    moves.Add(MoveOnZ());
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException($"The order type of '{order}' is unknown or unsupported.");
+                default: throw new ArgumentOutOfRangeException($"The order type of '{order}' is unknown or unsupported.");
             }
 
             await Task.WhenAll(moves);
@@ -144,18 +66,6 @@ namespace RedRats.Systems.ObjectTransport
             {
                 Vector3 position = transform.position;
                 position = new Vector3(position.x, Mathf.MoveTowards(position.y, targetPos.y, speed), position.z);
-                transform.position = position;
-                await Task.Yield();
-            }
-        }
-
-        private async Task MoveOnZ() => await MoveOnZ(destination, speed);
-        private async Task MoveOnZ(Vector3 targetPos, float speed)
-        {
-            while (!FloatUtils.AreEqual(transform.position.z, targetPos.z, 0.001f))
-            {
-                Vector3 position = transform.position;
-                position = new Vector3(position.x, position.y, Mathf.MoveTowards(position.z, targetPos.z, speed));
                 transform.position = position;
                 await Task.Yield();
             }

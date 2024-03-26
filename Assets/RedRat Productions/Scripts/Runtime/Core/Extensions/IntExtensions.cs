@@ -6,6 +6,14 @@
     public static class IntExtensions
     {
         /// <summary>
+        /// Works like Mathf.Sign but with a 0.
+        /// </summary>
+        public static int Sign0(this int number)
+        {
+            return number == 0 ? 0 : number > 0 ? 1 : -1;
+        }
+        
+        /// <summary>
         /// Converts the milliseconds to seconds.
         /// </summary>
         /// <param name="milliseconds">The milliseconds to convert.</param>

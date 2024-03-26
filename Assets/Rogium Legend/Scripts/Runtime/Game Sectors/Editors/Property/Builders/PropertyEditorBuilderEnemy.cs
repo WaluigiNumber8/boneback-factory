@@ -70,10 +70,8 @@ namespace Rogium.Editors.PropertyEditor.Builders
             b.BuildSlider("Invincibility Time", 0f, EditorConstants.EnemyInvincibilityTimeMax, asset.InvincibilityTime, content, f => asset.UpdateInvincibilityTime(f));
             b.BuildHeader("Knockback", content);
             b.BuildSlider("Self Force", -EditorConstants.EnemyKnockbackForceMax, EditorConstants.EnemyKnockbackForceMax, asset.KnockbackForceSelf, content, f => asset.UpdateKnockbackForceSelf(f));
-            b.BuildSlider("Self Time", 0f, EditorConstants.EnemyKnockbackTimeMax, asset.KnockbackTimeSelf, content, f => asset.UpdateKnockbackTimeSelf(f));
-            b.BuildToggle("Self Lock Direction", asset.KnockbackLockDirectionSelf, content, asset.UpdateKnockbackLockDirectionSelf);
             b.BuildSlider("Other Force", -EditorConstants.EnemyKnockbackForceMax, EditorConstants.EnemyKnockbackForceMax, asset.KnockbackForceOther, content, f => asset.UpdateKnockbackForceOther(f));
-            b.BuildSlider("Other Time", 0f, EditorConstants.EnemyKnockbackTimeMax, asset.KnockbackTimeOther, content, f => asset.UpdateKnockbackTimeOther(f));
+            b.BuildToggle("Self Lock Direction", asset.KnockbackLockDirectionSelf, content, asset.UpdateKnockbackLockDirectionSelf);
             b.BuildToggle("Other Lock Direction", asset.KnockbackLockDirectionOther, content, asset.UpdateKnockbackLockDirectionOther);
 
             b.BuildHeader("AI", content);

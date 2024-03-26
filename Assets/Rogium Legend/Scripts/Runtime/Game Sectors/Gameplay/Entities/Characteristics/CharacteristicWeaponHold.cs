@@ -59,7 +59,11 @@ namespace Rogium.Gameplay.Entities.Characteristics
             if (currentWeapons[slot] == null) return;
 
             WeaponAsset weapon = currentWeapons[slot];
-            if (weapon.FreezeUser) entity.LockMovement(weapon.UseDuration + weapon.UseStartDelay);
+            if (weapon.FreezeUser)
+            {
+                entity.LockMovement(weapon.UseDuration + weapon.UseStartDelay);
+                entity.StopMoving();
+            }
             useDelayTimer = Time.time + weapon.UseDuration + weapon.UseStartDelay;
             
             StartCoroutine(ActivateCoroutine());
@@ -68,7 +72,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
                 yield return new WaitForSeconds(weapon.UseStartDelay);
                 weaponEntity.LoadUp(weapon);
                 weaponEntity.Activate();
-                entity.ForceMove(-entity.FaceDirection, weapon.KnockbackForceSelf, weapon.KnockbackTimeSelf, weapon.KnockbackLockDirectionSelf);
+                entity.ForceMove(-entity.FaceDirection, weapon.KnockbackForceSelf, weapon.FreezeUser, weapon.KnockbackLockDirectionSelf);
             }
         }
 
@@ -106,8 +110,8 @@ namespace Rogium.Gameplay.Entities.Characteristics
         /// </summary>
         private void UpdateWeaponPosRot()
         {
-            weaponEntity.Transform.localPosition = entity.FaceDirection.normalized;
-            TransformUtils.SetRotation2D(weaponEntity.Transform, entity.FaceDirection);
+            weaponEntity.transform.localPosition = entity.FaceDirection.normalized;
+            TransformUtils.SetRotation2D(weaponEntity.transform, entity.FaceDirection);
         }
         
         public int WeaponCount { get => currentWeapons.Count; }

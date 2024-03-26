@@ -32,7 +32,6 @@ namespace Rogium.Gameplay.Sequencer
         [Space]
         [SerializeField, Min(0)] private float beforeIntroDelay;
         
-
         private SASCore sas;
         private IDictionary<Vector2, Vector2> startingPoints;
         private Transform playerTransform;

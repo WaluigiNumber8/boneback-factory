@@ -92,8 +92,8 @@ namespace Rogium.Gameplay.Entities.Enemy
             //Damage Giver
             if (damageGiver != null)
             {
-                ForcedMoveInfo knockbackSelf = new(asset.KnockbackForceSelf, asset.KnockbackTimeSelf, asset.KnockbackLockDirectionSelf);
-                ForcedMoveInfo knockbackOther = new(asset.KnockbackForceOther, asset.KnockbackTimeOther, asset.KnockbackLockDirectionOther);
+                ForcedMoveInfo knockbackSelf = new(asset.KnockbackForceSelf, (asset.KnockbackForceSelf > 0), asset.KnockbackLockDirectionSelf);
+                ForcedMoveInfo knockbackOther = new(asset.KnockbackForceOther, (asset.KnockbackForceOther > 0), asset.KnockbackLockDirectionOther);
                 CharDamageGiverInfo damageGiver = new(asset.BaseDamage, knockbackSelf, knockbackOther);
                 this.damageGiver.Construct(damageGiver);
             }
@@ -165,10 +165,10 @@ namespace Rogium.Gameplay.Entities.Enemy
 
         private void FaceDirectionRotate()
         {
-            Vector2 direction = (ttransform.position - playerTransform.position).normalized * -1;
-            if (!seamlessMovement) direction = direction.Round();
+            Vector2 direction = (TTransform.position - playerTransform.position).normalized * -1;
+            // if (!seamlessMovement) direction = Vector2Int.FloorToInt(direction);
 
-            if (!isLooking && faceDirection.DistanceTo(direction) > 0.1f)
+            if (!isLooking && Vector2.Distance(faceDirection, direction) > 0.1f)
             {
                 refreshFaceDirectionTimer = Time.time + refreshFaceDirectionTime;
                 isLooking = true;
