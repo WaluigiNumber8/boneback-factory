@@ -669,14 +669,14 @@ namespace Rogium.Systems.GASExtension
             CampaignAssetSelectionOverseer.Instance.SelectCampaignPrevious();
         }
 
-        public static void CampaignRefresh()
+        public static void CampaignRefresh(int index)
         {
             CampaignAssetSelectionOverseer overseer = CampaignAssetSelectionOverseer.Instance;
             CampaignEditorOverseer editor = CampaignEditorOverseer.Instance;
             ExternalLibraryOverseer lib = ExternalLibraryOverseer.Instance;
             
             CampaignAsset currentAsset = overseer.GetSelectedCampaign();
-            editor.AssignAsset(currentAsset, overseer.CurrentIndex, false);
+            editor.AssignAsset(currentAsset, index, false);
             editor.UpdateDataPack(lib.GetPacksCopy.GrabBasedOn(currentAsset.PackReferences));
             editor.CompleteEditing();
         }
