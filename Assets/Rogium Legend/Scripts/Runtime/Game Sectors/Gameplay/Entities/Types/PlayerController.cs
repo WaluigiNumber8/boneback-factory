@@ -1,4 +1,5 @@
 ﻿using System;
+using RedRats.Core;
 using Rogium.Gameplay.Entities.Characteristics;
 using Rogium.Systems.Input;
 using Sirenix.OdinInspector;
@@ -66,11 +67,8 @@ namespace Rogium.Gameplay.Entities.Player
         {
             base.Update();
             
-            if (Time.frameCount % 3 != 0) return;
-            
-            //Check if the player turned;
-            if (lastFaceDirection != Vector2Int.RoundToInt(faceDirection)) OnTurn?.Invoke();
-            lastFaceDirection = Vector2Int.RoundToInt(faceDirection);
+            // if (Time.frameCount % 3 != 0) return;
+            DetectTurning();
         }
 
         protected void FixedUpdate()
@@ -107,5 +105,24 @@ namespace Rogium.Gameplay.Entities.Player
         private void UseWeaponDash() => weaponHold.Use(4);
         private void UseWeaponDashAlt() => weaponHold.Use(5);
 
+        /// <summary>
+        /// Checks if the player turned and if so, fires the <see cref="OnTurn"/> event.
+        /// </summary>
+        private void DetectTurning()
+        {
+            int faceDirX = faceDirection.x.Round().Sign0();
+            int faceDirY = faceDirection.y.Round().Sign0();
+            int oldDirX = lastFaceDirection.x.Sign0();
+            int oldDirY = lastFaceDirection.y.Sign0();
+            
+            //Check if player turned to a different direction
+            if ((faceDirX == -oldDirX || (oldDirX == 0 && faceDirX != oldDirX)) && faceDirX != 0 ||
+                (faceDirY == -oldDirY || (oldDirY == 0 && faceDirY != oldDirY)) && faceDirY != 0)
+            {
+                OnTurn?.Invoke();
+            }
+            
+            lastFaceDirection = new Vector2Int(faceDirX, faceDirY);
+        }
     }
 }

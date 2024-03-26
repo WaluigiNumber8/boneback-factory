@@ -215,6 +215,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -693,6 +694,18 @@ MonoBehaviour:
     IconType: 290000
     IconTexture: {fileID: 0}
     IsIconRecursive: 0
+    BackgroundType: 0
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
+  - Type: 1
+    Name: Effects
+    GameObject: {fileID: 0}
+    Ordinal: 24
+    Priority: 0
+    IconType: 142000
+    IconTexture: {fileID: 0}
+    IsIconRecursive: 1
     BackgroundType: 0
     BackgroundTexture: {fileID: 0}
     IsBackgroundRecursive: 0
@@ -1486,6 +1499,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -2015,7 +2029,7 @@ MonoBehaviour:
     rid: 4462825785202312006
   m_ShadowCastingSource: 2
   m_ShadowMesh:
-    m_Mesh: {fileID: 1931590744}
+    m_Mesh: {fileID: 1884696081}
     m_LocalBounds:
       m_Center: {x: -0.5000229, y: 0, z: 0}
       m_Extent: {x: 7.4999924, y: 5.0000153, z: 0}
@@ -2254,6 +2268,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -2658,6 +2673,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -4942,6 +4958,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -5803,6 +5820,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -6186,6 +6204,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -7194,6 +7213,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -7292,6 +7312,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -7886,6 +7907,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -8030,65 +8052,7 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!1 &1905716359
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1905716360}
-  - component: {fileID: 1905716361}
-  m_Layer: 5
-  m_Name: HUD
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1905716360
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1905716359}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 439417005}
-  m_Father: {fileID: 77853638}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1905716361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1905716359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56b9f0ddab20434897388dcb3efbcb01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBar:
-    slider: {fileID: 1161645281}
-    lerpSpeed: 15
-    trackedReceiver: {fileID: 42737587976820106}
-    targetValue: 0
-  weaponSlots:
-    main: {fileID: 6215273503585334383}
-    sub: {fileID: 1602381852}
-    dash: {fileID: 1392868901}
---- !u!43 &1931590744
+--- !u!43 &1884696081
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8253,6 +8217,64 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1905716359
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1905716360}
+  - component: {fileID: 1905716361}
+  m_Layer: 5
+  m_Name: HUD
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1905716360
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905716359}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 439417005}
+  m_Father: {fileID: 77853638}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1905716361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905716359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56b9f0ddab20434897388dcb3efbcb01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar:
+    slider: {fileID: 1161645281}
+    lerpSpeed: 15
+    trackedReceiver: {fileID: 42737587976820106}
+    targetValue: 0
+  weaponSlots:
+    main: {fileID: 6215273503585334383}
+    sub: {fileID: 1602381852}
+    dash: {fileID: 1392868901}
 --- !u!114 &1946443653 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1663277814199073492, guid: e45c807a8e8ae2d49bffbf3b9adefcce, type: 3}
@@ -8649,6 +8671,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0

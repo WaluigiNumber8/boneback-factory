@@ -620,6 +620,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 0
   keepStateOnStop: 0
+  noPlayWhenPlaying: 1
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -627,10 +628,10 @@ MonoBehaviour:
   infiniteLoop: 0
   loops: 1
   loopType: 0
-  target: {fileID: 0}
+  target: {fileID: 42737587612288670}
   mode: 1
   beginScale: 1
-  targetScale: 0.825
+  targetScale: 0.915
   affectedAxis: 2
   deformCurve:
     serializedVersion: 2
