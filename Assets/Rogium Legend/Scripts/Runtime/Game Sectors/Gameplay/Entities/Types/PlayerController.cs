@@ -11,7 +11,8 @@ namespace Rogium.Gameplay.Entities.Player
     /// </summary>
     public class PlayerController : EntityController
     {
-        public event Action OnDeath; 
+        public event Action OnDeath;
+        public event Action OnTurn;
 
         [Title("Characteristics")]
         [SerializeField] private CharacteristicMove movement;
@@ -20,8 +21,10 @@ namespace Rogium.Gameplay.Entities.Player
         [SerializeField] private CharacteristicWeaponHold weaponHold;
         [SerializeField] private CharacteristicFloorInteractor floorInteractor;
 
-        private Vector2 moveDirection;
         private InputProfilePlayer input;
+        
+        private Vector2 moveDirection;
+        private Vector2Int lastFaceDirection;
 
         protected override void Awake()
         {
@@ -59,6 +62,17 @@ namespace Rogium.Gameplay.Entities.Player
             damageReceiver.OnDeath -= Die;
         }
 
+        protected override void Update()
+        {
+            base.Update();
+            
+            if (Time.frameCount % 3 != 0) return;
+            
+            //Check if the player turned;
+            if (lastFaceDirection != Vector2Int.RoundToInt(faceDirection)) OnTurn?.Invoke();
+            lastFaceDirection = Vector2Int.RoundToInt(faceDirection);
+        }
+
         protected void FixedUpdate()
         {
             if (movementLocked) return;
@@ -68,16 +82,6 @@ namespace Rogium.Gameplay.Entities.Player
 
         public void BecomeInvincible(float time) => damageReceiver.BecomeInvincible(time);
         
-        // protected override void UpdateFaceDirection()
-        // {
-        //     if (movementLocked) return;
-        //     if (actionsLocked || moveDirection == Vector2.zero)
-        //     {
-        //         base.UpdateFaceDirection();
-        //     }
-        //     else faceDirection = moveDirection;
-        // }
-
         /// <summary>
         /// Allow the player to move in a specific direction.
         /// </summary>
