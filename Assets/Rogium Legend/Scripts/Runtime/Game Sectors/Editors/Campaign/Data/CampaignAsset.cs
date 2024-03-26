@@ -116,7 +116,7 @@ namespace Rogium.Editors.Campaign
         #endregion
 
         public int AdventureLength { get => adventureLength; }
-        public PackAsset DataPack { get => new PackAsset(dataPack); }
+        public PackAsset DataPack { get => dataPack; }
         public IList<string> PackReferences { get => new List<string>(packReferences); }
     }
 }
