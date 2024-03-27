@@ -1,4 +1,5 @@
 ﻿using System;
+using Rogium.Core;
 using Rogium.Editors.Sprites;
 using UnityEngine;
 
@@ -40,14 +41,14 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         protected override void CreateAsset()
         {
             editor.CreateNewSprite((SpriteAsset)editedAssetBase);
-            selectionMenu.OpenForSprites();
+            selectionMenu.Open(AssetType.Sprite);
         }
 
         protected override void UpdateAsset()
         {
             spriteEditor.UpdateAsset((SpriteAsset)editedAssetBase);
             spriteEditor.CompleteEditing();
-            selectionMenu.OpenForSprites();
+            selectionMenu.Open(AssetType.Sprite);
         }
     }
 }

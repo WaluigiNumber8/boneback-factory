@@ -1,4 +1,5 @@
 ﻿using System;
+using Rogium.Core;
 using Rogium.Editors.Rooms;
 using UnityEngine;
 
@@ -43,14 +44,14 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         protected override void CreateAsset()
         {
             editor.CreateNewRoom((RoomAsset)editedAssetBase);
-            selectionMenu.OpenForRooms();
+            selectionMenu.Open(AssetType.Room);
         }
 
         protected override void UpdateAsset()
         {
             roomEditor.UpdateAsset((RoomAsset)editedAssetBase);
             roomEditor.CompleteEditing();
-            selectionMenu.OpenForRooms();
+            selectionMenu.Open(AssetType.Room);
         }
     }
 }

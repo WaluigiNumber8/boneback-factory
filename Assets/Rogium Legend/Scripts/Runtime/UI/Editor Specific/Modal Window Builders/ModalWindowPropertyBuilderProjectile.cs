@@ -1,4 +1,5 @@
 ﻿using System;
+using Rogium.Core;
 using Rogium.Editors.Projectiles;
 using UnityEngine;
 
@@ -39,14 +40,14 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         protected override void CreateAsset()
         {
             editor.CreateNewProjectile((ProjectileAsset)editedAssetBase);
-            selectionMenu.OpenForProjectiles();
+            selectionMenu.Open(AssetType.Projectile);
         }
 
         protected override void UpdateAsset()
         {
             projectileEditor.UpdateAsset((ProjectileAsset)editedAssetBase);
             projectileEditor.CompleteEditing();
-            selectionMenu.OpenForProjectiles();
+            selectionMenu.Open(AssetType.Projectile);
         }
     }
 }

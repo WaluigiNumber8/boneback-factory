@@ -1,4 +1,5 @@
-﻿using Rogium.Editors.Core;
+﻿using Rogium.Core;
+using Rogium.Editors.Core;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,84 +8,22 @@ namespace Rogium.UserInterface.Editors.AssetSelection
     /// <summary>
     /// Controls the Asset Selection Menu.
     /// </summary>
-    public class AssetSelectionMenu : MonoBehaviour, IAssetSelectionOverseer
+    public class AssetSelectionMenu : MonoBehaviour
     {
-        [SerializeField] private AssetSelectionOverseerMono assetSelection;
+        [SerializeField] private AssetSelector assetSelector;
         [SerializeField] private ToggleGroup toggleGroup;
         [SerializeField] private SelectionInfoColumn infoColumn;
 
         private void OnEnable() => AssetCardController.OnSelect += UpdateInfoColumn;
         private void OnDisable() => AssetCardController.OnSelect -= UpdateInfoColumn;
 
-
-        #region Open Selection
-        public void OpenForPacks()
-        {
-            Open();
-            assetSelection.OpenForPacks();
-        }
-        public void OpenForPalettes()
-        {
-            Open();
-            assetSelection.OpenForPalettes();
-        }
-
-        public void OpenForSprites()
-        {
-            Open();
-            assetSelection.OpenForSprites();
-        }
-
-        public void OpenForWeapons()
-        {
-            Open();
-            assetSelection.OpenForWeapons();
-        }
-
-        public void OpenForProjectiles()
-        {
-            Open();
-            assetSelection.OpenForProjectiles();
-        }
-
-        public void OpenForEnemies()
-        {
-            Open();
-            assetSelection.OpenForEnemies();
-        }
-
-        public void OpenForRooms()
-        {
-            Open();
-            assetSelection.OpenForRooms();
-        }
-
-        public void OpenForTiles()
-        {
-            Open();
-            assetSelection.OpenForTiles();
-        }
-
-        public void OpenForObjects()
-        {
-            Open();
-            assetSelection.OpenForObjects();
-        }
-        
-        public void OpenForSounds()
-        {
-            Open();
-            assetSelection.OpenForSounds();
-        }
-
-        #endregion
-
         /// <summary>
         /// Prepares the menu for filling.
         /// </summary>
-        private void Open()
+        public void Open(AssetType type)
         {
-            assetSelection.BeginListeningToSpawnedCards(AssignGroup, DeselectAll);
+            assetSelector.BeginListeningToSpawnedCards(AssignGroup, DeselectAll);
+            assetSelector.Open(type);
         }
 
         /// <summary>

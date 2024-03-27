@@ -47,7 +47,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         protected override void CreateAsset()
         {
             lib.CreateAndAddPack(editedAssetBase);
-            selectionMenu.OpenForPacks();
+            selectionMenu.Open(AssetType.Pack);
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         {
             PackEditorOverseer.Instance.UpdateAsset(editedAssetBase);
             editor.CompleteEditing();
-            selectionMenu.OpenForPacks();
+            selectionMenu.Open(AssetType.Pack);
         }
     }
 }
