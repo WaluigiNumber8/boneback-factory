@@ -1,7 +1,9 @@
 using System;
 using RedRats.Systems.Audio;
 using RedRats.UI.Core;
+using Rogium.Core;
 using Rogium.Editors.Core;
+using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.Audio;
 using Rogium.UserInterface.ModalWindows;
 using TMPro;
@@ -21,12 +23,12 @@ namespace Rogium.UserInterface.Interactables.Properties
         [SerializeField] private AudioMixerGroup mixerGroup;
         [SerializeField] private UIInfo ui;
         
-        private Action<AssetData> onChangeValue;
+        private Action<AssetData> whenValueChanged;
         private AssetData currentData;
 
         private void Awake()
         {
-            showWindowButton.onClick.AddListener(() => ModalWindowBuilder.GetInstance().OpenSoundPickerWindow(RefreshOnChange, onChangeValue, currentData));
+            showWindowButton.onClick.AddListener(() => ModalWindowBuilder.GetInstance().OpenSoundPickerWindow(RefreshOnChange, whenValueChanged, currentData));
             playButton.onClick.AddListener(() => AudioSystemRogium.GetInstance().PlaySound(currentData, mixerGroup, new AudioSourceSettingsInfo(0, false, false, false)));
         }
 
@@ -34,7 +36,10 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             currentData = value;
             ConstructTitle(titleText);
-            onChangeValue = whenSoundEdited;
+            whenValueChanged = whenSoundEdited;
+            
+            if (value.IsEmpty()) { ClearElements(); return; }
+            
             RefreshOnChange(InternalLibraryOverseer.GetInstance().GetSoundByID(value.ID));
         }
         
@@ -44,7 +49,6 @@ namespace Rogium.UserInterface.Interactables.Properties
             playButton.interactable = !isDisabled;
         }
 
-        public override AssetData PropertyValue { get => currentData; }
 
         public void UpdateTheme(InteractableSpriteInfo openWindowButtonSet, InteractableSpriteInfo buttonSet, 
                                 Sprite playButtonIcon, FontInfo titleFont, FontInfo valueFont)
@@ -58,9 +62,24 @@ namespace Rogium.UserInterface.Interactables.Properties
         
         private void RefreshOnChange(IAsset newAsset)
         {
+            if (newAsset.IsEmpty())
+            {
+                ClearElements();
+                return;
+            }
+            
             ui.soundTitle.text = newAsset.Title;
             ui.soundIcon.sprite = newAsset.Icon;
+            ui.soundIcon.color = Color.white;
         }
+
+        private void ClearElements()
+        {
+            ui.soundTitle.text = "None";
+            ui.soundIcon.color = Color.clear;
+        }
+
+        public override AssetData PropertyValue { get => currentData; }
 
         [Serializable]
         public struct UIInfo

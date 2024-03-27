@@ -1,4 +1,5 @@
 ﻿using System;
+using RedRats.Core;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.UserInterface.ModalWindows;
@@ -41,8 +42,7 @@ namespace Rogium.UserInterface.Interactables
             this.value = value;
             this.canBeEmpty = canBeEmpty;
             
-            ui.icon.sprite = value.Icon;
-            if (ui.title != null) ui.title.text = value.Title;
+            Refresh();
         }
 
         /// <summary>
@@ -52,9 +52,14 @@ namespace Rogium.UserInterface.Interactables
         private void WhenAssetPicked(IAsset asset)
         {
             value = asset;
-            ui.icon.sprite = asset.Icon;
-            if (ui.title != null) ui.title.text = asset.Title;
+            Refresh();
             OnValueChanged?.Invoke(asset);
+        }
+
+        private void Refresh()
+        {
+            ui.icon.SetSpriteFromAsset(value);
+            ui.title.SetTextValueFromAssetTitle(value);
         }
 
         public IAsset Value { get => value; }

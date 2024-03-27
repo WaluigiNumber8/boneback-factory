@@ -77,7 +77,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
             bool noWeaponsExist = (startValue == default);
 
             if (!noWeaponsExist) data.UpdateStringValue1(startValue.ID);
-            b.BuildAssetField("Weapon", AssetType.Weapon, startValue, contentMain, asset => data.UpdateStringValue1(asset.ID), false, noWeaponsExist);
+            b.BuildAssetField("Weapon", AssetType.Weapon, startValue, contentMain, asset => data.UpdateStringValue1(asset.ID), null, noWeaponsExist);
             b.BuildToggle("Player only", data.Parameters.boolValue1, contentMain, data.UpdateBoolValue1);
         }
         

@@ -46,7 +46,7 @@ namespace Rogium.Systems.Audio
         /// <param name="spatialSettings">Settings for 3D sound.</param>
         public void PlaySound(AssetData soundData, AudioMixerGroup mixerGroup, AudioSourceSettingsInfo sourceSettings, AudioSpatialSettingsInfo spatialSettings)
         {
-            if (soundData.ID == EditorConstants.EmptyAssetID) return;
+            if (soundData == null || soundData.ID == EditorConstants.EmptyAssetID) return;
             
             AudioClip clip = allSounds[soundData.ID].Data.Clip;
             float volume = soundData.Parameters.floatValue1;

@@ -34,7 +34,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             
             b.BuildInputField("Name", currentPackInfo.Title, col1, currentPackInfo.UpdateTitle, false, true);
             b.BuildInputFieldArea("Description", currentPackInfo.Description, col1, currentPackInfo.UpdateDescription);
-            b.BuildAssetField("", AssetType.Sprite, currentPackInfo, col2, a => editedAssetBase.UpdateIcon(a), true, isDisabled);
+            b.BuildAssetField("", AssetType.Sprite, currentPackInfo, col2, a => editedAssetBase.UpdateIcon(a), null, isDisabled);
             b.BuildPlainText("Created by", currentPackInfo.Author, col2);
             b.BuildPlainText("Created on", currentPackInfo.CreationDate.ToString(), col2);
 
