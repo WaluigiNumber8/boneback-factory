@@ -34,8 +34,8 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
             this.index = index;
             this.asset = asset;
 
-            ui.title.text = asset.Title;
-            ui.icon.sprite = asset.Icon;
+            if (ui.title != null) ui.title.text = asset.Title;
+            if (ui.icon != null) ui.icon.sprite = asset.Icon;
             SetToggle(false);
         }
 
@@ -49,7 +49,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
         [Serializable]
         public struct UIInfo
         {
-            public TextMeshProUGUI title;
+            public TMP_Text title;
             public Image icon;
         }
     }

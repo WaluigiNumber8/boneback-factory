@@ -25,11 +25,12 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="type">The type of assets to store.</param>
         /// <param name="value">Value of property.</param>
         /// <param name="WhenChangeValue">The method that will run, when the AssetField changes value.</param>
+        /// <param name="canBeEmpty">Allow the AssetField to contain a <see cref="EmptyAsset"/>. It gets added as an option to the Asset Picker Menu.</param>
         /// <param name="theme">The theme of the Asset Picker Window.</param>
-        public void Construct(string titleText, AssetType type, IAsset value, Action<IAsset> WhenChangeValue, ThemeType theme = ThemeType.Current)
+        public void Construct(string titleText, AssetType type, IAsset value, Action<IAsset> WhenChangeValue, bool canBeEmpty = false, ThemeType theme = ThemeType.Current)
         {
             ConstructTitle(titleText);
-            assetField.Construct(type, value);
+            assetField.Construct(type, value, canBeEmpty);
             
             if (whenValueChange != null) assetField.OnValueChanged -= whenValueChange;
             

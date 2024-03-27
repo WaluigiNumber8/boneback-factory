@@ -40,6 +40,7 @@ namespace Rogium.UserInterface.ModalWindows
         /// <param name="type">What types of assets to grab.</param>
         /// <param name="whenAssetPicked">The method that runs when the asset is picked.</param>
         /// <param name="preselectedAsset">The asset that will be selected on window open.</param>
+        /// <param name="canSelectEmpty">Allows selection of empty asset.</param>
         /// <exception cref="InvalidOperationException">Is thrown when the asset is set to "None".</exception>
         /// <exception cref="ArgumentOutOfRangeException">Is thrown when an unsupported type appears.</exception>
         public void Construct(AssetType type, Action<IAsset> whenAssetPicked, IAsset preselectedAsset = null, bool canSelectEmpty = false)

@@ -88,7 +88,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
             if (preselectedAsset != null) selectedAsset = preselectedAsset;
             this.whenSelected = whenSelected;
             assetSelector.BeginListeningToSpawnedCards(RegisterAssetHolder);
-            assetSelector.Open(type);
+            assetSelector.Open(type, canSelectEmpty);
         }
         
         /// <summary>
@@ -107,8 +107,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
                 return;
             }
             
-            if (holder.Asset.ID == selectedAsset.ID)
-                holder.SetToggle(true);
+            if (holder.Asset.ID == selectedAsset.ID) holder.SetToggle(true);
         }
     }
 }

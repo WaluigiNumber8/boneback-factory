@@ -17,7 +17,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection
     {
         public event Action<AssetHolderBase> OnSpawnCard;
         public event Action OnFinishedFilling;
-        
+
         private readonly IList<AssetHolderBase> assets;
         private SelectionMenuLayout currentLayout;
         private AssetType lastTypeOpen;
@@ -28,11 +28,11 @@ namespace Rogium.UserInterface.Editors.AssetSelection
             lastTypeOpen = AssetType.None;
         }
 
-        
         /// <summary>
         /// Sets up the selection menu.
         /// </summary>
-        public void Setup(AssetType type, SelectionMenuLayout layout, SelectionMenuAsset asset, IList<IAsset> assetList)
+        public void Setup(AssetType type, SelectionMenuLayout layout, SelectionMenuAsset asset, IList<IAsset> assetList, AssetHolderBase selectEmptyCard = null)
+
         {
             currentLayout = layout;
 
@@ -49,41 +49,47 @@ namespace Rogium.UserInterface.Editors.AssetSelection
                     {
                         for (int i = 0; i < newCards; i++)
                         {
-                            SpawnCard(assetList.Count + (i-1), type, asset, assetList);
+                            SpawnCard(assetList.Count + (i - 1), type, asset, assetList);
                         }
+
                         return;
                     }
                 }
             }
 
-            RefillMenu(type, asset, assetList);
+            RefillMenu(type, asset, assetList, selectEmptyCard);
             lastTypeOpen = type;
             OnFinishedFilling?.Invoke();
         }
-        
+
         /// <summary>
         /// Fills the selection menu canvas with asset holder objects.
         /// <param name="type">The type of asset this card will be.</param>
         /// <param name="asset">What kind of data will be used.</param>
         /// <param name="assetList">The list to take the data from.</param>
         /// </summary>
-        private void RefillMenu(AssetType type, SelectionMenuAsset asset, IList<IAsset> assetList)
+        private void RefillMenu(AssetType type, SelectionMenuAsset asset, IList<IAsset> assetList, AssetHolderBase selectEmptyCard = null)
         {
             SafetyNet.EnsureIsNotNull(asset.assetObject.GetComponent<IAssetHolder>(), "IAssetHolder in RefillMenu");
-            
+
             //Clear assets from content, respawn add button
             assets.Clear();
             currentLayout.Content.gameObject.KillChildren();
-            
+
             //Spawn ADD Button if not null.
             if (asset.addButton != null) Object.Instantiate(asset.addButton, currentLayout.Content);
 
             //Spawn select empty button.
-            
-            
+            if (selectEmptyCard != null)
+            {
+                AssetHolderBase empty = Object.Instantiate(selectEmptyCard, currentLayout.Content);
+                empty.Construct(AssetType.None, -1, new EmptyAsset());
+                OnSpawnCard?.Invoke(empty);
+            }
+
             //Cancel further process if list is empty.
             if (CancelIfEmpty(assetList, currentLayout.NotFoundText)) return;
-            
+
             //Spawn new assets
             for (int i = 0; i < assetList.Count; i++)
             {
@@ -121,11 +127,10 @@ namespace Rogium.UserInterface.Editors.AssetSelection
             if (textObject != null) textObject.gameObject.SetActive(shouldCancel);
             return shouldCancel;
         }
-        
+
         /// <summary>
         /// Get amount of assets showcased by the menu.
         /// </summary>
         public int AssetCount => assets.Count;
-        
     }
 }

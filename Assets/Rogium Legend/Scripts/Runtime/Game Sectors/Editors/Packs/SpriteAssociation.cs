@@ -1,6 +1,7 @@
 using RedRats.Safety;
 using Rogium.Core;
 using Rogium.Editors.Core;
+using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Sprites;
 
 namespace Rogium.Editors.Packs
@@ -26,6 +27,8 @@ namespace Rogium.Editors.Packs
             {
                 currentPack.Sprites.FindValueFirst(lastAssociatedSpriteID).TryRemoveAssociation(asset);
             }
+            
+            if (asset.AssociatedSpriteID == EditorConstants.EmptyAssetID) return;
             
             //Add association if possible.
             (SpriteAsset associatedSprite, int index) = currentPack.Sprites.FindValueAndIndexFirst(asset.AssociatedSpriteID);

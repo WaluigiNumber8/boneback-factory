@@ -5,7 +5,6 @@ using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Rogium.UserInterface.Editors.AssetSelection
 {
@@ -17,7 +16,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection
     {
         [SerializeField] private LayoutInfo layouts;
         [SerializeField] private AssetSelectionMenuInfo selectionMenus;
-        [SerializeField] private Button selectEmptyButton;
+        [SerializeField] private AssetHolderBase emptyAsset;
 
         private ObjectSwitcherMono layoutSwitcher;
         private AssetSelectionOverseer assetSelection;
@@ -33,7 +32,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection
             layoutSwitcher = GetComponent<ObjectSwitcherMono>();
             editor = PackEditorOverseer.Instance;
             lib = ExternalLibraryOverseer.Instance;
-            internalLib = GetComponent<InternalLibraryOverseer>();
+            internalLib = InternalLibraryOverseer.GetInstance();
 
             assetSelection = AssetSelectionOverseer.Instance;
         }
@@ -41,69 +40,80 @@ namespace Rogium.UserInterface.Editors.AssetSelection
         #region Open Selection Menu
 
         //TODO - Instead of the SelectionMenuAsset, make the default layout type load from the options save file.
-        public void Open(AssetType type)
+        public void Open(AssetType type, bool addEmptyAsset = false)
         {
+            AssetHolderBase empty = (addEmptyAsset) ? emptyAsset :  null;
             switch (type)
             {
                 case AssetType.Pack:
                     assetSelection.Setup(AssetType.Pack,
                         layouts.grid,
                         selectionMenus.pack,
-                        lib.GetPacksCopy.ToList<IAsset>());
+                        lib.GetPacksCopy.ToList<IAsset>(),
+                        empty);
                     break;
                 case AssetType.Palette:
                     assetSelection.Setup(AssetType.Palette,
                         layouts.grid,
                         selectionMenus.palette,
-                        editor.CurrentPack.Palettes.ToList<IAsset>());
+                        editor.CurrentPack.Palettes.ToList<IAsset>(),
+                        empty);
                     break;
                 case AssetType.Sprite:
                     assetSelection.Setup(AssetType.Sprite,
                         layouts.grid,
                         selectionMenus.sprite,
-                        editor.CurrentPack.Sprites.ToList<IAsset>());
+                        editor.CurrentPack.Sprites.ToList<IAsset>(),
+                        empty);
                     break;
                 case AssetType.Weapon:
                     assetSelection.Setup(AssetType.Weapon,
                         layouts.grid,
                         selectionMenus.weapon,
-                        editor.CurrentPack.Weapons.ToList<IAsset>());
+                        editor.CurrentPack.Weapons.ToList<IAsset>(),
+                        empty);
                     break;
                 case AssetType.Projectile:
                     assetSelection.Setup(AssetType.Projectile,
                         layouts.grid,
                         selectionMenus.projectile,
-                        editor.CurrentPack.Projectiles.ToList<IAsset>());
+                        editor.CurrentPack.Projectiles.ToList<IAsset>(),
+                        empty);
                     break;
                 case AssetType.Enemy:
                     assetSelection.Setup(AssetType.Enemy,
                         layouts.grid,
                         selectionMenus.enemy,
-                        editor.CurrentPack.Enemies.ToList<IAsset>());
+                        editor.CurrentPack.Enemies.ToList<IAsset>(),
+                        empty);
                     break;
                 case AssetType.Room:
                     assetSelection.Setup(AssetType.Room,
                         layouts.list,
                         selectionMenus.room,
-                        editor.CurrentPack.Rooms.ToList<IAsset>());
+                        editor.CurrentPack.Rooms.ToList<IAsset>(),
+                        empty);
                     break;
                 case AssetType.Tile:
                     assetSelection.Setup(AssetType.Tile,
                         layouts.grid,
                         selectionMenus.tile,
-                        editor.CurrentPack.Tiles.ToList<IAsset>());
+                        editor.CurrentPack.Tiles.ToList<IAsset>(),
+                        empty);
                     break;
                 case AssetType.Object:
                     assetSelection.Setup(AssetType.Object,
                         layouts.grid,
                         selectionMenus.interactableObject,
-                        internalLib.GetObjectsCopy().ToList<IAsset>());
+                        internalLib.GetObjectsCopy().ToList<IAsset>(),
+                        empty);
                     break;
                 case AssetType.Sound:
                     assetSelection.Setup(AssetType.Sound,
                         layouts.grid,
                         selectionMenus.sound,
-                        internalLib.GetSoundsCopy().ToList<IAsset>());
+                        internalLib.GetSoundsCopy().ToList<IAsset>(),
+                        empty);
                     break;
                 case AssetType.None:
                 case AssetType.Campaign:
@@ -139,14 +149,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection
             whenFinishedFilling = null;
         }
 
-        public Transform ListMenu
-        {
-            get => layouts.list.Menu;
-        }
-
-        public Transform GridMenu
-        {
-            get => layouts.grid.Menu;
-        }
+        public Transform ListMenu { get => layouts.list.Menu; }
+        public Transform GridMenu { get => layouts.grid.Menu; }
     }
 }

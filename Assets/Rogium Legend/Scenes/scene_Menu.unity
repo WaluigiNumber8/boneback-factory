@@ -16607,7 +16607,7 @@ MonoBehaviour:
     tile: {fileID: 11400000, guid: 30fd5df9f4f4b19409498c4137407e81, type: 2}
     interactableObject: {fileID: 0}
     sound: {fileID: 0}
-  selectEmptyButton: {fileID: 0}
+  emptyAsset: {fileID: 1078567393836477479, guid: e38dad1c3ffc27c4dac81b155fe5d31c, type: 3}
 --- !u!1 &1070992684
 GameObject:
   m_ObjectHideFlags: 0
@@ -38867,7 +38867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b358dc2b90a40ac8b5e14e05b6ccf57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  assetSelection: {fileID: 8758414595237980152}
+  assetSelector: {fileID: 8758414595237980152}
 --- !u!222 &5895714321758886007
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -40618,7 +40618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73387e46b4bb45f7bfdb8913ba1e76c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  assetSelection: {fileID: 1062947339}
+  assetSelector: {fileID: 1062947339}
   toggleGroup: {fileID: 5402952961720074112}
   infoColumn: {fileID: 6064576702720985726}
 --- !u!114 &8280332175844755970
@@ -63810,7 +63810,7 @@ MonoBehaviour:
     tile: {fileID: 11400000, guid: 0ff8f62a0370c93409f3e0729532847d, type: 2}
     interactableObject: {fileID: 0}
     sound: {fileID: 0}
-  selectEmptyButton: {fileID: 0}
+  emptyAsset: {fileID: 1078567393836477479, guid: e38dad1c3ffc27c4dac81b155fe5d31c, type: 3}
 --- !u!114 &8803579603809568163
 MonoBehaviour:
   m_ObjectHideFlags: 0
