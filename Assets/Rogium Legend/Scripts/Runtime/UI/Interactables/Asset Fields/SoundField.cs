@@ -1,0 +1,115 @@
+using System;
+using RedRats.Systems.Audio;
+using RedRats.UI.Core.Interactables.Buttons;
+using Rogium.Core;
+using Rogium.Editors.Core;
+using Rogium.Editors.Core.Defaults;
+using Rogium.Editors.Sounds;
+using Rogium.Systems.Audio;
+using Rogium.UserInterface.ModalWindows;
+using TMPro;
+using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
+namespace Rogium.UserInterface.Interactables
+{
+    /// <summary>
+    /// Stores <see cref="AssetData"/> for sounds.
+    /// </summary>
+    public class SoundField : MonoBehaviour, IAssetField<AssetData>, IPointerClickHandler
+    {
+        public event Action<SoundAsset> OnSoundChanged;
+        public event Action<AssetData> OnValueChanged;
+        public event Action OnValueEmptied;
+        
+        [SerializeField] private AudioMixerGroup mixerGroup;
+        [SerializeField] private UIInfo ui;
+        
+        private AssetData value;
+        private bool canBeEmpty;
+        
+        private void Awake()
+        {
+            value = new AssetData(ParameterInfoConstants.ForSound);
+            ui.showWindowButton.onClick.AddListener(() => ModalWindowBuilder.GetInstance().OpenSoundPickerWindow(WhenSoundChanged, WhenSoundEdited, value));
+            ui.playButton.onClick.AddListener(() => AudioSystemRogium.GetInstance().PlaySound(value, mixerGroup, new AudioSourceSettingsInfo(0, false, false, false)));
+            ui.showWindowButton.OnClickRight += Clear;
+            ui.playButton.OnClickRight += Clear;
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            if (!canBeEmpty || eventData.button != PointerEventData.InputButton.Right) return;
+            Clear();
+        }
+        
+        public void Construct(AssetData value, bool canBeEmpty = false)
+        {
+            this.value = value;
+            this.canBeEmpty = canBeEmpty;
+            
+            if (value.IsEmpty()) { ClearElements(); return; }
+            RefreshOnChange(InternalLibraryOverseer.GetInstance().GetSoundByID(value.ID));
+        }
+
+        public void SetActive(bool isActive)
+        {
+            ui.showWindowButton.interactable = isActive;
+            ui.playButton.interactable = isActive;
+        }
+        
+        private void WhenSoundEdited(AssetData data)
+        {
+            value = data;
+            OnValueChanged?.Invoke(data);
+        }
+        
+        private void WhenSoundChanged(SoundAsset asset)
+        {
+            if (asset != null) value = new AssetData(asset.ID, value.Parameters);
+            RefreshOnChange(asset);
+            OnSoundChanged?.Invoke(asset);
+        }
+        
+        private void RefreshOnChange(IAsset newAsset)
+        {
+            if (newAsset.IsEmpty())
+            {
+                ClearElements();
+                return;
+            }
+            
+            ui.soundTitle.text = newAsset.Title;
+            ui.soundIcon.sprite = newAsset.Icon;
+            ui.soundIcon.color = Color.white;
+        }
+        
+        private void Clear()
+        {
+            value = new AssetData();
+            ClearElements();
+            OnValueEmptied?.Invoke();
+        }
+        
+        private void ClearElements()
+        {
+            ui.soundTitle.text = "None";
+            ui.soundIcon.color = Color.clear;
+        }
+        
+        public AssetData Value { get => value; }
+        public UIInfo UI { get => ui; }
+        
+        [Serializable]
+        public struct UIInfo
+        {
+            public EnhancedButton showWindowButton;
+            public EnhancedButton playButton;
+            public TextMeshProUGUI soundTitle;
+            public Image soundIcon;
+            public Image playSoundButtonIcon;
+        }
+    }
+}

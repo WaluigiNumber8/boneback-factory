@@ -12,7 +12,7 @@ namespace Rogium.UserInterface.Interactables
     /// <summary>
     /// Allows the user to grab assets as input.
     /// </summary>
-    public class AssetField : Selectable, IPointerClickHandler
+    public class AssetField : Selectable, IAssetField<IAsset>, IPointerClickHandler
     {
         public event Action<IAsset> OnValueChanged;
         public event Action OnValueEmptied;
@@ -35,6 +35,9 @@ namespace Rogium.UserInterface.Interactables
                 OnValueEmptied?.Invoke();
                 return;
             }
+            
+            if (eventData.button != PointerEventData.InputButton.Left) return;
+            
             ModalWindowBuilder.GetInstance().OpenAssetPickerWindow(type, WhenAssetPicked, value, canBeEmpty);
         }
 

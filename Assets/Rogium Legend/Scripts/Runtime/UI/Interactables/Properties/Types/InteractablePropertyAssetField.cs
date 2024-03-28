@@ -54,7 +54,7 @@ namespace Rogium.UserInterface.Interactables.Properties
 
         private void WhenAssetPicked(IAsset asset)
         {
-            if (asset is EmptyAsset)
+            if (asset.IsEmpty())
             {
                 whenSelectEmpty?.Invoke();
                 return;

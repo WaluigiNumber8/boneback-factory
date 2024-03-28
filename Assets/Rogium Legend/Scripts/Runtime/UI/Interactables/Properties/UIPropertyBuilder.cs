@@ -206,11 +206,12 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="value">Starting value of the sound picker.</param>
         /// <param name="parent">The parent under which to instantiate the property.</param>
         /// <param name="whenValueChange">Method that runs when anything is updated by the property.</param>
+        /// <param name="canBeEmpty">If TRUE, the the field can contain no value.</param>
         /// <param name="isDisabled">Initialize the property as a non-interactable</param>
-        public void BuildSoundField(string title, AssetData value, Transform parent, Action<AssetData> whenValueChange, bool isDisabled = false)
+        public void BuildSoundField(string title, AssetData value, Transform parent, Action<AssetData> whenValueChange, bool canBeEmpty = false, bool isDisabled = false)
         {
             InteractablePropertySoundField soundField = Instantiate(soundFieldProperty, parent);
-            soundField.Construct(title, value, whenValueChange);
+            soundField.Construct(title, value, whenValueChange, canBeEmpty);
             soundField.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateSoundField(soundField);
         }
