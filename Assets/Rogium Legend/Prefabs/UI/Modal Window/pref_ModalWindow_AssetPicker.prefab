@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 614314bdc4184e69bae59de3f0626a5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  assetSelection: {fileID: 3748270003078766733}
+  assetSelector: {fileID: 3748270003078766733}
   toggleGroup: {fileID: 443711483896101762}
 --- !u!114 &443711483896101762
 MonoBehaviour:
@@ -1380,6 +1380,7 @@ MonoBehaviour:
     tile: {fileID: 11400000, guid: 0ff8f62a0370c93409f3e0729532847d, type: 2}
     interactableObject: {fileID: 11400000, guid: 0dc580c75ee7e174185602aa65437d0d, type: 2}
     sound: {fileID: 11400000, guid: 1cca27a46b6292d4e9f2d1c439e6539a, type: 2}
+  emptyAsset: {fileID: 1078567393836477479, guid: e38dad1c3ffc27c4dac81b155fe5d31c, type: 3}
 --- !u!1 &6052838613124415094
 GameObject:
   m_ObjectHideFlags: 0

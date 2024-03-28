@@ -149,12 +149,13 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="parent">Under which transform is this property going to be created.</param>
         /// <param name="whenValueChange">The method that runs when the asset is changed.</param>
         /// <param name="isDisabled">Initialize the property as a non-interactable.</param>
+        /// <param name="canBeEmpty">Allow the AssetField to contain a <see cref="EmptyAsset"/>. It gets added as an option to the Asset Picker Menu.</param>
         /// <param name="theme">The theme for the Asset Picker Window.</param>
         /// <returns>The property itself.</returns>
-        public void BuildAssetField(string title, AssetType type, IAsset value, Transform parent, Action<IAsset> whenValueChange, bool isDisabled = false, ThemeType theme = ThemeType.Current)
+        public void BuildAssetField(string title, AssetType type, IAsset value, Transform parent, Action<IAsset> whenValueChange, Action whenSelectEmpty = null, bool isDisabled = false, ThemeType theme = ThemeType.Current)
         {
             InteractablePropertyAssetField assetField = Instantiate(assetFieldProperty, parent);
-            assetField.Construct(title, type, value, whenValueChange, theme);
+            assetField.Construct(title, type, value, whenValueChange, whenSelectEmpty, theme);
             assetField.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateAssetField(assetField);
         }
@@ -205,13 +206,12 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="value">Starting value of the sound picker.</param>
         /// <param name="parent">The parent under which to instantiate the property.</param>
         /// <param name="whenValueChange">Method that runs when anything is updated by the property.</param>
+        /// <param name="canBeEmpty">If TRUE, the the field can contain no value.</param>
         /// <param name="isDisabled">Initialize the property as a non-interactable</param>
-        public void BuildSoundField(string title, AssetData value, Transform parent, Action<AssetData> whenValueChange, bool isDisabled = false)
+        public void BuildSoundField(string title, AssetData value, Transform parent, Action<AssetData> whenValueChange, bool canBeEmpty = false, bool isDisabled = false)
         {
             InteractablePropertySoundField soundField = Instantiate(soundFieldProperty, parent);
-            //TODO Add support for null values to Asset Picker window.
-            value = (value.ID == EditorConstants.EmptyAssetID) ? AssetDataBuilder.ForSound(InternalLibraryOverseer.GetInstance().GetSoundByID("001")) : value;
-            soundField.Construct(title, value, whenValueChange);
+            soundField.Construct(title, value, whenValueChange, canBeEmpty);
             soundField.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateSoundField(soundField);
         }

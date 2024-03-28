@@ -1,5 +1,6 @@
 ﻿using System;
 using RedRats.Safety;
+using Rogium.Core;
 using Rogium.Editors.Core;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,14 +10,14 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
     /// <summary>
     /// Allows the user to pick an asset from a selection.
     /// </summary>
-    public class AssetSelectionPickerSingle : MonoBehaviour, IAssetSelectionPicker
+    public class AssetSelectionPickerSingle : MonoBehaviour
     {
         public event Action<IAsset> OnAssetSelect;
         
-        [SerializeField] private AssetSelectionOverseerMono assetSelection;
+        [SerializeField] private AssetSelector assetSelector;
         [SerializeField] private ToggleGroup toggleGroup;
         
-        private Action<IAsset> targetMethod;
+        private Action<IAsset> whenSelected;
         private IAsset selectedAsset;
         private string previousID;
 
@@ -54,8 +55,8 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
         
         public void ConfirmSelection()
         {
-            SafetyNet.EnsureIsNotNull(targetMethod, "Method to Run");
-            targetMethod.Invoke(selectedAsset);
+            SafetyNet.EnsureIsNotNull(whenSelected, "Method to Run");
+            whenSelected.Invoke(selectedAsset);
             CancelSelection();
         }
 
@@ -64,8 +65,8 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
         /// </summary>
         public void ConfirmSelectionNone()
         {
-            SafetyNet.EnsureIsNotNull(targetMethod, "Method to Run");
-            targetMethod.Invoke(null);
+            SafetyNet.EnsureIsNotNull(whenSelected, "Method to Run");
+            whenSelected.Invoke(null);
             CancelSelection();
         }
         
@@ -73,131 +74,21 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
         {
             selectedAsset = null;
             previousID = "";
-            targetMethod = null;
-        }
-
-        #region Open Selection
-        
-        /// <summary>
-        /// Opens the Picker Selection Menu for Packs.
-        /// </summary>
-        /// <param name="targetMethod">The method, that requires results of the selection and
-        /// will run only after ConfirmSelection() has been called.</param>
-        /// <param name="preselectedAsset">The asset that will already be selected, after opening the menu.</param>
-        public void OpenForPacks(Action<IAsset> targetMethod, IAsset preselectedAsset = null)
-        {
-            Open(targetMethod, preselectedAsset);
-            assetSelection.OpenForPacks();
+            whenSelected = null;
         }
         
-        /// <summary>
-        /// Opens the Picker Selection Menu for Palettes.
-        /// </summary>
-        /// <param name="targetMethod">The method, that requires results of the selection and
-        /// will run only after ConfirmSelection() has been called.</param>
-        /// <param name="preselectedAsset">The asset that will already be selected, after opening the menu.</param>
-        public void OpenForPalettes(Action<IAsset> targetMethod, IAsset preselectedAsset = null)
-        {
-            Open(targetMethod, preselectedAsset);
-            assetSelection.OpenForPalettes();
-        }
-        
-        /// <summary>
-        /// Opens the Picker Selection Menu for Sprites.
-        /// </summary>
-        /// <param name="targetMethod">The method, that requires results of the selection and
-        /// will run only after ConfirmSelection() has been called.</param>
-        /// <param name="preselectedAsset">The asset that will already be selected, after opening the menu.</param>
-        public void OpenForSprites(Action<IAsset> targetMethod, IAsset preselectedAsset = null)
-        {
-            Open(targetMethod, preselectedAsset);
-            assetSelection.OpenForSprites();
-        }
-        
-        /// <summary>
-        /// Opens the Picker Selection Menu for Weapons.
-        /// </summary>
-        /// <param name="targetMethod">The method, that requires results of the selection and
-        /// will run only after ConfirmSelection() has been called.</param>
-        /// <param name="preselectedAsset">The asset that will already be selected, after opening the menu.</param>
-        public void OpenForWeapons(Action<IAsset> targetMethod, IAsset preselectedAsset = null)
-        {
-            Open(targetMethod, preselectedAsset);
-            assetSelection.OpenForWeapons();
-        }
-        
-        /// <summary>
-        /// Opens the Picker Selection Menu for Projectiles.
-        /// </summary>
-        /// <param name="targetMethod">The method, that requires results of the selection and
-        /// will run only after ConfirmSelection() has been called.</param>
-        /// <param name="preselectedAsset">The asset that will already be selected, after opening the menu.</param>
-        public void OpenForProjectiles(Action<IAsset> targetMethod, IAsset preselectedAsset = null)
-        {
-            Open(targetMethod, preselectedAsset);
-            assetSelection.OpenForProjectiles();
-        }
-        
-        /// <summary>
-        /// Opens the Picker Selection Menu for Enemies.
-        /// </summary>
-        /// <param name="targetMethod">The method, that requires results of the selection and
-        /// will run only after ConfirmSelection() has been called.</param>
-        /// <param name="preselectedAsset">The asset that will already be selected, after opening the menu.</param>
-        public void OpenForEnemies(Action<IAsset> targetMethod, IAsset preselectedAsset = null)
-        {
-            Open(targetMethod, preselectedAsset);
-            assetSelection.OpenForEnemies();
-        }
-        
-        /// <summary>
-        /// Opens the Picker Selection Menu for Rooms.
-        /// </summary>
-        /// <param name="targetMethod">The method, that requires results of the selection and
-        /// will run only after ConfirmSelection() has been called.</param>
-        /// <param name="preselectedAsset">The asset that will already be selected, after opening the menu.</param>
-        public void OpenForRooms(Action<IAsset> targetMethod, IAsset preselectedAsset = null)
-        {
-            Open(targetMethod, preselectedAsset);
-            assetSelection.OpenForRooms();
-        }
-        
-        /// <summary>
-        /// Opens the Picker Selection Menu for Tiles.
-        /// </summary>
-        /// <param name="targetMethod">The method, that requires results of the selection and
-        /// will run only after ConfirmSelection() has been called.</param>
-        /// <param name="preselectedAsset">The asset that will already be selected, after opening the menu.</param>
-        public void OpenForTiles(Action<IAsset> targetMethod, IAsset preselectedAsset = null)
-        {
-            Open(targetMethod, preselectedAsset);
-            assetSelection.OpenForTiles();
-        }
-        
-        /// <summary>
-        /// Opens the Picker Selection Menu for Sounds.
-        /// </summary>
-        /// <param name="targetMethod">The method, that requires results of the selection and
-        /// will run only after ConfirmSelection() has been called.</param>
-        /// <param name="preselectedAsset">The asset that will already be selected, after opening the menu.</param>
-        public void OpenForSounds(Action<IAsset> targetMethod, IAsset preselectedAsset = null)
-        {
-            Open(targetMethod, preselectedAsset);
-            assetSelection.OpenForSounds();
-        }
-
-        #endregion
 
         /// <summary>
-        /// Prepares the picker for selection menu opening.
+        /// Opens the Selection Picker.
         /// </summary>
-        /// <param name="targetMethod">The method that will run once </param>
-        /// <param name="preselectedAsset"></param>
-        private void Open(Action<IAsset> targetMethod, IAsset preselectedAsset)
+        /// <param name="whenSelected">The method that will run when the asset is selected.</param>
+        /// <param name="preselectedAsset">An asset that starts as selected.</param>
+        public void Open(AssetType type, Action<IAsset> whenSelected, IAsset preselectedAsset = null, bool canSelectEmpty = false)
         {
             if (preselectedAsset != null) selectedAsset = preselectedAsset;
-            this.targetMethod = targetMethod;
-            assetSelection.BeginListeningToSpawnedCards(RegisterAssetHolder);
+            this.whenSelected = whenSelected;
+            assetSelector.BeginListeningToSpawnedCards(RegisterAssetHolder);
+            assetSelector.Open(type, canSelectEmpty);
         }
         
         /// <summary>
@@ -216,8 +107,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
                 return;
             }
             
-            if (holder.Asset.ID == selectedAsset.ID)
-                holder.SetToggle(true);
+            if (holder.Asset.ID == selectedAsset.ID) holder.SetToggle(true);
         }
     }
 }

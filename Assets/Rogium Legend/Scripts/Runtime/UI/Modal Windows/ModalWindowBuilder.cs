@@ -81,10 +81,10 @@ namespace Rogium.UserInterface.ModalWindows
         /// <param name="type">What types of assets to grab.</param>
         /// <param name="whenAssetPicked">The method that runs when the asset is picked.</param>
         /// <param name="preselectedAsset">The asset that will be selected on window open.</param>
-        public void OpenAssetPickerWindow(AssetType type, Action<IAsset> whenAssetPicked, IAsset preselectedAsset = null)
+        public void OpenAssetPickerWindow(AssetType type, Action<IAsset> whenAssetPicked, IAsset preselectedAsset = null, bool canSelectEmpty = false)
         {
             AssetPickerWindow window = (cachedAssetPickerWindow.IsOpen) ? Instantiate(assetPickerWindow, windowParent) : cachedAssetPickerWindow;
-            window.Construct(type, whenAssetPicked, preselectedAsset);
+            window.Construct(type, whenAssetPicked, preselectedAsset, canSelectEmpty);
             ThemeUpdaterRogium.UpdateAssetPickerWindow(window);
             window.Open();
         }

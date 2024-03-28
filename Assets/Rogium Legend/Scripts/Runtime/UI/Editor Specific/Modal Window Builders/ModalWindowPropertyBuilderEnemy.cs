@@ -1,4 +1,5 @@
 ﻿using System;
+using Rogium.Core;
 using Rogium.Editors.Enemies;
 using UnityEngine;
 
@@ -39,14 +40,14 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         protected override void CreateAsset()
         {
             editor.CreateNewEnemy((EnemyAsset)editedAssetBase);
-            selectionMenu.OpenForEnemies();
+            selectionMenu.Open(AssetType.Enemy);
         }
 
         protected override void UpdateAsset()
         {
             enemyEditor.UpdateAsset((EnemyAsset)editedAssetBase);
             enemyEditor.CompleteEditing();
-            selectionMenu.OpenForEnemies();
+            selectionMenu.Open(AssetType.Enemy);
         }
     }
 }

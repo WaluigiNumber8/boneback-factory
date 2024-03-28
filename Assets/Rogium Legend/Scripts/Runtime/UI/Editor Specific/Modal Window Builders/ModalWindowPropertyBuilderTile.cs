@@ -1,4 +1,5 @@
 ﻿using System;
+using Rogium.Core;
 using Rogium.Editors.Tiles;
 using UnityEngine;
 
@@ -38,14 +39,14 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         protected override void CreateAsset()
         {
             editor.CreateNewTile((TileAsset)editedAssetBase);
-            selectionMenu.OpenForTiles();
+            selectionMenu.Open(AssetType.Tile);
         }
 
         protected override void UpdateAsset()
         {
             tileEditor.UpdateAsset((TileAsset)editedAssetBase);
             tileEditor.CompleteEditing();
-            selectionMenu.OpenForTiles();
+            selectionMenu.Open(AssetType.Tile);
         }
     }
 }

@@ -159,8 +159,10 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.05
   infiniteLoop: 0
   loops: 1
@@ -273,8 +275,10 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 1
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.15
   infiniteLoop: 0
   loops: 1
@@ -327,8 +331,10 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   clips:
   - {fileID: 11400000, guid: 2e82a48a7c3c9234fbbe2c75764e80bd, type: 2}
   sourceSettings:
@@ -336,6 +342,11 @@ MonoBehaviour:
     loop: 0
     playOnlyWhenNotPlaying: 0
     muteSameSound: 0
+  spatialSettings:
+    spatialBlend: 0
+    soundTarget: {fileID: 0}
+    minDistance: 0
+    maxDistance: 0
   ignoreEffectStop: 1
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
@@ -410,8 +421,10 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   clips:
   - {fileID: 11400000, guid: 823bb3f51dc80df4888839737d733be4, type: 2}
   sourceSettings:
@@ -419,6 +432,11 @@ MonoBehaviour:
     loop: 0
     playOnlyWhenNotPlaying: 0
     muteSameSound: 0
+  spatialSettings:
+    spatialBlend: 0
+    soundTarget: {fileID: 0}
+    minDistance: 0
+    maxDistance: 0
   ignoreEffectStop: 1
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
@@ -480,9 +498,12 @@ MonoBehaviour:
   eventCaller: {fileID: 5884925812337528835}
   onSelectEffector: {fileID: 2102250716512009162}
   onDeselectEffector: {fileID: 0}
-  onClickEffector: {fileID: 6571947834186396325}
-  onClickDownEffector: {fileID: 0}
-  onClickUpEffector: {fileID: 0}
+  onClickLeftEffector: {fileID: 6571947834186396325}
+  onClickRightEffector: {fileID: 0}
+  onClickLeftDownEffector: {fileID: 0}
+  onClickLeftUpEffector: {fileID: 0}
+  onClickRightDownEffector: {fileID: 0}
+  onClickRightUpEffector: {fileID: 0}
 --- !u!1 &5846223758240368173
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,8 +837,10 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   clips:
   - {fileID: 11400000, guid: 823bb3f51dc80df4888839737d733be4, type: 2}
   sourceSettings:
@@ -825,6 +848,11 @@ MonoBehaviour:
     loop: 0
     playOnlyWhenNotPlaying: 0
     muteSameSound: 0
+  spatialSettings:
+    spatialBlend: 0
+    soundTarget: {fileID: 0}
+    minDistance: 0
+    maxDistance: 0
   ignoreEffectStop: 1
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
@@ -2136,9 +2164,12 @@ MonoBehaviour:
   eventCaller: {fileID: 6526768781129669388}
   onSelectEffector: {fileID: 317270547834782798}
   onDeselectEffector: {fileID: 0}
-  onClickEffector: {fileID: 7493392320520587992}
-  onClickDownEffector: {fileID: 0}
-  onClickUpEffector: {fileID: 0}
+  onClickLeftEffector: {fileID: 7493392320520587992}
+  onClickRightEffector: {fileID: 0}
+  onClickLeftDownEffector: {fileID: 0}
+  onClickLeftUpEffector: {fileID: 0}
+  onClickRightDownEffector: {fileID: 0}
+  onClickRightUpEffector: {fileID: 0}
 --- !u!1 &8910339289924573856
 GameObject:
   m_ObjectHideFlags: 0
@@ -2206,8 +2237,10 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.1
   infiniteLoop: 0
   loops: 1
@@ -2269,8 +2302,10 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   clips:
   - {fileID: 11400000, guid: 00367dfa8ad1cda4d9ad918bb082e438, type: 2}
   sourceSettings:
@@ -2278,6 +2313,11 @@ MonoBehaviour:
     loop: 0
     playOnlyWhenNotPlaying: 0
     muteSameSound: 0
+  spatialSettings:
+    spatialBlend: 0
+    soundTarget: {fileID: 0}
+    minDistance: 0
+    maxDistance: 0
   ignoreEffectStop: 1
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}

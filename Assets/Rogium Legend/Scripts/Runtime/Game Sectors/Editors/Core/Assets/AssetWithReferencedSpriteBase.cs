@@ -12,10 +12,15 @@ namespace Rogium.Editors.Core
         
         public virtual void UpdateIcon(IAsset newSprite)
         {
-            SafetyNet.EnsureIsType<SpriteAsset>(newSprite, nameof(newSprite));
-            SpriteAsset s = (SpriteAsset) newSprite;
             associatedSpriteID = newSprite.ID;
-            icon = s.Icon;
+            if (newSprite is not EmptyAsset)
+            {
+                SafetyNet.EnsureIsType<SpriteAsset>(newSprite, nameof(newSprite));
+                SpriteAsset s = (SpriteAsset) newSprite;
+                icon = s.Icon;
+                return;
+            }
+            icon = newSprite.Icon;
         }
 
         /// <summary>

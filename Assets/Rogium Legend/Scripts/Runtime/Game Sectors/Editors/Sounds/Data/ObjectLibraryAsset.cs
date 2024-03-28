@@ -11,7 +11,7 @@ namespace Rogium.Editors.Objects
     {
         [SerializeField] private List<SoundAsset> sounds;
 
-        public SoundAsset GetAssetByID(string id) => sounds.FindValueFirst(id);
+        public SoundAsset GetAssetByID(string id) => sounds.FindValueFirstOrDefault(id);
         
         public IList<SoundAsset> GetAssetListCopy() => new List<SoundAsset>(sounds);
     }

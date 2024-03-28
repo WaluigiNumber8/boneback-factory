@@ -40,51 +40,17 @@ namespace Rogium.UserInterface.ModalWindows
         /// <param name="type">What types of assets to grab.</param>
         /// <param name="whenAssetPicked">The method that runs when the asset is picked.</param>
         /// <param name="preselectedAsset">The asset that will be selected on window open.</param>
+        /// <param name="canSelectEmpty">Allows selection of empty asset.</param>
         /// <exception cref="InvalidOperationException">Is thrown when the asset is set to "None".</exception>
         /// <exception cref="ArgumentOutOfRangeException">Is thrown when an unsupported type appears.</exception>
-        public void Construct(AssetType type, Action<IAsset> whenAssetPicked, IAsset preselectedAsset = null)
+        public void Construct(AssetType type, Action<IAsset> whenAssetPicked, IAsset preselectedAsset = null, bool canSelectEmpty = false)
         {
             this.whenAssetPicked = whenAssetPicked;
             
             generalUI.entireArea.GetComponentInParent<Transform>().SetAsLastSibling();
             ui.header.text.text = $"Select a {type.ToString().ToLower()}";
             Open();
-
-            switch (type)
-            {
-                case AssetType.None:
-                    throw new InvalidOperationException("The Asset Type is set to \"None\".");
-                case AssetType.Pack:
-                    selectionPicker.OpenForPacks(ConfirmSelection, preselectedAsset);
-                    break;
-                case AssetType.Palette:
-                    selectionPicker.OpenForPalettes(ConfirmSelection, preselectedAsset);
-                    break;
-                case AssetType.Sprite:
-                    selectionPicker.OpenForSprites(ConfirmSelection, preselectedAsset);
-                    break;
-                case AssetType.Weapon:
-                    selectionPicker.OpenForWeapons(ConfirmSelection, preselectedAsset);
-                    break;
-                case AssetType.Projectile:
-                    selectionPicker.OpenForProjectiles(ConfirmSelection, preselectedAsset);
-                    break;
-                case AssetType.Enemy:
-                    selectionPicker.OpenForEnemies(ConfirmSelection, preselectedAsset);
-                    break;
-                case AssetType.Room:
-                    selectionPicker.OpenForRooms(ConfirmSelection, preselectedAsset);
-                    break;
-                case AssetType.Tile:
-                    selectionPicker.OpenForTiles(ConfirmSelection, preselectedAsset);
-                    break;
-                case AssetType.Sound:
-                    selectionPicker.OpenForSounds(ConfirmSelection, preselectedAsset);
-                    break;
-                case AssetType.Campaign:
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(type), type, "Unsupported Asset Type");
-            }
+            selectionPicker.Open(type, ConfirmSelection, preselectedAsset, canSelectEmpty);
         }
 
         /// <summary>

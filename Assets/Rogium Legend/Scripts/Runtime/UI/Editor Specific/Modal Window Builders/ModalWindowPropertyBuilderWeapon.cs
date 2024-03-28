@@ -1,4 +1,5 @@
 ﻿using System;
+using Rogium.Core;
 using Rogium.Editors.Weapons;
 using UnityEngine;
 
@@ -37,14 +38,14 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         protected override void CreateAsset()
         {
             editor.CreateNewWeapon((WeaponAsset)editedAssetBase);
-            selectionMenu.OpenForWeapons();
+            selectionMenu.Open(AssetType.Weapon);
         }
 
         protected override void UpdateAsset()
         {
             weaponEditor.UpdateAsset((WeaponAsset)editedAssetBase);
             weaponEditor.CompleteEditing();
-            selectionMenu.OpenForWeapons();
+            selectionMenu.Open(AssetType.Weapon);
         }
     }
 }

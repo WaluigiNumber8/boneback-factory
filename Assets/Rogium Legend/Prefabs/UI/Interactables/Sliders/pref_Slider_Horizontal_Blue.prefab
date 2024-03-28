@@ -67,6 +67,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -131,6 +132,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -141,6 +143,11 @@ MonoBehaviour:
     loop: 0
     playOnlyWhenNotPlaying: 0
     muteSameSound: 0
+  spatialSettings:
+    spatialBlend: 0
+    soundTarget: {fileID: 0}
+    minDistance: 0
+    maxDistance: 0
   ignoreEffectStop: 1
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
@@ -683,6 +690,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 0
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -693,6 +701,11 @@ MonoBehaviour:
     loop: 0
     playOnlyWhenNotPlaying: 1
     muteSameSound: 0
+  spatialSettings:
+    spatialBlend: 0
+    soundTarget: {fileID: 0}
+    minDistance: 0
+    maxDistance: 0
   ignoreEffectStop: 1
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
@@ -771,6 +784,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -826,6 +840,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -881,6 +896,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -891,6 +907,11 @@ MonoBehaviour:
     loop: 0
     playOnlyWhenNotPlaying: 0
     muteSameSound: 0
+  spatialSettings:
+    spatialBlend: 0
+    soundTarget: {fileID: 0}
+    minDistance: 0
+    maxDistance: 0
   ignoreEffectStop: 1
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
@@ -915,6 +936,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 1
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -995,6 +1017,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0.5
   initialDelayMax: 0
   randomizeDelay: 0
@@ -1162,9 +1185,12 @@ MonoBehaviour:
   eventCaller: {fileID: 3300338993574678357}
   onSelectEffector: {fileID: 1844292312258199554}
   onDeselectEffector: {fileID: 685762141492007120}
-  onClickEffector: {fileID: 7505790632879255069}
-  onClickDownEffector: {fileID: 4737526970612659348}
-  onClickUpEffector: {fileID: 1967502085962321724}
+  onClickLeftEffector: {fileID: 7505790632879255069}
+  onClickRightEffector: {fileID: 0}
+  onClickLeftDownEffector: {fileID: 4737526970612659348}
+  onClickLeftUpEffector: {fileID: 1967502085962321724}
+  onClickRightDownEffector: {fileID: 0}
+  onClickRightUpEffector: {fileID: 0}
 --- !u!114 &1739929905708183610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1250,6 +1276,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -1359,6 +1386,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -1414,6 +1442,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -1469,6 +1498,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -1479,6 +1509,11 @@ MonoBehaviour:
     loop: 0
     playOnlyWhenNotPlaying: 0
     muteSameSound: 0
+  spatialSettings:
+    spatialBlend: 0
+    soundTarget: {fileID: 0}
+    minDistance: 0
+    maxDistance: 0
   ignoreEffectStop: 1
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
@@ -1503,6 +1538,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -1524,6 +1560,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -1654,6 +1691,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0

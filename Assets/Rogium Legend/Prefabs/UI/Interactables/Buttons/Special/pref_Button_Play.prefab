@@ -161,9 +161,12 @@ MonoBehaviour:
   eventCaller: {fileID: 138537497880499574}
   onSelectEffector: {fileID: 1116888363972877752}
   onDeselectEffector: {fileID: 871065585281158058}
-  onClickEffector: {fileID: 0}
-  onClickDownEffector: {fileID: 0}
-  onClickUpEffector: {fileID: 1346387594703206546}
+  onClickLeftEffector: {fileID: 1346387594703206546}
+  onClickRightEffector: {fileID: 0}
+  onClickLeftDownEffector: {fileID: 0}
+  onClickLeftUpEffector: {fileID: 0}
+  onClickRightDownEffector: {fileID: 0}
+  onClickRightUpEffector: {fileID: 0}
 --- !u!1 &2605623684965093226
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,6 +235,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -253,6 +257,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -274,6 +279,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 1
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -381,6 +387,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -461,6 +468,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -500,6 +508,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 1
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -610,6 +619,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -631,6 +641,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -695,6 +706,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -784,6 +796,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -823,6 +836,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -862,6 +876,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0

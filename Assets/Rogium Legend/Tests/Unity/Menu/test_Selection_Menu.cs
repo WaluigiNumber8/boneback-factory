@@ -5,6 +5,7 @@ using Rogium.Editors.Packs;
 using Rogium.Systems.GASExtension;
 using Rogium.UserInterface.Editors.AssetSelection;
 using System.Collections;
+using Rogium.Core;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -13,7 +14,7 @@ public class test_Selection_Menu
 {
     private GameObject canvas;
     private AssetSelectionOverseer assetSelection;
-    private AssetSelectionOverseerMono assetSelectionMono;
+    private AssetSelector assetSelectionMono;
     private string packTitle;
     private string packDescription;
     private string packAuthor;
@@ -37,7 +38,7 @@ public class test_Selection_Menu
 
         //Menus
         GameObject selectionMenus = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Menu_Selection.prefab");
-        assetSelectionMono = Object.Instantiate(selectionMenus, canvas.transform).GetComponent<AssetSelectionOverseerMono>();
+        assetSelectionMono = Object.Instantiate(selectionMenus, canvas.transform).GetComponent<AssetSelector>();
         #endregion
         
         assetSelection = AssetSelectionOverseer.Instance;
@@ -54,7 +55,7 @@ public class test_Selection_Menu
     {
         ExternalLibraryOverseer.Instance.CreateAndAddPack(new PackAsset(packTitle, packAuthor, packDescription));
 
-        assetSelectionMono.OpenForPacks();
+        assetSelectionMono.Open(AssetType.Pack);
         yield return new WaitForSeconds(0.1f);
         Assert.AreEqual(true, assetSelectionMono.gameObject.activeSelf);
         Assert.AreEqual(true, assetSelectionMono.GridMenu.gameObject.activeSelf);
@@ -67,9 +68,9 @@ public class test_Selection_Menu
     {
         ExternalLibraryOverseer.Instance.CreateAndAddPack(new PackAsset(packTitle, packAuthor, packDescription));
 
-        assetSelectionMono.OpenForPacks();
+        assetSelectionMono.Open(AssetType.Pack);
         yield return new WaitForSeconds(0.5f);
-        assetSelectionMono.OpenForPacks();
+        assetSelectionMono.Open(AssetType.Pack);
         yield return new WaitForSeconds(0.25f);
 
         Assert.AreEqual(1, assetSelection.AssetCount);
@@ -81,7 +82,7 @@ public class test_Selection_Menu
     {
         ExternalLibraryOverseer.Instance.CreateAndAddPack(new PackAsset(packTitle, packAuthor, packDescription));
 
-        assetSelectionMono.OpenForPacks();
+        assetSelectionMono.Open(AssetType.Pack);
         
         yield return new WaitForSeconds(0.2f);
         ExternalLibraryOverseer.Instance.ActivatePackEditor(0);
@@ -90,7 +91,7 @@ public class test_Selection_Menu
         PackEditorOverseer.Instance.CreateNewRoom();
 
         yield return new WaitForSeconds(0.1f);
-        assetSelectionMono.OpenForRooms();
+        assetSelectionMono.Open(AssetType.Pack);
         yield return new WaitForSeconds(0.2f);
 
         Assert.AreEqual(true, assetSelectionMono.gameObject.activeSelf);
@@ -109,7 +110,7 @@ public class test_Selection_Menu
         PackEditorOverseer.Instance.CreateNewRoom();
 
         yield return new WaitForSeconds(0.1f);
-        assetSelectionMono.OpenForRooms();
+        assetSelectionMono.Open(AssetType.Pack);
         yield return new WaitForSeconds(0.2f);
 
         Assert.AreEqual(true, assetSelectionMono.gameObject.activeSelf);
@@ -121,7 +122,7 @@ public class test_Selection_Menu
     [UnityTest]
     public IEnumerator create_new_pack()
     {
-        assetSelectionMono.OpenForPacks();
+        assetSelectionMono.Open(AssetType.Pack);
         yield return new WaitForSeconds(0.1f);
         GASButtonActions.CreatePack();
 
@@ -133,7 +134,7 @@ public class test_Selection_Menu
     [UnityTest]
     public IEnumerator delete_pack()
     {
-        assetSelectionMono.OpenForPacks();
+        assetSelectionMono.Open(AssetType.Pack);
         yield return new WaitForSeconds(0.1f);
         GASButtonActions.CreatePack();
         yield return new WaitForSeconds(0.3f);

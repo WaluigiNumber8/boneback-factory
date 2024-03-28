@@ -12,11 +12,14 @@ namespace Rogium.UserInterface.Interactables
     /// <summary>
     /// Allows the user to grab assets as input.
     /// </summary>
-    public class AssetField : Selectable, IPointerClickHandler
+    public class AssetField : Selectable, IAssetField<IAsset>, IPointerClickHandler
     {
         public event Action<IAsset> OnValueChanged;
+        public event Action OnValueEmptied;
 
         [SerializeField] private AssetType type;
+        [SerializeField] private bool canBeEmpty;
+        
         [SerializeField] private UIInfo ui;
 
         private IAsset value;
@@ -24,20 +27,33 @@ namespace Rogium.UserInterface.Interactables
         public void OnPointerClick(PointerEventData eventData)
         {
             if (!interactable) return;
-            ModalWindowBuilder.GetInstance().OpenAssetPickerWindow(type, WhenAssetPicked, value);
+            
+            //Right Click to remove asset when can be empty
+            if (canBeEmpty && eventData.button == PointerEventData.InputButton.Right)
+            {
+                WhenAssetPicked(new EmptyAsset());
+                OnValueEmptied?.Invoke();
+                return;
+            }
+            
+            if (eventData.button != PointerEventData.InputButton.Left) return;
+            
+            ModalWindowBuilder.GetInstance().OpenAssetPickerWindow(type, WhenAssetPicked, value, canBeEmpty);
         }
 
         /// <summary>
         /// Constructs the asset field with initial values.
         /// </summary>
         /// <param name="type">The type of asset to collect.</param>
-        public void Construct(AssetType type, IAsset value)
+        /// <param name="value">The starting value of the AssetField.</param>
+        /// <param name="canBeEmpty">Allow the AssetField to contain a <see cref="EmptyAsset"/>. It gets added as an option to the Asset Picker Menu.</param>
+        public void Construct(AssetType type, IAsset value, bool canBeEmpty = false)
         {
             this.type = type;
             this.value = value;
+            this.canBeEmpty = canBeEmpty;
             
-            ui.icon.sprite = value.Icon;
-            if (ui.title != null) ui.title.text = value.Title;
+            Refresh();
         }
 
         /// <summary>
@@ -47,9 +63,14 @@ namespace Rogium.UserInterface.Interactables
         private void WhenAssetPicked(IAsset asset)
         {
             value = asset;
-            ui.icon.sprite = asset.Icon;
-            if (ui.title != null) ui.title.text = asset.Title;
+            Refresh();
             OnValueChanged?.Invoke(asset);
+        }
+
+        private void Refresh()
+        {
+            ui.icon.SetSpriteFromAsset(value);
+            ui.title.SetTextValueFromAssetTitle(value);
         }
 
         public IAsset Value { get => value; }

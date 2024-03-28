@@ -3,6 +3,7 @@ using RedRats.Core;
 using RedRats.Safety;
 using Rogium.Core;
 using Rogium.Editors.Campaign;
+using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Packs;
 using Rogium.ExternalStorage;
 using Rogium.Options.Core;

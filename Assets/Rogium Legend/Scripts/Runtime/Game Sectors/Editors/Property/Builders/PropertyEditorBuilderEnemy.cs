@@ -52,11 +52,11 @@ namespace Rogium.Editors.PropertyEditor.Builders
         {
             
             animationBlock1Slot = b.CreateContentBlockVertical(content, (asset.AnimationType == AnimationType.SpriteSwap));
-            b.BuildAssetField("", AssetType.Sprite, asset, animationBlock1Slot.GetTransform, a => asset.UpdateIcon(a), !currentPack.ContainsAnySprites, ThemeType.Red);
+            b.BuildAssetField("", AssetType.Sprite, asset, animationBlock1Slot.GetTransform, a => asset.UpdateIcon(a), null, !currentPack.ContainsAnySprites, ThemeType.Red);
             
             animationBlock2Slot = b.CreateContentBlockColumn2(content, (asset.AnimationType != AnimationType.SpriteSwap));
-            b.BuildAssetField("", AssetType.Sprite, asset, animationBlock2Slot.GetTransform, a => asset.UpdateIcon(a), !currentPack.ContainsAnySprites, ThemeType.Red);
-            b.BuildAssetField("", AssetType.Sprite, asset, animationBlock2Slot.GetTransform, a => asset.UpdateIconAlt(a.Icon), !currentPack.ContainsAnySprites, ThemeType.Red);
+            b.BuildAssetField("", AssetType.Sprite, asset, animationBlock2Slot.GetTransform, a => asset.UpdateIcon(a), null, !currentPack.ContainsAnySprites, ThemeType.Red);
+            b.BuildAssetField("", AssetType.Sprite, asset, animationBlock2Slot.GetTransform, a => asset.UpdateIconAlt(a.Icon), null, !currentPack.ContainsAnySprites, ThemeType.Red);
 
             b.BuildInputField("", asset.Title, content, asset.UpdateTitle);
             b.BuildDropdown("AI", aiOptions, (int)asset.AI, content, ProcessAIType);
@@ -90,8 +90,8 @@ namespace Rogium.Editors.PropertyEditor.Builders
             BuildWeaponSection(content);
             
             b.BuildHeader("Sound", content);
-            b.BuildSoundField("Hurt", asset.HurtSound, content, asset.UpdateHurtSound);
-            b.BuildSoundField("Death", asset.DeathSound, content, asset.UpdateDeathSound);
+            b.BuildSoundField("Hurt", asset.HurtSound, content, asset.UpdateHurtSound, true);
+            b.BuildSoundField("Death", asset.DeathSound, content, asset.UpdateDeathSound, true);
         }
 
         private void ProcessAnimationType(int animType)
@@ -141,7 +141,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
             {
                 int index = i;
                 IAsset w = packWeapons.FindValueFirstOrReturnFirst(asset.WeaponIDs[i]);
-                b.BuildAssetField($"Weapon #{index+1}", AssetType.Weapon, w, weaponSlotsBlock.GetTransform, a => asset.UpdateWeaponIDPos(index, a.ID), !currentPack.ContainsAnyWeapons);
+                b.BuildAssetField($"Weapon #{index+1}", AssetType.Weapon, w, weaponSlotsBlock.GetTransform, a => asset.UpdateWeaponIDPos(index, a.ID), null, !currentPack.ContainsAnyWeapons);
                 asset.UpdateWeaponIDPos(i, w.ID);
             }
         }

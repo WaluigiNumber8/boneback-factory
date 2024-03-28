@@ -2,6 +2,7 @@ using RedRats.Systems.LiteFeel.Core;
 using RedRats.UI.Core;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace RedRats.Systems.LiteFeel.Brains
@@ -16,26 +17,36 @@ namespace RedRats.Systems.LiteFeel.Brains
         [SerializeField, GUIColor(0.1f, 0.75f, 0f)] private LFEffector onSelectEffector;
         [SerializeField, GUIColor(0.1f, 0.75f, 0f)] private LFEffector onDeselectEffector;
         [Space]
-        [SerializeField, GUIColor(0f, 0.75f, 1f)] private LFEffector onClickEffector;
-        [SerializeField, GUIColor(0f, 0.75f, 1f)] private LFEffector onClickDownEffector;
-        [SerializeField, GUIColor(0f, 0.75f, 1f)] private LFEffector onClickUpEffector;
+        [SerializeField, GUIColor(0f, 0.75f, 1f)] private LFEffector onClickLeftEffector;
+        [SerializeField, GUIColor(0f, 0.75f, 1f)] private LFEffector onClickRightEffector;
+        [Space]
+        [SerializeField, GUIColor(0f, 0.75f, 1f)] private LFEffector onClickLeftDownEffector;
+        [SerializeField, GUIColor(0f, 0.75f, 1f)] private LFEffector onClickLeftUpEffector;
+        [SerializeField, GUIColor(0f, 0.75f, 1f)] private LFEffector onClickRightDownEffector;
+        [SerializeField, GUIColor(0f, 0.75f, 1f)] private LFEffector onClickRightUpEffector;
 
         private void OnEnable()
         {
             if (onSelectEffector != null) eventCaller.OnSelect += onSelectEffector.Play;
             if (onDeselectEffector != null) eventCaller.OnDeselect += onDeselectEffector.Play;
-            if (onClickEffector != null) eventCaller.OnClick += onClickEffector.Play;
-            if (onClickUpEffector != null) eventCaller.OnClickUp += onClickUpEffector.Play;
-            if (onClickDownEffector != null) eventCaller.OnClickDown += onClickDownEffector.Play;
+            if (onClickLeftEffector != null) eventCaller.OnClickLeft += onClickLeftEffector.Play;
+            if (onClickRightEffector != null) eventCaller.OnClickRight += onClickRightEffector.Play;
+            if (onClickLeftUpEffector != null) eventCaller.OnClickLeftUp += onClickLeftUpEffector.Play;
+            if (onClickLeftDownEffector != null) eventCaller.OnClickLeftDown += onClickLeftDownEffector.Play;
+            if (onClickRightDownEffector != null) eventCaller.OnClickRightDown += onClickRightDownEffector.Play;
+            if (onClickRightUpEffector != null) eventCaller.OnClickRightUp += onClickRightUpEffector.Play;
         }
 
         private void OnDisable()
         {
-            if (onClickEffector != null) eventCaller.OnClick -= onClickEffector.Play;
+            if (onClickLeftEffector != null) eventCaller.OnClickLeft -= onClickLeftEffector.Play;
             if (onDeselectEffector != null) eventCaller.OnDeselect -= onDeselectEffector.Play;
             if (onSelectEffector != null) eventCaller.OnSelect -= onSelectEffector.Play;
-            if (onClickUpEffector != null) eventCaller.OnClickUp -= onClickUpEffector.Play;
-            if (onClickDownEffector != null) eventCaller.OnClickDown -= onClickDownEffector.Play;
+            if (onClickRightEffector != null) eventCaller.OnClickRight -= onClickRightEffector.Play;
+            if (onClickLeftUpEffector != null) eventCaller.OnClickLeftUp -= onClickLeftUpEffector.Play;
+            if (onClickLeftDownEffector != null) eventCaller.OnClickLeftDown -= onClickLeftDownEffector.Play;
+            if (onClickRightDownEffector != null) eventCaller.OnClickRightDown -= onClickRightDownEffector.Play;
+            if (onClickRightUpEffector != null) eventCaller.OnClickRightUp -= onClickRightUpEffector.Play;
         }
     }
 }

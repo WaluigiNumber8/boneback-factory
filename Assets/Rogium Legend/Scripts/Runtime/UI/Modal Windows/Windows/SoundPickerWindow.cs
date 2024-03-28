@@ -47,20 +47,20 @@ namespace Rogium.UserInterface.ModalWindows
         /// <summary>
         /// Prepares the window for editing an asset.
         /// </summary>
-        /// <param name="onChangeSound">Method that runs when the currently edited sound is changed.</param>
-        /// <param name="onChangeAnyValue">Method that runs when any property in the window is updated.</param>
+        /// <param name="whenSoundChanged">Method that runs when the currently edited sound is changed.</param>
+        /// <param name="whenAnyValueChanged">Method that runs when any property in the window is updated.</param>
         /// <param name="value">Which data to load up into the window.</param>
-        public void Construct(Action<SoundAsset> onChangeSound, Action<AssetData> onChangeAnyValue, AssetData value)
+        public void Construct(Action<SoundAsset> whenSoundChanged, Action<AssetData> whenAnyValueChanged, AssetData value)
         {
             currentAssetData = value;
-            currentSoundAsset = lib.GetSoundByID(value.ID);
+            currentSoundAsset = (!value.IsEmpty()) ? lib.GetSoundByID(value.ID) : null;
             
-            soundField.Construct("", AssetType.Sound, currentSoundAsset, WhenSoundFieldUpdated);
+            soundField.Construct("", AssetType.Sound, currentSoundAsset, WhenSoundFieldUpdated, WhenSoundFieldEmptied);
             UpdateProperties(currentAssetData);
-            onChangeSound?.Invoke(currentSoundAsset);
+            whenSoundChanged?.Invoke(currentSoundAsset);
             
-            this.whenAnyValueChanged = onChangeAnyValue; //Assign after everything is set up.
-            this.whenSoundChanged = onChangeSound;
+            this.whenAnyValueChanged = whenAnyValueChanged; //Assign after everything is set up.
+            this.whenSoundChanged = whenSoundChanged;
         }
 
         public void UpdateTheme(Sprite windowBackgroundSprite, Sprite propertiesBackgroundSprite, InteractableSpriteInfo soundFieldSet, 
@@ -93,13 +93,24 @@ namespace Rogium.UserInterface.ModalWindows
         private void WhenSoundFieldUpdated(IAsset asset)
         {
             currentAssetData = AssetDataBuilder.ForSound(asset);
-            
+            currentSoundAsset = asset as SoundAsset;
+            WhenSoundFieldChanged();
+        }
+        
+        private void WhenSoundFieldEmptied()
+        {
+            currentAssetData = new AssetData();
+            currentSoundAsset = null;
+            WhenSoundFieldChanged();
+        }
+
+        private void WhenSoundFieldChanged()
+        {
             //Set old values to new sound
             currentAssetData.UpdateFloatValue1(volumeSlider.PropertyValue);
             currentAssetData.UpdateFloatValue2(pitchSlider.PropertyValue);
             currentAssetData.UpdateBoolValue1(randomPitchToggle.PropertyValue);
             
-            currentSoundAsset = asset as SoundAsset;
             UpdateProperties(currentAssetData);
             UpdateOriginalValue();
             

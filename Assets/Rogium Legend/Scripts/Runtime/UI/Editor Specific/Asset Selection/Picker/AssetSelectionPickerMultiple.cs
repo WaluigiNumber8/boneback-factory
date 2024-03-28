@@ -12,12 +12,12 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
     /// <summary>
     /// Prepares the Asset Selection System for picking multiple assets.
     /// </summary>
-    public class AssetSelectionPickerMultiple : MonoBehaviour, IAssetSelectionPicker
+    public class AssetSelectionPickerMultiple : MonoBehaviour
     {
         public event Action<IAsset> OnAssetSelect; 
         public event Action<IAsset> OnAssetDeselect; 
 
-        [SerializeField] private AssetSelectionOverseerMono assetSelection;
+        [SerializeField] private AssetSelector assetSelector;
         
         private Action<IList<IAsset>> targetMethod;
         private IList<IAsset> selectedAssets;
@@ -99,115 +99,16 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
             targetMethod = null;
         }
 
-        #region Open Picker Selection
-
         /// <summary>
-        /// Opens the Picker Selection Menu for Packs.
+        /// Opens the Selection Picker Menu.
         /// </summary>
-        /// <param name="targetMethod">The method, that requires results of the selection and
-        /// will run only after ConfirmSelection() has been called.</param>
-        /// <param name="preselectedAssets">The assets that will already be selected, after opening the menu.</param>
-        public void OpenForPacks(Action<IList<IAsset>> targetMethod, IList<IAsset> preselectedAssets = null)
-        {
-            Open(targetMethod, preselectedAssets);
-            assetSelection.OpenForPacks();
-        }
-
-        /// <summary>
-        /// Opens the Picker Selection Menu for Palettes.
-        /// </summary>
-        /// <param name="targetMethod">The method, that requires results of the selection and
-        /// will run only after ConfirmSelection() has been called.</param>
-        /// <param name="preselectedAssets">The assets that will already be selected, after opening the menu.</param>
-        public void OpenForPalettes(Action<IList<IAsset>> targetMethod, IList<IAsset> preselectedAssets = null)
-        {
-            Open(targetMethod, preselectedAssets);
-            assetSelection.OpenForPalettes();
-        }
-
-        /// <summary>
-        /// Opens the Picker Selection Menu for Sprites.
-        /// </summary>
-        /// <param name="targetMethod">The method, that requires results of the selection and
-        /// will run only after ConfirmSelection() has been called.</param>
-        /// <param name="preselectedAssets">The assets that will already be selected, after opening the menu.</param>
-        public void OpenForSprites(Action<IList<IAsset>> targetMethod, IList<IAsset> preselectedAssets = null)
-        {
-            Open(targetMethod, preselectedAssets);
-            assetSelection.OpenForSprites();
-        }
-
-        /// <summary>
-        /// Opens the Picker Selection Menu for Weapons.
-        /// </summary>
-        /// <param name="targetMethod">The method, that requires results of the selection and
-        /// will run only after ConfirmSelection() has been called.</param>
-        /// <param name="preselectedAssets">The assets that will already be selected, after opening the menu.</param>
-        public void OpenForWeapons(Action<IList<IAsset>> targetMethod, IList<IAsset> preselectedAssets = null)
-        {
-            Open(targetMethod, preselectedAssets);
-            assetSelection.OpenForWeapons();
-        }
-
-        /// <summary>
-        /// Opens the Picker Selection Menu for Projectiles.
-        /// </summary>
-        /// <param name="targetMethod">The method, that requires results of the selection and
-        /// will run only after ConfirmSelection() has been called.</param>
-        /// <param name="preselectedAssets">The assets that will already be selected, after opening the menu.</param>
-        public void OpenForProjectiles(Action<IList<IAsset>> targetMethod, IList<IAsset> preselectedAssets = null)
-        {
-            Open(targetMethod, preselectedAssets);
-            assetSelection.OpenForProjectiles();
-        }
-
-        /// <summary>
-        /// Opens the Picker Selection Menu for Enemies.
-        /// </summary>
-        /// <param name="targetMethod">The method, that requires results of the selection and
-        /// will run only after ConfirmSelection() has been called.</param>
-        /// <param name="preselectedAssets">The assets that will already be selected, after opening the menu.</param>
-        public void OpenForEnemies(Action<IList<IAsset>> targetMethod, IList<IAsset> preselectedAssets = null)
-        {
-            Open(targetMethod, preselectedAssets);
-            assetSelection.OpenForEnemies();
-        }
-
-        /// <summary>
-        /// Opens the Picker Selection Menu for Rooms.
-        /// </summary>
-        /// <param name="targetMethod">The method, that requires results of the selection and
-        /// will run only after ConfirmSelection() has been called.</param>
-        /// <param name="preselectedAssets">The assets that will already be selected, after opening the menu.</param>
-        public void OpenForRooms(Action<IList<IAsset>> targetMethod, IList<IAsset> preselectedAssets = null)
-        {
-            Open(targetMethod, preselectedAssets);
-            assetSelection.OpenForRooms();
-        }
-        
-        /// <summary>
-        /// Opens the Picker Selection Menu for Tiles.
-        /// </summary>
-        /// <param name="targetMethod">The method, that requires results of the selection and
-        /// will run only after ConfirmSelection() has been called.</param>
-        /// <param name="preselectedAssets">The assets that will already be selected, after opening the menu.</param>
-        public void OpenForTiles(Action<IList<IAsset>> targetMethod, IList<IAsset> preselectedAssets = null)
-        {
-            Open(targetMethod, preselectedAssets);
-            assetSelection.OpenForTiles();
-        }
-
-        #endregion
-
-        /// <summary>
-        /// Reopens the Selection Picker Menu.
-        /// </summary>
+        /// <param name="type">The type of assets to select.</param>
         /// <param name="targetMethod">The method, that requires results of the selection and
         /// will run only after ConfirmSelection() has been called.</param>
         /// <param name="preselectedAssets">The assets that will be already selected, after opening the menu.</param>
-        private void Open(Action<IList<IAsset>> targetMethod, IList<IAsset> preselectedAssets)
+        public void Open(AssetType type, Action<IList<IAsset>> targetMethod, IList<IAsset> preselectedAssets)
         {
-            //Preselect Assets.
+            //Preselect Assets
             if (preselectedAssets?.Count > 0)
             {
                 selectedAssets = new List<IAsset>(preselectedAssets);
@@ -222,7 +123,8 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
             defaultWasSet = false;
             cardToggleList.Clear();
             this.targetMethod = targetMethod;
-            assetSelection.BeginListeningToSpawnedCards(AddAssetHolderToList);
+            assetSelector.BeginListeningToSpawnedCards(AddAssetHolderToList);
+            assetSelector.Open(type);
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
 ﻿using System;
+using Rogium.Core;
 using Rogium.Editors.Palettes;
 using UnityEngine;
 
@@ -39,14 +40,14 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         protected override void CreateAsset()
         {
             editor.CreateNewPalette((PaletteAsset)editedAssetBase);
-            selectionMenu.OpenForPalettes();
+            selectionMenu.Open(AssetType.Palette);
         }
 
         protected override void UpdateAsset()
         {
             paletteEditor.UpdateAsset((PaletteAsset)editedAssetBase);
             paletteEditor.CompleteEditing();
-            selectionMenu.OpenForPalettes();
+            selectionMenu.Open(AssetType.Palette);
         }
     }
 }
