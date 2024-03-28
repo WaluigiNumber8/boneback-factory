@@ -330,8 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnAwake: 0
-  playOnEnable: 0
+  autoplay: 0
 --- !u!114 &2319532456443684701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,15 +344,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info: 
+  active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   clips:
   - {fileID: 11400000, guid: ed14565cdfd668d4a880cb06e0d9f126, type: 2}
   sourceSettings:
     id: 0
     loop: 0
     playOnlyWhenNotPlaying: 0
+    muteSameSound: 0
+  spatialSettings:
+    spatialBlend: 0
+    soundTarget: {fileID: 0}
+    minDistance: 0
+    maxDistance: 0
   ignoreEffectStop: 1
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
@@ -375,12 +384,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info: Bump UI
+  active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.05
-  resetOnEnd: 1
-  additivePlay: 0
   infiniteLoop: 0
   loops: 1
   loopType: 0
@@ -392,8 +403,6 @@ MonoBehaviour:
   beginScaleU: 1
   targetScale: {x: 1, y: 1, z: 1}
   targetScaleU: 0.9
-  smoothing: 1
-  scaleEasing: 4
   scaleCurve:
     serializedVersion: 2
     m_Curve:
@@ -440,12 +449,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info: Squash Checkmark
+  active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.12
-  resetOnEnd: 1
-  additivePlay: 0
   infiniteLoop: 0
   loops: 1
   loopType: 0
@@ -454,8 +465,6 @@ MonoBehaviour:
   beginScale: 1
   targetScale: 2.5
   affectedAxis: 2
-  smoothing: 1
-  deformEasing: 4
   deformCurve:
     serializedVersion: 2
     m_Curve:
@@ -557,8 +566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnAwake: 0
-  playOnEnable: 0
+  autoplay: 0
 --- !u!114 &3274548127026578264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -572,12 +580,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info: Scale up
+  active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.05
-  resetOnEnd: 0
-  additivePlay: 0
   infiniteLoop: 0
   loops: 1
   loopType: 0
@@ -589,8 +599,6 @@ MonoBehaviour:
   beginScaleU: 1
   targetScale: {x: 1, y: 1, z: 1}
   targetScaleU: 1.075
-  smoothing: 1
-  scaleEasing: 4
   scaleCurve:
     serializedVersion: 2
     m_Curve:
@@ -628,15 +636,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info: 
+  active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   clips:
   - {fileID: 11400000, guid: 823bb3f51dc80df4888839737d733be4, type: 2}
   sourceSettings:
     id: 0
     loop: 0
     playOnlyWhenNotPlaying: 0
+    muteSameSound: 0
+  spatialSettings:
+    spatialBlend: 0
+    soundTarget: {fileID: 0}
+    minDistance: 0
+    maxDistance: 0
   ignoreEffectStop: 1
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
@@ -694,8 +712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnAwake: 0
-  playOnEnable: 0
+  autoplay: 0
 --- !u!114 &7297390816926636095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -709,12 +726,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info: Scale down
+  active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.025
-  resetOnEnd: 0
-  additivePlay: 0
   infiniteLoop: 0
   loops: 1
   loopType: 0
@@ -726,8 +745,6 @@ MonoBehaviour:
   beginScaleU: 1.075
   targetScale: {x: 1, y: 1, z: 1}
   targetScaleU: 1
-  smoothing: 1
-  scaleEasing: 4
   scaleCurve:
     serializedVersion: 2
     m_Curve:
@@ -806,9 +823,12 @@ MonoBehaviour:
   eventCaller: {fileID: 9181374250823040048}
   onSelectEffector: {fileID: 6713657877806833031}
   onDeselectEffector: {fileID: 5681949428474582787}
-  onClickEffector: {fileID: 2593825641915104944}
-  onClickDownEffector: {fileID: 0}
-  onClickUpEffector: {fileID: 0}
+  onClickLeftEffector: {fileID: 2593825641915104944}
+  onClickRightEffector: {fileID: 0}
+  onClickLeftDownEffector: {fileID: 0}
+  onClickLeftUpEffector: {fileID: 0}
+  onClickRightDownEffector: {fileID: 0}
+  onClickRightUpEffector: {fileID: 0}
 --- !u!1 &9201454815471524963
 GameObject:
   m_ObjectHideFlags: 0

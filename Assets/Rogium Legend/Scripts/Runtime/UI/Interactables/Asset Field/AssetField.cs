@@ -1,5 +1,4 @@
 ﻿using System;
-using RedRats.Core;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.UserInterface.ModalWindows;
@@ -16,6 +15,7 @@ namespace Rogium.UserInterface.Interactables
     public class AssetField : Selectable, IPointerClickHandler
     {
         public event Action<IAsset> OnValueChanged;
+        public event Action OnValueEmptied;
 
         [SerializeField] private AssetType type;
         [SerializeField] private bool canBeEmpty;
@@ -27,6 +27,14 @@ namespace Rogium.UserInterface.Interactables
         public void OnPointerClick(PointerEventData eventData)
         {
             if (!interactable) return;
+            
+            //Right Click to remove asset when can be empty
+            if (canBeEmpty && eventData.button == PointerEventData.InputButton.Right)
+            {
+                WhenAssetPicked(new EmptyAsset());
+                OnValueEmptied?.Invoke();
+                return;
+            }
             ModalWindowBuilder.GetInstance().OpenAssetPickerWindow(type, WhenAssetPicked, value, canBeEmpty);
         }
 

@@ -124,8 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnAwake: 0
-  playOnEnable: 0
+  autoplay: 0
 --- !u!114 &2406293584015353488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,8 +140,11 @@ MonoBehaviour:
   info: Stop glowing
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   effector: {fileID: 6509572678357629148}
   control: 0
 --- !u!1 &692970029071205537
@@ -196,8 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnAwake: 0
-  playOnEnable: 0
+  autoplay: 0
 --- !u!114 &1833003357697435617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,11 +214,12 @@ MonoBehaviour:
   info: Press In
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.05
-  resetOnEnd: 1
-  additivePlay: 0
   infiniteLoop: 0
   loops: 1
   loopType: 0
@@ -268,11 +270,12 @@ MonoBehaviour:
   info: Press In
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.05
-  resetOnEnd: 1
-  additivePlay: 0
   infiniteLoop: 0
   loops: 1
   loopType: 0
@@ -323,8 +326,11 @@ MonoBehaviour:
   info: Slot Click
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   clips:
   - {fileID: 11400000, guid: 0d8293a7f234c124b83e94b46294f743, type: 2}
   sourceSettings:
@@ -332,6 +338,11 @@ MonoBehaviour:
     loop: 0
     playOnlyWhenNotPlaying: 0
     muteSameSound: 0
+  spatialSettings:
+    spatialBlend: 0
+    soundTarget: {fileID: 0}
+    minDistance: 0
+    maxDistance: 0
   ignoreEffectStop: 1
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
@@ -622,9 +633,12 @@ MonoBehaviour:
   eventCaller: {fileID: 7736062909504532081}
   onSelectEffector: {fileID: 6509572678357629148}
   onDeselectEffector: {fileID: 6681019219676655485}
-  onClickEffector: {fileID: 7061268312792323980}
-  onClickDownEffector: {fileID: 0}
-  onClickUpEffector: {fileID: 0}
+  onClickLeftEffector: {fileID: 7061268312792323980}
+  onClickRightEffector: {fileID: 0}
+  onClickLeftDownEffector: {fileID: 0}
+  onClickLeftUpEffector: {fileID: 0}
+  onClickRightDownEffector: {fileID: 0}
+  onClickRightUpEffector: {fileID: 0}
 --- !u!1 &8504869892882937685
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,8 +689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnAwake: 0
-  playOnEnable: 0
+  autoplay: 0
 --- !u!114 &8442429395054389569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -692,8 +705,11 @@ MonoBehaviour:
   info: 
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   clips:
   - {fileID: 11400000, guid: 823bb3f51dc80df4888839737d733be4, type: 2}
   sourceSettings:
@@ -701,6 +717,11 @@ MonoBehaviour:
     loop: 0
     playOnlyWhenNotPlaying: 0
     muteSameSound: 0
+  spatialSettings:
+    spatialBlend: 0
+    soundTarget: {fileID: 0}
+    minDistance: 0
+    maxDistance: 0
   ignoreEffectStop: 1
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
@@ -724,11 +745,12 @@ MonoBehaviour:
   info: Glowing
   active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 3
-  resetOnEnd: 0
-  additivePlay: 0
   infiniteLoop: 1
   loops: 1
   loopType: 0

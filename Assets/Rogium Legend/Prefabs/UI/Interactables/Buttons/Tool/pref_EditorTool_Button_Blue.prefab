@@ -51,8 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnAwake: 0
-  playOnEnable: 0
+  autoplay: 0
 --- !u!114 &7643836796238609363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,12 +65,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info: Bump
+  active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.05
-  resetOnEnd: 1
-  additivePlay: 0
   infiniteLoop: 0
   loops: 1
   loopType: 0
@@ -83,8 +84,6 @@ MonoBehaviour:
   beginScaleU: 1
   targetScale: {x: 0, y: 0, z: 0}
   targetScaleU: 0.9
-  smoothing: 1
-  scaleEasing: 4
   scaleCurve:
     serializedVersion: 2
     m_Curve:
@@ -131,15 +130,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info: 
+  active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   clips:
   - {fileID: 11400000, guid: 0d8293a7f234c124b83e94b46294f743, type: 2}
   sourceSettings:
     id: 0
     loop: 0
     playOnlyWhenNotPlaying: 0
+    muteSameSound: 0
+  spatialSettings:
+    spatialBlend: 0
+    soundTarget: {fileID: 0}
+    minDistance: 0
+    maxDistance: 0
   ignoreEffectStop: 1
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
@@ -161,12 +170,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info: Bump icon lower left
+  active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.1
-  resetOnEnd: 1
-  additivePlay: 0
   infiniteLoop: 0
   loops: 1
   loopType: 0
@@ -179,8 +190,6 @@ MonoBehaviour:
   beginPositionU: 0
   targetPosition: {x: -4, y: -8, z: 0}
   targetPositionU: 1
-  smoothing: 1
-  positionEasing: 4
   positionCurve:
     serializedVersion: 2
     m_Curve:
@@ -264,8 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnAwake: 0
-  playOnEnable: 0
+  autoplay: 0
 --- !u!114 &4805663261068571646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,12 +287,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info: Scale up
+  active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.05
-  resetOnEnd: 0
-  additivePlay: 0
   infiniteLoop: 0
   loops: 1
   loopType: 0
@@ -296,8 +306,6 @@ MonoBehaviour:
   beginScaleU: 1
   targetScale: {x: 0, y: 0, z: 0}
   targetScaleU: 1.075
-  smoothing: 1
-  scaleEasing: 4
   scaleCurve:
     serializedVersion: 2
     m_Curve:
@@ -335,15 +343,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info: 
+  active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   clips:
   - {fileID: 11400000, guid: 823bb3f51dc80df4888839737d733be4, type: 2}
   sourceSettings:
     id: 0
     loop: 0
     playOnlyWhenNotPlaying: 0
+    muteSameSound: 0
+  spatialSettings:
+    spatialBlend: 0
+    soundTarget: {fileID: 0}
+    minDistance: 0
+    maxDistance: 0
   ignoreEffectStop: 1
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
@@ -530,8 +548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnAwake: 0
-  playOnEnable: 0
+  autoplay: 0
 --- !u!114 &8666308365254415344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -545,9 +562,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info: Stop icon glow
+  active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   effector: {fileID: 10204730394282939}
   control: 0
 --- !u!1 &6137028664562284282
@@ -599,8 +620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnAwake: 0
-  playOnEnable: 0
+  autoplay: 0
 --- !u!114 &1718743658988352727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -614,12 +634,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info: Glowing icon
+  active: 1
   restartOnPlay: 0
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 2.5
-  resetOnEnd: 1
-  additivePlay: 1
   infiniteLoop: 1
   loops: 1
   loopType: 0
@@ -628,8 +650,6 @@ MonoBehaviour:
   intensityMode: 1
   beginIntensity: 1
   targetIntensity: 3.5
-  intensitySmoothing: 1
-  intensityEasing: 4
   intensityCurve:
     serializedVersion: 2
     m_Curve:
@@ -667,8 +687,6 @@ MonoBehaviour:
   saturationMode: 1
   beginSaturation: 1
   targetSaturation: 2
-  saturationSmoothing: 1
-  saturationEasing: 4
   saturationCurve:
     serializedVersion: 2
     m_Curve:
@@ -1090,8 +1108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnAwake: 0
-  playOnEnable: 0
+  autoplay: 0
 --- !u!114 &4422902103368511627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1105,12 +1122,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info: Scale down
+  active: 1
   restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
+  randomizeDelay: 0
   duration: 0.025
-  resetOnEnd: 1
-  additivePlay: 0
   infiniteLoop: 0
   loops: 1
   loopType: 0
@@ -1122,8 +1141,6 @@ MonoBehaviour:
   beginScaleU: 1.075
   targetScale: {x: 0, y: 0, z: 0}
   targetScaleU: 1
-  smoothing: 1
-  scaleEasing: 4
   scaleCurve:
     serializedVersion: 2
     m_Curve:
@@ -1205,9 +1222,12 @@ MonoBehaviour:
   eventCaller: {fileID: 1794727693067517184}
   onSelectEffector: {fileID: 6334741153349231288}
   onDeselectEffector: {fileID: 7209714942440256123}
-  onClickEffector: {fileID: 1183671447865616600}
-  onClickDownEffector: {fileID: 0}
-  onClickUpEffector: {fileID: 0}
+  onClickLeftEffector: {fileID: 1183671447865616600}
+  onClickRightEffector: {fileID: 0}
+  onClickLeftDownEffector: {fileID: 0}
+  onClickLeftUpEffector: {fileID: 0}
+  onClickRightDownEffector: {fileID: 0}
+  onClickRightUpEffector: {fileID: 0}
 --- !u!114 &4872037922333951211
 MonoBehaviour:
   m_ObjectHideFlags: 0
