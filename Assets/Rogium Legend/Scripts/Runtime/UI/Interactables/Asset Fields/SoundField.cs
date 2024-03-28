@@ -88,7 +88,7 @@ namespace Rogium.UserInterface.Interactables
         
         private void Clear()
         {
-            value = new AssetData();
+            value = new AssetData(ParameterInfoConstants.ForSound);
             ClearElements();
             OnValueEmptied?.Invoke();
         }
