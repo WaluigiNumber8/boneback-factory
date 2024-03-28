@@ -525,11 +525,11 @@ MonoBehaviour:
   loopType: 0
   target: {fileID: 3991972644485347363}
   uniform: 1
-  strength: 0.1
+  strength: 8
   strengthVector: {x: 0.1, y: 0.1, z: 0.1}
-  vibration: 25
+  vibration: 30
   randomness: 90
-  fadeout: 0
+  fadeout: 1
   shakeCurve:
     serializedVersion: 2
     m_Curve:
