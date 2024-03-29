@@ -17,6 +17,7 @@ namespace Rogium.ExternalStorage.Serialization
         public int lightness;
         public JSONColor lightnessColor;
         public JSONGrid<AssetData> tileGrid;
+        public JSONGrid<AssetData> decorGrid;
         public JSONGrid<AssetData> objectGrid;
         public JSONGrid<AssetData> enemyGrid;
 
@@ -27,6 +28,7 @@ namespace Rogium.ExternalStorage.Serialization
             lightness = asset.Lightness;
             lightnessColor = new JSONColor(asset.LightnessColor);
             tileGrid = new JSONGrid<AssetData>(asset.TileGrid);
+            decorGrid = new JSONGrid<AssetData>(asset.DecorGrid);
             objectGrid = new JSONGrid<AssetData>(asset.ObjectGrid);
             enemyGrid = new JSONGrid<AssetData>(asset.EnemyGrid);
         }
@@ -38,6 +40,7 @@ namespace Rogium.ExternalStorage.Serialization
         public override RoomAsset Decode()
         {
             tileGrid.SetDefaultCreator(() => new AssetData(ParameterInfoConstants.ForTile));
+            decorGrid.SetDefaultCreator(() => new AssetData(ParameterInfoConstants.ForDecor));
             objectGrid.SetDefaultCreator(() => new AssetData(ParameterInfoConstants.ForEmpty));
             enemyGrid.SetDefaultCreator(() => new AssetData(ParameterInfoConstants.ForEnemy));
             
@@ -50,6 +53,7 @@ namespace Rogium.ExternalStorage.Serialization
                                  lightness,
                                  lightnessColor.Decode(),
                                  tileGrid.Decode(),
+                                 decorGrid.Decode(),
                                  objectGrid.Decode(),
                                  enemyGrid.Decode(),
                                  DateTime.Parse(creationDate));

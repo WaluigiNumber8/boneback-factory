@@ -22,7 +22,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         {
             Clear();
             
-            b.BuildPlainText("Type", Enum.GetNames(typeof(TileLayerType))[data.Parameters.intValue1], contentMain);
+            b.BuildPlainText("Layer", Enum.GetNames(typeof(TileLayerType))[data.Parameters.intValue1], contentMain);
         }
 
     }

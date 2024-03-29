@@ -2,15 +2,13 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 namespace RedRats.UI.Core
 {
     /// <summary>
-    /// Calls out different events for a <see cref="Selectable"/>.
+    /// Calls out different events for a Selectable object.
     /// </summary>
-    [RequireComponent(typeof(Selectable))]
-    public class SelectableEventCaller : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler, ISelectHandler, IDeselectHandler, ISubmitHandler
+    public class InteractableEventCaller : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler, ISelectHandler, IDeselectHandler, ISubmitHandler
     {
         private const float BlockTime = 0.1f;
 
