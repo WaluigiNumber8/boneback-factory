@@ -10,15 +10,17 @@ namespace Rogium.ExternalStorage.Serialization
     [Serializable]
     public class JSONTileAsset : JSONAssetWithReferencedSpriteBase<TileAsset>
     {
-        public int layerType;
         public JSONColor color;
+        public int type;
+        public int layerType;
         public int terrainType;
 
         public JSONTileAsset(TileAsset asset) : base(asset)
         {
-            layerType = (int)asset.LayerType;
             icon = new JSONSprite(asset.Tile.sprite);
             color = new JSONColor(asset.Tile.color);
+            type = (int)asset.Type;
+            layerType = (int)asset.LayerType;
             terrainType = (int)asset.TerrainType;
         }
 
@@ -33,8 +35,9 @@ namespace Rogium.ExternalStorage.Serialization
                                  icon.Decode(),
                                  author,
                                  associatedSpriteID,
-                                 (TileLayerType)layerType,
                                  color.Decode(),
+                                 (TileType)type,
+                                 (TileLayerType)layerType,
                                  (TerrainType)terrainType,
                                  DateTime.Parse(creationDate));
         }

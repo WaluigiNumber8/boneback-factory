@@ -29,6 +29,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
         {
             b.BuildAssetField("", AssetType.Sprite, asset, content, delegate(IAsset a) { asset.UpdateIcon(a);}, null, !PackEditorOverseer.Instance.CurrentPack.ContainsAnyTiles, ThemeType.Yellow);
             b.BuildInputField("", asset.Title, content, asset.UpdateTitle);
+            b.BuildDropdown("", Enum.GetNames(typeof(TileType)), (int)asset.Type, content, asset.UpdateType);
         }
 
         protected override void BuildColumnProperty(Transform content)

@@ -29,7 +29,8 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             OpenForColumns1(headerText, onConfirm, out Transform col1);
             
             b.BuildInputField("Title", tile.Title, col1, tile.UpdateTitle);
-            b.BuildDropdown("Type", Enum.GetNames(typeof(TileLayerType)), (int)tile.LayerType, col1, tile.UpdateLayerType);
+            b.BuildDropdown("Type", Enum.GetNames(typeof(TileType)), (int)tile.Type, col1, tile.UpdateType);
+            b.BuildDropdown("Layer", Enum.GetNames(typeof(TileLayerType)), (int)tile.LayerType, col1, tile.UpdateLayerType);
             b.BuildPlainText("Created by", tile.Author, col1);
             b.BuildPlainText("Created on", tile.CreationDate.ToString(), col1);
             
