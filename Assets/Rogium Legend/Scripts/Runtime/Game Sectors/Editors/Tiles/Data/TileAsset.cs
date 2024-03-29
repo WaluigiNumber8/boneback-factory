@@ -1,11 +1,9 @@
 ﻿using System;
-using RedRats.Core;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using RedRats.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
-using Rogium.Editors.Sprites;
 using Rogium.Systems.Validation;
 
 namespace Rogium.Editors.Tiles
@@ -15,7 +13,8 @@ namespace Rogium.Editors.Tiles
     /// </summary>
     public class TileAsset : AssetWithReferencedSpriteBase
     {
-        private readonly TileObject tile;
+        private Tile tile;
+        private TileLayerType layerType;
         private TerrainType terrainType;
 
         #region Constructors
@@ -25,8 +24,9 @@ namespace Rogium.Editors.Tiles
             this.icon = EditorConstants.TileIcon;
             this.author = EditorConstants.Author;
             this.creationDate = DateTime.Now;
-            this.tile = new TileObject(ScriptableObject.CreateInstance<Tile>(), TileType.Wall);
-            this.tile.Tile.sprite = this.icon;
+            this.tile = ScriptableObject.CreateInstance<Tile>();
+            this.tile.sprite = this.icon;
+            this.layerType = EditorConstants.TileLayer;
             this.terrainType = EditorConstants.TileTerrainType;
             
             GenerateID(EditorAssetIDs.TileIdentifier);
@@ -42,13 +42,14 @@ namespace Rogium.Editors.Tiles
             this.creationDate = asset.CreationDate;
 
             this.associatedSpriteID = asset.AssociatedSpriteID;
-            
-            this.tile = new TileObject(asset.Tile, asset.Type);
-            this.tile.Tile.sprite = this.icon;
+
+            this.tile = ScriptableObject.CreateInstance<Tile>();
+            this.tile.sprite = this.icon;
+            this.layerType = asset.LayerType;
             this.terrainType = asset.TerrainType;
         }
         
-        public TileAsset(string id, string title, Sprite icon, string author, string associatedSpriteID, TileType type,
+        public TileAsset(string id, string title, Sprite icon, string author, string associatedSpriteID, TileLayerType layerType,
                          Color tileColor, TerrainType terrainType, DateTime creationDate)
         {
             AssetValidation.ValidateTitle(title);
@@ -61,9 +62,10 @@ namespace Rogium.Editors.Tiles
             
             this.associatedSpriteID = associatedSpriteID;
             
-            this.tile = new TileObject(ScriptableObject.CreateInstance<Tile>(), type);
-            this.tile.Tile.sprite = icon;
-            this.tile.Tile.color = tileColor;
+            this.tile = ScriptableObject.CreateInstance<Tile>();
+            this.tile.sprite = icon;
+            this.tile.color = tileColor;
+            this.layerType = layerType;
             this.terrainType = terrainType;
         }
         #endregion
@@ -73,11 +75,11 @@ namespace Rogium.Editors.Tiles
         {
             base.UpdateIcon(newSprite);
             SafetyNet.EnsureIsNotNull(tile, "TileObject");
-            SafetyNet.EnsureIsNotNull(tile.Tile, "Tile in TileObject");
-            tile.Tile.sprite = newSprite.Icon;
+            tile.sprite = newSprite.Icon;
         }
 
-        public void UpdateTileType(int newType) => tile.UpdateType((TileType) newType);
+        public void UpdateLayerType(int newLayerType) => UpdateLayerType((TileLayerType)newLayerType);
+        public void UpdateLayerType(TileLayerType newLayerType) => layerType = newLayerType;
         public void UpdateTerrainType(int newType) => UpdateTerrainType((TerrainType) newType);
         public void UpdateTerrainType(TerrainType newType) => terrainType = newType;
 
@@ -89,8 +91,8 @@ namespace Rogium.Editors.Tiles
             icon = EditorConstants.TileIcon;
         }
 
-        public Tile Tile { get => tile.Tile; }
-        public TileType Type { get => tile.Type;}
+        public Tile Tile { get => tile; }
+        public TileLayerType LayerType { get => layerType; }
         public TerrainType TerrainType { get => terrainType; } 
     }
 }

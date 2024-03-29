@@ -30,7 +30,7 @@ namespace Rogium.Editors.Core
             TileAsset tile = (TileAsset) asset;
             ParameterInfo parameters = ParameterInfoConstants.ForTile;
             
-            parameters.intValue1 = (int)tile.Type;
+            parameters.intValue1 = (int)tile.LayerType;
 
             lastID = asset.ID;
             lastType = AssetType.Tile;

@@ -9,38 +9,35 @@ namespace Rogium.Editors.Tiles
     public class TileObject
     {
         private Tile tile;
-        private TileType type;
+        private TileLayerType layerType;
 
         #region Constructors
         public TileObject()
         {
             this.tile = ScriptableObject.CreateInstance<Tile>();
             // this.tile.color = Color.white;
-            this.type = TileType.Wall;
+            this.layerType = TileLayerType.Wall;
         }
         public TileObject(TileObject tileObject)
         {
             this.tile = tileObject.Tile;
             // this.tile.color = Color.white;
-            this.type = tileObject.Type;
+            this.layerType = tileObject.LayerType;
         }
-        public TileObject(Tile tile, TileType type)
+        public TileObject(Tile tile, TileLayerType layerType)
         {
             this.tile = tile;
             // this.tile.color = Color.white;
-            this.type = type;
+            this.layerType = layerType;
         }
         #endregion
 
         #region Update Values
-        public void UpdateType(TileType newType)
-        {
-            type = newType;
-        }
+        public void UpdateType(TileLayerType newLayerType) => layerType = newLayerType;
 
         #endregion
         
         public Tile Tile { get => tile; }
-        public TileType Type { get => type; }
+        public TileLayerType LayerType { get => layerType; }
     }
 }

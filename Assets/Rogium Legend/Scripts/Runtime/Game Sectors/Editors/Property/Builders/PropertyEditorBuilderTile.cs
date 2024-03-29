@@ -34,8 +34,8 @@ namespace Rogium.Editors.PropertyEditor.Builders
         protected override void BuildColumnProperty(Transform content)
         {
             b.BuildHeader("General", content);
-            b.BuildDropdown("Type", Enum.GetNames(typeof(TileType)), (int)asset.Type, content, asset.UpdateTileType);
-            if (asset.Type == TileType.Floor) b.BuildDropdown("Terrain", Enum.GetNames(typeof(TerrainType)), (int)asset.TerrainType, content, asset.UpdateTerrainType);
+            b.BuildDropdown("Type", Enum.GetNames(typeof(TileLayerType)), (int)asset.LayerType, content, asset.UpdateLayerType);
+            if (asset.LayerType == TileLayerType.Floor) b.BuildDropdown("Terrain", Enum.GetNames(typeof(TerrainType)), (int)asset.TerrainType, content, asset.UpdateTerrainType);
         }
     }
 }

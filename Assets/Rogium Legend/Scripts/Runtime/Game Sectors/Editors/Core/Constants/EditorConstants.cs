@@ -131,6 +131,7 @@ namespace Rogium.Editors.Core.Defaults
         //Tile
         public const string TileTitle = "New Tile";
         public static readonly Sprite TileIcon = Resources.Load<Sprite>("Defaults/spr_Default_Tile");
+        public const TileLayerType TileLayer = TileLayerType.Wall;
         public const TerrainType TileTerrainType = TerrainType.Tile;
 
         //Sound
