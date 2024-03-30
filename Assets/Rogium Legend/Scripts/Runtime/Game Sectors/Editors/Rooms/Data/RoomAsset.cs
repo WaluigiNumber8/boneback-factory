@@ -116,7 +116,7 @@ namespace Rogium.Editors.Rooms
         public int Lightness { get => lightness; }
         public Color LightnessColor { get => lightnessColor; }
         public ObjectGrid<AssetData> TileGrid { get => tileGrid; }
-        public ObjectGrid<AssetData> DecorGrid { get => tileGrid; }
+        public ObjectGrid<AssetData> DecorGrid { get => decorGrid; }
         public ObjectGrid<AssetData> ObjectGrid { get => objectGrid; }
         public ObjectGrid<AssetData> EnemyGrid { get => enemyGrid; }
 

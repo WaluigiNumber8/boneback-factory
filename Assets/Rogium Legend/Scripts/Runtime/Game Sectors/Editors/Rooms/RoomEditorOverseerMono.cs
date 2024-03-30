@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using RedRats.Core;
 using RedRats.UI.Tabs;
 using Rogium.Core;
@@ -138,8 +137,14 @@ namespace Rogium.Editors.Rooms
             enemyData = new GridData<AssetData>(editor.CurrentAsset.EnemyGrid, paletteEnemy, AssetType.Enemy, AssetDataBuilder.ForEnemy);
             currentData = new GridData<AssetData>(editor.CurrentAsset.EnemyGrid, paletteEnemy, AssetType.None);
 
-            IList<TileAsset> tiles = packEditor.CurrentPack.Tiles.Where(t => t.Type == TileType.Tile).ToList();
-            IList<TileAsset> decor = packEditor.CurrentPack.Tiles.Where(t => t.Type == TileType.Decor).ToList();
+            IList<TileAsset> tiles = new List<TileAsset>();
+            IList<TileAsset> decor = new List<TileAsset>();
+            foreach (TileAsset tile in packEditor.CurrentPack.Tiles)
+            {
+                if (tile.Type == TileType.Tile)
+                    tiles.Add(tile);
+                else decor.Add(tile);
+            }
             
             paletteTile.Fill(tiles, AssetType.Tile);
             paletteDecor.Fill(decor, AssetType.Tile);
