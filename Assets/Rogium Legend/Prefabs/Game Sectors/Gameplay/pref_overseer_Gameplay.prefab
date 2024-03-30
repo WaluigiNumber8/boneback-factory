@@ -25,6 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 855326788739806890}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,7 +33,6 @@ Transform:
   m_Children:
   - {fileID: 1002070479685519082}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &855326788739806884
 MonoBehaviour:
@@ -66,6 +66,7 @@ MonoBehaviour:
   transportRunSpeed: 12
   transportWalkSpeed: 2
   defaultStartPos: {x: 0, y: 0}
+  beforeIntroDelay: 0
 --- !u!1 &3514882699237565128
 GameObject:
   m_ObjectHideFlags: 0
@@ -77,6 +78,7 @@ GameObject:
   - component: {fileID: 1002070479685519082}
   - component: {fileID: 2982206685237233498}
   - component: {fileID: 2648304389740304645}
+  - component: {fileID: 1284019599046797233}
   - component: {fileID: 815753160169990469}
   - component: {fileID: 1187064705479546962}
   m_Layer: 0
@@ -93,13 +95,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3514882699237565128}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 855326788739806885}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2982206685237233498
 MonoBehaviour:
@@ -114,10 +116,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   originPos: {x: 0, y: 0, z: 0}
-  tilemapBuilder: {fileID: 2648304389740304645}
+  tileBuilder: {fileID: 2648304389740304645}
+  decorBuilder: {fileID: 1284019599046797233}
   objectBuilder: {fileID: 815753160169990469}
   enemyBuilder: {fileID: 1187064705479546962}
-  wallShadowCaster: {fileID: 0}
 --- !u!114 &2648304389740304645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,13 +135,35 @@ MonoBehaviour:
   tilemaps:
   - title: Floor
     tilemap: {fileID: 0}
-    type: 0
+    layerType: 0
   - title: Wall
     tilemap: {fileID: 0}
-    type: 1
+    layerType: 1
   - title: Ceiling
     tilemap: {fileID: 0}
-    type: 2
+    layerType: 2
+--- !u!114 &1284019599046797233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3514882699237565128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5455dd2cd1f94af18a7a1fc0a2d1ca82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilemaps:
+  - title: Floor Decor
+    tilemap: {fileID: 0}
+    layerType: 0
+  - title: Wall Decor
+    tilemap: {fileID: 0}
+    layerType: 1
+  - title: Ceiling Decor
+    tilemap: {fileID: 0}
+    layerType: 2
 --- !u!114 &815753160169990469
 MonoBehaviour:
   m_ObjectHideFlags: 0
