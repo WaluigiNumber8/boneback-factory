@@ -2,6 +2,7 @@
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
+using Rogium.Editors.Tiles;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -23,16 +24,12 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         private RoomPropertyColumnBuilderEnemy builderEnemy;
         private RoomSettingsBuilder builderSettings;
 
-        private AssetType lastType = AssetType.Tile;
-        
         private void Awake()
         {
             builderTile = new RoomPropertyColumnBuilderTile(assetContent);
             builderObject = new RoomPropertyColumnBuilderObject(assetContent);
             builderEnemy = new RoomPropertyColumnBuilderEnemy(assetContent);
             builderSettings = new RoomSettingsBuilder();
-            
-            ui.typeText.text = lastType.ToString();
         }
 
         /// <summary>
@@ -46,9 +43,8 @@ namespace Rogium.Editors.Rooms.PropertyColumn
             ui.iconImage.color = EditorConstants.DefaultColor;
             ui.iconImage.sprite = asset.Icon;
 
-            if (type == lastType && ui.typeText.text != "") return;
-            ui.typeText.text = type.ToString();
-            lastType = type;
+            string typeText = (type == AssetType.Tile) ? ((TileAsset) asset).Type.ToString() : type.ToString();
+            ui.typeText.text = typeText;
         }
 
         /// <summary>
