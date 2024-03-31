@@ -9,18 +9,16 @@ namespace RedRats.UI.Tabs
     /// <summary>
     /// A Button, belonging to a TabGroup, located on one of the parents of this object.
     /// </summary>
-    [RequireComponent(typeof(Image))]
     public class TabPageButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
     {
+        [SerializeField]private Image background;
         [SerializeField] private GameObject page;
         [SerializeField] private EventInfo events;
         
         private TabGroup group;
-        private Image background;
 
         private void Awake()
         {
-            background = GetComponent<Image>();
             group = GetComponentInParent<TabGroup>();
             SafetyNet.EnsureIsNotNull(group, group.name);
         }

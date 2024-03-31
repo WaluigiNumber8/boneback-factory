@@ -9,6 +9,7 @@ using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Objects;
 using Rogium.Editors.Rooms.PropertyColumn;
+using Rogium.Editors.Tiles;
 using Rogium.Systems.GridSystem;
 using Rogium.Systems.ItemPalette;
 using Rogium.Systems.Toolbox;
@@ -27,6 +28,7 @@ namespace Rogium.Editors.Rooms
         
         [Header("Palettes")]
         [SerializeField] private ItemPaletteAsset paletteTile;
+        [SerializeField] private ItemPaletteAsset paletteDecor;
         [SerializeField] private ItemPaletteAsset paletteObject;
         [SerializeField] private ItemPaletteAsset paletteEnemy;
         
@@ -38,6 +40,7 @@ namespace Rogium.Editors.Rooms
         
         private GridData<AssetData> currentData;
         private GridData<AssetData> tileData;
+        private GridData<AssetData> decorData;
         private GridData<AssetData> objectData;
         private GridData<AssetData> enemyData;
 
@@ -50,6 +53,7 @@ namespace Rogium.Editors.Rooms
             objects = InternalLibraryOverseer.GetInstance().GetObjectsCopy();
 
             paletteTile.OnSelect += asset => SelectedValue(asset, AssetType.Tile);
+            paletteDecor.OnSelect += asset => SelectedValue(asset, AssetType.Tile);
             paletteObject.OnSelect += asset => SelectedValue(asset, AssetType.Object);
             paletteEnemy.OnSelect += asset => SelectedValue(asset, AssetType.Enemy);
         }
@@ -84,8 +88,9 @@ namespace Rogium.Editors.Rooms
             currentData = index switch
             {
                 0 => tileData,
-                1 => objectData,
-                2 => enemyData,
+                1 => decorData,
+                2 => objectData,
+                3 => enemyData,
                 _ => throw new ArgumentOutOfRangeException($"Layer under the index '{index}' is not supported.")
             };
             grid.SwitchActiveLayer(index);
@@ -127,19 +132,31 @@ namespace Rogium.Editors.Rooms
         private void PrepareEditor(RoomAsset room)
         {
             tileData = new GridData<AssetData>(editor.CurrentAsset.TileGrid, paletteTile, AssetType.Tile, AssetDataBuilder.ForTile);
+            decorData = new GridData<AssetData>(editor.CurrentAsset.DecorGrid, paletteDecor, AssetType.Tile, AssetDataBuilder.ForTile);
             objectData = new GridData<AssetData>(editor.CurrentAsset.ObjectGrid, paletteObject, AssetType.Object, AssetDataBuilder.ForObject);
             enemyData = new GridData<AssetData>(editor.CurrentAsset.EnemyGrid, paletteEnemy, AssetType.Enemy, AssetDataBuilder.ForEnemy);
             currentData = new GridData<AssetData>(editor.CurrentAsset.EnemyGrid, paletteEnemy, AssetType.None);
+
+            IList<TileAsset> tiles = new List<TileAsset>();
+            IList<TileAsset> decor = new List<TileAsset>();
+            foreach (TileAsset tile in packEditor.CurrentPack.Tiles)
+            {
+                if (tile.Type == TileType.Tile)
+                    tiles.Add(tile);
+                else decor.Add(tile);
+            }
             
-            paletteTile.Fill(packEditor.CurrentPack.Tiles, AssetType.Tile);
+            paletteTile.Fill(tiles, AssetType.Tile);
+            paletteDecor.Fill(decor, AssetType.Tile);
             paletteObject.Fill(objects, AssetType.Object);
             paletteEnemy.Fill(packEditor.CurrentPack.Enemies, AssetType.Enemy);
 
             StartCoroutine(SwitchLayer0Delay(0.1f));
             
-            grid.LoadWithSprites(room.TileGrid, packEditor.CurrentPack.Tiles, 0);
-            grid.LoadWithSprites(room.ObjectGrid, objects, 1);
-            grid.LoadWithSprites(room.EnemyGrid, packEditor.CurrentPack.Enemies, 2);
+            grid.LoadWithSprites(room.TileGrid, tiles, 0);
+            grid.LoadWithSprites(room.DecorGrid, decor, 1);
+            grid.LoadWithSprites(room.ObjectGrid, objects, 2);
+            grid.LoadWithSprites(room.EnemyGrid, packEditor.CurrentPack.Enemies, 3);
             
             propertyColumn.ConstructSettings(editor.CurrentAsset);
         }

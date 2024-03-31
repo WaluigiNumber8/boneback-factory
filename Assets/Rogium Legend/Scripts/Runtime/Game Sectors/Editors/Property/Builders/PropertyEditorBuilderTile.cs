@@ -29,13 +29,14 @@ namespace Rogium.Editors.PropertyEditor.Builders
         {
             b.BuildAssetField("", AssetType.Sprite, asset, content, delegate(IAsset a) { asset.UpdateIcon(a);}, null, !PackEditorOverseer.Instance.CurrentPack.ContainsAnyTiles, ThemeType.Yellow);
             b.BuildInputField("", asset.Title, content, asset.UpdateTitle);
+            b.BuildDropdown("", Enum.GetNames(typeof(TileType)), (int)asset.Type, content, asset.UpdateType);
         }
 
         protected override void BuildColumnProperty(Transform content)
         {
             b.BuildHeader("General", content);
-            b.BuildDropdown("Type", Enum.GetNames(typeof(TileType)), (int)asset.Type, content, asset.UpdateTileType);
-            if (asset.Type == TileType.Floor) b.BuildDropdown("Terrain", Enum.GetNames(typeof(TerrainType)), (int)asset.TerrainType, content, asset.UpdateTerrainType);
+            b.BuildDropdown("Type", Enum.GetNames(typeof(TileLayerType)), (int)asset.LayerType, content, asset.UpdateLayerType);
+            if (asset.LayerType == TileLayerType.Floor) b.BuildDropdown("Terrain", Enum.GetNames(typeof(TerrainType)), (int)asset.TerrainType, content, asset.UpdateTerrainType);
         }
     }
 }

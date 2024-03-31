@@ -91,9 +91,11 @@ namespace Rogium.Gameplay.Sequencer
                 OnRoomLoaded?.Invoke();
                 (Vector2 pos, Vector2 dir) = startingPoints.ElementAt(GetPlayerStartPositionIndex());
 
-                yield return sas.Transport(playerTransform, new Vector2(Random.Range(-7.5f, 6.5f), Random.Range(-4.5f, 4.5f)), transportRunSpeed);
-                yield return sas.Transport(playerTransform, pos - dir * 2f, transportRunSpeed);
-                yield return sas.FadeIn(1f, false);
+                // Running around the screen
+                // yield return sas.Transport(playerTransform, new Vector2(Random.Range(-7.5f, 6.5f), Random.Range(-4.5f, 4.5f)), transportRunSpeed);
+                // yield return sas.Transport(playerTransform, pos - dir * 2f, transportRunSpeed);
+                playerTransform.position = pos - dir * 2f;
+                yield return sas.FadeIn(0.5f, false);
                 yield return sas.Transport(playerTransform, pos, transportWalkSpeed);
                 player.ChangeCollideMode(true);
             }

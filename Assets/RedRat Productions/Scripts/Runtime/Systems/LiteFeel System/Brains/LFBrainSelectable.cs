@@ -12,7 +12,7 @@ namespace RedRats.Systems.LiteFeel.Brains
     /// </summary>
     public class LFBrainSelectable : MonoBehaviour
     {
-        [SerializeField, GUIColor(0.85f, 0.8f, 0f)] private SelectableEventCaller eventCaller;
+        [SerializeField, GUIColor(0.85f, 0.8f, 0f)] private InteractableEventCaller eventCaller;
         [Space]
         [SerializeField, GUIColor(0.1f, 0.75f, 0f)] private LFEffector onSelectEffector;
         [SerializeField, GUIColor(0.1f, 0.75f, 0f)] private LFEffector onDeselectEffector;

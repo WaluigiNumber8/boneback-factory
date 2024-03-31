@@ -24,11 +24,11 @@ namespace Rogium.Core
         /// <param name="flipY">If on, the Y gets called flipped.</param>
         /// <typeparam name="T">Any type of <see cref="IIDHolder"/>.</typeparam>
         /// <typeparam name="TS">Any type of <see cref="IIDHolder"/>.</typeparam>
-        public static void UpdateFromGridByList<T, TS>( ObjectGrid<TS> IDGrid, IList<T> dataList,
-                                                        Action<int, int, T, TS> whenIDSame,
-                                                        Action<int, int> whenIDInvalid,
-                                                        Action<int, int, T, TS> whenIDEmpty = null,
-                                                        bool flipY = false) where T : IIDHolder where TS : IIDHolder
+        public static void UpdateFromGridByList<T, TS>(ObjectGrid<TS> IDGrid, IList<T> dataList,
+            Action<int, int, T, TS> whenIDSame,
+            Action<int, int> whenIDInvalid,
+            Action<int, int, T, TS> whenIDEmpty = null,
+            bool flipY = false) where T : IIDHolder where TS : IIDHolder
         {
             T lastValue = default;
             for (int y = 0; y < IDGrid.Height; y++)
@@ -64,11 +64,10 @@ namespace Rogium.Core
                     {
                         whenIDInvalid?.Invoke(x, Y);
                     }
-
                 }
             }
         }
-        
+
         /// <summary>
         /// Call an action, using a loaded asset from a list based on a grid of IDs.
         /// </summary>
@@ -80,11 +79,11 @@ namespace Rogium.Core
         /// <param name="flipY">If on, the Y gets called flipped.</param>
         /// <typeparam name="T">Any type of <see cref="IIDHolder"/>.</typeparam>
         /// <typeparam name="TS">Any type of <see cref="IComparable"/>. (string, int, etc.)</typeparam>
-        public static void UpdateFromGridByList<T, TS>( ObjectGrid<TS> IDGrid, IList<T> dataList,
-                                                        Action<int, int, T> whenIDSame,
-                                                        Action<int, int> whenIDInvalid,
-                                                        Action<int, int, T> whenIDEmpty = null,
-                                                        bool flipY = false) where T : IIDHolder where TS : IComparable
+        public static void UpdateFromGridByList<T, TS>(ObjectGrid<TS> IDGrid, IList<T> dataList,
+            Action<int, int, T> whenIDSame,
+            Action<int, int> whenIDInvalid,
+            Action<int, int, T> whenIDEmpty = null,
+            bool flipY = false) where T : IIDHolder where TS : IComparable
         {
             T lastValue = default;
             for (int y = 0; y < IDGrid.Height; y++)
@@ -120,7 +119,6 @@ namespace Rogium.Core
                     {
                         whenIDInvalid?.Invoke(x, Y);
                     }
-
                 }
             }
         }
