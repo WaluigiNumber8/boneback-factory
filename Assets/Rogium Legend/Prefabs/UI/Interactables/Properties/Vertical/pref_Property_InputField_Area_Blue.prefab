@@ -271,7 +271,7 @@ RectTransform:
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5396465885300240585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,7 +309,6 @@ GameObject:
   - component: {fileID: 8649072476991598080}
   - component: {fileID: 7800640802160399199}
   - component: {fileID: 2638601387906554438}
-  - component: {fileID: 1812908160866954380}
   m_Layer: 5
   m_Name: Show Effect
   m_TagString: Untagged
@@ -365,6 +364,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 1
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -377,9 +377,9 @@ MonoBehaviour:
   mode: 1
   uniform: 0
   beginScale: {x: 1, y: 0.9, z: 1}
-  beginScaleU: 1
+  beginScaleU: 0.9
   targetScale: {x: 1, y: 1, z: 1}
-  targetScaleU: 2
+  targetScaleU: 1
   scaleCurve:
     serializedVersion: 2
     m_Curve:
@@ -393,56 +393,26 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
+      time: 0.8692029
+      value: 1.0509212
+      inSlope: 1.2494205
+      outSlope: 1.2494205
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.06970353
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.030998036
+      outSlope: -0.030998036
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1812908160866954380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7069449125126943726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  info: 
-  active: 1
-  restartOnPlay: 1
-  keepStateOnStop: 0
-  initialDelayMin: 0
-  initialDelayMax: 0
-  randomizeDelay: 0
-  clips:
-  - {fileID: 11400000, guid: 2e82a48a7c3c9234fbbe2c75764e80bd, type: 2}
-  sourceSettings:
-    id: 0
-    loop: 0
-    playOnlyWhenNotPlaying: 0
-    muteSameSound: 0
-  spatialSettings:
-    spatialBlend: 0
-    soundTarget: {fileID: 0}
-    minDistance: 0
-    maxDistance: 0
-  ignoreEffectStop: 1
-  overrideMixerGroup: 0
-  mixerGroup: {fileID: 0}
-  overrideVolume: 0
-  volume: 1
-  overridePitch: 0
-  pitchMin: 0.95
-  pitchMax: 1.05
 --- !u!1001 &7614832695677617288
 PrefabInstance:
   m_ObjectHideFlags: 0

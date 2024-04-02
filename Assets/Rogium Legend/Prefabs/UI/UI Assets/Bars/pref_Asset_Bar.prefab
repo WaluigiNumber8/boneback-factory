@@ -620,7 +620,7 @@ MonoBehaviour:
   target: {fileID: 2927944580757523942}
   mode: 1
   beginScale: 1
-  targetScale: 1.005
+  targetScale: 1.01
   affectedAxis: 2
   deformCurve:
     serializedVersion: 2
