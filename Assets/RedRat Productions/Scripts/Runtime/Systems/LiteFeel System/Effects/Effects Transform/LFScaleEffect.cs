@@ -21,7 +21,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         [SerializeField] private AnimationCurve scaleCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
         
         private Vector3 startScale;
-        
+
         protected override void SetBeginState()
         {
             if (mode == TransitionType.AToB) target.localScale = GetBeginScale();

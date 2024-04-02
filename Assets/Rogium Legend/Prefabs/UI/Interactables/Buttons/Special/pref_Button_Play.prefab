@@ -910,6 +910,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  blockRaycastsDuringPlay: 1
 --- !u!1 &8378214598798211010
 GameObject:
   m_ObjectHideFlags: 0

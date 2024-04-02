@@ -62,10 +62,10 @@ namespace RedRats.Systems.LiteFeel.Effects
             if (!active) return;
             if (!gameObject.activeInHierarchy) return;
             if (noPlayWhenPlaying && isPlaying) return;
-            if (restartOnPlay && isPlaying)
+            if (restartOnPlay)
             {
-                ResetState();
                 Stop();
+                ResetState();
             }
             if (isPlaying) return;
             isPlaying = true;

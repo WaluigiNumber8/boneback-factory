@@ -1,3 +1,4 @@
+using System.Collections;
 using RedRats.Systems.LiteFeel.Effects;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -37,7 +38,12 @@ namespace RedRats.Systems.LiteFeel.Core
         {
             if (autoplay != AutoplayType.OnEnable) return;
             if (effects.Length <= 0) return;
-            Play();
+            StartCoroutine(DelayPlayCoroutine()); //Wait for end of frame to ensure all effects are initialized.
+            IEnumerator DelayPlayCoroutine()
+            {
+                yield return new WaitForEndOfFrame();
+                Play();
+            }
         }
         
         /// <summary>
