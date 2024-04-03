@@ -24,6 +24,7 @@ namespace RedRats.Core
                 img.color = new Color(img.color.r, img.color.g, img.color.b, 0);
                 return;
             }
+
             img.sprite = sprite;
             img.color = new Color(img.color.r, img.color.g, img.color.b, alpha);
         }
@@ -42,7 +43,9 @@ namespace RedRats.Core
                 text.text = noneValue;
                 return;
             }
+
             text.text = value;
         }
+
     }
 }

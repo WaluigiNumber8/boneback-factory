@@ -25,7 +25,7 @@ namespace RedRats.Systems.Audio
             sourcePool = new ObjectDictionaryPool<int, AudioSource>(
                 () =>
                 {
-                    AudioSource source = new GameObject($"AudioSource").AddComponent<AudioSource>();
+                    AudioSource source = new GameObject("AudioSource").AddComponent<AudioSource>();
                     source.gameObject.AddComponent<HardFollowTarget>();
                     source.playOnAwake = false;
                     return source;
@@ -142,6 +142,8 @@ namespace RedRats.Systems.Audio
             if (source.loop) return source;
 
             StartCoroutine(ReleaseSourceCoroutine());
+            return source;
+
             IEnumerator ReleaseSourceCoroutine()
             {
                 yield return new WaitForSeconds(source.clip.length * 4);
@@ -149,8 +151,6 @@ namespace RedRats.Systems.Audio
                 if (sourceSettings.id == 0) TryReleaseSource(source);
                 else TryReleaseSource(sourceSettings.id);
             }
-
-            return source;
         }
 
         /// <summary>
