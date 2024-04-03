@@ -1,9 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using RedRats.Core;
 using RedRats.Core.Helpers;
 using UnityEngine;
-using UnityEngine.Pool;
 
 namespace RedRats.Systems.Particles
 {
@@ -13,7 +11,7 @@ namespace RedRats.Systems.Particles
     public class ParticlesSystem : MonoSingleton<ParticlesSystem>
     {
         private ObjectDictionaryPool<int, ParticleSystem> effectPool;
-        
+
         protected override void Awake()
         {
             base.Awake();
@@ -38,22 +36,22 @@ namespace RedRats.Systems.Particles
                 Destroy,
                 true, 50);
         }
-        
+
         public ParticleSystem Play(ParticleSystem effectData, Transform target, Vector3 offset, bool followTarget = false, int id = 0)
         {
             ParticleSystem effect = (id == 0) ? effectPool.Get() : effectPool.Get(id);
-            
+
             //Copy all data from the effect to the particle
             effectData.CopyInto(effect);
-            
+
             //Move the particle to the desired position
             effect.transform.position = target.position + offset;
             if (followTarget) effect.GetComponent<HardFollowTarget>().SetTarget(target, offset);
-            
+
             effect.Play();
             StartCoroutine(ReleaseEffectCoroutine());
             return effect;
-            
+
             IEnumerator ReleaseEffectCoroutine()
             {
                 yield return new WaitForSeconds(effect.main.duration);
@@ -67,7 +65,7 @@ namespace RedRats.Systems.Particles
             effectPool.Get(id).Stop();
             TryReleaseEffect(id);
         }
-        
+
         public void Stop(ParticleSystem effect)
         {
             effect.Stop();
@@ -86,7 +84,5 @@ namespace RedRats.Systems.Particles
             if (effect.isPlaying || !effect.gameObject.activeSelf) return;
             effectPool.Release(id);
         }
-        
-        
     }
 }

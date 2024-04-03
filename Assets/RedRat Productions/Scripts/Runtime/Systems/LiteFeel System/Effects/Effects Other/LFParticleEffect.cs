@@ -14,12 +14,11 @@ namespace RedRats.Systems.LiteFeel.Effects
         [SerializeField] private Vector3 offset;
         [SerializeField] private int id;
         [SerializeField] private bool followTarget;
-        
-        
+
         private ParticlesSystem particlesSystem;
         private ParticleSystem effect;
         private float effectDuration;
-        
+
         protected override void Initialize() => particlesSystem = ParticlesSystem.GetInstance();
 
         protected override void PlaySelf()
@@ -35,6 +34,7 @@ namespace RedRats.Systems.LiteFeel.Effects
                 particlesSystem.Stop(id);
                 return;
             }
+
             if (effect != null) particlesSystem.Stop(effect);
         }
 
@@ -42,7 +42,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         {
             //Nothing to reset
         }
-        
+
         protected override float TotalDuration { get => effectDuration; }
         protected override string FeedbackColor { get => "#FF8CCD"; }
     }
