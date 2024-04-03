@@ -13,6 +13,8 @@ namespace RedRats.Systems.LiteFeel.Effects
         [SerializeField, InfoBox("Missing target", InfoMessageType.Error, "@target == null")] private Transform target;
         [SerializeField] private Vector3 offset;
         [SerializeField] private int id;
+        [SerializeField] private bool followTarget;
+        
         
         private ParticlesSystem particlesSystem;
         private ParticleSystem effect;
@@ -23,7 +25,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         protected override void PlaySelf()
         {
             effectDuration = effectData.main.duration;
-            effect = particlesSystem.Play(effectData, target, offset, id);
+            effect = particlesSystem.Play(effectData, target, offset, followTarget, id);
         }
 
         protected override void StopSelf()

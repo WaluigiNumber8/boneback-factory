@@ -39,7 +39,7 @@ namespace RedRats.Systems.Particles
                 true, 50);
         }
         
-        public ParticleSystem Play(ParticleSystem effectData, Transform target, Vector3 offset, int id = 0)
+        public ParticleSystem Play(ParticleSystem effectData, Transform target, Vector3 offset, bool followTarget = false, int id = 0)
         {
             ParticleSystem effect = (id == 0) ? effectPool.Get() : effectPool.Get(id);
             
@@ -47,7 +47,8 @@ namespace RedRats.Systems.Particles
             effectData.CopyInto(effect);
             
             //Move the particle to the desired position
-            effect.GetComponent<HardFollowTarget>().SetTarget(target, offset);
+            effect.transform.position = target.position + offset;
+            if (followTarget) effect.GetComponent<HardFollowTarget>().SetTarget(target, offset);
             
             effect.Play();
             StartCoroutine(ReleaseEffectCoroutine());
