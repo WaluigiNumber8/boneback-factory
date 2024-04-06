@@ -1,4 +1,6 @@
+using System.Collections;
 using DG.Tweening;
+using RedRats.Core;
 using RedRats.Systems.LiteFeel.Effects;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -15,7 +17,14 @@ public class LFUICanvasGroupEffect : LFEffectTweenBase
     protected override void SetBeginState()
     {
         target.alpha = (fade == ImageFadeType.FadeIn) ? 0f : 1f;
-        if (blockRaycastsDuringPlay) target.blocksRaycasts = true;
+        if (!blockRaycastsDuringPlay) return;
+        StartCoroutine(DelayCoroutine());
+        IEnumerator DelayCoroutine()
+        {
+            yield return new WaitForSeconds(0.05f);
+            target.blocksRaycasts = true;
+        }
+
     }
 
     protected override void SetupTweens()
