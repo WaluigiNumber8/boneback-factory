@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using RedRats.Systems.LiteFeel.Core;
 using Sirenix.OdinInspector;
@@ -41,6 +42,17 @@ namespace RedRats.Systems.LiteFeel.Effects
         private IEnumerator delayCoroutine;
         
         private void Start() => Initialize();
+
+        private void OnEnable()
+        {
+            StartCoroutine(DelayCoroutine());
+            IEnumerator DelayCoroutine()
+            {
+                yield return new WaitForEndOfFrame();
+                ResetState();
+            }
+        }
+
         private void OnDisable()
         {
             if (!isPlaying) return;
