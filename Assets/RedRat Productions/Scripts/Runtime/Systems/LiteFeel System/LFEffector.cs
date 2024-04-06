@@ -38,12 +38,7 @@ namespace RedRats.Systems.LiteFeel.Core
         {
             if (autoplay != AutoplayType.OnEnable) return;
             if (effects.Length <= 0) return;
-            StartCoroutine(DelayPlayCoroutine()); //Wait for end of frame to ensure all effects are initialized.
-            IEnumerator DelayPlayCoroutine()
-            {
-                yield return new WaitForEndOfFrame();
-                Play();
-            }
+            Play();
         }
         
         /// <summary>

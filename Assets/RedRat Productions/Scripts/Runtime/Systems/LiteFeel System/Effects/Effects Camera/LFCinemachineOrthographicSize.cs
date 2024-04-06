@@ -21,8 +21,13 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         protected override void Initialize()
         {
-            cam = GetActiveCamera();
-            base.Initialize();
+            StartCoroutine(DelayCoroutine());
+            IEnumerator DelayCoroutine()
+            {
+                yield return new WaitForEndOfFrame();
+                cam = GetActiveCamera();
+                base.Initialize();
+            }
         }
 
         protected override void SetBeginState()

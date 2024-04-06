@@ -1,4 +1,3 @@
-using System.Collections;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -13,7 +12,7 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         private void Awake() => sequence.SetAutoKill(false);
         private void OnDisable() => sequence.Kill();
-
+        
         protected override void Initialize() => UpdateStartingValues();
 
         protected override void PlaySelf()
