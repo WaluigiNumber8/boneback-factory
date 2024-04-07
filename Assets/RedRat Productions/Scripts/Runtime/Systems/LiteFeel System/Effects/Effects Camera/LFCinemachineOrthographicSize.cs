@@ -32,10 +32,14 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         protected override void SetBeginState()
         {
-            cam = GetActiveCamera();
-            
-            if (mode != TransitionType.AToB) return;
-            cam.m_Lens.OrthographicSize = beginSize;
+            StartCoroutine(DelayCoroutine());
+            IEnumerator DelayCoroutine()
+            {
+                yield return new WaitForEndOfFrame();
+                cam = GetActiveCamera();
+                if (mode != TransitionType.AToB) yield break;
+                cam.m_Lens.OrthographicSize = beginSize;
+            }
         }
 
         protected override void SetupTweens()
