@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace RedRats.Systems.LiteFeel.Effects
 {
+    /// <summary>
+    /// A base for all LF effects, that use tweening.
+    /// </summary>
     public abstract class LFEffectTweenBase : LFEffectWithDurationBase
     {
         [FoldoutGroup("$GroupLoop"), SerializeField] protected LoopType loopType = LoopType.Restart;
@@ -15,7 +18,8 @@ namespace RedRats.Systems.LiteFeel.Effects
         private void OnDisable()
         {
             sequence.Kill();
-            if (PlayImmediately) SetBeginState();
+            if (PlayImmediately) SetBeginState(); // For GOD sakes be REALLY careful when toying around with enabling/disabling the effects.
+                                                  // ANY CHANGE might return "flashing" when played OnEnable.
         }
 
         protected override void Initialize() => UpdateStartingValues();

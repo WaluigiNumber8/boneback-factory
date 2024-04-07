@@ -48,8 +48,8 @@ namespace RedRats.Systems.LiteFeel.Effects
             StartCoroutine(DelayCoroutine());
             IEnumerator DelayCoroutine()
             {
-                yield return new WaitForEndOfFrame();
-                ResetState();
+                yield return new WaitForEndOfFrame(); // For GOD sakes be REALLY careful when toying around with enabling/disabling the effects.
+                ResetState();                         // ANY CHANGE might return "flashing" when played OnEnable.
             }
         }
         
