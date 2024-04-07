@@ -12,15 +12,10 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         private void Awake() => sequence.SetAutoKill(false);
 
-        protected override void Start()
-        {
-            base.Start();
-            if (PlayImmediately) SetBeginState();
-        }
-
         private void OnDisable()
         {
             sequence.Kill();
+            if (!gameObject.activeInHierarchy) return;
             if (PlayImmediately) SetBeginState();
         }
 
