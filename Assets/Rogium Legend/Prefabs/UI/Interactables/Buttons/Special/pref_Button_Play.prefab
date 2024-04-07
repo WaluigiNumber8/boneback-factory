@@ -875,7 +875,7 @@ MonoBehaviour:
   info: Fadeout screen
   active: 1
   restartOnPlay: 1
-  keepStateOnStop: 0
+  keepStateOnStop: 1
   noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0

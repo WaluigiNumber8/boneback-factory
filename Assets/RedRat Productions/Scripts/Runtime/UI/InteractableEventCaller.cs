@@ -24,6 +24,12 @@ namespace RedRats.UI.Core
         private bool wasSelected;
         private bool cannotTriggerEvents;
 
+        private void OnDisable()
+        {
+            cannotTriggerEvents = false;
+            wasSelected = false;
+        }
+
         public void OnPointerEnter(PointerEventData eventData)
         {
             wasSelected = true;

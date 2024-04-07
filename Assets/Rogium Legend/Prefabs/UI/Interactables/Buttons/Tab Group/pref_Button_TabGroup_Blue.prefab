@@ -169,7 +169,7 @@ MonoBehaviour:
   info: Scale up
   active: 1
   restartOnPlay: 1
-  keepStateOnStop: 0
+  keepStateOnStop: 1
   noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
@@ -527,7 +527,7 @@ MonoBehaviour:
   info: Scale down
   active: 1
   restartOnPlay: 1
-  keepStateOnStop: 0
+  keepStateOnStop: 1
   noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
