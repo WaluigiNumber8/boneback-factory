@@ -34,6 +34,7 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         protected override void ResetState()
         {
+            if (!gameObject.activeInHierarchy) return;
             ResetTargetState();
         }
 
