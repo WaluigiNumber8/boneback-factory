@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace RedRats.Systems.LiteFeel.Effects
 {
-    public class LFShaderFullColorEffect : LFShaderBase    
+    public class LFShaderFullColorEffect : LFEffectShaderBase    
     {
         [SerializeField, LabelText(" Blend", SdfIconType.SquareFill)] private bool animateBlend = true;
         [SerializeField, ShowIf("animateBlend"), LabelText("Mode"), EnumToggleButtons] protected TransitionType modeBlend = TransitionType.AToB;

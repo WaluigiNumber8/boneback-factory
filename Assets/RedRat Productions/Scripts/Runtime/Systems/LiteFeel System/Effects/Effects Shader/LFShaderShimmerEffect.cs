@@ -7,7 +7,7 @@ namespace RedRats.Systems.LiteFeel.Effects
     /// <summary>
     /// An effect that animates a simmer on the target.
     /// </summary>
-    public class LFShaderShimmerEffect : LFShaderBase
+    public class LFShaderShimmerEffect : LFEffectShaderBase
     {
         [SerializeField, LabelText(" Position", SdfIconType.SquareFill)] private bool animatePosition = true;
         [SerializeField, ShowIf("animatePosition"), Range(0f, 1f)] private float beginPosition = 0f;

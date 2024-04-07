@@ -6,7 +6,7 @@ namespace RedRats.Systems.LiteFeel.Effects
     /// <summary>
     /// An effect that changes the target's gradient.
     /// </summary>
-    public class LFShaderGradientEffect : LFShaderBase
+    public class LFShaderGradientEffect : LFEffectShaderBase
     {
         [SerializeField, LabelText(" Blend", SdfIconType.SquareFill)] private bool animateBlend = true;
         [SerializeField, ShowIf("animateBlend"), LabelText("Mode"), EnumToggleButtons] protected TransitionType modeBlend = TransitionType.AToB;

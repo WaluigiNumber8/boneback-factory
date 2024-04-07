@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RedRats.Systems.LiteFeel.Effects
 {
-    public class LFShaderTintEffect : LFShaderBase
+    public class LFShaderTintEffect : LFEffectShaderBase
     {
         [Header("Tint")]
         [SerializeField] private Color beginTint = Color.white;

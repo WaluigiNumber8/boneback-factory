@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace RedRats.Systems.LiteFeel.Effects
 {
-    public abstract class LFShaderBase : LFEffectTweenBase
+    public abstract class LFEffectShaderBase : LFEffectTweenBase
     {
         [Header("Target")] 
         [SerializeField, InfoBox("Missing target", InfoMessageType.Error, nameof(HasNoTarget))] private MaterialExtractor target;

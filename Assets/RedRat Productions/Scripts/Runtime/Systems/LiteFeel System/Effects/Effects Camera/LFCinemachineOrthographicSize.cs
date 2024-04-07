@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace RedRats.Systems.LiteFeel.Effects
 {
-    public class LFCinemachineOrthographicSize : LFEffectTweenBase
+    public class LFCinemachineOrthographicSize : LFEffectCameraBase
     {
         [Header("Orthographic Size")]
         [SerializeField, EnumToggleButtons] protected MovementType movement = MovementType.Absolute;
@@ -20,29 +20,18 @@ namespace RedRats.Systems.LiteFeel.Effects
         private float startOrthographicSize;
         private Camera camMain;
 
-        protected override void Initialize()
+        protected override void DelayedInitialize()
         {
             camMain = Camera.main;
-            StartCoroutine(DelayCoroutine());
-            IEnumerator DelayCoroutine()
-            {
-                yield return new WaitForEndOfFrame();
-                cam = GetActiveCamera();
-                startOrthographicSize = camMain.orthographicSize;
-                base.Initialize();
-            }
+            cam = GetActiveCamera();
+            startOrthographicSize = camMain.orthographicSize;
         }
 
-        protected override void SetBeginState()
+        protected override void DelayedSetBeginState()
         {
-            StartCoroutine(DelayCoroutine());
-            IEnumerator DelayCoroutine()
-            {
-                yield return new WaitForEndOfFrame();
-                cam = GetActiveCamera();
-                if (mode != TransitionType.AToB) yield break;
-                cam.m_Lens.OrthographicSize = beginSize;
-            }
+            cam = GetActiveCamera();
+            if (mode != TransitionType.AToB) return;
+            cam.m_Lens.OrthographicSize = beginSize;
         }
 
         protected override void SetupTweens()
@@ -52,25 +41,9 @@ namespace RedRats.Systems.LiteFeel.Effects
             AddTweenToSequence(tween, sizeCurve);
         }
 
-        protected override void ResetTargetState()
-        {
-            StartCoroutine(DelayCoroutine());
-            IEnumerator DelayCoroutine()
-            {
-                yield return null;
-                cam.m_Lens.OrthographicSize = startOrthographicSize;
-            }
-        }
+        protected override void DelayedResetTargetState() => cam.m_Lens.OrthographicSize = startOrthographicSize;
 
-        protected override void UpdateStartingValues()
-        {
-            StartCoroutine(DelayCoroutine());
-            IEnumerator DelayCoroutine()
-            {
-                yield return new WaitForEndOfFrame();
-                startOrthographicSize = GetActiveCamera().m_Lens.OrthographicSize;
-            }
-        }
+        protected override void DelayedUpdateStartingValues() => startOrthographicSize = GetActiveCamera().m_Lens.OrthographicSize;
 
         private CinemachineVirtualCamera GetActiveCamera()
         {

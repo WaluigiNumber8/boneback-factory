@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace RedRats.Systems.LiteFeel.Effects
 {
-    public class LFShaderUVRotateEffect : LFShaderBase
+    public class LFShaderUVRotateEffect : LFEffectShaderBase
     {
         [Header("Rotation")]
         [SerializeField, LabelText("Mode"), EnumToggleButtons] protected TransitionType modeRotation = TransitionType.AToB;

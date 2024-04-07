@@ -7,7 +7,7 @@ namespace RedRats.Systems.LiteFeel.Effects
     /// <summary>
     /// An effect that makes the target look like a hologram.
     /// </summary>
-    public class LFShaderHologramEffect : LFShaderBase
+    public class LFShaderHologramEffect : LFEffectShaderBase
     {
         [Header("Hologram Blend")]
         [SerializeField] private float beginBlend = 0f;

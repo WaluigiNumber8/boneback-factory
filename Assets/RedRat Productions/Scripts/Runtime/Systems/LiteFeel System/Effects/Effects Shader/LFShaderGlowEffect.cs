@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RedRats.Systems.LiteFeel.Effects
 {
-    public class LFShaderGlowEffect : LFShaderBase
+    public class LFShaderGlowEffect : LFEffectShaderBase
     {
         [SerializeField, LabelText(" Intensity", SdfIconType.SquareFill)] private bool animateIntensity;
         [SerializeField, ShowIf("animateIntensity"), EnumToggleButtons] private TransitionType intensityMode = TransitionType.AToB;

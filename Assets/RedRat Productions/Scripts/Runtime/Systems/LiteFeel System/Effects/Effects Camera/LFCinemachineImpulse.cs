@@ -1,11 +1,10 @@
-using System.Collections;
 using Cinemachine;
 using DG.Tweening;
 using UnityEngine;
 
 namespace RedRats.Systems.LiteFeel.Effects
 {
-    public class LFCinemachineImpulse : LFEffectTweenBase
+    public class LFCinemachineImpulse : LFEffectCameraBase
     {
         [Header("Amplitude")] 
         [SerializeField] private float amplitudeGain = 1f;
@@ -20,19 +19,13 @@ namespace RedRats.Systems.LiteFeel.Effects
         private float startAmplitudeGain;
         private float startFrequencyGain;
 
-        protected override void Initialize()
+        protected override void DelayedInitialize()
         {
-            StartCoroutine(DelayCoroutine());
-            IEnumerator DelayCoroutine()
-            {
-                yield return new WaitForEndOfFrame();
-                cam = (CinemachineVirtualCamera) CinemachineCore.Instance.GetActiveBrain(0).ActiveVirtualCamera;
-                perlin = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-                base.Initialize();
-            }
+            cam = (CinemachineVirtualCamera) CinemachineCore.Instance.GetActiveBrain(0).ActiveVirtualCamera;
+            perlin = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         }
 
-        protected override void SetBeginState()
+        protected override void DelayedSetBeginState()
         {
             // Do nothing
         }
@@ -46,13 +39,13 @@ namespace RedRats.Systems.LiteFeel.Effects
             AddTweenToSequence(frequencyTween, frequencyCurve);
         }
 
-        protected override void ResetTargetState()
+        protected override void DelayedResetTargetState()
         {
             perlin.m_AmplitudeGain = startAmplitudeGain;
             perlin.m_FrequencyGain = startFrequencyGain;
         }
 
-        protected override void UpdateStartingValues()
+        protected override void DelayedUpdateStartingValues()
         {
             startFrequencyGain = perlin.m_FrequencyGain;
             startAmplitudeGain = perlin.m_AmplitudeGain;
