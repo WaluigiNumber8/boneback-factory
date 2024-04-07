@@ -38,10 +38,21 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         [SerializeField, HideInInspector] private bool randomizeDelay;
         private bool isPlaying;
+        private bool playImmediately = true;
         private IEnumerator delayCoroutine;
         
-        private void Start() => Initialize();
+        protected virtual void Start() => Initialize();
 
+        private void OnEnable()
+        {
+            StartCoroutine(DelayCoroutine());
+            IEnumerator DelayCoroutine()
+            {
+                yield return new WaitForEndOfFrame();
+                ResetState();
+            }
+        }
+        
         private void OnDisable()
         {
             if (!isPlaying) return;
@@ -63,7 +74,7 @@ namespace RedRats.Systems.LiteFeel.Effects
             if (!active) return;
             if (!gameObject.activeInHierarchy) return;
             if (noPlayWhenPlaying && isPlaying) return;
-            if (restartOnPlay)
+            if (restartOnPlay && isPlaying)
             {
                 Stop();
                 ResetState();
@@ -85,6 +96,11 @@ namespace RedRats.Systems.LiteFeel.Effects
             else Initialize();
             isPlaying = false;
         }
+        
+        /// <summary>
+        /// Marks the effect as an effect that plays immediately on enable.
+        /// </summary>
+        public void MarkAsNotPlayImmediately() => playImmediately = false;
         
         private IEnumerator PlayCoroutine()
         {
@@ -127,5 +143,6 @@ namespace RedRats.Systems.LiteFeel.Effects
         private string InactiveInfo => (!active) ? "[INACTIVE] " : "";
         
         public bool IsPlaying { get => isPlaying; }
+        protected bool PlayImmediately { get => playImmediately; }
     }
 }

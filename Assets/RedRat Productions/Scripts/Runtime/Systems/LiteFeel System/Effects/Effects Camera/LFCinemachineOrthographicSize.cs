@@ -18,24 +18,31 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         private CinemachineVirtualCamera cam;
         private float startOrthographicSize;
+        private Camera camMain;
 
         protected override void Initialize()
         {
+            camMain = Camera.main;
             StartCoroutine(DelayCoroutine());
             IEnumerator DelayCoroutine()
             {
                 yield return new WaitForEndOfFrame();
                 cam = GetActiveCamera();
+                startOrthographicSize = camMain.orthographicSize;
                 base.Initialize();
             }
         }
 
         protected override void SetBeginState()
         {
-            cam = GetActiveCamera();
-            
-            if (mode != TransitionType.AToB) return;
-            cam.m_Lens.OrthographicSize = beginSize;
+            StartCoroutine(DelayCoroutine());
+            IEnumerator DelayCoroutine()
+            {
+                yield return new WaitForEndOfFrame();
+                cam = GetActiveCamera();
+                if (mode != TransitionType.AToB) yield break;
+                cam.m_Lens.OrthographicSize = beginSize;
+            }
         }
 
         protected override void SetupTweens()
@@ -60,7 +67,7 @@ namespace RedRats.Systems.LiteFeel.Effects
             StartCoroutine(DelayCoroutine());
             IEnumerator DelayCoroutine()
             {
-                yield return null;
+                yield return new WaitForEndOfFrame();
                 startOrthographicSize = GetActiveCamera().m_Lens.OrthographicSize;
             }
         }

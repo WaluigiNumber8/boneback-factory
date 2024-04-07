@@ -11,8 +11,14 @@ namespace RedRats.Systems.LiteFeel.Effects
         private Sequence sequence;
 
         private void Awake() => sequence.SetAutoKill(false);
-        private void OnDisable() => sequence.Kill();
-        
+
+        private void OnDisable()
+        {
+            sequence.Kill();
+            if (!gameObject.activeInHierarchy) return;
+            if (PlayImmediately) SetBeginState();
+        }
+
         protected override void Initialize() => UpdateStartingValues();
 
         protected override void PlaySelf()
@@ -28,6 +34,7 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         protected override void ResetState()
         {
+            if (!gameObject.activeInHierarchy) return;
             ResetTargetState();
         }
 

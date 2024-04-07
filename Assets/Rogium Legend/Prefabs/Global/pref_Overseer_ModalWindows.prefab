@@ -25,7 +25,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8713419816348818153}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -53,6 +53,7 @@ MonoBehaviour:
   windowParent: {fileID: 7402676363751649011}
   assetPickerWindow: {fileID: 68577838218189983, guid: 9ede1282458e18148aae96abc978cf51, type: 3}
   soundPickerWindow: {fileID: 2980716121167271837, guid: 6f45ed5840029c748b2b65af2de5eedc, type: 3}
+  colorPickerWindow: {fileID: 3072775963780375276, guid: 882d3a23b020d334cbd9878b500dd606, type: 3}
 --- !u!114 &8953284668583633653
 MonoBehaviour:
   m_ObjectHideFlags: 0

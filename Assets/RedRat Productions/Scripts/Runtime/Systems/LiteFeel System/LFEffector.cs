@@ -26,7 +26,14 @@ namespace RedRats.Systems.LiteFeel.Core
         
         private LFEffectBase[] effects;
         
-        private void Awake() => effects = GetComponents<LFEffectBase>();
+        private void Awake()
+        {
+            effects = GetComponents<LFEffectBase>();
+            foreach (LFEffectBase effect in effects)
+            {
+                if (autoplay == AutoplayType.None) effect.MarkAsNotPlayImmediately();
+            }
+        }
 
         private void Start()
         {
