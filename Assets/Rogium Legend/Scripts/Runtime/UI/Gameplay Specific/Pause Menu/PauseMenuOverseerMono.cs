@@ -45,12 +45,8 @@ namespace Rogium.UserInterface.Gameplay.PauseMenu
         /// <summary>
         /// Open a message to return back to main menu.
         /// </summary>
-        public void ReturnToMainMenu()
-        {
-            MessageWindowInfo data = new("Are you sure? All progress will be lost!", "Yes", "No", CloseGame);
-            ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
-        }
-        
+        public void ReturnToMainMenu() => CloseGame();
+
         /// <summary>
         /// Toggles between the menu being active and hidden.
         /// </summary>
