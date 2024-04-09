@@ -109,10 +109,12 @@ namespace RedRats.Systems.Audio
         /// <param name="pitchMin">Minimum allowed pitch.</param>
         /// <param name="pitchMax">Maximum allowed pitch.</param>
         /// <param name="spatialSettings">Setting up these settings will make the sound 3D.</param>
+        /// <param name="chanceToPlay">How big of chance there is to actually play the sound (0-none, 1-guaranteed)</param>
         /// <returns>The <see cref="AudioSource"/> that plays the clip.</returns>
-        public AudioSource PlaySound(AudioClip clip, AudioMixerGroup mixerGroup, AudioSourceSettingsInfo sourceSettings, AudioSpatialSettingsInfo spatialSettings, float volume = 1, float pitchMin = 1, float pitchMax = 1)
+        public AudioSource PlaySound(AudioClip clip, AudioMixerGroup mixerGroup, AudioSourceSettingsInfo sourceSettings, AudioSpatialSettingsInfo spatialSettings, float volume = 1, float pitchMin = 1, float pitchMax = 1, float chanceToPlay = 1f)
         {
             if (clip == null) return null;
+            if (Random.Range(0f, 1f) > chanceToPlay) return null;
 
             // If playOnlyWhenNotPlaying and the clip is already playing, don't play it again.
             if (sourceSettings.playOnlyWhenNotPlaying && sourcePool.GetActive().Any(s => s.isPlaying && s.clip == clip)) return null;

@@ -25,6 +25,7 @@ namespace Rogium.UserInterface.ModalWindows
         [SerializeField] private InteractablePropertyAssetField soundField;
         [SerializeField] private InteractablePropertySlider volumeSlider;
         [SerializeField] private InteractablePropertySlider pitchSlider;
+        [SerializeField] private InteractablePropertySlider chanceToPlaySlider;
         [SerializeField] private InteractablePropertyToggle randomPitchToggle;
         [Header("Audio")]
         [SerializeField] private Button playSoundButton;
@@ -69,6 +70,7 @@ namespace Rogium.UserInterface.ModalWindows
             ThemeUpdaterRogium.UpdateAssetFieldText(soundField);
             ThemeUpdaterRogium.UpdateSlider(volumeSlider);
             ThemeUpdaterRogium.UpdateSlider(pitchSlider);
+            ThemeUpdaterRogium.UpdateSlider(chanceToPlaySlider);
             ThemeUpdaterRogium.UpdateToggle(randomPitchToggle);
             UIExtensions.ChangeInteractableSprites(playSoundButton, playSoundButton.image, buttonSet);
             UIExtensions.ChangeInteractableSprites(CloseButton, CloseButton.image, soundFieldSet);
@@ -88,6 +90,7 @@ namespace Rogium.UserInterface.ModalWindows
             volumeSlider.Construct("Volume", 0f, 1f, data.Parameters.floatValue1, WhenVolumeChanged);
             pitchSlider.Construct("Pitch", 0f, 2f, data.Parameters.floatValue2, WhenPitchChanged);
             randomPitchToggle.Construct("Randomize Pitch", data.Parameters.boolValue1, WhenRandomPitchChanged);
+            chanceToPlaySlider.Construct("Play Chance", 0f, 1f, data.Parameters.floatValue3, WhenChanceToPlayChanged);
         }
 
         private void WhenSoundFieldUpdated(IAsset asset)
@@ -110,6 +113,7 @@ namespace Rogium.UserInterface.ModalWindows
             currentAssetData.UpdateFloatValue1(volumeSlider.PropertyValue);
             currentAssetData.UpdateFloatValue2(pitchSlider.PropertyValue);
             currentAssetData.UpdateBoolValue1(randomPitchToggle.PropertyValue);
+            currentAssetData.UpdateFloatValue3(chanceToPlaySlider.PropertyValue);
             
             UpdateProperties(currentAssetData);
             UpdateOriginalValue();
@@ -135,6 +139,12 @@ namespace Rogium.UserInterface.ModalWindows
             UpdateOriginalValue();
         }
 
+        private void WhenChanceToPlayChanged(float newValue)
+        {
+            currentAssetData.UpdateFloatValue3(newValue);
+            UpdateOriginalValue();
+        }
+        
         /// <summary>
         /// Call to update the original value.
         /// </summary>
