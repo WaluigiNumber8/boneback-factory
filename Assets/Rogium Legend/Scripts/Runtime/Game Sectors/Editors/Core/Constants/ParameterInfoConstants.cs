@@ -110,6 +110,7 @@
         /// <summary>
         /// floatValue1   - Volume <br/>
         /// floatValue2   - Pitch  <br/>
+        /// floatValue2   - Play Chance <br/>
         /// boolValue1  - RandomizePitch <br/>
         /// </summary>
         public static readonly ParameterInfo ForSound = new(intValue1: 0,
@@ -120,7 +121,7 @@
                                                             intValue6: 0,
                                                             floatValue1: 1,
                                                             floatValue2: 1,
-                                                            floatValue3: 0,
+                                                            floatValue3: 1,
                                                             floatValue4: 0,
                                                             floatValue5: 0,
                                                             floatValue6: 0,
