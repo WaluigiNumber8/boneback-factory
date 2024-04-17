@@ -86,10 +86,10 @@ namespace Rogium.UserInterface.ModalWindows
         /// <param name="data">The data to update with.</param>
         private void UpdateProperties(IParameterAsset data)
         {
-            volumeSlider.Construct("Volume", 0f, 1f, data.Parameters.floatValue1, WhenVolumeChanged);
-            pitchSlider.Construct("Pitch", 0f, 2f, data.Parameters.floatValue2, WhenPitchChanged);
+            volumeSlider.Construct("Volume", 0.01f, 1f, data.Parameters.floatValue1, WhenVolumeChanged);
+            pitchSlider.Construct("Pitch", 0.01f, 2f, data.Parameters.floatValue2, WhenPitchChanged);
             randomPitchToggle.Construct("Randomize Pitch", data.Parameters.boolValue1, WhenRandomPitchChanged);
-            chanceToPlaySlider.Construct("Play Chance", 0f, 1f, data.Parameters.floatValue3, WhenChanceToPlayChanged);
+            chanceToPlaySlider.Construct("Play Chance", 0.01f, 1f, data.Parameters.floatValue3, WhenChanceToPlayChanged);
         }
 
         private void WhenSoundFieldUpdated(IAsset asset)
