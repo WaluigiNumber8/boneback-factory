@@ -89,7 +89,8 @@ namespace Rogium.Editors.Core
             int other = obj.GetHashCode();
             return hashMe.CompareTo(other);
         }
-        
+
+        public override string ToString() => id;
 
         public string ID { get => id; }
         public ParameterInfo Parameters { get => parameters; }

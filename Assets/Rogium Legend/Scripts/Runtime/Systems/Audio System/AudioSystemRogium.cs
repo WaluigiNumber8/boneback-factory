@@ -53,8 +53,9 @@ namespace Rogium.Systems.Audio
             float pitch = soundData.Parameters.floatValue2;
             float pitchMin = (soundData.Parameters.boolValue1) ? pitch - EditorConstants.SoundPitchOffset : pitch;
             float pitchMax = (soundData.Parameters.boolValue1) ? pitch + EditorConstants.SoundPitchOffset : pitch;
+            float chanceToPlay = soundData.Parameters.floatValue3;
             
-            audioSystem.PlaySound(clip, mixerGroup, sourceSettings, spatialSettings, volume, pitchMin, pitchMax);
+            audioSystem.PlaySound(clip, mixerGroup, sourceSettings, spatialSettings, volume, pitchMin, pitchMax, chanceToPlay);
         }
     }
 }

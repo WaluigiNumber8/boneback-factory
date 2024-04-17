@@ -15,6 +15,7 @@ public class LFUICanvasGroupEffect : LFEffectTweenBase
     
     protected override void SetBeginState()
     {
+        if (target == null) return;
         target.alpha = (fade == ImageFadeType.FadeIn) ? 0f : 1f;
         if (!blockRaycastsDuringPlay) return;
         if (gameObject.activeInHierarchy == false) return;
@@ -24,7 +25,6 @@ public class LFUICanvasGroupEffect : LFEffectTweenBase
             yield return new WaitForSeconds(0.1f);
             target.blocksRaycasts = true;
         }
-
     }
 
     protected override void SetupTweens()

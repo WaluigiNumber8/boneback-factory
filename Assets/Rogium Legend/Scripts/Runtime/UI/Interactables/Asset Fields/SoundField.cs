@@ -32,7 +32,6 @@ namespace Rogium.UserInterface.Interactables
         
         private void Awake()
         {
-            value = new AssetData(ParameterInfoConstants.ForSound);
             ui.showWindowButton.onClick.AddListener(() => ModalWindowBuilder.GetInstance().OpenSoundPickerWindow(WhenSoundChanged, WhenSoundEdited, value));
             ui.playButton.onClick.AddListener(() => AudioSystemRogium.GetInstance().PlaySound(value, mixerGroup, new AudioSourceSettingsInfo(0, false, false, false)));
             ui.showWindowButton.OnClickRight += Clear;
@@ -51,7 +50,7 @@ namespace Rogium.UserInterface.Interactables
             this.canBeEmpty = canBeEmpty;
             
             if (value.IsEmpty()) { ClearElements(); return; }
-            RefreshOnChange(InternalLibraryOverseer.GetInstance().GetSoundByID(value.ID));
+            Refresh(InternalLibraryOverseer.GetInstance().GetSoundByID(value.ID));
         }
 
         public void SetActive(bool isActive)
@@ -62,18 +61,18 @@ namespace Rogium.UserInterface.Interactables
         
         private void WhenSoundEdited(AssetData data)
         {
-            value = data;
+            this.value = data;
             OnValueChanged?.Invoke(data);
         }
         
         private void WhenSoundChanged(SoundAsset asset)
         {
             if (asset != null) value = new AssetData(asset.ID, value.Parameters);
-            RefreshOnChange(asset);
+            Refresh(asset);
             OnSoundChanged?.Invoke(asset);
         }
         
-        private void RefreshOnChange(IAsset newAsset)
+        private void Refresh(IAsset newAsset)
         {
             if (newAsset.IsEmpty())
             {
