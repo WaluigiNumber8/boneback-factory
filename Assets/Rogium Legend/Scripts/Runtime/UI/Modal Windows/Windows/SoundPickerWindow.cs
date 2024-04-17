@@ -34,7 +34,7 @@ namespace Rogium.UserInterface.ModalWindows
         private InternalLibraryOverseer lib;
         
         private SoundAsset currentSoundAsset;
-        private AssetData currentAssetData;
+        private AssetData currentData;
         private Action<AssetData> whenAnyValueChanged;
         private Action<SoundAsset> whenSoundChanged;
 
@@ -42,7 +42,7 @@ namespace Rogium.UserInterface.ModalWindows
         {
             base.Awake();
             lib = InternalLibraryOverseer.GetInstance();
-            playSoundButton.onClick.AddListener(() => AudioSystemRogium.GetInstance().PlaySound(currentAssetData, mixerGroup, new AudioSourceSettingsInfo(0, false, false, false)));
+            playSoundButton.onClick.AddListener(() => AudioSystemRogium.GetInstance().PlaySound(currentData, mixerGroup, new AudioSourceSettingsInfo(0, false, false, false)));
         }
 
         /// <summary>
@@ -53,15 +53,14 @@ namespace Rogium.UserInterface.ModalWindows
         /// <param name="value">Which data to load up into the window.</param>
         public void Construct(Action<SoundAsset> whenSoundChanged, Action<AssetData> whenAnyValueChanged, AssetData value)
         {
-            currentAssetData = value;
-            currentSoundAsset = (!value.IsEmpty()) ? lib.GetSoundByID(value.ID) : null;
+            currentData = value;
+            currentSoundAsset = (!currentData.IsEmpty()) ? lib.GetSoundByID(currentData.ID) : null;
             
             soundField.Construct("", AssetType.Sound, currentSoundAsset, WhenSoundFieldUpdated, WhenSoundFieldEmptied);
-            UpdateProperties(currentAssetData);
-            whenSoundChanged?.Invoke(currentSoundAsset);
             
-            this.whenAnyValueChanged = whenAnyValueChanged; //Assign after everything is set up.
+            this.whenAnyValueChanged = whenAnyValueChanged;
             this.whenSoundChanged = whenSoundChanged;
+            UpdateProperties(currentData);
         }
 
         public void UpdateTheme(Sprite windowBackgroundSprite, Sprite propertiesBackgroundSprite, InteractableSpriteInfo soundFieldSet, 
@@ -95,14 +94,14 @@ namespace Rogium.UserInterface.ModalWindows
 
         private void WhenSoundFieldUpdated(IAsset asset)
         {
-            currentAssetData = AssetDataBuilder.ForSound(asset);
+            currentData = AssetDataBuilder.ForSound(asset);
             currentSoundAsset = asset as SoundAsset;
             WhenSoundFieldChanged();
         }
         
         private void WhenSoundFieldEmptied()
         {
-            currentAssetData = new AssetData();
+            currentData = new AssetData();
             currentSoundAsset = null;
             WhenSoundFieldChanged();
         }
@@ -110,12 +109,12 @@ namespace Rogium.UserInterface.ModalWindows
         private void WhenSoundFieldChanged()
         {
             //Set old values to new sound
-            currentAssetData.UpdateFloatValue1(volumeSlider.PropertyValue);
-            currentAssetData.UpdateFloatValue2(pitchSlider.PropertyValue);
-            currentAssetData.UpdateBoolValue1(randomPitchToggle.PropertyValue);
-            currentAssetData.UpdateFloatValue3(chanceToPlaySlider.PropertyValue);
+            currentData.UpdateFloatValue1(volumeSlider.PropertyValue);
+            currentData.UpdateFloatValue2(pitchSlider.PropertyValue);
+            currentData.UpdateBoolValue1(randomPitchToggle.PropertyValue);
+            currentData.UpdateFloatValue3(chanceToPlaySlider.PropertyValue);
             
-            UpdateProperties(currentAssetData);
+            UpdateProperties(currentData);
             UpdateOriginalValue();
             
             whenSoundChanged?.Invoke(currentSoundAsset);
@@ -123,32 +122,32 @@ namespace Rogium.UserInterface.ModalWindows
         
         private void WhenVolumeChanged(float newValue)
         {
-            currentAssetData.UpdateFloatValue1(newValue);
+            currentData.UpdateFloatValue1(newValue);
             UpdateOriginalValue();
         }
         
         private void WhenPitchChanged(float newValue)
         {
-            currentAssetData.UpdateFloatValue2(newValue);
+            currentData.UpdateFloatValue2(newValue);
             UpdateOriginalValue();
         }
         
         private void WhenRandomPitchChanged(bool newValue)
         {
-            currentAssetData.UpdateBoolValue1(newValue);
+            currentData.UpdateBoolValue1(newValue);
             UpdateOriginalValue();
         }
 
         private void WhenChanceToPlayChanged(float newValue)
         {
-            currentAssetData.UpdateFloatValue3(newValue);
+            currentData.UpdateFloatValue3(newValue);
             UpdateOriginalValue();
         }
         
         /// <summary>
         /// Call to update the original value.
         /// </summary>
-        private void UpdateOriginalValue() => whenAnyValueChanged?.Invoke(currentAssetData);
+        private void UpdateOriginalValue() => whenAnyValueChanged?.Invoke(currentData);
 
         [Serializable]
         public struct UIInfo

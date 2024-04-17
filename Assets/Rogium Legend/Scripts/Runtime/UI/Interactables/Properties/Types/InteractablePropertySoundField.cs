@@ -14,7 +14,7 @@ namespace Rogium.UserInterface.Interactables.Properties
 
         private Action<AssetData> whenSoundEdited;
 
-        private void Awake() => soundField.OnValueChanged += whenSoundEdited;
+        private void Awake() => soundField.OnValueChanged += WhenSoundEdited;
 
         public void Construct(string titleText, AssetData value, Action<AssetData> whenSoundEdited, bool canBeEmpty = false)
         {
@@ -35,6 +35,8 @@ namespace Rogium.UserInterface.Interactables.Properties
             soundField.UI.playSoundButtonIcon.sprite = playButtonIcon;
         }
 
+        private void WhenSoundEdited(AssetData assetData) => whenSoundEdited?.Invoke(assetData);
+        
         public override AssetData PropertyValue { get => soundField.Value; }
     }
 }
