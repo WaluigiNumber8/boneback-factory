@@ -164,6 +164,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0.02
   randomizeDelay: 1
@@ -203,6 +204,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -257,6 +259,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -383,6 +386,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -511,6 +515,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -629,9 +634,10 @@ GameObject:
   - component: {fileID: 6840031811758842939}
   - component: {fileID: 6198664327715938178}
   - component: {fileID: 2690737148783271664}
+  - component: {fileID: 6651847584879382889}
   - component: {fileID: 2028675658482439583}
   - component: {fileID: 3001099989709478702}
-  - component: {fileID: 7201092455580022973}
+  - component: {fileID: 2701949171414945969}
   m_Layer: 8
   m_Name: OnDeath Effect
   m_TagString: Untagged
@@ -683,6 +689,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -722,6 +729,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -737,6 +745,62 @@ MonoBehaviour:
   randomness: 90
   fadeout: 0
   shakeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &6651847584879382889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4113795225431489181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29f0e4aaa8a44d6580d9d4fa329c2794, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: Scale down
+  active: 1
+  restartOnPlay: 1
+  keepStateOnStop: 1
+  noPlayWhenPlaying: 0
+  initialDelayMin: 0
+  initialDelayMax: 0
+  randomizeDelay: 0
+  duration: 0.05
+  infiniteLoop: 0
+  loops: 1
+  loopType: 0
+  target: {fileID: 8749843500556548429}
+  movement: 0
+  mode: 0
+  uniform: 1
+  beginScale: {x: 1, y: 1, z: 1}
+  beginScaleU: 1
+  targetScale: {x: 1, y: 1, z: 1}
+  targetScaleU: 0.01
+  scaleCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -776,6 +840,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -849,6 +914,7 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -941,7 +1007,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7201092455580022973
+--- !u!114 &2701949171414945969
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -950,49 +1016,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 4113795225431489181}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e6b492337984a3295e59fb635b3b40a, type: 3}
+  m_Script: {fileID: 11500000, guid: 77aca6bd43054573a5ca069d1c97f105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info: Death Fonish
+  info: Death Smoke
   active: 1
   restartOnPlay: 1
-  keepStateOnStop: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
-  duration: 0.1
-  infiniteLoop: 0
-  loops: 1
-  loopType: 0
-  target: {fileID: 8749843500556548429}
-  mode: 0
-  beginScale: 1
-  targetScale: 0.25
-  affectedAxis: 2
-  deformCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  effectData: {fileID: 972960206899884084, guid: 7e5c71828877d194c9d543f569a01971, type: 3}
+  target: {fileID: 8749843501973659661}
+  offset: {x: 0, y: 0, z: 0}
+  id: 0
+  followTarget: 0
 --- !u!1 &8749843500556548428
 GameObject:
   m_ObjectHideFlags: 0
@@ -1270,7 +1309,7 @@ MonoBehaviour:
   visual: {fileID: 8913236860743507462}
   soundEmitter: {fileID: 3750483739617489822}
   floorInteractor: {fileID: 2470377531960544486}
-  deathTime: 0.15
+  deathTime: 0.2
 --- !u!114 &8441394236413098015
 MonoBehaviour:
   m_ObjectHideFlags: 0
