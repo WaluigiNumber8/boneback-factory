@@ -27,8 +27,6 @@ namespace RedRats.Core
             newLight.shadowNearPlane = original.shadowNearPlane;
             newLight.renderMode = original.renderMode;
             newLight.cullingMask = original.cullingMask;
-            newLight.lightmapBakeType = original.lightmapBakeType;
-            newLight.areaSize = original.areaSize;
             newLight.bounceIntensity = original.bounceIntensity;
             newLight.colorTemperature = original.colorTemperature;
             newLight.useColorTemperature = original.useColorTemperature;
