@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 4747816953386754048}
   - component: {fileID: 4447298300965293656}
   - component: {fileID: 2494973131124186035}
+  - component: {fileID: 8648460540766116803}
   m_Layer: 8
   m_Name: OnHit Effect
   m_TagString: Untagged
@@ -573,6 +574,31 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8648460540766116803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614907292258137287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77aca6bd43054573a5ca069d1c97f105, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: Damaged Effect
+  active: 1
+  restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
+  initialDelayMin: 0
+  initialDelayMax: 0
+  randomizeDelay: 0
+  effectData: {fileID: 595338809705674345, guid: 4b6947e74b2102c4c9d09f9b5352db1f, type: 3}
+  target: {fileID: 8749843500556548429}
+  offset: {x: 0, y: 0, z: 0}
+  id: 0
+  followTarget: 0
 --- !u!1 &2392723852778767701
 GameObject:
   m_ObjectHideFlags: 0

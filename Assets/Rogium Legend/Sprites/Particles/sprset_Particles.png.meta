@@ -131,7 +131,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_Particles_dust
+      name: sprset_Particles_Dust
       rect:
         serializedVersion: 2
         x: 16
@@ -151,6 +151,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: sprset_Particles_Square
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26b8ddc3263b7a34fa755e29ef9bd6e9
+      internalID: 203746133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprset_Particles_Rectangle
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b28ea0f2e7ab4a34f961749891cad560
+      internalID: -2015023229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -163,7 +205,9 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       sprset_Particles_Circle: 79491181
-      sprset_Particles_dust: -610755634
+      sprset_Particles_Dust: -610755634
+      sprset_Particles_Rectangle: -2015023229
+      sprset_Particles_Square: 203746133
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
