@@ -22,6 +22,12 @@ namespace RedRats.Systems.LiteFeel.Effects
         private float effectDuration;
 
         #region Update Values
+        public void UpdateColor(Color newColor)
+        {
+            ParticleSystem.MainModule main = effectData.main;
+            main.startColor = newColor;
+        }
+
         public void UpdateRotationOffset(Vector3 newRotationOffset) => rotationOffset = newRotationOffset;
         #endregion
         

@@ -1,5 +1,4 @@
 ﻿using System;
-using RedRats.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.Validation;
@@ -24,6 +23,7 @@ namespace Rogium.Editors.Projectiles
             icon = EditorConstants.ProjectileIcon;
             author = EditorConstants.Author;
             creationDate = DateTime.Now;
+            color = EditorConstants.ProjectileColor;
 
             animationType = EditorConstants.ProjectileAnimationType;
             frameDuration = EditorConstants.ProjectileFrameDuration;
@@ -53,6 +53,7 @@ namespace Rogium.Editors.Projectiles
             icon = asset.Icon;
             author = asset.Author;
             creationDate = asset.CreationDate;
+            color = asset.Color;
 
             associatedSpriteID = asset.AssociatedSpriteID;
             
@@ -73,7 +74,7 @@ namespace Rogium.Editors.Projectiles
             pierceType = asset.PierceType;
         }
 
-        public ProjectileAsset(string id, string title, Sprite icon, string author, string associatedSpriteID, 
+        public ProjectileAsset(string id, string title, Sprite icon, string author, Color color, string associatedSpriteID, 
                                AnimationType animationType, int frameDuration, Sprite iconAlt, int baseDamage, float useDelay, 
                                float knockbackForceSelf, bool knockbackLockDirectionSelf, float knockbackForceOther,
                                bool knockbackLockDirectionOther, float flightSpeed, float acceleration, float brakeForce, 
@@ -86,6 +87,7 @@ namespace Rogium.Editors.Projectiles
             this.icon = icon;
             this.author = author;
             this.creationDate = creationDate;
+            this.color = color;
 
             this.associatedSpriteID = associatedSpriteID;
             

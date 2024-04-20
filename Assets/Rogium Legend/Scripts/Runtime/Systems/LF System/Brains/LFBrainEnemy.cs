@@ -33,6 +33,7 @@ namespace Rogium.Systems.LiteFeel.Brains
         
         private void WhenHit(Vector3 hitDirection)
         {  
+            hitParticle.UpdateColor(enemy.RepresentativeColor);
             hitParticle.UpdateRotationOffset(hitDirection);
             onHitEffector.Play();
         }
