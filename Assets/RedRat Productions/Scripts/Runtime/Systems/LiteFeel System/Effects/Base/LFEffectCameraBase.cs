@@ -21,6 +21,7 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         protected override void SetBeginState()
         {
+            if (!gameObject.activeInHierarchy) return;
             StartCoroutine(DelayCoroutine());
             IEnumerator DelayCoroutine()
             {
