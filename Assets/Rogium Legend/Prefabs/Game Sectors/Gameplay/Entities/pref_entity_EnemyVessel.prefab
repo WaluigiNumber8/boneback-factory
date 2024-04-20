@@ -650,7 +650,36 @@ MonoBehaviour:
   enemy: {fileID: 8749843501973659655}
   onHitEffector: {fileID: 3442492309684909175}
   onDeathEffector: {fileID: 6840031811758842939}
-  hitParticle: {fileID: 8648460540766116803}
+  hitSettings:
+    particleEffect: {fileID: 8648460540766116803}
+    amountCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    minDamage: 1
+    maxDamage: 10
+    minAmount: 6
+    maxAmount: 20
 --- !u!1 &4113795225431489181
 GameObject:
   m_ObjectHideFlags: 0

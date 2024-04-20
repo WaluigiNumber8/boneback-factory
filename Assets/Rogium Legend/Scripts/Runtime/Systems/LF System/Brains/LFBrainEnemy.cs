@@ -1,3 +1,5 @@
+using System;
+using RedRats.Core;
 using RedRats.Systems.LiteFeel.Core;
 using RedRats.Systems.LiteFeel.Effects;
 using Rogium.Gameplay.Entities.Enemy;
@@ -15,9 +17,8 @@ namespace Rogium.Systems.LiteFeel.Brains
         [Space] 
         [SerializeField, GUIColor(1f, 0.25f, 0f)] private LFEffector onHitEffector;
         [SerializeField, GUIColor(1f, 0.25f, 0f)] private LFEffector onDeathEffector;
-        [Space]
-        [SerializeField] private LFParticleEffect hitParticle;
-        
+        [Space] 
+        [SerializeField] private HitEffectSettingsInfo hitSettings;
         
         private void OnEnable()
         {
@@ -31,11 +32,33 @@ namespace Rogium.Systems.LiteFeel.Brains
             if (onDeathEffector != null) enemy.DamageReceiver.OnDeath -= onDeathEffector.Play;
         }
         
-        private void WhenHit(Vector3 hitDirection)
-        {  
-            hitParticle.UpdateColor(enemy.RepresentativeColor);
-            hitParticle.UpdateRotationOffset(hitDirection);
+        private void WhenHit(int damage, Vector3 hitDirection)
+        {
+            int amount = GetAmountOfParticles(damage);
+            Debug.Log(amount);
+            hitSettings.particleEffect.UpdateBurstAmount(0, amount - 1, amount + 1);
+            hitSettings.particleEffect.UpdateColor(enemy.RepresentativeColor);
+            hitSettings.particleEffect.UpdateRotationOffset(hitDirection);
             onHitEffector.Play();
+        }
+        
+        private int GetAmountOfParticles(int damage)
+        {
+            float dmg = ((float)damage).Remap(hitSettings.minDamage , hitSettings.maxDamage, 0f, 1f);
+            float curveValue = hitSettings.amountCurve.Evaluate(dmg);
+            int amount = (int)curveValue.Remap(0f, 1f, hitSettings.minAmount, hitSettings.maxAmount);
+            return amount;
+        }
+
+        [Serializable]
+        public struct HitEffectSettingsInfo
+        {
+            [Required] public LFParticleEffect particleEffect;
+            public AnimationCurve amountCurve;
+            [MinValue(0)] public int minDamage;
+            [MinValue(0)] public int maxDamage;
+            [MinValue(0)] public int minAmount;
+            [MinValue(0)] public int maxAmount;
         }
     }
 }

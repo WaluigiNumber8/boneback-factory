@@ -22,6 +22,13 @@ namespace RedRats.Systems.LiteFeel.Effects
         private float effectDuration;
 
         #region Update Values
+        public void UpdateBurstAmount(int burstID, int newAmountMin, int newAmountMax)
+        {
+            ParticleSystem.EmissionModule emit = effectData.emission;
+            ParticleSystem.Burst burst = emit.GetBurst(burstID);
+            burst.count = new ParticleSystem.MinMaxCurve(newAmountMin, newAmountMax);
+            emit.SetBurst(burstID, burst);
+        }
         public void UpdateColor(Color newColor)
         {
             ParticleSystem.MainModule main = effectData.main;
