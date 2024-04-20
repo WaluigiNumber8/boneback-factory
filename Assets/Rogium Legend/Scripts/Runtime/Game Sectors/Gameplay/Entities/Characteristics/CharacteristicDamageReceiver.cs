@@ -11,7 +11,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
     {
         public event Action<int> OnMaxHealthChange; 
         public event Action<int> OnDamageReceived;
-        public event Action OnHit; 
+        public event Action<Vector3> OnHit; 
         public event Action OnDeath;
 
         [SerializeField] private LayerMask ignoredMask;
@@ -64,10 +64,10 @@ namespace Rogium.Gameplay.Entities.Characteristics
         /// <summary>
         /// Receive damage.
         /// </summary>
-        /// <param name="giver">The damage giver tha initiated the situation.</param>
-        private void TakeDamage(CharacteristicDamageGiver giver)
+        /// <param name="damager">The damage giver tha initiated the situation.</param>
+        private void TakeDamage(CharacteristicDamageGiver damager)
         {
-            health -= giver.GetDamageTaken();
+            health -= damager.GetDamageTaken();
             OnDamageReceived?.Invoke(health);
 
             //Death
@@ -76,15 +76,15 @@ namespace Rogium.Gameplay.Entities.Characteristics
                 OnDeath?.Invoke();
                 invincibilityTimer = Time.time + defaultData.invincibilityTime * 10;
                 return;
-                
             }
             
             //Hit
-            OnHit?.Invoke();
+            Vector3 hitDirection = (damager.transform.position - entity.TTransform.position).normalized;
+            OnHit?.Invoke(hitDirection);
             invincibilityTimer = Time.time + defaultData.invincibilityTime;
-            giver.ReceiveKnockback(entity);
+            damager.ReceiveKnockback(entity);
         }
-        
+
         public int CurrentHealth { get => health; }
         public int MaxHealth { get => defaultData.maxHealth; }
     }

@@ -599,6 +599,8 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   id: 0
   followTarget: 0
+  followRotation: 3
+  rotationOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &2392723852778767701
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,6 +650,7 @@ MonoBehaviour:
   enemy: {fileID: 8749843501973659655}
   onHitEffector: {fileID: 3442492309684909175}
   onDeathEffector: {fileID: 6840031811758842939}
+  hitParticle: {fileID: 8648460540766116803}
 --- !u!1 &4113795225431489181
 GameObject:
   m_ObjectHideFlags: 0
@@ -1058,6 +1061,8 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   id: 0
   followTarget: 0
+  followRotation: 0
+  rotationOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &8749843500556548428
 GameObject:
   m_ObjectHideFlags: 0

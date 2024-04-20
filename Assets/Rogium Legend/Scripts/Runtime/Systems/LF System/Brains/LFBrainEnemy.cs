@@ -1,4 +1,5 @@
 using RedRats.Systems.LiteFeel.Core;
+using RedRats.Systems.LiteFeel.Effects;
 using Rogium.Gameplay.Entities.Enemy;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -14,17 +15,26 @@ namespace Rogium.Systems.LiteFeel.Brains
         [Space] 
         [SerializeField, GUIColor(1f, 0.25f, 0f)] private LFEffector onHitEffector;
         [SerializeField, GUIColor(1f, 0.25f, 0f)] private LFEffector onDeathEffector;
-
+        [Space]
+        [SerializeField] private LFParticleEffect hitParticle;
+        
+        
         private void OnEnable()
         {
-            if (onHitEffector != null) enemy.DamageReceiver.OnHit += onHitEffector.Play;
+            if (onHitEffector != null) enemy.DamageReceiver.OnHit += WhenHit;
             if (onDeathEffector != null) enemy.DamageReceiver.OnDeath += onDeathEffector.Play;
         }
 
         private void OnDisable()
         {
-            if (onHitEffector != null) enemy.DamageReceiver.OnHit -= onHitEffector.Play;
+            if (onHitEffector != null) enemy.DamageReceiver.OnHit -= WhenHit;
             if (onDeathEffector != null) enemy.DamageReceiver.OnDeath -= onDeathEffector.Play;
+        }
+        
+        private void WhenHit(Vector3 hitDirection)
+        {  
+            hitParticle.UpdateRotationOffset(hitDirection);
+            onHitEffector.Play();
         }
     }
 }

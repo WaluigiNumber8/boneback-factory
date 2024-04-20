@@ -17,6 +17,8 @@ namespace RedRats.Core
         {
             if (newEffect == null) return;
             
+            if (newEffect.isPlaying) newEffect.Stop();
+            
             // Copy main module properties
             ParticleSystem.MainModule originalMain = original.main;
             ParticleSystem.MainModule copyMain = newEffect.main;
@@ -215,6 +217,7 @@ namespace RedRats.Core
             {
                 for (int i = 0; i < originalExternalForces.influenceCount; i++)
                 {
+                    copyExternalForces.RemoveInfluence(i);
                     copyExternalForces.AddInfluence(originalExternalForces.GetInfluence(i));
                 }
             }
@@ -283,6 +286,7 @@ namespace RedRats.Core
             {
                 for (int i = 0; i < originalTrigger.colliderCount; i++)
                 {
+                    copyTrigger.RemoveCollider(i);
                     copyTrigger.AddCollider(originalTrigger.GetCollider(i));
                 }
             }
@@ -298,6 +302,7 @@ namespace RedRats.Core
                     ParticleSystem originalSubEmitter = originalSubEmitters.GetSubEmitterSystem(i);
                     ParticleSystem copySubEmitter = new GameObject(originalSubEmitter.gameObject.name).AddComponent<ParticleSystem>();
                     originalSubEmitter.CopyInto(copySubEmitter);
+                    copySubEmitters.RemoveSubEmitter(i);
                     copySubEmitters.AddSubEmitter(copySubEmitter, originalSubEmitters.GetSubEmitterType(i), originalSubEmitters.GetSubEmitterProperties(i));
                 }
             }
@@ -328,6 +333,7 @@ namespace RedRats.Core
                 {
                     Sprite s = originalTextureSheetAnimation.GetSprite(i);
                     if (s == null) continue;
+                    copyTextureSheetAnimation.RemoveSprite(i);
                     copyTextureSheetAnimation.AddSprite(s);
                 }
             }
