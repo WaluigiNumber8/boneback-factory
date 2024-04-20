@@ -39,11 +39,23 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Floor
+    uniqueID: 362579653
+    locked: 0
+  - name: Walls
+    uniqueID: 197281249
+    locked: 0
+  - name: Particles Below
+    uniqueID: 2246377295
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   - name: Particles Above
     uniqueID: 3050297457
+    locked: 0
+  - name: Ceiling
+    uniqueID: 669964897
     locked: 0
   - name: UI
     uniqueID: 1851271235

@@ -333,8 +333,11 @@ namespace RedRats.Core
                 {
                     Sprite s = originalTextureSheetAnimation.GetSprite(i);
                     if (s == null) continue;
-                    copyTextureSheetAnimation.RemoveSprite(i);
-                    copyTextureSheetAnimation.AddSprite(s);
+                    if (i < copyTextureSheetAnimation.spriteCount)
+                    {
+                        copyTextureSheetAnimation.SetSprite(i, s);
+                    }
+                    else copyTextureSheetAnimation.AddSprite(s);
                 }
             }
 

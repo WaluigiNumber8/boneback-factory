@@ -444,6 +444,7 @@ GameObject:
   - component: {fileID: 1897095059816772477}
   - component: {fileID: 6645043936046388795}
   - component: {fileID: 6571680731099966775}
+  - component: {fileID: 1950972717344584067}
   m_Layer: 3
   m_Name: OnHit Effect
   m_TagString: Untagged
@@ -738,7 +739,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  animateColor: 0
+  animateColor: 1
   modeColor: 0
   beginColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   targetColor: {r: 1, g: 0, b: 0, a: 1}
@@ -969,6 +970,33 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1950972717344584067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974463687562531182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77aca6bd43054573a5ca069d1c97f105, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: Bones fly out
+  active: 1
+  restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
+  initialDelayMin: 0
+  initialDelayMax: 0
+  randomizeDelay: 0
+  effectData: {fileID: 4506261204721590085, guid: c924cfa4054ed2640b9c92ca3e0092ae, type: 3}
+  target: {fileID: 42737588524664426}
+  id: 0
+  followTarget: 0
+  offset: {x: 0, y: 0, z: 0}
+  followRotation: 3
+  rotationOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &1775588865609113628
 GameObject:
   m_ObjectHideFlags: 0
@@ -1018,6 +1046,7 @@ MonoBehaviour:
   player: {fileID: 42737588524664429}
   onTurnEffector: {fileID: 7430790957432210052}
   onHitEffector: {fileID: 1590060671414456630}
+  hitParticle: {fileID: 1950972717344584067}
 --- !u!1 &3397263373556672839
 GameObject:
   m_ObjectHideFlags: 0
