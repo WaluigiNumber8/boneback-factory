@@ -59,6 +59,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
             b.BuildAssetField("", AssetType.Sprite, asset, animationBlock2Slot.GetTransform, a => asset.UpdateIconAlt(a.Icon), null, !currentPack.ContainsAnySprites, ThemeType.Red);
 
             b.BuildInputField("", asset.Title, content, asset.UpdateTitle);
+            b.BuildColorField("Color", asset.Color, content, asset.UpdateColor);
             b.BuildDropdown("AI", aiOptions, (int)asset.AI, content, ProcessAIType);
         }
 

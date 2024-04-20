@@ -34,6 +34,7 @@ namespace Rogium.Editors.Enemies
             icon = EditorConstants.EnemyIcon;
             author = EditorConstants.Author;
             creationDate = DateTime.Now;
+            color = EditorConstants.EnemyColor;
 
             animationType = EditorConstants.EnemyAnimationType;
             frameDuration = EditorConstants.EnemyFrameDuration;
@@ -71,6 +72,7 @@ namespace Rogium.Editors.Enemies
             icon = asset.Icon;
             author = asset.Author;
             creationDate = asset.CreationDate;
+            color = asset.Color;
 
             associatedSpriteID = asset.AssociatedSpriteID;
             
@@ -100,12 +102,12 @@ namespace Rogium.Editors.Enemies
             weaponIDs = new List<string>(asset.weaponIDs);
         }
 
-        public EnemyAsset(string id, string title, Sprite icon, string author, string associatedSpriteID, AnimationType animationType, 
-                          int frameDuration, Sprite iconAlt, int baseDamage, float useDelay, float knockbackForceSelf, 
-                          bool knockbackLockDirectionSelf, float knockbackForceOther, bool knockbackLockDirectionOther, 
-                          int maxHealth, float attackProbability, float invincibilityTime, IList<string> weaponIDs, 
-                          AIType ai, float nextStepTime, DirectionType startingDirection,bool seamlessMovement, 
-                          AssetData hurtSound, AssetData deathSound, DateTime creationDate)
+        public EnemyAsset(string id, string title, Sprite icon, string author, Color color, string associatedSpriteID, 
+                          AnimationType animationType, int frameDuration, Sprite iconAlt, int baseDamage, float useDelay, 
+                          float knockbackForceSelf, bool knockbackLockDirectionSelf, float knockbackForceOther, 
+                          bool knockbackLockDirectionOther, int maxHealth, float attackProbability, float invincibilityTime, 
+                          IList<string> weaponIDs, AIType ai, float nextStepTime, DirectionType startingDirection, 
+                          bool seamlessMovement, AssetData hurtSound, AssetData deathSound, DateTime creationDate)
         {
             AssetValidation.ValidateTitle(title);
             
@@ -114,6 +116,7 @@ namespace Rogium.Editors.Enemies
             this.icon = icon;
             this.author = author;
             this.creationDate = creationDate;
+            this.color = color;
 
             this.associatedSpriteID = associatedSpriteID;
 

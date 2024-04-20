@@ -149,7 +149,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="parent">Under which transform is this property going to be created.</param>
         /// <param name="whenValueChange">The method that runs when the asset is changed.</param>
         /// <param name="isDisabled">Initialize the property as a non-interactable.</param>
-        /// <param name="canBeEmpty">Allow the AssetField to contain a <see cref="EmptyAsset"/>. It gets added as an option to the Asset Picker Menu.</param>
+        /// <param name="whenSelectEmpty">Method that runs when "empty" is selected. If this is not null, adds the option into the Picker Window.</param>
         /// <param name="theme">The theme for the Asset Picker Window.</param>
         /// <returns>The property itself.</returns>
         public void BuildAssetField(string title, AssetType type, IAsset value, Transform parent, Action<IAsset> whenValueChange, Action whenSelectEmpty = null, bool isDisabled = false, ThemeType theme = ThemeType.Current)

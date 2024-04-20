@@ -1,5 +1,4 @@
-﻿using RedRats.Safety;
-using Rogium.Systems.Validation;
+﻿using Rogium.Systems.Validation;
 using UnityEngine;
 
 namespace Rogium.Editors.Core
@@ -9,6 +8,8 @@ namespace Rogium.Editors.Core
     /// </summary>
     public abstract class EntityAssetBase : AnimatedAssetBase
     {
+        protected Color color;
+        
         protected int baseDamage;
         protected float useDelay;
         protected float knockbackForceSelf;
@@ -17,11 +18,8 @@ namespace Rogium.Editors.Core
         protected bool knockbackLockDirectionOther;
 
         #region Update Values
-        public void UpdateBaseDamage(int newBaseDamage)
-        {
-            baseDamage = newBaseDamage;
-        }
-
+        public void UpdateColor(Color newColor) => color = newColor;
+        public void UpdateBaseDamage(int newBaseDamage) => baseDamage = newBaseDamage;
         public void UpdateUseDelay(float newUseDelay)
         {
             newUseDelay = Mathf.Clamp(newUseDelay, 0f, AssetValidation.MaxUseDelay);
@@ -34,6 +32,7 @@ namespace Rogium.Editors.Core
         public void UpdateKnockbackLockDirectionOther(bool lockDirection) => knockbackLockDirectionOther = lockDirection;
         #endregion
         
+        public Color Color { get => color; }
         public int BaseDamage { get => baseDamage; }
         public float UseDelay { get => useDelay; }
         public float KnockbackForceSelf { get => knockbackForceSelf; }

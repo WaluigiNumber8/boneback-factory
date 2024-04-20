@@ -29,6 +29,7 @@ namespace Rogium.ExternalStorage.Serialization
                                        title,
                                        icon.Decode(),
                                        author,
+                                       color.Decode(),
                                        associatedSpriteID,
                                        (AnimationType)animationType,
                                        frameDuration,

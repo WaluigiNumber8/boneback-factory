@@ -28,7 +28,8 @@ namespace Rogium.Gameplay.Entities.Enemy
         
         private GameplayOverseerMono gameplayOverseer;
         private Transform playerTransform;
-        
+
+        private Color color;
         private AIType ai;
         private Vector2 startingDirection;
         private float refreshFaceDirectionTime;
@@ -78,6 +79,7 @@ namespace Rogium.Gameplay.Entities.Enemy
         {
             playerTransform = GameObject.FindWithTag("Player").transform;
             
+            color = asset.Color;
             ai = asset.AI;
             startingDirection = RedRatUtils.DirectionTypeToVector(asset.StartingDirection);
             refreshFaceDirectionTime = asset.NextStepTime;
@@ -184,5 +186,6 @@ namespace Rogium.Gameplay.Entities.Enemy
         
         public CharacteristicDamageReceiver DamageReceiver { get => damageReceiver; } 
         public CharacteristicSoundEmitter SoundEmitter { get => soundEmitter; }
+        public Color RepresentativeColor { get => color; }
     }
 }

@@ -35,6 +35,7 @@ namespace Rogium.Editors.Core.Defaults
         //Weapon
         public const string WeaponTitle = "New Weapon";
         public static readonly Sprite WeaponIcon = Resources.Load<Sprite>("Defaults/spr_Default_Weapon");
+        public static readonly Color WeaponColor = Color.green; 
 
         public const AnimationType WeaponAnimationType = AnimationType.NoAnimation;
         public const int WeaponFrameDuration = 40;
@@ -67,7 +68,8 @@ namespace Rogium.Editors.Core.Defaults
         //Projectile
         public const string ProjectileTitle = "New Projectile";
         public static readonly Sprite ProjectileIcon = Resources.Load<Sprite>("Defaults/spr_Default_Projectile");
-
+        public static readonly Color ProjectileColor = Color.yellow; 
+        
         public const AnimationType ProjectileAnimationType = AnimationType.NoAnimation;
         public const int ProjectileFrameDuration = 40;
         public const int ProjectileFrameDurationMax = 1200;
@@ -92,7 +94,8 @@ namespace Rogium.Editors.Core.Defaults
         //Enemy
         public const string EnemyTitle = "New Enemy";
         public static readonly Sprite EnemyIcon = Resources.Load<Sprite>("Defaults/spr_Default_Enemy");
-
+        public static readonly Color EnemyColor = Color.red; 
+        
         public const AnimationType EnemyAnimationType = AnimationType.HorizontalFlip;
         public const int EnemyFrameDuration = 50;
         public const int EnemyFrameDurationMax = 1200;
