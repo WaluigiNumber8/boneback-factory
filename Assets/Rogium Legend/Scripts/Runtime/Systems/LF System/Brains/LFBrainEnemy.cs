@@ -35,7 +35,6 @@ namespace Rogium.Systems.LiteFeel.Brains
         private void WhenHit(int damage, Vector3 hitDirection)
         {
             int amount = GetAmountOfParticles(damage);
-            Debug.Log(amount);
             hitSettings.particleEffect.UpdateBurstAmount(0, amount - 1, amount + 1);
             hitSettings.particleEffect.UpdateColor(enemy.RepresentativeColor);
             hitSettings.particleEffect.UpdateRotationOffset(hitDirection);

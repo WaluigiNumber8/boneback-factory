@@ -9,11 +9,11 @@ namespace RedRats.Systems.LiteFeel.Effects
     /// </summary>
     public class LFParticleEffect : LFEffectBase
     {
-        [SerializeField, InfoBox("Missing effect", InfoMessageType.Error, "@effectData == null")] private ParticleSystem effectData;
-        [SerializeField, InfoBox("Missing target", InfoMessageType.Error, "@target == null")] private Transform target;
-        [SerializeField] private Vector3 offset;
+        [SerializeField, Required] private ParticleSystem effectData;
+        [SerializeField, Required] private Transform target;
         [SerializeField] private int id;
         [SerializeField] private bool followTarget;
+        [SerializeField] private Vector3 offset;
         [SerializeField] private FollowRotationType followRotation;
         [SerializeField, LabelText("@RotationOffsetName"), HideIf("@followRotation == FollowRotationType.NoFollow")] private Vector3 rotationOffset;
         

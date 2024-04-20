@@ -10,7 +10,7 @@ namespace RedRats.Systems.LiteFeel.Effects
     /// </summary>
     public class LFLight2DEffect : LFEffectTweenBase
     {
-        [SerializeField, InfoBox("Missing target", InfoMessageType.Error, "@target == null")] private Light2D target;
+        [SerializeField, Required] private Light2D target;
         [SerializeField, LabelText(" Intensity", SdfIconType.SquareFill)] private bool animateIntensity = true;
         [SerializeField, ShowIf("animateIntensity"), LabelText("Movement"), EnumToggleButtons] protected MovementType movementIntensity = MovementType.Absolute;
         [SerializeField, ShowIf("animateIntensity"), LabelText("Mode"), EnumToggleButtons] protected TransitionType modeIntensity = TransitionType.ToDestination;

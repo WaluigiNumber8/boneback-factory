@@ -9,16 +9,25 @@ namespace Rogium.Systems.LiteFeel.Brains
     {
         [SerializeField, GUIColor(0.85f, 0.8f, 0f)] private PlayerController player;
         [Space] 
-        [SerializeField, GUIColor(0.1f, 0.5f, 1f)] private LFEffector onTurnEffector;
+        [SerializeField, ChildGameObjectsOnly, GUIColor(0.15f, 0.7f, 1f)] private LFEffector onTurnEffector;
+        [SerializeField, ChildGameObjectsOnly, GUIColor(0.15f, 0.7f, 1f)] private LFEffector onHitEffector;
+        
 
         private void OnEnable()
         {
             if (onTurnEffector != null) player.OnTurn += onTurnEffector.Play;
+            if (onHitEffector != null) player.DamageReceiver.OnHit += WhenHit;
         }
 
         private void OnDisable()
         {
             if (onTurnEffector != null) player.OnTurn -= onTurnEffector.Play;
+            if (onHitEffector != null) player.DamageReceiver.OnHit -= WhenHit;
+        }
+        
+        private void WhenHit(int damage, Vector3 hitDirection)
+        {
+            onHitEffector.Play();
         }
 
     }
