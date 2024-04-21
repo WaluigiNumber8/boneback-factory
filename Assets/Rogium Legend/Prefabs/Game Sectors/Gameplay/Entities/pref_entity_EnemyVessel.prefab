@@ -596,9 +596,9 @@ MonoBehaviour:
   randomizeDelay: 0
   effectData: {fileID: 595338809705674345, guid: 4b6947e74b2102c4c9d09f9b5352db1f, type: 3}
   target: {fileID: 8749843500556548429}
-  offset: {x: 0, y: 0, z: 0}
   id: 0
   followTarget: 0
+  offset: {x: 0, y: 0, z: 0}
   followRotation: 3
   rotationOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &2392723852778767701
@@ -658,12 +658,12 @@ MonoBehaviour:
       - serializedVersion: 3
         time: 0
         value: 0
-        inSlope: 3.1982696
-        outSlope: 3.1982696
+        inSlope: 2
+        outSlope: 2
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
-        outWeight: 0.043062203
+        outWeight: 0
       - serializedVersion: 3
         time: 1
         value: 1
@@ -677,7 +677,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     minDamage: 1
-    maxDamage: 12
+    maxDamage: 20
     minAmount: 4
     maxAmount: 20
 --- !u!1 &4113795225431489181
@@ -1087,9 +1087,9 @@ MonoBehaviour:
   randomizeDelay: 0
   effectData: {fileID: 972960206899884084, guid: 7e5c71828877d194c9d543f569a01971, type: 3}
   target: {fileID: 8749843501973659661}
-  offset: {x: 0, y: 0, z: 0}
   id: 0
   followTarget: 0
+  offset: {x: 0, y: 0, z: 0}
   followRotation: 0
   rotationOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &8749843500556548428
