@@ -1073,7 +1073,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     minDamage: 1
-    maxDamage: 16
+    maxDamage: 10
     minAmount: 1
     maxAmount: 6
 --- !u!1 &3397263373556672839
