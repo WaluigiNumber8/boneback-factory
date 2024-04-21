@@ -193,6 +193,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: sprset_Particles_Sharpy
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cb749f6a9c58434fb88fde70088eafa
+      internalID: -2046392914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprset_Particles_Spike
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fcb05d62dea92e44acce8ebb0c613c7
+      internalID: 1069473830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -207,6 +249,8 @@ TextureImporter:
       sprset_Particles_Circle: 79491181
       sprset_Particles_Dust: -610755634
       sprset_Particles_Rectangle: -2015023229
+      sprset_Particles_Sharpy: -2046392914
+      sprset_Particles_Spike: 1069473830
       sprset_Particles_Square: 203746133
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

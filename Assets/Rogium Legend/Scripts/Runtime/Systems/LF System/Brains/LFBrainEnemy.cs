@@ -37,7 +37,7 @@ namespace Rogium.Systems.LiteFeel.Brains
             int amount = RedRatUtils.RemapAndEvaluate(damage, hitSettings.amountCurve, hitSettings.minDamage, hitSettings.maxDamage, hitSettings.minAmount, hitSettings.maxAmount);
             hitSettings.particleEffect.UpdateBurstAmount(0, amount);
             hitSettings.particleEffect.UpdateColor(enemy.RepresentativeColor);
-            hitSettings.particleEffect.UpdateRotationOffset(hitDirection);
+            if (hitSettings.isDirectional) hitSettings.particleEffect.UpdateRotationOffset(hitDirection);
             onHitEffector.Play();
         }
     }

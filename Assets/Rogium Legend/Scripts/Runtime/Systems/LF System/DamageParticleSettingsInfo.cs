@@ -17,5 +17,6 @@ namespace Rogium.Systems.LiteFeel
         [MinValue(0)] public int maxDamage;
         [MinValue(0)] public int minAmount;
         [MinValue(0)] public int maxAmount;
+        public bool isDirectional;
     }
 }

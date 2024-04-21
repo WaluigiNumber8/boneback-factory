@@ -1076,6 +1076,7 @@ MonoBehaviour:
     maxDamage: 10
     minAmount: 1
     maxAmount: 6
+    isDirectional: 1
 --- !u!1 &3397263373556672839
 GameObject:
   m_ObjectHideFlags: 0
