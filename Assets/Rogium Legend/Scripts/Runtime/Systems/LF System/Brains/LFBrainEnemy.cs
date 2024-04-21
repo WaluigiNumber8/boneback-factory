@@ -35,7 +35,7 @@ namespace Rogium.Systems.LiteFeel.Brains
         private void WhenHit(int damage, Vector3 hitDirection)
         {
             int amount = RedRatUtils.RemapAndEvaluate(damage, hitSettings.amountCurve, hitSettings.minDamage, hitSettings.maxDamage, hitSettings.minAmount, hitSettings.maxAmount);
-            hitSettings.particleEffect.UpdateBurstAmount(0, amount - 1, amount + 1);
+            hitSettings.particleEffect.UpdateBurstAmount(0, amount);
             hitSettings.particleEffect.UpdateColor(enemy.RepresentativeColor);
             hitSettings.particleEffect.UpdateRotationOffset(hitDirection);
             onHitEffector.Play();

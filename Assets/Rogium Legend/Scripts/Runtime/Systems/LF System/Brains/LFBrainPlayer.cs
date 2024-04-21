@@ -1,5 +1,5 @@
+using RedRats.Core;
 using RedRats.Systems.LiteFeel.Core;
-using RedRats.Systems.LiteFeel.Effects;
 using Rogium.Gameplay.Entities.Player;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -13,7 +13,7 @@ namespace Rogium.Systems.LiteFeel.Brains
         [SerializeField, ChildGameObjectsOnly, GUIColor(0.15f, 0.7f, 1f)] private LFEffector onTurnEffector;
         [SerializeField, ChildGameObjectsOnly, GUIColor(0.15f, 0.7f, 1f)] private LFEffector onHitEffector;
         [Space]
-        [SerializeField] private LFParticleEffect hitParticle;
+        [SerializeField] private DamageParticleSettingsInfo hitSettings;
 
         private void OnEnable()
         {
@@ -29,7 +29,10 @@ namespace Rogium.Systems.LiteFeel.Brains
         
         private void WhenHit(int damage, Vector3 hitDirection)
         {
-            hitParticle.UpdateRotationOffset(-hitDirection);
+            int amount = RedRatUtils.RemapAndEvaluate(damage, hitSettings.amountCurve, hitSettings.minDamage, hitSettings.maxDamage, hitSettings.minAmount, hitSettings.maxAmount);
+            Debug.Log(amount);
+            hitSettings.particleEffect.UpdateBurstAmount(0, amount);
+            hitSettings.particleEffect.UpdateRotationOffset(-hitDirection);
             onHitEffector.Play();
         }
 
