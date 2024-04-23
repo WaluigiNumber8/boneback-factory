@@ -29,7 +29,7 @@ namespace Rogium.Systems.LiteFeel.Brains
         
         private void WhenHit(int damage, Vector3 hitDirection)
         {
-            if (damage > 0) return;
+            if (damage <= 0) return;
                 
             int amount = RedRatUtils.RemapAndEvaluate(damage, hitSettings.amountCurve, hitSettings.minDamage, hitSettings.maxDamage, hitSettings.minAmount, hitSettings.maxAmount);
             hitSettings.particleEffect.UpdateBurstAmount(0, amount);

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9003674806846963734}
   - component: {fileID: 8994105038447089685}
   - component: {fileID: 1626933859767301776}
+  - component: {fileID: 6035983751193300894}
   m_Layer: 5
   m_Name: OnPlayerHit Effect
   m_TagString: Untagged
@@ -133,6 +134,133 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   followRotation: 0
   rotationOffset: {x: 0, y: 0, z: 0}
+--- !u!114 &6035983751193300894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656210906686698143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04419a4d03d3417291403f887ab62ffa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: Flash Red
+  active: 1
+  restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
+  initialDelayMin: 0
+  initialDelayMax: 0
+  randomizeDelay: 0
+  duration: 0.2
+  infiniteLoop: 0
+  loops: 1
+  loopType: 0
+  target: {fileID: 5130539102772181409}
+  animateBlend: 1
+  modeBlend: 1
+  beginBlend: 0
+  targetBlend: 0.05
+  blendCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.04716187
+      value: 0.99158096
+      inSlope: -0.0046805865
+      outSlope: -0.0046805865
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 0.13439552
+    - serializedVersion: 3
+      time: 0.9422977
+      value: 0.98528785
+      inSlope: 0.0012555944
+      outSlope: 0.0012555944
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.2295245
+      outWeight: 1
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  animateGlow: 0
+  modeGlow: 1
+  beginGlow: 1
+  targetGlow: 3
+  glowCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  animateColor: 1
+  modeColor: 0
+  beginColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  targetColor: {r: 0.8901961, g: 0.12941177, b: 0.12941177, a: 1}
+  colorCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &744463189044496996
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,6 +383,7 @@ GameObject:
   - component: {fileID: 7492571185581018350}
   - component: {fileID: 628648561095733774}
   - component: {fileID: 3228809344805680310}
+  - component: {fileID: 5130539102772181409}
   m_Layer: 5
   m_Name: Outline
   m_TagString: Untagged
@@ -301,7 +430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: ebaa84c271466bd419325d4a6413cd95, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -319,6 +448,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5130539102772181409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2485175101133092109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17b9e419ad5e4e608a638c9bc171552f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assignedRenderer: {fileID: 0}
+  assignedImage: {fileID: 0}
 --- !u!1 &2932003046877176827
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,9 +691,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   onTurnEffector: {fileID: 0}
-  onHitEffector: {fileID: 0}
+  onHitEffector: {fileID: 9003674806846963734}
   hitSettings:
-    particleEffect: {fileID: 0}
+    particleEffect: {fileID: 1626933859767301776}
     amountCurve:
       serializedVersion: 2
       m_Curve:

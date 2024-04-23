@@ -68,7 +68,7 @@ Material:
     - _Enable_Scroll_And_Offset: 1
     - _Enable_Shimmer: 1
     - _Enable_Tint: 1
-    - _Enable_UVRotate: 0
+    - _Enable_UVRotate: 1
     - _FullColorBlend: 0
     - _FullColorGlow: 1
     - _GlowIntensity: 1
@@ -80,8 +80,8 @@ Material:
     - _HologramScrollSpeed: 100
     - _HologramStrength: 0
     - _HologramTiling: 2
-    - _ManualAnimation: 0
-    - _RotationSpeed: 3.34
+    - _ManualAnimation: 1
+    - _RotationSpeed: 0
     - _ScrollSpeed: 1
     - _ShimmerGlow: 0.05
     - _ShimmerPosition: 0.404
