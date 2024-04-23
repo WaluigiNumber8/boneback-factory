@@ -47,6 +47,43 @@ namespace RedRats.Core
             float d = (f * f) / (100 * rb.drag * rb.mass);
             return Mathf.Sqrt(2 * d / rb.mass); 
         }
+
+        /// <summary>
+        /// Evaluates a value based on an <see cref="AnimationCurve"/> whose x is 0-1.
+        /// <br/> First remaps the value 0-1, evaluates by curve and remaps again to target range.
+        /// </summary>
+        /// <param name="value">The value to remap.</param>
+        /// <param name="curve">The curve to remap by. (x must be 0-1).</param>
+        /// <param name="firstMin">Minimum of range from which the value comes from.</param>
+        /// <param name="firstMax">Maximum of range from which the value comes from.</param>
+        /// <param name="secondMin">Minimum of the target range.</param>
+        /// <param name="secondMax">Maximum of the target range.</param>
+        /// <returns></returns>
+        public static float RemapAndEvaluate(float value, AnimationCurve curve, float firstMin, float firstMax, float secondMin, float secondMax)
+        {
+            float firstValue = value.Remap(firstMin,firstMax, 0f, 1f);
+            float curveValue = curve.Evaluate(firstValue);
+            float targetValue = curveValue.Remap(0f, 1f, secondMin, secondMax);
+            return targetValue;
+        }
         
+        /// <summary>
+        /// Evaluates a value based on an <see cref="AnimationCurve"/> whose x is 0-1.
+        /// <br/> First remaps the value 0-1, evaluates by curve and remaps again to target range.
+        /// </summary>
+        /// <param name="value">The value to remap.</param>
+        /// <param name="curve">The curve to remap by. (x must be 0-1).</param>
+        /// <param name="firstMin">Minimum of range from which the value comes from.</param>
+        /// <param name="firstMax">Maximum of range from which the value comes from.</param>
+        /// <param name="secondMin">Minimum of the target range.</param>
+        /// <param name="secondMax">Maximum of the target range.</param>
+        /// <returns></returns>
+        public static int RemapAndEvaluate(int value, AnimationCurve curve, int firstMin, int firstMax, int secondMin, int secondMax)
+        {
+            float firstValue = ((float)value).Remap(firstMin,firstMax, 0f, 1f);
+            float curveValue = curve.Evaluate(firstValue);
+            int targetValue = (int)curveValue.Remap(0f, 1f, secondMin, secondMax);
+            return targetValue;
+        }
     }
 }

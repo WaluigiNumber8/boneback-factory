@@ -9,11 +9,11 @@ namespace RedRats.Systems.LiteFeel.Effects
     /// </summary>
     public class LFParticleEffect : LFEffectBase
     {
-        [SerializeField, InfoBox("Missing effect", InfoMessageType.Error, "@effectData == null")] private ParticleSystem effectData;
-        [SerializeField, InfoBox("Missing target", InfoMessageType.Error, "@target == null")] private Transform target;
-        [SerializeField] private Vector3 offset;
+        [SerializeField, Required] private ParticleSystem effectData;
+        [SerializeField, Required] private Transform target;
         [SerializeField] private int id;
         [SerializeField] private bool followTarget;
+        [SerializeField] private Vector3 offset;
         [SerializeField] private FollowRotationType followRotation;
         [SerializeField, LabelText("@RotationOffsetName"), HideIf("@followRotation == FollowRotationType.NoFollow")] private Vector3 rotationOffset;
         
@@ -22,6 +22,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         private float effectDuration;
 
         #region Update Values
+        public void UpdateBurstAmount(int burstID, int newAmount) => UpdateBurstAmount(burstID, newAmount, newAmount);
         public void UpdateBurstAmount(int burstID, int newAmountMin, int newAmountMax)
         {
             ParticleSystem.EmissionModule emit = effectData.emission;

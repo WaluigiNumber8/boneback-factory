@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cae60b43230146f40b36b687f17a135c
+guid: 4cadae253c2cde9448705495b249f7e8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -37,13 +37,13 @@ TextureImporter:
     filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -110,118 +110,202 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sprset_Particles_Circle
+      name: sprset_Menu_Icons_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
+        width: 8
+        height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55839b0f94048b244b4e94721f89ec09
-      internalID: 79491181
+      spriteID: 48bc5054eed04274e8ee331f70c6a399
+      internalID: -203117973
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_Particles_Dust
+      name: sprset_Menu_Icons_1
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6251cb77ab78ac849a08203b59084e24
+      internalID: 925054236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprset_Menu_Icons_2
       rect:
         serializedVersion: 2
         x: 16
         y: 0
-        width: 16
-        height: 16
+        width: 8
+        height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54117edcc50de614dbc63fdda7bb2783
-      internalID: -610755634
+      spriteID: 3e518b593f9eb034fa74dcf7dbb7d6df
+      internalID: -1820635022
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_Particles_Square
+      name: sprset_Menu_Icons_3
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e1c38f74a071cd459443237bf6d9e22
+      internalID: 115274202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprset_Menu_Icons_4
       rect:
         serializedVersion: 2
         x: 32
         y: 0
-        width: 16
-        height: 16
+        width: 8
+        height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26b8ddc3263b7a34fa755e29ef9bd6e9
-      internalID: 203746133
+      spriteID: b9badb58f775e9f48be96ace59b1f8d5
+      internalID: -917808211
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_Particles_Rectangle
+      name: sprset_Menu_Icons_5
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbb851441c095a549a8e480727661805
+      internalID: -375139211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprset_Menu_Icons_6
       rect:
         serializedVersion: 2
         x: 48
         y: 0
-        width: 16
-        height: 16
+        width: 8
+        height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b28ea0f2e7ab4a34f961749891cad560
-      internalID: -2015023229
+      spriteID: 521628d95f591af48946ecefcaec7ebc
+      internalID: 1300377024
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_Particles_Sharpy
+      name: sprset_Menu_Icons_7
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6daa70164a9b0db4fab7c0f3e4d6f1b9
+      internalID: 1967343671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprset_Menu_Icons_8
       rect:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 16
-        height: 16
+        width: 8
+        height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3cb749f6a9c58434fb88fde70088eafa
-      internalID: -2046392914
+      spriteID: a4a57532a4a608945acdca8a127803e6
+      internalID: -1655104440
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_Particles_Spike
+      name: sprset_Menu_Icons_9
       rect:
         serializedVersion: 2
-        x: 80
+        x: 72
         y: 0
-        width: 16
-        height: 16
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,8 +313,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7fcb05d62dea92e44acce8ebb0c613c7
-      internalID: 1069473830
+      spriteID: 307667d3157c4774ba2e3d333b9036ab
+      internalID: -1488724766
       vertices: []
       indices: 
       edges: []
@@ -246,12 +330,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      sprset_Particles_Circle: 79491181
-      sprset_Particles_Dust: -610755634
-      sprset_Particles_Rectangle: -2015023229
-      sprset_Particles_Sharpy: -2046392914
-      sprset_Particles_Spike: 1069473830
-      sprset_Particles_Square: 203746133
+      sprset_Menu_Icons_0: -203117973
+      sprset_Menu_Icons_1: 925054236
+      sprset_Menu_Icons_2: -1820635022
+      sprset_Menu_Icons_3: 115274202
+      sprset_Menu_Icons_4: -917808211
+      sprset_Menu_Icons_5: -375139211
+      sprset_Menu_Icons_6: 1300377024
+      sprset_Menu_Icons_7: 1967343671
+      sprset_Menu_Icons_8: -1655104440
+      sprset_Menu_Icons_9: -1488724766
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

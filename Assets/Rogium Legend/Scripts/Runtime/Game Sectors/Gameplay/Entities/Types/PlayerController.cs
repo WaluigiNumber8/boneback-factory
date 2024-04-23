@@ -124,5 +124,7 @@ namespace Rogium.Gameplay.Entities.Player
             
             lastFaceDirection = new Vector2Int(faceDirX, faceDirY);
         }
+        
+        public CharacteristicDamageReceiver DamageReceiver { get => damageReceiver; }
     }
 }
