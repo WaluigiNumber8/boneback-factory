@@ -25,12 +25,9 @@ namespace Rogium.Gameplay.Sequencer
         [SerializeField] private float transportRunSpeed;
         [SerializeField] private float transportWalkSpeed;
         [SerializeField] private Vector2 defaultStartPos;
-        /// <summary>
-        /// The delay before the player enters the scene.
-        /// </summary>
-        [Tooltip("The delay before the player enters the scene.")]
         [Space]
         [SerializeField, Min(0)] private float beforeIntroDelay;
+        [SerializeField, Min(0)] private float beforeGameOverDelay;
         
         private SASCore sas;
         private IDictionary<Vector2, Vector2> startingPoints;
@@ -119,7 +116,8 @@ namespace Rogium.Gameplay.Sequencer
 
         public IEnumerator RunGameOverCoroutine()
         {
-            yield return sas.FadeOut(3f, true);
+            yield return sas.Wait(beforeGameOverDelay);
+            yield return sas.FadeOut(2f, true);
             yield return sas.Wait(0.5f);
             roomLoader.Clear();
         }
