@@ -57,6 +57,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4506261204721590085, guid: c924cfa4054ed2640b9c92ca3e0092ae, type: 3}
+      propertyPath: NoiseModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4506261204721590085, guid: c924cfa4054ed2640b9c92ca3e0092ae, type: 3}
       propertyPath: ShapeModule.radius.value
       value: 0.1
       objectReference: {fileID: 0}
@@ -342,7 +346,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5935992305485476582, guid: c924cfa4054ed2640b9c92ca3e0092ae, type: 3}
       propertyPath: m_Name
-      value: particle_Player_Hit_Death
+      value: particle_Player_Death
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
