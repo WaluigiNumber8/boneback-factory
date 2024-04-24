@@ -1,6 +1,7 @@
 ﻿using System;
 using RedRats.Core;
 using Rogium.Gameplay.Entities.Characteristics;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,8 +15,12 @@ namespace Rogium.UserInterface.Gameplay.HUD
         [SerializeField] private HealthBarInfo healthBar;
         [SerializeField] private WeaponSlotClustersInfo weaponSlots;
 
-        private void Start() => weaponSlots.SetEmpty();
-        
+        private void Start()
+        {
+            weaponSlots.SetEmpty();
+            healthBar.UpdateState();
+        }
+
         private void OnEnable()
         {
             SetHealthBarMaxValue(healthBar.trackedReceiver.MaxHealth);
@@ -62,16 +67,19 @@ namespace Rogium.UserInterface.Gameplay.HUD
                     break;
                 default:
                     throw new InvalidOperationException($"Slot number '{index}' is not supported.");
-                
             }
         }
-        
+
         /// <summary>
         /// Set the value of the health slider.
         /// </summary>
         /// <param name="value">The new value of the slider.</param>
-        public void SetHealthBarValue(int value) => healthBar.targetValue = value;
-            
+        public void SetHealthBarValue(int value)
+        {
+            healthBar.targetValue = value;
+            healthBar.UpdateState();
+        }
+
         /// <summary>
         /// Set the max value of the health slider.
         /// </summary>
@@ -81,14 +89,19 @@ namespace Rogium.UserInterface.Gameplay.HUD
             healthBar.slider.maxValue = value;
             if (healthBar.slider.value > healthBar.slider.maxValue) SetHealthBarValue(value);
         }
-        
 
-        [System.Serializable]
+
+        [Serializable]
         public struct HealthBarInfo
         {
             public Slider slider;
-            public float lerpSpeed;
+            public Image barOutline;
             public CharacteristicDamageReceiver trackedReceiver;
+            public float lerpSpeed;
+            [Range(0f, 1f)] public float damagedThreshold;
+            [PreviewField(60)] public Sprite normalState;
+            [PreviewField(60)] public Sprite damagedState;
+            [PreviewField(60)] public Sprite brokenState;
 
             [HideInInspector] public float targetValue;
 
@@ -100,9 +113,14 @@ namespace Rogium.UserInterface.Gameplay.HUD
                 if (Math.Abs(slider.value - targetValue) < 0.001f) return;
                 slider.value = Mathf.Lerp(slider.value, targetValue, lerpSpeed * Time.deltaTime);
             }
+
+            public void UpdateState()
+            {
+                barOutline.sprite = (targetValue <= slider.minValue) ? brokenState : (targetValue <= slider.maxValue * damagedThreshold) ? damagedState : normalState;
+            }
         }
 
-        [System.Serializable]
+        [Serializable]
         public struct WeaponSlotClustersInfo
         {
             public WeaponSlotCluster main;
