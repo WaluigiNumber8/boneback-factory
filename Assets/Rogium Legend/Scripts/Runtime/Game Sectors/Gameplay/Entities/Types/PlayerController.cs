@@ -21,7 +21,9 @@ namespace Rogium.Gameplay.Entities.Player
         [SerializeField] private CharacteristicVisualPlayer visual;
         [SerializeField] private CharacteristicWeaponHold weaponHold;
         [SerializeField] private CharacteristicFloorInteractor floorInteractor;
-
+        [Title("Special")] 
+        [SerializeField] private ParticleSystem deathSkullEffect;
+        
         private InputProfilePlayer input;
         
         private Vector2 moveDirection;
@@ -96,6 +98,7 @@ namespace Rogium.Gameplay.Entities.Player
             movementLocked = true;
             visual.PlayDeath();
             OnDeath?.Invoke();
+            if (deathSkullEffect != null) Instantiate(deathSkullEffect, transform.position, Quaternion.identity);
         }
 
         private void UseWeaponMain() => weaponHold.Use(0);

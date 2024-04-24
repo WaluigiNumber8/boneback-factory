@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8881534984894392661}
   - component: {fileID: 8697898921079396707}
   - component: {fileID: 5543476576113845594}
+  - component: {fileID: 5308146047967320636}
   m_Layer: 0
   m_Name: particle_Player_Death_Skull
   m_TagString: Untagged
@@ -43,14 +44,14 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 2
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -3885,9 +3886,9 @@ ParticleSystem:
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 2
-    inside: 0
+    inside: 2
     outside: 0
     enter: 0
     exit: 0
@@ -4917,3 +4918,16 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &5308146047967320636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8152767437308677165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51265b1759404a12ac1a5b9a475da02e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1

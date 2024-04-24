@@ -692,6 +692,7 @@ MonoBehaviour:
   player: {fileID: 0}
   onTurnEffector: {fileID: 0}
   onHitEffector: {fileID: 9003674806846963734}
+  onDeathEffector: {fileID: 0}
   hitSettings:
     particleEffect: {fileID: 1626933859767301776}
     amountCurve:

@@ -343,6 +343,7 @@ MonoBehaviour:
   visual: {fileID: 691628062176777703}
   weaponHold: {fileID: 4747239451648468430}
   floorInteractor: {fileID: 7837395387147699825}
+  deathSkullEffect: {fileID: 8697898921079396707, guid: 39ba50ac657c0c740964a0e53b183e41, type: 3}
 --- !u!114 &8977098935747787102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1194,7 +1195,6 @@ GameObject:
   - component: {fileID: 3691307023515423106}
   - component: {fileID: 7507955224144726584}
   - component: {fileID: 7784171899659078457}
-  - component: {fileID: 6596113195655103197}
   m_Layer: 3
   m_Name: OnDeath Effect
   m_TagString: Untagged
@@ -1673,33 +1673,6 @@ MonoBehaviour:
   followTarget: 1
   offset: {x: 0, y: 0, z: 0}
   followRotation: 1
-  rotationOffset: {x: 0, y: 0, z: 0}
---- !u!114 &6596113195655103197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3891102680485738365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77aca6bd43054573a5ca069d1c97f105, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  info: Skull
-  active: 1
-  restartOnPlay: 1
-  keepStateOnStop: 0
-  noPlayWhenPlaying: 0
-  initialDelayMin: 0
-  initialDelayMax: 0
-  randomizeDelay: 0
-  effectData: {fileID: 8697898921079396707, guid: 39ba50ac657c0c740964a0e53b183e41, type: 3}
-  target: {fileID: 42737587612288670}
-  id: 0
-  followTarget: 0
-  offset: {x: 0, y: 0, z: 0}
-  followRotation: 0
   rotationOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &4959690580451964392
 GameObject:
