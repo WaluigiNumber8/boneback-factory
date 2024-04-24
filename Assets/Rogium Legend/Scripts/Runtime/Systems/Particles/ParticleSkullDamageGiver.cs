@@ -41,7 +41,7 @@ namespace Rogium.Systems.Particles
             int amount = effect.GetTriggerParticles(ParticleSystemTriggerEventType.Inside, particles);
             for (int i = 0; i < amount; i++)
             {
-                 CharacteristicDamageReceiver receiver = effect.trigger.GetCollider(i).GetComponent<CharacteristicDamageReceiver>();
+                 CharacteristicDamageReceiver receiver = effect.trigger.GetCollider(i)?.GetComponent<CharacteristicDamageReceiver>();
                  receiver?.TakeDamage(damage, transform);
             }
         }
