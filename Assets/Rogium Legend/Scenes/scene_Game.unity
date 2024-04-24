@@ -10956,6 +10956,10 @@ PrefabInstance:
       propertyPath: b
       value: 0.05
       objectReference: {fileID: 0}
+    - target: {fileID: 7784171899659078457, guid: 8b1858fadbbcfd14fa8ab21287d05e1f, type: 3}
+      propertyPath: effectData
+      value: 
+      objectReference: {fileID: 341092902053746665, guid: 97cb27945fed6464abf275809b3d68f0, type: 3}
     - target: {fileID: 8977098935747787102, guid: 8b1858fadbbcfd14fa8ab21287d05e1f, type: 3}
       propertyPath: defaultData.moveSpeed
       value: 10
