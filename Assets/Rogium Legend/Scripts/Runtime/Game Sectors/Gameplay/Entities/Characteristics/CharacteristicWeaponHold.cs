@@ -70,7 +70,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
             IEnumerator ActivateCoroutine()
             {
                 yield return new WaitForSeconds(weapon.UseStartDelay);
-                weaponEntity.LoadUp(weapon);
+                weaponEntity.Construct(weapon);
                 weaponEntity.Activate();
                 entity.ForceMove(-entity.FaceDirection, weapon.KnockbackForceSelf, weapon.FreezeUser, weapon.KnockbackLockDirectionSelf);
             }

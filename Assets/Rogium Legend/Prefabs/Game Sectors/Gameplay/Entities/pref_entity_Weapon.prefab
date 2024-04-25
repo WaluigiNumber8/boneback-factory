@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 7601419146444906514}
   - component: {fileID: 5727797397282415324}
   - component: {fileID: 8891106330710725475}
+  - component: {fileID: 1817473985628846251}
   m_Layer: 0
   m_Name: pref_entity_Weapon
   m_TagString: Untagged
@@ -216,6 +217,7 @@ MonoBehaviour:
   damageGiver: {fileID: 7601419146444906514}
   projectileShoot: {fileID: 8891106330710725475}
   visual: {fileID: 5727797397282415324}
+  sound: {fileID: 1817473985628846251}
 --- !u!114 &7601419146444906514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,6 +273,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entity: {fileID: 6507709000051811484}
+--- !u!114 &1817473985628846251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3808502605660081328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b61480e55656446ebc25d9daa3b19324, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: {fileID: 6507709000051811484}
+  mixerGroup: {fileID: -7128948430085313062, guid: 15e85eab3684ad9409d53f645746215d, type: 2}
 --- !u!1 &5282049708220432706
 GameObject:
   m_ObjectHideFlags: 0

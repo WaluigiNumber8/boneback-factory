@@ -20,6 +20,8 @@ namespace Rogium.Editors.Weapons
         private bool freezeUser;
         private bool isEvasive;
         private readonly List<ProjectileDataInfo> projectileIDs;
+        
+        private AssetData useSound;
 
         #region Constructors
         public WeaponAsset()
@@ -46,6 +48,9 @@ namespace Rogium.Editors.Weapons
             useStartDelay = EditorConstants.WeaponUseStartDelay;
             isEvasive = EditorConstants.WeaponIsEvasive;
             freezeUser = EditorConstants.WeaponFreezeUser;
+            
+            useSound = new AssetData();
+            
             projectileIDs = new List<ProjectileDataInfo>();
             
             GenerateID(EditorAssetIDs.WeaponIdentifier);
@@ -80,6 +85,9 @@ namespace Rogium.Editors.Weapons
             useStartDelay = asset.useStartDelay;
             isEvasive = asset.IsEvasive;
             freezeUser = asset.FreezeUser;
+            
+            useSound = new AssetData(asset.UseSound);
+            
             projectileIDs = new List<ProjectileDataInfo>(asset.ProjectileIDs);
         }
 
@@ -87,7 +95,8 @@ namespace Rogium.Editors.Weapons
                            AnimationType animationType, int frameDuration, Sprite iconAlt,int baseDamage, float useDelay, 
                            float knockbackForceSelf, bool knockbackLockDirectionSelf, float knockbackForceOther, 
                            bool knockbackLockDirectionOther, WeaponUseType useType, float useDuration, float useStartDelay, 
-                           bool isEvasive, bool freezeUser, IList<ProjectileDataInfo> projectileIDs, DateTime creationDate)
+                           bool isEvasive, bool freezeUser, IList<ProjectileDataInfo> projectileIDs, AssetData useSound,
+                           DateTime creationDate)
         {
             AssetValidation.ValidateTitle(title);
             
@@ -116,6 +125,9 @@ namespace Rogium.Editors.Weapons
             this.useStartDelay = useStartDelay;
             this.isEvasive = isEvasive;
             this.freezeUser = freezeUser;
+            
+            this.useSound = new AssetData(useSound);
+            
             this.projectileIDs = new List<ProjectileDataInfo>(projectileIDs);
 
         }
@@ -124,19 +136,10 @@ namespace Rogium.Editors.Weapons
         #region Update Values
         public void UpdateUseType(WeaponUseType newUseType) => useType = newUseType;
         public void UpdateUseType(int newUseType) => useType = (WeaponUseType) newUseType;
-        public void UpdateUseDuration(float newUseDuration)
-        {
-            useDuration = newUseDuration;
-        }
-
-        public void UpdateUseStartDelay(float newUseStartDelay)
-        {
-            useStartDelay = newUseStartDelay;
-        }
-
+        public void UpdateUseDuration(float newUseDuration) => useDuration = newUseDuration;
+        public void UpdateUseStartDelay(float newUseStartDelay) => useStartDelay = newUseStartDelay;
         public void UpdateIsEvasive(bool newIsEvasive) => isEvasive = newIsEvasive;
         public void UpdateFreezeUser(bool newFreezeUser) => freezeUser = newFreezeUser;
-
         public void UpdateProjectileIDsLength(int newLength)
         {
             SafetyNet.EnsureIntIsBiggerOrEqualTo(newLength, 0, "New weapon IDs size");
@@ -161,7 +164,7 @@ namespace Rogium.Editors.Weapons
         {
             projectileIDs[pos].UpdateAngleOffset(value);
         }
-
+        public void UpdateUseSound(AssetData newUseSound) => useSound = new AssetData(newUseSound);
         #endregion
 
         public override void ClearAssociatedSprite()
@@ -176,5 +179,6 @@ namespace Rogium.Editors.Weapons
         public bool IsEvasive { get => isEvasive; }
         public bool FreezeUser { get => freezeUser; }
         public List<ProjectileDataInfo> ProjectileIDs { get => projectileIDs; }
+        public AssetData UseSound { get => useSound; }
     }
 }

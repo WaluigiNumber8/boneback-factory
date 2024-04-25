@@ -72,6 +72,9 @@ namespace Rogium.Editors.PropertyEditor.Builders
             b.BuildDropdown("Type", animationOptions, (int) asset.AnimationType, content, ProcessAnimationType);
             b.BuildSlider("Frame Duration", 1, EditorConstants.WeaponFrameDurationMax, asset.FrameDuration, content, f => asset.UpdateFrameDuration((int) f));
             
+            b.BuildHeader("Sound", content);
+            b.BuildSoundField("Use", asset.UseSound, content, asset.UpdateUseSound, true);
+            
             BuildProjectileContent(content);
         }
         
