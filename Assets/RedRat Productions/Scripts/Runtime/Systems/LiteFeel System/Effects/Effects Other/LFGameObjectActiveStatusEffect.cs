@@ -9,7 +9,7 @@ namespace RedRats.Systems.LiteFeel.Effects
     /// </summary>
     public class LFGameObjectActiveStatusEffect : LFEffectWithDurationBase
     {
-        [SerializeField, InfoBox("Missing target", InfoMessageType.Error, "@target == null")] private GameObject target;
+        [SerializeField, Required] private GameObject target;
         [SerializeField, EnumToggleButtons] private GameObjectStatusType newState = GameObjectStatusType.Activate;
         
         private bool initState;

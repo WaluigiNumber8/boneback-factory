@@ -40,8 +40,12 @@ namespace RedRats.Systems.Audio
 
         private void OnEnable() => previewer = EditorUtility.CreateGameObjectWithHideFlags("AudioPreview", HideFlags.HideAndDontSave, typeof(AudioSource)).GetComponent<AudioSource>();
 
-        private void OnDisable() => DestroyImmediate(previewer.gameObject);
-        
+        private void OnDisable()
+        {
+            if (previewer == null) return;
+            DestroyImmediate(previewer.gameObject);
+        }
+
         [ButtonGroup("previewControls")]
         [GUIColor(.3f, 0.9f, .3f)]
         [Button(ButtonSizes.Large)]

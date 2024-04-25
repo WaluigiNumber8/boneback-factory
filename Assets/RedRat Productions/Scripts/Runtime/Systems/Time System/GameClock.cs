@@ -17,7 +17,7 @@ namespace RedRats.Systems.Clocks
         /// Change the time scale of the game.
         /// </summary>
         /// <param name="timeScale">The new scale to use for the game clock.</param>
-        public void Change(float timeScale)
+        public void Set(float timeScale)
         {
             currentTimeScale = timeScale;
             UpdateTimeScale(currentTimeScale);
@@ -48,6 +48,6 @@ namespace RedRats.Systems.Clocks
         /// <param name="timeScale">The new time scale.</param>
         private void UpdateTimeScale(float timeScale) => Time.timeScale = timeScale;
         
-        public float Scale { get => Time.timeScale; }
+        public float CurrentScale { get => Time.timeScale; }
     }
 }

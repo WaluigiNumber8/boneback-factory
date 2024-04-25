@@ -193,6 +193,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: sprset_Bones_Skull
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ff8acaf147200d45b4d422082c2d160
+      internalID: -493478554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -208,6 +229,7 @@ TextureImporter:
       spr_Bone_Small: 937448377
       sprset_Bones_Bent: -822559739
       sprset_Bones_Broken: -958508976
+      sprset_Bones_Skull: -493478554
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

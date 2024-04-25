@@ -44,6 +44,16 @@ namespace RedRats.Systems.Audio
         /// <summary>
         /// Plays a single sound.
         /// </summary>
+        /// <param name="clip">The clip along with it's settings.</param>
+        /// <param name="sourceSettings">The settings used for the next playback.</param>
+        /// <returns>The <see cref="AudioSource"/> that plays the clip.</returns>
+        public AudioSource PlaySound(AudioClipSO clip, AudioSourceSettingsInfo sourceSettings)
+        {
+            return PlaySound(clip.Clip, clip.MixerGroup, sourceSettings, new AudioSpatialSettingsInfo(0f, null), clip.Volume, clip.PitchMin, clip.PitchMax);
+        }
+        /// <summary>
+        /// Plays a single sound.
+        /// </summary>
         /// <param name="clipsSO">The clip along with it's settings. If multiple are provided a random one is chosen.</param>
         /// <param name="sourceSettings">The settings used for the next playback.</param>
         /// <param name="spatialSettings">Setting up these settings will make the sound 3D.</param>

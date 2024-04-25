@@ -12,6 +12,7 @@ namespace Rogium.Systems.LiteFeel.Brains
         [Space] 
         [SerializeField, ChildGameObjectsOnly, GUIColor(0.15f, 0.7f, 1f)] private LFEffector onTurnEffector;
         [SerializeField, ChildGameObjectsOnly, GUIColor(0.15f, 0.7f, 1f)] private LFEffector onHitEffector;
+        [SerializeField, ChildGameObjectsOnly, GUIColor(0.15f, 0.7f, 1f)] private LFEffector onDeathEffector;
         [Space]
         [SerializeField] private DamageParticleSettingsInfo hitSettings;
 
@@ -19,12 +20,14 @@ namespace Rogium.Systems.LiteFeel.Brains
         {
             if (onTurnEffector != null) player.OnTurn += onTurnEffector.Play;
             if (onHitEffector != null) player.DamageReceiver.OnHit += WhenHit;
+            if (onDeathEffector != null) player.OnDeath += onDeathEffector.Play;
         }
 
         private void OnDisable()
         {
             if (onTurnEffector != null) player.OnTurn -= onTurnEffector.Play;
             if (onHitEffector != null) player.DamageReceiver.OnHit -= WhenHit;
+            if (onDeathEffector != null) player.OnDeath -= onDeathEffector.Play;
         }
         
         private void WhenHit(int damage, Vector3 hitDirection)
