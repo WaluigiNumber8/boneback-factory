@@ -1196,6 +1196,7 @@ GameObject:
   - component: {fileID: 7507955224144726584}
   - component: {fileID: 7784171899659078457}
   - component: {fileID: 2953488364429195883}
+  - component: {fileID: 2238933282171980782}
   m_Layer: 3
   m_Name: OnDeath Effect
   m_TagString: Untagged
@@ -1696,6 +1697,33 @@ MonoBehaviour:
   initialDelayMax: 0
   randomizeDelay: 0
   effectData: {fileID: 8778876600675149116, guid: dbbf4ffb0e07dc243959e9c7ddc7c517, type: 3}
+  target: {fileID: 42737587612288670}
+  id: 0
+  followTarget: 0
+  offset: {x: 0, y: 0, z: 0}
+  followRotation: 0
+  rotationOffset: {x: 0, y: 0, z: 0}
+--- !u!114 &2238933282171980782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3891102680485738365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77aca6bd43054573a5ca069d1c97f105, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: Arms
+  active: 1
+  restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
+  initialDelayMin: 0
+  initialDelayMax: 0
+  randomizeDelay: 0
+  effectData: {fileID: 1992416157794178195, guid: 1bdedd0dd0281364c8bfa6f96c2aef3c, type: 3}
   target: {fileID: 42737587612288670}
   id: 0
   followTarget: 0

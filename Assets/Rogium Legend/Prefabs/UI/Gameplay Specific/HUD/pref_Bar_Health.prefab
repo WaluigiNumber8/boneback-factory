@@ -398,7 +398,7 @@ MonoBehaviour:
   uniform: 0
   beginRotation: {x: 0, y: 0, z: 0}
   beginRotationU: 0
-  targetRotation: {x: 0, y: 0, z: 5}
+  targetRotation: {x: 0, y: 0, z: 4}
   targetRotationU: 90
   rotationCurve:
     serializedVersion: 2
