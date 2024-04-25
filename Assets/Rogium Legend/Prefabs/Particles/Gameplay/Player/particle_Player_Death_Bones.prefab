@@ -90,7 +90,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4506261204721590085, guid: c924cfa4054ed2640b9c92ca3e0092ae, type: 3}
       propertyPath: CollisionModule.collidesWith.m_Bits
-      value: 776
+      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 4506261204721590085, guid: c924cfa4054ed2640b9c92ca3e0092ae, type: 3}
       propertyPath: InitialModule.startLifetime.minScalar
@@ -350,7 +350,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5935992305485476582, guid: c924cfa4054ed2640b9c92ca3e0092ae, type: 3}
       propertyPath: m_Name
-      value: particle_Player_Death
+      value: particle_Player_Death_Bones
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

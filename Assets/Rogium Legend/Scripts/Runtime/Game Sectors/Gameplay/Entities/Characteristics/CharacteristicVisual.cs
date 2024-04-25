@@ -23,7 +23,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
 
         private void Update()
         {
-            frameCountdown -= (int)(1 * GameClock.Instance.Scale);
+            frameCountdown -= (int)(1 * GameClock.Instance.CurrentScale);
             ProcessSwitchFrame();
         }
 
