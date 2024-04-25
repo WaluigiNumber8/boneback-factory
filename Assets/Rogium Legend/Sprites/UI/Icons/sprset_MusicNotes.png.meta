@@ -152,127 +152,43 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_Menu_Icons_4
+      name: sprset_MusicNotes_Weapon
       rect:
         serializedVersion: 2
         x: 32
         y: 0
-        width: 8
-        height: 8
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9badb58f775e9f48be96ace59b1f8d5
-      internalID: -917808211
+      spriteID: 49ba28f7fd8e33b40a16aad3d5d41350
+      internalID: 1822510446
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_Menu_Icons_5
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fbb851441c095a549a8e480727661805
-      internalID: -375139211
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprset_Menu_Icons_6
+      name: sprset_MusicNotes_Magic
       rect:
         serializedVersion: 2
         x: 48
         y: 0
-        width: 8
-        height: 8
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 521628d95f591af48946ecefcaec7ebc
-      internalID: 1300377024
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprset_Menu_Icons_7
-      rect:
-        serializedVersion: 2
-        x: 56
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6daa70164a9b0db4fab7c0f3e4d6f1b9
-      internalID: 1967343671
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprset_Menu_Icons_8
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a4a57532a4a608945acdca8a127803e6
-      internalID: -1655104440
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sprset_Menu_Icons_9
-      rect:
-        serializedVersion: 2
-        x: 72
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 307667d3157c4774ba2e3d333b9036ab
-      internalID: -1488724766
+      spriteID: e474209351e0932438ca80e2b8231284
+      internalID: -746975425
       vertices: []
       indices: 
       edges: []
@@ -298,6 +214,8 @@ TextureImporter:
       sprset_Menu_Icons_9: -1488724766
       sprset_MusicNotes_Enemy: -1820635022
       sprset_MusicNotes_General: -203117973
+      sprset_MusicNotes_Magic: -746975425
+      sprset_MusicNotes_Weapon: 1822510446
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
