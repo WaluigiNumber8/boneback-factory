@@ -193,6 +193,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: sprset_MusicNotes_Alien
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68c436036282b7046a8b0b93204b538e
+      internalID: -1522279276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -212,6 +233,7 @@ TextureImporter:
       sprset_Menu_Icons_7: 1967343671
       sprset_Menu_Icons_8: -1655104440
       sprset_Menu_Icons_9: -1488724766
+      sprset_MusicNotes_Alien: -1522279276
       sprset_MusicNotes_Enemy: -1820635022
       sprset_MusicNotes_General: -203117973
       sprset_MusicNotes_Magic: -746975425
