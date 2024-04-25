@@ -12,6 +12,8 @@ namespace Rogium.Gameplay.Entities
     /// </summary>
     public class WeaponController : EntityController
     {
+        public event Action OnUse;
+        
         [Title("Characteristics")]
         [SerializeField] private CharacteristicDamageGiver damageGiver;
         [SerializeField] private CharacteristicProjectileShoot projectileShoot;
@@ -64,6 +66,8 @@ namespace Rogium.Gameplay.Entities
                 default:
                     throw new ArgumentOutOfRangeException($"The Use Type '{weapon.UseType}' is not supported or implemented.");
             }
+            
+            OnUse?.Invoke();
             
             IEnumerator StaticTypeCoroutine(bool showWeapon)
             {
