@@ -38,12 +38,18 @@ namespace Rogium.Systems.Particles
         private void OnParticleTrigger()
         {
             List<ParticleSystem.Particle> particles = new();
-            int amount = effect.GetTriggerParticles(ParticleSystemTriggerEventType.Inside, particles);
+            int amount = effect.GetTriggerParticles(ParticleSystemTriggerEventType.Inside, particles, out ParticleSystem.ColliderData data);
             for (int i = 0; i < amount; i++)
             {
-                 CharacteristicDamageReceiver receiver = effect.trigger.GetCollider(i)?.GetComponent<CharacteristicDamageReceiver>();
-                 receiver?.TakeDamage(damage, transform);
+                if (particles[i].velocity.sqrMagnitude < 10f) continue;
+                for (int j = 0; j < data.GetColliderCount(i); j++)
+                {
+                    // Get the GameObject that the particle collided with
+                    CharacteristicDamageReceiver receiver = data.GetCollider(i, j).GetComponent<CharacteristicDamageReceiver>();
+                    receiver?.TakeDamage(damage, transform);
+                }
             }
+            particles.Clear();
         }
     }
 }
