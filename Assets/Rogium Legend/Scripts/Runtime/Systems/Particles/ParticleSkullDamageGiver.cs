@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using RedRats.Systems.Audio;
 using Rogium.Gameplay.Entities.Characteristics;
 using UnityEngine;
 
@@ -11,10 +12,16 @@ namespace Rogium.Systems.Particles
     public class ParticleSkullDamageGiver : MonoBehaviour
     {
         [SerializeField] private int damage;
+        [SerializeField] private AudioClipSO hitWallSound;
         
         private ParticleSystem effect;
+        private AudioSystem audioSystem;
 
-        private void Awake() => effect = GetComponent<ParticleSystem>();
+        private void Awake()
+        {
+            effect = GetComponent<ParticleSystem>();
+            audioSystem = AudioSystem.GetInstance();
+        }
 
         private void OnEnable()
         {
@@ -50,6 +57,11 @@ namespace Rogium.Systems.Particles
                 }
             }
             particles.Clear();
+        }
+
+        private void OnParticleCollision(GameObject other)
+        {
+            audioSystem.PlaySound(hitWallSound, new AudioSourceSettingsInfo(0, false, false, false));
         }
     }
 }
