@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: asset_SFX_Weapon_Stab_3
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 04390ed2f9920ab41b7caac251180888, type: 3}
+  - {fileID: 8300000, guid: c0b1d6ea7b125254b94fa18bebe500e4, type: 3}
+  - {fileID: 8300000, guid: c9783f4876dc9df4c8bc74139518e7f1, type: 3}
+  - {fileID: 8300000, guid: 0765e86c76eaaed4f861ac0b4c3ff800, type: 3}
   mixerGroup: {fileID: -7128948430085313062, guid: 15e85eab3684ad9409d53f645746215d, type: 2}
   volume: 1
   pitchMin: 0.95
