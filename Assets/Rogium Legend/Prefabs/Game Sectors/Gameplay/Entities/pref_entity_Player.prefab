@@ -399,6 +399,9 @@ MonoBehaviour:
     FaceDirectionY: FaceDirectionY
     MoveSpeed: MoveSpeed
     onDeath: OnDeath
+    onWeaponUse: OnWeaponUse
+    onWeaponUseStop: OnWeaponUseStop
+  weapon: {fileID: 6185820723040305167}
 --- !u!114 &4747239451648468430
 MonoBehaviour:
   m_ObjectHideFlags: 0
