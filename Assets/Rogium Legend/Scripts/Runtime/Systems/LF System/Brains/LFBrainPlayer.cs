@@ -11,7 +11,7 @@ namespace Rogium.Systems.LiteFeel.Brains
     /// </summary>
     public class LFBrainPlayer : MonoBehaviour
     {
-        [SerializeField, GUIColor(0.85f, 0.8f, 0f)] private PlayerController player;
+        [SerializeField, Required, GUIColor(0.85f, 0.8f, 0f)] private PlayerController player;
         [Space] 
         [SerializeField, ChildGameObjectsOnly, GUIColor(0.15f, 0.7f, 1f)] private LFEffector onTurnEffector;
         [SerializeField, ChildGameObjectsOnly, GUIColor(0.15f, 0.7f, 1f)] private LFEffector onHitEffector;

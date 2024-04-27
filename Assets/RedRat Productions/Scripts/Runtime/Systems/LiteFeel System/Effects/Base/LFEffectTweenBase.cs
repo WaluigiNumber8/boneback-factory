@@ -53,6 +53,7 @@ namespace RedRats.Systems.LiteFeel.Effects
             SetupTweens();
             int loops = (TotalLoops == int.MaxValue) ? -1 : TotalLoops;
             sequence.SetLoops(loops, loopType);
+            sequence.SetUpdate(IsRealtime);
         }
 
         /// <summary>

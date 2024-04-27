@@ -13,14 +13,15 @@ namespace Rogium.Gameplay.Inventory
     /// </summary>
     public class WeaponSelectMenu : MonoSingleton<WeaponSelectMenu>
     {
+        public event Action OnOpen;
+        public event Action OnClose;
+        
         [SerializeField] private Transform snapTransform;
         [SerializeField] private ObjectSwitcherMono layoutSwitcher;
-        [Range(0f, 4f)]
-        [SerializeField] private float inputStartDelay = 1;
-        
+        [SerializeField, Range(0f, 4f)] private float inputStartDelay = 1;
         [SerializeField] private UIInfo ui;
 
-        private Action<int> methodToRun;
+        private Action<int> whenSelectedWeapon;
 
         protected override void Awake()
         {
@@ -31,10 +32,10 @@ namespace Rogium.Gameplay.Inventory
         /// <summary>
         /// Opens the Weapon Select Menu with the normal layout..
         /// </summary>
-        /// <param name="selectedMethod">The method to run when a slot is selected.</param>
-        public void OpenForNormal(Action<int> selectedMethod)
+        /// <param name="whenSelectedWeapon">The method to run when a slot is selected.</param>
+        public void OpenForNormal(Action<int> whenSelectedWeapon)
         {
-            methodToRun = selectedMethod;
+            this.whenSelectedWeapon = whenSelectedWeapon;
             layoutSwitcher.Switch(ui.normalLayout);
             ui.firstSelectedNormal.Select();
             Show();
@@ -46,7 +47,7 @@ namespace Rogium.Gameplay.Inventory
         /// <param name="selectedMethod">The method to run when a slot is selected.</param>
         public void OpenForDash(Action<int> selectedMethod)
         {
-            methodToRun = selectedMethod;
+            whenSelectedWeapon = selectedMethod;
             layoutSwitcher.Switch(ui.dashLayout);
             ui.firstSelectedDash.Select();
             Show();
@@ -58,7 +59,7 @@ namespace Rogium.Gameplay.Inventory
         /// <param name="index">The index pf the slot to select.</param>
         public void Select(int index)
         {
-            methodToRun.Invoke(index);
+            whenSelectedWeapon.Invoke(index);
             Hide();
         }
         
@@ -71,6 +72,8 @@ namespace Rogium.Gameplay.Inventory
             ui.ui.SetActive(true);
             GameplayOverseerMono.GetInstance().EnableUI();
             InputSystem.GetInstance().DisableInput(this, inputStartDelay);
+            
+            OnOpen?.Invoke();
         }
 
         /// <summary>
@@ -80,9 +83,11 @@ namespace Rogium.Gameplay.Inventory
         {
             ui.ui.SetActive(false);
             GameplayOverseerMono.GetInstance().DisableUI();
+            
+            OnClose?.Invoke();
         }
 
-        [System.Serializable]
+        [Serializable]
         private struct UIInfo
         {
             public Transform parent;

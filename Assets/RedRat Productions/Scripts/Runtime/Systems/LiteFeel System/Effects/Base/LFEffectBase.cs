@@ -22,6 +22,8 @@ namespace RedRats.Systems.LiteFeel.Effects
         private bool keepStateOnStop;
         [FoldoutGroup("$GroupSettings"), SerializeField] 
         private bool noPlayWhenPlaying;
+        [FoldoutGroup("$GroupSettings"), SerializeField] 
+        private bool isRealtime;
         [FoldoutGroup("$GroupSettings"), HorizontalGroup("$GroupSettings/D"), SerializeField, LabelText("Initial Delay")] 
         private float initialDelayMin;
         [FoldoutGroup("$GroupSettings"), HorizontalGroup("$GroupSettings/D"), SerializeField, ShowIf("randomizeDelay"), HideLabel] 
@@ -105,12 +107,23 @@ namespace RedRats.Systems.LiteFeel.Effects
         private IEnumerator PlayCoroutine()
         {
             float delay = (randomizeDelay) ? Random.Range(initialDelayMin, initialDelayMax) : initialDelayMin;
-            yield return new WaitForSeconds(delay);
+            yield return WaitFor(delay);
             PlaySelf();
-            yield return new WaitForSeconds(TotalDuration);
+            yield return WaitFor(TotalDuration);
             Stop();
         }
 
+        /// <summary>
+        /// Like WaitForSeconds, but turns to WaitForSecondsRealtime if isRealtime is true.
+        /// </summary>
+        /// <param name="seconds"></param>
+        /// <returns></returns>
+        protected IEnumerator WaitFor(float seconds)
+        {
+            if (!isRealtime) yield return new WaitForSeconds(seconds);
+            else yield return new WaitForSecondsRealtime(seconds);
+        }
+        
         private Color GetEffectColor()
         {
             ColorUtility.TryParseHtmlString(FeedbackColor, out Color c);
@@ -139,10 +152,11 @@ namespace RedRats.Systems.LiteFeel.Effects
         protected abstract float TotalDuration { get; }
         protected abstract string FeedbackColor { get; }
         
+        public bool IsPlaying { get => isPlaying; }
+        protected bool PlayImmediately { get => playImmediately; }
+        protected bool IsRealtime { get => isRealtime; }
         private string GetDelay => (randomizeDelay) ? $"{initialDelayMin} - {initialDelayMax}" : initialDelayMin.ToString();
         private string InactiveInfo => (!active) ? "[INACTIVE] " : "";
         
-        public bool IsPlaying { get => isPlaying; }
-        protected bool PlayImmediately { get => playImmediately; }
     }
 }

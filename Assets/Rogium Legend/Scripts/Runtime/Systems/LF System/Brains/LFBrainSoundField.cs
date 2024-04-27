@@ -10,7 +10,7 @@ namespace Rogium.Systems.LiteFeel.Brains
     /// </summary>
     public class LFBrainSoundField : MonoBehaviour
     {
-        [SerializeField, GUIColor(0.85f, 0.8f, 0f)] private SoundField soundField;
+        [SerializeField, Required, GUIColor(0.85f, 0.8f, 0f)] private SoundField soundField;
         [Space] 
         [SerializeField, GUIColor(0.1f, 0.5f, 1f)] private LFEffector onClearEffector;
         

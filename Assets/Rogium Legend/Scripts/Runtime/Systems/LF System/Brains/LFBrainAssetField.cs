@@ -10,7 +10,7 @@ namespace Rogium.Systems.LiteFeel.Brains
     /// </summary>
     public class LFBrainAssetField : MonoBehaviour
     {
-        [SerializeField, GUIColor(0.85f, 0.8f, 0f)] private AssetField assetField;
+        [SerializeField, Required, GUIColor(0.85f, 0.8f, 0f)] private AssetField assetField;
         [Space] 
         [SerializeField, GUIColor(0.1f, 0.5f, 1f)] private LFEffector onClearEffector;
         
