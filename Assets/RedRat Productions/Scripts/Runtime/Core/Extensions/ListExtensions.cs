@@ -16,9 +16,10 @@ namespace RedRats.Core
         /// <typeparam name="T">List type.</typeparam>
         /// <param name="list">The list to search.</param>
         /// <returns>Amount of duplicate entries.</returns>
-        public static int GetDuplicatesCount<T>(this IList<T> list)
+        public static int GetDuplicatesCount<T>(this IList<T> list, out IList<string> duplicateValues)
         {
             SafetyNet.EnsureIsNotNull(list, "List to Check");
+            duplicateValues = new List<string>();
             
             if (list.Count <= 1) return 0;
             
@@ -29,6 +30,7 @@ namespace RedRats.Core
             {
                 if (!set.Add(item))
                 {
+                    duplicateValues.Add(item.ToString());
                     count++;
                     if (duplicates.Add(item)) count++;
                 }

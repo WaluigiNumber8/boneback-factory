@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad2f3d0232684d7bbc6f5aae05793d35, type: 3}
+  m_Name: asset_SoundAsset_Weapon_Wind_1
+  m_EditorClassIdentifier: 
+  icon: {fileID: -746975425, guid: f2a7ec9f5ff1ee545b041f285f827291, type: 3}
+  id: 028
+  title: Wind 1
+  soundData: {fileID: 11400000, guid: b04103c74f0b6554486d992aa8122684, type: 2}
+  defaultParameters:
+    intValue1: 0
+    intValue2: 0
+    intValue3: 0
+    intValue4: 0
+    intValue5: 0
+    intValue6: 0
+    floatValue1: 1
+    floatValue2: 1
+    floatValue3: 1
+    floatValue4: 0
+    floatValue5: 0
+    floatValue6: 0
+    boolValue1: 1
+    boolValue2: 0
+    boolValue3: 0
+    boolValue4: 0
+    boolValue5: 0
+    boolValue6: 0
+    stringValue1: 
+    stringValue2: 
+    stringValue3: 
+    stringValue4: 
+    stringValue5: 
+    stringValue6: 

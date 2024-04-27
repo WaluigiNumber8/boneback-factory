@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: asset_SFX_Enemy_Death_1
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 42ba9ecb94cceb54f8383fc955c5bc16, type: 3}
+  - {fileID: 8300000, guid: c88f7de92fe352940b5ec4ad41153619, type: 3}
   mixerGroup: {fileID: -7128948430085313062, guid: 15e85eab3684ad9409d53f645746215d, type: 2}
   volume: 0.422
   pitchMin: 0.95

@@ -12,25 +12,25 @@ namespace Rogium.Gameplay.Entities.Characteristics
     public class CharacteristicSoundEmitter : CharacteristicBase
     {
         [SerializeField] private AudioMixerGroup mixerGroup;
-        
-        private AssetData hurtSoundData;
-        private AssetData deathSoundData;
 
-        public void Construct(CharSoundInfo soundInfo)
-        {
-            hurtSoundData = soundInfo.hurtSound;
-            deathSoundData = soundInfo.deathSound;
-        }
+        private CharSoundInfo soundData;
+
+        public void Construct(CharSoundInfo soundInfo) => this.soundData = soundInfo;
 
         /// <summary>
         /// Plays the hurt sound.
         /// </summary>
-        public void PlayHurtSound(int damage = 0) => PlaySound(hurtSoundData);
+        public void PlayHurtSound(int damage = 0) => PlaySound(soundData.hurtSound);
         
         /// <summary>
         /// Play the death sound.
         /// </summary>
-        public void PlayDeathSound() => PlaySound(deathSoundData);
+        public void PlayDeathSound() => PlaySound(soundData.deathSound);
+        
+        /// <summary>
+        /// Play the use sound.
+        /// </summary>
+        public void PlayUseSound() => PlaySound(soundData.useSound);
 
         /// <summary>
         /// Plays a sound.

@@ -16,6 +16,9 @@ namespace Rogium.ExternalStorage.Serialization
         public float useStartDelay;
         public bool isEvasive;
         public bool freezeUser;
+        
+        public AssetData useSound;
+        
         public ProjectileDataInfo[] projectileIDs;
 
         public JSONWeaponAsset(WeaponAsset asset) : base(asset)
@@ -25,6 +28,7 @@ namespace Rogium.ExternalStorage.Serialization
             useStartDelay = asset.UseStartDelay;
             isEvasive = asset.IsEvasive;
             freezeUser = asset.FreezeUser;
+            useSound = new AssetData(asset.UseSound);
             projectileIDs = asset.ProjectileIDs.ToArray();
         }
 
@@ -51,6 +55,7 @@ namespace Rogium.ExternalStorage.Serialization
                                    isEvasive,
                                    freezeUser,
                                    projectileIDs,
+                                   useSound,
                                    DateTime.Parse(creationDate));
         }
     }

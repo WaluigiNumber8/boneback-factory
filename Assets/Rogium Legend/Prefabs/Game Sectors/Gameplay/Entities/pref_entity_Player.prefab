@@ -399,6 +399,9 @@ MonoBehaviour:
     FaceDirectionY: FaceDirectionY
     MoveSpeed: MoveSpeed
     onDeath: OnDeath
+    onWeaponUse: OnWeaponUse
+    onWeaponUseStop: OnWeaponUseStop
+  weapon: {fileID: 6185820723040305167}
 --- !u!114 &4747239451648468430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1934,13 +1937,83 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5282049708220432706, guid: e3c9f70ed9bd6c341bad36bc8cbf2d44, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4594679405235680464}
   m_SourcePrefab: {fileID: 100100000, guid: e3c9f70ed9bd6c341bad36bc8cbf2d44, type: 3}
 --- !u!4 &1979538417201400526 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1508932669174804061, guid: e3c9f70ed9bd6c341bad36bc8cbf2d44, type: 3}
   m_PrefabInstance: {fileID: 1119274212337525907}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5099739224724039121 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5282049708220432706, guid: e3c9f70ed9bd6c341bad36bc8cbf2d44, type: 3}
+  m_PrefabInstance: {fileID: 1119274212337525907}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4594679405235680464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5099739224724039121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e6b492337984a3295e59fb635b3b40a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: Player squash
+  active: 1
+  restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
+  initialDelayMin: 0
+  initialDelayMax: 0
+  randomizeDelay: 0
+  duration: 0.1
+  infiniteLoop: 0
+  loops: 1
+  loopType: 0
+  target: {fileID: 42737587612288670}
+  mode: 1
+  beginScale: 1
+  targetScale: 0.85
+  affectedAxis: 2
+  deformCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.057418823
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &6185820723040305167 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6507709000051811484, guid: e3c9f70ed9bd6c341bad36bc8cbf2d44, type: 3}

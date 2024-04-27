@@ -9,11 +9,13 @@ namespace Rogium.Gameplay.Entities.Characteristics
     {
         public AssetData hurtSound;
         public AssetData deathSound;
+        public AssetData useSound;
         
-        public CharSoundInfo(AssetData hurtSound, AssetData deathSound)
+        public CharSoundInfo(AssetData hurtSound, AssetData deathSound, AssetData useSound)
         {
             this.hurtSound = hurtSound;
             this.deathSound = deathSound;
+            this.useSound = useSound;
         }
     }
 }

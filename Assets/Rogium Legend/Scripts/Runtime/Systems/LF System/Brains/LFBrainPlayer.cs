@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace Rogium.Systems.LiteFeel.Brains
 {
+    /// <summary>
+    /// Allocates LF effects to the player.
+    /// </summary>
     public class LFBrainPlayer : MonoBehaviour
     {
         [SerializeField, GUIColor(0.85f, 0.8f, 0f)] private PlayerController player;

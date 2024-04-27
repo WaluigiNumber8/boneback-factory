@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using RedRats.Core;
+using RedRats.Safety;
 using Rogium.Editors.Objects;
 using Rogium.Editors.Sounds;
 using UnityEngine;
@@ -13,6 +14,14 @@ namespace Rogium.Editors.Core
     {
         [SerializeField] private ObjectCollectionAsset objects;
         [SerializeField] private SoundCollectionAsset sounds;
+
+
+        protected override void Awake()
+        {
+            base.Awake();
+            SafetyNet.EnsureListDoesNotHaveDuplicities(objects.GetAssetListCopy(), "Iobjects list");
+            SafetyNet.EnsureListDoesNotHaveDuplicities(sounds.GetAssetListCopy(), "sounds list");
+        }
 
         #region Interactable Objects
 
