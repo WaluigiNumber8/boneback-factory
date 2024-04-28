@@ -570,6 +570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoplay: 0
+  timescale: 1
 --- !u!114 &2095806662493024034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1334,6 +1335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoplay: 0
+  timescale: 1
 --- !u!114 &65439256275005387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1911,6 +1913,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoplay: 0
+  timescale: 2
 --- !u!114 &7510594901626089146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1928,7 +1931,7 @@ MonoBehaviour:
   restartOnPlay: 1
   keepStateOnStop: 0
   noPlayWhenPlaying: 0
-  isRealtime: 1
+  isRealtime: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -1942,9 +1945,9 @@ MonoBehaviour:
   worldType: 1
   mode: 1
   uniform: 0
-  beginPosition: {x: 0, y: 1, z: 0}
+  beginPosition: {x: 0, y: 0, z: 0}
   beginPositionU: 0
-  targetPosition: {x: 0, y: 1.05, z: 0}
+  targetPosition: {x: 0, y: 0.05, z: 0}
   targetPositionU: 1
   positionCurve:
     serializedVersion: 2
@@ -2025,6 +2028,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoplay: 0
+  timescale: 1
 --- !u!114 &4594593854619174501
 MonoBehaviour:
   m_ObjectHideFlags: 0

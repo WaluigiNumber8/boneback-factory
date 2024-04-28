@@ -104,6 +104,10 @@ namespace RedRats.Systems.LiteFeel.Effects
         /// </summary>
         public void MarkAsNotPlayImmediately() => playImmediately = false;
         
+        /// <summary>
+        /// Set to TRUE if the effect should be played in unscaled time.
+        /// </summary>
+        public void UpdateTimescale(bool isRealtime) => this.isRealtime = isRealtime;
         private IEnumerator PlayCoroutine()
         {
             float delay = (randomizeDelay) ? Random.Range(initialDelayMin, initialDelayMax) : initialDelayMin;
