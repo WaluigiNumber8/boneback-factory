@@ -10,7 +10,8 @@ namespace RedRats.Systems.LiteFeel.Effects
     public class LFPositionEffect : LFEffectTweenBase
     {
         [Header("Position")] 
-        [SerializeField, InfoBox("Missing target", InfoMessageType.Error, "@target == null")] private Transform target;
+        [SerializeField, Required] private Transform target;
+        [SerializeField] private Transform anchor;
         [SerializeField, EnumToggleButtons] private MovementType movement = MovementType.Relative;
         [SerializeField, EnumToggleButtons] private WorldType worldType = WorldType.Local;
         [SerializeField, EnumToggleButtons] private TransitionType mode = TransitionType.ToDestination;
@@ -24,8 +25,13 @@ namespace RedRats.Systems.LiteFeel.Effects
         private Vector3 startPosition;
         private Vector3 startLocalPosition;
 
+        #region Update Values
+        public void UpdateTarget(Transform newTarget) => target = newTarget;
+        #endregion
+        
         protected override void SetBeginState()
         {
+            if (anchor != null) target.position = anchor.position;
             if (mode != TransitionType.AToB) return;
             if (worldType == WorldType.World) target.position = GetBeginPosition();
             else target.localPosition = GetBeginPosition();

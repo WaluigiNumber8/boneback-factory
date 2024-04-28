@@ -23,7 +23,7 @@ namespace Rogium.Gameplay.Inventory
 
         private Action<int> whenSelectedWeapon;
 
-        protected override void Awake()
+        private void Start()
         {
             ui.ui.SetActive(false);
             Hide();
