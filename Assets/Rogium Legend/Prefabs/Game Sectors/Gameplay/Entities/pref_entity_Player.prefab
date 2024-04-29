@@ -1877,6 +1877,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6097411893956923988}
   - component: {fileID: 8113916075879097545}
+  - component: {fileID: 2357686634307869108}
+  - component: {fileID: 8572018992229948947}
   - component: {fileID: 9067798697776101882}
   - component: {fileID: 7510594901626089146}
   m_Layer: 3
@@ -1915,6 +1917,88 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoplay: 0
   timescale: 2
+--- !u!114 &2357686634307869108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4904404445468368326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: Item Get Sound
+  active: 1
+  restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
+  isRealtime: 0
+  initialDelayMin: 0
+  initialDelayMax: 0
+  randomizeDelay: 0
+  clips:
+  - {fileID: 11400000, guid: c6a27ca29d00fd54bbf4d62c9a291527, type: 2}
+  sourceSettings:
+    id: 0
+    loop: 0
+    playOnlyWhenNotPlaying: 0
+    muteSameSound: 0
+  spatialSettings:
+    spatialBlend: 0
+    soundTarget: {fileID: 0}
+    minDistance: 2.5
+    maxDistance: 4
+  ignoreEffectStop: 1
+  overrideMixerGroup: 0
+  mixerGroup: {fileID: 0}
+  overrideVolume: 0
+  volume: 1
+  overridePitch: 0
+  pitchMin: 0.95
+  pitchMax: 1.05
+--- !u!114 &8572018992229948947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4904404445468368326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: sparks sound
+  active: 1
+  restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
+  isRealtime: 0
+  initialDelayMin: 0.2
+  initialDelayMax: 0
+  randomizeDelay: 0
+  clips:
+  - {fileID: 11400000, guid: 9d4a7b16135f05e49b846ce22bf5254d, type: 2}
+  sourceSettings:
+    id: 0
+    loop: 1
+    playOnlyWhenNotPlaying: 0
+    muteSameSound: 0
+  spatialSettings:
+    spatialBlend: 0
+    soundTarget: {fileID: 0}
+    minDistance: 2.5
+    maxDistance: 4
+  ignoreEffectStop: 1
+  overrideMixerGroup: 0
+  mixerGroup: {fileID: 0}
+  overrideVolume: 0
+  volume: 1
+  overridePitch: 0
+  pitchMin: 0.95
+  pitchMax: 1.05
 --- !u!114 &9067798697776101882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1927,7 +2011,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6b492337984a3295e59fb635b3b40a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info: 'Squish Squash '
+  info: Bump item
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
@@ -1936,15 +2020,15 @@ MonoBehaviour:
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
-  duration: 0.2
+  duration: 0.4
   infiniteLoop: 0
   loops: 1
   loopType: 0
   target: {fileID: 5242731770121318210}
   mode: 1
   beginScale: 1
-  targetScale: 0.8
-  affectedAxis: 2
+  targetScale: 1.25
+  affectedAxis: 3
   deformCurve:
     serializedVersion: 2
     m_Curve:
@@ -1990,7 +2074,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6f56e3bb57845b4ab18d84a67f13ca8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info: Move collected weapon
+  info: Move collected item
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 0
