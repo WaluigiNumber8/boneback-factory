@@ -593,7 +593,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_Player_Pickup_3
+      name: sprset_Player_Pickup_Struggle_0
       rect:
         serializedVersion: 2
         x: 48
@@ -609,6 +609,27 @@ TextureImporter:
       bones: []
       spriteID: 0c21aa83cac275140aebd84aace0d1f8
       internalID: -918493210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprset_Player_Pickup_Struggle_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d116c3ef7319c104db8ba3b789d5d667
+      internalID: 1691029591
       vertices: []
       indices: 
       edges: []
@@ -646,7 +667,8 @@ TextureImporter:
       sprset_Player_9_Walk_Front_2: -295741731
       sprset_Player_Pickup_0: -1894033461
       sprset_Player_Pickup_2: 1910366269
-      sprset_Player_Pickup_3: -918493210
+      sprset_Player_Pickup_Struggle_0: -918493210
+      sprset_Player_Pickup_Struggle_1: 1691029591
       sprset_Player__Pickup_1: -1777223784
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

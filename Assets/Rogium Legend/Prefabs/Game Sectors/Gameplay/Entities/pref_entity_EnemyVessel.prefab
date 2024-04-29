@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2288712562490459140}
   - component: {fileID: 7361016533485995508}
   - component: {fileID: 8534229735244710295}
+  - component: {fileID: 4075724805289235721}
   - component: {fileID: 6323632590350858176}
   - component: {fileID: 9072947119952181928}
   - component: {fileID: 559268529369682124}
@@ -93,6 +94,69 @@ MonoBehaviour:
   overridePitch: 0
   pitchMin: 0.95
   pitchMax: 1.05
+--- !u!114 &4075724805289235721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923032584119074929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e6b492337984a3295e59fb635b3b40a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: Bump Enemy
+  active: 1
+  restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
+  isRealtime: 0
+  initialDelayMin: 0
+  initialDelayMax: 0
+  randomizeDelay: 0
+  duration: 0.2
+  infiniteLoop: 0
+  loops: 1
+  loopType: 0
+  target: {fileID: 8749843500556548429}
+  mode: 1
+  beginScale: 1
+  targetScale: 0.85
+  affectedAxis: 2
+  deformCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &6323632590350858176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1205,7 +1269,6 @@ MonoBehaviour:
   onHitEffector: {fileID: 3442492309684909175}
   onDeathEffector: {fileID: 6840031811758842939}
   onGetItemEffector: {fileID: 7361016533485995508}
-  onGetItemFinishEffector: {fileID: 0}
   hitSettings:
     particleEffect: {fileID: 8648460540766116803}
     amountCurve:
