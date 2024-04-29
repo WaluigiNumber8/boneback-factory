@@ -3,6 +3,7 @@ using RedRats.Core;
 using RedRats.Systems.ObjectSwitching;
 using Rogium.Gameplay.Core;
 using Rogium.Systems.Input;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,14 +18,27 @@ namespace Rogium.Gameplay.Inventory
         public event Action OnClose;
         
         [SerializeField] private Transform snapTransform;
+        [SerializeField] private Vector2 positionOffset;
         [SerializeField] private ObjectSwitcherMono layoutSwitcher;
         [SerializeField, Range(0f, 4f)] private float inputStartDelay = 1;
         [SerializeField] private UIInfo ui;
 
+        [ButtonGroup, Button("Show", ButtonSizes.Medium)]
+        public void TestShow() => Show();
+        [ButtonGroup, Button("Hide", ButtonSizes.Medium)]
+        public void TestHide() => Hide();
+        
         private Action<int> whenSelectedWeapon;
+        private RectTransform ttransform;
+        private RectTransform canvasTransform;
+        private Camera cam;
 
         private void Start()
         {
+            ttransform = GetComponent<RectTransform>();
+            canvasTransform = ttransform.GetComponentInParent<Canvas>().GetComponent<RectTransform>();
+            cam = Camera.main;
+            
             ui.ui.SetActive(false);
             Hide();
         }
@@ -68,7 +82,7 @@ namespace Rogium.Gameplay.Inventory
         /// </summary>
         private void Show()
         {
-            ui.parent.position = snapTransform.position;
+            SnapToTarget();
             ui.ui.SetActive(true);
             GameplayOverseerMono.GetInstance().EnableUI();
             InputSystem.GetInstance().DisableInput(this, inputStartDelay);
@@ -87,10 +101,15 @@ namespace Rogium.Gameplay.Inventory
             OnClose?.Invoke();
         }
 
+        private void SnapToTarget()
+        {
+            Vector2 targetPosition = cam.WorldToScreenPoint(snapTransform.position + (Vector3) positionOffset);
+            ttransform.localPosition = RedRatUtils.MoveToPositionWithinCanvas(ttransform, targetPosition, canvasTransform, cam);
+        }
+        
         [Serializable]
         private struct UIInfo
         {
-            public Transform parent;
             public GameObject ui;
             public GameObject normalLayout;
             public Selectable firstSelectedNormal;

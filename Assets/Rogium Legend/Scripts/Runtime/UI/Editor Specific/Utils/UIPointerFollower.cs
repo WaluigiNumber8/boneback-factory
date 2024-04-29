@@ -14,11 +14,10 @@ namespace Rogium.UserInterface.Editors.Utils
         [SerializeField, EnumToggleButtons] private UIFollowType followType;
         [SerializeField] private bool rememberDraggedPosition;
         
-        
         private RectTransform ttransform;
+        private RectTransform canvasTransform;
         private InputSystem inputSystem;
         private Canvas canvas;
-        private RectTransform canvasTransform;
         private Camera cam;
         
         private Vector2 originalPosition;

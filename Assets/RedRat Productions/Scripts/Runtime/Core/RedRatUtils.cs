@@ -85,5 +85,51 @@ namespace RedRats.Core
             int targetValue = (int)curveValue.Remap(0f, 1f, secondMin, secondMax);
             return targetValue;
         }
+        
+        /// <summary>
+        /// Moves to a new position within the canvas.
+        /// </summary>
+        /// <param name="ttransform">The <see cref="RectTransform"/> to move.</param>
+        /// <param name="targetPosition">The position to move the transform to.</param>
+        /// <param name="canvasTransform">The <see cref="RectTransform"/> of the canvas.</param>
+        /// <param name="cam">The camera if using screen space - camera</param>
+        /// <returns>A new local position, that's within the canvas.</returns>
+        public static Vector2 MoveToPositionWithinCanvas(RectTransform ttransform, Vector2 targetPosition, RectTransform canvasTransform, Camera cam = null)
+        {
+            (Vector2 minPos, Vector2 maxPos) = GetAllowedMinMaxPositions(ttransform, canvasTransform);
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasTransform, targetPosition, cam, out Vector2 newPos);
+            
+            newPos.x -= ttransform.rect.width  * 0.5f;
+            newPos.y -= ttransform.rect.height * 0.5f;
+            
+            newPos.x = Mathf.Clamp(newPos.x, minPos.x, maxPos.x);
+            newPos.y = Mathf.Clamp(newPos.y, minPos.y, maxPos.y);
+            return newPos;
+        }
+        
+        /// <summary>
+        /// Drags a <see cref="RectTransform"/> within the canvas.
+        /// </summary>
+        /// <param name="ttransform">The <see cref="RectTransform"/> to drag.</param>
+        /// <param name="delta">The delta of the drag.</param>
+        /// <param name="canvas">The canvas to drag in.</param>
+        /// <param name="canvasTransform">The <see cref="RectTransform"/> of the canvas.</param>
+        /// <returns></returns>
+        public static Vector2 DragByWithinCanvas(RectTransform ttransform, Vector2 delta, Canvas canvas, RectTransform canvasTransform)
+        {
+            (Vector2 minPos, Vector2 maxPos) = GetAllowedMinMaxPositions(ttransform, canvasTransform);
+            Vector2 newPos = ttransform.anchoredPosition + (delta / canvas.scaleFactor);
+            
+            newPos.x = Mathf.Clamp(newPos.x, minPos.x, maxPos.x);
+            newPos.y = Mathf.Clamp(newPos.y, minPos.y, maxPos.y);
+            return newPos;
+        }
+        
+        private static (Vector2, Vector2) GetAllowedMinMaxPositions(RectTransform ttransform, RectTransform canvasTransform)
+        {
+            Vector2 minPos = canvasTransform.rect.min - ttransform.rect.min;
+            Vector2 maxPos = canvasTransform.rect.max - ttransform.rect.max;
+            return (minPos, maxPos);
+        }
     }
 }

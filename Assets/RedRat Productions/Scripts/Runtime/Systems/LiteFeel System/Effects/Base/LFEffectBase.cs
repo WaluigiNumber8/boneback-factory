@@ -35,7 +35,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         public void TestPlay() => Play(); 
         [ButtonGroup, Button("Stop", ButtonSizes.Medium), DisableInEditorMode]
         public void TestStop() => Stop();
-        [ButtonGroup(), Button("Init", ButtonSizes.Medium), DisableInEditorMode]
+        [ButtonGroup, Button("Init", ButtonSizes.Medium), DisableInEditorMode]
         public void TestInit() => Initialize();
 
         [SerializeField, HideInInspector] private bool randomizeDelay;
