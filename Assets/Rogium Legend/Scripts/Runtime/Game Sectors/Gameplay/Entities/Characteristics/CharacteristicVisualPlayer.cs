@@ -1,5 +1,6 @@
 ﻿using System;
 using Rogium.Editors.Weapons;
+using Rogium.Gameplay.Entities.Player;
 using Rogium.Gameplay.InteractableObjects;
 using UnityEngine;
 
@@ -20,7 +21,8 @@ namespace Rogium.Gameplay.Entities.Characteristics
             // if (weapon == null) return;
             // weapon.OnUse += PlayWeaponUse;
             // weapon.OnUseStop += PlayWeaponUseStop;
-            InteractObjectWeaponDrop.OnPlayerPickUp += PlayWeaponGet;
+            InteractObjectWeaponDrop.OnPlayerPickUp += PlayItemGet;
+            ((PlayerController)entity).WeaponHold.OnEquipWeapon += PlayItemGetFinish;
         }
         
         private void OnDisable()
@@ -28,7 +30,8 @@ namespace Rogium.Gameplay.Entities.Characteristics
             // if (weapon == null) return;
             // weapon.OnUse -= PlayWeaponUse;
             // weapon.OnUseStop -= PlayWeaponUseStop;
-            InteractObjectWeaponDrop.OnPlayerPickUp -= PlayWeaponGet;
+            InteractObjectWeaponDrop.OnPlayerPickUp -= PlayItemGet;
+            ((PlayerController)entity).WeaponHold.OnEquipWeapon -= PlayItemGetFinish;
         }
         
         private void Update() => UpdateAnimator();
@@ -36,7 +39,8 @@ namespace Rogium.Gameplay.Entities.Characteristics
         public void PlayDeath() => animator.SetTrigger(propertyNames.onDeath);
         private void PlayWeaponUse() => animator.SetTrigger(propertyNames.onWeaponUse);
         private void PlayWeaponUseStop() => animator.SetTrigger(propertyNames.onWeaponUseStop);
-        private void PlayWeaponGet(WeaponAsset weapon) => animator.SetTrigger(propertyNames.onPickup);
+        private void PlayItemGet(WeaponAsset item) => animator.SetTrigger(propertyNames.onPickup);
+        private void PlayItemGetFinish(WeaponAsset item) => animator.SetTrigger(propertyNames.onPickupFinish);
         
         private void UpdateAnimator()
         {

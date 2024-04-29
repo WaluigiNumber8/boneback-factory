@@ -11,6 +11,7 @@ namespace Rogium.Systems.LiteFeel
     public struct NewItemGetSettingsInfo
     {
         [Required] public Transform collectedItem;
+        [Range(0f, 2f)] public float hideDelay;
         public void UpdateSprite(Sprite sprite) => collectedItem.GetComponentInChildren<SpriteRenderer>().sprite = sprite;
     }
 }

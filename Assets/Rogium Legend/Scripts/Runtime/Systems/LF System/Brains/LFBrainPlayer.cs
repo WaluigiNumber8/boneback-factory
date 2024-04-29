@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using RedRats.Core;
 using RedRats.Systems.LiteFeel.Core;
 using Rogium.Editors.Weapons;
@@ -18,7 +20,8 @@ namespace Rogium.Systems.LiteFeel.Brains
         [SerializeField, ChildGameObjectsOnly, GUIColor(0.15f, 0.7f, 1f)] private LFEffector onTurnEffector;
         [SerializeField, ChildGameObjectsOnly, GUIColor(0.15f, 0.7f, 1f)] private LFEffector onHitEffector;
         [SerializeField, ChildGameObjectsOnly, GUIColor(0.15f, 0.7f, 1f)] private LFEffector onDeathEffector;
-        [SerializeField, ChildGameObjectsOnly, GUIColor(1f, 0.5f, 0f)] private LFEffector onGetNewItemEffector;
+        [SerializeField, ChildGameObjectsOnly, GUIColor(1f, 0.5f, 0f)] private LFEffector onGetItemEffector;
+        [SerializeField, ChildGameObjectsOnly, GUIColor(1f, 0.5f, 0f)] private LFEffector onGetItemFinishEffector;
         [Space]
         [SerializeField] private DamageParticleSettingsInfo hitSettings;
         [SerializeField] private NewItemGetSettingsInfo newItemGetSettings;
@@ -28,7 +31,8 @@ namespace Rogium.Systems.LiteFeel.Brains
             if (onTurnEffector != null) player.OnTurn += onTurnEffector.Play;
             if (onHitEffector != null) player.DamageReceiver.OnHit += WhenHit;
             if (onDeathEffector != null) player.OnDeath += onDeathEffector.Play;
-            if (onGetNewItemEffector != null) InteractObjectWeaponDrop.OnPlayerPickUp += WhenGetNewItem;
+            if (onGetItemEffector != null) InteractObjectWeaponDrop.OnPlayerPickUp += WhenGetItem;
+            if (onGetItemFinishEffector != null) player.WeaponHold.OnEquipWeapon += WhenGetItemFinish;
         }
 
         private void OnDisable()
@@ -36,7 +40,8 @@ namespace Rogium.Systems.LiteFeel.Brains
             if (onTurnEffector != null) player.OnTurn -= onTurnEffector.Play;
             if (onHitEffector != null) player.DamageReceiver.OnHit -= WhenHit;
             if (onDeathEffector != null) player.OnDeath -= onDeathEffector.Play;
-            if (onGetNewItemEffector != null) InteractObjectWeaponDrop.OnPlayerPickUp -= WhenGetNewItem;
+            if (onGetItemEffector != null) InteractObjectWeaponDrop.OnPlayerPickUp -= WhenGetItem;
+            if (onGetItemFinishEffector != null) player.WeaponHold.OnEquipWeapon -= WhenGetItemFinish;
         }
         
         private void WhenHit(int damage, Vector3 hitDirection)
@@ -49,11 +54,22 @@ namespace Rogium.Systems.LiteFeel.Brains
             onHitEffector.Play();
         }
         
-        private void WhenGetNewItem(WeaponAsset weapon)
+        private void WhenGetItem(WeaponAsset weapon)
         {
             newItemGetSettings.collectedItem.gameObject.SetActive(true);
             newItemGetSettings.UpdateSprite(weapon.Icon);
-            onGetNewItemEffector.Play();
+            onGetItemEffector.Play();
+        }
+        
+        private void WhenGetItemFinish(WeaponAsset weapon)
+        {
+            onGetItemFinishEffector.Play();
+            StartCoroutine(DelayCoroutine());
+            IEnumerator DelayCoroutine()
+            {
+                yield return new WaitForSecondsRealtime(newItemGetSettings.hideDelay);
+                newItemGetSettings.collectedItem.gameObject.SetActive(false);
+            }
         }
 
     }

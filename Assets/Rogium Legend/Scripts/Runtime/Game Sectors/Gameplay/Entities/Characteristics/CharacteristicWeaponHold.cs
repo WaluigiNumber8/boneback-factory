@@ -14,6 +14,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
     public class CharacteristicWeaponHold : CharacteristicBase
     {
         public event Action<WeaponAsset> OnGetNewWeapon;
+        public event Action<WeaponAsset> OnEquipWeapon;
         
         [SerializeField] private WeaponController weaponEntity;
         [SerializeField] private int startingSlots = 0;
@@ -98,6 +99,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
         {
             SafetyNet.EnsureIndexWithingCollectionRange(slot, currentWeapons, "List of usable weapons");
             currentWeapons[slot] = newWeapon;
+            OnEquipWeapon?.Invoke(newWeapon);
         }
 
         /// <summary>
