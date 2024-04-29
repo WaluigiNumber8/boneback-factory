@@ -100,11 +100,12 @@ namespace Rogium.Gameplay.Inventory
             StartCoroutine(DelayCoroutine());
             IEnumerator DelayCoroutine()
             {
+                OnClose?.Invoke();
+                
                 yield return new WaitForSecondsRealtime(hideDelay);
                 
                 ui.ui.SetActive(false);
                 GameplayOverseerMono.GetInstance().DisableUI();
-                OnClose?.Invoke();
             }
         }
 
