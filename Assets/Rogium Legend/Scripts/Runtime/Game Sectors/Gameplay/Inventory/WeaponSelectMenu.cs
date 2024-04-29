@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using RedRats.Core;
 using RedRats.Systems.ObjectSwitching;
 using Rogium.Gameplay.Core;
@@ -21,6 +22,7 @@ namespace Rogium.Gameplay.Inventory
         [SerializeField] private Vector2 positionOffset;
         [SerializeField] private ObjectSwitcherMono layoutSwitcher;
         [SerializeField, Range(0f, 4f)] private float inputStartDelay = 1;
+        [SerializeField, Range(0f, 4f)] private float hideDelay = 0;
         [SerializeField] private UIInfo ui;
 
         [ButtonGroup, Button("Show", ButtonSizes.Medium)]
@@ -95,10 +97,15 @@ namespace Rogium.Gameplay.Inventory
         /// </summary>
         private void Hide()
         {
-            ui.ui.SetActive(false);
-            GameplayOverseerMono.GetInstance().DisableUI();
-            
-            OnClose?.Invoke();
+            StartCoroutine(DelayCoroutine());
+            IEnumerator DelayCoroutine()
+            {
+                yield return new WaitForSecondsRealtime(hideDelay);
+                
+                ui.ui.SetActive(false);
+                GameplayOverseerMono.GetInstance().DisableUI();
+                OnClose?.Invoke();
+            }
         }
 
         private void SnapToTarget()
