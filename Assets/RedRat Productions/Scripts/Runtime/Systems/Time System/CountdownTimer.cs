@@ -21,7 +21,7 @@ namespace RedRats.Systems.Clocks
         /// Stops the timer.
         /// </summary>
         /// <param name="time">How many seconds the timer lasts</param>
-        public void Start(float time)
+        public void Set(float time)
         {
             timer = time;
             whenStarted?.Invoke();

@@ -119,7 +119,7 @@ namespace Rogium.Gameplay.Entities.Enemy
             //Sound Emitter
             if (soundEmitter != null)
             {
-                CharSoundInfo sound = new(asset.HurtSound, asset.DeathSound, null);
+                CharSoundInfo sound = new(asset.HurtSound, asset.DeathSound, asset.IdleSound, null);
                 this.soundEmitter.Construct(sound);
             }
             

@@ -26,6 +26,7 @@ namespace Rogium.Editors.Enemies
 
         private AssetData hurtSound;
         private AssetData deathSound;
+        private AssetData idleSound;
 
         #region Constructors
         public EnemyAsset()
@@ -59,6 +60,7 @@ namespace Rogium.Editors.Enemies
             
             hurtSound = new AssetData();
             deathSound = new AssetData();
+            idleSound = new AssetData();
             
             GenerateID(EditorAssetIDs.EnemyIdentifier);
         }
@@ -98,6 +100,7 @@ namespace Rogium.Editors.Enemies
             
             hurtSound = new AssetData(asset.HurtSound);
             deathSound = new AssetData(asset.DeathSound);
+            idleSound = new AssetData(asset.IdleSound);
             
             weaponIDs = new List<string>(asset.weaponIDs);
         }
@@ -107,7 +110,8 @@ namespace Rogium.Editors.Enemies
                           float knockbackForceSelf, bool knockbackLockDirectionSelf, float knockbackForceOther, 
                           bool knockbackLockDirectionOther, int maxHealth, float attackProbability, float invincibilityTime, 
                           IList<string> weaponIDs, AIType ai, float nextStepTime, DirectionType startingDirection, 
-                          bool seamlessMovement, AssetData hurtSound, AssetData deathSound, DateTime creationDate)
+                          bool seamlessMovement, AssetData hurtSound, AssetData deathSound, AssetData idleSound, 
+                          DateTime creationDate)
         {
             AssetValidation.ValidateTitle(title);
             
@@ -143,6 +147,7 @@ namespace Rogium.Editors.Enemies
             
             this.hurtSound = new AssetData(hurtSound);
             this.deathSound = new AssetData(deathSound);
+            this.idleSound = new AssetData(idleSound);
         }
         #endregion
 
@@ -164,6 +169,7 @@ namespace Rogium.Editors.Enemies
         public void UpdateSeamlessMovement(bool newSeamlessMovementState) => seamlessMovement = newSeamlessMovementState;
         public void UpdateHurtSound(AssetData newHurtSound) => hurtSound = newHurtSound;
         public void UpdateDeathSound(AssetData newDeathSound) => deathSound = newDeathSound;
+        public void UpdateIdleSound(AssetData newIdleSound) => idleSound = newIdleSound;
         #endregion
 
         public override void ClearAssociatedSprite()
@@ -184,5 +190,6 @@ namespace Rogium.Editors.Enemies
         
         public AssetData HurtSound { get => hurtSound; }
         public AssetData DeathSound { get => deathSound; }
+        public AssetData IdleSound { get => idleSound; }
     }
 }
