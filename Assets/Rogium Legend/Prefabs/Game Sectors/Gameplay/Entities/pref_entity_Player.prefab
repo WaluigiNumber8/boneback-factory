@@ -1197,6 +1197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6280323316318233858}
   - component: {fileID: 595738167634463035}
+  - component: {fileID: 4359917312840824781}
   - component: {fileID: 4547471998601713832}
   - component: {fileID: 196354199866522166}
   - component: {fileID: 4356692067029932524}
@@ -1236,6 +1237,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoplay: 0
   timescale: 2
+--- !u!114 &4359917312840824781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2400291862003842029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d72d2969f1f242ffb78dcd5c3399017f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: Stop sparkles
+  active: 1
+  restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
+  isRealtime: 0
+  initialDelayMin: 0
+  initialDelayMax: 0
+  randomizeDelay: 0
+  effect: {fileID: 4742929081921477029}
+  mode: 2
 --- !u!114 &4547471998601713832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2097,6 +2121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6097411893956923988}
   - component: {fileID: 8113916075879097545}
+  - component: {fileID: 6426558809159800521}
   - component: {fileID: 2357686634307869108}
   - component: {fileID: 8572018992229948947}
   - component: {fileID: 6516375037875133267}
@@ -2139,6 +2164,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoplay: 0
   timescale: 2
+--- !u!114 &6426558809159800521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4904404445468368326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d72d2969f1f242ffb78dcd5c3399017f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: Begin sparkles
+  active: 1
+  restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
+  isRealtime: 0
+  initialDelayMin: 0.5
+  initialDelayMax: 0
+  randomizeDelay: 0
+  effect: {fileID: 4742929081921477029}
+  mode: 0
 --- !u!114 &2357686634307869108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2822,11 +2870,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2327418050010184184, guid: a7b8b67e95066144b99e03bc5814920b, type: 3}
       propertyPath: playOnAwake
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3545388614984078646, guid: a7b8b67e95066144b99e03bc5814920b, type: 3}
       propertyPath: m_Name
-      value: particle_ItemSparkle
+      value: Sparkles Particle
       objectReference: {fileID: 0}
     - target: {fileID: 6967408372892114217, guid: a7b8b67e95066144b99e03bc5814920b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2880,5 +2928,10 @@ PrefabInstance:
 --- !u!4 &85524121994001780 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6967408372892114217, guid: a7b8b67e95066144b99e03bc5814920b, type: 3}
+  m_PrefabInstance: {fileID: 7034308966431383645}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &4742929081921477029 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2327418050010184184, guid: a7b8b67e95066144b99e03bc5814920b, type: 3}
   m_PrefabInstance: {fileID: 7034308966431383645}
   m_PrefabAsset: {fileID: 0}

@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace RedRats.Systems.LiteFeel.Effects
 {
+    /// <summary>
+    /// Controls a sound playing under a specific ID in the <see cref="AudioSystem"/>.
+    /// </summary>
     public class LFAudioControlEffect : LFEffectBase
     {
         [SerializeField] private int id;
