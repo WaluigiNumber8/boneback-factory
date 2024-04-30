@@ -6,6 +6,7 @@ using Rogium.Gameplay.Core;
 using Rogium.Systems.Input;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Rogium.Gameplay.Inventory
@@ -79,9 +80,16 @@ namespace Rogium.Gameplay.Inventory
             Hide();
         }
         
-        /// <summary>
-        /// Show the Menu.
-        /// </summary>
+        public void RefreshSlotIcons(Sprite main, Sprite sub, Sprite mainAlt, Sprite subAlt, Sprite dash, Sprite dashAlt)
+        {
+            UpdateIconImage(ui.slotIcons.mainIconImage, main);
+            UpdateIconImage(ui.slotIcons.subIconImage, sub);
+            UpdateIconImage(ui.slotIcons.mainAltIconImage, mainAlt);
+            UpdateIconImage(ui.slotIcons.subAltIconImage, subAlt);
+            UpdateIconImage(ui.slotIcons.dashIconImage, dash);
+            UpdateIconImage(ui.slotIcons.dashAltIconImage, dashAlt);
+        }
+        
         private void Show()
         {
             SnapToTarget();
@@ -92,20 +100,17 @@ namespace Rogium.Gameplay.Inventory
             OnOpen?.Invoke();
         }
 
-        /// <summary>
-        /// Hide the Menu.
-        /// </summary>
         private void Hide()
         {
             StartCoroutine(DelayCoroutine());
             IEnumerator DelayCoroutine()
             {
                 OnClose?.Invoke();
+                GameplayOverseerMono.GetInstance().DisableUI();
                 
                 yield return new WaitForSecondsRealtime(hideDelay);
                 
                 ui.ui.SetActive(false);
-                GameplayOverseerMono.GetInstance().DisableUI();
             }
         }
 
@@ -115,6 +120,8 @@ namespace Rogium.Gameplay.Inventory
             ttransform.localPosition = RedRatUtils.MoveToPositionWithinCanvas(ttransform, targetPosition, canvasTransform, cam);
         }
         
+        private void UpdateIconImage(Image image, Sprite sprite) => image.sprite = (sprite == null) ? ui.slotIcons.emptyIcon : sprite;
+
         [Serializable]
         private struct UIInfo
         {
@@ -123,6 +130,19 @@ namespace Rogium.Gameplay.Inventory
             public Selectable firstSelectedNormal;
             public GameObject dashLayout;
             public Selectable firstSelectedDash;
+            public UISlotIconInfo slotIcons;
+        }
+
+        [Serializable]
+        public struct UISlotIconInfo
+        {
+            public Sprite emptyIcon;
+            [FormerlySerializedAs("mainIcon")]public Image mainIconImage;
+            [FormerlySerializedAs("subIcon")]public Image subIconImage;
+            [FormerlySerializedAs("mainAltIcon")]public Image mainAltIconImage;
+            [FormerlySerializedAs("subAltIcon")]public Image subAltIconImage;
+            [FormerlySerializedAs("dashIcon")]public Image dashIconImage;
+            [FormerlySerializedAs("dashAltIcon")]public Image dashAltIconImage;
         }
     }
 }
