@@ -38,6 +38,7 @@ namespace RedRats.Core
             copyMain.cullingMode = originalMain.cullingMode;
             copyMain.ringBufferMode = originalMain.ringBufferMode;
             copyMain.scalingMode = originalMain.scalingMode;
+            copyMain.useUnscaledTime = originalMain.useUnscaledTime;
 
             // Copy emission module properties
             ParticleSystem.EmissionModule originalEmission = original.emission;

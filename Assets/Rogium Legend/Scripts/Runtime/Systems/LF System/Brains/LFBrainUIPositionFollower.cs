@@ -1,5 +1,6 @@
 using RedRats.Systems.LiteFeel.Core;
 using Rogium.UserInterface.Editors.Utils;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Rogium.Systems.LiteFeel.Brains
@@ -9,7 +10,7 @@ namespace Rogium.Systems.LiteFeel.Brains
     /// </summary>
     public class LFBrainUIPositionFollower : MonoBehaviour
     {
-        [SerializeField] private UIPositionFollower follower;
+        [SerializeField, Required] private UIPositionFollower follower;
         [Space]
         [SerializeField] private LFEffector onBeginMoveEffector;
 

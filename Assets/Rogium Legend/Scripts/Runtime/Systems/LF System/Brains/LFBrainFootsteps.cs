@@ -12,7 +12,7 @@ namespace Rogium.Systems.LiteFeel.Brains
     /// </summary>
     public class LFBrainFootsteps : MonoBehaviour
     {
-        [SerializeField, GUIColor(0.85f, 0.8f, 0f)] private FloorInteractionService interactionService;
+        [SerializeField, Required, GUIColor(0.85f, 0.8f, 0f)] private FloorInteractionService interactionService;
         [Space] 
         [SerializeField, GUIColor(0.1f, 1f, 0f)] private LFEffector tileStepEffector;
         [SerializeField, GUIColor(0.1f, 1f, 0f)] private LFEffector woodStepEffector;

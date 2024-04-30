@@ -55,6 +55,7 @@ namespace Rogium.Gameplay.Entities.Enemy
             if (damageReceiver != null && soundEmitter != null) damageReceiver.OnDamageReceived += soundEmitter.PlayHurtSound;
             if (damageReceiver != null && soundEmitter != null) damageReceiver.OnDeath += soundEmitter.PlayDeathSound;
             if (floorInteractor != null && visual != null) visual.OnFrameChange += floorInteractor.TakeStep;
+            if (weaponHold != null) weaponHold.OnGetNewWeapon += DelayFirstAttack;
         }
 
         private void OnDisable()
@@ -63,6 +64,7 @@ namespace Rogium.Gameplay.Entities.Enemy
             if (damageReceiver != null && soundEmitter != null) damageReceiver.OnDamageReceived -= soundEmitter.PlayHurtSound;
             if (damageReceiver != null && soundEmitter != null) damageReceiver.OnDeath -= soundEmitter.PlayDeathSound;
             if (floorInteractor != null && visual != null) visual.OnFrameChange -= floorInteractor.TakeStep;
+            if (weaponHold != null) weaponHold.OnGetNewWeapon -= DelayFirstAttack;
         }
 
         protected override void Update()
@@ -184,8 +186,10 @@ namespace Rogium.Gameplay.Entities.Enemy
             }
         }
         
+        private void DelayFirstAttack(WeaponAsset weapon) => weaponUseTimer = Time.time + weaponUseTime;
+
+        public CharacteristicWeaponHold WeaponHold { get => weaponHold; }
         public CharacteristicDamageReceiver DamageReceiver { get => damageReceiver; } 
-        public CharacteristicSoundEmitter SoundEmitter { get => soundEmitter; }
         public Color RepresentativeColor { get => color; }
     }
 }

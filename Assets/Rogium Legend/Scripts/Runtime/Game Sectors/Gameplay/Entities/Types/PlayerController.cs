@@ -129,5 +129,6 @@ namespace Rogium.Gameplay.Entities.Player
         }
         
         public CharacteristicDamageReceiver DamageReceiver { get => damageReceiver; }
+        public CharacteristicWeaponHold WeaponHold { get => weaponHold; }
     }
 }

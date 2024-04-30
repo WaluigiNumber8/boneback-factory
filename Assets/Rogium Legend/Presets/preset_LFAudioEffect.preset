@@ -26,7 +26,7 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: info
-    value: General Death Sound
+    value: 
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: active
@@ -38,6 +38,14 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: keepStateOnStop
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: noPlayWhenPlaying
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: isRealtime
     value: 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}

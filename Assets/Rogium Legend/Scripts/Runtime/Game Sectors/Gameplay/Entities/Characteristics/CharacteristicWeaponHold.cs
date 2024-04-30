@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using RedRats.Core;
 using RedRats.Safety;
@@ -12,6 +13,9 @@ namespace Rogium.Gameplay.Entities.Characteristics
     /// </summary>
     public class CharacteristicWeaponHold : CharacteristicBase
     {
+        public event Action<WeaponAsset> OnGetNewWeapon;
+        public event Action<WeaponAsset> OnEquipWeapon;
+        
         [SerializeField] private WeaponController weaponEntity;
         [SerializeField] private int startingSlots = 0;
         [SerializeField] private CharWeaponHoldInfo defaultData;
@@ -83,6 +87,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
         public void Add(WeaponAsset newWeapon)
         {
             currentWeapons.Add(newWeapon);
+            OnGetNewWeapon?.Invoke(newWeapon);
         }
 
         /// <summary>
@@ -94,6 +99,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
         {
             SafetyNet.EnsureIndexWithingCollectionRange(slot, currentWeapons, "List of usable weapons");
             currentWeapons[slot] = newWeapon;
+            OnEquipWeapon?.Invoke(newWeapon);
         }
 
         /// <summary>

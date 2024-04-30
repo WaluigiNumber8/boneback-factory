@@ -109,7 +109,7 @@ namespace RedRats.UI.Core
         private IEnumerator BlockCoroutine(bool isSelected)
         {
             cannotTriggerEvents = true;
-            yield return new WaitForSeconds(BlockTime);
+            yield return new WaitForSecondsRealtime(BlockTime);
             cannotTriggerEvents = false;
             if (isSelected && !wasSelected) OnDeselect?.Invoke();
         }

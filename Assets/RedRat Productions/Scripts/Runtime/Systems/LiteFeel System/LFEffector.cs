@@ -13,6 +13,8 @@ namespace RedRats.Systems.LiteFeel.Core
     public class LFEffector : MonoBehaviour
     {
         [SerializeField] private AutoplayType autoplay;
+        [SerializeField, EnumToggleButtons] private TimescaleType timescale = TimescaleType.Normal;
+        
         
         [ButtonGroup, Button("Play", ButtonSizes.Medium), GUIColor(0.5f, 0.95f, 0.4f), DisableInEditorMode]
         public void TestPlay()
@@ -68,6 +70,7 @@ namespace RedRats.Systems.LiteFeel.Core
             if (effects.Length <= 0) return;
             foreach (LFEffectBase effect in effects)
             {
+                if (timescale != TimescaleType.PerEffect) effect.UpdateTimescale(timescale == TimescaleType.Unscaled);
                 effect.Play();
             }
         }

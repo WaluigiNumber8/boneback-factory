@@ -1,4 +1,7 @@
 ﻿using System;
+using Rogium.Editors.Weapons;
+using Rogium.Gameplay.Entities.Player;
+using Rogium.Gameplay.InteractableObjects;
 using UnityEngine;
 
 namespace Rogium.Gameplay.Entities.Characteristics
@@ -13,25 +16,31 @@ namespace Rogium.Gameplay.Entities.Characteristics
         [SerializeField] private WeaponController weapon;
 
         // TODO Enable once animation for diagonal movement is solved
-        // private void OnEnable()
-        // {
-        //     if (weapon == null) return;
-        //     weapon.OnUse += PlayWeaponUse;
-        //     weapon.OnUseStop += PlayWeaponUseStop;
-        // }
-        //
-        // private void OnDisable()
-        // {
-        //     if (weapon == null) return;
-        //     weapon.OnUse -= PlayWeaponUse;
-        //     weapon.OnUseStop -= PlayWeaponUseStop;
-        // }
+        private void OnEnable()
+        {
+            // if (weapon == null) return;
+            // weapon.OnUse += PlayWeaponUse;
+            // weapon.OnUseStop += PlayWeaponUseStop;
+            InteractObjectWeaponDrop.OnPlayerPickUp += PlayItemGet;
+            ((PlayerController)entity).WeaponHold.OnEquipWeapon += PlayItemGetFinish;
+        }
+        
+        private void OnDisable()
+        {
+            // if (weapon == null) return;
+            // weapon.OnUse -= PlayWeaponUse;
+            // weapon.OnUseStop -= PlayWeaponUseStop;
+            InteractObjectWeaponDrop.OnPlayerPickUp -= PlayItemGet;
+            ((PlayerController)entity).WeaponHold.OnEquipWeapon -= PlayItemGetFinish;
+        }
         
         private void Update() => UpdateAnimator();
 
         public void PlayDeath() => animator.SetTrigger(propertyNames.onDeath);
         private void PlayWeaponUse() => animator.SetTrigger(propertyNames.onWeaponUse);
         private void PlayWeaponUseStop() => animator.SetTrigger(propertyNames.onWeaponUseStop);
+        private void PlayItemGet(WeaponAsset item) => animator.SetTrigger(propertyNames.onPickup);
+        private void PlayItemGetFinish(WeaponAsset item) => animator.SetTrigger(propertyNames.onPickupFinish);
         
         private void UpdateAnimator()
         {
@@ -49,6 +58,8 @@ namespace Rogium.Gameplay.Entities.Characteristics
             public string onDeath;
             public string onWeaponUse;
             public string onWeaponUseStop;
+            public string onPickup;
+            public string onPickupFinish;
         }
         
     }

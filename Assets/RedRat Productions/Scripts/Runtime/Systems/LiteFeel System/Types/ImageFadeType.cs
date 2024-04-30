@@ -7,5 +7,6 @@ namespace RedRats.Systems.LiteFeel.Effects
     {
         FadeIn = 0,
         FadeOut = 1,
+        Custom = 2
     }
 }

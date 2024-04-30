@@ -77,7 +77,9 @@ namespace RedRats.Systems.Particles
 
             IEnumerator ReleaseEffectCoroutine()
             {
-                yield return new WaitForSeconds(effect.main.duration);
+                if (effect.main.useUnscaledTime)yield return new WaitForSecondsRealtime(effect.main.duration);
+                else yield return new WaitForSeconds(effect.main.duration);
+                
                 if (settings.id == 0) TryReleaseEffect(effect);
                 else TryReleaseEffect(settings.id);
             }

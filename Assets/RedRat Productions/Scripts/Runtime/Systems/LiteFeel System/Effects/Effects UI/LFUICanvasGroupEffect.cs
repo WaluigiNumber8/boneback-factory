@@ -6,8 +6,10 @@ using UnityEngine;
 
 public class LFUICanvasGroupEffect : LFEffectTweenBase
 {
-    [SerializeField, InfoBox("Missing target", InfoMessageType.Error, "@target == null")] private CanvasGroup target;
+    [SerializeField, Required] private CanvasGroup target;
     [SerializeField] private ImageFadeType fade = ImageFadeType.FadeIn;
+    [SerializeField, ShowIf("fade", ImageFadeType.Custom)] private float beginAlpha = 0;
+    [SerializeField, ShowIf("fade", ImageFadeType.Custom)] private float targetAlpha = 1;
     [SerializeField] private AnimationCurve fadeCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
     [SerializeField] private bool blockRaycastsDuringPlay;
     
@@ -16,7 +18,7 @@ public class LFUICanvasGroupEffect : LFEffectTweenBase
     protected override void SetBeginState()
     {
         if (target == null) return;
-        target.alpha = (fade == ImageFadeType.FadeIn) ? 0f : 1f;
+        target.alpha = (fade == ImageFadeType.Custom) ? beginAlpha : (fade == ImageFadeType.FadeIn) ? 0f : 1f;
         if (!blockRaycastsDuringPlay) return;
         if (gameObject.activeInHierarchy == false) return;
         StartCoroutine(DelayCoroutine());
@@ -38,7 +40,7 @@ public class LFUICanvasGroupEffect : LFEffectTweenBase
 
     protected override void UpdateStartingValues() => startAlpha = target.alpha;
 
-    private float GetTargetValue() => (fade == ImageFadeType.FadeIn) ? 1f : 0f;
+    private float GetTargetValue() => (fade == ImageFadeType.Custom) ? targetAlpha : (fade == ImageFadeType.FadeIn) ? 1f : 0f;
 
     protected override string FeedbackColor { get => "#FF8251"; }
 }

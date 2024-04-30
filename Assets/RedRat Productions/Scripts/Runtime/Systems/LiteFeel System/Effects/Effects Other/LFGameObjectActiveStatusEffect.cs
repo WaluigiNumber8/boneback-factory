@@ -46,7 +46,7 @@ namespace RedRats.Systems.LiteFeel.Effects
                 initState = target.activeSelf;
                 target.SetActive(GetNewActiveState());
                 
-                yield return new WaitForSeconds(Duration);
+                yield return WaitFor(Duration);
                 
                 if (stopped) break;
                 loops++;
