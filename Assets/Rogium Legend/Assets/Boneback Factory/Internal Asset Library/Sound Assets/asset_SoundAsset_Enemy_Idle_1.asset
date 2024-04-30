@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad2f3d0232684d7bbc6f5aae05793d35, type: 3}
-  m_Name: asset_SoundAsset_Enemy_Death_1
+  m_Name: asset_SoundAsset_Enemy_Idle_1
   m_EditorClassIdentifier: 
   icon: {fileID: -1820635022, guid: f2a7ec9f5ff1ee545b041f285f827291, type: 3}
-  id: 013
-  title: Death 1
-  soundData: {fileID: 11400000, guid: 98d4b9e08860b1f43a144b235c3b6f0f, type: 2}
+  id: 031
+  title: Idle 1
+  soundData: {fileID: 11400000, guid: cd2f7ba27386cfb4fa39bbb4b9a9d98a, type: 2}
   defaultParameters:
     intValue1: 0
     intValue2: 0

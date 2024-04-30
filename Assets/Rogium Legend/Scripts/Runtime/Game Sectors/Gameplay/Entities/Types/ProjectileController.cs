@@ -33,7 +33,7 @@ namespace Rogium.Gameplay.Entities
         protected override void Awake()
         {
             base.Awake();
-            lifeTimer = new CountdownTimer(()=> deathTimer.Start(deathTime));
+            lifeTimer = new CountdownTimer(()=> deathTimer.Set(deathTime));
             deathTimer = new CountdownTimer(Kill);
         }
 
@@ -64,7 +64,7 @@ namespace Rogium.Gameplay.Entities
         /// <param name="asset"></param>
         public void Construct(ProjectileAsset asset)
         {
-            lifeTimer.Start(asset.UseDelay);
+            lifeTimer.Set(asset.UseDelay);
             pierceType = asset.PierceType;
             isDead = false;
             // float time = RedRatUtils.GetTimeOfForce((ttransform.up * asset.FlightSpeed).magnitude, Rigidbody);
@@ -80,7 +80,7 @@ namespace Rogium.Gameplay.Entities
         /// </summary>
         public void ConstructMissing()
         {
-            lifeTimer.Start(missingInfo.lifetime);
+            lifeTimer.Set(missingInfo.lifetime);
             pierceType = missingInfo.pierce;
             isDead = false;
             

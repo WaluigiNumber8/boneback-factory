@@ -57,5 +57,7 @@ namespace Rogium.Systems.Audio
             
             audioSystem.PlaySound(clip, mixerGroup, sourceSettings, spatialSettings, volume, pitchMin, pitchMax, chanceToPlay);
         }
+        
+        public SoundAsset GetSound(AssetData soundData) => allSounds[soundData.ID];
     }
 }

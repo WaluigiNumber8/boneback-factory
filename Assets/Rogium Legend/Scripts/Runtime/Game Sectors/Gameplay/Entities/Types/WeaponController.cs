@@ -52,7 +52,7 @@ namespace Rogium.Gameplay.Entities
             damageGiver.Construct(new CharDamageGiverInfo(asset.BaseDamage, knockbackSelf, knockbackOther));
             visual.Construct(new CharVisualInfo(asset.Icon, asset.AnimationType, asset.FrameDuration, asset.IconAlt));
             visual.ChangeRenderState(asset.UseType != WeaponUseType.Hidden);
-            sound.Construct(new CharSoundInfo(null, null, asset.UseSound));
+            sound.Construct(new CharSoundInfo(null, null, null, asset.UseSound));
             
             weapon = asset;
             

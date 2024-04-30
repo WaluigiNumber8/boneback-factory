@@ -1201,6 +1201,7 @@ GameObject:
   - component: {fileID: 4547471998601713832}
   - component: {fileID: 196354199866522166}
   - component: {fileID: 4356692067029932524}
+  - component: {fileID: 6426070101179538164}
   m_Layer: 3
   m_Name: OnGetItemFinish Effect
   m_TagString: Untagged
@@ -1422,6 +1423,99 @@ MonoBehaviour:
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.3349282
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &6426070101179538164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2400291862003842029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba19c9360088424eb120cb7216be60d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: Screen shake
+  active: 1
+  restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
+  isRealtime: 0
+  initialDelayMin: 0
+  initialDelayMax: 0
+  randomizeDelay: 0
+  duration: 0.2
+  infiniteLoop: 0
+  loops: 1
+  loopType: 0
+  amplitudeGain: 0.8
+  amplitudeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.026321411
+      value: 0.9850311
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  frequencyGain: 1
+  frequencyCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.026321411
+      value: 0.9850311
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
