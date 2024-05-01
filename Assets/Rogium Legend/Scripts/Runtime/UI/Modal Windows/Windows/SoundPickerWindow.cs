@@ -88,8 +88,8 @@ namespace Rogium.UserInterface.ModalWindows
         private void UpdateProperties(IParameterAsset data)
         {
             bool soundAssetNull = currentSoundAsset == null;
-            float targetVolume = (soundAssetNull) ? data.Parameters.floatValue1 : data.Parameters.floatValue1.Remap(0.01f, currentSoundAsset.Data.Volume, 0.01f, 1f).Round();
-            float targetPitch = (soundAssetNull) ? data.Parameters.floatValue2 : data.Parameters.floatValue2.Remap(0.01f, 2 * currentSoundAsset.Data.PitchMin + (currentSoundAsset.Data.PitchMax - currentSoundAsset.Data.PitchMin).Round(), 0.01f, 2f);
+            float targetVolume = (soundAssetNull) ? data.Parameters.floatValue1 : data.Parameters.floatValue1.Remap(0.01f, currentSoundAsset.Data.Volume, 0.01f, 1f);
+            float targetPitch = (soundAssetNull) ? data.Parameters.floatValue2 : data.Parameters.floatValue2.Remap(0.01f, 2 * currentSoundAsset.Data.PitchMin + (currentSoundAsset.Data.PitchMax - currentSoundAsset.Data.PitchMin), 0.01f, 2f);
             
             volumeSlider.Construct("Volume", 0.01f, 2f, targetVolume, WhenVolumeChanged);
             pitchSlider.Construct("Pitch", 0.01f, 2f, targetPitch, WhenPitchChanged);
@@ -115,8 +115,8 @@ namespace Rogium.UserInterface.ModalWindows
         {
             //Set old values to new sound
             bool soundAssetNull = currentSoundAsset == null;
-            float targetVolume = (soundAssetNull) ? volumeSlider.PropertyValue : volumeSlider.PropertyValue.Remap(0.01f, 1f, 0.01f, currentSoundAsset.Data.Volume).Round();
-            float targetPitch = (soundAssetNull) ? pitchSlider.PropertyValue : pitchSlider.PropertyValue.Remap(0.01f, 2f, 0.01f, 2 * currentSoundAsset.Data.PitchMin + (currentSoundAsset.Data.PitchMax - currentSoundAsset.Data.PitchMin)).Round();
+            float targetVolume = (soundAssetNull) ? volumeSlider.PropertyValue : volumeSlider.PropertyValue.Remap(0.01f, 1f, 0.01f, currentSoundAsset.Data.Volume);
+            float targetPitch = (soundAssetNull) ? pitchSlider.PropertyValue : pitchSlider.PropertyValue.Remap(0.01f, 2f, 0.01f, 2 * currentSoundAsset.Data.PitchMin + (currentSoundAsset.Data.PitchMax - currentSoundAsset.Data.PitchMin));
             
             currentData.UpdateFloatValue1(targetVolume);
             currentData.UpdateFloatValue2(targetPitch);
@@ -131,14 +131,14 @@ namespace Rogium.UserInterface.ModalWindows
         
         private void WhenVolumeChanged(float newValue)
         {
-            float targetValue = (currentSoundAsset == null) ? newValue : newValue.Remap(0.01f, 1f, 0.01f, currentSoundAsset.Data.Volume).Round();
+            float targetValue = (currentSoundAsset == null) ? newValue : newValue.Remap(0.01f, 1f, 0.01f, currentSoundAsset.Data.Volume);
             currentData.UpdateFloatValue1(targetValue);
             UpdateOriginalValue();
         }
         
         private void WhenPitchChanged(float newValue)
         {
-            float targetValue = (currentSoundAsset == null) ? newValue : newValue.Remap(0.01f, 2f, 0.01f, 2 * currentSoundAsset.Data.PitchMin + (currentSoundAsset.Data.PitchMax - currentSoundAsset.Data.PitchMin)).Round();
+            float targetValue = (currentSoundAsset == null) ? newValue : newValue.Remap(0.01f, 2f, 0.01f, 2 * currentSoundAsset.Data.PitchMin + (currentSoundAsset.Data.PitchMax - currentSoundAsset.Data.PitchMin));
             currentData.UpdateFloatValue2(targetValue);
             UpdateOriginalValue();
         }

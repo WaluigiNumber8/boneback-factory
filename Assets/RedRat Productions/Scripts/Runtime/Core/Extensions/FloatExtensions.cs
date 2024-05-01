@@ -34,8 +34,8 @@ namespace RedRats.Core
         /// <returns></returns>
         public static float Round(this float value, int decimals = 2)
         {
-            float mult = Mathf.Pow(10.0f, decimals);
-            return Mathf.Round(value * mult) / mult;
+            float multiplier = Mathf.Pow(10.0f, decimals);
+            return Mathf.Round(value * multiplier) / multiplier;
         }
         
         /// <summary>
