@@ -366,7 +366,7 @@ namespace Rogium.Systems.GASExtension
         public static void DeleteEnemy(int assetIndex)
         {
             storedIndex = assetIndex;
-            MessageWindowInfo data = new("Do you really want to remove this sprite?", "Yes", "No", DeleteEnemyAccept);
+            MessageWindowInfo data = new("Do you really want to remove this enemy?", "Yes", "No", DeleteEnemyAccept);
             ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
         }
         private static void DeleteEnemyAccept()

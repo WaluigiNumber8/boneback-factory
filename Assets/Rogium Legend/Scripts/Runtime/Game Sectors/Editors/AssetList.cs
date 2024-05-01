@@ -41,8 +41,10 @@ namespace Rogium.Editors.Core
         {
             SafetyNet.EnsureIsNotNull(asset, "Asset to add");
             if (TryFinding(asset.Title, asset.Author) != null)
+            {
+                SafetyNet.ThrowMessage("The asset cannot have the same name as an already existing one.");
                 throw new FoundDuplicationException("You are trying to create an asset, that already exists. Cannot have the same title and author!");
-            
+            }
             list.Add(asset);
             saveToExternalStorage.Invoke(asset);
         }
@@ -73,9 +75,11 @@ namespace Rogium.Editors.Core
         {
             SafetyNet.EnsureIsNotNull(asset, "Asset to add");
             SafetyNet.EnsureIntIsInRange(index ,0, list.Count, "Asset List");
-            
             if (TryFinding(asset.Title, asset.Author, index) != null)
-                throw new FoundDuplicationException("You are trying to update an asset with a name and author that is already taken. Cannot have the same title and author!");
+            {
+                SafetyNet.ThrowMessage("The asset cannot have the same name as an already existing one.");
+                throw new FoundDuplicationException("You are trying to create an asset, that already exists. Cannot have the same title and author!");
+            }
             list[index] = asset;
             
             updateOnExternalStorage.Invoke(asset);

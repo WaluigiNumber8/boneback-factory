@@ -513,7 +513,7 @@ namespace RedRats.Safety
         /// Throw a custom error message, without raising an exception.
         /// </summary>
         /// <param name="message">The message to throw.</param>
-        public static void ThrowMessage(string message) => OnFireErrorMessage?.Invoke($"Safety Net - {message}");
+        public static void ThrowMessage(string message) => OnFireErrorMessage?.Invoke(message);
 
         /// <summary>
         /// Throws an exception with appropriate events.
