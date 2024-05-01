@@ -58,9 +58,9 @@ namespace Rogium.Editors.Enemies
             seamlessMovement = EditorConstants.EnemySeamlessMovement;
             startingDirection = EditorConstants.EnemyStartingDirection;
             
-            hurtSound = new AssetData();
-            deathSound = new AssetData();
-            idleSound = new AssetData();
+            hurtSound = new AssetData(ParameterInfoConstants.ForSound);
+            deathSound = new AssetData(ParameterInfoConstants.ForSound);
+            idleSound = new AssetData(ParameterInfoConstants.ForSound);
             
             GenerateID(EditorAssetIDs.EnemyIdentifier);
         }

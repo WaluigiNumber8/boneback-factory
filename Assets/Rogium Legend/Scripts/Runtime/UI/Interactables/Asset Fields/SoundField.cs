@@ -34,14 +34,14 @@ namespace Rogium.UserInterface.Interactables
         {
             ui.showWindowButton.onClick.AddListener(() => ModalWindowBuilder.GetInstance().OpenSoundPickerWindow(WhenSoundChanged, WhenSoundEdited, value));
             ui.playButton.onClick.AddListener(() => AudioSystemRogium.GetInstance().PlaySound(value, mixerGroup, new AudioSourceSettingsInfo(0, false, false, false)));
-            ui.showWindowButton.OnClickRight += Clear;
-            ui.playButton.OnClickRight += Clear;
+            ui.showWindowButton.OnClickRight += EmptyOut;
+            ui.playButton.OnClickRight += EmptyOut;
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
             if (!canBeEmpty || eventData.button != PointerEventData.InputButton.Right) return;
-            Clear();
+            EmptyOut();
         }
         
         public void Construct(AssetData value, bool canBeEmpty = false)
@@ -83,6 +83,12 @@ namespace Rogium.UserInterface.Interactables
             ui.soundTitle.text = newAsset.Title;
             ui.soundIcon.sprite = newAsset.Icon;
             ui.soundIcon.color = Color.white;
+        }
+
+        private void EmptyOut()
+        {
+            Clear();
+            WhenSoundEdited(new AssetData(ParameterInfoConstants.ForSound));
         }
         
         private void Clear()

@@ -49,7 +49,7 @@ namespace Rogium.Editors.Weapons
             isEvasive = EditorConstants.WeaponIsEvasive;
             freezeUser = EditorConstants.WeaponFreezeUser;
             
-            useSound = new AssetData();
+            useSound = new AssetData(ParameterInfoConstants.ForSound);
             
             projectileIDs = new List<ProjectileDataInfo>();
             
