@@ -2062,6 +2062,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoplay: 2
+  timescale: 1
 --- !u!114 &5817503888708352960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2079,6 +2080,7 @@ MonoBehaviour:
   restartOnPlay: 1
   keepStateOnStop: 1
   noPlayWhenPlaying: 0
+  isRealtime: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -2088,6 +2090,8 @@ MonoBehaviour:
   loopType: 0
   target: {fileID: 6568594222261983182}
   fade: 0
+  beginAlpha: 0
+  targetAlpha: 1
   fadeCurve:
     serializedVersion: 2
     m_Curve:
@@ -2129,7 +2133,8 @@ MonoBehaviour:
   active: 1
   restartOnPlay: 1
   keepStateOnStop: 1
-  noPlayWhenPlaying: 0
+  noPlayWhenPlaying: 1
+  isRealtime: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
