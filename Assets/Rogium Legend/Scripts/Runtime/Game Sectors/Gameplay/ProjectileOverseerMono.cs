@@ -70,6 +70,8 @@ namespace Rogium.Gameplay.Core
             }
         }
 
+        public void ClearAllProjectiles() => pool.Clear();
+
         /// <summary>
         /// Refreshes the last projectile.
         /// </summary>
