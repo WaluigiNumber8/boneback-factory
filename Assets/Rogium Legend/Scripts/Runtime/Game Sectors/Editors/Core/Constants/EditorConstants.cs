@@ -35,7 +35,7 @@ namespace Rogium.Editors.Core.Defaults
         //Weapon
         public const string WeaponTitle = "New Weapon";
         public static readonly Sprite WeaponIcon = Resources.Load<Sprite>("Defaults/spr_Default_Weapon");
-        public static readonly Color WeaponColor = Color.green; 
+        public static readonly Color WeaponColor = Color.green;
 
         public const AnimationType WeaponAnimationType = AnimationType.NoAnimation;
         public const int WeaponFrameDuration = 40;
@@ -68,8 +68,8 @@ namespace Rogium.Editors.Core.Defaults
         //Projectile
         public const string ProjectileTitle = "New Projectile";
         public static readonly Sprite ProjectileIcon = Resources.Load<Sprite>("Defaults/spr_Default_Projectile");
-        public static readonly Color ProjectileColor = Color.yellow; 
-        
+        public static readonly Color ProjectileColor = Color.yellow;
+
         public const AnimationType ProjectileAnimationType = AnimationType.NoAnimation;
         public const int ProjectileFrameDuration = 40;
         public const int ProjectileFrameDurationMax = 1200;
@@ -94,8 +94,8 @@ namespace Rogium.Editors.Core.Defaults
         //Enemy
         public const string EnemyTitle = "New Enemy";
         public static readonly Sprite EnemyIcon = Resources.Load<Sprite>("Defaults/spr_Default_Enemy");
-        public static readonly Color EnemyColor = Color.red; 
-        
+        public static readonly Color EnemyColor = Color.red;
+
         public const AnimationType EnemyAnimationType = AnimationType.HorizontalFlip;
         public const int EnemyFrameDuration = 50;
         public const int EnemyFrameDurationMax = 1200;
@@ -149,7 +149,7 @@ namespace Rogium.Editors.Core.Defaults
         public const int PixelsPerUnit = 16;
         public static readonly Sprite EmptyGridSprite = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
         public static readonly Color EmptyGridColor = Color.black;
-        public static readonly Color NoColor = new Color(0, 0, 0, 0);
+        public static readonly Color NoColor = new Color(1, 1, 1, 0.004f);
         public static readonly Sprite MissingSprite = Resources.Load<Sprite>("Defaults/spr_Missing");
         public static readonly Color MissingColor = new Color(255, 88, 227);
         public static readonly Color DefaultColor = Color.white;
