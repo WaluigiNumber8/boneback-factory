@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using RedRats.Safety;
+using Rogium.Gameplay.Core;
 using Rogium.Gameplay.DataLoading;
 using Rogium.Gameplay.Entities.Player;
 using Rogium.Gameplay.InteractableObjects;
@@ -87,10 +88,12 @@ namespace Rogium.Gameplay.Sequencer
                 roomLoader.LoadNext(roomIndex);
                 OnRoomLoaded?.Invoke();
                 (Vector2 pos, Vector2 dir) = startingPoints.ElementAt(GetPlayerStartPositionIndex());
+                ProjectileOverseerMono.GetInstance().ClearAllProjectiles();
 
                 // Running around the screen
                 // yield return sas.Transport(playerTransform, new Vector2(Random.Range(-7.5f, 6.5f), Random.Range(-4.5f, 4.5f)), transportRunSpeed);
                 // yield return sas.Transport(playerTransform, pos - dir * 2f, transportRunSpeed);
+                yield return sas.Wait(0.1f);
                 playerTransform.position = pos - dir * 2f;
                 yield return sas.FadeIn(0.5f, false);
                 yield return sas.Transport(playerTransform, pos, transportWalkSpeed);
