@@ -47,15 +47,18 @@ namespace Rogium.Gameplay.Entities
 
         protected void FixedUpdate() => HandleMovement();
 
-        private void OnTriggerEnter2D(Collider2D col)
+        private IEnumerator OnTriggerEnter2D(Collider2D col)
         {
+            yield return null;
+            yield return null;
+            Debug.Log(col.gameObject.name);
             if (col.gameObject.CompareTag("Blocks Everything")) Kill();
             
-            if (pierceType == PierceType.All) return;
-            if (col.gameObject.layer == gameObject.layer) return;
-            if (pierceType == PierceType.Entities && col.TryGetComponent(out EntityController _)) return;
-            if (pierceType == PierceType.Walls && GameObjectUtils.IsInLayerMask(col.gameObject, wallMask)) return;
-            if (col.TryGetComponent(out WeaponController _)) return;
+            if (pierceType == PierceType.All) yield break;
+            if (col.gameObject.layer == gameObject.layer) yield break;
+            if (pierceType == PierceType.Entities && col.TryGetComponent(out EntityController _)) yield break;
+            if (pierceType == PierceType.Walls && GameObjectUtils.IsInLayerMask(col.gameObject, wallMask)) yield break;
+            if (col.TryGetComponent(out WeaponController _)) yield break;
             Kill();
         }
 
@@ -75,6 +78,8 @@ namespace Rogium.Gameplay.Entities
             ForcedMoveInfo otherKnockback = new(asset.KnockbackForceOther,(asset.KnockbackForceOther > 0), asset.KnockbackLockDirectionOther);
             damageGiver.Construct(new CharDamageGiverInfo(asset.BaseDamage, selfKnockback, otherKnockback));
             visual.Construct(new CharVisualInfo(asset.Icon, asset.AnimationType, asset.FrameDuration, asset.IconAlt));
+            
+            UpdateCollideMode(true);
         }
 
         /// <summary>
@@ -91,6 +96,8 @@ namespace Rogium.Gameplay.Entities
             ForcedMoveInfo otherKnockback = new(EditorConstants.ProjectileKnockbackForceOther, false, EditorConstants.ProjectileKnockbackLockDirectionOther);
             damageGiver.Construct(new CharDamageGiverInfo(EditorConstants.ProjectileBaseDamage, selfKnockback, otherKnockback));
             visual.Construct(new CharVisualInfo(missingInfo.missingSprite, AnimationType.NoAnimation, 0, null));
+            
+            UpdateCollideMode(true);
         }
 
         /// <summary>
@@ -109,12 +116,13 @@ namespace Rogium.Gameplay.Entities
         {
             if (isDead) return;
             isDead = true;
-            UpdateCollideMode(false);
             OnFinishLife?.Invoke();
+            UpdateCollideMode(false);
             
             StartCoroutine(DeathCoroutine());
             IEnumerator DeathCoroutine()
             {
+                
                 yield return new WaitForSeconds(deathTime);
                 OnDie?.Invoke();
             }

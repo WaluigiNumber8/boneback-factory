@@ -196,6 +196,7 @@ GameObject:
   - component: {fileID: 8695876521716686120}
   - component: {fileID: 8446234685973952298}
   - component: {fileID: 8737867828655417895}
+  - component: {fileID: 3370284218090825435}
   m_Layer: 0
   m_Name: OnDeath Effect
   m_TagString: Untagged
@@ -317,6 +318,32 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   followRotation: 0
   rotationOffset: {x: 0, y: 0, z: 0}
+--- !u!114 &3370284218090825435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2774895752724316136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc86f63c6ded4e228705b744856e5b6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: Turn off light
+  active: 1
+  restartOnPlay: 1
+  keepStateOnStop: 1
+  noPlayWhenPlaying: 0
+  isRealtime: 0
+  initialDelayMin: 0
+  initialDelayMax: 0
+  randomizeDelay: 0
+  duration: 0.2
+  infiniteLoop: 0
+  loops: 1
+  target: {fileID: 2444717064739016589}
+  newState: 1
 --- !u!1 &7087328431184447913
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,7 +443,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
@@ -595,6 +622,7 @@ GameObject:
   - component: {fileID: 6017256560444351727}
   - component: {fileID: 657523549385012611}
   - component: {fileID: 5511451688556585162}
+  - component: {fileID: 6746836816226550305}
   m_Layer: 0
   m_Name: OnEnable Effect
   m_TagString: Untagged
@@ -688,3 +716,29 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6746836816226550305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8717219205074464691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc86f63c6ded4e228705b744856e5b6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: Turn on light
+  active: 1
+  restartOnPlay: 1
+  keepStateOnStop: 1
+  noPlayWhenPlaying: 0
+  isRealtime: 0
+  initialDelayMin: 0
+  initialDelayMax: 0
+  randomizeDelay: 0
+  duration: 0.2
+  infiniteLoop: 0
+  loops: 1
+  target: {fileID: 2444717064739016589}
+  newState: 0
