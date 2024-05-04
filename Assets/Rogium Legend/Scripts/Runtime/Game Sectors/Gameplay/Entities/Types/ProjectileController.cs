@@ -6,6 +6,7 @@ using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Projectiles;
 using Rogium.Gameplay.Entities.Characteristics;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Rogium.Gameplay.Entities
@@ -16,31 +17,31 @@ namespace Rogium.Gameplay.Entities
     public class ProjectileController : EntityController
     {
         public event Action OnDie;
+        public event Action OnFinishLife;
         
-        private const float deathTime = 0.04f;
-
+        [Title("Characteristics")]
         [SerializeField] private CharacteristicMove move;
-        [SerializeField] private CharacteristicDamageGiver giver;
+        [SerializeField] private CharacteristicDamageGiver damageGiver;
         [SerializeField] private CharacteristicVisual visual;
+        [Title("Settings")]
         [SerializeField] private MissingInfo missingInfo;
+        [SerializeField, Range(0f, 2f)] private float deathTime = 0.04f;
         [SerializeField] private LayerMask wallMask;
-        
+
+        private Color color;
         private PierceType pierceType;
         private CountdownTimer lifeTimer;
-        private CountdownTimer deathTimer;
         private bool isDead;
 
         protected override void Awake()
         {
             base.Awake();
-            lifeTimer = new CountdownTimer(()=> deathTimer.Set(deathTime));
-            deathTimer = new CountdownTimer(Kill);
+            lifeTimer = new CountdownTimer(Kill);
         }
 
         protected override void Update()
         {
             lifeTimer.Tick();
-            deathTimer.Tick();
             base.Update();
         }
 
@@ -64,14 +65,15 @@ namespace Rogium.Gameplay.Entities
         /// <param name="asset"></param>
         public void Construct(ProjectileAsset asset)
         {
+            color = asset.Color;
             lifeTimer.Set(asset.UseDelay);
             pierceType = asset.PierceType;
             isDead = false;
-            // float time = RedRatUtils.GetTimeOfForce((ttransform.up * asset.FlightSpeed).magnitude, Rigidbody);
+            
             move.Construct(new CharMoveInfo(asset.FlightSpeed, asset.Acceleration, asset.BrakeForce));
             ForcedMoveInfo selfKnockback = new(asset.KnockbackForceSelf, (asset.KnockbackForceSelf > 0), asset.KnockbackLockDirectionSelf);
             ForcedMoveInfo otherKnockback = new(asset.KnockbackForceOther,(asset.KnockbackForceOther > 0), asset.KnockbackLockDirectionOther);
-            giver.Construct(new CharDamageGiverInfo(asset.BaseDamage, selfKnockback, otherKnockback));
+            damageGiver.Construct(new CharDamageGiverInfo(asset.BaseDamage, selfKnockback, otherKnockback));
             visual.Construct(new CharVisualInfo(asset.Icon, asset.AnimationType, asset.FrameDuration, asset.IconAlt));
         }
 
@@ -87,7 +89,7 @@ namespace Rogium.Gameplay.Entities
             move.Construct(new CharMoveInfo(EditorConstants.ProjectileFlightSpeed, EditorConstants.ProjectileAcceleration, EditorConstants.ProjectileBrakeForce));
             ForcedMoveInfo selfKnockback = new(EditorConstants.ProjectileKnockbackForceSelf, false, EditorConstants.ProjectileKnockbackLockDirectionSelf);
             ForcedMoveInfo otherKnockback = new(EditorConstants.ProjectileKnockbackForceOther, false, EditorConstants.ProjectileKnockbackLockDirectionOther);
-            giver.Construct(new CharDamageGiverInfo(EditorConstants.ProjectileBaseDamage, selfKnockback, otherKnockback));
+            damageGiver.Construct(new CharDamageGiverInfo(EditorConstants.ProjectileBaseDamage, selfKnockback, otherKnockback));
             visual.Construct(new CharVisualInfo(missingInfo.missingSprite, AnimationType.NoAnimation, 0, null));
         }
 
@@ -107,14 +109,20 @@ namespace Rogium.Gameplay.Entities
         {
             if (isDead) return;
             isDead = true;
+            UpdateCollideMode(false);
+            OnFinishLife?.Invoke();
+            
             StartCoroutine(DeathCoroutine());
             IEnumerator DeathCoroutine()
             {
-                yield return new WaitForSeconds(0.01f);
+                yield return new WaitForSeconds(deathTime);
                 OnDie?.Invoke();
             }
         }
 
+        public Color RepresentativeColor { get => color; }
+        public CharacteristicDamageGiver DamageGiver { get => damageGiver; }
+        
         [Serializable]
         public struct MissingInfo
         {

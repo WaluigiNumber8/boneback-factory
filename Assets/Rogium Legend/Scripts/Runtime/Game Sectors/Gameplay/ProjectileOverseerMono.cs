@@ -35,7 +35,7 @@ namespace Rogium.Gameplay.Core
                 null,
                 p => p.gameObject.SetActive(false),
                 Destroy,
-                true, 100
+                true, 200
             );
         }
 

@@ -42,7 +42,7 @@ namespace Rogium.Gameplay.Entities
         /// Enables/Disables the entities ability to collide with objects and trigger events.
         /// </summary>
         /// <param name="isEnabled">Changes the collision state.</param>
-        public void ChangeCollideMode(bool isEnabled)
+        public void UpdateCollideMode(bool isEnabled)
         {
             actionsLocked = !isEnabled;
             if (collider != null) collider.enabled = isEnabled;

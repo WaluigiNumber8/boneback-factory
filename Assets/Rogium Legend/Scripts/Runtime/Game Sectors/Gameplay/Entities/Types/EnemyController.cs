@@ -160,7 +160,7 @@ namespace Rogium.Gameplay.Entities.Enemy
         
         private void Die()
         {
-            ChangeCollideMode(false);
+            UpdateCollideMode(false);
             weaponHold.WipeInventory();
             Destroy(gameObject, deathTime);
         }

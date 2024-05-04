@@ -93,7 +93,7 @@ namespace Rogium.Gameplay.Entities.Player
         /// </summary>
         private void Die()
         {
-            ChangeCollideMode(false);
+            UpdateCollideMode(false);
             actionsLocked = true;
             movementLocked = true;
             visual.PlayDeath();
