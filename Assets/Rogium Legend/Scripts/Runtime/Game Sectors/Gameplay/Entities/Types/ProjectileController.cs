@@ -49,9 +49,8 @@ namespace Rogium.Gameplay.Entities
 
         private IEnumerator OnTriggerEnter2D(Collider2D col)
         {
+            yield return null; //Wait 2 frames, otherwise collisions are not detected.
             yield return null;
-            yield return null;
-            Debug.Log(col.gameObject.name);
             if (col.gameObject.CompareTag("Blocks Everything")) Kill();
             
             if (pierceType == PierceType.All) yield break;
