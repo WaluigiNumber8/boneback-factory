@@ -85,7 +85,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
             Vector3 hitDirection = (damagerTransform.transform.position - entity.TTransform.position).normalized;
             OnHit?.Invoke(amount, hitDirection);
             invincibilityTimer = Time.time + defaultData.invincibilityTime;
-            damager?.ReceiveKnockback(entity);
+            damager?.ReceiveKnockback(entity, hitDirection);
         }
 
         public int CurrentHealth { get => health; }
