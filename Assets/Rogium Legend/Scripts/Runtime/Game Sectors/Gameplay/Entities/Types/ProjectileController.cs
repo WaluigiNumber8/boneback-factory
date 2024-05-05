@@ -31,17 +31,20 @@ namespace Rogium.Gameplay.Entities
         private Color color;
         private PierceType pierceType;
         private CountdownTimer lifeTimer;
+        private CountdownTimer breakingTimer;
         private bool isDead;
 
         protected override void Awake()
         {
             base.Awake();
             lifeTimer = new CountdownTimer(Kill);
+            breakingTimer = new CountdownTimer();
         }
 
         protected override void Update()
         {
             lifeTimer.Tick();
+            breakingTimer.Tick();
             base.Update();
         }
 
@@ -69,10 +72,11 @@ namespace Rogium.Gameplay.Entities
         {
             color = asset.Color;
             lifeTimer.Set(asset.UseDelay);
+            breakingTimer.Set(asset.UseDelay * 0.1f);
             pierceType = asset.PierceType;
             isDead = false;
             
-            move.Construct(new CharMoveInfo(asset.FlightSpeed, asset.Acceleration, asset.BrakeForce));
+            move.Construct(new CharMoveInfo(asset.FlightSpeed, asset.Acceleration, asset.BrakeForce * 0.01f));
             ForcedMoveInfo selfKnockback = new(asset.KnockbackForceSelf, (asset.KnockbackForceSelf > 0), asset.KnockbackLockDirectionSelf);
             ForcedMoveInfo otherKnockback = new(asset.KnockbackForceOther,(asset.KnockbackForceOther > 0), asset.KnockbackLockDirectionOther);
             damageGiver.Construct(new CharDamageGiverInfo(asset.BaseDamage, selfKnockback, otherKnockback));
@@ -87,6 +91,7 @@ namespace Rogium.Gameplay.Entities
         public void ConstructMissing()
         {
             lifeTimer.Set(missingInfo.lifetime);
+            breakingTimer.Set(missingInfo.lifetime * 0.02f);
             pierceType = missingInfo.pierce;
             isDead = false;
             
@@ -104,7 +109,7 @@ namespace Rogium.Gameplay.Entities
         /// </summary>
         private void HandleMovement()
         {
-            Vector2 direction = (lifeTimer.TimeLeft > 0) ? TTransform.up : Vector2.zero;
+            Vector2 direction = (breakingTimer.TimeLeft > 0) ? TTransform.up : Vector2.zero;
             move.Move(direction);
         }
 
@@ -121,7 +126,6 @@ namespace Rogium.Gameplay.Entities
             StartCoroutine(DeathCoroutine());
             IEnumerator DeathCoroutine()
             {
-                
                 yield return new WaitForSeconds(deathTime);
                 OnDie?.Invoke();
             }

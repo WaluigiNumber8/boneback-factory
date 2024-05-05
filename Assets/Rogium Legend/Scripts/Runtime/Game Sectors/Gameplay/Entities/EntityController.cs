@@ -99,8 +99,8 @@ namespace Rogium.Gameplay.Entities
             rb.AddForce(rb.velocity + f, ForceMode2D.Impulse);
 
             if (!lockInput && !lockFaceDirection) return;
-            float time = 0.21f * Mathf.Exp(0.05f * RedRatUtils.GetTimeOfForce(f.magnitude, rb) + 0.01f); // The time increases with time exponentially.
-                                                                                                         // For the love of god, DON'T TOUCH THE NUMBERS.
+            float time = (0.21f * Mathf.Exp(0.05f * RedRatUtils.GetTimeOfForce(f.magnitude, rb) + 0.01f)) + 0.02f;  // The time increases with time exponentially.
+                                                                                                                    // For the love of god, DON'T TOUCH THE NUMBERS.
             if (lockInput) LockMovement(time);
             if (lockFaceDirection) LockFaceDirection(time * 1.6f);
         }
@@ -127,7 +127,7 @@ namespace Rogium.Gameplay.Entities
             faceDirection = (currentSpeed > 0.001f) ? (ttransform.position - lastPos).normalized : faceDirection;
         }
 
-        protected void OnDrawGizmos()
+        protected virtual void OnDrawGizmos()
         {
             if (!showGizmos) return;
             Gizmos.color = Color.yellow;

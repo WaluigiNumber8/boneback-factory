@@ -362,6 +362,7 @@ MonoBehaviour:
     maxSpeed: 20
     acceleration: 1
     brakeForce: 2
+  breakForceType: 0
 --- !u!114 &4680545751819740615
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -490,6 +490,7 @@ MonoBehaviour:
     maxSpeed: 0
     acceleration: 0
     brakeForce: 0
+  breakForceType: 1
 --- !u!114 &4789903678841646520
 MonoBehaviour:
   m_ObjectHideFlags: 0
