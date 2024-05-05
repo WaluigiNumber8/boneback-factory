@@ -2151,6 +2151,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collider: {fileID: 8749843501973659652}
   trigger: {fileID: 8749843501973659653}
+  advanced:
+    brakeForce: 6
+    startBreakingAt: 0.8
+    lastForceMoveTime: 0
   showGizmos: 0
   damageGiver: {fileID: 8441394236413098015}
   damageReceiver: {fileID: 9183867096112772868}

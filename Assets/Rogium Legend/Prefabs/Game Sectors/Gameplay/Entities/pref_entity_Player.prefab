@@ -338,7 +338,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collider: {fileID: 7909696671949641}
   trigger: {fileID: 1933103104913789414}
-  showGizmos: 0
+  advanced:
+    brakeForce: 6
+    startBreakingAt: 0.7
+    showGizmos: 0
+    lastForceMoveTime: 0
   movement: {fileID: 8977098935747787102}
   damageReceiver: {fileID: 4680545751819740615}
   visual: {fileID: 691628062176777703}

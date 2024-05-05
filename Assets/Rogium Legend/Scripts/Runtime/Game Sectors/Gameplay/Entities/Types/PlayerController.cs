@@ -73,8 +73,9 @@ namespace Rogium.Gameplay.Entities.Player
             DetectTurning();
         }
 
-        protected void FixedUpdate()
+        protected override void FixedUpdate()
         {
+            base.FixedUpdate();
             if (movementLocked) return;
             if (actionsLocked) return;
             movement.Move(moveDirection);

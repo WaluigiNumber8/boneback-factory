@@ -48,7 +48,11 @@ namespace Rogium.Gameplay.Entities
             base.Update();
         }
 
-        protected void FixedUpdate() => HandleMovement();
+        protected override void FixedUpdate()
+        {
+            base.FixedUpdate();
+            HandleMovement();
+        }
 
         private IEnumerator OnTriggerEnter2D(Collider2D col)
         {
