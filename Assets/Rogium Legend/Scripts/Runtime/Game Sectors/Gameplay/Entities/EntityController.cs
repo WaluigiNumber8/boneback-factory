@@ -52,10 +52,7 @@ namespace Rogium.Gameplay.Entities
         /// <summary>
         /// Stops the entity's movement.
         /// </summary>
-        public void StopMoving()
-        {
-            rb.AddForce(-rb.velocity, ForceMode2D.Impulse);
-        }
+        public void StopMoving() => rb.velocity = Vector2.zero;
 
         /// <summary>
         /// Locks the entity's movement for a certain amount of time.
