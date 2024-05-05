@@ -541,7 +541,7 @@ namespace Rogium.Systems.GASExtension
             RoomAsset currentAsset = RoomEditorOverseer.Instance.CurrentAsset;
             if (!currentAsset.ObjectGrid.Contains(AssetDataBuilder.ForObject(InternalLibraryOverseer.GetInstance().GetObjectByID("001"))) || !currentAsset.ObjectGrid.Contains(AssetDataBuilder.ForObject(InternalLibraryOverseer.GetInstance().GetObjectByID("002"))))
             {
-                MessageWindowInfo data = new("In order to save, there must be at least 1 <style=\"ExitGate\"> Exit Gate</style> and <style=\"StartingPoint\">Starting Point</style> present.", "OK");
+                MessageWindowInfo data = new("There must be at least 1 <style=\"ExitGate\"> Exit Gate</style>\n and <style=\"StartingPoint\">Starting Point</style> present.", "OK");
                 ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
                 return;
             }
