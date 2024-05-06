@@ -69,7 +69,7 @@ namespace Rogium.Gameplay.Entities.Player
         {
             base.Update();
             
-            // if (Time.frameCount % 3 != 0) return;
+            if (Time.frameCount % 3 != 0) return;
             DetectTurning();
         }
 

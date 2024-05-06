@@ -432,11 +432,11 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 5
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 04a95963222f57c4b98796ae889399cb, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -446,7 +446,7 @@ Rigidbody2D:
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &6205885584784640561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -461,7 +461,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collider: {fileID: 0}
   trigger: {fileID: 1640328497116694179}
-  showGizmos: 0
+  advanced:
+    brakeForce: 0
+    startBreakingAt: 0
+    showGizmos: 0
+    lastForceMoveTime: 0
   move: {fileID: 141826796905373418}
   damageGiver: {fileID: 4789903678841646520}
   visual: {fileID: 3065935022412784221}

@@ -47,6 +47,24 @@ namespace Rogium.Gameplay.Entities
         }
 
         /// <summary>
+        /// Resets the entity to initial state.
+        /// </summary>
+        public void Construct()
+        {
+            faceDirection = Vector2.zero;
+            lastPos = ttransform.position;
+            currentSpeed = 0;
+            movementLocked = false;
+            faceDirectionLocked = false;
+            actionsLocked = false;
+            movementLockTimer.Clear();
+            faceDirectionLockTimer.Clear();
+            advanced.movementBreakTimer.Clear();
+            advanced.lastForceMoveTime = 0;
+            StopMoving();
+        }
+        
+        /// <summary>
         /// Enables/Disables the entities ability to collide with objects and trigger events.
         /// </summary>
         /// <param name="isEnabled">Changes the collision state.</param>
@@ -106,7 +124,7 @@ namespace Rogium.Gameplay.Entities
             Vector2 f =  10 * force * direction;
             rb.AddForce(rb.velocity + f, ForceMode2D.Impulse);
             
-        advanced.SetTimer(0.21f * Mathf.Exp(0.05f * RedRatUtils.GetTimeOfForce(f.magnitude, rb)));      // The time increases with time exponentially.
+            advanced.SetTimer(0.21f * Mathf.Exp(0.05f * RedRatUtils.GetTimeOfForce(f.magnitude, rb)));  // The time increases with time exponentially.
                                                                                                         // For the love of god, DON'T TOUCH THE NUMBERS.
             if (!lockInput && !lockFaceDirection) return;
             if (lockInput) LockMovement(advanced.lastForceMoveTime);

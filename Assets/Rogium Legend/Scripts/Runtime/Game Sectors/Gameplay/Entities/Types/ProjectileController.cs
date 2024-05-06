@@ -74,6 +74,7 @@ namespace Rogium.Gameplay.Entities
         /// <param name="asset"></param>
         public void Construct(ProjectileAsset asset)
         {
+            base.Construct();
             color = asset.Color;
             lifeTimer.Set(asset.UseDelay);
             breakingTimer.Set(asset.UseDelay * 0.01f);
@@ -94,12 +95,13 @@ namespace Rogium.Gameplay.Entities
         /// </summary>
         public void ConstructMissing()
         {
+            base.Construct();
             lifeTimer.Set(missingInfo.lifetime);
             breakingTimer.Set(missingInfo.lifetime * 0.01f);
             pierceType = missingInfo.pierce;
             isDead = false;
             
-            move.Construct(new CharMoveInfo(EditorConstants.ProjectileFlightSpeed, EditorConstants.ProjectileAcceleration, EditorConstants.ProjectileBrakeForce));
+            move.Construct(new CharMoveInfo(EditorConstants.ProjectileFlightSpeed, EditorConstants.ProjectileAcceleration, EditorConstants.ProjectileBrakeForce * 0.01f));
             ForcedMoveInfo selfKnockback = new(EditorConstants.ProjectileKnockbackForceSelf, false, EditorConstants.ProjectileKnockbackLockDirectionSelf);
             ForcedMoveInfo otherKnockback = new(EditorConstants.ProjectileKnockbackForceOther, false, EditorConstants.ProjectileKnockbackLockDirectionOther);
             damageGiver.Construct(new CharDamageGiverInfo(EditorConstants.ProjectileBaseDamage, selfKnockback, otherKnockback));
