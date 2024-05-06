@@ -677,7 +677,6 @@ namespace Rogium.Systems.GASExtension
         
         public static void CampaignRefreshAllAccept()
         {
-            CampaignAssetSelectionOverseer overseer = CampaignAssetSelectionOverseer.Instance;
             CampaignEditorOverseer editor = CampaignEditorOverseer.Instance;
             ExternalLibraryOverseer lib = ExternalLibraryOverseer.Instance;
             IList<CampaignAsset> campaigns = lib.GetCampaignsCopy;
@@ -690,7 +689,7 @@ namespace Rogium.Systems.GASExtension
                 editor.UpdateDataPack(packs);
                 editor.CompleteEditing();
             }
-            
+            CampaignAssetSelectionOverseer.Instance.SelectAgain();
         }
         
         public static void CampaignRefresh(int index)
@@ -706,6 +705,7 @@ namespace Rogium.Systems.GASExtension
             editor.AssignAsset(currentAsset, index, false);
             editor.UpdateDataPack(packs);
             editor.CompleteEditing();
+            CampaignAssetSelectionOverseer.Instance.SelectAgain();
         }
 
         #endregion
