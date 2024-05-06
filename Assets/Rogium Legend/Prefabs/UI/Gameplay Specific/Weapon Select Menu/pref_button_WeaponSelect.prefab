@@ -393,7 +393,7 @@ GameObject:
   - component: {fileID: 6471539040852232325}
   - component: {fileID: 295154976600616812}
   m_Layer: 5
-  m_Name: pref_Button_WeaponSelect
+  m_Name: pref_button_WeaponSelect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -525,7 +525,7 @@ MonoBehaviour:
   text: {fileID: 5723430567418288904}
   highlighted: {r: 1, g: 1, b: 0, a: 1}
   pressed: {r: 1, g: 0.79607844, b: 0.54509807, a: 1}
-  selected: {r: 1, g: 0.7921569, b: 0.19215687, a: 1}
+  selected: {r: 1, g: 1, b: 0, a: 1}
   disabled: {r: 0.37254903, g: 0.37254903, b: 0.37254903, a: 1}
 --- !u!114 &295154976600616812
 MonoBehaviour:
