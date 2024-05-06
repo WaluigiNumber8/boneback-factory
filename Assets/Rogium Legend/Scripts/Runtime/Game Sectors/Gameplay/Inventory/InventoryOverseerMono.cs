@@ -35,7 +35,6 @@ namespace Rogium.Gameplay.Inventory
         private void ProcessNewWeapon(WeaponAsset newWeapon)
         {
             processedWeapon = newWeapon;
-
             weaponSelectMenu.RefreshSlotIcons(currentWeapons[0]?.Icon, currentWeapons[1]?.Icon, currentWeapons[2]?.Icon, 
                                               currentWeapons[3]?.Icon, currentWeapons[4]?.Icon, currentWeapons[5]?.Icon);
             if (newWeapon.IsEvasive) weaponSelectMenu.OpenForDash(CallForEquip);

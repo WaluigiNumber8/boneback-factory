@@ -31,9 +31,9 @@ namespace Rogium.Gameplay.Entities.Characteristics
         {
             defaultData = newInfo;
             
-            maxSpeed = 0.1f * defaultData.maxSpeed;
+            maxSpeed = defaultData.maxSpeed;
             accel = 1000 * defaultData.acceleration;
-            brakeForce = 100 * defaultData.brakeForce;
+            brakeForce = 10 * defaultData.brakeForce;
         }
 
         /// <summary>

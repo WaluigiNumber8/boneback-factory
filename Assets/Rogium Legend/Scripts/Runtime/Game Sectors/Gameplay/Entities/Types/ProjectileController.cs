@@ -43,9 +43,9 @@ namespace Rogium.Gameplay.Entities
 
         protected override void Update()
         {
+            base.Update();
             lifeTimer.Tick();
             breakingTimer.Tick();
-            base.Update();
         }
 
         protected override void FixedUpdate()
@@ -76,8 +76,8 @@ namespace Rogium.Gameplay.Entities
         {
             base.Construct();
             color = asset.Color;
-            lifeTimer.Set(asset.UseDelay);
-            breakingTimer.Set(asset.UseDelay * 0.01f);
+            lifeTimer.Set(1);
+            breakingTimer.Set(asset.UseDelay * 0.1f);
             pierceType = asset.PierceType;
             isDead = false;
             
@@ -97,7 +97,7 @@ namespace Rogium.Gameplay.Entities
         {
             base.Construct();
             lifeTimer.Set(missingInfo.lifetime);
-            breakingTimer.Set(missingInfo.lifetime * 0.01f);
+            breakingTimer.Set(missingInfo.lifetime * 0.2f);
             pierceType = missingInfo.pierce;
             isDead = false;
             
