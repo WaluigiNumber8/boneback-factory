@@ -4,7 +4,6 @@ using Rogium.Editors.Weapons;
 using Rogium.Gameplay.Entities.Enemy;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Rogium.Systems.LiteFeel.Brains
 {
@@ -19,7 +18,7 @@ namespace Rogium.Systems.LiteFeel.Brains
         [SerializeField, GUIColor(1f, 0.25f, 0f)] private LFEffector onDeathEffector;
         [SerializeField, ChildGameObjectsOnly, GUIColor(1f, 0.5f, 0f)] private LFEffector onGetItemEffector;
         [Space] 
-        [SerializeField, FormerlySerializedAs("damageSettings")] private DamageParticleSettingsInfo hitSettings;
+        [SerializeField] private DamageParticleSettingsInfo hitSettings;
         [SerializeField] private NewItemGetSettingsInfo newItemGetSettings;
         
         private void OnEnable()

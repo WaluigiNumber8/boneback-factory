@@ -13,7 +13,6 @@ namespace Rogium.Gameplay.Entities
     public class WeaponController : EntityController
     {
         public event Action OnUse;
-        public event Action OnUseStop;
         
         [Title("Characteristics")]
         [SerializeField] private CharacteristicDamageGiver damageGiver;
@@ -21,6 +20,7 @@ namespace Rogium.Gameplay.Entities
         [SerializeField] private CharacteristicVisual visual;
         [SerializeField] private CharacteristicSoundEmitter sound;
 
+        private Color color;
         private WeaponAsset weapon;
         
         protected override void Awake()
@@ -29,17 +29,11 @@ namespace Rogium.Gameplay.Entities
             ChangeActiveState(false);
         }
 
-        private void OnEnable()
-        {
-            OnUse += sound.PlayUseSound;
-        }
+        private void OnEnable() => OnUse += sound.PlayUseSound;
 
-        private void OnDisable()
-        {
-            OnUse -= sound.PlayUseSound;
-        }
+        private void OnDisable() => OnUse -= sound.PlayUseSound;
 
-        
+
         /// <summary>
         /// Load new weapon data into the entity.
         /// </summary>
@@ -47,6 +41,7 @@ namespace Rogium.Gameplay.Entities
         {
             if (weapon != null && weapon.ID == asset.ID) return;
             
+            color = asset.Color;
             ForcedMoveInfo knockbackSelf = new(asset.KnockbackForceSelf, true, asset.KnockbackLockDirectionSelf);
             ForcedMoveInfo knockbackOther = new(asset.KnockbackForceOther, true, asset.KnockbackLockDirectionOther);
             damageGiver.Construct(new CharDamageGiverInfo(asset.BaseDamage, knockbackSelf, knockbackOther));
@@ -88,7 +83,6 @@ namespace Rogium.Gameplay.Entities
                 yield return new WaitForSeconds(weapon.UseDuration);
                 
                 if (showWeapon) ChangeActiveState(false);
-                OnUseStop?.Invoke();
             }
         }
 
@@ -101,5 +95,8 @@ namespace Rogium.Gameplay.Entities
             UpdateCollideMode(isEnabled);
             visual.ChangeRenderState(isEnabled);
         }
+        
+        public Color RepresentativeColor { get => color; }
+        public CharacteristicDamageGiver DamageGiver { get => damageGiver; }
     }
 }
