@@ -69,12 +69,13 @@ namespace Rogium.Gameplay.Entities.Player
         {
             base.Update();
             
-            // if (Time.frameCount % 3 != 0) return;
+            if (Time.frameCount % 3 != 0) return;
             DetectTurning();
         }
 
-        protected void FixedUpdate()
+        protected override void FixedUpdate()
         {
+            base.FixedUpdate();
             if (movementLocked) return;
             if (actionsLocked) return;
             movement.Move(moveDirection);
@@ -93,7 +94,7 @@ namespace Rogium.Gameplay.Entities.Player
         /// </summary>
         private void Die()
         {
-            ChangeCollideMode(false);
+            UpdateCollideMode(false);
             actionsLocked = true;
             movementLocked = true;
             visual.PlayDeath();

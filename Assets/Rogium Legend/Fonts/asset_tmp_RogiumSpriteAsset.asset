@@ -12,9 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84a92b25f83d49b9bc132d206b370281, type: 3}
   m_Name: asset_tmp_RogiumSpriteAsset
   m_EditorClassIdentifier: 
-  hashCode: -1087395941
-  material: {fileID: 6445274706254670578}
-  materialHashCode: 0
   m_Version: 1.1.0
   m_FaceInfo:
     m_FaceIndex: 0
@@ -38,6 +35,7 @@ MonoBehaviour:
     m_StrikethroughOffset: 0
     m_StrikethroughThickness: 0
     m_TabWidth: 0
+  m_Material: {fileID: 6445274706254670578}
   spriteSheet: {fileID: 2800000, guid: e9877a2f42a82e947a3b73202bf25dba, type: 3}
   m_SpriteCharacterTable:
   - m_ElementType: 2
@@ -45,777 +43,649 @@ MonoBehaviour:
     m_GlyphIndex: 0
     m_Scale: 1
     m_Name: StartingPoint
-    m_HashCode: 2123850956
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 1
     m_Scale: 1
     m_Name: ExitGate
-    m_HashCode: 964513335
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 2
     m_Scale: 1
     m_Name: WeaponDrop
-    m_HashCode: -1408509749
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 3
     m_Scale: 1
     m_Name: ChestGold
-    m_HashCode: -175878551
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 4
     m_Scale: 1
     m_Name: CardAmount
-    m_HashCode: -1787763720
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 5
     m_Scale: 1
     m_Name: Headphones
-    m_HashCode: -1391267065
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 6
     m_Scale: 1
     m_Name: Brush
-    m_HashCode: 82109054
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 7
     m_Scale: 1
     m_Name: Gamepad
-    m_HashCode: -1463209733
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 8
     m_Scale: 1
     m_Name: Keyboard
-    m_HashCode: -1342856115
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 9
     m_Scale: 1
     m_Name: sprset_emojis_0
-    m_HashCode: 1236791060
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 10
     m_Scale: 1
     m_Name: sprset_emojis_1
-    m_HashCode: 1236791061
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 11
     m_Scale: 1
     m_Name: sprset_emojis_2
-    m_HashCode: 1236791062
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 12
     m_Scale: 1
     m_Name: sprset_emojis_3
-    m_HashCode: 1236791063
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 13
     m_Scale: 1
     m_Name: sprset_emojis_4
-    m_HashCode: 1236791056
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 14
     m_Scale: 1
     m_Name: sprset_emojis_5
-    m_HashCode: 1236791057
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 15
     m_Scale: 1
     m_Name: sprset_emojis_6
-    m_HashCode: 1236791058
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 16
     m_Scale: 1
     m_Name: sprset_emojis_7
-    m_HashCode: 1236791059
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 17
     m_Scale: 1
     m_Name: sprset_emojis_8
-    m_HashCode: 1236791068
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 18
     m_Scale: 1
     m_Name: sprset_emojis_9
-    m_HashCode: 1236791069
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 19
     m_Scale: 1
     m_Name: sprset_emojis_10
-    m_HashCode: -2135567995
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 20
     m_Scale: 1
     m_Name: sprset_emojis_11
-    m_HashCode: -2135567996
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 21
     m_Scale: 1
     m_Name: sprset_emojis_12
-    m_HashCode: -2135567993
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 22
     m_Scale: 1
     m_Name: sprset_emojis_13
-    m_HashCode: -2135567994
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 23
     m_Scale: 1
     m_Name: sprset_emojis_14
-    m_HashCode: -2135567999
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 24
     m_Scale: 1
     m_Name: sprset_emojis_15
-    m_HashCode: -2135568000
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 25
     m_Scale: 1
     m_Name: sprset_emojis_16
-    m_HashCode: -2135567997
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 26
     m_Scale: 1
     m_Name: sprset_emojis_17
-    m_HashCode: -2135567998
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 27
     m_Scale: 1
     m_Name: sprset_emojis_18
-    m_HashCode: -2135567987
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 28
     m_Scale: 1
     m_Name: sprset_emojis_19
-    m_HashCode: -2135567988
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 29
     m_Scale: 1
     m_Name: sprset_emojis_20
-    m_HashCode: -2135567898
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 30
     m_Scale: 1
     m_Name: sprset_emojis_21
-    m_HashCode: -2135567897
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 31
     m_Scale: 1
     m_Name: sprset_emojis_22
-    m_HashCode: -2135567900
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 32
     m_Scale: 1
     m_Name: sprset_emojis_23
-    m_HashCode: -2135567899
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 33
     m_Scale: 1
     m_Name: sprset_emojis_24
-    m_HashCode: -2135567902
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 34
     m_Scale: 1
     m_Name: sprset_emojis_25
-    m_HashCode: -2135567901
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 35
     m_Scale: 1
     m_Name: sprset_emojis_26
-    m_HashCode: -2135567904
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 36
     m_Scale: 1
     m_Name: sprset_emojis_27
-    m_HashCode: -2135567903
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 37
     m_Scale: 1
     m_Name: sprset_emojis_28
-    m_HashCode: -2135567890
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 38
     m_Scale: 1
     m_Name: sprset_emojis_29
-    m_HashCode: -2135567889
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 39
     m_Scale: 1
     m_Name: sprset_emojis_30
-    m_HashCode: -2135567929
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 40
     m_Scale: 1
     m_Name: sprset_emojis_31
-    m_HashCode: -2135567930
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 41
     m_Scale: 1
     m_Name: sprset_emojis_32
-    m_HashCode: -2135567931
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 42
     m_Scale: 1
     m_Name: sprset_emojis_33
-    m_HashCode: -2135567932
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 43
     m_Scale: 1
     m_Name: sprset_emojis_34
-    m_HashCode: -2135567933
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 44
     m_Scale: 1
     m_Name: sprset_emojis_35
-    m_HashCode: -2135567934
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 45
     m_Scale: 1
     m_Name: sprset_emojis_36
-    m_HashCode: -2135567935
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 46
     m_Scale: 1
     m_Name: sprset_emojis_37
-    m_HashCode: -2135567936
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 47
     m_Scale: 1
     m_Name: sprset_emojis_38
-    m_HashCode: -2135567921
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 48
     m_Scale: 1
     m_Name: sprset_emojis_39
-    m_HashCode: -2135567922
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 49
     m_Scale: 1
     m_Name: sprset_emojis_40
-    m_HashCode: -2135568096
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 50
     m_Scale: 1
     m_Name: sprset_emojis_41
-    m_HashCode: -2135568095
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 51
     m_Scale: 1
     m_Name: sprset_emojis_42
-    m_HashCode: -2135568094
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 52
     m_Scale: 1
     m_Name: sprset_emojis_43
-    m_HashCode: -2135568093
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 53
     m_Scale: 1
     m_Name: sprset_emojis_44
-    m_HashCode: -2135568092
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 54
     m_Scale: 1
     m_Name: sprset_emojis_45
-    m_HashCode: -2135568091
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 55
     m_Scale: 1
     m_Name: sprset_emojis_46
-    m_HashCode: -2135568090
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 56
     m_Scale: 1
     m_Name: sprset_emojis_47
-    m_HashCode: -2135568089
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 57
     m_Scale: 1
     m_Name: sprset_emojis_48
-    m_HashCode: -2135568088
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 58
     m_Scale: 1
     m_Name: sprset_emojis_49
-    m_HashCode: -2135568087
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 59
     m_Scale: 1
     m_Name: sprset_emojis_50
-    m_HashCode: -2135568127
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 60
     m_Scale: 1
     m_Name: sprset_emojis_51
-    m_HashCode: -2135568128
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 61
     m_Scale: 1
     m_Name: sprset_emojis_52
-    m_HashCode: -2135568125
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 62
     m_Scale: 1
     m_Name: sprset_emojis_53
-    m_HashCode: -2135568126
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 63
     m_Scale: 1
     m_Name: sprset_emojis_54
-    m_HashCode: -2135568123
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 64
     m_Scale: 1
     m_Name: sprset_emojis_55
-    m_HashCode: -2135568124
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 65
     m_Scale: 1
     m_Name: sprset_emojis_56
-    m_HashCode: -2135568121
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 66
     m_Scale: 1
     m_Name: sprset_emojis_57
-    m_HashCode: -2135568122
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 67
     m_Scale: 1
     m_Name: sprset_emojis_58
-    m_HashCode: -2135568119
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 68
     m_Scale: 1
     m_Name: sprset_emojis_59
-    m_HashCode: -2135568120
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 69
     m_Scale: 1
     m_Name: sprset_emojis_60
-    m_HashCode: -2135568030
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 70
     m_Scale: 1
     m_Name: sprset_emojis_61
-    m_HashCode: -2135568029
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 71
     m_Scale: 1
     m_Name: sprset_emojis_62
-    m_HashCode: -2135568032
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 72
     m_Scale: 1
     m_Name: sprset_emojis_63
-    m_HashCode: -2135568031
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 73
     m_Scale: 1
     m_Name: sprset_emojis_64
-    m_HashCode: -2135568026
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 74
     m_Scale: 1
     m_Name: sprset_emojis_65
-    m_HashCode: -2135568025
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 75
     m_Scale: 1
     m_Name: sprset_emojis_66
-    m_HashCode: -2135568028
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 76
     m_Scale: 1
     m_Name: sprset_emojis_67
-    m_HashCode: -2135568027
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 77
     m_Scale: 1
     m_Name: sprset_emojis_68
-    m_HashCode: -2135568022
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 78
     m_Scale: 1
     m_Name: sprset_emojis_69
-    m_HashCode: -2135568021
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 79
     m_Scale: 1
     m_Name: sprset_emojis_70
-    m_HashCode: -2135568061
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 80
     m_Scale: 1
     m_Name: sprset_emojis_71
-    m_HashCode: -2135568062
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 81
     m_Scale: 1
     m_Name: sprset_emojis_72
-    m_HashCode: -2135568063
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 82
     m_Scale: 1
     m_Name: sprset_emojis_73
-    m_HashCode: -2135568064
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 83
     m_Scale: 1
     m_Name: sprset_emojis_74
-    m_HashCode: -2135568057
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 84
     m_Scale: 1
     m_Name: sprset_emojis_75
-    m_HashCode: -2135568058
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 85
     m_Scale: 1
     m_Name: sprset_emojis_76
-    m_HashCode: -2135568059
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 86
     m_Scale: 1
     m_Name: sprset_emojis_77
-    m_HashCode: -2135568060
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 87
     m_Scale: 1
     m_Name: sprset_emojis_78
-    m_HashCode: -2135568053
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 88
     m_Scale: 1
     m_Name: sprset_emojis_79
-    m_HashCode: -2135568054
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 89
     m_Scale: 1
     m_Name: sprset_emojis_80
-    m_HashCode: -2135567700
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 90
     m_Scale: 1
     m_Name: sprset_emojis_81
-    m_HashCode: -2135567699
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 91
     m_Scale: 1
     m_Name: sprset_emojis_82
-    m_HashCode: -2135567698
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 92
     m_Scale: 1
     m_Name: sprset_emojis_83
-    m_HashCode: -2135567697
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 93
     m_Scale: 1
     m_Name: sprset_emojis_84
-    m_HashCode: -2135567704
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 94
     m_Scale: 1
     m_Name: sprset_emojis_85
-    m_HashCode: -2135567703
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 95
     m_Scale: 1
     m_Name: sprset_emojis_86
-    m_HashCode: -2135567702
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 96
     m_Scale: 1
     m_Name: sprset_emojis_87
-    m_HashCode: -2135567701
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 97
     m_Scale: 1
     m_Name: sprset_emojis_88
-    m_HashCode: -2135567708
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 98
     m_Scale: 1
     m_Name: sprset_emojis_89
-    m_HashCode: -2135567707
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 99
     m_Scale: 1
     m_Name: sprset_emojis_90
-    m_HashCode: -2135567731
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 100
     m_Scale: 1
     m_Name: sprset_emojis_91
-    m_HashCode: -2135567732
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 101
     m_Scale: 1
     m_Name: sprset_emojis_92
-    m_HashCode: -2135567729
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 102
     m_Scale: 1
     m_Name: sprset_emojis_93
-    m_HashCode: -2135567730
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 103
     m_Scale: 1
     m_Name: sprset_emojis_94
-    m_HashCode: -2135567735
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 104
     m_Scale: 1
     m_Name: sprset_emojis_95
-    m_HashCode: -2135567736
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 105
     m_Scale: 1
     m_Name: sprset_emojis_96
-    m_HashCode: -2135567733
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 106
     m_Scale: 1
     m_Name: sprset_emojis_97
-    m_HashCode: -2135567734
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 107
     m_Scale: 1
     m_Name: sprset_emojis_98
-    m_HashCode: -2135567739
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 108
     m_Scale: 1
     m_Name: sprset_emojis_99
-    m_HashCode: -2135567740
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 109
     m_Scale: 1
     m_Name: sprset_emojis_100
-    m_HashCode: -1754267115
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 110
     m_Scale: 1
     m_Name: sprset_emojis_101
-    m_HashCode: -1754267116
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 111
     m_Scale: 1
     m_Name: sprset_emojis_102
-    m_HashCode: -1754267113
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 112
     m_Scale: 1
     m_Name: sprset_emojis_103
-    m_HashCode: -1754267114
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 113
     m_Scale: 1
     m_Name: sprset_emojis_104
-    m_HashCode: -1754267119
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 114
     m_Scale: 1
     m_Name: sprset_emojis_105
-    m_HashCode: -1754267120
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 115
     m_Scale: 1
     m_Name: sprset_emojis_106
-    m_HashCode: -1754267117
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 116
     m_Scale: 1
     m_Name: sprset_emojis_107
-    m_HashCode: -1754267118
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 117
     m_Scale: 1
     m_Name: sprset_emojis_108
-    m_HashCode: -1754267107
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 118
     m_Scale: 1
     m_Name: sprset_emojis_109
-    m_HashCode: -1754267108
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 119
     m_Scale: 1
     m_Name: sprset_emojis_110
-    m_HashCode: -1754267084
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 120
     m_Scale: 1
     m_Name: sprset_emojis_111
-    m_HashCode: -1754267083
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 121
     m_Scale: 1
     m_Name: sprset_emojis_112
-    m_HashCode: -1754267082
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 122
     m_Scale: 1
     m_Name: sprset_emojis_113
-    m_HashCode: -1754267081
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 123
     m_Scale: 1
     m_Name: sprset_emojis_114
-    m_HashCode: -1754267088
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 124
     m_Scale: 1
     m_Name: sprset_emojis_115
-    m_HashCode: -1754267087
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 125
     m_Scale: 1
     m_Name: sprset_emojis_116
-    m_HashCode: -1754267086
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 126
     m_Scale: 1
     m_Name: sprset_emojis_117
-    m_HashCode: -1754267085
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 127
     m_Scale: 1
     m_Name: sprset_emojis_118
-    m_HashCode: -1754267076
-  m_SpriteGlyphTable:
+  m_GlyphTable:
   - m_Index: 0
     m_Metrics:
       m_Width: 16
       m_Height: 16
-      m_HorizontalBearingX: -8
+      m_HorizontalBearingX: 0
       m_HorizontalBearingY: 11.27
-      m_HorizontalAdvance: 0
+      m_HorizontalAdvance: 20
     m_GlyphRect:
       m_X: 0
       m_Y: 112
@@ -829,9 +699,9 @@ MonoBehaviour:
     m_Metrics:
       m_Width: 16
       m_Height: 16
-      m_HorizontalBearingX: -8
+      m_HorizontalBearingX: 0
       m_HorizontalBearingY: 11.27
-      m_HorizontalAdvance: 0
+      m_HorizontalAdvance: 18
     m_GlyphRect:
       m_X: 16
       m_Y: 112
@@ -845,9 +715,9 @@ MonoBehaviour:
     m_Metrics:
       m_Width: 16
       m_Height: 16
-      m_HorizontalBearingX: -8
+      m_HorizontalBearingX: 0
       m_HorizontalBearingY: 13
-      m_HorizontalAdvance: 0
+      m_HorizontalAdvance: 16
     m_GlyphRect:
       m_X: 32
       m_Y: 112
@@ -861,9 +731,9 @@ MonoBehaviour:
     m_Metrics:
       m_Width: 16
       m_Height: 16
-      m_HorizontalBearingX: -8
+      m_HorizontalBearingX: 0
       m_HorizontalBearingY: 13
-      m_HorizontalAdvance: 0
+      m_HorizontalAdvance: 16
     m_GlyphRect:
       m_X: 48
       m_Y: 112
@@ -877,15 +747,15 @@ MonoBehaviour:
     m_Metrics:
       m_Width: 16
       m_Height: 16
-      m_HorizontalBearingX: -8
+      m_HorizontalBearingX: 0
       m_HorizontalBearingY: 11.27
-      m_HorizontalAdvance: 0
+      m_HorizontalAdvance: 16
     m_GlyphRect:
       m_X: 64
       m_Y: 112
       m_Width: 16
       m_Height: 16
-    m_Scale: 1.5
+    m_Scale: 1.6
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
     sprite: {fileID: -2126587326, guid: e9877a2f42a82e947a3b73202bf25dba, type: 3}
@@ -2900,3 +2770,4 @@ Material:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Rogium.Editors.Weapons;
 using Rogium.Gameplay.Entities.Characteristics;
 using Rogium.Gameplay.InteractableObjects;
@@ -18,6 +19,9 @@ namespace Rogium.Gameplay.Inventory
         
         private IList<WeaponAsset> currentWeapons;
         private WeaponAsset processedWeapon;
+        private HUDController hudController;
+
+        private void Awake() => hudController = HUDController.GetInstance();
 
         private void Start()
         {
@@ -31,7 +35,6 @@ namespace Rogium.Gameplay.Inventory
         private void ProcessNewWeapon(WeaponAsset newWeapon)
         {
             processedWeapon = newWeapon;
-
             weaponSelectMenu.RefreshSlotIcons(currentWeapons[0]?.Icon, currentWeapons[1]?.Icon, currentWeapons[2]?.Icon, 
                                               currentWeapons[3]?.Icon, currentWeapons[4]?.Icon, currentWeapons[5]?.Icon);
             if (newWeapon.IsEvasive) weaponSelectMenu.OpenForDash(CallForEquip);
@@ -45,7 +48,7 @@ namespace Rogium.Gameplay.Inventory
         private void CallForEquip(int slot)
         {
             weaponHolder.Equip(processedWeapon, slot);
-            HUDController.GetInstance().UpdateWeaponSlot(slot, processedWeapon.Icon);
+            hudController.UpdateWeaponSlot(slot, processedWeapon.Icon);
             currentWeapons[slot] = processedWeapon;
             processedWeapon = null;
         }

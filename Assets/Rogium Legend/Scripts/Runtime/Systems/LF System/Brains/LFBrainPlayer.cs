@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using RedRats.Core;
 using RedRats.Systems.LiteFeel.Core;
 using Rogium.Editors.Weapons;
 using Rogium.Gameplay.Entities.Player;
@@ -48,7 +46,7 @@ namespace Rogium.Systems.LiteFeel.Brains
         {
             if (damage <= 0) return;
                 
-            int amount = RedRatUtils.RemapAndEvaluate(damage, hitSettings.amountCurve, hitSettings.minDamage, hitSettings.maxDamage, hitSettings.minAmount, hitSettings.maxAmount);
+            int amount = hitSettings.GetAmountOfParticles(damage);
             hitSettings.particleEffect.UpdateBurstAmount(0, amount);
             if (hitSettings.isDirectional) hitSettings.particleEffect.UpdateRotationOffset(-hitDirection);
             onHitEffector.Play();

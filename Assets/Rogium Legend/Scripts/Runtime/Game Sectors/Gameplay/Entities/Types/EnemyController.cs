@@ -79,6 +79,7 @@ namespace Rogium.Gameplay.Entities.Enemy
         /// <param name="asset">The asset to take data from.</param>
         public void Construct(EnemyAsset asset, IList<WeaponAsset> weapons = null)
         {
+            base.Construct();
             playerTransform = GameObject.FindWithTag("Player").transform;
             
             color = asset.Color;
@@ -160,7 +161,7 @@ namespace Rogium.Gameplay.Entities.Enemy
         
         private void Die()
         {
-            ChangeCollideMode(false);
+            UpdateCollideMode(false);
             weaponHold.WipeInventory();
             Destroy(gameObject, deathTime);
         }

@@ -32,10 +32,10 @@ namespace Rogium.Gameplay.Entities.Characteristics
         /// Apply knockback on receiver.
         /// </summary>
         /// <param name="other">The receiver of the knockback.</param>
-        public void ReceiveKnockback(EntityController other)
+        public void ReceiveKnockback(EntityController other, Vector3 hitDirection)
         {
-            entity.ForceMove(other.FaceDirection, defaultData.knockbackSelf);
-            other.ForceMove(-other.FaceDirection, defaultData.knockbackOther);
+            entity.ForceMove(hitDirection, defaultData.knockbackSelf);
+            other.ForceMove(-hitDirection, defaultData.knockbackOther);
         }
         
     }

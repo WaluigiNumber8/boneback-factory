@@ -51,8 +51,8 @@ namespace Rogium.Editors.PropertyEditor.Builders
 
             b.BuildHeader("Movement", content);
             b.BuildInputField("Flight Speed", asset.FlightSpeed.ToString(), content, s => asset.UpdateFlightSpeed(float.Parse(s)));
-            b.BuildSlider("Acceleration", 0.01f, EditorConstants.ProjectileMaxAcceleration, asset.Acceleration, content, asset.UpdateAcceleration);
-            b.BuildSlider("Brake Force", 0.01f, EditorConstants.ProjectileMaxBrakeForce, asset.BrakeForce, content, asset.UpdateBrakeForce);
+            b.BuildSlider("Acceleration", 0.01f, EditorConstants.ProjectileAccelerationMax, asset.Acceleration, content, asset.UpdateAcceleration);
+            b.BuildSlider("Brake Force", 0.01f, EditorConstants.ProjectileBrakeForceMax, asset.BrakeForce, content, asset.UpdateBrakeForce);
             
             b.BuildHeader("Knockback", content);
             b.BuildSlider("Self Force", -EditorConstants.ProjectileKnockbackForceMax, EditorConstants.ProjectileKnockbackForceMax, asset.KnockbackForceSelf, content, f => asset.UpdateKnockbackForceSelf(f));

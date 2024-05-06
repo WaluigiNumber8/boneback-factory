@@ -18,7 +18,7 @@ namespace RedRats.Systems.Clocks
         }
 
         /// <summary>
-        /// Stops the timer.
+        /// Set the timer to a specific time.
         /// </summary>
         /// <param name="time">How many seconds the timer lasts</param>
         public void Set(float time)
@@ -26,6 +26,11 @@ namespace RedRats.Systems.Clocks
             timer = time;
             whenStarted?.Invoke();
         }
+
+        /// <summary>
+        /// Cancels out the timer.
+        /// </summary>
+        public void Clear() => timer = 0;
 
         /// <summary>
         /// Countdown the timer if it was started. Once reaches 0, the whenFinished method will be invoked.
