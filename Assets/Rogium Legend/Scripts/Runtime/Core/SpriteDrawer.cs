@@ -19,12 +19,14 @@ namespace Rogium.Systems.GridSystem
         private readonly int pixelsPerUnit;
         
         private readonly Color[] emptyPixels;
+        private readonly bool overdrawTransparent;
         
-        public SpriteDrawer(Vector2Int size, Vector2Int unitSize, int pixelsPerUnit)
+        public SpriteDrawer(Vector2Int size, Vector2Int unitSize, int pixelsPerUnit, bool overdrawTransparent = true)
         {
             this.size = size;
             this.unitSize = unitSize;
             this.pixelsPerUnit = pixelsPerUnit;
+            this.overdrawTransparent = overdrawTransparent;
 
             int width = unitSize.x * size.x;
             int height = unitSize.y * size.y;
@@ -140,7 +142,7 @@ namespace Rogium.Systems.GridSystem
 
             for (int i = 0; i < texPixels.Length; i++)
             {
-                if (texPixels[i].a == 0) continue; // if the pixel is not transparent
+                if (!overdrawTransparent && texPixels[i].a == 0) continue; // if the pixel is not transparent
                 layerPixels[i] = texPixels[i];
             }
 
