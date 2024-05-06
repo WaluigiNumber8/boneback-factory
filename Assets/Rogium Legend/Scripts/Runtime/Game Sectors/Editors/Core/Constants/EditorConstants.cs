@@ -84,11 +84,11 @@ namespace Rogium.Editors.Core.Defaults
         public const bool ProjectileKnockbackLockDirectionOther = true;
         public const float ProjectileKnockbackForceMax = 60f;
 
-        public const float ProjectileFlightSpeed = 40;
-        public const float ProjectileAcceleration = 1f;
+        public const float ProjectileFlightSpeed = 16;
+        public const float ProjectileAcceleration = 0.5f;
         public const float ProjectileAccelerationMax = 1f;
         public const float ProjectileBrakeForce = 0.01f;
-        public const float ProjectileBrakeForceMax = 1f;
+        public const float ProjectileBrakeForceMax = 2f;
         public const PierceType ProjectilePierceType = PierceType.None;
 
         //Enemy

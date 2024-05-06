@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace Rogium.Gameplay.Entities.Characteristics
 {
@@ -9,6 +10,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
     {
         [SerializeField] private CharMoveInfo defaultData;
         [SerializeField] private ForceMode2D breakForceType = ForceMode2D.Force;
+        [Button("Reconstruct", ButtonSizes.Medium), DisableInEditorMode] private void Reconstruct() => Construct(defaultData);
         
         private Rigidbody2D rb;
         

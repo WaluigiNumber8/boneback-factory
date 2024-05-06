@@ -76,7 +76,7 @@ namespace Rogium.Gameplay.Entities
         {
             base.Construct();
             color = asset.Color;
-            lifeTimer.Set(1);
+            lifeTimer.Set(asset.UseDelay);
             breakingTimer.Set(asset.UseDelay * 0.1f);
             pierceType = asset.PierceType;
             isDead = false;
