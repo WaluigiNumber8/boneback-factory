@@ -34,6 +34,7 @@ namespace Rogium.Gameplay.Inventory
         private Action<int> whenSelectedWeapon;
         private RectTransform ttransform;
         private RectTransform canvasTransform;
+        private InputSystem inputSystem;
         private Camera cam;
 
         private void Start()
@@ -41,6 +42,7 @@ namespace Rogium.Gameplay.Inventory
             ttransform = GetComponent<RectTransform>();
             canvasTransform = ttransform.GetComponentInParent<Canvas>().GetComponent<RectTransform>();
             cam = Camera.main;
+            inputSystem = InputSystem.GetInstance();
             
             ui.ui.SetActive(false);
             Hide();
@@ -95,7 +97,7 @@ namespace Rogium.Gameplay.Inventory
             SnapToTarget();
             ui.ui.SetActive(true);
             GameplayOverseerMono.GetInstance().EnableUI();
-            InputSystem.GetInstance().DisableInput(this, inputStartDelay);
+            inputSystem.DisableInput(this, inputStartDelay);
             
             OnOpen?.Invoke();
         }
@@ -107,6 +109,7 @@ namespace Rogium.Gameplay.Inventory
             {
                 OnClose?.Invoke();
                 GameplayOverseerMono.GetInstance().DisableUI();
+                inputSystem.DisableInput(this, hideDelay);
                 
                 yield return new WaitForSecondsRealtime(hideDelay);
                 

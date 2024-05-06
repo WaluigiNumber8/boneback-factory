@@ -283,19 +283,19 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.15613073, y: -0.3168674}
-      - {x: 0.069256425, y: -0.31728506}
-      - {x: -0.123333454, y: -0.31779343}
-      - {x: -0.16742022, y: -0.3185015}
-      - {x: -0.20942149, y: -0.32204267}
-      - {x: -0.24737006, y: -0.33707199}
-      - {x: -0.28249994, y: -0.38117146}
-      - {x: -0.2814438, y: -0.45531702}
-      - {x: -0.24697833, y: -0.502254}
-      - {x: 0.24367188, y: -0.5027242}
-      - {x: 0.27800298, y: -0.47910932}
-      - {x: 0.27768278, y: -0.36889458}
-      - {x: 0.2286715, y: -0.32979494}
+    - - {x: 0.20260036, y: -0.10337907}
+      - {x: 0.043486476, y: -0.108093455}
+      - {x: -0.10514288, y: -0.10557008}
+      - {x: -0.15794334, y: -0.10501318}
+      - {x: -0.20435111, y: -0.11007023}
+      - {x: -0.20938417, y: -0.31940416}
+      - {x: -0.20876539, y: -0.36639422}
+      - {x: -0.21982583, y: -0.44925347}
+      - {x: -0.22754368, y: -0.49607027}
+      - {x: 0.22423728, y: -0.49477363}
+      - {x: 0.22230744, y: -0.4394455}
+      - {x: 0.22640416, y: -0.36889458}
+      - {x: 0.22248773, y: -0.32979494}
   m_UseDelaunayMesh: 1
 --- !u!50 &42737588524664427
 Rigidbody2D:
@@ -338,7 +338,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collider: {fileID: 7909696671949641}
   trigger: {fileID: 1933103104913789414}
-  showGizmos: 0
+  advanced:
+    brakeForce: 6
+    startBreakingAt: 0.7
+    showGizmos: 0
+    lastForceMoveTime: 0
   movement: {fileID: 8977098935747787102}
   damageReceiver: {fileID: 4680545751819740615}
   visual: {fileID: 691628062176777703}
@@ -359,9 +363,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entity: {fileID: 42737588524664429}
   defaultData:
-    maxSpeed: 20
+    maxSpeed: 2
     acceleration: 1
-    brakeForce: 2
+    brakeForce: 20
+  breakForceType: 0
 --- !u!114 &4680545751819740615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1547,7 +1552,7 @@ Transform:
   m_GameObject: {fileID: 3397263373556672839}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.178, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1573,7 +1578,7 @@ MonoBehaviour:
   m_Intensity: 0.6
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000c5869c15e145c20b4fffe48571d8cfb5
+  m_ApplyToSortingLayers: 00000000c5869c15e145c20b4fffe48571d8cfb561daee27
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0

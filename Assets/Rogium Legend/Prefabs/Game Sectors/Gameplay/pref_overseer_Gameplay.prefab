@@ -63,10 +63,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomLoader: {fileID: 2982206685237233498}
   player: {fileID: 0}
-  transportRunSpeed: 12
+  transportRunSpeed: 6
   transportWalkSpeed: 2
-  defaultStartPos: {x: 0, y: 0}
-  beforeIntroDelay: 0
+  defaultStartPos: {x: -6.5, y: 3.5}
+  beforeIntroDelay: 0.75
+  beforeGameOverDelay: 8
 --- !u!1 &3514882699237565128
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6fb3a238b8f403abe9346c45e970d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originPos: {x: 0, y: 0, z: 0}
+  originPos: {x: -8, y: -5, z: 0}
   tileBuilder: {fileID: 2648304389740304645}
   decorBuilder: {fileID: 1284019599046797233}
   objectBuilder: {fileID: 815753160169990469}

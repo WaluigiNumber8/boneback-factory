@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace Rogium.Gameplay.Entities.Characteristics
 {
@@ -8,7 +9,9 @@ namespace Rogium.Gameplay.Entities.Characteristics
     public class CharacteristicMove : CharacteristicBase
     {
         [SerializeField] private CharMoveInfo defaultData;
-
+        [SerializeField] private ForceMode2D breakForceType = ForceMode2D.Force;
+        [Button("Reconstruct", ButtonSizes.Medium), DisableInEditorMode] private void Reconstruct() => Construct(defaultData);
+        
         private Rigidbody2D rb;
         
         private Vector2 direction;
@@ -30,9 +33,9 @@ namespace Rogium.Gameplay.Entities.Characteristics
         {
             defaultData = newInfo;
             
-            maxSpeed = 0.1f * defaultData.maxSpeed;
+            maxSpeed = defaultData.maxSpeed;
             accel = 1000 * defaultData.acceleration;
-            brakeForce = 100 * defaultData.brakeForce;
+            brakeForce = 10 * defaultData.brakeForce;
         }
 
         /// <summary>
@@ -41,16 +44,12 @@ namespace Rogium.Gameplay.Entities.Characteristics
         /// <param name="direction">The direction of the movement.</param>
         public void Move(Vector2 direction)
         {
-            Vector2 force = (direction != Vector2.zero) ? rb.velocity + accel * direction : rb.velocity * -brakeForce;
+            Vector2 force = (direction != Vector2.zero) ? rb.velocity + accel * direction : Vector2.zero;
+            Vector2 decelerationForce = (direction != Vector2.zero) ? Vector2.zero : -brakeForce * rb.velocity;
+            
             rb.AddForce(force, ForceMode2D.Force);
+            rb.AddForce(decelerationForce, breakForceType);
             rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);
         }
-
-        /// <summary>
-        /// Stops all movement.
-        /// </summary>
-        public void Stop() => entity.Rigidbody.velocity = Vector2.zero;
-        
-        
     }
 }

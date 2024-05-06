@@ -1,4 +1,5 @@
 using System;
+using RedRats.Core;
 using RedRats.Systems.LiteFeel.Effects;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -18,5 +19,10 @@ namespace Rogium.Systems.LiteFeel
         [MinValue(0)] public int minAmount;
         [MinValue(0)] public int maxAmount;
         public bool isDirectional;
+
+        public int GetAmountOfParticles(int damage)
+        {
+            return RedRatUtils.RemapAndEvaluate(damage, amountCurve, minDamage, maxDamage, minAmount, maxAmount);
+        }
     }
 }

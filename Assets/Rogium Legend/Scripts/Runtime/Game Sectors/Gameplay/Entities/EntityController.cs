@@ -1,4 +1,5 @@
-﻿using RedRats.Core;
+﻿using System;
+using RedRats.Core;
 using RedRats.Systems.Clocks;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -11,10 +12,10 @@ namespace Rogium.Gameplay.Entities
     [RequireComponent(typeof(Rigidbody2D))]
     public abstract class EntityController : MonoBehaviour
     {
-        [Title("Collision")]
+        [Title("Settings")]
         [SerializeField] private new Collider2D collider;
         [SerializeField] private Collider2D trigger;
-        [SerializeField] private bool showGizmos;
+        [SerializeField, LabelText("Advanced Settings")] private AdvancedSettingsInfo advanced;
 
         private Transform ttransform;
         private Rigidbody2D rb;
@@ -34,15 +35,40 @@ namespace Rogium.Gameplay.Entities
             rb = GetComponent<Rigidbody2D>();
             movementLockTimer = new CountdownTimer(() => movementLocked = false, () => movementLocked = true);
             faceDirectionLockTimer = new CountdownTimer(() => faceDirectionLocked = false, () => faceDirectionLocked = true);
+            advanced.movementBreakTimer = new CountdownTimer();
         }
 
         protected virtual void Update() => UpdateParameters();
 
+        protected virtual void FixedUpdate()
+        {
+            if (advanced.CannotBreak) return;
+            rb.AddForce(rb.velocity * -advanced.brakeForce, ForceMode2D.Impulse);
+        }
+
+        /// <summary>
+        /// Resets the entity to initial state.
+        /// </summary>
+        public void Construct()
+        {
+            faceDirection = Vector2.zero;
+            lastPos = ttransform.position;
+            currentSpeed = 0;
+            movementLocked = false;
+            faceDirectionLocked = false;
+            actionsLocked = false;
+            movementLockTimer.Clear();
+            faceDirectionLockTimer.Clear();
+            advanced.movementBreakTimer.Clear();
+            advanced.lastForceMoveTime = 0;
+            StopMoving();
+        }
+        
         /// <summary>
         /// Enables/Disables the entities ability to collide with objects and trigger events.
         /// </summary>
         /// <param name="isEnabled">Changes the collision state.</param>
-        public void ChangeCollideMode(bool isEnabled)
+        public void UpdateCollideMode(bool isEnabled)
         {
             actionsLocked = !isEnabled;
             if (collider != null) collider.enabled = isEnabled;
@@ -52,10 +78,7 @@ namespace Rogium.Gameplay.Entities
         /// <summary>
         /// Stops the entity's movement.
         /// </summary>
-        public void StopMoving()
-        {
-            rb.AddForce(-rb.velocity, ForceMode2D.Impulse);
-        }
+        public void StopMoving() => rb.velocity = Vector2.zero;
 
         /// <summary>
         /// Locks the entity's movement for a certain amount of time.
@@ -101,11 +124,12 @@ namespace Rogium.Gameplay.Entities
             Vector2 f =  10 * force * direction;
             rb.AddForce(rb.velocity + f, ForceMode2D.Impulse);
 
+            float time = 0.97f * (0.21f * Mathf.Exp(0.05f * RedRatUtils.GetTimeOfForce(f.magnitude, rb)));  // The time increases with time exponentially.
+            advanced.SetTimer(time);                                                                        // For the love of god, DON'T TOUCH THE NUMBERS.
+                                        
             if (!lockInput && !lockFaceDirection) return;
-            float time = 0.21f * Mathf.Exp(0.05f * RedRatUtils.GetTimeOfForce(f.magnitude, rb) + 0.01f); // The time increases with time exponentially.
-                                                                                                         // For the love of god, DON'T TOUCH THE NUMBERS.
-            if (lockInput) LockMovement(time);
-            if (lockFaceDirection) LockFaceDirection(time * 1.6f);
+            if (lockInput) LockMovement(advanced.lastForceMoveTime);
+            if (lockFaceDirection) LockFaceDirection(advanced.lastForceMoveTime * 1.2f);
         }
 
         /// <summary>
@@ -115,6 +139,7 @@ namespace Rogium.Gameplay.Entities
         {
             movementLockTimer.Tick();
             faceDirectionLockTimer.Tick();
+            advanced.movementBreakTimer.Tick();
             
             currentSpeed = (ttransform.position - lastPos).sqrMagnitude * 1000;
             if (!faceDirectionLocked) UpdateFaceDirection();
@@ -130,9 +155,9 @@ namespace Rogium.Gameplay.Entities
             faceDirection = (currentSpeed > 0.001f) ? (ttransform.position - lastPos).normalized : faceDirection;
         }
 
-        protected void OnDrawGizmos()
+        protected virtual void OnDrawGizmos()
         {
-            if (!showGizmos) return;
+            if (!advanced.showGizmos) return;
             Gizmos.color = Color.yellow;
         }
         
@@ -141,5 +166,23 @@ namespace Rogium.Gameplay.Entities
         public Vector2 FaceDirection { get => faceDirection; }
         public float CurrentSpeed { get => currentSpeed; }
         public bool ActionsLocked { get => actionsLocked; }
+
+        [Serializable]
+        public struct AdvancedSettingsInfo
+        {
+            [MinValue(0)] public float brakeForce;
+            [Range(0f, 1f)] public float startBreakingAt;
+            [SerializeField] public bool showGizmos;
+            
+            [HideInInspector] public CountdownTimer movementBreakTimer;
+            [HideInInspector] public float lastForceMoveTime;
+
+            public bool CannotBreak => (movementBreakTimer.TimeLeft <= 0 || movementBreakTimer.TimeLeft > lastForceMoveTime * startBreakingAt);
+            public void SetTimer(float time)
+            {
+                lastForceMoveTime = time;
+                movementBreakTimer.Set(time);
+            }
+        }
     }
 }

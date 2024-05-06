@@ -98,7 +98,7 @@ namespace Rogium.Gameplay.Entities
         /// <param name="isEnabled">Changes the state.</param>
         public void ChangeActiveState(bool isEnabled)
         {
-            ChangeCollideMode(isEnabled);
+            UpdateCollideMode(isEnabled);
             visual.ChangeRenderState(isEnabled);
         }
     }

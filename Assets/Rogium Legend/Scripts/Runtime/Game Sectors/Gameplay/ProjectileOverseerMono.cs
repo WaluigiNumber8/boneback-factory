@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using RedRats.Core;
 using RedRats.Safety;
 using Rogium.Core;
@@ -18,13 +19,13 @@ namespace Rogium.Gameplay.Core
     {
         [SerializeField] private ProjectileController vessel;
 
-        private IList<ProjectileAsset> allProjectiles;
+        private IDictionary<string, ProjectileAsset> allProjectiles;
         private ProjectileAsset lastProjectile;
         private ObjectPool<ProjectileController> pool;
 
         private void Start()
         {
-            allProjectiles = GameplayOverseerMono.GetInstance().CurrentCampaign.DataPack.Projectiles;
+            allProjectiles = GameplayOverseerMono.GetInstance().CurrentCampaign.DataPack.Projectiles.ToDictionary(p => p.ID);
             pool = new ObjectPool<ProjectileController>(
                 () =>
                 {
@@ -35,7 +36,7 @@ namespace Rogium.Gameplay.Core
                 null,
                 p => p.gameObject.SetActive(false),
                 Destroy,
-                true, 100
+                true, 200
             );
         }
 
@@ -70,6 +71,8 @@ namespace Rogium.Gameplay.Core
             }
         }
 
+        public void ClearAllProjectiles() => pool.Clear();
+
         /// <summary>
         /// Refreshes the last projectile.
         /// </summary>
@@ -80,7 +83,7 @@ namespace Rogium.Gameplay.Core
             if (lastProjectile != null && lastProjectile.ID == id) return true;
             try
             {
-                lastProjectile = allProjectiles.FindValueFirst(id);
+                lastProjectile = allProjectiles[id];
                 return true;
             }
             catch (SafetyNetCollectionException)
