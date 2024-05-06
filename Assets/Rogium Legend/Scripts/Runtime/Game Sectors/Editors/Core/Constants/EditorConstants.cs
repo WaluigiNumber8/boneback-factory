@@ -149,7 +149,7 @@ namespace Rogium.Editors.Core.Defaults
         public const int PixelsPerUnit = 16;
         public static readonly Sprite EmptyGridSprite = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
         public static readonly Color EmptyGridColor = Color.black;
-        public static readonly Color NoColor = new Color(1, 1, 1, 0.004f);
+        public static readonly Color NoColor = Color.clear;
         public static readonly Sprite MissingSprite = Resources.Load<Sprite>("Defaults/spr_Missing");
         public static readonly Color MissingColor = new Color(255, 88, 227);
         public static readonly Color DefaultColor = Color.white;
