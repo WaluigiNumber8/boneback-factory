@@ -1,5 +1,5 @@
 ﻿using System;
-using RedRats.UI;
+using RedRats.Systems.Themes;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
@@ -32,13 +32,14 @@ namespace Rogium.Editors.PropertyEditor.Builders
         protected override void BuildColumnImportant(Transform content)
         {
             animationBlock1Slot = b.CreateContentBlockVertical(content, (asset.AnimationType == AnimationType.SpriteSwap));
-            b.BuildAssetField("", AssetType.Sprite, asset, animationBlock1Slot.GetTransform, a => asset.UpdateIcon(a), !currentPack.ContainsAnySprites, ThemeType.Teal);
+            b.BuildAssetField("", AssetType.Sprite, asset, animationBlock1Slot.GetTransform, a => asset.UpdateIcon(a), null, !currentPack.ContainsAnySprites, ThemeType.Teal);
             
             animationBlock2Slot = b.CreateContentBlockColumn2(content, (asset.AnimationType != AnimationType.SpriteSwap));
-            b.BuildAssetField("", AssetType.Sprite, asset, animationBlock2Slot.GetTransform, a => asset.UpdateIcon(a), !currentPack.ContainsAnySprites, ThemeType.Teal);
-            b.BuildAssetField("", AssetType.Sprite, asset, animationBlock2Slot.GetTransform, a => asset.UpdateIconAlt(a.Icon), !currentPack.ContainsAnySprites, ThemeType.Teal);
+            b.BuildAssetField("", AssetType.Sprite, asset, animationBlock2Slot.GetTransform, a => asset.UpdateIcon(a), null, !currentPack.ContainsAnySprites, ThemeType.Teal);
+            b.BuildAssetField("", AssetType.Sprite, asset, animationBlock2Slot.GetTransform, a => asset.UpdateIconAlt(a.Icon), null, !currentPack.ContainsAnySprites, ThemeType.Teal);
             
             b.BuildInputField("", asset.Title, content, asset.UpdateTitle);
+            b.BuildColorField("Color", asset.Color, content, asset.UpdateColor);
         }
 
         protected override void BuildColumnProperty(Transform content)
@@ -50,15 +51,13 @@ namespace Rogium.Editors.PropertyEditor.Builders
 
             b.BuildHeader("Movement", content);
             b.BuildInputField("Flight Speed", asset.FlightSpeed.ToString(), content, s => asset.UpdateFlightSpeed(float.Parse(s)));
-            b.BuildSlider("Acceleration", 0.01f, EditorConstants.ProjectileMaxAcceleration, asset.Acceleration, content, asset.UpdateAcceleration);
-            b.BuildSlider("Brake Force", 0.01f, EditorConstants.ProjectileMaxBrakeForce, asset.BrakeForce, content, asset.UpdateBrakeForce);
+            b.BuildSlider("Acceleration", 0.01f, EditorConstants.ProjectileAccelerationMax, asset.Acceleration, content, asset.UpdateAcceleration);
+            b.BuildSlider("Brake Force", 0.01f, EditorConstants.ProjectileBrakeForceMax, asset.BrakeForce, content, asset.UpdateBrakeForce);
             
             b.BuildHeader("Knockback", content);
             b.BuildSlider("Self Force", -EditorConstants.ProjectileKnockbackForceMax, EditorConstants.ProjectileKnockbackForceMax, asset.KnockbackForceSelf, content, f => asset.UpdateKnockbackForceSelf(f));
-            b.BuildSlider("Self Time", 0, EditorConstants.ProjectileKnockbackTimeMax, asset.KnockbackTimeSelf, content, f => asset.UpdateKnockbackTimeSelf(f));
-            b.BuildToggle("Self Lock Direction", asset.KnockbackLockDirectionSelf, content, asset.UpdateKnockbackLockDirectionSelf);
             b.BuildSlider("Other Force", -EditorConstants.ProjectileKnockbackForceMax, EditorConstants.ProjectileKnockbackForceMax, asset.KnockbackForceOther, content, f => asset.UpdateKnockbackForceOther(f));
-            b.BuildSlider("Other Time", 0, EditorConstants.ProjectileKnockbackTimeMax, asset.KnockbackTimeOther, content, f => asset.UpdateKnockbackTimeOther(f));
+            b.BuildToggle("Self Lock Direction", asset.KnockbackLockDirectionSelf, content, asset.UpdateKnockbackLockDirectionSelf);
             b.BuildToggle("Other Lock Direction", asset.KnockbackLockDirectionOther, content, asset.UpdateKnockbackLockDirectionOther);
             
             b.BuildHeader("Animation", content);

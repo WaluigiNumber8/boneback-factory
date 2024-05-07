@@ -1,10 +1,7 @@
-﻿using System;
-using RedRats.Safety;
-using RedRats.UI;
+﻿using RedRats.Safety;
+using RedRats.Systems.Themes;
 using Rogium.Core;
-using Rogium.Systems.ThemeSystem;
 using Rogium.UserInterface.Editors.AssetSelection;
-using Rogium.UserInterface.Core;
 
 namespace Rogium.Systems.GASExtension
 {
@@ -18,35 +15,7 @@ namespace Rogium.Systems.GASExtension
         public static void OpenSelectionMenu(AssetType type)
         {
             SafetyNet.EnsureIsNotNull(assetSelection, "GAS Asset Selection");
-            switch (type)
-            {
-                case AssetType.Pack:
-                    assetSelection.OpenForPacks();
-                    break;
-                case AssetType.Palette:
-                    assetSelection.OpenForPalettes();
-                    break;
-                case AssetType.Sprite:
-                    assetSelection.OpenForSprites();
-                    break;
-                case AssetType.Weapon:
-                    assetSelection.OpenForWeapons();
-                    break;
-                case AssetType.Projectile:
-                    assetSelection.OpenForProjectiles();
-                    break;
-                case AssetType.Enemy:
-                    assetSelection.OpenForEnemies();
-                    break;
-                case AssetType.Room:
-                    assetSelection.OpenForRooms();
-                    break;
-                case AssetType.Tile:
-                    assetSelection.OpenForTiles();
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException($"'{type}' is not a supported Asset Type.");
-            }
+            assetSelection.Open(type);
         }
 
         public static void ChangeTheme(ThemeType type)

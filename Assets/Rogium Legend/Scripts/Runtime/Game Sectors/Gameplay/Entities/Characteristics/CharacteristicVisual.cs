@@ -1,5 +1,5 @@
 ﻿using System;
-using RedRats.Systems.ClockOfTheGame;
+using RedRats.Systems.Clocks;
 using Rogium.Editors.Core;
 using UnityEngine;
 
@@ -10,6 +10,8 @@ namespace Rogium.Gameplay.Entities.Characteristics
     /// </summary>
     public class CharacteristicVisual : CharacteristicBase
     {
+        public event Action OnFrameChange;
+        
         [SerializeField] private new SpriteRenderer renderer;
         [SerializeField] private CharVisualInfo defaultData;
 
@@ -21,7 +23,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
 
         private void Update()
         {
-            frameCountdown -= (int)(1 * GameClock.Instance.Scale);
+            frameCountdown -= (int)(1 * GameClock.Instance.CurrentScale);
             ProcessSwitchFrame();
         }
 
@@ -65,6 +67,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
         {
             if (frameCountdown > 0) return;
             whenFrameChanges?.Invoke();
+            OnFrameChange?.Invoke();
             frameCountdown = defaultData.frameDuration;
         }
         

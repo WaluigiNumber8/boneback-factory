@@ -34,7 +34,7 @@ namespace Rogium.UserInterface.Interactables
                     GASButtonActions.ReturnToMainMenuSelection();
                     break;
                 case ButtonType.ReturnToMainMenuFromOptions:
-                    GASButtonActions.ReturnToMainMenuOptions();
+                    GASButtonActions.CancelChangesOptions();
                     break;
                 case ButtonType.ReturnToMainMenuFromChangelog:
                     GASButtonActions.ReturnToMainMenuChangelog();
@@ -276,20 +276,22 @@ namespace Rogium.UserInterface.Interactables
                     break;
                 #endregion
 
-                #region Campaign Selection
+                #region Campaign Selection Menu
                 case ButtonType.CampaignShowNext:
                     GASButtonActions.CampaignShowNext();
                     break;
                 case ButtonType.CampaignShowPrevious:
                     GASButtonActions.CampaignShowPrevious();
                     break;
-                case ButtonType.CampaignEditorChangeImportState:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - CHANGE PACK IMPORT STATE");
-                    GASButtonActions.ChangeImportStatus(index);
+                case ButtonType.CampaignRefresh:
+                    GASButtonActions.CampaignRefresh(index);
+                    break;
+                case ButtonType.CampaignRefreshAll:
+                    GASButtonActions.CampaignRefreshAll();
                     break;
                 #endregion
                 
-                #region Campaign Editor Menu
+                #region Campaign Editor
                 case ButtonType.CampaignEditorSelectAll:
                     GASButtonActions.CampaignEditorSelectAll();
                     break;
@@ -298,6 +300,10 @@ namespace Rogium.UserInterface.Interactables
                     break;
                 case ButtonType.CampaignEditorSelectRandom:
                     GASButtonActions.CampaignEditorSelectRandom();
+                    break;
+                case ButtonType.CampaignEditorChangeImportState:
+                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - CHANGE PACK IMPORT STATE");
+                    GASButtonActions.ChangeImportStatus(index);
                     break;
                 #endregion
 
@@ -345,6 +351,13 @@ namespace Rogium.UserInterface.Interactables
                     SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - GAMEPLAY SELECT WEAPON");
                     GASButtonActions.GameplaySelectWeapon(index);
                     break;
+                #endregion
+
+                #region Options Menu
+                case ButtonType.OptionsSavePreferences:
+                    GASButtonActions.OptionsSavePreferences();
+                    break;
+
                 #endregion
                 
                 case ButtonType.Play:

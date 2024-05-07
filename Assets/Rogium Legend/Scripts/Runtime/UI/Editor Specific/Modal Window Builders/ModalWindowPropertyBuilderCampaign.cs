@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using RedRats.UI;
-using RedRats.UI.ModalWindows;
 using Rogium.Editors.Campaign;
-using Rogium.Editors.Core;
 using Rogium.Systems.GASExtension;
 using Rogium.UserInterface.Editors.AssetSelection;
+using UnityEngine;
 
 namespace Rogium.UserInterface.Editors.ModalWindowBuilding
 {
@@ -47,16 +45,16 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
                 $"Updating {campaignEditor.CurrentAsset.Title}");
         }
 
-        private void OpenWindow(CampaignAsset asset, Action onConfirmButton, string headerText)
+        private void OpenWindow(CampaignAsset asset, Action onConfirm, string headerText)
         {
-            b.BuildInputField("Name", asset.Title, windowColumn1, asset.UpdateTitle);
-            b.BuildDropdown("Length", lengthOptions, QuickConvertToTier(asset.AdventureLength), windowColumn1,
-                i => asset.UpdateLength(QuickConvertToRoomCount(i)));
-            b.BuildPlainText("Created by", asset.Author, windowColumn1);
-            b.BuildPlainText("Created on", asset.CreationDate.ToString(), windowColumn1);
+            OpenForColumns1(headerText, onConfirm, out Transform col);
+            
+            b.BuildInputField("Name", asset.Title, col, asset.UpdateTitle);
+            b.BuildDropdown("Length", lengthOptions, QuickConvertToTier(asset.AdventureLength), col, i => asset.UpdateLength(QuickConvertToRoomCount(i)));
+            b.BuildPlainText("Created by", asset.Author, col);
+            b.BuildPlainText("Created on", asset.CreationDate.ToString(), col);
 
             editedAssetBase = asset;
-            Open(new PropertyWindowInfo(headerText, PropertyLayoutType.Column1, ThemeType.Red, "Done", "Cancel", onConfirmButton));
         }
 
         protected override void CreateAsset()

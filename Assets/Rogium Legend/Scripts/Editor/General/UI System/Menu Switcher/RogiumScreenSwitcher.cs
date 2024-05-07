@@ -22,6 +22,7 @@ namespace Rogium.Editor.UI
         [OnInspectorGUI] private void S0() => GUILayout.Space(0);
         [ResponsiveButtonGroup("Scenes"), Button(ButtonSizes.Large)] public void Menu() => SwitchScene(menuScenePath);
         [ResponsiveButtonGroup("Scenes"), Button(ButtonSizes.Large)] public void Game() => SwitchScene(gameScenePath);
+        [ResponsiveButtonGroup("Scenes"), Button(ButtonSizes.Large)] public void Test() => SwitchScene(testScenePath);
         
         [Title("Menus")] 
         [OnInspectorGUI] private void S1() => GUILayout.Space(0);
@@ -40,6 +41,7 @@ namespace Rogium.Editor.UI
         [OnInspectorGUI] private void S3() => GUILayout.Space(0);
         [SerializeField, FoldoutGroup("Labels", order:5)] public string menuScenePath;
         [SerializeField, FoldoutGroup("Labels")] public string gameScenePath;
+        [SerializeField, FoldoutGroup("Labels")] public string testScenePath;
         [Space]
         [SerializeField, FoldoutGroup("Labels"), GUIColor(1f, 0.65f, 0.4f)] public string menuBackgroundLabel;
         [SerializeField, FoldoutGroup("Labels"), GUIColor(1f, 0.65f, 0.4f)] public string mainMenuLabel;
@@ -86,7 +88,7 @@ namespace Rogium.Editor.UI
         /// <param name="path">The path of the scene asset to switch to.</param>
         private void SwitchScene(string path)
         {
-            EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
+            if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
             EditorSceneManager.OpenScene(path, OpenSceneMode.Single);
         }
 

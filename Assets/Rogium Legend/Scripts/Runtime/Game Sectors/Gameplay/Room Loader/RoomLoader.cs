@@ -7,6 +7,7 @@ using Rogium.Editors.Rooms;
 using Rogium.Gameplay.Core;
 using Rogium.Gameplay.Core.Lighting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Rogium.Gameplay.DataLoading
 {
@@ -16,11 +17,10 @@ namespace Rogium.Gameplay.DataLoading
     public class RoomLoader : MonoBehaviour
     {
         [SerializeField] private Vector3Int originPos;
-        [SerializeField] private TileMapDataBuilder tilemapBuilder;
+        [SerializeField, FormerlySerializedAs("tilemapBuilder")] private TileMapDataBuilder tileBuilder;
+        [SerializeField] private TileMapDataBuilder decorBuilder;
         [SerializeField] private ObjectMapDataBuilder objectBuilder;
         [SerializeField] private EnemyMapDataBuilder enemyBuilder;
-        [Space] 
-        [SerializeField] private TilemapShadowCaster2D wallShadowCaster; 
         
         private RoomLight roomLight;
         private IList<ObjectAsset> objects;
@@ -41,12 +41,12 @@ namespace Rogium.Gameplay.DataLoading
         public void LoadNext(int roomIndex)
         {
             RoomAsset room = dataPack.Rooms[roomIndex];
-            tilemapBuilder.Load(originPos, room.TileGrid, dataPack.Tiles);
+            tileBuilder.Load(originPos, room.TileGrid, dataPack.Tiles);
+            decorBuilder.Load(originPos, room.DecorGrid, dataPack.Tiles);
             objectBuilder.Load(originPos, room.ObjectGrid, objects);
             enemyBuilder.Load(originPos, room.EnemyGrid, dataPack.Enemies);
 
-            roomLight.UpdateIntensity(ColorUtils.ConvertTo01(room.Lightness));
-            Invoke(nameof(GenerateShadows), 0.5f);
+            roomLight.Construct(ColorUtils.ConvertTo01(room.Lightness), room.LightnessColor);
         }
 
         /// <summary>
@@ -54,11 +54,10 @@ namespace Rogium.Gameplay.DataLoading
         /// </summary>
         public void Clear()
         {
-            tilemapBuilder.Clear();
+            tileBuilder.Clear();
+            decorBuilder.Clear();
             objectBuilder.Clear();
             enemyBuilder.Clear();
         }
-        
-        private void GenerateShadows() => wallShadowCaster.Generate();
     }
 }

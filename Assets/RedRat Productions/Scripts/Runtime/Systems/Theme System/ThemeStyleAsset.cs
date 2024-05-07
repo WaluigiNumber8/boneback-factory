@@ -1,21 +1,24 @@
-﻿using RedRats.UI.Core;
+﻿using System;
+using RedRats.UI.Core;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Rogium.Systems.ThemeSystem
+namespace RedRats.Systems.Themes
 {
     [CreateAssetMenu(fileName = "New Theme Asset", menuName = "RedRat Productions/Editor Theme", order = 0)]
     public class ThemeStyleAsset : ScriptableObject
     {
         [SerializeField] private ElementsInfo elements;
         [SerializeField] private InteractablesInfo interactables;
+        [SerializeField] private IconsInfo icons;
         [SerializeField] private FontsInfo fonts;
 
         public ElementsInfo Elements { get => elements; }
         public InteractablesInfo Interactables { get => interactables; }
+        public IconsInfo Icons { get => icons; }
         public FontsInfo Fonts { get => fonts; }
         
-        [System.Serializable]
+        [Serializable]
         public struct ElementsInfo
         {
             [PreviewField(60)] public Sprite dropdownHeader;
@@ -30,30 +33,29 @@ namespace Rogium.Systems.ThemeSystem
             [PreviewField(60)] public Sprite modalWindowBackground;
         }
         
-        [System.Serializable]
+        [Serializable]
         public struct InteractablesInfo
         {
-            [BoxGroup]
-            public InteractableSpriteInfo buttonMenu;
-            [BoxGroup]
-            public InteractableSpriteInfo buttonCard;
-            [BoxGroup]
-            public InteractableSpriteInfo buttonTool;
-            [BoxGroup]
-            public InteractableSpriteInfo inputField;
-            [BoxGroup]
-            public InteractableSpriteInfo dropdownItem;
-            [BoxGroup]
-            public InteractableSpriteInfo toggle;
-            [BoxGroup]
-            public InteractableSpriteInfo assetField;
-            [BoxGroup]
-            public InteractableSpriteInfo slider;
-            [BoxGroup]
-            public InteractableSpriteInfo scrollbarHandle;
+            [BoxGroup] public InteractableSpriteInfo buttonMenu;
+            [BoxGroup] public InteractableSpriteInfo buttonCard;
+            [BoxGroup] public InteractableSpriteInfo buttonTool;
+            [BoxGroup] public InteractableSpriteInfo inputField;
+            [BoxGroup] public InteractableSpriteInfo dropdownItem;
+            [BoxGroup] public InteractableSpriteInfo toggle;
+            [BoxGroup] public InteractableSpriteInfo slider;
+            [BoxGroup] public InteractableSpriteInfo assetField;
+            [BoxGroup] public InteractableSpriteInfo colorField;
+            [BoxGroup] public InteractableSpriteInfo scrollbarHandle;
         }
 
-        [System.Serializable]
+        [Serializable]
+        public struct IconsInfo
+        {
+            [PreviewField(60)] public Sprite play;
+            [PreviewField(60)] public Sprite stop;
+        }
+        
+        [Serializable]
         public struct FontsInfo
         {
             public FontInfo general;

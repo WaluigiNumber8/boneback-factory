@@ -7,7 +7,7 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// <summary>
     /// Prepares the Header property for correct use.
     /// </summary>
-    public class InteractablePropertyHeader : InteractablePropertyBase
+    public class InteractablePropertyHeader : InteractablePropertyBase<bool>
     {
         [SerializeField] private Image line;
         
@@ -32,5 +32,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             UIExtensions.ChangeFont(title, headerFont);
             line.sprite = lineSprite;
         }
+        
+        public override bool PropertyValue { get => false; }
     }
 }

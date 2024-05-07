@@ -5,6 +5,7 @@ using Rogium.Editors.Enemies;
 using Rogium.Editors.Weapons;
 using Rogium.Gameplay.Core;
 using Rogium.Gameplay.Entities.Characteristics;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -15,14 +16,20 @@ namespace Rogium.Gameplay.Entities.Enemy
     /// </summary>
     public class EnemyController : EntityController
     {
+        [Title("Characteristics")]
         [SerializeField] private CharacteristicDamageGiver damageGiver;
         [SerializeField] private CharacteristicDamageReceiver damageReceiver;
         [SerializeField] private CharacteristicWeaponHold weaponHold;
         [SerializeField] private CharacteristicVisual visual;
-
+        [SerializeField] private CharacteristicSoundEmitter soundEmitter;
+        [SerializeField] private CharacteristicFloorInteractor floorInteractor;
+        [Title("Parameters")]
+        [SerializeField, Range(0f, 2f)] private float deathTime;
+        
         private GameplayOverseerMono gameplayOverseer;
         private Transform playerTransform;
-        
+
+        private Color color;
         private AIType ai;
         private Vector2 startingDirection;
         private float refreshFaceDirectionTime;
@@ -34,23 +41,30 @@ namespace Rogium.Gameplay.Entities.Enemy
         private float weaponUseTime;
         private float weaponUseTimer;
         private float attackProbability;
-
+        
         protected override void Awake()
         {
             base.Awake();
             gameplayOverseer = GameplayOverseerMono.GetInstance();
+            updateFaceDirectionMethod = FaceDirectionLook;
         }
 
         private void OnEnable()
         {
-            if (damageReceiver == null) return;
-            damageReceiver.OnDeath += Die;
+            if (damageReceiver != null) damageReceiver.OnDeath += Die;
+            if (damageReceiver != null && soundEmitter != null) damageReceiver.OnDamageReceived += soundEmitter.PlayHurtSound;
+            if (damageReceiver != null && soundEmitter != null) damageReceiver.OnDeath += soundEmitter.PlayDeathSound;
+            if (floorInteractor != null && visual != null) visual.OnFrameChange += floorInteractor.TakeStep;
+            if (weaponHold != null) weaponHold.OnGetNewWeapon += DelayFirstAttack;
         }
 
         private void OnDisable()
         {
-            if (damageReceiver == null) return;
-            damageReceiver.OnDeath -= Die;
+            if (damageReceiver != null) damageReceiver.OnDeath -= Die;
+            if (damageReceiver != null && soundEmitter != null) damageReceiver.OnDamageReceived -= soundEmitter.PlayHurtSound;
+            if (damageReceiver != null && soundEmitter != null) damageReceiver.OnDeath -= soundEmitter.PlayDeathSound;
+            if (floorInteractor != null && visual != null) visual.OnFrameChange -= floorInteractor.TakeStep;
+            if (weaponHold != null) weaponHold.OnGetNewWeapon -= DelayFirstAttack;
         }
 
         protected override void Update()
@@ -65,8 +79,10 @@ namespace Rogium.Gameplay.Entities.Enemy
         /// <param name="asset">The asset to take data from.</param>
         public void Construct(EnemyAsset asset, IList<WeaponAsset> weapons = null)
         {
+            base.Construct();
             playerTransform = GameObject.FindWithTag("Player").transform;
             
+            color = asset.Color;
             ai = asset.AI;
             startingDirection = RedRatUtils.DirectionTypeToVector(asset.StartingDirection);
             refreshFaceDirectionTime = asset.NextStepTime;
@@ -81,8 +97,8 @@ namespace Rogium.Gameplay.Entities.Enemy
             //Damage Giver
             if (damageGiver != null)
             {
-                ForcedMoveInfo knockbackSelf = new(asset.KnockbackForceSelf, asset.KnockbackTimeSelf, asset.KnockbackLockDirectionSelf);
-                ForcedMoveInfo knockbackOther = new(asset.KnockbackForceOther, asset.KnockbackTimeOther, asset.KnockbackLockDirectionOther);
+                ForcedMoveInfo knockbackSelf = new(asset.KnockbackForceSelf, (asset.KnockbackForceSelf > 0), asset.KnockbackLockDirectionSelf);
+                ForcedMoveInfo knockbackOther = new(asset.KnockbackForceOther, (asset.KnockbackForceOther > 0), asset.KnockbackLockDirectionOther);
                 CharDamageGiverInfo damageGiver = new(asset.BaseDamage, knockbackSelf, knockbackOther);
                 this.damageGiver.Construct(damageGiver);
             }
@@ -101,6 +117,13 @@ namespace Rogium.Gameplay.Entities.Enemy
                 this.visual.Construct(visual);
             }
 
+            //Sound Emitter
+            if (soundEmitter != null)
+            {
+                CharSoundInfo sound = new(asset.HurtSound, asset.DeathSound, asset.IdleSound, null);
+                this.soundEmitter.Construct(sound);
+            }
+            
             //Weapon Hold
             if (weaponHold != null)
             {
@@ -138,17 +161,19 @@ namespace Rogium.Gameplay.Entities.Enemy
         
         private void Die()
         {
-            Destroy(gameObject);
+            UpdateCollideMode(false);
+            weaponHold.WipeInventory();
+            Destroy(gameObject, deathTime);
         }
 
         private void FaceDirectionLook() => faceDirection = startingDirection;
 
         private void FaceDirectionRotate()
         {
-            Vector2 direction = (ttransform.position - playerTransform.position).normalized * -1;
-            if (!seamlessMovement) direction = direction.Round();
+            Vector2 direction = (TTransform.position - playerTransform.position).normalized * -1;
+            // if (!seamlessMovement) direction = Vector2Int.FloorToInt(direction);
 
-            if (!isLooking && faceDirection.DistanceTo(direction) > 0.1f)
+            if (!isLooking && Vector2.Distance(faceDirection, direction) > 0.1f)
             {
                 refreshFaceDirectionTimer = Time.time + refreshFaceDirectionTime;
                 isLooking = true;
@@ -161,5 +186,11 @@ namespace Rogium.Gameplay.Entities.Enemy
                 isLooking = false;
             }
         }
+        
+        private void DelayFirstAttack(WeaponAsset weapon) => weaponUseTimer = Time.time + weaponUseTime;
+
+        public CharacteristicWeaponHold WeaponHold { get => weaponHold; }
+        public CharacteristicDamageReceiver DamageReceiver { get => damageReceiver; } 
+        public Color RepresentativeColor { get => color; }
     }
 }

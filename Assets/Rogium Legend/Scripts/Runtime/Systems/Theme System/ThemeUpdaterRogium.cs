@@ -1,7 +1,7 @@
-﻿using RedRats.UI;
-using Rogium.UserInterface.Editors.AssetSelection.PickerVariant;
+﻿using RedRats.Systems.Themes;
 using Rogium.UserInterface.Interactables;
 using Rogium.UserInterface.Interactables.Properties;
+using Rogium.UserInterface.ModalWindows;
 using UnityEngine.UI;
 
 namespace Rogium.Systems.ThemeSystem
@@ -18,7 +18,7 @@ namespace Rogium.Systems.ThemeSystem
         /// Style is "Menu."
         /// </summary>
         /// <param name="button">The button to update.</param>
-        public static void UpdateButtonMenu(InteractableButton button, ThemeType theme = ThemeType.NoTheme)
+        public static void UpdateButtonMenu(InteractableButton button, ThemeType theme = ThemeType.Current)
         {
             UpdateUsedTheme(theme);
             button.UpdateTheme(t.Interactables.buttonMenu,
@@ -30,7 +30,7 @@ namespace Rogium.Systems.ThemeSystem
         /// Style is "Card."
         /// </summary>
         /// <param name="button">The button to update.</param>
-        public static void UpdateButtonCard(InteractableButton button, ThemeType theme = ThemeType.NoTheme)
+        public static void UpdateButtonCard(InteractableButton button, ThemeType theme = ThemeType.Current)
         {
             UpdateUsedTheme(theme);
             button.UpdateTheme(t.Interactables.buttonCard,
@@ -41,7 +41,7 @@ namespace Rogium.Systems.ThemeSystem
         /// Updates a scrollbar with correct data from the current theme.
         /// </summary>
         /// <param name="scrollbar">The scrollbar to update.</param>
-        public static void UpdateScrollbar(InteractableScrollbar scrollbar, ThemeType theme = ThemeType.NoTheme)
+        public static void UpdateScrollbar(InteractableScrollbar scrollbar, ThemeType theme = ThemeType.Current)
         {
             UpdateUsedTheme(theme);
             scrollbar.UpdateTheme(t.Interactables.scrollbarHandle);
@@ -51,7 +51,7 @@ namespace Rogium.Systems.ThemeSystem
         /// Updates an input field with correct data from the current theme.
         /// </summary>
         /// <param name="inputField">The input field to update.</param>
-        public static void UpdateInputField(InteractablePropertyInputField inputField, ThemeType theme = ThemeType.NoTheme)
+        public static void UpdateInputField(InteractablePropertyInputField inputField, ThemeType theme = ThemeType.Current)
         {
             UpdateUsedTheme(theme);
             inputField.UpdateTheme(t.Interactables.inputField,
@@ -63,7 +63,7 @@ namespace Rogium.Systems.ThemeSystem
         /// Updates a toggle with correct data from the current theme.
         /// </summary>
         /// <param name="toggle">The toggle to update.</param>
-        public static void UpdateToggle(InteractablePropertyToggle toggle, ThemeType theme = ThemeType.NoTheme)
+        public static void UpdateToggle(InteractablePropertyToggle toggle, ThemeType theme = ThemeType.Current)
         {
             UpdateUsedTheme(theme);
             toggle.UpdateTheme(t.Interactables.toggle,
@@ -75,7 +75,7 @@ namespace Rogium.Systems.ThemeSystem
         /// Updates a dropdown with correct data from the current theme.
         /// </summary>
         /// <param name="dropdown">The dropdown to update.</param>
-        public static void UpdateDropdown(InteractablePropertyDropdown dropdown, ThemeType theme = ThemeType.NoTheme)
+        public static void UpdateDropdown(InteractablePropertyDropdown dropdown, ThemeType theme = ThemeType.Current)
         {
             UpdateUsedTheme(theme);
             dropdown.UpdateTheme(t.Interactables.inputField,
@@ -92,7 +92,7 @@ namespace Rogium.Systems.ThemeSystem
         /// Updates a plain text property with correct data from the current theme.
         /// </summary>
         /// <param name="text">The text property to update.</param>
-        public static void UpdatePlainText(InteractablePropertyPlainText text, ThemeType theme = ThemeType.NoTheme)
+        public static void UpdatePlainText(InteractablePropertyPlainText text, ThemeType theme = ThemeType.Current)
         {
             UpdateUsedTheme(theme);
             text.UpdateTheme(t.Fonts.general,
@@ -100,45 +100,83 @@ namespace Rogium.Systems.ThemeSystem
         }
 
         /// <summary>
-        /// Updates a asset field with correct data from the current theme.
+        /// Updates an Asset Field with correct data from the current theme.
         /// </summary>
         /// <param name="assetField">The AssetField to update.</param>
-        public static void UpdateAssetField(InteractablePropertyAssetField assetField, ThemeType theme = ThemeType.NoTheme)
+        public static void UpdateAssetField(InteractablePropertyAssetField assetField, ThemeType theme = ThemeType.Current)
         {
             UpdateUsedTheme(theme);
             assetField.UpdateTheme(t.Interactables.assetField,
-                                   t.Fonts.general);
+                                   t.Fonts.general,
+                                   t.Fonts.inputted);
+        }
+        
+        /// <summary>
+        /// Updates an Asset Field (text variant) with correct data from the current theme.
+        /// </summary>
+        /// <param name="assetField">The AssetField to update.</param>
+        public static void UpdateAssetFieldText(InteractablePropertyAssetField assetField, ThemeType theme = ThemeType.Current)
+        {
+            UpdateUsedTheme(theme);
+            assetField.UpdateTheme(t.Interactables.inputField,
+                                   t.Fonts.general,
+                                   t.Fonts.inputted);
         }
 
         /// <summary>
         /// Updates the slider with correct data from the current theme.
         /// </summary>
         /// <param name="slider">The slider property to update.</param>
-        public static void UpdateSlider(InteractablePropertySlider slider, ThemeType theme = ThemeType.NoTheme)
+        public static void UpdateSlider(InteractablePropertySlider slider, ThemeType theme = ThemeType.Current)
         {
             UpdateUsedTheme(theme);
             slider.UpdateTheme(t.Interactables.slider,
                                t.Elements.sliderBackground,
                                t.Elements.sliderHandle,
                                t.Fonts.general);
+            if (slider.InputField != null) UpdateInputField(slider.InputField);
         }
 
         /// <summary>
         /// Updates the header with correct data from the current theme.
         /// </summary>
         /// <param name="header">The header property to update.</param>
-        public static void UpdateHeader(InteractablePropertyHeader header, ThemeType theme = ThemeType.NoTheme)
+        public static void UpdateHeader(InteractablePropertyHeader header, ThemeType theme = ThemeType.Current)
         {
             UpdateUsedTheme(theme);
             header.UpdateTheme(t.Fonts.header,
                                t.Elements.editorBackground);
+        }
+        
+        /// <summary>
+        /// Updates the sound picker with correct data from the current theme.
+        /// </summary>
+        public static void UpdateSoundField(InteractablePropertySoundField soundField, ThemeType theme = ThemeType.Current)
+        {
+            UpdateUsedTheme(theme);
+            soundField.UpdateTheme(t.Interactables.inputField,
+                                    t.Interactables.buttonMenu, 
+                                    t.Icons.play,
+                                    t.Fonts.general,
+                                    t.Fonts.inputted);
+        }
+        
+        /// <summary>
+        /// Updates a ColorField with correct data from the current theme.
+        /// </summary>
+        /// <param name="colorField">The ColorField to update.</param>
+        public static void UpdateColorField(InteractablePropertyColorField colorField, ThemeType theme = ThemeType.Current)
+        {
+            UpdateUsedTheme(theme);
+            colorField.UpdateTheme(t.Interactables.colorField,
+                                   t.Fonts.general);
         }
 
         /// <summary>
         /// Updates an editor element with correct data from the correct theme.
         /// </summary>
         /// <param name="element">The element to update.</param>
-        public static void UpdateElement(Image element, ThemeType theme = ThemeType.NoTheme)
+        public static void UpdateEditorBackground(Image element, ThemeType theme = ThemeType.Current)
         {
             UpdateUsedTheme(theme);
             element.sprite = t.Elements.editorBackground;
@@ -147,8 +185,7 @@ namespace Rogium.Systems.ThemeSystem
         /// <summary>
         /// Updates the Asset Picker Window with correct data from the current theme.
         /// </summary>
-        /// <param name="window"></param>
-        public static void UpdateAssetPickerWindow(AssetPickerWindow window, ThemeType theme = ThemeType.NoTheme)
+        public static void UpdateAssetPickerWindow(AssetPickerWindow window, ThemeType theme = ThemeType.Current)
         {
             UpdateUsedTheme(theme);
             window.UpdateTheme(t.Elements.modalWindowBackground,
@@ -157,15 +194,42 @@ namespace Rogium.Systems.ThemeSystem
                                t.Fonts.general,
                                t.Fonts.inputted);
         }
+
+        /// <summary>
+        /// Updates the Sound Picker Modal Window with correct data from the current theme.
+        /// </summary>
+        public static void UpdateSoundPickerWindow(SoundPickerWindow window, ThemeType theme = ThemeType.Current)
+        {
+            UpdateUsedTheme(theme);
+            window.UpdateTheme(t.Elements.modalWindowBackground, 
+                               t.Elements.toggleBorder, 
+                               t.Interactables.inputField, 
+                               t.Interactables.buttonMenu,
+                               t.Icons.play);
+        }
+        
+        /// <summary>
+        /// Updates the Color Picker Modal Window with correct data from the current theme.
+        /// </summary>
+        public static void UpdateColorPickerWindow(ColorPickerWindow window, ThemeType theme = ThemeType.Current)
+        {
+            UpdateUsedTheme(theme);
+            window.UpdateTheme(t.Interactables.buttonMenu,
+                               t.Interactables.inputField,
+                               t.Elements.modalWindowBackground,
+                               t.Elements.toggleBorder,
+                               t.Elements.toggleBorder,
+                               t.Fonts.inputted);   
+        }
         
         /// <summary>
         /// Gets the correct theme to work with.
         /// </summary>
         /// <param name="theme">The theme to get.</param>
         /// <returns></returns>
-        private static void UpdateUsedTheme(ThemeType theme = ThemeType.NoTheme)
+        private static void UpdateUsedTheme(ThemeType theme = ThemeType.Current)
         {
-            t = (theme == ThemeType.NoTheme) ? ThemeOverseerMono.GetInstance().CurrentThemeData : ThemeOverseerMono.GetInstance().GetTheme(theme);
+            t = (theme == ThemeType.Current) ? ThemeOverseerMono.GetInstance().CurrentThemeData : ThemeOverseerMono.GetInstance().GetTheme(theme);
         }
     }
 }

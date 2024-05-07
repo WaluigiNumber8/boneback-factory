@@ -10,7 +10,7 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// <summary>
     /// Overseers everything happening in a dropdown interactable property.
     /// </summary>
-    public class InteractablePropertyDropdown : InteractablePropertyBase
+    public class InteractablePropertyDropdown : InteractablePropertyBase<int>
     {
         [SerializeField] private TMP_Dropdown dropdown;
         [SerializeField] private UIInfo ui;
@@ -27,9 +27,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         public void Construct(string titleText, IEnumerable<string> options, int startingValue, Action<int> whenValueChange)
         {
             FillDropdown(options);
-            title.text = titleText;
-            title.gameObject.SetActive((titleText != ""));
-            if (ui.emptySpace != null) ui.emptySpace.SetActive((titleText != ""));
+            ConstructTitle(titleText);
             
             dropdown.value = startingValue;
             dropdown.onValueChanged.AddListener(_ => whenValueChange(dropdown.value));
@@ -72,7 +70,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             }
         }
 
-        public int Property { get => dropdown.value; }
+        public override int PropertyValue { get => dropdown.value; }
 
         [Serializable]
         public struct UIInfo
@@ -85,7 +83,6 @@ namespace Rogium.UserInterface.Interactables.Properties
             public TextMeshProUGUI toggleLabelText;
             public Image toggleBackgroundImage;
             public Image toggleCheckmarkImage;
-            public GameObject emptySpace;
         }
     }
 }

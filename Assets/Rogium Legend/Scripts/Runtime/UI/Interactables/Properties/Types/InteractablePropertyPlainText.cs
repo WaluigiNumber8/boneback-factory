@@ -7,10 +7,9 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// <summary>
     /// Overseers everything happening in a plain text interactable property.
     /// </summary>
-    public class InteractablePropertyPlainText : InteractablePropertyBase
+    public class InteractablePropertyPlainText : InteractablePropertyBase<string>
     {
         [SerializeField] private TextMeshProUGUI plainText;
-        [SerializeField] private UIInfo ui;
         
         public override void SetDisabled(bool isDisabled) {}
         
@@ -21,10 +20,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="text">Text in the property.</param>
         public void Construct(string titleText, string text)
         {
-            title.text = titleText;
-            title.gameObject.SetActive((titleText != ""));
-            if (ui.emptySpace != null) ui.emptySpace.SetActive((titleText != ""));
-            
+            ConstructTitle(titleText);
             plainText.text = text;
         }
 
@@ -37,12 +33,6 @@ namespace Rogium.UserInterface.Interactables.Properties
             UIExtensions.ChangeFont(plainText, textFont);
         }
         
-        public string Property { get => plainText.text; }
-
-        [System.Serializable]
-        public struct UIInfo
-        {
-            public GameObject emptySpace;
-        }
+        public override string PropertyValue { get => plainText.text; }
     }
 }

@@ -54,7 +54,7 @@ namespace Rogium.Gameplay.DataLoading
         {
             foreach (TilemapLayer layer in tilemaps)
             {
-                if (layer.Type != tile.Type) continue;
+                if (layer.LayerType != tile.LayerType) continue;
                 
                 layer.Positions.Add(layer.Tilemap.WorldToCell(position));
                 layer.Tiles.Add(tile.Tile);

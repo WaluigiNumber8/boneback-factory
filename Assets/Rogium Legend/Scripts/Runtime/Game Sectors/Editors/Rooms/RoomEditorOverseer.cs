@@ -1,6 +1,7 @@
 ﻿using RedRats.Safety;
 using System;
 using RedRats.Core;
+using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Packs;
 using Rogium.Systems.GridSystem;
@@ -23,7 +24,7 @@ namespace Rogium.Editors.Rooms
 
         private RoomEditorOverseer()
         {
-            drawer = new SpriteDrawer(EditorConstants.RoomSize, new Vector2Int(EditorConstants.SpriteSize, EditorConstants.SpriteSize), EditorConstants.SpriteSize);
+            drawer = new SpriteDrawer(EditorConstants.RoomSize, new Vector2Int(EditorConstants.SpriteSize, EditorConstants.SpriteSize), EditorConstants.SpriteSize, false);
         }
 
         /// <summary>
@@ -55,6 +56,7 @@ namespace Rogium.Editors.Rooms
         public void CompleteEditing()
         {
             Sprite newIcon = drawer.Build(currentAsset.TileGrid, PackEditorOverseer.Instance.CurrentPack.Tiles);
+            newIcon = drawer.Build(currentAsset.DecorGrid, PackEditorOverseer.Instance.CurrentPack.Tiles, newIcon);
             currentAsset.UpdateIcon(newIcon);
             OnCompleteEditing?.Invoke(CurrentAsset, myIndex);
         }

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using RedRats.Core;
-using RedRats.UI;
+using RedRats.Systems.Themes;
 using Rogium.Core;
 using Rogium.Editors.Core;
+using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.ThemeSystem;
 using Sirenix.OdinInspector;
 using TMPro;
@@ -25,10 +26,12 @@ namespace Rogium.UserInterface.Interactables.Properties
         [SerializeField] private InteractablePropertyToggle toggleProperty;
         [SerializeField] private InteractablePropertyDropdown dropdownProperty;
         [SerializeField] private InteractablePropertySlider sliderProperty;
+        [SerializeField] private InteractablePropertySoundField soundFieldProperty;
+        [SerializeField] private InteractablePropertyColorField colorFieldProperty;
+        
         [Title("Other properties")]
         [SerializeField] private ContentBlockInfo contentBlocks;
         [SerializeField] private VerticalVariantsInfo verticalVariants;
-
 
         #region Properties
 
@@ -146,12 +149,13 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="parent">Under which transform is this property going to be created.</param>
         /// <param name="whenValueChange">The method that runs when the asset is changed.</param>
         /// <param name="isDisabled">Initialize the property as a non-interactable.</param>
+        /// <param name="whenSelectEmpty">Method that runs when "empty" is selected. If this is not null, adds the option into the Picker Window.</param>
         /// <param name="theme">The theme for the Asset Picker Window.</param>
         /// <returns>The property itself.</returns>
-        public void BuildAssetField(string title, AssetType type, IAsset value, Transform parent, Action<IAsset> whenValueChange, bool isDisabled = false, ThemeType theme = ThemeType.NoTheme)
+        public void BuildAssetField(string title, AssetType type, IAsset value, Transform parent, Action<IAsset> whenValueChange, Action whenSelectEmpty = null, bool isDisabled = false, ThemeType theme = ThemeType.Current)
         {
             InteractablePropertyAssetField assetField = Instantiate(assetFieldProperty, parent);
-            assetField.Construct(title, type, value, whenValueChange, theme);
+            assetField.Construct(title, type, value, whenValueChange, whenSelectEmpty, theme);
             assetField.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateAssetField(assetField);
         }
@@ -193,9 +197,40 @@ namespace Rogium.UserInterface.Interactables.Properties
             slider.Construct(title, minValue, maxValue, startingValue, whenValueChange);
             slider.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateSlider(slider);
-            if (slider.InputField != null) ThemeUpdaterRogium.UpdateInputField(slider.InputField);
         }
 
+        /// <summary>
+        /// Builds the Sound Picker property.
+        /// </summary>
+        /// <param name="title">The text of the property title.</param>
+        /// <param name="value">Starting value of the sound picker.</param>
+        /// <param name="parent">The parent under which to instantiate the property.</param>
+        /// <param name="whenValueChange">Method that runs when anything is updated by the property.</param>
+        /// <param name="canBeEmpty">If TRUE, the the field can contain no value.</param>
+        /// <param name="isDisabled">Initialize the property as a non-interactable</param>
+        public void BuildSoundField(string title, AssetData value, Transform parent, Action<AssetData> whenValueChange, bool canBeEmpty = false, bool isDisabled = false)
+        {
+            InteractablePropertySoundField soundField = Instantiate(soundFieldProperty, parent);
+            soundField.Construct(title, value, whenValueChange, canBeEmpty);
+            soundField.SetDisabled(isDisabled);
+            ThemeUpdaterRogium.UpdateSoundField(soundField);
+        }
+        
+        /// <summary>
+        /// Builds the Color Field property.
+        /// </summary>
+        /// <param name="title">The text of the property title.</param>
+        /// <param name="value">Starting value of the color picker.</param>
+        /// <param name="parent">The parent under which to instantiate the property.</param>
+        /// <param name="whenValueChange">Method that runs when anything is updated by the property.</param>
+        /// <param name="isDisabled">Initialize the property as a non-interactable</param>
+        public void BuildColorField(string title, Color value, Transform parent, Action<Color> whenValueChange, bool isDisabled = false)
+        {
+            InteractablePropertyColorField colorField = Instantiate(colorFieldProperty, parent);
+            colorField.Construct(title, value, whenValueChange);
+            colorField.SetDisabled(isDisabled);
+            ThemeUpdaterRogium.UpdateColorField(colorField);
+        }
         #endregion
 
         #region Content Blocks

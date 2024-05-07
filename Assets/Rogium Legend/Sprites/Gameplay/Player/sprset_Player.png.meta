@@ -3,7 +3,7 @@ guid: 680589a0053c0a24aa1db3390f0cabaf
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -20,11 +20,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -63,6 +64,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -74,6 +77,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -86,6 +90,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -98,6 +103,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -108,7 +114,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 80
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -129,7 +135,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
+        y: 96
         width: 16
         height: 16
       alignment: 0
@@ -150,7 +156,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 16
-        y: 64
+        y: 96
         width: 16
         height: 16
       alignment: 0
@@ -171,7 +177,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 64
+        y: 96
         width: 16
         height: 16
       alignment: 0
@@ -192,7 +198,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 48
-        y: 64
+        y: 96
         width: 16
         height: 16
       alignment: 0
@@ -213,7 +219,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 48
+        y: 80
         width: 16
         height: 16
       alignment: 0
@@ -234,7 +240,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 16
-        y: 48
+        y: 80
         width: 16
         height: 16
       alignment: 0
@@ -255,7 +261,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 48
+        y: 80
         width: 16
         height: 16
       alignment: 0
@@ -276,7 +282,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 48
-        y: 48
+        y: 80
         width: 16
         height: 16
       alignment: 0
@@ -297,7 +303,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 32
+        y: 64
         width: 16
         height: 16
       alignment: 0
@@ -318,7 +324,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 48
-        y: 32
+        y: 64
         width: 16
         height: 16
       alignment: 0
@@ -339,7 +345,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 16
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -360,7 +366,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 16
-        y: 16
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -381,7 +387,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 16
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -402,7 +408,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 48
-        y: 16
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -423,7 +429,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -444,7 +450,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 16
-        y: 0
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -461,10 +467,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_Player_17_Remnant_Cape
+      name: sprset_Player_18_Remnant_Cape
       rect:
         serializedVersion: 2
-        x: 32
+        x: 0
         y: 0
         width: 16
         height: 16
@@ -482,11 +488,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_Player_18_Remnant_Bone
+      name: sprset_Player_17_Crumble_3
       rect:
         serializedVersion: 2
-        x: 48
-        y: 0
+        x: 32
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -498,6 +504,132 @@ TextureImporter:
       bones: []
       spriteID: 3d0a5cde31d9d9240a9d7bc48c7b8ae1
       internalID: -790064084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprset_Player_19_Arm
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 352bde10e7e9dd645bc011b4423f2438
+      internalID: -942622684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprset_Player_Pickup_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dc35c10896564b4f935402da5889109
+      internalID: -1894033461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprset_Player__Pickup_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0df8045b5e991d94586db9f7cf2b086e
+      internalID: -1777223784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprset_Player_Pickup_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05094afab8cdc94499ae49be335b7d7f
+      internalID: 1910366269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprset_Player_Pickup_Struggle_0
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c21aa83cac275140aebd84aace0d1f8
+      internalID: -918493210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprset_Player_Pickup_Struggle_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d116c3ef7319c104db8ba3b789d5d667
+      internalID: 1691029591
       vertices: []
       indices: 
       edges: []
@@ -514,27 +646,32 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       sprset_Player_0_TPose: -1461425999
-      sprset_Player_5_Walk_Front_1: -1338559384
-      sprset_Player_7_Walk_Left_1: -877600059
       sprset_Player_10_Walk_Back_2: 1406142186
+      sprset_Player_11_Use_Front: 1960163310
+      sprset_Player_12_Use_Right: -443415326
+      sprset_Player_13_Use_Left: -1081292679
       sprset_Player_14_Use_Back: 1371618673
       sprset_Player_15_Crumble_1: -1849415761
       sprset_Player_16_Crumble_2: 236884987
-      sprset_Player_18_Remnant_Bone: -790064084
-      sprset_Player_2_Stand_Right: -1543642727
-      sprset_Player_8_Walk_Back_1: -256622783
-      sprset_Player_11_Use_Front: 1960163310
-      sprset_Player_4_Stand_Back: 198481926
-      sprset_Player_17_Remnant_Cape: 862378409
-      sprset_Player_6_Walk_Right_1: 1509876489
-      sprset_Player_12_Use_Right: -443415326
+      sprset_Player_17_Crumble_3: -790064084
+      sprset_Player_18_Remnant_Cape: 862378409
+      sprset_Player_19_Arm: -942622684
       sprset_Player_1_Stand_Front: 208963290
-      sprset_Player_13_Use_Left: -1081292679
+      sprset_Player_2_Stand_Right: -1543642727
       sprset_Player_3_Stand_Left: -2077264463
+      sprset_Player_4_Stand_Back: 198481926
+      sprset_Player_5_Walk_Front_1: -1338559384
+      sprset_Player_6_Walk_Right_1: 1509876489
+      sprset_Player_7_Walk_Left_1: -877600059
+      sprset_Player_8_Walk_Back_1: -256622783
       sprset_Player_9_Walk_Front_2: -295741731
-  spritePackingTag: 
+      sprset_Player_Pickup_0: -1894033461
+      sprset_Player_Pickup_2: 1910366269
+      sprset_Player_Pickup_Struggle_0: -918493210
+      sprset_Player_Pickup_Struggle_1: 1691029591
+      sprset_Player__Pickup_1: -1777223784
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

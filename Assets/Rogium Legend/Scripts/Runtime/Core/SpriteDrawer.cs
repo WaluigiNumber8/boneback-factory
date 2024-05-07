@@ -19,12 +19,14 @@ namespace Rogium.Systems.GridSystem
         private readonly int pixelsPerUnit;
         
         private readonly Color[] emptyPixels;
+        private readonly bool overdrawTransparent;
         
-        public SpriteDrawer(Vector2Int size, Vector2Int unitSize, int pixelsPerUnit)
+        public SpriteDrawer(Vector2Int size, Vector2Int unitSize, int pixelsPerUnit, bool overdrawTransparent = true)
         {
             this.size = size;
             this.unitSize = unitSize;
             this.pixelsPerUnit = pixelsPerUnit;
+            this.overdrawTransparent = overdrawTransparent;
 
             int width = unitSize.x * size.x;
             int height = unitSize.y * size.y;
@@ -81,18 +83,34 @@ namespace Rogium.Systems.GridSystem
             Texture2D tex = RedRatBuilder.GenerateTexture(IDGrid.Width * pixelsPerUnit, IDGrid.Height * pixelsPerUnit);
             Sprite sprite = RedRatBuilder.GenerateSprite(tex, pixelsPerUnit);
             ClearAllCells(sprite);
+
+            return Build(IDGrid, assetList, sprite);
+        }
+
+        /// <summary>
+        /// Loads a sprite based on asset data.
+        /// </summary>
+        /// <param name="IDGrid">The grid of IDs to read.</param>
+        /// <param name="assetList">The list of assets to take data from.</param>
+        /// <param name="sprite">The sprite to draw onto.</param>
+        /// <typeparam name="T">Any type of <see cref="IAsset"/>.</typeparam>
+        /// <typeparam name="TS">Any type of <see cref="IComparable"/>.</typeparam>
+        public Sprite Build<T, TS>(ObjectGrid<TS> IDGrid, IList<T> assetList, Sprite sprite) where T : IAsset where TS : IComparable
+        {
+            SafetyNet.EnsureIntIsEqual(sprite.texture.width, IDGrid.Width * unitSize.x, "Bottom Sprite Width");
+            SafetyNet.EnsureIntIsEqual(sprite.texture.height, IDGrid.Height * unitSize.y, "Bottom Sprite Height");
+            SafetyNet.EnsureFloatIsEqual(sprite.pixelsPerUnit, pixelsPerUnit, "Pixels per unit");
             
             AssetUtils.UpdateFromGridByList(IDGrid, assetList, 
                 (x, y, asset) => UpdateValue(sprite, new Vector2Int(x, y), asset.Icon),
-                (x, y) => UpdateValue(sprite, new Vector2Int(x, y), EditorConstants.MissingSprite),
-                (x, y, asset) => UpdateValue(sprite, new Vector2Int(x, y), EditorConstants.EmptyGridSprite));
+                (x, y) => UpdateValue(sprite, new Vector2Int(x, y), EditorConstants.MissingSprite));
             
             Apply(sprite);
             return sprite;
         }
         
         /// <summary>
-        /// Adds a new sprite onto teh edited one.
+        /// Adds a new sprite onto the edited one.
         /// </summary>
         /// <param name="sprite">The sprite to draw on.</param>
         /// <param name="pos">The position (in units) to draw at.</param>
@@ -118,8 +136,17 @@ namespace Rogium.Systems.GridSystem
 
             int startX = pos.x * unitSize.x;
             int startY = pos.y * unitSize.y;
+            
+            Color[] texPixels = tex.GetPixels();
+            Color[] layerPixels = layer.GetPixels(startX, startY, tex.width, tex.height);
 
-            layer.SetPixels(startX, startY, tex.width, tex.height, tex.GetPixels());
+            for (int i = 0; i < texPixels.Length; i++)
+            {
+                if (!overdrawTransparent && texPixels[i].a == 0) continue; // if the pixel is not transparent
+                layerPixels[i] = texPixels[i];
+            }
+
+            layer.SetPixels(startX, startY, tex.width, tex.height, layerPixels);
         }
 
         /// <summary>

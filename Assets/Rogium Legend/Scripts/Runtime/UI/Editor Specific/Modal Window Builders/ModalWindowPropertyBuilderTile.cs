@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Linq;
-using RedRats.Core;
-using RedRats.UI;
-using RedRats.UI.ModalWindows;
-using Rogium.Editors.Core;
+using Rogium.Core;
 using Rogium.Editors.Tiles;
+using UnityEngine;
 
 namespace Rogium.UserInterface.Editors.ModalWindowBuilding
 {
@@ -27,28 +24,30 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             OpenWindow(new TileAsset(tileEditor.CurrentAsset), UpdateAsset, $"Updating {tileEditor.CurrentAsset.Title}");
         }
 
-        private void OpenWindow(TileAsset tile, Action onConfirmAction, string headerText)
+        private void OpenWindow(TileAsset tile, Action onConfirm, string headerText)
         {
-            b.BuildInputField("Title", tile.Title, windowColumn1, tile.UpdateTitle);
-            b.BuildDropdown("Type", Enum.GetNames(typeof(TileType)), (int)tile.Type, windowColumn1, tile.UpdateTileType);
-            b.BuildPlainText("Created by", tile.Author, windowColumn1);
-            b.BuildPlainText("Created on", tile.CreationDate.ToString(), windowColumn1);
+            OpenForColumns1(headerText, onConfirm, out Transform col1);
+            
+            b.BuildInputField("Title", tile.Title, col1, tile.UpdateTitle);
+            b.BuildDropdown("Type", Enum.GetNames(typeof(TileType)), (int)tile.Type, col1, tile.UpdateType);
+            b.BuildDropdown("Layer", Enum.GetNames(typeof(TileLayerType)), (int)tile.LayerType, col1, tile.UpdateLayerType);
+            b.BuildPlainText("Created by", tile.Author, col1);
+            b.BuildPlainText("Created on", tile.CreationDate.ToString(), col1);
             
             editedAssetBase = tile;
-            Open(new PropertyWindowInfo(headerText, PropertyLayoutType.Column1, ThemeType.Yellow, "Done", "Cancel", onConfirmAction));
         }
 
         protected override void CreateAsset()
         {
             editor.CreateNewTile((TileAsset)editedAssetBase);
-            selectionMenu.OpenForTiles();
+            selectionMenu.Open(AssetType.Tile);
         }
 
         protected override void UpdateAsset()
         {
             tileEditor.UpdateAsset((TileAsset)editedAssetBase);
             tileEditor.CompleteEditing();
-            selectionMenu.OpenForTiles();
+            selectionMenu.Open(AssetType.Tile);
         }
     }
 }

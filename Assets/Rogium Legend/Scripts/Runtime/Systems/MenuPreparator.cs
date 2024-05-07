@@ -1,5 +1,7 @@
-﻿using Rogium.Systems.GASExtension;
+﻿using RedRats.Systems.GASCore;
 using Rogium.Systems.Input;
+using Rogium.UserInterface.Containers;
+using Rogium.UserInterface.Core;
 using UnityEngine;
 
 namespace Rogium.Core
@@ -9,10 +11,16 @@ namespace Rogium.Core
     /// </summary>
     public class MenuPreparator : MonoBehaviour
     {
-        protected void Awake()
+        private void Start()
         {
+            CanvasOverseer canvasOverseer = CanvasOverseer.GetInstance();
+            
             InputSystem.GetInstance().EnableUIMap();
-            GASButtonActions.GameStart();
+            GAS.ObjectSetActive(true, UIMainContainer.GetInstance().BackgroundMain);
+            GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundGameplayMenus);
+            GAS.ObjectSetActive(false, UIEditorContainer.GetInstance().Background);
+            GAS.ObjectSetActive(false, canvasOverseer.NavigationBar.transform.GetChild(0).gameObject);
+            canvasOverseer.NavigationBar.Hide();
         }
 
     }

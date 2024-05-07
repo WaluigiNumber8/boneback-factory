@@ -112,7 +112,7 @@ namespace Rogium.Editors.PropertyEditor
         /// </summary>
         private void Init()
         {
-            ReloadTheme();
+            UpdateTheme();
             ui.importantScrollbar.SetValue(1);
             ui.propertyScrollbar.SetValue(1);
         }
@@ -120,9 +120,9 @@ namespace Rogium.Editors.PropertyEditor
         /// <summary>
         /// Sets graphics from the current theme.
         /// </summary>
-        private void ReloadTheme()
+        private void UpdateTheme()
         {
-            ThemeUpdaterRogium.UpdateElement(ui.importantColumnBackground);
+            ThemeUpdaterRogium.UpdateEditorBackground(ui.importantColumnBackground);
             ThemeUpdaterRogium.UpdateButtonCard(ui.saveButton);
             ThemeUpdaterRogium.UpdateButtonCard(ui.cancelButton);
             ThemeUpdaterRogium.UpdateScrollbar(ui.importantScrollbar);

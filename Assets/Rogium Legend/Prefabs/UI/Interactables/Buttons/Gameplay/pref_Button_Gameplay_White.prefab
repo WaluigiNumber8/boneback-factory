@@ -31,7 +31,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7830623682540376897}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -171,7 +170,6 @@ RectTransform:
   m_Children:
   - {fileID: 7200022392274094775}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -295,7 +293,7 @@ MonoBehaviour:
   action: 0
   index: -1
   ui:
-    buttonImage: {fileID: 0}
+    buttonImage: {fileID: 6430995865926283817}
     buttonText: {fileID: 0}
 --- !u!114 &1608917976491776161
 MonoBehaviour:

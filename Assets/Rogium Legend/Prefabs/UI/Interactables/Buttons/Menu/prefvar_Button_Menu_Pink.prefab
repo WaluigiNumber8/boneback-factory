@@ -5,6 +5,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1967872849273047082, guid: bf2a66882a3c4594abcba676cf0b90a1, type: 3}
@@ -21,8 +22,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2107557191573780117, guid: bf2a66882a3c4594abcba676cf0b90a1, type: 3}
       propertyPath: m_Name
-      value: pref_Button_Menu_Pink
+      value: prefvar_Button_Menu_Pink
       objectReference: {fileID: 0}
+    - target: {fileID: 2992568753111759041, guid: bf2a66882a3c4594abcba676cf0b90a1, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2108588429, guid: 20d765e80cdbca84ca77005620fc227d, type: 3}
     - target: {fileID: 7009068785161423821, guid: bf2a66882a3c4594abcba676cf0b90a1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -128,4 +133,7 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -511371630, guid: 20d765e80cdbca84ca77005620fc227d, type: 3}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf2a66882a3c4594abcba676cf0b90a1, type: 3}

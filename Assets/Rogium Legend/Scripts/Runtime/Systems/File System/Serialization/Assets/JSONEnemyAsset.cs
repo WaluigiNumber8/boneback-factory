@@ -22,6 +22,10 @@ namespace Rogium.ExternalStorage.Serialization
         public int startingDirection;
         public bool seamlessMovement;
 
+        public AssetData hurtSound;
+        public AssetData deathSound;
+        public AssetData idleSound;
+        
         public JSONEnemyAsset(EnemyAsset asset) : base(asset)
         {
             maxHealth = asset.MaxHealth;
@@ -33,6 +37,10 @@ namespace Rogium.ExternalStorage.Serialization
             nextStepTime = asset.NextStepTime;
             startingDirection = (int)asset.StartingDirection;
             seamlessMovement = asset.SeamlessMovement;
+
+            hurtSound = new AssetData(asset.HurtSound);
+            deathSound = new AssetData(asset.DeathSound);
+            idleSound = new AssetData(asset.IdleSound);
         }
 
         public override EnemyAsset Decode()
@@ -41,6 +49,7 @@ namespace Rogium.ExternalStorage.Serialization
                                   title,
                                   icon.Decode(),
                                   author,
+                                  color.Decode(),
                                   associatedSpriteID,
                                   (AnimationType)animationType,
                                   frameDuration,
@@ -48,10 +57,8 @@ namespace Rogium.ExternalStorage.Serialization
                                   baseDamage,
                                   useDelay,
                                   knockbackForceSelf,
-                                  knockbackTimeSelf,
                                   knockbackLockDirectionSelf,
                                   knockbackForceOther,
-                                  knockbackTimeOther,
                                   knockbackLockDirectionOther,
                                   maxHealth,
                                   attackProbability,
@@ -61,6 +68,9 @@ namespace Rogium.ExternalStorage.Serialization
                                   nextStepTime,
                                   (DirectionType)startingDirection,
                                   seamlessMovement,
+                                  hurtSound,
+                                  deathSound,
+                                  idleSound,
                                   DateTime.Parse(creationDate));
         }
     }

@@ -1,7 +1,7 @@
 ﻿namespace Rogium.Editors.Core
 {
     /// <summary>
-    /// A base for all assets containing unique parameters with individual update methods.
+    /// Represents all assets containing unique parameters with individual update methods.
     /// </summary>
     public interface IParameterAsset : IIDHolder
     {

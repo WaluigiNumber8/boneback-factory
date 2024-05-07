@@ -28,6 +28,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: prefvar_Button_Menu_Red
       objectReference: {fileID: 0}
+    - target: {fileID: 2131945176404802888, guid: bf2a66882a3c4594abcba676cf0b90a1, type: 3}
+      propertyPath: keepStateOnStop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2992568753111759041, guid: bf2a66882a3c4594abcba676cf0b90a1, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4823215569807734335, guid: 0cc53795ee767354bb762801d50ebea6, type: 3}
+    - target: {fileID: 5863560967871305914, guid: bf2a66882a3c4594abcba676cf0b90a1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5863560967871305914, guid: bf2a66882a3c4594abcba676cf0b90a1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5863560967871305914, guid: bf2a66882a3c4594abcba676cf0b90a1, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015063896489588956, guid: bf2a66882a3c4594abcba676cf0b90a1, type: 3}
+      propertyPath: managedReferences[4073376580876107780].RemapCurveOne
+      value: 1.075
+      objectReference: {fileID: 0}
     - target: {fileID: 7009068785161423821, guid: bf2a66882a3c4594abcba676cf0b90a1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

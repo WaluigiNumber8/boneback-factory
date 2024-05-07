@@ -493,9 +493,10 @@ namespace RedRats.Safety
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
         public static void EnsureListDoesNotHaveDuplicities<T>(IList<T> list, string variableName, string customMessage = "")
         {
-            if (list.GetDuplicatesCount() > 0) 
+            if (list.GetDuplicatesCount(out IList<string> duplicates) > 0) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} cannot have any duplicates.");
+                string duplicateString = string.Join(", ", duplicates);
+                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} cannot have any duplicates. Duplicates found: {duplicateString}");
             }
         }
 
@@ -512,7 +513,7 @@ namespace RedRats.Safety
         /// Throw a custom error message, without raising an exception.
         /// </summary>
         /// <param name="message">The message to throw.</param>
-        public static void ThrowMessage(string message) => OnFireErrorMessage?.Invoke($"Safety Net - {message}");
+        public static void ThrowMessage(string message) => OnFireErrorMessage?.Invoke(message);
 
         /// <summary>
         /// Throws an exception with appropriate events.

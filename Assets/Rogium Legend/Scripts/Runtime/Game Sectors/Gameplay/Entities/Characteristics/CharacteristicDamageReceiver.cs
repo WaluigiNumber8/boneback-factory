@@ -11,6 +11,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
     {
         public event Action<int> OnMaxHealthChange; 
         public event Action<int> OnDamageReceived;
+        public event Action<int, Vector3> OnHit; 
         public event Action OnDeath;
 
         [SerializeField] private LayerMask ignoredMask;
@@ -23,11 +24,9 @@ namespace Rogium.Gameplay.Entities.Characteristics
 
         private void OnTriggerStay2D(Collider2D other)
         {
-            if (invincibilityTimer > Time.time) return;
             if (!other.TryGetComponent(out CharacteristicDamageGiver giver)) return;
-            if (GameObjectUtils.IsInLayerMask(other.gameObject, ignoredMask)) return;
             
-            TakeDamage(giver);
+            TakeDamage(giver.GetDamageTaken(), giver.transform, giver);
         }
 
         /// <summary>
@@ -63,22 +62,32 @@ namespace Rogium.Gameplay.Entities.Characteristics
         /// <summary>
         /// Receive damage.
         /// </summary>
-        /// <param name="giver">The damage giver tha initiated the situation.</param>
-        private void TakeDamage(CharacteristicDamageGiver giver)
+        /// <param name="amount">The amount of damage to take.</param>
+        /// <param name="damagerTransform">The transform of the object that initiated the hit.</param>
+        /// <param name="damager">The damage giver that initiated the situation.</param>
+        public void TakeDamage(int amount, Transform damagerTransform, CharacteristicDamageGiver damager = null)
         {
-            health -= giver.GetDamageTaken();
+            if (invincibilityTimer > Time.time) return;
+            if (GameObjectUtils.IsInLayerMask(damagerTransform.gameObject, ignoredMask)) return;
+
+            health -= amount;
             OnDamageReceived?.Invoke(health);
-            
+
+            //Death
             if (health <= 0)
             {
                 OnDeath?.Invoke();
+                invincibilityTimer = Time.time + defaultData.invincibilityTime * 10;
                 return;
             }
             
+            //Hit
+            Vector3 hitDirection = (damagerTransform.transform.position - entity.TTransform.position).normalized;
+            OnHit?.Invoke(amount, hitDirection);
             invincibilityTimer = Time.time + defaultData.invincibilityTime;
-            giver.ReceiveKnockback(entity);
+            damager?.ReceiveKnockback(entity, hitDirection);
         }
-        
+
         public int CurrentHealth { get => health; }
         public int MaxHealth { get => defaultData.maxHealth; }
     }

@@ -20,6 +20,8 @@ namespace Rogium.Editors.Weapons
         private bool freezeUser;
         private bool isEvasive;
         private readonly List<ProjectileDataInfo> projectileIDs;
+        
+        private AssetData useSound;
 
         #region Constructors
         public WeaponAsset()
@@ -28,6 +30,7 @@ namespace Rogium.Editors.Weapons
             icon = EditorConstants.WeaponIcon;
             author = EditorConstants.Author;
             creationDate = DateTime.Now;
+            color = EditorConstants.WeaponColor;
 
             animationType = EditorConstants.WeaponAnimationType;
             frameDuration = EditorConstants.WeaponFrameDuration;
@@ -36,10 +39,8 @@ namespace Rogium.Editors.Weapons
             baseDamage = EditorConstants.WeaponBaseDamage;
             useDelay = EditorConstants.WeaponUseDelay;
             knockbackForceSelf = EditorConstants.WeaponKnockbackForceSelf;
-            knockbackTimeSelf = EditorConstants.WeaponKnockbackTimeSelf;
             knockbackLockDirectionSelf = EditorConstants.WeaponKnockbackLockDirectionSelf;
             knockbackForceOther = EditorConstants.WeaponKnockbackForceOther;
-            knockbackTimeOther = EditorConstants.WeaponKnockbackTimeOther;
             knockbackLockDirectionOther = EditorConstants.WeaponKnockbackLockDirectionOther;
 
             useType = EditorConstants.WeaponUseType;
@@ -47,6 +48,9 @@ namespace Rogium.Editors.Weapons
             useStartDelay = EditorConstants.WeaponUseStartDelay;
             isEvasive = EditorConstants.WeaponIsEvasive;
             freezeUser = EditorConstants.WeaponFreezeUser;
+            
+            useSound = new AssetData(ParameterInfoConstants.ForSound);
+            
             projectileIDs = new List<ProjectileDataInfo>();
             
             GenerateID(EditorAssetIDs.WeaponIdentifier);
@@ -61,6 +65,7 @@ namespace Rogium.Editors.Weapons
             icon = asset.Icon;
             author = asset.Author;
             creationDate = asset.CreationDate;
+            color = asset.Color;
 
             associatedSpriteID = asset.AssociatedSpriteID;
             
@@ -71,10 +76,8 @@ namespace Rogium.Editors.Weapons
             baseDamage = asset.BaseDamage;
             useDelay = asset.UseDelay;
             knockbackForceSelf = asset.KnockbackForceSelf;
-            knockbackTimeSelf = asset.KnockbackTimeSelf;
             knockbackLockDirectionSelf = asset.KnockbackLockDirectionSelf;
             knockbackForceOther = asset.KnockbackForceOther;
-            knockbackTimeOther = asset.KnockbackTimeOther;
             knockbackLockDirectionOther = asset.KnockbackLockDirectionOther;
 
             useType = asset.UseType;
@@ -82,15 +85,18 @@ namespace Rogium.Editors.Weapons
             useStartDelay = asset.useStartDelay;
             isEvasive = asset.IsEvasive;
             freezeUser = asset.FreezeUser;
+            
+            useSound = new AssetData(asset.UseSound);
+            
             projectileIDs = new List<ProjectileDataInfo>(asset.ProjectileIDs);
         }
 
-        public WeaponAsset(string id, string title, Sprite icon, string author, string associatedSpriteID, AnimationType animationType, 
-                           int frameDuration, Sprite iconAlt,int baseDamage, float useDelay, float knockbackForceSelf,
-                           float knockbackTimeSelf, bool knockbackLockDirectionSelf, float knockbackForceOther,
-                           float knockbackTimeOther, bool knockbackLockDirectionOther, WeaponUseType useType,
-                           float useDuration, float useStartDelay, bool isEvasive, bool freezeUser, 
-                           IList<ProjectileDataInfo> projectileIDs, DateTime creationDate)
+        public WeaponAsset(string id, string title, Sprite icon, string author, Color color, string associatedSpriteID, 
+                           AnimationType animationType, int frameDuration, Sprite iconAlt,int baseDamage, float useDelay, 
+                           float knockbackForceSelf, bool knockbackLockDirectionSelf, float knockbackForceOther, 
+                           bool knockbackLockDirectionOther, WeaponUseType useType, float useDuration, float useStartDelay, 
+                           bool isEvasive, bool freezeUser, IList<ProjectileDataInfo> projectileIDs, AssetData useSound,
+                           DateTime creationDate)
         {
             AssetValidation.ValidateTitle(title);
             
@@ -99,6 +105,7 @@ namespace Rogium.Editors.Weapons
             this.icon = icon;
             this.author = author;
             this.creationDate = creationDate;
+            this.color = color;
 
             this.associatedSpriteID = associatedSpriteID;
             
@@ -109,10 +116,8 @@ namespace Rogium.Editors.Weapons
             this.baseDamage = baseDamage;
             this.useDelay = useDelay;
             this.knockbackForceSelf = knockbackForceSelf;
-            this.knockbackTimeSelf = knockbackTimeSelf;
             this.knockbackLockDirectionSelf = knockbackLockDirectionSelf;
             this.knockbackForceOther = knockbackForceOther;
-            this.knockbackTimeOther = knockbackTimeOther;
             this.knockbackLockDirectionOther = knockbackLockDirectionOther;
 
             this.useType = useType;
@@ -120,6 +125,9 @@ namespace Rogium.Editors.Weapons
             this.useStartDelay = useStartDelay;
             this.isEvasive = isEvasive;
             this.freezeUser = freezeUser;
+            
+            this.useSound = new AssetData(useSound);
+            
             this.projectileIDs = new List<ProjectileDataInfo>(projectileIDs);
 
         }
@@ -128,19 +136,10 @@ namespace Rogium.Editors.Weapons
         #region Update Values
         public void UpdateUseType(WeaponUseType newUseType) => useType = newUseType;
         public void UpdateUseType(int newUseType) => useType = (WeaponUseType) newUseType;
-        public void UpdateUseDuration(float newUseDuration)
-        {
-            useDuration = newUseDuration;
-        }
-
-        public void UpdateUseStartDelay(float newUseStartDelay)
-        {
-            useStartDelay = newUseStartDelay;
-        }
-
+        public void UpdateUseDuration(float newUseDuration) => useDuration = newUseDuration;
+        public void UpdateUseStartDelay(float newUseStartDelay) => useStartDelay = newUseStartDelay;
         public void UpdateIsEvasive(bool newIsEvasive) => isEvasive = newIsEvasive;
         public void UpdateFreezeUser(bool newFreezeUser) => freezeUser = newFreezeUser;
-
         public void UpdateProjectileIDsLength(int newLength)
         {
             SafetyNet.EnsureIntIsBiggerOrEqualTo(newLength, 0, "New weapon IDs size");
@@ -165,7 +164,7 @@ namespace Rogium.Editors.Weapons
         {
             projectileIDs[pos].UpdateAngleOffset(value);
         }
-
+        public void UpdateUseSound(AssetData newUseSound) => useSound = new AssetData(newUseSound);
         #endregion
 
         public override void ClearAssociatedSprite()
@@ -180,5 +179,6 @@ namespace Rogium.Editors.Weapons
         public bool IsEvasive { get => isEvasive; }
         public bool FreezeUser { get => freezeUser; }
         public List<ProjectileDataInfo> ProjectileIDs { get => projectileIDs; }
+        public AssetData UseSound { get => useSound; }
     }
 }

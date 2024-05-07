@@ -41,7 +41,7 @@ namespace Rogium_Legend.Tests.CSharp.Editors
         public void find_tile_with_same_ID()
         {
             editor.CreateNewTile();
-            editor.CreateNewTile(new TileAsset("Devil Tile", EditorConstants.TileIcon, "TestAuthor", TileType.Floor));
+            editor.CreateNewTile();
             TileAsset foundTile = editor.CurrentPack.Tiles.FindValueFirst(editor.CurrentPack.Tiles[0].ID);
             
             Assert.AreEqual(editor.CurrentPack.Tiles[0].ID, foundTile.ID);
@@ -51,8 +51,8 @@ namespace Rogium_Legend.Tests.CSharp.Editors
         public void fail_when_same_id_is_not_found()
         {
             editor.CreateNewTile();
-            editor.CreateNewTile(new TileAsset("Devil Tile", EditorConstants.TileIcon, "TestAuthor", TileType.Floor));
-            TileAsset tile = new TileAsset("Bob tile", EditorConstants.TileIcon, "TestAuthor", TileType.Floor);
+            editor.CreateNewTile();
+            TileAsset tile = new();
 
             try
             {

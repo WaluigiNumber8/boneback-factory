@@ -2,6 +2,7 @@
 using System.Collections;
 using Rogium.Editors.Weapons;
 using Rogium.Gameplay.Entities.Characteristics;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Rogium.Gameplay.Entities
@@ -11,10 +12,15 @@ namespace Rogium.Gameplay.Entities
     /// </summary>
     public class WeaponController : EntityController
     {
+        public event Action OnUse;
+        
+        [Title("Characteristics")]
         [SerializeField] private CharacteristicDamageGiver damageGiver;
         [SerializeField] private CharacteristicProjectileShoot projectileShoot;
         [SerializeField] private CharacteristicVisual visual;
+        [SerializeField] private CharacteristicSoundEmitter sound;
 
+        private Color color;
         private WeaponAsset weapon;
         
         protected override void Awake()
@@ -23,18 +29,25 @@ namespace Rogium.Gameplay.Entities
             ChangeActiveState(false);
         }
 
+        private void OnEnable() => OnUse += sound.PlayUseSound;
+
+        private void OnDisable() => OnUse -= sound.PlayUseSound;
+
+
         /// <summary>
         /// Load new weapon data into the entity.
         /// </summary>
-        public void LoadUp(WeaponAsset asset)
+        public void Construct(WeaponAsset asset)
         {
             if (weapon != null && weapon.ID == asset.ID) return;
             
-            ForcedMoveInfo knockbackSelf = new(asset.KnockbackForceSelf, asset.KnockbackTimeSelf, asset.KnockbackLockDirectionSelf);
-            ForcedMoveInfo knockbackOther = new(asset.KnockbackForceOther, asset.KnockbackTimeOther, asset.KnockbackLockDirectionOther);
+            color = asset.Color;
+            ForcedMoveInfo knockbackSelf = new(asset.KnockbackForceSelf, true, asset.KnockbackLockDirectionSelf);
+            ForcedMoveInfo knockbackOther = new(asset.KnockbackForceOther, true, asset.KnockbackLockDirectionOther);
             damageGiver.Construct(new CharDamageGiverInfo(asset.BaseDamage, knockbackSelf, knockbackOther));
             visual.Construct(new CharVisualInfo(asset.Icon, asset.AnimationType, asset.FrameDuration, asset.IconAlt));
             visual.ChangeRenderState(asset.UseType != WeaponUseType.Hidden);
+            sound.Construct(new CharSoundInfo(null, null, null, asset.UseSound));
             
             weapon = asset;
             
@@ -63,9 +76,12 @@ namespace Rogium.Gameplay.Entities
                     throw new ArgumentOutOfRangeException($"The Use Type '{weapon.UseType}' is not supported or implemented.");
             }
             
+            
             IEnumerator StaticTypeCoroutine(bool showWeapon)
             {
+                OnUse?.Invoke();
                 yield return new WaitForSeconds(weapon.UseDuration);
+                
                 if (showWeapon) ChangeActiveState(false);
             }
         }
@@ -74,10 +90,13 @@ namespace Rogium.Gameplay.Entities
         /// Changes the whole active state for the weapon.
         /// </summary>
         /// <param name="isEnabled">Changes the state.</param>
-        private void ChangeActiveState(bool isEnabled)
+        public void ChangeActiveState(bool isEnabled)
         {
-            ChangeCollideMode(isEnabled);
+            UpdateCollideMode(isEnabled);
             visual.ChangeRenderState(isEnabled);
         }
+        
+        public Color RepresentativeColor { get => color; }
+        public CharacteristicDamageGiver DamageGiver { get => damageGiver; }
     }
 }

@@ -15,8 +15,6 @@ namespace Rogium.Systems.Validation
         public const int MaxFrameDuration = 2000;
         
         public const float MaxUseDelay = 60f;
-        public const float MaxKnockbackSelfTime = 30f;
-        public const float MaxKnockbackOtherTime = 30f;
 
         public const int MaxEnemyHealth = 20000;
         public const float MaxEnemyInvincibilityTime = 60f;

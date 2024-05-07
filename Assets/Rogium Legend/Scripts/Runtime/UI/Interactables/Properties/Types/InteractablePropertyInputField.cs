@@ -9,7 +9,7 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// <summary>
     /// Overseers everything happening in an input field interactable property.
     /// </summary>
-    public class InteractablePropertyInputField : InteractablePropertyBase
+    public class InteractablePropertyInputField : InteractablePropertyBase<string>
     {
         [SerializeField] private TMP_InputField inputField;
         [SerializeField] private UIInfo ui;
@@ -33,9 +33,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             this.minLimit = minLimit;
             this.maxLimit = maxLimit;
             
-            title.text = titleText;
-            title.gameObject.SetActive((titleText != ""));
-            if (ui.emptySpace != null) ui.emptySpace.SetActive((titleText != ""));
+            ConstructTitle(titleText);
             
             inputField.text = inputtedText;
             inputField.characterValidation = characterValidation;
@@ -78,14 +76,13 @@ namespace Rogium.UserInterface.Interactables.Properties
             whenFinishEditing?.Invoke(content);
         }
         
-        public string Property { get => inputField.text; }
+        public override string PropertyValue { get => inputField.text; }
 
         [Serializable]
         public struct UIInfo
         {
             public Image inputFieldImage;
             public TextMeshProUGUI inputtedText;
-            public GameObject emptySpace;
         }
     }
 }

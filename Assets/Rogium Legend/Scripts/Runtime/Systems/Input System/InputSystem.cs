@@ -14,6 +14,8 @@ namespace Rogium.Systems.Input
         private InputProfilePlayer inputPlayer;
         private InputProfileUI inputUI;
         private EventSystem eventSystem;
+        
+        private Vector2 pointerPosition;
 
         protected override void Awake()
         {
@@ -21,7 +23,8 @@ namespace Rogium.Systems.Input
             RogiumInputActions input = new();
             inputPlayer = new InputProfilePlayer(input);
             inputUI = new InputProfileUI(input);
-            SceneManager.sceneLoaded += (_, __) => eventSystem = FindObjectOfType<EventSystem>();
+            SceneManager.sceneLoaded += (_, __) => eventSystem = FindFirstObjectByType<EventSystem>();
+            inputUI.PointerPosition.OnPressed += UpdatePointerPosition;
         }
 
         /// <summary>
@@ -66,6 +69,9 @@ namespace Rogium.Systems.Input
             inputPlayer.Disable();
         }
         
+        private void UpdatePointerPosition(Vector2 value) => pointerPosition = value;
+
+        public Vector2 PointerPosition { get => pointerPosition; }
         public InputProfilePlayer Player { get => inputPlayer; }
         public InputProfileUI UI { get => inputUI; }
     }

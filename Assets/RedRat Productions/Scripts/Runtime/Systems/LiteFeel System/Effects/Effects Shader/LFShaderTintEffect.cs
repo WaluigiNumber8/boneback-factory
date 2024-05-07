@@ -1,0 +1,37 @@
+using DG.Tweening;
+using Sirenix.OdinInspector;
+using UnityEngine;
+
+namespace RedRats.Systems.LiteFeel.Effects
+{
+    public class LFShaderTintEffect : LFEffectShaderBase
+    {
+        [Header("Tint")]
+        [SerializeField] private Color beginTint = Color.white;
+        [SerializeField] private Color targetTint = Color.white;
+        [SerializeField] protected AnimationCurve blendCurve = new(new Keyframe(0, 0), new Keyframe(1, 1));
+        
+        private static readonly int TintProperty = Shader.PropertyToID("_Tint");
+        private Color startTint;
+
+        protected override void ResetTargetState()
+        {
+            material.SetColor(TintProperty, startTint);
+        }
+
+        protected override void UpdateStartingValues()
+        {
+            startTint = material.GetColor(TintProperty);
+        }
+
+        protected override void SetBeginState()
+        {
+            material.SetColor(TintProperty, beginTint);
+        }
+
+        protected override void SetupTweens()
+        {
+            AddColorTween(TintProperty, targetTint, blendCurve);
+        }
+    }
+}

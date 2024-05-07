@@ -1,5 +1,4 @@
 ﻿using System;
-using RedRats.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.Validation;
@@ -24,6 +23,7 @@ namespace Rogium.Editors.Projectiles
             icon = EditorConstants.ProjectileIcon;
             author = EditorConstants.Author;
             creationDate = DateTime.Now;
+            color = EditorConstants.ProjectileColor;
 
             animationType = EditorConstants.ProjectileAnimationType;
             frameDuration = EditorConstants.ProjectileFrameDuration;
@@ -32,10 +32,8 @@ namespace Rogium.Editors.Projectiles
             baseDamage = EditorConstants.ProjectileBaseDamage;
             useDelay = EditorConstants.ProjectileLifetime;
             knockbackForceSelf = EditorConstants.ProjectileKnockbackForceSelf;
-            knockbackTimeSelf = EditorConstants.ProjectileKnockbackTimeSelf;
             knockbackLockDirectionSelf = EditorConstants.ProjectileKnockbackLockDirectionSelf;
             knockbackForceOther = EditorConstants.ProjectileKnockbackForceOther;
-            knockbackTimeOther = EditorConstants.ProjectileKnockbackTimeOther;
             knockbackLockDirectionOther = EditorConstants.ProjectileKnockbackLockDirectionOther;
 
             flightSpeed = EditorConstants.ProjectileFlightSpeed;
@@ -55,6 +53,7 @@ namespace Rogium.Editors.Projectiles
             icon = asset.Icon;
             author = asset.Author;
             creationDate = asset.CreationDate;
+            color = asset.Color;
 
             associatedSpriteID = asset.AssociatedSpriteID;
             
@@ -65,10 +64,8 @@ namespace Rogium.Editors.Projectiles
             baseDamage = asset.BaseDamage;
             useDelay = asset.UseDelay;
             knockbackForceSelf = asset.KnockbackForceSelf;
-            knockbackTimeSelf = asset.KnockbackTimeSelf;
             knockbackLockDirectionSelf = asset.KnockbackLockDirectionSelf;
             knockbackForceOther = asset.KnockbackForceOther;
-            knockbackTimeOther = asset.KnockbackTimeOther;
             knockbackLockDirectionOther = asset.KnockbackLockDirectionOther;
 
             flightSpeed = asset.FlightSpeed;
@@ -77,11 +74,11 @@ namespace Rogium.Editors.Projectiles
             pierceType = asset.PierceType;
         }
 
-        public ProjectileAsset(string id, string title, Sprite icon, string author, string associatedSpriteID, AnimationType animationType, 
-                               int frameDuration, Sprite iconAlt, int baseDamage, float useDelay, float knockbackForceSelf, 
-                               float knockbackTimeSelf, bool knockbackLockDirectionSelf, float knockbackForceOther,
-                               float knockbackTimeOther, bool knockbackLockDirectionOther, float flightSpeed, float acceleration,
-                               float brakeForce, PierceType pierceType, DateTime creationDate)
+        public ProjectileAsset(string id, string title, Sprite icon, string author, Color color, string associatedSpriteID, 
+                               AnimationType animationType, int frameDuration, Sprite iconAlt, int baseDamage, float useDelay, 
+                               float knockbackForceSelf, bool knockbackLockDirectionSelf, float knockbackForceOther,
+                               bool knockbackLockDirectionOther, float flightSpeed, float acceleration, float brakeForce, 
+                               PierceType pierceType, DateTime creationDate)
         {
             AssetValidation.ValidateTitle(title);
             
@@ -90,6 +87,7 @@ namespace Rogium.Editors.Projectiles
             this.icon = icon;
             this.author = author;
             this.creationDate = creationDate;
+            this.color = color;
 
             this.associatedSpriteID = associatedSpriteID;
             
@@ -100,10 +98,8 @@ namespace Rogium.Editors.Projectiles
             this.baseDamage = baseDamage;
             this.useDelay = useDelay;
             this.knockbackForceSelf = knockbackForceSelf;
-            this.knockbackTimeSelf = knockbackTimeSelf;
             this.knockbackLockDirectionSelf = knockbackLockDirectionSelf;
             this.knockbackForceOther = knockbackForceOther;
-            this.knockbackTimeOther = knockbackTimeOther;
             this.knockbackLockDirectionOther = knockbackLockDirectionOther;
 
             this.flightSpeed = flightSpeed;

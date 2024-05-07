@@ -18,17 +18,17 @@ public static class TestBuilder
     /// <returns></returns>
     public static PackAsset SetupPackAsset()
     {
-        TileAsset tile = new TileAsset("Test Tile", EditorConstants.TileIcon, "Test Author", TileType.Floor);
+        TileAsset tile = new TileAsset();
 
-        ObjectGrid<AssetData> tileGrid = new(10, 15, () => new AssetData(ParameterInfoConstants.ParamsTile));
-        ObjectGrid<AssetData> objectGrid = new(10, 15, () => new AssetData(ParameterInfoConstants.ParamsEmpty));
-        ObjectGrid<AssetData> enemyGrid = new(10, 15, () => new AssetData(ParameterInfoConstants.ParamsEnemy));
-        tileGrid.SetValue(1, 1, new AssetData(tile.ID, ParameterInfoConstants.ParamsTile));
-        tileGrid.SetValue(8, 5, new AssetData(tile.ID, ParameterInfoConstants.ParamsTile));
-        tileGrid.SetValue(2, 1, new AssetData(tile.ID, ParameterInfoConstants.ParamsTile));
-        tileGrid.SetValue(5, 1, new AssetData(tile.ID, ParameterInfoConstants.ParamsTile));
+        ObjectGrid<AssetData> tileGrid = new(10, 15, () => new AssetData(ParameterInfoConstants.ForTile));
+        ObjectGrid<AssetData> objectGrid = new(10, 15, () => new AssetData(ParameterInfoConstants.ForEmpty));
+        ObjectGrid<AssetData> enemyGrid = new(10, 15, () => new AssetData(ParameterInfoConstants.ForEnemy));
+        tileGrid.SetValue(1, 1, new AssetData(tile.ID, ParameterInfoConstants.ForTile));
+        tileGrid.SetValue(8, 5, new AssetData(tile.ID, ParameterInfoConstants.ForTile));
+        tileGrid.SetValue(2, 1, new AssetData(tile.ID, ParameterInfoConstants.ForTile));
+        tileGrid.SetValue(5, 1, new AssetData(tile.ID, ParameterInfoConstants.ForTile));
 
-        RoomAsset room = new RoomAsset("Devil Room", EditorConstants.RoomIcon, "Test Author", 0, RoomType.Common, 255, tileGrid, objectGrid, enemyGrid);
+        RoomAsset room = new();
         PackAsset pack = new PackAsset("Test Pack", "Test Author", "Just a pack");
         pack.Tiles.Add(tile);
         pack.Rooms.Add(room);

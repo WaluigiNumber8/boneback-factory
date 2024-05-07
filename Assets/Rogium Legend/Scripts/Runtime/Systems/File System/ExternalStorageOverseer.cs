@@ -16,6 +16,7 @@ using Rogium.Editors.Rooms;
 using Rogium.Editors.Tiles;
 using Rogium.Editors.Weapons;
 using Rogium.ExternalStorage.Serialization;
+using Rogium.Options.Core;
 
 namespace Rogium.ExternalStorage
 {
@@ -26,6 +27,7 @@ namespace Rogium.ExternalStorage
     {
         private readonly SaveableData packData;
         private readonly SaveableData campaignData;
+        private readonly SaveableData gameData;
 
         private readonly IList<PackPathInfo> packPaths;
         private PackPathInfo currentPackInfo;
@@ -38,16 +40,22 @@ namespace Rogium.ExternalStorage
         private readonly CRUDOperations<EnemyAsset, JSONEnemyAsset> enemyCRUD;
         private readonly CRUDOperations<RoomAsset, JSONRoomAsset> roomCRUD;
         private readonly CRUDOperations<TileAsset, JSONTileAsset> tileCRUD;
+        
+        private readonly CRUDOperations<GameDataAsset, JSONGameDataAsset> preferencesCRUD;
 
         private ExternalStorageOverseer()
         {
             packData = new SaveableData("Packs", EditorAssetIDs.PackIdentifier);
             campaignData = new SaveableData("Campaigns", EditorAssetIDs.CampaignIdentifier);
+            gameData = new SaveableData("", EditorAssetIDs.PreferencesIdentifier);
             
             packPaths = new List<PackPathInfo>();
 
             campaignCRUD = new CRUDOperations<CampaignAsset, JSONCampaignAsset>(c => new JSONCampaignAsset(c), EditorAssetIDs.CampaignIdentifier);
             campaignCRUD.RefreshSaveableData(campaignData);
+
+            preferencesCRUD = new CRUDOperations<GameDataAsset, JSONGameDataAsset>(p => new JSONGameDataAsset(p),EditorAssetIDs.PreferencesIdentifier, false);
+            preferencesCRUD.RefreshSaveableData(gameData);
             
             paletteCRUD = new CRUDOperations<PaletteAsset, JSONPaletteAsset>(p => new JSONPaletteAsset(p), EditorAssetIDs.PaletteIdentifier);
             spriteCRUD = new CRUDOperations<SpriteAsset, JSONSpriteAsset>(s => new JSONSpriteAsset(s), EditorAssetIDs.SpriteIdentifier);
@@ -213,5 +221,6 @@ namespace Rogium.ExternalStorage
         public CRUDOperations<EnemyAsset, JSONEnemyAsset> Enemies { get => enemyCRUD; }
         public CRUDOperations<RoomAsset, JSONRoomAsset> Rooms { get => roomCRUD; }
         public CRUDOperations<TileAsset, JSONTileAsset> Tiles { get => tileCRUD; }
+        public CRUDOperations<GameDataAsset, JSONGameDataAsset> Preferences { get => preferencesCRUD; }
     }
 }

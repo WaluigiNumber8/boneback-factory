@@ -73,11 +73,11 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         private void BuildWeaponDrop(AssetData data)
         {
             IList<WeaponAsset> weapons = PackEditorOverseer.Instance.CurrentPack.Weapons;
-            IAsset startValue = weapons.FindValueFirstOrReturnFirstOrDefault(data.Parameters.stringValue1);
-            bool noWeaponsExist = (startValue == default);
+            bool noWeaponsExist = (weapons == null || weapons.Count == 0);
+            IAsset startValue =  weapons.FindValueFirstOrReturnFirstOrDefault(data.Parameters.stringValue1);
 
             if (!noWeaponsExist) data.UpdateStringValue1(startValue.ID);
-            b.BuildAssetField("Weapon", AssetType.Weapon, startValue, contentMain, asset => data.UpdateStringValue1(asset.ID), noWeaponsExist);
+            b.BuildAssetField("Weapon", AssetType.Weapon, startValue, contentMain, asset => data.UpdateStringValue1(asset.ID), null, noWeaponsExist);
             b.BuildToggle("Player only", data.Parameters.boolValue1, contentMain, data.UpdateBoolValue1);
         }
         

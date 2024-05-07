@@ -14,6 +14,12 @@ namespace Rogium.Editors.Core
 
         #region Constructors
 
+        public AssetData()
+        {
+            id = EditorConstants.EmptyAssetID;
+            parameters = ParameterInfoConstants.ForEmpty;
+        }
+        
         public AssetData(AssetData data)
         {
             id = data.ID;
@@ -83,7 +89,8 @@ namespace Rogium.Editors.Core
             int other = obj.GetHashCode();
             return hashMe.CompareTo(other);
         }
-        
+
+        public override string ToString() => id;
 
         public string ID { get => id; }
         public ParameterInfo Parameters { get => parameters; }

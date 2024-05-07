@@ -14,7 +14,7 @@ namespace Rogium.Editors.Palettes
         [SerializeField] private TextMeshProUGUI titleText;
         
         [Header("Color Picker")]
-        [SerializeField] private ColorPickerManager colorPicker;
+        [SerializeField] private ColorPicker colorPicker;
         
         private PaletteEditorOverseer editor;
         private ColorSlot lastSlot;

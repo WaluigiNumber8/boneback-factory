@@ -11,7 +11,7 @@ namespace Rogium.Gameplay.DataLoading
     {
         [SerializeField] private string title;
         [SerializeField] private Tilemap tilemap;
-        [SerializeField] private TileType type;
+        [SerializeField] private TileLayerType layerType;
         
         private IList<Vector3Int> positions;
         private IList<TileBase> tiles;
@@ -49,7 +49,7 @@ namespace Rogium.Gameplay.DataLoading
         }
         
         public Tilemap Tilemap => tilemap;
-        public TileType Type => type;
+        public TileLayerType LayerType => layerType;
         public IList<Vector3Int> Positions => positions;
         public IList<TileBase> Tiles => tiles;
     }

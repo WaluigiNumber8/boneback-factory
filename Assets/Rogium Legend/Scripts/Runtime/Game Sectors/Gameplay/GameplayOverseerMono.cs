@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using RedRats.Core;
-using RedRats.Systems.ClockOfTheGame;
+using RedRats.Systems.Clocks;
 using RedRats.Systems.GASCore;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Core;
@@ -21,10 +21,13 @@ namespace Rogium.Gameplay.Core
     /// </summary>
     public class GameplayOverseerMono : MonoSingleton<GameplayOverseerMono>
     {
-        public event Action<float> OnSafePeriodActivate;
-        
         [SerializeField] private GameplaySequencer sequencer;
         [SerializeField] private PlayerController player;
+
+        /// <summary>
+        /// Time during which the player cannot be attacked after loading a room.
+        /// </summary>
+        [Tooltip("Time during which the player cannot be attacked after loading a room.")]
         [SerializeField] private float safePeriodTime = 1f;
         
         private RRG rrg;
@@ -134,7 +137,7 @@ namespace Rogium.Gameplay.Core
         private void ActivateSafePeriod()
         {
             safePeriodTimer = Time.time + safePeriodTime;
-            OnSafePeriodActivate?.Invoke(safePeriodTime);
+            player.BecomeInvincible(safePeriodTime);
         }
 
         public CampaignAsset CurrentCampaign

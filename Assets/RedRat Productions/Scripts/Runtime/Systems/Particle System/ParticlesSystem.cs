@@ -1,0 +1,113 @@
+using System;
+using System.Collections;
+using RedRats.Core;
+using RedRats.Core.Helpers;
+using UnityEngine;
+
+namespace RedRats.Systems.Particles
+{
+    /// <summary>
+    /// Manages all <see cref="ParticlesSystem"/>s playing in the scene.
+    /// </summary>
+    public class ParticlesSystem : MonoSingleton<ParticlesSystem>
+    {
+        private ObjectDictionaryPool<int, ParticleSystem> effectPool;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            effectPool = new ObjectDictionaryPool<int, ParticleSystem>(
+                () =>
+                {
+                    ParticleSystem particle = new GameObject("ParticleEffect").AddComponent<ParticleSystem>();
+                    particle.gameObject.AddComponent<HardFollowTarget>();
+                    return particle;
+                },
+                c =>
+                {
+                    c.Stop(true);
+                    c.gameObject.SetActive(true);
+                },
+                c =>
+                {
+                    c.Stop(true);
+                    c.gameObject.SetActive(false);
+                    c.gameObject.GetComponent<HardFollowTarget>().ClearTarget();
+                },
+                Destroy,
+                true, 50);
+        }
+
+        public ParticleSystem Play(ParticleSystem effectData, ParticleSettingsInfo settings)
+        {
+            ParticleSystem effect = (settings.id == 0) ? effectPool.Get() : effectPool.Get(settings.id);
+            HardFollowTarget followTarget = effect.GetComponent<HardFollowTarget>();
+
+            //Copy all data from the effect to the particle
+            effectData.CopyInto(effect);
+
+            //Move the particle to the desired position
+            effect.transform.position = settings.target.position + settings.offsetPos;
+            if (settings.followTarget)
+            {
+                followTarget.SetTarget(settings.target, settings.offsetPos);
+            }
+
+            //Rotate the particle
+            switch (settings.followRotation)
+            {
+                case FollowRotationType.NoFollow:
+                    effect.transform.rotation = Quaternion.identity;
+                    break;
+                case FollowRotationType.Follow:
+                    followTarget.EnableRotationFollow(settings.offsetRot);
+                    break;
+                case FollowRotationType.AlignOnPlay:
+                    effect.transform.rotation = settings.target.rotation;
+                    break;
+                case FollowRotationType.Custom:
+                    effect.transform.rotation = Quaternion.LookRotation(settings.offsetRot, Vector2.up);
+                    break;
+                default: throw new ArgumentOutOfRangeException($"{settings.followRotation} is not a valid FollowRotationType.");
+            }
+            
+            effect.Play();
+            StartCoroutine(ReleaseEffectCoroutine());
+            return effect;
+
+            IEnumerator ReleaseEffectCoroutine()
+            {
+                if (effect.main.useUnscaledTime)yield return new WaitForSecondsRealtime(effect.main.duration);
+                else yield return new WaitForSeconds(effect.main.duration);
+                
+                if (settings.id == 0) TryReleaseEffect(effect);
+                else TryReleaseEffect(settings.id);
+            }
+        }
+
+        public void Stop(int id)
+        {
+            effectPool.Get(id).Stop();
+            TryReleaseEffect(id);
+        }
+
+        public void Stop(ParticleSystem effect)
+        {
+            effect.Stop();
+            TryReleaseEffect(effect);
+        }
+
+        private void TryReleaseEffect(ParticleSystem effect)
+        {
+            if (effect.isPlaying || !effect.gameObject.activeSelf) return;
+            effectPool.Release(effect);
+        }
+
+        private void TryReleaseEffect(int id)
+        {
+            ParticleSystem effect = effectPool.Get(id);
+            if (effect.isPlaying || !effect.gameObject.activeSelf) return;
+            effectPool.Release(id);
+        }
+    }
+}

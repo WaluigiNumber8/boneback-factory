@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using RedRats.Safety;
 using RedRats.Systems.FileSystem;
-using RedRats.Systems.FileSystem.JSON;
 using Rogium.Editors.Core;
 
 namespace Rogium.ExternalStorage
@@ -13,16 +12,18 @@ namespace Rogium.ExternalStorage
     /// </summary>
     /// <typeparam name="T">The type of asset.</typeparam>
     /// <typeparam name="TS">Serialized form of the asset.</typeparam>
-    public class CRUDOperations<T, TS> where T : AssetBase where TS : IEncodedObject<T>
+    public class CRUDOperations<T, TS> where T : IDataAsset where TS : IEncodedObject<T>
     {
         private SaveableData data;
         private readonly Func<T,TS> newSerializedObject;
         private readonly string dataIdentifier;
+        private readonly bool useCompression;
 
-        public CRUDOperations(Func<T,TS> newSerializedObject, string dataIdentifier)
+        public CRUDOperations(Func<T,TS> newSerializedObject, string dataIdentifier, bool useCompression = true)
         {
             this.newSerializedObject = newSerializedObject;
             this.dataIdentifier = dataIdentifier;
+            this.useCompression = useCompression;
         }
 
         /// <summary>
@@ -34,7 +35,7 @@ namespace Rogium.ExternalStorage
             SafetyNet.EnsureIsNotNull(data, "Saveable Data");
             
             data.TryAddNewFilePath(asset.ID, asset.Title);
-            JSONSystem.Save(data.GetFilePath(asset.ID), dataIdentifier, asset, r => newSerializedObject(r));
+            JSONSystem.Save(data.GetFilePath(asset.ID), dataIdentifier, asset, r => newSerializedObject(r), useCompression);
         }
 
         /// <summary>
@@ -43,7 +44,7 @@ namespace Rogium.ExternalStorage
         /// <returns>A list of those assets.</returns>
         public IList<T> LoadAll()
         {
-            IList<T> loadedData = JSONSystem.LoadAll<T, TS>(data.Path, data.Identifier);
+            IList<T> loadedData = JSONSystem.LoadAll<T, TS>(data.Path, data.Identifier, false, useCompression);
             loadedData = FindAndRemoveDuplicates(loadedData);
             foreach (T piece in loadedData)
             {
@@ -64,7 +65,7 @@ namespace Rogium.ExternalStorage
             if (asset.Title == title) return;
 
             data.UpdateFileTitle(asset.ID, asset.Title);
-            JSONSystem.RenameFile(oldPath, data.GetFilePath(asset.ID));
+            JSONSystem.RenameFile(oldPath, data.GetFilePath(asset.ID), useCompression);
         }
         
         /// <summary>

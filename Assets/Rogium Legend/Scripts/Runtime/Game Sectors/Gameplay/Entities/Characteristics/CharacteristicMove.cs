@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace Rogium.Gameplay.Entities.Characteristics
 {
@@ -8,52 +9,47 @@ namespace Rogium.Gameplay.Entities.Characteristics
     public class CharacteristicMove : CharacteristicBase
     {
         [SerializeField] private CharMoveInfo defaultData;
-
-        private Vector2 lastDirection;
-        private float accel;
+        [SerializeField] private ForceMode2D breakForceType = ForceMode2D.Force;
+        [Button("Reconstruct", ButtonSizes.Medium), DisableInEditorMode] private void Reconstruct() => Construct(defaultData);
         
+        private Rigidbody2D rb;
+        
+        private Vector2 direction;
+        private float maxSpeed;
+        private float accel;
+        private float brakeForce;
+
+        private void Start()
+        {
+            rb = entity.Rigidbody;
+            Construct(defaultData);
+        }
+
         /// <summary>
         /// Constructs the characteristic.
         /// </summary>
         /// <param name="newInfo">New data to use.</param>
-        public void Construct(CharMoveInfo newInfo) => defaultData = newInfo;
-        
+        public void Construct(CharMoveInfo newInfo)
+        {
+            defaultData = newInfo;
+            
+            maxSpeed = defaultData.maxSpeed;
+            accel = 1000 * defaultData.acceleration;
+            brakeForce = 10 * defaultData.brakeForce;
+        }
+
         /// <summary>
         /// Move in a specific direction.
         /// </summary>
         /// <param name="direction">The direction of the movement.</param>
         public void Move(Vector2 direction)
         {
-            CalculateAcceleration(direction);
-            lastDirection = (direction == Vector2.zero) ? lastDirection : direction;
-            float speed = defaultData.maxSpeed * accel;
+            Vector2 force = (direction != Vector2.zero) ? rb.velocity + accel * direction : Vector2.zero;
+            Vector2 decelerationForce = (direction != Vector2.zero) ? Vector2.zero : -brakeForce * rb.velocity;
             
-            entity.Rigidbody.MovePosition(entity.Rigidbody.position + lastDirection * (speed * Time.fixedDeltaTime));
+            rb.AddForce(force, ForceMode2D.Force);
+            rb.AddForce(decelerationForce, breakForceType);
+            rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);
         }
-
-        /// <summary>
-        /// Resets all movement.
-        /// </summary>
-        public void Reset()
-        {
-            lastDirection = Vector2.zero;
-            accel = 0;
-        }
-        
-        /// <summary>
-        /// Calculates the acceleration of the movement.
-        /// </summary>
-        /// <param name="direction">The direction to move in.</param>
-        private void CalculateAcceleration(Vector2 direction)
-        {
-            if (direction == Vector2.zero)
-            {
-                accel = Mathf.Max(0, accel -= defaultData.brakeForce);
-                return;
-            }
-
-            accel = Mathf.Min(accel += defaultData.acceleration, 1);
-        }
-
     }
 }

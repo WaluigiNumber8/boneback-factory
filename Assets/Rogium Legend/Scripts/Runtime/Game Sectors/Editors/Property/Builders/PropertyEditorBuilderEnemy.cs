@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using RedRats.Core;
+using RedRats.Systems.Themes;
 using RedRats.UI;
 using Rogium.Core;
 using Rogium.Editors.Core;
@@ -51,13 +52,14 @@ namespace Rogium.Editors.PropertyEditor.Builders
         {
             
             animationBlock1Slot = b.CreateContentBlockVertical(content, (asset.AnimationType == AnimationType.SpriteSwap));
-            b.BuildAssetField("", AssetType.Sprite, asset, animationBlock1Slot.GetTransform, a => asset.UpdateIcon(a), !currentPack.ContainsAnySprites, ThemeType.Red);
+            b.BuildAssetField("", AssetType.Sprite, asset, animationBlock1Slot.GetTransform, a => asset.UpdateIcon(a), null, !currentPack.ContainsAnySprites, ThemeType.Red);
             
             animationBlock2Slot = b.CreateContentBlockColumn2(content, (asset.AnimationType != AnimationType.SpriteSwap));
-            b.BuildAssetField("", AssetType.Sprite, asset, animationBlock2Slot.GetTransform, a => asset.UpdateIcon(a), !currentPack.ContainsAnySprites, ThemeType.Red);
-            b.BuildAssetField("", AssetType.Sprite, asset, animationBlock2Slot.GetTransform, a => asset.UpdateIconAlt(a.Icon), !currentPack.ContainsAnySprites, ThemeType.Red);
+            b.BuildAssetField("", AssetType.Sprite, asset, animationBlock2Slot.GetTransform, a => asset.UpdateIcon(a), null, !currentPack.ContainsAnySprites, ThemeType.Red);
+            b.BuildAssetField("", AssetType.Sprite, asset, animationBlock2Slot.GetTransform, a => asset.UpdateIconAlt(a.Icon), null, !currentPack.ContainsAnySprites, ThemeType.Red);
 
             b.BuildInputField("", asset.Title, content, asset.UpdateTitle);
+            b.BuildColorField("Color", asset.Color, content, asset.UpdateColor);
             b.BuildDropdown("AI", aiOptions, (int)asset.AI, content, ProcessAIType);
         }
 
@@ -67,13 +69,10 @@ namespace Rogium.Editors.PropertyEditor.Builders
             b.BuildInputField("Max Health", asset.MaxHealth.ToString(), content, s => asset.UpdateMaxHealth(int.Parse(s)), false, false, TMP_InputField.CharacterValidation.Integer, 1);
             b.BuildInputField("Damage", asset.BaseDamage.ToString(), content, s => asset.UpdateBaseDamage(int.Parse(s)), false, false, TMP_InputField.CharacterValidation.Integer);
             b.BuildSlider("Invincibility Time", 0f, EditorConstants.EnemyInvincibilityTimeMax, asset.InvincibilityTime, content, f => asset.UpdateInvincibilityTime(f));
-            
             b.BuildHeader("Knockback", content);
             b.BuildSlider("Self Force", -EditorConstants.EnemyKnockbackForceMax, EditorConstants.EnemyKnockbackForceMax, asset.KnockbackForceSelf, content, f => asset.UpdateKnockbackForceSelf(f));
-            b.BuildSlider("Self Time", 0f, EditorConstants.EnemyKnockbackTimeMax, asset.KnockbackTimeSelf, content, f => asset.UpdateKnockbackTimeSelf(f));
-            b.BuildToggle("Self Lock Direction", asset.KnockbackLockDirectionSelf, content, asset.UpdateKnockbackLockDirectionSelf);
             b.BuildSlider("Other Force", -EditorConstants.EnemyKnockbackForceMax, EditorConstants.EnemyKnockbackForceMax, asset.KnockbackForceOther, content, f => asset.UpdateKnockbackForceOther(f));
-            b.BuildSlider("Other Time", 0f, EditorConstants.EnemyKnockbackTimeMax, asset.KnockbackTimeOther, content, f => asset.UpdateKnockbackTimeOther(f));
+            b.BuildToggle("Self Lock Direction", asset.KnockbackLockDirectionSelf, content, asset.UpdateKnockbackLockDirectionSelf);
             b.BuildToggle("Other Lock Direction", asset.KnockbackLockDirectionOther, content, asset.UpdateKnockbackLockDirectionOther);
 
             b.BuildHeader("AI", content);
@@ -89,7 +88,12 @@ namespace Rogium.Editors.PropertyEditor.Builders
             b.BuildSlider("Frame Duration", 1, EditorConstants.EnemyFrameDurationMax, asset.FrameDuration, content, i => asset.UpdateFrameDuration((int)i));
             
             ProcessAIType((int)asset.AI);
-            BuildWeaponContent(content);
+            BuildWeaponSection(content);
+            
+            b.BuildHeader("Sound", content);
+            b.BuildSoundField("Hurt", asset.HurtSound, content, asset.UpdateHurtSound, true);
+            b.BuildSoundField("Death", asset.DeathSound, content, asset.UpdateDeathSound, true);
+            b.BuildSoundField("Idle", asset.IdleSound, content, asset.UpdateIdleSound, true);
         }
 
         private void ProcessAnimationType(int animType)
@@ -106,7 +110,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
             aiRotateTowardsBlock.SetDisabled((newAIType != (int)AIType.RotateTowardsPlayer));
         }
         
-        private void BuildWeaponContent(Transform content)
+        private void BuildWeaponSection(Transform content)
         {
             b.BuildHeader("Weapons", content);
             b.BuildSlider("Attack Delay", 0f, EditorConstants.EnemyAttackDelayMax, asset.UseDelay, content, f => asset.UpdateUseDelay(f));
@@ -139,7 +143,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
             {
                 int index = i;
                 IAsset w = packWeapons.FindValueFirstOrReturnFirst(asset.WeaponIDs[i]);
-                b.BuildAssetField($"Weapon #{index+1}", AssetType.Weapon, w, weaponSlotsBlock.GetTransform, a => asset.UpdateWeaponIDPos(index, a.ID), !currentPack.ContainsAnyWeapons);
+                b.BuildAssetField($"Weapon #{index+1}", AssetType.Weapon, w, weaponSlotsBlock.GetTransform, a => asset.UpdateWeaponIDPos(index, a.ID), null, !currentPack.ContainsAnyWeapons);
                 asset.UpdateWeaponIDPos(i, w.ID);
             }
         }

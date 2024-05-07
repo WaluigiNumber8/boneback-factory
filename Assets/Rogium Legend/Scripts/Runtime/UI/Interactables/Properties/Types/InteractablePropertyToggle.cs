@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using System;
 using RedRats.UI.Core;
 
@@ -9,7 +8,7 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// <summary>
     /// Overseers everything happening in a toggle interactable property.
     /// </summary>
-    public class InteractablePropertyToggle : InteractablePropertyBase
+    public class InteractablePropertyToggle : InteractablePropertyBase<bool>
     {
         [SerializeField] private Toggle toggle;
         [SerializeField] private UIInfo ui;
@@ -24,9 +23,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="WhenChangeValue">The method that will run when the toggle changes it's value.</param>
         public void Construct(string titleText, bool toggleState, Action<bool> WhenChangeValue)
         {
-            title.text = titleText;
-            title.gameObject.SetActive((titleText != ""));
-            if (ui.emptySpace != null) ui.emptySpace.SetActive((titleText != ""));
+            ConstructTitle(titleText);
             
             toggle.isOn = toggleState;
             toggle.onValueChanged.AddListener(_ => WhenChangeValue(toggle.isOn));
@@ -45,14 +42,13 @@ namespace Rogium.UserInterface.Interactables.Properties
             ui.checkmarkImage.sprite = checkmark;
         }
         
-        public bool Property { get => toggle.isOn; }
+        public override bool PropertyValue { get => toggle.isOn; }
 
         [Serializable]
         public struct UIInfo
         {
             public Image backgroundImage;
             public Image checkmarkImage;
-            public GameObject emptySpace;
         }
     }
 }

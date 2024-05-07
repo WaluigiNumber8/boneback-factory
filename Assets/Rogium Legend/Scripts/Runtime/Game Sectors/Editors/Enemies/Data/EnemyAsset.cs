@@ -4,7 +4,6 @@ using RedRats.Core;
 using RedRats.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
-using Rogium.Editors.Objects;
 using Rogium.Systems.Validation;
 using UnityEngine;
 
@@ -25,6 +24,10 @@ namespace Rogium.Editors.Enemies
         private bool seamlessMovement;
         private float nextStepTime;
 
+        private AssetData hurtSound;
+        private AssetData deathSound;
+        private AssetData idleSound;
+
         #region Constructors
         public EnemyAsset()
         {
@@ -32,6 +35,7 @@ namespace Rogium.Editors.Enemies
             icon = EditorConstants.EnemyIcon;
             author = EditorConstants.Author;
             creationDate = DateTime.Now;
+            color = EditorConstants.EnemyColor;
 
             animationType = EditorConstants.EnemyAnimationType;
             frameDuration = EditorConstants.EnemyFrameDuration;
@@ -40,10 +44,8 @@ namespace Rogium.Editors.Enemies
             baseDamage = EditorConstants.EnemyBaseDamage;
             useDelay = EditorConstants.EnemyAttackDelay;
             knockbackForceSelf = EditorConstants.EnemyKnockbackForceSelf;
-            knockbackTimeSelf = EditorConstants.EnemyKnockbackTimeSelf;
             knockbackLockDirectionSelf = EditorConstants.EnemyKnockbackLockDirectionSelf;
             knockbackForceOther = EditorConstants.EnemyKnockbackForceOther;
-            knockbackTimeOther = EditorConstants.EnemyKnockbackTimeOther;
             knockbackLockDirectionOther = EditorConstants.EnemyKnockbackLockDirectionOther;
 
             maxHealth = EditorConstants.EnemyMaxHealth;
@@ -55,6 +57,10 @@ namespace Rogium.Editors.Enemies
             nextStepTime = EditorConstants.EnemyNextStepTime;
             seamlessMovement = EditorConstants.EnemySeamlessMovement;
             startingDirection = EditorConstants.EnemyStartingDirection;
+            
+            hurtSound = new AssetData(ParameterInfoConstants.ForSound);
+            deathSound = new AssetData(ParameterInfoConstants.ForSound);
+            idleSound = new AssetData(ParameterInfoConstants.ForSound);
             
             GenerateID(EditorAssetIDs.EnemyIdentifier);
         }
@@ -68,6 +74,7 @@ namespace Rogium.Editors.Enemies
             icon = asset.Icon;
             author = asset.Author;
             creationDate = asset.CreationDate;
+            color = asset.Color;
 
             associatedSpriteID = asset.AssociatedSpriteID;
             
@@ -78,10 +85,8 @@ namespace Rogium.Editors.Enemies
             baseDamage = asset.BaseDamage;
             useDelay = asset.UseDelay;
             knockbackForceSelf = asset.KnockbackForceSelf;
-            knockbackTimeSelf = asset.KnockbackTimeSelf;
             knockbackLockDirectionSelf = asset.KnockbackLockDirectionSelf;
             knockbackForceOther = asset.KnockbackForceOther;
-            knockbackTimeOther = asset.KnockbackTimeOther;
             knockbackLockDirectionOther = asset.KnockbackLockDirectionOther;
 
             maxHealth = asset.MaxHealth;
@@ -93,15 +98,20 @@ namespace Rogium.Editors.Enemies
             startingDirection = asset.StartingDirection;
             seamlessMovement = asset.SeamlessMovement;
             
+            hurtSound = new AssetData(asset.HurtSound);
+            deathSound = new AssetData(asset.DeathSound);
+            idleSound = new AssetData(asset.IdleSound);
+            
             weaponIDs = new List<string>(asset.weaponIDs);
         }
 
-        public EnemyAsset(string id, string title, Sprite icon, string author, string associatedSpriteID, AnimationType animationType, 
-                          int frameDuration, Sprite iconAlt, int baseDamage, float useDelay, float knockbackForceSelf,
-                          float knockbackTimeSelf, bool knockbackLockDirectionSelf, float knockbackForceOther, 
-                          float knockbackTimeOther, bool knockbackLockDirectionOther, int maxHealth, float attackProbability, 
-                          float invincibilityTime, IList<string> weaponIDs, AIType ai, float nextStepTime, 
-                          DirectionType startingDirection,bool seamlessMovement, DateTime creationDate)
+        public EnemyAsset(string id, string title, Sprite icon, string author, Color color, string associatedSpriteID, 
+                          AnimationType animationType, int frameDuration, Sprite iconAlt, int baseDamage, float useDelay, 
+                          float knockbackForceSelf, bool knockbackLockDirectionSelf, float knockbackForceOther, 
+                          bool knockbackLockDirectionOther, int maxHealth, float attackProbability, float invincibilityTime, 
+                          IList<string> weaponIDs, AIType ai, float nextStepTime, DirectionType startingDirection, 
+                          bool seamlessMovement, AssetData hurtSound, AssetData deathSound, AssetData idleSound, 
+                          DateTime creationDate)
         {
             AssetValidation.ValidateTitle(title);
             
@@ -110,6 +120,7 @@ namespace Rogium.Editors.Enemies
             this.icon = icon;
             this.author = author;
             this.creationDate = creationDate;
+            this.color = color;
 
             this.associatedSpriteID = associatedSpriteID;
 
@@ -120,10 +131,8 @@ namespace Rogium.Editors.Enemies
             this.baseDamage = baseDamage;
             this.useDelay = useDelay;
             this.knockbackForceSelf = knockbackForceSelf;
-            this.knockbackTimeSelf = knockbackTimeSelf;
             this.knockbackLockDirectionSelf = knockbackLockDirectionSelf;
             this.knockbackForceOther = knockbackForceOther;
-            this.knockbackTimeOther = knockbackTimeOther;
             this.knockbackLockDirectionOther = knockbackLockDirectionOther;
 
             this.maxHealth = maxHealth;
@@ -135,6 +144,10 @@ namespace Rogium.Editors.Enemies
             this.nextStepTime = nextStepTime;
             this.startingDirection = startingDirection;
             this.seamlessMovement = seamlessMovement;
+            
+            this.hurtSound = new AssetData(hurtSound);
+            this.deathSound = new AssetData(deathSound);
+            this.idleSound = new AssetData(idleSound);
         }
         #endregion
 
@@ -154,6 +167,9 @@ namespace Rogium.Editors.Enemies
         public void UpdateStartingDirection(int newDirectionType) => UpdateStartingDirection((DirectionType)newDirectionType);
         public void UpdateStartingDirection(DirectionType newStartingDirection) => startingDirection = newStartingDirection;
         public void UpdateSeamlessMovement(bool newSeamlessMovementState) => seamlessMovement = newSeamlessMovementState;
+        public void UpdateHurtSound(AssetData newHurtSound) => hurtSound = newHurtSound;
+        public void UpdateDeathSound(AssetData newDeathSound) => deathSound = newDeathSound;
+        public void UpdateIdleSound(AssetData newIdleSound) => idleSound = newIdleSound;
         #endregion
 
         public override void ClearAssociatedSprite()
@@ -171,5 +187,9 @@ namespace Rogium.Editors.Enemies
         public float NextStepTime { get => nextStepTime; }
         public DirectionType StartingDirection { get => startingDirection; }
         public bool SeamlessMovement { get => seamlessMovement; }
+        
+        public AssetData HurtSound { get => hurtSound; }
+        public AssetData DeathSound { get => deathSound; }
+        public AssetData IdleSound { get => idleSound; }
     }
 }

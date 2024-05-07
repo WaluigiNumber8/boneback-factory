@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using RedRats.UI;
+using RedRats.Systems.Themes;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
@@ -41,13 +41,14 @@ namespace Rogium.Editors.PropertyEditor.Builders
         {
             
             animationBlock1Slot = b.CreateContentBlockVertical(content, (asset.AnimationType == AnimationType.SpriteSwap));
-            b.BuildAssetField("", AssetType.Sprite, asset, animationBlock1Slot.GetTransform, a => asset.UpdateIcon(a), !currentPack.ContainsAnySprites, ThemeType.Green);
+            b.BuildAssetField("", AssetType.Sprite, asset, animationBlock1Slot.GetTransform, a => asset.UpdateIcon(a), null, !currentPack.ContainsAnySprites, ThemeType.Green);
             
             animationBlock2Slot = b.CreateContentBlockColumn2(content, (asset.AnimationType != AnimationType.SpriteSwap));
-            b.BuildAssetField("", AssetType.Sprite, asset, animationBlock2Slot.GetTransform, a => asset.UpdateIcon(a), !currentPack.ContainsAnySprites, ThemeType.Green);
-            b.BuildAssetField("", AssetType.Sprite, asset, animationBlock2Slot.GetTransform, a => asset.UpdateIconAlt(a.Icon), !currentPack.ContainsAnySprites, ThemeType.Green);
+            b.BuildAssetField("", AssetType.Sprite, asset, animationBlock2Slot.GetTransform, a => asset.UpdateIcon(a), null, !currentPack.ContainsAnySprites, ThemeType.Green);
+            b.BuildAssetField("", AssetType.Sprite, asset, animationBlock2Slot.GetTransform, a => asset.UpdateIconAlt(a.Icon), null, !currentPack.ContainsAnySprites, ThemeType.Green);
             
             b.BuildInputField("", asset.Title, content, asset.UpdateTitle);
+            b.BuildColorField("Color", asset.Color, content, asset.UpdateColor);
             b.BuildDropdown("Use Type", Enum.GetNames(typeof(WeaponUseType)), (int)asset.UseType, content, asset.UpdateUseType);
         }
 
@@ -63,15 +64,16 @@ namespace Rogium.Editors.PropertyEditor.Builders
 
             b.BuildHeader("Knockback", content);
             b.BuildSlider("Self Force", -EditorConstants.WeaponKnockbackForceMax, EditorConstants.WeaponKnockbackForceMax, asset.KnockbackForceSelf, content, f => asset.UpdateKnockbackForceSelf(f));
-            b.BuildSlider("Self Time", 0, EditorConstants.WeaponKnockbackTimeMax, asset.KnockbackTimeSelf, content, f => asset.UpdateKnockbackTimeSelf(f));
-            b.BuildToggle("Self Lock Direction", asset.KnockbackLockDirectionSelf, content, asset.UpdateKnockbackLockDirectionSelf);
             b.BuildSlider("Other Force", -EditorConstants.WeaponKnockbackForceMax, EditorConstants.WeaponKnockbackForceMax, asset.KnockbackForceOther, content, f => asset.UpdateKnockbackForceOther(f));
-            b.BuildSlider("Other Time", 0, EditorConstants.WeaponKnockbackTimeMax, asset.KnockbackTimeOther, content, f => asset.UpdateKnockbackTimeOther(f));
+            b.BuildToggle("Self Lock Direction", asset.KnockbackLockDirectionSelf, content, asset.UpdateKnockbackLockDirectionSelf);
             b.BuildToggle("Other Lock Direction", asset.KnockbackLockDirectionOther, content, asset.UpdateKnockbackLockDirectionOther);
             
             b.BuildHeader("Animation", content);
             b.BuildDropdown("Type", animationOptions, (int) asset.AnimationType, content, ProcessAnimationType);
             b.BuildSlider("Frame Duration", 1, EditorConstants.WeaponFrameDurationMax, asset.FrameDuration, content, f => asset.UpdateFrameDuration((int) f));
+            
+            b.BuildHeader("Sound", content);
+            b.BuildSoundField("Use", asset.UseSound, content, asset.UpdateUseSound, true);
             
             BuildProjectileContent(content);
         }
@@ -114,7 +116,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
             {
                 int index = i;
                 IAsset p = packProjectiles.FindValueFirstOrReturnFirst(asset.ProjectileIDs[index].ID);
-                b.BuildAssetField($"Projectile #{index+1}", AssetType.Projectile, p, projectileSlotsBlock.GetTransform, a => asset.UpdateProjectileIDsPosID(index, a.ID), !currentPack.ContainsAnyProjectiles);
+                b.BuildAssetField($"Projectile #{index+1}", AssetType.Projectile, p, projectileSlotsBlock.GetTransform, a => asset.UpdateProjectileIDsPosID(index, a.ID), null, !currentPack.ContainsAnyProjectiles);
                 b.BuildSlider("Spawn Delay", 0, EditorConstants.WeaponProjectileSpawnDelayMax, asset.ProjectileIDs[index].SpawnDelay, projectileSlotsBlock.GetTransform, f => asset.UpdateProjectileIDsPosSpawnDelay(index, f), !currentPack.ContainsAnyProjectiles);
                 b.BuildSlider("Angle Offset", -EditorConstants.WeaponProjectileAngleOffsetMax, EditorConstants.WeaponProjectileAngleOffsetMax, asset.ProjectileIDs[index].AngleOffset, projectileSlotsBlock.GetTransform, f => asset.UpdateProjectileIDsPosAngleOffset(index, (int) f), !currentPack.ContainsAnyProjectiles);
                 asset.UpdateProjectileIDsPosID(index, p.ID);

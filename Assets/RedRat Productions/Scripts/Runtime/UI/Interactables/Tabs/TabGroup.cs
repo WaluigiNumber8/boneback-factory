@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using RedRats.Safety;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace RedRats.UI.Tabs
@@ -13,6 +14,7 @@ namespace RedRats.UI.Tabs
         public event Action<GameObject> onTabSwitch;
         
         [SerializeField] private int defaultTabIndex;
+        [BoxGroup]
         [SerializeField] private ButtonVisualInfo visuals;
         [SerializeField] private TabPageButton[] buttons;
 
@@ -21,7 +23,7 @@ namespace RedRats.UI.Tabs
         private void Start()
         {
             SafetyNet.EnsureIntIsInRange(defaultTabIndex, 0, buttons.Length, "Default Tab Index");
-            OnTabSelect(buttons[defaultTabIndex]);
+            Switch(defaultTabIndex);
         }
 
         public void OnTabEnter(TabPageButton button)
@@ -75,10 +77,12 @@ namespace RedRats.UI.Tabs
         [Serializable]
         private struct ButtonVisualInfo
         {
-            public Sprite tabIdle;
-            public Sprite tabHover;
-            public Sprite tabActive;
+            [PreviewField(60)]public Sprite tabIdle;
+            [PreviewField(60)]public Sprite tabHover;
+            [PreviewField(60)]public Sprite tabActive;
         }
+        
+        public int DefaultTabIndex { get => defaultTabIndex; }
     }
 }
 

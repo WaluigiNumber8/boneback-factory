@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88e3503930334824ba6de320d323bd49, type: 3}
+  m_Name: asset_SFX_Footstep_Glass
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: c5351817547498c4198734ab59fd5501, type: 3}
+  - {fileID: 8300000, guid: f6612ddec8d16e94f91524d081e361a4, type: 3}
+  - {fileID: 8300000, guid: b407303d322255746b6c39f176331891, type: 3}
+  mixerGroup: {fileID: -7128948430085313062, guid: 15e85eab3684ad9409d53f645746215d, type: 2}
+  volume: 0.5
+  pitchMin: 0.95
+  pitchMax: 1.05
