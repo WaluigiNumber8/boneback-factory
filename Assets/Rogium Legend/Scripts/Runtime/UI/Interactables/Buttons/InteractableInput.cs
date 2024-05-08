@@ -28,6 +28,7 @@ namespace Rogium.UserInterface.Interactables
                     break;
 
                 #region Return from Menus
+
                 case ButtonType.ReturnToAssetTypeSelection:
                     break;
                 case ButtonType.ReturnToMainMenuFromSelection:
@@ -39,9 +40,11 @@ namespace Rogium.UserInterface.Interactables
                 case ButtonType.ReturnToMainMenuFromChangelog:
                     GASButtonActions.ReturnToMainMenuChangelog();
                     break;
+
                 #endregion
 
                 #region Open Selection Menus
+
                 case ButtonType.SelectionOpenAssetType:
                     SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - EDIT PACK");
                     GASButtonActions.OpenEditor(index);
@@ -73,10 +76,11 @@ namespace Rogium.UserInterface.Interactables
                 case ButtonType.SelectionOpenTile:
                     GASButtonActions.OpenSelectionTile();
                     break;
-                
+
                 #endregion
 
                 #region Create Assets
+
                 case ButtonType.CreatePack:
                     GASButtonActions.CreatePack();
                     break;
@@ -104,10 +108,11 @@ namespace Rogium.UserInterface.Interactables
                 case ButtonType.CreateRoom:
                     GASButtonActions.CreateRoom();
                     break;
-                
+
                 #endregion
 
                 #region Edit Asset Properties
+
                 case ButtonType.EditPackProperties:
                     SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - EDIT PACK PROPERTIES");
                     GASButtonActions.EditPropertiesPack(index);
@@ -144,10 +149,11 @@ namespace Rogium.UserInterface.Interactables
                     SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - EDIT TILE PROPERTIES");
                     GASButtonActions.EditPropertiesTile(index);
                     break;
-                
+
                 #endregion
 
                 #region Delete Assets
+
                 case ButtonType.DeletePack:
                     SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - DELETE PACK");
                     GASButtonActions.DeletePack(index);
@@ -184,10 +190,11 @@ namespace Rogium.UserInterface.Interactables
                     SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - DELETE TILE");
                     GASButtonActions.DeleteTile(index);
                     break;
-                
+
                 #endregion
 
                 #region Open Editors
+
                 case ButtonType.EditorOpenCampaign:
                     SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - OPEN EDITOR CAMPAIGN");
                     GASButtonActions.OpenEditorCampaign(index);
@@ -220,9 +227,11 @@ namespace Rogium.UserInterface.Interactables
                     SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - OPEN EDITOR TILE");
                     GASButtonActions.OpenEditorTile(index);
                     break;
+
                 #endregion
 
                 #region Save Editor Changes
+
                 case ButtonType.SaveChangesCampaign:
                     GASButtonActions.SaveChangesCampaign();
                     break;
@@ -247,9 +256,11 @@ namespace Rogium.UserInterface.Interactables
                 case ButtonType.SaveChangesTile:
                     GASButtonActions.SaveChangesTile();
                     break;
+
                 #endregion
 
                 #region Cancel Editor Changes
+
                 case ButtonType.CancelChangesCampaign:
                     GASButtonActions.CancelChangesCampaign();
                     break;
@@ -274,9 +285,11 @@ namespace Rogium.UserInterface.Interactables
                 case ButtonType.CancelChangesTile:
                     GASButtonActions.CancelChangesTile();
                     break;
+
                 #endregion
 
                 #region Campaign Selection Menu
+
                 case ButtonType.CampaignShowNext:
                     GASButtonActions.CampaignShowNext();
                     break;
@@ -289,9 +302,11 @@ namespace Rogium.UserInterface.Interactables
                 case ButtonType.CampaignRefreshAll:
                     GASButtonActions.CampaignRefreshAll();
                     break;
+
                 #endregion
-                
+
                 #region Campaign Editor
+
                 case ButtonType.CampaignEditorSelectAll:
                     GASButtonActions.CampaignEditorSelectAll();
                     break;
@@ -305,9 +320,11 @@ namespace Rogium.UserInterface.Interactables
                     SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - CHANGE PACK IMPORT STATE");
                     GASButtonActions.ChangeImportStatus(index);
                     break;
+
                 #endregion
 
                 #region Sprite Editor
+
                 case ButtonType.SpriteSwitchTool:
                     SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - SWITCH SPRITE TOOL");
                     GASButtonActions.SpriteSwitchTool(index);
@@ -315,23 +332,25 @@ namespace Rogium.UserInterface.Interactables
                 case ButtonType.SpriteSwitchPalette:
                     GASButtonActions.SpriteSwitchPalette();
                     break;
-                
+
                 case ButtonType.SpriteClearActiveLayer:
                     GASButtonActions.SpriteClearActiveLayer();
                     break;
+
                 #endregion
-                
+
                 #region Room Editor
+
                 case ButtonType.RoomSwitchTool:
                     SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - SWITCH ROOM TOOL");
                     GASButtonActions.RoomSwitchTool(index);
                     break;
-                
+
                 case ButtonType.RoomSwitchPalette:
                     SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - SWITCH ROOM PALETTE");
                     GASButtonActions.RoomSwitchPalette(index);
                     break;
-                
+
                 case ButtonType.RoomClearActiveLayer:
                     GASButtonActions.RoomClearActiveLayer();
                     break;
@@ -339,10 +358,11 @@ namespace Rogium.UserInterface.Interactables
                 #endregion
 
                 #region Gameplay Menu
+
                 case ButtonType.GameplayPauseResume:
                     GASButtonActions.GameplayPauseResume();
                     break;
-                
+
                 case ButtonType.GameplayPauseQuit:
                     GASButtonActions.GameplayPauseQuit();
                     break;
@@ -351,20 +371,33 @@ namespace Rogium.UserInterface.Interactables
                     SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - GAMEPLAY SELECT WEAPON");
                     GASButtonActions.GameplaySelectWeapon(index);
                     break;
+
                 #endregion
 
                 #region Options Menu
+
                 case ButtonType.OptionsSavePreferences:
                     GASButtonActions.OptionsSavePreferences();
                     break;
 
                 #endregion
-                
+
+                #region General Editor Actions
+
+                case ButtonType.Undo:
+                    GASButtonActions.UndoLastAction();
+                    break;
+                case ButtonType.Redo:
+                    GASButtonActions.RedoLastAction();
+                    break;
+
+                #endregion
+
                 case ButtonType.Play:
                     SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - PLAY CAMPAIGN");
                     GASButtonActions.PlayCampaign(index);
                     break;
-                
+
                 default:
                     throw new InvalidOperationException("Unknown Button Type.");
             }

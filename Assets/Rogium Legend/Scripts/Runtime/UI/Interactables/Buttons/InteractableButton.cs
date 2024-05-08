@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using RedRats.UI.Core;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,7 +14,7 @@ namespace Rogium.UserInterface.Interactables
     public class InteractableButton : MonoBehaviour
     {
         [SerializeField] private ButtonType action;
-        [SerializeField, Min(0f)] private float delay = 0;
+        [SerializeField, MinValue(0f)] private float delay = 0;
         [SerializeField] private int index = -1;
         [SerializeField] private UIInfo ui;
         
@@ -28,7 +29,7 @@ namespace Rogium.UserInterface.Interactables
             StartCoroutine(DelayCoroutine());
             IEnumerator DelayCoroutine()
             {
-                yield return new WaitForSeconds(delay);
+                yield return new WaitForSecondsRealtime(delay);
                 InteractableInput.Handle(action, index);
             }
         }

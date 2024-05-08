@@ -1,5 +1,6 @@
 ﻿using System;
 using RedRats.UI.Core;
+using Rogium.Systems.ActionHistory;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -16,6 +17,7 @@ namespace Rogium.UserInterface.Interactables.Properties
 
         private Action<string> whenFinishEditing;
         private float minLimit, maxLimit;
+        private string oldValue;
         
         public override void SetDisabled(bool isDisabled) => inputField.interactable = !isDisabled;
 
@@ -37,10 +39,10 @@ namespace Rogium.UserInterface.Interactables.Properties
             
             inputField.text = inputtedText;
             inputField.characterValidation = characterValidation;
-            this.whenFinishEditing = whenFinishEditing;
+            oldValue = inputtedText;
             
+            this.whenFinishEditing = whenFinishEditing;
             inputField.onEndEdit.AddListener(WhenFinishEditing);
-            // inputField.onValueChanged.AddListener( text => whenValueChange(text));
         }
 
         /// <summary>
@@ -65,15 +67,17 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <summary>
         /// Runs when the user finished editing the InputField.
         /// </summary>
-        /// <param name="content">The final content of the InputField.</param>
-        private void WhenFinishEditing(string content)
+        /// <param name="value">The final content of the InputField.</param>
+        private void WhenFinishEditing(string value)
         {
             if (inputField.characterValidation is TMP_InputField.CharacterValidation.Integer or TMP_InputField.CharacterValidation.Decimal or TMP_InputField.CharacterValidation.Digit)
             {
-                content = Mathf.Clamp(float.Parse(content), minLimit, maxLimit).ToString();
-                inputField.text = content;
+                value = Mathf.Clamp(float.Parse(value), minLimit, maxLimit).ToString();
+                inputField.text = value;
             }
-            whenFinishEditing?.Invoke(content);
+            ActionHistorySystem.AddAndExecute(new UpdateInputFieldAction(inputField, value, oldValue));
+            whenFinishEditing?.Invoke(value);
+            oldValue = value;
         }
         
         public override string PropertyValue { get => inputField.text; }

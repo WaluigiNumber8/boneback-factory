@@ -17,6 +17,7 @@ using Rogium.Editors.Tiles;
 using Rogium.Editors.Weapons;
 using Rogium.Gameplay.Inventory;
 using Rogium.Options.Core;
+using Rogium.Systems.ActionHistory;
 using Rogium.Systems.Toolbox;
 using Rogium.UserInterface.Editors.AssetSelection;
 using Rogium.UserInterface.Containers;
@@ -50,6 +51,20 @@ namespace Rogium.Systems.GASExtension
         {
             GAS.SwitchMenu(MenuType.Changelog);
         }
+
+        #region General Editor Actions
+
+        public static void UndoLastAction()
+        {
+            ActionHistorySystem.UndoLastAction();
+        }
+        
+        public static void RedoLastAction()
+        {
+            ActionHistorySystem.RedoLastAction();
+        }
+
+        #endregion
         
         #region Return from menus
         public static void ReturnToMainMenuSelection()
