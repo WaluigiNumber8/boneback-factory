@@ -64,6 +64,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         public void BuildInputField(string title, string value, Transform parent, Action<string> whenFinishEditing, bool isDisabled = false, bool isVertical = false, TMP_InputField.CharacterValidation characterValidation = TMP_InputField.CharacterValidation.Regex, float minLimit = float.MinValue, float maxLimit = float.MaxValue)
         {
             InteractablePropertyInputField inputField = Instantiate((isVertical) ? verticalVariants.inputFieldProperty : inputFieldProperty, parent);
+            inputField.name = $"{title} InputField";
             inputField.Construct(title, value, whenFinishEditing, characterValidation, minLimit, maxLimit);
             inputField.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateInputField(inputField);
@@ -120,6 +121,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         public void BuildDropdown(string title, IEnumerable<string> options, int value, Transform parent, Action<int> whenValueChange, bool isDisabled = false, bool isVertical = false)
         {
             InteractablePropertyDropdown dropdown = Instantiate((isVertical) ? verticalVariants.dropdownProperty : dropdownProperty, parent);
+            dropdown.name = $"{title} Dropdown";
             dropdown.Construct(title, options, value, whenValueChange);
             dropdown.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateDropdown(dropdown);

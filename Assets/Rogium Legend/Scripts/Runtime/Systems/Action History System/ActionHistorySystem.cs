@@ -24,8 +24,8 @@ namespace Rogium.Systems.ActionHistory
             if (undoHistory.Count == 0) return;
             
             IAction lastAction = undoHistory.Pop();
-            lastAction.Undo();
             redoHistory.Push(lastAction);
+            lastAction.Undo();
         }
 
         public static void RedoLastAction()
@@ -33,8 +33,8 @@ namespace Rogium.Systems.ActionHistory
             if (redoHistory.Count == 0) return;
             
             IAction lastAction = redoHistory.Pop();
-            lastAction.Execute();
             undoHistory.Push(lastAction);
+            lastAction.Execute();
         }
     }
 }

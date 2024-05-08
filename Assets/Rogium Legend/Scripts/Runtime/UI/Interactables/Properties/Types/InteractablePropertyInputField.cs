@@ -42,9 +42,23 @@ namespace Rogium.UserInterface.Interactables.Properties
             oldValue = inputtedText;
             
             this.whenFinishEditing = whenFinishEditing;
-            inputField.onEndEdit.AddListener(WhenFinishEditing);
+            inputField.onEndEdit.AddListener((value) => ActionHistorySystem.AddAndExecute(new UpdateInputFieldAction(this, value, oldValue)));
         }
 
+        public void UpdateValueWithoutNotify(string value)
+        {
+            // Clamp the value if it's a number.
+            if (inputField.characterValidation is TMP_InputField.CharacterValidation.Integer or TMP_InputField.CharacterValidation.Decimal or TMP_InputField.CharacterValidation.Digit)
+            {
+                value = Mathf.Clamp(float.Parse(value), minLimit, maxLimit).ToString();
+            }
+            
+            oldValue = value;
+            inputField.SetTextWithoutNotify(value);
+            inputField.ForceLabelUpdate();
+            whenFinishEditing?.Invoke(value);
+        }
+        
         /// <summary>
         /// Updates the elements sprites to match the editor theme.
         /// </summary>
@@ -63,22 +77,6 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// </summary>
         /// <param name="contentType">The new content type to use.</param>
         public void UpdateContentType(TMP_InputField.ContentType contentType) => inputField.contentType = contentType;
-
-        /// <summary>
-        /// Runs when the user finished editing the InputField.
-        /// </summary>
-        /// <param name="value">The final content of the InputField.</param>
-        private void WhenFinishEditing(string value)
-        {
-            if (inputField.characterValidation is TMP_InputField.CharacterValidation.Integer or TMP_InputField.CharacterValidation.Decimal or TMP_InputField.CharacterValidation.Digit)
-            {
-                value = Mathf.Clamp(float.Parse(value), minLimit, maxLimit).ToString();
-                inputField.text = value;
-            }
-            ActionHistorySystem.AddAndExecute(new UpdateInputFieldAction(inputField, value, oldValue));
-            whenFinishEditing?.Invoke(value);
-            oldValue = value;
-        }
         
         public override string PropertyValue { get => inputField.text; }
 

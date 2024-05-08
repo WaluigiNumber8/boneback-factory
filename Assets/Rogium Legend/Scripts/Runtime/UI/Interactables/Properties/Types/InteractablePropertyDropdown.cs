@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using RedRats.UI.Core;
+using Rogium.Systems.ActionHistory;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -14,6 +15,9 @@ namespace Rogium.UserInterface.Interactables.Properties
     {
         [SerializeField] private TMP_Dropdown dropdown;
         [SerializeField] private UIInfo ui;
+        
+        private Action<int> whenValueChange;
+        private int oldValue;
 
         public override void SetDisabled(bool isDisabled) => dropdown.interactable = !isDisabled;
 
@@ -29,10 +33,25 @@ namespace Rogium.UserInterface.Interactables.Properties
             FillDropdown(options);
             ConstructTitle(titleText);
             
-            dropdown.value = startingValue;
-            dropdown.onValueChanged.AddListener(_ => whenValueChange(dropdown.value));
+            dropdown.SetValueWithoutNotify(startingValue);
+            oldValue = startingValue;
+            
+            this.whenValueChange = whenValueChange;
+            dropdown.onValueChanged.AddListener((value) => ActionHistorySystem.AddAndExecute(new UpdateDropdownAction(this, value, oldValue)));
         }
 
+        /// <summary>
+        /// Updates the dropdown value without invoking the value change event. Assigned <see cref="whenValueChange"/> action still runs.
+        /// </summary>
+        /// <param name="value">The new value for the dropdown.</param>
+        public void UpdateValueWithoutNotify(int value)
+        {
+            oldValue = dropdown.value;
+            dropdown.SetValueWithoutNotify(value);
+            dropdown.RefreshShownValue();
+            whenValueChange?.Invoke(value);
+        }
+        
         /// <summary>
         /// Updates the dropdown's UI elements.
         /// </summary>
@@ -66,7 +85,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             dropdown.options.Clear();
             foreach (string option in options)
             {
-                dropdown.options.Add(new TMP_Dropdown.OptionData() {text = option});
+                dropdown.options.Add(new TMP_Dropdown.OptionData {text = option});
             }
         }
 
