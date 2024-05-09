@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Rogium.Systems.ActionHistory
 {
@@ -7,11 +8,13 @@ namespace Rogium.Systems.ActionHistory
     /// </summary>
     public static class ActionHistorySystem
     {
+        private static CurrentAssetDetector assetDetector => CurrentAssetDetector.Instance;
         private static readonly Stack<IAction> undoHistory = new();
         private static readonly Stack<IAction> redoHistory = new();
         
         public static void AddAndExecute(IAction action)
         {
+            if (assetDetector.WasAssetChanged) ClearHistory();
             if (action.NothingChanged()) return;
             
             action.Execute();
@@ -35,6 +38,12 @@ namespace Rogium.Systems.ActionHistory
             IAction lastAction = redoHistory.Pop();
             undoHistory.Push(lastAction);
             lastAction.Execute();
+        }
+
+        private static void ClearHistory()
+        {
+            undoHistory.Clear();
+            redoHistory.Clear();
         }
     }
 }

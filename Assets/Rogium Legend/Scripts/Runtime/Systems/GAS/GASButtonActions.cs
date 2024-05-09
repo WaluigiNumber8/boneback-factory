@@ -598,6 +598,7 @@ namespace Rogium.Systems.GASExtension
         
         public static void CancelChangesPalette()
         {
+            //TODO Only show window if changes were made.
             MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", OpenSelectionPalette);
             ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
         }
