@@ -580,14 +580,18 @@ namespace Rogium.Systems.GASExtension
         #region Cancel Editor Changes
         public static void CancelChangesCampaign()
         {
-            MessageWindowInfo data = (CampaignEditorOverseer.Instance.CurrentAsset.PackReferences.Count <= 0) 
-                ? new("This campaign contains no <style=\"CardAmount\"> packs</style>. Delete it?", "Delete it", "Cancel", () =>
-                {
-                    DeleteCampaignAccept();
-                    OpenSelectionCampaign();
-                })
-                : new("Leave without saving changes?","Yes","No", CancelChangesCampaignConfirm);
-            ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+            bool noPacksSelected = (CampaignEditorOverseer.Instance.CurrentAsset.PackReferences.Count <= 0);
+            MessageWindowInfo data = (noPacksSelected) ? new("This campaign contains no <style=\"CardAmount\"> packs</style>. Delete it?", "Delete it", "Cancel", () =>
+                                                            {
+                                                                DeleteCampaignAccept();
+                                                                OpenSelectionCampaign();
+                                                            })
+                                                        : new("Leave without saving changes?","Yes","No", CancelChangesCampaignConfirm);
+            if (!noPacksSelected && CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0)
+            {
+                ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+            }
+            else CancelChangesCampaignConfirm();
         }
         
         private static void CancelChangesCampaignConfirm()
@@ -598,55 +602,88 @@ namespace Rogium.Systems.GASExtension
         
         public static void CancelChangesPalette()
         {
-            //TODO Only show window if changes were made.
-            MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", OpenSelectionPalette);
-            ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+            if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0)
+            {
+                MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", OpenSelectionPalette);
+                ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+            }
+            else OpenSelectionPalette();
         }
         
         public static void CancelChangesSprite()
         {
-            MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", OpenSelectionSprite);
-            ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+            if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0)
+            {
+                MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", OpenSelectionSprite);
+                ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+            }
+            else OpenSelectionSprite();
         }
         
         public static void CancelChangesWeapon()
         {
-            MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", OpenSelectionWeapon);
-            ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+            if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0)
+            {
+                MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", OpenSelectionWeapon);
+                ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+            }
+            else OpenSelectionWeapon();
         }
         
         public static void CancelChangesProjectile()
         {
-            MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", OpenSelectionProjectile);
-            ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+            if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0)
+            {
+                MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", OpenSelectionProjectile);
+                ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+            }
+            else OpenSelectionProjectile();
         }
         
         public static void CancelChangesEnemy()
         {
-            MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", OpenSelectionEnemy);
-            ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+            if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0)
+            {
+                MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", OpenSelectionEnemy);
+                ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+            }
+            else OpenSelectionEnemy();
         }
         
         public static void CancelChangesRoom()
         {
-            MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", OpenSelectionRoom);
-            ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+            if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0)
+            {
+                MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", OpenSelectionRoom);
+                ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+            }
+            else OpenSelectionRoom();
         }
 
         public static void CancelChangesTile()
         {
-            MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", OpenSelectionTile);
-            ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+            if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0)
+            {
+                MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", OpenSelectionTile);
+                ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+            }
+            else OpenSelectionTile();
         }
         
         public static void CancelChangesOptions()
         {
-            MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", () =>
-                {
-                    ExternalLibraryOverseer.Instance.RefreshSettings();
-                    ReturnToMainMenuOptionsConfirm();
-                });
-            ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+            if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0)
+            {
+                MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", CancelChangesOptionsConfirm);
+                ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+            }
+            else CancelChangesOptionsConfirm();
+            
+            void CancelChangesOptionsConfirm()
+            {
+                ExternalLibraryOverseer.Instance.RefreshSettings();
+                ReturnToMainMenuOptionsConfirm();
+            }
         }
         
         private static void ReturnToMainMenuOptionsConfirm() => GAS.SwitchMenu(MenuType.MainMenu);

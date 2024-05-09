@@ -1,5 +1,4 @@
 using Rogium.UserInterface.Interactables.Properties;
-using TMPro;
 
 namespace Rogium.Systems.ActionHistory
 {
@@ -25,6 +24,6 @@ namespace Rogium.Systems.ActionHistory
 
         public bool NothingChanged() => value == oldValue;
 
-        public override string ToString() => $"UpdateDropdownAction {oldValue} -> {value}";
+        public override string ToString() => $"{dropdown.name}: {oldValue} -> {value}";
     }
 }

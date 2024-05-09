@@ -8,6 +8,7 @@ using Rogium.Editors.Sprites;
 using Rogium.Editors.Tiles;
 using Rogium.Editors.Weapons;
 using Rogium.Options.Core;
+using UnityEngine;
 
 namespace Rogium.Systems.ActionHistory
 {
@@ -18,6 +19,7 @@ namespace Rogium.Systems.ActionHistory
     {
         private string currentAssetID;
         private string lastAssetID;
+        private string editedAssetID;
 
         private CurrentAssetDetector()
         {
@@ -37,6 +39,11 @@ namespace Rogium.Systems.ActionHistory
             currentAssetID = assetID.ID;
         }
 
+        public void MarkAsEdited()
+        {
+            editedAssetID = currentAssetID;
+        }
+
         /// <summary>
         /// Returns TRUE if a different asset is being edited.
         /// </summary>
@@ -50,6 +57,7 @@ namespace Rogium.Systems.ActionHistory
             }
         }
 
+        public bool WasEdited => editedAssetID == currentAssetID;
         public string CurrentAssetID { get => currentAssetID; }
     }
 }
