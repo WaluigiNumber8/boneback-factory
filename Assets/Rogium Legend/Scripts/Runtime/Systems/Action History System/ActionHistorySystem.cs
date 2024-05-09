@@ -11,6 +11,8 @@ namespace Rogium.Systems.ActionHistory
         private static readonly Stack<IAction> undoHistory = new();
         private static readonly Stack<IAction> redoHistory = new();
 
+        static ActionHistorySystem() => assetDetector.OnAssetChange += ClearHistory;
+
         public static void AddAndExecute(IAction action)
         {
             if (action.NothingChanged()) return;
@@ -41,6 +43,12 @@ namespace Rogium.Systems.ActionHistory
             lastAction.Execute();
         }
 
+        private static void ClearHistory()
+        {
+            undoHistory.Clear();
+            redoHistory.Clear();
+        }
+        
         public static int UndoCount => undoHistory.Count;
         public static int RedoCount => redoHistory.Count;
     }

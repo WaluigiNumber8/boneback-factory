@@ -1,3 +1,4 @@
+using System;
 using RedRats.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Enemies;
@@ -8,7 +9,6 @@ using Rogium.Editors.Sprites;
 using Rogium.Editors.Tiles;
 using Rogium.Editors.Weapons;
 using Rogium.Options.Core;
-using UnityEngine;
 
 namespace Rogium.Systems.ActionHistory
 {
@@ -17,6 +17,8 @@ namespace Rogium.Systems.ActionHistory
     /// </summary>
     public class CurrentAssetDetector : Singleton<CurrentAssetDetector>
     {
+        public event Action OnAssetChange;
+        
         private string currentAssetID;
         private string lastAssetID;
         private string editedAssetID;
@@ -37,12 +39,10 @@ namespace Rogium.Systems.ActionHistory
         {
             lastAssetID = currentAssetID;
             currentAssetID = assetID.ID;
+            OnAssetChange?.Invoke();
         }
 
-        public void MarkAsEdited()
-        {
-            editedAssetID = currentAssetID;
-        }
+        public void MarkAsEdited() => editedAssetID = currentAssetID;
 
         /// <summary>
         /// Returns TRUE if a different asset is being edited.
