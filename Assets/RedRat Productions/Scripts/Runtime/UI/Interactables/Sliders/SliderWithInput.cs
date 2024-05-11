@@ -36,14 +36,14 @@ namespace RedRats.UI.Sliders
         {
             slider.onValueChanged.AddListener(SetToInputField);
             inputField.onValueChanged.AddListener(SetToSlider);
-            inputField.onEndEdit.AddListener(ClampAndSetValue);
+            inputField.onEndEdit.AddListener(ClampValue);
         }
 
         private void OnDisable()
         {
             slider.onValueChanged.RemoveListener(SetToInputField);
             inputField.onValueChanged.RemoveListener(SetToSlider);
-            inputField.onEndEdit.AddListener(ClampAndSetValue);
+            inputField.onEndEdit.AddListener(ClampValue);
         }
 
         /// <summary>
@@ -55,10 +55,8 @@ namespace RedRats.UI.Sliders
             if (changingValue) return;
 
             changingValue = true;
-            slider.SetValueWithoutNotify(value);
-            inputField.SetTextWithoutNotify(value.ToString(decimalsInText));
-            inputField.ForceLabelUpdate();
-            
+            slider.SetValueWithoutNotify(value * decimalMultiplier);
+            inputField.text = value.ToString();
             OnValueChanged?.Invoke(value);
             changingValue = false;
         }
@@ -69,7 +67,6 @@ namespace RedRats.UI.Sliders
             int decimals = multiplier.ToString().Length - 1;
             decimalsInText = $"0.{new string('#', decimals)}";
         }
-
         public void ResetDecimalMultiplier() => decimalMultiplier = 1;
 
         /// <summary>
@@ -82,8 +79,7 @@ namespace RedRats.UI.Sliders
 
             changingValue = true;
             value /= decimalMultiplier;
-            inputField.SetTextWithoutNotify(value.ToString());
-            inputField.ForceLabelUpdate();
+            inputField.text = (value).ToString(decimalsInText);
             
             OnValueChanged?.Invoke(value);
             changingValue = false;
@@ -100,7 +96,8 @@ namespace RedRats.UI.Sliders
 
             changingValue = true;
             float value =  float.Parse(stringValue).RoundM(decimalMultiplier);
-            slider.SetValueWithoutNotify(value * decimalMultiplier);
+            value *= decimalMultiplier;
+            slider.value = value;
             
             OnValueChanged?.Invoke(value);
             changingValue = false;
@@ -110,7 +107,7 @@ namespace RedRats.UI.Sliders
         /// Clamps a value between the slider's min and max values.
         /// </summary>
         /// <param name="value">The value to clamp.</param>
-        private void ClampAndSetValue(string value)
+        private void ClampValue(string value)
         {
             if (EqualsToSpecialSymbol(value)) value = 0.ToString();
             SetValue(Mathf.Clamp(float.Parse(value), slider.minValue / decimalMultiplier, slider.maxValue / decimalMultiplier));

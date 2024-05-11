@@ -19,10 +19,9 @@ namespace Rogium.UserInterface.Interactables.Properties
         [SerializeField] private DecimalInfo decimals;
         [SerializeField] private UIInfo ui;
 
-        private Action<float> whenValueChange;
-        private float oldValue;
-        private bool usesFloatValues;
         private int decimalMultiplier;
+        private float oldValue;
+        private Action<float> whenValueChange;
 
         public override void SetDisabled(bool isDisabled)
         {
@@ -50,12 +49,10 @@ namespace Rogium.UserInterface.Interactables.Properties
             slider.maxValue = Mathf.RoundToInt(maxValue * decimalMultiplier);
             slider.minValue = Mathf.RoundToInt(minValue * decimalMultiplier);
             decimals.sliderWithInput.SetValue(startingValue);
-            oldValue = Mathf.RoundToInt(startingValue);
-
+            oldValue = startingValue;
+            
             this.whenValueChange = whenValueChange;
-            slider.onValueChanged.AddListener(WhenValueChanges);
-            decimals.sliderWithInput.OnValueChanged += WhenValueChanges;
-            usesFloatValues = true;
+            slider.onValueChanged.AddListener(WhenValueChange);
         }
         
         /// <summary>
@@ -74,24 +71,17 @@ namespace Rogium.UserInterface.Interactables.Properties
             inputField.UpdateContentType(TMP_InputField.ContentType.IntegerNumber);
             slider.maxValue = maxValue;
             slider.minValue = minValue;
-            decimals.sliderWithInput.SetValue(startingValue);
-            oldValue = startingValue;
+            UpdateValueWithoutNotify(startingValue);
             
             this.whenValueChange = whenValueChange;
-            slider.onValueChanged.AddListener(WhenValueChanges);
-            decimals.sliderWithInput.OnValueChanged += WhenValueChanges;
-            usesFloatValues = false;
+            slider.onValueChanged.AddListener(value => WhenValueChange((int)value));
         }
 
-        /// <summary>
-        /// Updates the dropdown value without invoking the value change event. Assigned <see cref="whenValueChange"/> action still runs.
-        /// </summary>
-        /// <param name="value">The new value for the dropdown.</param>
         public void UpdateValueWithoutNotify(float value)
         {
-            oldValue = slider.value;
+            oldValue = slider.value / decimalMultiplier;
             decimals.sliderWithInput.SetValue(value);
-            whenValueChange?.Invoke((usesFloatValues) ? value * decimalMultiplier : value);
+            whenValueChange?.Invoke(value);
         }
         
         /// <summary>
@@ -109,12 +99,16 @@ namespace Rogium.UserInterface.Interactables.Properties
             ui.handleImage.sprite = handleSprite;
         }
 
-        private void WhenValueChanges(float value)
+        private void WhenValueChange(float value)
         {
-            value = (usesFloatValues) ? value / decimalMultiplier : value;
+            ActionHistorySystem.AddAndExecute(new UpdateSliderAction(this, value / decimalMultiplier, oldValue));
+        }
+        
+        private void WhenValueChange(int value)
+        {
             ActionHistorySystem.AddAndExecute(new UpdateSliderAction(this, value, oldValue));
         }
-
+        
         public override float PropertyValue { get => slider.value / decimalMultiplier; }
         public InteractablePropertyInputField InputField { get => inputField; }
 
