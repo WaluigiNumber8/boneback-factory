@@ -34,6 +34,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             ConstructTitle(titleText);
             
             dropdown.SetValueWithoutNotify(startingValue);
+            dropdown.RefreshShownValue();
             oldValue = startingValue;
             
             this.whenValueChange = whenValueChange;
