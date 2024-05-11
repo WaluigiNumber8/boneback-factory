@@ -37,8 +37,9 @@ namespace Rogium.UserInterface.Interactables.Properties
             
             ConstructTitle(titleText);
             
-            inputField.SetTextWithoutNotify(inputtedText);
+            oldValue = inputtedText;
             inputField.characterValidation = characterValidation;
+            inputField.SetTextWithoutNotify(inputtedText);
             inputField.ForceLabelUpdate();
             oldValue = inputtedText;
             

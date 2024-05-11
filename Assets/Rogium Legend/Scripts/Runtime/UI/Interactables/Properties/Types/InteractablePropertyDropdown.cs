@@ -33,9 +33,9 @@ namespace Rogium.UserInterface.Interactables.Properties
             FillDropdown(options);
             ConstructTitle(titleText);
             
+            oldValue = startingValue;
             dropdown.SetValueWithoutNotify(startingValue);
             dropdown.RefreshShownValue();
-            oldValue = startingValue;
             
             this.whenValueChange = whenValueChange;
             dropdown.onValueChanged.AddListener((value) => ActionHistorySystem.AddAndExecute(new UpdateDropdownAction(this, value, oldValue)));
