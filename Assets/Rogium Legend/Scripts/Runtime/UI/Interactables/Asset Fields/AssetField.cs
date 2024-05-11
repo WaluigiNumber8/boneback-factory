@@ -1,6 +1,7 @@
 ﻿using System;
 using Rogium.Core;
 using Rogium.Editors.Core;
+using Rogium.Systems.ActionHistory;
 using Rogium.UserInterface.ModalWindows;
 using TMPro;
 using UnityEngine;
@@ -19,10 +20,10 @@ namespace Rogium.UserInterface.Interactables
 
         [SerializeField] private AssetType type;
         [SerializeField] private bool canBeEmpty;
-        
         [SerializeField] private UIInfo ui;
 
         private IAsset value;
+        private IAsset oldValue;
         
         public void OnPointerClick(PointerEventData eventData)
         {
@@ -50,21 +51,28 @@ namespace Rogium.UserInterface.Interactables
         public void Construct(AssetType type, IAsset value, bool canBeEmpty = false)
         {
             this.type = type;
+            this.oldValue = value;
             this.value = value;
             this.canBeEmpty = canBeEmpty;
             
             Refresh();
         }
 
+        public void UpdateValue(IAsset value)
+        {
+            oldValue = value;
+            this.value = value;
+            Refresh();
+            OnValueChanged?.Invoke(value);
+        }
+        
         /// <summary>
         /// Update everything based on the grabbed sprite.
         /// </summary>
-        /// <param name="asset">The sprite to update with.</param>
-        private void WhenAssetPicked(IAsset asset)
+        /// <param name="value">The sprite to update with.</param>
+        private void WhenAssetPicked(IAsset value)
         {
-            value = asset;
-            Refresh();
-            OnValueChanged?.Invoke(asset);
+            ActionHistorySystem.AddAndExecute(new UpdateAssetFieldAction(this, value, oldValue));
         }
 
         private void Refresh()
