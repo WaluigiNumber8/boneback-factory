@@ -7,17 +7,18 @@ namespace Rogium.Systems.Toolbox
     /// <summary>
     /// The Brush Tool that fills a single cell on the grid.
     /// </summary>
-    public class BrushTool<T> : ITool<T> where T : IComparable
+    public class BrushTool<T> : ToolBase<T> where T : IComparable
     {
-        public event Action<int, Vector2Int, Sprite> OnGraphicDraw;
+        public BrushTool(Action<int, Vector2Int, Sprite> whenGraphicDrawn, Action<int> whenEffectFinished) : base(whenGraphicDrawn, whenEffectFinished) { }
 
-        public void ApplyEffect(ObjectGrid<T> grid, Vector2Int position, T value, Sprite graphicValue, int layerIndex, Action<int> whenEffectFinished)
+        public override void ApplyEffect(ObjectGrid<T> grid, Vector2Int position, T value, Sprite graphicValue, int layer)
         {
             grid.SetValue(position, value);
-            OnGraphicDraw?.Invoke(layerIndex, position, graphicValue);
-            whenEffectFinished?.Invoke(layerIndex);
+            whenGraphicDrawn?.Invoke(layer, position, graphicValue);
+            whenEffectFinished?.Invoke(layer);
         }
 
         public override string ToString() => "Brush Tool";
+
     }
 }

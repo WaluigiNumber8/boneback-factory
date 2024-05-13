@@ -23,7 +23,7 @@ namespace Rogium.Systems.Toolbox
 
         private readonly InteractableEditorGridBase UIGrid;
         private readonly Action<int, Vector2Int, Sprite> drawOnGrid;
-        private ITool<T> currentTool;
+        private ToolBase<T> currentTool;
         private ToolType currentToolType;
         
         public ToolBox(InteractableEditorGridBase UIGrid, Action<int, Vector2Int, Sprite> drawOnGrid)
@@ -31,13 +31,12 @@ namespace Rogium.Systems.Toolbox
             this.UIGrid = UIGrid;
             this.drawOnGrid = drawOnGrid;
 
-            toolSelection = new SelectionTool<T>();
-            toolBrush = new BrushTool<T>();
+            toolSelection = new SelectionTool<T>(WhenDrawOnUIGrid, this.UIGrid.Apply);
+            toolBrush = new BrushTool<T>(WhenDrawOnUIGrid, this.UIGrid.Apply);
             // toolEraser = new EraserTool<T>(emptyValue);
-            toolBucket = new BucketTool<T>();
-            toolPicker = new PickerTool<T>();
+            toolBucket = new BucketTool<T>(WhenDrawOnUIGrid, this.UIGrid.Apply);
+            toolPicker = new PickerTool<T>(WhenDrawOnUIGrid, this.UIGrid.Apply);
             
-            toolBrush.OnGraphicDraw += WhenDrawOnUIGrid;
 
             toolSelection.OnSelectValue += data => OnSelectValue?.Invoke(data);
             toolPicker.OnPickValue += data => OnChangePaletteValue?.Invoke(data);
@@ -96,9 +95,9 @@ namespace Rogium.Systems.Toolbox
         /// <param name="toolType">The type of tool to get.</param>
         /// <returns></returns>
         /// <exception cref="InvalidOperationException">Is thrown when <see cref="ToolType"/> is unknown or unsupported.</exception>
-        private ITool<T> GetTool(ToolType toolType)
+        private ToolBase<T> GetTool(ToolType toolType)
         {
-            ITool<T> tool = toolType switch
+            ToolBase<T> tool = toolType switch
             {
                 ToolType.Selection => toolSelection,
                 ToolType.Brush => toolBrush,
@@ -110,11 +109,11 @@ namespace Rogium.Systems.Toolbox
             return tool;
         }
 
-        private void UseTool(ITool<T> tool, ObjectGrid<T> grid, Vector2Int position, T value, Sprite graphicValue, int layerIndex)
+        private void UseTool(ToolBase<T> tool, ObjectGrid<T> grid, Vector2Int position, T value, Sprite graphicValue, int layerIndex)
         {
             T oldValue = grid.GetValue(position);
             Sprite oldGraphicValue = UIGrid.GetCell(position);
-            ActionHistorySystem.AddAndExecute(new UseToolAction<T>(tool, grid, position, value, oldValue, graphicValue, oldGraphicValue, layerIndex, UIGrid.Apply));
+            ActionHistorySystem.AddAndExecute(new UseToolAction<T>(tool, grid, position, value, oldValue, graphicValue, oldGraphicValue, layerIndex));
         }
         
     }

@@ -9,10 +9,8 @@ namespace Rogium.Systems.Toolbox
     /// <summary>
     /// The Bucket Fill Tool, that fills an area of cells.
     /// </summary>
-    public class BucketTool<T> : ITool<T> where T : IComparable
+    public class BucketTool<T> : ToolBase<T> where T : IComparable
     {
-        public event Action<int, Vector2Int, Sprite> OnGraphicDraw;
-        
         private ObjectGrid<T> grid;
         private T currentValue;
         private T valueToOverride;
@@ -20,17 +18,18 @@ namespace Rogium.Systems.Toolbox
 
         private Sprite graphicValue;
         private int layerIndex;
-        private Action<int> finishProcess;
 
-        public BucketTool() => criticalPositions = new List<Vector2Int>();
+        public BucketTool(Action<int, Vector2Int, Sprite> whenGraphicDrawn, Action<int> whenEffectFinished) : base(whenGraphicDrawn, whenEffectFinished)
+        {
+            criticalPositions = new List<Vector2Int>();
+        }
 
-        public void ApplyEffect(ObjectGrid<T> grid, Vector2Int position, T value, Sprite graphicValue, int layer, Action<int> whenEffectFinished)
+        public override void ApplyEffect(ObjectGrid<T> grid, Vector2Int position, T value, Sprite graphicValue, int layer)
         {
             SafetyNet.EnsureIsNotNull(grid, "grid");
             
             this.grid = grid;
             this.layerIndex = layer;
-            this.finishProcess = whenEffectFinished;
             this.currentValue = value;
             this.valueToOverride = GetFrom(position);
             this.graphicValue = graphicValue;
@@ -58,7 +57,7 @@ namespace Rogium.Systems.Toolbox
             
             //Set value to cell.
             grid.SetValue(pos, currentValue);
-            OnGraphicDraw?.Invoke(layerIndex, pos, graphicValue);
+            whenGraphicDrawn?.Invoke(layerIndex, pos, graphicValue);
             
             //Once we reach the end, jump to on of the critical pixels.
             if (pos.x >= grid.Width - 1 || GetFrom(pos + Vector2Int.right).CompareTo(valueToOverride) != 0)
@@ -71,7 +70,7 @@ namespace Rogium.Systems.Toolbox
                 }
                 else
                 {
-                    finishProcess?.Invoke(layerIndex);
+                    whenEffectFinished?.Invoke(layerIndex);
                     return;
                 }
             }
