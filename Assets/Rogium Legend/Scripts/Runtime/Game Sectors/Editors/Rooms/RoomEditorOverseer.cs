@@ -57,6 +57,7 @@ namespace Rogium.Editors.Rooms
         {
             Sprite newIcon = drawer.Build(currentAsset.TileGrid, PackEditorOverseer.Instance.CurrentPack.Tiles);
             newIcon = drawer.Build(currentAsset.DecorGrid, PackEditorOverseer.Instance.CurrentPack.Tiles, newIcon);
+            newIcon.name = currentAsset.Title;
             currentAsset.UpdateIcon(newIcon);
             OnCompleteEditing?.Invoke(CurrentAsset, myIndex);
         }
