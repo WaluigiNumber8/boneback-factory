@@ -44,13 +44,15 @@ namespace Rogium.Systems.Toolbox
             
             currentTool = toolBrush;
         }
-        
+
         /// <summary>
         /// Applies the effect of the current tool on a specific grid position.
         /// </summary>
         /// <param name="grid">The grid to affect.</param>
         /// <param name="position">The position to start with.</param>
         /// <param name="value">The value to set.</param>
+        /// <param name="graphicValue">The sprite to draw onto the grid.</param>
+        /// <param name="layerIndex">The index of the layer to draw onto.</param>
         public void ApplyCurrent(ObjectGrid<T> grid, Vector2Int position, T value, Sprite graphicValue, int layerIndex)
         {
             UseTool(currentTool, grid, position, value, graphicValue, layerIndex);
@@ -63,6 +65,8 @@ namespace Rogium.Systems.Toolbox
         /// <param name="grid">The grid to affect.</param>
         /// <param name="position">The position to start with.</param>
         /// <param name="value">The value to set.</param>
+        /// <param name="graphicValue">The sprite to draw onto the grid.</param>
+        /// <param name="layerIndex">The index of the layer to draw onto.</param>
         public void ApplySpecific(ToolType tool, ObjectGrid<T> grid, Vector2Int position, T value, Sprite graphicValue, int layerIndex)
         {
             UseTool(GetTool(tool), grid, position, value, graphicValue, layerIndex);

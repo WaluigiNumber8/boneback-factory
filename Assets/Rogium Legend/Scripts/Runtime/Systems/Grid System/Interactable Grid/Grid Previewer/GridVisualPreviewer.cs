@@ -27,7 +27,7 @@ namespace Rogium.Systems.GridSystem
         
         private RectTransform gridTransform;
         
-        private ToolType currentTool = ToolType.Brush;
+        private ToolType currentTool = ToolType.Bucket;
         private bool isVisible;
         private bool allowMaterialSwitching;
         private bool followCursor;
