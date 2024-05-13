@@ -61,7 +61,7 @@ namespace Rogium.Editors.Sprites
         public void UpdateGridCell(Vector2Int position)
         {
             if (currentSlot == null) return;
-            Sprite brushSprite = RedRatBuilder.GenerateSprite(currentSlot.CurrentColor, (int)grid.CellSize.x, (int)grid.CellSize.y, (int)grid.CellSize.x);
+            Sprite brushSprite = RedRatBuilder.GenerateSprite(currentSlot.CurrentColor, EditorConstants.SpriteSize, EditorConstants.SpriteSize, EditorConstants.SpriteSize);
             toolbox.ApplyCurrent(editor.CurrentAsset.SpriteData, position, currentSlot.Index, brushSprite, grid.ActiveLayer);
         }
 
@@ -134,7 +134,7 @@ namespace Rogium.Editors.Sprites
         /// <param name="position">The cell to erase.</param>
         private void EraseCell(Vector2Int position)
         {
-            Sprite brushSprite = RedRatBuilder.GenerateSprite(EditorConstants.EmptyGridColor, (int)grid.CellSize.x, (int)grid.CellSize.y, (int)grid.CellSize.x);
+            Sprite brushSprite = RedRatBuilder.GenerateSprite(EditorConstants.EmptyGridColor, EditorConstants.SpriteSize, EditorConstants.SpriteSize, EditorConstants.SpriteSize);
             toolbox.ApplySpecific(ToolType.Eraser, editor.CurrentAsset.SpriteData, position, currentSlot.Index, brushSprite, grid.ActiveLayer);
         }
         
