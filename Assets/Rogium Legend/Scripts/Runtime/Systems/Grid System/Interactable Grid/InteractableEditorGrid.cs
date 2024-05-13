@@ -29,7 +29,7 @@ namespace Rogium.Systems.GridSystem
         private SpriteDrawer drawer;
         private Camera cam;
         
-        private Image activeLayer;
+        private int activeLayerIndex;
         
         private Vector2 cellSize;
         private Vector2Int selectedPos;
@@ -102,32 +102,34 @@ namespace Rogium.Systems.GridSystem
         {
             SafetyNet.EnsureIntIsEqual(IDGrid.Width, gridSize.x, "Grid Width");
             SafetyNet.EnsureIntIsEqual(IDGrid.Height, gridSize.y, "Grid Height");
-            activeLayer.sprite = drawer.Build(IDGrid, assetList);
+            GetActiveLayer().sprite = drawer.Build(IDGrid, assetList);
         }
         
         public override void LoadWithColors(ObjectGrid<int> indexGrid, Color[] colorArray)
         {
             SafetyNet.EnsureIntIsEqual(indexGrid.Width, gridSize.x, "Grid Width");
             SafetyNet.EnsureIntIsEqual(indexGrid.Height, gridSize.y, "Grid Height");
-            activeLayer.sprite = drawer.Build(indexGrid, colorArray);
+            GetActiveLayer().sprite = drawer.Build(indexGrid, colorArray);
         }
         
-        public override void UpdateCell(Vector2Int position, Color value)
+        public override void UpdateCell(Vector2Int position, Sprite value) => UpdateCell(activeLayerIndex, position, value);
+        public override void UpdateCell(int layer, Vector2Int position, Sprite value)
         {
-            drawer.UpdateValue(activeLayer.sprite, position, value);
-        }
-        
-        public override void UpdateCell(Vector2Int position, Sprite value)
-        {
-            drawer.UpdateValue(activeLayer.sprite, position, value);
+            drawer.Draw(layers[layer].layer.sprite, position, value);
         }
 
-        public override void Apply() => drawer.Apply(activeLayer.sprite);
+        public override Sprite GetCell(Vector2Int position) => GetCell(activeLayerIndex, position);
+        public override Sprite GetCell(int layer, Vector2Int position)
+        {
+            return drawer.Get(layers[layer].layer.sprite, position);
+        }
+
+        public override void Apply(int layer) => drawer.Apply(layers[layer].layer.sprite);
 
         public override void ClearAllCells()
         {
-            drawer.ClearAllCells(activeLayer.sprite);
-            Apply();
+            drawer.ClearAllCells(GetActiveLayer().sprite);
+            Apply(activeLayerIndex);
         }
 
         /// <summary>
@@ -138,7 +140,7 @@ namespace Rogium.Systems.GridSystem
         {
             SafetyNet.EnsureIndexWithingCollectionRange(layerIndex, layers, nameof(layers));
             
-            activeLayer = layers[layerIndex].layer;
+            activeLayerIndex = layerIndex;
             RefreshLayerColors(layerIndex);
         }
         
@@ -172,6 +174,8 @@ namespace Rogium.Systems.GridSystem
             selectedPos = new Vector2Int(x, y);
         }
 
+        private Image GetActiveLayer() => layers[activeLayerIndex].layer;
+        
         /// <summary>
         /// Refreshes the color of all layers.
         /// </summary>
@@ -187,5 +191,6 @@ namespace Rogium.Systems.GridSystem
         public Vector2Int Size { get => gridSize; }
         public Vector2 CellSize { get => cellSize; }
         public Vector2Int SelectedPosition { get => selectedPos; }
+        public int ActiveLayer { get => activeLayerIndex; }
     }
 }

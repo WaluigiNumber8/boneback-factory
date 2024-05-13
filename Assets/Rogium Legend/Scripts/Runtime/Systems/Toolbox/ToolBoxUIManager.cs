@@ -1,4 +1,6 @@
 ﻿using System;
+using Rogium.Editors.Rooms;
+using Rogium.Editors.Sprites;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +9,7 @@ namespace Rogium.Systems.Toolbox
     /// <summary>
     /// Controls the UI of the Toolbox system.
     /// </summary>
-    public abstract class ToolBoxUIManagerBase : MonoBehaviour
+    public class ToolBoxUIManager : MonoBehaviour
     {
         public event Action<ToolType> OnSwitchTool;
         
@@ -19,7 +21,13 @@ namespace Rogium.Systems.Toolbox
 
         private ToolType currentToolType;
 
-        protected void SwitchTool(ToolType toolType)
+        private void Awake()
+        {
+            RoomEditorOverseerMono.GetInstance().Toolbox.OnSwitchTool += SwitchTool;
+            SpriteEditorOverseerMono.GetInstance().Toolbox.OnSwitchTool += SwitchTool;
+        }
+
+        private void SwitchTool(ToolType toolType)
         {
             if (currentToolType == toolType) return;
             switch(toolType)

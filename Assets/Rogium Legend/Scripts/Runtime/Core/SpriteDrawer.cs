@@ -58,11 +58,11 @@ namespace Rogium.Systems.GridSystem
 
                     try
                     {
-                        UpdateValue(sprite, new Vector2Int(x, y), colorArray[id]);
+                        Draw(sprite, new Vector2Int(x, y), colorArray[id]);
                     }
                     catch (InvalidOperationException)
                     {
-                        UpdateValue(sprite, new Vector2Int(x, y), EditorConstants.MissingColor);
+                        Draw(sprite, new Vector2Int(x, y), EditorConstants.MissingColor);
                     }
                 }
             }
@@ -102,8 +102,8 @@ namespace Rogium.Systems.GridSystem
             SafetyNet.EnsureFloatIsEqual(sprite.pixelsPerUnit, pixelsPerUnit, "Pixels per unit");
             
             AssetUtils.UpdateFromGridByList(IDGrid, assetList, 
-                (x, y, asset) => UpdateValue(sprite, new Vector2Int(x, y), asset.Icon),
-                (x, y) => UpdateValue(sprite, new Vector2Int(x, y), EditorConstants.MissingSprite));
+                (x, y, asset) => Draw(sprite, new Vector2Int(x, y), asset.Icon),
+                (x, y) => Draw(sprite, new Vector2Int(x, y), EditorConstants.MissingSprite));
             
             Apply(sprite);
             return sprite;
@@ -112,33 +112,33 @@ namespace Rogium.Systems.GridSystem
         /// <summary>
         /// Adds a new sprite onto the edited one.
         /// </summary>
-        /// <param name="sprite">The sprite to draw on.</param>
+        /// <param name="canvas">The sprite to draw on.</param>
         /// <param name="pos">The position (in units) to draw at.</param>
         /// <param name="value">The color to draw.</param>
-        public void UpdateValue(Sprite sprite, Vector2Int pos, Color value)
+        public void Draw(Sprite canvas, Vector2Int pos, Color value)
         {
             Sprite colorValue = RedRatBuilder.GenerateSprite(value, unitSize.x, unitSize.y, pixelsPerUnit);
-            UpdateValue(sprite, pos, colorValue);
+            Draw(canvas, pos, colorValue);
         }
         
         /// <summary>
         /// Draws a new 16x16 sprite on a layer.
         /// </summary>
-        /// <param name="sprite">The sprite to draw on.</param>
+        /// <param name="canvas">The sprite to draw on.</param>
         /// <param name="pos">The position (in units) to draw at.</param>
-        /// <param name="value">The sprite to draw (MUST be same size as unit).</param>
-        public void UpdateValue(Sprite sprite, Vector2Int pos, Sprite value)
+        /// <param name="sprite">The sprite to draw (MUST be same size as unit).</param>
+        public void Draw(Sprite canvas, Vector2Int pos, Sprite sprite)
         {
-            Texture2D layer = sprite.texture;
-            Texture2D tex = value.texture;
-            SafetyNet.EnsureIntIsEqual(tex.width, 16, $"{sprite.name}'s width");
-            SafetyNet.EnsureIntIsEqual(tex.height, 16, $"{sprite.name}'s height");
+            Texture2D canvasTex = canvas.texture;
+            Texture2D tex = sprite.texture;
+            SafetyNet.EnsureIntIsEqual(tex.width, 16, $"{canvas.name}'s width");
+            SafetyNet.EnsureIntIsEqual(tex.height, 16, $"{canvas.name}'s height");
 
             int startX = pos.x * unitSize.x;
             int startY = pos.y * unitSize.y;
             
             Color[] texPixels = tex.GetPixels();
-            Color[] layerPixels = layer.GetPixels(startX, startY, tex.width, tex.height);
+            Color[] layerPixels = canvasTex.GetPixels(startX, startY, tex.width, tex.height);
 
             for (int i = 0; i < texPixels.Length; i++)
             {
@@ -146,9 +146,26 @@ namespace Rogium.Systems.GridSystem
                 layerPixels[i] = texPixels[i];
             }
 
-            layer.SetPixels(startX, startY, tex.width, tex.height, layerPixels);
+            canvasTex.SetPixels(startX, startY, tex.width, tex.height, layerPixels);
         }
 
+        /// <summary>
+        /// Returns a section of the sprite based on the unitSize.
+        /// </summary>
+        /// <param name="canvas">The sprite to read from.</param>
+        /// <param name="pos">The starting position to read from. Width and Height are unitSize.</param>
+        public Sprite Get(Sprite canvas, Vector2Int pos)
+        {
+            Texture2D canvasTex = canvas.texture;
+            Color[] spritePixels = canvasTex.GetPixels(pos.x, pos.y, unitSize.x, unitSize.y);
+            
+            Texture2D tex = RedRatBuilder.GenerateTexture(unitSize.x, unitSize.y);
+            tex.SetPixels(spritePixels);
+            tex.Apply();
+
+            return RedRatBuilder.GenerateSprite(tex, pixelsPerUnit);
+        }
+        
         /// <summary>
         /// Refreshes the sprite's pixel changes (costly).
         /// </summary>

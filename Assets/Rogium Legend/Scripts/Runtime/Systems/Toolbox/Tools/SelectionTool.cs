@@ -10,12 +10,15 @@ namespace Rogium.Systems.Toolbox
     /// <typeparam name="T">Any type of <see cref="IComparable"/>.</typeparam>
     public class SelectionTool<T> : ITool<T> where T : IComparable
     {
+        public event Action<int, Vector2Int, Sprite> OnGraphicDraw;
         public event Action<T> OnSelectValue;
         
-        public void ApplyEffect(ObjectGrid<T> grid, Vector2Int position, T value, Action<Vector2Int, bool> applyOnUI, Action finishProcess)
+        public void ApplyEffect(ObjectGrid<T> grid, Vector2Int position, T value, Sprite graphicValue, int layer, Action<int> whenEffectFinished)
         {
             T selected = grid.GetValue(position);
             OnSelectValue?.Invoke(selected);
         }
+
+        public override string ToString() => "Selection Tool";
     }
 }

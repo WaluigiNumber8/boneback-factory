@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using RedRats.Core;
-using RedRats.UI;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
@@ -8,7 +7,6 @@ using Rogium.Editors.Palettes;
 using Rogium.Systems.GridSystem;
 using Rogium.Systems.ItemPalette;
 using Rogium.Systems.Toolbox;
-using Rogium.UserInterface.Core;
 using Rogium.UserInterface.ModalWindows;
 using UnityEngine;
 
@@ -24,7 +22,7 @@ namespace Rogium.Editors.Sprites
         
         private SpriteEditorOverseer editor;
         private PalettePicker palettePicker;
-        private ToolBox<int, Color> toolbox;
+        private ToolBox<int> toolbox;
 
         private SpriteAsset currentSprite;
         private ColorSlot currentSlot;
@@ -35,7 +33,7 @@ namespace Rogium.Editors.Sprites
             base.Awake();
             editor = SpriteEditorOverseer.Instance;
             palettePicker = new PalettePicker();
-            toolbox = new ToolBox<int, Color>(grid, EditorConstants.EmptyColorID, EditorConstants.NoColor, grid.UpdateCell);
+            toolbox = new ToolBox<int>(grid, grid.UpdateCell);
         }
 
         private void OnEnable()
@@ -63,7 +61,8 @@ namespace Rogium.Editors.Sprites
         public void UpdateGridCell(Vector2Int position)
         {
             if (currentSlot == null) return;
-            toolbox.ApplyCurrent(editor.CurrentAsset.SpriteData, position, currentSlot.Index, currentSlot.CurrentColor);
+            Sprite brushSprite = RedRatBuilder.GenerateSprite(currentSlot.CurrentColor, (int)grid.CellSize.x, (int)grid.CellSize.y, (int)grid.CellSize.x);
+            toolbox.ApplyCurrent(editor.CurrentAsset.SpriteData, position, currentSlot.Index, brushSprite, grid.ActiveLayer);
         }
 
         /// <summary>
@@ -125,11 +124,6 @@ namespace Rogium.Editors.Sprites
         /// <param name="id">The id of the color to select.</param>
         private void SelectFrom(int id)
         {
-            if (id == EditorConstants.EmptyColorID)
-            {
-                toolbox.SwitchTool(ToolType.Eraser);
-                return;
-            }
             palette.Select(id);
             toolbox.SwitchTool(ToolType.Brush);
         }
@@ -140,7 +134,8 @@ namespace Rogium.Editors.Sprites
         /// <param name="position">The cell to erase.</param>
         private void EraseCell(Vector2Int position)
         {
-            toolbox.ApplySpecific(ToolType.Eraser, editor.CurrentAsset.SpriteData, position, currentSlot.Index);
+            Sprite brushSprite = RedRatBuilder.GenerateSprite(EditorConstants.EmptyGridColor, (int)grid.CellSize.x, (int)grid.CellSize.y, (int)grid.CellSize.x);
+            toolbox.ApplySpecific(ToolType.Brush, editor.CurrentAsset.SpriteData, position, currentSlot.Index, brushSprite, grid.ActiveLayer);
         }
         
         private IEnumerator SwitchLayerDelay(float delay)
@@ -149,6 +144,6 @@ namespace Rogium.Editors.Sprites
             palette.Select(0);
         }
         
-        public ToolBox<int, Color> Toolbox { get => toolbox; } 
+        public ToolBox<int> Toolbox { get => toolbox; } 
     }
 }

@@ -26,19 +26,33 @@ namespace Rogium.Systems.GridSystem
         /// </summary>
         /// <param name="position">The grid cell to update.</param>
         /// <param name="value">The value to set.</param>
-        public abstract void UpdateCell(Vector2Int position, Color value);
-
+        public abstract void UpdateCell(Vector2Int position, Sprite value);
         /// <summary>
         /// Updates a cell with a new value.
         /// </summary>
+        /// <param name="layer">The index of the layer to update.</param>
         /// <param name="position">The grid cell to update.</param>
         /// <param name="value">The value to set.</param>
-        public abstract void UpdateCell(Vector2Int position, Sprite value);
+        public abstract void UpdateCell(int layer, Vector2Int position, Sprite value);
 
+        /// <summary>
+        /// Returns a value of a cell.
+        /// </summary>
+        /// <param name="position">The cell's grid position.</param>
+        /// <returns>The sprite value.</returns>
+        public abstract Sprite GetCell(Vector2Int position);
+        /// <summary>
+        /// Returns a value of a cell.
+        /// </summary>
+        /// <param name="layer">The layer index, from which to take the value.</param>
+        /// <param name="position">The cell's grid position.</param>
+        /// <returns>The sprite value.</returns>
+        public abstract Sprite GetCell(int layer, Vector2Int position);
+        
         /// <summary>
         /// Applies grid changes.
         /// </summary>
-        public abstract void Apply();
+        public abstract void Apply(int layer);
 
         /// <summary>
         /// Clears all elements on the active grid.

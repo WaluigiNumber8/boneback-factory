@@ -34,7 +34,7 @@ namespace Rogium.Editors.Rooms
         
         private PackEditorOverseer packEditor;
         private RoomEditorOverseer editor;
-        private ToolBox<AssetData, Sprite> toolbox;
+        private ToolBox<AssetData> toolbox;
 
         private IList<ObjectAsset> objects;
         
@@ -49,7 +49,7 @@ namespace Rogium.Editors.Rooms
             base.Awake();
             packEditor = PackEditorOverseer.Instance;
             editor = RoomEditorOverseer.Instance;
-            toolbox = new ToolBox<AssetData, Sprite>(grid, new AssetData(ParameterInfoConstants.ForEmpty), EditorConstants.EmptyGridSprite, grid.UpdateCell);
+            toolbox = new ToolBox<AssetData>(grid, grid.UpdateCell);
             objects = InternalLibraryOverseer.GetInstance().GetObjectsCopy();
 
             paletteTile.OnSelect += asset => SelectedValue(asset, AssetType.Tile);
@@ -105,7 +105,7 @@ namespace Rogium.Editors.Rooms
         public void UpdateGridCell(Vector2Int position)
         {
             if (currentData.BrushValue.ID == EditorConstants.EmptyAssetID) return;
-            toolbox.ApplyCurrent(currentData.Grid, position, new AssetData(currentData.BrushValue), currentData.BrushSprite);
+            toolbox.ApplyCurrent(currentData.Grid, position, new AssetData(currentData.BrushValue), currentData.BrushSprite, grid.ActiveLayer);
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace Rogium.Editors.Rooms
         /// <param name="position">The cell to erase.</param>
         private void EraseCell(Vector2Int position)
         {
-            toolbox.ApplySpecific(ToolType.Eraser, currentData.Grid, position, currentData.BrushValue);
+            toolbox.ApplySpecific(ToolType.Brush, currentData.Grid, position, currentData.BrushValue, EditorConstants.EmptyGridSprite, grid.ActiveLayer);
         }
         
         /// <summary>
@@ -167,11 +167,6 @@ namespace Rogium.Editors.Rooms
         /// <param name="data">The id of the asset to pick.</param>
         private void PickFrom(AssetData data)
         {
-            if (data.ID == EditorConstants.EmptyAssetID)
-            {
-                toolbox.SwitchTool(ToolType.Eraser);
-                return;
-            }
             currentData.Palette.Select(data.ID);
             toolbox.SwitchTool(ToolType.Brush);
         }
@@ -241,6 +236,6 @@ namespace Rogium.Editors.Rooms
             paletteTile.Select(0);
         }
 
-        public ToolBox<AssetData, Sprite> Toolbox { get => toolbox; } 
+        public ToolBox<AssetData> Toolbox { get => toolbox; } 
     }
 }

@@ -11,25 +11,29 @@ namespace Rogium.Systems.Toolbox
     /// </summary>
     public class BucketTool<T> : ITool<T> where T : IComparable
     {
+        public event Action<int, Vector2Int, Sprite> OnGraphicDraw;
+        
         private ObjectGrid<T> grid;
         private T currentValue;
         private T valueToOverride;
         private readonly IList<Vector2Int> criticalPositions;
 
-        private Action<Vector2Int, bool> applyOnUI;
-        private Action finishProcess;
+        private Sprite graphicValue;
+        private int layerIndex;
+        private Action<int> finishProcess;
 
         public BucketTool() => criticalPositions = new List<Vector2Int>();
 
-        public void ApplyEffect(ObjectGrid<T> grid, Vector2Int position, T value, Action<Vector2Int, bool> applyOnUI, Action finishProcess)
+        public void ApplyEffect(ObjectGrid<T> grid, Vector2Int position, T value, Sprite graphicValue, int layer, Action<int> whenEffectFinished)
         {
             SafetyNet.EnsureIsNotNull(grid, "grid");
             
             this.grid = grid;
-            this.applyOnUI = applyOnUI;
-            this.finishProcess = finishProcess;
+            this.layerIndex = layer;
+            this.finishProcess = whenEffectFinished;
             this.currentValue = value;
             this.valueToOverride = GetFrom(position);
+            this.graphicValue = graphicValue;
             this.criticalPositions.Clear();
 
             //Return if value on the grid is the same as the bucket fill value.
@@ -54,7 +58,7 @@ namespace Rogium.Systems.Toolbox
             
             //Set value to cell.
             grid.SetValue(pos, currentValue);
-            applyOnUI?.Invoke(pos, false);
+            OnGraphicDraw?.Invoke(layerIndex, pos, graphicValue);
             
             //Once we reach the end, jump to on of the critical pixels.
             if (pos.x >= grid.Width - 1 || GetFrom(pos + Vector2Int.right).CompareTo(valueToOverride) != 0)
@@ -67,7 +71,7 @@ namespace Rogium.Systems.Toolbox
                 }
                 else
                 {
-                    finishProcess?.Invoke();
+                    finishProcess?.Invoke(layerIndex);
                     return;
                 }
             }
@@ -121,6 +125,7 @@ namespace Rogium.Systems.Toolbox
             SafetyNet.EnsureIsNotNull(grid, "Value Grid");
             return grid.GetValue(pos);
         }
-        
+
+        public override string ToString() => "Bucket Tool";
     }
 }
