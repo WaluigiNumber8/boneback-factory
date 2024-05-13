@@ -33,7 +33,7 @@ namespace Rogium.Editors.Sprites
             base.Awake();
             editor = SpriteEditorOverseer.Instance;
             palettePicker = new PalettePicker();
-            toolbox = new ToolBox<int>(grid, grid.UpdateCell);
+            toolbox = new ToolBox<int>(grid, grid.UpdateCell, EditorConstants.EmptyColorID);
         }
 
         private void OnEnable()
@@ -135,7 +135,7 @@ namespace Rogium.Editors.Sprites
         private void EraseCell(Vector2Int position)
         {
             Sprite brushSprite = RedRatBuilder.GenerateSprite(EditorConstants.EmptyGridColor, (int)grid.CellSize.x, (int)grid.CellSize.y, (int)grid.CellSize.x);
-            toolbox.ApplySpecific(ToolType.Brush, editor.CurrentAsset.SpriteData, position, currentSlot.Index, brushSprite, grid.ActiveLayer);
+            toolbox.ApplySpecific(ToolType.Eraser, editor.CurrentAsset.SpriteData, position, currentSlot.Index, brushSprite, grid.ActiveLayer);
         }
         
         private IEnumerator SwitchLayerDelay(float delay)

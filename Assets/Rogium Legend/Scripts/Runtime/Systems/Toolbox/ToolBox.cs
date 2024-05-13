@@ -1,4 +1,5 @@
 ﻿using System;
+using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.ActionHistory;
 using Rogium.Systems.GridSystem;
 using UnityEngine;
@@ -17,23 +18,25 @@ namespace Rogium.Systems.Toolbox
 
         private readonly SelectionTool<T> toolSelection;
         private readonly BrushTool<T> toolBrush;
-        // private readonly EraserTool<T> toolEraser;
+        private readonly BrushTool<T> toolEraser;
         private readonly BucketTool<T> toolBucket;
         private readonly PickerTool<T> toolPicker;
 
         private readonly InteractableEditorGridBase UIGrid;
-        private readonly Action<int, Vector2Int, Sprite> drawOnGrid;
+        private readonly Action<int, Vector2Int, Sprite> whenGraphicDraw;
+        private readonly T emptyValue;
         private ToolBase<T> currentTool;
         private ToolType currentToolType;
-        
-        public ToolBox(InteractableEditorGridBase UIGrid, Action<int, Vector2Int, Sprite> drawOnGrid)
+
+        public ToolBox(InteractableEditorGridBase UIGrid, Action<int, Vector2Int, Sprite> whenGraphicDraw, T emptyValue)
         {
+            this.emptyValue = emptyValue;
             this.UIGrid = UIGrid;
-            this.drawOnGrid = drawOnGrid;
+            this.whenGraphicDraw = whenGraphicDraw;
 
             toolSelection = new SelectionTool<T>(WhenDrawOnUIGrid, this.UIGrid.Apply);
             toolBrush = new BrushTool<T>(WhenDrawOnUIGrid, this.UIGrid.Apply);
-            // toolEraser = new EraserTool<T>(emptyValue);
+            toolEraser = new BrushTool<T>(WhenDrawOnUIGrid, this.UIGrid.Apply);
             toolBucket = new BucketTool<T>(WhenDrawOnUIGrid, this.UIGrid.Apply);
             toolPicker = new PickerTool<T>(WhenDrawOnUIGrid, this.UIGrid.Apply);
             
@@ -78,7 +81,7 @@ namespace Rogium.Systems.Toolbox
             {
                 ToolType.Selection => toolSelection,
                 ToolType.Brush => toolBrush,
-                // ToolType.Eraser => toolEraser,
+                ToolType.Eraser => toolEraser,
                 ToolType.Bucket => toolBucket,
                 ToolType.ColorPicker => toolPicker,
                 _ => throw new InvalidOperationException("Unknown or not yet supported Tool Type.")
@@ -87,7 +90,7 @@ namespace Rogium.Systems.Toolbox
             OnSwitchTool?.Invoke(tool);
         }
 
-        public void WhenDrawOnUIGrid(int layerIndex, Vector2Int position, Sprite value) => drawOnGrid?.Invoke(layerIndex, position, value);
+        public void WhenDrawOnUIGrid(int layerIndex, Vector2Int position, Sprite value) => whenGraphicDraw?.Invoke(layerIndex, position, value);
 
         /// <summary>
         /// Grabs a tool based on entered tool type.
@@ -101,7 +104,7 @@ namespace Rogium.Systems.Toolbox
             {
                 ToolType.Selection => toolSelection,
                 ToolType.Brush => toolBrush,
-                // ToolType.Eraser => toolEraser,
+                ToolType.Eraser => toolEraser,
                 ToolType.Bucket => toolBucket,
                 ToolType.ColorPicker => toolPicker,
                 _ => throw new InvalidOperationException("Unknown or not yet supported Tool Type.")
@@ -111,6 +114,12 @@ namespace Rogium.Systems.Toolbox
 
         private void UseTool(ToolBase<T> tool, ObjectGrid<T> grid, Vector2Int position, T value, Sprite graphicValue, int layerIndex)
         {
+            // If the tool is an eraser, set the value to empty.
+            if (tool == toolEraser)
+            {
+                value = emptyValue;
+                graphicValue = EditorConstants.EmptyGridSprite;
+            }
             T oldValue = grid.GetValue(position);
             Sprite oldGraphicValue = UIGrid.GetCell(position);
             ActionHistorySystem.AddAndExecute(new UseToolAction<T>(tool, grid, position, value, oldValue, graphicValue, oldGraphicValue, layerIndex));

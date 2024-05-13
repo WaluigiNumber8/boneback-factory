@@ -49,7 +49,7 @@ namespace Rogium.Editors.Rooms
             base.Awake();
             packEditor = PackEditorOverseer.Instance;
             editor = RoomEditorOverseer.Instance;
-            toolbox = new ToolBox<AssetData>(grid, grid.UpdateCell);
+            toolbox = new ToolBox<AssetData>(grid, grid.UpdateCell, new AssetData());
             objects = InternalLibraryOverseer.GetInstance().GetObjectsCopy();
 
             paletteTile.OnSelect += asset => SelectedValue(asset, AssetType.Tile);
@@ -123,7 +123,7 @@ namespace Rogium.Editors.Rooms
         /// <param name="position">The cell to erase.</param>
         private void EraseCell(Vector2Int position)
         {
-            toolbox.ApplySpecific(ToolType.Brush, currentData.Grid, position, currentData.BrushValue, EditorConstants.EmptyGridSprite, grid.ActiveLayer);
+            toolbox.ApplySpecific(ToolType.Eraser, currentData.Grid, position, currentData.BrushValue, EditorConstants.EmptyGridSprite, grid.ActiveLayer);
         }
         
         /// <summary>
