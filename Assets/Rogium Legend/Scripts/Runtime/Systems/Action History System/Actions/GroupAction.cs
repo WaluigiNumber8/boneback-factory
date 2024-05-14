@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Rogium.Systems.ActionHistory
 {
@@ -26,11 +25,7 @@ namespace Rogium.Systems.ActionHistory
             }
         }
 
-        public void AddAction(IAction action)
-        {
-            actions.Add(action);
-            Debug.Log($"Added '{action}' to group");
-        }
+        public void AddAction(IAction action) => actions.Add(action);
 
         public bool NothingChanged() => false;
         

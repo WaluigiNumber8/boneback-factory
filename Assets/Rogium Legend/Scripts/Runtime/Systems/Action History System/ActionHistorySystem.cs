@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using RedRats.Core;
 using RedRats.Systems.Clocks;
-using UnityEngine;
 
 namespace Rogium.Systems.ActionHistory
 {
@@ -10,6 +9,7 @@ namespace Rogium.Systems.ActionHistory
     /// </summary>
     public class ActionHistorySystem : MonoSingleton<ActionHistorySystem>
     {
+        private const float CanCreateGroupTime = 1.0f;
         private const float GroupLifeTime = 0.2f;
         
         private CurrentAssetDetector assetDetector => CurrentAssetDetector.Instance;
@@ -18,27 +18,28 @@ namespace Rogium.Systems.ActionHistory
 
         private IAction lastAction;
         private GroupAction currentGroup;
+        private CountdownTimer canCreateGroupTimer;
         private CountdownTimer groupLifeTimer;
 
         protected override void Awake()
         {
             base.Awake();
+            canCreateGroupTimer = new CountdownTimer();
             groupLifeTimer = new CountdownTimer(AddCurrentGroupToUndo);
             assetDetector.OnAssetChange += ClearHistory;
         }
 
-        private void Update() => groupLifeTimer.Tick();
+        private void Update()
+        {
+            canCreateGroupTimer.Tick();
+            groupLifeTimer.Tick();
+        }
 
         public void AddAndExecute(IAction action)
         {
             if (action.NothingChanged()) return;
             if (assetDetector.WasAssetChanged) undoHistory.Clear();
 
-            //Keep track of last action If the next one is on the same construct (grid, interface, etc), add both to a new group
-            //Once a different action type shows up, add the group to undo
-            
-            //There is only a limited amount of time for a new action to join the group. If the time runs out, the group is added to undo.
-            
             action.Execute();
             AddToUndo(action);
             redoHistory.Clear();
@@ -81,7 +82,7 @@ namespace Rogium.Systems.ActionHistory
         private void AddToUndo(IAction action)
         {
             // Create a group if actions are on the same construct
-            if (action.AffectedConstruct == lastAction?.AffectedConstruct)
+            if (action.AffectedConstruct == lastAction?.AffectedConstruct && canCreateGroupTimer.TimeLeft > 0)
             {
                 if (currentGroup == null) InitGroup();
                 currentGroup!.AddAction(action);
@@ -96,18 +97,18 @@ namespace Rogium.Systems.ActionHistory
             {
                 AddCurrentGroupToUndo();
                 undoHistory.Push(action);
-                Debug.Log("Different action, added group to undo");
                 return;
             }
             
             undoHistory.Push(action);
-            Debug.Log("Only add to undo");
+            
+            //Set time during which it is possible to create a group
+            canCreateGroupTimer.Set(CanCreateGroupTime);
         }
 
         private void InitGroup()
         {
             currentGroup = new GroupAction();
-            Debug.Log("New Group");
             if (undoHistory.Count > 0 && undoHistory.Peek() is not GroupAction) undoHistory.Pop();
             currentGroup.AddAction(lastAction);
         }
@@ -117,9 +118,9 @@ namespace Rogium.Systems.ActionHistory
             if (currentGroup == null) return;
             
             undoHistory.Push(currentGroup);
+            // Debug.Log("Add active group to undo");
             groupLifeTimer.Clear();
             currentGroup = null;
-            Debug.Log("Add active group to undo");
         }
         
         #endregion
