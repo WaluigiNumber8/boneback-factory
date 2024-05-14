@@ -1,4 +1,5 @@
 using System;
+using Rogium.Systems.ActionHistory;
 using Rogium.UserInterface.ModalWindows;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -16,6 +17,7 @@ namespace Rogium.UserInterface.Interactables
         [SerializeField] private UIInfo ui;
 
         private Color value;
+        private Color oldValue;
         
         public override void OnPointerDown(PointerEventData eventData)
         {
@@ -30,18 +32,25 @@ namespace Rogium.UserInterface.Interactables
         public void Construct(Color value)
         {
             this.value = value;
+            this.oldValue = value;
             ui.color.color = value;
         }
 
-
+        public void UpdateValue(Color value)
+        {
+            this.oldValue = this.value;
+            this.value = value;
+            ui.color.color = value;
+            OnValueChanged?.Invoke(value);
+        }
+        
+        
         /// <summary>
         /// Update everything based on the grabbed color.
         /// </summary>
-        private void WhenColorPicked(Color color)
+        private void WhenColorPicked(Color value)
         {
-            value = color;
-            ui.color.color = color;
-            OnValueChanged?.Invoke(color);
+            ActionHistorySystem.GetInstance().AddAndExecute(new UpdateColorFieldAction(this, value, oldValue));
         }
         
         public Color Value { get => value; }
