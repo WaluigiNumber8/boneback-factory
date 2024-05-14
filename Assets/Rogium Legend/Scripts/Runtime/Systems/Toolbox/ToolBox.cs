@@ -122,7 +122,7 @@ namespace Rogium.Systems.Toolbox
             }
             T oldValue = grid.GetValue(position);
             Sprite oldGraphicValue = UIGrid.GetCell(position);
-            ActionHistorySystem.AddAndExecute(new UseToolAction<T>(tool, grid, position, value, oldValue, graphicValue, oldGraphicValue, layerIndex));
+            ActionHistorySystem.GetInstance().AddAndExecute(new UseToolAction<T>(tool, grid, position, value, oldValue, graphicValue, oldGraphicValue, layerIndex));
         }
         
     }

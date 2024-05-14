@@ -38,7 +38,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             dropdown.RefreshShownValue();
             
             this.whenValueChange = whenValueChange;
-            dropdown.onValueChanged.AddListener((value) => ActionHistorySystem.AddAndExecute(new UpdateDropdownAction(this, value, oldValue)));
+            dropdown.onValueChanged.AddListener((value) => ActionHistorySystem.GetInstance().AddAndExecute(new UpdateDropdownAction(this, value, oldValue)));
         }
 
         /// <summary>

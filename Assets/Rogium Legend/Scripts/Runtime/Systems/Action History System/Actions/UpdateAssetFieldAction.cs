@@ -1,6 +1,5 @@
 using Rogium.Editors.Core;
 using Rogium.UserInterface.Interactables;
-using Rogium.UserInterface.Interactables.Properties;
 
 namespace Rogium.Systems.ActionHistory
 {
@@ -26,6 +25,8 @@ namespace Rogium.Systems.ActionHistory
 
         public bool NothingChanged() => value.Equals(oldValue);
         
+        public object AffectedConstruct => assetField;
+
         public override string ToString() => $"{assetField.name}: {oldValue} -> {value}";
     }
 }

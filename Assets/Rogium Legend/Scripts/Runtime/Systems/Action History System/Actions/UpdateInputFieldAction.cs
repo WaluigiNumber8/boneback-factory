@@ -23,6 +23,8 @@ namespace Rogium.Systems.ActionHistory
         public void Undo() => inputField.UpdateValueWithoutNotify(oldValue);
 
         public bool NothingChanged() => value == oldValue;
+        
+        public object AffectedConstruct => inputField;
 
         public override string ToString() => $"{inputField.name}: {oldValue} -> {value}";
     }

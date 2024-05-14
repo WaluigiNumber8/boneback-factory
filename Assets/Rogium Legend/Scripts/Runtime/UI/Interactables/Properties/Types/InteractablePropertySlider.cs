@@ -101,12 +101,12 @@ namespace Rogium.UserInterface.Interactables.Properties
 
         private void WhenValueChange(float value)
         {
-            ActionHistorySystem.AddAndExecute(new UpdateSliderAction(this, value / decimalMultiplier, oldValue));
+            ActionHistorySystem.GetInstance().AddAndExecute(new UpdateSliderAction(this, value / decimalMultiplier, oldValue));
         }
         
         private void WhenValueChange(int value)
         {
-            ActionHistorySystem.AddAndExecute(new UpdateSliderAction(this, value, oldValue));
+            ActionHistorySystem.GetInstance().AddAndExecute(new UpdateSliderAction(this, value, oldValue));
         }
         
         public override float PropertyValue { get => slider.value / decimalMultiplier; }

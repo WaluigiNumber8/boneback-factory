@@ -24,6 +24,8 @@ namespace Rogium.Systems.ActionHistory
         public void Undo() => slider.UpdateValueWithoutNotify(oldValue);
 
         public bool NothingChanged() => value.IsSameAs(oldValue);
+        
+        public object AffectedConstruct { get => slider; }
 
         public override string ToString() => $"{slider.name}: {oldValue} -> {value}";
     }

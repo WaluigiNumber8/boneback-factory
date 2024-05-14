@@ -37,6 +37,8 @@ namespace Rogium.Systems.ActionHistory
         public void Undo() => brushTool.ApplyEffect(grid, position, oldValue, oldGraphicValue, layer);
 
         public bool NothingChanged() => value.CompareTo(oldValue) == 0;
+        
+        public object AffectedConstruct => grid;
 
         public override string ToString() => $"{brushTool}: {oldValue} -> {value} at {layer}-{position}";
     }

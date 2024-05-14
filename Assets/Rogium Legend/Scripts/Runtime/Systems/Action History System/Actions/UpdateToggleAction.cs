@@ -21,6 +21,8 @@ namespace Rogium.Systems.ActionHistory
         public void Undo() => toggle.UpdateValueWithoutNotify(!value);
 
         public bool NothingChanged() => false;
+        
+        public object AffectedConstruct { get => toggle; }
 
         public override string ToString() => $"{toggle.name}: {!value} -> {value}";
     }

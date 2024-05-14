@@ -16,6 +16,7 @@ namespace Rogium.Systems.ActionHistory
             this.dropdown = dropdown;
             this.value = value;
             this.oldValue = oldValue;
+            
         }
 
         public void Execute() => dropdown.UpdateValueWithoutNotify(value);
@@ -23,6 +24,8 @@ namespace Rogium.Systems.ActionHistory
         public void Undo() => dropdown.UpdateValueWithoutNotify(oldValue);
 
         public bool NothingChanged() => value == oldValue;
+        
+        public object AffectedConstruct => dropdown;
 
         public override string ToString() => $"{dropdown.name}: {oldValue} -> {value}";
     }

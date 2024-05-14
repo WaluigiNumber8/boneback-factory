@@ -17,5 +17,9 @@ namespace Rogium.Systems.ActionHistory
         /// Returns TRUE if the action did not change anything.
         /// </summary>
         public bool NothingChanged();
+        /// <summary>
+        /// Which construct is affected by this action.
+        /// </summary>
+        public object AffectedConstruct { get; }
     }
 }

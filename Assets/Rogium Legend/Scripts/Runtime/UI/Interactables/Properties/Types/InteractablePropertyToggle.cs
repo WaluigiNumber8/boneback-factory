@@ -54,7 +54,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         
         private void WhenValueChange(bool value)
         {
-            ActionHistorySystem.AddAndExecute(new UpdateToggleAction(this, value));
+            ActionHistorySystem.GetInstance().AddAndExecute(new UpdateToggleAction(this, value));
         }
 
         public override bool PropertyValue { get => toggle.isOn; }

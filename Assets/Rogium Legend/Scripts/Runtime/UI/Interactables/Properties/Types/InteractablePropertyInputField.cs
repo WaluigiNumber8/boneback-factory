@@ -44,7 +44,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             oldValue = inputtedText;
             
             this.whenFinishEditing = whenFinishEditing;
-            inputField.onEndEdit.AddListener((value) => ActionHistorySystem.AddAndExecute(new UpdateInputFieldAction(this, value, oldValue)));
+            inputField.onEndEdit.AddListener((value) => ActionHistorySystem.GetInstance().AddAndExecute(new UpdateInputFieldAction(this, value, oldValue)));
         }
 
         public void UpdateValueWithoutNotify(string value)

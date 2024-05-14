@@ -1,0 +1,41 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace Rogium.Systems.ActionHistory
+{
+    /// <summary>
+    /// Groups multiple actions into one.
+    /// </summary>
+    public class GroupAction : IAction
+    {
+        private readonly IList<IAction> actions = new List<IAction>();
+
+        public void Execute()
+        {
+            foreach (IAction action in actions)
+            {
+                action.Execute();
+            }
+        }
+
+        public void Undo()
+        {
+            for (int i = actions.Count - 1; i >= 0; i--)
+            {
+                actions[i].Undo();
+            }
+        }
+
+        public void AddAction(IAction action)
+        {
+            actions.Add(action);
+            Debug.Log($"Added '{action}' to group");
+        }
+
+        public bool NothingChanged() => false;
+        
+        public object AffectedConstruct => actions;
+
+        public override string ToString() => $"{actions[0]} -> {actions[^1]}";
+    }
+}

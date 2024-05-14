@@ -72,7 +72,7 @@ namespace Rogium.UserInterface.Interactables
         /// <param name="value">The sprite to update with.</param>
         private void WhenAssetPicked(IAsset value)
         {
-            ActionHistorySystem.AddAndExecute(new UpdateAssetFieldAction(this, value, oldValue));
+            ActionHistorySystem.GetInstance().AddAndExecute(new UpdateAssetFieldAction(this, value, oldValue));
         }
 
         private void Refresh()
