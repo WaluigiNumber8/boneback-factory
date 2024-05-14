@@ -58,11 +58,11 @@ namespace Rogium.Systems.GridSystem
 
                     try
                     {
-                        Draw(sprite, new Vector2Int(x, y), colorArray[id]);
+                        DrawTo(sprite, new Vector2Int(x, y), colorArray[id]);
                     }
                     catch (InvalidOperationException)
                     {
-                        Draw(sprite, new Vector2Int(x, y), EditorConstants.MissingColor);
+                        DrawTo(sprite, new Vector2Int(x, y), EditorConstants.MissingColor);
                     }
                 }
             }
@@ -102,8 +102,8 @@ namespace Rogium.Systems.GridSystem
             SafetyNet.EnsureFloatIsEqual(sprite.pixelsPerUnit, pixelsPerUnit, "Pixels per unit");
             
             AssetUtils.UpdateFromGridByList(IDGrid, assetList, 
-                (x, y, asset) => Draw(sprite, new Vector2Int(x, y), asset.Icon),
-                (x, y) => Draw(sprite, new Vector2Int(x, y), EditorConstants.MissingSprite));
+                (x, y, asset) => DrawTo(sprite, new Vector2Int(x, y), asset.Icon),
+                (x, y) => DrawTo(sprite, new Vector2Int(x, y), EditorConstants.MissingSprite));
             
             Apply(sprite);
             return sprite;
@@ -115,10 +115,10 @@ namespace Rogium.Systems.GridSystem
         /// <param name="canvas">The sprite to draw on.</param>
         /// <param name="pos">The position (in units) to draw at.</param>
         /// <param name="value">The color to draw.</param>
-        public void Draw(Sprite canvas, Vector2Int pos, Color value)
+        public void DrawTo(Sprite canvas, Vector2Int pos, Color value)
         {
             Sprite colorValue = RedRatBuilder.GenerateSprite(value, unitSize.x, unitSize.y, pixelsPerUnit);
-            Draw(canvas, pos, colorValue);
+            DrawTo(canvas, pos, colorValue);
         }
         
         /// <summary>
@@ -127,7 +127,7 @@ namespace Rogium.Systems.GridSystem
         /// <param name="canvas">The sprite to draw on.</param>
         /// <param name="pos">The position (in units) to draw at.</param>
         /// <param name="sprite">The sprite to draw (MUST be same size as unit).</param>
-        public void Draw(Sprite canvas, Vector2Int pos, Sprite sprite)
+        public void DrawTo(Sprite canvas, Vector2Int pos, Sprite sprite)
         {
             Texture2D canvasTex = canvas.texture;
             Texture2D tex = sprite.texture;

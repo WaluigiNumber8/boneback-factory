@@ -4,6 +4,7 @@ using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Palettes;
+using Rogium.Systems.ActionHistory;
 using Rogium.Systems.GridSystem;
 using Rogium.Systems.ItemPalette;
 using Rogium.Systems.Toolbox;
@@ -95,8 +96,10 @@ namespace Rogium.Editors.Sprites
         /// </summary>
         public void ClearActiveGrid()
         {
-            grid.ClearAllCells();
-            editor.CurrentAsset.SpriteData.ClearAllCells();
+            ObjectGrid<int> dataGrid = editor.CurrentAsset.SpriteData;
+            ObjectGrid<int> clearGrid = new(dataGrid);
+            clearGrid.ClearAllCells();
+            ActionHistorySystem.GetInstance().AddAndExecute(new LoadEditorGridAction<int>(dataGrid, clearGrid, dataGrid, EditorConstants.EmptyGridSprite, grid.ActiveLayerSprite, grid));
         }
         
         /// <summary>

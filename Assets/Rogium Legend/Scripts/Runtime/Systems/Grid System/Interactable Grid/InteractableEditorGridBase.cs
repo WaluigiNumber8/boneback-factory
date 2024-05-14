@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Rogium.Editors.Core;
 using UnityEngine;
 
@@ -7,19 +8,28 @@ namespace Rogium.Systems.GridSystem
     public abstract class InteractableEditorGridBase : MonoBehaviour
     {
         /// <summary>
-        /// Loads sprites into the editor grid.
+        /// Loads the editor grid with assets.
         /// </summary>
         /// <param name="assetList">From which list of assets to load from.</param>
         /// <param name="IDGrid">The grid of IDs to read.</param>
+        /// <param name="layer">The index of the layer to load into.</param>
         /// <typeparam name="T">Is a type of Asset.</typeparam>
-        public abstract void LoadWithSprites<T>(ObjectGrid<string> IDGrid, IList<T> assetList) where T : IAsset;
+        /// <typeparam name="TS">Any type of <see cref="IComparable{T}"/></typeparam>
+        public abstract void LoadWithAssets<T, TS>(ObjectGrid<TS> IDGrid, IList<T> assetList, int layer) where T : IAsset where TS : IComparable;
 
         /// <summary>
-        /// Loads UI tiles into the editor grid.
+        /// Loads the editor grid with colors.
         /// </summary>
         /// <param name="colorArray">A color array to read from.</param>
         /// <param name="indexGrid">The grid of indexes to read.</param>
         public abstract void LoadWithColors(ObjectGrid<int> indexGrid, Color[] colorArray);
+
+        /// <summary>
+        /// Loads the editor grid with a single sprite.
+        /// </summary>
+        /// <param name="sprite">The sprite to load up with.</param>
+        /// <param name="layer">The layer to load it into.</param>
+        public abstract void LoadWithSprite(Sprite sprite, int layer);
 
         /// <summary>
         /// Updates a cell with a new value.
@@ -58,5 +68,8 @@ namespace Rogium.Systems.GridSystem
         /// Clears all elements on the active grid.
         /// </summary>
         public abstract void ClearAllCells();
+        
+        public abstract int ActiveLayer { get; }
+        public abstract Sprite ActiveLayerSprite { get; }
     }
 }

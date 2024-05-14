@@ -10,6 +10,7 @@ using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Objects;
 using Rogium.Editors.Rooms.PropertyColumn;
 using Rogium.Editors.Tiles;
+using Rogium.Systems.ActionHistory;
 using Rogium.Systems.GridSystem;
 using Rogium.Systems.ItemPalette;
 using Rogium.Systems.Toolbox;
@@ -113,8 +114,9 @@ namespace Rogium.Editors.Rooms
         /// </summary>
         public void ClearActiveLayer()
         {
-            grid.ClearAllCells();
-            currentData.Grid.ClearAllCells();
+            ObjectGrid<AssetData> clearGrid = new(currentData.Grid);
+            clearGrid.ClearAllCells();
+            ActionHistorySystem.GetInstance().AddAndExecute(new LoadEditorGridAction<AssetData>(currentData.Grid, clearGrid, currentData.Grid, EditorConstants.EmptyGridSprite, grid.ActiveLayerSprite, grid));
         }
         
         /// <summary>
@@ -153,10 +155,10 @@ namespace Rogium.Editors.Rooms
 
             StartCoroutine(SwitchLayer0Delay(0.1f));
             
-            grid.LoadWithSprites(room.TileGrid, tiles, 0);
-            grid.LoadWithSprites(room.DecorGrid, decor, 1);
-            grid.LoadWithSprites(room.ObjectGrid, objects, 2);
-            grid.LoadWithSprites(room.EnemyGrid, packEditor.CurrentPack.Enemies, 3);
+            grid.LoadWithAssets(room.TileGrid, tiles, 0);
+            grid.LoadWithAssets(room.DecorGrid, decor, 1);
+            grid.LoadWithAssets(room.ObjectGrid, objects, 2);
+            grid.LoadWithAssets(room.EnemyGrid, packEditor.CurrentPack.Enemies, 3);
             
             propertyColumn.ConstructSettings(editor.CurrentAsset);
         }
