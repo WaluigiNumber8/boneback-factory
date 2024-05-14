@@ -31,6 +31,6 @@ namespace Rogium.Systems.ActionHistory
         
         public object AffectedConstruct => actions;
 
-        public override string ToString() => $"{actions[0]} -> {actions[^1]}";
+        public override string ToString() => $"{actions[0].AffectedConstruct} x {actions.Count}";
     }
 }

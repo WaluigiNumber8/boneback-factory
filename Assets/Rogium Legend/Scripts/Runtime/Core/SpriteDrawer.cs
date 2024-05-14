@@ -131,8 +131,8 @@ namespace Rogium.Systems.GridSystem
         {
             Texture2D canvasTex = canvas.texture;
             Texture2D tex = sprite.texture;
-            SafetyNet.EnsureIntIsEqual(tex.width, 16, $"{canvas.name}'s width");
-            SafetyNet.EnsureIntIsEqual(tex.height, 16, $"{canvas.name}'s height");
+            SafetyNet.EnsureIntIsEqual(tex.width, 16, $"{tex.name}'s width");
+            SafetyNet.EnsureIntIsEqual(tex.height, 16, $"{tex.name}'s height");
 
             int startX = pos.x * unitSize.x;
             int startY = pos.y * unitSize.y;
@@ -157,7 +157,10 @@ namespace Rogium.Systems.GridSystem
         public Sprite Get(Sprite canvas, Vector2Int pos)
         {
             Texture2D canvasTex = canvas.texture;
-            Color[] spritePixels = canvasTex.GetPixels(pos.x, pos.y, unitSize.x, unitSize.y);
+            
+            int startX = pos.x * unitSize.x;
+            int startY = pos.y * unitSize.y;
+            Color[] spritePixels = canvasTex.GetPixels(startX, startY, unitSize.x, unitSize.y);
             
             Texture2D tex = RedRatBuilder.GenerateTexture(unitSize.x, unitSize.y);
             tex.SetPixels(spritePixels);

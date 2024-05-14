@@ -10,7 +10,7 @@ namespace Rogium.Systems.ActionHistory
     public class ActionHistorySystem : MonoSingleton<ActionHistorySystem>
     {
         private const float CanCreateGroupTime = 1.0f;
-        private const float GroupLifeTime = 0.2f;
+        private const float GroupLifeTime = 0.6f;
         
         private CurrentAssetDetector assetDetector => CurrentAssetDetector.Instance;
         private readonly Stack<IAction> undoHistory = new();
