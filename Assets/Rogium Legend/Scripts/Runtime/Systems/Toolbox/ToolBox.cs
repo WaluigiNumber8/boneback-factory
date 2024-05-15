@@ -120,10 +120,16 @@ namespace Rogium.Systems.Toolbox
                 value = emptyValue;
                 graphicValue = EditorConstants.EmptyGridSprite;
             }
+            
+            //Update old values
             T oldValue = grid.GetValue(position);
             Sprite oldGraphicValue = UIGrid.GetCell(position);
-            ActionHistorySystem.GetInstance().AddAndExecute(new UseToolAction<T>(tool, grid, position, value, oldValue, graphicValue, oldGraphicValue, layerIndex));
+            
+            //Select action based on tool
+            IAction action = tool is BucketTool<T> bucket
+                ? new UseBucketToolAction<T>(bucket, grid, position, value, oldValue, graphicValue, oldGraphicValue, layerIndex)
+                : new UseToolAction<T>(tool, grid, position, value, oldValue, graphicValue, oldGraphicValue, layerIndex);
+            ActionHistorySystem.GetInstance().AddAndExecute(action);
         }
-        
     }
 }
