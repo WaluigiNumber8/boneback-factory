@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Rogium.Systems.Input;
-using UnityEngine;
 
 namespace Rogium.Systems.ActionHistory
 {
@@ -93,22 +92,15 @@ namespace Rogium.Systems.ActionHistory
                 
                 //End grouping if action is different
                 AddCurrentGroupToUndo();
-                undoHistory.Push(action);
-                return;
             }
-            
+
             undoHistory.Push(action);
         }
 
-        private static void StartGroupingProcess()
-        {
-            Debug.Log("ON");
-            canCreateGroups = true;
-        }
+        private static void StartGroupingProcess() => canCreateGroups = true;
 
         private static void KillGroupingProcess()
         {
-            Debug.Log("OFF");
             canCreateGroups = false;
             AddCurrentGroupToUndo();
         }
