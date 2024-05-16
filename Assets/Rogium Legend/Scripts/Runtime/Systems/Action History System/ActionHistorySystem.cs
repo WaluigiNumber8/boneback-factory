@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using RedRats.Core;
-using RedRats.Systems.Clocks;
+using Rogium.Systems.Input;
 
 namespace Rogium.Systems.ActionHistory
 {
@@ -9,30 +9,22 @@ namespace Rogium.Systems.ActionHistory
     /// </summary>
     public class ActionHistorySystem : MonoSingleton<ActionHistorySystem>
     {
-        private const float CanCreateGroupTime = 1.0f;
-        private const float GroupLifeTime = 0.6f;
-        
         private CurrentAssetDetector assetDetector => CurrentAssetDetector.Instance;
         private readonly Stack<IAction> undoHistory = new();
         private readonly Stack<IAction> redoHistory = new();
 
         private IAction lastAction;
         private GroupAction currentGroup;
-        private CountdownTimer canCreateGroupTimer;
-        private CountdownTimer groupLifeTimer;
+        private bool canCreateGroups = true;
 
-        protected override void Awake()
+        private void Start()
         {
-            base.Awake();
-            canCreateGroupTimer = new CountdownTimer();
-            groupLifeTimer = new CountdownTimer(AddCurrentGroupToUndo);
             assetDetector.OnAssetChange += ClearHistory;
-        }
 
-        private void Update()
-        {
-            canCreateGroupTimer.Tick();
-            groupLifeTimer.Tick();
+            InputSystem.GetInstance().UI.Click.OnPress += StartGroupingProcess;
+            InputSystem.GetInstance().UI.ClickAlternative.OnPress += StartGroupingProcess;
+            InputSystem.GetInstance().UI.Click.OnRelease += KillGroupingProcess;
+            InputSystem.GetInstance().UI.ClickAlternative.OnRelease += KillGroupingProcess;
         }
 
         public void AddAndExecute(IAction action)
@@ -41,14 +33,14 @@ namespace Rogium.Systems.ActionHistory
             if (assetDetector.WasAssetChanged) undoHistory.Clear();
 
             action.Execute();
-            AddToUndo(action);
+            DecideUndoStatusFor(action);
             redoHistory.Clear();
             lastAction = action;
             
             assetDetector.MarkAsEdited();
         }
 
-        public void UndoLastAction()
+        public void UndoLast()
         {
             //If there is a group open, add it to undo
             if (currentGroup != null) AddCurrentGroupToUndo();
@@ -60,7 +52,7 @@ namespace Rogium.Systems.ActionHistory
             newestAction.Undo();
         }
 
-        public void RedoLastAction()
+        public void RedoLast()
         {
             if (redoHistory.Count == 0) return;
 
@@ -79,47 +71,53 @@ namespace Rogium.Systems.ActionHistory
 
         #region Group Processing
 
-        private void AddToUndo(IAction action)
+        private void DecideUndoStatusFor(IAction action)
         {
-            // Create a group if actions are on the same construct
-            if (action.AffectedConstruct == lastAction?.AffectedConstruct && canCreateGroupTimer.TimeLeft > 0)
+            // If in group mode
+            if (canCreateGroups)
             {
-                if (currentGroup == null) InitGroup();
-                currentGroup!.AddAction(action);
+                //Init group if it doesn't exist
+                if (currentGroup == null)
+                {
+                    currentGroup = new GroupAction();
+                    currentGroup.AddAction(action);
+                    return;
+                }
                 
-                //Start group life ticker
-                groupLifeTimer.Set(GroupLifeTime);
-                return;
-            }
-            
-            //If a group exists but action is on a different construct, add the group to undo
-            if (currentGroup != null)
-            {
+                //Add to group if action is on the same construct
+                if (action.AffectedConstruct == lastAction?.AffectedConstruct)
+                {
+                    currentGroup.AddAction(action);
+                    return;
+                }
+                
+                //End grouping if action is different
                 AddCurrentGroupToUndo();
                 undoHistory.Push(action);
                 return;
             }
             
             undoHistory.Push(action);
-            
-            //Set time during which it is possible to create a group
-            canCreateGroupTimer.Set(CanCreateGroupTime);
         }
 
-        private void InitGroup()
+        private void StartGroupingProcess()
         {
-            currentGroup = new GroupAction();
-            if (undoHistory.Count > 0 && undoHistory.Peek() is not GroupAction) undoHistory.Pop();
-            currentGroup.AddAction(lastAction);
+            // Debug.Log("ON");
+            canCreateGroups = true;
         }
 
+        private void KillGroupingProcess()
+        {
+            // Debug.Log("OFF");
+            canCreateGroups = false;
+            AddCurrentGroupToUndo();
+        }
+        
         private void AddCurrentGroupToUndo()
         {
             if (currentGroup == null) return;
-            
+
             undoHistory.Push(currentGroup);
-            // Debug.Log("Add active group to undo");
-            groupLifeTimer.Clear();
             currentGroup = null;
         }
         

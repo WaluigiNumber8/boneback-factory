@@ -65,9 +65,11 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="whenValueChange">Method that will run when the slider changes value.</param>
         public void Construct(string titleText, int minValue, int maxValue, int startingValue, Action<float> whenValueChange)
         {
+            decimalMultiplier = 1;
+            decimals.sliderWithInput.ResetDecimalMultiplier();
+            
             ConstructTitle(titleText);
             
-            decimals.sliderWithInput.ResetDecimalMultiplier();
             inputField.UpdateContentType(TMP_InputField.ContentType.IntegerNumber);
             slider.maxValue = maxValue;
             slider.minValue = minValue;
@@ -79,9 +81,9 @@ namespace Rogium.UserInterface.Interactables.Properties
 
         public void UpdateValueWithoutNotify(float value)
         {
-            oldValue = slider.value / decimalMultiplier;
             decimals.sliderWithInput.SetValue(value);
             whenValueChange?.Invoke(value);
+            oldValue = value / decimalMultiplier;
         }
         
         /// <summary>
@@ -102,11 +104,13 @@ namespace Rogium.UserInterface.Interactables.Properties
         private void WhenValueChange(float value)
         {
             ActionHistorySystem.GetInstance().AddAndExecute(new UpdateSliderAction(this, value / decimalMultiplier, oldValue));
+            oldValue = value / decimalMultiplier;
         }
         
         private void WhenValueChange(int value)
         {
             ActionHistorySystem.GetInstance().AddAndExecute(new UpdateSliderAction(this, value, oldValue));
+            oldValue = value;
         }
         
         public override float PropertyValue { get => slider.value / decimalMultiplier; }

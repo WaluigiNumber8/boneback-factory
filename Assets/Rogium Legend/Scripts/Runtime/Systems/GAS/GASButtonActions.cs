@@ -56,12 +56,12 @@ namespace Rogium.Systems.GASExtension
 
         public static void UndoLastAction()
         {
-            ActionHistorySystem.GetInstance().UndoLastAction();
+            ActionHistorySystem.GetInstance().UndoLast();
         }
         
         public static void RedoLastAction()
         {
-            ActionHistorySystem.GetInstance().RedoLastAction();
+            ActionHistorySystem.GetInstance().RedoLast();
         }
 
         #endregion
