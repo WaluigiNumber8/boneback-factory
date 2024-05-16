@@ -26,6 +26,8 @@ namespace Rogium.Systems.ActionHistory
         public bool NothingChanged() => value.Equals(lastValue);
         
         public object AffectedConstruct => assetField;
+        public object Value { get => value; }
+        public object LastValue { get => lastValue; }
 
         public override string ToString() => $"{assetField.name}: {lastValue} -> {value}";
     }

@@ -116,8 +116,7 @@ namespace Rogium.Systems.ActionHistory
         private void AddCurrentGroupToUndo()
         {
             if (currentGroup == null) return;
-
-            undoHistory.Push(currentGroup);
+            if (!currentGroup.NothingChanged()) undoHistory.Push(currentGroup);
             currentGroup = null;
         }
         

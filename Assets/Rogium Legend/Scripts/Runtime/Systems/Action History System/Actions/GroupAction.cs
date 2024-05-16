@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Rogium.Systems.ActionHistory
@@ -27,9 +28,11 @@ namespace Rogium.Systems.ActionHistory
 
         public void AddAction(IAction action) => actions.Add(action);
 
-        public bool NothingChanged() => false;
+        public bool NothingChanged() => actions[0].LastValue.Equals(actions[^1].Value);
         
         public object AffectedConstruct => actions;
+        public object Value { get => -1; }
+        public object LastValue { get => -1; }
 
         public override string ToString() => $"{actions[0].AffectedConstruct} x {actions.Count}";
     }

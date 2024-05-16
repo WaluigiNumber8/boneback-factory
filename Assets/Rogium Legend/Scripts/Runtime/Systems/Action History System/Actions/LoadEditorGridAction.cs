@@ -1,3 +1,4 @@
+using System;
 using Rogium.Systems.GridSystem;
 using UnityEngine;
 
@@ -42,6 +43,8 @@ namespace Rogium.Systems.ActionHistory
         public bool NothingChanged() => grid.Equals(value);
 
         public object AffectedConstruct { get => grid; }
+        public object Value { get => value; }
+        public object LastValue { get => lastValue; }
 
         public override string ToString() => $"{layer} - {lastValue} -> {value}";
     }

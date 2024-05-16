@@ -24,7 +24,9 @@ namespace Rogium.Systems.ActionHistory
         public void Undo() => colorField.UpdateValue(lastValue);
 
         public bool NothingChanged() => value == lastValue;
-
-        public object AffectedConstruct { get => colorField; }
+        
+        public object AffectedConstruct => colorField;
+        public object Value { get => value; }
+        public object LastValue { get => lastValue; }
     }
 }

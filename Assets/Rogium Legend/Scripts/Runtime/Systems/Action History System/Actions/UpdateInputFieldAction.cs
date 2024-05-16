@@ -25,6 +25,8 @@ namespace Rogium.Systems.ActionHistory
         public bool NothingChanged() => value == lastValue;
         
         public object AffectedConstruct => inputField;
+        public object Value { get => value; }
+        public object LastValue { get => lastValue; }
 
         public override string ToString() => $"{inputField.name}: {lastValue} -> {value}";
     }

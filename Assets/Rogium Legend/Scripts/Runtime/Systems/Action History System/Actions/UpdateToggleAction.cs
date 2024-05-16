@@ -22,7 +22,9 @@ namespace Rogium.Systems.ActionHistory
 
         public bool NothingChanged() => false;
         
-        public object AffectedConstruct { get => toggle; }
+        public object AffectedConstruct => toggle;
+        public object Value { get => value; }
+        public object LastValue { get => !value; }
 
         public override string ToString() => $"{toggle.name}: {!value} -> {value}";
     }

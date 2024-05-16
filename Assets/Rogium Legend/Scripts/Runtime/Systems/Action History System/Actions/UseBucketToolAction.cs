@@ -42,6 +42,8 @@ namespace Rogium.Systems.ActionHistory
         public bool NothingChanged() => value.CompareTo(lastValue) == 0;
 
         public object AffectedConstruct => grid;
+        public object Value { get => value; }
+        public object LastValue { get => lastValue; }
 
         public override string ToString() => $"{tool}: {lastValue} -> {value} at {layer}-{position}";
     }

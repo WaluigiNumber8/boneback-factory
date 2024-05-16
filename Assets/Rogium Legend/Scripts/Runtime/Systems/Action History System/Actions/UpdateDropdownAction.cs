@@ -26,6 +26,8 @@ namespace Rogium.Systems.ActionHistory
         public bool NothingChanged() => value == lastValue;
         
         public object AffectedConstruct => dropdown;
+        public object Value { get => value; }
+        public object LastValue { get => lastValue; }
 
         public override string ToString() => $"{dropdown.name}: {lastValue} -> {value}";
     }

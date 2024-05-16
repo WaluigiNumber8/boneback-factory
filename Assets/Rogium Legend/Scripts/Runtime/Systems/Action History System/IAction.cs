@@ -1,3 +1,5 @@
+using System;
+
 namespace Rogium.Systems.ActionHistory
 {
     /// <summary>
@@ -21,5 +23,7 @@ namespace Rogium.Systems.ActionHistory
         /// Which construct is affected by this action.
         /// </summary>
         public object AffectedConstruct { get; }
+        public object Value { get; }
+        public object LastValue { get; }
     }
 }

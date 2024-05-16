@@ -25,7 +25,9 @@ namespace Rogium.Systems.ActionHistory
 
         public bool NothingChanged() => value.IsSameAs(lastValue);
         
-        public object AffectedConstruct { get => slider; }
+        public object AffectedConstruct => slider;
+        public object Value { get => value; }
+        public object LastValue { get => lastValue; }
 
         public override string ToString() => $"{slider.name}: {lastValue} -> {value}";
     }
