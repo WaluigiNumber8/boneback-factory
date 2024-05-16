@@ -49,7 +49,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             slider.maxValue = Mathf.RoundToInt(maxValue * decimalMultiplier);
             slider.minValue = Mathf.RoundToInt(minValue * decimalMultiplier);
             decimals.sliderWithInput.SetValue(startingValue);
-            oldValue = startingValue;
+            oldValue = startingValue * decimalMultiplier;
             
             this.whenValueChange = whenValueChange;
             slider.onValueChanged.AddListener(WhenValueChange);
@@ -83,7 +83,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             decimals.sliderWithInput.SetValue(value);
             whenValueChange?.Invoke(value);
-            oldValue = value / decimalMultiplier;
+            oldValue = value * decimalMultiplier;
         }
         
         /// <summary>
@@ -103,8 +103,8 @@ namespace Rogium.UserInterface.Interactables.Properties
 
         private void WhenValueChange(float value)
         {
-            ActionHistorySystem.GetInstance().AddAndExecute(new UpdateSliderAction(this, value / decimalMultiplier, oldValue));
-            oldValue = value / decimalMultiplier;
+            ActionHistorySystem.GetInstance().AddAndExecute(new UpdateSliderAction(this, value / decimalMultiplier, oldValue / decimalMultiplier));
+            oldValue = value;
         }
         
         private void WhenValueChange(int value)
