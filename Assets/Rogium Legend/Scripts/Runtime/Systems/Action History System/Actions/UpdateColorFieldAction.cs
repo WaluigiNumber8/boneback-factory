@@ -10,20 +10,20 @@ namespace Rogium.Systems.ActionHistory
     {
         private readonly ColorField colorField;
         private readonly Color value;
-        private readonly Color oldValue;
+        private readonly Color lastValue;
         
-        public UpdateColorFieldAction(ColorField colorField, Color value, Color oldValue)
+        public UpdateColorFieldAction(ColorField colorField, Color value, Color lastValue)
         {
             this.colorField = colorField;
             this.value = value;
-            this.oldValue = oldValue;
+            this.lastValue = lastValue;
         }
         
         public void Execute() => colorField.UpdateValue(value);
 
-        public void Undo() => colorField.UpdateValue(oldValue);
+        public void Undo() => colorField.UpdateValue(lastValue);
 
-        public bool NothingChanged() => value == oldValue;
+        public bool NothingChanged() => value == lastValue;
 
         public object AffectedConstruct { get => colorField; }
     }

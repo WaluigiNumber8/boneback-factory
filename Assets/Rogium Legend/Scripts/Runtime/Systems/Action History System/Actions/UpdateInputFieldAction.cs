@@ -9,23 +9,23 @@ namespace Rogium.Systems.ActionHistory
     {
         private readonly InteractablePropertyInputField inputField;
         private readonly string value;
-        private readonly string oldValue;
+        private readonly string lastValue;
 
-        public UpdateInputFieldAction(InteractablePropertyInputField inputField, string value, string oldValue)
+        public UpdateInputFieldAction(InteractablePropertyInputField inputField, string value, string lastValue)
         {
             this.inputField = inputField;
             this.value = value;
-            this.oldValue = oldValue;
+            this.lastValue = lastValue;
         }
 
         public void Execute() => inputField.UpdateValueWithoutNotify(value);
 
-        public void Undo() => inputField.UpdateValueWithoutNotify(oldValue);
+        public void Undo() => inputField.UpdateValueWithoutNotify(lastValue);
 
-        public bool NothingChanged() => value == oldValue;
+        public bool NothingChanged() => value == lastValue;
         
         public object AffectedConstruct => inputField;
 
-        public override string ToString() => $"{inputField.name}: {oldValue} -> {value}";
+        public override string ToString() => $"{inputField.name}: {lastValue} -> {value}";
     }
 }

@@ -17,7 +17,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         [SerializeField] private UIInfo ui;
         
         private Action<int> whenValueChange;
-        private int oldValue;
+        private int lastValue;
 
         public override void SetDisabled(bool isDisabled) => dropdown.interactable = !isDisabled;
 
@@ -33,12 +33,12 @@ namespace Rogium.UserInterface.Interactables.Properties
             FillDropdown(options);
             ConstructTitle(titleText);
             
-            oldValue = startingValue;
+            lastValue = startingValue;
             dropdown.SetValueWithoutNotify(startingValue);
             dropdown.RefreshShownValue();
             
             this.whenValueChange = whenValueChange;
-            dropdown.onValueChanged.AddListener((value) => ActionHistorySystem.GetInstance().AddAndExecute(new UpdateDropdownAction(this, value, oldValue)));
+            dropdown.onValueChanged.AddListener(WhenValueChanged);
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="value">The new value for the dropdown.</param>
         public void UpdateValueWithoutNotify(int value)
         {
-            oldValue = dropdown.value;
+            lastValue = dropdown.value;
             dropdown.SetValueWithoutNotify(value);
             dropdown.RefreshShownValue();
             whenValueChange?.Invoke(value);
@@ -77,6 +77,12 @@ namespace Rogium.UserInterface.Interactables.Properties
             ui.toggleCheckmarkImage.sprite = checkmark;
         }
 
+        private void WhenValueChanged(int value)
+        {
+            ActionHistorySystem.GetInstance().AddAndExecute(new UpdateDropdownAction(this, value, lastValue));
+            lastValue = value;
+        }
+        
         /// <summary>
         /// Fills the dropdown with strings.
         /// </summary>

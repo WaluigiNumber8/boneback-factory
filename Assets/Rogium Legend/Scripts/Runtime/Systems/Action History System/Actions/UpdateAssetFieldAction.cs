@@ -10,23 +10,23 @@ namespace Rogium.Systems.ActionHistory
     {
         private readonly AssetField assetField;
         private readonly IAsset value;
-        private readonly IAsset oldValue;
+        private readonly IAsset lastValue;
         
-        public UpdateAssetFieldAction(AssetField assetField, IAsset value, IAsset oldValue)
+        public UpdateAssetFieldAction(AssetField assetField, IAsset value, IAsset lastValue)
         {
             this.assetField = assetField;
             this.value = value;
-            this.oldValue = oldValue;
+            this.lastValue = lastValue;
         }
         
         public void Execute() => assetField.UpdateValue(value);
 
-        public void Undo() => assetField.UpdateValue(oldValue);
+        public void Undo() => assetField.UpdateValue(lastValue);
 
-        public bool NothingChanged() => value.Equals(oldValue);
+        public bool NothingChanged() => value.Equals(lastValue);
         
         public object AffectedConstruct => assetField;
 
-        public override string ToString() => $"{assetField.name}: {oldValue} -> {value}";
+        public override string ToString() => $"{assetField.name}: {lastValue} -> {value}";
     }
 }

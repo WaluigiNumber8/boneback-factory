@@ -17,7 +17,7 @@ namespace Rogium.UserInterface.Interactables
         [SerializeField] private UIInfo ui;
 
         private Color value;
-        private Color oldValue;
+        private Color lastValue;
         
         public override void OnPointerDown(PointerEventData eventData)
         {
@@ -32,13 +32,13 @@ namespace Rogium.UserInterface.Interactables
         public void Construct(Color value)
         {
             this.value = value;
-            this.oldValue = value;
+            this.lastValue = value;
             ui.color.color = value;
         }
 
         public void UpdateValue(Color value)
         {
-            this.oldValue = this.value;
+            this.lastValue = this.value;
             this.value = value;
             ui.color.color = value;
             OnValueChanged?.Invoke(value);
@@ -50,7 +50,8 @@ namespace Rogium.UserInterface.Interactables
         /// </summary>
         private void WhenColorPicked(Color value)
         {
-            ActionHistorySystem.GetInstance().AddAndExecute(new UpdateColorFieldAction(this, value, oldValue));
+            ActionHistorySystem.GetInstance().AddAndExecute(new UpdateColorFieldAction(this, value, lastValue));
+            lastValue = value;
         }
         
         public Color Value { get => value; }

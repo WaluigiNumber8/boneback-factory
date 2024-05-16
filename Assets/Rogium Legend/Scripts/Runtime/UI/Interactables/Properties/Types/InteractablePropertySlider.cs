@@ -20,8 +20,8 @@ namespace Rogium.UserInterface.Interactables.Properties
         [SerializeField] private UIInfo ui;
 
         private int decimalMultiplier;
-        private float oldValue;
-        private Action<float> whenValueChange;
+        private float lastValue;
+        private Action<float> whenValueChanged;
 
         public override void SetDisabled(bool isDisabled)
         {
@@ -49,10 +49,10 @@ namespace Rogium.UserInterface.Interactables.Properties
             slider.maxValue = Mathf.RoundToInt(maxValue * decimalMultiplier);
             slider.minValue = Mathf.RoundToInt(minValue * decimalMultiplier);
             decimals.sliderWithInput.SetValue(startingValue);
-            oldValue = startingValue * decimalMultiplier;
+            lastValue = startingValue * decimalMultiplier;
             
-            this.whenValueChange = whenValueChange;
-            slider.onValueChanged.AddListener(WhenValueChange);
+            this.whenValueChanged = whenValueChange;
+            slider.onValueChanged.AddListener(WhenValueChanged);
         }
         
         /// <summary>
@@ -75,15 +75,15 @@ namespace Rogium.UserInterface.Interactables.Properties
             slider.minValue = minValue;
             UpdateValueWithoutNotify(startingValue);
             
-            this.whenValueChange = whenValueChange;
-            slider.onValueChanged.AddListener(value => WhenValueChange((int)value));
+            this.whenValueChanged = whenValueChange;
+            slider.onValueChanged.AddListener(value => WhenValueChanged((int)value));
         }
 
         public void UpdateValueWithoutNotify(float value)
         {
             decimals.sliderWithInput.SetValue(value);
-            whenValueChange?.Invoke(value);
-            oldValue = value * decimalMultiplier;
+            whenValueChanged?.Invoke(value);
+            lastValue = value * decimalMultiplier;
         }
         
         /// <summary>
@@ -101,16 +101,16 @@ namespace Rogium.UserInterface.Interactables.Properties
             ui.handleImage.sprite = handleSprite;
         }
 
-        private void WhenValueChange(float value)
+        private void WhenValueChanged(float value)
         {
-            ActionHistorySystem.GetInstance().AddAndExecute(new UpdateSliderAction(this, value / decimalMultiplier, oldValue / decimalMultiplier));
-            oldValue = value;
+            ActionHistorySystem.GetInstance().AddAndExecute(new UpdateSliderAction(this, value / decimalMultiplier, lastValue / decimalMultiplier));
+            lastValue = value;
         }
         
-        private void WhenValueChange(int value)
+        private void WhenValueChanged(int value)
         {
-            ActionHistorySystem.GetInstance().AddAndExecute(new UpdateSliderAction(this, value, oldValue));
-            oldValue = value;
+            ActionHistorySystem.GetInstance().AddAndExecute(new UpdateSliderAction(this, value, lastValue));
+            lastValue = value;
         }
         
         public override float PropertyValue { get => slider.value / decimalMultiplier; }

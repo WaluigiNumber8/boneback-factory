@@ -30,7 +30,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             
             toggle.isOn = toggleState;
             this.whenChangeValue = whenChangeValue;
-            toggle.onValueChanged.AddListener(WhenValueChange);
+            toggle.onValueChanged.AddListener(WhenValueChanged);
         }
         
         public void UpdateValueWithoutNotify(bool value)
@@ -52,10 +52,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             ui.checkmarkImage.sprite = checkmark;
         }
         
-        private void WhenValueChange(bool value)
-        {
-            ActionHistorySystem.GetInstance().AddAndExecute(new UpdateToggleAction(this, value));
-        }
+        private void WhenValueChanged(bool value) => ActionHistorySystem.GetInstance().AddAndExecute(new UpdateToggleAction(this, value));
 
         public override bool PropertyValue { get => toggle.isOn; }
 

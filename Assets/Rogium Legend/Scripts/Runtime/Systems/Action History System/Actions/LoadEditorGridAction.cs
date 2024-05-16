@@ -10,19 +10,19 @@ namespace Rogium.Systems.ActionHistory
     {
         private readonly ObjectGrid<T> grid;
         private readonly ObjectGrid<T> value;
-        private readonly ObjectGrid<T> oldValue;
+        private readonly ObjectGrid<T> lastValue;
         private readonly Sprite graphicValue;
-        private readonly Sprite oldGraphicValue;
+        private readonly Sprite lastGraphicValue;
         private readonly InteractableEditorGridBase gridCanvas;
         private readonly int layer;
 
-        public LoadEditorGridAction(ObjectGrid<T> grid, ObjectGrid<T> value, ObjectGrid<T> oldValue, Sprite graphicValue, Sprite oldGraphicValue, InteractableEditorGridBase gridCanvas)
+        public LoadEditorGridAction(ObjectGrid<T> grid, ObjectGrid<T> value, ObjectGrid<T> lastValue, Sprite graphicValue, Sprite lastGraphicValue, InteractableEditorGridBase gridCanvas)
         {
             this.grid = grid;
             this.value = value;
-            this.oldValue = oldValue;
+            this.lastValue = lastValue;
             this.graphicValue = graphicValue;
-            this.oldGraphicValue = oldGraphicValue;
+            this.lastGraphicValue = lastGraphicValue;
             this.gridCanvas = gridCanvas;
             this.layer = gridCanvas.ActiveLayer;
         }
@@ -35,14 +35,14 @@ namespace Rogium.Systems.ActionHistory
 
         public void Undo()
         {
-            grid.SetFrom(oldValue);
-            gridCanvas.LoadWithSprite(oldGraphicValue, layer);
+            grid.SetFrom(lastValue);
+            gridCanvas.LoadWithSprite(lastGraphicValue, layer);
         }
 
         public bool NothingChanged() => grid.Equals(value);
 
         public object AffectedConstruct { get => grid; }
 
-        public override string ToString() => $"{layer} - {oldValue} -> {value}";
+        public override string ToString() => $"{layer} - {lastValue} -> {value}";
     }
 }

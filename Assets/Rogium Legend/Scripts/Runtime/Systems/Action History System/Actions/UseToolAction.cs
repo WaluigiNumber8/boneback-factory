@@ -16,30 +16,30 @@ namespace Rogium.Systems.ActionHistory
         private readonly int layer;
         
         private readonly T value;
-        private readonly T oldValue;
+        private readonly T lastValue;
         private readonly Sprite graphicValue;
-        private readonly Sprite oldGraphicValue;
+        private readonly Sprite lastGraphicValue;
 
-        public UseToolAction(ToolBase<T> tool, ObjectGrid<T> grid, Vector2Int position, T value, T oldValue, Sprite graphicValue, Sprite oldGraphicValue, int layer)
+        public UseToolAction(ToolBase<T> tool, ObjectGrid<T> grid, Vector2Int position, T value, T lastValue, Sprite graphicValue, Sprite lastGraphicValue, int layer)
         {
             this.tool = tool;
             this.grid = grid;
             this.position = position;
             this.value = value;
-            this.oldValue = oldValue;
+            this.lastValue = lastValue;
             this.layer = layer;
             this.graphicValue = graphicValue;
-            this.oldGraphicValue = oldGraphicValue;
+            this.lastGraphicValue = lastGraphicValue;
         }
 
         public void Execute() => tool.ApplyEffect(grid, position, value, graphicValue, layer);
 
-        public void Undo() => tool.ApplyEffect(grid, position, oldValue, oldGraphicValue, layer);
+        public void Undo() => tool.ApplyEffect(grid, position, lastValue, lastGraphicValue, layer);
 
-        public bool NothingChanged() => value.CompareTo(oldValue) == 0;
+        public bool NothingChanged() => value.CompareTo(lastValue) == 0;
         
         public object AffectedConstruct => grid;
 
-        public override string ToString() => $"{tool}: {oldValue} -> {value} at {layer}-{position}";
+        public override string ToString() => $"{tool}: {lastValue} -> {value} at {layer}-{position}";
     }
 }

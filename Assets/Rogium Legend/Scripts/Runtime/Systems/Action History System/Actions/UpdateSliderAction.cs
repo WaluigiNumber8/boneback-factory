@@ -10,23 +10,23 @@ namespace Rogium.Systems.ActionHistory
     {
         private readonly InteractablePropertySlider slider;
         private readonly float value;
-        private readonly float oldValue;
+        private readonly float lastValue;
 
-        public UpdateSliderAction(InteractablePropertySlider slider, float value, float oldValue)
+        public UpdateSliderAction(InteractablePropertySlider slider, float value, float lastValue)
         {
             this.slider = slider;
             this.value = value;
-            this.oldValue = oldValue;
+            this.lastValue = lastValue;
         }
 
         public void Execute() => slider.UpdateValueWithoutNotify(value);
 
-        public void Undo() => slider.UpdateValueWithoutNotify(oldValue);
+        public void Undo() => slider.UpdateValueWithoutNotify(lastValue);
 
-        public bool NothingChanged() => value.IsSameAs(oldValue);
+        public bool NothingChanged() => value.IsSameAs(lastValue);
         
         public object AffectedConstruct { get => slider; }
 
-        public override string ToString() => $"{slider.name}: {oldValue} -> {value}";
+        public override string ToString() => $"{slider.name}: {lastValue} -> {value}";
     }
 }

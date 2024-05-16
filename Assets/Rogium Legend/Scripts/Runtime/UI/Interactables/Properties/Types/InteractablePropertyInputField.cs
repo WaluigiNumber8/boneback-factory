@@ -17,7 +17,7 @@ namespace Rogium.UserInterface.Interactables.Properties
 
         private Action<string> whenFinishEditing;
         private float minLimit, maxLimit;
-        private string oldValue;
+        private string lastValue;
         
         public override void SetDisabled(bool isDisabled) => inputField.interactable = !isDisabled;
 
@@ -37,14 +37,14 @@ namespace Rogium.UserInterface.Interactables.Properties
             
             ConstructTitle(titleText);
             
-            oldValue = inputtedText;
+            lastValue = inputtedText;
             inputField.characterValidation = characterValidation;
             inputField.SetTextWithoutNotify(inputtedText);
             inputField.ForceLabelUpdate();
-            oldValue = inputtedText;
+            lastValue = inputtedText;
             
             this.whenFinishEditing = whenFinishEditing;
-            inputField.onEndEdit.AddListener((value) => ActionHistorySystem.GetInstance().AddAndExecute(new UpdateInputFieldAction(this, value, oldValue)));
+            inputField.onEndEdit.AddListener(WhenValueChanged);
         }
 
         public void UpdateValueWithoutNotify(string value)
@@ -55,7 +55,7 @@ namespace Rogium.UserInterface.Interactables.Properties
                 value = Mathf.Clamp(float.Parse(value), minLimit, maxLimit).ToString();
             }
             
-            oldValue = value;
+            lastValue = value;
             inputField.SetTextWithoutNotify(value);
             inputField.ForceLabelUpdate();
             whenFinishEditing?.Invoke(value);
@@ -79,6 +79,12 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// </summary>
         /// <param name="contentType">The new content type to use.</param>
         public void UpdateContentType(TMP_InputField.ContentType contentType) => inputField.contentType = contentType;
+        
+        private void WhenValueChanged(string value)
+        {
+            ActionHistorySystem.GetInstance().AddAndExecute(new UpdateInputFieldAction(this, value, lastValue));
+            lastValue = value;
+        }
         
         public override string PropertyValue { get => inputField.text; }
 

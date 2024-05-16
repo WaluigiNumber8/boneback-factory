@@ -9,24 +9,24 @@ namespace Rogium.Systems.ActionHistory
     {
         private readonly InteractablePropertyDropdown dropdown;
         private readonly int value;
-        private readonly int oldValue;
+        private readonly int lastValue;
 
-        public UpdateDropdownAction(InteractablePropertyDropdown dropdown, int value, int oldValue)
+        public UpdateDropdownAction(InteractablePropertyDropdown dropdown, int value, int lastValue)
         {
             this.dropdown = dropdown;
             this.value = value;
-            this.oldValue = oldValue;
+            this.lastValue = lastValue;
             
         }
 
         public void Execute() => dropdown.UpdateValueWithoutNotify(value);
 
-        public void Undo() => dropdown.UpdateValueWithoutNotify(oldValue);
+        public void Undo() => dropdown.UpdateValueWithoutNotify(lastValue);
 
-        public bool NothingChanged() => value == oldValue;
+        public bool NothingChanged() => value == lastValue;
         
         public object AffectedConstruct => dropdown;
 
-        public override string ToString() => $"{dropdown.name}: {oldValue} -> {value}";
+        public override string ToString() => $"{dropdown.name}: {lastValue} -> {value}";
     }
 }

@@ -23,7 +23,7 @@ namespace Rogium.UserInterface.Interactables
         [SerializeField] private UIInfo ui;
 
         private IAsset value;
-        private IAsset oldValue;
+        private IAsset lastValue;
         
         public void OnPointerClick(PointerEventData eventData)
         {
@@ -51,7 +51,7 @@ namespace Rogium.UserInterface.Interactables
         public void Construct(AssetType type, IAsset value, bool canBeEmpty = false)
         {
             this.type = type;
-            this.oldValue = value;
+            this.lastValue = value;
             this.value = value;
             this.canBeEmpty = canBeEmpty;
             
@@ -60,7 +60,7 @@ namespace Rogium.UserInterface.Interactables
 
         public void UpdateValue(IAsset value)
         {
-            oldValue = value;
+            lastValue = value;
             this.value = value;
             Refresh();
             OnValueChanged?.Invoke(value);
@@ -72,7 +72,8 @@ namespace Rogium.UserInterface.Interactables
         /// <param name="value">The sprite to update with.</param>
         private void WhenAssetPicked(IAsset value)
         {
-            ActionHistorySystem.GetInstance().AddAndExecute(new UpdateAssetFieldAction(this, value, oldValue));
+            ActionHistorySystem.GetInstance().AddAndExecute(new UpdateAssetFieldAction(this, value, lastValue));
+            lastValue = value;
         }
 
         private void Refresh()
