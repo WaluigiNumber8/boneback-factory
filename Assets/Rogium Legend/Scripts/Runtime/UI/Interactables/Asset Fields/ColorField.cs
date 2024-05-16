@@ -50,7 +50,7 @@ namespace Rogium.UserInterface.Interactables
         /// </summary>
         private void WhenColorPicked(Color value)
         {
-            ActionHistorySystem.GetInstance().AddAndExecute(new UpdateColorFieldAction(this, value, lastValue));
+            ActionHistorySystem.AddAndExecute(new UpdateColorFieldAction(this, value, lastValue));
             lastValue = value;
         }
         

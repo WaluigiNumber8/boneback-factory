@@ -103,13 +103,13 @@ namespace Rogium.UserInterface.Interactables.Properties
 
         private void WhenValueChanged(float value)
         {
-            ActionHistorySystem.GetInstance().AddAndExecute(new UpdateSliderAction(this, value / decimalMultiplier, lastValue / decimalMultiplier));
+            ActionHistorySystem.AddAndExecute(new UpdateSliderAction(this, value / decimalMultiplier, lastValue / decimalMultiplier));
             lastValue = value;
         }
         
         private void WhenValueChanged(int value)
         {
-            ActionHistorySystem.GetInstance().AddAndExecute(new UpdateSliderAction(this, value, lastValue));
+            ActionHistorySystem.AddAndExecute(new UpdateSliderAction(this, value, lastValue));
             lastValue = value;
         }
         

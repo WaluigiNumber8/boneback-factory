@@ -99,7 +99,7 @@ namespace Rogium.Editors.Sprites
             ObjectGrid<int> dataGrid = editor.CurrentAsset.SpriteData;
             ObjectGrid<int> clearGrid = new(dataGrid);
             clearGrid.ClearAllCells();
-            ActionHistorySystem.GetInstance().AddAndExecute(new LoadEditorGridAction<int>(dataGrid, clearGrid, dataGrid, EditorConstants.EmptyGridSprite, grid.ActiveLayerSprite, grid));
+            ActionHistorySystem.AddAndExecute(new LoadEditorGridAction<int>(dataGrid, clearGrid, dataGrid, EditorConstants.EmptyGridSprite, grid.ActiveLayerSprite, grid));
         }
         
         /// <summary>

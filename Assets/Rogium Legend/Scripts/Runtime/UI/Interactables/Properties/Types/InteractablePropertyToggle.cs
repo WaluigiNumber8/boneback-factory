@@ -52,7 +52,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             ui.checkmarkImage.sprite = checkmark;
         }
         
-        private void WhenValueChanged(bool value) => ActionHistorySystem.GetInstance().AddAndExecute(new UpdateToggleAction(this, value));
+        private void WhenValueChanged(bool value) => ActionHistorySystem.AddAndExecute(new UpdateToggleAction(this, value));
 
         public override bool PropertyValue { get => toggle.isOn; }
 

@@ -116,7 +116,7 @@ namespace Rogium.Editors.Rooms
         {
             ObjectGrid<AssetData> clearGrid = new(currentData.Grid);
             clearGrid.ClearAllCells();
-            ActionHistorySystem.GetInstance().AddAndExecute(new LoadEditorGridAction<AssetData>(currentData.Grid, clearGrid, currentData.Grid, EditorConstants.EmptyGridSprite, grid.ActiveLayerSprite, grid));
+            ActionHistorySystem.AddAndExecute(new LoadEditorGridAction<AssetData>(currentData.Grid, clearGrid, currentData.Grid, EditorConstants.EmptyGridSprite, grid.ActiveLayerSprite, grid));
         }
         
         /// <summary>

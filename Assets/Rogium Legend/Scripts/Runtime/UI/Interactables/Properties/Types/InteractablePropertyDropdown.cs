@@ -79,7 +79,7 @@ namespace Rogium.UserInterface.Interactables.Properties
 
         private void WhenValueChanged(int value)
         {
-            ActionHistorySystem.GetInstance().AddAndExecute(new UpdateDropdownAction(this, value, lastValue));
+            ActionHistorySystem.AddAndExecute(new UpdateDropdownAction(this, value, lastValue));
             lastValue = value;
         }
         

@@ -56,12 +56,12 @@ namespace Rogium.Systems.GASExtension
 
         public static void UndoLastAction()
         {
-            ActionHistorySystem.GetInstance().UndoLast();
+            ActionHistorySystem.UndoLast();
         }
         
         public static void RedoLastAction()
         {
-            ActionHistorySystem.GetInstance().RedoLast();
+            ActionHistorySystem.RedoLast();
         }
 
         #endregion
@@ -587,7 +587,7 @@ namespace Rogium.Systems.GASExtension
                                                                 OpenSelectionCampaign();
                                                             })
                                                         : new("Leave without saving changes?","Yes","No", CancelChangesCampaignConfirm);
-            if (!noPacksSelected && CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.GetInstance().UndoCount > 0)
+            if (!noPacksSelected && CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0)
             {
                 ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
             }
@@ -602,7 +602,7 @@ namespace Rogium.Systems.GASExtension
         
         public static void CancelChangesPalette()
         {
-            if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.GetInstance().UndoCount > 0)
+            if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0)
             {
                 MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", OpenSelectionPalette);
                 ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
@@ -612,7 +612,7 @@ namespace Rogium.Systems.GASExtension
         
         public static void CancelChangesSprite()
         {
-            if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.GetInstance().UndoCount > 0)
+            if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0)
             {
                 MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", OpenSelectionSprite);
                 ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
@@ -622,7 +622,7 @@ namespace Rogium.Systems.GASExtension
         
         public static void CancelChangesWeapon()
         {
-            if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.GetInstance().UndoCount > 0)
+            if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0)
             {
                 MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", OpenSelectionWeapon);
                 ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
@@ -632,7 +632,7 @@ namespace Rogium.Systems.GASExtension
         
         public static void CancelChangesProjectile()
         {
-            if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.GetInstance().UndoCount > 0)
+            if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0)
             {
                 MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", OpenSelectionProjectile);
                 ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
@@ -642,7 +642,7 @@ namespace Rogium.Systems.GASExtension
         
         public static void CancelChangesEnemy()
         {
-            if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.GetInstance().UndoCount > 0)
+            if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0)
             {
                 MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", OpenSelectionEnemy);
                 ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
@@ -652,7 +652,7 @@ namespace Rogium.Systems.GASExtension
         
         public static void CancelChangesRoom()
         {
-            if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.GetInstance().UndoCount > 0)
+            if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0)
             {
                 MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", OpenSelectionRoom);
                 ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
@@ -662,7 +662,7 @@ namespace Rogium.Systems.GASExtension
 
         public static void CancelChangesTile()
         {
-            if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.GetInstance().UndoCount > 0)
+            if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0)
             {
                 MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", OpenSelectionTile);
                 ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
@@ -672,7 +672,7 @@ namespace Rogium.Systems.GASExtension
         
         public static void CancelChangesOptions()
         {
-            if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.GetInstance().UndoCount > 0)
+            if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0)
             {
                 MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", CancelChangesOptionsConfirm);
                 ModalWindowBuilder.GetInstance().OpenMessageWindow(data);

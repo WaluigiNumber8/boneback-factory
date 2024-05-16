@@ -82,7 +82,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         
         private void WhenValueChanged(string value)
         {
-            ActionHistorySystem.GetInstance().AddAndExecute(new UpdateInputFieldAction(this, value, lastValue));
+            ActionHistorySystem.AddAndExecute(new UpdateInputFieldAction(this, value, lastValue));
             lastValue = value;
         }
         

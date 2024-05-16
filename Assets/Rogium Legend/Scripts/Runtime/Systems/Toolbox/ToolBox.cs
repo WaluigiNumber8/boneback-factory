@@ -129,7 +129,7 @@ namespace Rogium.Systems.Toolbox
             IAction action = tool is BucketTool<T> bucket
                 ? new UseBucketToolAction<T>(bucket, grid, position, value, oldValue, graphicValue, oldGraphicValue, layerIndex)
                 : new UseToolAction<T>(tool, grid, position, value, oldValue, graphicValue, oldGraphicValue, layerIndex);
-            ActionHistorySystem.GetInstance().AddAndExecute(action);
+            ActionHistorySystem.AddAndExecute(action);
         }
     }
 }
