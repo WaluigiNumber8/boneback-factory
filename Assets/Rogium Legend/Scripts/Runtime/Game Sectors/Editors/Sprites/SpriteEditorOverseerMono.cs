@@ -43,7 +43,7 @@ namespace Rogium.Editors.Sprites
             grid.OnClick += UpdateGridCell;
             grid.OnClickAlternative += EraseCell;
             palette.OnSelect += ChangeCurrentColor;
-            toolbox.OnChangePaletteValue += SelectFrom;
+            toolbox.OnChangePaletteValue += PickFrom;
         }
 
         private void OnDisable()
@@ -52,7 +52,7 @@ namespace Rogium.Editors.Sprites
             grid.OnClick -= UpdateGridCell;
             grid.OnClickAlternative -= EraseCell;
             palette.OnSelect -= ChangeCurrentColor;
-            toolbox.OnChangePaletteValue -= SelectFrom;
+            toolbox.OnChangePaletteValue -= PickFrom;
         }
 
         /// <summary>
@@ -129,10 +129,10 @@ namespace Rogium.Editors.Sprites
         /// Selects a color from the colors palette.
         /// </summary>
         /// <param name="id">The id of the color to select.</param>
-        private void SelectFrom(int id)
+        private void PickFrom(int id)
         {
             palette.Select(id);
-            toolbox.SwitchTool(ToolType.Brush);
+            toolbox.SwitchTool((id == EditorConstants.EmptyColorID) ? ToolType.Eraser : ToolType.Brush);
         }
         
         /// <summary>

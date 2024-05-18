@@ -5,6 +5,7 @@ using Rogium.UserInterface.Editors.AssetSelection;
 using System;
 using System.Collections.Generic;
 using RedRats.UI.MenuFilling;
+using Rogium.Editors.Core.Defaults;
 using UnityEngine;
 using TMPro;
 
@@ -38,9 +39,8 @@ namespace Rogium.Systems.ItemPalette
         /// <param name="id">The id of the item.</param>
         public void Select(string id)
         {
-            if (ids?.Count != holders.Count)
-                ids = holders.ConvertToIDs();
-            
+            if (string.IsNullOrEmpty(id) || id == EditorConstants.EmptyAssetID) return;
+            if (ids?.Count != holders.Count) ids = holders.ConvertToIDs();
             Select(ids.IndexOf(id));
         }
         /// <summary>

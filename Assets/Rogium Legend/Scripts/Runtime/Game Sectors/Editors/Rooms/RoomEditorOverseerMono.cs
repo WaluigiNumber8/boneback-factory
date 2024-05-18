@@ -175,7 +175,7 @@ namespace Rogium.Editors.Rooms
         private void PickFrom(AssetData data)
         {
             currentData.Palette.Select(data.ID);
-            toolbox.SwitchTool(ToolType.Brush);
+            toolbox.SwitchTool((data.IsEmpty()) ? ToolType.Eraser : ToolType.Brush);
         }
 
         /// <summary>
