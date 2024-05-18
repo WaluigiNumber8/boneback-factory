@@ -5,6 +5,7 @@ using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Sounds;
+using Rogium.Systems.ActionHistory;
 using Rogium.Systems.Audio;
 using Rogium.UserInterface.ModalWindows;
 using TMPro;
@@ -28,11 +29,13 @@ namespace Rogium.UserInterface.Interactables
         [SerializeField] private UIInfo ui;
         
         private AssetData value;
+        private AssetData lastValue;
+        private SoundAsset asset;
         private bool canBeEmpty;
         
         private void Awake()
         {
-            ui.showWindowButton.onClick.AddListener(() => ModalWindowBuilder.GetInstance().OpenSoundPickerWindow(WhenSoundChanged, WhenSoundEdited, value));
+            ui.showWindowButton.onClick.AddListener(() => ModalWindowBuilder.GetInstance().OpenSoundPickerWindow(UpdateSoundAsset, UpdateValue, value));
             ui.playButton.onClick.AddListener(() => AudioSystemRogium.GetInstance().PlaySound(value, mixerGroup, new AudioSourceSettingsInfo(0, false, false, false)));
             ui.showWindowButton.OnClickRight += EmptyOut;
             ui.playButton.OnClickRight += EmptyOut;
@@ -47,6 +50,7 @@ namespace Rogium.UserInterface.Interactables
         public void Construct(AssetData value, bool canBeEmpty = false)
         {
             this.value = value;
+            this.lastValue = value;
             this.canBeEmpty = canBeEmpty;
             
             if (value.IsEmpty()) { ClearElements(); return; }
@@ -59,15 +63,18 @@ namespace Rogium.UserInterface.Interactables
             ui.playButton.interactable = isActive;
         }
         
-        private void WhenSoundEdited(AssetData data)
+        public void UpdateValue(AssetData value)
         {
-            this.value = data;
-            OnValueChanged?.Invoke(data);
+            this.lastValue = this.value;
+            this.value = value;
+            OnValueChanged?.Invoke(value);
+            
         }
         
-        private void WhenSoundChanged(SoundAsset asset)
+        public void UpdateSoundAsset(SoundAsset asset)
         {
             if (asset != null) value = new AssetData(asset.ID, value.Parameters);
+            this.asset = asset;
             Refresh(asset);
             OnSoundChanged?.Invoke(asset);
         }
@@ -88,7 +95,7 @@ namespace Rogium.UserInterface.Interactables
         private void EmptyOut()
         {
             Clear();
-            WhenSoundEdited(new AssetData(ParameterInfoConstants.ForSound));
+            ActionHistorySystem.AddAndExecute(new UpdateSoundFieldAction(this, new AssetData(ParameterInfoConstants.ForSound), value, null, asset)); 
         }
         
         private void Clear()
