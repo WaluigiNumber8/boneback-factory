@@ -26,13 +26,18 @@ namespace Rogium.Systems.ActionHistory
             InputSystem.GetInstance().UI.ClickAlternative.OnRelease += KillGroupingProcess;
         }
 
-        public static void AddAndExecute(IAction action)
+        /// <summary>
+        /// Adds an action to the history and executes it.
+        /// </summary>
+        /// <param name="action">The action to add & execute</param>
+        /// <param name="blockGrouping">Excerpt this action from grouping with similar ones.</param>
+        public static void AddAndExecute(IAction action, bool blockGrouping = false)
         {
             if (action.NothingChanged()) return;
             if (assetDetector.WasAssetChanged) undoHistory.Clear();
 
             action.Execute();
-            DecideUndoStatusFor(action);
+            DecideUndoStatusFor(action, blockGrouping);
             redoHistory.Clear();
             lastAction = action;
             
@@ -75,10 +80,10 @@ namespace Rogium.Systems.ActionHistory
         /// </summary>
         public static void ForceBeginGrouping() => canCreateGroups = true;
         
-        private static void DecideUndoStatusFor(IAction action)
+        private static void DecideUndoStatusFor(IAction action, bool blockGrouping = false)
         {
             // If in group mode
-            if (canCreateGroups)
+            if (!blockGrouping && canCreateGroups)
             {
                 //Init group if it doesn't exist
                 if (currentGroup == null)
