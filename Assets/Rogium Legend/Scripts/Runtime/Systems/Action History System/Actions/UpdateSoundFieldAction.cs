@@ -1,6 +1,7 @@
 using Rogium.Editors.Core;
 using Rogium.Editors.Sounds;
 using Rogium.UserInterface.Interactables;
+using UnityEngine;
 
 namespace Rogium.Systems.ActionHistory
 {
@@ -38,7 +39,15 @@ namespace Rogium.Systems.ActionHistory
 
         public bool NothingChanged() => value.Equals(lastValue) && soundAsset == lastSoundAsset;
 
-        public object AffectedConstruct => soundField;
+        public object AffectedConstruct
+        {
+            get
+            {
+                try { return soundField?.gameObject; }
+                catch (MissingReferenceException) { return null; }
+            }
+        }
+
         public object Value { get => value; }
         public object LastValue { get => lastValue; }
     }

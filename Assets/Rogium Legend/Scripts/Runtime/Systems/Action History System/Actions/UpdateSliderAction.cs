@@ -1,5 +1,6 @@
 using RedRats.Core;
 using Rogium.UserInterface.Interactables.Properties;
+using UnityEngine;
 
 namespace Rogium.Systems.ActionHistory
 {
@@ -25,7 +26,15 @@ namespace Rogium.Systems.ActionHistory
 
         public bool NothingChanged() => value.IsSameAs(lastValue);
         
-        public object AffectedConstruct => slider;
+        public object AffectedConstruct
+        {
+            get
+            {
+                try { return slider?.gameObject; }
+                catch (MissingReferenceException) { return null; }
+            }
+        }
+
         public object Value { get => value; }
         public object LastValue { get => lastValue; }
 

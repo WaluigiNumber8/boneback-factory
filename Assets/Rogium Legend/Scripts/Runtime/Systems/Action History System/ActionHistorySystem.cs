@@ -48,10 +48,17 @@ namespace Rogium.Systems.ActionHistory
         {
             //If there is a group open, add it to undo
             if (currentGroup != null) AddCurrentGroupToUndo();
-
             if (undoHistory.Count == 0) return;
 
             IAction newestAction = undoHistory.Pop();
+            
+            //If action's construct is null, keep popping until a valid action is found
+            while (newestAction.AffectedConstruct == null)
+            {
+                if (undoHistory.Count == 0) return;
+                newestAction = undoHistory.Pop();
+            }
+            
             redoHistory.Push(newestAction);
             newestAction.Undo();
         }

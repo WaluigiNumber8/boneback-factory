@@ -1,5 +1,7 @@
+using System;
 using Rogium.Editors.Core;
 using Rogium.UserInterface.Interactables;
+using UnityEngine;
 
 namespace Rogium.Systems.ActionHistory
 {
@@ -25,7 +27,15 @@ namespace Rogium.Systems.ActionHistory
 
         public bool NothingChanged() => value.Equals(lastValue);
         
-        public object AffectedConstruct => assetField;
+        public object AffectedConstruct
+        {
+            get
+            {
+                try { return assetField?.gameObject; }
+                catch (MissingReferenceException) { return null; }
+            }
+        }
+
         public object Value { get => value; }
         public object LastValue { get => lastValue; }
 

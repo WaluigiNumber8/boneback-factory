@@ -25,7 +25,15 @@ namespace Rogium.Systems.ActionHistory
 
         public bool NothingChanged() => value == lastValue;
         
-        public object AffectedConstruct => colorField;
+        public object AffectedConstruct
+        {
+            get
+            {
+                try { return colorField?.gameObject; }
+                catch (MissingReferenceException) { return null; }
+            }
+        }
+
         public object Value { get => value; }
         public object LastValue { get => lastValue; }
     }
