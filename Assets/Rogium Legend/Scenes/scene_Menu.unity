@@ -10531,6 +10531,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1913490513}
     m_Modifications:
+    - target: {fileID: 2046497981232673590, guid: a7ced178984fb984abeeab420698b0d1, type: 3}
+      propertyPath: 'clips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c136b230a23713144a31d85c7cc91703, type: 2}
     - target: {fileID: 2407911245262094630, guid: a7ced178984fb984abeeab420698b0d1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -13458,6 +13462,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1409090832}
     m_Modifications:
+    - target: {fileID: 458042096699964939, guid: 61c2173c271a00c45a7f4341e20276f9, type: 3}
+      propertyPath: 'clips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c136b230a23713144a31d85c7cc91703, type: 2}
     - target: {fileID: 600724331613063059, guid: 61c2173c271a00c45a7f4341e20276f9, type: 3}
       propertyPath: m_SizeDelta.x
       value: 50
@@ -26903,6 +26911,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2771352373995257140, guid: c6c50bc71b121164785ac62ba231b073, type: 3}
+      propertyPath: 'clips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c136b230a23713144a31d85c7cc91703, type: 2}
     - target: {fileID: 6033513271342857256, guid: c6c50bc71b121164785ac62ba231b073, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -32570,6 +32582,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1913490513}
     m_Modifications:
+    - target: {fileID: 2046497981232673590, guid: a7ced178984fb984abeeab420698b0d1, type: 3}
+      propertyPath: 'clips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 41a399fada6e779419e93832a5576d6a, type: 2}
     - target: {fileID: 2407911245262094630, guid: a7ced178984fb984abeeab420698b0d1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -33040,6 +33056,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2771352373995257140, guid: c6c50bc71b121164785ac62ba231b073, type: 3}
+      propertyPath: 'clips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 41a399fada6e779419e93832a5576d6a, type: 2}
     - target: {fileID: 6033513271342857256, guid: c6c50bc71b121164785ac62ba231b073, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -38722,6 +38742,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1409090832}
     m_Modifications:
+    - target: {fileID: 458042096699964939, guid: 61c2173c271a00c45a7f4341e20276f9, type: 3}
+      propertyPath: 'clips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 41a399fada6e779419e93832a5576d6a, type: 2}
     - target: {fileID: 600724331613063059, guid: 61c2173c271a00c45a7f4341e20276f9, type: 3}
       propertyPath: m_SizeDelta.x
       value: 50
