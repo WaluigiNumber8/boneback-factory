@@ -128,12 +128,6 @@ namespace Rogium.Systems.GridSystem
             RefreshLayerColors(layerIndex);
         }
         
-        public override void LoadWithSprite(Sprite sprite, int layerIndex)
-        {
-            SafetyNet.EnsureIndexWithingCollectionRange(layerIndex, layers, nameof(layers));
-            layers[layerIndex].layer.sprite = sprite;
-        }
-        
         /// <summary>
         /// Prepares the grid layers.
         /// </summary>

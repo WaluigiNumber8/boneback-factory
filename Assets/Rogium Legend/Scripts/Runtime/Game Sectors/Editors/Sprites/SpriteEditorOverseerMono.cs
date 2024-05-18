@@ -96,10 +96,14 @@ namespace Rogium.Editors.Sprites
         /// </summary>
         public void ClearActiveGrid()
         {
-            ObjectGrid<int> dataGrid = editor.CurrentAsset.SpriteData;
-            ObjectGrid<int> clearGrid = new(dataGrid);
-            clearGrid.ClearAllCells();
-            ActionHistorySystem.AddAndExecute(new LoadEditorGridAction<int>(dataGrid, clearGrid, dataGrid, EditorConstants.EmptyGridSprite, grid.ActiveLayerSprite, grid));
+            ActionHistorySystem.ForceBeginGrouping();
+            for (int x = 0; x < grid.Size.x; x++)
+            {
+                for (int y = 0; y < grid.Size.y; y++)
+                {
+                    EraseCell(new Vector2Int(x, y));
+                }
+            }
         }
         
         /// <summary>

@@ -114,9 +114,14 @@ namespace Rogium.Editors.Rooms
         /// </summary>
         public void ClearActiveLayer()
         {
-            ObjectGrid<AssetData> clearGrid = new(currentData.Grid);
-            clearGrid.ClearAllCells();
-            ActionHistorySystem.AddAndExecute(new LoadEditorGridAction<AssetData>(currentData.Grid, clearGrid, currentData.Grid, EditorConstants.EmptyGridSprite, grid.ActiveLayerSprite, grid));
+            ActionHistorySystem.ForceBeginGrouping();
+            for (int x = 0; x < grid.Size.x; x++)
+            {
+                for (int y = 0; y < grid.Size.y; y++)
+                {
+                    EraseCell(new Vector2Int(x, y));
+                }
+            }
         }
         
         /// <summary>

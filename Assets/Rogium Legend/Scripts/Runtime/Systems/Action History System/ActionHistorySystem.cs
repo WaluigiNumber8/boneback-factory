@@ -20,8 +20,8 @@ namespace Rogium.Systems.ActionHistory
         {
             assetDetector.OnAssetChange += ClearHistory;
 
-            InputSystem.GetInstance().UI.Click.OnPress += StartGroupingProcess;
-            InputSystem.GetInstance().UI.ClickAlternative.OnPress += StartGroupingProcess;
+            InputSystem.GetInstance().UI.Click.OnPress += ForceBeginGrouping;
+            InputSystem.GetInstance().UI.ClickAlternative.OnPress += ForceBeginGrouping;
             InputSystem.GetInstance().UI.Click.OnRelease += KillGroupingProcess;
             InputSystem.GetInstance().UI.ClickAlternative.OnRelease += KillGroupingProcess;
         }
@@ -70,6 +70,11 @@ namespace Rogium.Systems.ActionHistory
 
         #region Group Processing
 
+        /// <summary>
+        /// Forces the system to allow grouping of actions.
+        /// </summary>
+        public static void ForceBeginGrouping() => canCreateGroups = true;
+        
         private static void DecideUndoStatusFor(IAction action)
         {
             // If in group mode
@@ -96,8 +101,6 @@ namespace Rogium.Systems.ActionHistory
 
             undoHistory.Push(action);
         }
-
-        private static void StartGroupingProcess() => canCreateGroups = true;
 
         private static void KillGroupingProcess()
         {

@@ -25,13 +25,6 @@ namespace Rogium.Systems.GridSystem
         public abstract void LoadWithColors(ObjectGrid<int> indexGrid, Color[] colorArray);
 
         /// <summary>
-        /// Loads the editor grid with a single sprite.
-        /// </summary>
-        /// <param name="sprite">The sprite to load up with.</param>
-        /// <param name="layer">The layer to load it into.</param>
-        public abstract void LoadWithSprite(Sprite sprite, int layer);
-
-        /// <summary>
         /// Updates a cell with a new value.
         /// </summary>
         /// <param name="position">The grid cell to update.</param>
