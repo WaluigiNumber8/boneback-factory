@@ -16,13 +16,15 @@ namespace Rogium.Systems.Toolbox
         public event Action<T> OnChangePaletteValue;
         public event Action<T> OnSelectValue;
 
+        private readonly InteractableEditorGridBase UIGrid;
+        private readonly ToolActionFactory<T> toolActionCreator;
+        
         private readonly SelectionTool<T> toolSelection;
         private readonly BrushTool<T> toolBrush;
         private readonly BrushTool<T> toolEraser;
         private readonly BucketTool<T> toolBucket;
         private readonly PickerTool<T> toolPicker;
 
-        private readonly InteractableEditorGridBase UIGrid;
         private readonly Action<int, Vector2Int, Sprite> whenGraphicDraw;
         private readonly T emptyValue;
         private ToolBase<T> currentTool;
@@ -33,7 +35,8 @@ namespace Rogium.Systems.Toolbox
             this.emptyValue = emptyValue;
             this.UIGrid = UIGrid;
             this.whenGraphicDraw = whenGraphicDraw;
-
+            this.toolActionCreator = new ToolActionFactory<T>();
+            
             toolSelection = new SelectionTool<T>(WhenDrawOnUIGrid, this.UIGrid.Apply);
             toolBrush = new BrushTool<T>(WhenDrawOnUIGrid, this.UIGrid.Apply);
             toolEraser = new BrushTool<T>(WhenDrawOnUIGrid, this.UIGrid.Apply);
@@ -126,21 +129,8 @@ namespace Rogium.Systems.Toolbox
             Sprite oldGraphicValue = UIGrid.GetCell(position);
             
             //Select action based on tool
-            switch (tool)
-            {
-                case BucketTool<T> bucket:
-                    ActionHistorySystem.AddAndExecute(new UseBucketToolAction<T>(bucket, grid, position, value, oldValue, graphicValue, oldGraphicValue, layerIndex));
-                    break;
-                case PickerTool<T> pickerTool:
-                    pickerTool.ApplyEffect(grid, position, value, graphicValue, layerIndex);
-                    break;
-                case SelectionTool<T> selectionTool:
-                    selectionTool.ApplyEffect(grid, position, value, graphicValue, layerIndex);
-                    break;
-                default:
-                    ActionHistorySystem.AddAndExecute(new UseToolAction<T>(tool, grid, position, value, oldValue, graphicValue, oldGraphicValue, layerIndex));
-                    break;
-            }
+            IAction toolAction = toolActionCreator.Create(tool, grid, position, value, oldValue, graphicValue, oldGraphicValue, layerIndex);
+            ActionHistorySystem.AddAndExecute(toolAction);
         }
     }
 }

@@ -33,6 +33,7 @@ namespace Rogium.Systems.ActionHistory
         /// <param name="blockGrouping">Excerpt this action from grouping with similar ones.</param>
         public static void AddAndExecute(IAction action, bool blockGrouping = false)
         {
+            if (action == null) return;
             if (action.NothingChanged()) return;
             if (assetDetector.WasAssetChanged) undoHistory.Clear();
 
