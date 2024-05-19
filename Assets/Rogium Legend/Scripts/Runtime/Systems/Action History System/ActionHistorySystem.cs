@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Rogium.Systems.Input;
 
@@ -8,6 +9,9 @@ namespace Rogium.Systems.ActionHistory
     /// </summary>
     public static class ActionHistorySystem
     {
+        public static event Action OnUpdateUndoHistory;
+        public static event Action OnUpdateRedoHistory;
+        
         private static CurrentAssetDetector assetDetector => CurrentAssetDetector.Instance;
         private static readonly Stack<IAction> undoHistory = new();
         private static readonly Stack<IAction> redoHistory = new();
@@ -43,6 +47,7 @@ namespace Rogium.Systems.ActionHistory
             lastAction = action;
             
             assetDetector.MarkAsEdited();
+            OnUpdateRedoHistory?.Invoke();
         }
 
         public static void UndoLast()
@@ -62,6 +67,8 @@ namespace Rogium.Systems.ActionHistory
             
             redoHistory.Push(newestAction);
             newestAction.Undo();
+            OnUpdateUndoHistory?.Invoke();
+            OnUpdateRedoHistory?.Invoke();
         }
 
         public static void RedoLast()
@@ -69,8 +76,10 @@ namespace Rogium.Systems.ActionHistory
             if (redoHistory.Count == 0) return;
 
             IAction newestAction = redoHistory.Pop();
-            undoHistory.Push(newestAction);
+            AddToUndo(newestAction);
             newestAction.Execute();
+            OnUpdateUndoHistory?.Invoke();
+            OnUpdateRedoHistory?.Invoke();
         }
 
         private static void ClearHistory()
@@ -79,6 +88,8 @@ namespace Rogium.Systems.ActionHistory
             redoHistory.Clear();
             lastAction = null;
             currentGroup = null;
+            OnUpdateUndoHistory?.Invoke();
+            OnUpdateRedoHistory?.Invoke();
         }
 
         #region Group Processing
@@ -112,7 +123,7 @@ namespace Rogium.Systems.ActionHistory
                 AddCurrentGroupToUndo();
             }
 
-            undoHistory.Push(action);
+            AddToUndo(action);
         }
 
         private static void KillGroupingProcess()
@@ -124,11 +135,17 @@ namespace Rogium.Systems.ActionHistory
         private static void AddCurrentGroupToUndo()
         {
             if (currentGroup == null) return;
-            if (!currentGroup.NothingChanged()) undoHistory.Push(currentGroup);
+            if (!currentGroup.NothingChanged()) AddToUndo(currentGroup);
             currentGroup = null;
         }
         
         #endregion
+        
+        private static void AddToUndo(IAction action)
+        {
+            undoHistory.Push(action);
+            OnUpdateUndoHistory?.Invoke();
+        }
         
         public static int UndoCount => undoHistory.Count;
         public static int RedoCount => redoHistory.Count;
