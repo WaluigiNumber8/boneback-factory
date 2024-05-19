@@ -17,7 +17,6 @@ namespace Rogium.Systems.Toolbox
         public event Action<T> OnSelectValue;
 
         private readonly InteractableEditorGridBase UIGrid;
-        private readonly ToolActionFactory<T> toolActionCreator;
         
         private readonly SelectionTool<T> toolSelection;
         private readonly BrushTool<T> toolBrush;
@@ -35,7 +34,6 @@ namespace Rogium.Systems.Toolbox
             this.emptyValue = emptyValue;
             this.UIGrid = UIGrid;
             this.whenGraphicDraw = whenGraphicDraw;
-            this.toolActionCreator = new ToolActionFactory<T>();
             
             toolSelection = new SelectionTool<T>(WhenDrawOnUIGrid, this.UIGrid.Apply);
             toolBrush = new BrushTool<T>(WhenDrawOnUIGrid, this.UIGrid.Apply);
@@ -129,7 +127,7 @@ namespace Rogium.Systems.Toolbox
             Sprite oldGraphicValue = UIGrid.GetCell(position);
             
             //Select action based on tool
-            IAction toolAction = toolActionCreator.Create(tool, grid, position, value, oldValue, graphicValue, oldGraphicValue, layerIndex);
+            IAction toolAction = ToolActionCreator<T>.Create(tool, grid, position, value, oldValue, graphicValue, oldGraphicValue, layerIndex);
             ActionHistorySystem.AddAndExecute(toolAction);
         }
     }
