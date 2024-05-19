@@ -122,6 +122,7 @@ namespace Rogium.Editors.Rooms
                     EraseCell(new Vector2Int(x, y));
                 }
             }
+            ActionHistorySystem.ForceEndGrouping();
         }
         
         /// <summary>

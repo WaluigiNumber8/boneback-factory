@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using RedRats.Core;
 using Rogium.Systems.Input;
 
 namespace Rogium.Systems.ActionHistory
@@ -13,8 +13,8 @@ namespace Rogium.Systems.ActionHistory
         public static event Action OnUpdateRedoHistory;
         
         private static CurrentAssetDetector assetDetector => CurrentAssetDetector.Instance;
-        private static readonly Stack<IAction> undoHistory = new();
-        private static readonly Stack<IAction> redoHistory = new();
+        private static readonly ObservableStack<IAction> undoHistory = new();
+        private static readonly ObservableStack<IAction> redoHistory = new();
 
         private static IAction lastAction;
         private static GroupAction currentGroup;
@@ -22,12 +22,14 @@ namespace Rogium.Systems.ActionHistory
 
         static ActionHistorySystem()
         {
+            undoHistory.OnChange += () => OnUpdateUndoHistory?.Invoke();
+            redoHistory.OnChange += () => OnUpdateRedoHistory?.Invoke();
             assetDetector.OnAssetChange += ClearHistory;
 
             InputSystem.GetInstance().UI.Click.OnPress += ForceBeginGrouping;
             InputSystem.GetInstance().UI.ClickAlternative.OnPress += ForceBeginGrouping;
-            InputSystem.GetInstance().UI.Click.OnRelease += KillGroupingProcess;
-            InputSystem.GetInstance().UI.ClickAlternative.OnRelease += KillGroupingProcess;
+            InputSystem.GetInstance().UI.Click.OnRelease += ForceEndGrouping;
+            InputSystem.GetInstance().UI.ClickAlternative.OnRelease += ForceEndGrouping;
         }
 
         /// <summary>
@@ -40,14 +42,13 @@ namespace Rogium.Systems.ActionHistory
             if (action == null) return;
             if (action.NothingChanged()) return;
             if (assetDetector.WasAssetChanged) undoHistory.Clear();
-
+            
             action.Execute();
             DecideUndoStatusFor(action, blockGrouping);
             redoHistory.Clear();
             lastAction = action;
             
             assetDetector.MarkAsEdited();
-            OnUpdateRedoHistory?.Invoke();
         }
 
         public static void UndoLast()
@@ -67,8 +68,6 @@ namespace Rogium.Systems.ActionHistory
             
             redoHistory.Push(newestAction);
             newestAction.Undo();
-            OnUpdateUndoHistory?.Invoke();
-            OnUpdateRedoHistory?.Invoke();
         }
 
         public static void RedoLast()
@@ -76,10 +75,8 @@ namespace Rogium.Systems.ActionHistory
             if (redoHistory.Count == 0) return;
 
             IAction newestAction = redoHistory.Pop();
-            AddToUndo(newestAction);
+            undoHistory.Push(newestAction);
             newestAction.Execute();
-            OnUpdateUndoHistory?.Invoke();
-            OnUpdateRedoHistory?.Invoke();
         }
 
         private static void ClearHistory()
@@ -88,8 +85,6 @@ namespace Rogium.Systems.ActionHistory
             redoHistory.Clear();
             lastAction = null;
             currentGroup = null;
-            OnUpdateUndoHistory?.Invoke();
-            OnUpdateRedoHistory?.Invoke();
         }
 
         #region Group Processing
@@ -98,6 +93,15 @@ namespace Rogium.Systems.ActionHistory
         /// Forces the system to allow grouping of actions.
         /// </summary>
         public static void ForceBeginGrouping() => canCreateGroups = true;
+        
+        /// <summary>
+        /// Forces the system to add the current group to undo history.
+        /// </summary>
+        public static void ForceEndGrouping()
+        {
+            canCreateGroups = false;
+            AddCurrentGroupToUndo();
+        }
         
         private static void DecideUndoStatusFor(IAction action, bool blockGrouping = false)
         {
@@ -123,29 +127,17 @@ namespace Rogium.Systems.ActionHistory
                 AddCurrentGroupToUndo();
             }
 
-            AddToUndo(action);
+            undoHistory.Push(action);
         }
 
-        private static void KillGroupingProcess()
-        {
-            canCreateGroups = false;
-            AddCurrentGroupToUndo();
-        }
-        
         private static void AddCurrentGroupToUndo()
         {
             if (currentGroup == null) return;
-            if (!currentGroup.NothingChanged()) AddToUndo(currentGroup);
+            if (!currentGroup.NothingChanged()) undoHistory.Push(currentGroup);
             currentGroup = null;
         }
         
         #endregion
-        
-        private static void AddToUndo(IAction action)
-        {
-            undoHistory.Push(action);
-            OnUpdateUndoHistory?.Invoke();
-        }
         
         public static int UndoCount => undoHistory.Count;
         public static int RedoCount => redoHistory.Count;
