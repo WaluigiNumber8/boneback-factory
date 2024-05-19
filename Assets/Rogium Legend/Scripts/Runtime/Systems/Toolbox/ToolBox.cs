@@ -126,10 +126,21 @@ namespace Rogium.Systems.Toolbox
             Sprite oldGraphicValue = UIGrid.GetCell(position);
             
             //Select action based on tool
-            IAction action = tool is BucketTool<T> bucket
-                ? new UseBucketToolAction<T>(bucket, grid, position, value, oldValue, graphicValue, oldGraphicValue, layerIndex)
-                : new UseToolAction<T>(tool, grid, position, value, oldValue, graphicValue, oldGraphicValue, layerIndex);
-            ActionHistorySystem.AddAndExecute(action);
+            switch (tool)
+            {
+                case BucketTool<T> bucket:
+                    ActionHistorySystem.AddAndExecute(new UseBucketToolAction<T>(bucket, grid, position, value, oldValue, graphicValue, oldGraphicValue, layerIndex));
+                    break;
+                case PickerTool<T> pickerTool:
+                    pickerTool.ApplyEffect(grid, position, value, graphicValue, layerIndex);
+                    break;
+                case SelectionTool<T> selectionTool:
+                    selectionTool.ApplyEffect(grid, position, value, graphicValue, layerIndex);
+                    break;
+                default:
+                    ActionHistorySystem.AddAndExecute(new UseToolAction<T>(tool, grid, position, value, oldValue, graphicValue, oldGraphicValue, layerIndex));
+                    break;
+            }
         }
     }
 }
