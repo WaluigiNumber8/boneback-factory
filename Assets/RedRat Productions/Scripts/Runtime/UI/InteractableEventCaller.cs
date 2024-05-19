@@ -2,12 +2,14 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace RedRats.UI.Core
 {
     /// <summary>
     /// Calls out different events for a Selectable object.
     /// </summary>
+    [RequireComponent(typeof(Selectable))]
     public class InteractableEventCaller : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler, ISelectHandler, IDeselectHandler, ISubmitHandler
     {
         private const float BlockTime = 0.1f;
@@ -20,9 +22,14 @@ namespace RedRats.UI.Core
         public event Action OnClickRight;
         public event Action OnClickRightDown;
         public event Action OnClickRightUp;
+        public event Action OnClickDisabled;
 
+        private Selectable selectable;
+        
         private bool wasSelected;
         private bool cannotTriggerEvents;
+
+        private void Awake() => selectable = GetComponent<Selectable>();
 
         private void OnDisable()
         {
@@ -73,6 +80,13 @@ namespace RedRats.UI.Core
         /// </summary>
         protected virtual void WhenClick(PointerEventData.InputButton button)
         {
+            // If the button is not interactable, ignore events.
+            if (!selectable.interactable)
+            {
+                OnClickDisabled?.Invoke();
+                return;
+            }
+            
             switch (button)
             {
                 case PointerEventData.InputButton.Left:
@@ -93,6 +107,8 @@ namespace RedRats.UI.Core
         /// </summary>
         protected virtual void WhenClickUp(PointerEventData.InputButton button)
         {
+            if (!selectable.interactable) return;
+            
             switch (button)
             {
                 case PointerEventData.InputButton.Left:
