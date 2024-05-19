@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using RedRats.Core;
 using Rogium.Core;
-using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Palettes;
 using Rogium.Systems.ActionHistory;
@@ -27,7 +26,7 @@ namespace Rogium.Editors.Sprites
 
         private SpriteAsset currentSprite;
         private ColorSlot currentSlot;
-        private IAsset lastPaletteAsset;
+        private PaletteAsset lastPaletteAsset;
 
         protected override void Awake()
         {
@@ -73,21 +72,22 @@ namespace Rogium.Editors.Sprites
         {
             ModalWindowBuilder.GetInstance().OpenAssetPickerWindow(AssetType.Palette, asset =>
             {
-                lastPaletteAsset = asset;
                 PaletteAsset pal = (PaletteAsset) asset;
-                SwitchPalette(pal.Colors);
+                ActionHistorySystem.AddAndExecute(new SwitchSpriteEditorPaletteAction(pal, lastPaletteAsset));
                 currentSprite.UpdatePreferredPaletteID(pal.ID);
+                lastPaletteAsset = pal;
             }, lastPaletteAsset);
         }
         
         /// <summary>
         /// Changes the palette used by the Sprite Editor.
         /// </summary>
-        /// <param name="colors"></param>
-        public void SwitchPalette(Color[] colors)
+        /// <param name="asset"></param>
+        public void SwitchPalette(PaletteAsset asset)
         {
-            grid.LoadWithColors(currentSprite.SpriteData, colors);
-            palette.Fill(colors);
+            lastPaletteAsset = asset;
+            grid.LoadWithColors(currentSprite.SpriteData, asset.Colors);
+            palette.Fill(asset.Colors);
             palette.Select(0);
         }
         
@@ -112,10 +112,10 @@ namespace Rogium.Editors.Sprites
         /// <param name="sprite">The sprite to read from.</param>
         private void PrepareEditor(SpriteAsset sprite)
         {
-            Color[] colorArray = palettePicker.GrabBasedOn(sprite.PreferredPaletteID);
+            lastPaletteAsset= palettePicker.GrabBasedOn(sprite.PreferredPaletteID);
             currentSprite = sprite;
             
-            SwitchPalette(colorArray);
+            SwitchPalette(lastPaletteAsset);
             StartCoroutine(SwitchLayerDelay(0.1f));
         }
         

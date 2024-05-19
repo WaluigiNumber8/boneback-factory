@@ -32,14 +32,7 @@ namespace Rogium.Editors.Core
         public void UpdateTitle(string newTitle) => title = newTitle.Trim();
         #endregion
 
-        public override bool Equals(object obj)
-        {
-            if (obj is AssetBase asset)
-            {
-                return ID == asset.ID;
-            }
-            return false;
-        }
+        public override bool Equals(object obj) => obj is AssetBase asset && ID == asset.ID;
 
         public override int GetHashCode() => (id != null ? id.GetHashCode() : 0);
 
