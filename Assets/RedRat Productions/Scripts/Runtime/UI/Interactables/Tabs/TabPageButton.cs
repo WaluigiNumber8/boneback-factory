@@ -27,16 +27,19 @@ namespace RedRats.UI.Tabs
         {
             group.OnTabSelect(this);
             events.onClick?.Invoke();
+            base.OnPointerClick(eventData);
         }
 
         public override void OnPointerEnter(PointerEventData eventData)
         {
             group.OnTabEnter(this);
+            base.OnPointerEnter(eventData);
         }
 
         public override void OnPointerExit(PointerEventData eventData)
         {
             group.OnTabExit(this);
+            base.OnPointerExit(eventData);
         }
 
         public Image Background { get => background; }
