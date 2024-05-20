@@ -199,7 +199,7 @@ MonoBehaviour:
   highlighted: {r: 1, g: 1, b: 1, a: 1}
   pressed: {r: 1, g: 1, b: 1, a: 1}
   selected: {r: 1, g: 1, b: 1, a: 1}
-  disabled: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+  disabled: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 1}
 --- !u!1 &7576094278132717051 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6072462286702376883, guid: c04113f03b7e48e47a48229ec71f67ca, type: 3}

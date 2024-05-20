@@ -217,4 +217,4 @@ MonoBehaviour:
   highlighted: {r: 1, g: 1, b: 1, a: 1}
   pressed: {r: 1, g: 1, b: 1, a: 1}
   selected: {r: 1, g: 1, b: 1, a: 1}
-  disabled: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+  disabled: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 1}
