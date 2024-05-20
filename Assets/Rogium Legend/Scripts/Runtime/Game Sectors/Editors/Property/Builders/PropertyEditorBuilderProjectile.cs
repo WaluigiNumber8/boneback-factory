@@ -1,5 +1,4 @@
 ﻿using System;
-using RedRats.Systems.Themes;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
@@ -31,12 +30,14 @@ namespace Rogium.Editors.PropertyEditor.Builders
         
         protected override void BuildColumnImportant(Transform content)
         {
+            IAsset initialIcon = currentPack.TryGetSprite(asset.AssociatedSpriteID, EditorConstants.ProjectileIcon);
+
             animationBlock1Slot = b.CreateContentBlockVertical(content, (asset.AnimationType == AnimationType.SpriteSwap));
-            b.BuildAssetField("", AssetType.Sprite, asset, animationBlock1Slot.GetTransform, a => asset.UpdateIcon(a), null, !currentPack.ContainsAnySprites, ThemeType.Teal);
+            b.BuildAssetField("", AssetType.Sprite, initialIcon, animationBlock1Slot.GetTransform, a => asset.UpdateIcon(a), null, !currentPack.ContainsAnySprites);
             
             animationBlock2Slot = b.CreateContentBlockColumn2(content, (asset.AnimationType != AnimationType.SpriteSwap));
-            b.BuildAssetField("", AssetType.Sprite, asset, animationBlock2Slot.GetTransform, a => asset.UpdateIcon(a), null, !currentPack.ContainsAnySprites, ThemeType.Teal);
-            b.BuildAssetField("", AssetType.Sprite, asset, animationBlock2Slot.GetTransform, a => asset.UpdateIconAlt(a.Icon), null, !currentPack.ContainsAnySprites, ThemeType.Teal);
+            b.BuildAssetField("", AssetType.Sprite, initialIcon, animationBlock2Slot.GetTransform, a => asset.UpdateIcon(a), null, !currentPack.ContainsAnySprites);
+            b.BuildAssetField("", AssetType.Sprite, initialIcon, animationBlock2Slot.GetTransform, a => asset.UpdateIconAlt(a.Icon), null, !currentPack.ContainsAnySprites);
             
             b.BuildInputField("", asset.Title, content, asset.UpdateTitle);
             b.BuildColorField("Color", asset.Color, content, asset.UpdateColor);

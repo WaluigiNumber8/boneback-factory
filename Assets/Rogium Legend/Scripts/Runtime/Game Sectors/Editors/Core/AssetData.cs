@@ -71,17 +71,8 @@ namespace Rogium.Editors.Core
         public void UpdateStringValue6(string newValue) => parameters.stringValue6 = newValue;
         #endregion
         
-        public override int GetHashCode()
-        {
-            return (string.IsNullOrEmpty(id)) ? EditorConstants.EmptyAssetID.GetHashCode() : id.GetHashCode();
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (obj == null) return false;
-            AssetData other = (AssetData) obj;
-            return ID == other.ID;
-        }
+        public override bool Equals(object obj) => obj is AssetData other && id == other.ID && parameters.Equals(other.Parameters);
+        public override int GetHashCode() => (string.IsNullOrEmpty(id)) ? EditorConstants.EmptyAssetID.GetHashCode() : id.GetHashCode();
 
         public int CompareTo(object obj)
         {

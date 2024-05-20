@@ -1,5 +1,6 @@
 ﻿using System;
 using RedRats.UI.Core;
+using Rogium.Systems.ActionHistory;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -16,6 +17,7 @@ namespace Rogium.UserInterface.Interactables.Properties
 
         private Action<string> whenFinishEditing;
         private float minLimit, maxLimit;
+        private string lastValue;
         
         public override void SetDisabled(bool isDisabled) => inputField.interactable = !isDisabled;
 
@@ -35,14 +37,30 @@ namespace Rogium.UserInterface.Interactables.Properties
             
             ConstructTitle(titleText);
             
-            inputField.text = inputtedText;
+            lastValue = inputtedText;
             inputField.characterValidation = characterValidation;
-            this.whenFinishEditing = whenFinishEditing;
+            inputField.SetTextWithoutNotify(inputtedText);
+            inputField.ForceLabelUpdate();
+            lastValue = inputtedText;
             
-            inputField.onEndEdit.AddListener(WhenFinishEditing);
-            // inputField.onValueChanged.AddListener( text => whenValueChange(text));
+            this.whenFinishEditing = whenFinishEditing;
+            inputField.onEndEdit.AddListener(WhenValueChanged);
         }
 
+        public void UpdateValueWithoutNotify(string value)
+        {
+            // Clamp the value if it's a number.
+            if (inputField.characterValidation is TMP_InputField.CharacterValidation.Integer or TMP_InputField.CharacterValidation.Decimal or TMP_InputField.CharacterValidation.Digit)
+            {
+                value = Mathf.Clamp(float.Parse(value), minLimit, maxLimit).ToString();
+            }
+            
+            lastValue = value;
+            inputField.SetTextWithoutNotify(value);
+            inputField.ForceLabelUpdate();
+            whenFinishEditing?.Invoke(value);
+        }
+        
         /// <summary>
         /// Updates the elements sprites to match the editor theme.
         /// </summary>
@@ -61,19 +79,11 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// </summary>
         /// <param name="contentType">The new content type to use.</param>
         public void UpdateContentType(TMP_InputField.ContentType contentType) => inputField.contentType = contentType;
-
-        /// <summary>
-        /// Runs when the user finished editing the InputField.
-        /// </summary>
-        /// <param name="content">The final content of the InputField.</param>
-        private void WhenFinishEditing(string content)
+        
+        private void WhenValueChanged(string value)
         {
-            if (inputField.characterValidation is TMP_InputField.CharacterValidation.Integer or TMP_InputField.CharacterValidation.Decimal or TMP_InputField.CharacterValidation.Digit)
-            {
-                content = Mathf.Clamp(float.Parse(content), minLimit, maxLimit).ToString();
-                inputField.text = content;
-            }
-            whenFinishEditing?.Invoke(content);
+            ActionHistorySystem.AddAndExecute(new UpdateInputFieldAction(this, value, lastValue, whenFinishEditing), true);
+            lastValue = value;
         }
         
         public override string PropertyValue { get => inputField.text; }

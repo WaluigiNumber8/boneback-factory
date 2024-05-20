@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System;
 using RedRats.UI.Core;
+using Rogium.Systems.ActionHistory;
 
 namespace Rogium.UserInterface.Interactables.Properties
 {
@@ -12,6 +13,8 @@ namespace Rogium.UserInterface.Interactables.Properties
     {
         [SerializeField] private Toggle toggle;
         [SerializeField] private UIInfo ui;
+        
+        private Action<bool> whenChangeValue;
 
         public override void SetDisabled(bool isDisabled) => toggle.interactable = !isDisabled;
 
@@ -20,13 +23,20 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// </summary>
         /// <param name="titleText">Property Title.</param>
         /// <param name="toggleState">State of the toggle checkbox.</param>
-        /// <param name="WhenChangeValue">The method that will run when the toggle changes it's value.</param>
-        public void Construct(string titleText, bool toggleState, Action<bool> WhenChangeValue)
+        /// <param name="whenChangeValue">The method that will run when the toggle changes it's value.</param>
+        public void Construct(string titleText, bool toggleState, Action<bool> whenChangeValue)
         {
             ConstructTitle(titleText);
             
             toggle.isOn = toggleState;
-            toggle.onValueChanged.AddListener(_ => WhenChangeValue(toggle.isOn));
+            this.whenChangeValue = whenChangeValue;
+            toggle.onValueChanged.AddListener(WhenValueChanged);
+        }
+        
+        public void UpdateValueWithoutNotify(bool value)
+        {
+            toggle.SetIsOnWithoutNotify(value);
+            whenChangeValue?.Invoke(value);
         }
 
         /// <summary>
@@ -42,6 +52,8 @@ namespace Rogium.UserInterface.Interactables.Properties
             ui.checkmarkImage.sprite = checkmark;
         }
         
+        private void WhenValueChanged(bool value) => ActionHistorySystem.AddAndExecute(new UpdateToggleAction(this, value, whenChangeValue));
+
         public override bool PropertyValue { get => toggle.isOn; }
 
         [Serializable]

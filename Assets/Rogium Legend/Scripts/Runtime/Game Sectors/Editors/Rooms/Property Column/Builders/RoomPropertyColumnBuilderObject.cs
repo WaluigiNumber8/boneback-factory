@@ -63,7 +63,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         /// <param name="data">The data to use.</param>
         private void BuildStartingPoint(AssetData data)
         {
-            b.BuildDropdown("Direction", Enum.GetNames(typeof(DirectionType)), data.Parameters.intValue1, contentMain, data.UpdateIntValue1);
+            b.BuildDropdown("Move", Enum.GetNames(typeof(DirectionType)), data.Parameters.intValue1, contentMain, data.UpdateIntValue1);
         }
         
         /// <summary>

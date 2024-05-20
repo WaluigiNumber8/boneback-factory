@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using RedRats.Core;
+using UnityEngine;
 
 namespace Rogium.Editors.Core
 {
@@ -66,6 +67,31 @@ namespace Rogium.Editors.Core
             this.stringValue4 = stringValue4;
             this.stringValue5 = stringValue5;
             this.stringValue6 = stringValue6;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is ParameterInfo other)
+            {
+                return intValue1 == other.intValue1 && intValue2 == other.intValue2 && intValue3 == other.intValue3 &&
+                       intValue4 == other.intValue4 && intValue5 == other.intValue5 && intValue6 == other.intValue6 &&
+                       floatValue1.IsSameAs(other.floatValue1) && floatValue2.IsSameAs(other.floatValue2) && floatValue3.IsSameAs(other.floatValue3) &&
+                       floatValue4.IsSameAs(other.floatValue4) && floatValue5.IsSameAs(other.floatValue5) && floatValue6.IsSameAs(other.floatValue6) &&
+                       boolValue1 == other.boolValue1 && boolValue2 == other.boolValue2 && boolValue3 == other.boolValue3 &&
+                       boolValue4 == other.boolValue4 && boolValue5 == other.boolValue5 && boolValue6 == other.boolValue6 &&
+                       stringValue1 == other.stringValue1 && stringValue2 == other.stringValue2 && stringValue3 == other.stringValue3 &&
+                       stringValue4 == other.stringValue4 && stringValue5 == other.stringValue5 && stringValue6 == other.stringValue6;
+            }
+
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return intValue1.GetHashCode() ^ intValue2.GetHashCode() ^ intValue3.GetHashCode() ^ intValue4.GetHashCode() ^ intValue5.GetHashCode() ^ intValue6.GetHashCode() ^
+                   floatValue1.GetHashCode() ^ floatValue2.GetHashCode() ^ floatValue3.GetHashCode() ^ floatValue4.GetHashCode() ^ floatValue5.GetHashCode() ^ floatValue6.GetHashCode() ^
+                   boolValue1.GetHashCode() ^ boolValue2.GetHashCode() ^ boolValue3.GetHashCode() ^ boolValue4.GetHashCode() ^ boolValue5.GetHashCode() ^ boolValue6.GetHashCode() ^
+                   stringValue1.GetHashCode() ^ stringValue2.GetHashCode() ^ stringValue3.GetHashCode() ^ stringValue4.GetHashCode() ^ stringValue5.GetHashCode() ^ stringValue6.GetHashCode();
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
-using RedRats.Systems.Themes;
 using Rogium.Core;
 using Rogium.Editors.Core;
+using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Tiles;
 using Rogium.UserInterface.Interactables.Properties;
@@ -15,6 +15,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
     public class PropertyEditorBuilderTile : PropertyEditorBuilderBase
     {
         private TileAsset asset;
+        private PackAsset currentPack;
 
         private InteractablePropertyContentBlock terrainTypeBlock;
         public PropertyEditorBuilderTile(Transform contentMain, Transform contentSecond) : base(contentMain, contentSecond) { }
@@ -22,6 +23,8 @@ namespace Rogium.Editors.PropertyEditor.Builders
         public void Build(TileAsset asset)
         {
             this.asset = asset;
+            currentPack = PackEditorOverseer.Instance.CurrentPack;
+            
             Clear();
             BuildColumnImportant(contentMain);
             BuildColumnProperty(contentSecond);
@@ -29,7 +32,9 @@ namespace Rogium.Editors.PropertyEditor.Builders
         
         protected override void BuildColumnImportant(Transform content)
         {
-            b.BuildAssetField("", AssetType.Sprite, asset, content, delegate(IAsset a) { asset.UpdateIcon(a);}, null, !PackEditorOverseer.Instance.CurrentPack.ContainsAnyTiles, ThemeType.Yellow);
+            IAsset initialIcon = currentPack.TryGetSprite(asset.AssociatedSpriteID, EditorConstants.TileIcon);
+            
+            b.BuildAssetField("", AssetType.Sprite, initialIcon, content, a => asset.UpdateIcon(a), null, !currentPack.ContainsAnySprites);
             b.BuildInputField("", asset.Title, content, asset.UpdateTitle);
             b.BuildDropdown("", Enum.GetNames(typeof(TileType)), (int) asset.Type, content, (i) => { asset.UpdateType(i); CheckTerrainEnable(); });
         }

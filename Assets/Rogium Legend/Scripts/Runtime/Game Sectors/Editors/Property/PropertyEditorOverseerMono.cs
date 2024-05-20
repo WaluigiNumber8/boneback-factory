@@ -127,8 +127,8 @@ namespace Rogium.Editors.PropertyEditor
             ThemeUpdaterRogium.UpdateButtonCard(ui.cancelButton);
             ThemeUpdaterRogium.UpdateScrollbar(ui.importantScrollbar);
             ThemeUpdaterRogium.UpdateScrollbar(ui.propertyScrollbar);
-            // ThemeUpdaterRogium.UpdateButtonMenu(ui.undoButton);
-            // ThemeUpdaterRogium.UpdateButtonMenu(ui.redoButton);
+            ThemeUpdaterRogium.UpdateButtonMenu(ui.undoButton);
+            ThemeUpdaterRogium.UpdateButtonMenu(ui.redoButton);
             // ThemeUpdaterRogium.UpdateButtonMenu(ui.resetButton);
         }
         

@@ -39,7 +39,7 @@ namespace RedRats.Safety
         {
             if (obj is not T)
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} must be of type {typeof(T)}.");
+                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} must be of type {typeof(T)}. ({obj.GetType()})");
             }
         }
         
