@@ -1,3 +1,4 @@
+using System;
 using Rogium.Editors.Core;
 using Rogium.Editors.Sounds;
 using Rogium.UserInterface.Interactables;
@@ -8,7 +9,7 @@ namespace Rogium.Systems.ActionHistory
     /// <summary>
     /// An action that updates a sound field.
     /// </summary>
-    public class UpdateSoundFieldAction : IAction
+    public class UpdateSoundFieldAction : ActionBase<AssetData>
     {
         private readonly SoundField soundField;
         private readonly AssetData value;
@@ -16,7 +17,7 @@ namespace Rogium.Systems.ActionHistory
         private readonly SoundAsset soundAsset;
         private readonly SoundAsset lastSoundAsset;
         
-        public UpdateSoundFieldAction(SoundField soundField, AssetData value, AssetData lastValue, SoundAsset soundAsset, SoundAsset lastSoundAsset)
+        public UpdateSoundFieldAction(SoundField soundField, AssetData value, AssetData lastValue, SoundAsset soundAsset, SoundAsset lastSoundAsset, Action<AssetData> fallback) : base(fallback)
         {
             this.soundField = soundField;
             this.value = value;
@@ -25,21 +26,21 @@ namespace Rogium.Systems.ActionHistory
             this.lastSoundAsset = lastSoundAsset;
         }
         
-        public void Execute()
+        protected override void ExecuteSelf()
         {
             soundField.UpdateValue(value);
             soundField.UpdateSoundAsset(soundAsset);
         }
 
-        public void Undo()
+        protected override void UndoSelf()
         {
             soundField.UpdateValue(lastValue);
             soundField.UpdateSoundAsset(lastSoundAsset);
         }
 
-        public bool NothingChanged() => value.Equals(lastValue) && soundAsset == lastSoundAsset;
+        public override bool NothingChanged() => value.Equals(lastValue) && soundAsset == lastSoundAsset;
 
-        public object AffectedConstruct
+        public override object AffectedConstruct
         {
             get
             {
@@ -48,7 +49,7 @@ namespace Rogium.Systems.ActionHistory
             }
         }
 
-        public object Value { get => value; }
-        public object LastValue { get => lastValue; }
+        public override AssetData Value { get => value; }
+        public override AssetData LastValue { get => lastValue; }
     }
 }

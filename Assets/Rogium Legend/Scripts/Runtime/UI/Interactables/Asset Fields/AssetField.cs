@@ -15,13 +15,13 @@ namespace Rogium.UserInterface.Interactables
     /// </summary>
     public class AssetField : Selectable, IAssetField<IAsset>, IPointerClickHandler
     {
-        public event Action<IAsset> OnValueChanged;
         public event Action OnValueEmptied;
 
         [SerializeField] private AssetType type;
         [SerializeField] private bool canBeEmpty;
         [SerializeField] private UIInfo ui;
 
+        private Action<IAsset> whenValueChanged;
         private IAsset value;
         private IAsset lastValue;
         
@@ -47,14 +47,15 @@ namespace Rogium.UserInterface.Interactables
         /// </summary>
         /// <param name="type">The type of asset to collect.</param>
         /// <param name="value">The starting value of the AssetField.</param>
+        /// <param name="whenValueChanged">Runs when the value of the asset field was changed.</param>
         /// <param name="canBeEmpty">Allow the AssetField to contain a <see cref="EmptyAsset"/>. It gets added as an option to the Asset Picker Menu.</param>
-        public void Construct(AssetType type, IAsset value, bool canBeEmpty = false)
+        public void Construct(AssetType type, IAsset value, Action<IAsset> whenValueChanged, bool canBeEmpty = false)
         {
             this.type = type;
             this.lastValue = value;
             this.value = value;
+            this.whenValueChanged = whenValueChanged;
             this.canBeEmpty = canBeEmpty;
-            
             Refresh();
         }
 
@@ -62,8 +63,8 @@ namespace Rogium.UserInterface.Interactables
         {
             lastValue = value;
             this.value = value;
+            this.whenValueChanged?.Invoke(value);
             Refresh();
-            OnValueChanged?.Invoke(value);
         }
         
         /// <summary>
@@ -72,7 +73,7 @@ namespace Rogium.UserInterface.Interactables
         /// <param name="value">The sprite to update with.</param>
         private void WhenAssetPicked(IAsset value)
         {
-            ActionHistorySystem.AddAndExecute(new UpdateAssetFieldAction(this, value, lastValue));
+            ActionHistorySystem.AddAndExecute(new UpdateAssetFieldAction(this, value, lastValue, whenValueChanged));
             lastValue = value;
         }
 

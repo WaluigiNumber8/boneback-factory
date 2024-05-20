@@ -21,13 +21,12 @@ namespace Rogium.UserInterface.Interactables
     /// </summary>
     public class SoundField : MonoBehaviour, IAssetField<AssetData>, IPointerClickHandler
     {
-        public event Action<SoundAsset> OnSoundChanged;
-        public event Action<AssetData> OnValueChanged;
         public event Action OnValueEmptied;
         
         [SerializeField] private AudioMixerGroup mixerGroup;
         [SerializeField] private UIInfo ui;
         
+        private Action<AssetData> whenSoundEdited;
         private AssetData value;
         private AssetData lastValue;
         private SoundAsset asset;
@@ -47,10 +46,11 @@ namespace Rogium.UserInterface.Interactables
             EmptyOut();
         }
         
-        public void Construct(AssetData value, bool canBeEmpty = false)
+        public void Construct(AssetData value, Action<AssetData> whenSoundEdited, bool canBeEmpty = false)
         {
             this.value = value;
             this.lastValue = value;
+            this.whenSoundEdited = whenSoundEdited;
             this.canBeEmpty = canBeEmpty;
             
             if (value.IsEmpty()) { ClearElements(); return; }
@@ -67,8 +67,7 @@ namespace Rogium.UserInterface.Interactables
         {
             this.lastValue = this.value;
             this.value = value;
-            OnValueChanged?.Invoke(value);
-            
+            this.whenSoundEdited?.Invoke(value);
         }
         
         public void UpdateSoundAsset(SoundAsset asset)
@@ -76,7 +75,6 @@ namespace Rogium.UserInterface.Interactables
             if (asset != null) value = new AssetData(asset.ID, value.Parameters);
             this.asset = asset;
             Refresh(asset);
-            OnSoundChanged?.Invoke(asset);
         }
         
         private void Refresh(IAsset newAsset)
@@ -95,7 +93,7 @@ namespace Rogium.UserInterface.Interactables
         private void EmptyOut()
         {
             Clear();
-            ActionHistorySystem.AddAndExecute(new UpdateSoundFieldAction(this, new AssetData(ParameterInfoConstants.ForSound), value, null, asset)); 
+            ActionHistorySystem.AddAndExecute(new UpdateSoundFieldAction(this, new AssetData(ParameterInfoConstants.ForSound), value, null, asset, whenSoundEdited)); 
         }
         
         private void Clear()

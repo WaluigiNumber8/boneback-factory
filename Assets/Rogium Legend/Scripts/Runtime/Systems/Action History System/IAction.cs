@@ -1,5 +1,3 @@
-using System;
-
 namespace Rogium.Systems.ActionHistory
 {
     /// <summary>

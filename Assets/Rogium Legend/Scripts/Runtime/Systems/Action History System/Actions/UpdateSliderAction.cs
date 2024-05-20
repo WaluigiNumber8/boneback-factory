@@ -1,3 +1,4 @@
+using System;
 using RedRats.Core;
 using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine;
@@ -7,26 +8,26 @@ namespace Rogium.Systems.ActionHistory
     /// <summary>
     /// An action that updates a slider.
     /// </summary>
-    public class UpdateSliderAction : IAction
+    public class UpdateSliderAction : ActionBase<float>
     {
         private readonly InteractablePropertySlider slider;
         private readonly float value;
         private readonly float lastValue;
 
-        public UpdateSliderAction(InteractablePropertySlider slider, float value, float lastValue)
+        public UpdateSliderAction(InteractablePropertySlider slider, float value, float lastValue, Action<float> fallback) : base(fallback)
         {
             this.slider = slider;
             this.value = value;
             this.lastValue = lastValue;
         }
 
-        public void Execute() => slider.UpdateValueWithoutNotify(value);
+        protected override void ExecuteSelf() => slider.UpdateValueWithoutNotify(value);
 
-        public void Undo() => slider.UpdateValueWithoutNotify(lastValue);
+        protected override void UndoSelf() => slider.UpdateValueWithoutNotify(lastValue);
 
-        public bool NothingChanged() => value.IsSameAs(lastValue);
+        public override bool NothingChanged() => value.IsSameAs(lastValue);
         
-        public object AffectedConstruct
+        public override object AffectedConstruct
         {
             get
             {
@@ -35,8 +36,8 @@ namespace Rogium.Systems.ActionHistory
             }
         }
 
-        public object Value { get => value; }
-        public object LastValue { get => lastValue; }
+        public override float Value { get => value; }
+        public override float LastValue { get => lastValue; }
 
         public override string ToString() => $"{slider.name}: {lastValue} -> {value}";
     }

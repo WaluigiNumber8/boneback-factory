@@ -1,3 +1,4 @@
+using System;
 using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine;
 
@@ -6,26 +7,26 @@ namespace Rogium.Systems.ActionHistory
     /// <summary>
     /// An action that updates an input field.
     /// </summary>
-    public class UpdateInputFieldAction : IAction
+    public class UpdateInputFieldAction : ActionBase<string>
     {
         private readonly InteractablePropertyInputField inputField;
         private readonly string value;
         private readonly string lastValue;
 
-        public UpdateInputFieldAction(InteractablePropertyInputField inputField, string value, string lastValue)
+        public UpdateInputFieldAction(InteractablePropertyInputField inputField, string value, string lastValue, Action<string> fallback) : base(fallback)
         {
             this.inputField = inputField;
             this.value = value;
             this.lastValue = lastValue;
         }
 
-        public void Execute() => inputField.UpdateValueWithoutNotify(value);
+        protected override void ExecuteSelf() => inputField.UpdateValueWithoutNotify(value);
 
-        public void Undo() => inputField.UpdateValueWithoutNotify(lastValue);
+        protected override void UndoSelf() => inputField.UpdateValueWithoutNotify(lastValue);
 
-        public bool NothingChanged() => value == lastValue;
+        public override bool NothingChanged() => value == lastValue;
         
-        public object AffectedConstruct
+        public override object AffectedConstruct
         {
             get
             {
@@ -34,8 +35,8 @@ namespace Rogium.Systems.ActionHistory
             }
         }
 
-        public object Value { get => value; }
-        public object LastValue { get => lastValue; }
+        public override string Value { get => value; }
+        public override string LastValue { get => lastValue; }
 
         public override string ToString() => $"{inputField.name}: {lastValue} -> {value}";
     }

@@ -127,7 +127,7 @@ namespace Rogium.Systems.Toolbox
             Sprite oldGraphicValue = UIGrid.GetCell(position);
             
             //Select action based on tool
-            IAction toolAction = ToolActionCreator<T>.Create(tool, grid, position, value, oldValue, graphicValue, oldGraphicValue, layerIndex);
+            ActionBase<T> toolAction = ToolActionCreator<T>.Create(tool, grid, position, value, oldValue, graphicValue, oldGraphicValue, layerIndex, null);
             ActionHistorySystem.AddAndExecute(toolAction);
         }
     }

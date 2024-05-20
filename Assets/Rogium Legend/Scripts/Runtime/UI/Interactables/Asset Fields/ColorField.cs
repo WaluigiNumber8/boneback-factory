@@ -12,13 +12,12 @@ namespace Rogium.UserInterface.Interactables
     /// </summary>
     public class ColorField : Selectable
     {
-        public event Action<Color> OnValueChanged;
-        
         [SerializeField] private UIInfo ui;
 
         private Color value;
         private Color lastValue;
-        
+        private Action<Color> whenValueChanged;
+
         public override void OnPointerDown(PointerEventData eventData)
         {
             base.OnPointerDown(eventData);
@@ -29,10 +28,12 @@ namespace Rogium.UserInterface.Interactables
         /// Construct the ColorField with initial values.
         /// </summary>
         /// <param name="value">The <see cref="Color"/> value to hold.</param>
-        public void Construct(Color value)
+        /// <param name="whenValueChanged">Runs when the field's color changes.</param>
+        public void Construct(Color value, Action<Color> whenValueChanged)
         {
             this.value = value;
             this.lastValue = value;
+            this.whenValueChanged = whenValueChanged;
             ui.color.color = value;
         }
 
@@ -40,8 +41,9 @@ namespace Rogium.UserInterface.Interactables
         {
             this.lastValue = this.value;
             this.value = value;
+            this.whenValueChanged?.Invoke(value);
+            
             ui.color.color = value;
-            OnValueChanged?.Invoke(value);
         }
         
         
@@ -50,7 +52,7 @@ namespace Rogium.UserInterface.Interactables
         /// </summary>
         private void WhenColorPicked(Color value)
         {
-            ActionHistorySystem.AddAndExecute(new UpdateColorFieldAction(this, value, lastValue));
+            ActionHistorySystem.AddAndExecute(new UpdateColorFieldAction(this, value, lastValue, whenValueChanged));
             lastValue = value;
         }
         

@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Rogium.Systems.Toolbox
 {
     /// <summary>
-    /// Creates <see cref="IAction"/>s for the toolbox.
+    /// Creates <see cref="ActionBase{T}"/>s for the toolbox.
     /// </summary>
     public static class ToolActionCreator<T> where T : IComparable
     {
@@ -24,10 +24,10 @@ namespace Rogium.Systems.Toolbox
             factories.Add(typeof(SelectionTool<T>), new SilentToolsActionFactory<T>());
         }
         
-        public static IAction Create(ToolBase<T> tool, ObjectGrid<T> grid, Vector2Int position, T value, T lastValue, Sprite graphicValue, Sprite lastGraphicValue, int layer)
+        public static ActionBase<T> Create(ToolBase<T> tool, ObjectGrid<T> grid, Vector2Int position, T value, T lastValue, Sprite graphicValue, Sprite lastGraphicValue, int layer, Action<T> fallback)
         {
             factories.TryGetValue(tool.GetType(), out IToolActionFactory<T> factory);
-            return factory?.Create(tool, grid, position, value, lastValue, graphicValue, lastGraphicValue, layer);
+            return factory?.Create(tool, grid, position, value, lastValue, graphicValue, lastGraphicValue, layer, fallback);
         }
     }
 }

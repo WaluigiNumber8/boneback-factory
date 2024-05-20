@@ -9,7 +9,7 @@ namespace Rogium.Systems.ActionHistory
     /// <summary>
     /// An action that uses the <see cref="BucketTool{T}"/> on a grid.
     /// </summary>
-    public class UseBucketToolAction<T> : IAction where T : IComparable
+    public class UseBucketToolAction<T> : ActionBase<T> where T : IComparable
     {
         private readonly BucketTool<T> tool;
         private readonly ObjectGrid<T> grid;
@@ -20,9 +20,9 @@ namespace Rogium.Systems.ActionHistory
         private readonly T lastValue;
         private readonly Sprite graphicValue;
         private readonly Sprite lastGraphicValue;
-        private readonly ISet<Vector2Int> affectedPositions;
+        private ISet<Vector2Int> affectedPositions;
         
-        public UseBucketToolAction(BucketTool<T> tool, ObjectGrid<T> grid, Vector2Int position, T value, T lastValue, Sprite graphicValue, Sprite lastGraphicValue, int layer)
+        public UseBucketToolAction(BucketTool<T> tool, ObjectGrid<T> grid, Vector2Int position, T value, T lastValue, Sprite graphicValue, Sprite lastGraphicValue, int layer, Action<T> fallback) : base(fallback)
         {
             this.tool = tool;
             this.grid = grid;
@@ -32,18 +32,21 @@ namespace Rogium.Systems.ActionHistory
             this.layer = layer;
             this.graphicValue = graphicValue;
             this.lastGraphicValue = lastGraphicValue;
-            this.affectedPositions = tool.LastProcessedPositions;
         }
         
-        public void Execute() => tool.ApplyEffect(grid, position, value, graphicValue, layer);
+        protected override void ExecuteSelf()
+        {
+            tool.ApplyEffect(grid, position, value, graphicValue, layer);
+            affectedPositions = tool.LastProcessedPositions;
+        }
 
-        public void Undo() => tool.ApplyEffect(grid, affectedPositions, lastValue, lastGraphicValue, layer);
+        protected override void UndoSelf() => tool.ApplyEffect(grid, affectedPositions, lastValue, lastGraphicValue, layer);
 
-        public bool NothingChanged() => value.CompareTo(lastValue) == 0;
+        public override bool NothingChanged() => value.CompareTo(lastValue) == 0;
 
-        public object AffectedConstruct => grid;
-        public object Value { get => value; }
-        public object LastValue { get => lastValue; }
+        public override object AffectedConstruct => grid;
+        public override T Value { get => value; }
+        public override T LastValue { get => lastValue; }
 
         public override string ToString() => $"{tool}: {lastValue} -> {value} at {layer}-{position}";
     }

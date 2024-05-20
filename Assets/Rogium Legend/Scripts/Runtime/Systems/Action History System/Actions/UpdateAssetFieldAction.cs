@@ -8,26 +8,26 @@ namespace Rogium.Systems.ActionHistory
     /// <summary>
     /// An action that updates an asset field.
     /// </summary>
-    public class UpdateAssetFieldAction : IAction
+    public class UpdateAssetFieldAction : ActionBase<IAsset>
     {
         private readonly AssetField assetField;
         private readonly IAsset value;
         private readonly IAsset lastValue;
         
-        public UpdateAssetFieldAction(AssetField assetField, IAsset value, IAsset lastValue)
+        public UpdateAssetFieldAction(AssetField assetField, IAsset value, IAsset lastValue, Action<IAsset> fallback) : base(fallback)
         {
             this.assetField = assetField;
             this.value = value;
             this.lastValue = lastValue;
         }
         
-        public void Execute() => assetField.UpdateValue(value);
+        protected override void ExecuteSelf() => assetField.UpdateValue(value);
 
-        public void Undo() => assetField.UpdateValue(lastValue);
+        protected override void UndoSelf() => assetField.UpdateValue(lastValue);
 
-        public bool NothingChanged() => value.Equals(lastValue);
+        public override bool NothingChanged() => value.Equals(lastValue);
         
-        public object AffectedConstruct
+        public override object AffectedConstruct
         {
             get
             {
@@ -36,8 +36,8 @@ namespace Rogium.Systems.ActionHistory
             }
         }
 
-        public object Value { get => value; }
-        public object LastValue { get => lastValue; }
+        public override IAsset Value { get => value; }
+        public override IAsset LastValue { get => lastValue; }
 
         public override string ToString() => $"{assetField.name}: {lastValue} -> {value}";
     }

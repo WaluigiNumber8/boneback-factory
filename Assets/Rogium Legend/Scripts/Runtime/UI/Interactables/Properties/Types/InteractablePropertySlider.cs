@@ -21,7 +21,7 @@ namespace Rogium.UserInterface.Interactables.Properties
 
         private int decimalMultiplier;
         private float lastValue;
-        private Action<float> whenValueChanged;
+        private Action<float> whenValueChange;
 
         public override void SetDisabled(bool isDisabled)
         {
@@ -51,7 +51,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             decimals.sliderWithInput.SetValue(startingValue);
             lastValue = startingValue * decimalMultiplier;
             
-            this.whenValueChanged = whenValueChange;
+            this.whenValueChange = whenValueChange;
             slider.onValueChanged.AddListener(WhenValueChanged);
         }
         
@@ -75,14 +75,14 @@ namespace Rogium.UserInterface.Interactables.Properties
             slider.minValue = minValue;
             UpdateValueWithoutNotify(startingValue);
             
-            this.whenValueChanged = whenValueChange;
+            this.whenValueChange = whenValueChange;
             slider.onValueChanged.AddListener(value => WhenValueChanged((int)value));
         }
 
         public void UpdateValueWithoutNotify(float value)
         {
             decimals.sliderWithInput.SetValue(value);
-            whenValueChanged?.Invoke(value);
+            whenValueChange?.Invoke(value);
             lastValue = value * decimalMultiplier;
         }
         
@@ -103,13 +103,13 @@ namespace Rogium.UserInterface.Interactables.Properties
 
         private void WhenValueChanged(float value)
         {
-            ActionHistorySystem.AddAndExecute(new UpdateSliderAction(this, value / decimalMultiplier, lastValue / decimalMultiplier));
+            ActionHistorySystem.AddAndExecute(new UpdateSliderAction(this, value / decimalMultiplier, lastValue / decimalMultiplier, whenValueChange));
             lastValue = value;
         }
         
         private void WhenValueChanged(int value)
         {
-            ActionHistorySystem.AddAndExecute(new UpdateSliderAction(this, value, lastValue));
+            ActionHistorySystem.AddAndExecute(new UpdateSliderAction(this, value, lastValue, whenValueChange));
             lastValue = value;
         }
         

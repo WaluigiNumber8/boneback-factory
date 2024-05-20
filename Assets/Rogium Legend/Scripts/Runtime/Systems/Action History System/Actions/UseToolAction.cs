@@ -8,7 +8,7 @@ namespace Rogium.Systems.ActionHistory
     /// <summary>
     /// An action that uses the <see cref="ToolBase{T}"/> on a grid.
     /// </summary>
-    public class UseToolAction<T> : IAction where T : IComparable
+    public class UseToolAction<T> : ActionBase<T> where T : IComparable
     {
         private readonly ToolBase<T> tool;
         private readonly ObjectGrid<T> grid;
@@ -20,7 +20,7 @@ namespace Rogium.Systems.ActionHistory
         private readonly Sprite graphicValue;
         private readonly Sprite lastGraphicValue;
 
-        public UseToolAction(ToolBase<T> tool, ObjectGrid<T> grid, Vector2Int position, T value, T lastValue, Sprite graphicValue, Sprite lastGraphicValue, int layer)
+        public UseToolAction(ToolBase<T> tool, ObjectGrid<T> grid, Vector2Int position, T value, T lastValue, Sprite graphicValue, Sprite lastGraphicValue, int layer, Action<T> fallback) : base(fallback)
         {
             this.tool = tool;
             this.grid = grid;
@@ -32,15 +32,15 @@ namespace Rogium.Systems.ActionHistory
             this.lastGraphicValue = lastGraphicValue;
         }
 
-        public void Execute() => tool.ApplyEffect(grid, position, value, graphicValue, layer);
+        protected override void ExecuteSelf() => tool.ApplyEffect(grid, position, value, graphicValue, layer);
 
-        public void Undo() => tool.ApplyEffect(grid, position, lastValue, lastGraphicValue, layer);
+        protected override void UndoSelf() => tool.ApplyEffect(grid, position, lastValue, lastGraphicValue, layer);
 
-        public bool NothingChanged() => value.CompareTo(lastValue) == 0;
+        public override bool NothingChanged() => value.CompareTo(lastValue) == 0;
         
-        public object AffectedConstruct => grid;
-        public object Value { get => value; }
-        public object LastValue { get => lastValue; }
+        public override object AffectedConstruct => grid;
+        public override T Value { get => value; }
+        public override T LastValue { get => lastValue; }
 
         public override string ToString() => $"{tool}: {lastValue} -> {value} at {layer}-{position}";
     }

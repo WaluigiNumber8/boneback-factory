@@ -59,12 +59,12 @@ namespace Rogium.Systems.ActionHistory
 
             IAction newestAction = undoHistory.Pop();
             
-            //If action's construct is null, keep popping until a valid action is found
-            while (newestAction.AffectedConstruct == null)
-            {
-                if (undoHistory.Count == 0) return;
-                newestAction = undoHistory.Pop();
-            }
+            // //If action's construct is null, keep popping until a valid action is found
+            // while (newestAction.AffectedConstruct == null)
+            // {
+            //     if (undoHistory.Count == 0) return;
+            //     newestAction = undoHistory.Pop();
+            // }
             
             redoHistory.Push(newestAction);
             newestAction.Undo();
