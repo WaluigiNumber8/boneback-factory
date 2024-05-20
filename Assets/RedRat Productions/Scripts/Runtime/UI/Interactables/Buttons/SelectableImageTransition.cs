@@ -9,7 +9,7 @@ namespace RedRats.UI.Core.Interactables.Buttons
     /// Updates Image content based on button state.
     /// </summary>
     [RequireComponent(typeof(Selectable))]
-    public class ButtonImageTransition : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler, ISelectHandler, IDeselectHandler
+    public class SelectableImageTransition : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler, ISelectHandler, IDeselectHandler
     {
         [SerializeField] private Image image;
         [SerializeField, EnumToggleButtons] private TransitionAffectType affected = TransitionAffectType.Sprite;

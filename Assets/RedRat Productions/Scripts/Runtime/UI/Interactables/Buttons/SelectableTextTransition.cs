@@ -9,7 +9,7 @@ namespace RedRats.UI.Core.Interactables.bs
     /// Updates Text Color based on button state.
     /// </summary>
     [RequireComponent(typeof(Selectable))]
-    public class ButtonTextTransition : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler, ISelectHandler, IDeselectHandler
+    public class SelectableTextTransition : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler, ISelectHandler, IDeselectHandler
     {
         [SerializeField] private TextMeshProUGUI text;
         [SerializeField] private Color highlighted = Color.white;
