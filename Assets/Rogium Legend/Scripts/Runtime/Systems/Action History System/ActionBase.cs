@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 namespace Rogium.Systems.ActionHistory
 {
@@ -33,7 +32,6 @@ namespace Rogium.Systems.ActionHistory
             if (AffectedConstruct == null)
             {
                 fallback?.Invoke(LastValue);
-                Debug.Log($"Using fallback for {GetType().Name}");
                 return;
             }
             UndoSelf();
