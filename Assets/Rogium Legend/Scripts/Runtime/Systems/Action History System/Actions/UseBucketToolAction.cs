@@ -37,7 +37,7 @@ namespace Rogium.Systems.ActionHistory
         protected override void ExecuteSelf()
         {
             tool.ApplyEffect(grid, position, value, graphicValue, layer);
-            affectedPositions = tool.LastProcessedPositions;
+            affectedPositions = new HashSet<Vector2Int>(tool.LastProcessedPositions);
         }
 
         protected override void UndoSelf() => tool.ApplyEffect(grid, affectedPositions, lastValue, lastGraphicValue, layer);
