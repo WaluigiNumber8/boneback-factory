@@ -8,25 +8,32 @@ namespace RedRats.UI.Core.Interactables.Buttons
     /// <summary>
     /// Updates Image content based on button state.
     /// </summary>
-    [RequireComponent(typeof(Button))]
+    [RequireComponent(typeof(Selectable))]
     public class ButtonImageTransition : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler, ISelectHandler, IDeselectHandler
     {
         [SerializeField] private Image image;
+        [SerializeField, EnumToggleButtons] private TransitionAffectType affected = TransitionAffectType.Sprite;
+        
+        [FoldoutGroup("Sprite"), ShowIf("IsSpriteAffected")]
+        [SerializeField, HorizontalGroup("Sprite/States", marginRight:8), PreviewField(60), HideLabel] 
+        private Sprite normalSprite, highlightedSprite, pressedSprite, selectedSprite, disabledSprite;
 
-        [FoldoutGroup("States")]
-        [HorizontalGroup("States/State", marginRight:8), PreviewField(60), HideLabel] 
-        [SerializeField] private Sprite normal, highlighted, pressed, selected, disabled;
+        [SerializeField, FoldoutGroup("Color"), ShowIf("IsColorAffected")] private Color normal = Color.white;
+        [SerializeField, FoldoutGroup("Color"), ShowIf("IsColorAffected")] private Color highlighted = Color.white;
+        [SerializeField, FoldoutGroup("Color"), ShowIf("IsColorAffected")] private Color pressed = Color.white;
+        [SerializeField, FoldoutGroup("Color"), ShowIf("IsColorAffected")] private Color selected = Color.white;
+        [SerializeField, FoldoutGroup("Color"), ShowIf("IsColorAffected")] private Color disabled = Color.white;
 
-        private Button button;
+        private Selectable selectable;
 
         private bool isSelected;
         private bool isDisabled;
 
-        private void Awake() => button = GetComponent<Button>();
+        private void Awake() => selectable = GetComponent<Selectable>();
 
         private void Start()
         {
-            image.sprite = normal;
+            Set(normalSprite, normal);
             HandleSelectedStatus();
         }
 
@@ -36,44 +43,60 @@ namespace RedRats.UI.Core.Interactables.Buttons
             HandleDisabledStatus();
         }
 
-        public void OnPointerEnter(PointerEventData eventData) => image.sprite = highlighted;
-        public void OnPointerExit(PointerEventData eventData) => image.sprite = normal;
-        public void OnPointerDown(PointerEventData eventData) => image.sprite = pressed;
-        public void OnPointerUp(PointerEventData eventData) => image.sprite = highlighted;
+        public void OnPointerEnter(PointerEventData eventData) => SetOnlyWhenEnabled(highlightedSprite, highlighted);
+        public void OnPointerExit(PointerEventData eventData) => SetOnlyWhenEnabled(normalSprite, normal);
+        public void OnPointerDown(PointerEventData eventData) => SetOnlyWhenEnabled(pressedSprite, pressed);
+        public void OnPointerUp(PointerEventData eventData) => SetOnlyWhenEnabled(highlightedSprite, highlighted);
 
         public void OnSelect(BaseEventData eventData)
         {
-            image.sprite = selected;
+            SetOnlyWhenEnabled(selectedSprite, selected);
             isSelected = true;
         }
 
         public void OnDeselect(BaseEventData eventData)
         {
-            image.sprite = normal;
+            SetOnlyWhenEnabled(normalSprite, normal);
             isSelected = false;
         }
 
         private void HandleSelectedStatus()
         {
-            if (isSelected || EventSystem.current.currentSelectedGameObject != button.gameObject) return;
+            if (!selectable.interactable) return;
+            if (isSelected || EventSystem.current.currentSelectedGameObject != selectable.gameObject) return;
             isSelected = true;
-            image.sprite = selected;
+            Set(selectedSprite, selected);
         }
 
         private void HandleDisabledStatus()
         {
-            switch (button.interactable)
+            switch (selectable.interactable)
             {
                 case false when !isDisabled:
                     isDisabled = true;
-                    image.sprite = disabled;
+                    Set(disabledSprite, disabled);
                     return;
 
                 case true when isDisabled:
                     isDisabled = false;
-                    image.sprite = normal;
+                    Set(normalSprite, normal);
                     return;
             }
         }
+        
+        private void SetOnlyWhenEnabled(Sprite sprite, Color color)
+        {
+            if (!selectable.interactable) return;
+            Set(sprite, color);
+        }
+        
+        private void Set(Sprite sprite, Color color)
+        {
+            if (IsSpriteAffected()) image.sprite = sprite;
+            if (IsColorAffected()) image.color = color;
+        }
+        
+        private bool IsSpriteAffected() => (affected & TransitionAffectType.Sprite) != 0;
+        private bool IsColorAffected() => (affected & TransitionAffectType.Color) != 0;
     }
 }
