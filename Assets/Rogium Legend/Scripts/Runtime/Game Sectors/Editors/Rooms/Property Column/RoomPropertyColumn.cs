@@ -36,8 +36,11 @@ namespace Rogium.Editors.Rooms.PropertyColumn
             builderObject = new RoomPropertyColumnBuilderObject(assetContent);
             builderEnemy = new RoomPropertyColumnBuilderEnemy(assetContent);
             builderSettings = new RoomSettingsBuilder();
-            ActionHistorySystem.OnUpdateUndoHistory += Refresh;
         }
+
+        private void OnEnable() => ActionHistorySystem.OnUpdateUndoHistory += RefreshProperties;
+        private void OnDisable() => ActionHistorySystem.OnUpdateUndoHistory -= RefreshProperties;
+
 
         /// <summary>
         /// Load asset data into the column.
@@ -131,7 +134,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
             ui.icon.SetActive(false);
         }
 
-        private void Refresh()
+        private void RefreshProperties()
         {
             if (currentData.IsEmpty()) return;
             StartCoroutine(DelayCoroutine());
@@ -149,8 +152,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
                     case AssetType.Object:
                         ConstructAssetPropertiesObject(currentData);
                         break;
-                    default:
-                        throw new NotSupportedException($"Asset type '{currentType}' is not supported.");
+                    default: throw new NotSupportedException($"Asset type '{currentType}' is not supported.");
                 }
             }
         }
