@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: asset_Collection_InteractableObjects
   m_EditorClassIdentifier: 
   interactableObjects:
-  - {fileID: 11400000, guid: 1729872d82c482c4a93750b23a778d7b, type: 2}
   - {fileID: 11400000, guid: 4d1fcbcd9dcaf244fbb5773a02b2b67e, type: 2}
   - {fileID: 11400000, guid: dd29c9db4a3612d4ab424a769443bd7c, type: 2}
   - {fileID: 11400000, guid: 40f8ee64210fe1b44b8b0ce3c384f9f2, type: 2}
