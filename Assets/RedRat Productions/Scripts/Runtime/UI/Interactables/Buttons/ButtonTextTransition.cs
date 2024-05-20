@@ -3,12 +3,12 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
-namespace RedRats.UI.Core.Interactables.Buttons
+namespace RedRats.UI.Core.Interactables.bs
 {
     /// <summary>
     /// Updates Text Color based on button state.
     /// </summary>
-    [RequireComponent(typeof(Button))]
+    [RequireComponent(typeof(Selectable))]
     public class ButtonTextTransition : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler, ISelectHandler, IDeselectHandler
     {
         [SerializeField] private TextMeshProUGUI text;
@@ -18,7 +18,7 @@ namespace RedRats.UI.Core.Interactables.Buttons
         [SerializeField] private Color disabled = Color.white;
 
         private Color normal;
-        private Button button;
+        private Selectable selectable;
 
         private bool isSelected;
         private bool isDisabled;
@@ -26,7 +26,7 @@ namespace RedRats.UI.Core.Interactables.Buttons
         private void Awake()
         {
             normal = text.color;
-            button = GetComponent<Button>();
+            selectable = GetComponent<Selectable>();
         }
 
         private void Start() => HandleSelectedStatus();
@@ -37,43 +37,52 @@ namespace RedRats.UI.Core.Interactables.Buttons
             HandleDisabledStatus();
         }
 
-        public void OnPointerEnter(PointerEventData eventData) => text.color = highlighted;
-        public void OnPointerExit(PointerEventData eventData) => text.color = normal;
-        public void OnPointerDown(PointerEventData eventData) => text.color = pressed;
-        public void OnPointerUp(PointerEventData eventData) => text.color = highlighted;
+        public void OnPointerEnter(PointerEventData eventData) => SetOnlyWhenEnabled(highlighted);
+        public void OnPointerExit(PointerEventData eventData) => SetOnlyWhenEnabled(normal);
+        public void OnPointerDown(PointerEventData eventData) => SetOnlyWhenEnabled(pressed);
+        public void OnPointerUp(PointerEventData eventData) => SetOnlyWhenEnabled(highlighted);
         public void OnSelect(BaseEventData eventData)
         {
-            text.color = selected;
+            SetOnlyWhenEnabled(selected);
             isSelected = true;
         }
 
         public void OnDeselect(BaseEventData eventData)
         {
-            text.color = normal;
+            SetOnlyWhenEnabled(normal);
             isSelected = false;
         }
 
         private void HandleSelectedStatus()
         {
-            if (isSelected || EventSystem.current.currentSelectedGameObject != button.gameObject) return;
+            if (!selectable.interactable) return;
+            if (isSelected || EventSystem.current.currentSelectedGameObject != selectable.gameObject) return;
             isSelected = true;
             text.color = selected;
         }
         
         private void HandleDisabledStatus()
         {
-            switch (button.interactable)
+            switch (selectable.interactable)
             {
                 case false when !isDisabled:
                     isDisabled = true;
-                    text.color = disabled;
+                    Set(disabled);
                     return;
                 
                 case true when isDisabled:
                     isDisabled = false;
-                    text.color = normal;
+                    Set(normal);
                     return;
             }
         }
+        
+        private void SetOnlyWhenEnabled(Color color)
+        {
+            if (!selectable.interactable) return;
+            Set(color);
+        }
+
+        private void Set(Color color) => text.color = color;
     }
 }
