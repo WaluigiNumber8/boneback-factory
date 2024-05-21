@@ -17,8 +17,6 @@ namespace Rogium.UserInterface.Interactables.Properties
         private Action<IAsset> whenChangeValue;
         private Action whenSelectEmpty;
 
-        private void Awake() => assetField.OnValueChanged += WhenAssetPicked;
-
         public override void SetDisabled(bool isDisabled) => assetField.interactable = !isDisabled;
 
         /// <summary>
@@ -27,15 +25,15 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="titleText">Property Title.</param>
         /// <param name="type">The type of assets to store.</param>
         /// <param name="value">Value of property.</param>
-        /// <param name="whenChangeValue">The method that will run, when the AssetField changes value.</param>
+        /// <param name="whenChangedValue">The method that will run, when the AssetField changes value.</param>
         /// <param name="whenSelectEmpty">Method that runs when "empty" is selected. If this is not null, adds the option into the Picker Window.</param>
         /// <param name="theme">The theme of the Asset Picker Window.</param>
-        public void Construct(string titleText, AssetType type, IAsset value, Action<IAsset> whenChangeValue, Action whenSelectEmpty = null, ThemeType theme = ThemeType.Current)
+        public void Construct(string titleText, AssetType type, IAsset value, Action<IAsset> whenChangedValue, Action whenSelectEmpty = null, ThemeType theme = ThemeType.Current)
         {
             ConstructTitle(titleText);
-            assetField.Construct(type, value, whenSelectEmpty != null);
+            assetField.Construct(type, value, WhenAssetPicked, whenSelectEmpty != null);
             
-            this.whenChangeValue = whenChangeValue;
+            this.whenChangeValue = whenChangedValue;
             this.whenSelectEmpty = whenSelectEmpty;
         }
 

@@ -1,4 +1,5 @@
 ﻿using RedRats.Systems.GASCore;
+using Rogium.Systems.ActionHistory;
 using Rogium.Systems.Input;
 using Rogium.UserInterface.Containers;
 using Rogium.UserInterface.Core;
@@ -21,6 +22,7 @@ namespace Rogium.Core
             GAS.ObjectSetActive(false, UIEditorContainer.GetInstance().Background);
             GAS.ObjectSetActive(false, canvasOverseer.NavigationBar.transform.GetChild(0).gameObject);
             canvasOverseer.NavigationBar.Hide();
+            ActionHistorySystem.RedoLast(); // To initialize the system's input tracking.
         }
 
     }

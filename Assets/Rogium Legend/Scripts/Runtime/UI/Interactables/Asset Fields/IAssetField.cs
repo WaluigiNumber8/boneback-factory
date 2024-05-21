@@ -9,8 +9,6 @@ namespace Rogium.UserInterface.Interactables
     /// <typeparam name="T">Any type</typeparam>
     public interface IAssetField<T>
     {
-        public event Action<T> OnValueChanged;
-        public event Action OnValueEmptied;
         public T Value { get; }
     }
 }

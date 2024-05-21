@@ -10,6 +10,7 @@ using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Objects;
 using Rogium.Editors.Rooms.PropertyColumn;
 using Rogium.Editors.Tiles;
+using Rogium.Systems.ActionHistory;
 using Rogium.Systems.GridSystem;
 using Rogium.Systems.ItemPalette;
 using Rogium.Systems.Toolbox;
@@ -34,7 +35,7 @@ namespace Rogium.Editors.Rooms
         
         private PackEditorOverseer packEditor;
         private RoomEditorOverseer editor;
-        private ToolBox<AssetData, Sprite> toolbox;
+        private ToolBox<AssetData> toolbox;
 
         private IList<ObjectAsset> objects;
         
@@ -49,7 +50,7 @@ namespace Rogium.Editors.Rooms
             base.Awake();
             packEditor = PackEditorOverseer.Instance;
             editor = RoomEditorOverseer.Instance;
-            toolbox = new ToolBox<AssetData, Sprite>(grid, new AssetData(ParameterInfoConstants.ForEmpty), EditorConstants.EmptyGridSprite, grid.UpdateCell);
+            toolbox = new ToolBox<AssetData>(grid, grid.UpdateCell, new AssetData());
             objects = InternalLibraryOverseer.GetInstance().GetObjectsCopy();
 
             paletteTile.OnSelect += asset => SelectedValue(asset, AssetType.Tile);
@@ -105,7 +106,7 @@ namespace Rogium.Editors.Rooms
         public void UpdateGridCell(Vector2Int position)
         {
             if (currentData.BrushValue.ID == EditorConstants.EmptyAssetID) return;
-            toolbox.ApplyCurrent(currentData.Grid, position, new AssetData(currentData.BrushValue), currentData.BrushSprite);
+            toolbox.ApplyCurrent(currentData.Grid, position, new AssetData(currentData.BrushValue), currentData.BrushSprite, grid.ActiveLayer);
         }
 
         /// <summary>
@@ -113,8 +114,15 @@ namespace Rogium.Editors.Rooms
         /// </summary>
         public void ClearActiveLayer()
         {
-            grid.ClearAllCells();
-            currentData.Grid.ClearAllCells();
+            ActionHistorySystem.ForceBeginGrouping();
+            for (int x = 0; x < grid.Size.x; x++)
+            {
+                for (int y = 0; y < grid.Size.y; y++)
+                {
+                    EraseCell(new Vector2Int(x, y));
+                }
+            }
+            ActionHistorySystem.ForceEndGrouping();
         }
         
         /// <summary>
@@ -123,7 +131,7 @@ namespace Rogium.Editors.Rooms
         /// <param name="position">The cell to erase.</param>
         private void EraseCell(Vector2Int position)
         {
-            toolbox.ApplySpecific(ToolType.Eraser, currentData.Grid, position, currentData.BrushValue);
+            toolbox.ApplySpecific(ToolType.Eraser, currentData.Grid, position, currentData.BrushValue, EditorConstants.EmptyGridSprite, grid.ActiveLayer);
         }
         
         /// <summary>
@@ -153,10 +161,10 @@ namespace Rogium.Editors.Rooms
 
             StartCoroutine(SwitchLayer0Delay(0.1f));
             
-            grid.LoadWithSprites(room.TileGrid, tiles, 0);
-            grid.LoadWithSprites(room.DecorGrid, decor, 1);
-            grid.LoadWithSprites(room.ObjectGrid, objects, 2);
-            grid.LoadWithSprites(room.EnemyGrid, packEditor.CurrentPack.Enemies, 3);
+            grid.LoadWithAssets(room.TileGrid, tiles, 0);
+            grid.LoadWithAssets(room.DecorGrid, decor, 1);
+            grid.LoadWithAssets(room.ObjectGrid, objects, 2);
+            grid.LoadWithAssets(room.EnemyGrid, packEditor.CurrentPack.Enemies, 3);
             
             propertyColumn.ConstructSettings(editor.CurrentAsset);
         }
@@ -167,13 +175,8 @@ namespace Rogium.Editors.Rooms
         /// <param name="data">The id of the asset to pick.</param>
         private void PickFrom(AssetData data)
         {
-            if (data.ID == EditorConstants.EmptyAssetID)
-            {
-                toolbox.SwitchTool(ToolType.Eraser);
-                return;
-            }
             currentData.Palette.Select(data.ID);
-            toolbox.SwitchTool(ToolType.Brush);
+            toolbox.SwitchTool((data.IsEmpty()) ? ToolType.Eraser : ToolType.Brush);
         }
 
         /// <summary>
@@ -241,6 +244,6 @@ namespace Rogium.Editors.Rooms
             paletteTile.Select(0);
         }
 
-        public ToolBox<AssetData, Sprite> Toolbox { get => toolbox; } 
+        public ToolBox<AssetData> Toolbox { get => toolbox; } 
     }
 }

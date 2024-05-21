@@ -64,8 +64,10 @@ namespace Rogium.Editors.Palettes
         public void CompleteEditing()
         {
             OnCompleteEditingBefore?.Invoke();
-            
-            currentAsset.UpdateIcon(iconBuilder.BuildFromArray(currentAsset.Colors));
+
+            Sprite newIcon = iconBuilder.BuildFromArray(currentAsset.Colors);
+            newIcon.name = currentAsset.Title;
+            currentAsset.UpdateIcon(newIcon);
             OnCompleteEditing?.Invoke(currentAsset, myIndex);
             
             OnCompleteEditingAfter?.Invoke();

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using RedRats.Core;
 using RedRats.Safety;
-using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.Input;
 using UnityEngine;
@@ -29,7 +28,7 @@ namespace Rogium.Systems.GridSystem
         private SpriteDrawer drawer;
         private Camera cam;
         
-        private Image activeLayer;
+        private int activeLayerIndex;
         
         private Vector2 cellSize;
         private Vector2Int selectedPos;
@@ -83,51 +82,38 @@ namespace Rogium.Systems.GridSystem
             }
         }
 
-        /// <summary>
-        /// Loads sprites into the editor grid.
-        /// </summary>
-        /// <param name="assetList">From which list of assets to load from.</param>
-        /// <param name="IDGrid">The grid of IDs to read.</param>
-        /// <param name="layerIndex">The index of the layer to load on.</param>
-        /// <typeparam name="T">Is a type of <see cref="IAsset"/>.</typeparam>
-        /// <typeparam name="TS">Any type of <see cref="IComparable"/>.</typeparam>
-        public void LoadWithSprites<T, TS>(ObjectGrid<TS> IDGrid, IList<T> assetList, int layerIndex) where T : IAsset where TS : IComparable
+        public override void LoadWithAssets<T, TS>(ObjectGrid<TS> IDGrid, IList<T> assetList, int layer)
         {
             SafetyNet.EnsureIntIsEqual(IDGrid.Width, gridSize.x, "Grid Width");
             SafetyNet.EnsureIntIsEqual(IDGrid.Height, gridSize.y, "Grid Height");
-            layers[layerIndex].layer.sprite = drawer.Build(IDGrid, assetList);
-        }
-        
-        public override void LoadWithSprites<T>(ObjectGrid<string> IDGrid, IList<T> assetList)
-        {
-            SafetyNet.EnsureIntIsEqual(IDGrid.Width, gridSize.x, "Grid Width");
-            SafetyNet.EnsureIntIsEqual(IDGrid.Height, gridSize.y, "Grid Height");
-            activeLayer.sprite = drawer.Build(IDGrid, assetList);
+            layers[layer].layer.sprite = drawer.Build(IDGrid, assetList);
         }
         
         public override void LoadWithColors(ObjectGrid<int> indexGrid, Color[] colorArray)
         {
             SafetyNet.EnsureIntIsEqual(indexGrid.Width, gridSize.x, "Grid Width");
             SafetyNet.EnsureIntIsEqual(indexGrid.Height, gridSize.y, "Grid Height");
-            activeLayer.sprite = drawer.Build(indexGrid, colorArray);
+            GetActiveLayer().sprite = drawer.Build(indexGrid, colorArray);
         }
         
-        public override void UpdateCell(Vector2Int position, Color value)
+        public override void UpdateCell(Vector2Int position, Sprite value) => UpdateCell(activeLayerIndex, position, value);
+        public override void UpdateCell(int layer, Vector2Int position, Sprite value)
         {
-            drawer.UpdateValue(activeLayer.sprite, position, value);
-        }
-        
-        public override void UpdateCell(Vector2Int position, Sprite value)
-        {
-            drawer.UpdateValue(activeLayer.sprite, position, value);
+            drawer.DrawTo(layers[layer].layer.sprite, position, value);
         }
 
-        public override void Apply() => drawer.Apply(activeLayer.sprite);
+        public override Sprite GetCell(Vector2Int position) => GetCell(activeLayerIndex, position);
+        public override Sprite GetCell(int layer, Vector2Int position)
+        {
+            return drawer.Get(layers[layer].layer.sprite, position);
+        }
+
+        public override void Apply(int layer) => drawer.Apply(layers[layer].layer.sprite);
 
         public override void ClearAllCells()
         {
-            drawer.ClearAllCells(activeLayer.sprite);
-            Apply();
+            drawer.ClearAllCells(GetActiveLayer().sprite);
+            Apply(activeLayerIndex);
         }
 
         /// <summary>
@@ -138,7 +124,7 @@ namespace Rogium.Systems.GridSystem
         {
             SafetyNet.EnsureIndexWithingCollectionRange(layerIndex, layers, nameof(layers));
             
-            activeLayer = layers[layerIndex].layer;
+            activeLayerIndex = layerIndex;
             RefreshLayerColors(layerIndex);
         }
         
@@ -172,6 +158,8 @@ namespace Rogium.Systems.GridSystem
             selectedPos = new Vector2Int(x, y);
         }
 
+        private Image GetActiveLayer() => layers[activeLayerIndex].layer;
+        
         /// <summary>
         /// Refreshes the color of all layers.
         /// </summary>
@@ -187,5 +175,7 @@ namespace Rogium.Systems.GridSystem
         public Vector2Int Size { get => gridSize; }
         public Vector2 CellSize { get => cellSize; }
         public Vector2Int SelectedPosition { get => selectedPos; }
+        public override int ActiveLayer { get => activeLayerIndex; }
+        public override Sprite ActiveLayerSprite { get => GetActiveLayer().sprite; }
     }
 }

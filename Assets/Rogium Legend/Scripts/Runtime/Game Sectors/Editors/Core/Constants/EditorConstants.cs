@@ -114,7 +114,7 @@ namespace Rogium.Editors.Core.Defaults
         public const int EnemyMaxHealth = 5;
         public const float EnemyAttackProbability = 100;
         public const float EnemyInvincibilityTime = 0.25f;
-        public const int EnemyWeaponMaxCount = 4;
+        public const int EnemyWeaponMaxCount = 9;
 
         public const AIType EnemyAI = AIType.LookInDirection;
         public const DirectionType EnemyStartingDirection = DirectionType.Down;

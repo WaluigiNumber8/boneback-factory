@@ -3,6 +3,7 @@ using Rogium.Editors.Palettes;
 using System;
 using System.Collections.Generic;
 using RedRats.UI.MenuFilling;
+using Rogium.Editors.Core.Defaults;
 using UnityEngine;
 using TMPro;
 
@@ -38,6 +39,7 @@ namespace Rogium.Systems.ItemPalette
         /// <param name="index">The index of the item.</param>
         public void Select(int index)
         {
+            if (index == EditorConstants.EmptyColorID) return;
             if (slots == null || slots.Count <= 0) return;
             SafetyNet.EnsureIndexWithingCollectionRange(index, slots, "List of Slots");
             if (slots[index].IsOn) slots[index].SetToggle(false);

@@ -1,5 +1,4 @@
 ﻿using System;
-using RedRats.UI.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Palettes;
@@ -16,7 +15,7 @@ namespace Rogium.Systems.GridSystem
     public class GridVisualPreviewer : MonoBehaviour
     {
         [SerializeField] private InteractableEditorGrid grid;
-        [SerializeField] private ToolBoxUIManagerBase toolbox;
+        [SerializeField] private ToolBoxUIManager toolbox;
         [SerializeField] private PreviewerInfo gridPreviewer;
         
         [Header("Palettes")]
@@ -28,7 +27,7 @@ namespace Rogium.Systems.GridSystem
         
         private RectTransform gridTransform;
         
-        private ToolType currentTool = ToolType.Eraser;
+        private ToolType currentTool = ToolType.Bucket;
         private bool isVisible;
         private bool allowMaterialSwitching;
         private bool followCursor;

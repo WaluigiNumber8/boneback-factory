@@ -1,8 +1,11 @@
-﻿using RedRats.Core;
+﻿using System;
+using System.Collections;
+using RedRats.Core;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Tiles;
+using Rogium.Systems.ActionHistory;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -24,6 +27,9 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         private RoomPropertyColumnBuilderEnemy builderEnemy;
         private RoomSettingsBuilder builderSettings;
 
+        private AssetType currentType;
+        private AssetData currentData;
+
         private void Awake()
         {
             builderTile = new RoomPropertyColumnBuilderTile(assetContent);
@@ -31,6 +37,10 @@ namespace Rogium.Editors.Rooms.PropertyColumn
             builderEnemy = new RoomPropertyColumnBuilderEnemy(assetContent);
             builderSettings = new RoomSettingsBuilder();
         }
+
+        private void OnEnable() => ActionHistorySystem.OnUpdateUndoHistory += RefreshProperties;
+        private void OnDisable() => ActionHistorySystem.OnUpdateUndoHistory -= RefreshProperties;
+
 
         /// <summary>
         /// Load asset data into the column.
@@ -45,25 +55,38 @@ namespace Rogium.Editors.Rooms.PropertyColumn
 
             string typeText = (type == AssetType.Tile) ? ((TileAsset) asset).Type.ToString() : type.ToString();
             ui.typeText.text = typeText;
+            currentType = type;
         }
 
         /// <summary>
         /// Constructs the Asset Properties Column from tiles.
         /// </summary>
         /// <param name="data">The asset data to read from.</param>
-        public void ConstructAssetPropertiesTile(AssetData data) => builderTile.Build(data);
+        public void ConstructAssetPropertiesTile(AssetData data)
+        {
+            builderTile.Build(data);
+            currentData = data;
+        }
 
         /// <summary>
         /// Constructs the Asset Properties Column from interactable objects.
         /// </summary>
         /// <param name="data">The asset data to read from.</param>
-        public void ConstructAssetPropertiesObject(AssetData data) => builderObject.Build(data);
+        public void ConstructAssetPropertiesObject(AssetData data)
+        {
+            builderObject.Build(data);
+            currentData = data;
+        }
 
         /// <summary>
         /// Constructs the Asset Properties Column from enemies.
         /// </summary>
         /// <param name="data">The asset data to read from.</param>
-        public void ConstructAssetPropertiesEnemies(AssetData data) => builderEnemy.Build(data);
+        public void ConstructAssetPropertiesEnemies(AssetData data)
+        {
+            builderEnemy.Build(data);
+            currentData = data;
+        }
 
         /// <summary>
         /// Constructs the Room Settings Column.
@@ -73,7 +96,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
             ui.roomTitleText.text = data.Title;
             builderSettings.Build(settingsContent, data, true);
         }
-        
+
         /// <summary>
         /// Clears all set data.
         /// </summary>
@@ -84,6 +107,9 @@ namespace Rogium.Editors.Rooms.PropertyColumn
             ui.typeText.text = "";
             ui.iconImage.color = EditorConstants.NoColor;
             ui.iconImage.sprite = null;
+            
+            currentType = AssetType.None;
+            currentData = new AssetData();
         }
 
         /// <summary>
@@ -96,7 +122,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
             ui.typeText.gameObject.SetActive(true);
             ui.icon.gameObject.SetActive(true);
         }
-        
+
         /// <summary>
         /// Prepares the column for room settings visually.
         /// </summary>
@@ -107,8 +133,31 @@ namespace Rogium.Editors.Rooms.PropertyColumn
             ui.typeText.gameObject.SetActive(false);
             ui.icon.SetActive(false);
         }
-        
-        [System.Serializable]
+
+        private void RefreshProperties()
+        {
+            if (currentData.IsEmpty()) return;
+            StartCoroutine(DelayCoroutine());
+            IEnumerator DelayCoroutine()
+            {
+                yield return new WaitForEndOfFrame();
+                switch (currentType)
+                {
+                    case AssetType.Enemy:
+                        ConstructAssetPropertiesEnemies(currentData);
+                        break;
+                    case AssetType.Tile:
+                        ConstructAssetPropertiesTile(currentData);
+                        break;
+                    case AssetType.Object:
+                        ConstructAssetPropertiesObject(currentData);
+                        break;
+                    default: throw new NotSupportedException($"Asset type '{currentType}' is not supported.");
+                }
+            }
+        }
+
+        [Serializable]
         public struct UIInfo
         {
             public TextMeshProUGUI assetTitleText;

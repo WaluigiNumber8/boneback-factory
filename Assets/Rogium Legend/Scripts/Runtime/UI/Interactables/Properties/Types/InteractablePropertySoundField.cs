@@ -14,12 +14,11 @@ namespace Rogium.UserInterface.Interactables.Properties
 
         private Action<AssetData> whenSoundEdited;
 
-        private void Awake() => soundField.OnValueChanged += WhenSoundEdited;
 
         public void Construct(string titleText, AssetData value, Action<AssetData> whenSoundEdited, bool canBeEmpty = false)
         {
             ConstructTitle(titleText);
-            soundField.Construct(value, canBeEmpty);
+            soundField.Construct(value, WhenSoundEdited, canBeEmpty);
             this.whenSoundEdited = whenSoundEdited;
         }
         

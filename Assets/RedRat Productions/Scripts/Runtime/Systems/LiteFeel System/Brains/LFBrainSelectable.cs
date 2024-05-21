@@ -16,13 +16,14 @@ namespace RedRats.Systems.LiteFeel.Brains
         [SerializeField, GUIColor(0.1f, 0.75f, 0f)] private LFEffector onSelectEffector;
         [SerializeField, GUIColor(0.1f, 0.75f, 0f)] private LFEffector onDeselectEffector;
         [Space]
-        [SerializeField, GUIColor(0f, 0.75f, 1f)] private LFEffector onClickLeftEffector;
-        [SerializeField, GUIColor(0f, 0.75f, 1f)] private LFEffector onClickRightEffector;
+        [SerializeField, GUIColor(0.25f, 0.75f, 1f)] private LFEffector onClickLeftEffector;
+        [SerializeField, GUIColor(0.25f, 0.75f, 1f)] private LFEffector onClickRightEffector;
+        [SerializeField, GUIColor(0.25f, 0.75f, 1f)] private LFEffector onClickDisabledEffector;
         [Space]
-        [SerializeField, GUIColor(0f, 0.75f, 1f)] private LFEffector onClickLeftDownEffector;
-        [SerializeField, GUIColor(0f, 0.75f, 1f)] private LFEffector onClickLeftUpEffector;
-        [SerializeField, GUIColor(0f, 0.75f, 1f)] private LFEffector onClickRightDownEffector;
-        [SerializeField, GUIColor(0f, 0.75f, 1f)] private LFEffector onClickRightUpEffector;
+        [SerializeField, GUIColor(0.25f, 0.75f, 1f)] private LFEffector onClickLeftDownEffector;
+        [SerializeField, GUIColor(0.25f, 0.75f, 1f)] private LFEffector onClickLeftUpEffector;
+        [SerializeField, GUIColor(0.25f, 0.75f, 1f)] private LFEffector onClickRightDownEffector;
+        [SerializeField, GUIColor(0.25f, 0.75f, 1f)] private LFEffector onClickRightUpEffector;
 
         private void OnEnable()
         {
@@ -34,6 +35,7 @@ namespace RedRats.Systems.LiteFeel.Brains
             if (onClickLeftDownEffector != null) eventCaller.OnClickLeftDown += onClickLeftDownEffector.Play;
             if (onClickRightDownEffector != null) eventCaller.OnClickRightDown += onClickRightDownEffector.Play;
             if (onClickRightUpEffector != null) eventCaller.OnClickRightUp += onClickRightUpEffector.Play;
+            if (onClickDisabledEffector != null) eventCaller.OnClickDisabled += onClickDisabledEffector.Play;
         }
 
         private void OnDisable()
@@ -46,6 +48,7 @@ namespace RedRats.Systems.LiteFeel.Brains
             if (onClickLeftDownEffector != null) eventCaller.OnClickLeftDown -= onClickLeftDownEffector.Play;
             if (onClickRightDownEffector != null) eventCaller.OnClickRightDown -= onClickRightDownEffector.Play;
             if (onClickRightUpEffector != null) eventCaller.OnClickRightUp -= onClickRightUpEffector.Play;
+            if (onClickDisabledEffector != null) eventCaller.OnClickDisabled -= onClickDisabledEffector.Play;
         }
     }
 }

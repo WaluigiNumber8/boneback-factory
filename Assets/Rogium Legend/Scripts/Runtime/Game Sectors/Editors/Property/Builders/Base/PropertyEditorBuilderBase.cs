@@ -1,5 +1,4 @@
-﻿using Rogium.Editors.Core;
-using Rogium.UserInterface.Interactables.Properties;
+﻿using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine;
 
 namespace Rogium.Editors.PropertyEditor.Builders
@@ -9,9 +8,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
     /// </summary>
     public abstract class PropertyEditorBuilderBase : UIPropertyContentBuilderBaseColumn2
     {
-        protected PropertyEditorBuilderBase(Transform contentMain, Transform contentSecond) : base(contentMain, contentSecond)
-        {
-        }
+        protected PropertyEditorBuilderBase(Transform contentMain, Transform contentSecond) : base(contentMain, contentSecond) { }
         
         /// <summary>
         /// Builds the Important column with properties.

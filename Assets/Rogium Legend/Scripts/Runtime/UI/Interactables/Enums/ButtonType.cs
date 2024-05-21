@@ -134,11 +134,18 @@ namespace Rogium.UserInterface.Interactables
         #region Options Menu
         OptionsSavePreferences = 83,
         #endregion
+
+        #region General Editor Actions
+
+        Undo = 86,
+        Redo = 87,
+
+        #endregion
         
         QuitGame = 9999,
         Play = 10000,
         TEST = 10001
         
-        //Latest used : 85
+        //Latest used : 87
     }   
 }

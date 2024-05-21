@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Enemies;
@@ -183,16 +184,26 @@ namespace Rogium.Editors.Packs
                 return true;
             return false;
         }
+        
+        public override int GetHashCode() => int.Parse(ID);
 
         public override void ClearAssociatedSprite()
         {
             base.ClearAssociatedSprite();
             icon = EditorConstants.PackIcon;
         }
-        
-        public override int GetHashCode()
+
+        /// <summary>
+        /// Try getting a sprite from the pack.
+        /// <br/> If id is an empty asset, returns an <see cref="EmptyAsset"/> with a <see cref="defaultSprite"/>.
+        /// <br/> If a sprite with the given returns an <see cref="EmptyAsset"/> with a missing sprite.
+        /// </summary>
+        /// <param name="id">The ID of the sprite to search for.</param>
+        /// <param name="defaultSprite">What sprite to use as default.</param>
+        public IAsset TryGetSprite(string id, Sprite defaultSprite)
         {
-            return int.Parse(ID);
+            if (id == EditorConstants.EmptyAssetID || string.IsNullOrEmpty(id)) return new EmptyAsset(defaultSprite);
+            return Sprites.FindValueFirst(id) ?? (IAsset) new EmptyAsset(EditorConstants.MissingSprite);
         }
 
         public bool ContainsAnyPalettes => (palettes?.Count > 0);
