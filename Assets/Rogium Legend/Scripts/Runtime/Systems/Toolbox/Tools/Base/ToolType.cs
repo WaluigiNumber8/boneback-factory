@@ -4,7 +4,7 @@
     {
         Brush = 0,
         Eraser = 1,
-        Bucket = 2,
+        Fill = 2,
         ColorPicker = 3,
         Selection = 4,
     }

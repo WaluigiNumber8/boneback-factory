@@ -125,11 +125,27 @@ namespace RedRats.Core
             return newPos;
         }
         
-        private static (Vector2, Vector2) GetAllowedMinMaxPositions(RectTransform ttransform, RectTransform canvasTransform)
+        /// <summary>
+        /// Returns the allowed min and max positions for a <see cref="RectTransform"/> within a canvas.
+        /// </summary>
+        /// <param name="transform">The transform to find positions for.</param>
+        /// <param name="canvasTransform">A bigger transform the previous one wants to stay in.</param>
+        /// <returns>Min/max positions for both X & Y.</returns>
+        private static (Vector2, Vector2) GetAllowedMinMaxPositions(RectTransform transform, RectTransform canvasTransform)
         {
-            Vector2 minPos = canvasTransform.rect.min - ttransform.rect.min;
-            Vector2 maxPos = canvasTransform.rect.max - ttransform.rect.max;
+            Vector2 minPos = canvasTransform.rect.min - transform.rect.min;
+            Vector2 maxPos = canvasTransform.rect.max - transform.rect.max;
             return (minPos, maxPos);
+        }
+        
+        /// <summary>
+        /// Returns TRUE if the pointer is over a <see cref="RectTransform"/>.
+        /// </summary>
+        /// <param name="transform">The transform to check if pointer is above.</param>
+        public static bool IsPointerOverTransform(RectTransform transform)
+        {
+            Vector2 localMousePosition = transform.InverseTransformPoint(Input.mousePosition);
+            return transform.rect.Contains(localMousePosition);
         }
     }
 }

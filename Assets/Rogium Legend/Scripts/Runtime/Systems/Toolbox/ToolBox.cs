@@ -83,7 +83,7 @@ namespace Rogium.Systems.Toolbox
                 ToolType.Selection => toolSelection,
                 ToolType.Brush => toolBrush,
                 ToolType.Eraser => toolEraser,
-                ToolType.Bucket => toolBucket,
+                ToolType.Fill => toolBucket,
                 ToolType.ColorPicker => toolPicker,
                 _ => throw new InvalidOperationException("Unknown or not yet supported Tool Type.")
             };
@@ -106,7 +106,7 @@ namespace Rogium.Systems.Toolbox
                 ToolType.Selection => toolSelection,
                 ToolType.Brush => toolBrush,
                 ToolType.Eraser => toolEraser,
-                ToolType.Bucket => toolBucket,
+                ToolType.Fill => toolBucket,
                 ToolType.ColorPicker => toolPicker,
                 _ => throw new InvalidOperationException("Unknown or not yet supported Tool Type.")
             };

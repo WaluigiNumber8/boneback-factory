@@ -38,7 +38,7 @@ namespace Rogium.Systems.Toolbox
                 case ToolType.Eraser:
                     buttonEraser.isOn = true;
                     break;
-                case ToolType.Bucket:
+                case ToolType.Fill:
                     buttonBucket.isOn = true;
                     break;
                 case ToolType.ColorPicker:
