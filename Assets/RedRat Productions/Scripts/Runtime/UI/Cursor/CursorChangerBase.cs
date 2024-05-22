@@ -14,7 +14,17 @@ namespace RedRats.UI.Core.Cursors
         {
             overseer = CursorOverseerMono.GetInstance();
         }
+
+        protected virtual void OnDisable()
+        {
+            overseer.Reset();
+        }
         
+        protected virtual void OnDestroy()
+        {
+            overseer.Reset();
+        }
+
         public void OnPointerEnter(PointerEventData eventData) => overseer.Set(CursorToSet);
         public void OnPointerExit(PointerEventData eventData) => overseer.Set(CursorType.Default);
 

@@ -28,10 +28,11 @@ namespace Rogium.UserInterface.Cursors
             spriteEditor.Toolbox.OnSwitchTool += UpdateCursor;
         }
 
-        private void OnDisable()
+        protected override void OnDisable()
         {
             roomEditor.Toolbox.OnSwitchTool -= UpdateCursor;
             spriteEditor.Toolbox.OnSwitchTool -= UpdateCursor;
+            base.OnDisable();
         }
 
         private void UpdateCursor(ToolType tool)

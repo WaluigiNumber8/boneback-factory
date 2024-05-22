@@ -30,5 +30,10 @@ namespace RedRats.UI.Core.Cursors
         /// </summary>
         /// <param name="type">The type of cursor.</param>
         public void Set(CursorType type) => cursors[type].Use();
+
+        /// <summary>
+        /// Resets the cursor to default.
+        /// </summary>
+        public void Reset() => Set(CursorType.Default);
     }
 }
