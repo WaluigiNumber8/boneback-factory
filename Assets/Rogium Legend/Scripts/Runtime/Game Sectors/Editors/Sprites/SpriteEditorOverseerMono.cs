@@ -115,6 +115,7 @@ namespace Rogium.Editors.Sprites
             lastPaletteAsset= palettePicker.GrabBasedOn(sprite.PreferredPaletteID);
             currentSprite = sprite;
             
+            toolbox.Refresh();
             SwitchPalette(lastPaletteAsset);
             StartCoroutine(SwitchLayerDelay(0.1f));
         }
