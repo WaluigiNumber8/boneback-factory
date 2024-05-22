@@ -10,20 +10,28 @@ namespace Rogium.UserInterface.Cursors
     /// </summary>
     public class CursorChangerToolbox : CursorChangerBase
     {
+        private RoomEditorOverseerMono roomEditor;
+        private SpriteEditorOverseerMono spriteEditor;
+        
         private CursorType currentCursor;
 
-        protected override void OnEnable()
+        protected override void Awake()
         {
-            base.OnEnable();
-            RoomEditorOverseerMono.GetInstance().Toolbox.OnSwitchTool += UpdateCursor;
-            SpriteEditorOverseerMono.GetInstance().Toolbox.OnSwitchTool += UpdateCursor;
+            base.Awake();
+            roomEditor = RoomEditorOverseerMono.GetInstance();
+            spriteEditor = SpriteEditorOverseerMono.GetInstance();
         }
 
-        protected override void OnDisable()
+        private void OnEnable()
         {
-            base.OnDisable();
-            RoomEditorOverseerMono.GetInstance().Toolbox.OnSwitchTool -= UpdateCursor;
-            SpriteEditorOverseerMono.GetInstance().Toolbox.OnSwitchTool -= UpdateCursor;
+            roomEditor.Toolbox.OnSwitchTool += UpdateCursor;
+            spriteEditor.Toolbox.OnSwitchTool += UpdateCursor;
+        }
+
+        private void OnDisable()
+        {
+            roomEditor.Toolbox.OnSwitchTool -= UpdateCursor;
+            spriteEditor.Toolbox.OnSwitchTool -= UpdateCursor;
         }
 
         private void UpdateCursor(ToolType tool)

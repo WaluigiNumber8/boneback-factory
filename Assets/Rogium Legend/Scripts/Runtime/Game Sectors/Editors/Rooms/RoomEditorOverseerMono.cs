@@ -166,6 +166,7 @@ namespace Rogium.Editors.Rooms
             grid.LoadWithAssets(room.ObjectGrid, objects, 2);
             grid.LoadWithAssets(room.EnemyGrid, packEditor.CurrentPack.Enemies, 3);
             
+            toolbox.Refresh();
             propertyColumn.ConstructSettings(editor.CurrentAsset);
         }
         

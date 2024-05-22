@@ -137,15 +137,5 @@ namespace RedRats.Core
             Vector2 maxPos = canvasTransform.rect.max - transform.rect.max;
             return (minPos, maxPos);
         }
-        
-        /// <summary>
-        /// Returns TRUE if the pointer is over a <see cref="RectTransform"/>.
-        /// </summary>
-        /// <param name="transform">The transform to check if pointer is above.</param>
-        public static bool IsPointerOverTransform(RectTransform transform)
-        {
-            Vector2 localMousePosition = transform.InverseTransformPoint(Input.mousePosition);
-            return transform.rect.Contains(localMousePosition);
-        }
     }
 }

@@ -45,7 +45,7 @@ namespace Rogium.Systems.Toolbox
             toolSelection.OnSelectValue += data => OnSelectValue?.Invoke(data);
             toolPicker.OnPickValue += data => OnChangePaletteValue?.Invoke(data);
             
-            currentTool = toolBrush;
+            SwitchTool(ToolType.Brush);
         }
 
         /// <summary>
@@ -92,6 +92,11 @@ namespace Rogium.Systems.Toolbox
         }
 
         public void WhenDrawOnUIGrid(int layerIndex, Vector2Int position, Sprite value) => whenGraphicDraw?.Invoke(layerIndex, position, value);
+
+        /// <summary>
+        /// Refreshes the toolbox.
+        /// </summary>
+        public void Refresh() => OnSwitchTool?.Invoke(currentToolType);
 
         /// <summary>
         /// Grabs a tool based on entered tool type.
