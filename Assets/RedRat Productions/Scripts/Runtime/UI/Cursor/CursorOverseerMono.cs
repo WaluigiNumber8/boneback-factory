@@ -34,6 +34,6 @@ namespace RedRats.UI.Core.Cursors
         /// <summary>
         /// Resets the cursor to default.
         /// </summary>
-        public void Reset() => Set(CursorType.Default);
+        public void SetDefault() => Set(CursorType.Default);
     }
 }

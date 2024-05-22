@@ -17,12 +17,12 @@ namespace RedRats.UI.Core.Cursors
 
         protected virtual void OnDisable()
         {
-            overseer.Reset();
+            overseer.SetDefault();
         }
         
         protected virtual void OnDestroy()
         {
-            overseer.Reset();
+            overseer.SetDefault();
         }
 
         public void OnPointerEnter(PointerEventData eventData) => overseer.Set(CursorToSet);

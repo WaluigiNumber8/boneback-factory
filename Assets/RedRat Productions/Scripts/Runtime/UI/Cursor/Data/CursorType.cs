@@ -7,9 +7,10 @@ namespace RedRats.UI.Core.Cursors
     {
         Default = 0,
         Interact = 1,
-        ToolBrush = 2,
-        ToolEraser = 3,
-        ToolFill = 4,
-        ToolPicker = 5,
+        Gameplay = 2,
+        ToolBrush = 3,
+        ToolEraser = 4,
+        ToolFill = 5,
+        ToolPicker = 6,
     }
 }
