@@ -9,7 +9,8 @@ namespace RedRats.UI.Core.Cursors
     public abstract class CursorChangerBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         private CursorOverseerMono overseer;
-
+        private bool withinBounds;
+        
         protected virtual void Awake()
         {
             overseer = CursorOverseerMono.GetInstance();
@@ -18,16 +19,33 @@ namespace RedRats.UI.Core.Cursors
         protected virtual void OnDisable()
         {
             overseer.SetDefault();
+            withinBounds = false;
         }
         
         protected virtual void OnDestroy()
         {
             overseer.SetDefault();
+            withinBounds = false;
         }
 
-        public void OnPointerEnter(PointerEventData eventData) => overseer.Set(CursorToSet);
-        public void OnPointerExit(PointerEventData eventData) => overseer.Set(CursorType.Default);
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            overseer.Set(CursorToSet);
+            withinBounds = true;
+        }
 
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            overseer.Set(CursorType.Default);
+            withinBounds = false;
+        }
+
+        protected void SetIfWithinBounds()
+        {
+            if (!withinBounds) return;
+            overseer.Set(CursorToSet);
+        }
+        
         protected abstract CursorType CursorToSet { get; }
 
     }

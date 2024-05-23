@@ -46,6 +46,7 @@ namespace Rogium.UserInterface.Cursors
                 ToolType.ColorPicker => CursorType.ToolPicker,
                 _ => CursorType.Default
             };
+            SetIfWithinBounds();
         }
 
         protected override CursorType CursorToSet { get => currentCursor; }
