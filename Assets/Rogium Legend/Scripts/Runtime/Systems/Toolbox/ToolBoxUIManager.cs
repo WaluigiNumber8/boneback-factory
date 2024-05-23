@@ -21,7 +21,7 @@ namespace Rogium.Systems.Toolbox
 
         private ToolType currentToolType;
 
-        private void Awake()
+        private void Start()
         {
             RoomEditorOverseerMono.GetInstance().Toolbox.OnSwitchTool += SwitchTool;
             SpriteEditorOverseerMono.GetInstance().Toolbox.OnSwitchTool += SwitchTool;

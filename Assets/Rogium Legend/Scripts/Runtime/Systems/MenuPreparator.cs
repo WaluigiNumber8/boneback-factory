@@ -12,6 +12,11 @@ namespace Rogium.Core
     /// </summary>
     public class MenuPreparator : MonoBehaviour
     {
+        private void Awake()
+        {
+            ActionHistorySystem.RedoLast();
+        }
+
         private void Start()
         {
             CanvasOverseer canvasOverseer = CanvasOverseer.GetInstance();
@@ -22,7 +27,7 @@ namespace Rogium.Core
             GAS.ObjectSetActive(false, UIEditorContainer.GetInstance().Background);
             GAS.ObjectSetActive(false, canvasOverseer.NavigationBar.transform.GetChild(0).gameObject);
             canvasOverseer.NavigationBar.Hide();
-            ActionHistorySystem.RedoLast(); // To initialize the system's input tracking.
+            ActionHistorySystem.InitInputReading();
         }
 
     }
