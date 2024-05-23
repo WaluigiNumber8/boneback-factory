@@ -1,6 +1,5 @@
 using System;
 using RedRats.Core;
-using Rogium.Systems.Input;
 
 namespace Rogium.Systems.ActionHistory
 {
@@ -27,14 +26,6 @@ namespace Rogium.Systems.ActionHistory
             assetDetector.OnAssetChange += ClearHistory;
         }
 
-        public static void InitInputReading()
-        {
-            InputSystem.GetInstance().UI.Click.OnPress += ForceBeginGrouping;
-            InputSystem.GetInstance().UI.ClickAlternative.OnPress += ForceBeginGrouping;
-            InputSystem.GetInstance().UI.Click.OnRelease += ForceEndGrouping;
-            InputSystem.GetInstance().UI.ClickAlternative.OnRelease += ForceEndGrouping;
-        }
-        
 
         /// <summary>
         /// Adds an action to the history and executes it.
@@ -62,14 +53,6 @@ namespace Rogium.Systems.ActionHistory
             if (undoHistory.Count == 0) return;
 
             IAction newestAction = undoHistory.Pop();
-            
-            // //If action's construct is null, keep popping until a valid action is found
-            // while (newestAction.AffectedConstruct == null)
-            // {
-            //     if (undoHistory.Count == 0) return;
-            //     newestAction = undoHistory.Pop();
-            // }
-            
             redoHistory.Push(newestAction);
             newestAction.Undo();
         }
