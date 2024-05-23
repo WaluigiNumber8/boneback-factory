@@ -25,12 +25,16 @@ namespace Rogium.Systems.ActionHistory
             undoHistory.OnChange += () => OnUpdateUndoHistory?.Invoke();
             redoHistory.OnChange += () => OnUpdateRedoHistory?.Invoke();
             assetDetector.OnAssetChange += ClearHistory;
+        }
 
+        public static void InitInputReading()
+        {
             InputSystem.GetInstance().UI.Click.OnPress += ForceBeginGrouping;
             InputSystem.GetInstance().UI.ClickAlternative.OnPress += ForceBeginGrouping;
             InputSystem.GetInstance().UI.Click.OnRelease += ForceEndGrouping;
             InputSystem.GetInstance().UI.ClickAlternative.OnRelease += ForceEndGrouping;
         }
+        
 
         /// <summary>
         /// Adds an action to the history and executes it.

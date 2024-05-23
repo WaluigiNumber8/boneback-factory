@@ -45,6 +45,7 @@ namespace Rogium.Systems.Toolbox
             toolSelection.OnSelectValue += data => OnSelectValue?.Invoke(data);
             toolPicker.OnPickValue += data => OnChangePaletteValue?.Invoke(data);
             
+            currentToolType = ToolType.None;
             SwitchTool(ToolType.Brush);
         }
 
