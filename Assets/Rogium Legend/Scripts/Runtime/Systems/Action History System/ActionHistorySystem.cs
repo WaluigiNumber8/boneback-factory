@@ -66,7 +66,7 @@ namespace Rogium.Systems.ActionHistory
             newestAction.Execute();
         }
 
-        private static void ClearHistory()
+        public static void ClearHistory()
         {
             undoHistory.Clear();
             redoHistory.Clear();
@@ -128,5 +128,7 @@ namespace Rogium.Systems.ActionHistory
         
         public static int UndoCount => undoHistory.Count;
         public static int RedoCount => redoHistory.Count;
+        
+        public static GroupAction CurrentGroup { get => currentGroup; }
     }
 }
