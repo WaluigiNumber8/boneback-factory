@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -5409210369423133466}
   - component: {fileID: 9023567783155571448}
   m_Layer: 5
-  m_Name: pref_Porperty_Toggle_Blue
+  m_Name: pref_Property_Toggle_Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
