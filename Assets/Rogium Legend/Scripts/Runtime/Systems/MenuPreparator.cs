@@ -14,7 +14,7 @@ namespace Rogium.Core
     {
         private void Awake()
         {
-            ActionHistorySystem.RedoLast();
+            ActionHistorySystem.ClearHistory();
         }
 
         private void Start()

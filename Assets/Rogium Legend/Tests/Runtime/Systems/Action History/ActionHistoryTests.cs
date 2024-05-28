@@ -1,6 +1,7 @@
 using NSubstitute;
 using NUnit.Framework;
 using Rogium.Systems.ActionHistory;
+using static Rogium.Tests.Systems.ActionHistory.ActionHistoryCreator;
 
 namespace Rogium.Tests.Systems.ActionHistory
 {
@@ -14,10 +15,7 @@ namespace Rogium.Tests.Systems.ActionHistory
         [SetUp]
         public void Setup()
         {
-            mockAction = Substitute.For<IAction>();
-            mockAction.LastValue.Returns(0);
-            mockAction.Value.Returns(1);
-            mockAction.NothingChanged().Returns(false);
+            mockAction = CreateAction();
             
             ActionHistorySystem.ClearHistory();
             ActionHistorySystem.ForceBeginGrouping();
@@ -29,10 +27,6 @@ namespace Rogium.Tests.Systems.ActionHistory
         [Test]
         public void AddAndExecute_Should_AddNewActionToUndo()
         {
-            mockAction.LastValue.Returns(0);
-            mockAction.Value.Returns(1);
-            mockAction.NothingChanged().Returns(false);
-
             ActionHistorySystem.AddAndExecute(mockAction);
             ActionHistorySystem.ForceEndGrouping();
             
@@ -42,9 +36,7 @@ namespace Rogium.Tests.Systems.ActionHistory
         [Test]
         public void AddAndExecute_Should_NotAddNewActionToUndo_IfNothingChanged()
         {
-            mockAction.LastValue.Returns(1);
-            mockAction.Value.Returns(1);
-            mockAction.NothingChanged().Returns(true);
+            mockAction = CreateNonChangingAction();
 
             ActionHistorySystem.AddAndExecute(mockAction);
             ActionHistorySystem.ForceEndGrouping();
@@ -92,12 +84,11 @@ namespace Rogium.Tests.Systems.ActionHistory
         public void AddAndExecute_Should_AddActionToGroup_IfActionIsOnSameConstruct()
         {
             object construct = new();
-            IAction mockAction2 = Substitute.For<IAction>();
-            mockAction.AffectedConstruct.Returns(construct);
-            mockAction2.AffectedConstruct.Returns(construct);
+            mockAction = CreateAction(construct);
+            IAction mockAction2 = CreateAction(construct);
             
             ActionHistorySystem.AddAndExecute(mockAction);
-            ActionHistorySystem.AddAndExecute(mockAction);
+            ActionHistorySystem.AddAndExecute(mockAction2);
             
             Assert.That(ActionHistorySystem.CurrentGroup, Is.Not.Null);
             Assert.That(ActionHistorySystem.CurrentGroup.ActionsCount, Is.EqualTo(2));
@@ -108,9 +99,8 @@ namespace Rogium.Tests.Systems.ActionHistory
         {
             object construct1 = new();
             object construct2 = new();
-            IAction mockAction2 = Substitute.For<IAction>();
-            mockAction.AffectedConstruct.Returns(construct1);
-            mockAction2.AffectedConstruct.Returns(construct2);
+            mockAction = CreateAction(construct1);
+            IAction mockAction2 = CreateAction(construct2);
             
             ActionHistorySystem.AddAndExecute(mockAction);
             ActionHistorySystem.AddAndExecute(mockAction2);
@@ -153,9 +143,8 @@ namespace Rogium.Tests.Systems.ActionHistory
         public void UndoLast_Should_EndGroupingAndUndoGroup_IfItWasOpened()
         {
             object construct = new();
-            IAction mockAction2 = Substitute.For<IAction>();
-            mockAction.AffectedConstruct.Returns(construct);
-            mockAction2.AffectedConstruct.Returns(construct);
+            mockAction = CreateAction(construct);
+            IAction mockAction2 = CreateAction(construct);
             
             ActionHistorySystem.AddAndExecute(mockAction);
             ActionHistorySystem.AddAndExecute(mockAction2);
