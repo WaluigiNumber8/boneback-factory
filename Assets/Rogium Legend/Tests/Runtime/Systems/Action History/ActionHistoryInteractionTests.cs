@@ -75,5 +75,7 @@ namespace Rogium.Tests.Systems.ActionHistory
             Assert.That(ActionHistorySystem.CurrentGroup, Is.Null);
             Assert.That(ActionHistorySystem.UndoCount, Is.EqualTo(2));
         }
+        
+        
     }
 }

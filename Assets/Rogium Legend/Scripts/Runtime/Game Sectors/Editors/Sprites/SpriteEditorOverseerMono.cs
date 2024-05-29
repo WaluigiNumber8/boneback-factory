@@ -7,6 +7,7 @@ using Rogium.Systems.ActionHistory;
 using Rogium.Systems.GridSystem;
 using Rogium.Systems.ItemPalette;
 using Rogium.Systems.Toolbox;
+using Rogium.UserInterface.Cursors;
 using Rogium.UserInterface.ModalWindows;
 using UnityEngine;
 
@@ -19,6 +20,8 @@ namespace Rogium.Editors.Sprites
     {
         [SerializeField] private InteractableEditorGrid grid;
         [SerializeField] private ItemPaletteColor palette;
+        [SerializeField] private ToolBoxUIManager toolBoxUIManager;
+        [SerializeField] private CursorChangerToolbox cursorChanger;
         
         private SpriteEditorOverseer editor;
         private PalettePicker palettePicker;
@@ -26,7 +29,8 @@ namespace Rogium.Editors.Sprites
 
         private SpriteAsset currentSprite;
         private ColorSlot currentSlot;
-        private PaletteAsset lastPaletteAsset;
+        private PaletteAsset currentPalette;
+        private PaletteAsset lastPalette;
 
         protected override void Awake()
         {
@@ -42,7 +46,10 @@ namespace Rogium.Editors.Sprites
             grid.OnClick += UpdateGridCell;
             grid.OnClickAlternative += EraseCell;
             palette.OnSelect += ChangeCurrentColor;
+            
             toolbox.OnChangePaletteValue += PickFrom;
+            toolbox.OnSwitchTool += toolBoxUIManager.SwitchTool;
+            toolbox.OnSwitchTool += cursorChanger.UpdateCursor;
         }
 
         private void OnDisable()
@@ -51,7 +58,10 @@ namespace Rogium.Editors.Sprites
             grid.OnClick -= UpdateGridCell;
             grid.OnClickAlternative -= EraseCell;
             palette.OnSelect -= ChangeCurrentColor;
+            
             toolbox.OnChangePaletteValue -= PickFrom;
+            toolbox.OnSwitchTool -= toolBoxUIManager.SwitchTool;
+            toolbox.OnSwitchTool -= cursorChanger.UpdateCursor;
         }
 
         /// <summary>
@@ -72,11 +82,11 @@ namespace Rogium.Editors.Sprites
         {
             ModalWindowBuilder.GetInstance().OpenAssetPickerWindow(AssetType.Palette, asset =>
             {
-                PaletteAsset pal = (PaletteAsset) asset;
-                ActionHistorySystem.AddAndExecute(new SwitchSpriteEditorPaletteAction(pal, lastPaletteAsset, SwitchPalette));
-                currentSprite.UpdatePreferredPaletteID(pal.ID);
-                lastPaletteAsset = pal;
-            }, lastPaletteAsset);
+                currentPalette = (PaletteAsset) asset;
+                ActionHistorySystem.AddAndExecute(new SwitchSpriteEditorPaletteAction(currentPalette, lastPalette, SwitchPalette));
+                currentSprite.UpdatePreferredPaletteID(currentPalette.ID);
+                lastPalette = currentPalette;
+            }, lastPalette);
         }
         
         /// <summary>
@@ -85,7 +95,8 @@ namespace Rogium.Editors.Sprites
         /// <param name="asset"></param>
         public void SwitchPalette(PaletteAsset asset)
         {
-            lastPaletteAsset = asset;
+            currentPalette = asset;
+            lastPalette = asset;
             grid.LoadWithColors(currentSprite.SpriteData, asset.Colors);
             palette.Fill(asset.Colors);
             palette.Select(0);
@@ -110,13 +121,13 @@ namespace Rogium.Editors.Sprites
         /// Prepares the Sprite Editor for operation.
         /// </summary>
         /// <param name="sprite">The sprite to read from.</param>
-        private void PrepareEditor(SpriteAsset sprite)
+        public void PrepareEditor(SpriteAsset sprite)
         {
-            lastPaletteAsset= palettePicker.GrabBasedOn(sprite.PreferredPaletteID);
+            lastPalette = palettePicker.GrabBasedOn(sprite.PreferredPaletteID);
             currentSprite = sprite;
             
             toolbox.Refresh();
-            SwitchPalette(lastPaletteAsset);
+            SwitchPalette(lastPalette);
             StartCoroutine(SwitchLayerDelay(0.1f));
         }
         
@@ -152,6 +163,7 @@ namespace Rogium.Editors.Sprites
             palette.Select(0);
         }
         
+        public PaletteAsset CurrentPalette { get => currentPalette; }
         public ToolBox<int> Toolbox { get => toolbox; } 
     }
 }

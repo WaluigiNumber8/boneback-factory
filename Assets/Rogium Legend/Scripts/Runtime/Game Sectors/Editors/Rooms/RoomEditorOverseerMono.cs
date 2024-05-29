@@ -14,6 +14,7 @@ using Rogium.Systems.ActionHistory;
 using Rogium.Systems.GridSystem;
 using Rogium.Systems.ItemPalette;
 using Rogium.Systems.Toolbox;
+using Rogium.UserInterface.Cursors;
 using UnityEngine;
 
 namespace Rogium.Editors.Rooms
@@ -26,6 +27,8 @@ namespace Rogium.Editors.Rooms
         [SerializeField] private InteractableEditorGrid grid;
         [SerializeField] private TabGroup partsDrawer;
         [SerializeField] private RoomPropertyColumn propertyColumn;
+        [SerializeField] private ToolBoxUIManager toolBoxUIManager;
+        [SerializeField] private CursorChangerLayersInfo cursorChangers;
         
         [Header("Palettes")]
         [SerializeField] private ItemPaletteAsset paletteTile;
@@ -67,6 +70,8 @@ namespace Rogium.Editors.Rooms
             
             toolbox.OnChangePaletteValue += PickFrom;
             toolbox.OnSelectValue += SelectedValue;
+            toolbox.OnSwitchTool += toolBoxUIManager.SwitchTool;
+            cursorChangers.SubscribeTo(toolbox);
         }
 
         private void OnDisable()
@@ -77,6 +82,8 @@ namespace Rogium.Editors.Rooms
             
             toolbox.OnChangePaletteValue -= PickFrom;
             toolbox.OnSelectValue -= SelectedValue;
+            toolbox.OnSwitchTool -= toolBoxUIManager.SwitchTool;
+            cursorChangers.UnsubscribeFrom(toolbox);
         }
 
         /// <summary>
@@ -245,6 +252,31 @@ namespace Rogium.Editors.Rooms
             paletteTile.Select(0);
         }
 
-        public ToolBox<AssetData> Toolbox { get => toolbox; } 
+        public ToolBox<AssetData> Toolbox { get => toolbox; }
+
+        [Serializable]
+        public struct CursorChangerLayersInfo
+        {
+            public CursorChangerToolbox cursorChangerTile;
+            public CursorChangerToolbox cursorChangerDecor;
+            public CursorChangerToolbox cursorChangerObject;
+            public CursorChangerToolbox cursorChangerEnemy;
+            
+            public void SubscribeTo(ToolBox<AssetData> toolBox)
+            {
+                toolBox.OnSwitchTool += cursorChangerTile.UpdateCursor;
+                toolBox.OnSwitchTool += cursorChangerDecor.UpdateCursor;
+                toolBox.OnSwitchTool += cursorChangerObject.UpdateCursor;
+                toolBox.OnSwitchTool += cursorChangerEnemy.UpdateCursor;
+            }
+            
+            public void UnsubscribeFrom(ToolBox<AssetData> toolBox)
+            {
+                toolBox.OnSwitchTool -= cursorChangerTile.UpdateCursor;
+                toolBox.OnSwitchTool -= cursorChangerDecor.UpdateCursor;
+                toolBox.OnSwitchTool -= cursorChangerObject.UpdateCursor;
+                toolBox.OnSwitchTool -= cursorChangerEnemy.UpdateCursor;
+            }
+        }
     }
 }

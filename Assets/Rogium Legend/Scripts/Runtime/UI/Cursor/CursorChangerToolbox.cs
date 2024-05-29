@@ -15,27 +15,7 @@ namespace Rogium.UserInterface.Cursors
         
         private CursorType currentCursor;
 
-        protected override void Awake()
-        {
-            base.Awake();
-            roomEditor = RoomEditorOverseerMono.GetInstance();
-            spriteEditor = SpriteEditorOverseerMono.GetInstance();
-        }
-
-        private void OnEnable()
-        {
-            roomEditor.Toolbox.OnSwitchTool += UpdateCursor;
-            spriteEditor.Toolbox.OnSwitchTool += UpdateCursor;
-        }
-
-        protected override void OnDisable()
-        {
-            roomEditor.Toolbox.OnSwitchTool -= UpdateCursor;
-            spriteEditor.Toolbox.OnSwitchTool -= UpdateCursor;
-            base.OnDisable();
-        }
-
-        private void UpdateCursor(ToolType tool)
+        public void UpdateCursor(ToolType tool)
         {
             currentCursor = tool switch
             {
