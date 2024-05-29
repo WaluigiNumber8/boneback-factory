@@ -1,14 +1,11 @@
 using System.Collections;
-using NSubstitute;
 using NUnit.Framework;
 using Rogium.Core;
 using Rogium.Systems.ActionHistory;
 using Rogium.Tests.Core;
 using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
 namespace Rogium.Tests.Systems.ActionHistory

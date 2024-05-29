@@ -4,10 +4,11 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
+        "Unity.TextMeshPro",
         "TNRD.NSubstitute",
-        "Rogium.Runtime",
         "Unity.InputSystem",
         "Unity.InputSystem.TestFramework",
+        "Rogium.Runtime",
         "RedRats.Runtime"
     ],
     "includePlatforms": [

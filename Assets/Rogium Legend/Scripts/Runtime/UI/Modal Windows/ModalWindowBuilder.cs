@@ -112,7 +112,7 @@ namespace Rogium.UserInterface.ModalWindows
         {
             ColorPickerWindow window = (cachedColorPickerWindow.IsOpen) ? Instantiate(colorPickerWindow, windowParent) : cachedColorPickerWindow;
             window.Construct(whenColorChanged, preselectedColor);
-            // ThemeUpdaterRogium.UpdateColorPickerWindow(window);
+            ThemeUpdaterRogium.UpdateColorPickerWindow(window);
             window.Open();
         }
        
