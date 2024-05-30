@@ -79,8 +79,12 @@ namespace Rogium.Systems.ActionHistory
         /// <summary>
         /// Forces the system to allow grouping of actions.
         /// </summary>
-        public static void ForceBeginGrouping() => canCreateGroups = true;
-        
+        public static void ForceBeginGrouping()
+        {
+            if (canCreateGroups) ForceEndGrouping();
+            canCreateGroups = true;
+        }
+
         /// <summary>
         /// Forces the system to add the current group to undo history.
         /// </summary>

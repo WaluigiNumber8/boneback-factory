@@ -151,5 +151,6 @@ namespace Rogium.Systems.GridSystem
 
         public int Width { get => width; }
         public int Height { get => height; }
+        public T[,] GetCellsCopy { get => (T[,])cellArray.Clone(); }
     }
 }

@@ -28,7 +28,7 @@ namespace Rogium.Editors.Sprites
         private ToolBox<int> toolbox;
 
         private SpriteAsset currentSprite;
-        private ColorSlot currentSlot;
+        private IColorSlot currentSlot;
         private PaletteAsset currentPalette;
         private PaletteAsset lastPalette;
 
@@ -45,7 +45,7 @@ namespace Rogium.Editors.Sprites
             editor.OnAssignAsset += PrepareEditor;
             grid.OnClick += UpdateGridCell;
             grid.OnClickAlternative += EraseCell;
-            palette.OnSelect += ChangeCurrentColor;
+            palette.OnSelect += UpdateCurrentColor;
             
             toolbox.OnChangePaletteValue += PickFrom;
             toolbox.OnSwitchTool += toolBoxUIManager.SwitchTool;
@@ -57,7 +57,7 @@ namespace Rogium.Editors.Sprites
             editor.OnAssignAsset -= PrepareEditor;
             grid.OnClick -= UpdateGridCell;
             grid.OnClickAlternative -= EraseCell;
-            palette.OnSelect -= ChangeCurrentColor;
+            palette.OnSelect -= UpdateCurrentColor;
             
             toolbox.OnChangePaletteValue -= PickFrom;
             toolbox.OnSwitchTool -= toolBoxUIManager.SwitchTool;
@@ -115,13 +115,20 @@ namespace Rogium.Editors.Sprites
                     EraseCell(new Vector2Int(x, y));
                 }
             }
+            ActionHistorySystem.ForceEndGrouping();
         }
+        
+        /// <summary>
+        /// Changes the current color used for drawing on the grid.
+        /// </summary>
+        /// <param name="slot">The new slot holding the color.</param>
+        public void UpdateCurrentColor(IColorSlot slot) => currentSlot = slot;
         
         /// <summary>
         /// Prepares the Sprite Editor for operation.
         /// </summary>
         /// <param name="sprite">The sprite to read from.</param>
-        public void PrepareEditor(SpriteAsset sprite)
+        private void PrepareEditor(SpriteAsset sprite)
         {
             lastPalette = palettePicker.GrabBasedOn(sprite.PreferredPaletteID);
             currentSprite = sprite;
@@ -131,12 +138,6 @@ namespace Rogium.Editors.Sprites
             StartCoroutine(SwitchLayerDelay(0.1f));
         }
         
-        /// <summary>
-        /// Changes the current color used for drawing on the grid.
-        /// </summary>
-        /// <param name="slot">The new slot holding the color.</param>
-        private void ChangeCurrentColor(ColorSlot slot) => currentSlot = slot;
-
         /// <summary>
         /// Selects a color from the colors palette.
         /// </summary>
@@ -165,5 +166,7 @@ namespace Rogium.Editors.Sprites
         
         public PaletteAsset CurrentPalette { get => currentPalette; }
         public ToolBox<int> Toolbox { get => toolbox; } 
+        public ObjectGrid<int> GetCurrentGridCopy => new(editor.CurrentAsset.SpriteData);
+        public Sprite CurrentGridSprite => grid.ActiveLayerSprite;
     }
 }
