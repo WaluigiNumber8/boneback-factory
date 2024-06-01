@@ -1,4 +1,4 @@
-using Rogium.Editors.Core;
+using RedRats.Core;
 using Rogium.Editors.Enemies;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Palettes;
@@ -7,6 +7,7 @@ using Rogium.Editors.Rooms;
 using Rogium.Editors.Sprites;
 using Rogium.Editors.Tiles;
 using Rogium.Editors.Weapons;
+using UnityEngine;
 
 namespace Rogium.Tests.Editors
 {
@@ -19,9 +20,10 @@ namespace Rogium.Tests.Editors
         {
             PackAsset pack = new();
             pack.UpdateTitle("Test Pack");
+            Sprite icon = RedRatBuilder.GenerateSprite(Color.red, 16, 16, 16);
             
             pack.Palettes.AddAllWithoutSave(new[] { CreatePalette() });
-            pack.Sprites.AddAllWithoutSave(new[] { CreateSprite() });
+            pack.Sprites.AddAllWithoutSave(new[] { CreateSprite(icon) });
             pack.Weapons.AddAllWithoutSave(new[] { CreateWeapon() });
             pack.Projectiles.AddAllWithoutSave(new[] { CreateProjectile() });
             pack.Enemies.AddAllWithoutSave(new[] { CreateEnemy() });
@@ -35,13 +37,15 @@ namespace Rogium.Tests.Editors
         {
             PaletteAsset palette = new();
             palette.UpdateTitle("Test Palette");
+            palette.UpdateIcon(CreateSprite(RedRatBuilder.GenerateSprite(Color.magenta, 16, 16, 16)));
             return palette;
         }
         
-        public static SpriteAsset CreateSprite()
+        public static SpriteAsset CreateSprite(Sprite icon)
         {
             SpriteAsset sprite = new();
             sprite.UpdateTitle("Test Sprite");
+            sprite.UpdateIcon(icon);
             return sprite;
         }
 
@@ -49,6 +53,7 @@ namespace Rogium.Tests.Editors
         {
             WeaponAsset weapon = new();
             weapon.UpdateTitle("Test Weapon");
+            weapon.UpdateIcon(CreateSprite(RedRatBuilder.GenerateSprite(Color.green, 16, 16, 16)));
             return weapon;
         }
 
@@ -56,6 +61,7 @@ namespace Rogium.Tests.Editors
         {
             ProjectileAsset projectile = new();
             projectile.UpdateTitle("Test Projectile");
+            projectile.UpdateIcon(CreateSprite(RedRatBuilder.GenerateSprite(Color.white, 16, 16, 16)));
             return projectile;
         }
 
@@ -63,6 +69,7 @@ namespace Rogium.Tests.Editors
         {
             EnemyAsset enemy = new();
             enemy.UpdateTitle("Test Enemy");
+            enemy.UpdateIcon(CreateSprite(RedRatBuilder.GenerateSprite(Color.red, 16, 16, 16)));
             return enemy;
         }
 
@@ -70,6 +77,7 @@ namespace Rogium.Tests.Editors
         {
             RoomAsset room = new();
             room.UpdateTitle("Test Room");
+            room.UpdateIcon(CreateSprite(RedRatBuilder.GenerateSprite(Color.cyan, 16, 16, 16)));
             return room;
         }
 
@@ -77,6 +85,7 @@ namespace Rogium.Tests.Editors
         {
             TileAsset tile = new();
             tile.UpdateTitle("Test Tile");
+            tile.UpdateIcon(CreateSprite(RedRatBuilder.GenerateSprite(Color.yellow, 16, 16, 16)));
             return tile;
         }
     }

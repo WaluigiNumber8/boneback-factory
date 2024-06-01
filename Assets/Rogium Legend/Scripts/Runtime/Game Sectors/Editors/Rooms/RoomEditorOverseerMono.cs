@@ -146,12 +146,7 @@ namespace Rogium.Editors.Rooms
         /// </summary>
         private void PrepareEditor(RoomAsset room)
         {
-            tileData = new GridData<AssetData>(editor.CurrentAsset.TileGrid, paletteTile, AssetType.Tile, AssetDataBuilder.ForTile);
-            decorData = new GridData<AssetData>(editor.CurrentAsset.DecorGrid, paletteDecor, AssetType.Tile, AssetDataBuilder.ForTile);
-            objectData = new GridData<AssetData>(editor.CurrentAsset.ObjectGrid, paletteObject, AssetType.Object, AssetDataBuilder.ForObject);
-            enemyData = new GridData<AssetData>(editor.CurrentAsset.EnemyGrid, paletteEnemy, AssetType.Enemy, AssetDataBuilder.ForEnemy);
-            currentData = new GridData<AssetData>(editor.CurrentAsset.EnemyGrid, paletteEnemy, AssetType.None);
-
+            //Fill Palettes
             IList<TileAsset> tiles = new List<TileAsset>();
             IList<TileAsset> decor = new List<TileAsset>();
             foreach (TileAsset tile in packEditor.CurrentPack.Tiles)
@@ -165,16 +160,27 @@ namespace Rogium.Editors.Rooms
             paletteDecor.Fill(decor, AssetType.Tile);
             paletteObject.Fill(objects, AssetType.Object);
             paletteEnemy.Fill(packEditor.CurrentPack.Enemies, AssetType.Enemy);
-
-            StartCoroutine(SwitchLayer0Delay(0.1f));
             
+            tileData = new GridData<AssetData>(editor.CurrentAsset.TileGrid, paletteTile, AssetType.Tile, AssetDataBuilder.ForTile);
+            decorData = new GridData<AssetData>(editor.CurrentAsset.DecorGrid, paletteDecor, AssetType.Tile, AssetDataBuilder.ForTile);
+            objectData = new GridData<AssetData>(editor.CurrentAsset.ObjectGrid, paletteObject, AssetType.Object, AssetDataBuilder.ForObject);
+            enemyData = new GridData<AssetData>(editor.CurrentAsset.EnemyGrid, paletteEnemy, AssetType.Enemy, AssetDataBuilder.ForEnemy);
+
             grid.LoadWithAssets(room.TileGrid, tiles, 0);
             grid.LoadWithAssets(room.DecorGrid, decor, 1);
             grid.LoadWithAssets(room.ObjectGrid, objects, 2);
             grid.LoadWithAssets(room.EnemyGrid, packEditor.CurrentPack.Enemies, 3);
             
             toolbox.Refresh();
-            propertyColumn.ConstructSettings(editor.CurrentAsset);
+            
+            SwitchLayer(0);
+            StartCoroutine(DelayCoroutine());
+            IEnumerator DelayCoroutine()
+            {
+                yield return null;
+                paletteTile.Select(0);
+                propertyColumn.ConstructSettings(editor.CurrentAsset);
+            }
         }
         
         /// <summary>
@@ -245,14 +251,9 @@ namespace Rogium.Editors.Rooms
             propertyColumn.ConstructAsset(asset, type);
         }
 
-        private IEnumerator SwitchLayer0Delay(float delay)
-        {
-            yield return new WaitForSeconds(delay);
-            SwitchLayer(0);
-            paletteTile.Select(0);
-        }
-
         public ToolBox<AssetData> Toolbox { get => toolbox; }
+        public ObjectGrid<AssetData> GetCurrentGridCopy => new(currentData.Grid);
+        public Sprite CurrentGridSprite => grid.ActiveLayerSprite;
 
         [Serializable]
         public struct CursorChangerLayersInfo

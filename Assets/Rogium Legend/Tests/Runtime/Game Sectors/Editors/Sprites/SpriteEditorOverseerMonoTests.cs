@@ -6,12 +6,11 @@ using Rogium.Editors.Packs;
 using Rogium.Editors.Palettes;
 using Rogium.Editors.Sprites;
 using Rogium.Systems.ActionHistory;
-using Rogium.Systems.GridSystem;
 using Rogium.Tests.Core;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace Rogium.Tests.Editors.Sprite
+namespace Rogium.Tests.Editors.Sprites
 {
     /// <summary>
     /// Tests for the <see cref="SpriteEditorOverseerMono"/>.
@@ -68,7 +67,7 @@ namespace Rogium.Tests.Editors.Sprite
         [Test]
         public void ClearActiveGrid_Should_AddToUndoHistory()
         {
-            SpriteEditorUtils.FillGrid(spriteEditor.GetCurrentGridCopy);
+            SpriteEditorUtils.FillEntireGrid();
             ActionHistorySystem.ForceEndGrouping();
             spriteEditor.ClearActiveGrid();
             
@@ -78,7 +77,7 @@ namespace Rogium.Tests.Editors.Sprite
         [Test]
         public void UndoLast_Should_UndoClearActiveGrid()
         {
-            SpriteEditorUtils.FillGrid(spriteEditor.GetCurrentGridCopy);
+            SpriteEditorUtils.FillEntireGrid();
             spriteEditor.ClearActiveGrid();
             ActionHistorySystem.UndoLast();
             
