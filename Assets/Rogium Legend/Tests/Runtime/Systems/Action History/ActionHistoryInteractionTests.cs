@@ -4,6 +4,7 @@ using Rogium.Core;
 using Rogium.Systems.ActionHistory;
 using Rogium.Tests.Core;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.TestTools;
@@ -20,11 +21,9 @@ namespace Rogium.Tests.Systems.ActionHistory
         
         private Mouse mouse;
         
-        
         public override void Setup()
         {
             SceneLoader.LoadUIScene();
-            base.Setup();
             mouse = InputSystem.AddDevice<Mouse>();
             Press(mouse.leftButton);
             Release(mouse.leftButton);
@@ -34,13 +33,11 @@ namespace Rogium.Tests.Systems.ActionHistory
         public IEnumerator AddAndExecute_Should_GroupActions_WhenLClickHeld()
         {
             Object.Instantiate(menuPreparator.gameObject, Vector3.zero, Quaternion.identity);
-            
             object construct = new();
             IAction action1 = ActionHistoryCreator.CreateAction(construct);
             IAction action2 = ActionHistoryCreator.CreateAction(construct);
-            ActionHistorySystem.ForceEndGrouping();
-            
             yield return null;
+            
             Press(mouse.leftButton);
             yield return new WaitForSecondsRealtime(0.1f);
             ActionHistorySystem.AddAndExecute(action1);
@@ -57,13 +54,11 @@ namespace Rogium.Tests.Systems.ActionHistory
         public IEnumerator AddAndExecute_Should_NotGroupActions_WhenLClickLetGo()
         {
             Object.Instantiate(menuPreparator.gameObject, Vector3.zero, Quaternion.identity);
-            
             object construct = new();
             IAction action1 = ActionHistoryCreator.CreateAction(construct);
             IAction action2 = ActionHistoryCreator.CreateAction(construct);
-            ActionHistorySystem.ForceEndGrouping();
-            
             yield return null;
+            
             Press(mouse.leftButton);
             yield return new WaitForSecondsRealtime(0.1f);
             ActionHistorySystem.AddAndExecute(action1);
@@ -75,7 +70,5 @@ namespace Rogium.Tests.Systems.ActionHistory
             Assert.That(ActionHistorySystem.CurrentGroup, Is.Null);
             Assert.That(ActionHistorySystem.UndoCount, Is.EqualTo(2));
         }
-        
-        
     }
 }

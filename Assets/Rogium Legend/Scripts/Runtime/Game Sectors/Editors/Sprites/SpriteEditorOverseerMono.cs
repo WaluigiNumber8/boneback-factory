@@ -135,7 +135,12 @@ namespace Rogium.Editors.Sprites
             
             toolbox.Refresh();
             SwitchPalette(lastPalette);
-            StartCoroutine(SwitchLayerDelay(0.1f));
+            StartCoroutine(DelayCoroutine());
+            IEnumerator DelayCoroutine()
+            {
+                yield return null;
+                palette.Select(0);
+            }
         }
         
         /// <summary>
@@ -156,12 +161,6 @@ namespace Rogium.Editors.Sprites
         {
             Sprite brushSprite = RedRatBuilder.GenerateSprite(EditorConstants.EmptyGridColor, EditorConstants.SpriteSize, EditorConstants.SpriteSize, EditorConstants.SpriteSize);
             toolbox.ApplySpecific(ToolType.Eraser, editor.CurrentAsset.SpriteData, position, currentSlot.Index, brushSprite, grid.ActiveLayer);
-        }
-        
-        private IEnumerator SwitchLayerDelay(float delay)
-        {
-            yield return new WaitForSeconds(delay);
-            palette.Select(0);
         }
         
         public PaletteAsset CurrentPalette { get => currentPalette; }
