@@ -16,6 +16,13 @@ namespace Rogium.Tests.Editors
     /// </summary>
     public static class AssetCreator
     {
+        public static PackAsset CreateAndAssignPack()
+        {
+            PackAsset pack = CreatePack();
+            PackEditorOverseer.Instance.AssignAsset(pack, 0);
+            return pack;
+        }
+        
         public static PackAsset CreatePack()
         {
             PackAsset pack = new();

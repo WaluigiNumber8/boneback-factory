@@ -59,7 +59,7 @@ namespace Rogium.Tests.UI.Interactables
         public static InteractablePropertyAssetField CreateAndInitAssetField(AssetType type, IAsset value = null)
         {
             InteractablePropertyAssetField assetField = Object.Instantiate(assetFieldProperty, Vector3.zero, Quaternion.identity);
-            assetField.Construct("Test AssetField", type, value, null);
+            assetField.Construct("Test AssetField", type, value ?? new EmptyAsset(), null);
             return assetField;
         }
 
