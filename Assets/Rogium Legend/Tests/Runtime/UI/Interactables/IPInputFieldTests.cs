@@ -5,7 +5,7 @@ using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables.Properties;
 using TMPro;
 using UnityEngine.TestTools;
-using static Rogium.Tests.UI.Interactables.InteractablePropertyCreator;
+using static Rogium.Tests.UI.Interactables.InteractablesCreator;
 
 namespace Rogium.Tests.UI.Interactables
 {

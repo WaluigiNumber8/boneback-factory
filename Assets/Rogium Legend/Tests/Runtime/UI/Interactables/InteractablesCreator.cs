@@ -10,7 +10,7 @@ namespace Rogium.Tests.UI.Interactables
     /// <summary>
     /// Creates interactable properties for testing.
     /// </summary>
-    public static class InteractablePropertyCreator
+    public static class InteractablesCreator
     {
         private static readonly InteractablePropertyToggle toggleProperty = AssetDatabase.LoadAssetAtPath<InteractablePropertyToggle>("Assets/Rogium Legend/Prefabs/UI/Interactables/Properties/Horizontal/pref_Property_Toggle_Blue.prefab");
         private static readonly InteractablePropertySlider sliderProperty = AssetDatabase.LoadAssetAtPath<InteractablePropertySlider>("Assets/Rogium Legend/Prefabs/UI/Interactables/Properties/Horizontal/pref_Property_Slider_Horizontal_Input_Blue.prefab");
@@ -59,7 +59,7 @@ namespace Rogium.Tests.UI.Interactables
         public static InteractablePropertyAssetField CreateAndInitAssetField(AssetType type, IAsset value = null)
         {
             InteractablePropertyAssetField assetField = Object.Instantiate(assetFieldProperty, Vector3.zero, Quaternion.identity);
-            assetField.Construct("Test AssetField", type, value ?? new EmptyAsset(), null);
+            assetField.Construct("Test AssetField", type, value ?? new EmptyAsset(), null, () => { });
             return assetField;
         }
 

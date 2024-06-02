@@ -12,7 +12,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.TestTools;
-using static Rogium.Tests.UI.Interactables.InteractablePropertyCreator;
+using static Rogium.Tests.UI.Interactables.InteractablesCreator;
 using static Rogium.Tests.UI.Interactables.InteractableUtils;
 
 namespace Rogium.Tests.UI.Interactables
@@ -54,12 +54,18 @@ namespace Rogium.Tests.UI.Interactables
         }
         
         [UnityTest]
+        public IEnumerator WhenValueChanged_Should_ClearValue_WhenCleared()
+        {
+            yield return FillAssetField();
+            assetField.GetComponentInChildren<AssetField>().OnPointerClick(new PointerEventData(EventSystem.current) {button = PointerEventData.InputButton.Right});
+            
+            Assert.That(assetField.PropertyValue, Is.EqualTo(new EmptyAsset()));
+        }
+        
+        [UnityTest]
         public IEnumerator WhenValueChanged_Should_AddToActionHistory_WhenClicked()
         {
-            assetField.GetComponentInChildren<AssetField>().OnPointerClick(new PointerEventData(EventSystem.current));
-            AssetPickerWindow assetPickerWindow = FindFirstAssetPickerWindow();
-            yield return null;
-            assetPickerWindow.ConfirmSelection();
+            yield return FillAssetField();
             ActionHistorySystem.ForceEndGrouping();
             
             Assert.That(ActionHistorySystem.UndoCount, Is.EqualTo(1));
@@ -68,14 +74,33 @@ namespace Rogium.Tests.UI.Interactables
         [UnityTest]
         public IEnumerator UndoLast_Should_RevertValue_WhenClicked()
         {
-            assetField.GetComponentInChildren<AssetField>().OnPointerClick(new PointerEventData(EventSystem.current));
-            AssetPickerWindow assetPickerWindow = FindFirstAssetPickerWindow();
-            yield return null;
-            assetPickerWindow.ConfirmSelection();
+            yield return FillAssetField();
             ActionHistorySystem.ForceEndGrouping();
             ActionHistorySystem.UndoLast();
 
             Assert.That(assetField.PropertyValue, Is.EqualTo(new EmptyAsset()));
+        }
+
+        [UnityTest]
+        public IEnumerator WhenValueChanged_Should_AddToActionHistory_WhenCleared()
+        {
+            yield return FillAssetField();
+            ActionHistorySystem.ForceEndGrouping();
+            assetField.GetComponentInChildren<AssetField>().OnPointerClick(new PointerEventData(EventSystem.current) {button = PointerEventData.InputButton.Right});
+            ActionHistorySystem.ForceEndGrouping();
+            
+            Assert.That(ActionHistorySystem.UndoCount, Is.EqualTo(2));
+        }
+
+        /// <summary>
+        /// Fills the asset field with a value.
+        /// </summary>
+        private IEnumerator FillAssetField()
+        {
+            assetField.GetComponentInChildren<AssetField>().OnPointerClick(new PointerEventData(EventSystem.current));
+            AssetPickerWindow assetPickerWindow = FindFirstAssetPickerWindow();
+            yield return null;
+            assetPickerWindow.ConfirmSelection();
         }
     }
 }
