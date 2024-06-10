@@ -1,4 +1,5 @@
 using System;
+using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.ActionHistory;
 using Rogium.UserInterface.ModalWindows;
 using UnityEngine;
@@ -14,8 +15,8 @@ namespace Rogium.UserInterface.Interactables
     {
         [SerializeField] private UIInfo ui;
 
-        private Color value;
-        private Color lastValue;
+        private Color value = EditorConstants.DefaultColor;
+        private Color lastValue = EditorConstants.DefaultColor;
         private Action<Color> whenValueChanged;
 
         public override void OnPointerDown(PointerEventData eventData)

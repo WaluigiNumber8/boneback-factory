@@ -23,10 +23,6 @@ namespace Rogium.Tests.UI.Interactables
     [RequiresPlayMode]
     public class IPAssetFieldTests
     {
-        private readonly GameObject internalLibraryPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/Global/pref_InternalLibrary.prefab");
-        private readonly ModalWindowBuilder modalWindowBuilderPrefab = AssetDatabase.LoadAssetAtPath<ModalWindowBuilder>("Assets/Rogium Legend/Prefabs/Global/Builders/pref_Builder_ModalWindows.prefab");
-        private readonly GameObject themeOverseerPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/Global/Overseers/pref_Overseer_Themes.prefab");
-        
         private InteractablePropertyAssetField assetField;
 
         [UnitySetUp]
@@ -34,11 +30,11 @@ namespace Rogium.Tests.UI.Interactables
         {
             SceneLoader.LoadUIScene();
             ActionHistorySystem.ClearHistory();
-            Object.Instantiate(internalLibraryPrefab);
-            AssetCreator.CreateAndAssignPack();
+            OverseerLoader.LoadInternalLibrary();
             yield return null;
-            Object.Instantiate(modalWindowBuilderPrefab);
-            Object.Instantiate(themeOverseerPrefab);
+            AssetCreator.CreateAndAssignPack();
+            OverseerLoader.LoadModalWindowBuilder();
+            OverseerLoader.LoadThemeOverseer();
             yield return null;
             assetField = CreateAndInitAssetField(AssetType.Weapon);
             yield return null;

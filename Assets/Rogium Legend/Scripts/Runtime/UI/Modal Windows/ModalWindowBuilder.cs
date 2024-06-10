@@ -24,7 +24,6 @@ namespace Rogium.UserInterface.ModalWindows
         [SerializeField] private SoundPickerWindow soundPickerWindow;
         [SerializeField] private ColorPickerWindow colorPickerWindow;
         
-        
         private AssetPickerWindow cachedAssetPickerWindow;
         private SoundPickerWindow cachedSoundPickerWindow;
         private ColorPickerWindow cachedColorPickerWindow;
