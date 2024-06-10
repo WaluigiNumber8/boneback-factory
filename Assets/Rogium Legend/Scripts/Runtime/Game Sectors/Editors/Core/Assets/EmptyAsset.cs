@@ -20,6 +20,10 @@ namespace Rogium.Editors.Core
 
         public EmptyAsset(Sprite icon) => this.icon = icon;
 
+        public override bool Equals(object obj) => obj is EmptyAsset;
+
+        public override string ToString() => "Empty Asset";
+
         public string ID { get => EditorConstants.EmptyAssetID; }
         public string Title { get => ""; }
         public Sprite Icon { get => icon; }

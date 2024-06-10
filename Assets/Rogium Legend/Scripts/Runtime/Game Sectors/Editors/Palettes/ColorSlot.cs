@@ -8,7 +8,7 @@ namespace Rogium.Editors.Palettes
     /// <summary>
     /// Holds information about a given color slot from a palette.
     /// </summary>
-    public class ColorSlot : ToggleableIndexBase
+    public class ColorSlot : ToggleableIndexBase, IColorSlot
     {
         public static event Action<int> OnSelectedAny;
         

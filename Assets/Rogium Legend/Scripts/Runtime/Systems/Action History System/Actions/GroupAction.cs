@@ -30,6 +30,7 @@ namespace Rogium.Systems.ActionHistory
 
         public bool NothingChanged() => actions[0].LastValue.Equals(actions[^1].Value);
         
+        public int ActionsCount => actions.Count;
         public object AffectedConstruct => actions[0]?.AffectedConstruct;
         public object Value { get => -1; }
         public object LastValue { get => -1; }

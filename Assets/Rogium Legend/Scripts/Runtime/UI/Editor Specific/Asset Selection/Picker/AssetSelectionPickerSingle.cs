@@ -33,24 +33,19 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
             AssetPickerCardController.OnDeselected -= WhenAssetDeselected;
         }
 
-        public void WhenAssetSelected(IAsset asset)
+        /// <summary>
+        /// Opens the Selection Picker.
+        /// </summary>
+        /// <param name="type">The type of asset that can be selected.</param>
+        /// <param name="whenSelected">The method that will run when the asset is selected.</param>
+        /// <param name="preselectedAsset">An asset that starts as selected.</param>
+        /// <param name="canSelectEmpty">Can no be asset selected.</param>
+        public void Construct(AssetType type, Action<IAsset> whenSelected, IAsset preselectedAsset = null, bool canSelectEmpty = false)
         {
-            if (asset.ID == previousID)
-            {
-                previousID = "";
-                ConfirmSelection();
-                return;
-            }
-            
-            selectedAsset = asset;
-            previousID = asset.ID;
-            OnAssetSelect?.Invoke(asset);
-        }
-        
-        public void WhenAssetDeselected(IAsset asset)
-        {
-            if (selectedAsset == null || asset.ID != selectedAsset.ID) return;
-            selectedAsset = null;
+            if (preselectedAsset != null) selectedAsset = preselectedAsset;
+            this.whenSelected = whenSelected;
+            assetSelector.BeginListeningToSpawnedCards(RegisterAssetHolder);
+            assetSelector.Open(type, canSelectEmpty);
         }
         
         public void ConfirmSelection()
@@ -76,19 +71,25 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
             previousID = "";
             whenSelected = null;
         }
-        
 
-        /// <summary>
-        /// Opens the Selection Picker.
-        /// </summary>
-        /// <param name="whenSelected">The method that will run when the asset is selected.</param>
-        /// <param name="preselectedAsset">An asset that starts as selected.</param>
-        public void Open(AssetType type, Action<IAsset> whenSelected, IAsset preselectedAsset = null, bool canSelectEmpty = false)
+        private void WhenAssetSelected(IAsset asset)
         {
-            if (preselectedAsset != null) selectedAsset = preselectedAsset;
-            this.whenSelected = whenSelected;
-            assetSelector.BeginListeningToSpawnedCards(RegisterAssetHolder);
-            assetSelector.Open(type, canSelectEmpty);
+            if (asset.ID == previousID)
+            {
+                previousID = "";
+                ConfirmSelection();
+                return;
+            }
+            
+            selectedAsset = asset;
+            previousID = asset.ID;
+            OnAssetSelect?.Invoke(asset);
+        }
+        
+        private void WhenAssetDeselected(IAsset asset)
+        {
+            if (selectedAsset == null || asset.ID != selectedAsset.ID) return;
+            selectedAsset = null;
         }
         
         /// <summary>

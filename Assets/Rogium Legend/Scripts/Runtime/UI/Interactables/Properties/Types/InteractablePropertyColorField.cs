@@ -36,6 +36,6 @@ namespace Rogium.UserInterface.Interactables.Properties
             if (title != null) UIExtensions.ChangeFont(title, titleFont);
         }
 
-        public override Color PropertyValue { get; }
+        public override Color PropertyValue { get => colorField.Value; }
     }
 }

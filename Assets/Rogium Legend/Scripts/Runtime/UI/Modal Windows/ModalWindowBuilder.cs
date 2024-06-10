@@ -24,7 +24,6 @@ namespace Rogium.UserInterface.ModalWindows
         [SerializeField] private SoundPickerWindow soundPickerWindow;
         [SerializeField] private ColorPickerWindow colorPickerWindow;
         
-        
         private AssetPickerWindow cachedAssetPickerWindow;
         private SoundPickerWindow cachedSoundPickerWindow;
         private ColorPickerWindow cachedColorPickerWindow;
@@ -112,7 +111,7 @@ namespace Rogium.UserInterface.ModalWindows
         {
             ColorPickerWindow window = (cachedColorPickerWindow.IsOpen) ? Instantiate(colorPickerWindow, windowParent) : cachedColorPickerWindow;
             window.Construct(whenColorChanged, preselectedColor);
-            // ThemeUpdaterRogium.UpdateColorPickerWindow(window);
+            ThemeUpdaterRogium.UpdateColorPickerWindow(window);
             window.Open();
         }
        

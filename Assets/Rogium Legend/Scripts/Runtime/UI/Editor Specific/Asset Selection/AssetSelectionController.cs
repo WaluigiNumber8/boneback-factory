@@ -1,6 +1,5 @@
 ﻿using RedRats.Core;
 using RedRats.Safety;
-using RedRats.Systems.ObjectSwitching;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using System;
@@ -13,26 +12,19 @@ namespace Rogium.UserInterface.Editors.AssetSelection
     /// <summary>
     /// Is responsible for controlling the Asset Selection Menu, and switching out content as needed in it.
     /// </summary>
-    public sealed class AssetSelectionOverseer : Singleton<AssetSelectionOverseer>
+    public class AssetSelectionController
     {
         public event Action<AssetHolderBase> OnSpawnCard;
         public event Action OnFinishedFilling;
 
-        private readonly IList<AssetHolderBase> assets;
+        private readonly IList<AssetHolderBase> assets = new List<AssetHolderBase>();
         private SelectionMenuLayout currentLayout;
-        private AssetType lastTypeOpen;
-
-        private AssetSelectionOverseer()
-        {
-            assets = new List<AssetHolderBase>();
-            lastTypeOpen = AssetType.None;
-        }
+        private AssetType lastTypeOpen = AssetType.None;
 
         /// <summary>
         /// Sets up the selection menu.
         /// </summary>
         public void Setup(AssetType type, SelectionMenuLayout layout, SelectionMenuAsset asset, IList<IAsset> assetList, AssetHolderBase selectEmptyCard = null)
-
         {
             currentLayout = layout;
 

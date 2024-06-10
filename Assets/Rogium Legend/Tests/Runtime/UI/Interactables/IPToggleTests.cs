@@ -1,0 +1,65 @@
+using System.Collections;
+using NUnit.Framework;
+using Rogium.Systems.ActionHistory;
+using Rogium.Tests.Core;
+using Rogium.UserInterface.Interactables.Properties;
+using UnityEngine.TestTools;
+using UnityEngine.UI;
+using static Rogium.Tests.UI.Interactables.InteractablesCreator;
+
+namespace Rogium.Tests.UI.Interactables
+{
+    /// <summary>
+    /// Tests for the Toggle interactable property.
+    /// </summary>
+    [RequiresPlayMode]
+    public class IPToggleTests
+    {
+        [SetUp]
+        public void Setup()
+        {
+            SceneLoader.LoadUIScene();
+            ActionHistorySystem.ClearHistory();
+        }
+        
+        [UnityTest]
+        public IEnumerator Toggle_WhenValueChanged_Should_UpdateSelfValue_WhenClicked()
+        {
+            InteractablePropertyToggle toggle = CreateAndInitToggle();
+            
+            yield return null;
+            toggle.GetComponentInChildren<Toggle>().onValueChanged.Invoke(true);
+            yield return null;
+
+            Assert.That(toggle.PropertyValue, Is.True);
+        }
+        
+        [UnityTest]
+        public IEnumerator WhenValueChanged_Should_AddToActionHistory_WhenClicked()
+        {
+            InteractablePropertyToggle toggle = CreateAndInitToggle();
+            
+            yield return null;
+            toggle.GetComponentInChildren<Toggle>().onValueChanged.Invoke(true);
+            yield return null;
+            ActionHistorySystem.ForceEndGrouping();
+
+            Assert.That(ActionHistorySystem.UndoCount, Is.EqualTo(1));
+        }
+
+        [UnityTest]
+        public IEnumerator UndoLast_Should_RevertValue_WhenClicked()
+        {
+            InteractablePropertyToggle toggle = CreateAndInitToggle();
+            
+            yield return null;
+            toggle.GetComponentInChildren<Toggle>().onValueChanged.Invoke(true);
+            yield return null;
+            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.UndoLast();
+            yield return null;
+
+            Assert.That(toggle.PropertyValue, Is.False);
+        }
+    }
+}

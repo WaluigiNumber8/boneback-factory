@@ -35,7 +35,6 @@ namespace Rogium.Editors.Packs
         #region Constructors
         public PackAsset()
         {
-
             this.title = EditorConstants.PackTitle;
             this.icon = EditorConstants.PackIcon;
             this.author = EditorConstants.Author;

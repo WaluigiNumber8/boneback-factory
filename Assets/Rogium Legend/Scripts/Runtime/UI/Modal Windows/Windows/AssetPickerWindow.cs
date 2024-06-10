@@ -25,13 +25,13 @@ namespace Rogium.UserInterface.ModalWindows
         private void OnEnable()
         {
             ui.footer.acceptButton.onClick.AddListener(selectionPicker.ConfirmSelection);
-            ui.footer.cancelButton.onClick.AddListener(CancelSelection);
+            ui.footer.cancelButton.onClick.AddListener(WhenSelectionCancelled);
         }
 
         private void OnDisable()
         {
             ui.footer.acceptButton.onClick.RemoveListener(selectionPicker.ConfirmSelection);
-            ui.footer.cancelButton.onClick.RemoveListener(CancelSelection);
+            ui.footer.cancelButton.onClick.RemoveListener(WhenSelectionCancelled);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Rogium.UserInterface.ModalWindows
             generalUI.entireArea.GetComponentInParent<Transform>().SetAsLastSibling();
             ui.header.text.text = $"Select a {type.ToString().ToLower()}";
             Open();
-            selectionPicker.Open(type, ConfirmSelection, preselectedAsset, canSelectEmpty);
+            selectionPicker.Construct(type, WhenAssetPicked, preselectedAsset, canSelectEmpty);
         }
 
         /// <summary>
@@ -76,23 +76,25 @@ namespace Rogium.UserInterface.ModalWindows
             generalUI.windowArea.sprite = backgroundSprite;
         }
         
+        public void ConfirmSelection() => selectionPicker.ConfirmSelection();
+
         protected override void UpdateTheme() => ThemeUpdaterRogium.UpdateAssetPickerWindow(this);
 
         /// <summary>
         /// Runs when an asset is selected and the action is confirmed successfully.
         /// </summary>
         /// <param name="asset">The asset that was selected.</param>
-        private void ConfirmSelection(IAsset asset)
+        private void WhenAssetPicked(IAsset asset)
         {
             whenAssetPicked.Invoke(asset);
             whenAssetPicked = null;
-            CancelSelection();
+            WhenSelectionCancelled();
         }
 
         /// <summary>
         /// Cancel the selection.
         /// </summary>
-        private void CancelSelection()
+        private void WhenSelectionCancelled()
         {
             selectionPicker.CancelSelection();
             Close();
