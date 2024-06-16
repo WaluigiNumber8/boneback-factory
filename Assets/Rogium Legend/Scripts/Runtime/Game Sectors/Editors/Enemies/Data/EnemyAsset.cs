@@ -31,10 +31,7 @@ namespace Rogium.Editors.Enemies
         #region Constructors
         public EnemyAsset()
         {
-            title = EditorConstants.EnemyTitle;
-            icon = EditorConstants.EnemyIcon;
-            author = EditorConstants.Author;
-            creationDate = DateTime.Now;
+            InitBase(EditorConstants.EnemyTitle, EditorConstants.EnemyIcon, EditorConstants.Author, DateTime.Now);
             color = EditorConstants.EnemyColor;
 
             animationType = EditorConstants.EnemyAnimationType;
@@ -64,18 +61,46 @@ namespace Rogium.Editors.Enemies
             
             GenerateID(EditorAssetIDs.EnemyIdentifier);
         }
+        public EnemyAsset(string title, Sprite icon)
+        {
+            InitBase(title, icon, EditorConstants.Author, DateTime.Now);
+            color = EditorConstants.EnemyColor;
 
+            animationType = EditorConstants.EnemyAnimationType;
+            frameDuration = EditorConstants.EnemyFrameDuration;
+            iconAlt = EditorConstants.EnemyIconAlt;
+            
+            baseDamage = EditorConstants.EnemyBaseDamage;
+            useDelay = EditorConstants.EnemyAttackDelay;
+            knockbackForceSelf = EditorConstants.EnemyKnockbackForceSelf;
+            knockbackLockDirectionSelf = EditorConstants.EnemyKnockbackLockDirectionSelf;
+            knockbackForceOther = EditorConstants.EnemyKnockbackForceOther;
+            knockbackLockDirectionOther = EditorConstants.EnemyKnockbackLockDirectionOther;
+
+            maxHealth = EditorConstants.EnemyMaxHealth;
+            attackProbability = EditorConstants.EnemyAttackProbability;
+            invincibilityTime = EditorConstants.EnemyInvincibilityTime;
+            weaponIDs = new List<string>();
+            
+            ai = EditorConstants.EnemyAI;
+            nextStepTime = EditorConstants.EnemyNextStepTime;
+            seamlessMovement = EditorConstants.EnemySeamlessMovement;
+            startingDirection = EditorConstants.EnemyStartingDirection;
+            
+            hurtSound = new AssetData(ParameterInfoConstants.ForSound);
+            deathSound = new AssetData(ParameterInfoConstants.ForSound);
+            idleSound = new AssetData(ParameterInfoConstants.ForSound);
+            
+            GenerateID(EditorAssetIDs.EnemyIdentifier);
+        }
         public EnemyAsset(EnemyAsset asset)
         {
             AssetValidation.ValidateTitle(asset.title);
             
             id = asset.ID;
-            title = asset.Title;
-            icon = asset.Icon;
-            author = asset.Author;
-            creationDate = asset.CreationDate;
-            color = asset.Color;
+            InitBase(asset.Title, asset.Icon, asset.Author, asset.CreationDate);
 
+            color = asset.Color;
             associatedSpriteID = asset.AssociatedSpriteID;
             
             animationType = asset.AnimationType;
@@ -116,10 +141,7 @@ namespace Rogium.Editors.Enemies
             AssetValidation.ValidateTitle(title);
             
             this.id = id;
-            this.title = title;
-            this.icon = icon;
-            this.author = author;
-            this.creationDate = creationDate;
+            InitBase(title, icon, author, creationDate);
             this.color = color;
 
             this.associatedSpriteID = associatedSpriteID;

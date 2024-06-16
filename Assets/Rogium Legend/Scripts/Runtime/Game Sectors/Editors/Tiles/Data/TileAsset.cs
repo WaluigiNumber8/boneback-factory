@@ -21,10 +21,8 @@ namespace Rogium.Editors.Tiles
         #region Constructors
         public TileAsset()
         {
-            this.title = EditorConstants.TileTitle;
-            this.icon = EditorConstants.TileIcon;
-            this.author = EditorConstants.Author;
-            this.creationDate = DateTime.Now;
+            InitBase(EditorConstants.TileTitle, EditorConstants.TileIcon, EditorConstants.Author, DateTime.Now);
+            GenerateID(EditorAssetIDs.TileIdentifier);
             
             this.tile = ScriptableObject.CreateInstance<Tile>();
             this.tile.sprite = this.icon;
@@ -32,17 +30,25 @@ namespace Rogium.Editors.Tiles
             this.layerType = EditorConstants.TileLayer;
             this.terrainType = EditorConstants.TileTerrainType;
             
+        }
+        public TileAsset(string title, Sprite icon)
+        {
+            InitBase(title, icon, EditorConstants.Author, DateTime.Now);
             GenerateID(EditorAssetIDs.TileIdentifier);
+            
+            this.tile = ScriptableObject.CreateInstance<Tile>();
+            this.tile.sprite = this.icon;
+            this.type = EditorConstants.TileType;
+            this.layerType = EditorConstants.TileLayer;
+            this.terrainType = EditorConstants.TileTerrainType;
+            
         }
         public TileAsset(TileAsset asset)
         {
             AssetValidation.ValidateTitle(asset.title);
             
             this.id = asset.ID;
-            this.icon = asset.Icon;
-            this.title = asset.Title;
-            this.author = asset.Author;
-            this.creationDate = asset.CreationDate;
+            InitBase(asset.Title, asset.Icon, asset.Author, asset.CreationDate);
 
             this.associatedSpriteID = asset.AssociatedSpriteID;
 
@@ -59,10 +65,7 @@ namespace Rogium.Editors.Tiles
             AssetValidation.ValidateTitle(title);
             
             this.id = id;
-            this.title = title;
-            this.icon = icon;
-            this.author = author;
-            this.creationDate = creationDate;
+            InitBase(title, icon, author, creationDate);
             
             this.associatedSpriteID = associatedSpriteID;
             

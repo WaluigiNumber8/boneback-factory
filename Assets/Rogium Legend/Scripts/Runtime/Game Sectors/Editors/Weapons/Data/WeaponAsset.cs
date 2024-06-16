@@ -26,10 +26,8 @@ namespace Rogium.Editors.Weapons
         #region Constructors
         public WeaponAsset()
         {
-            title = EditorConstants.WeaponTitle;
-            icon = EditorConstants.WeaponIcon;
-            author = EditorConstants.Author;
-            creationDate = DateTime.Now;
+            InitBase(EditorConstants.WeaponTitle, EditorConstants.WeaponIcon, EditorConstants.Author, DateTime.Now);
+            GenerateID(EditorAssetIDs.WeaponIdentifier);
             color = EditorConstants.WeaponColor;
 
             animationType = EditorConstants.WeaponAnimationType;
@@ -52,8 +50,33 @@ namespace Rogium.Editors.Weapons
             useSound = new AssetData(ParameterInfoConstants.ForSound);
             
             projectileIDs = new List<ProjectileDataInfo>();
-            
+        }
+        public WeaponAsset(string title, Sprite icon)
+        {
+            InitBase(title, icon, EditorConstants.Author, DateTime.Now);
             GenerateID(EditorAssetIDs.WeaponIdentifier);
+            color = EditorConstants.WeaponColor;
+
+            animationType = EditorConstants.WeaponAnimationType;
+            frameDuration = EditorConstants.WeaponFrameDuration;
+            iconAlt = EditorConstants.WeaponIconAlt;
+            
+            baseDamage = EditorConstants.WeaponBaseDamage;
+            useDelay = EditorConstants.WeaponUseDelay;
+            knockbackForceSelf = EditorConstants.WeaponKnockbackForceSelf;
+            knockbackLockDirectionSelf = EditorConstants.WeaponKnockbackLockDirectionSelf;
+            knockbackForceOther = EditorConstants.WeaponKnockbackForceOther;
+            knockbackLockDirectionOther = EditorConstants.WeaponKnockbackLockDirectionOther;
+
+            useType = EditorConstants.WeaponUseType;
+            useDuration = EditorConstants.WeaponUseDuration;
+            useStartDelay = EditorConstants.WeaponUseStartDelay;
+            isEvasive = EditorConstants.WeaponIsEvasive;
+            freezeUser = EditorConstants.WeaponFreezeUser;
+            
+            useSound = new AssetData(ParameterInfoConstants.ForSound);
+            
+            projectileIDs = new List<ProjectileDataInfo>();
         }
 
         public WeaponAsset(WeaponAsset asset)
@@ -61,10 +84,7 @@ namespace Rogium.Editors.Weapons
             AssetValidation.ValidateTitle(asset.title);
             
             id = asset.ID;
-            title = asset.Title;
-            icon = asset.Icon;
-            author = asset.Author;
-            creationDate = asset.CreationDate;
+            InitBase(asset.Title, asset.Icon, asset.Author, asset.CreationDate);
             color = asset.Color;
 
             associatedSpriteID = asset.AssociatedSpriteID;
@@ -101,10 +121,7 @@ namespace Rogium.Editors.Weapons
             AssetValidation.ValidateTitle(title);
             
             this.id = id;
-            this.title = title;
-            this.icon = icon;
-            this.author = author;
-            this.creationDate = creationDate;
+            InitBase(title, icon, author, creationDate);
             this.color = color;
 
             this.associatedSpriteID = associatedSpriteID;
