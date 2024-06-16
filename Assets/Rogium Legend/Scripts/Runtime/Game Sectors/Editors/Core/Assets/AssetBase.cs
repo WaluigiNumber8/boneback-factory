@@ -38,6 +38,7 @@ namespace Rogium.Editors.Core
 
         public override string ToString() => $"{Title} ({ID})";
 
+        
         public string ID { get => id; }
         public string Title { get => title; }
         public Sprite Icon { get => icon; }

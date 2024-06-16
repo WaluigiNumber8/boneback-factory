@@ -25,7 +25,6 @@ namespace Rogium.Tests.Editors
         
         public static PackAsset CreatePack()
         {
-            
             PackAsset pack = new();
             pack.UpdateTitle("Test Pack");
             Sprite icon = RedRatBuilder.GenerateSprite(Color.red, 16, 16, 16);
