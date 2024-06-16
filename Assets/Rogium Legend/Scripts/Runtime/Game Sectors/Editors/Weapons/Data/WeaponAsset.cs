@@ -51,33 +51,6 @@ namespace Rogium.Editors.Weapons
             
             projectileIDs = new List<ProjectileDataInfo>();
         }
-        public WeaponAsset(string title, Sprite icon)
-        {
-            InitBase(title, icon, EditorConstants.Author, DateTime.Now);
-            GenerateID(EditorAssetIDs.WeaponIdentifier);
-            color = EditorConstants.WeaponColor;
-
-            animationType = EditorConstants.WeaponAnimationType;
-            frameDuration = EditorConstants.WeaponFrameDuration;
-            iconAlt = EditorSpriteConstants.Instance.EmptySprite;
-            
-            baseDamage = EditorConstants.WeaponBaseDamage;
-            useDelay = EditorConstants.WeaponUseDelay;
-            knockbackForceSelf = EditorConstants.WeaponKnockbackForceSelf;
-            knockbackLockDirectionSelf = EditorConstants.WeaponKnockbackLockDirectionSelf;
-            knockbackForceOther = EditorConstants.WeaponKnockbackForceOther;
-            knockbackLockDirectionOther = EditorConstants.WeaponKnockbackLockDirectionOther;
-
-            useType = EditorConstants.WeaponUseType;
-            useDuration = EditorConstants.WeaponUseDuration;
-            useStartDelay = EditorConstants.WeaponUseStartDelay;
-            isEvasive = EditorConstants.WeaponIsEvasive;
-            freezeUser = EditorConstants.WeaponFreezeUser;
-            
-            useSound = new AssetData(ParameterInfoConstants.ForSound);
-            
-            projectileIDs = new List<ProjectileDataInfo>();
-        }
 
         public WeaponAsset(WeaponAsset asset)
         {

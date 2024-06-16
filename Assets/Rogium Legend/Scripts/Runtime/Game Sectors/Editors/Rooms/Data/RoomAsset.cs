@@ -37,20 +37,7 @@ namespace Rogium.Editors.Rooms
             this.objectGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForEmpty));
             this.enemyGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForEnemy));
         }
-        public RoomAsset(string title, Sprite icon)
-        {
-            InitBase(title, icon, EditorConstants.Author, DateTime.Now);
-            GenerateID(EditorAssetIDs.RoomIdentifier);
-            
-            this.difficultyLevel = EditorConstants.RoomDifficulty;
-            this.type = EditorConstants.RoomType;
-            this.lightness = EditorConstants.RoomLightness;
-            this.lightnessColor = EditorConstants.RoomLightnessColor;
-            this.tileGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForTile));
-            this.decorGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForDecor));
-            this.objectGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForEmpty));
-            this.enemyGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForEnemy));
-        }
+
         public RoomAsset(RoomAsset asset)
         {
             AssetValidation.ValidateTitle(asset.title);

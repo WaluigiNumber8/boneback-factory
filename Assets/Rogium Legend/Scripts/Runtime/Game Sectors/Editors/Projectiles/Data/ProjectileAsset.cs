@@ -40,29 +40,7 @@ namespace Rogium.Editors.Projectiles
             pierceType = EditorConstants.ProjectilePierceType;
             
         }
-        public ProjectileAsset(string title, Sprite icon)
-        {
-            InitBase(title, icon, EditorConstants.Author, DateTime.Now);
-            GenerateID(EditorAssetIDs.ProjectileIdentifier);
-            color = EditorConstants.ProjectileColor;
 
-            animationType = EditorConstants.ProjectileAnimationType;
-            frameDuration = EditorConstants.ProjectileFrameDuration;
-            iconAlt = EditorSpriteConstants.Instance.EmptySprite;
-            
-            baseDamage = EditorConstants.ProjectileBaseDamage;
-            useDelay = EditorConstants.ProjectileLifetime;
-            knockbackForceSelf = EditorConstants.ProjectileKnockbackForceSelf;
-            knockbackLockDirectionSelf = EditorConstants.ProjectileKnockbackLockDirectionSelf;
-            knockbackForceOther = EditorConstants.ProjectileKnockbackForceOther;
-            knockbackLockDirectionOther = EditorConstants.ProjectileKnockbackLockDirectionOther;
-
-            flightSpeed = EditorConstants.ProjectileFlightSpeed;
-            acceleration = EditorConstants.ProjectileAcceleration;
-            brakeForce = EditorConstants.ProjectileBrakeForce;
-            pierceType = EditorConstants.ProjectilePierceType;
-            
-        }
         public ProjectileAsset(ProjectileAsset asset)
         {
             AssetValidation.ValidateTitle(asset.title);

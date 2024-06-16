@@ -22,13 +22,7 @@ namespace Rogium.Editors.Palettes
 
             colors = RedRatBuilder.GenerateColorArray(EditorConstants.PaletteSize, Color.black);
         }
-        public PaletteAsset(string title, Sprite icon)
-        {
-            InitBase(title, icon, EditorConstants.Author, DateTime.Now);
-            GenerateID(EditorAssetIDs.PaletteIdentifier);
 
-            colors = RedRatBuilder.GenerateColorArray(EditorConstants.PaletteSize, Color.black);
-        }
         public PaletteAsset(PaletteAsset asset)
         {
             AssetValidation.ValidateTitle(asset.title);

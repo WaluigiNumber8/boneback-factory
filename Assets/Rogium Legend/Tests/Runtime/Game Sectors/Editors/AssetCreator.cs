@@ -25,7 +25,8 @@ namespace Rogium.Tests.Editors
         
         public static PackAsset CreatePack()
         {
-            PackAsset pack = new("Test Pack", RedRatBuilder.GenerateSprite(Color.black, 16, 16, 16));
+            PackAsset pack = new();
+            pack.UpdateTitle("Test Pack");
             
             pack.Palettes.AddAllWithoutSave(new[] { CreatePalette() });
             pack.Sprites.AddAllWithoutSave(new[] { CreateSprite() });
@@ -40,43 +41,67 @@ namespace Rogium.Tests.Editors
 
         public static PaletteAsset CreatePalette()
         {
-            PaletteAsset palette = new("Test Palette", RedRatBuilder.GenerateSprite(Color.magenta, 16, 16, 16));
+            PaletteAsset palette = new();
+            palette.UpdateTitle("Test Palette");
+            palette.UpdateIcon(RedRatBuilder.GenerateSprite(Color.magenta, 16, 16, 16));
             return palette;
         }
         
         public static SpriteAsset CreateSprite()
         {
-            SpriteAsset sprite = new("Test Sprite", RedRatBuilder.GenerateSprite(Color.white, 16, 16, 16));
+            SpriteAsset sprite = new();
+            sprite.UpdateTitle("Test Palette");
+            sprite.UpdateIcon(RedRatBuilder.GenerateSprite(Color.white, 16, 16, 16));
             return sprite;
         }
 
         public static WeaponAsset CreateWeapon()
         {
-            WeaponAsset weapon = new("Test Weapon", RedRatBuilder.GenerateSprite(Color.green, 16, 16, 16));
+            WeaponAsset weapon = new();
+            weapon.UpdateTitle("Test Weapon");
+            SpriteAsset s = CreateSprite();
+            s.UpdateIcon(RedRatBuilder.GenerateSprite(Color.green, 16, 16, 16));
+            weapon.UpdateIcon(s);
             return weapon;
         }
 
         public static ProjectileAsset CreateProjectile()
         {
-            ProjectileAsset projectile = new("Test Projectile", RedRatBuilder.GenerateSprite(Color.cyan, 16, 16, 16));
+            ProjectileAsset projectile = new();
+            projectile.UpdateTitle("Test Projectile");
+            SpriteAsset s = CreateSprite();
+            s.UpdateIcon(RedRatBuilder.GenerateSprite(Color.cyan, 16, 16, 16));
+            projectile.UpdateIcon(s);
             return projectile;
         }
 
         public static EnemyAsset CreateEnemy()
         {
-            EnemyAsset enemy = new("Test Enemy", RedRatBuilder.GenerateSprite(Color.red, 16, 16, 16));
+            EnemyAsset enemy = new();
+            enemy.UpdateTitle("Test Enemy");
+            SpriteAsset s = CreateSprite();
+            s.UpdateIcon(RedRatBuilder.GenerateSprite(Color.red, 16, 16, 16));
+            enemy.UpdateIcon(s);
             return enemy;
         }
 
         public static RoomAsset CreateRoom()
         {
-            RoomAsset room = new("Test Room", RedRatBuilder.GenerateSprite(Color.blue, 16, 16, 16));
+            RoomAsset room = new();
+            room.UpdateTitle("Test Room");
+            SpriteAsset s = CreateSprite();
+            s.UpdateIcon(RedRatBuilder.GenerateSprite(Color.blue, 16, 16, 16));
+            room.UpdateIcon(s);
             return room;
         }
 
         public static TileAsset CreateTile()
         {
-            TileAsset tile = new("Test Tile", RedRatBuilder.GenerateSprite(Color.yellow, 16, 16, 16));
+            TileAsset tile = new();
+            tile.UpdateTitle("Test Tile");
+            SpriteAsset s = CreateSprite();
+            s.UpdateIcon(RedRatBuilder.GenerateSprite(Color.yellow, 16, 16, 16));
+            tile.UpdateIcon(s);
             return tile;
         }
     }

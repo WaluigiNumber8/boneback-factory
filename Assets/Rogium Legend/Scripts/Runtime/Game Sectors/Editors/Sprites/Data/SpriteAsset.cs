@@ -26,14 +26,7 @@ namespace Rogium.Editors.Sprites
             this.spriteData = new ObjectGrid<int>(EditorConstants.SpriteSize, EditorConstants.SpriteSize, () => -1);
             this.associatedAssetsIDs = new HashSet<string>();
         }
-        public SpriteAsset(string title, Sprite icon)
-        {
-            InitBase(title, icon, EditorConstants.Author, DateTime.Now);
-            GenerateID(EditorAssetIDs.SpriteIdentifier);
 
-            this.spriteData = new ObjectGrid<int>(EditorConstants.SpriteSize, EditorConstants.SpriteSize, () => -1);
-            this.associatedAssetsIDs = new HashSet<string>();
-        }
         public SpriteAsset(SpriteAsset asset)
         {
             AssetValidation.ValidateTitle(asset.title);

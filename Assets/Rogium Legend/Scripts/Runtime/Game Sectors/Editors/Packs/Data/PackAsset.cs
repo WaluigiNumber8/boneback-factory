@@ -49,23 +49,6 @@ namespace Rogium.Editors.Packs
             tiles = new AssetList<TileAsset>(ex.Tiles.Save, ex.Tiles.UpdateTitle, ex.Tiles.Delete);
         }
 
-        public PackAsset(string title, Sprite icon)
-        {
-            AssetValidation.ValidateTitle(title);
-
-            InitBase(title, EditorSpriteConstants.Instance.PackIcon, EditorConstants.Author, DateTime.Now);
-            GenerateID(EditorAssetIDs.PackIdentifier);
-
-            description = EditorConstants.PackDescription;
-            palettes = new AssetList<PaletteAsset>(ex.Palettes.Save, ex.Palettes.UpdateTitle, ex.Palettes.Delete);
-            sprites = new AssetList<SpriteAsset>(ex.Sprites.Save, ex.Sprites.UpdateTitle, ex.Sprites.Delete);
-            weapons = new AssetList<WeaponAsset>(ex.Weapons.Save, ex.Weapons.UpdateTitle, ex.Weapons.Delete);
-            projectiles = new AssetList<ProjectileAsset>(ex.Projectiles.Save, ex.Projectiles.UpdateTitle, ex.Projectiles.Delete);
-            enemies = new AssetList<EnemyAsset>(ex.Enemies.Save, ex.Enemies.UpdateTitle, ex.Enemies.Delete);
-            rooms = new AssetList<RoomAsset>(ex.Rooms.Save, ex.Rooms.UpdateTitle, ex.Rooms.Delete);
-            tiles = new AssetList<TileAsset>(ex.Tiles.Save, ex.Tiles.UpdateTitle, ex.Tiles.Delete);
-        }
-
         public PackAsset(PackAsset asset)
         {
             AssetValidation.ValidateTitle(asset.title);

@@ -31,18 +31,7 @@ namespace Rogium.Editors.Tiles
             this.terrainType = EditorConstants.TileTerrainType;
             
         }
-        public TileAsset(string title, Sprite icon)
-        {
-            InitBase(title, icon, EditorConstants.Author, DateTime.Now);
-            GenerateID(EditorAssetIDs.TileIdentifier);
-            
-            this.tile = ScriptableObject.CreateInstance<Tile>();
-            this.tile.sprite = this.icon;
-            this.type = EditorConstants.TileType;
-            this.layerType = EditorConstants.TileLayer;
-            this.terrainType = EditorConstants.TileTerrainType;
-            
-        }
+
         public TileAsset(TileAsset asset)
         {
             AssetValidation.ValidateTitle(asset.title);
