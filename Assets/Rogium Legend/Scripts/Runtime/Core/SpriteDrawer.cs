@@ -103,7 +103,7 @@ namespace Rogium.Systems.GridSystem
             
             AssetUtils.UpdateFromGridByList(IDGrid, assetList, 
                 (x, y, asset) => DrawTo(sprite, new Vector2Int(x, y), asset.Icon),
-                (x, y) => DrawTo(sprite, new Vector2Int(x, y), EditorConstants.MissingSprite));
+                (x, y) => DrawTo(sprite, new Vector2Int(x, y), Resources.Load<Sprite>(EditorConstants.MissingSpritePath)));
             
             Apply(sprite);
             return sprite;

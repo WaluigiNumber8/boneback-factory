@@ -19,13 +19,13 @@ namespace Rogium.Editors.Projectiles
         #region Constructors
         public ProjectileAsset()
         {
-            InitBase(EditorConstants.ProjectileTitle, EditorConstants.ProjectileIcon, EditorConstants.Author, DateTime.Now);
+            InitBase(EditorConstants.ProjectileTitle, Resources.Load<Sprite>(EditorConstants.ProjectileIconPath), EditorConstants.Author, DateTime.Now);
             GenerateID(EditorAssetIDs.ProjectileIdentifier);
             color = EditorConstants.ProjectileColor;
 
             animationType = EditorConstants.ProjectileAnimationType;
             frameDuration = EditorConstants.ProjectileFrameDuration;
-            iconAlt = EditorConstants.ProjectileIconAlt;
+            iconAlt = Resources.Load<Sprite>(EditorConstants.ProjectileIconAltPath);
             
             baseDamage = EditorConstants.ProjectileBaseDamage;
             useDelay = EditorConstants.ProjectileLifetime;
@@ -48,7 +48,7 @@ namespace Rogium.Editors.Projectiles
 
             animationType = EditorConstants.ProjectileAnimationType;
             frameDuration = EditorConstants.ProjectileFrameDuration;
-            iconAlt = EditorConstants.ProjectileIconAlt;
+            iconAlt = Resources.Load<Sprite>(EditorConstants.ProjectileIconAltPath);
             
             baseDamage = EditorConstants.ProjectileBaseDamage;
             useDelay = EditorConstants.ProjectileLifetime;
@@ -135,7 +135,7 @@ namespace Rogium.Editors.Projectiles
         public override void ClearAssociatedSprite()
         {
             base.ClearAssociatedSprite();
-            icon = EditorConstants.ProjectileIcon;
+            icon = Resources.Load<Sprite>(EditorConstants.ProjectileIconPath);
         }
         
         public float FlightSpeed { get => flightSpeed; }

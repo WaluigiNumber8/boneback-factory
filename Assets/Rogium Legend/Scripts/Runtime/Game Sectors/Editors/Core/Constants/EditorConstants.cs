@@ -16,11 +16,11 @@ namespace Rogium.Editors.Core.Defaults
         //Pack
         public const string PackTitle = "New Pack";
         public const string PackDescription = "A new pack filled with adventure!";
-        public static readonly Sprite PackIcon = Resources.Load<Sprite>("Defaults/spr_Default_Pack");
+        public const string PackIconPath = "Defaults/spr_Default_Pack";
 
         //Campaign
         public const string CampaignTitle = "New Campaign";
-        public static readonly Sprite CampaignIcon = Resources.Load<Sprite>("Defaults/spr_Default_Weapon");
+        public const string CampaignIconPath = "Defaults/spr_Default_Weapon";
         public const int CampaignLength = 25;
 
         //Palette
@@ -29,18 +29,18 @@ namespace Rogium.Editors.Core.Defaults
 
         //Sprite
         public const string SpriteTitle = "New Sprite";
-        public static readonly Sprite SpriteIcon = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
+        public const string SpriteIconPath = "Defaults/spr_Grid_Blank";
         public const int SpriteSize = 16;
 
         //Weapon
         public const string WeaponTitle = "New Weapon";
-        public static readonly Sprite WeaponIcon = Resources.Load<Sprite>("Defaults/spr_Default_Weapon");
+        public const string WeaponIconPath = "Defaults/spr_Default_Weapon";
         public static readonly Color WeaponColor = Color.green;
 
         public const AnimationType WeaponAnimationType = AnimationType.NoAnimation;
         public const int WeaponFrameDuration = 40;
         public const int WeaponFrameDurationMax = 1200;
-        public static readonly Sprite WeaponIconAlt = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
+        public const string WeaponIconAltPath = "Defaults/spr_Grid_Blank";
 
         public const int WeaponBaseDamage = 2;
         public const float WeaponUseDelay = 1.2f;
@@ -67,13 +67,13 @@ namespace Rogium.Editors.Core.Defaults
 
         //Projectile
         public const string ProjectileTitle = "New Projectile";
-        public static readonly Sprite ProjectileIcon = Resources.Load<Sprite>("Defaults/spr_Default_Projectile");
+        public const string ProjectileIconPath = "Defaults/spr_Default_Projectile";
         public static readonly Color ProjectileColor = Color.yellow;
 
         public const AnimationType ProjectileAnimationType = AnimationType.NoAnimation;
         public const int ProjectileFrameDuration = 40;
         public const int ProjectileFrameDurationMax = 1200;
-        public static readonly Sprite ProjectileIconAlt = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
+        public const string ProjectileIconAltPath = "Defaults/spr_Grid_Blank";
 
         public const int ProjectileBaseDamage = 1;
         public const float ProjectileLifetime = 0.5f;
@@ -93,13 +93,13 @@ namespace Rogium.Editors.Core.Defaults
 
         //Enemy
         public const string EnemyTitle = "New Enemy";
-        public static readonly Sprite EnemyIcon = Resources.Load<Sprite>("Defaults/spr_Default_Enemy");
+        public const string EnemyIconPath = "Defaults/spr_Default_Enemy";
         public static readonly Color EnemyColor = Color.red;
 
         public const AnimationType EnemyAnimationType = AnimationType.HorizontalFlip;
         public const int EnemyFrameDuration = 50;
         public const int EnemyFrameDurationMax = 1200;
-        public static readonly Sprite EnemyIconAlt = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
+        public const string EnemyIconAltPath = "Defaults/spr_Grid_Blank";
 
         public const int EnemyBaseDamage = 1;
         public const float EnemyInvincibilityTimeMax = 20;
@@ -124,7 +124,7 @@ namespace Rogium.Editors.Core.Defaults
 
         //Room
         public const string RoomTitle = "New Room";
-        public static readonly Sprite RoomIcon = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
+        public const string RoomIconPath = "Defaults/spr_Grid_Blank";
         public static readonly Vector2Int RoomSize = new(15, 10);
         public const int RoomDifficulty = 0;
         public const RoomType RoomType = Rooms.RoomType.Common;
@@ -133,7 +133,7 @@ namespace Rogium.Editors.Core.Defaults
 
         //Tile
         public const string TileTitle = "New Tile";
-        public static readonly Sprite TileIcon = Resources.Load<Sprite>("Defaults/spr_Default_Tile");
+        public const string TileIconPath = "Defaults/spr_Default_Tile";
         public const TileType TileType = Tiles.TileType.Tile;
         public const TileLayerType TileLayer = TileLayerType.Wall;
         public const TerrainType TileTerrainType = TerrainType.Tile;
@@ -147,11 +147,11 @@ namespace Rogium.Editors.Core.Defaults
         public const string Author = "NO_AUTHOR";
         public const string AuthorGame = "Game";
         public const int PixelsPerUnit = 16;
-        public static readonly Sprite EmptyGridSprite = Resources.Load<Sprite>("Defaults/spr_Grid_Blank");
+        public const string EmptyGridSpritePath = "Defaults/spr_Grid_Blank";
         public static readonly Color EmptyGridColor = Color.black;
         public static readonly Color NoColor = Color.clear;
-        public static readonly Sprite MissingSprite = Resources.Load<Sprite>("Defaults/spr_Missing");
-        public static readonly Color MissingColor = new Color(255, 88, 227);
+        public const string MissingSpritePath = "Defaults/spr_Missing";
+        public static readonly Color MissingColor = new(255, 88, 227);
         public static readonly Color DefaultColor = Color.white;
 
         //Asset SubMenu

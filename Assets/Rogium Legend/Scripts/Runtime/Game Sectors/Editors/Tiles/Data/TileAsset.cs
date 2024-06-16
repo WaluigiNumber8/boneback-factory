@@ -21,7 +21,7 @@ namespace Rogium.Editors.Tiles
         #region Constructors
         public TileAsset()
         {
-            InitBase(EditorConstants.TileTitle, EditorConstants.TileIcon, EditorConstants.Author, DateTime.Now);
+            InitBase(EditorConstants.TileTitle, Resources.Load<Sprite>(EditorConstants.TileIconPath), EditorConstants.Author, DateTime.Now);
             GenerateID(EditorAssetIDs.TileIdentifier);
             
             this.tile = ScriptableObject.CreateInstance<Tile>();
@@ -98,7 +98,7 @@ namespace Rogium.Editors.Tiles
         public override void ClearAssociatedSprite()
         {
             base.ClearAssociatedSprite();
-            icon = EditorConstants.TileIcon;
+            icon = Resources.Load<Sprite>(EditorConstants.TileIconPath);
         }
 
         public Tile Tile { get => tile; }

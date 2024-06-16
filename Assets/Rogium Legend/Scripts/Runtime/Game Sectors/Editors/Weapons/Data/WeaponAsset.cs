@@ -26,13 +26,13 @@ namespace Rogium.Editors.Weapons
         #region Constructors
         public WeaponAsset()
         {
-            InitBase(EditorConstants.WeaponTitle, EditorConstants.WeaponIcon, EditorConstants.Author, DateTime.Now);
+            InitBase(EditorConstants.WeaponTitle, Resources.Load<Sprite>(EditorConstants.WeaponIconPath), EditorConstants.Author, DateTime.Now);
             GenerateID(EditorAssetIDs.WeaponIdentifier);
             color = EditorConstants.WeaponColor;
 
             animationType = EditorConstants.WeaponAnimationType;
             frameDuration = EditorConstants.WeaponFrameDuration;
-            iconAlt = EditorConstants.WeaponIconAlt;
+            iconAlt = Resources.Load<Sprite>(EditorConstants.WeaponIconAltPath);
             
             baseDamage = EditorConstants.WeaponBaseDamage;
             useDelay = EditorConstants.WeaponUseDelay;
@@ -59,7 +59,7 @@ namespace Rogium.Editors.Weapons
 
             animationType = EditorConstants.WeaponAnimationType;
             frameDuration = EditorConstants.WeaponFrameDuration;
-            iconAlt = EditorConstants.WeaponIconAlt;
+            iconAlt = Resources.Load<Sprite>(EditorConstants.WeaponIconAltPath);
             
             baseDamage = EditorConstants.WeaponBaseDamage;
             useDelay = EditorConstants.WeaponUseDelay;
@@ -187,7 +187,7 @@ namespace Rogium.Editors.Weapons
         public override void ClearAssociatedSprite()
         {
             base.ClearAssociatedSprite();
-            icon = EditorConstants.WeaponIcon;
+            icon = Resources.Load<Sprite>(EditorConstants.WeaponIconPath);
         }
         
         public WeaponUseType UseType { get => useType; }

@@ -31,12 +31,12 @@ namespace Rogium.Editors.Enemies
         #region Constructors
         public EnemyAsset()
         {
-            InitBase(EditorConstants.EnemyTitle, EditorConstants.EnemyIcon, EditorConstants.Author, DateTime.Now);
+            InitBase(EditorConstants.EnemyTitle, Resources.Load<Sprite>(EditorConstants.EnemyIconPath), EditorConstants.Author, DateTime.Now);
             color = EditorConstants.EnemyColor;
 
             animationType = EditorConstants.EnemyAnimationType;
             frameDuration = EditorConstants.EnemyFrameDuration;
-            iconAlt = EditorConstants.EnemyIconAlt;
+            iconAlt = Resources.Load<Sprite>(EditorConstants.EnemyIconAltPath);
             
             baseDamage = EditorConstants.EnemyBaseDamage;
             useDelay = EditorConstants.EnemyAttackDelay;
@@ -68,7 +68,7 @@ namespace Rogium.Editors.Enemies
 
             animationType = EditorConstants.EnemyAnimationType;
             frameDuration = EditorConstants.EnemyFrameDuration;
-            iconAlt = EditorConstants.EnemyIconAlt;
+            iconAlt = Resources.Load<Sprite>(EditorConstants.EnemyIconAltPath);
             
             baseDamage = EditorConstants.EnemyBaseDamage;
             useDelay = EditorConstants.EnemyAttackDelay;
@@ -197,7 +197,7 @@ namespace Rogium.Editors.Enemies
         public override void ClearAssociatedSprite()
         {
             base.ClearAssociatedSprite();
-            icon = EditorConstants.EnemyIcon;
+            icon = Resources.Load<Sprite>(EditorConstants.EnemyIconPath);
         }
         
         public List<string> WeaponIDs { get => weaponIDs; }

@@ -36,7 +36,7 @@ namespace Rogium.Editors.Packs
 
         public PackAsset()
         {
-            InitBase(EditorConstants.PackTitle, EditorConstants.PackIcon, EditorConstants.Author, DateTime.Now);
+            InitBase(EditorConstants.PackTitle, Resources.Load<Sprite>(EditorConstants.PackIconPath), EditorConstants.Author, DateTime.Now);
             GenerateID(EditorAssetIDs.PackIdentifier);
 
             description = EditorConstants.PackDescription;
@@ -111,7 +111,7 @@ namespace Rogium.Editors.Packs
             IList<WeaponAsset> weapons, IList<ProjectileAsset> projectiles, IList<EnemyAsset> enemies,
             IList<RoomAsset> rooms, IList<TileAsset> tiles)
         {
-            InitBase(EditorConstants.PackTitle, EditorConstants.PackIcon, EditorConstants.Author, DateTime.Now);
+            InitBase(EditorConstants.PackTitle, Resources.Load<Sprite>(EditorConstants.PackIconPath), EditorConstants.Author, DateTime.Now);
             GenerateID(EditorAssetIDs.PackIdentifier);
 
             this.description = EditorConstants.PackDescription;
@@ -169,7 +169,7 @@ namespace Rogium.Editors.Packs
         public override void ClearAssociatedSprite()
         {
             base.ClearAssociatedSprite();
-            icon = EditorConstants.PackIcon;
+            icon = Resources.Load<Sprite>(EditorConstants.PackIconPath);
         }
 
         /// <summary>
@@ -182,7 +182,7 @@ namespace Rogium.Editors.Packs
         public IAsset TryGetSprite(string id, Sprite defaultSprite)
         {
             if (id == EditorConstants.EmptyAssetID || string.IsNullOrEmpty(id)) return new EmptyAsset(defaultSprite);
-            return Sprites.FindValueFirst(id) ?? (IAsset) new EmptyAsset(EditorConstants.MissingSprite);
+            return Sprites.FindValueFirst(id) ?? (IAsset) new EmptyAsset(Resources.Load<Sprite>(EditorConstants.MissingSpritePath));
         }
 
         public bool ContainsAnyPalettes => (palettes?.Count > 0);

@@ -25,7 +25,7 @@ namespace Rogium.Editors.Rooms
         #region Constructors
         public RoomAsset()
         {
-            InitBase(EditorConstants.RoomTitle, EditorConstants.RoomIcon, EditorConstants.Author, DateTime.Now);
+            InitBase(EditorConstants.RoomTitle, Resources.Load<Sprite>(EditorConstants.RoomIconPath), EditorConstants.Author, DateTime.Now);
             GenerateID(EditorAssetIDs.RoomIdentifier);
             
             this.difficultyLevel = EditorConstants.RoomDifficulty;

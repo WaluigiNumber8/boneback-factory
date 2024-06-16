@@ -21,7 +21,7 @@ namespace Rogium.Editors.Campaign
         public CampaignAsset()
         {
             this.title = EditorConstants.CampaignTitle;
-            this.icon = EditorConstants.RoomIcon;
+            this.icon = Resources.Load<Sprite>(EditorConstants.RoomIconPath);
             this.author = EditorConstants.Author;
             this.creationDate = DateTime.Now;
             GenerateID(EditorAssetIDs.CampaignIdentifier);
@@ -33,7 +33,7 @@ namespace Rogium.Editors.Campaign
         public CampaignAsset(PackAsset pack)
         {
             this.title = EditorConstants.CampaignTitle;
-            this.icon = EditorConstants.RoomIcon;
+            this.icon = Resources.Load<Sprite>(EditorConstants.RoomIconPath);
             this.author = EditorConstants.Author;
             this.creationDate = DateTime.Now;
             GenerateID(EditorAssetIDs.CampaignIdentifier);
