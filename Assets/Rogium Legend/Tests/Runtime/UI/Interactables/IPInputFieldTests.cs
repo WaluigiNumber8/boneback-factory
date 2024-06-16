@@ -12,13 +12,12 @@ namespace Rogium.Tests.UI.Interactables
     /// <summary>
     /// Tests for the InputField interactable property.
     /// </summary>
-    [RequiresPlayMode]
-    public class IPInputFieldTests
+    public class IPInputFieldTests : UITestBase
     {
-        [SetUp]
-        public void Setup()
+        [UnitySetUp]
+        public override IEnumerator Setup()
         {
-            SceneLoader.LoadUIScene();
+            yield return base.Setup();
             ActionHistorySystem.ClearHistory();
         }
         

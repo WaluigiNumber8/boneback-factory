@@ -14,18 +14,15 @@ namespace Rogium.Tests.Editors.Rooms
     /// <summary>
     /// Tests for the <see cref="RoomEditorOverseerMono"/> class.
     /// </summary>
-    [RequiresPlayMode]
-    public class RoomEditorOverseerMonoTests
+    public class RoomEditorOverseerMonoTests : UITestBase
     {
         private RoomEditorOverseerMono roomEditor;
 
         [UnitySetUp]
-        public IEnumerator Setup()
+        public override IEnumerator Setup()
         {
-            SceneLoader.LoadUIScene();
-            yield return null;
-            PackAsset pack = AssetCreator.CreatePack();
-            PackEditorOverseer.Instance.AssignAsset(pack, 0);
+            yield return base.Setup();
+            PackAsset pack = AssetCreator.CreateAndAssignPack();
             OverseerLoader.LoadInternalLibrary();
             
             yield return null;

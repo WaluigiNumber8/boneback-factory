@@ -138,7 +138,7 @@ namespace Rogium.Editors.Rooms
         /// <param name="position">The cell to erase.</param>
         private void EraseCell(Vector2Int position)
         {
-            toolbox.ApplySpecific(ToolType.Eraser, currentData.Grid, position, currentData.BrushValue, EditorConstants.EmptyGridSprite, grid.ActiveLayer);
+            toolbox.ApplySpecific(ToolType.Eraser, currentData.Grid, position, currentData.BrushValue, EditorSpriteConstants.Instance.EmptySprite, grid.ActiveLayer);
         }
         
         /// <summary>

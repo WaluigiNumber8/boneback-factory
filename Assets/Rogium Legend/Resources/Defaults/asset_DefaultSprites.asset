@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f47f74a9ee6468eaa4d170e42780513, type: 3}
+  m_Name: asset_DefaultSprites
+  m_EditorClassIdentifier: 
+  emptySprite: {fileID: 21300000, guid: 867a7406668b8f3418388e421ed39770, type: 3}
+  missingSprite: {fileID: 21300000, guid: f08744a35567ed040b9403dac891ac75, type: 3}
+  packIcon: {fileID: 21300000, guid: b43ac7d93a106884db47dcff5f07d3fb, type: 3}
+  weaponIcon: {fileID: 21300000, guid: 25f032b44042d94409d46bb244620951, type: 3}
+  projectileIcon: {fileID: 21300000, guid: 8d27d6aebf5ddfd4da0caac3f4153a55, type: 3}
+  enemyIcon: {fileID: 21300000, guid: 9e166e266ae0a4649a8672d5066cf7e3, type: 3}
+  tileIcon: {fileID: 21300000, guid: d0a7cc62853138d42bd93340ccdcc1a3, type: 3}

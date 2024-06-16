@@ -31,17 +31,15 @@ namespace Rogium.Editors.Packs
         private readonly AssetList<TileAsset> tiles;
 
         private readonly ExternalStorageOverseer ex = ExternalStorageOverseer.Instance;
-        
+
         #region Constructors
+
         public PackAsset()
         {
-            this.title = EditorConstants.PackTitle;
-            this.icon = EditorConstants.PackIcon;
-            this.author = EditorConstants.Author;
-            this.creationDate = DateTime.Now;
-            this.description = EditorConstants.PackDescription;
+            InitBase(EditorConstants.PackTitle, EditorSpriteConstants.Instance.PackIcon, EditorConstants.Author, DateTime.Now);
             GenerateID(EditorAssetIDs.PackIdentifier);
-            
+
+            description = EditorConstants.PackDescription;
             palettes = new AssetList<PaletteAsset>(ex.Palettes.Save, ex.Palettes.UpdateTitle, ex.Palettes.Delete);
             sprites = new AssetList<SpriteAsset>(ex.Sprites.Save, ex.Sprites.UpdateTitle, ex.Sprites.Delete);
             weapons = new AssetList<WeaponAsset>(ex.Weapons.Save, ex.Weapons.UpdateTitle, ex.Weapons.Delete);
@@ -55,17 +53,13 @@ namespace Rogium.Editors.Packs
         {
             AssetValidation.ValidateTitle(asset.title);
             AssetValidation.ValidateDescription(asset.description);
-            
-            this.id = asset.ID;
-            this.title = asset.Title;
-            this.icon = asset.Icon;
-            this.author = asset.Author;
-            this.creationDate = asset.CreationDate;
 
-            this.associatedSpriteID = asset.AssociatedSpriteID;
+            id = asset.ID;
+            InitBase(asset.Title, asset.Icon, asset.Author, asset.CreationDate);
+
+            associatedSpriteID = asset.AssociatedSpriteID;
             
-            this.description = asset.Description;
-            
+            description = asset.Description;
             palettes = new AssetList<PaletteAsset>(ex.Palettes.Save, ex.Palettes.UpdateTitle, ex.Palettes.Delete, asset.Palettes);
             sprites = new AssetList<SpriteAsset>(ex.Sprites.Save, ex.Sprites.UpdateTitle, ex.Sprites.Delete, asset.Sprites);
             weapons = new AssetList<WeaponAsset>(ex.Weapons.Save, ex.Weapons.UpdateTitle, ex.Weapons.Delete, asset.Weapons);
@@ -74,45 +68,19 @@ namespace Rogium.Editors.Packs
             rooms = new AssetList<RoomAsset>(ex.Rooms.Save, ex.Rooms.UpdateTitle, ex.Rooms.Delete, asset.Rooms);
             tiles = new AssetList<TileAsset>(ex.Tiles.Save, ex.Tiles.UpdateTitle, ex.Tiles.Delete, asset.Tiles);
         }
-        
-        public PackAsset(string title, string author, string description)
-        {
-            AssetValidation.ValidateTitle(title);
-            AssetValidation.ValidateDescription(description);
 
-            GenerateID(EditorAssetIDs.PackIdentifier);
-            this.title = title;
-            this.icon = EditorConstants.PackIcon;
-            this.author = author;
-            this.creationDate = DateTime.Now;
-            
-            this.description = description;
-            
-            this.palettes = new AssetList<PaletteAsset>(ex.Palettes.Save, ex.Palettes.UpdateTitle, ex.Palettes.Delete);
-            this.sprites = new AssetList<SpriteAsset>(ex.Sprites.Save, ex.Sprites.UpdateTitle, ex.Sprites.Delete);
-            this.weapons = new AssetList<WeaponAsset>(ex.Weapons.Save, ex.Weapons.UpdateTitle, ex.Weapons.Delete);
-            this.projectiles = new AssetList<ProjectileAsset>(ex.Projectiles.Save, ex.Projectiles.UpdateTitle, ex.Projectiles.Delete);
-            this.enemies = new AssetList<EnemyAsset>(ex.Enemies.Save, ex.Enemies.UpdateTitle, ex.Enemies.Delete);
-            this.rooms = new AssetList<RoomAsset>(ex.Rooms.Save, ex.Rooms.UpdateTitle, ex.Rooms.Delete);
-            this.tiles = new AssetList<TileAsset>(ex.Tiles.Save, ex.Tiles.UpdateTitle, ex.Tiles.Delete);
-        }
-        
-        public PackAsset(string id, string title, Sprite icon, string author, string associatedSpriteID, string description, 
+        public PackAsset(string id, string title, Sprite icon, string author, string associatedSpriteID, string description,
             DateTime creationDateTime)
         {
             AssetValidation.ValidateTitle(title);
             AssetValidation.ValidateDescription(description);
 
             this.id = id;
-            this.title = title;
-            this.icon = icon;
-            this.author = author;
-            this.creationDate = creationDateTime;
+            InitBase(title, icon, author, creationDateTime);
             
             this.associatedSpriteID = associatedSpriteID;
-            
+
             this.description = description;
-            
             this.palettes = new AssetList<PaletteAsset>(ex.Palettes.Save, ex.Palettes.UpdateTitle, ex.Palettes.Delete);
             this.sprites = new AssetList<SpriteAsset>(ex.Sprites.Save, ex.Sprites.UpdateTitle, ex.Sprites.Delete);
             this.weapons = new AssetList<WeaponAsset>(ex.Weapons.Save, ex.Weapons.UpdateTitle, ex.Weapons.Delete);
@@ -121,18 +89,15 @@ namespace Rogium.Editors.Packs
             this.rooms = new AssetList<RoomAsset>(ex.Rooms.Save, ex.Rooms.UpdateTitle, ex.Rooms.Delete);
             this.tiles = new AssetList<TileAsset>(ex.Tiles.Save, ex.Tiles.UpdateTitle, ex.Tiles.Delete);
         }
-        
+
         public PackAsset(IList<PaletteAsset> palettes, IList<SpriteAsset> sprites,
             IList<WeaponAsset> weapons, IList<ProjectileAsset> projectiles, IList<EnemyAsset> enemies,
             IList<RoomAsset> rooms, IList<TileAsset> tiles)
         {
-            this.title = EditorConstants.PackTitle;
-            this.icon = EditorConstants.PackIcon;
-            this.author = EditorConstants.Author;
-            this.creationDate = DateTime.Now;
-            this.description = EditorConstants.PackDescription;
+            InitBase(EditorConstants.PackTitle, EditorSpriteConstants.Instance.PackIcon, EditorConstants.Author, DateTime.Now);
             GenerateID(EditorAssetIDs.PackIdentifier);
-            
+
+            this.description = EditorConstants.PackDescription;
             this.palettes = new AssetList<PaletteAsset>(ex.Palettes.Save, ex.Palettes.UpdateTitle, ex.Palettes.Delete, palettes);
             this.sprites = new AssetList<SpriteAsset>(ex.Sprites.Save, ex.Sprites.UpdateTitle, ex.Sprites.Delete, sprites);
             this.weapons = new AssetList<WeaponAsset>(ex.Weapons.Save, ex.Weapons.UpdateTitle, ex.Weapons.Delete, weapons);
@@ -141,24 +106,21 @@ namespace Rogium.Editors.Packs
             this.rooms = new AssetList<RoomAsset>(ex.Rooms.Save, ex.Rooms.UpdateTitle, ex.Rooms.Delete, rooms);
             this.tiles = new AssetList<TileAsset>(ex.Tiles.Save, ex.Tiles.UpdateTitle, ex.Tiles.Delete, tiles);
         }
-        public PackAsset(string id, string title, Sprite icon, string author, string associatedSpriteID, string description, 
-                         DateTime creationDateTime, IList<PaletteAsset> palettes, IList<SpriteAsset> sprites,
-                        IList<WeaponAsset> weapons, IList<ProjectileAsset> projectiles, IList<EnemyAsset> enemies,
-                        IList<RoomAsset> rooms, IList<TileAsset> tiles)
+
+        public PackAsset(string id, string title, Sprite icon, string author, string associatedSpriteID, string description,
+            DateTime creationDateTime, IList<PaletteAsset> palettes, IList<SpriteAsset> sprites,
+            IList<WeaponAsset> weapons, IList<ProjectileAsset> projectiles, IList<EnemyAsset> enemies,
+            IList<RoomAsset> rooms, IList<TileAsset> tiles)
         {
             AssetValidation.ValidateTitle(title);
             AssetValidation.ValidateDescription(description);
 
             this.id = id;
-            this.title = title;
-            this.icon = icon;
-            this.author = author;
-            this.creationDate = creationDateTime;
-            
+            InitBase(title, icon, author, creationDateTime);
+
             this.associatedSpriteID = associatedSpriteID;
             
             this.description = description;
-            
             this.palettes = new AssetList<PaletteAsset>(ex.Palettes.Save, ex.Palettes.UpdateTitle, ex.Palettes.Delete, palettes);
             this.sprites = new AssetList<SpriteAsset>(ex.Sprites.Save, ex.Sprites.UpdateTitle, ex.Sprites.Delete, sprites);
             this.weapons = new AssetList<WeaponAsset>(ex.Weapons.Save, ex.Weapons.UpdateTitle, ex.Weapons.Delete, weapons);
@@ -167,6 +129,7 @@ namespace Rogium.Editors.Packs
             this.rooms = new AssetList<RoomAsset>(ex.Rooms.Save, ex.Rooms.UpdateTitle, ex.Rooms.Delete, rooms);
             this.tiles = new AssetList<TileAsset>(ex.Tiles.Save, ex.Tiles.UpdateTitle, ex.Tiles.Delete, tiles);
         }
+
         #endregion
 
         #region Update Values
@@ -175,7 +138,7 @@ namespace Rogium.Editors.Packs
 
         public override bool Equals(object obj)
         {
-            PackAsset pack = (PackAsset)obj;
+            PackAsset pack = (PackAsset) obj;
             if (pack == null) return false;
             if (pack.Title == Title &&
                 pack.Author == Author &&
@@ -183,13 +146,13 @@ namespace Rogium.Editors.Packs
                 return true;
             return false;
         }
-        
+
         public override int GetHashCode() => int.Parse(ID);
 
         public override void ClearAssociatedSprite()
         {
             base.ClearAssociatedSprite();
-            icon = EditorConstants.PackIcon;
+            icon = EditorSpriteConstants.Instance.PackIcon;
         }
 
         /// <summary>
@@ -202,7 +165,7 @@ namespace Rogium.Editors.Packs
         public IAsset TryGetSprite(string id, Sprite defaultSprite)
         {
             if (id == EditorConstants.EmptyAssetID || string.IsNullOrEmpty(id)) return new EmptyAsset(defaultSprite);
-            return Sprites.FindValueFirst(id) ?? (IAsset) new EmptyAsset(EditorConstants.MissingSprite);
+            return Sprites.FindValueFirst(id) ?? (IAsset) new EmptyAsset(EditorSpriteConstants.Instance.MissingSprite);
         }
 
         public bool ContainsAnyPalettes => (palettes?.Count > 0);
@@ -212,7 +175,7 @@ namespace Rogium.Editors.Packs
         public bool ContainsAnyEnemies => (enemies?.Count > 0);
         public bool ContainsAnyRooms => (rooms?.Count > 0);
         public bool ContainsAnyTiles => (tiles?.Count > 0);
-        
+
         public string Description { get => description; }
         public AssetList<PaletteAsset> Palettes { get => palettes; }
         public AssetList<SpriteAsset> Sprites { get => sprites; }
@@ -223,4 +186,3 @@ namespace Rogium.Editors.Packs
         public AssetList<TileAsset> Tiles { get => tiles; }
     }
 }
-

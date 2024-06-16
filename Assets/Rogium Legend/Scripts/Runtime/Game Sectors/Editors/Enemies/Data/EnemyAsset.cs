@@ -31,15 +31,12 @@ namespace Rogium.Editors.Enemies
         #region Constructors
         public EnemyAsset()
         {
-            title = EditorConstants.EnemyTitle;
-            icon = EditorConstants.EnemyIcon;
-            author = EditorConstants.Author;
-            creationDate = DateTime.Now;
+            InitBase(EditorConstants.EnemyTitle, EditorSpriteConstants.Instance.EnemyIcon, EditorConstants.Author, DateTime.Now);
             color = EditorConstants.EnemyColor;
 
             animationType = EditorConstants.EnemyAnimationType;
             frameDuration = EditorConstants.EnemyFrameDuration;
-            iconAlt = EditorConstants.EnemyIconAlt;
+            iconAlt = EditorSpriteConstants.Instance.EmptySprite;
             
             baseDamage = EditorConstants.EnemyBaseDamage;
             useDelay = EditorConstants.EnemyAttackDelay;
@@ -70,12 +67,9 @@ namespace Rogium.Editors.Enemies
             AssetValidation.ValidateTitle(asset.title);
             
             id = asset.ID;
-            title = asset.Title;
-            icon = asset.Icon;
-            author = asset.Author;
-            creationDate = asset.CreationDate;
-            color = asset.Color;
+            InitBase(asset.Title, asset.Icon, asset.Author, asset.CreationDate);
 
+            color = asset.Color;
             associatedSpriteID = asset.AssociatedSpriteID;
             
             animationType = asset.AnimationType;
@@ -116,10 +110,7 @@ namespace Rogium.Editors.Enemies
             AssetValidation.ValidateTitle(title);
             
             this.id = id;
-            this.title = title;
-            this.icon = icon;
-            this.author = author;
-            this.creationDate = creationDate;
+            InitBase(title, icon, author, creationDate);
             this.color = color;
 
             this.associatedSpriteID = associatedSpriteID;
@@ -175,7 +166,7 @@ namespace Rogium.Editors.Enemies
         public override void ClearAssociatedSprite()
         {
             base.ClearAssociatedSprite();
-            icon = EditorConstants.EnemyIcon;
+            icon = EditorSpriteConstants.Instance.EnemyIcon;
         }
         
         public List<string> WeaponIDs { get => weaponIDs; }

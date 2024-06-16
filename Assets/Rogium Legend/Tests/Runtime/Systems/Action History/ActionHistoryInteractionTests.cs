@@ -4,9 +4,7 @@ using Rogium.Core;
 using Rogium.Systems.ActionHistory;
 using Rogium.Tests.Core;
 using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.TestTools;
 
 namespace Rogium.Tests.Systems.ActionHistory
@@ -15,20 +13,10 @@ namespace Rogium.Tests.Systems.ActionHistory
     /// Tests interactions with the <see cref="ActionHistorySystem"/>.
     /// </summary>
     [RequiresPlayMode]
-    public class ActionHistoryInteractionTests : InputTestFixture
+    public class ActionHistoryInteractionTests : UITestWithInputBase
     {
         private readonly MenuPreparator menuPreparator = AssetDatabase.LoadAssetAtPath<MenuPreparator>("Assets/Rogium Legend/Prefabs/Game Sectors/Editor/pref_MenuPreparator.prefab");
         
-        private Mouse mouse;
-        
-        public override void Setup()
-        {
-            SceneLoader.LoadUIScene();
-            mouse = InputSystem.AddDevice<Mouse>();
-            Press(mouse.leftButton);
-            Release(mouse.leftButton);
-        }
-
         [UnityTest]
         public IEnumerator AddAndExecute_Should_GroupActions_WhenLClickHeld()
         {

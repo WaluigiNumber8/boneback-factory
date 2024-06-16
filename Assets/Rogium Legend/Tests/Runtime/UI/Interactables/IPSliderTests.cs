@@ -12,13 +12,12 @@ namespace Rogium.Tests.UI.Interactables
     /// <summary>
     /// Tests for the Slider interactable property.
     /// </summary>
-    [RequiresPlayMode]
-    public class IPSliderTests
+    public class IPSliderTests : UITestBase
     {
-        [SetUp]
-        public void Setup()
+        [UnitySetUp]
+        public override IEnumerator Setup()
         {
-            SceneLoader.LoadUIScene();
+            yield return base.Setup();
             ActionHistorySystem.ClearHistory();
         }
         

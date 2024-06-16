@@ -32,7 +32,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
         
         protected override void BuildColumnImportant(Transform content)
         {
-            IAsset initialIcon = currentPack.TryGetSprite(asset.AssociatedSpriteID, EditorConstants.TileIcon);
+            IAsset initialIcon = currentPack.TryGetSprite(asset.AssociatedSpriteID, EditorSpriteConstants.Instance.TileIcon);
             
             b.BuildAssetField("", AssetType.Sprite, initialIcon, content, a => asset.UpdateIcon(a), null, !currentPack.ContainsAnySprites);
             b.BuildInputField("", asset.Title, content, asset.UpdateTitle);

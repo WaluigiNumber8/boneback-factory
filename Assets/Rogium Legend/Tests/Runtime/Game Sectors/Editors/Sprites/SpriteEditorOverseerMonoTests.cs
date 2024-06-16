@@ -15,18 +15,15 @@ namespace Rogium.Tests.Editors.Sprites
     /// <summary>
     /// Tests for the <see cref="SpriteEditorOverseerMono"/>.
     /// </summary>
-    [RequiresPlayMode]
-    public class SpriteEditorOverseerMonoTests
+    public class SpriteEditorOverseerMonoTests : UITestBase
     {
         private SpriteEditorOverseerMono spriteEditor;
 
         [UnitySetUp]
-        public IEnumerator Setup()
+        public override IEnumerator Setup()
         {
-            SceneLoader.LoadUIScene();
-            yield return null;
-            PackAsset pack = AssetCreator.CreatePack();
-            PackEditorOverseer.Instance.AssignAsset(pack, 0);
+            yield return base.Setup();
+            PackAsset pack = AssetCreator.CreateAndAssignPack();
             
             MenuLoader.LoadSpriteEditor();
             spriteEditor = SpriteEditorOverseerMono.GetInstance();

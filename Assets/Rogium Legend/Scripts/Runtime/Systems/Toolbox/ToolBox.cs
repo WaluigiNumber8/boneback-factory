@@ -125,7 +125,7 @@ namespace Rogium.Systems.Toolbox
             if (tool == toolEraser)
             {
                 value = emptyValue;
-                graphicValue = EditorConstants.EmptyGridSprite;
+                graphicValue = EditorSpriteConstants.Instance.EmptySprite;
             }
             
             //Update old values

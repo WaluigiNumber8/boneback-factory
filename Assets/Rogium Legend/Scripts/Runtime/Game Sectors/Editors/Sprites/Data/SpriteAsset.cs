@@ -20,10 +20,7 @@ namespace Rogium.Editors.Sprites
         #region Constructors
         public SpriteAsset()
         {
-            this.title = EditorConstants.SpriteTitle;
-            this.icon = EditorConstants.SpriteIcon;
-            this.author = EditorConstants.Author;
-            this.creationDate = DateTime.Now;
+            InitBase(EditorConstants.SpriteTitle, EditorSpriteConstants.Instance.EmptySprite, EditorConstants.Author, DateTime.Now);
             GenerateID(EditorAssetIDs.SpriteIdentifier);
 
             this.spriteData = new ObjectGrid<int>(EditorConstants.SpriteSize, EditorConstants.SpriteSize, () => -1);
@@ -35,10 +32,7 @@ namespace Rogium.Editors.Sprites
             AssetValidation.ValidateTitle(asset.title);
             
             this.id = asset.ID;
-            this.title = asset.Title;
-            this.icon = asset.Icon;
-            this.author = asset.Author;
-            this.creationDate = asset.CreationDate;
+            InitBase(asset.Title, asset.Icon, asset.Author, asset.CreationDate);
 
             this.spriteData = new ObjectGrid<int>(asset.SpriteData);
             this.preferredPaletteID = asset.PreferredPaletteID;
@@ -51,10 +45,7 @@ namespace Rogium.Editors.Sprites
             AssetValidation.ValidateTitle(title);
             
             this.id = id;
-            this.title = title;
-            this.icon = icon;
-            this.author = author;
-            this.creationDate = creationDate;
+            InitBase(title, icon, author, creationDate);
 
             this.spriteData = new ObjectGrid<int>(spriteData);
             this.preferredPaletteID = preferredPaletteID;

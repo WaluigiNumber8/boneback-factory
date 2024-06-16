@@ -25,10 +25,8 @@ namespace Rogium.Editors.Rooms
         #region Constructors
         public RoomAsset()
         {
-            this.title = EditorConstants.RoomTitle;
-            this.icon = EditorConstants.RoomIcon;
-            this.author = EditorConstants.Author;
-            this.creationDate = DateTime.Now;
+            InitBase(EditorConstants.RoomTitle, EditorSpriteConstants.Instance.EmptySprite, EditorConstants.Author, DateTime.Now);
+            GenerateID(EditorAssetIDs.RoomIdentifier);
             
             this.difficultyLevel = EditorConstants.RoomDifficulty;
             this.type = EditorConstants.RoomType;
@@ -38,18 +36,14 @@ namespace Rogium.Editors.Rooms
             this.decorGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForDecor));
             this.objectGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForEmpty));
             this.enemyGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForEnemy));
-            
-            GenerateID(EditorAssetIDs.RoomIdentifier);
         }
+
         public RoomAsset(RoomAsset asset)
         {
             AssetValidation.ValidateTitle(asset.title);
             
             this.id = asset.ID;
-            this.title = asset.Title;
-            this.icon = asset.Icon;
-            this.author = asset.Author;
-            this.creationDate = asset.CreationDate;
+            InitBase(asset.Title, asset.Icon, asset.Author, asset.CreationDate);
             
             this.difficultyLevel = asset.DifficultyLevel;
             this.type = asset.Type;
@@ -70,10 +64,7 @@ namespace Rogium.Editors.Rooms
             SafetyNet.EnsureIntIsBiggerOrEqualTo(difficultyLevel, 0, "New Room Difficulty Level");
 
             this.id = id;
-            this.title = title;
-            this.icon = icon;
-            this.author = author;
-            this.creationDate = creationDate;
+            InitBase(title, icon, author, creationDate);
             
             this.difficultyLevel = difficultyLevel;
             this.type = type;

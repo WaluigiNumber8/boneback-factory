@@ -12,18 +12,17 @@ namespace Rogium.Tests.UI.Interactables
     /// <summary>
     /// Tests for the Toggle interactable property.
     /// </summary>
-    [RequiresPlayMode]
-    public class IPToggleTests
+    public class IPToggleTests : UITestBase
     {
-        [SetUp]
-        public void Setup()
+        [UnitySetUp]
+        public override IEnumerator Setup()
         {
-            SceneLoader.LoadUIScene();
+            yield return base.Setup();
             ActionHistorySystem.ClearHistory();
         }
         
         [UnityTest]
-        public IEnumerator Toggle_WhenValueChanged_Should_UpdateSelfValue_WhenClicked()
+        public IEnumerator WhenValueChanged_Should_UpdateSelfValue_WhenClicked()
         {
             InteractablePropertyToggle toggle = CreateAndInitToggle();
             

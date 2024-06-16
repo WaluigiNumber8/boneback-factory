@@ -25,13 +25,11 @@ namespace Rogium.Tests.Editors
         
         public static PackAsset CreatePack()
         {
-            
             PackAsset pack = new();
             pack.UpdateTitle("Test Pack");
-            Sprite icon = RedRatBuilder.GenerateSprite(Color.red, 16, 16, 16);
             
             pack.Palettes.AddAllWithoutSave(new[] { CreatePalette() });
-            pack.Sprites.AddAllWithoutSave(new[] { CreateSprite(icon) });
+            pack.Sprites.AddAllWithoutSave(new[] { CreateSprite() });
             pack.Weapons.AddAllWithoutSave(new[] { CreateWeapon() });
             pack.Projectiles.AddAllWithoutSave(new[] { CreateProjectile() });
             pack.Enemies.AddAllWithoutSave(new[] { CreateEnemy() });
@@ -45,15 +43,15 @@ namespace Rogium.Tests.Editors
         {
             PaletteAsset palette = new();
             palette.UpdateTitle("Test Palette");
-            palette.UpdateIcon(CreateSprite(RedRatBuilder.GenerateSprite(Color.magenta, 16, 16, 16)));
+            palette.UpdateIcon(RedRatBuilder.GenerateSprite(Color.magenta, 16, 16, 16));
             return palette;
         }
         
-        public static SpriteAsset CreateSprite(Sprite icon)
+        public static SpriteAsset CreateSprite()
         {
             SpriteAsset sprite = new();
-            sprite.UpdateTitle("Test Sprite");
-            sprite.UpdateIcon(icon);
+            sprite.UpdateTitle("Test Palette");
+            sprite.UpdateIcon(RedRatBuilder.GenerateSprite(Color.white, 16, 16, 16));
             return sprite;
         }
 
@@ -61,7 +59,9 @@ namespace Rogium.Tests.Editors
         {
             WeaponAsset weapon = new();
             weapon.UpdateTitle("Test Weapon");
-            weapon.UpdateIcon(CreateSprite(RedRatBuilder.GenerateSprite(Color.green, 16, 16, 16)));
+            SpriteAsset s = CreateSprite();
+            s.UpdateIcon(RedRatBuilder.GenerateSprite(Color.green, 16, 16, 16));
+            weapon.UpdateIcon(s);
             return weapon;
         }
 
@@ -69,7 +69,9 @@ namespace Rogium.Tests.Editors
         {
             ProjectileAsset projectile = new();
             projectile.UpdateTitle("Test Projectile");
-            projectile.UpdateIcon(CreateSprite(RedRatBuilder.GenerateSprite(Color.white, 16, 16, 16)));
+            SpriteAsset s = CreateSprite();
+            s.UpdateIcon(RedRatBuilder.GenerateSprite(Color.cyan, 16, 16, 16));
+            projectile.UpdateIcon(s);
             return projectile;
         }
 
@@ -77,7 +79,9 @@ namespace Rogium.Tests.Editors
         {
             EnemyAsset enemy = new();
             enemy.UpdateTitle("Test Enemy");
-            enemy.UpdateIcon(CreateSprite(RedRatBuilder.GenerateSprite(Color.red, 16, 16, 16)));
+            SpriteAsset s = CreateSprite();
+            s.UpdateIcon(RedRatBuilder.GenerateSprite(Color.red, 16, 16, 16));
+            enemy.UpdateIcon(s);
             return enemy;
         }
 
@@ -85,7 +89,9 @@ namespace Rogium.Tests.Editors
         {
             RoomAsset room = new();
             room.UpdateTitle("Test Room");
-            room.UpdateIcon(CreateSprite(RedRatBuilder.GenerateSprite(Color.cyan, 16, 16, 16)));
+            SpriteAsset s = CreateSprite();
+            s.UpdateIcon(RedRatBuilder.GenerateSprite(Color.blue, 16, 16, 16));
+            room.UpdateIcon(s);
             return room;
         }
 
@@ -93,7 +99,9 @@ namespace Rogium.Tests.Editors
         {
             TileAsset tile = new();
             tile.UpdateTitle("Test Tile");
-            tile.UpdateIcon(CreateSprite(RedRatBuilder.GenerateSprite(Color.yellow, 16, 16, 16)));
+            SpriteAsset s = CreateSprite();
+            s.UpdateIcon(RedRatBuilder.GenerateSprite(Color.yellow, 16, 16, 16));
+            tile.UpdateIcon(s);
             return tile;
         }
     }

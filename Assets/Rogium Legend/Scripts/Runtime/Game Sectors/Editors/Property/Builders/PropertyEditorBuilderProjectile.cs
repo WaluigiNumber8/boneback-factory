@@ -30,7 +30,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
         
         protected override void BuildColumnImportant(Transform content)
         {
-            IAsset initialIcon = currentPack.TryGetSprite(asset.AssociatedSpriteID, EditorConstants.ProjectileIcon);
+            IAsset initialIcon = currentPack.TryGetSprite(asset.AssociatedSpriteID, EditorSpriteConstants.Instance.ProjectileIcon);
 
             animationBlock1Slot = b.CreateContentBlockVertical(content, (asset.AnimationType == AnimationType.SpriteSwap));
             b.BuildAssetField("", AssetType.Sprite, initialIcon, animationBlock1Slot.GetTransform, a => asset.UpdateIcon(a), null, !currentPack.ContainsAnySprites);

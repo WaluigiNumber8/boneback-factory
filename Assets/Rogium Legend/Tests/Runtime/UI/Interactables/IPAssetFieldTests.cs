@@ -8,8 +8,6 @@ using Rogium.Tests.Editors;
 using Rogium.UserInterface.Interactables;
 using Rogium.UserInterface.Interactables.Properties;
 using Rogium.UserInterface.ModalWindows;
-using UnityEditor;
-using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.TestTools;
 using static Rogium.Tests.UI.Interactables.InteractablesCreator;
@@ -20,21 +18,22 @@ namespace Rogium.Tests.UI.Interactables
     /// <summary>
     /// Tests for the AssetField interactable property.
     /// </summary>
-    [RequiresPlayMode]
-    public class IPAssetFieldTests
+    public class IPAssetFieldTests : UITestBase
     {
         private InteractablePropertyAssetField assetField;
 
         [UnitySetUp]
-        public IEnumerator Setup()
+        public override IEnumerator Setup()
         {
-            SceneLoader.LoadUIScene();
+            yield return base.Setup();
             ActionHistorySystem.ClearHistory();
             OverseerLoader.LoadInternalLibrary();
+            
             yield return null;
             AssetCreator.CreateAndAssignPack();
             OverseerLoader.LoadModalWindowBuilder();
             OverseerLoader.LoadThemeOverseer();
+            
             yield return null;
             assetField = CreateAndInitAssetField(AssetType.Weapon);
             yield return null;

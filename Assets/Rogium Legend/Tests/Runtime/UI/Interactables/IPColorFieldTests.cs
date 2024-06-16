@@ -17,20 +17,21 @@ namespace Rogium.Tests.UI.Interactables
     /// <summary>
     /// Tests for the <see cref="ColorField"/> interactable property.
     /// </summary>
-    [RequiresPlayMode]
-    public class IPColorFieldTests
+    public class IPColorFieldTests : UITestBase
     {
         private InteractablePropertyColorField colorField;
         
         [UnitySetUp]
-        public IEnumerator Setup()
+        public override IEnumerator Setup()
         {
-            SceneLoader.LoadUIScene();
+            yield return base.Setup();
             ActionHistorySystem.ClearHistory();
             OverseerLoader.LoadInternalLibrary();
+            
             yield return null;
             OverseerLoader.LoadModalWindowBuilder();
             OverseerLoader.LoadThemeOverseer();
+            
             yield return null;
             colorField = CreateAndInitColorField(Color.white);
             yield return null;
