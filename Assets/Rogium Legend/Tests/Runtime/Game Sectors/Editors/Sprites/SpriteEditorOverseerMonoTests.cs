@@ -15,7 +15,7 @@ namespace Rogium.Tests.Editors.Sprites
     /// <summary>
     /// Tests for the <see cref="SpriteEditorOverseerMono"/>.
     /// </summary>
-    public class SpriteEditorOverseerMonoTests : UITestBase
+    public class SpriteEditorOverseerMonoTests : MenuTestBase
     {
         private SpriteEditorOverseerMono spriteEditor;
 

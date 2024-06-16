@@ -17,7 +17,7 @@ namespace Rogium.Tests.UI.Interactables
     /// <summary>
     /// Tests for the <see cref="ColorField"/> interactable property.
     /// </summary>
-    public class IPColorFieldTests : UITestBase
+    public class IPColorFieldTests : MenuTestBase
     {
         private InteractablePropertyColorField colorField;
         

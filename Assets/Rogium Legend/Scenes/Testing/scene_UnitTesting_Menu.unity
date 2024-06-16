@@ -188,7 +188,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1261682050}
   m_PlaneDistance: 100
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
@@ -485,6 +485,11 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1261682048}
   m_Enabled: 1
+--- !u!20 &1261682050 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2836801278012683473, guid: b11d9ead2700a20429d836a0539abeb5, type: 3}
+  m_PrefabInstance: {fileID: 1261682047}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1516401211
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -592,7 +597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

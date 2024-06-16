@@ -12,7 +12,7 @@ namespace Rogium.Tests.UI.Interactables
     /// <summary>
     /// Tests for the Dropdown interactable property.
     /// </summary>
-    public class IPDropdownTests : UITestBase
+    public class IPDropdownTests : MenuTestBase
     {
         [UnitySetUp]
         public override IEnumerator Setup()

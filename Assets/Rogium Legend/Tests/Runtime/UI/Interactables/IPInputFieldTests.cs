@@ -12,7 +12,7 @@ namespace Rogium.Tests.UI.Interactables
     /// <summary>
     /// Tests for the InputField interactable property.
     /// </summary>
-    public class IPInputFieldTests : UITestBase
+    public class IPInputFieldTests : MenuTestBase
     {
         [UnitySetUp]
         public override IEnumerator Setup()

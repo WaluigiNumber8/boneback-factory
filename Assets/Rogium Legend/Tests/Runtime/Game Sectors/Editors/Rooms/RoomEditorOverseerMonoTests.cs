@@ -14,7 +14,7 @@ namespace Rogium.Tests.Editors.Rooms
     /// <summary>
     /// Tests for the <see cref="RoomEditorOverseerMono"/> class.
     /// </summary>
-    public class RoomEditorOverseerMonoTests : UITestBase
+    public class RoomEditorOverseerMonoTests : MenuTestBase
     {
         private RoomEditorOverseerMono roomEditor;
 

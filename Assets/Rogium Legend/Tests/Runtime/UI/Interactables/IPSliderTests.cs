@@ -12,7 +12,7 @@ namespace Rogium.Tests.UI.Interactables
     /// <summary>
     /// Tests for the Slider interactable property.
     /// </summary>
-    public class IPSliderTests : UITestBase
+    public class IPSliderTests : MenuTestBase
     {
         [UnitySetUp]
         public override IEnumerator Setup()
