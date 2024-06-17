@@ -73,7 +73,7 @@ namespace Rogium.Editors.Palettes
             if (lastSlot == null) return;
             if (lastSlot.Index == -1) return;
             
-            lastSlot.Construct(colorPicker.CurrentColor);
+            lastSlot.UpdateColor(colorPicker.CurrentColor);
             editor.UpdateColor(colorPicker.CurrentColor, lastSlot.Index);
         }
         

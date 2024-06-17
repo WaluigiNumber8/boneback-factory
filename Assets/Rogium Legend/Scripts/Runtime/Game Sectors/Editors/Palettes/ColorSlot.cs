@@ -1,4 +1,5 @@
 ﻿using System;
+using Rogium.Systems.ActionHistory;
 using Rogium.UserInterface.Editors.AssetSelection;
 using Rogium.UserInterface.ModalWindows;
 using UnityEngine;
@@ -17,6 +18,7 @@ namespace Rogium.Editors.Palettes
         [SerializeField] private UIInfo ui;
         
         private Color currentColor;
+        private Color lastColor;
 
         private void OnEnable() => toggle.onValueChanged.AddListener(WhenSelected);
         private void OnDisable() => toggle.onValueChanged.RemoveListener(WhenSelected);
@@ -26,17 +28,11 @@ namespace Rogium.Editors.Palettes
             if (eventData.button != PointerEventData.InputButton.Right) return;
             ModalWindowBuilder.GetInstance().OpenColorPickerWindow(color =>
             {
-                Construct(color);
-                WhenSelected(toggle.isOn); // If is already on, update all listeners.
-            }, currentColor); //TODO Make the window affect things.
+                ActionHistorySystem.AddAndExecute(new UpdateColorSlotAction(this, color, lastColor));
+                WhenSelected(toggle.isOn); // If is selected, update all listeners.
+            }, currentColor);
         }
         
-        /// <summary>
-        /// Constructs a color slot, without giving it a new index.
-        /// </summary>
-        /// <param name="color">The new color it's going to carry.</param>
-        public void Construct(Color color) => Construct(color, index);
-
         /// <summary>
         /// Constructs the color slot.
         /// </summary>
@@ -44,11 +40,18 @@ namespace Rogium.Editors.Palettes
         /// <param name="index">The index of the color.</param>
         public void Construct(Color color, int index)
         {
-            this.currentColor = color;
             this.index = index;
-            ui.colorImg.color = currentColor;
+            this.lastColor = color;
+            UpdateColor(color);
         }
 
+        public void UpdateColor(Color color)
+        {
+            lastColor = currentColor;
+            currentColor = color;
+            ui.colorImg.color = currentColor;
+        }
+        
         /// <summary>
         /// Fires the select event when the toggle was clicked.
         /// </summary>

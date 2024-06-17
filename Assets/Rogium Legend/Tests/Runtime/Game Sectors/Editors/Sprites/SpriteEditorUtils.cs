@@ -3,6 +3,9 @@ using Rogium.Editors.Palettes;
 using Rogium.Editors.Sprites;
 using Rogium.Systems.ActionHistory;
 using Rogium.Systems.GridSystem;
+using Rogium.Tests.Core;
+using Rogium.Tests.UI.Interactables;
+using Rogium.UserInterface.ModalWindows;
 using UnityEngine;
 
 namespace Rogium.Tests.Editors.Sprites
@@ -30,6 +33,18 @@ namespace Rogium.Tests.Editors.Sprites
                 }
             }
             ActionHistorySystem.ForceEndGrouping();
+        }
+        
+        /// <summary>
+        /// Right-Clicks the first color slot in the palette, assigns a color to ColorPicker and closes it.
+        /// </summary>
+        /// <param name="color">The color to assign.</param>
+        public static void UpdateColorSlotColor(Color color)
+        {
+            spriteEditor.Palette.GetSlot(0).OnPointerClick(PointerDataCreator.RightClick());
+            ColorPickerWindow colorPicker = InteractableUtils.FindFirstColorPickerWindow();
+            colorPicker.UpdateColor(color);
+            colorPicker.Close();
         }
     }
 }

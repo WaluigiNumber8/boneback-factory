@@ -1,11 +1,13 @@
 using System.Collections;
 using NUnit.Framework;
 using Rogium.Editors.Sprites;
+using Rogium.Systems.ActionHistory;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.ModalWindows;
 using UnityEngine;
 using UnityEngine.TestTools;
 using static Rogium.Tests.Core.PointerDataCreator;
+using static Rogium.Tests.Editors.Sprites.SpriteEditorUtils;
 using static Rogium.Tests.UI.Interactables.InteractableUtils;
 
 namespace Rogium.Tests.Editors.Sprites
@@ -38,10 +40,7 @@ namespace Rogium.Tests.Editors.Sprites
         [UnityTest]
         public IEnumerator Should_ChangeColorSlotColor_WhenColorPickerColorChanged()
         {
-            spriteEditor.Palette.GetSlot(0).OnPointerClick(RightClick());
-            yield return null;
-            ColorPickerWindow colorPicker = FindFirstColorPickerWindow();
-            colorPicker.UpdateColor(Color.blue);
+            UpdateColorSlotColor(Color.blue);
             yield return null;
             
             Assert.That(spriteEditor.Palette.GetSlot(0).CurrentColor, Is.EqualTo(Color.blue));
@@ -50,13 +49,39 @@ namespace Rogium.Tests.Editors.Sprites
         [UnityTest]
         public IEnumerator Should_UpdateCurrentBrushColor_WhenChangedColorOfCurrentColorSlot()
         {
-            spriteEditor.Palette.GetSlot(0).OnPointerClick(RightClick());
+            UpdateColorSlotColor(Color.blue);
             yield return null;
-            ColorPickerWindow colorPicker = FindFirstColorPickerWindow();
-            colorPicker.UpdateColor(Color.blue);
             
-            yield return null;
             Assert.That(spriteEditor.CurrentBrushColor, Is.EqualTo(Color.blue));
         }
+
+        [UnityTest]
+        public IEnumerator Should_AddSlotColorChangeToActionHistory()
+        {
+            ActionHistorySystem.ClearHistory();
+            
+            UpdateColorSlotColor(Color.blue);
+            ActionHistorySystem.ForceEndGrouping();
+            yield return null;
+
+            Assert.That(ActionHistorySystem.UndoCount, Is.EqualTo(1));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_RevertColorSlotChange_WhenUndoIsCalled()
+        {
+            UpdateColorSlotColor(Color.blue);
+            ActionHistorySystem.ForceEndGrouping();
+            yield return null;
+            UpdateColorSlotColor(Color.red);
+            ActionHistorySystem.ForceEndGrouping();
+            yield return null;
+            ActionHistorySystem.UndoLast();
+            
+            Assert.That(spriteEditor.Palette.GetSlot(0).CurrentColor, Is.EqualTo(Color.blue));
+        }
+
+        //TODO Add test if ColorSlot current color is set to the color that is loaded into it on palette refresh.
+        
     }
 }
