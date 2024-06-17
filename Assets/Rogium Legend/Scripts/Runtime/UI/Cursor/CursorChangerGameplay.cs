@@ -18,6 +18,7 @@ namespace Rogium.UserInterface.Cursors
         {
             overseer = CursorOverseerMono.GetInstance();
             gameplay = GameplayOverseerMono.GetInstance();
+            ToGameplay();
         }
         
         private void OnEnable()

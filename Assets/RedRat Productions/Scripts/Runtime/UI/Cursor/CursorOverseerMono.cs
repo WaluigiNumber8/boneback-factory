@@ -12,6 +12,7 @@ namespace RedRats.UI.Core.Cursors
         [SerializeField] private CursorCollectionSO data;
 
         private IDictionary<CursorType, CursorInfo> cursors;
+        private CursorType currentCursorType;
 
         protected override void Awake()
         {
@@ -29,11 +30,17 @@ namespace RedRats.UI.Core.Cursors
         /// Sets the cursor to the given type.
         /// </summary>
         /// <param name="type">The type of cursor.</param>
-        public void Set(CursorType type) => cursors[type].Use();
+        public void Set(CursorType type)
+        {
+            cursors[type].Use();
+            currentCursorType = type;
+        }
 
         /// <summary>
         /// Resets the cursor to default.
         /// </summary>
         public void SetDefault() => Set(CursorType.Default);
+        
+        public CursorType CurrentCursor { get => currentCursorType; }
     }
 }
