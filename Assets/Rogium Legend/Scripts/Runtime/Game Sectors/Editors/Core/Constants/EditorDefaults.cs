@@ -10,7 +10,8 @@ using UnityEngine;
 namespace Rogium.Editors.Core.Defaults
 {
     [CreateAssetMenu(fileName = "asset_Defaults_Editor", menuName = EditorAssetPaths.AssetMenuEditor + "Default Editor Constants", order = 500)]
-    public class EditorDefaults : ScriptableObject
+    [ResourcesAssetPath("Defaults/asset_Defaults_Editor")]
+    public class EditorDefaults : ScriptableObjectSingleton<EditorDefaults>
     {
         public const string EmptyAssetID = "-1";
         public const int EmptyColorID = -1;
@@ -125,19 +126,6 @@ namespace Rogium.Editors.Core.Defaults
         [SerializeField, Required, FoldoutGroup("Tiles")] private TerrainType tileTerrainType = TerrainType.Tile;
         
         [SerializeField, Required, FoldoutGroup("Sounds"), MinValue(0f)] private float soundPitchOffset = 0.05f;
-        
-        private static EditorDefaults instance;
-        public static EditorDefaults Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = Resources.Load<EditorDefaults>("Defaults/asset_Defaults_Editor");
-                }
-                return instance;
-            }
-        }
         
         public string PackTitle { get => packTitle; }
         public string PackDescription { get => packDescription; }
