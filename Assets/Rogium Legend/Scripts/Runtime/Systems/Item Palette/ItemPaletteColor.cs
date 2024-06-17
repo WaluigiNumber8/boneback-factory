@@ -34,19 +34,6 @@ namespace Rogium.Systems.ItemPalette
         private void OnDisable() => ColorSlot.OnSelectedAny -= WhenSelected;
 
         /// <summary>
-        /// Call the <see cref="OnSelect"/> event for a specific item.
-        /// </summary>
-        /// <param name="index">The index of the item.</param>
-        public void Select(int index)
-        {
-            if (index == EditorDefaults.EmptyColorID) return;
-            if (slots == null || slots.Count <= 0) return;
-            SafetyNet.EnsureIndexWithingCollectionRange(index, slots, "List of Slots");
-            if (slots[index].IsOn) slots[index].SetToggle(false);
-            slots[index].SetToggle(true);
-        }
-        
-        /// <summary>
         /// Spawns slots and fills them with information.
         /// </summary>
         /// <param name="colors"></param>
@@ -65,6 +52,26 @@ namespace Rogium.Systems.ItemPalette
             {
                 slots[i].Construct(colors[i], i);
             }
+        }
+        
+        /// <summary>
+        /// Call the <see cref="OnSelect"/> event for a specific item.
+        /// </summary>
+        /// <param name="index">The index of the item.</param>
+        public void Select(int index)
+        {
+            if (index == EditorDefaults.EmptyColorID) return;
+            if (slots == null || slots.Count <= 0) return;
+            SafetyNet.EnsureIndexWithingCollectionRange(index, slots, "List of Slots");
+            if (slots[index].IsOn) slots[index].SetToggle(false);
+            slots[index].SetToggle(true);
+        }
+        
+        public ColorSlot GetSlot(int index)
+        {
+            SafetyNet.EnsureIndexWithingCollectionRange(index, slots, "List of Slots");
+            SafetyNet.EnsureIsNotNull(slots[index], "Slot");
+            return slots[index];
         }
         
         /// <summary>

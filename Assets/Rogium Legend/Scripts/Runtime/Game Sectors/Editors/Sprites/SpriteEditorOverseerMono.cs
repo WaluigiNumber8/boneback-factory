@@ -29,8 +29,8 @@ namespace Rogium.Editors.Sprites
 
         private SpriteAsset currentSprite;
         private IColorSlot currentSlot;
-        private PaletteAsset currentPalette;
-        private PaletteAsset lastPalette;
+        private PaletteAsset currentPaletteAsset;
+        private PaletteAsset lastPaletteAsset;
 
         protected override void Awake()
         {
@@ -82,11 +82,11 @@ namespace Rogium.Editors.Sprites
         {
             ModalWindowBuilder.GetInstance().OpenAssetPickerWindow(AssetType.Palette, asset =>
             {
-                currentPalette = (PaletteAsset) asset;
-                ActionHistorySystem.AddAndExecute(new SwitchSpriteEditorPaletteAction(currentPalette, lastPalette, SwitchPalette));
-                currentSprite.UpdatePreferredPaletteID(currentPalette.ID);
-                lastPalette = currentPalette;
-            }, lastPalette);
+                currentPaletteAsset = (PaletteAsset) asset;
+                ActionHistorySystem.AddAndExecute(new SwitchSpriteEditorPaletteAction(currentPaletteAsset, lastPaletteAsset, SwitchPalette));
+                currentSprite.UpdatePreferredPaletteID(currentPaletteAsset.ID);
+                lastPaletteAsset = currentPaletteAsset;
+            }, lastPaletteAsset);
         }
         
         /// <summary>
@@ -95,8 +95,8 @@ namespace Rogium.Editors.Sprites
         /// <param name="asset"></param>
         public void SwitchPalette(PaletteAsset asset)
         {
-            currentPalette = asset;
-            lastPalette = asset;
+            currentPaletteAsset = asset;
+            lastPaletteAsset = asset;
             grid.LoadWithColors(currentSprite.SpriteData, asset.Colors);
             palette.Fill(asset.Colors);
             palette.Select(0);
@@ -130,11 +130,11 @@ namespace Rogium.Editors.Sprites
         /// <param name="sprite">The sprite to read from.</param>
         private void PrepareEditor(SpriteAsset sprite)
         {
-            lastPalette = palettePicker.GrabBasedOn(sprite.PreferredPaletteID);
+            lastPaletteAsset = palettePicker.GrabBasedOn(sprite.PreferredPaletteID);
             currentSprite = sprite;
             
             toolbox.Refresh();
-            SwitchPalette(lastPalette);
+            SwitchPalette(lastPaletteAsset);
             StartCoroutine(DelayCoroutine());
             IEnumerator DelayCoroutine()
             {
@@ -163,7 +163,8 @@ namespace Rogium.Editors.Sprites
             toolbox.ApplySpecific(ToolType.Eraser, editor.CurrentAsset.SpriteData, position, currentSlot.Index, brushSprite, grid.ActiveLayer);
         }
         
-        public PaletteAsset CurrentPalette { get => currentPalette; }
+        public PaletteAsset CurrentPaletteAsset { get => currentPaletteAsset; }
+        public ItemPaletteColor Palette { get => palette; }
         public ToolBox<int> Toolbox { get => toolbox; } 
         public ObjectGrid<int> GetCurrentGridCopy => new(editor.CurrentAsset.SpriteData);
         public Sprite CurrentGridSprite => grid.ActiveLayerSprite;

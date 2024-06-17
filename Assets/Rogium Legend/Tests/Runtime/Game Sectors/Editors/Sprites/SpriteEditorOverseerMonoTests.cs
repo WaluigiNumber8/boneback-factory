@@ -23,11 +23,9 @@ namespace Rogium.Tests.Editors.Sprites
         public override IEnumerator Setup()
         {
             yield return base.Setup();
-            PackAsset pack = AssetCreator.CreateAndAssignPack();
             
-            MenuLoader.LoadSpriteEditor();
+            MenuLoader.PrepareSpriteEditor();
             spriteEditor = SpriteEditorOverseerMono.GetInstance();
-            SpriteEditorOverseer.Instance.AssignAsset(pack.Sprites[0], 0);
             ActionHistorySystem.ClearHistory();
             yield return null;
         }
@@ -40,7 +38,7 @@ namespace Rogium.Tests.Editors.Sprites
             
             spriteEditor.SwitchPalette(newPalette);
             
-            Assert.That(spriteEditor.CurrentPalette, Is.EqualTo(newPalette));
+            Assert.That(spriteEditor.CurrentPaletteAsset, Is.EqualTo(newPalette));
         }
         
         [Test]

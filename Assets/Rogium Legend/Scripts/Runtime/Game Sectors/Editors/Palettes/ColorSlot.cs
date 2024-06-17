@@ -1,6 +1,8 @@
 ﻿using System;
 using Rogium.UserInterface.Editors.AssetSelection;
+using Rogium.UserInterface.ModalWindows;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Rogium.Editors.Palettes
@@ -8,7 +10,7 @@ namespace Rogium.Editors.Palettes
     /// <summary>
     /// Holds information about a given color slot from a palette.
     /// </summary>
-    public class ColorSlot : ToggleableIndexBase, IColorSlot
+    public class ColorSlot : ToggleableIndexBase, IColorSlot, IPointerClickHandler
     {
         public static event Action<int> OnSelectedAny;
         
@@ -19,14 +21,18 @@ namespace Rogium.Editors.Palettes
         private void OnEnable() => toggle.onValueChanged.AddListener(WhenSelected);
         private void OnDisable() => toggle.onValueChanged.RemoveListener(WhenSelected);
         
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            if (eventData.button != PointerEventData.InputButton.Right) return;
+            ModalWindowBuilder.GetInstance().OpenColorPickerWindow((_) => { }, currentColor); //TODO Make the window affect things.
+        }
+        
         /// <summary>
         /// Constructs a color slot, without giving it a new index.
         /// </summary>
         /// <param name="color">The new color it's going to carry.</param>
-        public void Construct(Color color)
-        {
-            Construct(color, index);
-        }
+        public void Construct(Color color) => Construct(color, index);
+
         /// <summary>
         /// Constructs the color slot.
         /// </summary>
