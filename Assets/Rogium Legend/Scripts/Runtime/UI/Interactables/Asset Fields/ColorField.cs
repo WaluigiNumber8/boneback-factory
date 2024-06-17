@@ -15,9 +15,16 @@ namespace Rogium.UserInterface.Interactables
     {
         [SerializeField] private UIInfo ui;
 
-        private Color value = EditorConstants.DefaultColor;
-        private Color lastValue = EditorConstants.DefaultColor;
+        private Color value;
+        private Color lastValue;
         private Action<Color> whenValueChanged;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            value = EditorDefaults.Instance.NoColor;
+            lastValue = EditorDefaults.Instance.NoColor;
+        }
 
         public override void OnPointerDown(PointerEventData eventData)
         {

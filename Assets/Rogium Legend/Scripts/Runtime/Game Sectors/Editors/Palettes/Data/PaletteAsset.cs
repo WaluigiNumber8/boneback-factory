@@ -17,10 +17,10 @@ namespace Rogium.Editors.Palettes
         #region Constructors
         public PaletteAsset()
         {
-            InitBase(EditorConstants.PaletteTitle, EditorSpriteConstants.Instance.EmptySprite, EditorConstants.Author, DateTime.Now);
+            InitBase(EditorDefaults.Instance.PaletteTitle, EditorDefaults.Instance.EmptySprite, EditorDefaults.Instance.Author, DateTime.Now);
             GenerateID(EditorAssetIDs.PaletteIdentifier);
 
-            colors = RedRatBuilder.GenerateColorArray(EditorConstants.PaletteSize, Color.black);
+            colors = RedRatBuilder.GenerateColorArray(EditorDefaults.Instance.PaletteSize, Color.black);
         }
 
         public PaletteAsset(PaletteAsset asset)

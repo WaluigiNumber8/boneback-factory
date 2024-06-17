@@ -24,7 +24,7 @@ namespace Rogium.Editors.Core
         /// <returns>AssetData for that specific asset.</returns>
         public static AssetData ForTile(IAsset asset)
         {
-            if (asset.ID == EditorConstants.EmptyAssetID) return new AssetData(ParameterInfoConstants.ForEmpty);
+            if (asset.ID == EditorDefaults.EmptyAssetID) return new AssetData(ParameterInfoConstants.ForEmpty);
             if (asset.ID == lastID && lastType == AssetType.Tile) return lastData;
 
             TileAsset tile = (TileAsset) asset;
@@ -46,7 +46,7 @@ namespace Rogium.Editors.Core
         /// <returns>AssetData for that specific asset.</returns>
         public static AssetData ForObject(IAsset asset)
         {
-            if (asset.ID == EditorConstants.EmptyAssetID) return new AssetData(ParameterInfoConstants.ForEmpty);
+            if (asset.ID == EditorDefaults.EmptyAssetID) return new AssetData(ParameterInfoConstants.ForEmpty);
             if (asset.ID == lastID && lastType == AssetType.Object) return lastData;
             
             ObjectAsset iobject = (ObjectAsset)asset;
@@ -66,7 +66,7 @@ namespace Rogium.Editors.Core
         /// <returns>AssetData for that specific asset.</returns>
         public static AssetData ForEnemy(IAsset asset)
         {
-            if (asset.ID == EditorConstants.EmptyAssetID) return new AssetData(ParameterInfoConstants.ForEmpty);
+            if (asset.ID == EditorDefaults.EmptyAssetID) return new AssetData(ParameterInfoConstants.ForEmpty);
             if (asset.ID == lastID && lastType == AssetType.Enemy) return lastData;
             
             EnemyAsset enemy = (EnemyAsset)asset;
@@ -88,7 +88,7 @@ namespace Rogium.Editors.Core
         /// <returns>AssetData for that specific asset.</returns>
         public static AssetData ForSound(IAsset asset)
         {
-            if (asset.ID == EditorConstants.EmptyAssetID) return new AssetData(ParameterInfoConstants.ForEmpty);
+            if (asset.ID == EditorDefaults.EmptyAssetID) return new AssetData(ParameterInfoConstants.ForEmpty);
             if (asset.ID == lastID && lastType == AssetType.Sound) return lastData;
 
             SoundAsset sound = (SoundAsset) asset;

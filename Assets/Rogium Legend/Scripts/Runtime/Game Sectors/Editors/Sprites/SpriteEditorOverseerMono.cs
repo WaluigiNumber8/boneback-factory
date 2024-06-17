@@ -37,7 +37,7 @@ namespace Rogium.Editors.Sprites
             base.Awake();
             editor = SpriteEditorOverseer.Instance;
             palettePicker = new PalettePicker();
-            toolbox = new ToolBox<int>(grid, grid.UpdateCell, EditorConstants.EmptyColorID);
+            toolbox = new ToolBox<int>(grid, grid.UpdateCell, EditorDefaults.EmptyColorID);
         }
 
         private void OnEnable()
@@ -71,7 +71,7 @@ namespace Rogium.Editors.Sprites
         public void UpdateGridCell(Vector2Int position)
         {
             if (currentSlot == null) return;
-            Sprite brushSprite = RedRatBuilder.GenerateSprite(currentSlot.CurrentColor, EditorConstants.SpriteSize, EditorConstants.SpriteSize, EditorConstants.SpriteSize);
+            Sprite brushSprite = RedRatBuilder.GenerateSprite(currentSlot.CurrentColor, EditorDefaults.Instance.SpriteSize, EditorDefaults.Instance.SpriteSize, EditorDefaults.Instance.SpriteSize);
             toolbox.ApplyCurrent(editor.CurrentAsset.SpriteData, position, currentSlot.Index, brushSprite, grid.ActiveLayer);
         }
 
@@ -150,7 +150,7 @@ namespace Rogium.Editors.Sprites
         private void PickFrom(int id)
         {
             palette.Select(id);
-            toolbox.SwitchTool((id == EditorConstants.EmptyColorID) ? ToolType.Eraser : ToolType.Brush);
+            toolbox.SwitchTool((id == EditorDefaults.EmptyColorID) ? ToolType.Eraser : ToolType.Brush);
         }
         
         /// <summary>
@@ -159,7 +159,7 @@ namespace Rogium.Editors.Sprites
         /// <param name="position">The cell to erase.</param>
         private void EraseCell(Vector2Int position)
         {
-            Sprite brushSprite = RedRatBuilder.GenerateSprite(EditorConstants.EmptyGridColor, EditorConstants.SpriteSize, EditorConstants.SpriteSize, EditorConstants.SpriteSize);
+            Sprite brushSprite = RedRatBuilder.GenerateSprite(EditorDefaults.Instance.EmptyGridColor, EditorDefaults.Instance.SpriteSize, EditorDefaults.Instance.SpriteSize, EditorDefaults.Instance.SpriteSize);
             toolbox.ApplySpecific(ToolType.Eraser, editor.CurrentAsset.SpriteData, position, currentSlot.Index, brushSprite, grid.ActiveLayer);
         }
         

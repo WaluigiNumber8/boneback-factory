@@ -36,10 +36,10 @@ namespace Rogium.Editors.Packs
 
         public PackAsset()
         {
-            InitBase(EditorConstants.PackTitle, EditorSpriteConstants.Instance.PackIcon, EditorConstants.Author, DateTime.Now);
+            InitBase(EditorDefaults.Instance.PackTitle, EditorDefaults.Instance.PackIcon, EditorDefaults.Instance.Author, DateTime.Now);
             GenerateID(EditorAssetIDs.PackIdentifier);
 
-            description = EditorConstants.PackDescription;
+            description = EditorDefaults.Instance.PackDescription;
             palettes = new AssetList<PaletteAsset>(ex.Palettes.Save, ex.Palettes.UpdateTitle, ex.Palettes.Delete);
             sprites = new AssetList<SpriteAsset>(ex.Sprites.Save, ex.Sprites.UpdateTitle, ex.Sprites.Delete);
             weapons = new AssetList<WeaponAsset>(ex.Weapons.Save, ex.Weapons.UpdateTitle, ex.Weapons.Delete);
@@ -94,10 +94,10 @@ namespace Rogium.Editors.Packs
             IList<WeaponAsset> weapons, IList<ProjectileAsset> projectiles, IList<EnemyAsset> enemies,
             IList<RoomAsset> rooms, IList<TileAsset> tiles)
         {
-            InitBase(EditorConstants.PackTitle, EditorSpriteConstants.Instance.PackIcon, EditorConstants.Author, DateTime.Now);
+            InitBase(EditorDefaults.Instance.PackTitle, EditorDefaults.Instance.PackIcon, EditorDefaults.Instance.Author, DateTime.Now);
             GenerateID(EditorAssetIDs.PackIdentifier);
 
-            this.description = EditorConstants.PackDescription;
+            this.description = EditorDefaults.Instance.PackDescription;
             this.palettes = new AssetList<PaletteAsset>(ex.Palettes.Save, ex.Palettes.UpdateTitle, ex.Palettes.Delete, palettes);
             this.sprites = new AssetList<SpriteAsset>(ex.Sprites.Save, ex.Sprites.UpdateTitle, ex.Sprites.Delete, sprites);
             this.weapons = new AssetList<WeaponAsset>(ex.Weapons.Save, ex.Weapons.UpdateTitle, ex.Weapons.Delete, weapons);
@@ -152,7 +152,7 @@ namespace Rogium.Editors.Packs
         public override void ClearAssociatedSprite()
         {
             base.ClearAssociatedSprite();
-            icon = EditorSpriteConstants.Instance.PackIcon;
+            icon = EditorDefaults.Instance.PackIcon;
         }
 
         /// <summary>
@@ -164,8 +164,8 @@ namespace Rogium.Editors.Packs
         /// <param name="defaultSprite">What sprite to use as default.</param>
         public IAsset TryGetSprite(string id, Sprite defaultSprite)
         {
-            if (id == EditorConstants.EmptyAssetID || string.IsNullOrEmpty(id)) return new EmptyAsset(defaultSprite);
-            return Sprites.FindValueFirst(id) ?? (IAsset) new EmptyAsset(EditorSpriteConstants.Instance.MissingSprite);
+            if (id == EditorDefaults.EmptyAssetID || string.IsNullOrEmpty(id)) return new EmptyAsset(defaultSprite);
+            return Sprites.FindValueFirst(id) ?? (IAsset) new EmptyAsset(EditorDefaults.Instance.MissingSprite);
         }
 
         public bool ContainsAnyPalettes => (palettes?.Count > 0);

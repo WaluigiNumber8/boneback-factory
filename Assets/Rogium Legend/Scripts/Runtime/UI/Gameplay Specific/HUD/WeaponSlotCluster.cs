@@ -29,7 +29,7 @@ namespace Rogium.UserInterface.Gameplay.HUD
         /// <param name="sprite">The sprite of the icon.</param>
         public void SetMain(Sprite sprite)
         {
-            mainIcon.color = EditorConstants.DefaultColor;
+            mainIcon.color = EditorDefaults.Instance.DefaultColor;
             mainIcon.sprite = sprite;
         }
 
@@ -39,7 +39,7 @@ namespace Rogium.UserInterface.Gameplay.HUD
         /// <param name="sprite">The sprite of the icon.</param>
         public void SetSub(Sprite sprite)
         {
-            subIcon.color = EditorConstants.DefaultColor;
+            subIcon.color = EditorDefaults.Instance.DefaultColor;
             subIcon.sprite = sprite;
         }
 
@@ -56,7 +56,7 @@ namespace Rogium.UserInterface.Gameplay.HUD
         /// </summary>
         public void EmptyMain()
         {
-            mainIcon.color = EditorConstants.NoColor;
+            mainIcon.color = EditorDefaults.Instance.NoColor;
             mainIcon.sprite = null;
         }
 
@@ -65,7 +65,7 @@ namespace Rogium.UserInterface.Gameplay.HUD
         /// </summary>
         public void EmptySub()
         {
-            subIcon.color = EditorConstants.NoColor;
+            subIcon.color = EditorDefaults.Instance.NoColor;
             subIcon.sprite = null;
         }
     }

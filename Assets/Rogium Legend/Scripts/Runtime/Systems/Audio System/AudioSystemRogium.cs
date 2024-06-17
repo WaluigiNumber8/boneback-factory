@@ -46,13 +46,13 @@ namespace Rogium.Systems.Audio
         /// <param name="spatialSettings">Settings for 3D sound.</param>
         public void PlaySound(AssetData soundData, AudioMixerGroup mixerGroup, AudioSourceSettingsInfo sourceSettings, AudioSpatialSettingsInfo spatialSettings)
         {
-            if (soundData == null || soundData.ID == EditorConstants.EmptyAssetID) return;
+            if (soundData == null || soundData.ID == EditorDefaults.EmptyAssetID) return;
             
             AudioClip clip = allSounds[soundData.ID].Data.Clip;
             float volume = soundData.Parameters.floatValue1;
             float pitch = soundData.Parameters.floatValue2;
-            float pitchMin = (soundData.Parameters.boolValue1) ? pitch - EditorConstants.SoundPitchOffset : pitch;
-            float pitchMax = (soundData.Parameters.boolValue1) ? pitch + EditorConstants.SoundPitchOffset : pitch;
+            float pitchMin = (soundData.Parameters.boolValue1) ? pitch - EditorDefaults.Instance.SoundPitchOffset : pitch;
+            float pitchMax = (soundData.Parameters.boolValue1) ? pitch + EditorDefaults.Instance.SoundPitchOffset : pitch;
             float chanceToPlay = soundData.Parameters.floatValue3;
             
             audioSystem.PlaySound(clip, mixerGroup, sourceSettings, spatialSettings, volume, pitchMin, pitchMax, chanceToPlay);

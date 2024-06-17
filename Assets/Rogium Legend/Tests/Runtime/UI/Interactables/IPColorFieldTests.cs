@@ -67,7 +67,7 @@ namespace Rogium.Tests.UI.Interactables
             ActionHistorySystem.UndoLast();
             yield return null;
             
-            Assert.That(colorField.PropertyValue, Is.EqualTo(EditorConstants.DefaultColor));
+            Assert.That(colorField.PropertyValue, Is.EqualTo(EditorDefaults.Instance.DefaultColor));
         }
         
         private void FillColorField(Color newColor)

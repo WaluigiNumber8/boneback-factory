@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f47f74a9ee6468eaa4d170e42780513, type: 3}
-  m_Name: asset_DefaultSprites
+  m_Name: asset_Defaults_Editor
   m_EditorClassIdentifier: 
   emptySprite: {fileID: 21300000, guid: 867a7406668b8f3418388e421ed39770, type: 3}
   missingSprite: {fileID: 21300000, guid: f08744a35567ed040b9403dac891ac75, type: 3}

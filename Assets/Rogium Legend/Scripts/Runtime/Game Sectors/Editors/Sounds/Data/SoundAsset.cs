@@ -9,7 +9,7 @@ namespace Rogium.Editors.Sounds
     /// <summary>
     /// Contains all data needed for a sound.
     /// </summary>
-    [CreateAssetMenu(fileName = "New Sound Asset", menuName = EditorConstants.AssetMenuAssets + "Sound Asset", order = 2)]
+    [CreateAssetMenu(fileName = "New Sound Asset", menuName = EditorAssetPaths.AssetMenuAssets + "Sound Asset", order = 2)]
     public class SoundAsset : AssetBaseSO, IParameterAsset
     {
         [VerticalGroup("Base/Right")]

@@ -43,7 +43,7 @@ namespace Rogium.Systems.GridSystem
             gridPreviewer.transform.localScale = new Vector3(1f / (grid.Size.x+1), 1f / (grid.Size.y+1), 1);
             
             followCursor = true;
-            lastColor = EditorConstants.DefaultColor;
+            lastColor = EditorDefaults.Instance.DefaultColor;
             
             PrepareForTool(ToolType.Brush);
             Show();
@@ -135,7 +135,7 @@ namespace Rogium.Systems.GridSystem
             
             if (!allowMaterialSwitching) return;
             
-            gridPreviewer.image.color = EditorConstants.DefaultColor;
+            gridPreviewer.image.color = EditorDefaults.Instance.DefaultColor;
             gridPreviewer.image.sprite = lastMaterial;
         }
         private void ChangeMaterial(IAsset brush) => ChangeMaterial(brush.Icon);
