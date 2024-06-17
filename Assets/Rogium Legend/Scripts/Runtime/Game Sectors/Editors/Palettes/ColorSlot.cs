@@ -24,7 +24,11 @@ namespace Rogium.Editors.Palettes
         public void OnPointerClick(PointerEventData eventData)
         {
             if (eventData.button != PointerEventData.InputButton.Right) return;
-            ModalWindowBuilder.GetInstance().OpenColorPickerWindow(Construct, currentColor); //TODO Make the window affect things.
+            ModalWindowBuilder.GetInstance().OpenColorPickerWindow(color =>
+            {
+                Construct(color);
+                WhenSelected(toggle.isOn); // If is already on, update all listeners.
+            }, currentColor); //TODO Make the window affect things.
         }
         
         /// <summary>

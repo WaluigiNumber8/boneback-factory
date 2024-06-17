@@ -164,6 +164,7 @@ namespace Rogium.Editors.Sprites
         }
         
         public PaletteAsset CurrentPaletteAsset { get => currentPaletteAsset; }
+        public Color CurrentBrushColor { get => currentSlot.CurrentColor; }
         public ItemPaletteColor Palette { get => palette; }
         public ToolBox<int> Toolbox { get => toolbox; } 
         public ObjectGrid<int> GetCurrentGridCopy => new(editor.CurrentAsset.SpriteData);

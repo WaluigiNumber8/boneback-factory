@@ -46,5 +46,17 @@ namespace Rogium.Tests.Editors.Sprites
             
             Assert.That(spriteEditor.Palette.GetSlot(0).CurrentColor, Is.EqualTo(Color.blue));
         }
+
+        [UnityTest]
+        public IEnumerator Should_UpdateCurrentBrushColor_WhenChangedColorOfCurrentColorSlot()
+        {
+            spriteEditor.Palette.GetSlot(0).OnPointerClick(RightClick());
+            yield return null;
+            ColorPickerWindow colorPicker = FindFirstColorPickerWindow();
+            colorPicker.UpdateColor(Color.blue);
+            
+            yield return null;
+            Assert.That(spriteEditor.CurrentBrushColor, Is.EqualTo(Color.blue));
+        }
     }
 }
