@@ -6,6 +6,7 @@ using Rogium.Tests.Core;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.TestTools;
+using static Rogium.Tests.Systems.ActionHistory.ActionHistoryUtils;
 
 namespace Rogium.Tests.Systems.ActionHistory
 {
@@ -22,8 +23,8 @@ namespace Rogium.Tests.Systems.ActionHistory
         {
             Object.Instantiate(menuPreparator.gameObject, Vector3.zero, Quaternion.identity);
             object construct = new();
-            IAction action1 = ActionHistoryCreator.CreateAction(construct);
-            IAction action2 = ActionHistoryCreator.CreateAction(construct);
+            IAction action1 = CreateAction(construct);
+            IAction action2 = CreateAction(construct);
             yield return null;
             
             Press(mouse.leftButton);
@@ -43,8 +44,8 @@ namespace Rogium.Tests.Systems.ActionHistory
         {
             Object.Instantiate(menuPreparator.gameObject, Vector3.zero, Quaternion.identity);
             object construct = new();
-            IAction action1 = ActionHistoryCreator.CreateAction(construct);
-            IAction action2 = ActionHistoryCreator.CreateAction(construct);
+            IAction action1 = CreateAction(construct);
+            IAction action2 = CreateAction(construct);
             yield return null;
             
             Press(mouse.leftButton);
