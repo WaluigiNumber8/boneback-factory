@@ -112,7 +112,7 @@ namespace Rogium.Editors.Rooms
         /// <param name="position">The grid position to affect.</param>
         public void UpdateGridCell(Vector2Int position)
         {
-            if (currentData.BrushValue.ID == EditorConstants.EmptyAssetID) return;
+            if (currentData.BrushValue.ID == EditorDefaults.EmptyAssetID) return;
             toolbox.ApplyCurrent(currentData.Grid, position, new AssetData(currentData.BrushValue), currentData.BrushSprite, grid.ActiveLayer);
         }
 
@@ -138,7 +138,7 @@ namespace Rogium.Editors.Rooms
         /// <param name="position">The cell to erase.</param>
         private void EraseCell(Vector2Int position)
         {
-            toolbox.ApplySpecific(ToolType.Eraser, currentData.Grid, position, currentData.BrushValue, EditorSpriteConstants.Instance.EmptySprite, grid.ActiveLayer);
+            toolbox.ApplySpecific(ToolType.Eraser, currentData.Grid, position, currentData.BrushValue, EditorDefaults.Instance.EmptySprite, grid.ActiveLayer);
         }
         
         /// <summary>
@@ -224,7 +224,7 @@ namespace Rogium.Editors.Rooms
         /// <param name="asset">The asset to use.</param>
         private void SelectedValue(AssetData data, AssetType type, IAsset asset = null)
         {
-            if (data.ID == EditorConstants.EmptyAssetID)
+            if (data.ID == EditorDefaults.EmptyAssetID)
             {
                 propertyColumn.ConstructEmpty();
                 return;

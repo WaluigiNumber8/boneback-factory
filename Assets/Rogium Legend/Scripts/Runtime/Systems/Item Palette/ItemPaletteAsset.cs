@@ -39,7 +39,7 @@ namespace Rogium.Systems.ItemPalette
         /// <param name="id">The id of the item.</param>
         public void Select(string id)
         {
-            if (string.IsNullOrEmpty(id) || id == EditorConstants.EmptyAssetID) return;
+            if (string.IsNullOrEmpty(id) || id == EditorDefaults.EmptyAssetID) return;
             if (ids?.Count != holders.Count) ids = holders.ConvertToIDs();
             Select(ids.IndexOf(id));
         }

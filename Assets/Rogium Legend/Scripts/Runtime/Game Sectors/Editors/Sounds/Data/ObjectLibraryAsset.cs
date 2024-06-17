@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Rogium.Editors.Objects
 {
-    [CreateAssetMenu(fileName = "New Sound Library", menuName = EditorConstants.AssetMenuAssets + "Sound Library", order = 0)]
+    [CreateAssetMenu(fileName = "New Sound Library", menuName = EditorAssetPaths.AssetMenuAssets + "Sound Library", order = 0)]
     public class SoundCollectionAsset : ScriptableObject, IInternalAssetCollectionAsset<SoundAsset>
     {
         [SerializeField] private List<SoundAsset> sounds;

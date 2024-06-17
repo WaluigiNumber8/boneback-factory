@@ -12,7 +12,7 @@ namespace Rogium.Tests.UI.Interactables
     /// <summary>
     /// Tests for the Toggle interactable property.
     /// </summary>
-    public class IPToggleTests : UITestBase
+    public class IPToggleTests : MenuTestBase
     {
         [UnitySetUp]
         public override IEnumerator Setup()

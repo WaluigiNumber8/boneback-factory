@@ -23,17 +23,17 @@ namespace Rogium.Core
             if (allAssets == null || allAssets.Count <= 0) return new List<T>();
             
             IList<T> assets = new List<T>();
-            string lastID = EditorConstants.EmptyAssetID;
+            string lastID = EditorDefaults.EmptyAssetID;
             T lastAsset = default;
             
             foreach (string id in ids)
             {
-                if (id == EditorConstants.EmptyAssetID)
+                if (id == EditorDefaults.EmptyAssetID)
                 {
                     if (!keepEmpty) assets.Add(default);
                     continue;
                 }
-                if (lastID != EditorConstants.EmptyAssetID && lastID == id)
+                if (lastID != EditorDefaults.EmptyAssetID && lastID == id)
                 {
                     assets.Add(lastAsset);
                     continue;
@@ -59,6 +59,6 @@ namespace Rogium.Core
         /// <summary>
         /// Returns TRUE if asset is null or has an empty ID.
         /// </summary>
-        public static bool IsEmpty(this IIDHolder asset) => (asset == null || asset.ID == EditorConstants.EmptyAssetID);
+        public static bool IsEmpty(this IIDHolder asset) => (asset == null || asset.ID == EditorDefaults.EmptyAssetID);
     }
 }

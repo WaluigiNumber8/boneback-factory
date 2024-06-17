@@ -13,7 +13,7 @@ namespace Rogium.Tests.Systems.ActionHistory
     /// Tests interactions with the <see cref="ActionHistorySystem"/>.
     /// </summary>
     [RequiresPlayMode]
-    public class ActionHistoryInteractionTests : UITestWithInputBase
+    public class ActionHistoryInteractionTests : MenuTestWithInputBase
     {
         private readonly MenuPreparator menuPreparator = AssetDatabase.LoadAssetAtPath<MenuPreparator>("Assets/Rogium Legend/Prefabs/Game Sectors/Editor/pref_MenuPreparator.prefab");
         

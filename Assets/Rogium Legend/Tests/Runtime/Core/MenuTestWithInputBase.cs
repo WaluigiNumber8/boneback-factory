@@ -8,7 +8,7 @@ namespace Rogium.Tests.Core
     /// A base for all play mode, that run on the UI scene.
     /// </summary>
     [RequiresPlayMode]
-    public abstract class UITestWithInputBase : InputTestFixture
+    public abstract class MenuTestWithInputBase : InputTestFixture
     {
         protected Mouse mouse;
 
@@ -29,7 +29,7 @@ namespace Rogium.Tests.Core
         [UnitySetUp]
         public virtual IEnumerator SetUp()
         {
-            SceneLoader.LoadUIScene();
+            SceneLoader.LoadMenuTestingScene();
             yield return null;
         }
     }

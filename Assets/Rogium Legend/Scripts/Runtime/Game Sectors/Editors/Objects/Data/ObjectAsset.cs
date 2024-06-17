@@ -8,7 +8,7 @@ namespace Rogium.Editors.Objects
     /// <summary>
     /// Contains all data needed for an interactable object.
     /// </summary>
-    [CreateAssetMenu(fileName = "New Interactable Object", menuName = EditorConstants.AssetMenuAssets + "Interactable Object", order = 1)]
+    [CreateAssetMenu(fileName = "New Interactable Object", menuName = EditorAssetPaths.AssetMenuAssets + "Interactable Object", order = 1)]
     public class ObjectAsset : AssetBaseSO, IParameterAsset
     {
         [VerticalGroup("Base/Right")]

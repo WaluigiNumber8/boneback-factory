@@ -28,7 +28,7 @@ namespace Rogium.Editors.Packs
                 currentPack.Sprites.FindValueFirst(lastAssociatedSpriteID).TryRemoveAssociation(asset);
             }
             
-            if (asset.AssociatedSpriteID == EditorConstants.EmptyAssetID) return;
+            if (asset.AssociatedSpriteID == EditorDefaults.EmptyAssetID) return;
             
             //Add association if possible.
             (SpriteAsset associatedSprite, int index) = currentPack.Sprites.FindValueAndIndexFirst(asset.AssociatedSpriteID);

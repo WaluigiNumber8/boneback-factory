@@ -18,7 +18,7 @@ namespace Rogium.Tests.UI.Interactables
     /// <summary>
     /// Tests for the AssetField interactable property.
     /// </summary>
-    public class IPAssetFieldTests : UITestBase
+    public class IPAssetFieldTests : MenuTestBase
     {
         private InteractablePropertyAssetField assetField;
 

@@ -20,10 +20,10 @@ namespace Rogium.Editors.Sprites
         #region Constructors
         public SpriteAsset()
         {
-            InitBase(EditorConstants.SpriteTitle, EditorSpriteConstants.Instance.EmptySprite, EditorConstants.Author, DateTime.Now);
+            InitBase(EditorDefaults.Instance.SpriteTitle, EditorDefaults.Instance.EmptySprite, EditorDefaults.Instance.Author, DateTime.Now);
             GenerateID(EditorAssetIDs.SpriteIdentifier);
 
-            this.spriteData = new ObjectGrid<int>(EditorConstants.SpriteSize, EditorConstants.SpriteSize, () => -1);
+            this.spriteData = new ObjectGrid<int>(EditorDefaults.Instance.SpriteSize, EditorDefaults.Instance.SpriteSize, () => -1);
             this.associatedAssetsIDs = new HashSet<string>();
         }
 

@@ -25,17 +25,17 @@ namespace Rogium.Editors.Rooms
         #region Constructors
         public RoomAsset()
         {
-            InitBase(EditorConstants.RoomTitle, EditorSpriteConstants.Instance.EmptySprite, EditorConstants.Author, DateTime.Now);
+            InitBase(EditorDefaults.Instance.RoomTitle, EditorDefaults.Instance.EmptySprite, EditorDefaults.Instance.Author, DateTime.Now);
             GenerateID(EditorAssetIDs.RoomIdentifier);
             
-            this.difficultyLevel = EditorConstants.RoomDifficulty;
-            this.type = EditorConstants.RoomType;
-            this.lightness = EditorConstants.RoomLightness;
-            this.lightnessColor = EditorConstants.RoomLightnessColor;
-            this.tileGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForTile));
-            this.decorGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForDecor));
-            this.objectGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForEmpty));
-            this.enemyGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForEnemy));
+            this.difficultyLevel = EditorDefaults.Instance.RoomDifficulty;
+            this.type = EditorDefaults.Instance.RoomType;
+            this.lightness = EditorDefaults.Instance.RoomLightness;
+            this.lightnessColor = EditorDefaults.Instance.RoomLightnessColor;
+            this.tileGrid = new ObjectGrid<AssetData>(EditorDefaults.Instance.RoomSize.x, EditorDefaults.Instance.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForTile));
+            this.decorGrid = new ObjectGrid<AssetData>(EditorDefaults.Instance.RoomSize.x, EditorDefaults.Instance.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForDecor));
+            this.objectGrid = new ObjectGrid<AssetData>(EditorDefaults.Instance.RoomSize.x, EditorDefaults.Instance.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForEmpty));
+            this.enemyGrid = new ObjectGrid<AssetData>(EditorDefaults.Instance.RoomSize.x, EditorDefaults.Instance.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForEnemy));
         }
 
         public RoomAsset(RoomAsset asset)

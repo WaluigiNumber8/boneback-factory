@@ -17,7 +17,7 @@ namespace Rogium.Tests.UI.Interactables
     /// <summary>
     /// Tests for the <see cref="ColorField"/> interactable property.
     /// </summary>
-    public class IPColorFieldTests : UITestBase
+    public class IPColorFieldTests : MenuTestBase
     {
         private InteractablePropertyColorField colorField;
         
@@ -67,7 +67,7 @@ namespace Rogium.Tests.UI.Interactables
             ActionHistorySystem.UndoLast();
             yield return null;
             
-            Assert.That(colorField.PropertyValue, Is.EqualTo(EditorConstants.DefaultColor));
+            Assert.That(colorField.PropertyValue, Is.EqualTo(EditorDefaults.Instance.DefaultColor));
         }
         
         private void FillColorField(Color newColor)

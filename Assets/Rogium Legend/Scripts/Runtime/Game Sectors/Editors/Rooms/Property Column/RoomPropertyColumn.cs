@@ -50,7 +50,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         public void ConstructAsset(IAsset asset, AssetType type)
         {
             ui.assetTitleText.text = asset.Title;
-            ui.iconImage.color = EditorConstants.DefaultColor;
+            ui.iconImage.color = EditorDefaults.Instance.DefaultColor;
             ui.iconImage.sprite = asset.Icon;
 
             string typeText = (type == AssetType.Tile) ? ((TileAsset) asset).Type.ToString() : type.ToString();
@@ -105,7 +105,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
             assetContent.gameObject.KillChildren();
             ui.assetTitleText.text = defaultText;
             ui.typeText.text = "";
-            ui.iconImage.color = EditorConstants.NoColor;
+            ui.iconImage.color = EditorDefaults.Instance.NoColor;
             ui.iconImage.sprite = null;
             
             currentType = AssetType.None;

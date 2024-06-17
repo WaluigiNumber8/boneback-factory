@@ -19,25 +19,25 @@ namespace Rogium.Editors.Projectiles
         #region Constructors
         public ProjectileAsset()
         {
-            InitBase(EditorConstants.ProjectileTitle, EditorSpriteConstants.Instance.ProjectileIcon, EditorConstants.Author, DateTime.Now);
+            InitBase(EditorDefaults.Instance.ProjectileTitle, EditorDefaults.Instance.ProjectileIcon, EditorDefaults.Instance.Author, DateTime.Now);
             GenerateID(EditorAssetIDs.ProjectileIdentifier);
-            color = EditorConstants.ProjectileColor;
+            color = EditorDefaults.Instance.ProjectileColor;
 
-            animationType = EditorConstants.ProjectileAnimationType;
-            frameDuration = EditorConstants.ProjectileFrameDuration;
-            iconAlt = EditorSpriteConstants.Instance.EmptySprite;
+            animationType = EditorDefaults.Instance.ProjectileAnimationType;
+            frameDuration = EditorDefaults.Instance.ProjectileFrameDuration;
+            iconAlt = EditorDefaults.Instance.EmptySprite;
             
-            baseDamage = EditorConstants.ProjectileBaseDamage;
-            useDelay = EditorConstants.ProjectileLifetime;
-            knockbackForceSelf = EditorConstants.ProjectileKnockbackForceSelf;
-            knockbackLockDirectionSelf = EditorConstants.ProjectileKnockbackLockDirectionSelf;
-            knockbackForceOther = EditorConstants.ProjectileKnockbackForceOther;
-            knockbackLockDirectionOther = EditorConstants.ProjectileKnockbackLockDirectionOther;
+            baseDamage = EditorDefaults.Instance.ProjectileBaseDamage;
+            useDelay = EditorDefaults.Instance.ProjectileLifetime;
+            knockbackForceSelf = EditorDefaults.Instance.ProjectileKnockbackForceSelf;
+            knockbackLockDirectionSelf = EditorDefaults.Instance.ProjectileKnockbackLockDirectionSelf;
+            knockbackForceOther = EditorDefaults.Instance.ProjectileKnockbackForceOther;
+            knockbackLockDirectionOther = EditorDefaults.Instance.ProjectileKnockbackLockDirectionOther;
 
-            flightSpeed = EditorConstants.ProjectileFlightSpeed;
-            acceleration = EditorConstants.ProjectileAcceleration;
-            brakeForce = EditorConstants.ProjectileBrakeForce;
-            pierceType = EditorConstants.ProjectilePierceType;
+            flightSpeed = EditorDefaults.Instance.ProjectileFlightSpeed;
+            acceleration = EditorDefaults.Instance.ProjectileAcceleration;
+            brakeForce = EditorDefaults.Instance.ProjectileBrakeForce;
+            pierceType = EditorDefaults.Instance.ProjectilePierceType;
             
         }
 
@@ -113,7 +113,7 @@ namespace Rogium.Editors.Projectiles
         public override void ClearAssociatedSprite()
         {
             base.ClearAssociatedSprite();
-            icon = EditorSpriteConstants.Instance.ProjectileIcon;
+            icon = EditorDefaults.Instance.ProjectileIcon;
         }
         
         public float FlightSpeed { get => flightSpeed; }

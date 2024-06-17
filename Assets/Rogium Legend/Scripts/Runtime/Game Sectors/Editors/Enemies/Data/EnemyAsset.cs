@@ -31,29 +31,29 @@ namespace Rogium.Editors.Enemies
         #region Constructors
         public EnemyAsset()
         {
-            InitBase(EditorConstants.EnemyTitle, EditorSpriteConstants.Instance.EnemyIcon, EditorConstants.Author, DateTime.Now);
-            color = EditorConstants.EnemyColor;
+            InitBase(EditorDefaults.Instance.EnemyTitle, EditorDefaults.Instance.EnemyIcon, EditorDefaults.Instance.Author, DateTime.Now);
+            color = EditorDefaults.Instance.EnemyColor;
 
-            animationType = EditorConstants.EnemyAnimationType;
-            frameDuration = EditorConstants.EnemyFrameDuration;
-            iconAlt = EditorSpriteConstants.Instance.EmptySprite;
+            animationType = EditorDefaults.Instance.EnemyAnimationType;
+            frameDuration = EditorDefaults.Instance.EnemyFrameDuration;
+            iconAlt = EditorDefaults.Instance.EmptySprite;
             
-            baseDamage = EditorConstants.EnemyBaseDamage;
-            useDelay = EditorConstants.EnemyAttackDelay;
-            knockbackForceSelf = EditorConstants.EnemyKnockbackForceSelf;
-            knockbackLockDirectionSelf = EditorConstants.EnemyKnockbackLockDirectionSelf;
-            knockbackForceOther = EditorConstants.EnemyKnockbackForceOther;
-            knockbackLockDirectionOther = EditorConstants.EnemyKnockbackLockDirectionOther;
+            baseDamage = EditorDefaults.Instance.EnemyBaseDamage;
+            useDelay = EditorDefaults.Instance.EnemyAttackDelay;
+            knockbackForceSelf = EditorDefaults.Instance.EnemyKnockbackForceSelf;
+            knockbackLockDirectionSelf = EditorDefaults.Instance.EnemyKnockbackLockDirectionSelf;
+            knockbackForceOther = EditorDefaults.Instance.EnemyKnockbackForceOther;
+            knockbackLockDirectionOther = EditorDefaults.Instance.EnemyKnockbackLockDirectionOther;
 
-            maxHealth = EditorConstants.EnemyMaxHealth;
-            attackProbability = EditorConstants.EnemyAttackProbability;
-            invincibilityTime = EditorConstants.EnemyInvincibilityTime;
+            maxHealth = EditorDefaults.Instance.EnemyMaxHealth;
+            attackProbability = EditorDefaults.Instance.EnemyAttackProbability;
+            invincibilityTime = EditorDefaults.Instance.EnemyInvincibilityTime;
             weaponIDs = new List<string>();
             
-            ai = EditorConstants.EnemyAI;
-            nextStepTime = EditorConstants.EnemyNextStepTime;
-            seamlessMovement = EditorConstants.EnemySeamlessMovement;
-            startingDirection = EditorConstants.EnemyStartingDirection;
+            ai = EditorDefaults.Instance.EnemyAI;
+            nextStepTime = EditorDefaults.Instance.EnemyNextStepTime;
+            seamlessMovement = EditorDefaults.Instance.EnemySeamlessMovement;
+            startingDirection = EditorDefaults.Instance.EnemyStartingDirection;
             
             hurtSound = new AssetData(ParameterInfoConstants.ForSound);
             deathSound = new AssetData(ParameterInfoConstants.ForSound);
@@ -149,7 +149,7 @@ namespace Rogium.Editors.Enemies
         public void UpdateWeaponIDsLength(int newLength)
         {
             SafetyNet.EnsureIntIsBiggerOrEqualTo(newLength, 0, "New weapon IDs size");
-            weaponIDs.Resize(newLength, EditorConstants.EmptyAssetID);
+            weaponIDs.Resize(newLength, EditorDefaults.EmptyAssetID);
         }
         public void UpdateWeaponIDPos(int pos, string value) => weaponIDs[pos] = value;
         public void UpdateAI(int newAI) => UpdateAI((AIType)newAI);
@@ -166,7 +166,7 @@ namespace Rogium.Editors.Enemies
         public override void ClearAssociatedSprite()
         {
             base.ClearAssociatedSprite();
-            icon = EditorSpriteConstants.Instance.EnemyIcon;
+            icon = EditorDefaults.Instance.EnemyIcon;
         }
         
         public List<string> WeaponIDs { get => weaponIDs; }

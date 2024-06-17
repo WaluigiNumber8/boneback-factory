@@ -15,7 +15,7 @@ namespace Rogium.Tests.Editors.Sprites
     /// <summary>
     /// Tests for the <see cref="SpriteEditorOverseerMono"/>.
     /// </summary>
-    public class SpriteEditorOverseerMonoTests : UITestBase
+    public class SpriteEditorOverseerMonoTests : MenuTestBase
     {
         private SpriteEditorOverseerMono spriteEditor;
 
@@ -48,7 +48,7 @@ namespace Rogium.Tests.Editors.Sprites
         {
             spriteEditor.ClearActiveGrid();
 
-            Assert.That(spriteEditor.GetCurrentGridCopy.GetCellsCopy, Is.All.EqualTo(EditorConstants.EmptyColorID));
+            Assert.That(spriteEditor.GetCurrentGridCopy.GetCellsCopy, Is.All.EqualTo(EditorDefaults.EmptyColorID));
         }
         
         [Test]
@@ -78,7 +78,7 @@ namespace Rogium.Tests.Editors.Sprites
             spriteEditor.ClearActiveGrid();
             ActionHistorySystem.UndoLast();
             
-            Assert.That(spriteEditor.GetCurrentGridCopy.GetCellsCopy, Is.Not.All.EqualTo(EditorConstants.EmptyColorID));
+            Assert.That(spriteEditor.GetCurrentGridCopy.GetCellsCopy, Is.Not.All.EqualTo(EditorDefaults.EmptyColorID));
         }
     }
 }
