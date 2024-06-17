@@ -24,7 +24,7 @@ namespace Rogium.Editors.Palettes
         public void OnPointerClick(PointerEventData eventData)
         {
             if (eventData.button != PointerEventData.InputButton.Right) return;
-            ModalWindowBuilder.GetInstance().OpenColorPickerWindow((_) => { }, currentColor); //TODO Make the window affect things.
+            ModalWindowBuilder.GetInstance().OpenColorPickerWindow(Construct, currentColor); //TODO Make the window affect things.
         }
         
         /// <summary>
@@ -42,17 +42,9 @@ namespace Rogium.Editors.Palettes
         {
             this.currentColor = color;
             this.index = index;
-            RefreshUI();
-        }
-
-        /// <summary>
-        /// Refreshes all the slots UI elements.
-        /// </summary>
-        private void RefreshUI()
-        {
             ui.colorImg.color = currentColor;
         }
-        
+
         /// <summary>
         /// Fires the select event when the toggle was clicked.
         /// </summary>

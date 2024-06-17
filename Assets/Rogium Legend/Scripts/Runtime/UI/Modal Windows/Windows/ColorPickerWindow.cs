@@ -28,7 +28,7 @@ namespace Rogium.UserInterface.ModalWindows
             colorPicker.OnValueChanged += this.onChangeColor;
         }
 
-        public void UpdateValue(Color value) => colorPicker.UpdateValue(value);
+        public void UpdateColor(Color value) => colorPicker.UpdateValue(value);
 
         public void UpdateTheme(InteractableSpriteInfo buttonSet, InteractableSpriteInfo inputFieldSet,
                                 Sprite windowBackgroundSprite, Sprite colorGuideBorder, Sprite actionRowBackground, 

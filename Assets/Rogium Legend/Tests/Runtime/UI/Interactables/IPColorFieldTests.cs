@@ -74,7 +74,7 @@ namespace Rogium.Tests.UI.Interactables
         {
             colorField.GetComponentInChildren<ColorField>().OnPointerDown(new PointerEventData(EventSystem.current));
             ColorPickerWindow colorPickerWindow = FindFirstColorPickerWindow();
-            colorPickerWindow.UpdateValue(newColor);
+            colorPickerWindow.UpdateColor(newColor);
         }
     }
 }

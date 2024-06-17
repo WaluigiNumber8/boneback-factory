@@ -3,6 +3,7 @@ using NUnit.Framework;
 using Rogium.Editors.Sprites;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.ModalWindows;
+using UnityEngine;
 using UnityEngine.TestTools;
 using static Rogium.Tests.Core.PointerDataCreator;
 using static Rogium.Tests.UI.Interactables.InteractableUtils;
@@ -32,6 +33,18 @@ namespace Rogium.Tests.Editors.Sprites
             ColorPickerWindow colorPicker = FindFirstColorPickerWindow();
             
             Assert.That(colorPicker.gameObject.activeSelf, Is.True);
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ChangeColorSlotColor_WhenColorPickerColorChanged()
+        {
+            spriteEditor.Palette.GetSlot(0).OnPointerClick(RightClick());
+            yield return null;
+            ColorPickerWindow colorPicker = FindFirstColorPickerWindow();
+            colorPicker.UpdateColor(Color.blue);
+            yield return null;
+            
+            Assert.That(spriteEditor.Palette.GetSlot(0).CurrentColor, Is.EqualTo(Color.blue));
         }
     }
 }
