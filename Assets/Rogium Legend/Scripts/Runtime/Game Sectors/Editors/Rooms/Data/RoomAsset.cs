@@ -25,31 +25,25 @@ namespace Rogium.Editors.Rooms
         #region Constructors
         public RoomAsset()
         {
-            this.title = EditorConstants.RoomTitle;
-            this.icon = EditorConstants.RoomIcon;
-            this.author = EditorConstants.Author;
-            this.creationDate = DateTime.Now;
-            
-            this.difficultyLevel = EditorConstants.RoomDifficulty;
-            this.type = EditorConstants.RoomType;
-            this.lightness = EditorConstants.RoomLightness;
-            this.lightnessColor = EditorConstants.RoomLightnessColor;
-            this.tileGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForTile));
-            this.decorGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForDecor));
-            this.objectGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForEmpty));
-            this.enemyGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForEnemy));
-            
+            InitBase(EditorDefaults.Instance.RoomTitle, EditorDefaults.Instance.EmptySprite, EditorDefaults.Instance.Author, DateTime.Now);
             GenerateID(EditorAssetIDs.RoomIdentifier);
+            
+            this.difficultyLevel = EditorDefaults.Instance.RoomDifficulty;
+            this.type = EditorDefaults.Instance.RoomType;
+            this.lightness = EditorDefaults.Instance.RoomLightness;
+            this.lightnessColor = EditorDefaults.Instance.RoomLightnessColor;
+            this.tileGrid = new ObjectGrid<AssetData>(EditorDefaults.Instance.RoomSize.x, EditorDefaults.Instance.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForTile));
+            this.decorGrid = new ObjectGrid<AssetData>(EditorDefaults.Instance.RoomSize.x, EditorDefaults.Instance.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForDecor));
+            this.objectGrid = new ObjectGrid<AssetData>(EditorDefaults.Instance.RoomSize.x, EditorDefaults.Instance.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForEmpty));
+            this.enemyGrid = new ObjectGrid<AssetData>(EditorDefaults.Instance.RoomSize.x, EditorDefaults.Instance.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForEnemy));
         }
+
         public RoomAsset(RoomAsset asset)
         {
             AssetValidation.ValidateTitle(asset.title);
             
             this.id = asset.ID;
-            this.title = asset.Title;
-            this.icon = asset.Icon;
-            this.author = asset.Author;
-            this.creationDate = asset.CreationDate;
+            InitBase(asset.Title, asset.Icon, asset.Author, asset.CreationDate);
             
             this.difficultyLevel = asset.DifficultyLevel;
             this.type = asset.Type;
@@ -70,10 +64,7 @@ namespace Rogium.Editors.Rooms
             SafetyNet.EnsureIntIsBiggerOrEqualTo(difficultyLevel, 0, "New Room Difficulty Level");
 
             this.id = id;
-            this.title = title;
-            this.icon = icon;
-            this.author = author;
-            this.creationDate = creationDate;
+            InitBase(title, icon, author, creationDate);
             
             this.difficultyLevel = difficultyLevel;
             this.type = type;

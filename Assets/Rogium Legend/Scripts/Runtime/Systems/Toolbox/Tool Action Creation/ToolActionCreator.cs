@@ -11,11 +11,9 @@ namespace Rogium.Systems.Toolbox
     /// </summary>
     public static class ToolActionCreator<T> where T : IComparable
     {
-        private static IDictionary<Type, IToolActionFactory<T>> factories;
+        private static readonly IDictionary<Type, IToolActionFactory<T>> factories;
 
-        static ToolActionCreator() => InitFactories();
-
-        private static void InitFactories()
+        static ToolActionCreator()
         {
             factories = new Dictionary<Type, IToolActionFactory<T>>();
             factories.Add(typeof(BrushTool<T>), new BrushToolActionFactory<T>());
@@ -23,7 +21,7 @@ namespace Rogium.Systems.Toolbox
             factories.Add(typeof(PickerTool<T>), new SilentToolsActionFactory<T>());
             factories.Add(typeof(SelectionTool<T>), new SilentToolsActionFactory<T>());
         }
-        
+
         public static ActionBase<T> Create(ToolBase<T> tool, ObjectGrid<T> grid, Vector2Int position, T value, T lastValue, Sprite graphicValue, Sprite lastGraphicValue, int layer, Action<T> fallback)
         {
             factories.TryGetValue(tool.GetType(), out IToolActionFactory<T> factory);

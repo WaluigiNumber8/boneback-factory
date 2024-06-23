@@ -32,12 +32,24 @@ namespace Rogium.Editors.Core
         public void UpdateTitle(string newTitle) => title = newTitle.Trim();
         #endregion
 
+        /// <summary>
+        /// Initialize the base values of the asset.
+        /// </summary>
+        protected void InitBase(string title, Sprite icon, string author, DateTime creationDate)
+        {
+            this.title = title;
+            this.icon = icon;
+            this.author = author;
+            this.creationDate = creationDate;
+        }
+        
         public override bool Equals(object obj) => obj is AssetBase asset && ID == asset.ID;
 
         public override int GetHashCode() => (id != null ? id.GetHashCode() : 0);
 
         public override string ToString() => $"{Title} ({ID})";
 
+        
         public string ID { get => id; }
         public string Title { get => title; }
         public Sprite Icon { get => icon; }

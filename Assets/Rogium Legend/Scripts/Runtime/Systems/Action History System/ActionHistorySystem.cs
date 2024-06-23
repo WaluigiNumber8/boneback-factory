@@ -1,6 +1,5 @@
 using System;
 using RedRats.Core;
-using Rogium.Systems.Input;
 
 namespace Rogium.Systems.ActionHistory
 {
@@ -25,12 +24,8 @@ namespace Rogium.Systems.ActionHistory
             undoHistory.OnChange += () => OnUpdateUndoHistory?.Invoke();
             redoHistory.OnChange += () => OnUpdateRedoHistory?.Invoke();
             assetDetector.OnAssetChange += ClearHistory;
-
-            InputSystem.GetInstance().UI.Click.OnPress += ForceBeginGrouping;
-            InputSystem.GetInstance().UI.ClickAlternative.OnPress += ForceBeginGrouping;
-            InputSystem.GetInstance().UI.Click.OnRelease += ForceEndGrouping;
-            InputSystem.GetInstance().UI.ClickAlternative.OnRelease += ForceEndGrouping;
         }
+
 
         /// <summary>
         /// Adds an action to the history and executes it.
@@ -58,14 +53,6 @@ namespace Rogium.Systems.ActionHistory
             if (undoHistory.Count == 0) return;
 
             IAction newestAction = undoHistory.Pop();
-            
-            // //If action's construct is null, keep popping until a valid action is found
-            // while (newestAction.AffectedConstruct == null)
-            // {
-            //     if (undoHistory.Count == 0) return;
-            //     newestAction = undoHistory.Pop();
-            // }
-            
             redoHistory.Push(newestAction);
             newestAction.Undo();
         }
@@ -79,7 +66,7 @@ namespace Rogium.Systems.ActionHistory
             newestAction.Execute();
         }
 
-        private static void ClearHistory()
+        public static void ClearHistory()
         {
             undoHistory.Clear();
             redoHistory.Clear();
@@ -92,8 +79,12 @@ namespace Rogium.Systems.ActionHistory
         /// <summary>
         /// Forces the system to allow grouping of actions.
         /// </summary>
-        public static void ForceBeginGrouping() => canCreateGroups = true;
-        
+        public static void ForceBeginGrouping()
+        {
+            if (canCreateGroups) ForceEndGrouping();
+            canCreateGroups = true;
+        }
+
         /// <summary>
         /// Forces the system to add the current group to undo history.
         /// </summary>
@@ -141,5 +132,7 @@ namespace Rogium.Systems.ActionHistory
         
         public static int UndoCount => undoHistory.Count;
         public static int RedoCount => redoHistory.Count;
+        
+        public static GroupAction CurrentGroup { get => currentGroup; }
     }
 }

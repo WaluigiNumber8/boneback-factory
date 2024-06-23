@@ -55,14 +55,14 @@ namespace Rogium.UserInterface.Gameplay.PauseMenu
             if (isActive)
             {
                 SwitchVisibilityStatus(false);
-                GameplayOverseerMono.GetInstance().DisableUI();
+                GameplayOverseerMono.GetInstance().Resume();
                 EventSystem.current.SetSelectedGameObject(null);
                 isActive = false;
                 return;
             }
 
             SwitchVisibilityStatus(true);
-            GameplayOverseerMono.GetInstance().EnableUI();
+            GameplayOverseerMono.GetInstance().Pause();
             firstSelectedButton.Select();
             isActive = true;
         }

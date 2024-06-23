@@ -12,17 +12,28 @@ namespace Rogium.Core
     /// </summary>
     public class MenuPreparator : MonoBehaviour
     {
+        private void Awake()
+        {
+            ActionHistorySystem.ClearHistory();
+        }
+
         private void Start()
         {
             CanvasOverseer canvasOverseer = CanvasOverseer.GetInstance();
-            
-            InputSystem.GetInstance().EnableUIMap();
+            InputSystem inputSystem = InputSystem.GetInstance();
+
+            inputSystem.EnableUIMap();
             GAS.ObjectSetActive(true, UIMainContainer.GetInstance().BackgroundMain);
             GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundGameplayMenus);
             GAS.ObjectSetActive(false, UIEditorContainer.GetInstance().Background);
             GAS.ObjectSetActive(false, canvasOverseer.NavigationBar.transform.GetChild(0).gameObject);
             canvasOverseer.NavigationBar.Hide();
-            ActionHistorySystem.RedoLast(); // To initialize the system's input tracking.
+            
+            //Force grouping on click/right click
+            inputSystem.UI.Click.OnPress += ActionHistorySystem.ForceBeginGrouping;
+            inputSystem.UI.ClickAlternative.OnPress += ActionHistorySystem.ForceBeginGrouping;
+            inputSystem.UI.Click.OnRelease += ActionHistorySystem.ForceEndGrouping;
+            inputSystem.UI.ClickAlternative.OnRelease += ActionHistorySystem.ForceEndGrouping;
         }
 
     }

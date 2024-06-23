@@ -21,6 +21,9 @@ namespace Rogium.Gameplay.Core
     /// </summary>
     public class GameplayOverseerMono : MonoSingleton<GameplayOverseerMono>
     {
+        public event Action OnGameplayPause;
+        public event Action OnGameplayResume;
+        
         [SerializeField] private GameplaySequencer sequencer;
         [SerializeField] private PlayerController player;
 
@@ -60,11 +63,11 @@ namespace Rogium.Gameplay.Core
         /// <summary>
         /// Prepares the game scene.
         /// </summary>
-        public void PrepareGame()
+        private void PrepareGame()
         {
             rrg = new RRG(currentCampaign.DataPack.Rooms, currentCampaign.AdventureLength);
-            InputSystem.GetInstance().EnablePlayerMap();
             sequencer.RunIntro(rrg.GetNext(RoomType.Entrance));
+            Resume();
         }
 
         public void EndGame(Vector2 direction)
@@ -90,20 +93,22 @@ namespace Rogium.Gameplay.Core
         }
 
         /// <summary>
-        /// Prepares the game for opening of UI.
+        /// Pauses the game and enables UI controls.
         /// </summary>
-        public void EnableUI()
+        public void Pause()
         {
             GameClock.Instance.Pause();
             InputSystem.GetInstance().EnableUIMap();
+            OnGameplayPause?.Invoke();
         }
 
         /// <summary>
-        /// Prepares the game for resuming fom UI.
+        /// Resumes the game and enables player controls.
         /// </summary>
-        public void DisableUI()
+        public void Resume()
         {
             GameClock.Instance.Resume();
+            OnGameplayResume?.Invoke();
             StartCoroutine(EnableMap());
             IEnumerator EnableMap()
             {

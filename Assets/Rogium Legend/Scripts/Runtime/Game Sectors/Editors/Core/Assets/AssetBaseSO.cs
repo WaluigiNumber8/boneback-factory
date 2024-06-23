@@ -9,7 +9,7 @@ namespace Rogium.Editors.Core
     /// </summary>
     public abstract class AssetBaseSO : ScriptableObject, IAsset
     {
-        [HorizontalGroup("Base", 60, LabelWidth = 64, MarginRight = 32), HideLabel, PreviewField(60)] 
+        [HorizontalGroup("Base", 72, LabelWidth = 64, MarginRight = 24), HideLabel, PreviewField(64)] 
         [SerializeField] private Sprite icon;
         [VerticalGroup("Base/Right")]
         [SerializeField]  private string id;
@@ -18,7 +18,7 @@ namespace Rogium.Editors.Core
         
         private string author;
 
-        private void Awake() => author = EditorConstants.AuthorGame;
+        private void Awake() => author = EditorDefaults.Instance.AuthorGame;
 
         public string ID { get => id; }
         public string Title { get => title; }

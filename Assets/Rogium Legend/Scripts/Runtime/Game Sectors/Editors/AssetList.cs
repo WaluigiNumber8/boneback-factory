@@ -53,7 +53,7 @@ namespace Rogium.Editors.Core
         /// Adds a list of assets to this list without saving.
         /// </summary>
         /// <param name="assets"></param>
-        public void AddAllWithoutSave(AssetList<T> assets)
+        public void AddAllWithoutSave(IList<T> assets)
         {
             SafetyNet.EnsureIsNotNull(assets, "List of assets to add.");
             

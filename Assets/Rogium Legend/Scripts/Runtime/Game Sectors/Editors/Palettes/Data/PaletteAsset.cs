@@ -12,31 +12,25 @@ namespace Rogium.Editors.Palettes
     /// </summary>
     public class PaletteAsset : AssetWithDirectSpriteBase
     {
-        private Color[] colors;
+        private readonly Color[] colors;
 
         #region Constructors
         public PaletteAsset()
         {
-            this.title = EditorConstants.PaletteTitle;
-            this.icon = EditorConstants.EmptyGridSprite;
-            this.author = EditorConstants.Author;
-            this.creationDate = DateTime.Now;
+            InitBase(EditorDefaults.Instance.PaletteTitle, EditorDefaults.Instance.EmptySprite, EditorDefaults.Instance.Author, DateTime.Now);
             GenerateID(EditorAssetIDs.PaletteIdentifier);
 
-            this.colors = RedRatBuilder.GenerateColorArray(EditorConstants.PaletteSize, Color.black);
+            colors = RedRatBuilder.GenerateColorArray(EditorDefaults.Instance.PaletteSize, Color.black);
         }
 
         public PaletteAsset(PaletteAsset asset)
         {
             AssetValidation.ValidateTitle(asset.title);
             
-            this.id = asset.ID;
-            this.title = asset.Title;
-            this.icon = asset.Icon;
-            this.author = asset.Author;
-            this.creationDate = asset.creationDate;
+            id = asset.ID;
+            InitBase(asset.Title, asset.Icon, asset.Author, asset.CreationDate);
 
-            this.colors = asset.Colors;
+            colors = asset.Colors;
         }
         
         public PaletteAsset(string id, string title, Sprite icon, string author, Color[] colors, DateTime creationDate)
@@ -44,10 +38,7 @@ namespace Rogium.Editors.Palettes
             AssetValidation.ValidateTitle(title);
             
             this.id = id;
-            this.title = title;
-            this.icon = icon;
-            this.author = author;
-            this.creationDate = creationDate;
+            InitBase(title, icon, author, creationDate);
 
             this.colors = colors;
         }

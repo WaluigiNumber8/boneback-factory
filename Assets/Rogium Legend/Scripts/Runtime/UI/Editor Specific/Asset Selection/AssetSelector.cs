@@ -19,7 +19,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection
         [SerializeField] private AssetHolderBase emptyAsset;
 
         private ObjectSwitcherMono layoutSwitcher;
-        private AssetSelectionOverseer assetSelection;
+        private AssetSelectionController assetSelection;
         private PackEditorOverseer editor;
         private ExternalLibraryOverseer lib;
         private InternalLibraryOverseer internalLib;
@@ -34,7 +34,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection
             lib = ExternalLibraryOverseer.Instance;
             internalLib = InternalLibraryOverseer.GetInstance();
 
-            assetSelection = AssetSelectionOverseer.Instance;
+            assetSelection = new AssetSelectionController();
         }
 
         #region Open Selection Menu

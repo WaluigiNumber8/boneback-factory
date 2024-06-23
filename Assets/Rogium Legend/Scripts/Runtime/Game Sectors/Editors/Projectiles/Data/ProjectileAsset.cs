@@ -19,29 +19,26 @@ namespace Rogium.Editors.Projectiles
         #region Constructors
         public ProjectileAsset()
         {
-            title = EditorConstants.ProjectileTitle;
-            icon = EditorConstants.ProjectileIcon;
-            author = EditorConstants.Author;
-            creationDate = DateTime.Now;
-            color = EditorConstants.ProjectileColor;
-
-            animationType = EditorConstants.ProjectileAnimationType;
-            frameDuration = EditorConstants.ProjectileFrameDuration;
-            iconAlt = EditorConstants.ProjectileIconAlt;
-            
-            baseDamage = EditorConstants.ProjectileBaseDamage;
-            useDelay = EditorConstants.ProjectileLifetime;
-            knockbackForceSelf = EditorConstants.ProjectileKnockbackForceSelf;
-            knockbackLockDirectionSelf = EditorConstants.ProjectileKnockbackLockDirectionSelf;
-            knockbackForceOther = EditorConstants.ProjectileKnockbackForceOther;
-            knockbackLockDirectionOther = EditorConstants.ProjectileKnockbackLockDirectionOther;
-
-            flightSpeed = EditorConstants.ProjectileFlightSpeed;
-            acceleration = EditorConstants.ProjectileAcceleration;
-            brakeForce = EditorConstants.ProjectileBrakeForce;
-            pierceType = EditorConstants.ProjectilePierceType;
-            
+            InitBase(EditorDefaults.Instance.ProjectileTitle, EditorDefaults.Instance.ProjectileIcon, EditorDefaults.Instance.Author, DateTime.Now);
             GenerateID(EditorAssetIDs.ProjectileIdentifier);
+            color = EditorDefaults.Instance.ProjectileColor;
+
+            animationType = EditorDefaults.Instance.ProjectileAnimationType;
+            frameDuration = EditorDefaults.Instance.ProjectileFrameDuration;
+            iconAlt = EditorDefaults.Instance.EmptySprite;
+            
+            baseDamage = EditorDefaults.Instance.ProjectileBaseDamage;
+            useDelay = EditorDefaults.Instance.ProjectileLifetime;
+            knockbackForceSelf = EditorDefaults.Instance.ProjectileKnockbackForceSelf;
+            knockbackLockDirectionSelf = EditorDefaults.Instance.ProjectileKnockbackLockDirectionSelf;
+            knockbackForceOther = EditorDefaults.Instance.ProjectileKnockbackForceOther;
+            knockbackLockDirectionOther = EditorDefaults.Instance.ProjectileKnockbackLockDirectionOther;
+
+            flightSpeed = EditorDefaults.Instance.ProjectileFlightSpeed;
+            acceleration = EditorDefaults.Instance.ProjectileAcceleration;
+            brakeForce = EditorDefaults.Instance.ProjectileBrakeForce;
+            pierceType = EditorDefaults.Instance.ProjectilePierceType;
+            
         }
 
         public ProjectileAsset(ProjectileAsset asset)
@@ -49,10 +46,7 @@ namespace Rogium.Editors.Projectiles
             AssetValidation.ValidateTitle(asset.title);
             
             id = asset.ID;
-            title = asset.Title;
-            icon = asset.Icon;
-            author = asset.Author;
-            creationDate = asset.CreationDate;
+            InitBase(asset.Title, asset.Icon, asset.Author, asset.CreationDate);
             color = asset.Color;
 
             associatedSpriteID = asset.AssociatedSpriteID;
@@ -83,10 +77,7 @@ namespace Rogium.Editors.Projectiles
             AssetValidation.ValidateTitle(title);
             
             this.id = id;
-            this.title = title;
-            this.icon = icon;
-            this.author = author;
-            this.creationDate = creationDate;
+            InitBase(title, icon, author, creationDate);
             this.color = color;
 
             this.associatedSpriteID = associatedSpriteID;
@@ -122,7 +113,7 @@ namespace Rogium.Editors.Projectiles
         public override void ClearAssociatedSprite()
         {
             base.ClearAssociatedSprite();
-            icon = EditorConstants.ProjectileIcon;
+            icon = EditorDefaults.Instance.ProjectileIcon;
         }
         
         public float FlightSpeed { get => flightSpeed; }

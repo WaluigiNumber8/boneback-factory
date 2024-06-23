@@ -1,6 +1,4 @@
 ﻿using System;
-using Rogium.Editors.Rooms;
-using Rogium.Editors.Sprites;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,13 +19,7 @@ namespace Rogium.Systems.Toolbox
 
         private ToolType currentToolType;
 
-        private void Awake()
-        {
-            RoomEditorOverseerMono.GetInstance().Toolbox.OnSwitchTool += SwitchTool;
-            SpriteEditorOverseerMono.GetInstance().Toolbox.OnSwitchTool += SwitchTool;
-        }
-
-        private void SwitchTool(ToolType toolType)
+        public void SwitchTool(ToolType toolType)
         {
             if (currentToolType == toolType) return;
             switch(toolType)
@@ -38,7 +30,7 @@ namespace Rogium.Systems.Toolbox
                 case ToolType.Eraser:
                     buttonEraser.isOn = true;
                     break;
-                case ToolType.Bucket:
+                case ToolType.Fill:
                     buttonBucket.isOn = true;
                     break;
                 case ToolType.ColorPicker:

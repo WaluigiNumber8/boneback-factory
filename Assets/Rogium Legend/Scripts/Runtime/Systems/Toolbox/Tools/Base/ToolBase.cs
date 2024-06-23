@@ -4,17 +4,16 @@ using UnityEngine;
 
 namespace Rogium.Systems.Toolbox
 {
-    public abstract class ToolBase<T> where T : IComparable
+    public abstract class ToolBase<T>
     {
         protected readonly Action<int, Vector2Int, Sprite> whenGraphicDrawn;
         protected readonly Action<int> whenEffectFinished;
 
-        public ToolBase(Action<int, Vector2Int, Sprite> whenGraphicDrawn, Action<int> whenEffectFinished)
+        protected ToolBase(Action<int, Vector2Int, Sprite> whenGraphicDrawn, Action<int> whenEffectFinished)
         {
             this.whenEffectFinished = whenEffectFinished;
             this.whenGraphicDrawn = whenGraphicDrawn;
         }
-        
 
         /// <summary>
         /// Applies the effect of the tool.

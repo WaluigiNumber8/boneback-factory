@@ -8,7 +8,7 @@ namespace Rogium.Systems.ActionHistory
     /// <summary>
     /// An action that uses the <see cref="ToolBase{T}"/> on a grid.
     /// </summary>
-    public class UseToolAction<T> : ActionBase<T> where T : IComparable
+    public class UseToolAction<T> : ActionBase<T>
     {
         private readonly ToolBase<T> tool;
         private readonly ObjectGrid<T> grid;
@@ -36,7 +36,7 @@ namespace Rogium.Systems.ActionHistory
 
         protected override void UndoSelf() => tool.ApplyEffect(grid, position, lastValue, lastGraphicValue, layer);
 
-        public override bool NothingChanged() => value.CompareTo(lastValue) == 0;
+        public override bool NothingChanged() => value.Equals(lastValue);
         
         public override object AffectedConstruct => grid;
         public override T Value { get => value; }

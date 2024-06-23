@@ -30,7 +30,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
         
         protected override void BuildColumnImportant(Transform content)
         {
-            IAsset initialIcon = currentPack.TryGetSprite(asset.AssociatedSpriteID, EditorConstants.ProjectileIcon);
+            IAsset initialIcon = currentPack.TryGetSprite(asset.AssociatedSpriteID, EditorDefaults.Instance.ProjectileIcon);
 
             animationBlock1Slot = b.CreateContentBlockVertical(content, (asset.AnimationType == AnimationType.SpriteSwap));
             b.BuildAssetField("", AssetType.Sprite, initialIcon, animationBlock1Slot.GetTransform, a => asset.UpdateIcon(a), null, !currentPack.ContainsAnySprites);
@@ -47,23 +47,23 @@ namespace Rogium.Editors.PropertyEditor.Builders
         {
             b.BuildHeader("General", content);
             b.BuildInputField("Damage", asset.BaseDamage.ToString(), content, s => asset.UpdateBaseDamage(int.Parse(s)),false, false, TMP_InputField.CharacterValidation.Integer);
-            b.BuildInputField("Lifetime", asset.UseDelay.ToString(), content, s => asset.UpdateUseDelay(float.Parse(s)),false, false, TMP_InputField.CharacterValidation.Decimal, 0.01f, EditorConstants.ProjectileLifetimeMax);
+            b.BuildInputField("Lifetime", asset.UseDelay.ToString(), content, s => asset.UpdateUseDelay(float.Parse(s)),false, false, TMP_InputField.CharacterValidation.Decimal, 0.01f, EditorDefaults.Instance.ProjectileLifetimeMax);
             b.BuildDropdown("Pierce", Enum.GetNames(typeof(PierceType)), (int)asset.PierceType, content, asset.UpdatePierceType);
 
             b.BuildHeader("Movement", content);
             b.BuildInputField("Flight Speed", asset.FlightSpeed.ToString(), content, s => asset.UpdateFlightSpeed(float.Parse(s)));
-            b.BuildSlider("Acceleration", 0.01f, EditorConstants.ProjectileAccelerationMax, asset.Acceleration, content, asset.UpdateAcceleration);
-            b.BuildSlider("Brake Force", 0.01f, EditorConstants.ProjectileBrakeForceMax, asset.BrakeForce, content, asset.UpdateBrakeForce);
+            b.BuildSlider("Acceleration", 0.01f, EditorDefaults.Instance.ProjectileAccelerationMax, asset.Acceleration, content, asset.UpdateAcceleration);
+            b.BuildSlider("Brake Force", 0.01f, EditorDefaults.Instance.ProjectileBrakeForceMax, asset.BrakeForce, content, asset.UpdateBrakeForce);
             
             b.BuildHeader("Knockback", content);
-            b.BuildSlider("Self Force", -EditorConstants.ProjectileKnockbackForceMax, EditorConstants.ProjectileKnockbackForceMax, asset.KnockbackForceSelf, content, f => asset.UpdateKnockbackForceSelf(f));
-            b.BuildSlider("Other Force", -EditorConstants.ProjectileKnockbackForceMax, EditorConstants.ProjectileKnockbackForceMax, asset.KnockbackForceOther, content, f => asset.UpdateKnockbackForceOther(f));
+            b.BuildSlider("Self Force", -EditorDefaults.Instance.ProjectileKnockbackForceMax, EditorDefaults.Instance.ProjectileKnockbackForceMax, asset.KnockbackForceSelf, content, f => asset.UpdateKnockbackForceSelf(f));
+            b.BuildSlider("Other Force", -EditorDefaults.Instance.ProjectileKnockbackForceMax, EditorDefaults.Instance.ProjectileKnockbackForceMax, asset.KnockbackForceOther, content, f => asset.UpdateKnockbackForceOther(f));
             b.BuildToggle("Self Lock Direction", asset.KnockbackLockDirectionSelf, content, asset.UpdateKnockbackLockDirectionSelf);
             b.BuildToggle("Other Lock Direction", asset.KnockbackLockDirectionOther, content, asset.UpdateKnockbackLockDirectionOther);
             
             b.BuildHeader("Animation", content);
             b.BuildDropdown("Type", animationOptions, (int) asset.AnimationType, content, i => asset.UpdateAnimationType((AnimationType) i));
-            b.BuildSlider("Frame Duration", 0, EditorConstants.ProjectileFrameDurationMax, asset.FrameDuration, content, f => asset.UpdateFrameDuration((int) f));
+            b.BuildSlider("Frame Duration", 0, EditorDefaults.Instance.ProjectileFrameDurationMax, asset.FrameDuration, content, f => asset.UpdateFrameDuration((int) f));
         }
     }
 }

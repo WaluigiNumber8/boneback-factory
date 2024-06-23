@@ -1,4 +1,5 @@
 using System;
+using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.ActionHistory;
 using Rogium.UserInterface.ModalWindows;
 using UnityEngine;
@@ -17,6 +18,13 @@ namespace Rogium.UserInterface.Interactables
         private Color value;
         private Color lastValue;
         private Action<Color> whenValueChanged;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            value = EditorDefaults.Instance.NoColor;
+            lastValue = EditorDefaults.Instance.NoColor;
+        }
 
         public override void OnPointerDown(PointerEventData eventData)
         {

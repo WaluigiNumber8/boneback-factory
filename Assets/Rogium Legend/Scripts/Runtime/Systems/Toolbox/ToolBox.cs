@@ -45,7 +45,8 @@ namespace Rogium.Systems.Toolbox
             toolSelection.OnSelectValue += data => OnSelectValue?.Invoke(data);
             toolPicker.OnPickValue += data => OnChangePaletteValue?.Invoke(data);
             
-            currentTool = toolBrush;
+            currentToolType = ToolType.None;
+            SwitchTool(ToolType.Brush);
         }
 
         /// <summary>
@@ -83,7 +84,7 @@ namespace Rogium.Systems.Toolbox
                 ToolType.Selection => toolSelection,
                 ToolType.Brush => toolBrush,
                 ToolType.Eraser => toolEraser,
-                ToolType.Bucket => toolBucket,
+                ToolType.Fill => toolBucket,
                 ToolType.ColorPicker => toolPicker,
                 _ => throw new InvalidOperationException("Unknown or not yet supported Tool Type.")
             };
@@ -92,6 +93,11 @@ namespace Rogium.Systems.Toolbox
         }
 
         public void WhenDrawOnUIGrid(int layerIndex, Vector2Int position, Sprite value) => whenGraphicDraw?.Invoke(layerIndex, position, value);
+
+        /// <summary>
+        /// Refreshes the toolbox.
+        /// </summary>
+        public void Refresh() => OnSwitchTool?.Invoke(currentToolType);
 
         /// <summary>
         /// Grabs a tool based on entered tool type.
@@ -106,7 +112,7 @@ namespace Rogium.Systems.Toolbox
                 ToolType.Selection => toolSelection,
                 ToolType.Brush => toolBrush,
                 ToolType.Eraser => toolEraser,
-                ToolType.Bucket => toolBucket,
+                ToolType.Fill => toolBucket,
                 ToolType.ColorPicker => toolPicker,
                 _ => throw new InvalidOperationException("Unknown or not yet supported Tool Type.")
             };
@@ -119,7 +125,7 @@ namespace Rogium.Systems.Toolbox
             if (tool == toolEraser)
             {
                 value = emptyValue;
-                graphicValue = EditorConstants.EmptyGridSprite;
+                graphicValue = EditorDefaults.Instance.EmptySprite;
             }
             
             //Update old values

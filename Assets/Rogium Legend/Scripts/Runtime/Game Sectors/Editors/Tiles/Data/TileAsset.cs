@@ -21,28 +21,23 @@ namespace Rogium.Editors.Tiles
         #region Constructors
         public TileAsset()
         {
-            this.title = EditorConstants.TileTitle;
-            this.icon = EditorConstants.TileIcon;
-            this.author = EditorConstants.Author;
-            this.creationDate = DateTime.Now;
+            InitBase(EditorDefaults.Instance.TileTitle, EditorDefaults.Instance.TileIcon, EditorDefaults.Instance.Author, DateTime.Now);
+            GenerateID(EditorAssetIDs.TileIdentifier);
             
             this.tile = ScriptableObject.CreateInstance<Tile>();
             this.tile.sprite = this.icon;
-            this.type = EditorConstants.TileType;
-            this.layerType = EditorConstants.TileLayer;
-            this.terrainType = EditorConstants.TileTerrainType;
+            this.type = EditorDefaults.Instance.TileType;
+            this.layerType = EditorDefaults.Instance.TileLayer;
+            this.terrainType = EditorDefaults.Instance.TileTerrainType;
             
-            GenerateID(EditorAssetIDs.TileIdentifier);
         }
+
         public TileAsset(TileAsset asset)
         {
             AssetValidation.ValidateTitle(asset.title);
             
             this.id = asset.ID;
-            this.icon = asset.Icon;
-            this.title = asset.Title;
-            this.author = asset.Author;
-            this.creationDate = asset.CreationDate;
+            InitBase(asset.Title, asset.Icon, asset.Author, asset.CreationDate);
 
             this.associatedSpriteID = asset.AssociatedSpriteID;
 
@@ -59,10 +54,7 @@ namespace Rogium.Editors.Tiles
             AssetValidation.ValidateTitle(title);
             
             this.id = id;
-            this.title = title;
-            this.icon = icon;
-            this.author = author;
-            this.creationDate = creationDate;
+            InitBase(title, icon, author, creationDate);
             
             this.associatedSpriteID = associatedSpriteID;
             
@@ -95,7 +87,7 @@ namespace Rogium.Editors.Tiles
         public override void ClearAssociatedSprite()
         {
             base.ClearAssociatedSprite();
-            icon = EditorConstants.TileIcon;
+            icon = EditorDefaults.Instance.TileIcon;
         }
 
         public Tile Tile { get => tile; }

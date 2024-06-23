@@ -14,6 +14,7 @@ using Rogium.Systems.ActionHistory;
 using Rogium.Systems.GridSystem;
 using Rogium.Systems.ItemPalette;
 using Rogium.Systems.Toolbox;
+using Rogium.UserInterface.Cursors;
 using UnityEngine;
 
 namespace Rogium.Editors.Rooms
@@ -26,6 +27,8 @@ namespace Rogium.Editors.Rooms
         [SerializeField] private InteractableEditorGrid grid;
         [SerializeField] private TabGroup partsDrawer;
         [SerializeField] private RoomPropertyColumn propertyColumn;
+        [SerializeField] private ToolBoxUIManager toolBoxUIManager;
+        [SerializeField] private CursorChangerLayersInfo cursorChangers;
         
         [Header("Palettes")]
         [SerializeField] private ItemPaletteAsset paletteTile;
@@ -67,6 +70,8 @@ namespace Rogium.Editors.Rooms
             
             toolbox.OnChangePaletteValue += PickFrom;
             toolbox.OnSelectValue += SelectedValue;
+            toolbox.OnSwitchTool += toolBoxUIManager.SwitchTool;
+            cursorChangers.SubscribeTo(toolbox);
         }
 
         private void OnDisable()
@@ -77,6 +82,8 @@ namespace Rogium.Editors.Rooms
             
             toolbox.OnChangePaletteValue -= PickFrom;
             toolbox.OnSelectValue -= SelectedValue;
+            toolbox.OnSwitchTool -= toolBoxUIManager.SwitchTool;
+            cursorChangers.UnsubscribeFrom(toolbox);
         }
 
         /// <summary>
@@ -105,7 +112,7 @@ namespace Rogium.Editors.Rooms
         /// <param name="position">The grid position to affect.</param>
         public void UpdateGridCell(Vector2Int position)
         {
-            if (currentData.BrushValue.ID == EditorConstants.EmptyAssetID) return;
+            if (currentData.BrushValue.ID == EditorDefaults.EmptyAssetID) return;
             toolbox.ApplyCurrent(currentData.Grid, position, new AssetData(currentData.BrushValue), currentData.BrushSprite, grid.ActiveLayer);
         }
 
@@ -131,7 +138,7 @@ namespace Rogium.Editors.Rooms
         /// <param name="position">The cell to erase.</param>
         private void EraseCell(Vector2Int position)
         {
-            toolbox.ApplySpecific(ToolType.Eraser, currentData.Grid, position, currentData.BrushValue, EditorConstants.EmptyGridSprite, grid.ActiveLayer);
+            toolbox.ApplySpecific(ToolType.Eraser, currentData.Grid, position, currentData.BrushValue, EditorDefaults.Instance.EmptySprite, grid.ActiveLayer);
         }
         
         /// <summary>
@@ -139,12 +146,7 @@ namespace Rogium.Editors.Rooms
         /// </summary>
         private void PrepareEditor(RoomAsset room)
         {
-            tileData = new GridData<AssetData>(editor.CurrentAsset.TileGrid, paletteTile, AssetType.Tile, AssetDataBuilder.ForTile);
-            decorData = new GridData<AssetData>(editor.CurrentAsset.DecorGrid, paletteDecor, AssetType.Tile, AssetDataBuilder.ForTile);
-            objectData = new GridData<AssetData>(editor.CurrentAsset.ObjectGrid, paletteObject, AssetType.Object, AssetDataBuilder.ForObject);
-            enemyData = new GridData<AssetData>(editor.CurrentAsset.EnemyGrid, paletteEnemy, AssetType.Enemy, AssetDataBuilder.ForEnemy);
-            currentData = new GridData<AssetData>(editor.CurrentAsset.EnemyGrid, paletteEnemy, AssetType.None);
-
+            //Fill Palettes
             IList<TileAsset> tiles = new List<TileAsset>();
             IList<TileAsset> decor = new List<TileAsset>();
             foreach (TileAsset tile in packEditor.CurrentPack.Tiles)
@@ -158,15 +160,27 @@ namespace Rogium.Editors.Rooms
             paletteDecor.Fill(decor, AssetType.Tile);
             paletteObject.Fill(objects, AssetType.Object);
             paletteEnemy.Fill(packEditor.CurrentPack.Enemies, AssetType.Enemy);
-
-            StartCoroutine(SwitchLayer0Delay(0.1f));
             
+            tileData = new GridData<AssetData>(editor.CurrentAsset.TileGrid, paletteTile, AssetType.Tile, AssetDataBuilder.ForTile);
+            decorData = new GridData<AssetData>(editor.CurrentAsset.DecorGrid, paletteDecor, AssetType.Tile, AssetDataBuilder.ForTile);
+            objectData = new GridData<AssetData>(editor.CurrentAsset.ObjectGrid, paletteObject, AssetType.Object, AssetDataBuilder.ForObject);
+            enemyData = new GridData<AssetData>(editor.CurrentAsset.EnemyGrid, paletteEnemy, AssetType.Enemy, AssetDataBuilder.ForEnemy);
+
             grid.LoadWithAssets(room.TileGrid, tiles, 0);
             grid.LoadWithAssets(room.DecorGrid, decor, 1);
             grid.LoadWithAssets(room.ObjectGrid, objects, 2);
             grid.LoadWithAssets(room.EnemyGrid, packEditor.CurrentPack.Enemies, 3);
             
-            propertyColumn.ConstructSettings(editor.CurrentAsset);
+            toolbox.Refresh();
+            
+            SwitchLayer(0);
+            StartCoroutine(DelayCoroutine());
+            IEnumerator DelayCoroutine()
+            {
+                yield return null;
+                paletteTile.Select(0);
+                propertyColumn.ConstructSettings(editor.CurrentAsset);
+            }
         }
         
         /// <summary>
@@ -210,7 +224,7 @@ namespace Rogium.Editors.Rooms
         /// <param name="asset">The asset to use.</param>
         private void SelectedValue(AssetData data, AssetType type, IAsset asset = null)
         {
-            if (data.ID == EditorConstants.EmptyAssetID)
+            if (data.ID == EditorDefaults.EmptyAssetID)
             {
                 propertyColumn.ConstructEmpty();
                 return;
@@ -237,13 +251,33 @@ namespace Rogium.Editors.Rooms
             propertyColumn.ConstructAsset(asset, type);
         }
 
-        private IEnumerator SwitchLayer0Delay(float delay)
-        {
-            yield return new WaitForSeconds(delay);
-            SwitchLayer(0);
-            paletteTile.Select(0);
-        }
+        public ToolBox<AssetData> Toolbox { get => toolbox; }
+        public ObjectGrid<AssetData> GetCurrentGridCopy => new(currentData.Grid);
+        public Sprite CurrentGridSprite => grid.ActiveLayerSprite;
 
-        public ToolBox<AssetData> Toolbox { get => toolbox; } 
+        [Serializable]
+        public struct CursorChangerLayersInfo
+        {
+            public CursorChangerToolbox cursorChangerTile;
+            public CursorChangerToolbox cursorChangerDecor;
+            public CursorChangerToolbox cursorChangerObject;
+            public CursorChangerToolbox cursorChangerEnemy;
+            
+            public void SubscribeTo(ToolBox<AssetData> toolBox)
+            {
+                toolBox.OnSwitchTool += cursorChangerTile.UpdateCursor;
+                toolBox.OnSwitchTool += cursorChangerDecor.UpdateCursor;
+                toolBox.OnSwitchTool += cursorChangerObject.UpdateCursor;
+                toolBox.OnSwitchTool += cursorChangerEnemy.UpdateCursor;
+            }
+            
+            public void UnsubscribeFrom(ToolBox<AssetData> toolBox)
+            {
+                toolBox.OnSwitchTool -= cursorChangerTile.UpdateCursor;
+                toolBox.OnSwitchTool -= cursorChangerDecor.UpdateCursor;
+                toolBox.OnSwitchTool -= cursorChangerObject.UpdateCursor;
+                toolBox.OnSwitchTool -= cursorChangerEnemy.UpdateCursor;
+            }
+        }
     }
 }

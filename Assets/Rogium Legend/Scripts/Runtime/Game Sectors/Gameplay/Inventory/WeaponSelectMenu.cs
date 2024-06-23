@@ -96,7 +96,7 @@ namespace Rogium.Gameplay.Inventory
         {
             SnapToTarget();
             ui.ui.SetActive(true);
-            GameplayOverseerMono.GetInstance().EnableUI();
+            GameplayOverseerMono.GetInstance().Pause();
             inputSystem.DisableInput(this, inputStartDelay);
             
             OnOpen?.Invoke();
@@ -108,7 +108,7 @@ namespace Rogium.Gameplay.Inventory
             IEnumerator DelayCoroutine()
             {
                 OnClose?.Invoke();
-                GameplayOverseerMono.GetInstance().DisableUI();
+                GameplayOverseerMono.GetInstance().Resume();
                 inputSystem.DisableInput(this, hideDelay);
                 
                 yield return new WaitForSecondsRealtime(hideDelay);

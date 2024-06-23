@@ -16,7 +16,7 @@ namespace Rogium.Editors.Core
 
         public AssetData()
         {
-            id = EditorConstants.EmptyAssetID;
+            id = EditorDefaults.EmptyAssetID;
             parameters = ParameterInfoConstants.ForEmpty;
         }
         
@@ -28,7 +28,7 @@ namespace Rogium.Editors.Core
         
         public AssetData(ParameterInfo parameters)
         {
-            id = EditorConstants.EmptyAssetID;
+            id = EditorDefaults.EmptyAssetID;
             this.parameters = parameters;
         }
         
@@ -72,7 +72,7 @@ namespace Rogium.Editors.Core
         #endregion
         
         public override bool Equals(object obj) => obj is AssetData other && id == other.ID && parameters.Equals(other.Parameters);
-        public override int GetHashCode() => (string.IsNullOrEmpty(id)) ? EditorConstants.EmptyAssetID.GetHashCode() : id.GetHashCode();
+        public override int GetHashCode() => (string.IsNullOrEmpty(id)) ? EditorDefaults.EmptyAssetID.GetHashCode() : id.GetHashCode();
 
         public int CompareTo(object obj)
         {
