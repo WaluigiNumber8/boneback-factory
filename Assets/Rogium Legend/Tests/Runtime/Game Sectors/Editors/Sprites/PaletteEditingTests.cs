@@ -25,6 +25,7 @@ namespace Rogium.Tests.Editors.Sprites
             yield return null;
             MenuLoader.PrepareSpriteEditor();
             spriteEditor = SpriteEditorOverseerMono.GetInstance();
+            yield return null;
         }
 
         [UnityTest]
@@ -40,7 +41,7 @@ namespace Rogium.Tests.Editors.Sprites
         [UnityTest]
         public IEnumerator Should_ChangeColorSlotColor_WhenColorPickerColorChanged()
         {
-            UpdateColorSlotColor(Color.blue);
+            UpdateColorSlot(Color.blue);
             yield return null;
             
             Assert.That(spriteEditor.Palette.GetSlot(0).CurrentColor, Is.EqualTo(Color.blue));
@@ -49,7 +50,7 @@ namespace Rogium.Tests.Editors.Sprites
         [UnityTest]
         public IEnumerator Should_UpdateCurrentBrushColor_WhenChangedColorOfCurrentColorSlot()
         {
-            UpdateColorSlotColor(Color.blue);
+            UpdateColorSlot(Color.blue);
             yield return null;
             
             Assert.That(spriteEditor.CurrentBrushColor, Is.EqualTo(Color.blue));
@@ -60,7 +61,7 @@ namespace Rogium.Tests.Editors.Sprites
         {
             ActionHistorySystem.ClearHistory();
             
-            UpdateColorSlotColor(Color.blue);
+            UpdateColorSlot(Color.blue);
             ActionHistorySystem.ForceEndGrouping();
             yield return null;
 
@@ -70,10 +71,10 @@ namespace Rogium.Tests.Editors.Sprites
         [UnityTest]
         public IEnumerator Should_RevertColorSlotChange_WhenUndoIsCalled()
         {
-            UpdateColorSlotColor(Color.blue);
+            UpdateColorSlot(Color.blue);
             ActionHistorySystem.ForceEndGrouping();
             yield return null;
-            UpdateColorSlotColor(Color.red);
+            UpdateColorSlot(Color.red);
             ActionHistorySystem.ForceEndGrouping();
             yield return null;
             ActionHistorySystem.UndoLast();
@@ -81,7 +82,14 @@ namespace Rogium.Tests.Editors.Sprites
             Assert.That(spriteEditor.Palette.GetSlot(0).CurrentColor, Is.EqualTo(Color.blue));
         }
 
-        //TODO Add test if ColorSlot current color is set to the color that is loaded into it on palette refresh.
-        
+        [Test]
+        public void Should_ApplyColorChangeToGrid_WhenColorSlotColorChanged()
+        {
+            UpdateColorSlot(Color.blue);
+            spriteEditor.UpdateGridCell(new Vector2Int(0, 0));
+            UpdateColorSlot(Color.red);
+            
+            Assert.That(spriteEditor.CurrentGridSprite.texture.GetPixel(0, 0), Is.EqualTo(Color.red));
+        }
     }
 }

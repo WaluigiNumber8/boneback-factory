@@ -27,10 +27,11 @@ namespace Rogium.Editors.Sprites
         private PalettePicker palettePicker;
         private ToolBox<int> toolbox;
 
-        private SpriteAsset currentSprite;
+        private SpriteAsset currentSpriteAsset;
         private IColorSlot currentSlot;
         private PaletteAsset currentPaletteAsset;
         private PaletteAsset lastPaletteAsset;
+        private int spriteSize;
 
         protected override void Awake()
         {
@@ -38,6 +39,7 @@ namespace Rogium.Editors.Sprites
             editor = SpriteEditorOverseer.Instance;
             palettePicker = new PalettePicker();
             toolbox = new ToolBox<int>(grid, grid.UpdateCell, EditorDefaults.EmptyColorID);
+            spriteSize = EditorDefaults.Instance.SpriteSize;
         }
 
         private void OnEnable()
@@ -46,6 +48,7 @@ namespace Rogium.Editors.Sprites
             grid.OnClick += UpdateGridCell;
             grid.OnClickAlternative += EraseCell;
             palette.OnSelect += UpdateCurrentColor;
+            ColorSlot.OnChangeColor += RedrawColorOnGrid;
             
             toolbox.OnChangePaletteValue += PickFrom;
             toolbox.OnSwitchTool += toolBoxUIManager.SwitchTool;
@@ -58,6 +61,7 @@ namespace Rogium.Editors.Sprites
             grid.OnClick -= UpdateGridCell;
             grid.OnClickAlternative -= EraseCell;
             palette.OnSelect -= UpdateCurrentColor;
+            ColorSlot.OnChangeColor -= RedrawColorOnGrid;
             
             toolbox.OnChangePaletteValue -= PickFrom;
             toolbox.OnSwitchTool -= toolBoxUIManager.SwitchTool;
@@ -71,7 +75,7 @@ namespace Rogium.Editors.Sprites
         public void UpdateGridCell(Vector2Int position)
         {
             if (currentSlot == null) return;
-            Sprite brushSprite = RedRatBuilder.GenerateSprite(currentSlot.CurrentColor, EditorDefaults.Instance.SpriteSize, EditorDefaults.Instance.SpriteSize, EditorDefaults.Instance.SpriteSize);
+            Sprite brushSprite = RedRatBuilder.GenerateSprite(currentSlot.CurrentColor, spriteSize, spriteSize, spriteSize);
             toolbox.ApplyCurrent(editor.CurrentAsset.SpriteData, position, currentSlot.Index, brushSprite, grid.ActiveLayer);
         }
 
@@ -84,7 +88,7 @@ namespace Rogium.Editors.Sprites
             {
                 currentPaletteAsset = (PaletteAsset) asset;
                 ActionHistorySystem.AddAndExecute(new SwitchSpriteEditorPaletteAction(currentPaletteAsset, lastPaletteAsset, SwitchPalette));
-                currentSprite.UpdatePreferredPaletteID(currentPaletteAsset.ID);
+                currentSpriteAsset.UpdatePreferredPaletteID(currentPaletteAsset.ID);
                 lastPaletteAsset = currentPaletteAsset;
             }, lastPaletteAsset);
         }
@@ -97,7 +101,7 @@ namespace Rogium.Editors.Sprites
         {
             currentPaletteAsset = asset;
             lastPaletteAsset = asset;
-            grid.LoadWithColors(currentSprite.SpriteData, asset.Colors);
+            grid.LoadWithColors(currentSpriteAsset.SpriteData, asset.Colors);
             palette.Fill(asset.Colors);
             palette.Select(0);
         }
@@ -131,7 +135,7 @@ namespace Rogium.Editors.Sprites
         private void PrepareEditor(SpriteAsset sprite)
         {
             lastPaletteAsset = palettePicker.GrabBasedOn(sprite.PreferredPaletteID);
-            currentSprite = sprite;
+            currentSpriteAsset = sprite;
             
             toolbox.Refresh();
             SwitchPalette(lastPaletteAsset);
@@ -159,8 +163,21 @@ namespace Rogium.Editors.Sprites
         /// <param name="position">The cell to erase.</param>
         private void EraseCell(Vector2Int position)
         {
-            Sprite brushSprite = RedRatBuilder.GenerateSprite(EditorDefaults.Instance.EmptyGridColor, EditorDefaults.Instance.SpriteSize, EditorDefaults.Instance.SpriteSize, EditorDefaults.Instance.SpriteSize);
+            Sprite brushSprite = RedRatBuilder.GenerateSprite(EditorDefaults.Instance.EmptyGridColor, spriteSize, spriteSize, spriteSize);
             toolbox.ApplySpecific(ToolType.Eraser, editor.CurrentAsset.SpriteData, position, currentSlot.Index, brushSprite, grid.ActiveLayer);
+        }
+
+        private void RedrawColorOnGrid(int slotIndex)
+        {
+            Sprite brushSprite = RedRatBuilder.GenerateSprite(palette.GetSlot(slotIndex).CurrentColor, spriteSize, spriteSize, spriteSize);
+            for (int x = 0; x < currentSpriteAsset.SpriteData.Width; x++)
+            {
+                for (int y = 0; y < currentSpriteAsset.SpriteData.Height; y++)
+                {
+                    if (currentSpriteAsset.SpriteData.GetValue(x, y) != slotIndex) continue;
+                    toolbox.ApplySpecific(ToolType.Brush, editor.CurrentAsset.SpriteData, new Vector2Int(x, y), slotIndex, brushSprite, grid.ActiveLayer);
+                }
+            }
         }
         
         public PaletteAsset CurrentPaletteAsset { get => currentPaletteAsset; }

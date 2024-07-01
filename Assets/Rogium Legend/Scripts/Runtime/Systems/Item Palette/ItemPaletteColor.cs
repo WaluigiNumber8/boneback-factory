@@ -21,7 +21,6 @@ namespace Rogium.Systems.ItemPalette
         [SerializeField] private TextMeshProUGUI emptyText;
 
         private MenuFiller<ColorSlot> menuFiller;
-
         private IList<ColorSlot> slots;
 
         private void Awake()
@@ -30,8 +29,8 @@ namespace Rogium.Systems.ItemPalette
             menuFiller = new MenuFiller<ColorSlot>();
         }
 
-        private void OnEnable() => ColorSlot.OnSelectedAny += WhenSelected;
-        private void OnDisable() => ColorSlot.OnSelectedAny -= WhenSelected;
+        private void OnEnable() => ColorSlot.OnSelectedAny += NotifyListeners;
+        private void OnDisable() => ColorSlot.OnSelectedAny -= NotifyListeners;
 
         /// <summary>
         /// Spawns slots and fills them with information.
@@ -78,7 +77,7 @@ namespace Rogium.Systems.ItemPalette
         /// Fires an event when selected.
         /// </summary>
         /// <param name="index">The index of the slot to select.</param>
-        private void WhenSelected(int index)
+        private void NotifyListeners(int index)
         {
             SafetyNet.EnsureIndexWithingCollectionRange(index, slots, "List of Slots");
             OnSelect?.Invoke(slots[index]);

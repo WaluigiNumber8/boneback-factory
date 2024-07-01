@@ -14,14 +14,15 @@ namespace Rogium.Editors.Palettes
     public class ColorSlot : ToggleableIndexBase, IColorSlot, IPointerClickHandler
     {
         public static event Action<int> OnSelectedAny;
+        public static event Action<int> OnChangeColor;
         
         [SerializeField] private UIInfo ui;
         
         private Color currentColor;
         private Color lastColor;
 
-        private void OnEnable() => toggle.onValueChanged.AddListener(WhenSelected);
-        private void OnDisable() => toggle.onValueChanged.RemoveListener(WhenSelected);
+        private void OnEnable() => toggle.onValueChanged.AddListener(NotifyListeners);
+        private void OnDisable() => toggle.onValueChanged.RemoveListener(NotifyListeners);
         
         public void OnPointerClick(PointerEventData eventData)
         {
@@ -29,7 +30,7 @@ namespace Rogium.Editors.Palettes
             ModalWindowBuilder.GetInstance().OpenColorPickerWindow(color =>
             {
                 ActionHistorySystem.AddAndExecute(new UpdateColorSlotAction(this, color, lastColor));
-                WhenSelected(toggle.isOn); // If is selected, update all listeners.
+                OnChangeColor?.Invoke(index);
             }, currentColor);
         }
         
@@ -55,11 +56,13 @@ namespace Rogium.Editors.Palettes
         /// <summary>
         /// Fires the select event when the toggle was clicked.
         /// </summary>
-        private void WhenSelected(bool value)
+        private void NotifyListeners(bool value)
         {
             if (!value) return;
             OnSelectedAny?.Invoke(index);
         }
+
+        public override string ToString() => $"Color Slot {index} - {currentColor}";
 
         public Color CurrentColor { get => currentColor; }
         public Image ColorImage { get => ui.colorImg; }
