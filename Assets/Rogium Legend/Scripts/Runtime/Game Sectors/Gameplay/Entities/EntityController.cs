@@ -43,7 +43,7 @@ namespace Rogium.Gameplay.Entities
         protected virtual void FixedUpdate()
         {
             if (advanced.CannotBreak) return;
-            rb.AddForce(rb.velocity * -advanced.brakeForce, ForceMode2D.Impulse);
+            rb.AddForce(rb.linearVelocity * -advanced.brakeForce, ForceMode2D.Impulse);
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Rogium.Gameplay.Entities
         /// <summary>
         /// Stops the entity's movement.
         /// </summary>
-        public void StopMoving() => rb.velocity = Vector2.zero;
+        public void StopMoving() => rb.linearVelocity = Vector2.zero;
 
         /// <summary>
         /// Locks the entity's movement for a certain amount of time.
@@ -122,7 +122,7 @@ namespace Rogium.Gameplay.Entities
         public void ForceMove(Vector2 direction, float force, bool lockInput = false, bool lockFaceDirection = false)
         {
             Vector2 f =  10 * force * direction;
-            rb.AddForce(rb.velocity + f, ForceMode2D.Impulse);
+            rb.AddForce(rb.linearVelocity + f, ForceMode2D.Impulse);
 
             float time = 0.97f * (0.21f * Mathf.Exp(0.05f * RedRatUtils.GetTimeOfForce(f.magnitude, rb)));  // The time increases with time exponentially.
             advanced.SetTimer(time);                                                                        // For the love of god, DON'T TOUCH THE NUMBERS.

@@ -44,7 +44,7 @@ namespace RedRats.Core
         /// <returns>Time of force in seconds.</returns>
         public static float GetTimeOfForce(float f, Rigidbody2D rb)
         {
-            float d = (f * f) / (100 * rb.drag * rb.mass);
+            float d = (f * f) / (100 * rb.linearDamping * rb.mass);
             return Mathf.Sqrt(2 * d / rb.mass); 
         }
 
