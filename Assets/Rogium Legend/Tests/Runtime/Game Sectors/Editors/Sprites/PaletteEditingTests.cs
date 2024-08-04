@@ -25,6 +25,7 @@ namespace Rogium.Tests.Editors.Sprites
             yield return null;
             MenuLoader.PrepareSpriteEditor();
             spriteEditor = SpriteEditorOverseerMono.GetInstance();
+            ActionHistorySystem.ClearHistory();
             yield return null;
         }
 
@@ -59,8 +60,6 @@ namespace Rogium.Tests.Editors.Sprites
         [UnityTest]
         public IEnumerator Should_AddSlotColorChangeToActionHistory()
         {
-            ActionHistorySystem.ClearHistory();
-            
             UpdateColorSlot(Color.blue);
             ActionHistorySystem.ForceEndGrouping();
             yield return null;
@@ -90,6 +89,17 @@ namespace Rogium.Tests.Editors.Sprites
             UpdateColorSlot(Color.red);
             
             Assert.That(spriteEditor.CurrentGridSprite.texture.GetPixel(0, 0), Is.EqualTo(Color.red));
+        }
+
+        [Test]
+        public void Should_RevertGridColorChange_WhenUndoIsCalled()
+        {
+            UpdateColorSlot(Color.blue);
+            spriteEditor.UpdateGridCell(new Vector2Int(0, 0));
+            UpdateColorSlot(Color.red);
+            ActionHistorySystem.UndoLast();
+            
+            Assert.That(spriteEditor.CurrentGridSprite.texture.GetPixel(0, 0), Is.EqualTo(Color.blue));
         }
     }
 }

@@ -171,14 +171,13 @@ namespace Rogium.Editors.Sprites
         {
             //Replace the value in the entire grid if it is the same as the one selected.
             ObjectGrid<int> dataGrid = currentSpriteAsset.SpriteData;
-            int valueToOverride = currentSlot.Index;
-            Sprite colorSprite = RedRatBuilder.GenerateSprite(currentSlot.CurrentColor, spriteSize, spriteSize, spriteSize);
+            Sprite colorSprite = RedRatBuilder.GenerateSprite(palette.GetSlot(slotIndex).CurrentColor, spriteSize, spriteSize, spriteSize);
             
             for (int x = 0; x < dataGrid.Width; x++)
             {
                 for (int y = 0; y < dataGrid.Height; y++)
                 {
-                    if (dataGrid.GetAt(x, y).CompareTo(valueToOverride) != 0) continue;
+                    if (dataGrid.GetAt(x, y).CompareTo(slotIndex) != 0) continue;
                     grid.UpdateCell(new Vector2Int(x, y), colorSprite);
                 }
             }

@@ -28,5 +28,6 @@ namespace Rogium.Systems.ActionHistory
         public object AffectedConstruct { get => slot; }
         public object Value { get => value; }
         public object LastValue { get => lastValue; }
+        public override string ToString() => $"{slot.name}: {lastValue} -> {value}";
     }
 }

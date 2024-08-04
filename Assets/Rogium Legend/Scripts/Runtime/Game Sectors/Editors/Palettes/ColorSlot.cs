@@ -27,11 +27,7 @@ namespace Rogium.Editors.Palettes
         public void OnPointerClick(PointerEventData eventData)
         {
             if (eventData.button != PointerEventData.InputButton.Right) return;
-            ModalWindowBuilder.GetInstance().OpenColorPickerWindow(color =>
-            {
-                ActionHistorySystem.AddAndExecute(new UpdateColorSlotAction(this, color, lastColor));
-                OnChangeColor?.Invoke(index);
-            }, currentColor);
+            ModalWindowBuilder.GetInstance().OpenColorPickerWindow(color => ActionHistorySystem.AddAndExecute(new UpdateColorSlotAction(this, color, lastColor)), currentColor);
         }
         
         /// <summary>
@@ -41,8 +37,8 @@ namespace Rogium.Editors.Palettes
         /// <param name="index">The index of the color.</param>
         public void Construct(Color color, int index)
         {
+            this.currentColor = color;
             this.index = index;
-            this.lastColor = color;
             UpdateColor(color);
         }
 
@@ -51,6 +47,7 @@ namespace Rogium.Editors.Palettes
             lastColor = currentColor;
             currentColor = color;
             ui.colorImg.color = currentColor;
+            OnChangeColor?.Invoke(index);
         }
         
         /// <summary>
