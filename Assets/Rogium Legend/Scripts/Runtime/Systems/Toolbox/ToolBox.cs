@@ -22,7 +22,6 @@ namespace Rogium.Systems.Toolbox
         private readonly BrushTool<T> toolBrush;
         private readonly BrushTool<T> toolEraser;
         private readonly BucketTool<T> toolBucket;
-        private readonly GlobalBucketTool<T> toolBucketGlobal;
         private readonly PickerTool<T> toolPicker;
 
         private readonly Action<int, Vector2Int, Sprite> whenGraphicDraw;
@@ -40,7 +39,6 @@ namespace Rogium.Systems.Toolbox
             toolBrush = new BrushTool<T>(WhenDrawOnUIGrid, this.UIGrid.Apply);
             toolEraser = new BrushTool<T>(WhenDrawOnUIGrid, this.UIGrid.Apply);
             toolBucket = new BucketTool<T>(WhenDrawOnUIGrid, this.UIGrid.Apply);
-            toolBucketGlobal = new GlobalBucketTool<T>(WhenDrawOnUIGrid, this.UIGrid.Apply);
             toolPicker = new PickerTool<T>(WhenDrawOnUIGrid, this.UIGrid.Apply);
             
 
@@ -88,7 +86,6 @@ namespace Rogium.Systems.Toolbox
                 ToolType.Eraser => toolEraser,
                 ToolType.Fill => toolBucket,
                 ToolType.ColorPicker => toolPicker,
-                ToolType.FillGlobal => toolBucketGlobal,
                 _ => throw new InvalidOperationException("Unknown or not yet supported Tool Type.")
             };
             currentToolType = tool;
@@ -117,7 +114,6 @@ namespace Rogium.Systems.Toolbox
                 ToolType.Eraser => toolEraser,
                 ToolType.Fill => toolBucket,
                 ToolType.ColorPicker => toolPicker,
-                ToolType.FillGlobal => toolBucketGlobal,
                 _ => throw new InvalidOperationException("Unknown or not yet supported Tool Type.")
             };
             return tool;

@@ -8,6 +8,5 @@
         Fill = 2,
         ColorPicker = 3,
         Selection = 4,
-        FillGlobal= 99,
     }
 }

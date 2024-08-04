@@ -47,7 +47,7 @@ namespace Rogium.Editors.Palettes
             lastColor = currentColor;
             currentColor = color;
             ui.colorImg.color = currentColor;
-            OnChangeColor?.Invoke(index);
+            if (currentColor != lastColor) OnChangeColor?.Invoke(index);
         }
         
         /// <summary>
