@@ -52,7 +52,7 @@ namespace Rogium.Systems.GridSystem
             {
                 for (int x = 0; x < size.x; x++)
                 {
-                    int id = indexGrid.GetValue(x, y);
+                    int id = indexGrid.GetAt(x, y);
                     
                     if (id == EditorDefaults.EmptyColorID) continue;
 

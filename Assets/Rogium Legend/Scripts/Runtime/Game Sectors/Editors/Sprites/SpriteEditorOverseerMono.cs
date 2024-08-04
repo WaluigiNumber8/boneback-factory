@@ -164,20 +164,25 @@ namespace Rogium.Editors.Sprites
         private void EraseCell(Vector2Int position)
         {
             Sprite brushSprite = RedRatBuilder.GenerateSprite(EditorDefaults.Instance.EmptyGridColor, spriteSize, spriteSize, spriteSize);
-            toolbox.ApplySpecific(ToolType.Eraser, editor.CurrentAsset.SpriteData, position, currentSlot.Index, brushSprite, grid.ActiveLayer);
+            toolbox.ApplySpecific(ToolType.Eraser, currentSpriteAsset.SpriteData, position, currentSlot.Index, brushSprite, grid.ActiveLayer);
         }
 
         private void RedrawColorOnGrid(int slotIndex)
         {
-            Sprite brushSprite = RedRatBuilder.GenerateSprite(palette.GetSlot(slotIndex).CurrentColor, spriteSize, spriteSize, spriteSize);
-            for (int x = 0; x < currentSpriteAsset.SpriteData.Width; x++)
+            //Replace the value in the entire grid if it is the same as the one selected.
+            ObjectGrid<int> dataGrid = currentSpriteAsset.SpriteData;
+            int valueToOverride = currentSlot.Index;
+            Sprite colorSprite = RedRatBuilder.GenerateSprite(currentSlot.CurrentColor, spriteSize, spriteSize, spriteSize);
+            
+            for (int x = 0; x < dataGrid.Width; x++)
             {
-                for (int y = 0; y < currentSpriteAsset.SpriteData.Height; y++)
+                for (int y = 0; y < dataGrid.Height; y++)
                 {
-                    if (currentSpriteAsset.SpriteData.GetValue(x, y) != slotIndex) continue;
-                    toolbox.ApplySpecific(ToolType.Brush, editor.CurrentAsset.SpriteData, new Vector2Int(x, y), slotIndex, brushSprite, grid.ActiveLayer);
+                    if (dataGrid.GetAt(x, y).CompareTo(valueToOverride) != 0) continue;
+                    grid.UpdateCell(new Vector2Int(x, y), colorSprite);
                 }
             }
+            grid.Apply(grid.ActiveLayer);
         }
         
         public PaletteAsset CurrentPaletteAsset { get => currentPaletteAsset; }

@@ -16,7 +16,7 @@ namespace Rogium.Systems.Toolbox
         
         public override void ApplyEffect(ObjectGrid<T> grid, Vector2Int position, T value, Sprite graphicValue, int layer)
         {
-            T valueFromGrid = grid.GetValue(position);
+            T valueFromGrid = grid.GetAt(position);
             OnPickValue?.Invoke(valueFromGrid);
         }
 

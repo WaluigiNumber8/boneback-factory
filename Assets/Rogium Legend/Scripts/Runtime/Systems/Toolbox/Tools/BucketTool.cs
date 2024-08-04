@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Rogium.Systems.Toolbox
 {
     /// <summary>
-    /// The Bucket Fill Tool, that fills an area of cells.
+    /// The Bucket Fill Tool, that fills a local area of cells.
     /// </summary>
     public class BucketTool<T> : ToolBase<T> where T : IComparable
     {
@@ -61,7 +61,7 @@ namespace Rogium.Systems.Toolbox
             if (positionsToDraw == null || positionsToDraw.Count == 0) return;
             foreach (Vector2Int pos in positionsToDraw)
             {
-                grid.SetValue(pos, value);
+                grid.SetTo(pos, value);
                 whenGraphicDrawn?.Invoke(layer, pos, graphicValue);
             }
             whenEffectFinished?.Invoke(layer);
@@ -78,7 +78,7 @@ namespace Rogium.Systems.Toolbox
             CheckCellIsCritical(pos + Vector2Int.down);
             
             //Set value to cell.
-            grid.SetValue(pos, currentValue);
+            grid.SetTo(pos, currentValue);
             whenGraphicDrawn?.Invoke(layerIndex, pos, graphicValue);
             lastProcessedPositions.Add(pos);
             
@@ -142,7 +142,7 @@ namespace Rogium.Systems.Toolbox
         /// </summary>
         /// <param name="pos"></param>
         /// <returns></returns>
-        private T GetFrom(Vector2Int pos) => grid.GetValue(pos);
+        private T GetFrom(Vector2Int pos) => grid.GetAt(pos);
         
         public override string ToString() => "Bucket Tool";
         
