@@ -21,7 +21,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         protected readonly UIPropertyBuilder b;
         protected readonly PackEditorOverseer editor;
         protected readonly ExternalLibraryOverseer lib;
-        protected readonly AssetSelectionMenu selectionMenu;
+        protected readonly AssetSelectionMenuOverseerMono selectionMenu;
         protected AssetBase editedAssetBase;
 
         private readonly ModalWindowBuilder wb;
@@ -31,7 +31,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             b = UIPropertyBuilder.GetInstance();
             lib = ExternalLibraryOverseer.Instance;
             editor = PackEditorOverseer.Instance;
-            selectionMenu = GASContainer.GetInstance().AssetSelection;
+            selectionMenu = AssetSelectionMenuOverseerMono.GetInstance();
             
             wb = ModalWindowBuilder.GetInstance();
         }

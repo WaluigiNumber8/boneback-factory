@@ -1,17 +1,6 @@
 using System.Collections;
-using NSubstitute;
 using NUnit.Framework;
-using Rogium.Editors.Campaign;
-using Rogium.Editors.Enemies;
-using Rogium.Editors.Palettes;
-using Rogium.Editors.Projectiles;
-using Rogium.Editors.Rooms;
 using Rogium.Editors.Sprites;
-using Rogium.Editors.Tiles;
-using Rogium.Editors.Weapons;
-using Rogium.ExternalStorage;
-using Rogium.ExternalStorage.Serialization;
-using Rogium.Options.Core;
 using Rogium.Systems.ActionHistory;
 using Rogium.Systems.GASExtension;
 using Rogium.Tests.Core;
@@ -32,8 +21,11 @@ namespace Rogium.Tests.Editors.Sprites
         private SpriteEditorOverseerMono spriteEditor;
         public override IEnumerator Setup()
         {
+            yield return null;
             yield return base.Setup();
             OverseerLoader.LoadModalWindowBuilder();
+            MenuLoader.PrepareSelectionMenu();
+            
             yield return null;
             MenuLoader.PrepareSpriteEditor();
             spriteEditor = SpriteEditorOverseerMono.GetInstance();

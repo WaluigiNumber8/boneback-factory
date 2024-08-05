@@ -1,4 +1,5 @@
-﻿using Rogium.Core;
+﻿using RedRats.Core;
+using Rogium.Core;
 using Rogium.Editors.Core;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,7 +9,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection
     /// <summary>
     /// Controls the Asset Selection Menu.
     /// </summary>
-    public class AssetSelectionMenu : MonoBehaviour
+    public class AssetSelectionMenuOverseerMono : MonoSingleton<AssetSelectionMenuOverseerMono>
     {
         [SerializeField] private AssetSelector assetSelector;
         [SerializeField] private ToggleGroup toggleGroup;
