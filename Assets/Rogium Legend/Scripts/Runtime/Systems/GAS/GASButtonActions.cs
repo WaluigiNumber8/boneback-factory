@@ -589,7 +589,7 @@ namespace Rogium.Systems.GASExtension
             {
                 ModalWindowData data = new ModalWindowData.Builder()
                     .WithLayout(ModalWindowLayoutType.Message)
-                    .WithMessage("The palette was edited. Save changes?")
+                    .WithMessage("The palette was edited. Save it's changes?")
                     .WithAcceptButton("Override", SaveChangesSpriteOverride)
                     .WithSpecialButton("Save as New")
                     .WithDenyButton("No Save")
