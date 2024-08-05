@@ -8,7 +8,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     /// <summary>
     /// Constructor for the Weapon Properties Modal Window.
     /// </summary>
-    public class ModalWindowPropertyBuilderWeapon : ModalWindowPropertyBuilder
+    public class ModalWindowPropertyBuilderWeapon : ModalWindowPropertyBuilderBase
     {
         private readonly WeaponEditorOverseer weaponEditor;
 

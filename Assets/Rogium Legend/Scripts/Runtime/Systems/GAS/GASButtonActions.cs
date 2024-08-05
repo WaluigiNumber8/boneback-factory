@@ -292,8 +292,13 @@ namespace Rogium.Systems.GASExtension
         public static void DeletePack(int packIndex)
         {
             storedIndex = packIndex;
-            MessageWindowInfo data = new("Do you really want to remove this pack?","Yes","No", DeletePackAccept);
-            ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+            ModalWindowData data = new ModalWindowData.Builder()
+                .WithLayout(ModalWindowLayoutType.Message)
+                .WithMessage("Do you really want to remove this pack?")
+                .WithAcceptButton("Yes", DeletePackAccept)
+                .WithDenyButton("No")
+                .Build();
+            ModalWindowBuilder.GetInstance().OpenWindow(data);
         }
         private static void DeletePackAccept()
         {
@@ -306,8 +311,13 @@ namespace Rogium.Systems.GASExtension
         public static void DeleteCampaign(int campaignIndex)
         {
             storedIndex = campaignIndex;
-            MessageWindowInfo data = new("Do you really want to remove this campaign?","Yes","No", DeleteCampaignAccept);
-            ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+            ModalWindowData data = new ModalWindowData.Builder()
+                .WithLayout(ModalWindowLayoutType.Message)
+                .WithMessage("Do you really want to remove this campaign?")
+                .WithAcceptButton("Yes", DeleteCampaignAccept)
+                .WithDenyButton("No")
+                .Build();
+            ModalWindowBuilder.GetInstance().OpenWindow(data);
         }
         
         private static void DeleteCampaignAccept()
@@ -321,8 +331,13 @@ namespace Rogium.Systems.GASExtension
         public static void DeletePalette(int assetIndex)
         {
             storedIndex = assetIndex;
-            MessageWindowInfo data = new("Do you really want to remove this palette?", "Yes", "No", DeletePaletteAccept);
-            ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+            ModalWindowData data = new ModalWindowData.Builder()
+                .WithLayout(ModalWindowLayoutType.Message)
+                .WithMessage("Do you really want to remove this palette?")
+                .WithAcceptButton("Yes", DeletePaletteAccept)
+                .WithDenyButton("No")
+                .Build();
+            ModalWindowBuilder.GetInstance().OpenWindow(data);
         }
         private static void DeletePaletteAccept()
         {
@@ -336,8 +351,13 @@ namespace Rogium.Systems.GASExtension
         public static void DeleteSprite(int assetIndex)
         {
             storedIndex = assetIndex;
-            MessageWindowInfo data = new("Do you really want to remove this sprite?", "Yes", "No", DeleteSpriteAccept);
-            ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+            ModalWindowData data = new ModalWindowData.Builder()
+                .WithLayout(ModalWindowLayoutType.Message)
+                .WithMessage("Do you really want to remove this sprite?")
+                .WithAcceptButton("Yes", DeleteSpriteAccept)
+                .WithDenyButton("No")
+                .Build();
+            ModalWindowBuilder.GetInstance().OpenWindow(data);
         }
         private static void DeleteSpriteAccept()
         {
@@ -351,8 +371,13 @@ namespace Rogium.Systems.GASExtension
         public static void DeleteWeapon(int assetIndex)
         {
             storedIndex = assetIndex;
-            MessageWindowInfo data = new("Do you really want to remove this weapon?", "Yes", "No", DeleteWeaponAccept);
-            ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+            ModalWindowData data = new ModalWindowData.Builder()
+                .WithLayout(ModalWindowLayoutType.Message)
+                .WithMessage("Do you really want to remove this weapon?")
+                .WithAcceptButton("Yes", DeleteWeaponAccept)
+                .WithDenyButton("No")
+                .Build();
+            ModalWindowBuilder.GetInstance().OpenWindow(data);
         }
         private static void DeleteWeaponAccept()
         {
@@ -366,8 +391,13 @@ namespace Rogium.Systems.GASExtension
         public static void DeleteProjectile(int assetIndex)
         {
             storedIndex = assetIndex;
-            MessageWindowInfo data = new("Do you really want to remove this projectile?", "Yes", "No", DeleteProjectileAccept);
-            ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+            ModalWindowData data = new ModalWindowData.Builder()
+                .WithLayout(ModalWindowLayoutType.Message)
+                .WithMessage("Do you really want to remove this projectile?")
+                .WithAcceptButton("Yes", DeleteProjectileAccept)
+                .WithDenyButton("No")
+                .Build();
+            ModalWindowBuilder.GetInstance().OpenWindow(data);
         }
         private static void DeleteProjectileAccept()
         {
@@ -381,8 +411,13 @@ namespace Rogium.Systems.GASExtension
         public static void DeleteEnemy(int assetIndex)
         {
             storedIndex = assetIndex;
-            MessageWindowInfo data = new("Do you really want to remove this enemy?", "Yes", "No", DeleteEnemyAccept);
-            ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+            ModalWindowData data = new ModalWindowData.Builder()
+                .WithLayout(ModalWindowLayoutType.Message)
+                .WithMessage("Do you really want to remove this enemy?")
+                .WithAcceptButton("Yes", DeleteEnemyAccept)
+                .WithDenyButton("No")
+                .Build();
+            ModalWindowBuilder.GetInstance().OpenWindow(data);
         }
         private static void DeleteEnemyAccept()
         {
@@ -396,8 +431,13 @@ namespace Rogium.Systems.GASExtension
         public static void DeleteRoom(int assetIndex)
         {
             storedIndex = assetIndex;
-            MessageWindowInfo data = new("Do you really want to remove this room?", "Yes", "No", DeleteRoomAccept);
-            ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+            ModalWindowData data = new ModalWindowData.Builder()
+                .WithLayout(ModalWindowLayoutType.Message)
+                .WithMessage("Do you really want to remove this room?")
+                .WithAcceptButton("Yes", DeleteRoomAccept)
+                .WithDenyButton("No")
+                .Build();
+            ModalWindowBuilder.GetInstance().OpenWindow(data);
         }
         private static void DeleteRoomAccept()
         {
@@ -410,8 +450,13 @@ namespace Rogium.Systems.GASExtension
         public static void DeleteTile(int assetIndex)
         {
             storedIndex = assetIndex;
-            MessageWindowInfo data = new("Do you really want to remove this tile?", "Yes", "No", DeleteTileAccept);
-            ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+            ModalWindowData data = new ModalWindowData.Builder()
+                .WithLayout(ModalWindowLayoutType.Message)
+                .WithMessage("Do you really want to remove this tile?")
+                .WithAcceptButton("Yes", DeleteTileAccept)
+                .WithDenyButton("No")
+                .Build();
+            ModalWindowBuilder.GetInstance().OpenWindow(data);
         }
         private static void DeleteTileAccept()
         {
@@ -508,10 +553,20 @@ namespace Rogium.Systems.GASExtension
         #region Save Editor Changes
         public static void SaveChangesCampaign()
         {
-            MessageWindowInfo data = (CampaignEditorOverseerMono.GetInstance().SelectionPicker.SelectionCount <= 0) 
-                ? new MessageWindowInfo("Cannot save the campaign without selecting any <style=\"CardAmount\"> packs</style>.", "OK")
-                : new("Combine selected packs into a Campaign?\n\nChanges made to any packs will not affect this campaign.","Combine","Cancel", SaveChangesCampaignConfirm);
-            ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+            bool noPacksSelected = (CampaignEditorOverseer.Instance.CurrentAsset.PackReferences.Count <= 0);
+            ModalWindowData noPackData = new ModalWindowData.Builder()
+                .WithLayout(ModalWindowLayoutType.Message)
+                .WithMessage("Cannot save the campaign without selecting any <style=\"CardAmount\"> packs</style>.")
+                .WithAcceptButton("OK")
+                .Build();
+            ModalWindowData data = (noPacksSelected) ? noPackData
+                : new ModalWindowData.Builder()
+                    .WithLayout(ModalWindowLayoutType.Message)
+                    .WithMessage("Combine selected packs into a Campaign?\n\nChanges made to any packs will not affect this campaign.")
+                    .WithAcceptButton("Combine", SaveChangesCampaignConfirm)
+                    .WithDenyButton("Cancel")
+                    .Build();
+            ModalWindowBuilder.GetInstance().OpenWindow(data);
         }
 
         private static void SaveChangesCampaignConfirm()
@@ -556,8 +611,12 @@ namespace Rogium.Systems.GASExtension
             RoomAsset currentAsset = RoomEditorOverseer.Instance.CurrentAsset;
             if (!currentAsset.ObjectGrid.Contains(AssetDataBuilder.ForObject(InternalLibraryOverseer.GetInstance().GetObjectByID("001"))) || !currentAsset.ObjectGrid.Contains(AssetDataBuilder.ForObject(InternalLibraryOverseer.GetInstance().GetObjectByID("002"))))
             {
-                MessageWindowInfo data = new("There must be at least 1 <style=\"ExitGate\"> Exit Gate</style>\n and <style=\"StartingPoint\">Starting Point</style> present.", "OK");
-                ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+                ModalWindowData data = new ModalWindowData.Builder()
+                    .WithLayout(ModalWindowLayoutType.Message)
+                    .WithMessage("There must be at least 1 <style=\"ExitGate\"> Exit Gate</style>\n and <style=\"StartingPoint\">Starting Point</style> present.")
+                    .WithAcceptButton("OK")
+                    .Build();
+                ModalWindowBuilder.GetInstance().OpenWindow(data);
                 return;
             }
             RoomEditorOverseer.Instance.CompleteEditing();
@@ -581,15 +640,21 @@ namespace Rogium.Systems.GASExtension
         public static void CancelChangesCampaign()
         {
             bool noPacksSelected = (CampaignEditorOverseer.Instance.CurrentAsset.PackReferences.Count <= 0);
-            MessageWindowInfo data = (noPacksSelected) ? new("This campaign contains no <style=\"CardAmount\"> packs</style>. Delete it?", "Delete it", "Cancel", () =>
-                                                            {
-                                                                DeleteCampaignAccept();
-                                                                OpenSelectionCampaign();
-                                                            })
-                                                        : new("Leave without saving changes?","Yes","No", CancelChangesCampaignConfirm);
-            if (!noPacksSelected && CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0)
+            ModalWindowData noPackData = new ModalWindowData.Builder()
+                .WithLayout(ModalWindowLayoutType.Message)
+                .WithMessage("This campaign contains no <style=\"CardAmount\"> packs</style>. Delete it?")
+                .WithAcceptButton("Delete it", () => { DeleteCampaignAccept(); OpenSelectionCampaign(); })
+                .WithDenyButton("Cancel")
+                .Build();
+            ModalWindowData data = (noPacksSelected) ? noPackData : new ModalWindowData.Builder().
+                WithLayout(ModalWindowLayoutType.Message)
+                .WithMessage("Leave without saving changes?")
+                .WithAcceptButton("Yes", CancelChangesCampaignConfirm)
+                .WithDenyButton("No")
+                .Build();
+            if (noPacksSelected || (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0))
             {
-                ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+                ModalWindowBuilder.GetInstance().OpenWindow(data);
             }
             else CancelChangesCampaignConfirm();
         }
@@ -604,8 +669,13 @@ namespace Rogium.Systems.GASExtension
         {
             if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0)
             {
-                MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", OpenSelectionPalette);
-                ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+                ModalWindowData data = new ModalWindowData.Builder()
+                    .WithLayout(ModalWindowLayoutType.Message)
+                    .WithMessage("Leave without saving changes?")
+                    .WithAcceptButton("Yes", OpenSelectionPalette)
+                    .WithDenyButton("No")
+                    .Build();
+                ModalWindowBuilder.GetInstance().OpenWindow(data);
             }
             else OpenSelectionPalette();
         }
@@ -614,8 +684,13 @@ namespace Rogium.Systems.GASExtension
         {
             if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0)
             {
-                MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", OpenSelectionSprite);
-                ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+                ModalWindowData data = new ModalWindowData.Builder()
+                    .WithLayout(ModalWindowLayoutType.Message)
+                    .WithMessage("Leave without saving changes?")
+                    .WithAcceptButton("Yes", OpenSelectionSprite)
+                    .WithDenyButton("No")
+                    .Build();
+                ModalWindowBuilder.GetInstance().OpenWindow(data);
             }
             else OpenSelectionSprite();
         }
@@ -624,8 +699,13 @@ namespace Rogium.Systems.GASExtension
         {
             if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0)
             {
-                MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", OpenSelectionWeapon);
-                ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+                ModalWindowData data = new ModalWindowData.Builder()
+                    .WithLayout(ModalWindowLayoutType.Message)
+                    .WithMessage("Leave without saving changes?")
+                    .WithAcceptButton("Yes", OpenSelectionWeapon)
+                    .WithDenyButton("No")
+                    .Build();
+                ModalWindowBuilder.GetInstance().OpenWindow(data);
             }
             else OpenSelectionWeapon();
         }
@@ -634,8 +714,13 @@ namespace Rogium.Systems.GASExtension
         {
             if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0)
             {
-                MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", OpenSelectionProjectile);
-                ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+                ModalWindowData data = new ModalWindowData.Builder()
+                    .WithLayout(ModalWindowLayoutType.Message)
+                    .WithMessage("Leave without saving changes?")
+                    .WithAcceptButton("Yes", OpenSelectionProjectile)
+                    .WithDenyButton("No")
+                    .Build();
+                ModalWindowBuilder.GetInstance().OpenWindow(data);
             }
             else OpenSelectionProjectile();
         }
@@ -644,8 +729,13 @@ namespace Rogium.Systems.GASExtension
         {
             if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0)
             {
-                MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", OpenSelectionEnemy);
-                ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+                ModalWindowData data = new ModalWindowData.Builder()
+                    .WithLayout(ModalWindowLayoutType.Message)
+                    .WithMessage("Leave without saving changes?")
+                    .WithAcceptButton("Yes", OpenSelectionEnemy)
+                    .WithDenyButton("No")
+                    .Build();
+                ModalWindowBuilder.GetInstance().OpenWindow(data);
             }
             else OpenSelectionEnemy();
         }
@@ -654,8 +744,13 @@ namespace Rogium.Systems.GASExtension
         {
             if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0)
             {
-                MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", OpenSelectionRoom);
-                ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+                ModalWindowData data = new ModalWindowData.Builder()
+                    .WithLayout(ModalWindowLayoutType.Message)
+                    .WithMessage("Leave without saving changes?")
+                    .WithAcceptButton("Yes", OpenSelectionRoom)
+                    .WithDenyButton("No")
+                    .Build();
+                ModalWindowBuilder.GetInstance().OpenWindow(data);
             }
             else OpenSelectionRoom();
         }
@@ -664,8 +759,13 @@ namespace Rogium.Systems.GASExtension
         {
             if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0)
             {
-                MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", OpenSelectionTile);
-                ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+                ModalWindowData data = new ModalWindowData.Builder()
+                    .WithLayout(ModalWindowLayoutType.Message)
+                    .WithMessage("Leave without saving changes?")
+                    .WithAcceptButton("Yes", OpenSelectionTile)
+                    .WithDenyButton("No")
+                    .Build();
+                ModalWindowBuilder.GetInstance().OpenWindow(data);
             }
             else OpenSelectionTile();
         }
@@ -674,8 +774,13 @@ namespace Rogium.Systems.GASExtension
         {
             if (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0)
             {
-                MessageWindowInfo data = new("Leave without saving changes?", "Yes", "No", CancelChangesOptionsConfirm);
-                ModalWindowBuilder.GetInstance().OpenMessageWindow(data);
+                ModalWindowData data = new ModalWindowData.Builder()
+                    .WithLayout(ModalWindowLayoutType.Message)
+                    .WithMessage("Leave without saving changes?")
+                    .WithAcceptButton("Yes", CancelChangesOptionsConfirm)
+                    .WithDenyButton("No")
+                    .Build();
+                ModalWindowBuilder.GetInstance().OpenWindow(data);
             }
             else CancelChangesOptionsConfirm();
             
@@ -725,7 +830,13 @@ namespace Rogium.Systems.GASExtension
 
         public static void CampaignRefreshAll()
         {
-            ModalWindowBuilder.GetInstance().OpenMessageWindow(new MessageWindowInfo("Refresh all campaigns?\nThis can take a while.", "Yes", "No", CampaignRefreshAllAccept));
+            ModalWindowData data = new ModalWindowData.Builder()
+                .WithLayout(ModalWindowLayoutType.Message)
+                .WithMessage("Refresh all campaigns?\nThis can take a while.")
+                .WithAcceptButton("Yes", CampaignRefreshAllAccept)
+                .WithDenyButton("No")
+                .Build();
+            ModalWindowBuilder.GetInstance().OpenWindow(data);
         }
         
         public static void CampaignRefreshAllAccept()

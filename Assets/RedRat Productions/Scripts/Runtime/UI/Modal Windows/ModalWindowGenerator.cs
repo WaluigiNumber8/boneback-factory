@@ -41,23 +41,23 @@ namespace RedRats.UI.ModalWindows
         /// </summary>
         /// <param name="data">The data to prepare the window with.</param>
         /// <param name="key">The key that identifies the window. (Is used when updating the window information is needed.)</param>
-        public void Open(ModalWindowInfoBase data, string key)
+        public void Open(ModalWindowData data, string key)
         {
             SafetyNet.EnsureStringNotNullOrEmpty(key, nameof(key));
 
             PrepareWindowIfNotExists(key);
             ModalWindow window = identifiedWindows[key];
-            OpenWindow(window, data);
+            window.OpenFor(data);
         }
 
         /// <summary>
         /// Open a modal window.
         /// </summary>
         /// <param name="data">The data to prepare the window with.</param>
-        public void Open(ModalWindowInfoBase data)
+        public void Open(ModalWindowData data)
         {
             ModalWindow window = windowPool.Get();
-            OpenWindow(window, data);
+            window.OpenFor(data);
         }
 
         /// <summary>
@@ -84,28 +84,6 @@ namespace RedRats.UI.ModalWindows
 
             PrepareWindowIfNotExists(key);
             return identifiedWindows[key].SecondColumnContent;
-        }
-
-        /// <summary>
-        /// Opens a Modal Window with the correct layout.
-        /// </summary>
-        /// <param name="window">The Modal Window object to activate.</param>
-        /// <param name="data">The data for setting up the window.</param>
-        private void OpenWindow(ModalWindow window, ModalWindowInfoBase data)
-        {
-            window.transform.SetAsLastSibling();
-            if (data is MessageWindowInfo mData)
-            {
-                window.OpenAsMessage(mData);
-                return;
-            }
-
-            if (data is PropertyWindowInfo pData)
-            {
-                if (pData.Layout == PropertyLayoutType.Columns1) window.OpenAsPropertiesColumn1(pData);
-                else if (pData.Layout == PropertyLayoutType.Columns2) window.OpenAsPropertiesColumn2(pData);
-                return;
-            }
         }
 
         /// <summary>

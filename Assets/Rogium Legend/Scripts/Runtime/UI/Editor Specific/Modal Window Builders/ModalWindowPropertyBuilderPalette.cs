@@ -8,7 +8,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     /// <summary>
     /// Constructor for the Palette Properties Modal Window.
     /// </summary>
-    public class ModalWindowPropertyBuilderPalette : ModalWindowPropertyBuilder
+    public class ModalWindowPropertyBuilderPalette : ModalWindowPropertyBuilderBase
     {
         private readonly PaletteEditorOverseer paletteEditor;
 

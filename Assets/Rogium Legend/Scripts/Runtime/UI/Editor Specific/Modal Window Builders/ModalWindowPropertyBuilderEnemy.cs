@@ -8,7 +8,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     /// <summary>
     /// Constructor for the Enemy Properties Modal Window.
     /// </summary>
-    public class ModalWindowPropertyBuilderEnemy : ModalWindowPropertyBuilder
+    public class ModalWindowPropertyBuilderEnemy : ModalWindowPropertyBuilderBase
     {
         private readonly EnemyEditorOverseer enemyEditor;
 

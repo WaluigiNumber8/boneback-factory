@@ -31,7 +31,10 @@ namespace RedRats.UI.ErrorMessageWindow
         /// <param name="errorMessage">The message of the error.</param>
         public void Open(string errorMessage)
         {
-            windowGenerator.Open(new MessageWindowInfo(errorMessage, acceptText));
+            windowGenerator.Open(new ModalWindowData.Builder()
+                .WithMessage(errorMessage)
+                .WithAcceptButton(acceptText)
+                .Build());
         }
     }
 }

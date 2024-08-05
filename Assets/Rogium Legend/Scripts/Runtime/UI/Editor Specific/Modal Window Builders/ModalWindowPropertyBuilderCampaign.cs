@@ -11,7 +11,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     /// <summary>
     /// Constructor for the Campaign Properties Modal Window
     /// </summary>
-    public class ModalWindowPropertyBuilderCampaign : ModalWindowPropertyBuilder
+    public class ModalWindowPropertyBuilderCampaign : ModalWindowPropertyBuilderBase
     {
         private readonly CampaignEditorOverseer campaignEditor;
         private readonly string[] lengthOptions;

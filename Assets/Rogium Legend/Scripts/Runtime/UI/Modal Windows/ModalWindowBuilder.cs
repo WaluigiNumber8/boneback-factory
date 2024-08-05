@@ -40,35 +40,38 @@ namespace Rogium.UserInterface.ModalWindows
         }
 
         /// <summary>
-        /// Opens a new message window.
+        /// Opens a new generic modal window.
         /// </summary>
         /// <param name="data">Data to load the window with.</param>
-        public void OpenMessageWindow(MessageWindowInfo data)
+        public void OpenWindow(ModalWindowData data)
         {
+            data.UpdateLayout(ModalWindowLayoutType.Message);
             windowGenerator.Open(data);
         }
         
         /// <summary>
-        /// Opens a property window with a single column.
+        /// Opens a new generic window.
         /// </summary>
         /// <param name="data">The data to load the window with.</param>
         /// <param name="key">Unique key that will identify the window.</param>
         /// <param name="column1">Transform of the property column.</param>
-        public void OpenPropertyWindowColumns1(PropertyWindowInfo data, string key, out Transform column1)
+        public void OpenWindow(ModalWindowData data, string key, out Transform column1)
         {
+            data.UpdateLayout(ModalWindowLayoutType.Columns1);
             windowGenerator.Open(data, key);
             column1 = windowGenerator.GetColumn1(key);
         }
         
         /// <summary>
-        /// Opens a property window with two columns.
+        /// Opens a new generic window.
         /// </summary>
         /// <param name="data">The data to load the window with.</param>
         /// <param name="key">Unique key that will identify the window.</param>
         /// <param name="column1">Transform of the 1st column.</param>
         /// <param name="column2">Transform of the 2nd column.</param>
-        public void OpenPropertyWindowColumns2(PropertyWindowInfo data, string key, out Transform column1, out Transform column2)
+        public void OpenWindow(ModalWindowData data, string key, out Transform column1, out Transform column2)
         {
+            data.UpdateLayout(ModalWindowLayoutType.Columns2);
             windowGenerator.Open(data, key);
             column1 = windowGenerator.GetColumn1(key);
             column2 = windowGenerator.GetColumn2(key);

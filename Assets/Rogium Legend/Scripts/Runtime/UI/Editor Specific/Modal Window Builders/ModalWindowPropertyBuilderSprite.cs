@@ -8,7 +8,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     /// <summary>
     /// Constructor for the Palette Properties Modal Window.
     /// </summary>
-    public class ModalWindowPropertyBuilderSprite : ModalWindowPropertyBuilder
+    public class ModalWindowPropertyBuilderSprite : ModalWindowPropertyBuilderBase
     {
         private readonly SpriteEditorOverseer spriteEditor;
 

@@ -8,7 +8,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     /// <summary>
     /// Constructor for the Room Properties Modal Window.
     /// </summary>
-    public class ModalWindowPropertyBuilderRoom : ModalWindowPropertyBuilder
+    public class ModalWindowPropertyBuilderRoom : ModalWindowPropertyBuilderBase
     {
         private readonly RoomEditorOverseer roomEditor;
         private readonly RoomSettingsBuilder roomBuilder;

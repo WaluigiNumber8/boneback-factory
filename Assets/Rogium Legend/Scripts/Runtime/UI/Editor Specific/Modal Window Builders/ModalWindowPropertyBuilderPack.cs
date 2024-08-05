@@ -8,7 +8,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     /// <summary>
     /// Constructor for the Pack Properties Modal Window.
     /// </summary>
-    public class ModalWindowPropertyBuilderPack : ModalWindowPropertyBuilder
+    public class ModalWindowPropertyBuilderPack : ModalWindowPropertyBuilderBase
     {
         private new PackAsset editedAssetBase;
         public override void OpenForCreate()

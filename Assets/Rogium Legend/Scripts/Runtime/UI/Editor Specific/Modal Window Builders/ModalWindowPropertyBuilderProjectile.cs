@@ -8,7 +8,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     /// <summary>
     /// Constructor for the Projectile Properties Modal Window.
     /// </summary>
-    public class ModalWindowPropertyBuilderProjectile : ModalWindowPropertyBuilder
+    public class ModalWindowPropertyBuilderProjectile : ModalWindowPropertyBuilderBase
     {
         private readonly ProjectileEditorOverseer projectileEditor;
 
