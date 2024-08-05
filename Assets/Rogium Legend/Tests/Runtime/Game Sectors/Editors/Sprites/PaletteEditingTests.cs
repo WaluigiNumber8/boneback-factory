@@ -1,5 +1,6 @@
 using System.Collections;
 using NUnit.Framework;
+using Rogium.Editors.Palettes;
 using Rogium.Editors.Sprites;
 using Rogium.Systems.ActionHistory;
 using Rogium.Systems.GASExtension;
@@ -111,7 +112,6 @@ namespace Rogium.Tests.Editors.Sprites
         {
             UpdateColorSlot(Color.blue);
             GASButtonActions.SaveChangesSprite();
-            
             Assert.That(ModalWindowBuilder.GetInstance().GenericActiveWindows, Is.EqualTo(1));
         }
 
@@ -119,8 +119,31 @@ namespace Rogium.Tests.Editors.Sprites
         public void Should_NotOpenPaletteDialog_WhenClickSaveAndPaletteNotEdited()
         {
             GASButtonActions.SaveChangesSprite();
-            
             Assert.That(ModalWindowBuilder.GetInstance().GenericActiveWindows, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void Should_FlagPaletteAsChanged_WhenPaletteSlotColorChanged()
+        {
+            UpdateColorSlot(Color.blue);
+            Assert.That(spriteEditor.PaletteChanged, Is.True);
+        }
+
+        [Test]
+        public void Should_FlagPaletteAsNotChanged_WhenEditedPaletteSwitched()
+        {
+            UpdateColorSlot(Color.blue);
+            spriteEditor.SwitchPalette(new PaletteAsset());
+            Assert.That(spriteEditor.PaletteChanged, Is.False);
+        }
+        
+        [Test]
+        public void Should_FlagPaletteAsNotChanged_WhenPaletteSlotColorChangedAndUndoIsCalled()
+        {
+            UpdateColorSlot(Color.blue);
+            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.UndoLast();
+            Assert.That(spriteEditor.PaletteChanged, Is.False);
         }
     }
 }

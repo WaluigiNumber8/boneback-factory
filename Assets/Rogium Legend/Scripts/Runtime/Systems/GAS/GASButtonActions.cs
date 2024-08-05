@@ -298,7 +298,7 @@ namespace Rogium.Systems.GASExtension
                 .WithAcceptButton("Yes", DeletePackAccept)
                 .WithDenyButton("No")
                 .Build();
-            ModalWindowBuilder.GetInstance().OpenWindow(data);
+            GASRogium.OpenWindow(data);
         }
         private static void DeletePackAccept()
         {
@@ -317,7 +317,7 @@ namespace Rogium.Systems.GASExtension
                 .WithAcceptButton("Yes", DeleteCampaignAccept)
                 .WithDenyButton("No")
                 .Build();
-            ModalWindowBuilder.GetInstance().OpenWindow(data);
+            GASRogium.OpenWindow(data);
         }
         
         private static void DeleteCampaignAccept()
@@ -337,7 +337,7 @@ namespace Rogium.Systems.GASExtension
                 .WithAcceptButton("Yes", DeletePaletteAccept)
                 .WithDenyButton("No")
                 .Build();
-            ModalWindowBuilder.GetInstance().OpenWindow(data);
+            GASRogium.OpenWindow(data);
         }
         private static void DeletePaletteAccept()
         {
@@ -357,7 +357,7 @@ namespace Rogium.Systems.GASExtension
                 .WithAcceptButton("Yes", DeleteSpriteAccept)
                 .WithDenyButton("No")
                 .Build();
-            ModalWindowBuilder.GetInstance().OpenWindow(data);
+            GASRogium.OpenWindow(data);
         }
         private static void DeleteSpriteAccept()
         {
@@ -377,7 +377,7 @@ namespace Rogium.Systems.GASExtension
                 .WithAcceptButton("Yes", DeleteWeaponAccept)
                 .WithDenyButton("No")
                 .Build();
-            ModalWindowBuilder.GetInstance().OpenWindow(data);
+            GASRogium.OpenWindow(data);
         }
         private static void DeleteWeaponAccept()
         {
@@ -397,7 +397,7 @@ namespace Rogium.Systems.GASExtension
                 .WithAcceptButton("Yes", DeleteProjectileAccept)
                 .WithDenyButton("No")
                 .Build();
-            ModalWindowBuilder.GetInstance().OpenWindow(data);
+            GASRogium.OpenWindow(data);
         }
         private static void DeleteProjectileAccept()
         {
@@ -417,7 +417,7 @@ namespace Rogium.Systems.GASExtension
                 .WithAcceptButton("Yes", DeleteEnemyAccept)
                 .WithDenyButton("No")
                 .Build();
-            ModalWindowBuilder.GetInstance().OpenWindow(data);
+            GASRogium.OpenWindow(data);
         }
         private static void DeleteEnemyAccept()
         {
@@ -437,7 +437,7 @@ namespace Rogium.Systems.GASExtension
                 .WithAcceptButton("Yes", DeleteRoomAccept)
                 .WithDenyButton("No")
                 .Build();
-            ModalWindowBuilder.GetInstance().OpenWindow(data);
+            GASRogium.OpenWindow(data);
         }
         private static void DeleteRoomAccept()
         {
@@ -456,7 +456,7 @@ namespace Rogium.Systems.GASExtension
                 .WithAcceptButton("Yes", DeleteTileAccept)
                 .WithDenyButton("No")
                 .Build();
-            ModalWindowBuilder.GetInstance().OpenWindow(data);
+            GASRogium.OpenWindow(data);
         }
         private static void DeleteTileAccept()
         {
@@ -566,7 +566,7 @@ namespace Rogium.Systems.GASExtension
                     .WithAcceptButton("Combine", SaveChangesCampaignConfirm)
                     .WithDenyButton("Cancel")
                     .Build();
-            ModalWindowBuilder.GetInstance().OpenWindow(data);
+            GASRogium.OpenWindow(data);
         }
 
         private static void SaveChangesCampaignConfirm()
@@ -583,6 +583,22 @@ namespace Rogium.Systems.GASExtension
         }
         
         public static void SaveChangesSprite()
+        {
+            //If palette was changed, open the palette dialog
+            if (SpriteEditorOverseerMono.GetInstance().PaletteChanged)
+            {
+                ModalWindowData data = new ModalWindowData.Builder()
+                    .WithLayout(ModalWindowLayoutType.Message)
+                    .WithMessage("The palette was edited. Save changes?")
+                    .WithAcceptButton("Override", SaveChangesSpriteOverride)
+                    .WithSpecialButton("Save as New")
+                    .WithDenyButton("No Save")
+                    .Build();
+                GASRogium.OpenWindow(data);
+            }
+        }
+
+        public static void SaveChangesSpriteOverride()
         {
             SpriteEditorOverseer.Instance.CompleteEditing();
             OpenSelectionSprite();
@@ -616,7 +632,7 @@ namespace Rogium.Systems.GASExtension
                     .WithMessage("There must be at least 1 <style=\"ExitGate\"> Exit Gate</style>\n and <style=\"StartingPoint\">Starting Point</style> present.")
                     .WithAcceptButton("OK")
                     .Build();
-                ModalWindowBuilder.GetInstance().OpenWindow(data);
+                GASRogium.OpenWindow(data);
                 return;
             }
             RoomEditorOverseer.Instance.CompleteEditing();
@@ -653,10 +669,10 @@ namespace Rogium.Systems.GASExtension
                 .WithAcceptButton("Yes", CancelChangesCampaignConfirm)
                 .WithDenyButton("No")
                 .Build();
-            //Show window only if no Packs are selected or something was edited or if the campaign is new and cancel is pressed
-            if ( noPacksSelected ||campaignIsNew || (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0))
+            
+            if (noPacksSelected ||campaignIsNew || (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0))
             {
-                ModalWindowBuilder.GetInstance().OpenWindow(data);
+                GASRogium.OpenWindow(data);
             }
             else CancelChangesCampaignConfirm();
         }
@@ -677,7 +693,7 @@ namespace Rogium.Systems.GASExtension
                     .WithAcceptButton("Yes", OpenSelectionPalette)
                     .WithDenyButton("No")
                     .Build();
-                ModalWindowBuilder.GetInstance().OpenWindow(data);
+                GASRogium.OpenWindow(data);
             }
             else OpenSelectionPalette();
         }
@@ -692,7 +708,7 @@ namespace Rogium.Systems.GASExtension
                     .WithAcceptButton("Yes", OpenSelectionSprite)
                     .WithDenyButton("No")
                     .Build();
-                ModalWindowBuilder.GetInstance().OpenWindow(data);
+                GASRogium.OpenWindow(data);
             }
             else OpenSelectionSprite();
         }
@@ -707,7 +723,7 @@ namespace Rogium.Systems.GASExtension
                     .WithAcceptButton("Yes", OpenSelectionWeapon)
                     .WithDenyButton("No")
                     .Build();
-                ModalWindowBuilder.GetInstance().OpenWindow(data);
+                GASRogium.OpenWindow(data);
             }
             else OpenSelectionWeapon();
         }
@@ -722,7 +738,7 @@ namespace Rogium.Systems.GASExtension
                     .WithAcceptButton("Yes", OpenSelectionProjectile)
                     .WithDenyButton("No")
                     .Build();
-                ModalWindowBuilder.GetInstance().OpenWindow(data);
+                GASRogium.OpenWindow(data);
             }
             else OpenSelectionProjectile();
         }
@@ -737,7 +753,7 @@ namespace Rogium.Systems.GASExtension
                     .WithAcceptButton("Yes", OpenSelectionEnemy)
                     .WithDenyButton("No")
                     .Build();
-                ModalWindowBuilder.GetInstance().OpenWindow(data);
+                GASRogium.OpenWindow(data);
             }
             else OpenSelectionEnemy();
         }
@@ -752,7 +768,7 @@ namespace Rogium.Systems.GASExtension
                     .WithAcceptButton("Yes", OpenSelectionRoom)
                     .WithDenyButton("No")
                     .Build();
-                ModalWindowBuilder.GetInstance().OpenWindow(data);
+                GASRogium.OpenWindow(data);
             }
             else OpenSelectionRoom();
         }
@@ -767,7 +783,7 @@ namespace Rogium.Systems.GASExtension
                     .WithAcceptButton("Yes", OpenSelectionTile)
                     .WithDenyButton("No")
                     .Build();
-                ModalWindowBuilder.GetInstance().OpenWindow(data);
+                GASRogium.OpenWindow(data);
             }
             else OpenSelectionTile();
         }
@@ -782,7 +798,7 @@ namespace Rogium.Systems.GASExtension
                     .WithAcceptButton("Yes", CancelChangesOptionsConfirm)
                     .WithDenyButton("No")
                     .Build();
-                ModalWindowBuilder.GetInstance().OpenWindow(data);
+                GASRogium.OpenWindow(data);
             }
             else CancelChangesOptionsConfirm();
             
@@ -838,7 +854,7 @@ namespace Rogium.Systems.GASExtension
                 .WithAcceptButton("Yes", CampaignRefreshAllAccept)
                 .WithDenyButton("No")
                 .Build();
-            ModalWindowBuilder.GetInstance().OpenWindow(data);
+            GASRogium.OpenWindow(data);
         }
         
         public static void CampaignRefreshAllAccept()

@@ -32,6 +32,7 @@ namespace Rogium.Editors.Sprites
         private PaletteAsset currentPaletteAsset;
         private PaletteAsset lastPaletteAsset;
         private int spriteSize;
+        private bool paletteChanged;
 
         protected override void Awake()
         {
@@ -49,6 +50,7 @@ namespace Rogium.Editors.Sprites
             grid.OnClickAlternative += EraseCell;
             palette.OnSelect += UpdateCurrentColor;
             ColorSlot.OnChangeColor += RedrawColorOnGrid;
+            ColorSlot.OnChangeColor += FlagPaletteChange;
             
             toolbox.OnChangePaletteValue += PickFrom;
             toolbox.OnSwitchTool += toolBoxUIManager.SwitchTool;
@@ -62,6 +64,7 @@ namespace Rogium.Editors.Sprites
             grid.OnClickAlternative -= EraseCell;
             palette.OnSelect -= UpdateCurrentColor;
             ColorSlot.OnChangeColor -= RedrawColorOnGrid;
+            ColorSlot.OnChangeColor -= FlagPaletteChange;
             
             toolbox.OnChangePaletteValue -= PickFrom;
             toolbox.OnSwitchTool -= toolBoxUIManager.SwitchTool;
@@ -104,6 +107,7 @@ namespace Rogium.Editors.Sprites
             grid.LoadWithColors(currentSpriteAsset.SpriteData, asset.Colors);
             palette.Fill(asset.Colors);
             palette.Select(0);
+            paletteChanged = false;
         }
         
         /// <summary>
@@ -136,6 +140,7 @@ namespace Rogium.Editors.Sprites
         {
             lastPaletteAsset = palettePicker.GrabBasedOn(sprite.PreferredPaletteID);
             currentSpriteAsset = sprite;
+            paletteChanged = false;
             
             toolbox.Refresh();
             SwitchPalette(lastPaletteAsset);
@@ -184,11 +189,14 @@ namespace Rogium.Editors.Sprites
             grid.Apply(grid.ActiveLayer);
         }
         
+        private void FlagPaletteChange(int _) => paletteChanged = true;
+        
         public PaletteAsset CurrentPaletteAsset { get => currentPaletteAsset; }
         public Color CurrentBrushColor { get => currentSlot.CurrentColor; }
         public ItemPaletteColor Palette { get => palette; }
         public ToolBox<int> Toolbox { get => toolbox; } 
         public ObjectGrid<int> GetCurrentGridCopy => new(editor.CurrentAsset.SpriteData);
         public Sprite CurrentGridSprite => grid.ActiveLayerSprite;
+        public bool PaletteChanged { get => paletteChanged; }
     }
 }
