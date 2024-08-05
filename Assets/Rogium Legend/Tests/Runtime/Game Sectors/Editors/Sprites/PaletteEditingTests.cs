@@ -1,7 +1,19 @@
 using System.Collections;
+using NSubstitute;
 using NUnit.Framework;
+using Rogium.Editors.Campaign;
+using Rogium.Editors.Enemies;
+using Rogium.Editors.Palettes;
+using Rogium.Editors.Projectiles;
+using Rogium.Editors.Rooms;
 using Rogium.Editors.Sprites;
+using Rogium.Editors.Tiles;
+using Rogium.Editors.Weapons;
+using Rogium.ExternalStorage;
+using Rogium.ExternalStorage.Serialization;
+using Rogium.Options.Core;
 using Rogium.Systems.ActionHistory;
+using Rogium.Systems.GASExtension;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.ModalWindows;
 using UnityEngine;
@@ -100,6 +112,23 @@ namespace Rogium.Tests.Editors.Sprites
             ActionHistorySystem.UndoLast();
             
             Assert.That(spriteEditor.CurrentGridSprite.texture.GetPixel(0, 0), Is.EqualTo(Color.blue));
+        }
+
+        [Test]
+        public void Should_OpenPaletteDialog_WhenClickSaveAndPaletteEdited()
+        {
+            UpdateColorSlot(Color.blue);
+            GASButtonActions.SaveChangesSprite();
+            
+            Assert.That(ModalWindowBuilder.GetInstance().GenericActiveWindows, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void Should_NotOpenPaletteDialog_WhenClickSaveAndPaletteNotEdited()
+        {
+            GASButtonActions.SaveChangesSprite();
+            
+            Assert.That(ModalWindowBuilder.GetInstance().GenericActiveWindows, Is.EqualTo(0));
         }
     }
 }

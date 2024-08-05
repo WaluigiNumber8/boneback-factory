@@ -117,6 +117,7 @@ namespace Rogium.UserInterface.ModalWindows
             ThemeUpdaterRogium.UpdateColorPickerWindow(window);
             window.Open();
         }
-       
+
+        public int GenericActiveWindows => windowGenerator.ActiveWindows;
     }
 }

@@ -19,7 +19,7 @@ namespace Rogium.Editors.Core
     /// </summary>
     public sealed class ExternalLibraryOverseer : Singleton<ExternalLibraryOverseer>
     {
-        private readonly ExternalStorageOverseer ex = ExternalStorageOverseer.Instance;
+        private readonly IExternalStorageOverseer ex = ExternalCommunicator.Instance;
         private readonly PackEditorOverseer packEditor = PackEditorOverseer.Instance;
         private readonly CampaignEditorOverseer campaignEditor = CampaignEditorOverseer.Instance;
         private readonly OptionsMenuOverseer optionsEditor = OptionsMenuOverseer.Instance;
@@ -194,7 +194,6 @@ namespace Rogium.Editors.Core
         public void UpdatePreferences(GameDataAsset gameData)
         {
             preferences = gameData;
-            // optionsEditor.ApplyAllSettings();
             ex.Preferences.Save(preferences);
         }
 

@@ -94,5 +94,7 @@ namespace RedRats.UI.ModalWindows
         {
             if (!identifiedWindows.ContainsKey(key)) identifiedWindows.Add(key, windowPool.Get());
         }
+        
+        public int ActiveWindows { get => windowPool.CountActive; }
     }
 }

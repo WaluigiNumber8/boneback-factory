@@ -30,7 +30,7 @@ namespace Rogium.Editors.Packs
         private readonly AssetList<RoomAsset> rooms;
         private readonly AssetList<TileAsset> tiles;
 
-        private readonly ExternalStorageOverseer ex = ExternalStorageOverseer.Instance;
+        private readonly IExternalStorageOverseer ex = ExternalCommunicator.Instance;
 
         #region Constructors
 
