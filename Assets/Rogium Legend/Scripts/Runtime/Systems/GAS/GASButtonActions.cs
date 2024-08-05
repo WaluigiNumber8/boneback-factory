@@ -553,7 +553,7 @@ namespace Rogium.Systems.GASExtension
         #region Save Editor Changes
         public static void SaveChangesCampaign()
         {
-            bool noPacksSelected = (CampaignEditorOverseer.Instance.CurrentAsset.PackReferences.Count <= 0);
+            bool noPacksSelected = (CampaignEditorOverseerMono.GetInstance().SelectionPicker.SelectionCount <= 0);
             ModalWindowData noPackData = new ModalWindowData.Builder()
                 .WithLayout(ModalWindowLayoutType.Message)
                 .WithMessage("Cannot save the campaign without selecting any <style=\"CardAmount\"> packs</style>.")
@@ -639,20 +639,22 @@ namespace Rogium.Systems.GASExtension
         #region Cancel Editor Changes
         public static void CancelChangesCampaign()
         {
-            bool noPacksSelected = (CampaignEditorOverseer.Instance.CurrentAsset.PackReferences.Count <= 0);
+            bool noPacksSelected = (CampaignEditorOverseerMono.GetInstance().SelectionPicker.SelectionCount <= 0);
+            bool campaignIsNew = (CampaignEditorOverseer.Instance.CurrentAsset.PackReferences.Count <= 0);
             ModalWindowData noPackData = new ModalWindowData.Builder()
                 .WithLayout(ModalWindowLayoutType.Message)
                 .WithMessage("This campaign contains no <style=\"CardAmount\"> packs</style>. Delete it?")
                 .WithAcceptButton("Delete it", () => { DeleteCampaignAccept(); OpenSelectionCampaign(); })
                 .WithDenyButton("Cancel")
                 .Build();
-            ModalWindowData data = (noPacksSelected) ? noPackData : new ModalWindowData.Builder().
+            ModalWindowData data = (noPacksSelected || campaignIsNew) ? noPackData : new ModalWindowData.Builder().
                 WithLayout(ModalWindowLayoutType.Message)
                 .WithMessage("Leave without saving changes?")
                 .WithAcceptButton("Yes", CancelChangesCampaignConfirm)
                 .WithDenyButton("No")
                 .Build();
-            if (noPacksSelected || (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0))
+            //Show window only if no Packs are selected or something was edited or if the campaign is new and cancel is pressed
+            if ( noPacksSelected ||campaignIsNew || (CurrentAssetDetector.Instance.WasEdited && ActionHistorySystem.UndoCount > 0))
             {
                 ModalWindowBuilder.GetInstance().OpenWindow(data);
             }
