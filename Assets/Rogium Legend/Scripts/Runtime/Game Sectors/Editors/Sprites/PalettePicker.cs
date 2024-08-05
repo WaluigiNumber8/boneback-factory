@@ -33,7 +33,7 @@ namespace Rogium.Editors.Sprites
             //TODO Fill with a default palette if no palettes are created the user chose to import the default pack.
             SafetyNet.EnsureListIsNotNullOrEmpty(palettes, "List of Pack Palettes");
 
-            //If ID is not set yet.
+            //If ID is not set yet, return first palette.
             if (string.IsNullOrEmpty(paletteID))
             {
                 previousID = paletteID;

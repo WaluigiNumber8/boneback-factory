@@ -590,15 +590,23 @@ namespace Rogium.Systems.GASExtension
                 ModalWindowData data = new ModalWindowData.Builder()
                     .WithLayout(ModalWindowLayoutType.Message)
                     .WithMessage("The palette was edited. Save it's changes?")
-                    .WithAcceptButton("Override", SaveChangesSpriteOverride)
+                    .WithAcceptButton("Override", SaveChangesSpriteAndOverridePalette)
                     .WithSpecialButton("Save as New")
                     .WithDenyButton("No Save")
                     .Build();
                 GASRogium.OpenWindow(data);
             }
+            else SaveChangesSpriteConfirm();
         }
 
-        public static void SaveChangesSpriteOverride()
+        public static void SaveChangesSpriteAndOverridePalette()
+        {
+            int index = PackEditorOverseer.Instance.CurrentPack.Palettes.FindIndexFirst(SpriteEditorOverseer.Instance.CurrentPalette.ID);
+            PackEditorOverseer.Instance.UpdatePalette(SpriteEditorOverseer.Instance.CurrentPalette, index);
+            SaveChangesSpriteConfirm();
+        }
+        
+        public static void SaveChangesSpriteConfirm()
         {
             SpriteEditorOverseer.Instance.CompleteEditing();
             OpenSelectionSprite();

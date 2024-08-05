@@ -1,5 +1,6 @@
 using System.Collections;
 using NUnit.Framework;
+using Rogium.Editors.Packs;
 using Rogium.Editors.Palettes;
 using Rogium.Editors.Sprites;
 using Rogium.Systems.ActionHistory;
@@ -144,6 +145,14 @@ namespace Rogium.Tests.Editors.Sprites
             ActionHistorySystem.ForceEndGrouping();
             ActionHistorySystem.UndoLast();
             Assert.That(spriteEditor.PaletteChanged, Is.False);
+        }
+
+        [Test]
+        public void Should_OverridePaletteAsset_WhenEditedAndSaved()
+        {
+            UpdateColorSlot(Color.blue);
+            GASButtonActions.SaveChangesSprite();
+            Assert.That(PackEditorOverseer.Instance.CurrentPack.Palettes[0].Colors[0], Is.EqualTo(Color.blue));
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using RedRats.Safety;
 using System;
 using RedRats.Core;
+using Rogium.Editors.Palettes;
 using Rogium.Systems.IconBuilders;
 using UnityEngine;
 
@@ -19,6 +20,7 @@ namespace Rogium.Editors.Sprites
         private readonly PalettePicker palettePicker;
         
         private SpriteAsset currentAsset;
+        private PaletteAsset currentPalette;
         private int myIndex;
         
         private SpriteEditorOverseer()
@@ -39,6 +41,7 @@ namespace Rogium.Editors.Sprites
             SafetyNet.EnsureIntIsBiggerOrEqualTo(index, 0, "Assigned asset index");
             
             currentAsset = new SpriteAsset(asset);
+            currentPalette = palettePicker.GrabBasedOn(currentAsset.PreferredPaletteID);
             myIndex = index;
             
             if (!prepareEditor) return;
@@ -55,18 +58,24 @@ namespace Rogium.Editors.Sprites
             currentAsset = new SpriteAsset(updatedAsset);
         }
 
+        public void UpdatePalette(PaletteAsset updatedPalette)
+        {
+            SafetyNet.EnsureIsNotNull(currentPalette, "Currently active palette.");
+            currentPalette = new PaletteAsset(updatedPalette);
+        }
+        
         public void CompleteEditing()
         {
             OnCompleteEditingBefore?.Invoke();
 
-            Sprite newIcon = iconBuilder.BuildFromGrid(currentAsset.SpriteData, palettePicker.GrabBasedOn(currentAsset.PreferredPaletteID).Colors);
+            Sprite newIcon = iconBuilder.BuildFromGrid(currentAsset.SpriteData, currentPalette.Colors);
             newIcon.name = currentAsset.Title;
             currentAsset.UpdateIcon(newIcon);
             
             OnCompleteEditing?.Invoke(currentAsset, myIndex);
             OnCompleteEditingAfter?.Invoke();
         }
-        
+
         public SpriteAsset CurrentAsset 
         {
             get 
@@ -75,6 +84,8 @@ namespace Rogium.Editors.Sprites
                 return currentAsset;
             } 
         }
+        
+        public PaletteAsset CurrentPalette { get => currentPalette; }
         
     }
 }
