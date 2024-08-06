@@ -7,6 +7,7 @@ using Rogium.Editors.Rooms;
 using Rogium.Editors.Sprites;
 using Rogium.Editors.Tiles;
 using Rogium.Editors.Weapons;
+using Rogium.Systems.GridSystem;
 using UnityEngine;
 
 namespace Rogium.Tests.Editors
@@ -55,6 +56,15 @@ namespace Rogium.Tests.Editors
             return sprite;
         }
 
+        public static SpriteAsset CreateSpriteWithFirstPixelFromSlot1()
+        {
+            SpriteAsset sprite = new();
+            ObjectGrid<int> newSpriteData = new(16, 16, () => -1);
+            newSpriteData.SetTo(0, 0, 0);
+            sprite.UpdateSpriteData(newSpriteData);
+            return sprite;
+        }
+        
         public static WeaponAsset CreateWeapon()
         {
             WeaponAsset weapon = new();

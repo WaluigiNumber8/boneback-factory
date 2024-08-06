@@ -166,38 +166,7 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Sprites, "List of Sprites");
             
             CurrentPack.Sprites.Update(positionIndex, newAsset);
-            foreach (string id in newAsset.AssociatedAssetsIDs)
-            {
-                string identifier = id[..2];
-                switch (identifier)
-                {
-                    case EditorAssetIDs.PackIdentifier:
-                        currentPack.UpdateIcon(newAsset);
-                        SavePackChanges();
-                        break;
-                    case EditorAssetIDs.PaletteIdentifier:
-                        RefreshSpriteAndSaveAsset(currentPack.Palettes, id, newAsset);
-                        break;
-                    case EditorAssetIDs.SpriteIdentifier:
-                        RefreshSpriteAndSaveAsset(currentPack.Sprites, id, newAsset);
-                        break;
-                    case EditorAssetIDs.WeaponIdentifier:
-                        RefreshSpriteAndSaveAsset(currentPack.Weapons, id, newAsset);
-                        break;
-                    case EditorAssetIDs.ProjectileIdentifier:
-                        RefreshSpriteAndSaveAsset(currentPack.Projectiles, id, newAsset);
-                        break;
-                    case EditorAssetIDs.EnemyIdentifier:
-                        RefreshSpriteAndSaveAsset(currentPack.Enemies, id, newAsset);
-                        break;
-                    case EditorAssetIDs.RoomIdentifier:
-                        RefreshSpriteAndSaveAsset(currentPack.Rooms, id, newAsset);
-                        break;
-                    case EditorAssetIDs.TileIdentifier:
-                        RefreshSpriteAndSaveAsset(currentPack.Tiles, id, newAsset);
-                        break;
-                }
-            }
+            RefreshForOtherAssets(newAsset, currentPack, SavePackChanges);
         }
 
         /// <summary>
@@ -564,10 +533,7 @@ namespace Rogium.Editors.Packs
         /// <summary>
         /// Save changes.
         /// </summary>
-        private void SavePackChanges()
-        {
-            OnSaveChanges?.Invoke(currentPack, myIndex, lastTitle, lastAuthor, lastAssociatedSpriteID);
-        }
+        private void SavePackChanges() => OnSaveChanges?.Invoke(currentPack, myIndex, lastTitle, lastAuthor, lastAssociatedSpriteID);
 
         public PackAsset CurrentPack { get => currentPack; }
     }

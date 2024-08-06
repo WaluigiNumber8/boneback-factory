@@ -602,7 +602,8 @@ namespace Rogium.Systems.GASExtension
         public static void SaveChangesSpriteAndOverridePalette()
         {
             int index = PackEditorOverseer.Instance.CurrentPack.Palettes.FindIndexFirst(SpriteEditorOverseer.Instance.CurrentPalette.ID);
-            PackEditorOverseer.Instance.UpdatePalette(SpriteEditorOverseer.Instance.CurrentPalette, index);
+            PaletteEditorOverseer.Instance.AssignAsset(SpriteEditorOverseer.Instance.CurrentPalette, index, false);
+            PaletteEditorOverseer.Instance.CompleteEditing();
             SaveChangesSpriteConfirm();
         }
         

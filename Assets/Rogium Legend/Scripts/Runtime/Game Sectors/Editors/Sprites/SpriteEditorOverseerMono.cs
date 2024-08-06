@@ -29,7 +29,6 @@ namespace Rogium.Editors.Sprites
 
         private SpriteAsset currentSpriteAsset;
         private IColorSlot currentSlot;
-        // private PaletteAsset currentPaletteAsset;
         private PaletteAsset lastPalette;
         private int spriteSize;
         private bool paletteChanged;

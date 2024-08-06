@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using RedRats.Safety;
 using Rogium.Core;
 using Rogium.Editors.Core;
@@ -11,6 +13,43 @@ namespace Rogium.Editors.Packs
     /// </summary>
     public static class SpriteAssociation
     {
+        
+        public static void RefreshForOtherAssets(SpriteAsset newAsset, PackAsset currentPack, Action whenSavePackChanges)
+        {
+            foreach (string id in newAsset.AssociatedAssetsIDs)
+            {
+                string identifier = id[..2];
+                switch (identifier)
+                {
+                    case EditorAssetIDs.PackIdentifier:
+                        currentPack.UpdateIcon(newAsset);
+                        whenSavePackChanges.Invoke();
+                        break;
+                    case EditorAssetIDs.PaletteIdentifier:
+                        RefreshSpriteAndSaveAsset(currentPack.Palettes, id, newAsset);
+                        break;
+                    case EditorAssetIDs.SpriteIdentifier:
+                        RefreshSpriteAndSaveAsset(currentPack.Sprites, id, newAsset);
+                        break;
+                    case EditorAssetIDs.WeaponIdentifier:
+                        RefreshSpriteAndSaveAsset(currentPack.Weapons, id, newAsset);
+                        break;
+                    case EditorAssetIDs.ProjectileIdentifier:
+                        RefreshSpriteAndSaveAsset(currentPack.Projectiles, id, newAsset);
+                        break;
+                    case EditorAssetIDs.EnemyIdentifier:
+                        RefreshSpriteAndSaveAsset(currentPack.Enemies, id, newAsset);
+                        break;
+                    case EditorAssetIDs.RoomIdentifier:
+                        RefreshSpriteAndSaveAsset(currentPack.Rooms, id, newAsset);
+                        break;
+                    case EditorAssetIDs.TileIdentifier:
+                        RefreshSpriteAndSaveAsset(currentPack.Tiles, id, newAsset);
+                        break;
+                }
+            }
+        }
+        
         /// <summary>
         /// Adds/Removes sprite associations if necessary.
         /// </summary>
