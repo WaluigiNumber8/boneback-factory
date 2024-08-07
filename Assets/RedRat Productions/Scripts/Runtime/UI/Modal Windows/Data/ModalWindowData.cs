@@ -8,18 +8,18 @@ namespace RedRats.UI.ModalWindows
     /// </summary>
     public class ModalWindowData
     {
-        private ThemeType theme;
-        private string acceptButtonText;
-        private string denyButtonText;
-        private string specialButtonText;
+        private ThemeType theme = ThemeType.Current;
+        private string acceptButtonText = string.Empty;
+        private string denyButtonText = string.Empty;
+        private string specialButtonText = string.Empty;
 
         private Action onAcceptAction;
         private Action onDenyAction;
         private Action onSpecialAction;
         
-        private string message;
-        private string headerText;
-        private ModalWindowLayoutType layout;
+        private string message = string.Empty;
+        private string headerText = string.Empty;
+        private ModalWindowLayoutType layout = ModalWindowLayoutType.Message;
 
         private ModalWindowData() { }
         
