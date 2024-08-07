@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using RedRats.Safety;
 using Rogium.Core;
 using Rogium.Editors.Core;
@@ -13,7 +12,6 @@ namespace Rogium.Editors.Packs
     /// </summary>
     public static class SpriteAssociation
     {
-        
         public static void RefreshForOtherAssets(SpriteAsset newAsset, PackAsset currentPack, Action whenSavePackChanges)
         {
             foreach (string id in newAsset.AssociatedAssetsIDs)

@@ -5,7 +5,6 @@ using Rogium.Editors.Palettes;
 using Rogium.Editors.Sprites;
 using Rogium.Systems.ActionHistory;
 using Rogium.Systems.GASExtension;
-using Rogium.Systems.GridSystem;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.ModalWindows;
 using UnityEngine;
@@ -181,6 +180,14 @@ namespace Rogium.Tests.Editors.Sprites
             UpdateColorSlot(Color.blue);
             GASButtonActions.SaveChangesSprite();
             Assert.That(spriteEditor.CurrentPaletteAsset.Colors[0], Is.EqualTo(Color.blue));
+        }
+
+        [Test]
+        public void Should_CreateNewPalette_WhenEditedAndSaved()
+        {
+            UpdateColorSlot(Color.blue);
+            GASButtonActions.SaveChangesSpriteAndSavePaletteAsNew();
+            Assert.That(PackEditorOverseer.Instance.CurrentPack.Palettes.Count, Is.EqualTo(2));
         }
     }
 }

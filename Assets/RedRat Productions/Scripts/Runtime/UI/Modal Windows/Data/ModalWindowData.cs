@@ -38,80 +38,54 @@ namespace RedRats.UI.ModalWindows
 
         public class Builder
         {
-            private ModalWindowLayoutType layout = ModalWindowLayoutType.Message;
-            private ThemeType theme = ThemeType.Current;
-            private string headerText = "";
-            private string message = "";
-            private string acceptButtonText = "";
-            private string denyButtonText = "";
-            private string specialButtonText = "";
-
-            private Action onAcceptAction;
-            private Action onDenyAction;
-            private Action onSpecialAction;
+            private readonly ModalWindowData data = new();
             
             public Builder WithTheme(ThemeType theme)
             {
-                this.theme = theme;
+                data.theme = theme;
                 return this;
             }
             
             public Builder WithAcceptButton(string acceptButtonText, Action onAcceptAction = null)
             {
-                this.acceptButtonText = acceptButtonText;
-                this.onAcceptAction = onAcceptAction;
+                data.acceptButtonText = acceptButtonText;
+                data.onAcceptAction = onAcceptAction;
                 return this;
             }
             
             public Builder WithDenyButton(string denyButtonText, Action onDenyAction = null)
             {
-                this.denyButtonText = denyButtonText;
-                this.onDenyAction = onDenyAction;
+                data.denyButtonText = denyButtonText;
+                data.onDenyAction = onDenyAction;
                 return this;
             }
             
             public Builder WithSpecialButton(string specialButtonText, Action onSpecialAction = null)
             {
-                this.specialButtonText = specialButtonText;
-                this.onSpecialAction = onSpecialAction;
+                data.specialButtonText = specialButtonText;
+                data.onSpecialAction = onSpecialAction;
                 return this;
             }
 
             public Builder WithMessage(string message)
             {
-                this.message = message;
+                data.message = message;
                 return this;
             }
             
             public Builder WithHeaderText(string headerText)
             {
-                this.headerText = headerText;
+                data.headerText = headerText;
                 return this;
             }
             
             public Builder WithLayout(ModalWindowLayoutType layout)
             {
-                this.layout = layout;
+                data.layout = layout;
                 return this;
             }
             
-            public ModalWindowData Build()
-            {
-                ModalWindowData modalWindow = new()
-                {
-                    theme = theme,
-                    acceptButtonText = acceptButtonText,
-                    denyButtonText = denyButtonText,
-                    specialButtonText = specialButtonText,
-                    onAcceptAction = onAcceptAction,
-                    onDenyAction = onDenyAction,
-                    onSpecialAction = onSpecialAction,
-                    message = message,
-                    headerText = headerText,
-                    layout = layout
-                };
-                return modalWindow;
-            }
+            public ModalWindowData Build() => data;
         }
     }
 }

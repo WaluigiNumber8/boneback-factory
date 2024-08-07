@@ -591,7 +591,7 @@ namespace Rogium.Systems.GASExtension
                     .WithLayout(ModalWindowLayoutType.Message)
                     .WithMessage("The palette was edited. Save it's changes?")
                     .WithAcceptButton("Override", SaveChangesSpriteAndOverridePalette)
-                    .WithSpecialButton("Save as New")
+                    .WithSpecialButton("Save as New", SaveChangesSpriteAndSavePaletteAsNew)
                     .WithDenyButton("No Save")
                     .Build();
                 GASRogium.OpenWindow(data);
@@ -605,6 +605,16 @@ namespace Rogium.Systems.GASExtension
             PaletteEditorOverseer.Instance.AssignAsset(SpriteEditorOverseer.Instance.CurrentPalette, index, false);
             PaletteEditorOverseer.Instance.CompleteEditing();
             SaveChangesSpriteConfirm();
+        }
+        
+        public static void SaveChangesSpriteAndSavePaletteAsNew()
+        {
+            //Create new palette as copy of the current one
+            
+            //Associate the new palette with the current sprite
+            
+            //Save sprite changes
+            
         }
         
         public static void SaveChangesSpriteConfirm()
