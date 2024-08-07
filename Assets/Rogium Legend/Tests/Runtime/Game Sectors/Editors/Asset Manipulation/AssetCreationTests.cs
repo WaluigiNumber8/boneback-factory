@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Core.Defaults;
+using Rogium.Editors.Enemies;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Palettes;
 using Rogium.Editors.Rooms;
@@ -275,6 +276,68 @@ namespace Rogium.Tests.Editors.AssetManipulation
 
         #endregion
 
+        #region Enemies
+
+        [Test]
+        public void Build_Should_GiveEnemyProperIdentifier()
+        {
+            EnemyAsset enemy = new EnemyAsset.Builder().Build();
+            Assert.That(enemy.ID[..2], Is.EqualTo(EditorAssetIDs.EnemyIdentifier));
+        }
+        
+        [Test]
+        public void Copy_Should_CreateEnemyWithSameID()
+        {
+            EnemyAsset original = AssetCreator.CreateEnemy();
+            EnemyAsset copy = new EnemyAsset.Builder().AsCopy(original).Build();
+            Assert.That(copy.ID, Is.EqualTo(original.ID));
+        }
+        
+        [Test]
+        public void Copy_Should_CreateEnemyWithSameParameters()
+        {
+            EnemyAsset original = AssetCreator.CreateEnemy();
+            EnemyAsset copy = new EnemyAsset.Builder().AsCopy(original).Build();
+            Assert.That(copy.MaxHealth, Is.EqualTo(original.MaxHealth));
+        }
+        
+        [Test]
+        public void Copy_Should_CreateEnemyBaseWithSameParameters()
+        {
+            EnemyAsset original = AssetCreator.CreateEnemy();
+            EnemyAsset copy = new EnemyAsset.Builder().AsCopy(original).Build();
+            Assert.That(copy.Title, Is.EqualTo(original.Title));
+            Assert.That(copy.Author, Is.EqualTo(original.Author));
+            Assert.That(copy.CreationDate, Is.EqualTo(original.CreationDate));
+        }
+        
+        [Test]
+        public void Clone_Should_CreateEnemyWithDifferentID()
+        {
+            EnemyAsset original = AssetCreator.CreateEnemy();
+            EnemyAsset clone = new EnemyAsset.Builder().AsClone(original).Build();
+            Assert.That(clone.ID, Is.Not.EqualTo(original.ID));
+        }
+        
+        [Test]
+        public void Clone_Should_CreateEnemyBaseWithSameParameters()
+        {
+            EnemyAsset original = AssetCreator.CreateEnemy();
+            EnemyAsset clone = new EnemyAsset.Builder().AsClone(original).Build();
+            Assert.That(clone.Title, Is.EqualTo(original.Title));
+            Assert.That(clone.Author, Is.EqualTo(original.Author));
+            Assert.That(clone.CreationDate, Is.EqualTo(original.CreationDate));
+        }
+        
+        [Test]
+        public void Clone_Should_CreateEnemyWithSameParameters()
+        {
+            EnemyAsset original = AssetCreator.CreateEnemy();
+            EnemyAsset clone = new EnemyAsset.Builder().AsClone(original).Build();
+            Assert.That(clone.MaxHealth, Is.EqualTo(original.MaxHealth));
+        }
+        #endregion
+        
         #region Rooms
 
         [Test]

@@ -45,33 +45,34 @@ namespace Rogium.ExternalStorage.Serialization
 
         public override EnemyAsset Decode()
         {
-            return new EnemyAsset(id,
-                                  title,
-                                  icon.Decode(),
-                                  author,
-                                  color.Decode(),
-                                  associatedSpriteID,
-                                  (AnimationType)animationType,
-                                  frameDuration,
-                                  iconAlt.Decode(),
-                                  baseDamage,
-                                  useDelay,
-                                  knockbackForceSelf,
-                                  knockbackLockDirectionSelf,
-                                  knockbackForceOther,
-                                  knockbackLockDirectionOther,
-                                  maxHealth,
-                                  attackProbability,
-                                  invincibilityTime,
-                                  weaponsIDs,
-                                  (AIType)ai,
-                                  nextStepTime,
-                                  (DirectionType)startingDirection,
-                                  seamlessMovement,
-                                  hurtSound,
-                                  deathSound,
-                                  idleSound,
-                                  DateTime.Parse(creationDate));
+            return new EnemyAsset.Builder()
+                .WithID(id)
+                .WithTitle(title)
+                .WithIcon(icon.Decode())
+                .WithAuthor(author)
+                .WithCreationDate(DateTime.Parse(creationDate))
+                .WithAssociatedSpriteID(associatedSpriteID)
+                .WithAnimationType((AnimationType)animationType)
+                .WithFrameDuration(frameDuration)
+                .WithIconAlt(iconAlt.Decode())
+                .WithBaseDamage(baseDamage)
+                .WithUseDelay(useDelay)
+                .WithKnockbackForceSelf(knockbackForceSelf)
+                .WithKnockbackLockDirectionSelf(knockbackLockDirectionSelf)
+                .WithKnockbackForceOther(knockbackForceOther)
+                .WithKnockbackLockDirectionOther(knockbackLockDirectionOther)
+                .WithMaxHealth(maxHealth)
+                .WithAttackProbability(attackProbability)
+                .WithInvincibilityTime(invincibilityTime)
+                .WithWeaponIDs(weaponsIDs)
+                .WithAI((AIType)ai)
+                .WithNextStepTime(nextStepTime)
+                .WithStartingDirection((DirectionType)startingDirection)
+                .WithSeamlessMovement(seamlessMovement)
+                .WithHurtSound(hurtSound)
+                .WithDeathSound(deathSound)
+                .WithIdleSound(idleSound)
+                .Build();
         }
     }
 }

@@ -99,12 +99,10 @@ namespace Rogium.Tests.Editors
 
         public static EnemyAsset CreateEnemy()
         {
-            EnemyAsset enemy = new();
-            enemy.UpdateTitle("Test Enemy");
-            SpriteAsset s = CreateSprite();
-            s.UpdateIcon(RedRatBuilder.GenerateSprite(Color.red, 16, 16, 16));
-            enemy.UpdateIcon(s);
-            return enemy;
+            return new EnemyAsset.Builder()
+                .WithTitle("Test Enemy")
+                .WithIcon(CreateSprite(Color.red))
+                .Build();
         }
 
         public static RoomAsset CreateRoom()

@@ -17,15 +17,9 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             enemyEditor = EnemyEditorOverseer.Instance;
         }
         
-        public override void OpenForCreate()
-        {
-            OpenWindow(new EnemyAsset(), CreateAsset, "Creating a new Enemy");
-        }
+        public override void OpenForCreate() => OpenWindow(new EnemyAsset.Builder().Build(), CreateAsset, "Creating a new Enemy");
 
-        public override void OpenForUpdate()
-        {
-            OpenWindow(new EnemyAsset(enemyEditor.CurrentAsset), UpdateAsset, $"Updating {enemyEditor.CurrentAsset.Title}");
-        }
+        public override void OpenForUpdate() => OpenWindow(new EnemyAsset.Builder().AsCopy(enemyEditor.CurrentAsset).Build(), UpdateAsset, $"Updating {enemyEditor.CurrentAsset.Title}");
 
         private void OpenWindow(EnemyAsset enemy, Action onConfirm, string headerText)
         {

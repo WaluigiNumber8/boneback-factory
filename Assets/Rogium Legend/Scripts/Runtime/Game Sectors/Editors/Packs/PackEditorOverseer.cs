@@ -342,7 +342,7 @@ namespace Rogium.Editors.Packs
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureIsNotNull(currentPack.Enemies, "Pack Editor - List of Enemies");
-            CurrentPack.Enemies.Add(new EnemyAsset());
+            CurrentPack.Enemies.Add(new EnemyAsset.Builder().Build());
         }
 
         /// <summary>
