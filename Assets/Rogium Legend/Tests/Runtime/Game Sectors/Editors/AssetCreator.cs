@@ -37,18 +37,17 @@ namespace Rogium.Tests.Editors
 
         public static PackAsset CreatePack()
         {
-            PackAsset pack = new();
-            pack.UpdateTitle("Test Pack");
-
-            pack.Palettes.AddAllWithoutSave(new[] {CreatePalette()});
-            pack.Sprites.AddAllWithoutSave(new[] {CreateSprite()});
-            pack.Weapons.AddAllWithoutSave(new[] {CreateWeapon()});
-            pack.Projectiles.AddAllWithoutSave(new[] {CreateProjectile()});
-            pack.Enemies.AddAllWithoutSave(new[] {CreateEnemy()});
-            pack.Rooms.AddAllWithoutSave(new[] {CreateRoom()});
-            pack.Tiles.AddAllWithoutSave(new[] {CreateTile()});
-
-            return pack;
+            return new PackAsset.Builder()
+                .WithTitle("Test Pack")
+                .WithIcon(RedRatBuilder.GenerateSprite(Color.magenta, 16, 16, 16))
+                .WithPalettes(new[] {CreatePalette()})
+                .WithSprites(new[] {CreateSprite()})
+                .WithWeapons(new[] {CreateWeapon()})
+                .WithProjectiles(new[] {CreateProjectile()})
+                .WithEnemies(new[] {CreateEnemy()})
+                .WithRooms(new[] {CreateRoom()})
+                .WithTiles(new[] {CreateTile()})
+                .Build();
         }
 
         public static PaletteAsset CreatePalette()

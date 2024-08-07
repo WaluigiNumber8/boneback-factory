@@ -28,7 +28,7 @@ namespace Rogium.Editors.Campaign
         public void UpdateDataPack(PackAsset newPack)
         {
             SafetyNet.EnsureIsNotNull(newPack, "newPack");
-            dataPack = new PackAsset(newPack);
+            dataPack = new PackAsset.Builder().AsCopy(newPack).Build();
         }
 
         public void UpdatePackReferences(IList<string> newPackReferences)
@@ -62,7 +62,7 @@ namespace Rogium.Editors.Campaign
 
             public Builder WithDataPack(PackAsset dataPack)
             {
-                Asset.dataPack = new PackAsset(dataPack);
+                Asset.dataPack = new PackAsset.Builder().AsCopy(dataPack).Build();
                 return This;
             }
 
@@ -87,7 +87,7 @@ namespace Rogium.Editors.Campaign
                 Asset.author = asset.Author;
                 Asset.creationDate = asset.CreationDate;
                 Asset.adventureLength = asset.AdventureLength;
-                Asset.dataPack = new PackAsset(asset.DataPack);
+                Asset.dataPack = new PackAsset.Builder().AsCopy(asset.DataPack).Build();
                 Asset.packReferences = new List<string>(asset.packReferences);
                 return This;
             }

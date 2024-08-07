@@ -11,15 +11,9 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     public class ModalWindowPropertyBuilderPack : ModalWindowPropertyBuilderBase
     {
         private new PackAsset editedAssetBase;
-        public override void OpenForCreate()
-        {
-            OpenWindow(new PackAsset(), CreateAsset, "Creating a new pack");
-        }
+        public override void OpenForCreate() => OpenWindow(new PackAsset.Builder().Build(), CreateAsset, "Creating a new pack");
 
-        public override void OpenForUpdate()
-        {
-            OpenWindow(new PackAsset(editor.CurrentPack), UpdateAsset, $"Editing {editor.CurrentPack.Title}");
-        }
+        public override void OpenForUpdate() => OpenWindow(new PackAsset.Builder().AsCopy(editor.CurrentPack).Build(), UpdateAsset, $"Editing {editor.CurrentPack.Title}");
 
         /// <summary>
         /// Opens a Modal Window as a Pack Properties Window.

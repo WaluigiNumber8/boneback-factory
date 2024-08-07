@@ -59,13 +59,14 @@ namespace Rogium.Editors.Packs
         /// <summary>
         /// Assigns a new pack for editing.
         /// </summary>
-        /// <param name="pack">The new pack that will be edited.</param>
-        public void AssignAsset(PackAsset pack, int index)
+        /// <param name="asset">The new pack that will be edited.</param>
+        /// <param name="index">The index of the pack in library list.</param>
+        public void AssignAsset(PackAsset asset, int index)
         {
-            SafetyNet.EnsureIsNotNull(pack, "Pack to assign");
-            currentPack = new PackAsset(pack);
+            SafetyNet.EnsureIsNotNull(asset, "Pack to assign");
+            currentPack = new PackAsset.Builder().AsCopy(asset).Build();
             myIndex = index;
-            lastAssociatedSpriteID = pack.AssociatedSpriteID;
+            lastAssociatedSpriteID = asset.AssociatedSpriteID;
             lastTitle = currentPack.Title;
             lastAuthor = currentPack.Author;
         }
@@ -77,7 +78,7 @@ namespace Rogium.Editors.Packs
         public void UpdateAsset(PackAsset updatedAsset)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Currently active asset.");
-            currentPack = new PackAsset(updatedAsset);
+            currentPack = new PackAsset.Builder().AsCopy(updatedAsset).Build();
         }
         
         #region Palettes

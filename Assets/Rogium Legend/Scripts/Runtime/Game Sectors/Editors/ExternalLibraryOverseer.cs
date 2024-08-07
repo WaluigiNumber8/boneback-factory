@@ -60,11 +60,7 @@ namespace Rogium.Editors.Core
         /// Creates a new Pack, and adds it to the library.
         /// </summary>
         /// <param name="pack">Information about the pack.</param>
-        public void CreateAndAddPack(PackAsset pack)
-        {
-            PackAsset newPack = new(pack.ID, pack.Title, pack.Icon, pack.Author, pack.AssociatedSpriteID, pack.Description, pack.CreationDate);
-            packs.Add(newPack);
-        }
+        public void CreateAndAddPack(PackAsset pack) => packs.Add(new PackAsset.Builder().AsCopy(pack).Build());
 
         /// <summary>
         /// Updates the pack on a specific position in the library

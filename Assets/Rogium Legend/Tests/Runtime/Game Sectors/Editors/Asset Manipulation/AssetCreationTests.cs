@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Core.Defaults;
+using Rogium.Editors.Packs;
 using Rogium.Editors.Palettes;
 using Rogium.Editors.Rooms;
 using Rogium.Editors.Sprites;
@@ -10,6 +11,81 @@ namespace Rogium.Tests.Editors.AssetManipulation
 {
     public class AssetCreationTests
     {
+        #region Packs
+
+        [Test]
+        public void Build_Should_GivePackProperIdentifier()
+        {
+            PackAsset pack = new PackAsset.Builder().Build();
+            Assert.That(pack.ID[..2], Is.EqualTo(EditorAssetIDs.PackIdentifier));
+        }
+        
+        [Test]
+        public void Copy_Should_CreatePackWithSameID()
+        {
+            PackAsset original = AssetCreator.CreatePack();
+            PackAsset copy = new PackAsset.Builder().AsCopy(original).Build();
+            Assert.That(copy.ID, Is.EqualTo(original.ID));
+        }
+        
+        [Test]
+        public void Copy_Should_CreatePackWithSameParameters()
+        {
+            PackAsset original = AssetCreator.CreatePack();
+            PackAsset copy = new PackAsset.Builder().AsCopy(original).Build();
+            Assert.That(copy.Palettes, Is.EqualTo(original.Palettes));
+            Assert.That(copy.Sprites, Is.EqualTo(original.Sprites));
+            Assert.That(copy.Weapons, Is.EqualTo(original.Weapons));
+            Assert.That(copy.Projectiles, Is.EqualTo(original.Projectiles));
+            Assert.That(copy.Enemies, Is.EqualTo(original.Enemies));
+            Assert.That(copy.Rooms, Is.EqualTo(original.Rooms));
+            Assert.That(copy.Tiles, Is.EqualTo(original.Tiles));
+        }
+        
+        [Test]
+        public void Copy_Should_CreatePackBaseWithSameParameters()
+        {
+            PackAsset original = AssetCreator.CreatePack();
+            PackAsset copy = new PackAsset.Builder().AsCopy(original).Build();
+            Assert.That(copy.Title, Is.EqualTo(original.Title));
+            Assert.That(copy.Author, Is.EqualTo(original.Author));
+            Assert.That(copy.CreationDate, Is.EqualTo(original.CreationDate));
+        }
+        
+        [Test]
+        public void Clone_Should_CreatePackWithDifferentID()
+        {
+            PackAsset original = AssetCreator.CreatePack();
+            PackAsset clone = new PackAsset.Builder().AsClone(original).Build();
+            Assert.That(clone.ID, Is.Not.EqualTo(original.ID));
+        }
+        
+        [Test]
+        public void Clone_Should_CreatePackBaseWithSameParameters()
+        {
+            PackAsset original = AssetCreator.CreatePack();
+            PackAsset clone = new PackAsset.Builder().AsClone(original).Build();
+            Assert.That(clone.Title, Is.EqualTo(original.Title));
+            Assert.That(clone.Author, Is.EqualTo(original.Author));
+            Assert.That(clone.CreationDate, Is.EqualTo(original.CreationDate));
+        }
+        
+        [Test]
+        public void Clone_Should_CreatePackWithSameParameters()
+        {
+            PackAsset original = AssetCreator.CreatePack();
+            PackAsset clone = new PackAsset.Builder().AsClone(original).Build();
+            Assert.That(clone.Palettes, Is.EqualTo(original.Palettes));
+            Assert.That(clone.Sprites, Is.EqualTo(original.Sprites));
+            Assert.That(clone.Weapons, Is.EqualTo(original.Weapons));
+            Assert.That(clone.Projectiles, Is.EqualTo(original.Projectiles));
+            Assert.That(clone.Enemies, Is.EqualTo(original.Enemies));
+            Assert.That(clone.Rooms, Is.EqualTo(original.Rooms));
+            Assert.That(clone.Tiles, Is.EqualTo(original.Tiles));
+        }
+
+        #endregion
+        
         #region Palettes
 
         [Test]

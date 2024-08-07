@@ -1,13 +1,12 @@
 ﻿using System;
 using Rogium.Editors.Packs;
-using UnityEngine;
 
 namespace Rogium.ExternalStorage.Serialization
 {
     /// <summary>
     /// Serialized form of the <see cref="PackAsset"/>.
     /// </summary>
-    [System.Serializable]
+    [Serializable]
     public class JSONPackAsset : JSONAssetWithReferencedSpriteBase<PackAsset>
     {
         public string description;
@@ -19,19 +18,15 @@ namespace Rogium.ExternalStorage.Serialization
 
         public override PackAsset Decode()
         {
-            string titleHere = title;
-            Sprite decode = icon.Decode();
-            string au = author;
-            string spriteID = associatedSpriteID;
-            string descr = description;
-            DateTime creationDateTime = DateTime.Parse(creationDate);
-            return new PackAsset(id,
-                titleHere,
-                decode,
-                au,
-                spriteID,
-                descr,
-                creationDateTime);
+            return new PackAsset.Builder()
+                .WithID(id)
+                .WithTitle(title)
+                .WithIcon(icon.Decode())
+                .WithAuthor(author)
+                .WithCreationDate(DateTime.Parse(creationDate))
+                .WithAssociatedSpriteID(associatedSpriteID)
+                .WithDescription(description)
+                .Build();
         }
         
     }

@@ -135,10 +135,23 @@ namespace Rogium.ExternalStorage
                CreateSkeleton(pack);
             }
             RefreshAssetSaveableData();
-            
-            return new PackAsset(pack.ID, pack.Title, pack.Icon, pack.Author, pack.AssociatedSpriteID, pack.Description, 
-                                 pack.CreationDate, paletteCRUD.LoadAll(), spriteCRUD.LoadAll(), weaponCRUD.LoadAll(),
-                                 projectileCRUD.LoadAll(), enemyCRUD.LoadAll(), roomCRUD.LoadAll(), tileCRUD.LoadAll());
+
+            return new PackAsset.Builder()
+                .WithID(pack.ID)
+                .WithTitle(pack.Title)
+                .WithIcon(pack.Icon)
+                .WithAuthor(pack.Author)
+                .WithCreationDate(pack.CreationDate)
+                .WithAssociatedSpriteID(pack.AssociatedSpriteID)
+                .WithDescription(pack.Description)
+                .WithPalettes(paletteCRUD.LoadAll())
+                .WithSprites(spriteCRUD.LoadAll())
+                .WithWeapons(weaponCRUD.LoadAll())
+                .WithProjectiles(projectileCRUD.LoadAll())
+                .WithEnemies(enemyCRUD.LoadAll())
+                .WithRooms(roomCRUD.LoadAll())
+                .WithTiles(tileCRUD.LoadAll())
+                .Build();
         }
 
         /// <summary>
