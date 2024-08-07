@@ -34,16 +34,9 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             conversionData.Add(3, 50);
         }
 
-        public override void OpenForCreate()
-        {
-            OpenWindow(new CampaignAsset(), CreateAsset, "Creating a new campaign");
-        }
+        public override void OpenForCreate() => OpenWindow(new CampaignAsset.Builder().Build() , CreateAsset, "Creating a new campaign");
 
-        public override void OpenForUpdate()
-        {
-            OpenWindow(new CampaignAsset(campaignEditor.CurrentAsset), UpdateAsset,
-                $"Updating {campaignEditor.CurrentAsset.Title}");
-        }
+        public override void OpenForUpdate() => OpenWindow(new CampaignAsset.Builder().AsCopy(campaignEditor.CurrentAsset).Build(), UpdateAsset, $"Updating {campaignEditor.CurrentAsset.Title}");
 
         private void OpenWindow(CampaignAsset asset, Action onConfirm, string headerText)
         {

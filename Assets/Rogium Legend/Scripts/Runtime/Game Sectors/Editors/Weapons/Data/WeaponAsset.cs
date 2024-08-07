@@ -63,9 +63,9 @@ namespace Rogium.Editors.Weapons
         public List<ProjectileDataInfo> ProjectileIDs { get => projectileIDs; }
         public AssetData UseSound { get => useSound; }
 
-        public class WeaponBuilder : EntityAssetBuilder<WeaponAsset, WeaponBuilder>
+        public class Builder : EntityAssetBuilder<WeaponAsset, Builder>
         {
-            public WeaponBuilder()
+            public Builder()
             {
                 Asset.title = EditorDefaults.Instance.WeaponTitle;
                 Asset.icon = EditorDefaults.Instance.WeaponIcon;
@@ -96,14 +96,14 @@ namespace Rogium.Editors.Weapons
                 Asset.GenerateID(EditorAssetIDs.WeaponIdentifier);
             }
             
-            public override WeaponBuilder AsClone(WeaponAsset asset)
+            public override Builder AsClone(WeaponAsset asset)
             {
                 AsCopy(asset);
                 Asset.GenerateID(EditorAssetIDs.WeaponIdentifier);
                 return This;
             }
 
-            public override WeaponBuilder AsCopy(WeaponAsset asset)
+            public override Builder AsCopy(WeaponAsset asset)
             {
                 Asset.id = asset.ID;
                 Asset.InitBase(asset.Title, asset.Icon, asset.Author, asset.CreationDate);
@@ -128,50 +128,49 @@ namespace Rogium.Editors.Weapons
                 return This;
             }
 
-            public WeaponBuilder WithUseType(WeaponUseType useType)
+            public Builder WithUseType(WeaponUseType useType)
             {
                 Asset.useType = useType;
                 return this;
             }
             
-            public WeaponBuilder WithUseDuration(float useDuration)
+            public Builder WithUseDuration(float useDuration)
             {
                 Asset.useDuration = useDuration;
                 return this;
             }
             
-            public WeaponBuilder WithUseStartDelay(float useStartDelay)
+            public Builder WithUseStartDelay(float useStartDelay)
             {
                 Asset.useStartDelay = useStartDelay;
                 return this;
             }
             
-            public WeaponBuilder WithIsEvasive(bool isEvasive)
+            public Builder WithIsEvasive(bool isEvasive)
             {
                 Asset.isEvasive = isEvasive;
                 return this;
             }
             
-            public WeaponBuilder WithFreezeUser(bool freezeUser)
+            public Builder WithFreezeUser(bool freezeUser)
             {
                 Asset.freezeUser = freezeUser;
                 return this;
             }
             
-            public WeaponBuilder WithProjectileIDs(IList<ProjectileDataInfo> projectileIDs)
+            public Builder WithProjectileIDs(IList<ProjectileDataInfo> projectileIDs)
             {
                 Asset.projectileIDs.Clear();
                 Asset.projectileIDs.AddRange(projectileIDs);
                 return this;
             }
             
-            public WeaponBuilder WithUseSound(AssetData useSound)
+            public Builder WithUseSound(AssetData useSound)
             {
                 Asset.useSound = new AssetData(useSound);
                 return this;
             }
 
-            public override WeaponAsset Build() => Asset;
             protected sealed override WeaponAsset Asset { get; } = new();
         }
     }

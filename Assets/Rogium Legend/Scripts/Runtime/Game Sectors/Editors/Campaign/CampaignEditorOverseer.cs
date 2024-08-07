@@ -35,7 +35,7 @@ namespace Rogium.Editors.Campaign
         public void AssignAsset(CampaignAsset campaign, int index, bool prepareEditor = true)
         {
             SafetyNet.EnsureIsNotNull(campaign, "Campaign to assign.");
-            currentCampaign = new CampaignAsset(campaign);
+            currentCampaign = new CampaignAsset.Builder().AsCopy(campaign).Build();
             myIndex = index;
             originalTitle = campaign.Title;
             originalAuthor = campaign.Author;
@@ -51,7 +51,7 @@ namespace Rogium.Editors.Campaign
         public void UpdateAsset(CampaignAsset updatedAsset)
         { 
             SafetyNet.EnsureIsNotNull(currentCampaign, "Currently active asset.");
-            currentCampaign = new CampaignAsset(updatedAsset);
+            currentCampaign = new CampaignAsset.Builder().AsCopy(updatedAsset).Build();
         }
 
         /// <summary>

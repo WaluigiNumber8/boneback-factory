@@ -34,7 +34,7 @@ namespace Rogium.ExternalStorage.Serialization
 
         public override WeaponAsset Decode()
         {
-            return new WeaponAsset.WeaponBuilder()
+            return new WeaponAsset.Builder()
                 .WithID(id)
                 .WithTitle(title)
                 .WithIcon(icon.Decode())

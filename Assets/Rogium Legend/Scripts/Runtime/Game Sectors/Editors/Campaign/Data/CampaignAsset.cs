@@ -17,83 +17,7 @@ namespace Rogium.Editors.Campaign
         private PackAsset dataPack;
         private IList<string> packReferences;
 
-        #region Constructors
-        public CampaignAsset()
-        {
-            this.title = EditorDefaults.Instance.CampaignTitle;
-            this.icon = EditorDefaults.Instance.EmptySprite;
-            this.author = EditorDefaults.Instance.Author;
-            this.creationDate = DateTime.Now;
-            GenerateID(EditorAssetIDs.CampaignIdentifier);
-
-            this.adventureLength = EditorDefaults.Instance.CampaignLength;
-            this.dataPack = new PackAsset();
-            this.packReferences = new List<string>();
-        }
-        public CampaignAsset(PackAsset pack)
-        {
-            this.title = EditorDefaults.Instance.CampaignTitle;
-            this.icon = EditorDefaults.Instance.EmptySprite;
-            this.author = EditorDefaults.Instance.Author;
-            this.creationDate = DateTime.Now;
-            GenerateID(EditorAssetIDs.CampaignIdentifier);
-
-            this.adventureLength = EditorDefaults.Instance.CampaignLength;
-            this.dataPack = new PackAsset(pack);
-            this.packReferences = new List<string>();
-        }
-        
-        public CampaignAsset(CampaignAsset asset)
-        {
-            this.id = asset.ID;
-            this.title = asset.Title;
-            this.icon = asset.Icon;
-            this.author = asset.Author;
-            this.creationDate = asset.CreationDate;
-
-            this.adventureLength = asset.AdventureLength;
-            this.dataPack = new PackAsset(asset.DataPack);
-            this.packReferences = new List<string>(asset.packReferences);
-        }
-        
-        public CampaignAsset(string title, Sprite icon, string author, PackAsset pack)
-        {
-            this.title = title;
-            this.icon = icon;
-            this.author = author;
-            this.creationDate = DateTime.Now;
-            GenerateID(EditorAssetIDs.CampaignIdentifier);
-
-            this.adventureLength = EditorDefaults.Instance.CampaignLength;
-            this.dataPack = new PackAsset(pack);
-            this.packReferences = new List<string>();
-        }
-        public CampaignAsset(string title, Sprite icon, string author, DateTime creationDate, int adventureLength, PackAsset dataPack)
-        {
-            this.title = title;
-            this.icon = icon;
-            this.author = author;
-            this.creationDate = creationDate;
-            GenerateID(EditorAssetIDs.CampaignIdentifier);
-
-            this.adventureLength = adventureLength;
-            this.dataPack = new PackAsset(dataPack);
-            this.packReferences = new List<string>();
-        }
-        public CampaignAsset(string id, string title, Sprite icon, string author, DateTime creationDate, int adventureLength,
-                             PackAsset dataPack, IList<string> packReferences)
-        {
-            this.id = id;
-            this.title = title;
-            this.icon = icon;
-            this.author = author;
-            this.creationDate = creationDate;
-
-            this.adventureLength = adventureLength;
-            this.dataPack = new PackAsset(dataPack);
-            this.packReferences = new List<string>(packReferences);
-        }
-        #endregion
+        private CampaignAsset() { }
 
         #region Update Values
 
@@ -118,5 +42,58 @@ namespace Rogium.Editors.Campaign
         public int AdventureLength { get => adventureLength; }
         public PackAsset DataPack { get => dataPack; }
         public IList<string> PackReferences { get => new List<string>(packReferences); }
+        
+        public class Builder : BaseBuilder<CampaignAsset, Builder>
+        {
+            public Builder()
+            {
+                Asset.title = EditorDefaults.Instance.CampaignTitle;
+                Asset.icon = EditorDefaults.Instance.EmptySprite;
+                Asset.author = EditorDefaults.Instance.Author;
+                Asset.creationDate = DateTime.Now;
+                Asset.GenerateID(EditorAssetIDs.CampaignIdentifier);
+                Asset.packReferences = new List<string>();
+            }
+
+            public Builder WithAdventureLength(int adventureLength)
+            {
+                Asset.adventureLength = adventureLength;
+                return This;
+            }
+
+            public Builder WithDataPack(PackAsset dataPack)
+            {
+                Asset.dataPack = new PackAsset(dataPack);
+                return This;
+            }
+
+            public Builder WithPackReferences(IList<string> packReferences)
+            {
+                Asset.packReferences = new List<string>(packReferences);
+                return This;
+            }
+
+            public override Builder AsClone(CampaignAsset asset)
+            {
+                AsCopy(asset);
+                Asset.GenerateID(EditorAssetIDs.CampaignIdentifier);
+                return This;
+            }
+
+            public override Builder AsCopy(CampaignAsset asset)
+            {
+                Asset.id = asset.ID;
+                Asset.title = asset.Title;
+                Asset.icon = asset.Icon;
+                Asset.author = asset.Author;
+                Asset.creationDate = asset.CreationDate;
+                Asset.adventureLength = asset.AdventureLength;
+                Asset.dataPack = new PackAsset(asset.DataPack);
+                Asset.packReferences = new List<string>(asset.packReferences);
+                return This;
+            }
+
+            protected sealed override CampaignAsset Asset { get; } = new();
+        }
     }
 }

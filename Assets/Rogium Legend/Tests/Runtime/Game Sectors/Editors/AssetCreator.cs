@@ -1,4 +1,5 @@
 using RedRats.Core;
+using Rogium.Editors.Campaign;
 using Rogium.Editors.Enemies;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Palettes;
@@ -22,6 +23,16 @@ namespace Rogium.Tests.Editors
             PackAsset pack = CreatePack();
             PackEditorOverseer.Instance.AssignAsset(pack, 0);
             return pack;
+        }
+
+        public static CampaignAsset CreateCampaign()
+        {
+            CampaignAsset campaign = new CampaignAsset.Builder()
+                .WithTitle("Test Campaign")
+                .WithIcon(RedRatBuilder.GenerateSprite(Color.black, 16, 16, 16))
+                .WithDataPack(CreatePack())
+                .Build();
+            return campaign;
         }
         
         public static PackAsset CreatePack()
@@ -69,7 +80,7 @@ namespace Rogium.Tests.Editors
         {
             SpriteAsset s = CreateSprite();
             s.UpdateIcon(RedRatBuilder.GenerateSprite(Color.green, 16, 16, 16));
-            WeaponAsset weapon = new WeaponAsset.WeaponBuilder()
+            WeaponAsset weapon = new WeaponAsset.Builder()
                 .WithTitle("Test Weapon")
                 .WithIcon(s)
                 .Build();

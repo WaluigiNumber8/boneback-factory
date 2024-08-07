@@ -1,6 +1,4 @@
 ﻿using System;
-using Rogium.Editors.Core.Defaults;
-using Rogium.Editors.Weapons;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -88,6 +86,8 @@ namespace Rogium.Editors.Core
                 Asset.creationDate = creationDate;
                 return This;
             }
+            
+            public T Build() => Asset;
 
             /// <summary>
             /// Creates a clone of the asset with a different ID.
@@ -100,7 +100,6 @@ namespace Rogium.Editors.Core
             /// <returns></returns>
             public abstract TBuilder AsCopy(T asset);
             
-            public abstract T Build();
             protected abstract T Asset { get; }
             protected TBuilder This => (TBuilder) this;
         }

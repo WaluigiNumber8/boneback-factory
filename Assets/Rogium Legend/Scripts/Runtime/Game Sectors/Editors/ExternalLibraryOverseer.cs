@@ -123,18 +123,9 @@ namespace Rogium.Editors.Core
         /// <summary>
         /// Creates a new Campaign, and adds it to the library.
         /// </summary>
-        /// <param name="title">Title of the campaign.</param>
-        /// <param name="icon">Icon of the campaign.</param>
-        /// <param name="author">Author, who made the campaign.</param>
-        /// <param name="dataPack">Pack Asset, containing everything used in the campaign.</param>
-        public void CreateAndAddCampaign(string title, Sprite icon, string author, PackAsset dataPack)
-        {
-            CampaignAsset newCampaign = new(title, icon, author, new PackAsset(dataPack));
-            campaigns.Add(newCampaign);
-        }
         public void CreateAndAddCampaign(CampaignAsset campaign)
         {
-            campaigns.Add(new CampaignAsset(campaign));
+            campaigns.Add(new CampaignAsset.Builder().AsCopy(campaign).Build());
         }
 
         /// <summary>

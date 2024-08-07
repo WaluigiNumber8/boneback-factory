@@ -235,7 +235,7 @@ namespace Rogium.Editors.Packs
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureIsNotNull(currentPack.Weapons, "Pack Editor - List of Weapons");
-            CurrentPack.Weapons.Add(new WeaponAsset.WeaponBuilder().Build());
+            CurrentPack.Weapons.Add(new WeaponAsset.Builder().Build());
         }
 
         /// <summary>
