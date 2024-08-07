@@ -61,17 +61,17 @@ namespace Rogium.Tests.Editors
 
         public static SpriteAsset CreateSprite()
         {
-            SpriteAsset sprite = new();
-            sprite.UpdateTitle("Test Palette");
-            sprite.UpdateIcon(RedRatBuilder.GenerateSprite(Color.white, 16, 16, 16));
-            return sprite;
+            return new SpriteAsset.Builder()
+                .WithTitle("Test Sprite")
+                .WithIcon(RedRatBuilder.GenerateSprite(Color.white, 16, 16, 16))
+                .Build();
         }
 
         public static SpriteAsset CreateSpriteWithFirstPixelFromSlot1()
         {
-            SpriteAsset sprite = new();
             ObjectGrid<int> newSpriteData = new(16, 16, () => -1);
             newSpriteData.SetTo(0, 0, 0);
+            SpriteAsset sprite = CreateSprite();
             sprite.UpdateSpriteData(newSpriteData);
             return sprite;
         }
@@ -109,12 +109,10 @@ namespace Rogium.Tests.Editors
 
         public static RoomAsset CreateRoom()
         {
-            RoomAsset room = new();
-            room.UpdateTitle("Test Room");
-            SpriteAsset s = CreateSprite();
-            s.UpdateIcon(RedRatBuilder.GenerateSprite(Color.blue, 16, 16, 16));
-            room.UpdateIcon(s);
-            return room;
+            return new RoomAsset.Builder()
+                .WithTitle("Test Room")
+                .WithIcon(RedRatBuilder.GenerateSprite(Color.blue, 16, 16, 16))
+                .Build();
         }
 
         public static TileAsset CreateTile()

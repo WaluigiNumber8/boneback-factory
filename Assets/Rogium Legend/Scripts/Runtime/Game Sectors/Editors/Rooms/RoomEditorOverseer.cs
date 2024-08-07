@@ -30,17 +30,17 @@ namespace Rogium.Editors.Rooms
         /// <summary>
         /// Assigns a new pack for editing.
         /// </summary>
-        /// <param name="room">The room that will be edited.</param>
+        /// <param name="asset">The room that will be edited.</param>
         /// <param name="index">The position in the list.</param>
         /// <param name="prepareEditor">If true, load asset into the editor.</param>
-        public void AssignAsset(RoomAsset room, int index, bool prepareEditor = true)
+        public void AssignAsset(RoomAsset asset, int index, bool prepareEditor = true)
         {
-            SafetyNet.EnsureIsNotNull(room, "Assigned Room");
-            currentAsset = new RoomAsset(room);
+            SafetyNet.EnsureIsNotNull(asset, "Assigned Room");
+            currentAsset = new RoomAsset.Builder().AsCopy(asset).Build();
             myIndex = index;
 
             if (!prepareEditor) return;
-            OnAssignAsset?.Invoke(room);
+            OnAssignAsset?.Invoke(asset);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Rogium.Editors.Rooms
         public void UpdateAsset(RoomAsset updatedAsset)
         { 
             SafetyNet.EnsureIsNotNull(currentAsset, "Currently active asset.");
-            currentAsset = new RoomAsset(updatedAsset);
+            currentAsset = new RoomAsset.Builder().AsCopy(updatedAsset).Build();
         }
         
         public void CompleteEditing()

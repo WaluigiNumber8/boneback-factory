@@ -39,8 +39,8 @@ namespace Rogium.Editors.Sprites
         {
             SafetyNet.EnsureIsNotNull(asset, "Assigned Sprite");
             SafetyNet.EnsureIntIsBiggerOrEqualTo(index, 0, "Assigned asset index");
-            
-            currentAsset = new SpriteAsset(asset);
+
+            currentAsset = new SpriteAsset.Builder().AsCopy(asset).Build();
             currentPalette = palettePicker.GrabBasedOn(currentAsset.PreferredPaletteID);
             myIndex = index;
             
@@ -55,7 +55,7 @@ namespace Rogium.Editors.Sprites
         public void UpdateAsset(SpriteAsset updatedAsset)
         { 
             SafetyNet.EnsureIsNotNull(currentAsset, "Currently active asset.");
-            currentAsset = new SpriteAsset(updatedAsset);
+            currentAsset = new SpriteAsset.Builder().AsCopy(updatedAsset).Build();
         }
 
         public void UpdatePalette(PaletteAsset updatedPalette)

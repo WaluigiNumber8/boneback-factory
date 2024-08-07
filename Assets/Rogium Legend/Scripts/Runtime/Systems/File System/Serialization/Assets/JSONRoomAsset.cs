@@ -43,20 +43,22 @@ namespace Rogium.ExternalStorage.Serialization
             decorGrid.SetDefaultCreator(() => new AssetData(ParameterInfoConstants.ForDecor));
             objectGrid.SetDefaultCreator(() => new AssetData(ParameterInfoConstants.ForEmpty));
             enemyGrid.SetDefaultCreator(() => new AssetData(ParameterInfoConstants.ForEnemy));
-            
-            return new RoomAsset(id,
-                                 title,
-                                 icon.Decode(),
-                                 author,
-                                 difficultyLevel,
-                                 (RoomType)type,
-                                 lightness,
-                                 lightnessColor.Decode(),
-                                 tileGrid.Decode(),
-                                 decorGrid.Decode(),
-                                 objectGrid.Decode(),
-                                 enemyGrid.Decode(),
-                                 DateTime.Parse(creationDate));
+
+            return new RoomAsset.Builder()
+                .WithID(id)
+                .WithTitle(title)
+                .WithIcon(icon.Decode())
+                .WithAuthor(author)
+                .WithCreationDate(DateTime.Parse(creationDate))
+                .WithDifficultyLevel(difficultyLevel)
+                .WithType((RoomType)type)
+                .WithLightness(lightness)
+                .WithLightnessColor(lightnessColor.Decode())
+                .WithTileGrid(tileGrid.Decode())
+                .WithDecorGrid(decorGrid.Decode())
+                .WithObjectGrid(objectGrid.Decode())
+                .WithEnemyGrid(enemyGrid.Decode())
+                .Build();
         }
     }
 }

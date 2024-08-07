@@ -2,6 +2,8 @@ using NUnit.Framework;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Palettes;
+using Rogium.Editors.Rooms;
+using Rogium.Editors.Sprites;
 using Rogium.Editors.Weapons;
 
 namespace Rogium.Tests.Editors.AssetManipulation
@@ -69,6 +71,69 @@ namespace Rogium.Tests.Editors.AssetManipulation
             Assert.That(clone.Colors, Is.EqualTo(original.Colors));
         }
         #endregion
+
+        #region Sprites
+
+        [Test]
+        public void Build_Should_GiveSpriteProperIdentifier()
+        {
+            SpriteAsset sprite = new SpriteAsset.Builder().Build();
+            Assert.That(sprite.ID[..2], Is.EqualTo(EditorAssetIDs.SpriteIdentifier));
+        }
+        
+        [Test]
+        public void Copy_Should_CreateSpriteWithSameID()
+        {
+            SpriteAsset original = AssetCreator.CreateSprite();
+            SpriteAsset copy = new SpriteAsset.Builder().AsCopy(original).Build();
+            Assert.That(copy.ID, Is.EqualTo(original.ID));
+        }
+        
+        [Test]
+        public void Copy_Should_CreateSpriteWithSameParameters()
+        {
+            SpriteAsset original = AssetCreator.CreateSprite();
+            SpriteAsset copy = new SpriteAsset.Builder().AsCopy(original).Build();
+            Assert.That(copy.SpriteData, Is.EqualTo(original.SpriteData));
+        }
+        
+        [Test]
+        public void Copy_Should_CreateSpriteBaseWithSameParameters()
+        {
+            SpriteAsset original = AssetCreator.CreateSprite();
+            SpriteAsset copy = new SpriteAsset.Builder().AsCopy(original).Build();
+            Assert.That(copy.Title, Is.EqualTo(original.Title));
+            Assert.That(copy.Author, Is.EqualTo(original.Author));
+            Assert.That(copy.CreationDate, Is.EqualTo(original.CreationDate));
+        }
+        
+        [Test]
+        public void Clone_Should_CreateSpriteWithDifferentID()
+        {
+            SpriteAsset original = AssetCreator.CreateSprite();
+            SpriteAsset clone = new SpriteAsset.Builder().AsClone(original).Build();
+            Assert.That(clone.ID, Is.Not.EqualTo(original.ID));
+        }
+        
+        [Test]
+        public void Clone_Should_CreateSpriteBaseWithSameParameters()
+        {
+            SpriteAsset original = AssetCreator.CreateSprite();
+            SpriteAsset clone = new SpriteAsset.Builder().AsClone(original).Build();
+            Assert.That(clone.Title, Is.EqualTo(original.Title));
+            Assert.That(clone.Author, Is.EqualTo(original.Author));
+            Assert.That(clone.CreationDate, Is.EqualTo(original.CreationDate));
+        }
+        
+        [Test]
+        public void Clone_Should_CreateSpriteWithSameParameters()
+        {
+            SpriteAsset original = AssetCreator.CreateSprite();
+            SpriteAsset clone = new SpriteAsset.Builder().AsClone(original).Build();
+            Assert.That(clone.SpriteData, Is.EqualTo(original.SpriteData));
+        }
+
+        #endregion
         
         #region Weapons
 
@@ -129,6 +194,70 @@ namespace Rogium.Tests.Editors.AssetManipulation
             WeaponAsset original = AssetCreator.CreateWeapon();
             WeaponAsset clone = new WeaponAsset.Builder().AsClone(original).Build();
             Assert.That(clone.UseType, Is.EqualTo(original.UseType));
+        }
+
+        #endregion
+
+        #region Rooms
+
+        [Test]
+        public void Build_Should_GiveRoomProperIdentifier()
+        {
+            RoomAsset room = new RoomAsset.Builder().Build();
+            Assert.That(room.ID[..2], Is.EqualTo(EditorAssetIDs.RoomIdentifier));
+            
+        }
+        
+        [Test]
+        public void Copy_Should_CreateRoomWithSameID()
+        {
+            RoomAsset original = AssetCreator.CreateRoom();
+            RoomAsset copy = new RoomAsset.Builder().AsCopy(original).Build();
+            Assert.That(copy.ID, Is.EqualTo(original.ID));
+        }
+        
+        [Test]
+        public void Copy_Should_CreateRoomWithSameParameters()
+        {
+            RoomAsset original = AssetCreator.CreateRoom();
+            RoomAsset copy = new RoomAsset.Builder().AsCopy(original).Build();
+            Assert.That(copy.TileGrid, Is.EqualTo(original.TileGrid));
+        }
+        
+        [Test]
+        public void Copy_Should_CreateRoomBaseWithSameParameters()
+        {
+            RoomAsset original = AssetCreator.CreateRoom();
+            RoomAsset copy = new RoomAsset.Builder().AsCopy(original).Build();
+            Assert.That(copy.Title, Is.EqualTo(original.Title));
+            Assert.That(copy.Author, Is.EqualTo(original.Author));
+            Assert.That(copy.CreationDate, Is.EqualTo(original.CreationDate));
+        }
+        
+        [Test]
+        public void Clone_Should_CreateRoomWithDifferentID()
+        {
+            RoomAsset original = AssetCreator.CreateRoom();
+            RoomAsset clone = new RoomAsset.Builder().AsClone(original).Build();
+            Assert.That(clone.ID, Is.Not.EqualTo(original.ID));
+        }
+        
+        [Test]
+        public void Clone_Should_CreateRoomBaseWithSameParameters()
+        {
+            RoomAsset original = AssetCreator.CreateRoom();
+            RoomAsset clone = new RoomAsset.Builder().AsClone(original).Build();
+            Assert.That(clone.Title, Is.EqualTo(original.Title));
+            Assert.That(clone.Author, Is.EqualTo(original.Author));
+            Assert.That(clone.CreationDate, Is.EqualTo(original.CreationDate));
+        }
+        
+        [Test]
+        public void Clone_Should_CreateRoomWithSameParameters()
+        {
+            RoomAsset original = AssetCreator.CreateRoom();
+            RoomAsset clone = new RoomAsset.Builder().AsClone(original).Build();
+            Assert.That(clone.TileGrid, Is.EqualTo(original.TileGrid));
         }
 
         #endregion

@@ -142,12 +142,6 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack.Sprites, "Pack Editor - List of Sprites");
             CurrentPack.Sprites.Add(newAsset);
         }
-        public void CreateNewSprite()
-        {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureIsNotNull(currentPack.Sprites, "Pack Editor - List of Sprites");
-            CurrentPack.Sprites.Add(new SpriteAsset());
-        }
 
         /// <summary>
         /// Updates the sprite in the given pack.
@@ -460,17 +454,6 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureIsNotNull(currentPack.Rooms, "Pack Editor - List of Rooms");
 
-            InternalLibraryOverseer library = InternalLibraryOverseer.GetInstance();
-            newAsset.ObjectGrid.SetTo(new Vector2Int(6, 5), AssetDataBuilder.ForObject(library.GetObjectByID("001")));
-            newAsset.ObjectGrid.SetTo(new Vector2Int(8, 5), AssetDataBuilder.ForObject(library.GetObjectByID("002")));
-            CurrentPack.Rooms.Add(newAsset);
-        }
-        public void CreateNewRoom()
-        {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureIsNotNull(currentPack.Rooms, "Pack Editor - List of Rooms");
-            
-            RoomAsset newAsset = new();
             InternalLibraryOverseer library = InternalLibraryOverseer.GetInstance();
             newAsset.ObjectGrid.SetTo(new Vector2Int(6, 5), AssetDataBuilder.ForObject(library.GetObjectByID("001")));
             newAsset.ObjectGrid.SetTo(new Vector2Int(8, 5), AssetDataBuilder.ForObject(library.GetObjectByID("002")));

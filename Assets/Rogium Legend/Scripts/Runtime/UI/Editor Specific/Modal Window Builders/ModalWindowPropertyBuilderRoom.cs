@@ -19,15 +19,9 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             roomBuilder = new RoomSettingsBuilder();
         }
 
-        public override void OpenForCreate()
-        {
-            OpenWindow(new RoomAsset(), CreateAsset, "Creating new room");
-        }
+        public override void OpenForCreate() => OpenWindow(new RoomAsset.Builder().Build() , CreateAsset, "Creating new room");
 
-        public override void OpenForUpdate()
-        {
-            OpenWindow(roomEditor.CurrentAsset, UpdateAsset, $"Editing {roomEditor.CurrentAsset.Title}");
-        }
+        public override void OpenForUpdate() => OpenWindow(new RoomAsset.Builder().AsCopy(roomEditor.CurrentAsset).Build(), UpdateAsset, $"Editing {roomEditor.CurrentAsset.Title}");
 
         private void OpenWindow(RoomAsset data, Action onConfirm, string headerText)
         {

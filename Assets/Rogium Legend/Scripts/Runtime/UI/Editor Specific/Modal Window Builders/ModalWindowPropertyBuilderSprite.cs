@@ -19,13 +19,10 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         
         public override void OpenForCreate()
         {
-            OpenWindow(new SpriteAsset(), CreateAsset, "Creating a new Sprite");
+            OpenWindow(new SpriteAsset.Builder().Build(), CreateAsset, "Creating a new Sprite");
         }
 
-        public override void OpenForUpdate()
-        {
-            OpenWindow(new SpriteAsset(spriteEditor.CurrentAsset), UpdateAsset, $"Updating {spriteEditor.CurrentAsset.Title}");
-        }
+        public override void OpenForUpdate() => OpenWindow(new SpriteAsset.Builder().AsCopy(spriteEditor.CurrentAsset).Build() , UpdateAsset, $"Updating {spriteEditor.CurrentAsset.Title}");
 
         private void OpenWindow(SpriteAsset sprite, Action onConfirm, string headerText)
         {
