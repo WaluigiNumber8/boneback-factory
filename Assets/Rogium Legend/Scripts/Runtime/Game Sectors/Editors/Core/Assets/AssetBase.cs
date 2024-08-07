@@ -55,5 +55,42 @@ namespace Rogium.Editors.Core
         public Sprite Icon { get => icon; }
         public string Author { get => author; }
         public DateTime CreationDate { get => creationDate; }
+
+        public abstract class BaseBuilder<T, TBuilder> where T : AssetBase where TBuilder : BaseBuilder<T, TBuilder>
+        {
+            public TBuilder WithID(string id)
+            {
+                Asset.id = id;
+                return This;
+            }
+            
+            public TBuilder WithTitle(string title)
+            {
+                Asset.title = title;
+                return This;
+            }
+            
+            public TBuilder WithIcon(Sprite icon)
+            {
+                Asset.icon = icon;
+                return This;
+            }
+            
+            public TBuilder WithAuthor(string author)
+            {
+                Asset.author = author;
+                return This;
+            }
+            
+            public TBuilder WithCreationDate(DateTime creationDate)
+            {
+                Asset.creationDate = creationDate;
+                return This;
+            }
+
+            public abstract T Build();
+            protected abstract T Asset { get; }
+            protected TBuilder This => (TBuilder) this;
+        }
     }
 }

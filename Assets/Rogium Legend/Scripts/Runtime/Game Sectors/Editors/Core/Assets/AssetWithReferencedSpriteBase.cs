@@ -32,5 +32,14 @@ namespace Rogium.Editors.Core
         }
 
         public string AssociatedSpriteID { get => associatedSpriteID; }
+
+        public abstract class AssetWithReferencedSpriteBuilder<T, TBuilder> : BaseBuilder<T, TBuilder> where T : AssetWithReferencedSpriteBase where TBuilder : BaseBuilder<T, TBuilder>
+        {
+            public TBuilder WithAssociatedSpriteID(string associatedSpriteID)
+            {
+                Asset.associatedSpriteID = associatedSpriteID;
+                return This;
+            }
+        }
     }
 }

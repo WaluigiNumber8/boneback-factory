@@ -5,7 +5,6 @@ using RedRats.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.Validation;
-using UnityEngine;
 
 namespace Rogium.Editors.Weapons
 {
@@ -19,7 +18,7 @@ namespace Rogium.Editors.Weapons
         private float useDuration;
         private bool freezeUser;
         private bool isEvasive;
-        private readonly List<ProjectileDataInfo> projectileIDs;
+        private List<ProjectileDataInfo> projectileIDs;
         
         private AssetData useSound;
 
@@ -83,44 +82,6 @@ namespace Rogium.Editors.Weapons
             
             projectileIDs = new List<ProjectileDataInfo>(asset.ProjectileIDs);
         }
-
-        public WeaponAsset(string id, string title, Sprite icon, string author, Color color, string associatedSpriteID, 
-                           AnimationType animationType, int frameDuration, Sprite iconAlt,int baseDamage, float useDelay, 
-                           float knockbackForceSelf, bool knockbackLockDirectionSelf, float knockbackForceOther, 
-                           bool knockbackLockDirectionOther, WeaponUseType useType, float useDuration, float useStartDelay, 
-                           bool isEvasive, bool freezeUser, IList<ProjectileDataInfo> projectileIDs, AssetData useSound,
-                           DateTime creationDate)
-        {
-            AssetValidation.ValidateTitle(title);
-            
-            this.id = id;
-            InitBase(title, icon, author, creationDate);
-            this.color = color;
-
-            this.associatedSpriteID = associatedSpriteID;
-            
-            this.animationType = animationType;
-            this.frameDuration = frameDuration;
-            this.iconAlt = iconAlt;
-            
-            this.baseDamage = baseDamage;
-            this.useDelay = useDelay;
-            this.knockbackForceSelf = knockbackForceSelf;
-            this.knockbackLockDirectionSelf = knockbackLockDirectionSelf;
-            this.knockbackForceOther = knockbackForceOther;
-            this.knockbackLockDirectionOther = knockbackLockDirectionOther;
-
-            this.useType = useType;
-            this.useDuration = useDuration;
-            this.useStartDelay = useStartDelay;
-            this.isEvasive = isEvasive;
-            this.freezeUser = freezeUser;
-            
-            this.useSound = new AssetData(useSound);
-            
-            this.projectileIDs = new List<ProjectileDataInfo>(projectileIDs);
-
-        }
         #endregion
 
         #region Update Values
@@ -170,5 +131,85 @@ namespace Rogium.Editors.Weapons
         public bool FreezeUser { get => freezeUser; }
         public List<ProjectileDataInfo> ProjectileIDs { get => projectileIDs; }
         public AssetData UseSound { get => useSound; }
+
+        public class WeaponBuilder : EntityAssetBuilder<WeaponAsset, WeaponBuilder>
+        {
+            public WeaponBuilder()
+            {
+                Asset.GenerateID(EditorAssetIDs.WeaponIdentifier);
+                Asset.title = EditorDefaults.Instance.WeaponTitle;
+                Asset.icon = EditorDefaults.Instance.WeaponIcon;
+                Asset.author = EditorDefaults.Instance.Author;
+                Asset.creationDate = DateTime.Now;
+                Asset.color = EditorDefaults.Instance.WeaponColor;
+
+                Asset.animationType = EditorDefaults.Instance.WeaponAnimationType;
+                Asset.frameDuration = EditorDefaults.Instance.WeaponFrameDuration;
+                Asset.iconAlt = EditorDefaults.Instance.EmptySprite;
+            
+                Asset.baseDamage = EditorDefaults.Instance.WeaponBaseDamage;
+                Asset.useDelay = EditorDefaults.Instance.WeaponUseDelay;
+                Asset.knockbackForceSelf = EditorDefaults.Instance.WeaponKnockbackForceSelf;
+                Asset.knockbackLockDirectionSelf = EditorDefaults.Instance.WeaponKnockbackLockDirectionSelf;
+                Asset.knockbackForceOther = EditorDefaults.Instance.WeaponKnockbackForceOther;
+                Asset.knockbackLockDirectionOther = EditorDefaults.Instance.WeaponKnockbackLockDirectionOther;
+
+                Asset.useType = EditorDefaults.Instance.WeaponUseType;
+                Asset.useDuration = EditorDefaults.Instance.WeaponUseDuration;
+                Asset.useStartDelay = EditorDefaults.Instance.WeaponUseStartDelay;
+                Asset.isEvasive = EditorDefaults.Instance.WeaponIsEvasive;
+                Asset.freezeUser = EditorDefaults.Instance.WeaponFreezeUser;
+            
+                Asset.useSound = new AssetData(ParameterInfoConstants.ForSound);
+            
+                Asset.projectileIDs = new List<ProjectileDataInfo>();
+            }
+            
+            public WeaponBuilder WithUseType(WeaponUseType useType)
+            {
+                Asset.useType = useType;
+                return this;
+            }
+            
+            public WeaponBuilder WithUseDuration(float useDuration)
+            {
+                Asset.useDuration = useDuration;
+                return this;
+            }
+            
+            public WeaponBuilder WithUseStartDelay(float useStartDelay)
+            {
+                Asset.useStartDelay = useStartDelay;
+                return this;
+            }
+            
+            public WeaponBuilder WithIsEvasive(bool isEvasive)
+            {
+                Asset.isEvasive = isEvasive;
+                return this;
+            }
+            
+            public WeaponBuilder WithFreezeUser(bool freezeUser)
+            {
+                Asset.freezeUser = freezeUser;
+                return this;
+            }
+            
+            public WeaponBuilder WithProjectileIDs(IList<ProjectileDataInfo> projectileIDs)
+            {
+                Asset.projectileIDs.Clear();
+                Asset.projectileIDs.AddRange(projectileIDs);
+                return this;
+            }
+            
+            public WeaponBuilder WithUseSound(AssetData useSound)
+            {
+                Asset.useSound = new AssetData(useSound);
+                return this;
+            }
+            
+            public override WeaponAsset Build() => Asset;
+            protected sealed override WeaponAsset Asset { get; } = new();
+        }
     }
 }
