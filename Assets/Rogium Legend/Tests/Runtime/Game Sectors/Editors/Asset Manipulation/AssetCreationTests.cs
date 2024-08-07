@@ -9,6 +9,7 @@ using Rogium.Editors.Rooms;
 using Rogium.Editors.Sprites;
 using Rogium.Editors.Tiles;
 using Rogium.Editors.Weapons;
+using Rogium.Options.Core;
 
 namespace Rogium.Tests.Editors.AssetManipulation
 {
@@ -586,6 +587,24 @@ namespace Rogium.Tests.Editors.AssetManipulation
             CampaignAsset original = AssetCreator.CreateCampaign();
             CampaignAsset clone = new CampaignAsset.Builder().AsClone(original).Build();
             Assert.That(clone.AdventureLength, Is.EqualTo(original.AdventureLength));
+        }
+
+        #endregion
+
+        #region Preferences
+
+        [Test]
+        public void Copy_Should_CreatePreferencesWithSameParameters()
+        {
+            GameDataAsset original = new GameDataAsset.Builder().Build();
+            GameDataAsset copy = new GameDataAsset.Builder().AsCopy(original).Build();
+            Assert.That(copy.MasterVolume, Is.EqualTo(original.MasterVolume));
+            Assert.That(copy.MusicVolume, Is.EqualTo(original.MusicVolume));
+            Assert.That(copy.SoundVolume, Is.EqualTo(original.SoundVolume));
+            Assert.That(copy.UIVolume, Is.EqualTo(original.UIVolume));
+            Assert.That(copy.Resolution, Is.EqualTo(original.Resolution));
+            Assert.That(copy.ScreenMode, Is.EqualTo(original.ScreenMode));
+            Assert.That(copy.VSync, Is.EqualTo(original.VSync));
         }
 
         #endregion

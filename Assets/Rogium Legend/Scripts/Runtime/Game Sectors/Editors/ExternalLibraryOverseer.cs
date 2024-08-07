@@ -52,7 +52,7 @@ namespace Rogium.Editors.Core
             campaigns.RemoveAll(campaign => campaign.PackReferences.Count <= 0);
             
             IList<GameDataAsset> data = ex.Preferences.LoadAll();
-            preferences = (data == null || data.Count <= 0) ? new GameDataAsset() : data[0];
+            preferences = (data == null || data.Count <= 0) ? new GameDataAsset.Builder().Build() : data[0];
         }
 
         #region Packs
