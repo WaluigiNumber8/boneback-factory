@@ -35,6 +35,12 @@ namespace Rogium.Editors.Core
 
         public abstract class AssetWithReferencedSpriteBuilder<T, TBuilder> : BaseBuilder<T, TBuilder> where T : AssetWithReferencedSpriteBase where TBuilder : BaseBuilder<T, TBuilder>
         {
+            public TBuilder WithIcon(IAsset newSprite)
+            {
+                Asset.UpdateIcon(newSprite);
+                return This;
+            }
+            
             public TBuilder WithAssociatedSpriteID(string associatedSpriteID)
             {
                 Asset.associatedSpriteID = associatedSpriteID;

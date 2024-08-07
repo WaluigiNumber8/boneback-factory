@@ -16,12 +16,12 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
 
         public override void OpenForCreate()
         {
-            OpenWindow(new WeaponAsset(), CreateAsset, "Creating a new Weapon");
+            OpenWindow(new WeaponAsset.WeaponBuilder().Build(), CreateAsset, "Creating a new Weapon");
         }
 
         public override void OpenForUpdate()
         {
-            OpenWindow(new WeaponAsset(weaponEditor.CurrentAsset), UpdateAsset, $"Updating {weaponEditor.CurrentAsset.Title}");
+            OpenWindow(new WeaponAsset.WeaponBuilder().AsCopy(weaponEditor.CurrentAsset).Build(), UpdateAsset, $"Updating {weaponEditor.CurrentAsset.Title}");
         }
 
         private void OpenWindow(WeaponAsset weapon, Action onConfirm, string headerText)

@@ -67,11 +67,12 @@ namespace Rogium.Tests.Editors
         
         public static WeaponAsset CreateWeapon()
         {
-            WeaponAsset weapon = new();
-            weapon.UpdateTitle("Test Weapon");
             SpriteAsset s = CreateSprite();
             s.UpdateIcon(RedRatBuilder.GenerateSprite(Color.green, 16, 16, 16));
-            weapon.UpdateIcon(s);
+            WeaponAsset weapon = new WeaponAsset.WeaponBuilder()
+                .WithTitle("Test Weapon")
+                .WithIcon(s)
+                .Build();
             return weapon;
         }
 
