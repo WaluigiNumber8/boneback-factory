@@ -135,7 +135,7 @@ namespace Rogium.Tests.Editors.Sprites
         public void Should_FlagPaletteAsNotChanged_WhenEditedPaletteSwitched()
         {
             UpdateColorSlot(Color.blue);
-            spriteEditor.SwitchPalette(new PaletteAsset());
+            spriteEditor.SwitchPalette(new PaletteAsset.Builder().Build());
             Assert.That(spriteEditor.PaletteChanged, Is.False);
         }
 

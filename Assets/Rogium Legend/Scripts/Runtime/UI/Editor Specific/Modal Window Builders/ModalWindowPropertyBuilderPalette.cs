@@ -17,15 +17,9 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             paletteEditor = PaletteEditorOverseer.Instance;;
         }
         
-        public override void OpenForCreate()
-        {
-            OpenWindow(new PaletteAsset(), CreateAsset, "Creating a new Palette");
-        }
+        public override void OpenForCreate() => OpenWindow(new PaletteAsset.Builder().Build(), CreateAsset, "Creating a new Palette");
 
-        public override void OpenForUpdate()
-        {
-            OpenWindow(new PaletteAsset(paletteEditor.CurrentAsset), UpdateAsset, $"Updating {paletteEditor.CurrentAsset.Title}");
-        }
+        public override void OpenForUpdate() => OpenWindow(new PaletteAsset.Builder().AsCopy(paletteEditor.CurrentAsset).Build(), UpdateAsset, $"Updating {paletteEditor.CurrentAsset.Title}");
 
         private void OpenWindow(PaletteAsset palette, Action onConfirm, string headerText)
         {

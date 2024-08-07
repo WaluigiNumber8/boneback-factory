@@ -1,12 +1,75 @@
 using NUnit.Framework;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Core.Defaults;
+using Rogium.Editors.Palettes;
 using Rogium.Editors.Weapons;
 
 namespace Rogium.Tests.Editors.AssetManipulation
 {
     public class AssetCreationTests
     {
+        #region Palettes
+
+        [Test]
+        public void Build_Should_GivePaletteProperIdentifier()
+        {
+            PaletteAsset palette = new PaletteAsset.Builder().Build();
+            Assert.That(palette.ID[..2], Is.EqualTo(EditorAssetIDs.PaletteIdentifier));
+        }
+        
+        [Test]
+        public void Copy_Should_CreatePaletteWithSameID()
+        {
+            PaletteAsset original = AssetCreator.CreatePalette();
+            PaletteAsset copy = new PaletteAsset.Builder().AsCopy(original).Build();
+            Assert.That(copy.ID, Is.EqualTo(original.ID));
+        }
+        
+        [Test]
+        public void Copy_Should_CreatePaletteWithSameParameters()
+        {
+            PaletteAsset original = AssetCreator.CreatePalette();
+            PaletteAsset copy = new PaletteAsset.Builder().AsCopy(original).Build();
+            Assert.That(copy.Colors, Is.EqualTo(original.Colors));
+        }
+        
+        [Test]
+        public void Copy_Should_CreatePaletteBaseWithSameParameters()
+        {
+            PaletteAsset original = AssetCreator.CreatePalette();
+            PaletteAsset copy = new PaletteAsset.Builder().AsCopy(original).Build();
+            Assert.That(copy.Title, Is.EqualTo(original.Title));
+            Assert.That(copy.Author, Is.EqualTo(original.Author));
+            Assert.That(copy.CreationDate, Is.EqualTo(original.CreationDate));
+        }
+        
+        [Test]
+        public void Clone_Should_CreatePaletteWithDifferentID()
+        {
+            PaletteAsset original = AssetCreator.CreatePalette();
+            PaletteAsset clone = new PaletteAsset.Builder().AsClone(original).Build();
+            Assert.That(clone.ID, Is.Not.EqualTo(original.ID));
+        }
+        
+        [Test]
+        public void Clone_Should_CreatePaletteBaseWithSameParameters()
+        {
+            PaletteAsset original = AssetCreator.CreatePalette();
+            PaletteAsset clone = new PaletteAsset.Builder().AsClone(original).Build();
+            Assert.That(clone.Title, Is.EqualTo(original.Title));
+            Assert.That(clone.Author, Is.EqualTo(original.Author));
+            Assert.That(clone.CreationDate, Is.EqualTo(original.CreationDate));
+        }
+        
+        [Test]
+        public void Clone_Should_CreatePaletteWithSameParameters()
+        {
+            PaletteAsset original = AssetCreator.CreatePalette();
+            PaletteAsset clone = new PaletteAsset.Builder().AsClone(original).Build();
+            Assert.That(clone.Colors, Is.EqualTo(original.Colors));
+        }
+        #endregion
+        
         #region Weapons
 
         [Test]

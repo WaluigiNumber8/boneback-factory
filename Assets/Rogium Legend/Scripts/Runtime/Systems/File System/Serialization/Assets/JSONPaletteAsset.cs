@@ -27,12 +27,14 @@ namespace Rogium.ExternalStorage.Serialization
             colors.SetDecodingMethod(c => c.Decode());
             Color[] deserializedColors = colors.Decode();
 
-            return new PaletteAsset(id,
-                                    title,
-                                    icon.Decode(),
-                                    author,
-                                    deserializedColors,
-                                    DateTime.Parse(creationDate));
+            return new PaletteAsset.Builder()
+                .WithID(id)
+                .WithTitle(title)
+                .WithIcon(icon.Decode())
+                .WithAuthor(author)
+                .WithCreationDate(DateTime.Parse(creationDate))
+                .WithColors(deserializedColors)
+                .Build();
         }
     }
 }

@@ -2,7 +2,6 @@ using System;
 using RedRats.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
-using Rogium.Systems.Validation;
 using UnityEngine;
 
 namespace Rogium.Editors.Palettes
@@ -12,41 +11,51 @@ namespace Rogium.Editors.Palettes
     /// </summary>
     public class PaletteAsset : AssetWithDirectSpriteBase
     {
-        private readonly Color[] colors;
+        private Color[] colors;
 
-        #region Constructors
-        public PaletteAsset()
-        {
-            InitBase(EditorDefaults.Instance.PaletteTitle, EditorDefaults.Instance.EmptySprite, EditorDefaults.Instance.Author, DateTime.Now);
-            GenerateID();
-
-            colors = RedRatBuilder.GenerateColorArray(EditorDefaults.Instance.PaletteSize, Color.black);
-        }
-
-        public PaletteAsset(PaletteAsset asset)
-        {
-            AssetValidation.ValidateTitle(asset.title);
-            
-            id = asset.ID;
-            InitBase(asset.Title, asset.Icon, asset.Author, asset.CreationDate);
-
-            colors = asset.Colors;
-        }
-        
-        public PaletteAsset(string id, string title, Sprite icon, string author, Color[] colors, DateTime creationDate)
-        {
-            AssetValidation.ValidateTitle(title);
-            
-            this.id = id;
-            InitBase(title, icon, author, creationDate);
-
-            this.colors = colors;
-        }
-        #endregion
-        
-        #region Update Values
-        #endregion
+        private PaletteAsset() { }
         
         public Color[] Colors { get => colors; }
+        
+        public class Builder : BaseBuilder<PaletteAsset, Builder>
+        {
+            public Builder()
+            {
+                Asset.title = EditorDefaults.Instance.PaletteTitle;
+                Asset.icon = EditorDefaults.Instance.EmptySprite;
+                Asset.author = EditorDefaults.Instance.Author;
+                Asset.creationDate = DateTime.Now;
+                Asset.GenerateID();
+                
+                Asset.colors = RedRatBuilder.GenerateColorArray(EditorDefaults.Instance.PaletteSize, Color.black);
+            }
+            
+            public Builder WithColors(Color[] colors)
+            {
+                Asset.colors = colors;
+                return This;
+            }
+            
+            public override Builder AsClone(PaletteAsset asset)
+            {
+                AsCopy(asset);
+                Asset.GenerateID();
+                return This;
+            }
+
+            public override Builder AsCopy(PaletteAsset asset)
+            {
+                Asset.id = asset.ID;
+                Asset.title = asset.Title;
+                Asset.icon = asset.Icon;
+                Asset.author = asset.Author;
+                Asset.creationDate = asset.CreationDate;
+                Asset.colors = asset.Colors;
+                return This;
+            }
+
+            protected sealed override PaletteAsset Asset { get; } = new();
+        }
+   
     }
 }

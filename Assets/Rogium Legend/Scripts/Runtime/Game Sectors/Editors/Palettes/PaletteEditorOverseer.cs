@@ -32,8 +32,8 @@ namespace Rogium.Editors.Palettes
         {
             SafetyNet.EnsureIsNotNull(asset, "Assigned Palette");
             SafetyNet.EnsureIntIsBiggerOrEqualTo(index, 0, "Assigned asset index");
-            
-            currentAsset = new PaletteAsset(asset);
+
+            currentAsset = new PaletteAsset.Builder().AsCopy(asset).Build();
             myIndex = index;
 
             if (!prepareEditor) return;
@@ -47,7 +47,7 @@ namespace Rogium.Editors.Palettes
         public void UpdateAsset(PaletteAsset updatedAsset)
         { 
             SafetyNet.EnsureIsNotNull(currentAsset, "Currently active asset.");
-            currentAsset = new PaletteAsset(updatedAsset);
+            currentAsset = new PaletteAsset.Builder().AsCopy(updatedAsset).Build();
         }
 
         /// <summary>

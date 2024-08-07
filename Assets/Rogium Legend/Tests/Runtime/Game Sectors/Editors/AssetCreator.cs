@@ -34,31 +34,31 @@ namespace Rogium.Tests.Editors
                 .Build();
             return campaign;
         }
-        
+
         public static PackAsset CreatePack()
         {
             PackAsset pack = new();
             pack.UpdateTitle("Test Pack");
-            
-            pack.Palettes.AddAllWithoutSave(new[] { CreatePalette() });
-            pack.Sprites.AddAllWithoutSave(new[] { CreateSprite() });
-            pack.Weapons.AddAllWithoutSave(new[] { CreateWeapon() });
-            pack.Projectiles.AddAllWithoutSave(new[] { CreateProjectile() });
-            pack.Enemies.AddAllWithoutSave(new[] { CreateEnemy() });
-            pack.Rooms.AddAllWithoutSave(new[] { CreateRoom() });
-            pack.Tiles.AddAllWithoutSave(new[] { CreateTile() });
+
+            pack.Palettes.AddAllWithoutSave(new[] {CreatePalette()});
+            pack.Sprites.AddAllWithoutSave(new[] {CreateSprite()});
+            pack.Weapons.AddAllWithoutSave(new[] {CreateWeapon()});
+            pack.Projectiles.AddAllWithoutSave(new[] {CreateProjectile()});
+            pack.Enemies.AddAllWithoutSave(new[] {CreateEnemy()});
+            pack.Rooms.AddAllWithoutSave(new[] {CreateRoom()});
+            pack.Tiles.AddAllWithoutSave(new[] {CreateTile()});
 
             return pack;
         }
 
         public static PaletteAsset CreatePalette()
         {
-            PaletteAsset palette = new();
-            palette.UpdateTitle("Test Palette");
-            palette.UpdateIcon(RedRatBuilder.GenerateSprite(Color.magenta, 16, 16, 16));
-            return palette;
+            return new PaletteAsset.Builder()
+                .WithTitle("Test Palette")
+                .WithIcon(RedRatBuilder.GenerateSprite(Color.magenta, 16, 16, 16))
+                .Build();
         }
-        
+
         public static SpriteAsset CreateSprite()
         {
             SpriteAsset sprite = new();
@@ -75,7 +75,7 @@ namespace Rogium.Tests.Editors
             sprite.UpdateSpriteData(newSpriteData);
             return sprite;
         }
-        
+
         public static WeaponAsset CreateWeapon()
         {
             SpriteAsset s = CreateSprite();

@@ -91,12 +91,6 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack.Palettes, "Pack Editor - List of Palettes");
             CurrentPack.Palettes.Add(newAsset);
         }
-        public void CreateNewPalette()
-        {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureIsNotNull(currentPack.Palettes, "Pack Editor - List of Palettes");
-            CurrentPack.Palettes.Add(new PaletteAsset());
-        }
 
         /// <summary>
         /// Updates the palette in the given pack.
