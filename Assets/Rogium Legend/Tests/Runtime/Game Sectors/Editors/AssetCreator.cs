@@ -89,12 +89,10 @@ namespace Rogium.Tests.Editors
 
         public static ProjectileAsset CreateProjectile()
         {
-            ProjectileAsset projectile = new();
-            projectile.UpdateTitle("Test Projectile");
-            SpriteAsset s = CreateSprite();
-            s.UpdateIcon(RedRatBuilder.GenerateSprite(Color.cyan, 16, 16, 16));
-            projectile.UpdateIcon(s);
-            return projectile;
+            return new ProjectileAsset.Builder()
+                .WithTitle("Test Projectile")
+                .WithIcon(CreateSprite(Color.cyan))
+                .Build();
         }
 
         public static EnemyAsset CreateEnemy()

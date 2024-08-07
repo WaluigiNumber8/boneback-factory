@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using RedRats.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Enemies;
@@ -51,6 +50,7 @@ namespace Rogium.ExternalStorage.Serialization
                 .WithIcon(icon.Decode())
                 .WithAuthor(author)
                 .WithCreationDate(DateTime.Parse(creationDate))
+                .WithColor(color.Decode())
                 .WithAssociatedSpriteID(associatedSpriteID)
                 .WithAnimationType((AnimationType)animationType)
                 .WithFrameDuration(frameDuration)

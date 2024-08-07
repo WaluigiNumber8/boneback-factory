@@ -17,15 +17,9 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             projectileEditor = ProjectileEditorOverseer.Instance;
         }
         
-        public override void OpenForCreate()
-        {
-            OpenWindow(new ProjectileAsset(), CreateAsset, "Creating a new Projectile");
-        }
+        public override void OpenForCreate() => OpenWindow(new ProjectileAsset.Builder().Build(), CreateAsset, "Creating a new Projectile");
 
-        public override void OpenForUpdate()
-        {
-            OpenWindow(new ProjectileAsset(projectileEditor.CurrentAsset), UpdateAsset, $"Updating {projectileEditor.CurrentAsset.Title}");
-        }
+        public override void OpenForUpdate() => OpenWindow(new ProjectileAsset.Builder().AsCopy(projectileEditor.CurrentAsset).Build(), UpdateAsset, $"Updating {projectileEditor.CurrentAsset.Title}");
 
         private void OpenWindow(ProjectileAsset projectile, Action onConfirm, string headerText)
         {

@@ -28,122 +28,6 @@ namespace Rogium.Editors.Enemies
 
         private EnemyAsset() { }
 
-        #region Constructors
-
-        // public EnemyAsset()
-        // {
-        //     InitBase(EditorDefaults.Instance.EnemyTitle, EditorDefaults.Instance.EnemyIcon, EditorDefaults.Instance.Author, DateTime.Now);
-        //     color = EditorDefaults.Instance.EnemyColor;
-        //
-        //     animationType = EditorDefaults.Instance.EnemyAnimationType;
-        //     frameDuration = EditorDefaults.Instance.EnemyFrameDuration;
-        //     iconAlt = EditorDefaults.Instance.EmptySprite;
-        //     
-        //     baseDamage = EditorDefaults.Instance.EnemyBaseDamage;
-        //     useDelay = EditorDefaults.Instance.EnemyAttackDelay;
-        //     knockbackForceSelf = EditorDefaults.Instance.EnemyKnockbackForceSelf;
-        //     knockbackLockDirectionSelf = EditorDefaults.Instance.EnemyKnockbackLockDirectionSelf;
-        //     knockbackForceOther = EditorDefaults.Instance.EnemyKnockbackForceOther;
-        //     knockbackLockDirectionOther = EditorDefaults.Instance.EnemyKnockbackLockDirectionOther;
-        //
-        //     maxHealth = EditorDefaults.Instance.EnemyMaxHealth;
-        //     attackProbability = EditorDefaults.Instance.EnemyAttackProbability;
-        //     invincibilityTime = EditorDefaults.Instance.EnemyInvincibilityTime;
-        //     weaponIDs = new List<string>();
-        //     
-        //     ai = EditorDefaults.Instance.EnemyAI;
-        //     nextStepTime = EditorDefaults.Instance.EnemyNextStepTime;
-        //     seamlessMovement = EditorDefaults.Instance.EnemySeamlessMovement;
-        //     startingDirection = EditorDefaults.Instance.EnemyStartingDirection;
-        //     
-        //     hurtSound = new AssetData(ParameterInfoConstants.ForSound);
-        //     deathSound = new AssetData(ParameterInfoConstants.ForSound);
-        //     idleSound = new AssetData(ParameterInfoConstants.ForSound);
-        //     
-        //     GenerateID();
-        // }
-        //
-        // public EnemyAsset(EnemyAsset asset)
-        // {
-        //     AssetValidation.ValidateTitle(asset.title);
-        //     
-        //     id = asset.ID;
-        //     InitBase(asset.Title, asset.Icon, asset.Author, asset.CreationDate);
-        //
-        //     color = asset.Color;
-        //     associatedSpriteID = asset.AssociatedSpriteID;
-        //     
-        //     animationType = asset.AnimationType;
-        //     frameDuration = asset.FrameDuration;
-        //     iconAlt = asset.IconAlt;
-        //     
-        //     baseDamage = asset.BaseDamage;
-        //     useDelay = asset.UseDelay;
-        //     knockbackForceSelf = asset.KnockbackForceSelf;
-        //     knockbackLockDirectionSelf = asset.KnockbackLockDirectionSelf;
-        //     knockbackForceOther = asset.KnockbackForceOther;
-        //     knockbackLockDirectionOther = asset.KnockbackLockDirectionOther;
-        //
-        //     maxHealth = asset.MaxHealth;
-        //     attackProbability = asset.AttackProbability;
-        //     invincibilityTime = asset.InvincibilityTime;
-        //     
-        //     ai = asset.AI;
-        //     nextStepTime = asset.NextStepTime;
-        //     startingDirection = asset.StartingDirection;
-        //     seamlessMovement = asset.SeamlessMovement;
-        //     
-        //     hurtSound = new AssetData(asset.HurtSound);
-        //     deathSound = new AssetData(asset.DeathSound);
-        //     idleSound = new AssetData(asset.IdleSound);
-        //     
-        //     weaponIDs = new List<string>(asset.weaponIDs);
-        // }
-        //
-        // public EnemyAsset(string id, string title, Sprite icon, string author, Color color, string associatedSpriteID, 
-        //                   AnimationType animationType, int frameDuration, Sprite iconAlt, int baseDamage, float useDelay, 
-        //                   float knockbackForceSelf, bool knockbackLockDirectionSelf, float knockbackForceOther, 
-        //                   bool knockbackLockDirectionOther, int maxHealth, float attackProbability, float invincibilityTime, 
-        //                   IList<string> weaponIDs, AIType ai, float nextStepTime, DirectionType startingDirection, 
-        //                   bool seamlessMovement, AssetData hurtSound, AssetData deathSound, AssetData idleSound, 
-        //                   DateTime creationDate)
-        // {
-        //     AssetValidation.ValidateTitle(title);
-        //     
-        //     this.id = id;
-        //     InitBase(title, icon, author, creationDate);
-        //     this.color = color;
-        //
-        //     this.associatedSpriteID = associatedSpriteID;
-        //
-        //     this.animationType = animationType;
-        //     this.frameDuration = frameDuration;
-        //     this.iconAlt = iconAlt;
-        //     
-        //     this.baseDamage = baseDamage;
-        //     this.useDelay = useDelay;
-        //     this.knockbackForceSelf = knockbackForceSelf;
-        //     this.knockbackLockDirectionSelf = knockbackLockDirectionSelf;
-        //     this.knockbackForceOther = knockbackForceOther;
-        //     this.knockbackLockDirectionOther = knockbackLockDirectionOther;
-        //
-        //     this.maxHealth = maxHealth;
-        //     this.attackProbability = attackProbability;
-        //     this.invincibilityTime = invincibilityTime;
-        //     this.weaponIDs = new List<string>(weaponIDs);
-        //     
-        //     this.ai = ai;
-        //     this.nextStepTime = nextStepTime;
-        //     this.startingDirection = startingDirection;
-        //     this.seamlessMovement = seamlessMovement;
-        //     
-        //     this.hurtSound = new AssetData(hurtSound);
-        //     this.deathSound = new AssetData(deathSound);
-        //     this.idleSound = new AssetData(idleSound);
-        // }
-
-        #endregion
-
         #region Update Values
 
         public void UpdateMaxHealth(int newMaxHealth) => maxHealth = newMaxHealth;
@@ -175,60 +59,17 @@ namespace Rogium.Editors.Enemies
             icon = EditorDefaults.Instance.EnemyIcon;
         }
 
-        public List<string> WeaponIDs
-        {
-            get => weaponIDs;
-        }
-
-        public int MaxHealth
-        {
-            get => maxHealth;
-        }
-
-        public float AttackProbability
-        {
-            get => attackProbability;
-        }
-
-        public float InvincibilityTime
-        {
-            get => invincibilityTime;
-        }
-
-        public AIType AI
-        {
-            get => ai;
-        }
-
-        public float NextStepTime
-        {
-            get => nextStepTime;
-        }
-
-        public DirectionType StartingDirection
-        {
-            get => startingDirection;
-        }
-
-        public bool SeamlessMovement
-        {
-            get => seamlessMovement;
-        }
-
-        public AssetData HurtSound
-        {
-            get => hurtSound;
-        }
-
-        public AssetData DeathSound
-        {
-            get => deathSound;
-        }
-
-        public AssetData IdleSound
-        {
-            get => idleSound;
-        }
+        public List<string> WeaponIDs { get => weaponIDs; }
+        public int MaxHealth { get => maxHealth; }
+        public float AttackProbability { get => attackProbability; }
+        public float InvincibilityTime { get => invincibilityTime; }
+        public AIType AI { get => ai; }
+        public float NextStepTime { get => nextStepTime; }
+        public DirectionType StartingDirection { get => startingDirection; }
+        public bool SeamlessMovement { get => seamlessMovement; }
+        public AssetData HurtSound { get => hurtSound; }
+        public AssetData DeathSound { get => deathSound; }
+        public AssetData IdleSound { get => idleSound; }
 
         public class Builder : EntityAssetBuilder<EnemyAsset, Builder>
         {

@@ -279,12 +279,6 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack.Projectiles, "Pack Editor - List of Projectiles");
             CurrentPack.Projectiles.Add(newAsset);
         }
-        public void CreateNewProjectile()
-        {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureIsNotNull(currentPack.Projectiles, "Pack Editor - List of Projectiles");
-            CurrentPack.Projectiles.Add(new ProjectileAsset());
-        }
 
         /// <summary>
         /// Updates the projectile in the given pack.
