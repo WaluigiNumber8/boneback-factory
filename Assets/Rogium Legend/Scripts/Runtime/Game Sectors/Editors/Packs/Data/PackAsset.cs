@@ -37,7 +37,7 @@ namespace Rogium.Editors.Packs
         public PackAsset()
         {
             InitBase(EditorDefaults.Instance.PackTitle, EditorDefaults.Instance.PackIcon, EditorDefaults.Instance.Author, DateTime.Now);
-            GenerateID(EditorAssetIDs.PackIdentifier);
+            GenerateID();
 
             description = EditorDefaults.Instance.PackDescription;
             palettes = new AssetList<PaletteAsset>(ex.Palettes.Save, ex.Palettes.UpdateTitle, ex.Palettes.Delete);
@@ -95,7 +95,7 @@ namespace Rogium.Editors.Packs
             IList<RoomAsset> rooms, IList<TileAsset> tiles)
         {
             InitBase(EditorDefaults.Instance.PackTitle, EditorDefaults.Instance.PackIcon, EditorDefaults.Instance.Author, DateTime.Now);
-            GenerateID(EditorAssetIDs.PackIdentifier);
+            GenerateID();
 
             this.description = EditorDefaults.Instance.PackDescription;
             this.palettes = new AssetList<PaletteAsset>(ex.Palettes.Save, ex.Palettes.UpdateTitle, ex.Palettes.Delete, palettes);

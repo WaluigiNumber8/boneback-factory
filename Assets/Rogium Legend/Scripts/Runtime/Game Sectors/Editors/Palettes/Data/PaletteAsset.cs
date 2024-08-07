@@ -18,7 +18,7 @@ namespace Rogium.Editors.Palettes
         public PaletteAsset()
         {
             InitBase(EditorDefaults.Instance.PaletteTitle, EditorDefaults.Instance.EmptySprite, EditorDefaults.Instance.Author, DateTime.Now);
-            GenerateID(EditorAssetIDs.PaletteIdentifier);
+            GenerateID();
 
             colors = RedRatBuilder.GenerateColorArray(EditorDefaults.Instance.PaletteSize, Color.black);
         }

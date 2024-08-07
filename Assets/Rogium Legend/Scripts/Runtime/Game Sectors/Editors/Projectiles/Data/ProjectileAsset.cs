@@ -20,7 +20,7 @@ namespace Rogium.Editors.Projectiles
         public ProjectileAsset()
         {
             InitBase(EditorDefaults.Instance.ProjectileTitle, EditorDefaults.Instance.ProjectileIcon, EditorDefaults.Instance.Author, DateTime.Now);
-            GenerateID(EditorAssetIDs.ProjectileIdentifier);
+            GenerateID();
             color = EditorDefaults.Instance.ProjectileColor;
 
             animationType = EditorDefaults.Instance.ProjectileAnimationType;

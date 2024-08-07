@@ -1,4 +1,5 @@
 ﻿using System;
+using Rogium.Editors.Core.Defaults;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -20,12 +21,12 @@ namespace Rogium.Editors.Core
         /// Generates the ID for this asset.
         /// </summary>
         /// <returns>ID</returns>
-        protected void GenerateID(string assetIdentifier)
+        protected void GenerateID()
         {
             string authorPart = Mathf.Abs(author.GetHashCode()).ToString().Substring(0, 3);
             string datePart = Mathf.Abs(creationDate.GetHashCode()).ToString().Substring(0, 3);
             string randomPart = Random.Range(100, 999).ToString();
-            id = assetIdentifier + authorPart + datePart + randomPart;
+            id = EditorAssetIDs.GetIdentifier(GetType()) + authorPart + datePart + randomPart;
         }
 
         #region Update Values

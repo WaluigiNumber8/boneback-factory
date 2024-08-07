@@ -4,7 +4,6 @@ using RedRats.Core;
 using RedRats.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
-using Rogium.Systems.Validation;
 
 namespace Rogium.Editors.Weapons
 {
@@ -93,13 +92,13 @@ namespace Rogium.Editors.Weapons
                 Asset.useSound = new AssetData(ParameterInfoConstants.ForSound);
             
                 Asset.projectileIDs = new List<ProjectileDataInfo>();
-                Asset.GenerateID(EditorAssetIDs.WeaponIdentifier);
+                Asset.GenerateID();
             }
             
             public override Builder AsClone(WeaponAsset asset)
             {
                 AsCopy(asset);
-                Asset.GenerateID(EditorAssetIDs.WeaponIdentifier);
+                Asset.GenerateID();
                 return This;
             }
 

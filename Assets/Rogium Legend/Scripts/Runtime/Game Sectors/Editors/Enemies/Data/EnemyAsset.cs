@@ -59,7 +59,7 @@ namespace Rogium.Editors.Enemies
             deathSound = new AssetData(ParameterInfoConstants.ForSound);
             idleSound = new AssetData(ParameterInfoConstants.ForSound);
             
-            GenerateID(EditorAssetIDs.EnemyIdentifier);
+            GenerateID();
         }
 
         public EnemyAsset(EnemyAsset asset)

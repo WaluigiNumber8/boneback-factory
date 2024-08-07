@@ -26,7 +26,7 @@ namespace Rogium.Editors.Rooms
         public RoomAsset()
         {
             InitBase(EditorDefaults.Instance.RoomTitle, EditorDefaults.Instance.EmptySprite, EditorDefaults.Instance.Author, DateTime.Now);
-            GenerateID(EditorAssetIDs.RoomIdentifier);
+            GenerateID();
             
             this.difficultyLevel = EditorDefaults.Instance.RoomDifficulty;
             this.type = EditorDefaults.Instance.RoomType;

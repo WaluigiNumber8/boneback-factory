@@ -4,7 +4,6 @@ using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Packs;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Rogium.Editors.Campaign
 {
@@ -51,7 +50,7 @@ namespace Rogium.Editors.Campaign
                 Asset.icon = EditorDefaults.Instance.EmptySprite;
                 Asset.author = EditorDefaults.Instance.Author;
                 Asset.creationDate = DateTime.Now;
-                Asset.GenerateID(EditorAssetIDs.CampaignIdentifier);
+                Asset.GenerateID();
                 Asset.packReferences = new List<string>();
             }
 
@@ -76,7 +75,7 @@ namespace Rogium.Editors.Campaign
             public override Builder AsClone(CampaignAsset asset)
             {
                 AsCopy(asset);
-                Asset.GenerateID(EditorAssetIDs.CampaignIdentifier);
+                Asset.GenerateID();
                 return This;
             }
 

@@ -22,7 +22,7 @@ namespace Rogium.Editors.Tiles
         public TileAsset()
         {
             InitBase(EditorDefaults.Instance.TileTitle, EditorDefaults.Instance.TileIcon, EditorDefaults.Instance.Author, DateTime.Now);
-            GenerateID(EditorAssetIDs.TileIdentifier);
+            GenerateID();
             
             this.tile = ScriptableObject.CreateInstance<Tile>();
             this.tile.sprite = this.icon;
