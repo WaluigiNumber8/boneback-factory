@@ -397,12 +397,6 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack.Tiles, "Pack Editor - List of Tiles");
             CurrentPack.Tiles.Add(newAsset);
         }
-        public void CreateNewTile()
-        {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureIsNotNull(currentPack.Tiles, "Pack Editor - List of Tiles");
-            CurrentPack.Tiles.Add(new TileAsset());
-        }
 
         /// <summary>
         /// Updates the tile in the given pack.

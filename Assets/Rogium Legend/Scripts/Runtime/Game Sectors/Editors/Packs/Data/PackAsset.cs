@@ -11,7 +11,6 @@ using Rogium.Editors.Sprites;
 using Rogium.Editors.Tiles;
 using Rogium.Editors.Weapons;
 using Rogium.ExternalStorage;
-using Rogium.Systems.Validation;
 using UnityEngine;
 
 namespace Rogium.Editors.Packs
@@ -31,106 +30,6 @@ namespace Rogium.Editors.Packs
         private AssetList<TileAsset> tiles;
 
         private PackAsset() { }
-
-        #region Constructors
-
-        // public PackAsset()
-        // {
-        //     InitBase(EditorDefaults.Instance.PackTitle, EditorDefaults.Instance.PackIcon, EditorDefaults.Instance.Author, DateTime.Now);
-        //     GenerateID();
-        //
-        //     description = EditorDefaults.Instance.PackDescription;
-        //     palettes = new AssetList<PaletteAsset>(ex.Palettes.Save, ex.Palettes.UpdateTitle, ex.Palettes.Delete);
-        //     sprites = new AssetList<SpriteAsset>(ex.Sprites.Save, ex.Sprites.UpdateTitle, ex.Sprites.Delete);
-        //     weapons = new AssetList<WeaponAsset>(ex.Weapons.Save, ex.Weapons.UpdateTitle, ex.Weapons.Delete);
-        //     projectiles = new AssetList<ProjectileAsset>(ex.Projectiles.Save, ex.Projectiles.UpdateTitle, ex.Projectiles.Delete);
-        //     enemies = new AssetList<EnemyAsset>(ex.Enemies.Save, ex.Enemies.UpdateTitle, ex.Enemies.Delete);
-        //     rooms = new AssetList<RoomAsset>(ex.Rooms.Save, ex.Rooms.UpdateTitle, ex.Rooms.Delete);
-        //     tiles = new AssetList<TileAsset>(ex.Tiles.Save, ex.Tiles.UpdateTitle, ex.Tiles.Delete);
-        // }
-        //
-        // public PackAsset(PackAsset asset)
-        // {
-        //     AssetValidation.ValidateTitle(asset.title);
-        //     AssetValidation.ValidateDescription(asset.description);
-        //
-        //     id = asset.ID;
-        //     InitBase(asset.Title, asset.Icon, asset.Author, asset.CreationDate);
-        //
-        //     associatedSpriteID = asset.AssociatedSpriteID;
-        //     
-        //     description = asset.Description;
-        //     palettes = new AssetList<PaletteAsset>(ex.Palettes.Save, ex.Palettes.UpdateTitle, ex.Palettes.Delete, asset.Palettes);
-        //     sprites = new AssetList<SpriteAsset>(ex.Sprites.Save, ex.Sprites.UpdateTitle, ex.Sprites.Delete, asset.Sprites);
-        //     weapons = new AssetList<WeaponAsset>(ex.Weapons.Save, ex.Weapons.UpdateTitle, ex.Weapons.Delete, asset.Weapons);
-        //     projectiles = new AssetList<ProjectileAsset>(ex.Projectiles.Save, ex.Projectiles.UpdateTitle, ex.Projectiles.Delete, asset.Projectiles);
-        //     enemies = new AssetList<EnemyAsset>(ex.Enemies.Save, ex.Enemies.UpdateTitle, ex.Enemies.Delete, asset.Enemies);
-        //     rooms = new AssetList<RoomAsset>(ex.Rooms.Save, ex.Rooms.UpdateTitle, ex.Rooms.Delete, asset.Rooms);
-        //     tiles = new AssetList<TileAsset>(ex.Tiles.Save, ex.Tiles.UpdateTitle, ex.Tiles.Delete, asset.Tiles);
-        // }
-        //
-        // public PackAsset(string id, string title, Sprite icon, string author, string associatedSpriteID, string description,
-        //     DateTime creationDateTime)
-        // {
-        //     AssetValidation.ValidateTitle(title);
-        //     AssetValidation.ValidateDescription(description);
-        //
-        //     this.id = id;
-        //     InitBase(title, icon, author, creationDateTime);
-        //     
-        //     this.associatedSpriteID = associatedSpriteID;
-        //
-        //     this.description = description;
-        //     this.palettes = new AssetList<PaletteAsset>(ex.Palettes.Save, ex.Palettes.UpdateTitle, ex.Palettes.Delete);
-        //     this.sprites = new AssetList<SpriteAsset>(ex.Sprites.Save, ex.Sprites.UpdateTitle, ex.Sprites.Delete);
-        //     this.weapons = new AssetList<WeaponAsset>(ex.Weapons.Save, ex.Weapons.UpdateTitle, ex.Weapons.Delete);
-        //     this.projectiles = new AssetList<ProjectileAsset>(ex.Projectiles.Save, ex.Projectiles.UpdateTitle, ex.Projectiles.Delete);
-        //     this.enemies = new AssetList<EnemyAsset>(ex.Enemies.Save, ex.Enemies.UpdateTitle, ex.Enemies.Delete);
-        //     this.rooms = new AssetList<RoomAsset>(ex.Rooms.Save, ex.Rooms.UpdateTitle, ex.Rooms.Delete);
-        //     this.tiles = new AssetList<TileAsset>(ex.Tiles.Save, ex.Tiles.UpdateTitle, ex.Tiles.Delete);
-        // }
-        //
-        // public PackAsset(IList<PaletteAsset> palettes, IList<SpriteAsset> sprites,
-        //     IList<WeaponAsset> weapons, IList<ProjectileAsset> projectiles, IList<EnemyAsset> enemies,
-        //     IList<RoomAsset> rooms, IList<TileAsset> tiles)
-        // {
-        //     InitBase(EditorDefaults.Instance.PackTitle, EditorDefaults.Instance.PackIcon, EditorDefaults.Instance.Author, DateTime.Now);
-        //     GenerateID();
-        //
-        //     this.description = EditorDefaults.Instance.PackDescription;
-        //     this.palettes = new AssetList<PaletteAsset>(ex.Palettes.Save, ex.Palettes.UpdateTitle, ex.Palettes.Delete, palettes);
-        //     this.sprites = new AssetList<SpriteAsset>(ex.Sprites.Save, ex.Sprites.UpdateTitle, ex.Sprites.Delete, sprites);
-        //     this.weapons = new AssetList<WeaponAsset>(ex.Weapons.Save, ex.Weapons.UpdateTitle, ex.Weapons.Delete, weapons);
-        //     this.projectiles = new AssetList<ProjectileAsset>(ex.Projectiles.Save, ex.Projectiles.UpdateTitle, ex.Projectiles.Delete, projectiles);
-        //     this.enemies = new AssetList<EnemyAsset>(ex.Enemies.Save, ex.Enemies.UpdateTitle, ex.Enemies.Delete, enemies);
-        //     this.rooms = new AssetList<RoomAsset>(ex.Rooms.Save, ex.Rooms.UpdateTitle, ex.Rooms.Delete, rooms);
-        //     this.tiles = new AssetList<TileAsset>(ex.Tiles.Save, ex.Tiles.UpdateTitle, ex.Tiles.Delete, tiles);
-        // }
-        //
-        // public PackAsset(string id, string title, Sprite icon, string author, string associatedSpriteID, string description,
-        //     DateTime creationDateTime, IList<PaletteAsset> palettes, IList<SpriteAsset> sprites,
-        //     IList<WeaponAsset> weapons, IList<ProjectileAsset> projectiles, IList<EnemyAsset> enemies,
-        //     IList<RoomAsset> rooms, IList<TileAsset> tiles)
-        // {
-        //     AssetValidation.ValidateTitle(title);
-        //     AssetValidation.ValidateDescription(description);
-        //
-        //     this.id = id;
-        //     InitBase(title, icon, author, creationDateTime);
-        //
-        //     this.associatedSpriteID = associatedSpriteID;
-        //     
-        //     this.description = description;
-        //     this.palettes = new AssetList<PaletteAsset>(ex.Palettes.Save, ex.Palettes.UpdateTitle, ex.Palettes.Delete, palettes);
-        //     this.sprites = new AssetList<SpriteAsset>(ex.Sprites.Save, ex.Sprites.UpdateTitle, ex.Sprites.Delete, sprites);
-        //     this.weapons = new AssetList<WeaponAsset>(ex.Weapons.Save, ex.Weapons.UpdateTitle, ex.Weapons.Delete, weapons);
-        //     this.projectiles = new AssetList<ProjectileAsset>(ex.Projectiles.Save, ex.Projectiles.UpdateTitle, ex.Projectiles.Delete, projectiles);
-        //     this.enemies = new AssetList<EnemyAsset>(ex.Enemies.Save, ex.Enemies.UpdateTitle, ex.Enemies.Delete, enemies);
-        //     this.rooms = new AssetList<RoomAsset>(ex.Rooms.Save, ex.Rooms.UpdateTitle, ex.Rooms.Delete, rooms);
-        //     this.tiles = new AssetList<TileAsset>(ex.Tiles.Save, ex.Tiles.UpdateTitle, ex.Tiles.Delete, tiles);
-        // }
-
-        #endregion
 
         #region Update Values
         public void UpdateDescription(string newDescription) => description = newDescription;

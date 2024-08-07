@@ -5,6 +5,7 @@ using Rogium.Editors.Packs;
 using Rogium.Editors.Palettes;
 using Rogium.Editors.Rooms;
 using Rogium.Editors.Sprites;
+using Rogium.Editors.Tiles;
 using Rogium.Editors.Weapons;
 
 namespace Rogium.Tests.Editors.AssetManipulation
@@ -338,6 +339,68 @@ namespace Rogium.Tests.Editors.AssetManipulation
 
         #endregion
 
+        #region Tiles
+
+        [Test]
+        public void Build_Should_GiveTileProperIdentifier()
+        {
+            TileAsset tile = new TileAsset.Builder().Build();
+            Assert.That(tile.ID[..2], Is.EqualTo(EditorAssetIDs.TileIdentifier));
+        }
+        
+        [Test]
+        public void Copy_Should_CreateTileWithSameID()
+        {
+            TileAsset original = AssetCreator.CreateTile();
+            TileAsset copy = new TileAsset.Builder().AsCopy(original).Build();
+            Assert.That(copy.ID, Is.EqualTo(original.ID));
+        }
+        
+        [Test]
+        public void Copy_Should_CreateTileWithSameParameters()
+        {
+            TileAsset original = AssetCreator.CreateTile();
+            TileAsset copy = new TileAsset.Builder().AsCopy(original).Build();
+            Assert.That(copy.Tile, Is.EqualTo(original.Tile));
+        }
+        
+        [Test]
+        public void Copy_Should_CreateTileBaseWithSameParameters()
+        {
+            TileAsset original = AssetCreator.CreateTile();
+            TileAsset copy = new TileAsset.Builder().AsCopy(original).Build();
+            Assert.That(copy.Title, Is.EqualTo(original.Title));
+            Assert.That(copy.Author, Is.EqualTo(original.Author));
+            Assert.That(copy.CreationDate, Is.EqualTo(original.CreationDate));
+        }
+        
+        [Test]
+        public void Clone_Should_CreateTileWithDifferentID()
+        {
+            TileAsset original = AssetCreator.CreateTile();
+            TileAsset clone = new TileAsset.Builder().AsClone(original).Build();
+            Assert.That(clone.ID, Is.Not.EqualTo(original.ID));
+        }
+        
+        [Test]
+        public void Clone_Should_CreateTileBaseWithSameParameters()
+        {
+            TileAsset original = AssetCreator.CreateTile();
+            TileAsset clone = new TileAsset.Builder().AsClone(original).Build();
+            Assert.That(clone.Title, Is.EqualTo(original.Title));
+            Assert.That(clone.Author, Is.EqualTo(original.Author));
+            Assert.That(clone.CreationDate, Is.EqualTo(original.CreationDate));
+        }
+        
+        [Test]
+        public void Clone_Should_CreateTileWithSameParameters()
+        {
+            TileAsset original = AssetCreator.CreateTile();
+            TileAsset clone = new TileAsset.Builder().AsClone(original).Build();
+            Assert.That(clone.Tile, Is.EqualTo(original.Tile));
+        }
+        #endregion
+        
         #region Campaigns
 
         [Test]

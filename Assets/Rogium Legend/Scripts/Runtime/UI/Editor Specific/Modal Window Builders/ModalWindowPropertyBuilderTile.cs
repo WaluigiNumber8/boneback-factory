@@ -14,15 +14,9 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
 
         public ModalWindowPropertyBuilderTile() => tileEditor = TileEditorOverseer.Instance;
 
-        public override void OpenForCreate()
-        {
-            OpenWindow(new TileAsset(), CreateAsset, "Creating a new Tile");
-        }
+        public override void OpenForCreate() => OpenWindow(new TileAsset.Builder().Build(), CreateAsset, "Creating a new Tile");
 
-        public override void OpenForUpdate()
-        {
-            OpenWindow(new TileAsset(tileEditor.CurrentAsset), UpdateAsset, $"Updating {tileEditor.CurrentAsset.Title}");
-        }
+        public override void OpenForUpdate() => OpenWindow(new TileAsset.Builder().AsCopy(tileEditor.CurrentAsset).Build(), UpdateAsset, $"Updating {tileEditor.CurrentAsset.Title}");
 
         private void OpenWindow(TileAsset tile, Action onConfirm, string headerText)
         {

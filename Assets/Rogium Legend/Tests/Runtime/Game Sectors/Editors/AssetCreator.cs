@@ -9,6 +9,7 @@ using Rogium.Editors.Sprites;
 using Rogium.Editors.Tiles;
 using Rogium.Editors.Weapons;
 using Rogium.Systems.GridSystem;
+using UnityEditor.Graphs;
 using UnityEngine;
 
 namespace Rogium.Tests.Editors
@@ -58,11 +59,11 @@ namespace Rogium.Tests.Editors
                 .Build();
         }
 
-        public static SpriteAsset CreateSprite()
+        public static SpriteAsset CreateSprite(Color color = new())
         {
             return new SpriteAsset.Builder()
                 .WithTitle("Test Sprite")
-                .WithIcon(RedRatBuilder.GenerateSprite(Color.white, 16, 16, 16))
+                .WithIcon(RedRatBuilder.GenerateSprite(color, 16, 16, 16))
                 .Build();
         }
 
@@ -116,12 +117,10 @@ namespace Rogium.Tests.Editors
 
         public static TileAsset CreateTile()
         {
-            TileAsset tile = new();
-            tile.UpdateTitle("Test Tile");
-            SpriteAsset s = CreateSprite();
-            s.UpdateIcon(RedRatBuilder.GenerateSprite(Color.yellow, 16, 16, 16));
-            tile.UpdateIcon(s);
-            return tile;
+            return new TileAsset.Builder()
+                .WithTitle("Test Tile")
+                .WithIcon(CreateSprite(Color.yellow))
+                .Build();
         }
     }
 }

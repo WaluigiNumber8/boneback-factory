@@ -13,59 +13,12 @@ namespace Rogium.Editors.Tiles
     /// </summary>
     public class TileAsset : AssetWithReferencedSpriteBase
     {
-        private readonly Tile tile;
+        private Tile tile;
         private TileType type;
         private TileLayerType layerType;
         private TerrainType terrainType;
 
-        #region Constructors
-        public TileAsset()
-        {
-            InitBase(EditorDefaults.Instance.TileTitle, EditorDefaults.Instance.TileIcon, EditorDefaults.Instance.Author, DateTime.Now);
-            GenerateID();
-            
-            this.tile = ScriptableObject.CreateInstance<Tile>();
-            this.tile.sprite = this.icon;
-            this.type = EditorDefaults.Instance.TileType;
-            this.layerType = EditorDefaults.Instance.TileLayer;
-            this.terrainType = EditorDefaults.Instance.TileTerrainType;
-            
-        }
-
-        public TileAsset(TileAsset asset)
-        {
-            AssetValidation.ValidateTitle(asset.title);
-            
-            this.id = asset.ID;
-            InitBase(asset.Title, asset.Icon, asset.Author, asset.CreationDate);
-
-            this.associatedSpriteID = asset.AssociatedSpriteID;
-
-            this.tile = ScriptableObject.CreateInstance<Tile>();
-            this.tile.sprite = this.icon;
-            this.type = asset.Type;
-            this.layerType = asset.LayerType;
-            this.terrainType = asset.TerrainType;
-        }
-        
-        public TileAsset(string id, string title, Sprite icon, string author, string associatedSpriteID, Color tileColor,
-                         TileType type, TileLayerType layerType, TerrainType terrainType, DateTime creationDate)
-        {
-            AssetValidation.ValidateTitle(title);
-            
-            this.id = id;
-            InitBase(title, icon, author, creationDate);
-            
-            this.associatedSpriteID = associatedSpriteID;
-            
-            this.tile = ScriptableObject.CreateInstance<Tile>();
-            this.tile.sprite = icon;
-            this.tile.color = tileColor;
-            this.type = type;
-            this.layerType = layerType;
-            this.terrainType = terrainType;
-        }
-        #endregion
+        private TileAsset() { }
 
         #region Update Values
         public override void UpdateIcon(IAsset newSprite)
@@ -94,5 +47,73 @@ namespace Rogium.Editors.Tiles
         public TileType Type { get => type; }
         public TileLayerType LayerType { get => layerType; }
         public TerrainType TerrainType { get => terrainType; } 
+        
+        public class Builder : AssetWithReferencedSpriteBuilder<TileAsset, Builder>
+        {
+            public Builder()
+            {
+                Asset.title = EditorDefaults.Instance.TileTitle;
+                Asset.icon = EditorDefaults.Instance.TileIcon;
+                Asset.author = EditorDefaults.Instance.Author;
+                Asset.creationDate = DateTime.Now;
+                Asset.GenerateID();
+                     
+                Asset.tile = ScriptableObject.CreateInstance<Tile>();
+                Asset.tile.sprite = Asset.icon;
+                Asset.type = EditorDefaults.Instance.TileType;
+                Asset.layerType = EditorDefaults.Instance.TileLayer;
+                Asset.terrainType = EditorDefaults.Instance.TileTerrainType;
+            }
+            
+            public Builder WithTile(Sprite sprite, Color color)
+            {
+                Asset.tile = ScriptableObject.CreateInstance<Tile>();
+                Asset.tile.sprite = sprite;
+                Asset.tile.color = color;
+                return This;
+            }
+
+            public Builder WithType(TileType type)
+            {
+                Asset.type = type;
+                return This;
+            }
+
+            public Builder WithLayerType(TileLayerType layerType)
+            {
+                Asset.layerType = layerType;
+                return This;
+            }
+
+            public Builder WithTerrainType(TerrainType terrainType)
+            {
+                Asset.terrainType = terrainType;
+                return This;
+            }
+
+            public override Builder AsClone(TileAsset asset)
+            {
+                AsCopy(asset);
+                Asset.GenerateID();
+                return This;
+            }
+
+            public override Builder AsCopy(TileAsset asset)
+            {
+                Asset.id = asset.ID;
+                Asset.title = asset.Title;
+                Asset.icon = asset.Icon;
+                Asset.author = asset.Author;
+                Asset.creationDate = asset.CreationDate;
+                Asset.associatedSpriteID = asset.AssociatedSpriteID;
+                Asset.tile = asset.Tile;
+                Asset.type = asset.Type;
+                Asset.layerType = asset.LayerType;
+                Asset.terrainType = asset.TerrainType;
+                return This;
+            }
+
+            protected sealed override TileAsset Asset { get; } = new();
+        }
     }
 }
