@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using RedRats.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
+using Rogium.Editors.Sprites;
 using UnityEngine;
 
 namespace Rogium.Editors.Palettes
@@ -12,10 +14,16 @@ namespace Rogium.Editors.Palettes
     public class PaletteAsset : AssetWithDirectSpriteBase
     {
         private Color[] colors;
+        private ISet<string> associatedAssetsIDs;
 
         private PaletteAsset() { }
         
+        public void AddAssociation(string id) => associatedAssetsIDs.Add(id);
+        public void RemoveAssociation(string id) => associatedAssetsIDs.Remove(id);
+
         public Color[] Colors { get => colors; }
+        public ISet<string> AssociatedAssetsIDs { get => associatedAssetsIDs; }
+        
         
         public class Builder : BaseBuilder<PaletteAsset, Builder>
         {
@@ -28,6 +36,7 @@ namespace Rogium.Editors.Palettes
                 Asset.GenerateID();
                 
                 Asset.colors = RedRatBuilder.GenerateColorArray(EditorDefaults.Instance.PaletteSize, Color.black);
+                Asset.associatedAssetsIDs = new HashSet<string>();
             }
             
             public Builder WithColors(Color[] colors)
@@ -56,6 +65,5 @@ namespace Rogium.Editors.Palettes
 
             protected sealed override PaletteAsset Asset { get; } = new();
         }
-   
     }
 }

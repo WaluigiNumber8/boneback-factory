@@ -3,6 +3,7 @@ using RedRats.Safety;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
+using Rogium.Editors.Palettes;
 using Rogium.Editors.Sprites;
 
 namespace Rogium.Editors.Packs
@@ -10,9 +11,9 @@ namespace Rogium.Editors.Packs
     /// <summary>
     /// Contains various methods for dealing with the sprite association system.
     /// </summary>
-    public static class SpriteAssociation
+    public static class AssetAssociation
     {
-        public static void RefreshForOtherAssets(SpriteAsset newAsset, PackAsset currentPack, Action whenSavePackChanges)
+        public static void RefreshSpriteForOtherAssets(SpriteAsset newAsset, PackAsset currentPack, Action whenSavePackChanges)
         {
             foreach (string id in newAsset.AssociatedAssetsIDs)
             {
@@ -47,6 +48,34 @@ namespace Rogium.Editors.Packs
                 }
             }
         }
+
+        public static void RefreshPaletteForOtherAssets(PaletteAsset newAsset, PackAsset currentPack)
+        {
+            foreach (string id in newAsset.AssociatedAssetsIDs)
+            {
+                string identifier = id[..2];
+                if (identifier == EditorAssetIDs.SpriteIdentifier) RefreshPaletteAndSaveAsset(currentPack.Sprites, id, newAsset);
+            }
+        }
+        
+        public static void ProcessPaletteAssociations(PackAsset currentPack, SpriteAsset asset, string lastAssociatedPaletteID)
+        {
+            if (asset.AssociatedPaletteID == lastAssociatedPaletteID) return;
+            if (string.IsNullOrEmpty(asset.AssociatedPaletteID) && !string.IsNullOrEmpty(lastAssociatedPaletteID)) return;
+            
+            //Remove association of older palette.
+            if (!string.IsNullOrEmpty(lastAssociatedPaletteID))
+            {
+                currentPack.Palettes.FindValueFirst(lastAssociatedPaletteID).RemoveAssociation(asset.ID);
+            }
+            
+            if (asset.AssociatedPaletteID == EditorDefaults.EmptyAssetID) return;
+            
+            //Add association if possible.
+            (PaletteAsset associatedPalette, int index) = currentPack.Palettes.FindValueAndIndexFirst(asset.AssociatedPaletteID);
+            associatedPalette.AddAssociation(asset.ID);
+            currentPack.Palettes.Update(index, associatedPalette);
+        }
         
         /// <summary>
         /// Adds/Removes sprite associations if necessary.
@@ -62,14 +91,14 @@ namespace Rogium.Editors.Packs
             //Remove association of older sprite.
             if (!string.IsNullOrEmpty(lastAssociatedSpriteID))
             {
-                currentPack.Sprites.FindValueFirst(lastAssociatedSpriteID).TryRemoveAssociation(asset);
+                currentPack.Sprites.FindValueFirst(lastAssociatedSpriteID).RemoveAssociation(asset.ID);
             }
             
             if (asset.AssociatedSpriteID == EditorDefaults.EmptyAssetID) return;
             
             //Add association if possible.
             (SpriteAsset associatedSprite, int index) = currentPack.Sprites.FindValueAndIndexFirst(asset.AssociatedSpriteID);
-            associatedSprite.TryAddAssociation(asset);
+            associatedSprite.AddAssociation(asset.ID);
             currentPack.Sprites.Update(index, associatedSprite);
         }
 
@@ -91,7 +120,22 @@ namespace Rogium.Editors.Packs
             }
             catch (SafetyNetCollectionException)
             {
-                sprite.TryRemoveAssociation(id);
+                sprite.RemoveAssociation(id);
+            }
+        }
+
+        public static void RefreshPaletteAndSaveAsset<T>(AssetList<T> list, string id, PaletteAsset palette) where T : IAssetWithPalette
+        {
+            if (palette == null) return;
+            try
+            {
+                (T asset, int index) = list.FindValueAndIndexFirst(id);
+                asset.UpdatePalette(palette);
+                list.Update(index, asset);
+            }
+            catch (SafetyNetCollectionException)
+            {
+                palette.RemoveAssociation(id);
             }
         }
 
@@ -115,15 +159,37 @@ namespace Rogium.Editors.Packs
             }
         }
 
+        public static void RemovePaletteAssociationsAndSaveAsset(AssetList<SpriteAsset> list, string id)
+        {
+            try
+            {
+                (SpriteAsset asset, int index) = list.FindValueAndIndexFirst(id);
+                asset.ClearAssociatedPalette();
+                list.Update(index, asset);
+            }
+            catch (SafetyNetCollectionException)
+            {
+                //Intentionally blank (doesn't matter if asset does not exist, since we are removing the sprite anyway).
+            }
+        }
+
         /// <summary>
         /// Removes an association between asset and it's associated sprite.
         /// </summary>
         /// <param name="currentPack">The for which to process associations for.</param>
         /// <param name="asset">The asset, who's sprite association to sewer.</param>
-        public static void RemoveAssociation(PackAsset currentPack, AssetWithReferencedSpriteBase asset)
+        public static void RemoveSpriteAssociation(PackAsset currentPack, AssetWithReferencedSpriteBase asset)
         {
             if (string.IsNullOrEmpty(asset.AssociatedSpriteID)) return;
-            currentPack.Sprites.FindValueFirst(asset.AssociatedSpriteID).TryRemoveAssociation(asset);
+            currentPack.Sprites.FindValueFirst(asset.AssociatedSpriteID).RemoveAssociation(asset.ID);
         }
+        
+        public static void RemovePaletteAssociation(PackAsset currentPack, SpriteAsset asset)
+        {
+            if (string.IsNullOrEmpty(asset.AssociatedPaletteID)) return;
+            currentPack.Palettes.FindValueFirst(asset.AssociatedPaletteID).RemoveAssociation(asset.ID);
+        }
+
+        
     }
 }

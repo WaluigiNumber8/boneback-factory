@@ -18,7 +18,7 @@ namespace Rogium.ExternalStorage.Serialization
         public JSONSpriteAsset(SpriteAsset asset) : base(asset)
         {
             spriteData = new JSONGrid<int>(asset.SpriteData);
-            preferredPaletteID = asset.PreferredPaletteID;
+            preferredPaletteID = asset.AssociatedPaletteID;
             associatedAssetIDs = asset.AssociatedAssetsIDs.ToArray();
         }
 
@@ -32,7 +32,7 @@ namespace Rogium.ExternalStorage.Serialization
                 .WithAuthor(author)
                 .WithCreationDate(DateTime.Parse(creationDate))
                 .WithSpriteData(spriteData.Decode())
-                .WithPreferredPaletteID(preferredPaletteID)
+                .WithAssociatedPaletteID(preferredPaletteID)
                 .WithAssociatedAssetIDs((associatedAssetIDs == null) ? new HashSet<string>() : associatedAssetIDs.ToHashSet())
                 .Build();
         }
