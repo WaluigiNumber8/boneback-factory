@@ -60,31 +60,42 @@ namespace Rogium.Tests.Editors.Palettes
         }
 
         [UnityTest]
-        public IEnumerator Should_UpdateSpriteColor_WhenAssociatedPaletteWasUpdated()
+        public IEnumerator Should_UpdateSpriteIconColor_WhenAssociatedPaletteWasUpdated()
         {
-            // Assign Palette to Sprite
             SwitchToFirstPalette();
             FillSpriteEditorGrid();
             spriteEditor.CompleteEditing();
 
-            yield return UpdatePaletteColorInEditor(Color.blue);
+            yield return UpdatePaletteColorInPaletteEditor(Color.blue);
             Color color = packEditor.CurrentPack.Sprites[0].Icon.texture.GetPixel(0, 0);
             Assert.That(color, Is.EqualTo(Color.blue));
         }
         
         [UnityTest]
-        public IEnumerator Should_UpdateWeaponColor_WhenAssociatedPaletteWasUpdated()
+        public IEnumerator Should_UpdateWeaponIconColor_WhenAssociatedPaletteWasUpdated()
         {
-            // Assign Palette to Sprite
             SwitchToFirstPalette();
             FillSpriteEditorGrid();
             spriteEditor.CompleteEditing();
             
             yield return UpdateSpriteOfWeaponInEditor();
-            yield return UpdatePaletteColorInEditor(Color.blue);
+            yield return UpdatePaletteColorInPaletteEditor(Color.blue);
             
             Color color = packEditor.CurrentPack.Weapons[0].Icon.texture.GetPixel(0, 0);
             Assert.That(color, Is.EqualTo(Color.blue));
+        }
+
+        [Test]
+        public void Should_UpdateSpriteIconColor_WhenAssociatedPaletteUpdatedInSpriteEditor()
+        {
+            SwitchToFirstPalette();
+            FillSpriteEditorGrid();
+            spriteEditor.CompleteEditing();
+
+            UpdatePaletteColorInSpriteEditor();
+
+            Color color = packEditor.CurrentPack.Sprites[0].Icon.texture.GetPixel(0, 0);
+            Assert.That(color, Is.EqualTo(Color.yellow));
         }
     }
 }

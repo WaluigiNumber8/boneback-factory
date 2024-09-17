@@ -26,7 +26,7 @@ namespace Rogium.Tests.Editors.Palettes
             SpriteEditorOverseerMono.GetInstance().UpdateCell(Vector2Int.zero);
         }
 
-        public static IEnumerator UpdatePaletteColorInEditor(Color color)
+        public static IEnumerator UpdatePaletteColorInPaletteEditor(Color color)
         {
             yield return MenuLoader.PreparePaletteEditor();
             PaletteEditorOverseerMono.GetInstance().UpdateColorSlotColor(color, 0);
@@ -38,6 +38,14 @@ namespace Rogium.Tests.Editors.Palettes
             yield return MenuLoader.PrepareWeaponEditor();
             WeaponEditorOverseer.Instance.CurrentAsset.UpdateIcon(PackEditorOverseer.Instance.CurrentPack.Sprites[0]);
             WeaponEditorOverseer.Instance.CompleteEditing();
+        }
+
+        public static void UpdatePaletteColorInSpriteEditor()
+        {
+            PackEditorOverseer.Instance.ActivateSpriteEditor(0);
+            SpriteEditorOverseerMono.GetInstance().Palette.GetSlot(0).UpdateColor(Color.yellow);
+            SpriteEditorOverseerMono.GetInstance().Palette.Select(0);
+            SpriteEditorOverseer.Instance.CompleteEditing();
         }
     }
 }
