@@ -77,7 +77,7 @@ namespace Rogium.Editors.Palettes
         /// <param name="slot">The color data to read from.</param>
         private void RefreshForSlot(ColorSlot slot)
         {
-            RefreshEditorData(slot.CurrentColor);
+            RefreshEditorData(colorPicker.CurrentColor);
             lastSlot = slot;
             colorPicker.Construct(slot.CurrentColor, slot.ColorImage);
         }
@@ -90,7 +90,6 @@ namespace Rogium.Editors.Palettes
             if (lastSlot == null) return;
             if (lastSlot.Index == -1) return;
             
-            // lastSlot.UpdateColor(colorPicker.CurrentColor);
             editor.UpdateColor(color, lastSlot.Index);
         }
     }
