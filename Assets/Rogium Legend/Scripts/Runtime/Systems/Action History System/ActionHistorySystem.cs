@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using RedRats.Core;
 
 namespace Rogium.Systems.ActionHistory
@@ -25,7 +26,6 @@ namespace Rogium.Systems.ActionHistory
             redoHistory.OnChange += () => OnUpdateRedoHistory?.Invoke();
             assetDetector.OnAssetChange += ClearHistory;
         }
-
 
         /// <summary>
         /// Adds an action to the history and executes it.
@@ -73,6 +73,14 @@ namespace Rogium.Systems.ActionHistory
             lastAction = null;
             currentGroup = null;
         }
+
+        /// <summary>
+        /// Returns TRUE if the undo history contains an action of the given type.
+        /// </summary>
+        /// <typeparam name="T">The type of action.</typeparam>
+        public static bool ContainsInUndo<T>() where T : IAction => undoHistory.Any(a => a is T);
+
+        public static bool ContainsInOpenGroupOrUndo<T>() where T : IAction => currentGroup?.ContainsType<T>() == true || ContainsInUndo<T>();
 
         #region Group Processing
 

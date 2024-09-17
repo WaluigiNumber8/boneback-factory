@@ -47,7 +47,7 @@ namespace Rogium.Tests.Editors.Palettes
             yield return null;
             SpriteEditorOverseerMono.GetInstance().Palette.GetSlot(index).UpdateColor(color);
             SpriteEditorOverseerMono.GetInstance().Palette.Select(index);
-            GASButtonActions.OverridePalette();
+            GASButtonActions.SavePaletteAsOverride();
         }
 
         public static IEnumerator SwitchPaletteAndFillForSprite(int index = 0)
