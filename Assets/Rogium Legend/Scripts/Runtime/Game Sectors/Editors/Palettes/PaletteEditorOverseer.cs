@@ -15,12 +15,10 @@ namespace Rogium.Editors.Palettes
         public event Action OnCompleteEditingBefore, OnCompleteEditingAfter;
         public event Action<PaletteAsset, int> OnCompleteEditing;
 
-        private readonly IconBuilder iconBuilder;
-        
         private PaletteAsset currentAsset;
         private int myIndex;
-        
-        private PaletteEditorOverseer() => iconBuilder = new IconBuilder();
+
+        private PaletteEditorOverseer() { }
 
         /// <summary>
         /// Assign an asset, that is going to be edited.
@@ -65,7 +63,7 @@ namespace Rogium.Editors.Palettes
         {
             OnCompleteEditingBefore?.Invoke();
 
-            Sprite newIcon = iconBuilder.BuildFromArray(currentAsset.Colors);
+            Sprite newIcon = IconBuilder.BuildFromArray(currentAsset.Colors);
             newIcon.name = currentAsset.Title;
             currentAsset.UpdateIcon(newIcon);
             OnCompleteEditing?.Invoke(currentAsset, myIndex);

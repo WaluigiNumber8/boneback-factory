@@ -3,36 +3,49 @@ using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.GridSystem;
 using System;
 using System.Collections.Generic;
-using Rogium.Systems.Validation;
-using UnityEngine;
+using RedRats.Safety;
+using Rogium.Editors.Palettes;
+using Rogium.Systems.IconBuilders;
 
 namespace Rogium.Editors.Sprites
 {
     /// <summary>
     /// Contains all data needed for a Sprite.
     /// </summary>
-    public class SpriteAsset : AssetWithDirectSpriteBase
+    public class SpriteAsset : AssetWithDirectSpriteBase, IAssetForAssociation, IAssetWithPalette
     {
         private ObjectGrid<int> spriteData;
-        private string preferredPaletteID;
+        private string associatedPaletteID;
         private ISet<string> associatedAssetsIDs;
 
         private SpriteAsset() { }
         
         #region Update Values
         public void UpdateSpriteData(ObjectGrid<int> newSpriteData) => spriteData = new ObjectGrid<int>(newSpriteData);
-        public void UpdatePreferredPaletteID(string newPaletteID) => preferredPaletteID = newPaletteID;
+        public void UpdateAssociatedPaletteID(string newPaletteID) => associatedPaletteID = newPaletteID;
 
         #endregion
         
-        public void TryAddAssociation(IIDHolder newReferencedAsset) => TryAddAssociation(newReferencedAsset.ID);
-        public void TryAddAssociation(string id) => associatedAssetsIDs.Add(id);
+        public void AddAssociation(string id) => associatedAssetsIDs.Add(id);
         
-        public void TryRemoveAssociation(IIDHolder referencedAsset) => TryRemoveAssociation(referencedAsset.ID);
-        public void TryRemoveAssociation(string id) => associatedAssetsIDs.Remove(id);
+        public void RemoveAssociation(string id) => associatedAssetsIDs.Remove(id);
+        public void ClearAssociatedPalette() => associatedPaletteID = string.Empty;
 
+        public void UpdatePalette(IAsset newPalette)
+        {
+            associatedPaletteID = newPalette.ID;
+            if (newPalette is not EmptyAsset)
+            {
+                SafetyNet.EnsureIsType<PaletteAsset>(newPalette, nameof(newPalette));
+                PaletteAsset p = (PaletteAsset) newPalette;
+                icon = IconBuilder.BuildFromGrid(SpriteData, p.Colors);
+                return;
+            }
+            icon = IconBuilder.BuildFromGrid(SpriteData, EditorDefaults.Instance.MissingPalette);
+        }
+        
         public ObjectGrid<int> SpriteData { get => spriteData; }
-        public string PreferredPaletteID { get => preferredPaletteID; }
+        public string AssociatedPaletteID { get => associatedPaletteID; }
         public ISet<string> AssociatedAssetsIDs { get => associatedAssetsIDs; }
         
         public class Builder : BaseBuilder<SpriteAsset, Builder>
@@ -46,7 +59,7 @@ namespace Rogium.Editors.Sprites
                 Asset.GenerateID();
                 
                 Asset.spriteData = new ObjectGrid<int>(EditorDefaults.Instance.SpriteSize, EditorDefaults.Instance.SpriteSize, () => -1);
-                Asset.preferredPaletteID = string.Empty;
+                Asset.associatedPaletteID = string.Empty;
                 Asset.associatedAssetsIDs = new HashSet<string>();
             }
             
@@ -56,15 +69,15 @@ namespace Rogium.Editors.Sprites
                 return This;
             }
             
-            public Builder WithPreferredPaletteID(string paletteID)
+            public Builder WithAssociatedPaletteID(string paletteID)
             {
-                Asset.preferredPaletteID = paletteID;
+                Asset.associatedPaletteID = paletteID;
                 return This;
             }
             
             public Builder WithAssociatedAssetIDs(ISet<string> associatedAssetIDs)
             {
-                Asset.associatedAssetsIDs = new HashSet<string>(associatedAssetIDs);
+                Asset.associatedAssetsIDs = new HashSet<string>(associatedAssetIDs ?? new HashSet<string>());
                 return This;
             }
             
@@ -83,12 +96,13 @@ namespace Rogium.Editors.Sprites
                 Asset.author = asset.Author;
                 Asset.creationDate = asset.CreationDate;
                 Asset.spriteData = new ObjectGrid<int>(asset.SpriteData);
-                Asset.preferredPaletteID = asset.PreferredPaletteID;
+                Asset.associatedPaletteID = asset.AssociatedPaletteID;
                 Asset.associatedAssetsIDs = new HashSet<string>(asset.AssociatedAssetsIDs);
                 return This;
             }
 
             protected sealed override SpriteAsset Asset { get; } = new();
         }
+
     }
 }

@@ -8,14 +8,14 @@ namespace Rogium.Systems.IconBuilders
     /// <summary>
     /// Builds icons based on colors inputted colors.
     /// </summary>
-    public class IconBuilder
+    public static class IconBuilder
     {
         /// <summary>
         /// Builds a sprite based on a color array.
         /// </summary>
         /// <param name="colors">The colors to use for the sprite.</param>
         /// <returns>A sprite containing all the colors.</returns>
-        public Sprite BuildFromArray(Color[] colors)
+        public static Sprite BuildFromArray(Color[] colors)
         {
             int texSize = CalculateSize(colors.Length);
             Texture2D tex = RedRatBuilder.GenerateTexture(texSize, texSize);
@@ -46,7 +46,7 @@ namespace Rogium.Systems.IconBuilders
         /// <param name="grid">The data to build from.</param>
         /// <param name="colors">The colors to use.</param>
         /// <returns>A Sprite.</returns>
-        public Sprite BuildFromGrid(ObjectGrid<int> grid, Color[] colors)
+        public static Sprite BuildFromGrid(ObjectGrid<int> grid, Color[] colors)
         {
             Texture2D tex = RedRatBuilder.GenerateTexture(grid.Width, grid.Height);
             for (int y = 0; y < grid.Height; y++)
@@ -73,7 +73,7 @@ namespace Rogium.Systems.IconBuilders
             return RedRatBuilder.GenerateSprite(tex, EditorDefaults.Instance.PixelsPerUnit);
         }
 
-        private int CalculateSize(int arraySize)
+        private static int CalculateSize(int arraySize)
         {
             return Mathf.FloorToInt(Mathf.Sqrt(arraySize));
         }

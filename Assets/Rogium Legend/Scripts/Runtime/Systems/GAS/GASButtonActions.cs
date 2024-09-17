@@ -590,7 +590,7 @@ namespace Rogium.Systems.GASExtension
                 ModalWindowData data = new ModalWindowData.Builder()
                     .WithLayout(ModalWindowLayoutType.Message)
                     .WithMessage("The palette was edited. Save it's changes?")
-                    .WithAcceptButton("Override", SaveChangesSpriteAndOverridePalette)
+                    .WithAcceptButton("Override", () => { OverridePalette(); SaveChangesSpriteConfirm(); })
                     .WithSpecialButton("Save as New", SaveChangesSpriteAndSavePaletteAsNew)
                     .WithDenyButton("No Save")
                     .Build();
@@ -599,12 +599,11 @@ namespace Rogium.Systems.GASExtension
             else SaveChangesSpriteConfirm();
         }
 
-        public static void SaveChangesSpriteAndOverridePalette()
+        public static void OverridePalette()
         {
             int index = PackEditorOverseer.Instance.CurrentPack.Palettes.FindIndexFirst(SpriteEditorOverseer.Instance.CurrentPalette.ID);
             PaletteEditorOverseer.Instance.AssignAsset(SpriteEditorOverseer.Instance.CurrentPalette, index, false);
             PaletteEditorOverseer.Instance.CompleteEditing();
-            SaveChangesSpriteConfirm();
         }
         
         public static void SaveChangesSpriteAndSavePaletteAsNew()

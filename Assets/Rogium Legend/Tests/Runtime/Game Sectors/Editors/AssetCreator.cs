@@ -54,15 +54,16 @@ namespace Rogium.Tests.Editors
         public static PaletteAsset CreatePalette()
         {
             return new PaletteAsset.Builder()
-                .WithTitle("Test Palette")
+                .WithTitle($"Test Palette {Random.Range(0, 1000)}")
                 .WithIcon(RedRatBuilder.GenerateSprite(Color.magenta, 16, 16, 16))
+                .WithColors(new[] {Color.magenta, Color.red, Color.green, Color.blue, Color.yellow})
                 .Build();
         }
 
         public static SpriteAsset CreateSprite(Color color = new())
         {
             return new SpriteAsset.Builder()
-                .WithTitle("Test Sprite")
+                .WithTitle($"Test Sprite {Random.Range(0, 1000)}")
                 .WithIcon(RedRatBuilder.GenerateSprite(color, 16, 16, 16))
                 .Build();
         }
@@ -78,11 +79,8 @@ namespace Rogium.Tests.Editors
 
         public static WeaponAsset CreateWeapon()
         {
-            SpriteAsset s = CreateSprite();
-            s.UpdateIcon(RedRatBuilder.GenerateSprite(Color.green, 16, 16, 16));
             WeaponAsset weapon = new WeaponAsset.Builder()
                 .WithTitle("Test Weapon")
-                .WithIcon(s)
                 .Build();
             return weapon;
         }
@@ -91,7 +89,6 @@ namespace Rogium.Tests.Editors
         {
             return new ProjectileAsset.Builder()
                 .WithTitle("Test Projectile")
-                .WithIcon(CreateSprite(Color.cyan))
                 .Build();
         }
 
@@ -99,7 +96,6 @@ namespace Rogium.Tests.Editors
         {
             return new EnemyAsset.Builder()
                 .WithTitle("Test Enemy")
-                .WithIcon(CreateSprite(Color.red))
                 .Build();
         }
 
@@ -115,7 +111,6 @@ namespace Rogium.Tests.Editors
         {
             return new TileAsset.Builder()
                 .WithTitle("Test Tile")
-                .WithIcon(CreateSprite(Color.yellow))
                 .Build();
         }
     }

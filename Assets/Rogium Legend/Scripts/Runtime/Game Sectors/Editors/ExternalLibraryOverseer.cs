@@ -9,7 +9,7 @@ using Rogium.ExternalStorage;
 using Rogium.Options.Core;
 using Rogium.Systems.SceneTransferService;
 using UnityEngine;
-using static Rogium.Editors.Packs.SpriteAssociation;
+using static Rogium.Editors.Packs.AssetAssociation;
 
 namespace Rogium.Editors.Core
 {
@@ -86,7 +86,7 @@ namespace Rogium.Editors.Core
         /// <param name="packIndex">Pack ID in the list.</param>
         public void DeletePack(int packIndex)
         {
-            RemoveAssociation(packs[packIndex], packs[packIndex]);
+            AssetAssociation.RemoveSpriteAssociation(packs[packIndex], packs[packIndex]);
             packs.Remove(packIndex);
         }
         /// <summary>

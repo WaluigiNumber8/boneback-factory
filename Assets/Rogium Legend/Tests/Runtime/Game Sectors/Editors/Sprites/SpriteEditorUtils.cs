@@ -29,7 +29,7 @@ namespace Rogium.Tests.Editors.Sprites
             {
                 for (int j = 0; j < grid.Height; j++)
                 {
-                    spriteEditor.UpdateGridCell(new Vector2Int(i, j));
+                    spriteEditor.UpdateCell(new Vector2Int(i, j));
                 }
             }
             ActionHistorySystem.ForceEndGrouping();

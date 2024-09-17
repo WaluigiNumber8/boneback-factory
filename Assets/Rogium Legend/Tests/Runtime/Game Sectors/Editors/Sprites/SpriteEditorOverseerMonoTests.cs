@@ -24,7 +24,7 @@ namespace Rogium.Tests.Editors.Sprites
         {
             yield return base.Setup();
             
-            MenuLoader.PrepareSpriteEditor();
+            yield return MenuLoader.PrepareSpriteEditor();
             spriteEditor = SpriteEditorOverseerMono.GetInstance();
             ActionHistorySystem.ClearHistory();
             yield return null;

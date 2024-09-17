@@ -26,13 +26,11 @@ namespace Rogium.Editors.Core
         /// <summary>
         /// Clears the associated sprite reference and replaces assets icon with it's default.
         /// </summary>
-        public virtual void ClearAssociatedSprite()
-        {
-            associatedSpriteID = string.Empty;
-        }
+        public virtual void ClearAssociatedSprite() => associatedSpriteID = string.Empty;
 
         public string AssociatedSpriteID { get => associatedSpriteID; }
 
+        
         public abstract class AssetWithReferencedSpriteBuilder<T, TBuilder> : BaseBuilder<T, TBuilder> where T : AssetWithReferencedSpriteBase where TBuilder : BaseBuilder<T, TBuilder>
         {
             public TBuilder WithIcon(IAsset newSprite)

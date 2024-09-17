@@ -30,7 +30,7 @@ namespace Rogium.Tests.Editors.Sprites
             MenuLoader.PrepareSelectionMenu();
 
             yield return null;
-            MenuLoader.PrepareSpriteEditor();
+            yield return MenuLoader.PrepareSpriteEditor();
             spriteEditor = SpriteEditorOverseerMono.GetInstance();
             ActionHistorySystem.ClearHistory();
             yield return null;
@@ -92,7 +92,7 @@ namespace Rogium.Tests.Editors.Sprites
         public void Should_ApplyColorChangeToGrid_WhenColorSlotColorChanged()
         {
             UpdateColorSlot(Color.blue);
-            spriteEditor.UpdateGridCell(new Vector2Int(0, 0));
+            spriteEditor.UpdateCell(new Vector2Int(0, 0));
             UpdateColorSlot(Color.red);
 
             Assert.That(spriteEditor.CurrentGridSprite.texture.GetPixel(0, 0), Is.EqualTo(Color.red));
@@ -102,7 +102,7 @@ namespace Rogium.Tests.Editors.Sprites
         public void Should_RevertGridColorChange_WhenUndoIsCalled()
         {
             UpdateColorSlot(Color.blue);
-            spriteEditor.UpdateGridCell(new Vector2Int(0, 0));
+            spriteEditor.UpdateCell(new Vector2Int(0, 0));
             UpdateColorSlot(Color.red);
             ActionHistorySystem.UndoLast();
 
@@ -152,7 +152,7 @@ namespace Rogium.Tests.Editors.Sprites
         public void Should_OverridePaletteAsset_WhenEditedAndOverriden()
         {
             UpdateColorSlot(Color.blue);
-            GASButtonActions.SaveChangesSpriteAndOverridePalette();
+            GASButtonActions.OverridePalette();
             Assert.That(PackEditorOverseer.Instance.CurrentPack.Palettes[0].Colors[0], Is.EqualTo(Color.blue));
         }
 
@@ -160,7 +160,7 @@ namespace Rogium.Tests.Editors.Sprites
         public void Should_UpdatePaletteIcon_WhenEditedAndOverriden()
         {
             UpdateColorSlot(Color.blue);
-            GASButtonActions.SaveChangesSpriteAndOverridePalette();
+            GASButtonActions.OverridePalette();
             Assert.That(PackEditorOverseer.Instance.CurrentPack.Palettes[0].Icon.texture.GetPixel(0, 0), Is.EqualTo(Color.blue));
         }
 
@@ -170,7 +170,7 @@ namespace Rogium.Tests.Editors.Sprites
             SpriteEditorOverseer.Instance.UpdateAsset(AssetCreator.CreateSpriteWithFirstPixelFromSlot1());
 
             UpdateColorSlot(Color.blue);
-            GASButtonActions.SaveChangesSpriteAndOverridePalette();
+            GASButtonActions.OverridePalette();
             Assert.That(PackEditorOverseer.Instance.CurrentPack.Sprites[0].Icon.texture.GetPixel(0, 0), Is.EqualTo(Color.blue));
         }
 
