@@ -54,7 +54,7 @@ namespace Rogium.Tests.Editors
         public static PaletteAsset CreatePalette()
         {
             return new PaletteAsset.Builder()
-                .WithTitle("Test Palette")
+                .WithTitle($"Test Palette {Random.Range(0, 1000)}")
                 .WithIcon(RedRatBuilder.GenerateSprite(Color.magenta, 16, 16, 16))
                 .WithColors(new[] {Color.magenta, Color.red, Color.green, Color.blue, Color.yellow})
                 .Build();

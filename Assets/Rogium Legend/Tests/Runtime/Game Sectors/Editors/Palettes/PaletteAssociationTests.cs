@@ -94,8 +94,8 @@ namespace Rogium.Tests.Editors.Palettes
         [UnityTest]
         public IEnumerator Should_UpdateIconColorOfAllSprites_WhenAssociatedPaletteUpdatedInPaletteEditor()
         {
-            PackEditorOverseer.Instance.CreateNewSprite(AssetCreator.CreateSprite(Color.blue));
-            PackEditorOverseer.Instance.CreateNewSprite(AssetCreator.CreateSprite(Color.yellow));
+            packEditor.CreateNewSprite(AssetCreator.CreateSprite(Color.blue));
+            packEditor.CreateNewSprite(AssetCreator.CreateSprite(Color.yellow));
             for (int i = 0; i < 3; i++)
             {
                 yield return SwitchPaletteAndFillForSprite(i);
@@ -113,8 +113,8 @@ namespace Rogium.Tests.Editors.Palettes
         [UnityTest]
         public IEnumerator Should_UpdateIconColorOfAllSprites_WhenAssociatedPaletteUpdatedInSpriteEditor()
         {
-            PackEditorOverseer.Instance.CreateNewSprite(AssetCreator.CreateSprite(Color.blue));
-            PackEditorOverseer.Instance.CreateNewSprite(AssetCreator.CreateSprite(Color.yellow));
+            packEditor.CreateNewSprite(AssetCreator.CreateSprite(Color.blue));
+            packEditor.CreateNewSprite(AssetCreator.CreateSprite(Color.yellow));
             for (int i = 0; i < 3; i++)
             {
                 yield return SwitchPaletteAndFillForSprite(i);
@@ -127,6 +127,21 @@ namespace Rogium.Tests.Editors.Palettes
                 Color color = packEditor.CurrentPack.Sprites[i].Icon.texture.GetPixel(0, 0);
                 Assert.That(color, Is.EqualTo(Color.green));
             }
+        }
+
+        [UnityTest]
+        public IEnumerator Should_RemoveSpriteAssociationFromPalette_WhenSpritePaletteIsSwitched()
+        {
+            packEditor.CreateNewPalette(AssetCreator.CreatePalette());
+            SwitchToPalette(0);
+            spriteEditor.CompleteEditing();
+            
+            packEditor.ActivateSpriteEditor(0);
+            yield return null;
+            SwitchToPalette(1);
+            spriteEditor.CompleteEditing();
+            
+            Assert.That(packEditor.CurrentPack.Palettes[0].AssociatedAssetsIDs, Is.Empty);
         }
     }
 }
