@@ -77,7 +77,7 @@ namespace Rogium.Editors.Sprites
             
             public Builder WithAssociatedAssetIDs(ISet<string> associatedAssetIDs)
             {
-                Asset.associatedAssetsIDs = new HashSet<string>(associatedAssetIDs);
+                Asset.associatedAssetsIDs = new HashSet<string>(associatedAssetIDs ?? new HashSet<string>());
                 return This;
             }
             

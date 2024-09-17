@@ -33,7 +33,7 @@ namespace Rogium.ExternalStorage.Serialization
                 .WithCreationDate(DateTime.Parse(creationDate))
                 .WithSpriteData(spriteData.Decode())
                 .WithAssociatedPaletteID(preferredPaletteID)
-                .WithAssociatedAssetIDs((associatedAssetIDs == null) ? new HashSet<string>() : associatedAssetIDs.ToHashSet())
+                .WithAssociatedAssetIDs(associatedAssetIDs?.ToHashSet() ?? new HashSet<string>())
                 .Build();
         }
     }

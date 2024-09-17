@@ -11,7 +11,7 @@ namespace Rogium.Editors.Palettes
     /// <summary>
     /// Contains all data needed for a palette.
     /// </summary>
-    public class PaletteAsset : AssetWithDirectSpriteBase
+    public class PaletteAsset : AssetWithDirectSpriteBase, IAssetForAssociation
     {
         private Color[] colors;
         private ISet<string> associatedAssetsIDs;
@@ -42,6 +42,12 @@ namespace Rogium.Editors.Palettes
             public Builder WithColors(Color[] colors)
             {
                 Asset.colors = colors;
+                return This;
+            }
+            
+            public Builder WithAssociatedAssetIDs(ISet<string> ids)
+            {
+                Asset.associatedAssetsIDs = new HashSet<string>(ids);
                 return This;
             }
             
