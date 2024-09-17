@@ -41,6 +41,7 @@ namespace Rogium.Tests.Core
         /// </summary>
         public static IEnumerator PrepareSpriteEditor()
         {
+            OverseerLoader.LoadThemeOverseer();
             Object.Instantiate(spriteEditorProperty);
             yield return null;
             PackEditorOverseer.Instance.ActivateSpriteEditor(0);

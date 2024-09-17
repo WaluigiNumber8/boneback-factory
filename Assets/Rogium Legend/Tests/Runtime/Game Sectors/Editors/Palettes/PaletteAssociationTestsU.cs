@@ -3,6 +3,7 @@ using Rogium.Editors.Packs;
 using Rogium.Editors.Palettes;
 using Rogium.Editors.Sprites;
 using Rogium.Editors.Weapons;
+using Rogium.Systems.GASExtension;
 using Rogium.Systems.Toolbox;
 using Rogium.Tests.Core;
 using UnityEngine;
@@ -14,9 +15,9 @@ namespace Rogium.Tests.Editors.Palettes
     /// </summary>
     public static class PaletteAssociationTestsU
     {
-        public static void SwitchToFirstPalette()
+        public static void SwitchToPalette(int index = 0)
         {
-            PaletteAsset palette = PackEditorOverseer.Instance.CurrentPack.Palettes[0];
+            PaletteAsset palette = PackEditorOverseer.Instance.CurrentPack.Palettes[index];
             SpriteEditorOverseerMono.GetInstance().SwitchPalette(palette);
         }
 
@@ -26,25 +27,35 @@ namespace Rogium.Tests.Editors.Palettes
             SpriteEditorOverseerMono.GetInstance().UpdateCell(Vector2Int.zero);
         }
 
-        public static IEnumerator UpdatePaletteColorInPaletteEditor(Color color)
+        public static IEnumerator UpdatePaletteColorInPaletteEditor(Color color, int index = 0)
         {
             yield return MenuLoader.PreparePaletteEditor();
-            PaletteEditorOverseerMono.GetInstance().UpdateColorSlotColor(color, 0);
+            PaletteEditorOverseerMono.GetInstance().UpdateColorSlotColor(color, index);
             PaletteEditorOverseer.Instance.CompleteEditing();
         }
         
-        public static IEnumerator UpdateSpriteOfWeaponInEditor()
+        public static IEnumerator UpdateSpriteOfWeaponInEditor(int index = 0)
         {
             yield return MenuLoader.PrepareWeaponEditor();
-            WeaponEditorOverseer.Instance.CurrentAsset.UpdateIcon(PackEditorOverseer.Instance.CurrentPack.Sprites[0]);
+            WeaponEditorOverseer.Instance.CurrentAsset.UpdateIcon(PackEditorOverseer.Instance.CurrentPack.Sprites[index]);
             WeaponEditorOverseer.Instance.CompleteEditing();
         }
 
-        public static void UpdatePaletteColorInSpriteEditor()
+        public static IEnumerator UpdatePaletteColorInSpriteEditor(Color color, int index = 0)
         {
-            PackEditorOverseer.Instance.ActivateSpriteEditor(0);
-            SpriteEditorOverseerMono.GetInstance().Palette.GetSlot(0).UpdateColor(Color.yellow);
-            SpriteEditorOverseerMono.GetInstance().Palette.Select(0);
+            PackEditorOverseer.Instance.ActivateSpriteEditor(index);
+            yield return null;
+            SpriteEditorOverseerMono.GetInstance().Palette.GetSlot(index).UpdateColor(color);
+            SpriteEditorOverseerMono.GetInstance().Palette.Select(index);
+            GASButtonActions.OverridePalette();
+        }
+
+        public static IEnumerator SwitchPaletteAndFillForSprite(int index = 0)
+        {
+            PackEditorOverseer.Instance.ActivateSpriteEditor(index);
+            yield return null;
+            SwitchToPalette();
+            FillSpriteEditorGrid();
             SpriteEditorOverseer.Instance.CompleteEditing();
         }
     }

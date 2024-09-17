@@ -63,7 +63,7 @@ namespace Rogium.Tests.Editors
         public static SpriteAsset CreateSprite(Color color = new())
         {
             return new SpriteAsset.Builder()
-                .WithTitle("Test Sprite")
+                .WithTitle($"Test Sprite {Random.Range(0, 1000)}")
                 .WithIcon(RedRatBuilder.GenerateSprite(color, 16, 16, 16))
                 .Build();
         }
