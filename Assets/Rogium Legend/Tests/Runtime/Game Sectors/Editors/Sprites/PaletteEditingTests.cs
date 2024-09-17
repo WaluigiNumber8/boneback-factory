@@ -30,7 +30,7 @@ namespace Rogium.Tests.Editors.Sprites
             MenuLoader.PrepareSelectionMenu();
 
             yield return null;
-            MenuLoader.PrepareSpriteEditor();
+            yield return MenuLoader.PrepareSpriteEditor();
             spriteEditor = SpriteEditorOverseerMono.GetInstance();
             ActionHistorySystem.ClearHistory();
             yield return null;

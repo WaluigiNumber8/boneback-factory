@@ -28,15 +28,32 @@ namespace Rogium.Editors.Palettes
         private void OnEnable()
         {
             editor.OnAssignAsset += RefreshEditor;
-            editor.OnCompleteEditingBefore += UpdateEditedColor;
-            palette.OnSelect += SwitchEditedColor;
+            editor.OnCompleteEditingBefore += RefreshEditorData;
+            palette.OnSelect += RefreshForSlot;
         }
 
         private void OnDisable()
         {
             editor.OnAssignAsset -= RefreshEditor;
-            editor.OnCompleteEditingBefore -= UpdateEditedColor;
-            palette.OnSelect -= SwitchEditedColor;
+            editor.OnCompleteEditingBefore -= RefreshEditorData;
+            palette.OnSelect -= RefreshForSlot;
+        }
+        
+        /// <summary>
+        /// Selects a specific slot in the palette.
+        /// </summary>
+        /// <param name="index">The index of the slot to select.</param>
+        public void SelectSlot(int index) => palette.Select(index);
+        
+        /// <summary>
+        /// Updates the color of a specific slot.
+        /// </summary>
+        /// <param name="color">The new color to set.</param>
+        /// <param name="index">The index of the slot to update.</param>
+        public void UpdateColorSlotColor(Color color, int index)
+        {
+            palette.GetSlot(index).UpdateColor(color);
+            if (lastSlot != null && lastSlot.Index == index) RefreshForSlot(lastSlot);
         }
 
         /// <summary>
@@ -55,27 +72,26 @@ namespace Rogium.Editors.Palettes
         }
         
         /// <summary>
-        /// Changes the currently edited color to a new one.
+        /// Refreshes the editor for a specific slot.
         /// </summary>
         /// <param name="slot">The color data to read from.</param>
-        private void SwitchEditedColor(ColorSlot slot)
+        private void RefreshForSlot(ColorSlot slot)
         {
-            UpdateEditedColor();
-            colorPicker.Construct(slot.CurrentColor, slot.ColorImage);
+            RefreshEditorData();
             lastSlot = slot;
+            colorPicker.Construct(slot.CurrentColor, slot.ColorImage);
         }
         
         /// <summary>
         /// Updates changes made to the currently edited color.
         /// </summary>
-        private void UpdateEditedColor()
+        private void RefreshEditorData()
         {
             if (lastSlot == null) return;
             if (lastSlot.Index == -1) return;
             
-            lastSlot.UpdateColor(colorPicker.CurrentColor);
+            // lastSlot.UpdateColor(colorPicker.CurrentColor);
             editor.UpdateColor(colorPicker.CurrentColor, lastSlot.Index);
         }
-        
     }
 }

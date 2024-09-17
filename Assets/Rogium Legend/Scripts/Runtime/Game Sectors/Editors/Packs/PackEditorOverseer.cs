@@ -155,12 +155,13 @@ namespace Rogium.Editors.Packs
         /// </summary>
         /// <param name="newAsset">Sprite Asset with the new details.</param>
         /// <param name="positionIndex">Which sprite to override.</param>
-        public void UpdateSprite(SpriteAsset newAsset, int positionIndex, string lastAssociatedSpriteID)
+        /// <param name="lastAssociatedPaletteID">The palette ID associated before editing.</param>
+        public void UpdateSprite(SpriteAsset newAsset, int positionIndex, string lastAssociatedPaletteID)
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Sprites, "List of Sprites");
             
-            ProcessPaletteAssociations(currentPack, newAsset, lastAssociatedSpriteID);
+            ProcessPaletteAssociations(currentPack, newAsset, lastAssociatedPaletteID);
             CurrentPack.Sprites.Update(positionIndex, newAsset);
             RefreshSpriteForOtherAssets(newAsset, currentPack, SavePackChanges);
         }

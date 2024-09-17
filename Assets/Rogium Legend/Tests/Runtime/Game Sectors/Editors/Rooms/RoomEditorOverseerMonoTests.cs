@@ -29,7 +29,7 @@ namespace Rogium.Tests.Editors.Rooms
             OverseerLoader.LoadUIBuilder();
             OverseerLoader.LoadThemeOverseer();
             
-            MenuLoader.PrepareRoomEditor();
+            yield return MenuLoader.PrepareRoomEditor();
             RoomEditorOverseer.Instance.AssignAsset(pack.Rooms[0], 0);
             roomEditor = RoomEditorOverseerMono.GetInstance();
             ActionHistorySystem.ClearHistory();
