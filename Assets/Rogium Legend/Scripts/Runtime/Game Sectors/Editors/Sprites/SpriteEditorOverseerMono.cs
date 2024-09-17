@@ -175,7 +175,9 @@ namespace Rogium.Editors.Sprites
         {
             UpdateCurrentPaletteData(slotIndex);
             RedrawColorOnGrid(slotIndex);
-            paletteChanged = !paletteChanged || ActionHistorySystem.ContainsInOpenGroupOrUndo<UpdateColorSlotAction>(); //1st change will be flagged, then depends on the action history.
+            Color color = palette.GetSlot(slotIndex).CurrentColor;
+            paletteChanged = !paletteChanged || ActionHistorySystem.ContainsInOpenGroupOrUndo<UpdateColorSlotAction>() || color == lastColor; //1st change will be flagged, then depends on the action history.
+            lastColor = color;
         }
         
         /// <summary>
