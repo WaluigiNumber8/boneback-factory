@@ -28,15 +28,15 @@ namespace Rogium.Editors.Palettes
         private void OnEnable()
         {
             editor.OnAssignAsset += RefreshEditor;
-            editor.OnCompleteEditingBefore += RefreshEditorData;
             palette.OnSelect += RefreshForSlot;
+            colorPicker.OnValueChanged += RefreshEditorData;
         }
 
         private void OnDisable()
         {
             editor.OnAssignAsset -= RefreshEditor;
-            editor.OnCompleteEditingBefore -= RefreshEditorData;
             palette.OnSelect -= RefreshForSlot;
+            colorPicker.OnValueChanged -= RefreshEditorData;
         }
         
         /// <summary>
@@ -77,7 +77,7 @@ namespace Rogium.Editors.Palettes
         /// <param name="slot">The color data to read from.</param>
         private void RefreshForSlot(ColorSlot slot)
         {
-            RefreshEditorData();
+            RefreshEditorData(slot.CurrentColor);
             lastSlot = slot;
             colorPicker.Construct(slot.CurrentColor, slot.ColorImage);
         }
@@ -85,13 +85,13 @@ namespace Rogium.Editors.Palettes
         /// <summary>
         /// Updates changes made to the currently edited color.
         /// </summary>
-        private void RefreshEditorData()
+        private void RefreshEditorData(Color color)
         {
             if (lastSlot == null) return;
             if (lastSlot.Index == -1) return;
             
             // lastSlot.UpdateColor(colorPicker.CurrentColor);
-            editor.UpdateColor(colorPicker.CurrentColor, lastSlot.Index);
+            editor.UpdateColor(color, lastSlot.Index);
         }
     }
 }
