@@ -60,7 +60,7 @@ namespace Rogium.Editors.Palettes
                 Asset.author = asset.Author;
                 Asset.creationDate = asset.CreationDate;
                 Asset.colors = asset.Colors;
-                Asset.associatedAssetsIDs = asset.AssociatedAssetsIDs;
+                Asset.associatedAssetsIDs = new HashSet<string>(asset.AssociatedAssetsIDs);
                 return This;
             }
 

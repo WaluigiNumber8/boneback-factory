@@ -102,7 +102,7 @@ namespace Rogium.Editors.Packs
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Palettes, "List of Palettes");
-            RefreshPaletteForOtherAssets(newAsset, currentPack);
+            RefreshPaletteForOtherAssets(newAsset, currentPack, SavePackChanges);
             CurrentPack.Palettes.Update(positionIndex, newAsset);
         } 
 

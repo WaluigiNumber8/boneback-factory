@@ -79,11 +79,8 @@ namespace Rogium.Tests.Editors
 
         public static WeaponAsset CreateWeapon()
         {
-            SpriteAsset s = CreateSprite();
-            s.UpdateIcon(RedRatBuilder.GenerateSprite(Color.green, 16, 16, 16));
             WeaponAsset weapon = new WeaponAsset.Builder()
                 .WithTitle("Test Weapon")
-                .WithIcon(s)
                 .Build();
             return weapon;
         }
@@ -92,7 +89,6 @@ namespace Rogium.Tests.Editors
         {
             return new ProjectileAsset.Builder()
                 .WithTitle("Test Projectile")
-                .WithIcon(CreateSprite(Color.cyan))
                 .Build();
         }
 
@@ -100,7 +96,6 @@ namespace Rogium.Tests.Editors
         {
             return new EnemyAsset.Builder()
                 .WithTitle("Test Enemy")
-                .WithIcon(CreateSprite(Color.red))
                 .Build();
         }
 
@@ -116,7 +111,6 @@ namespace Rogium.Tests.Editors
         {
             return new TileAsset.Builder()
                 .WithTitle("Test Tile")
-                .WithIcon(CreateSprite(Color.yellow))
                 .Build();
         }
     }

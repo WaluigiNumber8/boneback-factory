@@ -49,12 +49,16 @@ namespace Rogium.Editors.Packs
             }
         }
 
-        public static void RefreshPaletteForOtherAssets(PaletteAsset newAsset, PackAsset currentPack)
+        public static void RefreshPaletteForOtherAssets(PaletteAsset newAsset, PackAsset currentPack, Action savePackChanges)
         {
             foreach (string id in newAsset.AssociatedAssetsIDs)
             {
                 string identifier = id[..2];
-                if (identifier == EditorAssetIDs.SpriteIdentifier) RefreshPaletteAndSaveAsset(currentPack.Sprites, id, newAsset);
+                if (identifier == EditorAssetIDs.SpriteIdentifier)
+                {
+                    RefreshPaletteAndSaveAsset(currentPack.Sprites, id, newAsset);
+                    RefreshSpriteForOtherAssets(currentPack.Sprites.FindValueFirst(id), currentPack, savePackChanges);
+                }
             }
         }
         

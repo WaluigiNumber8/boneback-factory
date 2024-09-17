@@ -16,7 +16,6 @@ namespace Rogium.Editors.Sprites
         public event Action OnCompleteEditingBefore, OnCompleteEditingAfter;
         public event Action<SpriteAsset, int, string> OnCompleteEditing;
 
-        private readonly IconBuilder iconBuilder;
         private readonly PalettePicker palettePicker;
         
         private SpriteAsset currentAsset;
@@ -24,11 +23,7 @@ namespace Rogium.Editors.Sprites
         private int myIndex;
         private string lastAssociatedPaletteID;
         
-        private SpriteEditorOverseer()
-        {
-            iconBuilder = new IconBuilder();
-            palettePicker = new PalettePicker();
-        }
+        private SpriteEditorOverseer() => palettePicker = new PalettePicker();
 
         /// <summary>
         /// Assign an asset, that is going to be edited.
@@ -70,7 +65,7 @@ namespace Rogium.Editors.Sprites
         {
             OnCompleteEditingBefore?.Invoke();
 
-            Sprite newIcon = iconBuilder.BuildFromGrid(currentAsset.SpriteData, currentPalette.Colors);
+            Sprite newIcon = IconBuilder.BuildFromGrid(currentAsset.SpriteData, currentPalette.Colors);
             newIcon.name = currentAsset.Title;
             currentAsset.UpdateIcon(newIcon);
             

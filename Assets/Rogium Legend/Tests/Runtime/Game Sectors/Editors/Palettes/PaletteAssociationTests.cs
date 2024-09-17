@@ -7,6 +7,7 @@ using Rogium.Systems.Toolbox;
 using Rogium.Tests.Core;
 using UnityEngine;
 using UnityEngine.TestTools;
+using static Rogium.Tests.Editors.Palettes.PaletteAssociationTestsU;
 
 namespace Rogium.Tests.Editors.Palettes
 {
@@ -38,7 +39,7 @@ namespace Rogium.Tests.Editors.Palettes
         [Test]
         public void Should_AddAssociationToPaletteAsset_WhenSpriteIsSavedAndPaletteExists()
         {
-            PaletteAssociationTestsU.SwitchToFirstPalette();
+            SwitchToFirstPalette();
             spriteEditor.CompleteEditing();
             Assert.That(packEditor.CurrentPack.Palettes[0].AssociatedAssetsIDs.Contains(packEditor.CurrentPack.Sprites[0].ID));
         }
@@ -46,14 +47,14 @@ namespace Rogium.Tests.Editors.Palettes
         [Test]
         public void Should_AddPaletteAssociationToCurrentlyEditedSpriteAsset_WhenPaletteSwitched()
         {
-            PaletteAssociationTestsU.SwitchToFirstPalette();
+            SwitchToFirstPalette();
             Assert.That(spriteEditor.CurrentAsset.AssociatedPaletteID, Is.EqualTo(packEditor.CurrentPack.Palettes[0].ID));
         }
         
         [Test]
         public void Should_AddPaletteAssociationToSpriteAsset_WhenSpriteIsSavedAndPaletteExists()
         {
-            PaletteAssociationTestsU.SwitchToFirstPalette();
+            SwitchToFirstPalette();
             spriteEditor.CompleteEditing();
             Assert.That(packEditor.CurrentPack.Sprites[0].AssociatedPaletteID, Is.EqualTo(packEditor.CurrentPack.Palettes[0].ID));
         }
@@ -62,16 +63,28 @@ namespace Rogium.Tests.Editors.Palettes
         public IEnumerator Should_UpdateSpriteColor_WhenAssociatedPaletteWasUpdated()
         {
             // Assign Palette to Sprite
-            PaletteAssociationTestsU.SwitchToFirstPalette();
-            PaletteAssociationTestsU.FillSpriteEditorGrid();
+            SwitchToFirstPalette();
+            FillSpriteEditorGrid();
             spriteEditor.CompleteEditing();
-            Color startColor = packEditor.CurrentPack.Sprites[0].Icon.texture.GetPixel(0, 0);
+
+            yield return UpdatePaletteColorInEditor(Color.blue);
+            Color color = packEditor.CurrentPack.Sprites[0].Icon.texture.GetPixel(0, 0);
+            Assert.That(color, Is.EqualTo(Color.blue));
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_UpdateWeaponColor_WhenAssociatedPaletteWasUpdated()
+        {
+            // Assign Palette to Sprite
+            SwitchToFirstPalette();
+            FillSpriteEditorGrid();
+            spriteEditor.CompleteEditing();
             
-            yield return MenuLoader.PreparePaletteEditor();
-            PaletteEditorOverseerMono.GetInstance().UpdateColorSlotColor(Color.blue, 0);
-            PaletteEditorOverseer.Instance.CompleteEditing();
-            Color endColor = packEditor.CurrentPack.Sprites[0].Icon.texture.GetPixel(0, 0);
-            Assert.That(startColor, Is.Not.EqualTo(endColor));
+            yield return UpdateSpriteOfWeaponInEditor();
+            yield return UpdatePaletteColorInEditor(Color.blue);
+            
+            Color color = packEditor.CurrentPack.Weapons[0].Icon.texture.GetPixel(0, 0);
+            Assert.That(color, Is.EqualTo(Color.blue));
         }
     }
 }

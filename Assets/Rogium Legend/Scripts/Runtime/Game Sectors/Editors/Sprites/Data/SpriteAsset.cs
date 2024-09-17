@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using RedRats.Safety;
 using Rogium.Editors.Palettes;
+using Rogium.Systems.IconBuilders;
 
 namespace Rogium.Editors.Sprites
 {
@@ -37,10 +38,10 @@ namespace Rogium.Editors.Sprites
             {
                 SafetyNet.EnsureIsType<PaletteAsset>(newPalette, nameof(newPalette));
                 PaletteAsset p = (PaletteAsset) newPalette;
-                icon = p.Icon;
+                icon = IconBuilder.BuildFromGrid(SpriteData, p.Colors);
                 return;
             }
-            icon = newPalette.Icon;
+            icon = IconBuilder.BuildFromGrid(SpriteData, EditorDefaults.Instance.MissingPalette);
         }
         
         public ObjectGrid<int> SpriteData { get => spriteData; }

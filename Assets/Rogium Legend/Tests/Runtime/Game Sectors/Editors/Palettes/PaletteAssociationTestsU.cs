@@ -1,7 +1,10 @@
+using System.Collections;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Palettes;
 using Rogium.Editors.Sprites;
+using Rogium.Editors.Weapons;
 using Rogium.Systems.Toolbox;
+using Rogium.Tests.Core;
 using UnityEngine;
 
 namespace Rogium.Tests.Editors.Palettes
@@ -21,6 +24,20 @@ namespace Rogium.Tests.Editors.Palettes
         {
             SpriteEditorOverseerMono.GetInstance().Toolbox.SwitchTool(ToolType.Fill);
             SpriteEditorOverseerMono.GetInstance().UpdateCell(Vector2Int.zero);
+        }
+
+        public static IEnumerator UpdatePaletteColorInEditor(Color color)
+        {
+            yield return MenuLoader.PreparePaletteEditor();
+            PaletteEditorOverseerMono.GetInstance().UpdateColorSlotColor(color, 0);
+            PaletteEditorOverseer.Instance.CompleteEditing();
+        }
+        
+        public static IEnumerator UpdateSpriteOfWeaponInEditor()
+        {
+            yield return MenuLoader.PrepareWeaponEditor();
+            WeaponEditorOverseer.Instance.CurrentAsset.UpdateIcon(PackEditorOverseer.Instance.CurrentPack.Sprites[0]);
+            WeaponEditorOverseer.Instance.CompleteEditing();
         }
     }
 }
