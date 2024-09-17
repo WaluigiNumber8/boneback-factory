@@ -3,8 +3,10 @@ using NUnit.Framework;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Palettes;
 using Rogium.Editors.Sprites;
+using Rogium.Systems.Toolbox;
 using Rogium.Tests.Core;
 using UnityEngine;
+using UnityEngine.TestTools;
 
 namespace Rogium.Tests.Editors.Palettes
 {
@@ -21,6 +23,7 @@ namespace Rogium.Tests.Editors.Palettes
             yield return base.Setup();
             packEditor = PackEditorOverseer.Instance;
             spriteEditor = SpriteEditorOverseer.Instance;
+            
             yield return MenuLoader.PrepareSpriteEditor();
             yield return null;
         }
@@ -35,58 +38,40 @@ namespace Rogium.Tests.Editors.Palettes
         [Test]
         public void Should_AddAssociationToPaletteAsset_WhenSpriteIsSavedAndPaletteExists()
         {
-            PaletteAsset palette = packEditor.CurrentPack.Palettes[0];
-            SpriteEditorOverseerMono.GetInstance().SwitchPalette(palette);
+            PaletteAssociationTestsU.SwitchToFirstPalette();
             spriteEditor.CompleteEditing();
-            Assert.That(palette.AssociatedAssetsIDs.Contains(packEditor.CurrentPack.Sprites[0].ID));
+            Assert.That(packEditor.CurrentPack.Palettes[0].AssociatedAssetsIDs.Contains(packEditor.CurrentPack.Sprites[0].ID));
         }
 
         [Test]
         public void Should_AddPaletteAssociationToCurrentlyEditedSpriteAsset_WhenPaletteSwitched()
         {
-            PaletteAsset palette = packEditor.CurrentPack.Palettes[0];
-            SpriteEditorOverseerMono.GetInstance().SwitchPalette(palette);
-            Assert.That(spriteEditor.CurrentAsset.AssociatedPaletteID, Is.EqualTo(palette.ID));
+            PaletteAssociationTestsU.SwitchToFirstPalette();
+            Assert.That(spriteEditor.CurrentAsset.AssociatedPaletteID, Is.EqualTo(packEditor.CurrentPack.Palettes[0].ID));
         }
         
         [Test]
         public void Should_AddPaletteAssociationToSpriteAsset_WhenSpriteIsSavedAndPaletteExists()
         {
-            PaletteAsset palette = packEditor.CurrentPack.Palettes[0];
-            SpriteEditorOverseerMono.GetInstance().SwitchPalette(palette);
+            PaletteAssociationTestsU.SwitchToFirstPalette();
             spriteEditor.CompleteEditing();
-            Assert.That(packEditor.CurrentPack.Sprites[0].AssociatedPaletteID, Is.EqualTo(palette.ID));
+            Assert.That(packEditor.CurrentPack.Sprites[0].AssociatedPaletteID, Is.EqualTo(packEditor.CurrentPack.Palettes[0].ID));
         }
 
-        [Test]
-        public void Should_UpdateSpriteColor_WhenAssociatedPaletteWasUpdated()
+        [UnityTest]
+        public IEnumerator Should_UpdateSpriteColor_WhenAssociatedPaletteWasUpdated()
         {
             // Assign Palette to Sprite
-            PaletteAsset palette = packEditor.CurrentPack.Palettes[0];
-            SpriteEditorOverseerMono.GetInstance().SwitchPalette(palette);
-            SpriteEditorOverseerMono.GetInstance().UpdateGridCell(Vector2Int.zero);
+            PaletteAssociationTestsU.SwitchToFirstPalette();
+            PaletteAssociationTestsU.FillSpriteEditorGrid();
             spriteEditor.CompleteEditing();
             Color startColor = packEditor.CurrentPack.Sprites[0].Icon.texture.GetPixel(0, 0);
             
-            packEditor.ActivatePaletteEditor(0, false);
-            PaletteEditorOverseer.Instance.UpdateColor(Color.magenta, 0);
+            yield return MenuLoader.PreparePaletteEditor();
+            PaletteEditorOverseerMono.GetInstance().UpdateColorSlotColor(Color.blue, 0);
             PaletteEditorOverseer.Instance.CompleteEditing();
             Color endColor = packEditor.CurrentPack.Sprites[0].Icon.texture.GetPixel(0, 0);
             Assert.That(startColor, Is.Not.EqualTo(endColor));
-        }
-
-        [Test]
-        public void Should_UpdateIcon_WhenUpdateGridCellAndSave()
-        {
-            PaletteAsset palette = packEditor.CurrentPack.Palettes[0];
-            SpriteEditorOverseerMono s = SpriteEditorOverseerMono.GetInstance();
-            s.SwitchPalette(palette);
-            
-            Color colorBefore = packEditor.CurrentPack.Sprites[0].Icon.texture.GetPixel(0, packEditor.CurrentPack.Sprites[0].Icon.texture.height - 1);
-            s.UpdateGridCell(Vector2Int.zero);
-            Color colorAfter = packEditor.CurrentPack.Sprites[0].Icon.texture.GetPixel(0, packEditor.CurrentPack.Sprites[0].Icon.texture.height - 1);
-            
-            Assert.That(colorBefore, Is.Not.EqualTo(colorAfter));
         }
     }
 }

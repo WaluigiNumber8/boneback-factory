@@ -11,6 +11,7 @@ using Rogium.Editors.Weapons;
 using Rogium.ExternalStorage;
 using Rogium.ExternalStorage.Serialization;
 using Rogium.Options.Core;
+using Rogium.Tests.Editors;
 using UnityEngine.TestTools;
 
 namespace Rogium.Tests.Core
@@ -27,6 +28,8 @@ namespace Rogium.Tests.Core
             SceneLoader.LoadMenuTestingScene();
             yield return null;
             PrepareExternalStorageSubstitute();
+            yield return null;
+            AssetCreator.CreateAndAssignPack();
         }
 
         private void PrepareExternalStorageSubstitute()

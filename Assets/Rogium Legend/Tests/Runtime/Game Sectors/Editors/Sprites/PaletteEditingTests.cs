@@ -92,7 +92,7 @@ namespace Rogium.Tests.Editors.Sprites
         public void Should_ApplyColorChangeToGrid_WhenColorSlotColorChanged()
         {
             UpdateColorSlot(Color.blue);
-            spriteEditor.UpdateGridCell(new Vector2Int(0, 0));
+            spriteEditor.UpdateCell(new Vector2Int(0, 0));
             UpdateColorSlot(Color.red);
 
             Assert.That(spriteEditor.CurrentGridSprite.texture.GetPixel(0, 0), Is.EqualTo(Color.red));
@@ -102,7 +102,7 @@ namespace Rogium.Tests.Editors.Sprites
         public void Should_RevertGridColorChange_WhenUndoIsCalled()
         {
             UpdateColorSlot(Color.blue);
-            spriteEditor.UpdateGridCell(new Vector2Int(0, 0));
+            spriteEditor.UpdateCell(new Vector2Int(0, 0));
             UpdateColorSlot(Color.red);
             ActionHistorySystem.UndoLast();
 

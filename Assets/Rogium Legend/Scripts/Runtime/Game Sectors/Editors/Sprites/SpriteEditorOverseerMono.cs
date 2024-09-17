@@ -45,7 +45,7 @@ namespace Rogium.Editors.Sprites
         private void OnEnable()
         {
             editor.OnAssignAsset += PrepareEditor;
-            grid.OnClick += UpdateGridCell;
+            grid.OnClick += UpdateCell;
             grid.OnClickAlternative += EraseCell;
             palette.OnSelect += UpdateCurrentColor;
             ColorSlot.OnChangeColor += WhenPaletteSlotChange;
@@ -58,7 +58,7 @@ namespace Rogium.Editors.Sprites
         private void OnDisable()
         {
             editor.OnAssignAsset -= PrepareEditor;
-            grid.OnClick -= UpdateGridCell;
+            grid.OnClick -= UpdateCell;
             grid.OnClickAlternative -= EraseCell;
             palette.OnSelect -= UpdateCurrentColor;
             ColorSlot.OnChangeColor -= WhenPaletteSlotChange;
@@ -72,7 +72,7 @@ namespace Rogium.Editors.Sprites
         /// Updates the grid based on inputted position.
         /// </summary>
         /// <param name="position">The grid position to affect.</param>
-        public void UpdateGridCell(Vector2Int position)
+        public void UpdateCell(Vector2Int position)
         {
             if (currentSlot == null) return;
             Sprite brushSprite = RedRatBuilder.GenerateSprite(currentSlot.CurrentColor, spriteSize, spriteSize, spriteSize);

@@ -30,10 +30,8 @@ namespace Rogium.Tests.Core
         /// </summary>
         public static IEnumerator PreparePaletteEditor()
         {
-            PackAsset pack = AssetCreator.CreateAndAssignPack();
             Object.Instantiate(paletteEditorProperty);
             yield return null;
-            PackEditorOverseer.Instance.AssignAsset(pack, 0);
             PackEditorOverseer.Instance.ActivatePaletteEditor(0);
         }
         
@@ -42,10 +40,8 @@ namespace Rogium.Tests.Core
         /// </summary>
         public static IEnumerator PrepareSpriteEditor()
         {
-            PackAsset pack = AssetCreator.CreateAndAssignPack();
             Object.Instantiate(spriteEditorProperty);
             yield return null;
-            PackEditorOverseer.Instance.AssignAsset(pack, 0);
             PackEditorOverseer.Instance.ActivateSpriteEditor(0);
         }
 
@@ -54,14 +50,12 @@ namespace Rogium.Tests.Core
         /// </summary>
         public static IEnumerator PrepareRoomEditor()
         {
-            PackAsset pack = AssetCreator.CreateAndAssignPack();
             OverseerLoader.LoadInternalLibrary();
             OverseerLoader.LoadUIBuilder();
             OverseerLoader.LoadThemeOverseer();
             
             Object.Instantiate(roomEditorProperty);
             yield return null;
-            PackEditorOverseer.Instance.AssignAsset(pack, 0);
             PackEditorOverseer.Instance.ActivateRoomEditor(0);
         }
     }
