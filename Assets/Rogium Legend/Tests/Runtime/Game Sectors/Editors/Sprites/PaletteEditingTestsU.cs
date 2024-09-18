@@ -1,5 +1,7 @@
 using System.Collections;
+using RedRats.UI.ModalWindows;
 using Rogium.Editors.Sprites;
+using Rogium.Systems.GASExtension;
 using Rogium.Tests.Core;
 using Rogium.Tests.UI.Interactables;
 using Rogium.UserInterface.ModalWindows;
@@ -21,6 +23,14 @@ namespace Rogium.Tests.Editors.Sprites
             colorPicker.UpdateColor(color);
             colorPicker.Close();
             yield return null;
+        }
+
+        public static IEnumerator SavePaletteAsNewAndConfirm()
+        {
+            yield return UpdateColorSlot(Color.blue);
+            GASButtonActions.SavePaletteAsNew();
+            yield return null;
+            Object.FindFirstObjectByType<ModalWindow>()?.OnAccept();
         }
     }
 }
