@@ -13,22 +13,22 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         private readonly RoomEditorOverseer roomEditor = RoomEditorOverseer.Instance;
         private readonly RoomSettingsBuilder roomBuilder = new();
 
-        public override void OpenForCreate(Action whenConfirm = null) => OpenWindow(new RoomAsset.Builder().Build() , () => CreateAsset(whenConfirm), "Creating new room");
+        public override void OpenForCreate(Action whenConfirm = null) => OpenWindow(new RoomAsset.Builder().Build() , () => CreateAsset(whenConfirm), "Creating new room", AssetModificationType.Create);
 
-        public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new RoomAsset.Builder().AsCopy(roomEditor.CurrentAsset).Build(), () => UpdateAsset(whenConfirm), $"Editing {roomEditor.CurrentAsset.Title}");
+        public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new RoomAsset.Builder().AsCopy(roomEditor.CurrentAsset).Build(), () => UpdateAsset(whenConfirm), $"Editing {roomEditor.CurrentAsset.Title}", AssetModificationType.Update);
 
-        public override void OpenForClone(Action whenConfirm = null) => OpenWindow(new RoomAsset.Builder().AsClone(roomEditor.CurrentAsset).Build(), () => CloneAsset(whenConfirm), $"Creating a clone of {roomEditor.CurrentAsset.Title}");
+        public override void OpenForClone(Action whenConfirm = null) => OpenWindow(new RoomAsset.Builder().AsClone(roomEditor.CurrentAsset).Build(), () => CloneAsset(whenConfirm), $"Creating a clone of {roomEditor.CurrentAsset.Title}", AssetModificationType.Clone);
         
-        private void OpenWindow(RoomAsset data, Action onConfirm, string headerText)
+        private void OpenWindow(RoomAsset asset, Action onConfirm, string headerText, AssetModificationType modification)
         {
             OpenForColumns1(headerText, onConfirm, out Transform col1);
             
-            b.BuildInputField("Title", data.Title, col1, data.UpdateTitle);
-            roomBuilder.BuildEssentials(col1, data, false);
-            b.BuildPlainText("Created by", data.Author, col1);
-            b.BuildPlainText("Created on", data.CreationDate.ToString(), col1);
+            b.BuildInputField("Title", GetTitleByModificationType(asset, modification), col1, asset.UpdateTitle);
+            roomBuilder.BuildEssentials(col1, asset, false);
+            b.BuildPlainText("Created by", asset.Author, col1);
+            b.BuildPlainText("Created on", asset.CreationDate.ToString(), col1);
             
-            editedAssetBase = data;
+            editedAssetBase = asset;
         }
 
         protected override void CreateAsset(Action whenConfirm)

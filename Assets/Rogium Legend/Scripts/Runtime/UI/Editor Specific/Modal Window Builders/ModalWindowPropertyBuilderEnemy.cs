@@ -12,20 +12,20 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     {
         private readonly EnemyEditorOverseer enemyEditor = EnemyEditorOverseer.Instance;
 
-        public override void OpenForCreate(Action whenConfirm = null) => OpenWindow(new EnemyAsset.Builder().Build(), () => CreateAsset(whenConfirm), "Creating a new Enemy");
+        public override void OpenForCreate(Action whenConfirm = null) => OpenWindow(new EnemyAsset.Builder().Build(), () => CreateAsset(whenConfirm), "Creating a new Enemy", AssetModificationType.Create);
 
-        public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new EnemyAsset.Builder().AsCopy(enemyEditor.CurrentAsset).Build(), () => UpdateAsset(whenConfirm), $"Updating {enemyEditor.CurrentAsset.Title}");
+        public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new EnemyAsset.Builder().AsCopy(enemyEditor.CurrentAsset).Build(), () => UpdateAsset(whenConfirm), $"Updating {enemyEditor.CurrentAsset.Title}", AssetModificationType.Update);
 
-        public override void OpenForClone(Action whenConfirm = null) => OpenWindow(new EnemyAsset.Builder().AsClone(enemyEditor.CurrentAsset).Build(), () => CloneAsset(whenConfirm), $"Creating a clone of {enemyEditor.CurrentAsset.Title}");
+        public override void OpenForClone(Action whenConfirm = null) => OpenWindow(new EnemyAsset.Builder().AsClone(enemyEditor.CurrentAsset).Build(), () => CloneAsset(whenConfirm), $"Creating a clone of {enemyEditor.CurrentAsset.Title}", AssetModificationType.Clone);
         
-        private void OpenWindow(EnemyAsset enemy, Action onConfirm, string headerText)
+        private void OpenWindow(EnemyAsset asset, Action onConfirm, string headerText, AssetModificationType modification)
         {
             OpenForColumns1(headerText, onConfirm, out Transform col);
-            b.BuildInputField("Title", enemy.Title, col, enemy.UpdateTitle);
-            b.BuildPlainText("Created by", enemy.Author, col);
-            b.BuildPlainText("Created on", enemy.CreationDate.ToString(), col);
+            b.BuildInputField("Title", GetTitleByModificationType(asset, modification), col, asset.UpdateTitle);
+            b.BuildPlainText("Created by", asset.Author, col);
+            b.BuildPlainText("Created on", asset.CreationDate.ToString(), col);
             
-            editedAssetBase = enemy;
+            editedAssetBase = asset;
         }
 
         protected override void CreateAsset(Action whenConfirm)

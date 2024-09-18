@@ -12,21 +12,21 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     {
         private readonly SpriteEditorOverseer spriteEditor = SpriteEditorOverseer.Instance;
 
-        public override void OpenForCreate(Action whenConfirm = null) => OpenWindow(new SpriteAsset.Builder().Build(), () => CreateAsset(whenConfirm), "Creating a new Sprite");
+        public override void OpenForCreate(Action whenConfirm = null) => OpenWindow(new SpriteAsset.Builder().Build(), () => CreateAsset(whenConfirm), "Creating a new Sprite", AssetModificationType.Create);
 
-        public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new SpriteAsset.Builder().AsCopy(spriteEditor.CurrentAsset).Build() , () => UpdateAsset(whenConfirm), $"Updating {spriteEditor.CurrentAsset.Title}");
+        public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new SpriteAsset.Builder().AsCopy(spriteEditor.CurrentAsset).Build() , () => UpdateAsset(whenConfirm), $"Updating {spriteEditor.CurrentAsset.Title}", AssetModificationType.Update);
 
-        public override void OpenForClone(Action whenConfirm = null) => OpenWindow(new SpriteAsset.Builder().AsClone(spriteEditor.CurrentAsset).Build(), () => CloneAsset(whenConfirm), $"Creating a clone of {spriteEditor.CurrentAsset.Title}");
+        public override void OpenForClone(Action whenConfirm = null) => OpenWindow(new SpriteAsset.Builder().AsClone(spriteEditor.CurrentAsset).Build(), () => CloneAsset(whenConfirm), $"Creating a clone of {spriteEditor.CurrentAsset.Title}", AssetModificationType.Clone);
         
-        private void OpenWindow(SpriteAsset sprite, Action onConfirm, string headerText)
+        private void OpenWindow(SpriteAsset asset, Action onConfirm, string headerText, AssetModificationType modification)
         {
             OpenForColumns1(headerText, onConfirm, out Transform col1);
             
-            b.BuildInputField("Title", sprite.Title, col1, sprite.UpdateTitle);
-            b.BuildPlainText("Created by", sprite.Author, col1);
-            b.BuildPlainText("Created on", sprite.CreationDate.ToString(), col1);
+            b.BuildInputField("Title", GetTitleByModificationType(asset, modification), col1, asset.UpdateTitle);
+            b.BuildPlainText("Created by", asset.Author, col1);
+            b.BuildPlainText("Created on", asset.CreationDate.ToString(), col1);
             
-            editedAssetBase = sprite;
+            editedAssetBase = asset;
         }
         
         protected override void CreateAsset(Action whenConfirm)

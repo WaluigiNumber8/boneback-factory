@@ -12,20 +12,20 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     {
         private readonly PaletteEditorOverseer paletteEditor = PaletteEditorOverseer.Instance;
 
-        public override void OpenForCreate(Action whenConfirm = null) => OpenWindow(new PaletteAsset.Builder().Build(), () => CreateAsset(whenConfirm), "Creating a new Palette");
+        public override void OpenForCreate(Action whenConfirm = null) => OpenWindow(new PaletteAsset.Builder().Build(), () => CreateAsset(whenConfirm), "Creating a new Palette", AssetModificationType.Create);
 
-        public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new PaletteAsset.Builder().AsCopy(paletteEditor.CurrentAsset).Build(), () => UpdateAsset(whenConfirm), $"Updating {paletteEditor.CurrentAsset.Title}");
+        public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new PaletteAsset.Builder().AsCopy(paletteEditor.CurrentAsset).Build(), () => UpdateAsset(whenConfirm), $"Updating {paletteEditor.CurrentAsset.Title}", AssetModificationType.Update);
 
-        public override void OpenForClone(Action whenConfirm = null) => OpenWindow(new PaletteAsset.Builder().AsClone(paletteEditor.CurrentAsset).Build(), () => CloneAsset(whenConfirm), $"Creating a clone of {paletteEditor.CurrentAsset.Title}");
+        public override void OpenForClone(Action whenConfirm = null) => OpenWindow(new PaletteAsset.Builder().AsClone(paletteEditor.CurrentAsset).Build(), () => CloneAsset(whenConfirm), $"Creating a clone of {paletteEditor.CurrentAsset.Title}", AssetModificationType.Clone);
         
-        private void OpenWindow(PaletteAsset palette, Action onConfirm, string headerText)
+        private void OpenWindow(PaletteAsset asset, Action onConfirm, string headerText, AssetModificationType modification)
         {
             OpenForColumns1(headerText, onConfirm, out Transform col1);
-            b.BuildInputField("Title", palette.Title, col1, palette.UpdateTitle);
-            b.BuildPlainText("Created by", palette.Author, col1);
-            b.BuildPlainText("Created on", palette.CreationDate.ToString(), col1);
+            b.BuildInputField("Title", GetTitleByModificationType(asset, modification), col1, asset.UpdateTitle);
+            b.BuildPlainText("Created by", asset.Author, col1);
+            b.BuildPlainText("Created on", asset.CreationDate.ToString(), col1);
             
-            editedAssetBase = palette;
+            editedAssetBase = asset;
         }
         
         protected override void CreateAsset(Action whenConfirm)

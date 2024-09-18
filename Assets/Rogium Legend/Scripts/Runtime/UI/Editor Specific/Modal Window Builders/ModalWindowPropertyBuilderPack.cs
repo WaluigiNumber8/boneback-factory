@@ -12,30 +12,30 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     public class ModalWindowPropertyBuilderPack : ModalWindowPropertyBuilderBase
     {
         private new PackAsset editedAssetBase;
-        public override void OpenForCreate(Action whenConfirm = null) => OpenWindow(new PackAsset.Builder().Build(), () => CreateAsset(whenConfirm), "Creating a new pack");
+        public override void OpenForCreate(Action whenConfirm = null) => OpenWindow(new PackAsset.Builder().Build(), () => CreateAsset(whenConfirm), "Creating a new pack", AssetModificationType.Create);
 
-        public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new PackAsset.Builder().AsCopy(editor.CurrentPack).Build(), () => UpdateAsset(whenConfirm), $"Editing {editor.CurrentPack.Title}");
+        public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new PackAsset.Builder().AsCopy(editor.CurrentPack).Build(), () => UpdateAsset(whenConfirm), $"Editing {editor.CurrentPack.Title}", AssetModificationType.Update);
 
-        public override void OpenForClone(Action whenConfirm = null) => OpenWindow(new PackAsset.Builder().AsClone(editor.CurrentPack).Build(), () => CloneAsset(whenConfirm), $"Creating a clone of {editor.CurrentPack.Title}");
+        public override void OpenForClone(Action whenConfirm = null) => OpenWindow(new PackAsset.Builder().AsClone(editor.CurrentPack).Build(), () => CloneAsset(whenConfirm), $"Creating a clone of {editor.CurrentPack.Title}", AssetModificationType.Clone);
         
         /// <summary>
         /// Opens a Modal Window as a Pack Properties Window.
-        /// <param name="currentPackInfo">The PackInfo to edit.</param>
+        /// <param name="asset">The PackInfo to edit.</param>
         /// <param name="onConfirm">What happens when the 'Confirm' button is pressed.</param>
         /// </summary>
-        private void OpenWindow(PackAsset currentPackInfo, Action onConfirm, string headerText)
+        private void OpenWindow(PackAsset asset, Action onConfirm, string headerText, AssetModificationType modification)
         {
             OpenForColumns2(headerText, onConfirm, out Transform col1, out Transform col2);
             
             bool isDisabled = !editor.CurrentPack?.ContainsAnySprites ?? true;
             
-            b.BuildInputField("Name", currentPackInfo.Title, col1, currentPackInfo.UpdateTitle, false, true);
-            b.BuildInputFieldArea("Description", currentPackInfo.Description, col1, currentPackInfo.UpdateDescription);
-            b.BuildAssetField("", AssetType.Sprite, currentPackInfo, col2, a => editedAssetBase.UpdateIcon(a), null, isDisabled);
-            b.BuildPlainText("Created by", currentPackInfo.Author, col2);
-            b.BuildPlainText("Created on", currentPackInfo.CreationDate.ToString(), col2);
+            b.BuildInputField("Name", GetTitleByModificationType(asset, modification), col1, asset.UpdateTitle, false, true);
+            b.BuildInputFieldArea("Description", asset.Description, col1, asset.UpdateDescription);
+            b.BuildAssetField("", AssetType.Sprite, asset, col2, a => editedAssetBase.UpdateIcon(a), null, isDisabled);
+            b.BuildPlainText("Created by", asset.Author, col2);
+            b.BuildPlainText("Created on", asset.CreationDate.ToString(), col2);
 
-            editedAssetBase = currentPackInfo;
+            editedAssetBase = asset;
         }
 
         /// <summary>

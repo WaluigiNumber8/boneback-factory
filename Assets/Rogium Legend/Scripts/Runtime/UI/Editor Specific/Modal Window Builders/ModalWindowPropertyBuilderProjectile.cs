@@ -12,20 +12,20 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     {
         private readonly ProjectileEditorOverseer projectileEditor = ProjectileEditorOverseer.Instance;
 
-        public override void OpenForCreate(Action whenConfirm = null) => OpenWindow(new ProjectileAsset.Builder().Build(), () => CreateAsset(whenConfirm), "Creating a new Projectile");
+        public override void OpenForCreate(Action whenConfirm = null) => OpenWindow(new ProjectileAsset.Builder().Build(), () => CreateAsset(whenConfirm), "Creating a new Projectile", AssetModificationType.Create);
 
-        public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new ProjectileAsset.Builder().AsCopy(projectileEditor.CurrentAsset).Build(), () => UpdateAsset(whenConfirm), $"Updating {projectileEditor.CurrentAsset.Title}");
+        public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new ProjectileAsset.Builder().AsCopy(projectileEditor.CurrentAsset).Build(), () => UpdateAsset(whenConfirm), $"Updating {projectileEditor.CurrentAsset.Title}", AssetModificationType.Update);
 
-        public override void OpenForClone(Action whenConfirm = null) => OpenWindow(new ProjectileAsset.Builder().AsClone(projectileEditor.CurrentAsset).Build(), () => CloneAsset(whenConfirm), $"Creating a clone of {projectileEditor.CurrentAsset.Title}");
+        public override void OpenForClone(Action whenConfirm = null) => OpenWindow(new ProjectileAsset.Builder().AsClone(projectileEditor.CurrentAsset).Build(), () => CloneAsset(whenConfirm), $"Creating a clone of {projectileEditor.CurrentAsset.Title}", AssetModificationType.Clone);
         
-        private void OpenWindow(ProjectileAsset projectile, Action onConfirm, string headerText)
+        private void OpenWindow(ProjectileAsset asset, Action onConfirm, string headerText, AssetModificationType modification)
         {
             OpenForColumns1(headerText, onConfirm, out Transform col1);
-            b.BuildInputField("Title", projectile.Title, col1, projectile.UpdateTitle);
-            b.BuildPlainText("Created by", projectile.Author, col1);
-            b.BuildPlainText("Created on", projectile.CreationDate.ToString(), col1);
+            b.BuildInputField("Title", asset.Title, col1, asset.UpdateTitle);
+            b.BuildPlainText("Created by", asset.Author, col1);
+            b.BuildPlainText("Created on", asset.CreationDate.ToString(), col1);
             
-            editedAssetBase = projectile;
+            editedAssetBase = asset;
         }
 
         protected override void CreateAsset(Action whenConfirm)

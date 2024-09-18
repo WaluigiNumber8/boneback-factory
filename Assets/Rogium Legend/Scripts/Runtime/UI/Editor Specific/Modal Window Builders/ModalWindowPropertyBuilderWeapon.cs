@@ -12,21 +12,21 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     {
         private readonly WeaponEditorOverseer weaponEditor = WeaponEditorOverseer.Instance;
 
-        public override void OpenForCreate(Action whenConfirm = null) => OpenWindow(new WeaponAsset.Builder().Build(), () => CreateAsset(whenConfirm), "Creating a new Weapon");
+        public override void OpenForCreate(Action whenConfirm = null) => OpenWindow(new WeaponAsset.Builder().Build(), () => CreateAsset(whenConfirm), "Creating a new Weapon", AssetModificationType.Create);
 
-        public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new WeaponAsset.Builder().AsCopy(weaponEditor.CurrentAsset).Build(), () => UpdateAsset(whenConfirm), $"Updating {weaponEditor.CurrentAsset.Title}");
+        public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new WeaponAsset.Builder().AsCopy(weaponEditor.CurrentAsset).Build(), () => UpdateAsset(whenConfirm), $"Updating {weaponEditor.CurrentAsset.Title}", AssetModificationType.Update);
 
-        public override void OpenForClone(Action whenConfirm = null) => OpenWindow(new WeaponAsset.Builder().AsClone(weaponEditor.CurrentAsset).Build(), () => CloneAsset(whenConfirm), $"Creating a clone of {weaponEditor.CurrentAsset.Title}");
+        public override void OpenForClone(Action whenConfirm = null) => OpenWindow(new WeaponAsset.Builder().AsClone(weaponEditor.CurrentAsset).Build(), () => CloneAsset(whenConfirm), $"Creating a clone of {weaponEditor.CurrentAsset.Title}", AssetModificationType.Clone);
 
-        private void OpenWindow(WeaponAsset weapon, Action onConfirm, string headerText)
+        private void OpenWindow(WeaponAsset asset, Action onConfirm, string headerText, AssetModificationType modification)
         {
             OpenForColumns1(headerText, onConfirm, out Transform col1);
             
-            b.BuildInputField("Title", weapon.Title, col1, weapon.UpdateTitle);
-            b.BuildPlainText("Created by", weapon.Author, col1);
-            b.BuildPlainText("Created on", weapon.CreationDate.ToString(), col1);
+            b.BuildInputField("Title", GetTitleByModificationType(asset, modification), col1, asset.UpdateTitle);
+            b.BuildPlainText("Created by", asset.Author, col1);
+            b.BuildPlainText("Created on", asset.CreationDate.ToString(), col1);
             
-            editedAssetBase = weapon;
+            editedAssetBase = asset;
         }
 
         protected override void CreateAsset(Action whenConfirm)

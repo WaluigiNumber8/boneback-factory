@@ -33,17 +33,17 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             conversionData.Add(3, 50);
         }
 
-        public override void OpenForCreate(Action whenConfirm = null) => OpenWindow(new CampaignAsset.Builder().Build() , () => CreateAsset(whenConfirm), "Creating a new campaign");
+        public override void OpenForCreate(Action whenConfirm = null) => OpenWindow(new CampaignAsset.Builder().Build() , () => CreateAsset(whenConfirm), "Creating a new campaign", AssetModificationType.Create);
 
-        public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new CampaignAsset.Builder().AsCopy(campaignEditor.CurrentAsset).Build(), () => UpdateAsset(whenConfirm), $"Updating {campaignEditor.CurrentAsset.Title}");
+        public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new CampaignAsset.Builder().AsCopy(campaignEditor.CurrentAsset).Build(), () => UpdateAsset(whenConfirm), $"Updating {campaignEditor.CurrentAsset.Title}", AssetModificationType.Update);
 
-        public override void OpenForClone(Action whenConfirm = null) => OpenWindow(new CampaignAsset.Builder().AsClone(campaignEditor.CurrentAsset).Build(), () => CloneAsset(whenConfirm), $"Creating a clone of {campaignEditor.CurrentAsset.Title}");
+        public override void OpenForClone(Action whenConfirm = null) => OpenWindow(new CampaignAsset.Builder().AsClone(campaignEditor.CurrentAsset).Build(), () => CloneAsset(whenConfirm), $"Creating a clone of {campaignEditor.CurrentAsset.Title}", AssetModificationType.Clone);
         
-        private void OpenWindow(CampaignAsset asset, Action onConfirm, string headerText)
+        private void OpenWindow(CampaignAsset asset, Action onConfirm, string headerText, AssetModificationType modification)
         {
             OpenForColumns1(headerText, onConfirm, out Transform col);
             
-            b.BuildInputField("Name", asset.Title, col, asset.UpdateTitle);
+            b.BuildInputField("Name", GetTitleByModificationType(asset, modification), col, asset.UpdateTitle);
             b.BuildDropdown("Length", lengthOptions, QuickConvertToTier(asset.AdventureLength), col, i => asset.UpdateLength(QuickConvertToRoomCount(i)));
             b.BuildPlainText("Created by", asset.Author, col);
             b.BuildPlainText("Created on", asset.CreationDate.ToString(), col);

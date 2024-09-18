@@ -47,6 +47,17 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             column2.KillChildren();
         }
 
+        protected string GetTitleByModificationType(IAsset asset, AssetModificationType type)
+        {
+            return type switch
+            {
+                AssetModificationType.Create => asset.Title,
+                AssetModificationType.Update => asset.Title,
+                AssetModificationType.Clone => $"{asset.Title} - Clone",
+                _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+            };
+        }
+        
         /// <summary>
         /// Opens a Modal Window as a Creation Window.
         /// </summary>
