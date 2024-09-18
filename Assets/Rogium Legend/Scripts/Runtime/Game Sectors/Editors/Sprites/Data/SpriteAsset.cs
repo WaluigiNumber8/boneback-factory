@@ -85,6 +85,7 @@ namespace Rogium.Editors.Sprites
             {
                 AsCopy(asset);
                 Asset.GenerateID();
+                Asset.associatedAssetsIDs.Clear();
                 return This;
             }
 

@@ -54,6 +54,7 @@ namespace Rogium.Editors.Palettes
             public override Builder AsClone(PaletteAsset asset)
             {
                 AsCopy(asset);
+                Asset.associatedAssetsIDs.Clear();
                 Asset.GenerateID();
                 return This;
             }

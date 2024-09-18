@@ -21,9 +21,10 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         
         private void OpenWindow(RoomAsset asset, Action onConfirm, string headerText, AssetModificationType modification)
         {
+            asset.UpdateTitle(GetTitleByModificationType(asset, modification));
             OpenForColumns1(headerText, onConfirm, out Transform col1);
             
-            b.BuildInputField("Title", GetTitleByModificationType(asset, modification), col1, asset.UpdateTitle);
+            b.BuildInputField("Title", asset.Title, col1, asset.UpdateTitle);
             roomBuilder.BuildEssentials(col1, asset, false);
             b.BuildPlainText("Created by", asset.Author, col1);
             b.BuildPlainText("Created on", asset.CreationDate.ToString(), col1);

@@ -41,9 +41,10 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         
         private void OpenWindow(CampaignAsset asset, Action onConfirm, string headerText, AssetModificationType modification)
         {
+            asset.UpdateTitle(GetTitleByModificationType(asset, modification));
             OpenForColumns1(headerText, onConfirm, out Transform col);
             
-            b.BuildInputField("Name", GetTitleByModificationType(asset, modification), col, asset.UpdateTitle);
+            b.BuildInputField("Name", asset.Title, col, asset.UpdateTitle);
             b.BuildDropdown("Length", lengthOptions, QuickConvertToTier(asset.AdventureLength), col, i => asset.UpdateLength(QuickConvertToRoomCount(i)));
             b.BuildPlainText("Created by", asset.Author, col);
             b.BuildPlainText("Created on", asset.CreationDate.ToString(), col);

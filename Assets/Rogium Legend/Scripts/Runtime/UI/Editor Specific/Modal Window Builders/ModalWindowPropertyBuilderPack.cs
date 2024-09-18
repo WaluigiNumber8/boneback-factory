@@ -25,11 +25,12 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         /// </summary>
         private void OpenWindow(PackAsset asset, Action onConfirm, string headerText, AssetModificationType modification)
         {
+            asset.UpdateTitle(GetTitleByModificationType(asset, modification));
             OpenForColumns2(headerText, onConfirm, out Transform col1, out Transform col2);
             
             bool isDisabled = !editor.CurrentPack?.ContainsAnySprites ?? true;
             
-            b.BuildInputField("Name", GetTitleByModificationType(asset, modification), col1, asset.UpdateTitle, false, true);
+            b.BuildInputField("Name", asset.Title, col1, asset.UpdateTitle, false, true);
             b.BuildInputFieldArea("Description", asset.Description, col1, asset.UpdateDescription);
             b.BuildAssetField("", AssetType.Sprite, asset, col2, a => editedAssetBase.UpdateIcon(a), null, isDisabled);
             b.BuildPlainText("Created by", asset.Author, col2);

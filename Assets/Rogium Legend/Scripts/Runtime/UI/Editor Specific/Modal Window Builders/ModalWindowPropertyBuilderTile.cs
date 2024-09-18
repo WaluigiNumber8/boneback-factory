@@ -20,9 +20,10 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         
         private void OpenWindow(TileAsset asset, Action onConfirm, string headerText, AssetModificationType modification)
         {
+            asset.UpdateTitle(GetTitleByModificationType(asset, modification));
             OpenForColumns1(headerText, onConfirm, out Transform col1);
             
-            b.BuildInputField("Title", GetTitleByModificationType(asset, modification), col1, asset.UpdateTitle);
+            b.BuildInputField("Title", asset.Title, col1, asset.UpdateTitle);
             b.BuildDropdown("Type", Enum.GetNames(typeof(TileType)), (int)asset.Type, col1, asset.UpdateType);
             b.BuildDropdown("Layer", Enum.GetNames(typeof(TileLayerType)), (int)asset.LayerType, col1, asset.UpdateLayerType);
             b.BuildPlainText("Created by", asset.Author, col1);
