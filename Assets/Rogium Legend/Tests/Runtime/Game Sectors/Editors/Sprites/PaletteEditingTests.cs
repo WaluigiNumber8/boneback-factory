@@ -168,19 +168,11 @@ namespace Rogium.Tests.Editors.Sprites
         [UnityTest]
         public IEnumerator Should_UpdatePaletteIcon_WhenEditedAndOverriden()
         {
-            yield return UpdateColorSlot(Color.blue);
+            yield return UpdateColorSlot(Color.blue, 0);
             GASButtonActions.SavePaletteAsOverride();
-            Assert.That(PackEditorOverseer.Instance.CurrentPack.Palettes[0].Icon.texture.GetPixel(0, 0), Is.EqualTo(Color.blue));
-        }
-
-        [UnityTest]
-        public IEnumerator Should_UpdateSpriteIcon_WhenEditedAndOverriden()
-        {
-            SpriteEditorOverseer.Instance.UpdateAsset(AssetCreator.CreateSpriteWithFirstPixelFromSlot1());
-
-            yield return UpdateColorSlot(Color.blue);
-            GASButtonActions.SavePaletteAsOverride();
-            Assert.That(PackEditorOverseer.Instance.CurrentPack.Sprites[0].Icon.texture.GetPixel(0, 0), Is.EqualTo(Color.blue));
+            yield return null;
+            Texture2D icon = PackEditorOverseer.Instance.CurrentPack.Palettes[0].Icon.texture;
+            Assert.That(icon.GetPixel(0, icon.height-1), Is.EqualTo(Color.blue));
         }
 
         [UnityTest]

@@ -45,8 +45,8 @@ namespace Rogium.Systems.GridSystem
         /// <summary>
         /// Change a value in a specific position.
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="x">The x position.</param>
+        /// <param name="y">The y position.</param>
         /// <param name="value">Value to set.</param>
         public void SetTo(int x, int y, T value)
         {

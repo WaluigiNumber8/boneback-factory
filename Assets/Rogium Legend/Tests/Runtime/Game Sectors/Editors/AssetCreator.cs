@@ -68,9 +68,9 @@ namespace Rogium.Tests.Editors
                 .Build();
         }
 
-        public static SpriteAsset CreateSpriteWithFirstPixelFromSlot1()
+        public static SpriteAsset CreateSpriteFromSlot1()
         {
-            ObjectGrid<int> newSpriteData = new(16, 16, () => -1);
+            ObjectGrid<int> newSpriteData = new(16, 16, () => 0);
             newSpriteData.SetTo(0, 0, 0);
             SpriteAsset sprite = CreateSprite();
             sprite.UpdateSpriteData(newSpriteData);

@@ -13,9 +13,10 @@ namespace Rogium.Tests.Editors.Sprites
         /// Right-Clicks the first color slot in the palette, assigns a color to ColorPicker and closes it.
         /// </summary>
         /// <param name="color">The color to assign.</param>
-        public static IEnumerator UpdateColorSlot(Color color)
+        /// <param name="slot">The slot to update</param>
+        public static IEnumerator UpdateColorSlot(Color color, int slot = 0)
         {
-            SpriteEditorOverseerMono.GetInstance().Palette.GetSlot(0).OnPointerClick(PointerDataCreator.RightClick());
+            SpriteEditorOverseerMono.GetInstance().Palette.GetSlot(slot).OnPointerClick(PointerDataCreator.RightClick());
             ColorPickerWindow colorPicker = InteractableUtils.FindFirstColorPickerWindow();
             colorPicker.UpdateColor(color);
             colorPicker.Close();
