@@ -204,5 +204,19 @@ namespace Rogium.Tests.Editors.Sprites
             yield return SavePaletteAsNewAndConfirm();
             Assert.That(PackEditorOverseer.Instance.CurrentPack.Palettes[0].AssociatedAssetsIDs.Count, Is.EqualTo(0));
         }
+
+        [UnityTest]
+        public IEnumerator Should_SetSpriteAssociatedPaletteIDToClone_WhenPaletteEditedAndSavedAsNew()
+        {
+            yield return SavePaletteAsNewAndConfirm();
+            Assert.That(PackEditorOverseer.Instance.CurrentPack.Sprites[0].AssociatedPaletteID, Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Palettes[1].ID));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_NotSetSpriteAssociatedPaletteIDToOriginal_WhenPaletteEditedAndSavedAsNew()
+        {
+            yield return SavePaletteAsNewAndConfirm();
+            Assert.That(PackEditorOverseer.Instance.CurrentPack.Sprites[0].AssociatedPaletteID, Is.Not.EqualTo(PackEditorOverseer.Instance.CurrentPack.Palettes[0].ID));
+        }
     }
 }
