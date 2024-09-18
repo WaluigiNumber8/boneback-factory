@@ -134,7 +134,7 @@ namespace Rogium.Editors.Sprites
         /// <param name="sprite">The sprite to read from.</param>
         private void PrepareEditor(SpriteAsset sprite)
         {
-            lastPalette = palettePicker.GrabBasedOn(sprite.AssociatedPaletteID);
+            lastPalette = editor.CurrentPalette;
             currentSpriteAsset = sprite;
             paletteChanged = false;
             

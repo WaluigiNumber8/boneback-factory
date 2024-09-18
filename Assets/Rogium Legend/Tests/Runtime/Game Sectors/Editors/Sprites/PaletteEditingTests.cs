@@ -1,11 +1,13 @@
 using System.Collections;
 using NUnit.Framework;
 using RedRats.UI.ModalWindows;
+using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Palettes;
 using Rogium.Editors.Sprites;
 using Rogium.Systems.ActionHistory;
 using Rogium.Systems.GASExtension;
+using Rogium.Systems.GridSystem;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.ModalWindows;
 using UnityEngine;
@@ -213,10 +215,32 @@ namespace Rogium.Tests.Editors.Sprites
         }
 
         [UnityTest]
-        public IEnumerator Should_NotSetSpriteAssociatedPaletteIDToOriginal_WhenPaletteEditedAndSavedAsNew()
+        public IEnumerator Should_SetSpriteAssociatedPaletteToMissing_WhenAssociatedPaletteRemoved()
         {
             yield return SavePaletteAsNewAndConfirm();
-            Assert.That(PackEditorOverseer.Instance.CurrentPack.Sprites[0].AssociatedPaletteID, Is.Not.EqualTo(PackEditorOverseer.Instance.CurrentPack.Palettes[0].ID));
+            PackEditorOverseer.Instance.RemovePalette(1);
+            Assert.That(PackEditorOverseer.Instance.CurrentPack.Sprites[0].AssociatedPaletteID, Is.EqualTo(EditorDefaults.EmptyAssetID));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_LoadMissingPaletteInEditor_WhenAssociatedPaletteRemoved()
+        {
+            yield return SavePaletteAsNewAndConfirm();
+            PackEditorOverseer.Instance.RemovePalette(1);
+            yield return null;
+            PackEditorOverseer.Instance.ActivateSpriteEditor(0);
+            yield return null;
+            Assert.That(SpriteEditorOverseerMono.GetInstance().Palette.GetSlot(0).CurrentColor, Is.EqualTo(EditorDefaults.Instance.MissingPalette[0]));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_UpdateSpriteIconWithDefaultPaletteColors_WhenAssociatedPaletteRemoved()
+        {
+            PackEditorOverseer.Instance.CurrentPack.Sprites[0].UpdateSpriteData(new ObjectGrid<int>(16, 16, () => 0));
+            yield return SavePaletteAsNewAndConfirm();
+            PackEditorOverseer.Instance.RemovePalette(1);
+            yield return null;
+            Assert.That(PackEditorOverseer.Instance.CurrentPack.Sprites[0].Icon.texture.GetPixel(0, 0), Is.EqualTo(EditorDefaults.Instance.MissingPalette[0]));
         }
     }
 }

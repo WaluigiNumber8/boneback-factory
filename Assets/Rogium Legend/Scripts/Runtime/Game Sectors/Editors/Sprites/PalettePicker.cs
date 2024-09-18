@@ -4,6 +4,7 @@ using Rogium.Editors.Palettes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Rogium.Editors.Core.Defaults;
 using UnityEngine;
 
 namespace Rogium.Editors.Sprites
@@ -31,7 +32,7 @@ namespace Rogium.Editors.Sprites
             UpdateList();
 
             //TODO Fill with a default palette if no palettes are created the user chose to import the default pack.
-            SafetyNet.EnsureListIsNotNullOrEmpty(palettes, "List of Pack Palettes");
+            SafetyNet.EnsureListIsNotNullOrEmpty(palettes, "List of Palettes");
 
             //If ID is not set yet, return first palette.
             if (string.IsNullOrEmpty(paletteID))
@@ -39,6 +40,15 @@ namespace Rogium.Editors.Sprites
                 previousID = paletteID;
                 previousAsset = palettes[0];
                 return previousAsset;
+            }
+
+            //If ID is empty, return default palette.
+            if (paletteID == EditorDefaults.EmptyAssetID)
+            {
+                SafetyNet.ThrowMessage("Assigned palette was removed. Please select a new one.");
+                return new PaletteAsset.Builder()
+                    .WithColors(EditorDefaults.Instance.MissingPalette)
+                    .Build();
             }
 
             //If ID is the same as the last grab.
