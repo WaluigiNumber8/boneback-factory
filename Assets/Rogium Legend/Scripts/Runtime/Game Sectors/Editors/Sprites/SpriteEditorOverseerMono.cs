@@ -88,7 +88,6 @@ namespace Rogium.Editors.Sprites
             {
                 editor.UpdatePalette((PaletteAsset) asset);
                 ActionHistorySystem.AddAndExecute(new SwitchSpriteEditorPaletteAction(editor.CurrentPalette, lastPalette, SwitchPalette));
-                currentSpriteAsset.UpdateAssociatedPaletteID(editor.CurrentPalette.ID);
                 lastPalette = editor.CurrentPalette;
             }, lastPalette);
         }
@@ -99,7 +98,6 @@ namespace Rogium.Editors.Sprites
         /// <param name="asset"></param>
         public void SwitchPalette(PaletteAsset asset)
         {
-            currentSpriteAsset.UpdateAssociatedPaletteID(asset.ID);
             editor.UpdatePalette(asset);
             lastPalette = asset;
             grid.LoadWithColors(currentSpriteAsset.SpriteData, asset.Colors);

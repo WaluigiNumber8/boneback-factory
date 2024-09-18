@@ -178,13 +178,33 @@ namespace Rogium.Tests.Editors.Sprites
         }
         
         [UnityTest]
-        public IEnumerator Should_SaveAsNewPalette_WhenEditedAndSavedAsNew()
+        public IEnumerator Should_CreatePaletteClone_WhenEditedAndSavedAsNew()
         {
             yield return UpdateColorSlot(Color.blue);
             GASButtonActions.SavePaletteAsNew();
             yield return null;
             Object.FindFirstObjectByType<ModalWindow>()?.OnAccept();
             Assert.That(PackEditorOverseer.Instance.CurrentPack.Palettes.Count, Is.EqualTo(2));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_CreatePaletteCloneWithOnly1Association_WhenEditedAndSavedAsNew()
+        {
+            yield return UpdateColorSlot(Color.blue);
+            GASButtonActions.SavePaletteAsNew();
+            yield return null;
+            Object.FindFirstObjectByType<ModalWindow>()?.OnAccept();
+            Assert.That(PackEditorOverseer.Instance.CurrentPack.Palettes[1].AssociatedAssetsIDs.Count, Is.EqualTo(1));
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_CreatePaletteCloneWithOnlyCurrentSpriteAssociation_WhenEditedAndSavedAsNew()
+        {
+            yield return UpdateColorSlot(Color.blue);
+            GASButtonActions.SavePaletteAsNew();
+            yield return null;
+            Object.FindFirstObjectByType<ModalWindow>()?.OnAccept();
+            Assert.That(PackEditorOverseer.Instance.CurrentPack.Palettes[1].AssociatedAssetsIDs.Contains(PackEditorOverseer.Instance.CurrentPack.Sprites[0].ID), Is.True);
         }
     }
 }
