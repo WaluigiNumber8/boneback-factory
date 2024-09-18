@@ -12,13 +12,12 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     {
         private readonly SpriteEditorOverseer spriteEditor = SpriteEditorOverseer.Instance;
 
-        public override void OpenForCreate(Action whenConfirm = null)
-        {
-            OpenWindow(new SpriteAsset.Builder().Build(), () => CreateAsset(whenConfirm), "Creating a new Sprite");
-        }
+        public override void OpenForCreate(Action whenConfirm = null) => OpenWindow(new SpriteAsset.Builder().Build(), () => CreateAsset(whenConfirm), "Creating a new Sprite");
 
         public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new SpriteAsset.Builder().AsCopy(spriteEditor.CurrentAsset).Build() , () => UpdateAsset(whenConfirm), $"Updating {spriteEditor.CurrentAsset.Title}");
 
+        public override void OpenForClone(Action whenConfirm = null) => OpenWindow(new SpriteAsset.Builder().AsClone(spriteEditor.CurrentAsset).Build(), () => CloneAsset(whenConfirm), $"Creating a clone of {spriteEditor.CurrentAsset.Title}");
+        
         private void OpenWindow(SpriteAsset sprite, Action onConfirm, string headerText)
         {
             OpenForColumns1(headerText, onConfirm, out Transform col1);
@@ -40,6 +39,12 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         {
             spriteEditor.UpdateAsset((SpriteAsset)editedAssetBase);
             spriteEditor.CompleteEditing();
+            whenConfirm?.Invoke();
+        }
+
+        protected override void CloneAsset(Action whenConfirm)
+        {
+            editor.CreateNewSprite((SpriteAsset) editedAssetBase);
             whenConfirm?.Invoke();
         }
     }

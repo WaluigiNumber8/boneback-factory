@@ -37,6 +37,8 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
 
         public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new CampaignAsset.Builder().AsCopy(campaignEditor.CurrentAsset).Build(), () => UpdateAsset(whenConfirm), $"Updating {campaignEditor.CurrentAsset.Title}");
 
+        public override void OpenForClone(Action whenConfirm = null) => OpenWindow(new CampaignAsset.Builder().AsClone(campaignEditor.CurrentAsset).Build(), () => CloneAsset(whenConfirm), $"Creating a clone of {campaignEditor.CurrentAsset.Title}");
+        
         private void OpenWindow(CampaignAsset asset, Action onConfirm, string headerText)
         {
             OpenForColumns1(headerText, onConfirm, out Transform col);
@@ -58,6 +60,13 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         protected override void UpdateAsset(Action whenConfirm)
         {
             campaignEditor.UpdateAsset((CampaignAsset) editedAssetBase);
+            campaignEditor.CompleteEditing();
+            whenConfirm?.Invoke();
+        }
+        
+        protected override void CloneAsset(Action whenConfirm)
+        {
+            ExternalLibraryOverseer.Instance.CreateAndAddCampaign((CampaignAsset) editedAssetBase);
             whenConfirm?.Invoke();
         }
 

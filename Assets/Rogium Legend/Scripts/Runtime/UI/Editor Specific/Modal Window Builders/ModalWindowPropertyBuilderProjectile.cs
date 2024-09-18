@@ -16,6 +16,8 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
 
         public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new ProjectileAsset.Builder().AsCopy(projectileEditor.CurrentAsset).Build(), () => UpdateAsset(whenConfirm), $"Updating {projectileEditor.CurrentAsset.Title}");
 
+        public override void OpenForClone(Action whenConfirm = null) => OpenWindow(new ProjectileAsset.Builder().AsClone(projectileEditor.CurrentAsset).Build(), () => CloneAsset(whenConfirm), $"Creating a clone of {projectileEditor.CurrentAsset.Title}");
+        
         private void OpenWindow(ProjectileAsset projectile, Action onConfirm, string headerText)
         {
             OpenForColumns1(headerText, onConfirm, out Transform col1);
@@ -36,6 +38,12 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         {
             projectileEditor.UpdateAsset((ProjectileAsset)editedAssetBase);
             projectileEditor.CompleteEditing();
+            whenConfirm?.Invoke();
+        }
+
+        protected override void CloneAsset(Action whenConfirm)
+        {
+            editor.CreateNewProjectile((ProjectileAsset) editedAssetBase);
             whenConfirm?.Invoke();
         }
     }

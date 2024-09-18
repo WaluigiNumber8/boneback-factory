@@ -235,7 +235,7 @@ namespace Rogium.Systems.GASExtension
             new ModalWindowPropertyBuilderRoom().OpenForCreate(OpenSelectionRoom);
         }
         #endregion
-
+        
         #region Edit Asset Properties
         public static void EditPropertiesPack(int packIndex)
         {
@@ -246,11 +246,7 @@ namespace Rogium.Systems.GASExtension
         public static void EditPropertiesCampaign(int campaignIndex)
         {
             ExternalLibraryOverseer.Instance.ActivateCampaignEditor(campaignIndex, false);
-            new ModalWindowPropertyBuilderCampaign().OpenForUpdate(() =>
-            {
-                CampaignEditorOverseer.Instance.CompleteEditing();
-                CampaignAssetSelectionOverseer.Instance.SelectAgain();
-            });
+            new ModalWindowPropertyBuilderCampaign().OpenForUpdate(CampaignAssetSelectionOverseer.Instance.SelectAgain);
         }
         
         public static void EditPropertiesPalette(int assetIndex)
@@ -296,6 +292,64 @@ namespace Rogium.Systems.GASExtension
         }
         #endregion
 
+        #region Clone Assets
+
+        public static void ClonePack(int packIndex)
+        {
+            ExternalLibraryOverseer.Instance.ActivatePackEditor(packIndex);
+            new ModalWindowPropertyBuilderPack().OpenForClone(OpenSelectionPack);
+        }
+        
+        public static void CloneCampaign(int campaignIndex)
+        {
+            ExternalLibraryOverseer.Instance.ActivateCampaignEditor(campaignIndex);
+            new ModalWindowPropertyBuilderCampaign().OpenForClone(CampaignAssetSelectionOverseer.Instance.SelectAgain);
+        }
+        
+        public static void ClonePalette(int assetIndex)
+        {
+            PackEditorOverseer.Instance.ActivatePaletteEditor(assetIndex);
+            new ModalWindowPropertyBuilderPalette().OpenForClone(OpenSelectionPalette);
+        }
+        
+        public static void CloneSprite(int assetIndex)
+        {
+            PackEditorOverseer.Instance.ActivateSpriteEditor(assetIndex);
+            new ModalWindowPropertyBuilderSprite().OpenForClone(OpenSelectionSprite);
+        }
+        
+        public static void CloneWeapon(int assetIndex)
+        {
+            PackEditorOverseer.Instance.ActivateWeaponEditor(assetIndex);
+            new ModalWindowPropertyBuilderWeapon().OpenForClone(OpenSelectionWeapon);
+        }
+
+        public static void CloneProjectile(int assetIndex)
+        {
+            PackEditorOverseer.Instance.ActivateProjectileEditor(assetIndex);
+            new ModalWindowPropertyBuilderProjectile().OpenForClone(OpenSelectionProjectile);
+        }
+        
+        public static void CloneEnemy(int assetIndex)
+        {
+            PackEditorOverseer.Instance.ActivateEnemyEditor(assetIndex);
+            new ModalWindowPropertyBuilderEnemy().OpenForClone(OpenSelectionEnemy);
+        }
+        
+        public static void CloneRoom(int assetIndex)
+        {
+            PackEditorOverseer.Instance.ActivateRoomEditor(assetIndex);
+            new ModalWindowPropertyBuilderRoom().OpenForClone(OpenSelectionRoom);
+        }
+        
+        public static void CloneTile(int assetIndex)
+        {
+            PackEditorOverseer.Instance.ActivateTileEditor(assetIndex);
+            new ModalWindowPropertyBuilderTile().OpenForClone(OpenSelectionTile);
+        }
+
+        #endregion
+        
         #region Remove Assets
         public static void DeletePack(int packIndex)
         {

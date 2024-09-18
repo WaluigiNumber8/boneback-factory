@@ -16,6 +16,8 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
 
         public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new PaletteAsset.Builder().AsCopy(paletteEditor.CurrentAsset).Build(), () => UpdateAsset(whenConfirm), $"Updating {paletteEditor.CurrentAsset.Title}");
 
+        public override void OpenForClone(Action whenConfirm = null) => OpenWindow(new PaletteAsset.Builder().AsClone(paletteEditor.CurrentAsset).Build(), () => CloneAsset(whenConfirm), $"Creating a clone of {paletteEditor.CurrentAsset.Title}");
+        
         private void OpenWindow(PaletteAsset palette, Action onConfirm, string headerText)
         {
             OpenForColumns1(headerText, onConfirm, out Transform col1);
@@ -36,6 +38,12 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         {
             paletteEditor.UpdateAsset((PaletteAsset)editedAssetBase);
             paletteEditor.CompleteEditing();
+            whenConfirm?.Invoke();
+        }
+
+        protected override void CloneAsset(Action whenConfirm)
+        {
+            editor.CreateNewPalette((PaletteAsset) editedAssetBase);
             whenConfirm?.Invoke();
         }
     }

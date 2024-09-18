@@ -16,6 +16,8 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
 
         public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new PackAsset.Builder().AsCopy(editor.CurrentPack).Build(), () => UpdateAsset(whenConfirm), $"Editing {editor.CurrentPack.Title}");
 
+        public override void OpenForClone(Action whenConfirm = null) => OpenWindow(new PackAsset.Builder().AsClone(editor.CurrentPack).Build(), () => CloneAsset(whenConfirm), $"Creating a clone of {editor.CurrentPack.Title}");
+        
         /// <summary>
         /// Opens a Modal Window as a Pack Properties Window.
         /// <param name="currentPackInfo">The PackInfo to edit.</param>
@@ -52,6 +54,12 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         {
             PackEditorOverseer.Instance.UpdateAsset(editedAssetBase);
             editor.CompleteEditing();
+            whenConfirm?.Invoke();
+        }
+
+        protected override void CloneAsset(Action whenConfirm)
+        {
+            ExternalLibraryOverseer.Instance.CreateAndAddPack(editedAssetBase);
             whenConfirm?.Invoke();
         }
     }

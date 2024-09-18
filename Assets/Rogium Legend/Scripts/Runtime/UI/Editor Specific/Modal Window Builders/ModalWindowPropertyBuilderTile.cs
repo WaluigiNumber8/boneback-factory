@@ -18,6 +18,8 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
 
         public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new TileAsset.Builder().AsCopy(tileEditor.CurrentAsset).Build(), () => UpdateAsset(whenConfirm), $"Updating {tileEditor.CurrentAsset.Title}");
 
+        public override void OpenForClone(Action whenConfirm = null) => OpenWindow(new TileAsset.Builder().AsClone(tileEditor.CurrentAsset).Build(), () => CloneAsset(whenConfirm), $"Creating a clone of {tileEditor.CurrentAsset.Title}");
+        
         private void OpenWindow(TileAsset tile, Action onConfirm, string headerText)
         {
             OpenForColumns1(headerText, onConfirm, out Transform col1);
@@ -41,6 +43,12 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         {
             tileEditor.UpdateAsset((TileAsset)editedAssetBase);
             tileEditor.CompleteEditing();
+            whenConfirm?.Invoke();
+        }
+
+        protected override void CloneAsset(Action whenConfirm)
+        {
+            editor.CreateNewTile((TileAsset) editedAssetBase);
             whenConfirm?.Invoke();
         }
     }

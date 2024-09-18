@@ -16,6 +16,8 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
 
         public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new EnemyAsset.Builder().AsCopy(enemyEditor.CurrentAsset).Build(), () => UpdateAsset(whenConfirm), $"Updating {enemyEditor.CurrentAsset.Title}");
 
+        public override void OpenForClone(Action whenConfirm = null) => OpenWindow(new EnemyAsset.Builder().AsClone(enemyEditor.CurrentAsset).Build(), () => CloneAsset(whenConfirm), $"Creating a clone of {enemyEditor.CurrentAsset.Title}");
+        
         private void OpenWindow(EnemyAsset enemy, Action onConfirm, string headerText)
         {
             OpenForColumns1(headerText, onConfirm, out Transform col);
@@ -36,6 +38,12 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         {
             enemyEditor.UpdateAsset((EnemyAsset)editedAssetBase);
             enemyEditor.CompleteEditing();
+            whenConfirm?.Invoke();
+        }
+        
+        protected override void CloneAsset(Action whenConfirm)
+        {
+            editor.CreateNewEnemy((EnemyAsset) editedAssetBase);
             whenConfirm?.Invoke();
         }
     }

@@ -56,6 +56,11 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         /// Opens a Modal Window as an Edit Window.
         /// </summary>
         public abstract void OpenForUpdate(Action whenConfirm = null);
+        
+        /// <summary>
+        /// Open a Modal Window for cloning an asset.
+        /// </summary>
+        public abstract void OpenForClone(Action whenConfirm = null);
 
         /// <summary>
         /// What happens, when the confirm button is pressed in the creation window variation.
@@ -66,5 +71,10 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         /// What happens, when the confirm button is pressed in the update window variation.
         /// </summary>
         protected abstract void UpdateAsset(Action whenConfirm);
+        
+        /// <summary>
+        /// What happens, when the confirm button is pressed in the clone window variation.
+        /// </summary>
+        protected abstract void CloneAsset(Action whenConfirm);
     }
 }

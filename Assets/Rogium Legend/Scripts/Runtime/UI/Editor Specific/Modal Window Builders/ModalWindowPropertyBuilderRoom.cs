@@ -10,19 +10,15 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     /// </summary>
     public class ModalWindowPropertyBuilderRoom : ModalWindowPropertyBuilderBase
     {
-        private readonly RoomEditorOverseer roomEditor;
-        private readonly RoomSettingsBuilder roomBuilder;
-
-        public ModalWindowPropertyBuilderRoom()
-        {
-            roomEditor = RoomEditorOverseer.Instance;
-            roomBuilder = new RoomSettingsBuilder();
-        }
+        private readonly RoomEditorOverseer roomEditor = RoomEditorOverseer.Instance;
+        private readonly RoomSettingsBuilder roomBuilder = new();
 
         public override void OpenForCreate(Action whenConfirm = null) => OpenWindow(new RoomAsset.Builder().Build() , () => CreateAsset(whenConfirm), "Creating new room");
 
         public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new RoomAsset.Builder().AsCopy(roomEditor.CurrentAsset).Build(), () => UpdateAsset(whenConfirm), $"Editing {roomEditor.CurrentAsset.Title}");
 
+        public override void OpenForClone(Action whenConfirm = null) => OpenWindow(new RoomAsset.Builder().AsClone(roomEditor.CurrentAsset).Build(), () => CloneAsset(whenConfirm), $"Creating a clone of {roomEditor.CurrentAsset.Title}");
+        
         private void OpenWindow(RoomAsset data, Action onConfirm, string headerText)
         {
             OpenForColumns1(headerText, onConfirm, out Transform col1);
@@ -45,6 +41,12 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         {
             roomEditor.UpdateAsset((RoomAsset)editedAssetBase);
             roomEditor.CompleteEditing();
+            whenConfirm?.Invoke();
+        }
+        
+        protected override void CloneAsset(Action whenConfirm)
+        {
+            editor.CreateNewRoom((RoomAsset)editedAssetBase);
             whenConfirm?.Invoke();
         }
     }
