@@ -68,7 +68,7 @@ namespace Rogium.Editors.Packs
             if (string.IsNullOrEmpty(asset.AssociatedPaletteID) && !string.IsNullOrEmpty(lastAssociatedPaletteID)) return;
             
             //Remove association of older palette.
-            if (!string.IsNullOrEmpty(lastAssociatedPaletteID))
+            if (!string.IsNullOrEmpty(lastAssociatedPaletteID) && lastAssociatedPaletteID != EditorDefaults.EmptyAssetID)
             {
                 currentPack.Palettes.FindValueFirst(lastAssociatedPaletteID).RemoveAssociation(asset.ID);
             }

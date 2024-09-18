@@ -29,7 +29,11 @@ namespace Rogium.Editors.Sprites
         public void AddAssociation(string id) => associatedAssetsIDs.Add(id);
         
         public void RemoveAssociation(string id) => associatedAssetsIDs.Remove(id);
-        public void ClearAssociatedPalette() => associatedPaletteID = EditorDefaults.EmptyAssetID;
+        public void ClearAssociatedPalette()
+        {
+            associatedPaletteID = EditorDefaults.EmptyAssetID;
+            UpdateIcon(IconBuilder.BuildFromGrid(SpriteData, EditorDefaults.Instance.MissingPalette));
+        }
 
         public void UpdatePalette(IAsset newPalette)
         {
