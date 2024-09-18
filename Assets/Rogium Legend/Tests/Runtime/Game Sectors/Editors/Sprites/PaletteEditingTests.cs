@@ -108,14 +108,6 @@ namespace Rogium.Tests.Editors.Sprites
             Assert.That(spriteEditor.CurrentGridSprite.texture.GetPixel(0, 0), Is.EqualTo(Color.blue));
         }
 
-        [UnityTest]
-        public IEnumerator Should_OpenPaletteDialog_WhenPaletteEditedAndSavedAsNew()
-        {
-            yield return UpdateColorSlot(Color.blue);
-            GASButtonActions.SavePaletteAsNew();
-            Assert.That(ModalWindowBuilder.GetInstance().GenericActiveWindows, Is.EqualTo(1));
-        }
-
         [Test]
         public void Should_NotOpenPaletteDialog_WhenPaletteEditedAndOverriden()
         {
@@ -175,6 +167,14 @@ namespace Rogium.Tests.Editors.Sprites
             Assert.That(icon.GetPixel(0, icon.height-1), Is.EqualTo(Color.blue));
         }
 
+        [UnityTest]
+        public IEnumerator Should_OpenPaletteDialog_WhenPaletteEditedAndSavedAsNew()
+        {
+            yield return UpdateColorSlot(Color.blue);
+            GASButtonActions.SavePaletteAsNew();
+            Assert.That(ModalWindowBuilder.GetInstance().GenericActiveWindows, Is.EqualTo(1));
+        }
+        
         [UnityTest]
         public IEnumerator Should_SaveAsNewPalette_WhenEditedAndSavedAsNew()
         {

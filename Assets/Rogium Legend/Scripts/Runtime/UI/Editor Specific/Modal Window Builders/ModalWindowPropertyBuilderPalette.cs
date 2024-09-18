@@ -10,16 +10,11 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     /// </summary>
     public class ModalWindowPropertyBuilderPalette : ModalWindowPropertyBuilderBase
     {
-        private readonly PaletteEditorOverseer paletteEditor;
+        private readonly PaletteEditorOverseer paletteEditor = PaletteEditorOverseer.Instance;
 
-        public ModalWindowPropertyBuilderPalette()
-        {
-            paletteEditor = PaletteEditorOverseer.Instance;;
-        }
-        
-        public override void OpenForCreate() => OpenWindow(new PaletteAsset.Builder().Build(), CreateAsset, "Creating a new Palette");
+        public override void OpenForCreate(Action whenConfirm = null) => OpenWindow(new PaletteAsset.Builder().Build(), () => CreateAsset(whenConfirm), "Creating a new Palette");
 
-        public override void OpenForUpdate() => OpenWindow(new PaletteAsset.Builder().AsCopy(paletteEditor.CurrentAsset).Build(), UpdateAsset, $"Updating {paletteEditor.CurrentAsset.Title}");
+        public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new PaletteAsset.Builder().AsCopy(paletteEditor.CurrentAsset).Build(), () => UpdateAsset(whenConfirm), $"Updating {paletteEditor.CurrentAsset.Title}");
 
         private void OpenWindow(PaletteAsset palette, Action onConfirm, string headerText)
         {
@@ -31,17 +26,17 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             editedAssetBase = palette;
         }
         
-        protected override void CreateAsset()
+        protected override void CreateAsset(Action whenConfirm)
         {
             editor.CreateNewPalette((PaletteAsset)editedAssetBase);
-            selectionMenu.Open(AssetType.Palette);
+            whenConfirm?.Invoke();
         }
 
-        protected override void UpdateAsset()
+        protected override void UpdateAsset(Action whenConfirm)
         {
             paletteEditor.UpdateAsset((PaletteAsset)editedAssetBase);
             paletteEditor.CompleteEditing();
-            selectionMenu.Open(AssetType.Palette);
+            whenConfirm?.Invoke();
         }
     }
 }

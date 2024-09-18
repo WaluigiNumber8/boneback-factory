@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Rogium.Editors.Campaign;
-using Rogium.Systems.GASExtension;
-using Rogium.UserInterface.Editors.AssetSelection;
+using Rogium.Editors.Core;
 using UnityEngine;
 
 namespace Rogium.UserInterface.Editors.ModalWindowBuilding
@@ -34,9 +33,9 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             conversionData.Add(3, 50);
         }
 
-        public override void OpenForCreate() => OpenWindow(new CampaignAsset.Builder().Build() , CreateAsset, "Creating a new campaign");
+        public override void OpenForCreate(Action whenConfirm = null) => OpenWindow(new CampaignAsset.Builder().Build() , () => CreateAsset(whenConfirm), "Creating a new campaign");
 
-        public override void OpenForUpdate() => OpenWindow(new CampaignAsset.Builder().AsCopy(campaignEditor.CurrentAsset).Build(), UpdateAsset, $"Updating {campaignEditor.CurrentAsset.Title}");
+        public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new CampaignAsset.Builder().AsCopy(campaignEditor.CurrentAsset).Build(), () => UpdateAsset(whenConfirm), $"Updating {campaignEditor.CurrentAsset.Title}");
 
         private void OpenWindow(CampaignAsset asset, Action onConfirm, string headerText)
         {
@@ -50,18 +49,16 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             editedAssetBase = asset;
         }
 
-        protected override void CreateAsset()
+        protected override void CreateAsset(Action whenConfirm)
         {
-            lib.CreateAndAddCampaign((CampaignAsset) editedAssetBase);
-            CampaignAssetSelectionOverseer.Instance.SelectCampaignLast();
-            GASButtonActions.OpenEditorCampaign(lib.CampaignCount - 1);
+            ExternalLibraryOverseer.Instance.CreateAndAddCampaign((CampaignAsset) editedAssetBase);
+            whenConfirm?.Invoke();
         }
 
-        protected override void UpdateAsset()
+        protected override void UpdateAsset(Action whenConfirm)
         {
             campaignEditor.UpdateAsset((CampaignAsset) editedAssetBase);
-            campaignEditor.CompleteEditing();
-            CampaignAssetSelectionOverseer.Instance.SelectAgain();
+            whenConfirm?.Invoke();
         }
 
         /// <summary>

@@ -188,47 +188,51 @@ namespace Rogium.Systems.GASExtension
         #region Create Assets
         public static void CreatePack()
         {
-            new ModalWindowPropertyBuilderPack().OpenForCreate();
+            new ModalWindowPropertyBuilderPack().OpenForCreate(OpenSelectionPack);
         }
         
         public static void CreateCampaign()
         {
-            new ModalWindowPropertyBuilderCampaign().OpenForCreate();
+            new ModalWindowPropertyBuilderCampaign().OpenForCreate(() =>
+            {
+                CampaignAssetSelectionOverseer.Instance.SelectCampaignLast();
+                OpenEditorCampaign(ExternalLibraryOverseer.Instance.CampaignCount - 1);
+            });
         }
 
         public static void CreatePalette()
         {
-            new ModalWindowPropertyBuilderPalette().OpenForCreate();
+            new ModalWindowPropertyBuilderPalette().OpenForCreate(OpenSelectionPalette);
         }
 
         public static void CreateSprite()
         {
-            new ModalWindowPropertyBuilderSprite().OpenForCreate();
+            new ModalWindowPropertyBuilderSprite().OpenForCreate(OpenSelectionSprite);
         }
         
         public static void CreateWeapon()
         {
-            new ModalWindowPropertyBuilderWeapon().OpenForCreate();
+            new ModalWindowPropertyBuilderWeapon().OpenForCreate(OpenSelectionWeapon);
         }
         
         public static void CreateProjectile()
         {
-            new ModalWindowPropertyBuilderProjectile().OpenForCreate();
+            new ModalWindowPropertyBuilderProjectile().OpenForCreate(OpenSelectionProjectile);
         }
         
         public static void CreateEnemy()
         {
-            new ModalWindowPropertyBuilderEnemy().OpenForCreate();
+            new ModalWindowPropertyBuilderEnemy().OpenForCreate(OpenSelectionEnemy);
         }
         
         public static void CreateTile()
         {
-            new ModalWindowPropertyBuilderTile().OpenForCreate();
+            new ModalWindowPropertyBuilderTile().OpenForCreate(OpenSelectionTile);
         }
         
         public static void CreateRoom()
         {
-            new ModalWindowPropertyBuilderRoom().OpenForCreate();
+            new ModalWindowPropertyBuilderRoom().OpenForCreate(OpenSelectionRoom);
         }
         #endregion
 
@@ -236,55 +240,59 @@ namespace Rogium.Systems.GASExtension
         public static void EditPropertiesPack(int packIndex)
         {
             ExternalLibraryOverseer.Instance.ActivatePackEditor(packIndex);
-            new ModalWindowPropertyBuilderPack().OpenForUpdate();
+            new ModalWindowPropertyBuilderPack().OpenForUpdate(OpenSelectionPack);
         }
 
         public static void EditPropertiesCampaign(int campaignIndex)
         {
             ExternalLibraryOverseer.Instance.ActivateCampaignEditor(campaignIndex, false);
-            new ModalWindowPropertyBuilderCampaign().OpenForUpdate();
+            new ModalWindowPropertyBuilderCampaign().OpenForUpdate(() =>
+            {
+                CampaignEditorOverseer.Instance.CompleteEditing();
+                CampaignAssetSelectionOverseer.Instance.SelectAgain();
+            });
         }
         
         public static void EditPropertiesPalette(int assetIndex)
         {
             PackEditorOverseer.Instance.ActivatePaletteEditor(assetIndex, false);
-            new ModalWindowPropertyBuilderPalette().OpenForUpdate();
+            new ModalWindowPropertyBuilderPalette().OpenForUpdate(OpenSelectionPalette);
         }
         
         public static void EditPropertiesSprite(int assetIndex)
         {
             PackEditorOverseer.Instance.ActivateSpriteEditor(assetIndex, false);
-            new ModalWindowPropertyBuilderSprite().OpenForUpdate();
+            new ModalWindowPropertyBuilderSprite().OpenForUpdate(OpenSelectionSprite);
         }
         
         public static void EditPropertiesWeapon(int assetIndex)
         {
             PackEditorOverseer.Instance.ActivateWeaponEditor(assetIndex, false);
-            new ModalWindowPropertyBuilderWeapon().OpenForUpdate();
+            new ModalWindowPropertyBuilderWeapon().OpenForUpdate(OpenSelectionWeapon);
         }
         
         public static void EditPropertiesProjectile(int assetIndex)
         {
             PackEditorOverseer.Instance.ActivateProjectileEditor(assetIndex, false);
-            new ModalWindowPropertyBuilderProjectile().OpenForUpdate();
+            new ModalWindowPropertyBuilderProjectile().OpenForUpdate(OpenSelectionProjectile);
         }
         
         public static void EditPropertiesEnemy(int assetIndex)
         {
             PackEditorOverseer.Instance.ActivateEnemyEditor(assetIndex, false);
-            new ModalWindowPropertyBuilderEnemy().OpenForUpdate();
+            new ModalWindowPropertyBuilderEnemy().OpenForUpdate(OpenSelectionEnemy);
         }
         
         public static void EditPropertiesRoom(int assetIndex)
         {
             PackEditorOverseer.Instance.ActivateRoomEditor(assetIndex, false);
-            new ModalWindowPropertyBuilderRoom().OpenForUpdate();
+            new ModalWindowPropertyBuilderRoom().OpenForUpdate(OpenSelectionRoom);
         }
         
         public static void EditPropertiesTile(int assetIndex)
         {
             PackEditorOverseer.Instance.ActivateTileEditor(assetIndex, false);
-            new ModalWindowPropertyBuilderTile().OpenForUpdate();
+            new ModalWindowPropertyBuilderTile().OpenForUpdate(OpenSelectionTile);
         }
         #endregion
 

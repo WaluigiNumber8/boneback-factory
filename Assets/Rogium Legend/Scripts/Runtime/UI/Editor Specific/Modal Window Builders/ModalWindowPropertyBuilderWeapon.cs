@@ -10,19 +10,11 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     /// </summary>
     public class ModalWindowPropertyBuilderWeapon : ModalWindowPropertyBuilderBase
     {
-        private readonly WeaponEditorOverseer weaponEditor;
+        private readonly WeaponEditorOverseer weaponEditor = WeaponEditorOverseer.Instance;
 
-        public ModalWindowPropertyBuilderWeapon() => weaponEditor = WeaponEditorOverseer.Instance;
+        public override void OpenForCreate(Action whenConfirm = null) => OpenWindow(new WeaponAsset.Builder().Build(), () => CreateAsset(whenConfirm), "Creating a new Weapon");
 
-        public override void OpenForCreate()
-        {
-            OpenWindow(new WeaponAsset.Builder().Build(), CreateAsset, "Creating a new Weapon");
-        }
-
-        public override void OpenForUpdate()
-        {
-            OpenWindow(new WeaponAsset.Builder().AsCopy(weaponEditor.CurrentAsset).Build(), UpdateAsset, $"Updating {weaponEditor.CurrentAsset.Title}");
-        }
+        public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new WeaponAsset.Builder().AsCopy(weaponEditor.CurrentAsset).Build(), () => UpdateAsset(whenConfirm), $"Updating {weaponEditor.CurrentAsset.Title}");
 
         private void OpenWindow(WeaponAsset weapon, Action onConfirm, string headerText)
         {
@@ -35,17 +27,17 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             editedAssetBase = weapon;
         }
 
-        protected override void CreateAsset()
+        protected override void CreateAsset(Action whenConfirm)
         {
             editor.CreateNewWeapon((WeaponAsset)editedAssetBase);
-            selectionMenu.Open(AssetType.Weapon);
+            whenConfirm?.Invoke();
         }
 
-        protected override void UpdateAsset()
+        protected override void UpdateAsset(Action whenConfirm)
         {
             weaponEditor.UpdateAsset((WeaponAsset)editedAssetBase);
             weaponEditor.CompleteEditing();
-            selectionMenu.Open(AssetType.Weapon);
+            whenConfirm?.Invoke();
         }
     }
 }

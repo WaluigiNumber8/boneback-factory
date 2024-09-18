@@ -10,16 +10,11 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     /// </summary>
     public class ModalWindowPropertyBuilderProjectile : ModalWindowPropertyBuilderBase
     {
-        private readonly ProjectileEditorOverseer projectileEditor;
+        private readonly ProjectileEditorOverseer projectileEditor = ProjectileEditorOverseer.Instance;
 
-        public ModalWindowPropertyBuilderProjectile()
-        {
-            projectileEditor = ProjectileEditorOverseer.Instance;
-        }
-        
-        public override void OpenForCreate() => OpenWindow(new ProjectileAsset.Builder().Build(), CreateAsset, "Creating a new Projectile");
+        public override void OpenForCreate(Action whenConfirm = null) => OpenWindow(new ProjectileAsset.Builder().Build(), () => CreateAsset(whenConfirm), "Creating a new Projectile");
 
-        public override void OpenForUpdate() => OpenWindow(new ProjectileAsset.Builder().AsCopy(projectileEditor.CurrentAsset).Build(), UpdateAsset, $"Updating {projectileEditor.CurrentAsset.Title}");
+        public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new ProjectileAsset.Builder().AsCopy(projectileEditor.CurrentAsset).Build(), () => UpdateAsset(whenConfirm), $"Updating {projectileEditor.CurrentAsset.Title}");
 
         private void OpenWindow(ProjectileAsset projectile, Action onConfirm, string headerText)
         {
@@ -31,17 +26,17 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             editedAssetBase = projectile;
         }
 
-        protected override void CreateAsset()
+        protected override void CreateAsset(Action whenConfirm)
         {
             editor.CreateNewProjectile((ProjectileAsset)editedAssetBase);
-            selectionMenu.Open(AssetType.Projectile);
+            whenConfirm?.Invoke();
         }
 
-        protected override void UpdateAsset()
+        protected override void UpdateAsset(Action whenConfirm)
         {
             projectileEditor.UpdateAsset((ProjectileAsset)editedAssetBase);
             projectileEditor.CompleteEditing();
-            selectionMenu.Open(AssetType.Projectile);
+            whenConfirm?.Invoke();
         }
     }
 }

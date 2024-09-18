@@ -10,16 +10,11 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     /// </summary>
     public class ModalWindowPropertyBuilderEnemy : ModalWindowPropertyBuilderBase
     {
-        private readonly EnemyEditorOverseer enemyEditor;
+        private readonly EnemyEditorOverseer enemyEditor = EnemyEditorOverseer.Instance;
 
-        public ModalWindowPropertyBuilderEnemy()
-        {
-            enemyEditor = EnemyEditorOverseer.Instance;
-        }
-        
-        public override void OpenForCreate() => OpenWindow(new EnemyAsset.Builder().Build(), CreateAsset, "Creating a new Enemy");
+        public override void OpenForCreate(Action whenConfirm = null) => OpenWindow(new EnemyAsset.Builder().Build(), () => CreateAsset(whenConfirm), "Creating a new Enemy");
 
-        public override void OpenForUpdate() => OpenWindow(new EnemyAsset.Builder().AsCopy(enemyEditor.CurrentAsset).Build(), UpdateAsset, $"Updating {enemyEditor.CurrentAsset.Title}");
+        public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new EnemyAsset.Builder().AsCopy(enemyEditor.CurrentAsset).Build(), () => UpdateAsset(whenConfirm), $"Updating {enemyEditor.CurrentAsset.Title}");
 
         private void OpenWindow(EnemyAsset enemy, Action onConfirm, string headerText)
         {
@@ -31,17 +26,17 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             editedAssetBase = enemy;
         }
 
-        protected override void CreateAsset()
+        protected override void CreateAsset(Action whenConfirm)
         {
             editor.CreateNewEnemy((EnemyAsset)editedAssetBase);
-            selectionMenu.Open(AssetType.Enemy);
+            whenConfirm?.Invoke();
         }
 
-        protected override void UpdateAsset()
+        protected override void UpdateAsset(Action whenConfirm)
         {
             enemyEditor.UpdateAsset((EnemyAsset)editedAssetBase);
             enemyEditor.CompleteEditing();
-            selectionMenu.Open(AssetType.Enemy);
+            whenConfirm?.Invoke();
         }
     }
 }

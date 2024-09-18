@@ -19,9 +19,9 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             roomBuilder = new RoomSettingsBuilder();
         }
 
-        public override void OpenForCreate() => OpenWindow(new RoomAsset.Builder().Build() , CreateAsset, "Creating new room");
+        public override void OpenForCreate(Action whenConfirm = null) => OpenWindow(new RoomAsset.Builder().Build() , () => CreateAsset(whenConfirm), "Creating new room");
 
-        public override void OpenForUpdate() => OpenWindow(new RoomAsset.Builder().AsCopy(roomEditor.CurrentAsset).Build(), UpdateAsset, $"Editing {roomEditor.CurrentAsset.Title}");
+        public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new RoomAsset.Builder().AsCopy(roomEditor.CurrentAsset).Build(), () => UpdateAsset(whenConfirm), $"Editing {roomEditor.CurrentAsset.Title}");
 
         private void OpenWindow(RoomAsset data, Action onConfirm, string headerText)
         {
@@ -35,17 +35,17 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             editedAssetBase = data;
         }
 
-        protected override void CreateAsset()
+        protected override void CreateAsset(Action whenConfirm)
         {
             editor.CreateNewRoom((RoomAsset)editedAssetBase);
-            selectionMenu.Open(AssetType.Room);
+            whenConfirm?.Invoke();
         }
 
-        protected override void UpdateAsset()
+        protected override void UpdateAsset(Action whenConfirm)
         {
             roomEditor.UpdateAsset((RoomAsset)editedAssetBase);
             roomEditor.CompleteEditing();
-            selectionMenu.Open(AssetType.Room);
+            whenConfirm?.Invoke();
         }
     }
 }

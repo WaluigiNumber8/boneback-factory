@@ -3,8 +3,6 @@ using RedRats.Core;
 using RedRats.UI.ModalWindows;
 using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
-using Rogium.Systems.GASExtension;
-using Rogium.UserInterface.Editors.AssetSelection;
 using Rogium.UserInterface.Interactables.Properties;
 using Rogium.UserInterface.ModalWindows;
 using UnityEngine;
@@ -18,23 +16,11 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     {
         private const string ModalWindowKey = "PropertyBuilder";
         
-        protected readonly UIPropertyBuilder b;
-        protected readonly PackEditorOverseer editor;
-        protected readonly ExternalLibraryOverseer lib;
-        protected readonly AssetSelectionMenuOverseerMono selectionMenu;
+        protected readonly UIPropertyBuilder b = UIPropertyBuilder.GetInstance();
+        private readonly ModalWindowBuilder wb = ModalWindowBuilder.GetInstance();
+        protected readonly PackEditorOverseer editor = PackEditorOverseer.Instance;
         protected AssetBase editedAssetBase;
 
-        private readonly ModalWindowBuilder wb;
-
-        protected ModalWindowPropertyBuilderBase()
-        {
-            b = UIPropertyBuilder.GetInstance();
-            lib = ExternalLibraryOverseer.Instance;
-            editor = PackEditorOverseer.Instance;
-            selectionMenu = AssetSelectionMenuOverseerMono.GetInstance();
-            
-            wb = ModalWindowBuilder.GetInstance();
-        }
 
         protected void OpenForColumns1(string headerText, Action onConfirm, out Transform column1)
         {
@@ -64,21 +50,21 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         /// <summary>
         /// Opens a Modal Window as a Creation Window.
         /// </summary>
-        public abstract void OpenForCreate();
+        public abstract void OpenForCreate(Action whenConfirm = null);
 
         /// <summary>
         /// Opens a Modal Window as an Edit Window.
         /// </summary>
-        public abstract void OpenForUpdate();
+        public abstract void OpenForUpdate(Action whenConfirm = null);
 
         /// <summary>
         /// What happens, when the confirm button is pressed in the creation window variation.
         /// </summary>
-        protected abstract void CreateAsset();
+        protected abstract void CreateAsset(Action whenConfirm);
         
         /// <summary>
         /// What happens, when the confirm button is pressed in the update window variation.
         /// </summary>
-        protected abstract void UpdateAsset();
+        protected abstract void UpdateAsset(Action whenConfirm);
     }
 }

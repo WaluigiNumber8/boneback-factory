@@ -14,9 +14,9 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
 
         public ModalWindowPropertyBuilderTile() => tileEditor = TileEditorOverseer.Instance;
 
-        public override void OpenForCreate() => OpenWindow(new TileAsset.Builder().Build(), CreateAsset, "Creating a new Tile");
+        public override void OpenForCreate(Action whenConfirm = null) => OpenWindow(new TileAsset.Builder().Build(), () => CreateAsset(whenConfirm), "Creating a new Tile");
 
-        public override void OpenForUpdate() => OpenWindow(new TileAsset.Builder().AsCopy(tileEditor.CurrentAsset).Build(), UpdateAsset, $"Updating {tileEditor.CurrentAsset.Title}");
+        public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new TileAsset.Builder().AsCopy(tileEditor.CurrentAsset).Build(), () => UpdateAsset(whenConfirm), $"Updating {tileEditor.CurrentAsset.Title}");
 
         private void OpenWindow(TileAsset tile, Action onConfirm, string headerText)
         {
@@ -31,17 +31,17 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             editedAssetBase = tile;
         }
 
-        protected override void CreateAsset()
+        protected override void CreateAsset(Action whenConfirm)
         {
             editor.CreateNewTile((TileAsset)editedAssetBase);
-            selectionMenu.Open(AssetType.Tile);
+            whenConfirm?.Invoke();
         }
 
-        protected override void UpdateAsset()
+        protected override void UpdateAsset(Action whenConfirm)
         {
             tileEditor.UpdateAsset((TileAsset)editedAssetBase);
             tileEditor.CompleteEditing();
-            selectionMenu.Open(AssetType.Tile);
+            whenConfirm?.Invoke();
         }
     }
 }

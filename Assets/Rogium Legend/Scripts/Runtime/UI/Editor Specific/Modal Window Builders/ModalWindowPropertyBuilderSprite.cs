@@ -10,19 +10,14 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     /// </summary>
     public class ModalWindowPropertyBuilderSprite : ModalWindowPropertyBuilderBase
     {
-        private readonly SpriteEditorOverseer spriteEditor;
+        private readonly SpriteEditorOverseer spriteEditor = SpriteEditorOverseer.Instance;
 
-        public ModalWindowPropertyBuilderSprite()
+        public override void OpenForCreate(Action whenConfirm = null)
         {
-            spriteEditor = SpriteEditorOverseer.Instance;
-        }
-        
-        public override void OpenForCreate()
-        {
-            OpenWindow(new SpriteAsset.Builder().Build(), CreateAsset, "Creating a new Sprite");
+            OpenWindow(new SpriteAsset.Builder().Build(), () => CreateAsset(whenConfirm), "Creating a new Sprite");
         }
 
-        public override void OpenForUpdate() => OpenWindow(new SpriteAsset.Builder().AsCopy(spriteEditor.CurrentAsset).Build() , UpdateAsset, $"Updating {spriteEditor.CurrentAsset.Title}");
+        public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new SpriteAsset.Builder().AsCopy(spriteEditor.CurrentAsset).Build() , () => UpdateAsset(whenConfirm), $"Updating {spriteEditor.CurrentAsset.Title}");
 
         private void OpenWindow(SpriteAsset sprite, Action onConfirm, string headerText)
         {
@@ -35,17 +30,17 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             editedAssetBase = sprite;
         }
         
-        protected override void CreateAsset()
+        protected override void CreateAsset(Action whenConfirm)
         {
             editor.CreateNewSprite((SpriteAsset)editedAssetBase);
-            selectionMenu.Open(AssetType.Sprite);
+            whenConfirm?.Invoke();
         }
 
-        protected override void UpdateAsset()
+        protected override void UpdateAsset(Action whenConfirm)
         {
             spriteEditor.UpdateAsset((SpriteAsset)editedAssetBase);
             spriteEditor.CompleteEditing();
-            selectionMenu.Open(AssetType.Sprite);
+            whenConfirm?.Invoke();
         }
     }
 }

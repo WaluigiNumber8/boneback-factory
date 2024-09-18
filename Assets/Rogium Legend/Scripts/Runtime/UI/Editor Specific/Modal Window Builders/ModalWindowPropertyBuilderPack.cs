@@ -1,5 +1,6 @@
 ﻿using System;
 using Rogium.Core;
+using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
 using UnityEngine;
 
@@ -11,9 +12,9 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     public class ModalWindowPropertyBuilderPack : ModalWindowPropertyBuilderBase
     {
         private new PackAsset editedAssetBase;
-        public override void OpenForCreate() => OpenWindow(new PackAsset.Builder().Build(), CreateAsset, "Creating a new pack");
+        public override void OpenForCreate(Action whenConfirm = null) => OpenWindow(new PackAsset.Builder().Build(), () => CreateAsset(whenConfirm), "Creating a new pack");
 
-        public override void OpenForUpdate() => OpenWindow(new PackAsset.Builder().AsCopy(editor.CurrentPack).Build(), UpdateAsset, $"Editing {editor.CurrentPack.Title}");
+        public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new PackAsset.Builder().AsCopy(editor.CurrentPack).Build(), () => UpdateAsset(whenConfirm), $"Editing {editor.CurrentPack.Title}");
 
         /// <summary>
         /// Opens a Modal Window as a Pack Properties Window.
@@ -38,20 +39,20 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         /// <summary>
         /// Builds a pack and saves it to the library.
         /// </summary>
-        protected override void CreateAsset()
+        protected override void CreateAsset(Action whenConfirm)
         {
-            lib.CreateAndAddPack(editedAssetBase);
-            selectionMenu.Open(AssetType.Pack);
+            ExternalLibraryOverseer.Instance.CreateAndAddPack(editedAssetBase);
+            whenConfirm?.Invoke();
         }
 
         /// <summary>
         /// Updates a given pack.
         /// </summary>
-        protected override void UpdateAsset()
+        protected override void UpdateAsset(Action whenConfirm)
         {
             PackEditorOverseer.Instance.UpdateAsset(editedAssetBase);
             editor.CompleteEditing();
-            selectionMenu.Open(AssetType.Pack);
+            whenConfirm?.Invoke();
         }
     }
 }
