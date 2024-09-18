@@ -74,14 +74,6 @@ namespace Rogium.Systems.ActionHistory
             currentGroup = null;
         }
 
-        /// <summary>
-        /// Returns TRUE if the undo history contains an action of the given type.
-        /// </summary>
-        /// <typeparam name="T">The type of action.</typeparam>
-        public static bool ContainsInUndo<T>() where T : IAction => undoHistory.Any(a => a is T);
-
-        public static bool ContainsInOpenGroupOrUndo<T>() where T : IAction => currentGroup?.ContainsType<T>() == true || ContainsInUndo<T>();
-
         #region Group Processing
 
         /// <summary>

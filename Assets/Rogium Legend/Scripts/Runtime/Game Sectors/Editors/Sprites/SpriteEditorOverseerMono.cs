@@ -32,7 +32,6 @@ namespace Rogium.Editors.Sprites
         private PaletteAsset lastPalette;
         private int spriteSize;
         private bool paletteChanged;
-        private Color lastColor;
 
         protected override void Awake()
         {
@@ -175,9 +174,8 @@ namespace Rogium.Editors.Sprites
         {
             UpdateCurrentPaletteData(slotIndex);
             RedrawColorOnGrid(slotIndex);
-            Color color = palette.GetSlot(slotIndex).CurrentColor;
-            paletteChanged = !paletteChanged || ActionHistorySystem.ContainsInOpenGroupOrUndo<UpdateColorSlotAction>() || color == lastColor; //1st change will be flagged, then depends on the action history.
-            lastColor = color;
+            ColorSlot slot = palette.GetSlot(slotIndex);
+            paletteChanged = slot.CurrentColor != slot.OriginalColor;
         }
         
         /// <summary>

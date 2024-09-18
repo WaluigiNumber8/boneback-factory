@@ -20,6 +20,7 @@ namespace Rogium.Editors.Palettes
         
         private Color currentColor;
         private Color lastColor;
+        private Color originalColor;
 
         private void OnEnable() => toggle.onValueChanged.AddListener(NotifyListeners);
         private void OnDisable() => toggle.onValueChanged.RemoveListener(NotifyListeners);
@@ -38,6 +39,7 @@ namespace Rogium.Editors.Palettes
         public void Construct(Color color, int index)
         {
             this.currentColor = color;
+            this.originalColor = color;
             this.index = index;
             UpdateColor(color);
         }
@@ -62,6 +64,7 @@ namespace Rogium.Editors.Palettes
         public override string ToString() => $"Color Slot {index} - {currentColor}";
 
         public Color CurrentColor { get => currentColor; }
+        public Color OriginalColor { get => originalColor; }
         public Image ColorImage { get => ui.colorImg; }
 
         [Serializable]
