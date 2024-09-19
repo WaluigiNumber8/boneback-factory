@@ -30,16 +30,18 @@ namespace Rogium.ExternalStorage.Serialization
         /// <returns></returns>
         public override TileAsset Decode()
         {
-            return new TileAsset(id,
-                                 title,
-                                 icon.Decode(),
-                                 author,
-                                 associatedSpriteID,
-                                 color.Decode(),
-                                 (TileType)tileType,
-                                 (TileLayerType)layerType,
-                                 (TerrainType)terrainType,
-                                 DateTime.Parse(creationDate));
+            return new TileAsset.Builder()
+                .WithID(id)
+                .WithTitle(title)
+                .WithIcon(icon.Decode())
+                .WithAuthor(author)
+                .WithCreationDate(DateTime.Parse(creationDate))
+                .WithAssociatedSpriteID(associatedSpriteID)
+                .WithTile(icon.Decode(), color.Decode())
+                .WithType((TileType)tileType)
+                .WithLayerType((TileLayerType)layerType)
+                .WithTerrainType((TerrainType)terrainType)
+                .Build();
         }
     }
 }

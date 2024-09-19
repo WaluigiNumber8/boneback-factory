@@ -1,8 +1,6 @@
 ﻿using System;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
-using Rogium.Systems.Validation;
-using UnityEngine;
 
 namespace Rogium.Editors.Projectiles
 {
@@ -15,91 +13,9 @@ namespace Rogium.Editors.Projectiles
         private float acceleration;
         private float brakeForce;
         private PierceType pierceType;
+
+        private ProjectileAsset() { }
         
-        #region Constructors
-        public ProjectileAsset()
-        {
-            InitBase(EditorDefaults.Instance.ProjectileTitle, EditorDefaults.Instance.ProjectileIcon, EditorDefaults.Instance.Author, DateTime.Now);
-            GenerateID(EditorAssetIDs.ProjectileIdentifier);
-            color = EditorDefaults.Instance.ProjectileColor;
-
-            animationType = EditorDefaults.Instance.ProjectileAnimationType;
-            frameDuration = EditorDefaults.Instance.ProjectileFrameDuration;
-            iconAlt = EditorDefaults.Instance.EmptySprite;
-            
-            baseDamage = EditorDefaults.Instance.ProjectileBaseDamage;
-            useDelay = EditorDefaults.Instance.ProjectileLifetime;
-            knockbackForceSelf = EditorDefaults.Instance.ProjectileKnockbackForceSelf;
-            knockbackLockDirectionSelf = EditorDefaults.Instance.ProjectileKnockbackLockDirectionSelf;
-            knockbackForceOther = EditorDefaults.Instance.ProjectileKnockbackForceOther;
-            knockbackLockDirectionOther = EditorDefaults.Instance.ProjectileKnockbackLockDirectionOther;
-
-            flightSpeed = EditorDefaults.Instance.ProjectileFlightSpeed;
-            acceleration = EditorDefaults.Instance.ProjectileAcceleration;
-            brakeForce = EditorDefaults.Instance.ProjectileBrakeForce;
-            pierceType = EditorDefaults.Instance.ProjectilePierceType;
-            
-        }
-
-        public ProjectileAsset(ProjectileAsset asset)
-        {
-            AssetValidation.ValidateTitle(asset.title);
-            
-            id = asset.ID;
-            InitBase(asset.Title, asset.Icon, asset.Author, asset.CreationDate);
-            color = asset.Color;
-
-            associatedSpriteID = asset.AssociatedSpriteID;
-            
-            animationType = asset.AnimationType;
-            frameDuration = asset.FrameDuration;
-            iconAlt = asset.IconAlt;
-            
-            baseDamage = asset.BaseDamage;
-            useDelay = asset.UseDelay;
-            knockbackForceSelf = asset.KnockbackForceSelf;
-            knockbackLockDirectionSelf = asset.KnockbackLockDirectionSelf;
-            knockbackForceOther = asset.KnockbackForceOther;
-            knockbackLockDirectionOther = asset.KnockbackLockDirectionOther;
-
-            flightSpeed = asset.FlightSpeed;
-            acceleration = asset.Acceleration;
-            brakeForce = asset.BrakeForce;
-            pierceType = asset.PierceType;
-        }
-
-        public ProjectileAsset(string id, string title, Sprite icon, string author, Color color, string associatedSpriteID, 
-                               AnimationType animationType, int frameDuration, Sprite iconAlt, int baseDamage, float useDelay, 
-                               float knockbackForceSelf, bool knockbackLockDirectionSelf, float knockbackForceOther,
-                               bool knockbackLockDirectionOther, float flightSpeed, float acceleration, float brakeForce, 
-                               PierceType pierceType, DateTime creationDate)
-        {
-            AssetValidation.ValidateTitle(title);
-            
-            this.id = id;
-            InitBase(title, icon, author, creationDate);
-            this.color = color;
-
-            this.associatedSpriteID = associatedSpriteID;
-            
-            this.animationType = animationType;
-            this.frameDuration = frameDuration;
-            this.iconAlt = iconAlt;
-            
-            this.baseDamage = baseDamage;
-            this.useDelay = useDelay;
-            this.knockbackForceSelf = knockbackForceSelf;
-            this.knockbackLockDirectionSelf = knockbackLockDirectionSelf;
-            this.knockbackForceOther = knockbackForceOther;
-            this.knockbackLockDirectionOther = knockbackLockDirectionOther;
-
-            this.flightSpeed = flightSpeed;
-            this.acceleration = acceleration;
-            this.brakeForce = brakeForce;
-            this.pierceType = pierceType;
-        }
-        #endregion
-
         #region Update Values
 
         public void UpdateFlightSpeed(float newFlightSpeed) => flightSpeed = newFlightSpeed;
@@ -121,5 +37,92 @@ namespace Rogium.Editors.Projectiles
         public float BrakeForce { get => brakeForce; }
         public PierceType PierceType { get => pierceType; }
 
+        public class Builder : EntityAssetBuilder<ProjectileAsset, Builder>
+        {
+            public Builder()
+            {
+                Asset.title = EditorDefaults.Instance.ProjectileTitle;
+                Asset.icon = EditorDefaults.Instance.ProjectileIcon;
+                Asset.author = EditorDefaults.Instance.Author;
+                Asset.creationDate = DateTime.Now;
+                Asset.GenerateID();
+                Asset.color = EditorDefaults.Instance.ProjectileColor;
+                
+                Asset.animationType = EditorDefaults.Instance.ProjectileAnimationType;
+                Asset.frameDuration = EditorDefaults.Instance.ProjectileFrameDuration;
+                Asset.iconAlt = EditorDefaults.Instance.EmptySprite;
+                
+                Asset.baseDamage = EditorDefaults.Instance.ProjectileBaseDamage;
+                Asset.useDelay = EditorDefaults.Instance.ProjectileLifetime;
+                Asset.knockbackForceSelf = EditorDefaults.Instance.ProjectileKnockbackForceSelf;
+                Asset.knockbackLockDirectionSelf = EditorDefaults.Instance.ProjectileKnockbackLockDirectionSelf;
+                Asset.knockbackForceOther = EditorDefaults.Instance.ProjectileKnockbackForceOther;
+                Asset.knockbackLockDirectionOther = EditorDefaults.Instance.ProjectileKnockbackLockDirectionOther;
+                
+                Asset.flightSpeed = EditorDefaults.Instance.ProjectileFlightSpeed;
+                Asset.acceleration = EditorDefaults.Instance.ProjectileAcceleration;
+                Asset.brakeForce = EditorDefaults.Instance.ProjectileBrakeForce;
+                Asset.pierceType = EditorDefaults.Instance.ProjectilePierceType;
+            }
+            
+            public Builder WithFlightSpeed(float flightSpeed)
+            {
+                Asset.flightSpeed = flightSpeed;
+                return This;
+            }
+            
+            public Builder WithAcceleration(float acceleration)
+            {
+                Asset.acceleration = acceleration;
+                return This;
+            }
+            
+            public Builder WithBrakeForce(float brakeForce)
+            {
+                Asset.brakeForce = brakeForce;
+                return This;
+            }
+            
+            public Builder WithPierceType(PierceType pierceType)
+            {
+                Asset.pierceType = pierceType;
+                return This;
+            }
+
+            public override Builder AsClone(ProjectileAsset asset)
+            {
+                AsCopy(asset);
+                Asset.GenerateID();
+                return This;
+            }
+
+            public override Builder AsCopy(ProjectileAsset asset)
+            {
+                Asset.id = asset.ID;
+                Asset.title = asset.Title;
+                Asset.icon = asset.Icon;
+                Asset.author = asset.Author;
+                Asset.creationDate = asset.CreationDate;
+                Asset.color = asset.Color;
+                Asset.associatedSpriteID = asset.AssociatedSpriteID;
+                Asset.animationType = asset.AnimationType;
+                Asset.frameDuration = asset.FrameDuration;
+                Asset.iconAlt = asset.IconAlt;
+                Asset.baseDamage = asset.BaseDamage;
+                Asset.useDelay = asset.UseDelay;
+                Asset.knockbackForceSelf = asset.KnockbackForceSelf;
+                Asset.knockbackLockDirectionSelf = asset.KnockbackLockDirectionSelf;
+                Asset.knockbackForceOther = asset.KnockbackForceOther;
+                Asset.knockbackLockDirectionOther = asset.KnockbackLockDirectionOther;
+                Asset.flightSpeed = asset.FlightSpeed;
+                Asset.acceleration = asset.Acceleration;
+                Asset.brakeForce = asset.BrakeForce;
+                Asset.pierceType = asset.PierceType;
+                return This;
+            }
+
+            protected sealed override ProjectileAsset Asset { get; } = new();
+        }
+    
     }
 }

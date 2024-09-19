@@ -27,5 +27,26 @@ namespace Rogium.Editors.Core
         public AnimationType AnimationType { get => animationType; }
         public int FrameDuration { get => frameDuration; }
         public Sprite IconAlt { get => iconAlt; }
+
+        public abstract class AnimatedAssetBuilder<T, TBuilder> : AssetWithReferencedSpriteBuilder<T, TBuilder> where T : AnimatedAssetBase where TBuilder : BaseBuilder<T, TBuilder>
+        {
+            public TBuilder WithAnimationType(AnimationType animationType)
+            {
+                Asset.animationType = animationType;
+                return This;
+            }
+            
+            public TBuilder WithFrameDuration(int frameDuration)
+            {
+                Asset.frameDuration = frameDuration;
+                return This;
+            }
+            
+            public TBuilder WithIconAlt(Sprite iconAlt)
+            {
+                Asset.iconAlt = iconAlt;
+                return This;
+            }
+        }
     }
 }

@@ -50,7 +50,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection.PickerVariant
         
         public void ConfirmSelection()
         {
-            SafetyNet.EnsureIsNotNull(whenSelected, "Method to Run");
+            SafetyNet.EnsureIsNotNull(whenSelected, nameof(whenSelected));
             whenSelected.Invoke(selectedAsset);
             CancelSelection();
         }

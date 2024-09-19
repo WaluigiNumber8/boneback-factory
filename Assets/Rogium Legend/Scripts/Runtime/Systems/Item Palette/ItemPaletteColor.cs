@@ -15,14 +15,15 @@ namespace Rogium.Systems.ItemPalette
     public class ItemPaletteColor : MonoBehaviour
     {
         public event Action<ColorSlot> OnSelect;
+        public event Action<ColorSlot> OnChangeColorOnSelectedSlot;
         
         [SerializeField] private ColorSlot colorSlotPrefab;
         [SerializeField] private Transform paletteParent;
         [SerializeField] private TextMeshProUGUI emptyText;
 
         private MenuFiller<ColorSlot> menuFiller;
-
         private IList<ColorSlot> slots;
+        private int currentSelectedIndex;
 
         private void Awake()
         {
@@ -30,22 +31,18 @@ namespace Rogium.Systems.ItemPalette
             menuFiller = new MenuFiller<ColorSlot>();
         }
 
-        private void OnEnable() => ColorSlot.OnSelectedAny += WhenSelected;
-        private void OnDisable() => ColorSlot.OnSelectedAny -= WhenSelected;
-
-        /// <summary>
-        /// Call the <see cref="OnSelect"/> event for a specific item.
-        /// </summary>
-        /// <param name="index">The index of the item.</param>
-        public void Select(int index)
+        private void OnEnable()
         {
-            if (index == EditorDefaults.EmptyColorID) return;
-            if (slots == null || slots.Count <= 0) return;
-            SafetyNet.EnsureIndexWithingCollectionRange(index, slots, "List of Slots");
-            if (slots[index].IsOn) slots[index].SetToggle(false);
-            slots[index].SetToggle(true);
+            ColorSlot.OnSelectedAny += NotifyListeners;
+            ColorSlot.OnChangeColor += TryNotifyColorChanged;
         }
-        
+
+        private void OnDisable()
+        {
+            ColorSlot.OnSelectedAny -= NotifyListeners;
+            ColorSlot.OnChangeColor -= TryNotifyColorChanged;
+        }
+
         /// <summary>
         /// Spawns slots and fills them with information.
         /// </summary>
@@ -68,13 +65,40 @@ namespace Rogium.Systems.ItemPalette
         }
         
         /// <summary>
+        /// Call the <see cref="OnSelect"/> event for a specific item.
+        /// </summary>
+        /// <param name="index">The index of the item.</param>
+        public void Select(int index)
+        {
+            if (index == EditorDefaults.EmptyColorID) return;
+            if (slots == null || slots.Count <= 0) return;
+            SafetyNet.EnsureIndexWithingCollectionRange(index, slots, "List of Slots");
+            if (slots[index].IsOn) slots[index].SetToggle(false);
+            slots[index].SetToggle(true);
+        }
+        
+        public ColorSlot GetSlot(int index)
+        {
+            SafetyNet.EnsureIndexWithingCollectionRange(index, slots, "List of Slots");
+            SafetyNet.EnsureIsNotNull(slots[index], "Slot");
+            return slots[index];
+        }
+        
+        /// <summary>
         /// Fires an event when selected.
         /// </summary>
         /// <param name="index">The index of the slot to select.</param>
-        private void WhenSelected(int index)
+        private void NotifyListeners(int index)
         {
             SafetyNet.EnsureIndexWithingCollectionRange(index, slots, "List of Slots");
+            currentSelectedIndex = index;
             OnSelect?.Invoke(slots[index]);
+        }
+        
+        private void TryNotifyColorChanged(int index)
+        {
+            if (index != currentSelectedIndex) return;
+            OnChangeColorOnSelectedSlot?.Invoke(slots[currentSelectedIndex]);
         }
     }
 }

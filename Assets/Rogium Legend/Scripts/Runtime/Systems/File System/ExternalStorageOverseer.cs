@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using RedRats.Core;
 using RedRats.Safety;
 using RedRats.Systems.FileSystem;
 using Rogium.Core;
@@ -23,7 +22,7 @@ namespace Rogium.ExternalStorage
     /// <summary>
     /// Overseers files stored on external storage.
     /// </summary>
-    public sealed class ExternalStorageOverseer : Singleton<ExternalStorageOverseer>
+    public sealed class ExternalStorageOverseer : IExternalStorageOverseer
     {
         private readonly SaveableData packData;
         private readonly SaveableData campaignData;
@@ -43,7 +42,7 @@ namespace Rogium.ExternalStorage
         
         private readonly CRUDOperations<GameDataAsset, JSONGameDataAsset> preferencesCRUD;
 
-        private ExternalStorageOverseer()
+        public ExternalStorageOverseer()
         {
             packData = new SaveableData("Packs", EditorAssetIDs.PackIdentifier);
             campaignData = new SaveableData("Campaigns", EditorAssetIDs.CampaignIdentifier);
@@ -136,10 +135,23 @@ namespace Rogium.ExternalStorage
                CreateSkeleton(pack);
             }
             RefreshAssetSaveableData();
-            
-            return new PackAsset(pack.ID, pack.Title, pack.Icon, pack.Author, pack.AssociatedSpriteID, pack.Description, 
-                                 pack.CreationDate, paletteCRUD.LoadAll(), spriteCRUD.LoadAll(), weaponCRUD.LoadAll(),
-                                 projectileCRUD.LoadAll(), enemyCRUD.LoadAll(), roomCRUD.LoadAll(), tileCRUD.LoadAll());
+
+            return new PackAsset.Builder()
+                .WithID(pack.ID)
+                .WithTitle(pack.Title)
+                .WithIcon(pack.Icon)
+                .WithAuthor(pack.Author)
+                .WithCreationDate(pack.CreationDate)
+                .WithAssociatedSpriteID(pack.AssociatedSpriteID)
+                .WithDescription(pack.Description)
+                .WithPalettes(paletteCRUD.LoadAll())
+                .WithSprites(spriteCRUD.LoadAll())
+                .WithWeapons(weaponCRUD.LoadAll())
+                .WithProjectiles(projectileCRUD.LoadAll())
+                .WithEnemies(enemyCRUD.LoadAll())
+                .WithRooms(roomCRUD.LoadAll())
+                .WithTiles(tileCRUD.LoadAll())
+                .Build();
         }
 
         /// <summary>
@@ -213,14 +225,14 @@ namespace Rogium.ExternalStorage
                                     Path.Combine(packData.Path, pack.Title, pack.Title));
         }
 
-        public CRUDOperations<CampaignAsset, JSONCampaignAsset> Campaigns { get => campaignCRUD; }
-        public CRUDOperations<PaletteAsset, JSONPaletteAsset> Palettes { get => paletteCRUD; }
-        public CRUDOperations<SpriteAsset, JSONSpriteAsset> Sprites { get => spriteCRUD; }
-        public CRUDOperations<WeaponAsset, JSONWeaponAsset> Weapons { get => weaponCRUD; }
-        public CRUDOperations<ProjectileAsset, JSONProjectileAsset> Projectiles { get => projectileCRUD; }
-        public CRUDOperations<EnemyAsset, JSONEnemyAsset> Enemies { get => enemyCRUD; }
-        public CRUDOperations<RoomAsset, JSONRoomAsset> Rooms { get => roomCRUD; }
-        public CRUDOperations<TileAsset, JSONTileAsset> Tiles { get => tileCRUD; }
-        public CRUDOperations<GameDataAsset, JSONGameDataAsset> Preferences { get => preferencesCRUD; }
+        public ICRUDOperations<CampaignAsset, JSONCampaignAsset> Campaigns { get => campaignCRUD; }
+        public ICRUDOperations<PaletteAsset, JSONPaletteAsset> Palettes { get => paletteCRUD; }
+        public ICRUDOperations<SpriteAsset, JSONSpriteAsset> Sprites { get => spriteCRUD; }
+        public ICRUDOperations<WeaponAsset, JSONWeaponAsset> Weapons { get => weaponCRUD; }
+        public ICRUDOperations<ProjectileAsset, JSONProjectileAsset> Projectiles { get => projectileCRUD; }
+        public ICRUDOperations<EnemyAsset, JSONEnemyAsset> Enemies { get => enemyCRUD; }
+        public ICRUDOperations<RoomAsset, JSONRoomAsset> Rooms { get => roomCRUD; }
+        public ICRUDOperations<TileAsset, JSONTileAsset> Tiles { get => tileCRUD; }
+        public ICRUDOperations<GameDataAsset, JSONGameDataAsset> Preferences { get => preferencesCRUD; }
     }
 }

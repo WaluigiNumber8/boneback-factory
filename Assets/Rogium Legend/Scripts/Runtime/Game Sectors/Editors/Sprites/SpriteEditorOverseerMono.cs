@@ -27,10 +27,11 @@ namespace Rogium.Editors.Sprites
         private PalettePicker palettePicker;
         private ToolBox<int> toolbox;
 
-        private SpriteAsset currentSprite;
+        private SpriteAsset currentSpriteAsset;
         private IColorSlot currentSlot;
-        private PaletteAsset currentPalette;
         private PaletteAsset lastPalette;
+        private int spriteSize;
+        private bool paletteChanged;
 
         protected override void Awake()
         {
@@ -38,14 +39,16 @@ namespace Rogium.Editors.Sprites
             editor = SpriteEditorOverseer.Instance;
             palettePicker = new PalettePicker();
             toolbox = new ToolBox<int>(grid, grid.UpdateCell, EditorDefaults.EmptyColorID);
+            spriteSize = EditorDefaults.Instance.SpriteSize;
         }
 
         private void OnEnable()
         {
             editor.OnAssignAsset += PrepareEditor;
-            grid.OnClick += UpdateGridCell;
+            grid.OnClick += UpdateCell;
             grid.OnClickAlternative += EraseCell;
             palette.OnSelect += UpdateCurrentColor;
+            ColorSlot.OnChangeColor += WhenPaletteSlotChange;
             
             toolbox.OnChangePaletteValue += PickFrom;
             toolbox.OnSwitchTool += toolBoxUIManager.SwitchTool;
@@ -55,9 +58,10 @@ namespace Rogium.Editors.Sprites
         private void OnDisable()
         {
             editor.OnAssignAsset -= PrepareEditor;
-            grid.OnClick -= UpdateGridCell;
+            grid.OnClick -= UpdateCell;
             grid.OnClickAlternative -= EraseCell;
             palette.OnSelect -= UpdateCurrentColor;
+            ColorSlot.OnChangeColor -= WhenPaletteSlotChange;
             
             toolbox.OnChangePaletteValue -= PickFrom;
             toolbox.OnSwitchTool -= toolBoxUIManager.SwitchTool;
@@ -68,10 +72,10 @@ namespace Rogium.Editors.Sprites
         /// Updates the grid based on inputted position.
         /// </summary>
         /// <param name="position">The grid position to affect.</param>
-        public void UpdateGridCell(Vector2Int position)
+        public void UpdateCell(Vector2Int position)
         {
             if (currentSlot == null) return;
-            Sprite brushSprite = RedRatBuilder.GenerateSprite(currentSlot.CurrentColor, EditorDefaults.Instance.SpriteSize, EditorDefaults.Instance.SpriteSize, EditorDefaults.Instance.SpriteSize);
+            Sprite brushSprite = RedRatBuilder.GenerateSprite(currentSlot.CurrentColor, spriteSize, spriteSize, spriteSize);
             toolbox.ApplyCurrent(editor.CurrentAsset.SpriteData, position, currentSlot.Index, brushSprite, grid.ActiveLayer);
         }
 
@@ -82,10 +86,9 @@ namespace Rogium.Editors.Sprites
         {
             ModalWindowBuilder.GetInstance().OpenAssetPickerWindow(AssetType.Palette, asset =>
             {
-                currentPalette = (PaletteAsset) asset;
-                ActionHistorySystem.AddAndExecute(new SwitchSpriteEditorPaletteAction(currentPalette, lastPalette, SwitchPalette));
-                currentSprite.UpdatePreferredPaletteID(currentPalette.ID);
-                lastPalette = currentPalette;
+                editor.UpdatePalette((PaletteAsset) asset);
+                ActionHistorySystem.AddAndExecute(new SwitchSpriteEditorPaletteAction(editor.CurrentPalette, lastPalette, SwitchPalette));
+                lastPalette = editor.CurrentPalette;
             }, lastPalette);
         }
         
@@ -95,11 +98,12 @@ namespace Rogium.Editors.Sprites
         /// <param name="asset"></param>
         public void SwitchPalette(PaletteAsset asset)
         {
-            currentPalette = asset;
+            editor.UpdatePalette(asset);
             lastPalette = asset;
-            grid.LoadWithColors(currentSprite.SpriteData, asset.Colors);
+            grid.LoadWithColors(currentSpriteAsset.SpriteData, asset.Colors);
             palette.Fill(asset.Colors);
             palette.Select(0);
+            paletteChanged = false;
         }
         
         /// <summary>
@@ -130,8 +134,9 @@ namespace Rogium.Editors.Sprites
         /// <param name="sprite">The sprite to read from.</param>
         private void PrepareEditor(SpriteAsset sprite)
         {
-            lastPalette = palettePicker.GrabBasedOn(sprite.PreferredPaletteID);
-            currentSprite = sprite;
+            lastPalette = editor.CurrentPalette;
+            currentSpriteAsset = sprite;
+            paletteChanged = false;
             
             toolbox.Refresh();
             SwitchPalette(lastPalette);
@@ -159,13 +164,46 @@ namespace Rogium.Editors.Sprites
         /// <param name="position">The cell to erase.</param>
         private void EraseCell(Vector2Int position)
         {
-            Sprite brushSprite = RedRatBuilder.GenerateSprite(EditorDefaults.Instance.EmptyGridColor, EditorDefaults.Instance.SpriteSize, EditorDefaults.Instance.SpriteSize, EditorDefaults.Instance.SpriteSize);
-            toolbox.ApplySpecific(ToolType.Eraser, editor.CurrentAsset.SpriteData, position, currentSlot.Index, brushSprite, grid.ActiveLayer);
+            Sprite brushSprite = RedRatBuilder.GenerateSprite(EditorDefaults.Instance.EmptyGridColor, spriteSize, spriteSize, spriteSize);
+            toolbox.ApplySpecific(ToolType.Eraser, currentSpriteAsset.SpriteData, position, currentSlot.Index, brushSprite, grid.ActiveLayer);
+        }
+
+        private void WhenPaletteSlotChange(int slotIndex)
+        {
+            UpdateCurrentPaletteData(slotIndex);
+            RedrawColorOnGrid(slotIndex);
+            ColorSlot slot = palette.GetSlot(slotIndex);
+            paletteChanged = slot.CurrentColor != slot.OriginalColor;
         }
         
-        public PaletteAsset CurrentPalette { get => currentPalette; }
+        /// <summary>
+        /// Redraw the value in the entire grid if it is the same as the one selected.
+        /// </summary>
+        /// <param name="slotIndex">The index of the slot to change.</param>
+        private void RedrawColorOnGrid(int slotIndex)
+        {
+            ObjectGrid<int> dataGrid = currentSpriteAsset.SpriteData;
+            Sprite colorSprite = RedRatBuilder.GenerateSprite(palette.GetSlot(slotIndex).CurrentColor, spriteSize, spriteSize, spriteSize);
+            
+            for (int x = 0; x < dataGrid.Width; x++)
+            {
+                for (int y = 0; y < dataGrid.Height; y++)
+                {
+                    if (dataGrid.GetAt(x, y).CompareTo(slotIndex) != 0) continue;
+                    grid.UpdateCell(new Vector2Int(x, y), colorSprite);
+                }
+            }
+            grid.Apply(grid.ActiveLayer);
+        }
+        
+        private void UpdateCurrentPaletteData(int slotIndex) => editor.CurrentPalette.Colors[slotIndex] = palette.GetSlot(slotIndex).CurrentColor;
+        
+        public PaletteAsset CurrentPaletteAsset { get => editor.CurrentPalette; }
+        public Color CurrentBrushColor { get => currentSlot.CurrentColor; }
+        public ItemPaletteColor Palette { get => palette; }
         public ToolBox<int> Toolbox { get => toolbox; } 
         public ObjectGrid<int> GetCurrentGridCopy => new(editor.CurrentAsset.SpriteData);
         public Sprite CurrentGridSprite => grid.ActiveLayerSprite;
+        public bool PaletteChanged { get => paletteChanged; }
     }
 }

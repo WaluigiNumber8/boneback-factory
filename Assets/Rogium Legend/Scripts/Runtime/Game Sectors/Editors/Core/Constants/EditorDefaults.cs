@@ -35,6 +35,7 @@ namespace Rogium.Editors.Core.Defaults
         
         [SerializeField, Required, FoldoutGroup("Palettes")] private string paletteTitle = "New Palette";
         [SerializeField, Required, FoldoutGroup("Palettes")] private int paletteSize = 9;
+        [SerializeField, Required, FoldoutGroup("Palettes")] private Color[] missingPalette;
         
         [SerializeField, Required, FoldoutGroup("Sprites")] private string spriteTitle = "New Sprite";
         [SerializeField, Required, FoldoutGroup("Sprites")] private int spriteSize = 16;
@@ -133,6 +134,7 @@ namespace Rogium.Editors.Core.Defaults
         public int CampaignLength { get => campaignLength; }
         public string PaletteTitle { get => paletteTitle; }
         public int PaletteSize { get => paletteSize; }
+        public Color[] MissingPalette { get => missingPalette; }
         public string SpriteTitle { get => spriteTitle; }
         public int SpriteSize { get => spriteSize; }
         public string WeaponTitle { get => weaponTitle; }

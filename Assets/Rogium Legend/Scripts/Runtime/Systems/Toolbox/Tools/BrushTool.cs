@@ -13,7 +13,7 @@ namespace Rogium.Systems.Toolbox
 
         public override void ApplyEffect(ObjectGrid<T> grid, Vector2Int position, T value, Sprite graphicValue, int layer)
         {
-            grid.SetValue(position, value);
+            grid.SetTo(position, value);
             whenGraphicDrawn?.Invoke(layer, position, graphicValue);
             whenEffectFinished?.Invoke(layer);
         }

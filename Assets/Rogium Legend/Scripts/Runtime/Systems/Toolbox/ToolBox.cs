@@ -129,7 +129,7 @@ namespace Rogium.Systems.Toolbox
             }
             
             //Update old values
-            T oldValue = grid.GetValue(position);
+            T oldValue = grid.GetAt(position);
             Sprite oldGraphicValue = UIGrid.GetCell(position);
             
             //Select action based on tool

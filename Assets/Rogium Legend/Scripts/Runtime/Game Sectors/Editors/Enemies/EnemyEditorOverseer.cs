@@ -29,8 +29,8 @@ namespace Rogium.Editors.Enemies
         {
             SafetyNet.EnsureIsNotNull(asset, "Assigned Tile");
             SafetyNet.EnsureIntIsBiggerOrEqualTo(index, 0, "Assigned asset index");
-            
-            currentAsset = new EnemyAsset(asset);
+
+            currentAsset = new EnemyAsset.Builder().AsCopy(asset).Build();
             myIndex = index;
             lastAssociatedSpriteID = asset.AssociatedSpriteID;
 
@@ -45,7 +45,7 @@ namespace Rogium.Editors.Enemies
         public void UpdateAsset(EnemyAsset updatedAsset)
         { 
             SafetyNet.EnsureIsNotNull(currentAsset, "Currently active asset.");
-            currentAsset = new EnemyAsset(updatedAsset);
+            currentAsset = new EnemyAsset.Builder().AsCopy(updatedAsset).Build();
         }
         
         public void CompleteEditing()

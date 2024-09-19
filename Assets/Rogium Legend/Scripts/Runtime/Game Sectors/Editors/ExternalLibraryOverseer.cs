@@ -9,7 +9,7 @@ using Rogium.ExternalStorage;
 using Rogium.Options.Core;
 using Rogium.Systems.SceneTransferService;
 using UnityEngine;
-using static Rogium.Editors.Packs.SpriteAssociation;
+using static Rogium.Editors.Packs.AssetAssociation;
 
 namespace Rogium.Editors.Core
 {
@@ -19,7 +19,7 @@ namespace Rogium.Editors.Core
     /// </summary>
     public sealed class ExternalLibraryOverseer : Singleton<ExternalLibraryOverseer>
     {
-        private readonly ExternalStorageOverseer ex = ExternalStorageOverseer.Instance;
+        private readonly IExternalStorageOverseer ex = ExternalCommunicator.Instance;
         private readonly PackEditorOverseer packEditor = PackEditorOverseer.Instance;
         private readonly CampaignEditorOverseer campaignEditor = CampaignEditorOverseer.Instance;
         private readonly OptionsMenuOverseer optionsEditor = OptionsMenuOverseer.Instance;
@@ -52,7 +52,7 @@ namespace Rogium.Editors.Core
             campaigns.RemoveAll(campaign => campaign.PackReferences.Count <= 0);
             
             IList<GameDataAsset> data = ex.Preferences.LoadAll();
-            preferences = (data == null || data.Count <= 0) ? new GameDataAsset() : data[0];
+            preferences = (data == null || data.Count <= 0) ? new GameDataAsset.Builder().Build() : data[0];
         }
 
         #region Packs
@@ -60,11 +60,7 @@ namespace Rogium.Editors.Core
         /// Creates a new Pack, and adds it to the library.
         /// </summary>
         /// <param name="pack">Information about the pack.</param>
-        public void CreateAndAddPack(PackAsset pack)
-        {
-            PackAsset newPack = new(pack.ID, pack.Title, pack.Icon, pack.Author, pack.AssociatedSpriteID, pack.Description, pack.CreationDate);
-            packs.Add(newPack);
-        }
+        public void CreateAndAddPack(PackAsset pack) => packs.Add(new PackAsset.Builder().AsCopy(pack).Build());
 
         /// <summary>
         /// Updates the pack on a specific position in the library
@@ -90,7 +86,7 @@ namespace Rogium.Editors.Core
         /// <param name="packIndex">Pack ID in the list.</param>
         public void DeletePack(int packIndex)
         {
-            RemoveAssociation(packs[packIndex], packs[packIndex]);
+            AssetAssociation.RemoveSpriteAssociation(packs[packIndex], packs[packIndex]);
             packs.Remove(packIndex);
         }
         /// <summary>
@@ -123,18 +119,9 @@ namespace Rogium.Editors.Core
         /// <summary>
         /// Creates a new Campaign, and adds it to the library.
         /// </summary>
-        /// <param name="title">Title of the campaign.</param>
-        /// <param name="icon">Icon of the campaign.</param>
-        /// <param name="author">Author, who made the campaign.</param>
-        /// <param name="dataPack">Pack Asset, containing everything used in the campaign.</param>
-        public void CreateAndAddCampaign(string title, Sprite icon, string author, PackAsset dataPack)
-        {
-            CampaignAsset newCampaign = new(title, icon, author, new PackAsset(dataPack));
-            campaigns.Add(newCampaign);
-        }
         public void CreateAndAddCampaign(CampaignAsset campaign)
         {
-            campaigns.Add(new CampaignAsset(campaign));
+            campaigns.Add(new CampaignAsset.Builder().AsCopy(campaign).Build());
         }
 
         /// <summary>
@@ -194,7 +181,6 @@ namespace Rogium.Editors.Core
         public void UpdatePreferences(GameDataAsset gameData)
         {
             preferences = gameData;
-            // optionsEditor.ApplyAllSettings();
             ex.Preferences.Save(preferences);
         }
 

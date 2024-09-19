@@ -25,26 +25,28 @@ namespace Rogium.ExternalStorage.Serialization
 
         public override ProjectileAsset Decode()
         {
-            return new ProjectileAsset(id,
-                                       title,
-                                       icon.Decode(),
-                                       author,
-                                       color.Decode(),
-                                       associatedSpriteID,
-                                       (AnimationType)animationType,
-                                       frameDuration,
-                                       iconAlt.Decode(),
-                                       baseDamage,
-                                       useDelay,
-                                       knockbackForceSelf,
-                                       knockbackLockDirectionSelf,
-                                       knockbackForceOther,
-                                       knockbackLockDirectionOther,
-                                       flightSpeed,
-                                       acceleration,
-                                       brakeForce,
-                                       (PierceType)pierceType,
-                                       DateTime.Parse(creationDate));
+            return new ProjectileAsset.Builder()
+                .WithID(id)
+                .WithTitle(title)
+                .WithIcon(icon.Decode())
+                .WithAuthor(author)
+                .WithCreationDate(DateTime.Parse(creationDate))
+                .WithColor(color.Decode())
+                .WithAssociatedSpriteID(associatedSpriteID)
+                .WithAnimationType((AnimationType)animationType)
+                .WithFrameDuration(frameDuration)
+                .WithIconAlt(iconAlt.Decode())
+                .WithBaseDamage(baseDamage)
+                .WithUseDelay(useDelay)
+                .WithKnockbackForceSelf(knockbackForceSelf)
+                .WithKnockbackLockDirectionSelf(knockbackLockDirectionSelf)
+                .WithKnockbackForceOther(knockbackForceOther)
+                .WithKnockbackLockDirectionOther(knockbackLockDirectionOther)
+                .WithFlightSpeed(flightSpeed)
+                .WithAcceleration(acceleration)
+                .WithBrakeForce(brakeForce)
+                .WithPierceType((PierceType)pierceType)
+                .Build();
         }
     }
 }

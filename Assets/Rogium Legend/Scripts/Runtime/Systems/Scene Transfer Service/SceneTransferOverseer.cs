@@ -23,7 +23,7 @@ namespace Rogium.Systems.SceneTransferService
         {
             SafetyNet.EnsureIsNotNull(campaign, "Loaded up campaign");
             SafetyNet.EnsureIsNotNull(campaign.DataPack, "Loaded up campaign's DataPack.");
-            this.campaign = new CampaignAsset(campaign);
+            this.campaign = new CampaignAsset.Builder().AsCopy(campaign).Build();
         }
 
         /// <summary>

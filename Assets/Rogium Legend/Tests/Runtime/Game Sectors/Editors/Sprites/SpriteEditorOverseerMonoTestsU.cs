@@ -10,7 +10,7 @@ namespace Rogium.Tests.Editors.Sprites
     /// <summary>
     /// Utils for the <see cref="SpriteEditorOverseerMono"/> tests.
     /// </summary>
-    public static class SpriteEditorUtils
+    public static class SpriteEditorOverseerMonoTestsU
     {
         private static readonly SpriteEditorOverseerMono spriteEditor = SpriteEditorOverseerMono.GetInstance();
 
@@ -26,7 +26,7 @@ namespace Rogium.Tests.Editors.Sprites
             {
                 for (int j = 0; j < grid.Height; j++)
                 {
-                    spriteEditor.UpdateGridCell(new Vector2Int(i, j));
+                    spriteEditor.UpdateCell(new Vector2Int(i, j));
                 }
             }
             ActionHistorySystem.ForceEndGrouping();

@@ -40,35 +40,38 @@ namespace Rogium.UserInterface.ModalWindows
         }
 
         /// <summary>
-        /// Opens a new message window.
+        /// Opens a new generic modal window.
         /// </summary>
         /// <param name="data">Data to load the window with.</param>
-        public void OpenMessageWindow(MessageWindowInfo data)
+        public void OpenWindow(ModalWindowData data)
         {
+            data.UpdateLayout(ModalWindowLayoutType.Message);
             windowGenerator.Open(data);
         }
         
         /// <summary>
-        /// Opens a property window with a single column.
+        /// Opens a new generic window.
         /// </summary>
         /// <param name="data">The data to load the window with.</param>
         /// <param name="key">Unique key that will identify the window.</param>
         /// <param name="column1">Transform of the property column.</param>
-        public void OpenPropertyWindowColumns1(PropertyWindowInfo data, string key, out Transform column1)
+        public void OpenWindow(ModalWindowData data, string key, out Transform column1)
         {
+            data.UpdateLayout(ModalWindowLayoutType.Columns1);
             windowGenerator.Open(data, key);
             column1 = windowGenerator.GetColumn1(key);
         }
         
         /// <summary>
-        /// Opens a property window with two columns.
+        /// Opens a new generic window.
         /// </summary>
         /// <param name="data">The data to load the window with.</param>
         /// <param name="key">Unique key that will identify the window.</param>
         /// <param name="column1">Transform of the 1st column.</param>
         /// <param name="column2">Transform of the 2nd column.</param>
-        public void OpenPropertyWindowColumns2(PropertyWindowInfo data, string key, out Transform column1, out Transform column2)
+        public void OpenWindow(ModalWindowData data, string key, out Transform column1, out Transform column2)
         {
+            data.UpdateLayout(ModalWindowLayoutType.Columns2);
             windowGenerator.Open(data, key);
             column1 = windowGenerator.GetColumn1(key);
             column2 = windowGenerator.GetColumn2(key);
@@ -85,6 +88,7 @@ namespace Rogium.UserInterface.ModalWindows
             AssetPickerWindow window = (cachedAssetPickerWindow.IsOpen) ? Instantiate(assetPickerWindow, windowParent) : cachedAssetPickerWindow;
             window.Construct(type, whenAssetPicked, preselectedAsset, canSelectEmpty);
             ThemeUpdaterRogium.UpdateAssetPickerWindow(window);
+            SendToFront(window);
             window.Open();
         }
         
@@ -99,6 +103,7 @@ namespace Rogium.UserInterface.ModalWindows
             SoundPickerWindow window = (cachedSoundPickerWindow.IsOpen) ? Instantiate(soundPickerWindow, windowParent) : cachedSoundPickerWindow;
             window.Construct(whenSoundChanged, onChangeAnyValue, value);
             ThemeUpdaterRogium.UpdateSoundPickerWindow(window);
+            SendToFront(window);
             window.Open();
         }
         
@@ -112,8 +117,12 @@ namespace Rogium.UserInterface.ModalWindows
             ColorPickerWindow window = (cachedColorPickerWindow.IsOpen) ? Instantiate(colorPickerWindow, windowParent) : cachedColorPickerWindow;
             window.Construct(whenColorChanged, preselectedColor);
             ThemeUpdaterRogium.UpdateColorPickerWindow(window);
+            SendToFront(window);
             window.Open();
         }
-       
+
+        private void SendToFront(ModalWindowBase window) => window.transform.SetAsLastSibling();
+
+        public int GenericActiveWindows => windowGenerator.ActiveWindows;
     }
 }

@@ -34,29 +34,31 @@ namespace Rogium.ExternalStorage.Serialization
 
         public override WeaponAsset Decode()
         {
-            return new WeaponAsset(id,
-                                   title,
-                                   icon.Decode(),
-                                   author,
-                                   color.Decode(),
-                                   associatedSpriteID,
-                                   (AnimationType)animationType,
-                                   frameDuration,
-                                   iconAlt.Decode(),
-                                   baseDamage,
-                                   useDelay,
-                                   knockbackForceSelf,
-                                   knockbackLockDirectionSelf,
-                                   knockbackForceOther,
-                                   knockbackLockDirectionOther,
-                                   (WeaponUseType)useType,
-                                   useDuration,
-                                   useStartDelay,
-                                   isEvasive,
-                                   freezeUser,
-                                   projectileIDs,
-                                   useSound,
-                                   DateTime.Parse(creationDate));
+            return new WeaponAsset.Builder()
+                .WithID(id)
+                .WithTitle(title)
+                .WithIcon(icon.Decode())
+                .WithAuthor(author)
+                .WithCreationDate(DateTime.Parse(creationDate))
+                .WithColor(color.Decode())
+                .WithAssociatedSpriteID(associatedSpriteID)
+                .WithBaseDamage(baseDamage)
+                .WithUseDelay(useDelay)
+                .WithKnockbackForceSelf(knockbackForceSelf)
+                .WithKnockbackLockDirectionSelf(knockbackLockDirectionSelf)
+                .WithKnockbackForceOther(knockbackForceOther)
+                .WithKnockbackLockDirectionOther(knockbackLockDirectionOther)
+                .WithAnimationType((AnimationType)animationType)
+                .WithFrameDuration(frameDuration)
+                .WithIconAlt(iconAlt.Decode())
+                .WithUseType((WeaponUseType)useType)
+                .WithUseDuration(useDuration)
+                .WithUseStartDelay(useStartDelay)
+                .WithIsEvasive(isEvasive)
+                .WithFreezeUser(freezeUser)
+                .WithProjectileIDs(projectileIDs)
+                .WithUseSound(useSound)
+                .Build();
         }
     }
 }

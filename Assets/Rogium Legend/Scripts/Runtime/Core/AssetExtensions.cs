@@ -60,5 +60,10 @@ namespace Rogium.Core
         /// Returns TRUE if asset is null or has an empty ID.
         /// </summary>
         public static bool IsEmpty(this IIDHolder asset) => (asset == null || asset.ID == EditorDefaults.EmptyAssetID);
+
+        /// <summary>
+        /// Returns TRUE if the ID is empty or equal to the default empty ID.
+        /// </summary>
+        public static bool IsEmpty(this string id) => (string.IsNullOrEmpty(id) || id == EditorDefaults.EmptyAssetID);
     }
 }

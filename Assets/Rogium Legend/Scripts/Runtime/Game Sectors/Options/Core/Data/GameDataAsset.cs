@@ -18,46 +18,7 @@ namespace Rogium.Options.Core
         private ScreenType screenMode;
         private bool vSync;
 
-        #region Constructors
-
-        public GameDataAsset()
-        {
-            masterVolume = PreferencesDefaults.MasterVolume;
-            musicVolume = PreferencesDefaults.MusicVolume;
-            soundVolume = PreferencesDefaults.SoundVolume;
-            uiVolume = PreferencesDefaults.UIVolume;
-            
-            resolution = PreferencesDefaults.Resolution;
-            screenMode = PreferencesDefaults.ScreenMode;
-            vSync = PreferencesDefaults.VSync;
-        }
-
-        public GameDataAsset(GameDataAsset asset)
-        {
-            masterVolume = asset.MasterVolume;
-            musicVolume = asset.MusicVolume;
-            soundVolume = asset.SoundVolume;
-            uiVolume = asset.UIVolume;
-            
-            resolution = asset.Resolution;
-            screenMode = asset.ScreenMode;
-            vSync = asset.VSync;
-        }
-
-        public GameDataAsset(float masterVolume, float musicVolume, float soundVolume, float uiVolume, 
-                             Vector2Int resolution, ScreenType screenMode, bool vSync)
-        {
-            this.masterVolume = masterVolume;
-            this.musicVolume = musicVolume;
-            this.soundVolume = soundVolume;
-            this.uiVolume = uiVolume;
-            
-            this.resolution = resolution;
-            this.screenMode = screenMode;
-            this.vSync = vSync;
-        }
-
-        #endregion
+        private GameDataAsset() { }
         
         #region Update Values
         public void UpdateMasterVolume(float newValue) => masterVolume = newValue;
@@ -96,5 +57,82 @@ namespace Rogium.Options.Core
         public ScreenType ScreenMode { get => screenMode; }
         public Vector2Int Resolution { get => resolution; }
         public bool VSync { get => vSync; }
+
+        public class Builder
+        {
+            private readonly GameDataAsset asset = new();
+            
+            public Builder()
+            {
+                asset.masterVolume = PreferencesDefaults.MasterVolume;
+                asset.musicVolume = PreferencesDefaults.MusicVolume;
+                asset.soundVolume = PreferencesDefaults.SoundVolume;
+                asset.uiVolume = PreferencesDefaults.UIVolume;
+                asset.resolution = PreferencesDefaults.Resolution;
+                asset.screenMode = PreferencesDefaults.ScreenMode;
+                asset.vSync = PreferencesDefaults.VSync;
+            }
+
+            public Builder WithMasterVolume(float masterVolume)
+            {
+                asset.masterVolume = masterVolume;
+                return this;
+            }
+            
+            public Builder WithMusicVolume(float musicVolume)
+            {
+                asset.musicVolume = musicVolume;
+                return this;
+            }
+            
+            public Builder WithSoundVolume(float soundVolume)
+            {
+                asset.soundVolume = soundVolume;
+                return this;
+            }
+            
+            public Builder WithUIVolume(float uiVolume)
+            {
+                asset.uiVolume = uiVolume;
+                return this;
+            }
+            
+            public Builder WithResolution(Vector2Int resolution)
+            {
+                asset.resolution = resolution;
+                return this;
+            }
+            
+            public Builder WithScreenMode(ScreenType screenMode)
+            {
+                asset.screenMode = screenMode;
+                return this;
+            }
+            
+            public Builder WithVSync(bool vSync)
+            {
+                asset.vSync = vSync;
+                return this;
+            }
+            
+            /// <summary>
+            /// Copies the values from another asset.
+            /// </summary>
+            /// <param name="asset">The asset to copy from.</param>
+            public Builder AsCopy(GameDataAsset asset)
+            {
+                this.asset.masterVolume = asset.MasterVolume;
+                this.asset.musicVolume = asset.MusicVolume;
+                this.asset.soundVolume = asset.SoundVolume;
+                this.asset.uiVolume = asset.UIVolume;
+                     
+                this.asset.resolution = asset.Resolution;
+                this.asset.screenMode = asset.ScreenMode;
+                this.asset.vSync = asset.VSync;
+                return this;
+            }
+            
+            public GameDataAsset Build() => asset;
+        }
     }
 }

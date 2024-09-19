@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using RedRats.Core;
 
 namespace Rogium.Systems.ActionHistory
@@ -25,7 +26,6 @@ namespace Rogium.Systems.ActionHistory
             redoHistory.OnChange += () => OnUpdateRedoHistory?.Invoke();
             assetDetector.OnAssetChange += ClearHistory;
         }
-
 
         /// <summary>
         /// Adds an action to the history and executes it.

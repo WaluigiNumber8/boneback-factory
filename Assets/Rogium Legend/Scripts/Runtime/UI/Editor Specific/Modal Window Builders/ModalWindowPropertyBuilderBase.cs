@@ -1,0 +1,91 @@
+﻿using System;
+using RedRats.Core;
+using RedRats.UI.ModalWindows;
+using Rogium.Editors.Core;
+using Rogium.Editors.Packs;
+using Rogium.UserInterface.Interactables.Properties;
+using Rogium.UserInterface.ModalWindows;
+using UnityEngine;
+
+namespace Rogium.UserInterface.Editors.ModalWindowBuilding
+{
+    /// <summary>
+    /// Base for all Modal Window Constructors.
+    /// </summary>
+    public abstract class ModalWindowPropertyBuilderBase
+    {
+        private const string ModalWindowKey = "PropertyBuilder";
+        
+        protected readonly UIPropertyBuilder b = UIPropertyBuilder.GetInstance();
+        private readonly ModalWindowBuilder wb = ModalWindowBuilder.GetInstance();
+        protected readonly PackEditorOverseer editor = PackEditorOverseer.Instance;
+        protected AssetBase editedAssetBase;
+
+
+        protected void OpenForColumns1(string headerText, Action onConfirm, out Transform column1)
+        {
+            ModalWindowData data = new ModalWindowData.Builder()
+                .WithLayout(ModalWindowLayoutType.Columns1)
+                .WithHeaderText(headerText)
+                .WithAcceptButton("Done", onConfirm)
+                .WithDenyButton("Cancel")
+                .Build();
+            wb.OpenWindow(data, ModalWindowKey, out column1);
+            column1.KillChildren();
+        }
+        
+        protected void OpenForColumns2(string headerText, Action onConfirm, out Transform column1, out Transform column2)
+        {
+            ModalWindowData data = new ModalWindowData.Builder()
+                .WithLayout(ModalWindowLayoutType.Columns2)
+                .WithHeaderText(headerText)
+                .WithAcceptButton("Done", onConfirm)
+                .WithDenyButton("Cancel")
+                .Build();
+            wb.OpenWindow(data, ModalWindowKey, out column1, out column2);
+            column1.KillChildren();
+            column2.KillChildren();
+        }
+
+        protected string GetTitleByModificationType(IAsset asset, AssetModificationType type)
+        {
+            return type switch
+            {
+                AssetModificationType.Create => asset.Title,
+                AssetModificationType.Update => asset.Title,
+                AssetModificationType.Clone => $"{asset.Title} - C",
+                _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+            };
+        }
+        
+        /// <summary>
+        /// Opens a Modal Window as a Creation Window.
+        /// </summary>
+        public abstract void OpenForCreate(Action whenConfirm = null);
+
+        /// <summary>
+        /// Opens a Modal Window as an Edit Window.
+        /// </summary>
+        public abstract void OpenForUpdate(Action whenConfirm = null);
+        
+        /// <summary>
+        /// Open a Modal Window for cloning an asset.
+        /// </summary>
+        public abstract void OpenForClone(Action whenConfirm = null);
+
+        /// <summary>
+        /// What happens, when the confirm button is pressed in the creation window variation.
+        /// </summary>
+        protected abstract void CreateAsset(Action whenConfirm);
+        
+        /// <summary>
+        /// What happens, when the confirm button is pressed in the update window variation.
+        /// </summary>
+        protected abstract void UpdateAsset(Action whenConfirm);
+        
+        /// <summary>
+        /// What happens, when the confirm button is pressed in the clone window variation.
+        /// </summary>
+        protected abstract void CloneAsset(Action whenConfirm);
+    }
+}

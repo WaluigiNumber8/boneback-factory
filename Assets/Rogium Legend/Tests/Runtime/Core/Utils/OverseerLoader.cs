@@ -18,7 +18,12 @@ namespace Rogium.Tests.Core
         public static void LoadThemeOverseer() => Object.Instantiate(themeOverseerPrefab);
 
         public static void LoadUIBuilder() => Object.Instantiate(uiBuilderPrefab, GetCanvasTransform());
-        public static void LoadModalWindowBuilder() => Object.Instantiate(modalWindowBuilderPrefab, GetCanvasTransform());
+        public static void LoadModalWindowBuilder()
+        {
+            LoadThemeOverseer();
+            LoadInternalLibrary();
+            Object.Instantiate(modalWindowBuilderPrefab, GetCanvasTransform());
+        }
 
         private static Transform GetCanvasTransform() => Object.FindFirstObjectByType<Canvas>().transform;
     }

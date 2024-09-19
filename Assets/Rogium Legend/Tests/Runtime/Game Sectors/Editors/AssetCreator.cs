@@ -1,4 +1,5 @@
 using RedRats.Core;
+using Rogium.Editors.Campaign;
 using Rogium.Editors.Enemies;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Palettes;
@@ -7,6 +8,8 @@ using Rogium.Editors.Rooms;
 using Rogium.Editors.Sprites;
 using Rogium.Editors.Tiles;
 using Rogium.Editors.Weapons;
+using Rogium.Systems.GridSystem;
+using UnityEditor.Graphs;
 using UnityEngine;
 
 namespace Rogium.Tests.Editors
@@ -22,87 +25,93 @@ namespace Rogium.Tests.Editors
             PackEditorOverseer.Instance.AssignAsset(pack, 0);
             return pack;
         }
-        
+
+        public static CampaignAsset CreateCampaign()
+        {
+            CampaignAsset campaign = new CampaignAsset.Builder()
+                .WithTitle("Test Campaign")
+                .WithIcon(RedRatBuilder.GenerateSprite(Color.black, 16, 16, 16))
+                .WithDataPack(CreatePack())
+                .Build();
+            return campaign;
+        }
+
         public static PackAsset CreatePack()
         {
-            PackAsset pack = new();
-            pack.UpdateTitle("Test Pack");
-            
-            pack.Palettes.AddAllWithoutSave(new[] { CreatePalette() });
-            pack.Sprites.AddAllWithoutSave(new[] { CreateSprite() });
-            pack.Weapons.AddAllWithoutSave(new[] { CreateWeapon() });
-            pack.Projectiles.AddAllWithoutSave(new[] { CreateProjectile() });
-            pack.Enemies.AddAllWithoutSave(new[] { CreateEnemy() });
-            pack.Rooms.AddAllWithoutSave(new[] { CreateRoom() });
-            pack.Tiles.AddAllWithoutSave(new[] { CreateTile() });
-
-            return pack;
+            return new PackAsset.Builder()
+                .WithTitle("Test Pack")
+                .WithIcon(RedRatBuilder.GenerateSprite(Color.magenta, 16, 16, 16))
+                .WithPalettes(new[] {CreatePalette()})
+                .WithSprites(new[] {CreateSprite()})
+                .WithWeapons(new[] {CreateWeapon()})
+                .WithProjectiles(new[] {CreateProjectile()})
+                .WithEnemies(new[] {CreateEnemy()})
+                .WithRooms(new[] {CreateRoom()})
+                .WithTiles(new[] {CreateTile()})
+                .Build();
         }
 
         public static PaletteAsset CreatePalette()
         {
-            PaletteAsset palette = new();
-            palette.UpdateTitle("Test Palette");
-            palette.UpdateIcon(RedRatBuilder.GenerateSprite(Color.magenta, 16, 16, 16));
-            return palette;
+            return new PaletteAsset.Builder()
+                .WithTitle($"Test Palette {Random.Range(0, 1000)}")
+                .WithIcon(RedRatBuilder.GenerateSprite(Color.magenta, 16, 16, 16))
+                .WithColors(new[] {Color.magenta, Color.red, Color.green, Color.blue, Color.yellow})
+                .Build();
         }
-        
-        public static SpriteAsset CreateSprite()
+
+        public static SpriteAsset CreateSprite(Color color = new())
         {
-            SpriteAsset sprite = new();
-            sprite.UpdateTitle("Test Palette");
-            sprite.UpdateIcon(RedRatBuilder.GenerateSprite(Color.white, 16, 16, 16));
+            return new SpriteAsset.Builder()
+                .WithTitle($"Test Sprite {Random.Range(0, 1000)}")
+                .WithIcon(RedRatBuilder.GenerateSprite(color, 16, 16, 16))
+                .Build();
+        }
+
+        public static SpriteAsset CreateSpriteFromSlot1()
+        {
+            ObjectGrid<int> newSpriteData = new(16, 16, () => 0);
+            newSpriteData.SetTo(0, 0, 0);
+            SpriteAsset sprite = CreateSprite();
+            sprite.UpdateSpriteData(newSpriteData);
             return sprite;
         }
 
         public static WeaponAsset CreateWeapon()
         {
-            WeaponAsset weapon = new();
-            weapon.UpdateTitle("Test Weapon");
-            SpriteAsset s = CreateSprite();
-            s.UpdateIcon(RedRatBuilder.GenerateSprite(Color.green, 16, 16, 16));
-            weapon.UpdateIcon(s);
+            WeaponAsset weapon = new WeaponAsset.Builder()
+                .WithTitle("Test Weapon")
+                .Build();
             return weapon;
         }
 
         public static ProjectileAsset CreateProjectile()
         {
-            ProjectileAsset projectile = new();
-            projectile.UpdateTitle("Test Projectile");
-            SpriteAsset s = CreateSprite();
-            s.UpdateIcon(RedRatBuilder.GenerateSprite(Color.cyan, 16, 16, 16));
-            projectile.UpdateIcon(s);
-            return projectile;
+            return new ProjectileAsset.Builder()
+                .WithTitle("Test Projectile")
+                .Build();
         }
 
         public static EnemyAsset CreateEnemy()
         {
-            EnemyAsset enemy = new();
-            enemy.UpdateTitle("Test Enemy");
-            SpriteAsset s = CreateSprite();
-            s.UpdateIcon(RedRatBuilder.GenerateSprite(Color.red, 16, 16, 16));
-            enemy.UpdateIcon(s);
-            return enemy;
+            return new EnemyAsset.Builder()
+                .WithTitle("Test Enemy")
+                .Build();
         }
 
         public static RoomAsset CreateRoom()
         {
-            RoomAsset room = new();
-            room.UpdateTitle("Test Room");
-            SpriteAsset s = CreateSprite();
-            s.UpdateIcon(RedRatBuilder.GenerateSprite(Color.blue, 16, 16, 16));
-            room.UpdateIcon(s);
-            return room;
+            return new RoomAsset.Builder()
+                .WithTitle("Test Room")
+                .WithIcon(RedRatBuilder.GenerateSprite(Color.blue, 16, 16, 16))
+                .Build();
         }
 
         public static TileAsset CreateTile()
         {
-            TileAsset tile = new();
-            tile.UpdateTitle("Test Tile");
-            SpriteAsset s = CreateSprite();
-            s.UpdateIcon(RedRatBuilder.GenerateSprite(Color.yellow, 16, 16, 16));
-            tile.UpdateIcon(s);
-            return tile;
+            return new TileAsset.Builder()
+                .WithTitle("Test Tile")
+                .Build();
         }
     }
 }

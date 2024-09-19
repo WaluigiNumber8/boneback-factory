@@ -18,10 +18,10 @@ namespace Rogium.Editors.Campaign
         /// <returns>A pack containing everything</returns>
         public PackAsset Combine(IList<PackAsset> packs)
         {
-            PackAsset ultimatePack = new PackAsset();
+            PackAsset ultimatePack = new PackAsset.Builder().Build();
             foreach (PackAsset pack in packs)
             {
-                PackAsset p = ExternalStorageOverseer.Instance.LoadPack(pack);
+                PackAsset p = ExternalCommunicator.Instance.LoadPack(pack);
                 ultimatePack.Palettes.AddAllWithoutSave(p.Palettes);
                 ultimatePack.Sprites.AddAllWithoutSave(p.Sprites);
                 ultimatePack.Weapons.AddAllWithoutSave(p.Weapons);
@@ -40,7 +40,7 @@ namespace Rogium.Editors.Campaign
         /// <returns>A single combined pack.</returns>
         public PackAsset Combine(IList<PackImportInfo> packs)
         {
-            PackAsset ultimatePack = new PackAsset();
+            PackAsset ultimatePack = new PackAsset.Builder().Build();
             IList<PackAsset> allPacks = ExternalLibraryOverseer.Instance.GetPacksCopy;
 
             foreach (PackImportInfo importInfo in packs)

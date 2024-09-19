@@ -39,5 +39,50 @@ namespace Rogium.Editors.Core
         public bool KnockbackLockDirectionSelf { get => knockbackLockDirectionSelf; }
         public float KnockbackForceOther { get => knockbackForceOther; }
         public bool KnockbackLockDirectionOther { get => knockbackLockDirectionOther; }
+        
+        public abstract class EntityAssetBuilder<T, TBuilder> : AnimatedAssetBuilder<T, TBuilder> where T : EntityAssetBase where TBuilder : BaseBuilder<T, TBuilder>
+        {
+            public TBuilder WithColor(Color color)
+            {
+                Asset.color = color;
+                return This;
+            }
+            
+            public TBuilder WithBaseDamage(int baseDamage)
+            {
+                Asset.baseDamage = baseDamage;
+                return This;
+            }
+            
+            public TBuilder WithUseDelay(float useDelay)
+            {
+                Asset.useDelay = useDelay;
+                return This;
+            }
+            
+            public TBuilder WithKnockbackForceSelf(float knockbackForceSelf)
+            {
+                Asset.knockbackForceSelf = knockbackForceSelf;
+                return This;
+            }
+            
+            public TBuilder WithKnockbackLockDirectionSelf(bool knockbackLockDirectionSelf)
+            {
+                Asset.knockbackLockDirectionSelf = knockbackLockDirectionSelf;
+                return This;
+            }
+            
+            public TBuilder WithKnockbackForceOther(float knockbackForceOther)
+            {
+                Asset.knockbackForceOther = knockbackForceOther;
+                return This;
+            }
+            
+            public TBuilder WithKnockbackLockDirectionOther(bool knockbackLockDirectionOther)
+            {
+                Asset.knockbackLockDirectionOther = knockbackLockDirectionOther;
+                return This;
+            }
+        }
     }
 }

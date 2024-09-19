@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using RedRats.Systems.FileSystem.JSON.Serialization;
 using Rogium.Editors.Palettes;
 using UnityEngine;
@@ -12,10 +14,12 @@ namespace Rogium.ExternalStorage.Serialization
     public class JSONPaletteAsset : JSONAssetBase<PaletteAsset>
     {
         public JSONArray<Color, JSONColor> colors;
+        public string[] associatedAssetIDs;
 
         public JSONPaletteAsset(PaletteAsset asset) : base(asset)
         {
             colors = new JSONArray<Color, JSONColor>(asset.Colors, c => new JSONColor(c));
+            associatedAssetIDs = asset.AssociatedAssetsIDs.ToArray();
         }
 
         /// <summary>
@@ -27,12 +31,15 @@ namespace Rogium.ExternalStorage.Serialization
             colors.SetDecodingMethod(c => c.Decode());
             Color[] deserializedColors = colors.Decode();
 
-            return new PaletteAsset(id,
-                                    title,
-                                    icon.Decode(),
-                                    author,
-                                    deserializedColors,
-                                    DateTime.Parse(creationDate));
+            return new PaletteAsset.Builder()
+                .WithID(id)
+                .WithTitle(title)
+                .WithIcon(icon.Decode())
+                .WithAuthor(author)
+                .WithCreationDate(DateTime.Parse(creationDate))
+                .WithColors(deserializedColors)
+                .WithAssociatedAssetIDs(associatedAssetIDs?.ToHashSet() ?? new HashSet<string>())
+                .Build();
         }
     }
 }

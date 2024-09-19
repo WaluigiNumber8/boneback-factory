@@ -18,21 +18,23 @@ namespace Rogium.ExternalStorage.Serialization
         public JSONSpriteAsset(SpriteAsset asset) : base(asset)
         {
             spriteData = new JSONGrid<int>(asset.SpriteData);
-            preferredPaletteID = asset.PreferredPaletteID;
+            preferredPaletteID = asset.AssociatedPaletteID;
             associatedAssetIDs = asset.AssociatedAssetsIDs.ToArray();
         }
 
         public override SpriteAsset Decode()
         {
             spriteData.SetDefaultCreator(() => -1);
-            return new SpriteAsset(id,
-                                   title,
-                                   icon.Decode(),
-                                   author,
-                                   spriteData.Decode(),
-                                   preferredPaletteID,
-                                   (associatedAssetIDs == null) ? new HashSet<string>() : associatedAssetIDs.ToHashSet(),
-                                   DateTime.Parse(creationDate));
+            return new SpriteAsset.Builder()
+                .WithID(id)
+                .WithTitle(title)
+                .WithIcon(icon.Decode())
+                .WithAuthor(author)
+                .WithCreationDate(DateTime.Parse(creationDate))
+                .WithSpriteData(spriteData.Decode())
+                .WithAssociatedPaletteID(preferredPaletteID)
+                .WithAssociatedAssetIDs(associatedAssetIDs?.ToHashSet() ?? new HashSet<string>())
+                .Build();
         }
     }
 }
