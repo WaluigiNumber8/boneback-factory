@@ -62,6 +62,7 @@ namespace Rogium.Editors.Sprites
             SafetyNet.EnsureIsNotNull(currentPalette, "Currently active palette.");
             currentPalette = new PaletteAsset.Builder().AsCopy(updatedPalette).Build();
             currentAsset.UpdateAssociatedPaletteID(currentPalette.ID);
+            originalColors = currentPalette.Colors.AsCopy();
         }
         
         /// <summary>
