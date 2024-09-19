@@ -271,5 +271,15 @@ namespace Rogium.Tests.Editors.Sprites
             Object.FindFirstObjectByType<ModalWindow>()?.OnAccept();
             Assert.That(PackEditorOverseer.Instance.CurrentPack.Palettes[1].Colors[1], Is.EqualTo(EditorDefaults.Instance.MissingPalette[1]));   
         }
+
+        [UnityTest]
+        public IEnumerator Should_CreateCopyWithProperIcon_WhenEditedAndSavedAsCopy()
+        {
+            yield return UpdateColorSlotForSpriteWithMissingPalette();
+            Object.FindFirstObjectByType<ModalWindow>()?.OnAccept();
+            yield return null;
+            Texture2D icon = PackEditorOverseer.Instance.CurrentPack.Palettes[1].Icon.texture;
+            Assert.That(icon.GetPixel(0, icon.height-1), Is.EqualTo(Color.blue));   
+        }
     }
 }

@@ -45,6 +45,8 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         protected override void CloneAsset(Action whenConfirm)
         {
             editor.CreateNewPalette((PaletteAsset) editedAssetBase);
+            paletteEditor.UpdateAsset((PaletteAsset)editedAssetBase);
+            paletteEditor.CompleteEditing();
             whenConfirm?.Invoke();
         }
     }

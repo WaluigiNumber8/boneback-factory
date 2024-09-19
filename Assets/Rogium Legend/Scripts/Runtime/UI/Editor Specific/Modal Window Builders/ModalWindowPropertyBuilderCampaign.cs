@@ -68,6 +68,8 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         protected override void CloneAsset(Action whenConfirm)
         {
             ExternalLibraryOverseer.Instance.CreateAndAddCampaign((CampaignAsset) editedAssetBase);
+            campaignEditor.UpdateAsset((CampaignAsset) editedAssetBase);
+            campaignEditor.CompleteEditing();
             whenConfirm?.Invoke();
         }
 

@@ -48,6 +48,8 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         protected override void CloneAsset(Action whenConfirm)
         {
             editor.CreateNewRoom((RoomAsset)editedAssetBase);
+            roomEditor.UpdateAsset((RoomAsset)editedAssetBase);
+            roomEditor.CompleteEditing();
             whenConfirm?.Invoke();
         }
     }

@@ -46,6 +46,8 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         protected override void CloneAsset(Action whenConfirm)
         {
             editor.CreateNewSprite((SpriteAsset) editedAssetBase);
+            spriteEditor.UpdateAsset((SpriteAsset)editedAssetBase);
+            spriteEditor.CompleteEditing();
             whenConfirm?.Invoke();
         }
     }

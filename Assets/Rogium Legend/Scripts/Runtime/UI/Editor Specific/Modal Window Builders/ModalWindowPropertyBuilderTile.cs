@@ -48,6 +48,8 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         protected override void CloneAsset(Action whenConfirm)
         {
             editor.CreateNewTile((TileAsset) editedAssetBase);
+            tileEditor.UpdateAsset((TileAsset)editedAssetBase);
+            tileEditor.CompleteEditing();
             whenConfirm?.Invoke();
         }
     }

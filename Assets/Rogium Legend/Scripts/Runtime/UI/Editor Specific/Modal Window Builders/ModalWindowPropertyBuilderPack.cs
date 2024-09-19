@@ -12,6 +12,8 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     public class ModalWindowPropertyBuilderPack : ModalWindowPropertyBuilderBase
     {
         private new PackAsset editedAssetBase;
+        private readonly PackEditorOverseer packEditor = PackEditorOverseer.Instance;
+        
         public override void OpenForCreate(Action whenConfirm = null) => OpenWindow(new PackAsset.Builder().Build(), () => CreateAsset(whenConfirm), "Creating a new pack", AssetModificationType.Create);
 
         public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new PackAsset.Builder().AsCopy(editor.CurrentPack).Build(), () => UpdateAsset(whenConfirm), $"Editing {editor.CurrentPack.Title}", AssetModificationType.Update);
@@ -53,7 +55,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         /// </summary>
         protected override void UpdateAsset(Action whenConfirm)
         {
-            PackEditorOverseer.Instance.UpdateAsset(editedAssetBase);
+            packEditor.UpdateAsset(editedAssetBase);
             editor.CompleteEditing();
             whenConfirm?.Invoke();
         }
@@ -61,6 +63,8 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         protected override void CloneAsset(Action whenConfirm)
         {
             ExternalLibraryOverseer.Instance.CreateAndAddPack(editedAssetBase);
+            packEditor.UpdateAsset(editedAssetBase);
+            editor.CompleteEditing();
             whenConfirm?.Invoke();
         }
     }

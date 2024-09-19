@@ -655,7 +655,7 @@ namespace Rogium.Systems.GASExtension
                     .WithMessage("The palette was edited. Save as a copy?")
                     .WithAcceptButton("Save as Copy", () =>
                     {
-                        PaletteEditorOverseer.Instance.AssignAsset(SpriteEditorOverseer.Instance.CurrentPalette, 0, false);
+                        PaletteEditorOverseer.Instance.AssignAsset(SpriteEditorOverseer.Instance.CurrentPalette, PackEditorOverseer.Instance.CurrentPack.Palettes.Count, false);
                         SaveEditedPaletteAsClone();
                     })
                     .WithDenyButton("No Save")

@@ -46,6 +46,8 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         protected override void CloneAsset(Action whenConfirm)
         {
             editor.CreateNewWeapon((WeaponAsset)editedAssetBase);
+            weaponEditor.UpdateAsset((WeaponAsset)editedAssetBase);
+            weaponEditor.CompleteEditing();
             whenConfirm?.Invoke();
         }
     }
