@@ -53,7 +53,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             {
                 AssetModificationType.Create => asset.Title,
                 AssetModificationType.Update => asset.Title,
-                AssetModificationType.Clone => $"{asset.Title} - Clone",
+                AssetModificationType.Clone => $"{asset.Title} - C",
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };
         }
