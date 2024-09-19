@@ -321,5 +321,21 @@ namespace Rogium.Tests.Editors.Sprites
             Texture2D icon = PackEditorOverseer.Instance.CurrentPack.Sprites[0].Icon.texture;
             Assert.That(icon.GetPixel(0, icon.height-1), Is.EqualTo(EditorDefaults.Instance.MissingPalette[0]));
         }
+
+        [UnityTest]
+        public IEnumerator Should_UpdateGridVisualPreviewerColor_WhenPaletteSlotColorChanged()
+        {
+            yield return UpdateColorSlot(Color.blue);
+            Color previewerColor = Object.FindFirstObjectByType<GridVisualPreviewer>().Color;
+            Assert.That(previewerColor, Is.EqualTo(Color.blue));
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_NotUpdateGridVisualPreviewerColor_WhenUnselectedPaletteSlotColorChanged()
+        {
+            yield return UpdateColorSlot(Color.blue, 1);
+            Color previewerColor = Object.FindFirstObjectByType<GridVisualPreviewer>().Color;
+            Assert.That(previewerColor, Is.EqualTo(Color.magenta));
+        }
     }
 }

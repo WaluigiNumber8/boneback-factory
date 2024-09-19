@@ -63,6 +63,7 @@ namespace Rogium.Systems.GridSystem
             foreach (ItemPaletteColor palette in colorPalettes)
             {
                 palette.OnSelect += ChangeColor;
+                palette.OnChangeColorOnSelectedSlot += ChangeColor;
             }
         }
 
@@ -181,7 +182,10 @@ namespace Rogium.Systems.GridSystem
 
                 currentTool = type;
             }
+            
         }
+        
+        public Color Color { get => gridPreviewer.image.color; }
         
         [Serializable]
         public struct PreviewerInfo

@@ -15,6 +15,7 @@ namespace Rogium.Systems.ItemPalette
     public class ItemPaletteColor : MonoBehaviour
     {
         public event Action<ColorSlot> OnSelect;
+        public event Action<ColorSlot> OnChangeColorOnSelectedSlot;
         
         [SerializeField] private ColorSlot colorSlotPrefab;
         [SerializeField] private Transform paletteParent;
@@ -22,6 +23,7 @@ namespace Rogium.Systems.ItemPalette
 
         private MenuFiller<ColorSlot> menuFiller;
         private IList<ColorSlot> slots;
+        private int currentSelectedIndex;
 
         private void Awake()
         {
@@ -29,8 +31,17 @@ namespace Rogium.Systems.ItemPalette
             menuFiller = new MenuFiller<ColorSlot>();
         }
 
-        private void OnEnable() => ColorSlot.OnSelectedAny += NotifyListeners;
-        private void OnDisable() => ColorSlot.OnSelectedAny -= NotifyListeners;
+        private void OnEnable()
+        {
+            ColorSlot.OnSelectedAny += NotifyListeners;
+            ColorSlot.OnChangeColor += TryNotifyColorChanged;
+        }
+
+        private void OnDisable()
+        {
+            ColorSlot.OnSelectedAny -= NotifyListeners;
+            ColorSlot.OnChangeColor -= TryNotifyColorChanged;
+        }
 
         /// <summary>
         /// Spawns slots and fills them with information.
@@ -80,7 +91,14 @@ namespace Rogium.Systems.ItemPalette
         private void NotifyListeners(int index)
         {
             SafetyNet.EnsureIndexWithingCollectionRange(index, slots, "List of Slots");
+            currentSelectedIndex = index;
             OnSelect?.Invoke(slots[index]);
+        }
+        
+        private void TryNotifyColorChanged(int index)
+        {
+            if (index != currentSelectedIndex) return;
+            OnChangeColorOnSelectedSlot?.Invoke(slots[currentSelectedIndex]);
         }
     }
 }
