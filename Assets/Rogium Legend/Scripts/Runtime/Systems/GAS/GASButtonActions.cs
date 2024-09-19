@@ -652,7 +652,7 @@ namespace Rogium.Systems.GASExtension
             {
                 ModalWindowData data = new ModalWindowData.Builder()
                     .WithLayout(ModalWindowLayoutType.Message)
-                    .WithMessage("The palette was edited. Save as a copy?")
+                    .WithMessage("No palette was assigned, but placeholder was edited. Save as a copy?")
                     .WithAcceptButton("Save as Copy", () =>
                     {
                         PaletteEditorOverseer.Instance.AssignAsset(SpriteEditorOverseer.Instance.CurrentPalette, PackEditorOverseer.Instance.CurrentPack.Palettes.Count, false);

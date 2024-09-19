@@ -31,9 +31,6 @@ namespace Rogium.Editors.Sprites
         {
             UpdateList();
 
-            //TODO Fill with a default palette if no palettes are created the user chose to import the default pack.
-            SafetyNet.EnsureListIsNotNullOrEmpty(palettes, "List of Palettes");
-
             //If ID is not set yet, return first palette.
             if (string.IsNullOrEmpty(paletteID))
             {
@@ -45,7 +42,6 @@ namespace Rogium.Editors.Sprites
             //If ID is empty, return default palette.
             if (paletteID == EditorDefaults.EmptyAssetID)
             {
-                SafetyNet.ThrowMessage("Assigned palette was removed. Please select a new one.");
                 return new PaletteAsset.Builder()
                     .WithID(EditorDefaults.EmptyAssetID)
                     .WithColors(EditorDefaults.Instance.MissingPalette)
