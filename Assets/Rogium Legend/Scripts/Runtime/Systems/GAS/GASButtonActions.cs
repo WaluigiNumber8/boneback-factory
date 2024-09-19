@@ -648,7 +648,7 @@ namespace Rogium.Systems.GASExtension
         public static void SaveChangesSprite()
         {
             //If sprite's palette is missing, don't save
-            if (SpriteEditorOverseer.Instance.CurrentAsset.ID == EditorDefaults.EmptyAssetID)
+            if (SpriteEditorOverseer.Instance.CurrentAsset.AssociatedPaletteID == EditorDefaults.EmptyAssetID)
             {
                 ModalWindowData data = new ModalWindowData.Builder()
                     .WithLayout(ModalWindowLayoutType.Message)
