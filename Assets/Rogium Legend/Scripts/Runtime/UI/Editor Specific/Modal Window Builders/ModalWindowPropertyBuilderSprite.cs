@@ -1,5 +1,5 @@
 ﻿using System;
-using Rogium.Core;
+using Rogium.Editors.Packs;
 using Rogium.Editors.Sprites;
 using UnityEngine;
 
@@ -46,7 +46,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         protected override void CloneAsset(Action whenConfirm)
         {
             editor.CreateNewSprite((SpriteAsset) editedAssetBase);
-            spriteEditor.UpdateAsset((SpriteAsset)editedAssetBase);
+            spriteEditor.AssignAsset((SpriteAsset)editedAssetBase, PackEditorOverseer.Instance.CurrentPack.Sprites.Count - 1);
             spriteEditor.CompleteEditing();
             whenConfirm?.Invoke();
         }

@@ -1,5 +1,5 @@
 ﻿using System;
-using Rogium.Core;
+using Rogium.Editors.Packs;
 using Rogium.Editors.Tiles;
 using UnityEngine;
 
@@ -48,7 +48,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         protected override void CloneAsset(Action whenConfirm)
         {
             editor.CreateNewTile((TileAsset) editedAssetBase);
-            tileEditor.UpdateAsset((TileAsset)editedAssetBase);
+            tileEditor.AssignAsset((TileAsset)editedAssetBase, PackEditorOverseer.Instance.CurrentPack.Tiles.Count - 1);
             tileEditor.CompleteEditing();
             whenConfirm?.Invoke();
         }

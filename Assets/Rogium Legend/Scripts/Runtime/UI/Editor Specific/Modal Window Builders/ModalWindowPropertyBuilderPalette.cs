@@ -1,5 +1,5 @@
 ﻿using System;
-using Rogium.Core;
+using Rogium.Editors.Packs;
 using Rogium.Editors.Palettes;
 using UnityEngine;
 
@@ -45,7 +45,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         protected override void CloneAsset(Action whenConfirm)
         {
             editor.CreateNewPalette((PaletteAsset) editedAssetBase);
-            paletteEditor.UpdateAsset((PaletteAsset)editedAssetBase);
+            paletteEditor.AssignAsset((PaletteAsset)editedAssetBase, PackEditorOverseer.Instance.CurrentPack.Palettes.Count - 1);
             paletteEditor.CompleteEditing();
             whenConfirm?.Invoke();
         }

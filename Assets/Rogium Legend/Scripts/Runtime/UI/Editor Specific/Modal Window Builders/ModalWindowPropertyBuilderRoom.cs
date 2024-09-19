@@ -1,5 +1,5 @@
 ﻿using System;
-using Rogium.Core;
+using Rogium.Editors.Packs;
 using Rogium.Editors.Rooms;
 using UnityEngine;
 
@@ -48,7 +48,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         protected override void CloneAsset(Action whenConfirm)
         {
             editor.CreateNewRoom((RoomAsset)editedAssetBase);
-            roomEditor.UpdateAsset((RoomAsset)editedAssetBase);
+            roomEditor.AssignAsset((RoomAsset)editedAssetBase, PackEditorOverseer.Instance.CurrentPack.Rooms.Count - 1);
             roomEditor.CompleteEditing();
             whenConfirm?.Invoke();
         }

@@ -1,5 +1,5 @@
 ﻿using System;
-using Rogium.Core;
+using Rogium.Editors.Packs;
 using Rogium.Editors.Weapons;
 using UnityEngine;
 
@@ -46,7 +46,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         protected override void CloneAsset(Action whenConfirm)
         {
             editor.CreateNewWeapon((WeaponAsset)editedAssetBase);
-            weaponEditor.UpdateAsset((WeaponAsset)editedAssetBase);
+            weaponEditor.AssignAsset((WeaponAsset)editedAssetBase, PackEditorOverseer.Instance.CurrentPack.Weapons.Count - 1);
             weaponEditor.CompleteEditing();
             whenConfirm?.Invoke();
         }

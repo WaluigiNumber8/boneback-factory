@@ -1,6 +1,6 @@
 ﻿using System;
-using Rogium.Core;
 using Rogium.Editors.Enemies;
+using Rogium.Editors.Packs;
 using UnityEngine;
 
 namespace Rogium.UserInterface.Editors.ModalWindowBuilding
@@ -45,7 +45,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         protected override void CloneAsset(Action whenConfirm)
         {
             editor.CreateNewEnemy((EnemyAsset) editedAssetBase);
-            enemyEditor.UpdateAsset((EnemyAsset)editedAssetBase);
+            enemyEditor.AssignAsset((EnemyAsset)editedAssetBase, PackEditorOverseer.Instance.CurrentPack.Enemies.Count - 1);
             enemyEditor.CompleteEditing();
             whenConfirm?.Invoke();
         }
