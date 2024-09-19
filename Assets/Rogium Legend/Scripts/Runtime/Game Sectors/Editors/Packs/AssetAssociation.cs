@@ -68,12 +68,12 @@ namespace Rogium.Editors.Packs
             if (string.IsNullOrEmpty(asset.AssociatedPaletteID) && !string.IsNullOrEmpty(lastAssociatedPaletteID)) return;
             
             //Remove association of older palette.
-            if (!string.IsNullOrEmpty(lastAssociatedPaletteID) && lastAssociatedPaletteID != EditorDefaults.EmptyAssetID)
+            if (!lastAssociatedPaletteID.IsEmpty())
             {
                 currentPack.Palettes.FindValueFirst(lastAssociatedPaletteID).RemoveAssociation(asset.ID);
             }
             
-            if (asset.AssociatedPaletteID == EditorDefaults.EmptyAssetID) return;
+            if (asset.AssociatedPaletteID.IsEmpty()) return;
             
             //Add association if possible.
             (PaletteAsset associatedPalette, int index) = currentPack.Palettes.FindValueAndIndexFirst(asset.AssociatedPaletteID);
@@ -93,12 +93,12 @@ namespace Rogium.Editors.Packs
             if (string.IsNullOrEmpty(asset.AssociatedSpriteID) && !string.IsNullOrEmpty(lastAssociatedSpriteID)) return;
             
             //Remove association of older sprite.
-            if (!string.IsNullOrEmpty(lastAssociatedSpriteID))
+            if (!lastAssociatedSpriteID.IsEmpty())
             {
                 currentPack.Sprites.FindValueFirst(lastAssociatedSpriteID).RemoveAssociation(asset.ID);
             }
             
-            if (asset.AssociatedSpriteID == EditorDefaults.EmptyAssetID) return;
+            if (asset.AssociatedSpriteID.IsEmpty()) return;
             
             //Add association if possible.
             (SpriteAsset associatedSprite, int index) = currentPack.Sprites.FindValueAndIndexFirst(asset.AssociatedSpriteID);
@@ -184,13 +184,13 @@ namespace Rogium.Editors.Packs
         /// <param name="asset">The asset, who's sprite association to sewer.</param>
         public static void RemoveSpriteAssociation(PackAsset currentPack, AssetWithReferencedSpriteBase asset)
         {
-            if (string.IsNullOrEmpty(asset.AssociatedSpriteID)) return;
+            if (asset.AssociatedSpriteID.IsEmpty()) return;
             currentPack.Sprites.FindValueFirst(asset.AssociatedSpriteID).RemoveAssociation(asset.ID);
         }
         
         public static void RemovePaletteAssociation(PackAsset currentPack, SpriteAsset asset)
         {
-            if (string.IsNullOrEmpty(asset.AssociatedPaletteID)) return;
+            if (asset.AssociatedPaletteID.IsEmpty()) return;
             currentPack.Palettes.FindValueFirst(asset.AssociatedPaletteID).RemoveAssociation(asset.ID);
         }
 

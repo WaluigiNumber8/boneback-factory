@@ -12,6 +12,7 @@ using Rogium.Tests.Core;
 using Rogium.UserInterface.ModalWindows;
 using UnityEngine;
 using UnityEngine.TestTools;
+using UnityEngine.UI;
 using static Rogium.Tests.Core.PointerDataCreator;
 using static Rogium.Tests.Editors.Sprites.PaletteEditingTestsU;
 using static Rogium.Tests.Editors.Sprites.SpriteEditorUtils;
@@ -234,13 +235,19 @@ namespace Rogium.Tests.Editors.Sprites
         }
 
         [UnityTest]
-        public IEnumerator Should_UpdateSpriteIconWithDefaultPaletteColors_WhenAssociatedPaletteRemoved()
+        public IEnumerator Should_NotSaveChanges_WhenSpriteHasTheDefaultPaletteAssociated()
         {
-            PackEditorOverseer.Instance.CurrentPack.Sprites[0].UpdateSpriteData(new ObjectGrid<int>(16, 16, () => 0));
-            yield return SavePaletteAsNewAndConfirm();
-            PackEditorOverseer.Instance.RemovePalette(1);
-            yield return null;
+            yield return UpdateColorSlotForSpriteWithMissingPalette();
+            Object.FindFirstObjectByType<ModalWindow>()?.OnAccept();
             Assert.That(PackEditorOverseer.Instance.CurrentPack.Sprites[0].Icon.texture.GetPixel(0, 0), Is.EqualTo(EditorDefaults.Instance.MissingPalette[0]));
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_NotOverrideMissingPaletteColors_WhenEditedAndSaved()
+        {
+            yield return UpdateColorSlotForSpriteWithMissingPalette();
+            Object.FindFirstObjectByType<ModalWindow>()?.OnAccept();
+            Assert.That(EditorDefaults.Instance.MissingPalette[0], Is.Not.EqualTo(Color.blue));
         }
     }
 }

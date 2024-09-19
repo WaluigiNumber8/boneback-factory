@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using RedRats.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
@@ -41,7 +42,7 @@ namespace Rogium.Editors.Palettes
             
             public Builder WithColors(Color[] colors)
             {
-                Asset.colors = colors;
+                Asset.colors = colors.AsCopy();
                 return This;
             }
             
@@ -66,7 +67,7 @@ namespace Rogium.Editors.Palettes
                 Asset.icon = asset.Icon;
                 Asset.author = asset.Author;
                 Asset.creationDate = asset.CreationDate;
-                Asset.colors = asset.Colors;
+                Asset.colors = asset.Colors.AsCopy();
                 Asset.associatedAssetsIDs = new HashSet<string>(asset.AssociatedAssetsIDs);
                 return This;
             }

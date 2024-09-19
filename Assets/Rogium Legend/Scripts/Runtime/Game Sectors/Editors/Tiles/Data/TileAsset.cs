@@ -4,7 +4,6 @@ using UnityEngine.Tilemaps;
 using RedRats.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
-using Rogium.Systems.Validation;
 
 namespace Rogium.Editors.Tiles
 {

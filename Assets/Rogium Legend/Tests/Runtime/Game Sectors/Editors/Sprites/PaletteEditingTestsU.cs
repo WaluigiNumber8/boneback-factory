@@ -1,5 +1,6 @@
 using System.Collections;
 using RedRats.UI.ModalWindows;
+using Rogium.Editors.Packs;
 using Rogium.Editors.Sprites;
 using Rogium.Systems.GASExtension;
 using Rogium.Tests.Core;
@@ -11,11 +12,6 @@ namespace Rogium.Tests.Editors.Sprites
 {
     public static class PaletteEditingTestsU
     {
-        /// <summary>
-        /// Right-Clicks the first color slot in the palette, assigns a color to ColorPicker and closes it.
-        /// </summary>
-        /// <param name="color">The color to assign.</param>
-        /// <param name="slot">The slot to update</param>
         public static IEnumerator UpdateColorSlot(Color color, int slot = 0)
         {
             SpriteEditorOverseerMono.GetInstance().Palette.GetSlot(slot).OnPointerClick(PointerDataCreator.RightClick());
@@ -31,6 +27,17 @@ namespace Rogium.Tests.Editors.Sprites
             GASButtonActions.SavePaletteAsNew();
             yield return null;
             Object.FindFirstObjectByType<ModalWindow>()?.OnAccept();
+        }
+
+        public static IEnumerator UpdateColorSlotForSpriteWithMissingPalette()
+        {
+            SpriteEditorOverseer.Instance.UpdateAsset(AssetCreator.CreateSpriteFromSlot1());
+            SpriteEditorOverseer.Instance.CompleteEditing();
+            PackEditorOverseer.Instance.CurrentPack.Sprites[0].ClearAssociatedPalette();
+            PackEditorOverseer.Instance.ActivateSpriteEditor(0);
+            yield return null;
+            yield return UpdateColorSlot(Color.blue);
+            GASButtonActions.SaveChangesSprite();
         }
     }
 }

@@ -47,6 +47,7 @@ namespace Rogium.Editors.Sprites
             {
                 SafetyNet.ThrowMessage("Assigned palette was removed. Please select a new one.");
                 return new PaletteAsset.Builder()
+                    .WithID(EditorDefaults.EmptyAssetID)
                     .WithColors(EditorDefaults.Instance.MissingPalette)
                     .Build();
             }

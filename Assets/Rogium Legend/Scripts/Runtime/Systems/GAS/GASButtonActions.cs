@@ -8,6 +8,7 @@ using Rogium.Core;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Core;
+using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Enemies;
 using Rogium.Editors.Palettes;
 using Rogium.Editors.Projectiles;
@@ -646,19 +647,40 @@ namespace Rogium.Systems.GASExtension
         
         public static void SaveChangesSprite()
         {
-            //If palette was changed, open the palette dialog
+            //If sprite's palette is missing, don't save
+            if (SpriteEditorOverseer.Instance.CurrentAsset.ID == EditorDefaults.EmptyAssetID)
+            {
+                ModalWindowData data = new ModalWindowData.Builder()
+                    .WithLayout(ModalWindowLayoutType.Message)
+                    .WithMessage("The palette was edited. Save as a copy?")
+                    .WithAcceptButton("Save as Copy", () =>
+                    {
+                        PackEditorOverseer.Instance.CreateNewPalette(new PaletteAsset.Builder()
+                                                                        .WithColors(EditorDefaults.Instance.MissingPalette)
+                                                                        .Build());
+                        PackEditorOverseer.Instance.ActivatePaletteEditor(PackEditorOverseer.Instance.CurrentPack.Palettes.Count - 1);
+                        SavePaletteAsClone();
+                    })
+                    .WithDenyButton("No Save")
+                    .Build();
+                GASRogium.OpenWindow(data);
+                return;
+            }
+            
             if (SpriteEditorOverseerMono.GetInstance().PaletteChanged)
             {
                 ModalWindowData data = new ModalWindowData.Builder()
                     .WithLayout(ModalWindowLayoutType.Message)
                     .WithMessage("The palette was edited. Save it's changes?")
                     .WithAcceptButton("Override", () => { SavePaletteAsOverride(); SaveChangesSpriteConfirm(); })
-                    .WithSpecialButton("Save as New", SavePaletteAsNew)
+                    .WithSpecialButton("Save as Copy", SavePaletteAsNew)
                     .WithDenyButton("No Save")
                     .Build();
                 GASRogium.OpenWindow(data);
+                return;
             }
-            else SaveChangesSpriteConfirm();
+            
+            SaveChangesSpriteConfirm();
         }
 
         public static void SavePaletteAsOverride()
@@ -673,6 +695,11 @@ namespace Rogium.Systems.GASExtension
             //Create new palette as copy of the current one
             int index = PackEditorOverseer.Instance.CurrentPack.Palettes.FindIndexFirst(SpriteEditorOverseer.Instance.CurrentPalette.ID);
             PaletteEditorOverseer.Instance.AssignAsset(SpriteEditorOverseer.Instance.CurrentPalette, index, false);
+            SavePaletteAsClone();
+        }
+
+        private static void SavePaletteAsClone()
+        {
             new ModalWindowPropertyBuilderPalette().OpenForClone((() =>
             {
                 //Associate the new palette with the current sprite
@@ -683,8 +710,8 @@ namespace Rogium.Systems.GASExtension
                 SaveChangesSpriteConfirm();
             }));
         }
-        
-        public static void SaveChangesSpriteConfirm()
+
+        private static void SaveChangesSpriteConfirm()
         {
             SpriteEditorOverseer.Instance.CompleteEditing();
             OpenSelectionSprite();
