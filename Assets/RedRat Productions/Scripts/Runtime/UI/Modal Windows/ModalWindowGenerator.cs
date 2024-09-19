@@ -29,7 +29,11 @@ namespace RedRats.UI.ModalWindows
                     };
                     return window;
                 },
-                w => w.gameObject.SetActive(true),
+                w =>
+                {
+                    w.transform.SetAsLastSibling();
+                    w.gameObject.SetActive(true);
+                },
                 w => w.gameObject.SetActive(false),
                 Destroy,
                 true, 2, 6

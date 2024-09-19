@@ -88,6 +88,7 @@ namespace Rogium.UserInterface.ModalWindows
             AssetPickerWindow window = (cachedAssetPickerWindow.IsOpen) ? Instantiate(assetPickerWindow, windowParent) : cachedAssetPickerWindow;
             window.Construct(type, whenAssetPicked, preselectedAsset, canSelectEmpty);
             ThemeUpdaterRogium.UpdateAssetPickerWindow(window);
+            SendToFront(window);
             window.Open();
         }
         
@@ -102,6 +103,7 @@ namespace Rogium.UserInterface.ModalWindows
             SoundPickerWindow window = (cachedSoundPickerWindow.IsOpen) ? Instantiate(soundPickerWindow, windowParent) : cachedSoundPickerWindow;
             window.Construct(whenSoundChanged, onChangeAnyValue, value);
             ThemeUpdaterRogium.UpdateSoundPickerWindow(window);
+            SendToFront(window);
             window.Open();
         }
         
@@ -115,8 +117,11 @@ namespace Rogium.UserInterface.ModalWindows
             ColorPickerWindow window = (cachedColorPickerWindow.IsOpen) ? Instantiate(colorPickerWindow, windowParent) : cachedColorPickerWindow;
             window.Construct(whenColorChanged, preselectedColor);
             ThemeUpdaterRogium.UpdateColorPickerWindow(window);
+            SendToFront(window);
             window.Open();
         }
+
+        private void SendToFront(ModalWindowBase window) => window.transform.SetAsLastSibling();
 
         public int GenericActiveWindows => windowGenerator.ActiveWindows;
     }
