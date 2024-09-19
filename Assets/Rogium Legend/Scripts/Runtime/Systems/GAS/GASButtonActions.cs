@@ -655,11 +655,8 @@ namespace Rogium.Systems.GASExtension
                     .WithMessage("The palette was edited. Save as a copy?")
                     .WithAcceptButton("Save as Copy", () =>
                     {
-                        PackEditorOverseer.Instance.CreateNewPalette(new PaletteAsset.Builder()
-                                                                        .WithColors(EditorDefaults.Instance.MissingPalette)
-                                                                        .Build());
-                        PackEditorOverseer.Instance.ActivatePaletteEditor(PackEditorOverseer.Instance.CurrentPack.Palettes.Count - 1);
-                        SavePaletteAsClone();
+                        PaletteEditorOverseer.Instance.AssignAsset(SpriteEditorOverseer.Instance.CurrentPalette, 0, false);
+                        SaveEditedPaletteAsClone();
                     })
                     .WithDenyButton("No Save")
                     .Build();
@@ -695,10 +692,10 @@ namespace Rogium.Systems.GASExtension
             //Create new palette as copy of the current one
             int index = PackEditorOverseer.Instance.CurrentPack.Palettes.FindIndexFirst(SpriteEditorOverseer.Instance.CurrentPalette.ID);
             PaletteEditorOverseer.Instance.AssignAsset(SpriteEditorOverseer.Instance.CurrentPalette, index, false);
-            SavePaletteAsClone();
+            SaveEditedPaletteAsClone();
         }
 
-        private static void SavePaletteAsClone()
+        private static void SaveEditedPaletteAsClone()
         {
             new ModalWindowPropertyBuilderPalette().OpenForClone((() =>
             {

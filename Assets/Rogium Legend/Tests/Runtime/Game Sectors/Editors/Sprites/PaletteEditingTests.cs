@@ -238,7 +238,6 @@ namespace Rogium.Tests.Editors.Sprites
         public IEnumerator Should_NotSaveChanges_WhenSpriteHasTheDefaultPaletteAssociated()
         {
             yield return UpdateColorSlotForSpriteWithMissingPalette();
-            Object.FindFirstObjectByType<ModalWindow>()?.OnAccept();
             Assert.That(PackEditorOverseer.Instance.CurrentPack.Sprites[0].Icon.texture.GetPixel(0, 0), Is.EqualTo(EditorDefaults.Instance.MissingPalette[0]));
         }
         
@@ -246,8 +245,31 @@ namespace Rogium.Tests.Editors.Sprites
         public IEnumerator Should_NotOverrideMissingPaletteColors_WhenEditedAndSaved()
         {
             yield return UpdateColorSlotForSpriteWithMissingPalette();
-            Object.FindFirstObjectByType<ModalWindow>()?.OnAccept();
             Assert.That(EditorDefaults.Instance.MissingPalette[0], Is.Not.EqualTo(Color.blue));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_SaveEditedMissingPalette_WhenEditedAndSavedAsCopy()
+        {
+            yield return UpdateColorSlotForSpriteWithMissingPalette();
+            Object.FindFirstObjectByType<ModalWindow>()?.OnAccept();
+            Assert.That(PackEditorOverseer.Instance.CurrentPack.Palettes.Count, Is.EqualTo(2));   
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_SaveEditedColorToMissingPaletteCopy_WhenEditedAndSavedAsCopy()
+        {
+            yield return UpdateColorSlotForSpriteWithMissingPalette();
+            Object.FindFirstObjectByType<ModalWindow>()?.OnAccept();
+            Assert.That(PackEditorOverseer.Instance.CurrentPack.Palettes[1].Colors[0], Is.EqualTo(Color.blue));   
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_KeepUneditedColorsInMissingPaletteCopy_WhenEditedAndSavedAsCopy()
+        {
+            yield return UpdateColorSlotForSpriteWithMissingPalette();
+            Object.FindFirstObjectByType<ModalWindow>()?.OnAccept();
+            Assert.That(PackEditorOverseer.Instance.CurrentPack.Palettes[1].Colors[1], Is.EqualTo(EditorDefaults.Instance.MissingPalette[1]));   
         }
     }
 }

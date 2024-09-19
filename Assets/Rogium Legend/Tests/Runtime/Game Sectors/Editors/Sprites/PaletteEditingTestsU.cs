@@ -38,6 +38,7 @@ namespace Rogium.Tests.Editors.Sprites
             yield return null;
             yield return UpdateColorSlot(Color.blue);
             GASButtonActions.SaveChangesSprite();
+            Object.FindFirstObjectByType<ModalWindow>()?.OnAccept();
         }
     }
 }
