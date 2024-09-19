@@ -59,7 +59,7 @@ namespace Rogium.Tests.Editors.Sprites
         [Test]
         public void ClearActiveGrid_Should_AddToUndoHistory()
         {
-            SpriteEditorUtils.FillEntireGrid();
+            SpriteEditorOverseerMonoTestsU.FillEntireGrid();
             ActionHistorySystem.ForceEndGrouping();
             spriteEditor.ClearActiveGrid();
             
@@ -69,7 +69,7 @@ namespace Rogium.Tests.Editors.Sprites
         [Test]
         public void UndoLast_Should_UndoClearActiveGrid()
         {
-            SpriteEditorUtils.FillEntireGrid();
+            SpriteEditorOverseerMonoTestsU.FillEntireGrid();
             spriteEditor.ClearActiveGrid();
             ActionHistorySystem.UndoLast();
             

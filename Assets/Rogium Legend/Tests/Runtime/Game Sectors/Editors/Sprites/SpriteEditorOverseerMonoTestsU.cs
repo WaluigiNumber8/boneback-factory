@@ -3,9 +3,6 @@ using Rogium.Editors.Palettes;
 using Rogium.Editors.Sprites;
 using Rogium.Systems.ActionHistory;
 using Rogium.Systems.GridSystem;
-using Rogium.Tests.Core;
-using Rogium.Tests.UI.Interactables;
-using Rogium.UserInterface.ModalWindows;
 using UnityEngine;
 
 namespace Rogium.Tests.Editors.Sprites
@@ -13,7 +10,7 @@ namespace Rogium.Tests.Editors.Sprites
     /// <summary>
     /// Utils for the <see cref="SpriteEditorOverseerMono"/> tests.
     /// </summary>
-    public static class SpriteEditorUtils
+    public static class SpriteEditorOverseerMonoTestsU
     {
         private static readonly SpriteEditorOverseerMono spriteEditor = SpriteEditorOverseerMono.GetInstance();
 

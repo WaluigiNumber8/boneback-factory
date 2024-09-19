@@ -3,6 +3,7 @@ using RedRats.UI.ModalWindows;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Sprites;
 using Rogium.Systems.GASExtension;
+using Rogium.Systems.Toolbox;
 using Rogium.Tests.Core;
 using Rogium.Tests.UI.Interactables;
 using Rogium.UserInterface.ModalWindows;
@@ -39,6 +40,12 @@ namespace Rogium.Tests.Editors.Sprites
             yield return UpdateColorSlot(Color.blue);
             GASButtonActions.SaveChangesSprite();
             Object.FindFirstObjectByType<ModalWindow>()?.OnAccept();
+        }
+        
+        public static void FillSpriteEditorGrid()
+        {
+            SpriteEditorOverseerMono.GetInstance().Toolbox.SwitchTool(ToolType.Fill);
+            SpriteEditorOverseerMono.GetInstance().UpdateCell(Vector2Int.zero);
         }
     }
 }

@@ -22,6 +22,7 @@ namespace Rogium.Editors.Sprites
         private PaletteAsset currentPalette;
         private int myIndex;
         private string lastAssociatedPaletteID;
+        private Color[] originalColors;
         
         private SpriteEditorOverseer() => palettePicker = new PalettePicker();
 
@@ -40,6 +41,7 @@ namespace Rogium.Editors.Sprites
             currentPalette = palettePicker.GrabBasedOn(currentAsset.AssociatedPaletteID);
             myIndex = index;
             lastAssociatedPaletteID = asset.AssociatedPaletteID;
+            originalColors = currentPalette.Colors.AsCopy();
             
             if (!prepareEditor) return;
             OnAssignAsset?.Invoke(currentAsset);
@@ -60,6 +62,17 @@ namespace Rogium.Editors.Sprites
             SafetyNet.EnsureIsNotNull(currentPalette, "Currently active palette.");
             currentPalette = new PaletteAsset.Builder().AsCopy(updatedPalette).Build();
             currentAsset.UpdateAssociatedPaletteID(currentPalette.ID);
+        }
+        
+        /// <summary>
+        /// Revert all changes made to the palette.
+        /// </summary>
+        public void ResetPalette()
+        {
+            for (int i = 0; i < currentPalette.Colors.Length; i++)
+            {
+                currentPalette.Colors[i] = originalColors[i];
+            }
         }
         
         public void CompleteEditing()

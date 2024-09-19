@@ -658,7 +658,7 @@ namespace Rogium.Systems.GASExtension
                         PaletteEditorOverseer.Instance.AssignAsset(SpriteEditorOverseer.Instance.CurrentPalette, PackEditorOverseer.Instance.CurrentPack.Palettes.Count, false);
                         SaveEditedPaletteAsClone();
                     })
-                    .WithDenyButton("No Save")
+                    .WithDenyButton("No Save", () => { SpriteEditorOverseer.Instance.ResetPalette(); SaveChangesSpriteConfirm();})
                     .Build();
                 GASRogium.OpenWindow(data);
                 return;
@@ -671,7 +671,7 @@ namespace Rogium.Systems.GASExtension
                     .WithMessage("The palette was edited. Save it's changes?")
                     .WithAcceptButton("Override", () => { SavePaletteAsOverride(); SaveChangesSpriteConfirm(); })
                     .WithSpecialButton("Save as Copy", SavePaletteAsNew)
-                    .WithDenyButton("No Save")
+                    .WithDenyButton("No Save", () => { SpriteEditorOverseer.Instance.ResetPalette(); SaveChangesSpriteConfirm();})
                     .Build();
                 GASRogium.OpenWindow(data);
                 return;

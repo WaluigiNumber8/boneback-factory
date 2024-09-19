@@ -15,7 +15,7 @@ using UnityEngine.TestTools;
 using UnityEngine.UI;
 using static Rogium.Tests.Core.PointerDataCreator;
 using static Rogium.Tests.Editors.Sprites.PaletteEditingTestsU;
-using static Rogium.Tests.Editors.Sprites.SpriteEditorUtils;
+using static Rogium.Tests.Editors.Sprites.SpriteEditorOverseerMonoTestsU;
 using static Rogium.Tests.UI.Interactables.InteractableUtils;
 
 namespace Rogium.Tests.Editors.Sprites
@@ -280,6 +280,35 @@ namespace Rogium.Tests.Editors.Sprites
             yield return null;
             Texture2D icon = PackEditorOverseer.Instance.CurrentPack.Palettes[1].Icon.texture;
             Assert.That(icon.GetPixel(0, icon.height-1), Is.EqualTo(Color.blue));   
+        }
+
+        [UnityTest]
+        public IEnumerator Should_NotChangePaletteColors_WhenEditedWithoutSaving()
+        {
+            yield return UpdateColorSlot(Color.blue);
+            GASButtonActions.SaveChangesSprite();
+            Object.FindFirstObjectByType<ModalWindow>()?.OnDeny();
+            Assert.That(PackEditorOverseer.Instance.CurrentPack.Palettes[0].Colors[0], Is.Not.EqualTo(Color.blue));
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_KeepOriginalPaletteColors_WhenEditedWithoutSaving()
+        {
+            yield return UpdateColorSlot(Color.blue);
+            GASButtonActions.SaveChangesSprite();
+            Object.FindFirstObjectByType<ModalWindow>()?.OnDeny();
+            Assert.That(PackEditorOverseer.Instance.CurrentPack.Palettes[0].Colors[0], Is.EqualTo(Color.magenta));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_SaveSpriteChanges_WhenPaletteEditedWithoutSaving()
+        {
+            yield return UpdateColorSlot(Color.blue);
+            FillSpriteEditorGrid();
+            GASButtonActions.SaveChangesSprite();
+            Object.FindFirstObjectByType<ModalWindow>()?.OnDeny();
+            Texture2D icon = PackEditorOverseer.Instance.CurrentPack.Sprites[0].Icon.texture;
+            Assert.That(icon.GetPixel(0, icon.height-1), Is.EqualTo(Color.magenta));
         }
     }
 }
