@@ -310,5 +310,16 @@ namespace Rogium.Tests.Editors.Sprites
             Texture2D icon = PackEditorOverseer.Instance.CurrentPack.Sprites[0].Icon.texture;
             Assert.That(icon.GetPixel(0, icon.height-1), Is.EqualTo(Color.magenta));
         }
+        
+        [UnityTest]
+        public IEnumerator Should_SaveSpriteWithMissingPaletteChanges_WhenPaletteEditedWithoutSaving()
+        {
+            yield return UpdateColorSlotForSpriteWithMissingPalette();
+            FillSpriteEditorGrid();
+            GASButtonActions.SaveChangesSprite();
+            Object.FindFirstObjectByType<ModalWindow>()?.OnDeny();
+            Texture2D icon = PackEditorOverseer.Instance.CurrentPack.Sprites[0].Icon.texture;
+            Assert.That(icon.GetPixel(0, icon.height-1), Is.EqualTo(EditorDefaults.Instance.MissingPalette[0]));
+        }
     }
 }
