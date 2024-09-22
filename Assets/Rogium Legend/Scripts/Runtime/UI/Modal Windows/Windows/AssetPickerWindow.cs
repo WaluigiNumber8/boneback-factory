@@ -13,7 +13,7 @@ using UnityEngine.UI;
 namespace Rogium.UserInterface.ModalWindows
 {
     /// <summary>
-    /// Controls the graphic window, it's actions and connects it with <see cref="AssetSelectionPickerMultiple"/>.
+    /// Controls the graphic window, it's actions and connects it with <see cref="AssetSelectionPickerSingle"/>.
     /// </summary>
     public class AssetPickerWindow : ModalWindowBase
     {
