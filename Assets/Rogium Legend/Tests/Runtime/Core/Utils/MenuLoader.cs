@@ -17,6 +17,7 @@ namespace Rogium.Tests.Core
         private static readonly GameObject roomEditorProperty = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Menu_RoomEditor.prefab");
         private static readonly GameObject propertyEditorProperty = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Menu_PropertyEditor.prefab");
         private static readonly GameObject selectionMenuProperty = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Menu_SelectionMenu.prefab");
+        private static readonly GameObject selectionMenuV2Property = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Menu_SelectionMenu_V2.prefab");
 
         public static IEnumerator PrepareSelectionMenu()
         {
@@ -25,6 +26,14 @@ namespace Rogium.Tests.Core
             Object.Instantiate(selectionMenuProperty);
             yield return null;
             GASButtonActions.OpenSelectionPack();
+        }
+        
+        public static IEnumerator PrepareSelectionMenuV2()
+        {
+            OverseerLoader.LoadInternalLibrary();
+            OverseerLoader.LoadThemeOverseer();
+            Object.Instantiate(selectionMenuV2Property);
+            yield return null;
         }
 
         /// <summary>

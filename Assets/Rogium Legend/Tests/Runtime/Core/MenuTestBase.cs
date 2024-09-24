@@ -29,7 +29,7 @@ namespace Rogium.Tests.Core
             yield return null;
             PrepareExternalStorageSubstitute();
             yield return null;
-            AssetCreator.CreateAndAssignPack();
+            yield return AssetCreator.CreateAndAssignPack();
         }
 
         private void PrepareExternalStorageSubstitute()

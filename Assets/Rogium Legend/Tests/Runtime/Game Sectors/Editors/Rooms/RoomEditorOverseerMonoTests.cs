@@ -22,7 +22,7 @@ namespace Rogium.Tests.Editors.Rooms
         public override IEnumerator Setup()
         {
             yield return base.Setup();
-            PackAsset pack = AssetCreator.CreateAndAssignPack();
+            yield return AssetCreator.CreateAndAssignPack();
             OverseerLoader.LoadInternalLibrary();
             
             yield return null;
@@ -30,7 +30,7 @@ namespace Rogium.Tests.Editors.Rooms
             OverseerLoader.LoadThemeOverseer();
             
             yield return MenuLoader.PrepareRoomEditor();
-            RoomEditorOverseer.Instance.AssignAsset(pack.Rooms[0], 0);
+            RoomEditorOverseer.Instance.AssignAsset(PackEditorOverseer.Instance.CurrentPack.Rooms[0], 0);
             roomEditor = RoomEditorOverseerMono.GetInstance();
             ActionHistorySystem.ClearHistory();
             yield return null;

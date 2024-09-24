@@ -89,15 +89,6 @@ namespace Rogium.Editors.Core
             AssetAssociation.RemoveSpriteAssociation(packs[packIndex], packs[packIndex]);
             packs.Remove(packIndex);
         }
-        /// <summary>
-        /// Remove pack from the library.
-        /// </summary>
-        /// <param name="title">Pack's Title</param>
-        /// <param name="author">Pack's Author</param>
-        public void DeletePack(string title, string author)
-        {
-            packs.Remove(title, author);
-        }
 
         /// <summary>
         /// Prepare one of the packs in the library for editing.
