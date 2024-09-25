@@ -509,6 +509,18 @@ namespace RedRats.Safety
         }
         #endregion
 
+        #region Dictionary Checks
+
+        public static void EnsureDictionaryContainsKey<TKey, TValue>(IDictionary<TKey, TValue> dictionary, TKey key, string variableName, string customMessage = "")
+        {
+            if (!dictionary.ContainsKey(key)) 
+            {
+                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} must contain the key '{key.ToString()}'.");
+            }
+        }
+
+        #endregion
+
         /// <summary>
         /// Throw a custom error message, without raising an exception.
         /// </summary>

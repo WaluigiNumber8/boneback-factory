@@ -2291,8 +2291,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe00ce47a60446a48c27267d10ddef56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectors:
-    packSelector: {fileID: 3972849999520769450}
+  packSelection:
+    assetSelector: {fileID: 3972849999520769450}
+    cardData:
+      whenAssetEdit: 10
+      whenAssetConfig: 22
+      whenAssetDelete: 31
 --- !u!114 &3972849999520769450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2306,6 +2310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   content: {fileID: 5276312561515409365}
+  cardPrefab: {fileID: 0}
 --- !u!1001 &1013799183134346477
 PrefabInstance:
   m_ObjectHideFlags: 0
