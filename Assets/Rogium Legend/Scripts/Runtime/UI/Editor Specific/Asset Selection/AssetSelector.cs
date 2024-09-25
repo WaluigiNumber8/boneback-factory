@@ -49,7 +49,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection
                     assetSelection.Setup(AssetType.Pack,
                         layouts.grid,
                         selectionMenus.pack,
-                        lib.GetPacksCopy.ToList<IAsset>(),
+                        lib.Packs.ToList<IAsset>(),
                         empty);
                     break;
                 case AssetType.Palette:

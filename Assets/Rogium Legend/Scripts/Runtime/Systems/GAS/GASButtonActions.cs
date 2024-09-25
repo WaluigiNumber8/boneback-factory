@@ -197,7 +197,7 @@ namespace Rogium.Systems.GASExtension
             new ModalWindowPropertyBuilderCampaign().OpenForCreate(() =>
             {
                 CampaignAssetSelectionOverseer.Instance.SelectCampaignLast();
-                OpenEditorCampaign(ExternalLibraryOverseer.Instance.CampaignCount - 1);
+                OpenEditorCampaign(ExternalLibraryOverseer.Instance.Campaigns.Count - 1);
             });
         }
 
@@ -971,10 +971,10 @@ namespace Rogium.Systems.GASExtension
         {
             CampaignEditorOverseer editor = CampaignEditorOverseer.Instance;
             ExternalLibraryOverseer lib = ExternalLibraryOverseer.Instance;
-            IList<CampaignAsset> campaigns = lib.GetCampaignsCopy;
+            IList<CampaignAsset> campaigns = lib.Campaigns;
             foreach (CampaignAsset campaign in campaigns)
             {
-                IList<PackAsset> packs = lib.GetPacksCopy.GrabBasedOn(campaign.PackReferences);
+                IList<PackAsset> packs = lib.Packs.GrabBasedOn(campaign.PackReferences);
                 if (packs == null || packs.Count <= 0) continue;
                 
                 editor.AssignAsset(campaign, campaigns.IndexOf(campaign), false);
@@ -990,7 +990,7 @@ namespace Rogium.Systems.GASExtension
             CampaignEditorOverseer editor = CampaignEditorOverseer.Instance;
             ExternalLibraryOverseer lib = ExternalLibraryOverseer.Instance;
             CampaignAsset currentAsset = overseer.GetSelectedCampaign();
-            IList<PackAsset> packs = lib.GetPacksCopy.GrabBasedOn(currentAsset.PackReferences);
+            IList<PackAsset> packs = lib.Packs.GrabBasedOn(currentAsset.PackReferences);
 
             if (packs == null || packs.Count <= 0) return;
             

@@ -41,7 +41,7 @@ namespace Rogium.Gameplay.Core
         {
             base.Awake();
             try { currentCampaign = new CampaignAsset.Builder().AsCopy(SceneTransferOverseer.GetInstance().PickUpCampaign()).Build(); }
-            catch (Exception) { currentCampaign = ExternalLibraryOverseer.Instance.GetCampaignsCopy[0]; }
+            catch (Exception) { currentCampaign = ExternalLibraryOverseer.Instance.Campaigns[0]; }
             
         }
         private void OnEnable()

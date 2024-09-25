@@ -57,7 +57,7 @@ namespace Rogium.Editors.Campaign
         /// Selects/Deselects an asset.
         /// </summary>
         /// <param name="assetIndex">The position of the asset on the list.</param>
-        public void ChangeSelectStatus(int assetIndex) => SelectionPicker.WhenAssetSelectToggle(lib.GetPacksCopy[assetIndex]);
+        public void ChangeSelectStatus(int assetIndex) => SelectionPicker.WhenAssetSelectToggle(lib.Packs[assetIndex]);
 
         /// <summary>
         /// Calls for applying current selection.
@@ -86,7 +86,7 @@ namespace Rogium.Editors.Campaign
             
             if (campaign.PackReferences == null || campaign.PackReferences.Count <= 0) return;
             
-            IList<IAsset> allPacks = lib.GetPacksCopy.Cast<IAsset>().ToList();
+            IList<IAsset> allPacks = lib.Packs.Cast<IAsset>().ToList();
             selectedAssets = allPacks.GrabBasedOn(campaign.PackReferences);
         }
 

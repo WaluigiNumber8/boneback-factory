@@ -191,31 +191,8 @@ namespace Rogium.Editors.Core
 
         #endregion
         
-        /// <summary>
-        /// Amount of packs, stored in the library.
-        /// </summary>
-        public int PackCount => packs.Count;
-
-        /// <summary>
-        /// Returns a copy of the list of packs stored here.
-        /// </summary>
-        /// <returns>A copy of Pack Library.</returns>
-        public IList<PackAsset> GetPacksCopy => new List<PackAsset>(packs);
-        
-        /// <summary>
-        /// Amount of campaigns stored in the library.
-        /// </summary>
-        public int CampaignCount => campaigns.Count;
-
-        /// <summary>
-        /// Returns a copy of the list of campaigns stored here.
-        /// </summary>
-        /// <returns>A copy of Pack Library.</returns>
-        public IList<CampaignAsset> GetCampaignsCopy => new List<CampaignAsset>(campaigns);
-
-        /// <summary>
-        /// Returns the saved preferences.
-        /// </summary>
-        public GameDataAsset GetPreferences => preferences;
+        public IList<PackAsset> Packs { get => packs; }
+        public IList<CampaignAsset> Campaigns {get => campaigns;}
+        public GameDataAsset Preferences { get => preferences; }
     }
 }

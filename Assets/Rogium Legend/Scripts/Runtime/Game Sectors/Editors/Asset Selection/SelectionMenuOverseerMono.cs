@@ -16,12 +16,15 @@ namespace Rogium.Editors.NewAssetSelection
         
         public void Open(AssetType type)
         {
-            // Open the selection menu.
+            // Choose selector
             currentSelector = type switch
             {
                 AssetType.Pack => selectors.packSelector,
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };
+            
+            //Activate selector
+            // currentSelector.Load();
         }
 
         public AssetSelector CurrentSelector { get => currentSelector; }

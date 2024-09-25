@@ -63,7 +63,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         protected override void CloneAsset(Action whenConfirm)
         {
             ExternalLibraryOverseer.Instance.CreateAndAddPack(editedAssetBase);
-            packEditor.AssignAsset(editedAssetBase, ExternalLibraryOverseer.Instance.PackCount - 1);
+            packEditor.AssignAsset(editedAssetBase, ExternalLibraryOverseer.Instance.Packs.Count - 1);
             editor.CompleteEditing();
             whenConfirm?.Invoke();
         }
