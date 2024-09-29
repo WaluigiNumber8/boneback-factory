@@ -2310,7 +2310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   content: {fileID: 5276312561515409365}
-  cardPrefab: {fileID: 0}
+  cardPrefab: {fileID: 3020654531083554274, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
 --- !u!1001 &1013799183134346477
 PrefabInstance:
   m_ObjectHideFlags: 0
