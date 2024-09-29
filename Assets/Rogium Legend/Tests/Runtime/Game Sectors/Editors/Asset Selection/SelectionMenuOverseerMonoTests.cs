@@ -74,5 +74,18 @@ namespace Rogium.Tests.Editors.AssetSelection
             Assert.That(card.IsInfoGroupShown, Is.True);
             Assert.That(card.IsButtonGroupShown, Is.False);
         }
+
+        [Test]
+        public void Should_ToggleOffOtherCards_WhenCardClicked()
+        {
+            selectionMenu.Open(AssetType.Pack);
+            AssetCardControllerV2 card1 = selectionMenu.CurrentSelector.Content.GetChild(0).GetComponent<AssetCardControllerV2>();
+            AssetCardControllerV2 card2 = selectionMenu.CurrentSelector.Content.GetChild(1).GetComponent<AssetCardControllerV2>();
+            card1.SetToggle(true);
+            card2.SetToggle(true);
+            card1.SetToggle(true);
+            Assert.That(card1.IsOn, Is.True);
+            Assert.That(card2.IsOn, Is.False);
+        }
     }
 }
