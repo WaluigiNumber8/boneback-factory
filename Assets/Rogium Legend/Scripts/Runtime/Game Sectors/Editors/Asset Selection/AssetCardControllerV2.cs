@@ -2,6 +2,7 @@ using System;
 using Rogium.Editors.Core;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Rogium.Editors.NewAssetSelection
 {
@@ -15,14 +16,18 @@ namespace Rogium.Editors.NewAssetSelection
         public void Construct(IAsset asset, AssetCardData data)
         {
             ui.title.text = asset.Title;
+            ui.iconImage.sprite = asset.Icon;
         }
 
         public string Title { get => ui.title.text; }
+        public Sprite Icon {get => ui.iconImage.sprite;}
 
         [Serializable]
         public struct UIInfo
         {
             public TextMeshProUGUI title;
+            public Image iconImage;
         }
+
     }
 }

@@ -37,5 +37,12 @@ namespace Rogium.Tests.Editors.AssetSelection
             selectionMenu.Open(AssetType.Pack);
             Assert.That(selectionMenu.CurrentSelector.Content.GetChild(0).GetComponent<AssetCardControllerV2>().Title, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[0].Title));
         }
+
+        [Test]
+        public void Should_SetAssetsIconToCardIcon_WhenOpen()
+        {
+            selectionMenu.Open(AssetType.Pack);
+            Assert.That(selectionMenu.CurrentSelector.Content.GetChild(0).GetComponent<AssetCardControllerV2>().Icon, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[0].Icon));
+        }
     }
 }

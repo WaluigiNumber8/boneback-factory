@@ -153,6 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ui:
     title: {fileID: 1835956329474657887}
+    iconImage: {fileID: 3665386510588651531}
 --- !u!114 &1819102237664949728
 MonoBehaviour:
   m_ObjectHideFlags: 0
