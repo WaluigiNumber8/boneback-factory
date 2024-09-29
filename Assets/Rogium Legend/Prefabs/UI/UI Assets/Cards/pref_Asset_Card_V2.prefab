@@ -151,9 +151,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d057fc3dbdc49da926a5256889175af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toggle: {fileID: 8603769841665868365}
   ui:
     title: {fileID: 1835956329474657887}
     iconImage: {fileID: 3665386510588651531}
+    infoGroup: {fileID: 8472508667209206140}
+    buttonGroup: {fileID: 3981023469533127697}
 --- !u!114 &1819102237664949728
 MonoBehaviour:
   m_ObjectHideFlags: 0

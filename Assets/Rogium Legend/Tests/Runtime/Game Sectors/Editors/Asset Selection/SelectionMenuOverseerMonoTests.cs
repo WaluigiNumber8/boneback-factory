@@ -30,7 +30,7 @@ namespace Rogium.Tests.Editors.AssetSelection
             selectionMenu.Open(AssetType.Pack);
             Assert.That(selectionMenu.CurrentSelector.Content.childCount, Is.EqualTo(3));
         }
-
+        
         [Test]
         public void Should_SetAssetsNameToCardTitle_WhenOpen()
         {
@@ -43,6 +43,36 @@ namespace Rogium.Tests.Editors.AssetSelection
         {
             selectionMenu.Open(AssetType.Pack);
             Assert.That(selectionMenu.CurrentSelector.Content.GetChild(0).GetComponent<AssetCardControllerV2>().Icon, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[0].Icon));
+        }
+
+        [Test]
+        public void Should_ShowInfoGroup_WhenMenuOpened()
+        {
+            selectionMenu.Open(AssetType.Pack);
+            AssetCardControllerV2 card = selectionMenu.CurrentSelector.Content.GetChild(0).GetComponent<AssetCardControllerV2>();
+            Assert.That(card.IsInfoGroupShown, Is.True);
+            Assert.That(card.IsButtonGroupShown, Is.False);
+        }
+        
+        [Test]
+        public void Should_ToggleToButtonGroup_WhenCardClicked()
+        {
+            selectionMenu.Open(AssetType.Pack);
+            AssetCardControllerV2 card = selectionMenu.CurrentSelector.Content.GetChild(0).GetComponent<AssetCardControllerV2>();
+            card.SetToggle(true);
+            Assert.That(card.IsInfoGroupShown, Is.False);
+            Assert.That(card.IsButtonGroupShown, Is.True);
+        }
+
+        [Test]
+        public void Should_ToggleToInfoGroup_WhenCardClickedTwice()
+        {
+            selectionMenu.Open(AssetType.Pack);
+            AssetCardControllerV2 card = selectionMenu.CurrentSelector.Content.GetChild(0).GetComponent<AssetCardControllerV2>();
+            card.SetToggle(true);
+            card.SetToggle(false);
+            Assert.That(card.IsInfoGroupShown, Is.True);
+            Assert.That(card.IsButtonGroupShown, Is.False);
         }
     }
 }

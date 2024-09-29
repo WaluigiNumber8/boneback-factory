@@ -4,6 +4,7 @@ using RedRats.Core;
 using RedRats.Safety;
 using Rogium.Core;
 using Rogium.Editors.Core;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Rogium.Editors.NewAssetSelection
@@ -14,7 +15,8 @@ namespace Rogium.Editors.NewAssetSelection
     public sealed partial class SelectionMenuOverseerMono : MonoSingleton<SelectionMenuOverseerMono>
     {
         [SerializeField] private SelectionMenuData packSelection;
-
+        [Button] public void TestFill() => Open(AssetType.Pack);
+        
         private IDictionary<AssetType, SelectionMenuFullData> menuData;
         private AssetType currentType;
 
