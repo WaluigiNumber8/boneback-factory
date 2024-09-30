@@ -2845,7 +2845,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2836801278012683474, guid: b11d9ead2700a20429d836a0539abeb5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1791752177}
   m_SourcePrefab: {fileID: 100100000, guid: b11d9ead2700a20429d836a0539abeb5, type: 3}
 --- !u!20 &333899286 stripped
 Camera:
@@ -12395,6 +12398,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoplay: 0
   timescale: 1
+--- !u!1 &1791752174 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2836801278012683474, guid: b11d9ead2700a20429d836a0539abeb5, type: 3}
+  m_PrefabInstance: {fileID: 333899285}
+  m_PrefabAsset: {fileID: 0}
+--- !u!81 &1791752177
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791752174}
+  m_Enabled: 1
 --- !u!1 &1791812587
 GameObject:
   m_ObjectHideFlags: 0
@@ -15283,6 +15299,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -29.005
       objectReference: {fileID: 0}
+    - target: {fileID: 5276312561515409365, guid: ecd9e0ffe99f34d4cb37e305844ea5b1, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5439767213774820360, guid: ecd9e0ffe99f34d4cb37e305844ea5b1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -15329,6 +15349,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5750722246007277645, guid: ecd9e0ffe99f34d4cb37e305844ea5b1, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5796702801054996205, guid: ecd9e0ffe99f34d4cb37e305844ea5b1, type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5995220307251087073, guid: ecd9e0ffe99f34d4cb37e305844ea5b1, type: 3}
