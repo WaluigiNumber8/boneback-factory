@@ -10,6 +10,7 @@ namespace Rogium.Editors.NewAssetSelection
     [Serializable]
     public class AssetCardData
     {
+        public int index;
         public string title;
         public Sprite icon;
         public ButtonType whenAssetEdit;
@@ -24,11 +25,18 @@ namespace Rogium.Editors.NewAssetSelection
 
             public Builder()
             {
+                data.index = -1;
                 data.title = string.Empty;
                 data.icon = null;
                 data.whenAssetEdit = ButtonType.None;
                 data.whenAssetConfig = ButtonType.None;
                 data.whenAssetDelete = ButtonType.None;
+            }
+            
+            public Builder WithIndex(int index)
+            {
+                data.index = index;
+                return this;
             }
             
             public Builder WithTitle(string title)

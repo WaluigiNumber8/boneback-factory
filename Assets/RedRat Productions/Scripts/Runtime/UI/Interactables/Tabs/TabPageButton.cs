@@ -11,7 +11,7 @@ namespace RedRats.UI.Tabs
     /// </summary>
     public class TabPageButton : Button
     {
-        [SerializeField]private Image background;
+        [SerializeField] private Image background;
         [SerializeField] private GameObject page;
         [SerializeField] private EventInfo events;
         

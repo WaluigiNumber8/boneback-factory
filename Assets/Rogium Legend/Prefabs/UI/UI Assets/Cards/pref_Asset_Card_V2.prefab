@@ -155,6 +155,9 @@ MonoBehaviour:
   ui:
     title: {fileID: 1835956329474657887}
     iconImage: {fileID: 3665386510588651531}
+    editButton: {fileID: 7844129722421966933}
+    configButton: {fileID: 4954225807346287012}
+    deleteButton: {fileID: 6873560121763248669}
     infoGroup: {fileID: 8472508667209206140}
     buttonGroup: {fileID: 3981023469533127697}
 --- !u!114 &1819102237664949728
@@ -1498,7 +1501,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1614057453373608748, guid: 2e52fe7b84c23b24f9ca26536168db2c, type: 3}
       propertyPath: m_Name
-      value: prefvar_Button_Properties_Blue
+      value: Edit Properties Button
       objectReference: {fileID: 0}
     - target: {fileID: 7646252650251923060, guid: 2e52fe7b84c23b24f9ca26536168db2c, type: 3}
       propertyPath: m_Pivot.x
@@ -1590,6 +1593,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e52fe7b84c23b24f9ca26536168db2c, type: 3}
+--- !u!114 &4954225807346287012 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8079454220075059724, guid: 2e52fe7b84c23b24f9ca26536168db2c, type: 3}
+  m_PrefabInstance: {fileID: 3809780104505592744}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &6828579189525816796 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7646252650251923060, guid: 2e52fe7b84c23b24f9ca26536168db2c, type: 3}
@@ -1726,6 +1740,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8139803418870760900, guid: 315dcab41b264f74194b91f1aa21028b, type: 3}
   m_PrefabInstance: {fileID: 6204029706705142153}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7844129722421966933 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4234182212748769756, guid: 315dcab41b264f74194b91f1aa21028b, type: 3}
+  m_PrefabInstance: {fileID: 6204029706705142153}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8910544335332548066
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1820,7 +1845,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4806152388498800351, guid: 2ea1df2f722a77c4db086c78f88a33e3, type: 3}
       propertyPath: m_Name
-      value: prefvar_Button_Trash_Blue
+      value: Delete Button
       objectReference: {fileID: 0}
     - target: {fileID: 4958427588760181624, guid: 2ea1df2f722a77c4db086c78f88a33e3, type: 3}
       propertyPath: action
@@ -1837,3 +1862,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4523963509467104135, guid: 2ea1df2f722a77c4db086c78f88a33e3, type: 3}
   m_PrefabInstance: {fileID: 8910544335332548066}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6873560121763248669 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2651307774631258111, guid: 2ea1df2f722a77c4db086c78f88a33e3, type: 3}
+  m_PrefabInstance: {fileID: 8910544335332548066}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Rogium.Editors.Core;
 using Rogium.UserInterface.Interactables;
+using UnityEngine;
 
 namespace Rogium.Editors.NewAssetSelection
 {
@@ -11,11 +12,11 @@ namespace Rogium.Editors.NewAssetSelection
     [Serializable]
     public struct SelectionMenuData
     {
-        public AssetSelector assetSelector;
-        public ButtonType whenAssetEdit;
-        public ButtonType whenAssetConfig;
-        public ButtonType whenAssetDelete;
-        public Func<IList<IAsset>> getAssetList;
+        [SerializeField] private AssetSelector assetSelector;
+        [SerializeField] private ButtonType whenAssetEdit;
+        [SerializeField] private ButtonType whenAssetConfig;
+        [SerializeField] private ButtonType whenAssetDelete;
+        private Func<IList<IAsset>> getAssetList;
 
         public SelectionMenuData(SelectionMenuData data, Func<IList<IAsset>> getAssetList)
         {
@@ -36,5 +37,11 @@ namespace Rogium.Editors.NewAssetSelection
         /// </summary>
         /// <param name="assets">Override the assets.</param>
         public void Load(IList<IAsset> assets) => assetSelector.Load(this, assets);
+        
+        public AssetSelector AssetSelector { get => assetSelector; }
+        public ButtonType WhenAssetEdit { get => whenAssetEdit; }
+        public ButtonType WhenAssetConfig { get => whenAssetConfig; }
+        public ButtonType WhenAssetDelete { get => whenAssetDelete; }
+        public Func<IList<IAsset>> GetAssetList { get => getAssetList; }
     }
 }

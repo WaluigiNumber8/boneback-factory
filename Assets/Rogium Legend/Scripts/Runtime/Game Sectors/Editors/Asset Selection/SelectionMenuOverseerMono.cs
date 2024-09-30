@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using RedRats.Core;
 using RedRats.Safety;
 using Rogium.Core;
 using Rogium.Editors.Core;
+using Rogium.Editors.Packs;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -14,7 +16,7 @@ namespace Rogium.Editors.NewAssetSelection
     /// </summary>
     public sealed class SelectionMenuOverseerMono : MonoSingleton<SelectionMenuOverseerMono>
     {
-        [SerializeField] private SelectionMenuData packSelection;
+        [SerializeField] private SelectionDataInfo data;
         [Button] public void TestFill() => Open(AssetType.Pack);
         
         private IDictionary<AssetType, SelectionMenuData> menuData;
@@ -25,7 +27,8 @@ namespace Rogium.Editors.NewAssetSelection
             base.Awake();
             menuData = new Dictionary<AssetType, SelectionMenuData>
             {
-                {AssetType.Pack, new SelectionMenuData(packSelection, ExternalLibraryOverseer.Instance.Packs.Cast<IAsset>().ToList)}
+                {AssetType.Pack, new SelectionMenuData(data.packSelection, ExternalLibraryOverseer.Instance.Packs.Cast<IAsset>().ToList)},
+                {AssetType.Palette, new SelectionMenuData(data.paletteSelection, PackEditorOverseer.Instance.CurrentPack.Palettes.Cast<IAsset>().ToList)}
             };
         }
 
@@ -41,7 +44,14 @@ namespace Rogium.Editors.NewAssetSelection
             return menuData[type];
         }
 
-        public AssetSelector CurrentSelector { get => GetData(currentType).assetSelector; }
+        public AssetSelector CurrentSelector { get => GetData(currentType).AssetSelector; }
         public AssetType CurrentType { get => currentType; }
+
+        [Serializable]
+        public struct SelectionDataInfo
+        {
+            public SelectionMenuData packSelection;
+            public SelectionMenuData paletteSelection;
+        }
     }
 }

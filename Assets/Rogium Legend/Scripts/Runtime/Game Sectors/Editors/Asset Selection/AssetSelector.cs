@@ -18,7 +18,7 @@ namespace Rogium.Editors.NewAssetSelection
         /// Loads up asset cards.
         /// </summary>
         /// <param name="data">Data for the card.</param>
-        public void Load(SelectionMenuData data) => Load(data, data.getAssetList.Invoke());
+        public void Load(SelectionMenuData data) => Load(data, data.GetAssetList.Invoke());
 
         /// <summary>
         /// Pools asset cards into the content.
@@ -27,17 +27,19 @@ namespace Rogium.Editors.NewAssetSelection
         /// <param name="assets">All assets for which to load cards for.</param>
         public void Load(SelectionMenuData data, IList<IAsset> assets)
         {
-            foreach (IAsset asset in assets)
+            for (int i = 0; i < assets.Count; i++)
             {
+                IAsset asset = assets[i];
                 AssetCardControllerV2 card = Instantiate(cardPrefab, content);
                 card.Construct(new AssetCardData.Builder()
-                                .WithTitle(asset.Title)
-                                .WithIcon(asset.Icon)
-                                .WithEditButton(data.whenAssetEdit)
-                                .WithConfigButton(data.whenAssetConfig)
-                                .WithDeleteButton(data.whenAssetDelete)
-                                .Build());
-            }   
+                    .WithIndex(i)
+                    .WithTitle(asset.Title)
+                    .WithIcon(asset.Icon)
+                    .WithEditButton(data.WhenAssetEdit)
+                    .WithConfigButton(data.WhenAssetConfig)
+                    .WithDeleteButton(data.WhenAssetDelete)
+                    .Build());
+            }
         }
     }
 }
