@@ -100,6 +100,8 @@ namespace Rogium.Editors.Core
             packs[packIndex] = ex.LoadPack(packs[packIndex]);
             packEditor.AssignAsset(packs[packIndex], packIndex);
         }
+        
+        public void ClearPacks() => packs.Clear();
 
         private void RemoveSpriteAssociation(string id) => RemoveSpriteAssociationsAndSaveAsset(packs, id);
 
@@ -165,6 +167,8 @@ namespace Rogium.Editors.Core
             SafetyNet.EnsureIntIsInRange(campaignIndex, 0, campaigns.Count, "campaignIndex for activating Campaign Playthrough");
             SceneTransferOverseer.GetInstance().LoadUp(campaigns[campaignIndex]);
         }
+        
+        public void ClearCampaigns() => campaigns.Clear();
         #endregion
 
         #region Preferences

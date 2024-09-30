@@ -44,7 +44,7 @@ namespace Rogium.Tests.Editors
         public static PackAsset CreatePack()
         {
             return new PackAsset.Builder()
-                .WithTitle("Test Pack" + Random.Range(0, 1000))
+                .WithTitle($"Test Pack {Random.Range(0, 1000)}")
                 .WithIcon(RedRatBuilder.GenerateSprite(Color.magenta, 16, 16, 16))
                 .WithPalettes(new[] {CreatePalette()})
                 .WithSprites(new[] {CreateSprite()})
