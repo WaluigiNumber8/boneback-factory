@@ -3,7 +3,7 @@ namespace Rogium.UserInterface.Interactables
 {
     public enum ButtonType
     {
-        DoNothing = 0,
+        None = 0,
         OpenOptionsMenu = 75,
         OpenChangelog = 81,
 

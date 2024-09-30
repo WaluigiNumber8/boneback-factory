@@ -32,5 +32,20 @@ namespace Rogium.Tests.Editors.AssetSelection
             Assert.That(selectionMenu.CurrentSelector.Content.childCount, Is.EqualTo(3));
         }
 
+        [Test]
+        public void Should_OpenSelectionMenuForPalettes_WhenClickEditOnPackCard()
+        {
+            selectionMenu.Open(AssetType.Pack);
+            selectionMenu.CurrentSelector.Content.GetChild(0).GetComponent<AssetCardControllerV2>().Edit();
+            Assert.That(selectionMenu.CurrentType, Is.EqualTo(AssetType.Palette));
+        }
+
+        [Test]
+        public void Should_FillWithPaletteAssetCards_WhenClickEditOnPackCard()
+        {
+            selectionMenu.Open(AssetType.Pack);
+            selectionMenu.CurrentSelector.Content.GetChild(0).GetComponent<AssetCardControllerV2>().Edit();
+            Assert.That(selectionMenu.CurrentSelector.Content.childCount, Is.EqualTo(1));
+        }
     }
 }

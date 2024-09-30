@@ -12,20 +12,20 @@ namespace Rogium.Editors.NewAssetSelection
     /// <summary>
     /// Overseers the Asset Selection Menu.
     /// </summary>
-    public sealed partial class SelectionMenuOverseerMono : MonoSingleton<SelectionMenuOverseerMono>
+    public sealed class SelectionMenuOverseerMono : MonoSingleton<SelectionMenuOverseerMono>
     {
         [SerializeField] private SelectionMenuData packSelection;
         [Button] public void TestFill() => Open(AssetType.Pack);
         
-        private IDictionary<AssetType, SelectionMenuFullData> menuData;
+        private IDictionary<AssetType, SelectionMenuData> menuData;
         private AssetType currentType;
 
         protected override void Awake()
         {
             base.Awake();
-            menuData = new Dictionary<AssetType, SelectionMenuFullData>
+            menuData = new Dictionary<AssetType, SelectionMenuData>
             {
-                {AssetType.Pack, new SelectionMenuFullData(packSelection, ExternalLibraryOverseer.Instance.Packs.Cast<IAsset>().ToList)}
+                {AssetType.Pack, new SelectionMenuData(packSelection, ExternalLibraryOverseer.Instance.Packs.Cast<IAsset>().ToList)}
             };
         }
 
@@ -34,13 +34,14 @@ namespace Rogium.Editors.NewAssetSelection
             currentType = type;
             GetData(currentType).Load();
         }
-        
-        private SelectionMenuFullData GetData(AssetType type)
+
+        private SelectionMenuData GetData(AssetType type)
         {
             SafetyNet.EnsureDictionaryContainsKey(menuData, type, nameof(menuData));
             return menuData[type];
         }
 
-        public AssetSelector CurrentSelector { get => GetData(currentType).Data.assetSelector; }
+        public AssetSelector CurrentSelector { get => GetData(currentType).assetSelector; }
+        public AssetType CurrentType { get => currentType; }
     }
 }

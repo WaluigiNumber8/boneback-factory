@@ -20,10 +20,17 @@ namespace Rogium.Editors.NewAssetSelection
             toggle.onValueChanged.AddListener(ToggleDisplayedGroups);
         }
 
-        public void Construct(IAsset asset, AssetCardData data)
+        public void Construct(AssetCardData data)
         {
-            ui.title.text = asset.Title;
-            ui.iconImage.sprite = asset.Icon;
+            ui.title.text = data.title;
+            ui.iconImage.sprite = data.icon;
+        }
+        
+        /// <summary>
+        /// Edit the asset.
+        /// </summary>
+        public void Edit()
+        {
         }
         
         private void ToggleDisplayedGroups(bool value)

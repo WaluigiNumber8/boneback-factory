@@ -14,7 +14,7 @@ namespace Rogium.UserInterface.Interactables
         {
             switch (action)
             {
-                case ButtonType.DoNothing:
+                case ButtonType.None:
                     Debug.LogError("This button Currently does nothing...");
                     break;
                 case ButtonType.QuitGame:
