@@ -17,7 +17,7 @@ namespace Rogium.UserInterface.Interactables
         SelectionOpenTile = 7,
         SelectionOpenProjectile = 8,
         SelectionOpenCampaign = 9,
-        SelectionOpenAssetType = 10,
+        OpenEditor = 10,
         #endregion
 
         #region Return from Menus

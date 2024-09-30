@@ -127,7 +127,7 @@ namespace Rogium.Systems.GASExtension
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Palette);
             PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
-            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToAssetTypeSelection, null, pack.Title, pack.Icon);
+            // CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToAssetTypeSelection, null, pack.Title, pack.Icon);
         }
         
         public static void OpenSelectionSprite()
@@ -534,10 +534,10 @@ namespace Rogium.Systems.GASExtension
         public static void OpenEditor(int packIndex)
         {
             ExternalLibraryOverseer.Instance.ActivatePackEditor(packIndex);
-            GAS.SwitchMenu(MenuType.AssetTypeSelection);
-            PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
-            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToPackSelectionMenu, null, pack.Title, pack.Icon);
+            // PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
+            // CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToPackSelectionMenu, null, pack.Title, pack.Icon);
             storedIndex = packIndex;
+            OpenSelectionPalette();
         }
 
         public static void OpenEditorCampaign(int assetIndex)
@@ -550,7 +550,7 @@ namespace Rogium.Systems.GASExtension
 
         public static void OpenEditorPalette(int assetIndex)
         {
-            CanvasOverseer.GetInstance().NavigationBar.Hide();
+            // CanvasOverseer.GetInstance().NavigationBar.Hide();
             GAS.SwitchMenu(MenuType.PaletteEditor);
             PackEditorOverseer.Instance.ActivatePaletteEditor(assetIndex);
             storedIndex = assetIndex;

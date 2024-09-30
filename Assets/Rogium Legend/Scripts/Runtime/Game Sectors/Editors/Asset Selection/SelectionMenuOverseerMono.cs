@@ -28,9 +28,11 @@ namespace Rogium.Editors.NewAssetSelection
             menuData = new Dictionary<AssetType, SelectionMenuData>
             {
                 {AssetType.Pack, new SelectionMenuData(data.packSelection, ExternalLibraryOverseer.Instance.Packs.Cast<IAsset>().ToList)},
-                {AssetType.Palette, new SelectionMenuData(data.paletteSelection, PackEditorOverseer.Instance.CurrentPack.Palettes.Cast<IAsset>().ToList)}
+                {AssetType.Palette, new SelectionMenuData(data.paletteSelection, GetPaletteList)}
             };
         }
+
+        private static IList<IAsset> GetPaletteList() => PackEditorOverseer.Instance.CurrentPack.Palettes.Cast<IAsset>().ToList();
 
         public void Open(AssetType type)
         {
