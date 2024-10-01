@@ -4302,41 +4302,49 @@ MonoBehaviour:
   data:
     packSelection:
       assetSelector: {fileID: 3972849999520769450}
+      whenAssetCreate: 13
       whenAssetEdit: 10
       whenAssetConfig: 22
       whenAssetDelete: 31
     paletteSelection:
       assetSelector: {fileID: 8609641244469379704}
+      whenAssetCreate: 14
       whenAssetEdit: 40
       whenAssetConfig: 23
       whenAssetDelete: 32
     spriteSelection:
       assetSelector: {fileID: 8522474183913425301}
+      whenAssetCreate: 15
       whenAssetEdit: 41
       whenAssetConfig: 24
       whenAssetDelete: 33
     weaponSelection:
       assetSelector: {fileID: 8280292480621820641}
+      whenAssetCreate: 16
       whenAssetEdit: 42
       whenAssetConfig: 25
       whenAssetDelete: 34
     projectileSelection:
       assetSelector: {fileID: 4092251052432054611}
+      whenAssetCreate: 20
       whenAssetEdit: 46
       whenAssetConfig: 29
       whenAssetDelete: 38
     enemySelection:
       assetSelector: {fileID: 4943087232562175603}
+      whenAssetCreate: 17
       whenAssetEdit: 43
       whenAssetConfig: 26
       whenAssetDelete: 35
     roomSelection:
       assetSelector: {fileID: 3231967040847376344}
+      whenAssetCreate: 18
       whenAssetEdit: 44
       whenAssetConfig: 27
       whenAssetDelete: 36
     tileSelection:
       assetSelector: {fileID: 2753593943202315185}
+      whenAssetCreate: 19
       whenAssetEdit: 45
       whenAssetConfig: 28
       whenAssetDelete: 37
@@ -4371,6 +4379,7 @@ MonoBehaviour:
   title: Packs
   content: {fileID: 5276312561515409365}
   cardPrefab: {fileID: 800303388382642994, guid: 90910eef88e95f74792b93889d692511, type: 3}
+  assetCreateButtonPrefab: {fileID: 9189480147332028196, guid: 475160b8cb80c2f4e9fa692693538ea9, type: 3}
 --- !u!114 &8609641244469379704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4386,6 +4395,7 @@ MonoBehaviour:
   title: Palettes
   content: {fileID: 1017087434172153346}
   cardPrefab: {fileID: 3020654531083554274, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
+  assetCreateButtonPrefab: {fileID: 9189480147332028196, guid: 475160b8cb80c2f4e9fa692693538ea9, type: 3}
 --- !u!114 &8522474183913425301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4401,6 +4411,7 @@ MonoBehaviour:
   title: Sprites
   content: {fileID: 5838327008951798175}
   cardPrefab: {fileID: 3020654531083554274, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
+  assetCreateButtonPrefab: {fileID: 9189480147332028196, guid: 475160b8cb80c2f4e9fa692693538ea9, type: 3}
 --- !u!114 &8280292480621820641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4416,6 +4427,7 @@ MonoBehaviour:
   title: Weapons
   content: {fileID: 7634937019703700140}
   cardPrefab: {fileID: 3020654531083554274, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
+  assetCreateButtonPrefab: {fileID: 9189480147332028196, guid: 475160b8cb80c2f4e9fa692693538ea9, type: 3}
 --- !u!114 &4092251052432054611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4431,6 +4443,7 @@ MonoBehaviour:
   title: Projectiles
   content: {fileID: 8089128776682258778}
   cardPrefab: {fileID: 3020654531083554274, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
+  assetCreateButtonPrefab: {fileID: 9189480147332028196, guid: 475160b8cb80c2f4e9fa692693538ea9, type: 3}
 --- !u!114 &4943087232562175603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4446,6 +4459,7 @@ MonoBehaviour:
   title: Enemies
   content: {fileID: 7111832508738726196}
   cardPrefab: {fileID: 3020654531083554274, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
+  assetCreateButtonPrefab: {fileID: 9189480147332028196, guid: 475160b8cb80c2f4e9fa692693538ea9, type: 3}
 --- !u!114 &3231967040847376344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4461,6 +4475,7 @@ MonoBehaviour:
   title: Rooms
   content: {fileID: 1962260172078582944}
   cardPrefab: {fileID: 3020654531083554274, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
+  assetCreateButtonPrefab: {fileID: 9189480147332028196, guid: 475160b8cb80c2f4e9fa692693538ea9, type: 3}
 --- !u!114 &2753593943202315185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4476,6 +4491,7 @@ MonoBehaviour:
   title: Tiles
   content: {fileID: 1116247974747082025}
   cardPrefab: {fileID: 3020654531083554274, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
+  assetCreateButtonPrefab: {fileID: 9189480147332028196, guid: 475160b8cb80c2f4e9fa692693538ea9, type: 3}
 --- !u!1001 &1013799183134346477
 PrefabInstance:
   m_ObjectHideFlags: 0

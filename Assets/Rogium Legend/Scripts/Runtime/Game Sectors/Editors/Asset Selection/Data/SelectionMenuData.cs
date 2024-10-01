@@ -13,6 +13,7 @@ namespace Rogium.Editors.NewAssetSelection
     public struct SelectionMenuData
     {
         [SerializeField] private AssetSelector assetSelector;
+        [SerializeField] private ButtonType whenAssetCreate;
         [SerializeField] private ButtonType whenAssetEdit;
         [SerializeField] private ButtonType whenAssetConfig;
         [SerializeField] private ButtonType whenAssetDelete;
@@ -21,6 +22,7 @@ namespace Rogium.Editors.NewAssetSelection
         public SelectionMenuData(SelectionMenuData data, Func<IList<IAsset>> getAssetList)
         {
             assetSelector = data.assetSelector;
+            whenAssetCreate = data.whenAssetCreate;
             whenAssetEdit = data.whenAssetEdit;
             whenAssetConfig = data.whenAssetConfig;
             whenAssetDelete = data.whenAssetDelete;
@@ -39,6 +41,7 @@ namespace Rogium.Editors.NewAssetSelection
         public void Load(IList<IAsset> assets) => assetSelector.Load(this, assets);
         
         public AssetSelector AssetSelector { get => assetSelector; }
+        public ButtonType WhenAssetCreate { get => whenAssetCreate; }
         public ButtonType WhenAssetEdit { get => whenAssetEdit; }
         public ButtonType WhenAssetConfig { get => whenAssetConfig; }
         public ButtonType WhenAssetDelete { get => whenAssetDelete; }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Rogium.Editors.Core;
+using Rogium.UserInterface.Interactables;
 using UnityEngine;
 
 namespace Rogium.Editors.NewAssetSelection
@@ -12,6 +13,7 @@ namespace Rogium.Editors.NewAssetSelection
         [SerializeField] private string title;
         [SerializeField] private RectTransform content;
         [SerializeField] private AssetCardControllerV2 cardPrefab;
+        [SerializeField] private InteractableButton assetCreateButtonPrefab;
 
         private IList<AssetCardControllerV2> cards;
         private Stack<AssetCardControllerV2> disabledCards;
@@ -21,7 +23,6 @@ namespace Rogium.Editors.NewAssetSelection
             cards = new List<AssetCardControllerV2>();
             disabledCards = new Stack<AssetCardControllerV2>();
         }
-
 
         /// <summary>
         /// Loads up asset cards.
@@ -36,7 +37,8 @@ namespace Rogium.Editors.NewAssetSelection
         /// <param name="assets">All assets for which to load cards for.</param>
         public void Load(SelectionMenuData data, IList<IAsset> assets)
         {
-            //Foreach card, check if it's in the list on the position
+            PrepareAddButton(data);
+            
             for (int i = 0; i < assets.Count; i++)
             {
                 IAsset asset = assets[i];
@@ -61,7 +63,15 @@ namespace Rogium.Editors.NewAssetSelection
                 cards.RemoveAt(i);
             }
         }
-        
+
+        private void PrepareAddButton(SelectionMenuData data)
+        {
+            if (data.WhenAssetCreate == ButtonType.None) return;
+            
+            InteractableButton addButton = (content.childCount > 0 && content.GetChild(0).TryGetComponent(out InteractableButton button)) ? button : Instantiate(assetCreateButtonPrefab, content);
+            addButton.Action = data.WhenAssetCreate;
+        }
+
         public RectTransform Content { get => content; }
     }
 }
