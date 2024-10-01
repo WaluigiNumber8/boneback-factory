@@ -9,6 +9,7 @@ namespace Rogium.Editors.NewAssetSelection
     /// </summary>
     public class AssetSelector : MonoBehaviour
     {
+        [SerializeField] private string title;
         [SerializeField] private RectTransform content;
         [SerializeField] private AssetCardControllerV2 cardPrefab;
 

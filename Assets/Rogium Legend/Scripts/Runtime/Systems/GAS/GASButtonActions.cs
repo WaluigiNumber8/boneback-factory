@@ -135,8 +135,8 @@ namespace Rogium.Systems.GASExtension
             GASRogium.ChangeTheme(ThemeType.Pink);
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Sprite);
-            PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
-            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToAssetTypeSelection, null, pack.Title, pack.Icon);
+            // PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
+            // CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToAssetTypeSelection, null, pack.Title, pack.Icon);
         }
         
         public static void OpenSelectionWeapon()
@@ -144,8 +144,8 @@ namespace Rogium.Systems.GASExtension
             GASRogium.ChangeTheme(ThemeType.Green);
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Weapon);
-            PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
-            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToAssetTypeSelection, null, pack.Title, pack.Icon);
+            // PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
+            // CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToAssetTypeSelection, null, pack.Title, pack.Icon);
         }
         
         public static void OpenSelectionProjectile()
@@ -153,8 +153,8 @@ namespace Rogium.Systems.GASExtension
             GASRogium.ChangeTheme(ThemeType.Teal);
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Projectile);
-            PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
-            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToAssetTypeSelection, null, pack.Title, pack.Icon);
+            // PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
+            // CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToAssetTypeSelection, null, pack.Title, pack.Icon);
         }
         
         public static void OpenSelectionEnemy()
@@ -162,8 +162,8 @@ namespace Rogium.Systems.GASExtension
             GASRogium.ChangeTheme(ThemeType.Red);
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Enemy);
-            PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
-            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToAssetTypeSelection, null, pack.Title, pack.Icon);
+            // PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
+            // CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToAssetTypeSelection, null, pack.Title, pack.Icon);
         }
         
         public static void OpenSelectionRoom()
@@ -171,8 +171,8 @@ namespace Rogium.Systems.GASExtension
             GASRogium.ChangeTheme(ThemeType.Blue);
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Room);
-            PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
-            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToAssetTypeSelection, null, pack.Title, pack.Icon);
+            // PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
+            // CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToAssetTypeSelection, null, pack.Title, pack.Icon);
         }
         
         public static void OpenSelectionTile()
@@ -180,8 +180,8 @@ namespace Rogium.Systems.GASExtension
             GASRogium.ChangeTheme(ThemeType.Yellow);
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Tile);
-            PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
-            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToAssetTypeSelection, null, pack.Title, pack.Icon);
+            // PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
+            // CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToAssetTypeSelection, null, pack.Title, pack.Icon);
         }
 
         #endregion
