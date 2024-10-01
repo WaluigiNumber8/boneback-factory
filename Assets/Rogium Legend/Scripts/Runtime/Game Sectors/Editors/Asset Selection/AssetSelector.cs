@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using RedRats.Core;
 using Rogium.Editors.Core;
 using UnityEngine;
 
@@ -27,6 +28,7 @@ namespace Rogium.Editors.NewAssetSelection
         /// <param name="assets">All assets for which to load cards for.</param>
         public void Load(SelectionMenuData data, IList<IAsset> assets)
         {
+            content.KillChildren();
             for (int i = 0; i < assets.Count; i++)
             {
                 IAsset asset = assets[i];
