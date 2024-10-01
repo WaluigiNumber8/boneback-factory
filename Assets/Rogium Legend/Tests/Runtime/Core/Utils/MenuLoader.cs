@@ -18,12 +18,13 @@ namespace Rogium.Tests.Core
         private static readonly GameObject propertyEditorProperty = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Menu_PropertyEditor.prefab");
         private static readonly GameObject selectionMenuProperty = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Menu_SelectionMenu.prefab");
         private static readonly GameObject selectionMenuV2Property = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Menu_SelectionMenu_V2.prefab");
+        private static readonly GameObject mainMenuProperty = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Menu_Main.prefab");
 
         public static IEnumerator PrepareSelectionMenu()
         {
             OverseerLoader.LoadInternalLibrary();
             OverseerLoader.LoadThemeOverseer();
-            Object.Instantiate(selectionMenuProperty);
+            Object.Instantiate(selectionMenuProperty, Object.FindFirstObjectByType<Canvas>().transform);
             yield return null;
             GASButtonActions.OpenSelectionPack();
         }
@@ -32,7 +33,15 @@ namespace Rogium.Tests.Core
         {
             OverseerLoader.LoadInternalLibrary();
             OverseerLoader.LoadThemeOverseer();
-            Object.Instantiate(selectionMenuV2Property);
+            Object.Instantiate(selectionMenuV2Property, Object.FindFirstObjectByType<Canvas>().transform);
+            yield return null;
+        }
+        
+        public static IEnumerator PrepareMainMenu()
+        {
+            OverseerLoader.LoadInternalLibrary();
+            OverseerLoader.LoadThemeOverseer();
+            Object.Instantiate(mainMenuProperty, Object.FindFirstObjectByType<Canvas>().transform);
             yield return null;
         }
 
@@ -41,7 +50,7 @@ namespace Rogium.Tests.Core
         /// </summary>
         public static IEnumerator PreparePaletteEditor()
         {
-            Object.Instantiate(paletteEditorProperty);
+            Object.Instantiate(paletteEditorProperty, Object.FindFirstObjectByType<Canvas>().transform);
             yield return null;
             PackEditorOverseer.Instance.ActivatePaletteEditor(0);
         }
@@ -52,7 +61,7 @@ namespace Rogium.Tests.Core
         public static IEnumerator PrepareSpriteEditor()
         {
             OverseerLoader.LoadThemeOverseer();
-            Object.Instantiate(spriteEditorProperty);
+            Object.Instantiate(spriteEditorProperty, Object.FindFirstObjectByType<Canvas>().transform);
             yield return null;
             PackEditorOverseer.Instance.ActivateSpriteEditor(0);
         }
@@ -66,7 +75,7 @@ namespace Rogium.Tests.Core
             OverseerLoader.LoadUIBuilder();
             OverseerLoader.LoadThemeOverseer();
             
-            Object.Instantiate(propertyEditorProperty);
+            Object.Instantiate(propertyEditorProperty, Object.FindFirstObjectByType<Canvas>().transform);
             yield return null;
             PackEditorOverseer.Instance.ActivateWeaponEditor(0);
         }
@@ -80,7 +89,7 @@ namespace Rogium.Tests.Core
             OverseerLoader.LoadUIBuilder();
             OverseerLoader.LoadThemeOverseer();
             
-            Object.Instantiate(propertyEditorProperty);
+            Object.Instantiate(propertyEditorProperty, Object.FindFirstObjectByType<Canvas>().transform);
             yield return null;
             PackEditorOverseer.Instance.ActivateProjectileEditor(0);
         }
@@ -94,7 +103,7 @@ namespace Rogium.Tests.Core
             OverseerLoader.LoadUIBuilder();
             OverseerLoader.LoadThemeOverseer();
             
-            Object.Instantiate(propertyEditorProperty);
+            Object.Instantiate(propertyEditorProperty, Object.FindFirstObjectByType<Canvas>().transform);
             yield return null;
             PackEditorOverseer.Instance.ActivateEnemyEditor(0);
         }
@@ -108,7 +117,7 @@ namespace Rogium.Tests.Core
             OverseerLoader.LoadUIBuilder();
             OverseerLoader.LoadThemeOverseer();
             
-            Object.Instantiate(roomEditorProperty);
+            Object.Instantiate(roomEditorProperty, Object.FindFirstObjectByType<Canvas>().transform);
             yield return null;
             PackEditorOverseer.Instance.ActivateRoomEditor(0);
         }
@@ -122,7 +131,7 @@ namespace Rogium.Tests.Core
             OverseerLoader.LoadUIBuilder();
             OverseerLoader.LoadThemeOverseer();
 
-            Object.Instantiate(propertyEditorProperty);
+            Object.Instantiate(propertyEditorProperty, Object.FindFirstObjectByType<Canvas>().transform);
             yield return null;
             PackEditorOverseer.Instance.ActivateTileEditor(0);
         }

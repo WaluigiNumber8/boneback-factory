@@ -70,7 +70,7 @@ namespace Rogium.Systems.GASExtension
         #region Return from menus
         public static void ReturnToMainMenuSelection()
         {
-            CanvasOverseer.GetInstance().NavigationBar.Hide();
+            // CanvasOverseer.GetInstance().NavigationBar.Hide();
             GAS.ObjectSetActive(false, UIEditorContainer.GetInstance().Background);
             GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundGameplayMenus);
             GAS.ObjectSetActive(true, UIMainContainer.GetInstance().BackgroundMain);

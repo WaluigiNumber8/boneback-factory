@@ -11,7 +11,7 @@ using static Rogium.Tests.Editors.AssetCreator;
 namespace Rogium.Tests.Editors.AssetSelection
 {
     /// <summary>
-    /// Tests for working with the Asset Selection Menu.
+    /// Tests for the <see cref="SelectionMenuUIAdjuster"/> that adjusts the UI of the Selection Menu.
     /// </summary>
     public class SelectionMenuUIAdjusterTests : MenuTestBase
     {
