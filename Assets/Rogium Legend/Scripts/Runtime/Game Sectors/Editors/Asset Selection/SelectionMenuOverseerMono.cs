@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using RedRats.Core;
@@ -17,6 +16,8 @@ namespace Rogium.Editors.NewAssetSelection
     /// </summary>
     public sealed class SelectionMenuOverseerMono : MonoSingleton<SelectionMenuOverseerMono>
     {
+        public event Action<AssetType> OnOpen;
+        
         [SerializeField] private SelectionDataInfo data;
         [Button] public void TestFill() => Open(AssetType.Pack);
         
@@ -51,6 +52,7 @@ namespace Rogium.Editors.NewAssetSelection
         {
             currentType = type;
             GetData(currentType).Load();
+            OnOpen?.Invoke(currentType);
         }
 
         private SelectionMenuData GetData(AssetType type)
