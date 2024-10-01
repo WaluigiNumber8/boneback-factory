@@ -24,6 +24,7 @@ namespace Rogium.Tests.Editors.AssetSelection
             selectionMenu = SelectionMenuOverseerMono.GetInstance();
             AddNewPackToLibrary();
             AddNewPackToLibrary();
+            yield return null;
         }
 
         [Test]

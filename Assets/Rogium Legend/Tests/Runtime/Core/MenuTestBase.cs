@@ -2,6 +2,7 @@ using System.Collections;
 using NSubstitute;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Enemies;
+using Rogium.Editors.Packs;
 using Rogium.Editors.Palettes;
 using Rogium.Editors.Projectiles;
 using Rogium.Editors.Rooms;
@@ -35,6 +36,7 @@ namespace Rogium.Tests.Core
         private void PrepareExternalStorageSubstitute()
         {
             IExternalStorageOverseer ex = Substitute.For<IExternalStorageOverseer>();
+            ex.LoadPack(Arg.Any<PackAsset>()).Returns(info => info.Arg<PackAsset>());
             ex.Palettes.Returns(Substitute.For<ICRUDOperations<PaletteAsset, JSONPaletteAsset>>());
             ex.Sprites.Returns(Substitute.For<ICRUDOperations<SpriteAsset, JSONSpriteAsset>>());
             ex.Enemies.Returns(Substitute.For<ICRUDOperations<EnemyAsset, JSONEnemyAsset>>());
