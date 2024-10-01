@@ -61,5 +61,29 @@ namespace Rogium.Tests.Editors.AssetSelection
             yield return null;
             Assert.That(adjuster.PackScrollRectActive, Is.True);
         }
+        
+        [UnityTest]
+        public IEnumerator Should_EnablePackBanner_WhenSelectionMenuIsOpenForPalettes()
+        {
+            selectionMenu.Open(AssetType.Palette);
+            yield return null;
+            Assert.That(adjuster.PackBannerActive, Is.True);
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_EnableCategoryTabs_WhenSelectionMenuIsOpenForPalettes()
+        {
+            selectionMenu.Open(AssetType.Palette);
+            yield return null;
+            Assert.That(adjuster.CategoryTabsActive, Is.True);
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_EnableOtherAssetRects_WhenSelectionMenuIsOpenForPalettes()
+        {
+            selectionMenu.Open(AssetType.Palette);
+            yield return null;
+            Assert.That(adjuster.OtherAssetScrollRectsActive, Is.True);
+        }
     }
 }
