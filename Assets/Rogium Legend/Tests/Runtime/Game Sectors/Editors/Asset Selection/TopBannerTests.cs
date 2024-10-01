@@ -40,5 +40,16 @@ namespace Rogium.Tests.Editors.AssetSelection
             yield return null;
             Assert.That(MenuSwitcher.GetInstance().CurrentMenu, Is.EqualTo(MenuType.MainMenu));
         }
+
+        [UnityTest]
+        public IEnumerator ReturnButton_Should_ReturnToPackSelection_WhenClickedOnPaletteSelection()
+        {
+            SelectionMenuOverseerMonoTestsU.OpenPackSelectionAndEditFirstPack();
+            yield return null;
+            SelectionMenuReturnButton returnButton = Object.FindFirstObjectByType<SelectionMenuReturnButton>();
+            returnButton.Click();
+            yield return null;
+            Assert.That(selectionMenu.CurrentType, Is.EqualTo(AssetType.Pack));
+        }
     }
 }
