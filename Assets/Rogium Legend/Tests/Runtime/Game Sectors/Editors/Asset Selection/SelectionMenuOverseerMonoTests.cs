@@ -6,6 +6,7 @@ using Rogium.Editors.NewAssetSelection;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Palettes;
 using Rogium.Tests.Core;
+using UnityEngine;
 using UnityEngine.TestTools;
 using static Rogium.Tests.Editors.AssetCreator;
 using static Rogium.Tests.Editors.AssetSelection.SelectionMenuOverseerMonoTestsU;
@@ -70,6 +71,19 @@ namespace Rogium.Tests.Editors.AssetSelection
             selectionMenu.Open(AssetType.Palette);
             yield return null;
             Assert.That(selectionMenu.CurrentSelector.Content.GetChild(0).GetComponent<AssetCardControllerV2>().Title, Is.EqualTo("Fred"));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_RefreshPaletteAssetCardIcon_WhenPaletteEditedAndSelectionMenuLoaded()
+        {
+            OpenPackSelectionAndEditFirstPack();
+            PackEditorOverseer.Instance.ActivatePaletteEditor(0);
+            PaletteEditorOverseer.Instance.CurrentAsset.Colors[0] = Color.blue;
+            PaletteEditorOverseer.Instance.CompleteEditing();
+            selectionMenu.Open(AssetType.Palette);
+            yield return null;
+            Texture2D icon = selectionMenu.CurrentSelector.Content.GetChild(0).GetComponent<AssetCardControllerV2>().Icon.texture;
+            Assert.That(icon.GetPixel(0, icon.height - 1), Is.EqualTo(Color.blue));
         }
     }
 }
