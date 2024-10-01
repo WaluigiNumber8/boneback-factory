@@ -126,7 +126,7 @@ namespace Rogium.Systems.GASExtension
             GASRogium.ChangeTheme(ThemeType.Purple);
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Palette);
-            PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
+            // PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
             // CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToAssetTypeSelection, null, pack.Title, pack.Icon);
         }
         

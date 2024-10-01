@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using RedRats.Core;
 using RedRats.Safety;
 using Rogium.Core;
 using Rogium.Editors.Campaign;
-using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Packs;
 using Rogium.ExternalStorage;
 using Rogium.Options.Core;
 using Rogium.Systems.SceneTransferService;
-using UnityEngine;
 using static Rogium.Editors.Packs.AssetAssociation;
 
 namespace Rogium.Editors.Core
@@ -195,8 +194,8 @@ namespace Rogium.Editors.Core
 
         #endregion
         
-        public IList<PackAsset> Packs { get => packs; }
-        public IList<CampaignAsset> Campaigns {get => campaigns;}
+        public ReadOnlyCollection<PackAsset> Packs { get => new ReadOnlyCollection<PackAsset>(packs); }
+        public ReadOnlyCollection<CampaignAsset> Campaigns {get => new ReadOnlyCollection<CampaignAsset>(campaigns);}
         public GameDataAsset Preferences { get => preferences; }
     }
 }

@@ -5,6 +5,7 @@ using Rogium.Editors.Core;
 using Rogium.Editors.NewAssetSelection;
 using Rogium.Tests.Core;
 using static Rogium.Tests.Editors.AssetCreator;
+using static Rogium.Tests.Editors.AssetSelection.SelectionMenuOverseerMonoTestsU;
 
 namespace Rogium.Tests.Editors.AssetSelection
 {
@@ -35,16 +36,22 @@ namespace Rogium.Tests.Editors.AssetSelection
         [Test]
         public void Should_OpenSelectionMenuForPalettes_WhenClickEditOnPackCard()
         {
-            selectionMenu.Open(AssetType.Pack);
-            selectionMenu.CurrentSelector.Content.GetChild(0).GetComponent<AssetCardControllerV2>().Edit();
+            OpenPackSelectionAndEditFirstPack();
             Assert.That(selectionMenu.CurrentType, Is.EqualTo(AssetType.Palette));
         }
 
         [Test]
         public void Should_FillWithPaletteAssetCards_WhenClickEditOnPackCard()
         {
-            selectionMenu.Open(AssetType.Pack);
-            selectionMenu.CurrentSelector.Content.GetChild(0).GetComponent<AssetCardControllerV2>().Edit();
+            OpenPackSelectionAndEditFirstPack();
+            Assert.That(selectionMenu.CurrentSelector.Content.childCount, Is.EqualTo(1));
+        }
+        
+        [Test]
+        public void Should_NotDuplicatePaletteAssetCards_WhenEditPackLeaveAndEditAgain()
+        {
+            OpenPackSelectionAndEditFirstPack();
+            OpenPackSelectionAndEditFirstPack();
             Assert.That(selectionMenu.CurrentSelector.Content.childCount, Is.EqualTo(1));
         }
     }
