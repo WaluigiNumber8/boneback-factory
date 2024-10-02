@@ -104,11 +104,11 @@ namespace Rogium.Systems.GASExtension
         public static void OpenSelectionPack()
         {
             GASRogium.ChangeTheme(ThemeType.Blue);
-            GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundMain);
-            GAS.ObjectSetActive(true, UIEditorContainer.GetInstance().Background);
+            // GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundMain);
+            // GAS.ObjectSetActive(true, UIEditorContainer.GetInstance().Background);
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Pack);
-            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToMainMenuSelection);
+            // CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToMainMenuSelection);
         }
 
         public static void OpenSelectionCampaign()
