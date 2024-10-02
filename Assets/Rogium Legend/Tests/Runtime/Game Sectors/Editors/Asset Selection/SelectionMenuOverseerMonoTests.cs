@@ -39,7 +39,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         public void Should_FillWithPackAssetCards_WhenOpenForPacks()
         {
             selectionMenu.Open(AssetType.Pack);
-            Assert.That(selectionMenu.CurrentSelector.Content.childCount, Is.EqualTo(3));
+            Assert.That(selectionMenu.CurrentSelector.Content.childCount, Is.EqualTo(4));
         }
 
         [Test]
@@ -53,7 +53,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         public void Should_FillWithPaletteAssetCards_WhenClickEditOnPackCard()
         {
             OpenPackSelectionAndEditFirstPack();
-            Assert.That(selectionMenu.CurrentSelector.Content.childCount, Is.EqualTo(1));
+            Assert.That(selectionMenu.CurrentSelector.Content.childCount, Is.EqualTo(2));
         }
         
         [UnityTest]
@@ -62,7 +62,7 @@ namespace Rogium.Tests.Editors.AssetSelection
             OpenPackSelectionAndEditFirstPack();
             OpenPackSelectionAndEditFirstPack();
             yield return null;
-            Assert.That(selectionMenu.CurrentSelector.Content.childCount, Is.EqualTo(1));
+            Assert.That(selectionMenu.CurrentSelector.Content.childCount, Is.EqualTo(2));
         }
 
         [UnityTest]
@@ -74,7 +74,7 @@ namespace Rogium.Tests.Editors.AssetSelection
             PaletteEditorOverseer.Instance.CompleteEditing();
             selectionMenu.Open(AssetType.Palette);
             yield return null;
-            Assert.That(selectionMenu.CurrentSelector.Content.GetChild(0).GetComponent<AssetCardControllerV2>().Title, Is.EqualTo("Fred"));
+            Assert.That(selectionMenu.CurrentSelector.Content.GetChild(1).GetComponent<AssetCardControllerV2>().Title, Is.EqualTo("Fred"));
         }
 
         [UnityTest]
@@ -86,7 +86,7 @@ namespace Rogium.Tests.Editors.AssetSelection
             PaletteEditorOverseer.Instance.CompleteEditing();
             selectionMenu.Open(AssetType.Palette);
             yield return null;
-            Texture2D icon = selectionMenu.CurrentSelector.Content.GetChild(0).GetComponent<AssetCardControllerV2>().Icon.texture;
+            Texture2D icon = selectionMenu.CurrentSelector.Content.GetChild(1).GetComponent<AssetCardControllerV2>().Icon.texture;
             Assert.That(icon.GetPixel(0, icon.height - 1), Is.EqualTo(Color.blue));
         }
 
@@ -121,7 +121,7 @@ namespace Rogium.Tests.Editors.AssetSelection
             yield return null;
             InteractableUtils.FindFirstModalWindow().OnAccept();
             yield return null;
-            Assert.That(selectionMenu.CurrentSelector.Content.childCount, Is.EqualTo(4));
+            Assert.That(selectionMenu.CurrentSelector.Content.childCount, Is.EqualTo(5));
         }
     }
 }
