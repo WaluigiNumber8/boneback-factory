@@ -17,7 +17,6 @@ namespace Rogium.Tests.Editors.AssetSelection
         
         public override IEnumerator Setup()
         {
-            ExternalLibraryOverseer.Instance.ClearPacks();
             yield return base.Setup();
             yield return MenuLoader.PrepareSelectionMenuV2();
             selectionMenu = SelectionMenuOverseerMono.GetInstance();

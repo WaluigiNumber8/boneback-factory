@@ -1,6 +1,7 @@
 using System.Collections;
 using NSubstitute;
 using Rogium.Editors.Campaign;
+using Rogium.Editors.Core;
 using Rogium.Editors.Enemies;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Palettes;
@@ -30,6 +31,7 @@ namespace Rogium.Tests.Core
             yield return null;
             PrepareExternalStorageSubstitute();
             yield return null;
+            ExternalLibraryOverseer.Instance.ClearPacks();
             yield return AssetCreator.CreateAndAssignPack();
         }
 

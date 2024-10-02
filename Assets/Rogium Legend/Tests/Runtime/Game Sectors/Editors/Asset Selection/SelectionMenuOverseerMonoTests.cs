@@ -24,7 +24,6 @@ namespace Rogium.Tests.Editors.AssetSelection
 
         public override IEnumerator Setup()
         {
-            ExternalLibraryOverseer.Instance.ClearPacks();
             yield return base.Setup();
             OverseerLoader.LoadModalWindowBuilder();
             OverseerLoader.LoadUIBuilder();
