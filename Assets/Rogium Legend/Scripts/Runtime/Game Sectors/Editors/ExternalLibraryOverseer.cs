@@ -194,8 +194,8 @@ namespace Rogium.Editors.Core
 
         #endregion
         
-        public ReadOnlyCollection<PackAsset> Packs { get => new ReadOnlyCollection<PackAsset>(packs); }
-        public ReadOnlyCollection<CampaignAsset> Campaigns {get => new ReadOnlyCollection<CampaignAsset>(campaigns);}
+        public ReadOnlyCollection<PackAsset> Packs { get => new(packs); }
+        public ReadOnlyCollection<CampaignAsset> Campaigns {get => new(campaigns);}
         public GameDataAsset Preferences { get => preferences; }
     }
 }

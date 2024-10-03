@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Rogium.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Sounds;
@@ -13,6 +14,6 @@ namespace Rogium.Editors.Objects
 
         public SoundAsset GetAssetByID(string id) => sounds.FindValueFirstOrDefault(id);
         
-        public IList<SoundAsset> GetAssetListCopy() => new List<SoundAsset>(sounds);
+        public ReadOnlyCollection<SoundAsset> ReadOnlyList { get => new(sounds); }
     }
 }

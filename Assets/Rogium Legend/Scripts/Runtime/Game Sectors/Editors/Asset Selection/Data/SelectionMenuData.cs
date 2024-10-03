@@ -19,6 +19,16 @@ namespace Rogium.Editors.NewAssetSelection
         [SerializeField] private ButtonType whenAssetDelete;
         private Func<IList<IAsset>> getAssetList;
 
+        public SelectionMenuData(AssetSelector assetSelector, ButtonType whenAssetCreate, ButtonType whenAssetEdit, ButtonType whenAssetConfig, ButtonType whenAssetDelete, Func<IList<IAsset>> getAssetList)
+        {
+            this.assetSelector = assetSelector;
+            this.whenAssetCreate = whenAssetCreate;
+            this.whenAssetEdit = whenAssetEdit;
+            this.whenAssetConfig = whenAssetConfig;
+            this.whenAssetDelete = whenAssetDelete;
+            this.getAssetList = getAssetList;
+        }
+        
         public SelectionMenuData(SelectionMenuData data, Func<IList<IAsset>> getAssetList)
         {
             assetSelector = data.assetSelector;

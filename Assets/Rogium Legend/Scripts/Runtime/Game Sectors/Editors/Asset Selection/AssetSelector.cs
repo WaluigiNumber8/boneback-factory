@@ -67,6 +67,7 @@ namespace Rogium.Editors.NewAssetSelection
         private void PrepareAddButton(SelectionMenuData data)
         {
             if (data.WhenAssetCreate == ButtonType.None) return;
+            if (assetCreateButtonPrefab == null) return;
             
             InteractableButton addButton = (content.childCount > 0 && content.GetChild(0).TryGetComponent(out InteractableButton button)) ? button : Instantiate(assetCreateButtonPrefab, content);
             addButton.Action = data.WhenAssetCreate;
