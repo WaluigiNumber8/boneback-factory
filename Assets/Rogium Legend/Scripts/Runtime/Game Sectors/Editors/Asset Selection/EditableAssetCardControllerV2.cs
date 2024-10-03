@@ -21,6 +21,7 @@ namespace Rogium.Editors.NewAssetSelection
         public override void Construct(AssetCardData data)
         {
             base.Construct(data);
+            editUI.ClearListeners();
             editUI.editButton.onClick.AddListener(() => InteractableInput.Handle(data.whenAssetEdit, index));
             editUI.configButton.onClick.AddListener(() => InteractableInput.Handle(data.whenAssetConfig, index));
             editUI.deleteButton.onClick.AddListener(() => InteractableInput.Handle(data.whenAssetDelete, index));
@@ -56,6 +57,13 @@ namespace Rogium.Editors.NewAssetSelection
             public Button deleteButton;
             public RectTransform infoGroup;
             public RectTransform buttonGroup;
+            
+            public void ClearListeners()
+            {
+                editButton.onClick.RemoveAllListeners();
+                configButton.onClick.RemoveAllListeners();
+                deleteButton.onClick.RemoveAllListeners();
+            }
         }
     }
 }
