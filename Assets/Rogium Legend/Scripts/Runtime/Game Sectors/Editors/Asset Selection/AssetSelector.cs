@@ -52,7 +52,7 @@ namespace Rogium.Editors.NewAssetSelection
                     .WithConfigButton(data.WhenAssetConfig)
                     .WithDeleteButton(data.WhenAssetDelete)
                     .Build());
-                if (asset.ID == preselectedAsset?.ID) card.SetToggle(true);
+                card.SetToggle((asset.ID == preselectedAsset?.ID));
                 if (i >= cards.Count) cards.Add(card);
             }
             
