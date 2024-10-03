@@ -1187,7 +1187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Asset Picker Window
   content: {fileID: 8180035934198097189}
-  cardPrefab: {fileID: 5884268733477161623, guid: 1b74adb7b0888394695aecf249610140, type: 3}
+  cardPrefab: {fileID: 7912177524985860092, guid: 1b74adb7b0888394695aecf249610140, type: 3}
   assetCreateButtonPrefab: {fileID: 0}
 --- !u!1 &8355017602981967379
 GameObject:

@@ -155,6 +155,7 @@ MonoBehaviour:
   ui:
     title: {fileID: 1835956329474657887}
     iconImage: {fileID: 3665386510588651531}
+  editUI:
     editButton: {fileID: 7844129722421966933}
     configButton: {fileID: 4954225807346287012}
     deleteButton: {fileID: 6873560121763248669}
@@ -1501,7 +1502,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1614057453373608748, guid: 2e52fe7b84c23b24f9ca26536168db2c, type: 3}
       propertyPath: m_Name
-      value: Edit Properties Button
+      value: Config Properties Button
       objectReference: {fileID: 0}
     - target: {fileID: 7646252650251923060, guid: 2e52fe7b84c23b24f9ca26536168db2c, type: 3}
       propertyPath: m_Pivot.x

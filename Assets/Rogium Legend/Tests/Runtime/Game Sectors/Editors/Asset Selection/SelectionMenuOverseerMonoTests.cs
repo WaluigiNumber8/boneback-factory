@@ -73,7 +73,7 @@ namespace Rogium.Tests.Editors.AssetSelection
             PaletteEditorOverseer.Instance.CompleteEditing();
             selectionMenu.Open(AssetType.Palette);
             yield return null;
-            Assert.That(selectionMenu.CurrentSelector.Content.GetChild(1).GetComponent<AssetCardControllerV2>().Title, Is.EqualTo("Fred"));
+            Assert.That(selectionMenu.CurrentSelector.Content.GetChild(1).GetComponent<EditableAssetCardControllerV2>().Title, Is.EqualTo("Fred"));
         }
 
         [UnityTest]
@@ -85,7 +85,7 @@ namespace Rogium.Tests.Editors.AssetSelection
             PaletteEditorOverseer.Instance.CompleteEditing();
             selectionMenu.Open(AssetType.Palette);
             yield return null;
-            Texture2D icon = selectionMenu.CurrentSelector.Content.GetChild(1).GetComponent<AssetCardControllerV2>().Icon.texture;
+            Texture2D icon = selectionMenu.CurrentSelector.Content.GetChild(1).GetComponent<EditableAssetCardControllerV2>().Icon.texture;
             Assert.That(icon.GetPixel(0, icon.height - 1), Is.EqualTo(Color.blue));
         }
 

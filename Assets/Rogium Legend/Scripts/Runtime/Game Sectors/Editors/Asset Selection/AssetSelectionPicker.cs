@@ -29,14 +29,14 @@ namespace Rogium.Editors.NewAssetSelection
 
         private void OnEnable()
         {
-            AssetCardControllerV2.OnSelect += SelectAsset;
-            AssetCardControllerV2.OnDeselect += DeselectAsset;
+            EditableAssetCardControllerV2.OnSelect += SelectAsset;
+            EditableAssetCardControllerV2.OnDeselect += DeselectAsset;
         }
 
         private void OnDisable()
         {
-            AssetCardControllerV2.OnSelect -= SelectAsset;
-            AssetCardControllerV2.OnDeselect -= DeselectAsset;
+            EditableAssetCardControllerV2.OnSelect -= SelectAsset;
+            EditableAssetCardControllerV2.OnDeselect -= DeselectAsset;
         }
 
         
