@@ -13,6 +13,7 @@ using Rogium.Editors.Weapons;
 using Rogium.ExternalStorage;
 using Rogium.ExternalStorage.Serialization;
 using Rogium.Options.Core;
+using Rogium.Systems.ActionHistory;
 using Rogium.Tests.Editors;
 using UnityEngine.TestTools;
 
@@ -32,6 +33,7 @@ namespace Rogium.Tests.Core
             PrepareExternalStorageSubstitute();
             yield return null;
             ExternalLibraryOverseer.Instance.ClearPacks();
+            ActionHistorySystem.ClearHistory();
             yield return AssetCreator.CreateAndAssignPack();
         }
 

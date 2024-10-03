@@ -12,6 +12,9 @@ namespace Rogium.Editors.NewAssetSelection
     /// </summary>
     public class AssetCardControllerV2 : ToggleableBase
     {
+        public static event Action<int> OnSelect;
+        public static event Action<int> OnDeselect;
+        
         [SerializeField] private UIInfo ui;
 
         private int index;
@@ -20,6 +23,7 @@ namespace Rogium.Editors.NewAssetSelection
         {
             base.Awake();
             toggle.onValueChanged.AddListener(ToggleDisplayedGroups);
+            toggle.onValueChanged.AddListener(CallSelectEvents);
         }
 
         public void Construct(AssetCardData data)
@@ -49,6 +53,12 @@ namespace Rogium.Editors.NewAssetSelection
         {
             ui.infoGroup.gameObject.SetActive(!value);
             ui.buttonGroup.gameObject.SetActive(value);
+        }
+        
+        private void CallSelectEvents(bool value)
+        {
+            if (value) OnSelect?.Invoke(index);
+            else OnDeselect?.Invoke(index);
         }
 
         public bool IsInfoGroupShown => ui.infoGroup.gameObject.activeSelf;

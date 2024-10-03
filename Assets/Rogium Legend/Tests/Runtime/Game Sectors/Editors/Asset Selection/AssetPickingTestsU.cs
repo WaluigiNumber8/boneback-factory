@@ -1,5 +1,6 @@
 using System.Collections;
 using Rogium.Core;
+using Rogium.Editors.NewAssetSelection;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Editors.AssetSelection.PickerVariant;
 using Rogium.UserInterface.Interactables;
@@ -23,11 +24,12 @@ namespace Rogium.Tests.Editors.AssetSelection
             yield return null;
         }
 
-        public static IEnumerator PickFirstAssetAndConfirm()
+        public static IEnumerator PickAssetAndConfirm(int childIndex = 0)
         {
-            Object.FindFirstObjectByType<AssetPickerCardController>().SetToggle(true);
+            AssetPickerWindow window = Object.FindFirstObjectByType<AssetPickerWindow>();
+            window.SelectorContent.GetChild(childIndex).GetComponent<AssetCardControllerV2>().SetToggle(true);
             yield return null;
-            Object.FindFirstObjectByType<AssetPickerWindow>().ConfirmSelection();
+            window.ConfirmSelection();
             yield return null;
         }
     }

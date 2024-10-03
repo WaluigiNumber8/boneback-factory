@@ -1,12 +1,8 @@
 using System.Collections;
 using NUnit.Framework;
-using Rogium.Core;
 using Rogium.Editors.Core;
-using Rogium.Editors.NewAssetSelection;
 using Rogium.Tests.Core;
-using Rogium.UserInterface.Editors.AssetSelection.PickerVariant;
 using Rogium.UserInterface.Interactables;
-using Rogium.UserInterface.Interactables.Properties;
 using Rogium.UserInterface.ModalWindows;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -29,14 +25,24 @@ namespace Rogium.Tests.Editors.AssetSelection
             yield return null;
             yield return BuildAssetField();
             assetField = Object.FindFirstObjectByType<AssetField>();
+            AssetCreator.AddNewPackToLibrary();
+            AssetCreator.AddNewPackToLibrary();
         }
         
         [UnityTest]
-        public IEnumerator Should_PickAsset_WhenAssetFieldClicked()
+        public IEnumerator Should_PickFirstAsset_WhenAssetFieldClicked()
         {
             yield return ClickAssetFieldToOpenAssetPickerWindow();
-            yield return PickFirstAssetAndConfirm();
+            yield return PickAssetAndConfirm(0);
             Assert.That(assetField.Value, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[0]));
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_PickSecondAsset_WhenAssetFieldClicked()
+        {
+            yield return ClickAssetFieldToOpenAssetPickerWindow();
+            yield return PickAssetAndConfirm(1);
+            Assert.That(assetField.Value, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[1]));
         }
 
         [UnityTest]
@@ -44,6 +50,16 @@ namespace Rogium.Tests.Editors.AssetSelection
         {
             yield return ClickAssetFieldToOpenAssetPickerWindow();
             Assert.That(Object.FindFirstObjectByType<AssetPickerWindow>().SelectorContent.childCount, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs.Count));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_HaveOnly1AssetSelected_WhenOpenForSingleSelection()
+        {
+            yield return ClickAssetFieldToOpenAssetPickerWindow();
+            yield return PickAssetAndConfirm(0);
+            yield return ClickAssetFieldToOpenAssetPickerWindow();
+            yield return PickAssetAndConfirm(1);
+            Assert.That(Object.FindFirstObjectByType<AssetPickerWindow>().SelectedAssetsCount, Is.EqualTo(1));
         }
     }
 }

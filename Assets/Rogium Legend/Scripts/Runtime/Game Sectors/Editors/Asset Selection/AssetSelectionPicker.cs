@@ -17,21 +17,47 @@ namespace Rogium.Editors.NewAssetSelection
         [SerializeField] private AssetSelector selector;
 
         private SelectionMenuData data;
+        private ISet<int> selectedAssetIndexes;
+        private Action<IAsset> whenConfirmed;
 
-        private void Awake() => data = new SelectionMenuData(selector, ButtonType.None, ButtonType.None, ButtonType.None, ButtonType.None, Array.Empty<IAsset>);
+        private void Awake()
+        {
+            data = new SelectionMenuData(selector, ButtonType.None, ButtonType.None, ButtonType.None, ButtonType.None, Array.Empty<IAsset>);
+            selectedAssetIndexes = new HashSet<int>();
+        }
 
+        private void OnEnable()
+        {
+            AssetCardControllerV2.OnSelect += SelectAsset;
+            AssetCardControllerV2.OnDeselect += DeselectAsset;
+        }
+
+        private void OnDisable()
+        {
+            AssetCardControllerV2.OnSelect -= SelectAsset;
+            AssetCardControllerV2.OnDeselect -= DeselectAsset;
+        }
+
+        
         public void Pick(AssetType type, Action<IAsset> whenConfirmed, IAsset preselectedAsset = null, bool canSelectEmpty = false)
         {
-            selector.Load(new SelectionMenuData(data, GetAssetListByType(type)));
+            this.whenConfirmed = whenConfirmed;
+            data = new SelectionMenuData(data, GetAssetListByType(type));
+            selector.Load(data);
         }
 
         public void ConfirmSelection()
         {
+            if (selectedAssetIndexes?.Count == 0) return;
+            whenConfirmed?.Invoke(data.GetAssetList()[selectedAssetIndexes.First()]);
         }
 
         public void CancelSelection()
         {
         }
+        
+        private void SelectAsset(int index) => selectedAssetIndexes.Add(index);
+        private void DeselectAsset(int index) => selectedAssetIndexes.Remove(index);
         
         private Func<IList<IAsset>> GetAssetListByType(AssetType type)
         {
@@ -51,5 +77,6 @@ namespace Rogium.Editors.NewAssetSelection
         }
         
         public RectTransform SelectorContent { get => selector.Content; }
+        public int SelectedAssetsCount { get => selectedAssetIndexes.Count; }
     }
 }

@@ -101,6 +101,7 @@ namespace Rogium.UserInterface.ModalWindows
         }
         
         public RectTransform SelectorContent { get => picker.SelectorContent; }
+        public int SelectedAssetsCount { get => picker.SelectedAssetsCount; }
 
         [Serializable]
         public struct UIInfo
