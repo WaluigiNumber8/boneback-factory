@@ -1,6 +1,7 @@
 ﻿using System;
 using Rogium.Core;
 using Rogium.Editors.Core;
+using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Packs;
 using UnityEngine;
 
@@ -31,10 +32,11 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             OpenForColumns2(headerText, onConfirm, out Transform col1, out Transform col2);
             
             bool isDisabled = !editor.CurrentPack?.ContainsAnySprites ?? true;
+            IAsset initialIcon = asset.TryGetSprite(asset.AssociatedSpriteID, EditorDefaults.Instance.PackIcon);
             
             b.BuildInputField("Name", asset.Title, col1, asset.UpdateTitle, false, true);
             b.BuildInputFieldArea("Description", asset.Description, col1, asset.UpdateDescription);
-            b.BuildAssetField("", AssetType.Sprite, asset, col2, a => editedAssetBase.UpdateIcon(a), null, isDisabled);
+            b.BuildAssetField("", AssetType.Sprite, initialIcon, col2, a => editedAssetBase.UpdateIcon(a), null, isDisabled);
             b.BuildPlainText("Created by", asset.Author, col2);
             b.BuildPlainText("Created on", asset.CreationDate.ToString(), col2);
 
