@@ -52,7 +52,6 @@ namespace Rogium.UserInterface.ModalWindows
             ui.header.text.text = $"Select a {type.ToString().ToLower()}";
             picker.Pick(type, WhenAssetPicked, preselectedAsset, canSelectEmpty);
             Open();
-            // selectionPicker.Construct(type, WhenAssetPicked, preselectedAsset, canSelectEmpty);
         }
 
         /// <summary>
@@ -94,12 +93,8 @@ namespace Rogium.UserInterface.ModalWindows
         /// <summary>
         /// Cancel the selection.
         /// </summary>
-        private void CancelSelection()
-        {
-            picker.CancelSelection();
-            Close();
-        }
-        
+        private void CancelSelection() => Close();
+
         public RectTransform SelectorContent { get => picker.SelectorContent; }
         public int SelectedAssetsCount { get => picker.SelectedAssetsCount; }
 

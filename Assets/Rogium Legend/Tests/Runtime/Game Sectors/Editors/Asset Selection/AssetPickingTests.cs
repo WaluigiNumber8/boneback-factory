@@ -1,6 +1,7 @@
 using System.Collections;
 using NUnit.Framework;
 using Rogium.Editors.Core;
+using Rogium.Editors.NewAssetSelection;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables;
 using Rogium.UserInterface.ModalWindows;
@@ -60,6 +61,20 @@ namespace Rogium.Tests.Editors.AssetSelection
             yield return ClickAssetFieldToOpenAssetPickerWindow();
             yield return PickAssetAndConfirm(1);
             Assert.That(Object.FindFirstObjectByType<AssetPickerWindow>().SelectedAssetsCount, Is.EqualTo(1));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ConfirmSelection_WhenClickOnSelectedAssetCard()
+        {
+            yield return ClickAssetFieldToOpenAssetPickerWindow();
+            AssetPickerWindow window = Object.FindFirstObjectByType<AssetPickerWindow>();
+            AssetCardControllerV2 card = window.SelectorContent.GetChild(0).GetComponent<AssetCardControllerV2>();
+            card.SetToggle(true);
+            yield return null;
+            card.SetToggle(false);
+            card.SetToggle(true);
+            yield return null;
+            Assert.That(assetField.Value, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[0]));
         }
     }
 }

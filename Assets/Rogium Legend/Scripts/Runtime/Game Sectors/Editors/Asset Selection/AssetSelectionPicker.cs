@@ -19,6 +19,7 @@ namespace Rogium.Editors.NewAssetSelection
         private SelectionMenuData data;
         private ISet<int> selectedAssetIndexes;
         private Action<IAsset> whenConfirmed;
+        private int lastIndex;
 
         private void Awake()
         {
@@ -42,6 +43,7 @@ namespace Rogium.Editors.NewAssetSelection
         public void Pick(AssetType type, Action<IAsset> whenConfirmed, IAsset preselectedAsset = null, bool canSelectEmpty = false)
         {
             this.whenConfirmed = whenConfirmed;
+            this.lastIndex = -1;
             data = new SelectionMenuData(data, GetAssetListByType(type));
             selector.Load(data);
         }
@@ -51,12 +53,18 @@ namespace Rogium.Editors.NewAssetSelection
             if (selectedAssetIndexes?.Count == 0) return;
             whenConfirmed?.Invoke(data.GetAssetList()[selectedAssetIndexes.First()]);
         }
-
-        public void CancelSelection()
-        {
-        }
         
-        private void SelectAsset(int index) => selectedAssetIndexes.Add(index);
+        private void SelectAsset(int index)
+        {
+            if (index == lastIndex)
+            {
+                ConfirmSelection();
+                return;
+            }
+            selectedAssetIndexes.Add(index);
+            lastIndex = index;
+        }
+
         private void DeselectAsset(int index) => selectedAssetIndexes.Remove(index);
         
         private Func<IList<IAsset>> GetAssetListByType(AssetType type)
