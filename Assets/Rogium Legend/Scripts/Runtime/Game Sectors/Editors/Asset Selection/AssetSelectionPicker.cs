@@ -29,14 +29,14 @@ namespace Rogium.Editors.NewAssetSelection
 
         private void OnEnable()
         {
-            EditableAssetCardControllerV2.OnSelect += SelectAsset;
-            EditableAssetCardControllerV2.OnDeselect += DeselectAsset;
+            AssetCardControllerV2.OnSelect += SelectAsset;
+            AssetCardControllerV2.OnDeselect += DeselectAsset;
         }
 
         private void OnDisable()
         {
-            EditableAssetCardControllerV2.OnSelect -= SelectAsset;
-            EditableAssetCardControllerV2.OnDeselect -= DeselectAsset;
+            AssetCardControllerV2.OnSelect -= SelectAsset;
+            AssetCardControllerV2.OnDeselect -= DeselectAsset;
         }
 
         
@@ -45,7 +45,7 @@ namespace Rogium.Editors.NewAssetSelection
             this.whenConfirmed = whenConfirmed;
             this.lastIndex = -1;
             data = new SelectionMenuData(data, GetAssetListByType(type));
-            selector.Load(data);
+            selector.Load(data, preselectedAsset);
         }
 
         public void ConfirmSelection()

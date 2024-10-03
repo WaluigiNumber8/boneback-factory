@@ -1,5 +1,6 @@
 using System.Collections;
 using Rogium.Core;
+using Rogium.Editors.Core;
 using Rogium.Editors.NewAssetSelection;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Editors.AssetSelection.PickerVariant;
@@ -12,9 +13,9 @@ namespace Rogium.Tests.Editors.AssetSelection
 {
     public static class AssetPickingTestsU
     {
-        public static IEnumerator BuildAssetField()
+        public static IEnumerator BuildAssetField(IAsset value = null)
         {
-            UIPropertyBuilder.GetInstance().BuildAssetField("Test", AssetType.Pack, null, Object.FindFirstObjectByType<Canvas>().transform, null);
+            UIPropertyBuilder.GetInstance().BuildAssetField("Test", AssetType.Pack, value, Object.FindFirstObjectByType<Canvas>().transform, null);
             yield return null;
         }
         

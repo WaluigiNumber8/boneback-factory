@@ -24,10 +24,10 @@ namespace Rogium.Tests.Editors.AssetSelection
             OverseerLoader.LoadModalWindowBuilder();
             OverseerLoader.LoadUIBuilder();
             yield return null;
-            yield return BuildAssetField();
+            AssetCreator.AddNewPackToLibrary();
+            AssetCreator.AddNewPackToLibrary();
+            yield return BuildAssetField(ExternalLibraryOverseer.Instance.Packs[1]);
             assetField = Object.FindFirstObjectByType<AssetField>();
-            AssetCreator.AddNewPackToLibrary();
-            AssetCreator.AddNewPackToLibrary();
         }
         
         [UnityTest]
@@ -75,6 +75,15 @@ namespace Rogium.Tests.Editors.AssetSelection
             card.SetToggle(true);
             yield return null;
             Assert.That(assetField.Value, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[0]));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ToggleOnAssetCard_WhenPreselectedAssetIsSpecified()
+        {
+            yield return ClickAssetFieldToOpenAssetPickerWindow();
+            AssetPickerWindow window = Object.FindFirstObjectByType<AssetPickerWindow>();
+            AssetCardControllerV2 card = window.SelectorContent.GetChild(1).GetComponent<AssetCardControllerV2>();
+            Assert.That(card.IsOn, Is.True);
         }
     }
 }
