@@ -113,5 +113,15 @@ namespace Rogium.Tests.Editors.Campaigns
             yield return null;
             Assert.That(editor.CurrentAsset.PackReferences.Count, Is.EqualTo(0));
         }
+
+        [UnityTest]
+        public IEnumerator Should_GetRandomAssets_WhenSelectRandom()
+        {
+            editorMono.SelectionPicker.SelectRandom();
+            yield return null;
+            editorMono.SelectionPicker.ConfirmSelection();
+            yield return null;
+            Assert.That(editor.CurrentAsset.PackReferences.Count, Is.GreaterThan(0));
+        }
     }
 }

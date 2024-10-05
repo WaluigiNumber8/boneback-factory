@@ -940,7 +940,7 @@ namespace Rogium.Systems.GASExtension
         
         public static void CampaignEditorSelectRandom()
         {
-            // CampaignEditorOverseerMono.GetInstance().SelectionPicker.SelectRandom();
+            CampaignEditorOverseerMono.GetInstance().SelectionPicker.SelectRandom();
         }
         #endregion
         

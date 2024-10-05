@@ -6,6 +6,7 @@ using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
 using Rogium.UserInterface.Interactables;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Rogium.Editors.NewAssetSelection
 {
@@ -74,6 +75,16 @@ namespace Rogium.Editors.NewAssetSelection
             for (int i = 0; i < selector.Content.childCount; i++)
             {
                 Select(i, value);
+            }
+        }
+        
+        public void SelectRandom()
+        {
+            SelectAll(false);
+            int amount = Random.Range(1, SelectorContent.childCount + 1);
+            for (int i = 0; i < amount; i++)
+            {
+                Select(Random.Range(0, SelectorContent.childCount));
             }
         }
         
