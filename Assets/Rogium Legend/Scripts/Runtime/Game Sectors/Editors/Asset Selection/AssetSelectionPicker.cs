@@ -15,6 +15,7 @@ namespace Rogium.Editors.NewAssetSelection
     public class AssetSelectionPicker : MonoBehaviour
     {
         [SerializeField] private AssetSelector selector;
+        [SerializeField] private AssetCardControllerV2 emptyCardPrefab;
 
         private SelectionMenuData data;
         private ISet<int> selectedAssetIndexes;
@@ -43,15 +44,22 @@ namespace Rogium.Editors.NewAssetSelection
         public void Pick(AssetType type, Action<IAsset> whenConfirmed, IAsset preselectedAsset = null, bool canSelectEmpty = false)
         {
             this.whenConfirmed = whenConfirmed;
-            this.lastIndex = -1;
+            this.lastIndex = -2; //-1 is empty card so has to lower
             data = new SelectionMenuData(data, GetAssetListByType(type));
+            
             selector.Load(data, preselectedAsset);
+
+            if (!canSelectEmpty) return;
+            AssetCardControllerV2 emptyCard = Instantiate(emptyCardPrefab, selector.Content);
+            emptyCard.transform.SetAsFirstSibling();
+            emptyCard.Construct(new AssetCardData.Builder().WithIndex(-1).Build());
         }
 
         public void ConfirmSelection()
         {
-            if (selectedAssetIndexes?.Count == 0) return;
-            whenConfirmed?.Invoke(data.GetAssetList()[selectedAssetIndexes.First()]);
+            if (selectedAssetIndexes == null || selectedAssetIndexes.Count == 0) return;
+            IAsset asset = (selectedAssetIndexes.Contains(-1)) ? new EmptyAsset() : data.GetAssetList()[selectedAssetIndexes.First()];
+            whenConfirmed?.Invoke(asset);
         }
         
         private void SelectAsset(int index)

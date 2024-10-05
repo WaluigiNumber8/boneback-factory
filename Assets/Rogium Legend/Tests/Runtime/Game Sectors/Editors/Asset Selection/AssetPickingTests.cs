@@ -1,12 +1,15 @@
 using System.Collections;
 using NUnit.Framework;
+using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.NewAssetSelection;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables;
 using Rogium.UserInterface.ModalWindows;
+using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.TestTools;
+using UnityEngine.UI;
 using static Rogium.Tests.Editors.AssetSelection.AssetPickingTestsU;
 
 namespace Rogium.Tests.Editors.AssetSelection
@@ -84,6 +87,15 @@ namespace Rogium.Tests.Editors.AssetSelection
             AssetPickerWindow window = Object.FindFirstObjectByType<AssetPickerWindow>();
             AssetCardControllerV2 card = window.SelectorContent.GetChild(1).GetComponent<AssetCardControllerV2>();
             Assert.That(card.IsOn, Is.True);
+        }
+
+        [UnityTest]
+        public IEnumerator Should_SelectEmptyAsset_WhenCanSelectEmptyIsTrue()
+        {
+            assetField.Construct(AssetType.Pack, ExternalLibraryOverseer.Instance.Packs[0], null, true);
+            yield return ClickAssetFieldToOpenAssetPickerWindow();
+            yield return PickAssetAndConfirm(0);
+            Assert.That(assetField.Value, Is.EqualTo(new EmptyAsset()));
         }
     }
 }

@@ -27,8 +27,8 @@ namespace Rogium.Editors.NewAssetSelection
         public virtual void Construct(AssetCardData data)
         {
             index = data.index;
-            ui.title.text = data.title;
-            ui.iconImage.sprite = data.icon;
+            if (ui.title != null) ui.title.text = data.title;
+            if (ui.iconImage != null) ui.iconImage.sprite = data.icon;
         }
         
         private void CallSelectEvents(bool value)

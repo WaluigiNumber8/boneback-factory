@@ -395,7 +395,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 711.65, y: -897.015}
+  m_AnchoredPosition: {x: 711.65, y: -896.01}
   m_SizeDelta: {x: 479.52002, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8496682471255201455
@@ -1173,6 +1173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selector: {fileID: 4230734503977755563}
+  emptyCardPrefab: {fileID: 3580076542102759393, guid: 897be32dd44bc89419209931757222cb, type: 3}
 --- !u!114 &4230734503977755563
 MonoBehaviour:
   m_ObjectHideFlags: 0
