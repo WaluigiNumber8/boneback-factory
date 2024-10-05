@@ -7750,7 +7750,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4575221486028029210}
   - component: {fileID: 2515018073091028008}
-  - component: {fileID: 1939376961638326127}
+  - component: {fileID: 7324713002862388035}
   - component: {fileID: 6535397217895512070}
   m_Layer: 5
   m_Name: pref_Menu_CampaignEditor
@@ -7791,9 +7791,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eedfe3591e646428d21502cf644999b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectionPicker: {fileID: 1939376961638326127}
+  selectionPicker: {fileID: 7324713002862388035}
   propertyColumn: {fileID: 1135433993777101240}
---- !u!114 &1939376961638326127
+--- !u!114 &7324713002862388035
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7802,7 +7802,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4977209184586927035}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3862db62d0f24902b8e15cdfba857ca1, type: 3}
+  m_Script: {fileID: 11500000, guid: 069574a8ee6c41b986ded94589b93ef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   selector: {fileID: 6535397217895512070}

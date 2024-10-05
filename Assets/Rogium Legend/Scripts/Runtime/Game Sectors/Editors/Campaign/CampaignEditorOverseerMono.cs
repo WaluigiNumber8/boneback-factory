@@ -15,7 +15,7 @@ namespace Rogium.Editors.Campaign
     /// </summary>
     public class CampaignEditorOverseerMono : MonoSingleton<CampaignEditorOverseerMono>
     {
-        [SerializeField] private AssetSelectionPicker selectionPicker;
+        [SerializeField] private AssetSelectionPickerMultiple selectionPicker;
         [SerializeField] private CampaignSelectedPackPropertyController propertyColumn;
         
         private CampaignEditorOverseer editor;
@@ -97,6 +97,6 @@ namespace Rogium.Editors.Campaign
             propertyColumn.AssignAsset((PackAsset)asset, new PackImportInfo());
         }
         
-        public AssetSelectionPicker SelectionPicker { get => selectionPicker; }
+        public AssetSelectionPickerBase SelectionPicker { get => selectionPicker; }
     }
 }

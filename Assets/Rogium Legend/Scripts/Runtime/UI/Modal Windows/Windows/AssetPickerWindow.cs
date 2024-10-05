@@ -5,7 +5,6 @@ using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.NewAssetSelection;
 using Rogium.Systems.ThemeSystem;
-using Rogium.UserInterface.Editors.AssetSelection.PickerVariant;
 using Rogium.UserInterface.Interactables;
 using TMPro;
 using UnityEngine;
@@ -18,7 +17,7 @@ namespace Rogium.UserInterface.ModalWindows
     /// </summary>
     public class AssetPickerWindow : ModalWindowBase
     {
-        [SerializeField] private AssetSelectionPicker picker;
+        [SerializeField] private AssetSelectionPickerSingle picker;
         [SerializeField] private UIInfo ui;
 
         private Action<IAsset> whenAssetPicked;

@@ -395,7 +395,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 711.65, y: -896.01}
+  m_AnchoredPosition: {x: 711.65, y: -897.015}
   m_SizeDelta: {x: 479.52002, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8496682471255201455
@@ -1098,7 +1098,7 @@ GameObject:
   m_Component:
   - component: {fileID: 203568239825813082}
   - component: {fileID: 68577838218189983}
-  - component: {fileID: 5579683494712317224}
+  - component: {fileID: 5908941258602569451}
   - component: {fileID: 4230734503977755563}
   m_Layer: 5
   m_Name: pref_ModalWindow_AssetPicker
@@ -1144,7 +1144,7 @@ MonoBehaviour:
     windowArea: {fileID: 6639912306915801137}
     backgroundArea: {fileID: 2695170610355103666}
     closeButton: {fileID: 35406839451539061}
-  picker: {fileID: 5579683494712317224}
+  picker: {fileID: 5908941258602569451}
   ui:
     header:
       area: {fileID: 965049478355133570}
@@ -1160,7 +1160,7 @@ MonoBehaviour:
       cancelButton: {fileID: 35406839451539061}
       acceptButtonText: {fileID: 8234885101170341925}
       cancelButtonText: {fileID: 6950386694717747690}
---- !u!114 &5579683494712317224
+--- !u!114 &5908941258602569451
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1169,7 +1169,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4742475042445633399}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3862db62d0f24902b8e15cdfba857ca1, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ae9d16d71864d78b7c200abf496ec86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   selector: {fileID: 4230734503977755563}
