@@ -69,11 +69,24 @@ namespace Rogium.Editors.NewAssetSelection
             emptyCard.Construct(new AssetCardData.Builder().WithIndex(-1).Build());
         }
         
+        public void Select(int index, bool value = true)
+        {
+            if (index < 0 || index >= selector.Content.childCount) return;
+            selector.Content.GetChild(index).GetComponent<AssetCardControllerV2>().SetToggle(value);
+        }
+        
         public void ConfirmSelection()
         {
             if (selectedAssetIndexes == null || selectedAssetIndexes.Count == 0) return;
-            IAsset asset = (selectedAssetIndexes.Contains(-1)) ? new EmptyAsset() : data.GetAssetList()[selectedAssetIndexes.First()];
-            whenConfirmedSingle?.Invoke(asset);
+            IList<IAsset> assets = data.GetAssetList();
+            IAsset selectedAsset = (selectedAssetIndexes.Contains(-1)) ? new EmptyAsset() : assets[selectedAssetIndexes.First()];
+            whenConfirmedSingle?.Invoke(selectedAsset);
+
+            ISet<IAsset> selectedAssets = selectedAssetIndexes.Where(i => i != -1).Select(i => assets[i]).ToHashSet();
+            whenConfirmedMultiple?.Invoke(selectedAssets);
+            
+            whenConfirmedSingle = null;
+            whenConfirmedMultiple = null;
         }
         
         private void SelectAsset(int index)

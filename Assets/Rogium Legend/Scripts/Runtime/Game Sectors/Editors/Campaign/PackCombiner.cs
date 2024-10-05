@@ -16,7 +16,7 @@ namespace Rogium.Editors.Campaign
         /// </summary>
         /// <param name="packs">The list of packs to combine.</param>
         /// <returns>A pack containing everything</returns>
-        public PackAsset Combine(IList<PackAsset> packs)
+        public PackAsset Combine(ISet<PackAsset> packs)
         {
             PackAsset ultimatePack = new PackAsset.Builder().Build();
             foreach (PackAsset pack in packs)

@@ -33,6 +33,7 @@ namespace Rogium.Tests.Core
             PrepareExternalStorageSubstitute();
             yield return null;
             ExternalLibraryOverseer.Instance.ClearPacks();
+            ExternalLibraryOverseer.Instance.ClearCampaigns();
             ActionHistorySystem.ClearHistory();
             yield return AssetCreator.CreateAndAssignPack();
         }

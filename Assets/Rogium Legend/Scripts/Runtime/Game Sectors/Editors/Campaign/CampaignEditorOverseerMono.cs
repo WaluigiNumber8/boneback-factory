@@ -70,7 +70,7 @@ namespace Rogium.Editors.Campaign
         private void UpdatePacksFromSelection(ISet<IAsset> finalSelectedAssets)
         {
             SafetyNet.EnsureSetIsNotNullOrEmpty(finalSelectedAssets, "Selected Packs");
-            IList<PackAsset> finalSelectedPacks = finalSelectedAssets.Cast<PackAsset>().ToList();
+            ISet<PackAsset> finalSelectedPacks = finalSelectedAssets.Cast<PackAsset>().ToHashSet();
             editor.UpdateDataPack(finalSelectedPacks);
         }
 
@@ -84,8 +84,8 @@ namespace Rogium.Editors.Campaign
             
             if (campaign.PackReferences == null || campaign.PackReferences.Count <= 0) return;
             
-            IList<IAsset> allPacks = lib.Packs.Cast<IAsset>().ToList();
-            selectedAssets = allPacks.GrabBasedOn(campaign.PackReferences).ToHashSet();
+            ISet<IAsset> allPacks = lib.Packs.Cast<IAsset>().ToHashSet();
+            selectedAssets = allPacks.GrabBasedOn(campaign.PackReferences);
         }
 
         /// <summary>

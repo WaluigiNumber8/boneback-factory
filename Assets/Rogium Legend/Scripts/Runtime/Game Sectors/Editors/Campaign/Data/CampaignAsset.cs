@@ -14,7 +14,7 @@ namespace Rogium.Editors.Campaign
     {
         private int adventureLength;
         private PackAsset dataPack;
-        private IList<string> packReferences;
+        private ISet<string> packReferences;
 
         private CampaignAsset() { }
 
@@ -31,16 +31,16 @@ namespace Rogium.Editors.Campaign
             dataPack = new PackAsset.Builder().AsCopy(newPack).Build();
         }
 
-        public void UpdatePackReferences(IList<string> newPackReferences)
+        public void UpdatePackReferences(ISet<string> newPackReferences)
         {
             SafetyNet.EnsureIsNotNull(newPackReferences, nameof(newPackReferences));
-            packReferences = new List<string>(newPackReferences);
+            packReferences = new HashSet<string>(newPackReferences);
         }
         #endregion
 
         public int AdventureLength { get => adventureLength; }
         public PackAsset DataPack { get => dataPack; }
-        public IList<string> PackReferences { get => new List<string>(packReferences); }
+        public ISet<string> PackReferences { get => new HashSet<string>(packReferences); }
         
         public class Builder : BaseBuilder<CampaignAsset, Builder>
         {
@@ -51,7 +51,7 @@ namespace Rogium.Editors.Campaign
                 Asset.author = EditorDefaults.Instance.Author;
                 Asset.creationDate = DateTime.Now;
                 Asset.GenerateID();
-                Asset.packReferences = new List<string>();
+                Asset.packReferences = new HashSet<string>();
             }
 
             public Builder WithAdventureLength(int adventureLength)
@@ -68,7 +68,7 @@ namespace Rogium.Editors.Campaign
 
             public Builder WithPackReferences(IList<string> packReferences)
             {
-                Asset.packReferences = new List<string>(packReferences);
+                Asset.packReferences = new HashSet<string>(packReferences);
                 return This;
             }
 
@@ -88,7 +88,7 @@ namespace Rogium.Editors.Campaign
                 Asset.creationDate = asset.CreationDate;
                 Asset.adventureLength = asset.AdventureLength;
                 Asset.dataPack = (asset.dataPack != null) ? new PackAsset.Builder().AsCopy(asset.DataPack).Build() : new PackAsset.Builder().Build();
-                Asset.packReferences = new List<string>(asset.packReferences);
+                Asset.packReferences = new HashSet<string>(asset.packReferences);
                 return This;
             }
 

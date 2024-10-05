@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using RedRats.Systems.GASCore;
 using RedRats.Safety;
 using RedRats.Systems.Themes;
@@ -973,7 +974,7 @@ namespace Rogium.Systems.GASExtension
             IList<CampaignAsset> campaigns = lib.Campaigns;
             foreach (CampaignAsset campaign in campaigns)
             {
-                IList<PackAsset> packs = lib.Packs.GrabBasedOn(campaign.PackReferences);
+                ISet<PackAsset> packs = lib.Packs.ToHashSet().GrabBasedOn(campaign.PackReferences);
                 if (packs == null || packs.Count <= 0) continue;
                 
                 editor.AssignAsset(campaign, campaigns.IndexOf(campaign), false);
@@ -989,7 +990,7 @@ namespace Rogium.Systems.GASExtension
             CampaignEditorOverseer editor = CampaignEditorOverseer.Instance;
             ExternalLibraryOverseer lib = ExternalLibraryOverseer.Instance;
             CampaignAsset currentAsset = overseer.GetSelectedCampaign();
-            IList<PackAsset> packs = lib.Packs.GrabBasedOn(currentAsset.PackReferences);
+            ISet<PackAsset> packs = lib.Packs.ToHashSet().GrabBasedOn(currentAsset.PackReferences);
 
             if (packs == null || packs.Count <= 0) return;
             
