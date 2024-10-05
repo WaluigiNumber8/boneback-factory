@@ -930,12 +930,12 @@ namespace Rogium.Systems.GASExtension
         }
         public static void CampaignEditorSelectAll()
         {
-            // CampaignEditorOverseerMono.GetInstance().SelectionPicker.SelectAll();
+            CampaignEditorOverseerMono.GetInstance().SelectionPicker.SelectAll(true);
         }
         
         public static void CampaignEditorSelectNone()
         {
-            // CampaignEditorOverseerMono.GetInstance().SelectionPicker.DeselectAll();
+            CampaignEditorOverseerMono.GetInstance().SelectionPicker.SelectAll(false);
         }
         
         public static void CampaignEditorSelectRandom()

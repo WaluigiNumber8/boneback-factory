@@ -91,5 +91,27 @@ namespace Rogium.Tests.Editors.Campaigns
             Assert.That(editor.CurrentAsset.PackReferences.Contains(ExternalLibraryOverseer.Instance.Packs[0].ID), Is.False);
             Assert.That(editor.CurrentAsset.PackReferences.Contains(ExternalLibraryOverseer.Instance.Packs[1].ID), Is.False);
         }
+
+        [UnityTest]
+        public IEnumerator Should_GetAllAssets_WhenSelectAll()
+        {
+            editorMono.SelectionPicker.SelectAll(true);
+            yield return null;
+            editorMono.SelectionPicker.ConfirmSelection();
+            yield return null;
+            Assert.That(editor.CurrentAsset.PackReferences.Count, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs.Count));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_NotGetAnyAssets_WhenSelectAllAndDeselectAll()
+        {
+            editorMono.SelectionPicker.SelectAll(true);
+            yield return null;
+            editorMono.SelectionPicker.SelectAll(false);
+            yield return null;
+            editorMono.SelectionPicker.ConfirmSelection();
+            yield return null;
+            Assert.That(editor.CurrentAsset.PackReferences.Count, Is.EqualTo(0));
+        }
     }
 }

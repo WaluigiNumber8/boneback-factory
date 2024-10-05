@@ -69,6 +69,14 @@ namespace Rogium.Editors.NewAssetSelection
             emptyCard.Construct(new AssetCardData.Builder().WithIndex(-1).Build());
         }
         
+        public void SelectAll(bool value)
+        {
+            for (int i = 0; i < selector.Content.childCount; i++)
+            {
+                Select(i, value);
+            }
+        }
+        
         public void Select(int index, bool value = true)
         {
             if (index < 0 || index >= selector.Content.childCount) return;
