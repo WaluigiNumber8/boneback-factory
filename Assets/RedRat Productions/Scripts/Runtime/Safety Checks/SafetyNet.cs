@@ -509,6 +509,18 @@ namespace RedRats.Safety
         }
         #endregion
 
+        #region Set Checks
+
+        public static void EnsureSetIsNotNullOrEmpty<T>(ISet<T> set, string variableName, string customMessage = "")
+        {
+            if (set == null || set.Count <= 0) 
+            {
+                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} cannot be empty or null.");
+            }
+        }
+
+        #endregion
+        
         #region Dictionary Checks
 
         public static void EnsureDictionaryContainsKey<TKey, TValue>(IDictionary<TKey, TValue> dictionary, TKey key, string variableName, string customMessage = "")

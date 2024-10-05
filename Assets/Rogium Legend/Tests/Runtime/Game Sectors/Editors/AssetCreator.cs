@@ -11,7 +11,6 @@ using Rogium.Editors.Sprites;
 using Rogium.Editors.Tiles;
 using Rogium.Editors.Weapons;
 using Rogium.Systems.GridSystem;
-using UnityEditor.Graphs;
 using UnityEngine;
 
 namespace Rogium.Tests.Editors
@@ -29,14 +28,23 @@ namespace Rogium.Tests.Editors
             PackEditorOverseer.Instance.AssignAsset(pack, 0);
         }
 
+        public static IEnumerator CreateAndAssignCampaign()
+        {
+            CampaignAsset campaign = CreateCampaign();
+            ExternalLibraryOverseer.Instance.CreateAndAddCampaign(campaign);
+            yield return null;
+            CampaignEditorOverseer.Instance.AssignAsset(campaign, 0);
+        }
+
         public static void AddNewPackToLibrary() => ExternalLibraryOverseer.Instance.CreateAndAddPack(CreatePack());
+
+        public static void AddNewCampaignToLibrary() => ExternalLibraryOverseer.Instance.CreateAndAddCampaign(CreateCampaign());
 
         public static CampaignAsset CreateCampaign()
         {
             CampaignAsset campaign = new CampaignAsset.Builder()
                 .WithTitle("Test Campaign")
                 .WithIcon(RedRatBuilder.GenerateSprite(Color.black, 16, 16, 16))
-                .WithDataPack(CreatePack())
                 .Build();
             return campaign;
         }

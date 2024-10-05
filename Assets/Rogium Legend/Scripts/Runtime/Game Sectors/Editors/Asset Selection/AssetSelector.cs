@@ -28,14 +28,15 @@ namespace Rogium.Editors.NewAssetSelection
         /// Loads up asset cards.
         /// </summary>
         /// <param name="data">Data for the card.</param>
-        public void Load(SelectionMenuData data, IAsset preselectedAsset = null) => Load(data, data.GetAssetList.Invoke(), preselectedAsset);
-
+        /// <param name="preselectedAssets">Assets that will selected at the start.</param>
+        public void Load(SelectionMenuData data, ISet<IAsset> preselectedAssets = null) => Load(data, data.GetAssetList.Invoke(), preselectedAssets);
         /// <summary>
-        /// Pools asset cards into the content.
+        /// Loads up asset cards into the content.
         /// </summary>
         /// <param name="data">Data for loading.</param>
         /// <param name="assets">All assets for which to load cards for.</param>
-        public void Load(SelectionMenuData data, IList<IAsset> assets, IAsset preselectedAsset = null)
+        /// <param name="preselectedAssets">Assets that will selected at the start.</param>
+        public void Load(SelectionMenuData data, IList<IAsset> assets, ISet<IAsset> preselectedAssets = null)
         {
             PrepareAddButton(data);
             
@@ -52,7 +53,7 @@ namespace Rogium.Editors.NewAssetSelection
                     .WithConfigButton(data.WhenAssetConfig)
                     .WithDeleteButton(data.WhenAssetDelete)
                     .Build());
-                card.SetToggle((asset.ID == preselectedAsset?.ID));
+                card.SetToggle(preselectedAssets?.Contains(asset) ?? false);
                 if (i >= cards.Count) cards.Add(card);
             }
             

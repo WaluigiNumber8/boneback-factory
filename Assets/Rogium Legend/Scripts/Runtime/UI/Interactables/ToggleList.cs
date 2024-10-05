@@ -11,12 +11,7 @@ namespace Rogium.UserInterface.Core
     /// </summary>
     public class ToggleList : IList<ToggleableBase>
     {
-        private readonly IList<ToggleableBase> toggles;
-
-        public ToggleList()
-        {
-            toggles = new List<ToggleableBase>();
-        }
+        private readonly IList<ToggleableBase> toggles = new List<ToggleableBase>();
 
         /// <summary>
         /// Sets all elements on the list to the same value.

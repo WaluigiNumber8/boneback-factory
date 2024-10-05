@@ -544,7 +544,6 @@ namespace Rogium.Systems.GASExtension
         {
             GAS.SwitchMenu(MenuType.CampaignEditor);
             ExternalLibraryOverseer.Instance.ActivateCampaignEditor(assetIndex);
-            CampaignEditorOverseerMono.GetInstance().FillMenu();
             storedIndex = assetIndex;
         }
 
@@ -616,7 +615,7 @@ namespace Rogium.Systems.GASExtension
         #region Save Editor Changes
         public static void SaveChangesCampaign()
         {
-            bool noPacksSelected = (CampaignEditorOverseerMono.GetInstance().SelectionPicker.SelectionCount <= 0);
+            bool noPacksSelected = (CampaignEditorOverseerMono.GetInstance().SelectionPicker.SelectedAssetsCount <= 0);
             ModalWindowData noPackData = new ModalWindowData.Builder()
                 .WithLayout(ModalWindowLayoutType.Message)
                 .WithMessage("Cannot save the campaign without selecting any <style=\"CardAmount\"> packs</style>.")
@@ -765,7 +764,7 @@ namespace Rogium.Systems.GASExtension
         #region Cancel Editor Changes
         public static void CancelChangesCampaign()
         {
-            bool noPacksSelected = (CampaignEditorOverseerMono.GetInstance().SelectionPicker.SelectionCount <= 0);
+            bool noPacksSelected = (CampaignEditorOverseerMono.GetInstance().SelectionPicker.SelectedAssetsCount <= 0);
             bool campaignIsNew = (CampaignEditorOverseer.Instance.CurrentAsset.PackReferences.Count <= 0);
             ModalWindowData noPackData = new ModalWindowData.Builder()
                 .WithLayout(ModalWindowLayoutType.Message)
@@ -930,17 +929,17 @@ namespace Rogium.Systems.GASExtension
         }
         public static void CampaignEditorSelectAll()
         {
-            CampaignEditorOverseerMono.GetInstance().SelectionPicker.SelectAll();
+            // CampaignEditorOverseerMono.GetInstance().SelectionPicker.SelectAll();
         }
         
         public static void CampaignEditorSelectNone()
         {
-            CampaignEditorOverseerMono.GetInstance().SelectionPicker.DeselectAll();
+            // CampaignEditorOverseerMono.GetInstance().SelectionPicker.DeselectAll();
         }
         
         public static void CampaignEditorSelectRandom()
         {
-            CampaignEditorOverseerMono.GetInstance().SelectionPicker.SelectRandom();
+            // CampaignEditorOverseerMono.GetInstance().SelectionPicker.SelectRandom();
         }
         #endregion
         

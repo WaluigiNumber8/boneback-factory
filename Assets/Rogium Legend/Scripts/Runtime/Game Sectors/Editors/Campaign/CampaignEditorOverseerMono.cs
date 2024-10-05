@@ -5,7 +5,7 @@ using Rogium.Editors.Packs;
 using System.Collections.Generic;
 using System.Linq;
 using RedRats.Safety;
-using Rogium.UserInterface.Editors.AssetSelection.PickerVariant;
+using Rogium.Editors.NewAssetSelection;
 using UnityEngine;
 
 namespace Rogium.Editors.Campaign
@@ -15,65 +15,63 @@ namespace Rogium.Editors.Campaign
     /// </summary>
     public class CampaignEditorOverseerMono : MonoSingleton<CampaignEditorOverseerMono>
     {
-        [SerializeField] private AssetSelectionPickerMultiple selectionPicker;
+        [SerializeField] private AssetSelectionPicker selectionPicker;
         [SerializeField] private CampaignSelectedPackPropertyController propertyColumn;
         
-        private CampaignEditorOverseer overseer;
+        private CampaignEditorOverseer editor;
         private ExternalLibraryOverseer lib;
 
-        private IList<IAsset> selectedAssets;
+        private ISet<IAsset> selectedAssets;
 
         protected override void Awake()
         {
             base.Awake();
-            overseer = CampaignEditorOverseer.Instance;
+            editor = CampaignEditorOverseer.Instance;
             lib = ExternalLibraryOverseer.Instance;
-            selectedAssets = new List<IAsset>();
+            selectedAssets = new HashSet<IAsset>();
         }
         
         private void OnEnable()
         {
-            selectionPicker.OnAssetSelect += PreparePropertyColumn;
-            selectionPicker.OnAssetDeselect += PreparePropertyColumn;
+            editor.OnAssignAsset += PrepareEditor;
+            // selectionPicker.OnAssetSelect += PreparePropertyColumn;
+            // selectionPicker.OnAssetDeselect += PreparePropertyColumn;
         }
-
+        
         private void OnDisable()
         {
-            selectionPicker.OnAssetSelect -= PreparePropertyColumn;
-            selectionPicker.OnAssetDeselect -= PreparePropertyColumn;
-        }
-
-        /// <summary>
-        /// Uses the currently selected packs from the editor to combine them into a campaign.
-        /// </summary>
-        public void FillMenu()
-        {
-            PreselectAssetsFrom(overseer.CurrentAsset);
-            SelectionPicker.Open(AssetType.Pack, UpdatePacksFromSelection, selectedAssets);
-            if (selectedAssets != null && selectedAssets.Count > 0) PreparePropertyColumn(selectedAssets[0]);
+            editor.OnAssignAsset -= PrepareEditor;
+            // selectionPicker.OnAssetSelect -= PreparePropertyColumn;
+            // selectionPicker.OnAssetDeselect -= PreparePropertyColumn;
         }
 
         /// <summary>
         /// Selects/Deselects an asset.
         /// </summary>
         /// <param name="assetIndex">The position of the asset on the list.</param>
-        public void ChangeSelectStatus(int assetIndex) => SelectionPicker.WhenAssetSelectToggle(lib.Packs[assetIndex]);
+        public void ChangeSelectStatus(int assetIndex) => selectionPicker.SelectorContent.GetChild(assetIndex).GetComponent<AssetCardControllerV2>().Toggle();
 
         /// <summary>
         /// Calls for applying current selection.
         /// </summary>
         public void CompleteSelection() => SelectionPicker.ConfirmSelection();
 
+        private void PrepareEditor(CampaignAsset asset)
+        {
+            PreselectAssetsFrom(asset);
+            selectionPicker.Pick(AssetType.Pack, UpdatePacksFromSelection, selectedAssets);
+            if (selectedAssets != null && selectedAssets.Count > 0) PreparePropertyColumn(selectedAssets.First());
+        }
+        
         /// <summary>
         /// Calls for updating packs in the current campaign from the selection picker.
         /// </summary>
         /// <param name="finalSelectedAssets">The packs to update with.</param>
-        private void UpdatePacksFromSelection(IList<IAsset> finalSelectedAssets)
+        private void UpdatePacksFromSelection(ISet<IAsset> finalSelectedAssets)
         {
-            SafetyNet.EnsureListIsNotNullOrEmpty(finalSelectedAssets, "Selected Packs");
-            
+            SafetyNet.EnsureSetIsNotNullOrEmpty(finalSelectedAssets, "Selected Packs");
             IList<PackAsset> finalSelectedPacks = finalSelectedAssets.Cast<PackAsset>().ToList();
-            overseer.UpdateDataPack(finalSelectedPacks);
+            editor.UpdateDataPack(finalSelectedPacks);
         }
 
         /// <summary>
@@ -87,7 +85,7 @@ namespace Rogium.Editors.Campaign
             if (campaign.PackReferences == null || campaign.PackReferences.Count <= 0) return;
             
             IList<IAsset> allPacks = lib.Packs.Cast<IAsset>().ToList();
-            selectedAssets = allPacks.GrabBasedOn(campaign.PackReferences);
+            selectedAssets = allPacks.GrabBasedOn(campaign.PackReferences).ToHashSet();
         }
 
         /// <summary>
@@ -99,6 +97,6 @@ namespace Rogium.Editors.Campaign
             propertyColumn.AssignAsset((PackAsset)asset, new PackImportInfo());
         }
         
-        public AssetSelectionPickerMultiple SelectionPicker { get => selectionPicker; }
+        public AssetSelectionPicker SelectionPicker { get => selectionPicker; }
     }
 }

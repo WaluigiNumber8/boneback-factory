@@ -87,7 +87,7 @@ namespace Rogium.Editors.Campaign
                 Asset.author = asset.Author;
                 Asset.creationDate = asset.CreationDate;
                 Asset.adventureLength = asset.AdventureLength;
-                Asset.dataPack = new PackAsset.Builder().AsCopy(asset.DataPack).Build();
+                Asset.dataPack = (asset.dataPack != null) ? new PackAsset.Builder().AsCopy(asset.DataPack).Build() : new PackAsset.Builder().Build();
                 Asset.packReferences = new List<string>(asset.packReferences);
                 return This;
             }

@@ -19,7 +19,8 @@ namespace Rogium.Editors.NewAssetSelection
 
         private SelectionMenuData data;
         private ISet<int> selectedAssetIndexes;
-        private Action<IAsset> whenConfirmed;
+        private Action<IAsset> whenConfirmedSingle;
+        private Action<ISet<IAsset>> whenConfirmedMultiple;
         private int lastIndex;
 
         private void Awake()
@@ -40,26 +41,39 @@ namespace Rogium.Editors.NewAssetSelection
             AssetCardControllerV2.OnDeselect -= DeselectAsset;
         }
 
-        
-        public void Pick(AssetType type, Action<IAsset> whenConfirmed, IAsset preselectedAsset = null, bool canSelectEmpty = false)
+        public void Pick(AssetType type, Action<ISet<IAsset>> whenConfirmed, ISet<IAsset> preselectedAssets = null, bool canSelectEmpty = false)
         {
-            this.whenConfirmed = whenConfirmed;
-            this.lastIndex = -2; //-1 is empty card so has to lower
+            whenConfirmedMultiple = whenConfirmed;
+            lastIndex = -2; //-1 is empty card so has to lower
             data = new SelectionMenuData(data, GetAssetListByType(type));
             
-            selector.Load(data, preselectedAsset);
+            selector.Load(data, preselectedAssets);
 
             if (!canSelectEmpty) return;
             AssetCardControllerV2 emptyCard = Instantiate(emptyCardPrefab, selector.Content);
             emptyCard.transform.SetAsFirstSibling();
             emptyCard.Construct(new AssetCardData.Builder().WithIndex(-1).Build());
         }
+        
+        public void Pick(AssetType type, Action<IAsset> whenConfirmed, IAsset preselectedAsset = null, bool canSelectEmpty = false)
+        {
+            whenConfirmedSingle = whenConfirmed;
+            lastIndex = -2; //-1 is empty card so has to lower
+            data = new SelectionMenuData(data, GetAssetListByType(type));
 
+            selector.Load(data, new HashSet<IAsset> {preselectedAsset});
+
+            if (!canSelectEmpty) return;
+            AssetCardControllerV2 emptyCard = Instantiate(emptyCardPrefab, selector.Content);
+            emptyCard.transform.SetAsFirstSibling();
+            emptyCard.Construct(new AssetCardData.Builder().WithIndex(-1).Build());
+        }
+        
         public void ConfirmSelection()
         {
             if (selectedAssetIndexes == null || selectedAssetIndexes.Count == 0) return;
             IAsset asset = (selectedAssetIndexes.Contains(-1)) ? new EmptyAsset() : data.GetAssetList()[selectedAssetIndexes.First()];
-            whenConfirmed?.Invoke(asset);
+            whenConfirmedSingle?.Invoke(asset);
         }
         
         private void SelectAsset(int index)
