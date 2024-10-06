@@ -411,8 +411,67 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 61901961728102060, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
       insertIndex: 1
       addedObject: {fileID: 1584727584824989132}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 61901961728102061, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8410186205004623621}
+    - targetCorrespondingSourceObject: {fileID: 61901961728102061, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 922810061968294901}
   m_SourcePrefab: {fileID: 100100000, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
+--- !u!1 &2299932536409476666 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 61901961728102061, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
+  m_PrefabInstance: {fileID: 2247555652760682647}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8410186205004623621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2299932536409476666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6d9e3e75f9642ddac5ca31e8fb05f61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1649954718263400950}
+  affected: 2
+  normalSprite: {fileID: 1213128511734711869, guid: d05e4cc0e3631bf4e9a1594017bd2023, type: 3}
+  highlightedSprite: {fileID: -1355027963, guid: d05e4cc0e3631bf4e9a1594017bd2023, type: 3}
+  pressedSprite: {fileID: -1268328754, guid: d05e4cc0e3631bf4e9a1594017bd2023, type: 3}
+  selectedSprite: {fileID: -1098711454, guid: d05e4cc0e3631bf4e9a1594017bd2023, type: 3}
+  disabledSprite: {fileID: 584729076, guid: d05e4cc0e3631bf4e9a1594017bd2023, type: 3}
+  normal: {r: 1, g: 1, b: 1, a: 1}
+  highlighted: {r: 1, g: 1, b: 1, a: 1}
+  pressed: {r: 1, g: 1, b: 1, a: 1}
+  selected: {r: 1, g: 1, b: 1, a: 1}
+  disabled: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &922810061968294901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2299932536409476666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6d9e3e75f9642ddac5ca31e8fb05f61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 4154983152593760125}
+  affected: 2
+  normalSprite: {fileID: 1213128511734711869, guid: d05e4cc0e3631bf4e9a1594017bd2023, type: 3}
+  highlightedSprite: {fileID: -1355027963, guid: d05e4cc0e3631bf4e9a1594017bd2023, type: 3}
+  pressedSprite: {fileID: -1268328754, guid: d05e4cc0e3631bf4e9a1594017bd2023, type: 3}
+  selectedSprite: {fileID: -1098711454, guid: d05e4cc0e3631bf4e9a1594017bd2023, type: 3}
+  disabledSprite: {fileID: 584729076, guid: d05e4cc0e3631bf4e9a1594017bd2023, type: 3}
+  normal: {r: 1, g: 1, b: 1, a: 1}
+  highlighted: {r: 1, g: 1, b: 1, a: 1}
+  pressed: {r: 1, g: 1, b: 1, a: 1}
+  selected: {r: 1, g: 1, b: 1, a: 1}
+  disabled: {r: 1, g: 1, b: 1, a: 1}
 --- !u!224 &2299932536409476667 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 61901961728102060, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
