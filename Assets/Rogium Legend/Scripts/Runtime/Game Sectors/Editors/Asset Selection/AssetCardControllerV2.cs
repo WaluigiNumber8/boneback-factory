@@ -14,7 +14,8 @@ namespace Rogium.Editors.NewAssetSelection
     {
         public static event Action<int> OnSelect;
         public static event Action<int> OnDeselect;
-        
+
+        [SerializeField] protected bool ignoreThemeUpdate;
         [SerializeField] private UIInfo ui;
 
         protected int index;
@@ -34,6 +35,7 @@ namespace Rogium.Editors.NewAssetSelection
 
         public virtual void UpdateTheme(InteractableSpriteInfo cardSet, InteractableSpriteInfo cardButtonSet, FontInfo titleFont)
         {
+            if (ignoreThemeUpdate) return;
             UIExtensions.ChangeInteractableSprites(toggle, cardSet);
             if (ui.title != null) UIExtensions.ChangeFont(ui.title, titleFont);
         }

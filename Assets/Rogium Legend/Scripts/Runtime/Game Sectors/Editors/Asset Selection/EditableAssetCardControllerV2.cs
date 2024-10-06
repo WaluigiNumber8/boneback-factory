@@ -43,6 +43,7 @@ namespace Rogium.Editors.NewAssetSelection
 
         public override void UpdateTheme(InteractableSpriteInfo cardSet, InteractableSpriteInfo cardButtonSet, FontInfo titleFont)
         {
+            if (ignoreThemeUpdate) return;
             base.UpdateTheme(cardSet, cardButtonSet, titleFont);
             UIExtensions.ChangeInteractableSprites(editUI.editButton, cardButtonSet);
         }
