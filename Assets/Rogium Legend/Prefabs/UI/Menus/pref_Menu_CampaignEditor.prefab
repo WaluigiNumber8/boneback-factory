@@ -4796,7 +4796,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3684529802598573890}
   - component: {fileID: 5320674620796309862}
-  - component: {fileID: 81972780826906334}
+  - component: {fileID: 1852498350374494080}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -4837,7 +4837,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuType: 6
---- !u!114 &81972780826906334
+--- !u!114 &1852498350374494080
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4846,10 +4846,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2962268092245180508}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b358dc2b90a40ac8b5e14e05b6ccf57, type: 3}
+  m_Script: {fileID: 11500000, guid: 069574a8ee6c41b986ded94589b93ef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  assetSelector: {fileID: 0}
+  selector: {fileID: 6535397217895512070}
+  emptyCardPrefab: {fileID: 3580076542102759393, guid: 897be32dd44bc89419209931757222cb, type: 3}
 --- !u!1 &2964157069233335267
 GameObject:
   m_ObjectHideFlags: 0
@@ -7750,7 +7751,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4575221486028029210}
   - component: {fileID: 2515018073091028008}
-  - component: {fileID: 7324713002862388035}
   - component: {fileID: 6535397217895512070}
   m_Layer: 5
   m_Name: pref_Menu_CampaignEditor
@@ -7791,22 +7791,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eedfe3591e646428d21502cf644999b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectionPicker: {fileID: 7324713002862388035}
+  selectionPicker: {fileID: 1852498350374494080}
   propertyColumn: {fileID: 1135433993777101240}
---- !u!114 &7324713002862388035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4977209184586927035}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 069574a8ee6c41b986ded94589b93ef7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selector: {fileID: 6535397217895512070}
-  emptyCardPrefab: {fileID: 3580076542102759393, guid: 897be32dd44bc89419209931757222cb, type: 3}
 --- !u!114 &6535397217895512070
 MonoBehaviour:
   m_ObjectHideFlags: 0

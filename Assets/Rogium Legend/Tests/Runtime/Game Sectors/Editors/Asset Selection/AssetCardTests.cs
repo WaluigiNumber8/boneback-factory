@@ -1,10 +1,12 @@
 using System.Collections;
 using NUnit.Framework;
 using RedRats.Systems.Themes;
+using RedRats.UI.Core;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.NewAssetSelection;
 using Rogium.Tests.Core;
+using TMPro;
 using UnityEngine.UI;
 using static Rogium.Tests.Editors.AssetCreator;
 
@@ -90,6 +92,18 @@ namespace Rogium.Tests.Editors.AssetSelection
             selectionMenu.Open(AssetType.Weapon);
             Toggle cardToggle = selectionMenu.CurrentSelector.Content.GetChild(1).GetComponent<Toggle>();
             Assert.That(cardToggle.image.sprite, Is.EqualTo(ThemeOverseerMono.GetInstance().CurrentThemeData.Interactables.assetCard.normal));
+        }
+
+        [Test]
+        public void Should_SetProperFontForInfoBasedOnCurrentTheme_WhenMenuOpened()
+        {
+            ThemeOverseerMono.GetInstance().ChangeTheme(ThemeType.Green);
+            selectionMenu.Open(AssetType.Weapon);
+            TextMeshProUGUI titleText = selectionMenu.CurrentSelector.Content.GetChild(1).GetComponentInChildren<TextMeshProUGUI>();
+            FontInfo fontInfo = ThemeOverseerMono.GetInstance().CurrentThemeData.Fonts.assetCardInfo;
+            Assert.That(titleText.font, Is.EqualTo(fontInfo.font));
+            Assert.That(titleText.fontSize, Is.EqualTo(fontInfo.size));
+            Assert.That(titleText.color, Is.EqualTo(fontInfo.color));
         }
     }
 }

@@ -240,7 +240,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6427428329681563472}
-  - component: {fileID: 203096770320987000}
+  - component: {fileID: 8636682362788151932}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -270,7 +270,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &203096770320987000
+--- !u!114 &8636682362788151932
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -279,11 +279,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1327511568023603892}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 614314bdc4184e69bae59de3f0626a5c, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ae9d16d71864d78b7c200abf496ec86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  assetSelector: {fileID: 0}
-  toggleGroup: {fileID: 0}
+  selector: {fileID: 4230734503977755563}
+  emptyCardPrefab: {fileID: 3580076542102759393, guid: 897be32dd44bc89419209931757222cb, type: 3}
 --- !u!1 &1375507332188280144
 GameObject:
   m_ObjectHideFlags: 0
@@ -1098,7 +1098,6 @@ GameObject:
   m_Component:
   - component: {fileID: 203568239825813082}
   - component: {fileID: 68577838218189983}
-  - component: {fileID: 5908941258602569451}
   - component: {fileID: 4230734503977755563}
   m_Layer: 5
   m_Name: pref_ModalWindow_AssetPicker
@@ -1144,7 +1143,7 @@ MonoBehaviour:
     windowArea: {fileID: 6639912306915801137}
     backgroundArea: {fileID: 2695170610355103666}
     closeButton: {fileID: 35406839451539061}
-  picker: {fileID: 5908941258602569451}
+  picker: {fileID: 8636682362788151932}
   ui:
     header:
       area: {fileID: 965049478355133570}
@@ -1160,20 +1159,6 @@ MonoBehaviour:
       cancelButton: {fileID: 35406839451539061}
       acceptButtonText: {fileID: 8234885101170341925}
       cancelButtonText: {fileID: 6950386694717747690}
---- !u!114 &5908941258602569451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4742475042445633399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ae9d16d71864d78b7c200abf496ec86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selector: {fileID: 4230734503977755563}
-  emptyCardPrefab: {fileID: 3580076542102759393, guid: 897be32dd44bc89419209931757222cb, type: 3}
 --- !u!114 &4230734503977755563
 MonoBehaviour:
   m_ObjectHideFlags: 0

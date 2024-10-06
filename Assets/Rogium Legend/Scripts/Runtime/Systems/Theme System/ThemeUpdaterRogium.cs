@@ -44,7 +44,7 @@ namespace Rogium.Systems.ThemeSystem
             UpdateUsedTheme(theme);
             card.UpdateTheme(t.Interactables.assetCard,
                              t.Interactables.buttonCard,
-                             t.Fonts.general);
+                             t.Fonts.assetCardInfo);
         }
         #endregion
 

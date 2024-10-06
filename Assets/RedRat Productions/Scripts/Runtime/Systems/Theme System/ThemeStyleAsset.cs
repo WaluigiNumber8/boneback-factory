@@ -62,6 +62,7 @@ namespace RedRats.Systems.Themes
             public FontInfo general;
             public FontInfo inputted;
             public FontInfo header;
+            public FontInfo assetCardInfo;
         }
     }
 }

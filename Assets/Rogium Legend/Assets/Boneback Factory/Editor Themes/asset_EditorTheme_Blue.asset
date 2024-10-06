@@ -106,3 +106,7 @@ MonoBehaviour:
       font: {fileID: 11400000, guid: cf4879b37d976dc428255f939d628fa9, type: 2}
       size: 65
       color: {r: 1, g: 0.79607844, b: 0.54509807, a: 1}
+    assetCardInfo:
+      font: {fileID: 11400000, guid: 7dcbf3f25fb09e840ab6875dff99cba5, type: 2}
+      size: 42
+      color: {r: 0.9019608, g: 0.9019608, b: 0.9019608, a: 1}

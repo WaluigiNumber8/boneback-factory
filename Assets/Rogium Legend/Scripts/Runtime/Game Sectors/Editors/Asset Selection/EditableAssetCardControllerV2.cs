@@ -45,8 +45,6 @@ namespace Rogium.Editors.NewAssetSelection
         {
             base.UpdateTheme(cardSet, cardButtonSet, titleFont);
             UIExtensions.ChangeInteractableSprites(editUI.editButton, cardButtonSet);
-            UIExtensions.ChangeInteractableSprites(editUI.configButton, cardButtonSet);
-            UIExtensions.ChangeInteractableSprites(editUI.deleteButton, cardButtonSet);
         }
 
         private void ToggleDisplayedGroups(bool value)
