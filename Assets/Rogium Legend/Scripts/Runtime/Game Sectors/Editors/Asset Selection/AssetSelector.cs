@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Rogium.Editors.Core;
+using Rogium.Systems.ThemeSystem;
 using Rogium.UserInterface.Interactables;
 using UnityEngine;
 
@@ -54,6 +55,7 @@ namespace Rogium.Editors.NewAssetSelection
                     .WithDeleteButton(data.WhenAssetDelete)
                     .Build());
                 card.SetToggle(preselectedAssets?.Contains(asset) ?? false);
+                ThemeUpdaterRogium.UpdateAssetCard(card);
                 if (i >= cards.Count) cards.Add(card);
             }
             

@@ -46,6 +46,7 @@ namespace RedRats.Systems.Themes
             [BoxGroup] public InteractableSpriteInfo assetField;
             [BoxGroup] public InteractableSpriteInfo colorField;
             [BoxGroup] public InteractableSpriteInfo scrollbarHandle;
+            [BoxGroup] public InteractableSpriteInfo assetCard;
         }
 
         [Serializable]

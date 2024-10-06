@@ -1,9 +1,11 @@
 using System.Collections;
 using NUnit.Framework;
+using RedRats.Systems.Themes;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.NewAssetSelection;
 using Rogium.Tests.Core;
+using UnityEngine.UI;
 using static Rogium.Tests.Editors.AssetCreator;
 
 namespace Rogium.Tests.Editors.AssetSelection
@@ -79,6 +81,15 @@ namespace Rogium.Tests.Editors.AssetSelection
             card1.SetToggle(true);
             Assert.That(card1.IsOn, Is.True);
             Assert.That(card2.IsOn, Is.False);
+        }
+
+        [Test]
+        public void Should_SetProperToggleSpritesBasedOnCurrentTheme_WhenMenuOpened()
+        {
+            ThemeOverseerMono.GetInstance().ChangeTheme(ThemeType.Green);
+            selectionMenu.Open(AssetType.Weapon);
+            Toggle cardToggle = selectionMenu.CurrentSelector.Content.GetChild(1).GetComponent<Toggle>();
+            Assert.That(cardToggle.image.sprite, Is.EqualTo(ThemeOverseerMono.GetInstance().CurrentThemeData.Interactables.assetCard.normal));
         }
     }
 }

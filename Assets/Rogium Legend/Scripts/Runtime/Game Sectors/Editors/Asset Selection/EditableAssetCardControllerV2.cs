@@ -1,4 +1,5 @@
 using System;
+using RedRats.UI.Core;
 using Rogium.UserInterface.Interactables;
 using UnityEngine;
 using UnityEngine.UI;
@@ -39,6 +40,14 @@ namespace Rogium.Editors.NewAssetSelection
         /// Delete the asset.
         /// </summary>
         public void Delete() => editUI.deleteButton.onClick.Invoke();
+
+        public override void UpdateTheme(InteractableSpriteInfo cardSet, InteractableSpriteInfo cardButtonSet, FontInfo titleFont)
+        {
+            base.UpdateTheme(cardSet, cardButtonSet, titleFont);
+            UIExtensions.ChangeInteractableSprites(editUI.editButton, cardButtonSet);
+            UIExtensions.ChangeInteractableSprites(editUI.configButton, cardButtonSet);
+            UIExtensions.ChangeInteractableSprites(editUI.deleteButton, cardButtonSet);
+        }
 
         private void ToggleDisplayedGroups(bool value)
         {

@@ -1,4 +1,5 @@
 using System;
+using RedRats.UI.Core;
 using Rogium.UserInterface.Editors.AssetSelection;
 using TMPro;
 using UnityEngine;
@@ -29,6 +30,12 @@ namespace Rogium.Editors.NewAssetSelection
             index = data.index;
             if (ui.title != null) ui.title.text = data.title;
             if (ui.iconImage != null) ui.iconImage.sprite = data.icon;
+        }
+
+        public virtual void UpdateTheme(InteractableSpriteInfo cardSet, InteractableSpriteInfo cardButtonSet, FontInfo titleFont)
+        {
+            UIExtensions.ChangeInteractableSprites(toggle, cardSet);
+            if (ui.title != null) UIExtensions.ChangeFont(ui.title, titleFont);
         }
         
         private void CallSelectEvents(bool value)
