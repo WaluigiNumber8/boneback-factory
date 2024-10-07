@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using RedRats.Safety;
 using Rogium.Editors.Core;
 using Rogium.Systems.ThemeSystem;
 using Rogium.UserInterface.Interactables;
@@ -72,6 +73,12 @@ namespace Rogium.Editors.NewAssetSelection
             }
         }
 
+        public AssetCardControllerV2 GetCard(int index)
+        {
+            SafetyNet.EnsureIndexWithingCollectionRange(index, cards, nameof(cards));
+            return cards[index];
+        }
+        
         private AssetCardControllerV2 GenerateCard(int assetIndex)
         {
             if (assetIndex < cards.Count) return cards[assetIndex];

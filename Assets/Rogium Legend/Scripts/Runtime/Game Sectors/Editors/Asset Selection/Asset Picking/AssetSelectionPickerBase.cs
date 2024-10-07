@@ -57,11 +57,7 @@ namespace Rogium.Editors.NewAssetSelection
             }
         }
         
-        public void Select(int index, bool value = true)
-        {
-            if (index < 0 || index >= selector.Content.childCount) return;
-            selector.Content.GetChild(index).GetComponent<AssetCardControllerV2>().SetToggle(value);
-        }
+        public void Select(int index, bool value = true) => selector.GetCard(index).SetToggle(value);
 
         public abstract void ConfirmSelection();
         
