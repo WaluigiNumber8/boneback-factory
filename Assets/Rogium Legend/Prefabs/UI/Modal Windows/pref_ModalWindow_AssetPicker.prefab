@@ -1151,8 +1151,8 @@ MonoBehaviour:
       text: {fileID: 1073780047383517953}
     layout:
       area: {fileID: 8650327881538785361}
-      emptyMessageCard: {fileID: 5945190955487191444}
-      scrollbarCard: {fileID: 3324742375436514978}
+      emptyMessage: {fileID: 5945190955487191444}
+      scrollbar: {fileID: 3324742375436514978}
     footer:
       area: {fileID: 9014612602321659868}
       acceptButton: {fileID: 1315404947022045114}

@@ -50,6 +50,7 @@ namespace Rogium.UserInterface.ModalWindows
             generalUI.entireArea.GetComponentInParent<Transform>().SetAsLastSibling();
             ui.header.text.text = $"Select a {type.ToString().ToLower()}";
             picker.Pick(type, WhenAssetPicked, preselectedAsset, canSelectEmpty);
+            ui.layout.emptyMessage.gameObject.SetActive(picker.SelectorContent.childCount == 0);
             Open();
         }
 
@@ -66,10 +67,10 @@ namespace Rogium.UserInterface.ModalWindows
             UIExtensions.ChangeInteractableSprites(ui.footer.acceptButton, ui.footer.acceptButton.image, buttonSet);
             UIExtensions.ChangeInteractableSprites(ui.footer.cancelButton, ui.footer.cancelButton.image, buttonSet);
             UIExtensions.ChangeFont(ui.header.text, headerFont);
-            UIExtensions.ChangeFont(ui.layout.emptyMessageCard, emptyTextFont);
+            UIExtensions.ChangeFont(ui.layout.emptyMessage, emptyTextFont);
             UIExtensions.ChangeFont(ui.footer.acceptButtonText, headerFont);
             UIExtensions.ChangeFont(ui.footer.cancelButtonText, headerFont);
-            ThemeUpdaterRogium.UpdateScrollbar(ui.layout.scrollbarCard);
+            ThemeUpdaterRogium.UpdateScrollbar(ui.layout.scrollbar);
             ui.header.headerImage.sprite = headerSprite;
             generalUI.windowArea.sprite = backgroundSprite;
         }
@@ -117,8 +118,8 @@ namespace Rogium.UserInterface.ModalWindows
         public struct LayoutInfo
         {
             public Transform area;
-            public TextMeshProUGUI emptyMessageCard;
-            public InteractableScrollbar scrollbarCard;
+            public TextMeshProUGUI emptyMessage;
+            public InteractableScrollbar scrollbar;
         }
 
         [Serializable]
