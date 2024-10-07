@@ -2,7 +2,7 @@
 using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine;
 
-namespace Rogium.UserInterface.Editors.AssetSelection
+namespace Rogium.Editors.NewAssetSelection
 {
     /// <summary>
     /// Builds the <see cref="SelectionInfoColumn"/> for a <see cref="RoomAsset"/>.

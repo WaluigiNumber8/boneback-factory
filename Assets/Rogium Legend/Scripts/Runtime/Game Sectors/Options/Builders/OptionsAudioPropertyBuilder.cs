@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Rogium.Options.Core
 {
-    public class OptionsAudioPropertyBuilder : UIPropertyContentBuilderBaseColumn1
+    public class OptionsAudioPropertyBuilder : UIPropertyContentBuilderBaseColumn1<GameDataAsset>
     {
         private readonly AudioOptionsController audio;
 
@@ -13,7 +13,7 @@ namespace Rogium.Options.Core
             this.audio = audio;
         }
 
-        public void Build(GameDataAsset data)
+        public override void Build(GameDataAsset data)
         {
             Clear();
             b.BuildSlider("Master", 0f, 1f, data.MasterVolume, contentMain, value =>

@@ -16,7 +16,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
     /// <summary>
     /// Builds the property editor for <see cref="EnemyAsset"/>.
     /// </summary>
-    public class PropertyEditorBuilderEnemy : PropertyEditorBuilderAnimationBase
+    public class PropertyEditorBuilderEnemy : PropertyEditorBuilderAnimationBase<EnemyAsset>
     {
         private EnemyAsset asset;
         private PackAsset currentPack;
@@ -34,7 +34,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
             aiOptions = new[] {"Look", "Rotate"};
         }
 
-        public void Build(EnemyAsset asset)
+        public override void Build(EnemyAsset asset)
         {
             this.asset = asset;
             currentPack = PackEditorOverseer.Instance.CurrentPack;

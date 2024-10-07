@@ -8,7 +8,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
     /// <summary>
     /// Builds the Room Property Column for enemies.
     /// </summary>
-    public class RoomPropertyColumnBuilderEnemy : UIPropertyContentBuilderBaseColumn1
+    public class RoomPropertyColumnBuilderEnemy : UIPropertyContentBuilderBaseColumn1<AssetData>
     {
         public RoomPropertyColumnBuilderEnemy(Transform contentMain) : base(contentMain) { }
 
@@ -16,7 +16,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         /// Build properties.
         /// </summary>
         /// <param name="data">The asset to read from.</param>
-        public void Build(AssetData data)
+        public override void Build(AssetData data)
         {
             Clear();
 

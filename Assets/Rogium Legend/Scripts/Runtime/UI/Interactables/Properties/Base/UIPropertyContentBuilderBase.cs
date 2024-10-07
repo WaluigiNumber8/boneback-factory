@@ -1,4 +1,5 @@
 ﻿using RedRats.Safety;
+using Rogium.Editors.Core;
 using UnityEngine;
 
 namespace Rogium.UserInterface.Interactables.Properties
@@ -6,7 +7,7 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// <summary>
     /// A base for all Property Builders.
     /// </summary>
-    public abstract class UIPropertyContentBuilderBase : IUIPropertyContentBuilder
+    public abstract class UIPropertyContentBuilderBase<T> : IUIPropertyContentBuilder where T : IIDHolder
     {
         protected readonly UIPropertyBuilder b;
         protected readonly Transform contentMain;
@@ -19,6 +20,11 @@ namespace Rogium.UserInterface.Interactables.Properties
             this.contentMain = contentMain;
         }
 
+        /// <summary>
+        /// Build properties for the asset.
+        /// </summary>
+        public abstract void Build(T asset);
+        
         /// <summary>
         /// Empty contents.
         /// </summary>

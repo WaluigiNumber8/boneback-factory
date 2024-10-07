@@ -19,6 +19,7 @@ namespace Rogium.Editors.NewAssetSelection
     {
         public event Action<AssetType> OnOpen;
 
+        [SerializeField] private SelectionInfoColumn infoColumn;
         [SerializeField] private TabGroup categoryTabGroup;
         [SerializeField] private SelectionDataInfo data;
         [Button] public void TestFill() => Open(AssetType.Pack);
@@ -42,6 +43,9 @@ namespace Rogium.Editors.NewAssetSelection
             };
         }
 
+        private void OnEnable() => AssetCardControllerV2.OnSelect += PrepareInfoColumn;
+        private void OnDisable() => AssetCardControllerV2.OnSelect -= PrepareInfoColumn;
+
         private static IList<IAsset> GetPaletteList() => PackEditorOverseer.Instance.CurrentPack.Palettes.Cast<IAsset>().ToList();
         private static IList<IAsset> GetSpriteList() => PackEditorOverseer.Instance.CurrentPack.Sprites.Cast<IAsset>().ToList();
         private static IList<IAsset> GetWeaponList() => PackEditorOverseer.Instance.CurrentPack.Weapons.Cast<IAsset>().ToList();
@@ -64,6 +68,8 @@ namespace Rogium.Editors.NewAssetSelection
             SafetyNet.EnsureDictionaryContainsKey(menuData, type, nameof(menuData));
             return menuData[type];
         }
+
+        private void PrepareInfoColumn(int index) => infoColumn.Construct(GetData(currentType).GetAssetList()[index]);
 
         public AssetSelector CurrentSelector { get => GetData(currentType).AssetSelector; }
         public AssetType CurrentType { get => currentType; }

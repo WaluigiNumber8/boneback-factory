@@ -46,6 +46,8 @@ namespace Rogium.Editors.NewAssetSelection
             else OnDeselect?.Invoke(index);
         }
 
+        public override string ToString() => $"{index} - {ui.title.text}";
+
         public string Title { get => ui.title.text; }
         public Sprite Icon {get => ui.iconImage.sprite;}
 

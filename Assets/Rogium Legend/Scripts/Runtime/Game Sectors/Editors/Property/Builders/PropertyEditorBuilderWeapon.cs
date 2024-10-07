@@ -15,7 +15,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
     /// <summary>
     /// Builds the property editor for <see cref="WeaponAsset"/>.
     /// </summary>
-    public class PropertyEditorBuilderWeapon : PropertyEditorBuilderAnimationBase
+    public class PropertyEditorBuilderWeapon : PropertyEditorBuilderAnimationBase<WeaponAsset>
     {
         private WeaponAsset asset;
         private PackAsset currentPack;
@@ -25,7 +25,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
         
         public PropertyEditorBuilderWeapon(Transform contentMain, Transform contentSecond) : base(contentMain, contentSecond) { }
 
-        public void Build(WeaponAsset asset)
+        public override void Build(WeaponAsset asset)
         {
             this.asset = asset;
             currentPack = PackEditorOverseer.Instance.CurrentPack;
