@@ -11,6 +11,7 @@ using Rogium.Editors.Packs;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Enemies;
+using Rogium.Editors.NewAssetSelection;
 using Rogium.Editors.Palettes;
 using Rogium.Editors.Projectiles;
 using Rogium.Editors.Rooms;
@@ -109,7 +110,6 @@ namespace Rogium.Systems.GASExtension
             // GAS.ObjectSetActive(true, UIEditorContainer.GetInstance().Background);
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Pack);
-            // CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToMainMenuSelection);
         }
 
         public static void OpenSelectionCampaign()
@@ -535,9 +535,8 @@ namespace Rogium.Systems.GASExtension
         public static void OpenEditor(int packIndex)
         {
             ExternalLibraryOverseer.Instance.ActivatePackEditor(packIndex);
-            // PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
-            // CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToPackSelectionMenu, null, pack.Title, pack.Icon);
             storedIndex = packIndex;
+            SelectionMenuOverseerMono.GetInstance().ResetTabGroup();
             OpenSelectionPalette();
         }
 

@@ -16,7 +16,7 @@ namespace Rogium.Editors.NewAssetSelection
         [SerializeField] private AssetCardControllerV2 cardPrefab;
         [SerializeField] private InteractableButton assetCreateButtonPrefab;
 
-        private IList<AssetCardControllerV2> cards;
+        private List<AssetCardControllerV2> cards;
         private Stack<AssetCardControllerV2> disabledCards;
 
         private void Awake()
@@ -40,11 +40,24 @@ namespace Rogium.Editors.NewAssetSelection
         public void Load(SelectionMenuData data, IList<IAsset> assets, ISet<IAsset> preselectedAssets = null)
         {
             PrepareAddButton(data);
+            int childCount = content.childCount - ((data.WhenAssetCreate == ButtonType.None) ? 0 : 1);
             
+            //Disable cards that are not needed
+            if (childCount > assets.Count)
+            {
+                for (int i = assets.Count; i < cards.Count; i++)
+                {
+                    cards[i].gameObject.SetActive(false);
+                    disabledCards.Push(cards[i]);
+                }
+                cards.RemoveRange(assets.Count, cards.Count - assets.Count);
+            }
+            
+            //Load up the cards with data
             for (int i = 0; i < assets.Count; i++)
             {
                 IAsset asset = assets[i];
-                AssetCardControllerV2 card = (i < cards.Count) ? cards[i] : ((disabledCards.Count > 0) ? disabledCards.Pop() : Instantiate(cardPrefab, content));
+                AssetCardControllerV2 card = GenerateCard(i);
                 card.gameObject.SetActive(true);
                 card.Construct(new AssetCardData.Builder()
                     .WithIndex(i)
@@ -56,16 +69,16 @@ namespace Rogium.Editors.NewAssetSelection
                     .Build());
                 card.SetToggle(preselectedAssets?.Contains(asset) ?? false);
                 ThemeUpdaterRogium.UpdateAssetCard(card);
-                if (i >= cards.Count) cards.Add(card);
             }
+        }
+
+        private AssetCardControllerV2 GenerateCard(int assetIndex)
+        {
+            if (assetIndex < cards.Count) return cards[assetIndex];
             
-            if (assets.Count >= cards.Count) return;
-            for (int i = assets.Count; i < cards.Count; i++)
-            {
-                cards[i].gameObject.SetActive(false);
-                disabledCards.Push(cards[i]);
-                cards.RemoveAt(i);
-            }
+            AssetCardControllerV2 card = (disabledCards.Count > 0) ? disabledCards.Pop() : Instantiate(cardPrefab, content);
+            cards.Add(card);
+            return card;
         }
 
         private void PrepareAddButton(SelectionMenuData data)

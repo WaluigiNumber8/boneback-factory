@@ -4299,6 +4299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe00ce47a60446a48c27267d10ddef56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  categoryTabGroup: {fileID: 1901541083048733567}
   data:
     packSelection:
       assetSelector: {fileID: 3972849999520769450}

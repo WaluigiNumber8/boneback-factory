@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using RedRats.Core;
 using RedRats.Safety;
+using RedRats.UI.Tabs;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
@@ -17,7 +18,8 @@ namespace Rogium.Editors.NewAssetSelection
     public sealed class SelectionMenuOverseerMono : MonoSingleton<SelectionMenuOverseerMono>
     {
         public event Action<AssetType> OnOpen;
-        
+
+        [SerializeField] private TabGroup categoryTabGroup;
         [SerializeField] private SelectionDataInfo data;
         [Button] public void TestFill() => Open(AssetType.Pack);
         
@@ -54,6 +56,8 @@ namespace Rogium.Editors.NewAssetSelection
             GetData(currentType).Load();
             OnOpen?.Invoke(currentType);
         }
+        
+        public void ResetTabGroup() => categoryTabGroup.Switch(0);
 
         private SelectionMenuData GetData(AssetType type)
         {
@@ -76,5 +80,6 @@ namespace Rogium.Editors.NewAssetSelection
             public SelectionMenuData roomSelection;
             public SelectionMenuData tileSelection;
         }
+
     }
 }
