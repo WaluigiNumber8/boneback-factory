@@ -549,7 +549,6 @@ namespace Rogium.Systems.GASExtension
 
         public static void OpenEditorPalette(int assetIndex)
         {
-            // CanvasOverseer.GetInstance().NavigationBar.Hide();
             GAS.SwitchMenu(MenuType.PaletteEditor);
             PackEditorOverseer.Instance.ActivatePaletteEditor(assetIndex);
             storedIndex = assetIndex;
