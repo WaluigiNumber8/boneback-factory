@@ -16,7 +16,13 @@ namespace RedRats.UI.Tabs
         {
             tabGroup = GetComponent<TabGroup>();
             switcher = new ObjectSwitcher(tabGroup.DefaultTabIndex, tabGroup.GetButtonsAsArray());
-            tabGroup.onTabSwitch += switcher.Switch;
+            tabGroup.onTabSwitch += Switch;
+        }
+
+        private async void Switch(GameObject obj)
+        {
+            await Awaitable.EndOfFrameAsync();
+            switcher.Switch(obj);
         }
     }
 }
