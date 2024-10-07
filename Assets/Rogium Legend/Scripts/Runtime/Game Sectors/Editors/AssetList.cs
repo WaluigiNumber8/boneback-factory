@@ -137,10 +137,9 @@ namespace Rogium.Editors.Core
         /// Replaces the current list with a new one.
         /// </summary>
         /// <param name="newList">the list to replace it with.</param>
-        public void ReplaceAll(IList<T> newList)
-        {
-            list = new List<T>(newList);
-        }
+        public void ReplaceAll(IList<T> newList) => list = new List<T>(newList);
+
+        public override string ToString() => $"Count: {list.Count}";
 
         #region Untouched Overrides
         public int Count => list.Count;

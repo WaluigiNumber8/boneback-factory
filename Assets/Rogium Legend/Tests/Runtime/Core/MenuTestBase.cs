@@ -1,7 +1,9 @@
 using System.Collections;
 using NSubstitute;
 using Rogium.Editors.Campaign;
+using Rogium.Editors.Core;
 using Rogium.Editors.Enemies;
+using Rogium.Editors.Packs;
 using Rogium.Editors.Palettes;
 using Rogium.Editors.Projectiles;
 using Rogium.Editors.Rooms;
@@ -11,6 +13,7 @@ using Rogium.Editors.Weapons;
 using Rogium.ExternalStorage;
 using Rogium.ExternalStorage.Serialization;
 using Rogium.Options.Core;
+using Rogium.Systems.ActionHistory;
 using Rogium.Tests.Editors;
 using UnityEngine.TestTools;
 
@@ -29,12 +32,16 @@ namespace Rogium.Tests.Core
             yield return null;
             PrepareExternalStorageSubstitute();
             yield return null;
-            AssetCreator.CreateAndAssignPack();
+            ExternalLibraryOverseer.Instance.ClearPacks();
+            ExternalLibraryOverseer.Instance.ClearCampaigns();
+            ActionHistorySystem.ClearHistory();
+            yield return AssetCreator.CreateAndAssignPack();
         }
 
         private void PrepareExternalStorageSubstitute()
         {
             IExternalStorageOverseer ex = Substitute.For<IExternalStorageOverseer>();
+            ex.LoadPack(Arg.Any<PackAsset>()).Returns(info => info.Arg<PackAsset>());
             ex.Palettes.Returns(Substitute.For<ICRUDOperations<PaletteAsset, JSONPaletteAsset>>());
             ex.Sprites.Returns(Substitute.For<ICRUDOperations<SpriteAsset, JSONSpriteAsset>>());
             ex.Enemies.Returns(Substitute.For<ICRUDOperations<EnemyAsset, JSONEnemyAsset>>());

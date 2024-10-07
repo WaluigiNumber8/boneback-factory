@@ -3,7 +3,7 @@ namespace Rogium.UserInterface.Interactables
 {
     public enum ButtonType
     {
-        DoNothing = 0,
+        None = 0,
         OpenOptionsMenu = 75,
         OpenChangelog = 81,
 
@@ -17,7 +17,7 @@ namespace Rogium.UserInterface.Interactables
         SelectionOpenTile = 7,
         SelectionOpenProjectile = 8,
         SelectionOpenCampaign = 9,
-        SelectionOpenAssetType = 10,
+        OpenEditor = 10,
         #endregion
 
         #region Return from Menus

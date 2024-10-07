@@ -49,7 +49,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection
                     assetSelection.Setup(AssetType.Pack,
                         layouts.grid,
                         selectionMenus.pack,
-                        lib.GetPacksCopy.ToList<IAsset>(),
+                        lib.Packs.ToList<IAsset>(),
                         empty);
                     break;
                 case AssetType.Palette:
@@ -105,14 +105,14 @@ namespace Rogium.UserInterface.Editors.AssetSelection
                     assetSelection.Setup(AssetType.Object,
                         layouts.grid,
                         selectionMenus.interactableObject,
-                        internalLib.GetObjectsCopy().ToList<IAsset>(),
+                        internalLib.Objects.ToList<IAsset>(),
                         empty);
                     break;
                 case AssetType.Sound:
                     assetSelection.Setup(AssetType.Sound,
                         layouts.grid,
                         selectionMenus.sound,
-                        internalLib.GetSoundsCopy().ToList<IAsset>(),
+                        internalLib.Sounds.ToList<IAsset>(),
                         empty);
                     break;
                 case AssetType.None:

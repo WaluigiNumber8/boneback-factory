@@ -21,10 +21,10 @@ namespace Rogium.UserInterface.Interactables
         private Button button;
 
         private void Awake() => button = GetComponent<Button>();
-        private void OnEnable() => button.onClick.AddListener(WhenButtonClicked);
-        private void OnDisable() => button.onClick.RemoveListener(WhenButtonClicked);
+        private void OnEnable() => button.onClick.AddListener(Click);
+        private void OnDisable() => button.onClick.RemoveListener(Click);
 
-        public void WhenButtonClicked()
+        public void Click()
         {
             StartCoroutine(DelayCoroutine());
             IEnumerator DelayCoroutine()

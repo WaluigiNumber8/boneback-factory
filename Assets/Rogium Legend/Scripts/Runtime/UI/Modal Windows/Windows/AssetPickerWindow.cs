@@ -3,8 +3,8 @@ using RedRats.UI.Core;
 using RedRats.UI.ModalWindows;
 using Rogium.Core;
 using Rogium.Editors.Core;
+using Rogium.Editors.NewAssetSelection;
 using Rogium.Systems.ThemeSystem;
-using Rogium.UserInterface.Editors.AssetSelection.PickerVariant;
 using Rogium.UserInterface.Interactables;
 using TMPro;
 using UnityEngine;
@@ -17,21 +17,21 @@ namespace Rogium.UserInterface.ModalWindows
     /// </summary>
     public class AssetPickerWindow : ModalWindowBase
     {
-        [SerializeField] private AssetSelectionPickerSingle selectionPicker;
+        [SerializeField] private AssetSelectionPickerSingle picker;
         [SerializeField] private UIInfo ui;
-        
+
         private Action<IAsset> whenAssetPicked;
 
         private void OnEnable()
         {
-            ui.footer.acceptButton.onClick.AddListener(selectionPicker.ConfirmSelection);
-            ui.footer.cancelButton.onClick.AddListener(WhenSelectionCancelled);
+            ui.footer.acceptButton.onClick.AddListener(ConfirmSelection);
+            ui.footer.cancelButton.onClick.AddListener(CancelSelection);
         }
 
         private void OnDisable()
         {
-            ui.footer.acceptButton.onClick.RemoveListener(selectionPicker.ConfirmSelection);
-            ui.footer.cancelButton.onClick.RemoveListener(WhenSelectionCancelled);
+            ui.footer.acceptButton.onClick.RemoveListener(ConfirmSelection);
+            ui.footer.cancelButton.onClick.RemoveListener(CancelSelection);
         }
 
         /// <summary>
@@ -49,8 +49,9 @@ namespace Rogium.UserInterface.ModalWindows
             
             generalUI.entireArea.GetComponentInParent<Transform>().SetAsLastSibling();
             ui.header.text.text = $"Select a {type.ToString().ToLower()}";
+            picker.Pick(type, WhenAssetPicked, preselectedAsset, canSelectEmpty);
+            ui.layout.emptyMessage.gameObject.SetActive(picker.SelectorContent.childCount == 0);
             Open();
-            selectionPicker.Construct(type, WhenAssetPicked, preselectedAsset, canSelectEmpty);
         }
 
         /// <summary>
@@ -66,17 +67,15 @@ namespace Rogium.UserInterface.ModalWindows
             UIExtensions.ChangeInteractableSprites(ui.footer.acceptButton, ui.footer.acceptButton.image, buttonSet);
             UIExtensions.ChangeInteractableSprites(ui.footer.cancelButton, ui.footer.cancelButton.image, buttonSet);
             UIExtensions.ChangeFont(ui.header.text, headerFont);
-            UIExtensions.ChangeFont(ui.layout.emptyMessageCard, emptyTextFont);
-            UIExtensions.ChangeFont(ui.layout.emptyMessageList, emptyTextFont);
+            UIExtensions.ChangeFont(ui.layout.emptyMessage, emptyTextFont);
             UIExtensions.ChangeFont(ui.footer.acceptButtonText, headerFont);
             UIExtensions.ChangeFont(ui.footer.cancelButtonText, headerFont);
-            ThemeUpdaterRogium.UpdateScrollbar(ui.layout.scrollbarList);
-            ThemeUpdaterRogium.UpdateScrollbar(ui.layout.scrollbarCard);
+            ThemeUpdaterRogium.UpdateScrollbar(ui.layout.scrollbar);
             ui.header.headerImage.sprite = headerSprite;
             generalUI.windowArea.sprite = backgroundSprite;
         }
         
-        public void ConfirmSelection() => selectionPicker.ConfirmSelection();
+        public void ConfirmSelection() => picker.ConfirmSelection();
 
         protected override void UpdateTheme() => ThemeUpdaterRogium.UpdateAssetPickerWindow(this);
 
@@ -88,17 +87,16 @@ namespace Rogium.UserInterface.ModalWindows
         {
             whenAssetPicked.Invoke(asset);
             whenAssetPicked = null;
-            WhenSelectionCancelled();
+            CancelSelection();
         }
 
         /// <summary>
         /// Cancel the selection.
         /// </summary>
-        private void WhenSelectionCancelled()
-        {
-            selectionPicker.CancelSelection();
-            Close();
-        }
+        private void CancelSelection() => Close();
+
+        public RectTransform SelectorContent { get => picker.SelectorContent; }
+        public int SelectedAssetsCount { get => picker.SelectedAssetsCount; }
 
         [Serializable]
         public struct UIInfo
@@ -120,10 +118,8 @@ namespace Rogium.UserInterface.ModalWindows
         public struct LayoutInfo
         {
             public Transform area;
-            public TextMeshProUGUI emptyMessageCard;
-            public TextMeshProUGUI emptyMessageList;
-            public InteractableScrollbar scrollbarCard;
-            public InteractableScrollbar scrollbarList;
+            public TextMeshProUGUI emptyMessage;
+            public InteractableScrollbar scrollbar;
         }
 
         [Serializable]
@@ -134,7 +130,6 @@ namespace Rogium.UserInterface.ModalWindows
             public Button cancelButton;
             public TextMeshProUGUI acceptButtonText;
             public TextMeshProUGUI cancelButtonText;
-
         }
     }
 }

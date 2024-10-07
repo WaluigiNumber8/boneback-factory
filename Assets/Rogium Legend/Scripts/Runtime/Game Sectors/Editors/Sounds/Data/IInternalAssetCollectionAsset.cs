@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Rogium.Editors.Core;
 
 namespace Rogium.Editors.Objects
@@ -10,6 +11,6 @@ namespace Rogium.Editors.Objects
     public interface IInternalAssetCollectionAsset<T> where T : IAsset
     {
         public T GetAssetByID(string id);
-        public IList<T> GetAssetListCopy();
+        public ReadOnlyCollection<T> ReadOnlyList { get; }
     }
 }

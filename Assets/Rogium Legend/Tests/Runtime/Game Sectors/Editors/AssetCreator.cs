@@ -1,5 +1,7 @@
+using System.Collections;
 using RedRats.Core;
 using Rogium.Editors.Campaign;
+using Rogium.Editors.Core;
 using Rogium.Editors.Enemies;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Palettes;
@@ -9,7 +11,6 @@ using Rogium.Editors.Sprites;
 using Rogium.Editors.Tiles;
 using Rogium.Editors.Weapons;
 using Rogium.Systems.GridSystem;
-using UnityEditor.Graphs;
 using UnityEngine;
 
 namespace Rogium.Tests.Editors
@@ -19,19 +20,31 @@ namespace Rogium.Tests.Editors
     /// </summary>
     public static class AssetCreator
     {
-        public static PackAsset CreateAndAssignPack()
+        public static IEnumerator CreateAndAssignPack()
         {
             PackAsset pack = CreatePack();
+            ExternalLibraryOverseer.Instance.CreateAndAddPack(pack);
+            yield return null;
             PackEditorOverseer.Instance.AssignAsset(pack, 0);
-            return pack;
         }
+
+        public static IEnumerator CreateAndAssignCampaign()
+        {
+            CampaignAsset campaign = CreateCampaign();
+            ExternalLibraryOverseer.Instance.CreateAndAddCampaign(campaign);
+            yield return null;
+            CampaignEditorOverseer.Instance.AssignAsset(campaign, 0);
+        }
+
+        public static void AddNewPackToLibrary() => ExternalLibraryOverseer.Instance.CreateAndAddPack(CreatePack());
+
+        public static void AddNewCampaignToLibrary() => ExternalLibraryOverseer.Instance.CreateAndAddCampaign(CreateCampaign());
 
         public static CampaignAsset CreateCampaign()
         {
             CampaignAsset campaign = new CampaignAsset.Builder()
                 .WithTitle("Test Campaign")
                 .WithIcon(RedRatBuilder.GenerateSprite(Color.black, 16, 16, 16))
-                .WithDataPack(CreatePack())
                 .Build();
             return campaign;
         }
@@ -39,7 +52,7 @@ namespace Rogium.Tests.Editors
         public static PackAsset CreatePack()
         {
             return new PackAsset.Builder()
-                .WithTitle("Test Pack")
+                .WithTitle($"Test Pack {Random.Range(0, 1000)}")
                 .WithIcon(RedRatBuilder.GenerateSprite(Color.magenta, 16, 16, 16))
                 .WithPalettes(new[] {CreatePalette()})
                 .WithSprites(new[] {CreateSprite()})

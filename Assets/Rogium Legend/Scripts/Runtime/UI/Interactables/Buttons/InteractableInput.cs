@@ -14,7 +14,7 @@ namespace Rogium.UserInterface.Interactables
         {
             switch (action)
             {
-                case ButtonType.DoNothing:
+                case ButtonType.None:
                     Debug.LogError("This button Currently does nothing...");
                     break;
                 case ButtonType.QuitGame:
@@ -45,7 +45,7 @@ namespace Rogium.UserInterface.Interactables
 
                 #region Open Selection Menus
 
-                case ButtonType.SelectionOpenAssetType:
+                case ButtonType.OpenEditor:
                     SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - EDIT PACK");
                     GASButtonActions.OpenEditor(index);
                     break;

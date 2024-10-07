@@ -58,12 +58,12 @@ namespace Rogium.Editors.Campaign
         /// Updates current campaign's Data Pack with data from a list of packs.
         /// </summary>
         /// <param name="data">The list of packs to combine.</param>
-        public void UpdateDataPack(IList<PackAsset> data)
+        public void UpdateDataPack(ISet<PackAsset> data)
         {
             PackAsset ultimatePack = packCombiner.Combine(data);
             
             currentCampaign.UpdateDataPack(ultimatePack);
-            currentCampaign.UpdatePackReferences(data.ConvertToIDs());
+            currentCampaign.UpdatePackReferences(data.Select(p => p.ID).ToHashSet());
         }
         
         public void CompleteEditing()

@@ -23,7 +23,7 @@ namespace Rogium.Systems.Audio
         {
             base.Awake();
             audioSystem = AudioSystem.GetInstance();
-            allSounds = InternalLibraryOverseer.GetInstance().GetSoundsCopy().ToDictionary(x => x.ID);
+            allSounds = InternalLibraryOverseer.GetInstance().Sounds.ToDictionary(x => x.ID);
         }
 
         /// <summary>

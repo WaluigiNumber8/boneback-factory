@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Rogium.Core;
 using Rogium.Editors.Core.Defaults;
 using UnityEngine;
@@ -11,6 +12,6 @@ namespace Rogium.Editors.Objects
         [SerializeField] private List<ObjectAsset> interactableObjects;
 
         public ObjectAsset GetAssetByID(string id) => interactableObjects.FindValueFirst(id);
-        public IList<ObjectAsset> GetAssetListCopy() => new List<ObjectAsset>(interactableObjects);
+        public ReadOnlyCollection<ObjectAsset> ReadOnlyList { get => new(interactableObjects); }
     }
 }

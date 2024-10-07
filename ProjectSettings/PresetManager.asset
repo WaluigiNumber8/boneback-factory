@@ -14,11 +14,11 @@ PresetManager:
       m_Filter: 
       m_Disabled: 0
   - first:
-      m_NativeTypeID: 1006
-      m_ManagedTypePPtr: {fileID: 0}
+      m_NativeTypeID: 114
+      m_ManagedTypePPtr: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
       m_ManagedTypeFallback: 
     second:
-    - m_Preset: {fileID: 2655988077585873504, guid: 82822521b64ef38409b04cbf39604557, type: 2}
+    - m_Preset: {fileID: 2655988077585873504, guid: c2622cfa8c8c9284a878ede3686081e4, type: 2}
       m_Filter: 
       m_Disabled: 0
   - first:
@@ -27,6 +27,22 @@ PresetManager:
       m_ManagedTypeFallback: 
     second:
     - m_Preset: {fileID: 2655988077585873504, guid: 997718a76a427a846acabe30e69b3798, type: 2}
+      m_Filter: 
+      m_Disabled: 0
+  - first:
+      m_NativeTypeID: 114
+      m_ManagedTypePPtr: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
+      m_ManagedTypeFallback: 
+    second:
+    - m_Preset: {fileID: 2655988077585873504, guid: 7dd26a6a5b95b1045ad7b9576cebec27, type: 2}
+      m_Filter: 
+      m_Disabled: 0
+  - first:
+      m_NativeTypeID: 1006
+      m_ManagedTypePPtr: {fileID: 0}
+      m_ManagedTypeFallback: 
+    second:
+    - m_Preset: {fileID: 2655988077585873504, guid: 82822521b64ef38409b04cbf39604557, type: 2}
       m_Filter: 
       m_Disabled: 0
   - first:
@@ -39,17 +55,9 @@ PresetManager:
       m_Disabled: 0
   - first:
       m_NativeTypeID: 114
-      m_ManagedTypePPtr: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
+      m_ManagedTypePPtr: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
       m_ManagedTypeFallback: 
     second:
-    - m_Preset: {fileID: 2655988077585873504, guid: 7dd26a6a5b95b1045ad7b9576cebec27, type: 2}
-      m_Filter: 
-      m_Disabled: 0
-  - first:
-      m_NativeTypeID: 114
-      m_ManagedTypePPtr: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-      m_ManagedTypeFallback: 
-    second:
-    - m_Preset: {fileID: 2655988077585873504, guid: c2622cfa8c8c9284a878ede3686081e4, type: 2}
+    - m_Preset: {fileID: 2655988077585873504, guid: 8953592bfc3d30442a45726c9f65499d, type: 2}
       m_Filter: 
       m_Disabled: 0

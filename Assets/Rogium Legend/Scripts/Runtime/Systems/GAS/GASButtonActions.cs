@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using RedRats.Systems.GASCore;
 using RedRats.Safety;
 using RedRats.Systems.Themes;
@@ -10,6 +11,7 @@ using Rogium.Editors.Packs;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Enemies;
+using Rogium.Editors.NewAssetSelection;
 using Rogium.Editors.Palettes;
 using Rogium.Editors.Projectiles;
 using Rogium.Editors.Rooms;
@@ -70,7 +72,7 @@ namespace Rogium.Systems.GASExtension
         #region Return from menus
         public static void ReturnToMainMenuSelection()
         {
-            CanvasOverseer.GetInstance().NavigationBar.Hide();
+            // CanvasOverseer.GetInstance().NavigationBar.Hide();
             GAS.ObjectSetActive(false, UIEditorContainer.GetInstance().Background);
             GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundGameplayMenus);
             GAS.ObjectSetActive(true, UIMainContainer.GetInstance().BackgroundMain);
@@ -104,11 +106,10 @@ namespace Rogium.Systems.GASExtension
         public static void OpenSelectionPack()
         {
             GASRogium.ChangeTheme(ThemeType.Blue);
-            GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundMain);
-            GAS.ObjectSetActive(true, UIEditorContainer.GetInstance().Background);
+            // GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundMain);
+            // GAS.ObjectSetActive(true, UIEditorContainer.GetInstance().Background);
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Pack);
-            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToMainMenuSelection);
         }
 
         public static void OpenSelectionCampaign()
@@ -126,8 +127,6 @@ namespace Rogium.Systems.GASExtension
             GASRogium.ChangeTheme(ThemeType.Purple);
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Palette);
-            PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
-            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToAssetTypeSelection, null, pack.Title, pack.Icon);
         }
         
         public static void OpenSelectionSprite()
@@ -135,8 +134,6 @@ namespace Rogium.Systems.GASExtension
             GASRogium.ChangeTheme(ThemeType.Pink);
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Sprite);
-            PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
-            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToAssetTypeSelection, null, pack.Title, pack.Icon);
         }
         
         public static void OpenSelectionWeapon()
@@ -144,8 +141,6 @@ namespace Rogium.Systems.GASExtension
             GASRogium.ChangeTheme(ThemeType.Green);
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Weapon);
-            PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
-            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToAssetTypeSelection, null, pack.Title, pack.Icon);
         }
         
         public static void OpenSelectionProjectile()
@@ -153,8 +148,6 @@ namespace Rogium.Systems.GASExtension
             GASRogium.ChangeTheme(ThemeType.Teal);
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Projectile);
-            PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
-            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToAssetTypeSelection, null, pack.Title, pack.Icon);
         }
         
         public static void OpenSelectionEnemy()
@@ -162,8 +155,6 @@ namespace Rogium.Systems.GASExtension
             GASRogium.ChangeTheme(ThemeType.Red);
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Enemy);
-            PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
-            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToAssetTypeSelection, null, pack.Title, pack.Icon);
         }
         
         public static void OpenSelectionRoom()
@@ -171,8 +162,6 @@ namespace Rogium.Systems.GASExtension
             GASRogium.ChangeTheme(ThemeType.Blue);
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Room);
-            PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
-            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToAssetTypeSelection, null, pack.Title, pack.Icon);
         }
         
         public static void OpenSelectionTile()
@@ -180,8 +169,6 @@ namespace Rogium.Systems.GASExtension
             GASRogium.ChangeTheme(ThemeType.Yellow);
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Tile);
-            PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
-            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToAssetTypeSelection, null, pack.Title, pack.Icon);
         }
 
         #endregion
@@ -197,7 +184,7 @@ namespace Rogium.Systems.GASExtension
             new ModalWindowPropertyBuilderCampaign().OpenForCreate(() =>
             {
                 CampaignAssetSelectionOverseer.Instance.SelectCampaignLast();
-                OpenEditorCampaign(ExternalLibraryOverseer.Instance.CampaignCount - 1);
+                OpenEditorCampaign(ExternalLibraryOverseer.Instance.Campaigns.Count - 1);
             });
         }
 
@@ -534,23 +521,20 @@ namespace Rogium.Systems.GASExtension
         public static void OpenEditor(int packIndex)
         {
             ExternalLibraryOverseer.Instance.ActivatePackEditor(packIndex);
-            GAS.SwitchMenu(MenuType.AssetTypeSelection);
-            PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
-            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToPackSelectionMenu, null, pack.Title, pack.Icon);
             storedIndex = packIndex;
+            SelectionMenuOverseerMono.GetInstance().ResetTabGroup();
+            OpenSelectionPalette();
         }
 
         public static void OpenEditorCampaign(int assetIndex)
         {
             GAS.SwitchMenu(MenuType.CampaignEditor);
             ExternalLibraryOverseer.Instance.ActivateCampaignEditor(assetIndex);
-            CampaignEditorOverseerMono.GetInstance().FillMenu();
             storedIndex = assetIndex;
         }
 
         public static void OpenEditorPalette(int assetIndex)
         {
-            CanvasOverseer.GetInstance().NavigationBar.Hide();
             GAS.SwitchMenu(MenuType.PaletteEditor);
             PackEditorOverseer.Instance.ActivatePaletteEditor(assetIndex);
             storedIndex = assetIndex;
@@ -616,7 +600,7 @@ namespace Rogium.Systems.GASExtension
         #region Save Editor Changes
         public static void SaveChangesCampaign()
         {
-            bool noPacksSelected = (CampaignEditorOverseerMono.GetInstance().SelectionPicker.SelectionCount <= 0);
+            bool noPacksSelected = (CampaignEditorOverseerMono.GetInstance().SelectionPicker.SelectedAssetsCount <= 0);
             ModalWindowData noPackData = new ModalWindowData.Builder()
                 .WithLayout(ModalWindowLayoutType.Message)
                 .WithMessage("Cannot save the campaign without selecting any <style=\"CardAmount\"> packs</style>.")
@@ -765,7 +749,7 @@ namespace Rogium.Systems.GASExtension
         #region Cancel Editor Changes
         public static void CancelChangesCampaign()
         {
-            bool noPacksSelected = (CampaignEditorOverseerMono.GetInstance().SelectionPicker.SelectionCount <= 0);
+            bool noPacksSelected = (CampaignEditorOverseerMono.GetInstance().SelectionPicker.SelectedAssetsCount <= 0);
             bool campaignIsNew = (CampaignEditorOverseer.Instance.CurrentAsset.PackReferences.Count <= 0);
             ModalWindowData noPackData = new ModalWindowData.Builder()
                 .WithLayout(ModalWindowLayoutType.Message)
@@ -930,12 +914,12 @@ namespace Rogium.Systems.GASExtension
         }
         public static void CampaignEditorSelectAll()
         {
-            CampaignEditorOverseerMono.GetInstance().SelectionPicker.SelectAll();
+            CampaignEditorOverseerMono.GetInstance().SelectionPicker.SelectAll(true);
         }
         
         public static void CampaignEditorSelectNone()
         {
-            CampaignEditorOverseerMono.GetInstance().SelectionPicker.DeselectAll();
+            CampaignEditorOverseerMono.GetInstance().SelectionPicker.SelectAll(false);
         }
         
         public static void CampaignEditorSelectRandom()
@@ -971,10 +955,10 @@ namespace Rogium.Systems.GASExtension
         {
             CampaignEditorOverseer editor = CampaignEditorOverseer.Instance;
             ExternalLibraryOverseer lib = ExternalLibraryOverseer.Instance;
-            IList<CampaignAsset> campaigns = lib.GetCampaignsCopy;
+            IList<CampaignAsset> campaigns = lib.Campaigns;
             foreach (CampaignAsset campaign in campaigns)
             {
-                IList<PackAsset> packs = lib.GetPacksCopy.GrabBasedOn(campaign.PackReferences);
+                ISet<PackAsset> packs = lib.Packs.ToHashSet().GrabBasedOn(campaign.PackReferences);
                 if (packs == null || packs.Count <= 0) continue;
                 
                 editor.AssignAsset(campaign, campaigns.IndexOf(campaign), false);
@@ -990,7 +974,7 @@ namespace Rogium.Systems.GASExtension
             CampaignEditorOverseer editor = CampaignEditorOverseer.Instance;
             ExternalLibraryOverseer lib = ExternalLibraryOverseer.Instance;
             CampaignAsset currentAsset = overseer.GetSelectedCampaign();
-            IList<PackAsset> packs = lib.GetPacksCopy.GrabBasedOn(currentAsset.PackReferences);
+            ISet<PackAsset> packs = lib.Packs.ToHashSet().GrabBasedOn(currentAsset.PackReferences);
 
             if (packs == null || packs.Count <= 0) return;
             

@@ -31,7 +31,7 @@ namespace RedRats.Core
         /// </summary>
         /// <param name="transform">The object, who's children will be counted.</param>
         /// <returns>Children count.</returns>
-        public static int GetChildCountActive(this Transform transform)
+        public static int ActiveChildCount(this Transform transform)
         {
             return transform.Cast<Transform>().Count(child => child.gameObject.activeSelf);
         }

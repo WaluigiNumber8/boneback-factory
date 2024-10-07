@@ -30,7 +30,7 @@ namespace Rogium.Tests.UI.Interactables
             OverseerLoader.LoadInternalLibrary();
             
             yield return null;
-            AssetCreator.CreateAndAssignPack();
+            yield return AssetCreator.CreateAndAssignPack();
             OverseerLoader.LoadModalWindowBuilder();
             OverseerLoader.LoadThemeOverseer();
             

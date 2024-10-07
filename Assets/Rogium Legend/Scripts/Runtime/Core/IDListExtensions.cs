@@ -178,6 +178,15 @@ namespace Rogium.Core
 
             return foundAssets;
         }
+        
+        /// <summary>
+        /// Copies entries from one set to another.
+        /// </summary>
+        /// <param name="set">The set to search on for same assets.</param>
+        /// <param name="ids">The set asset ids which will be used to search for.</param>
+        /// <typeparam name="T">Type is <see cref="IIDHolder"/> or any of it's children.</typeparam>
+        /// <returns>A Set of the found assets.</returns>
+        public static ISet<T> GrabBasedOn<T>(this ISet<T> set, ISet<string> ids) where T : IIDHolder => new HashSet<T>(set.Where(asset => ids.Contains(asset.ID)));
 
         /// <summary>
         /// Converts a list of ID holders into a list of their IDs.

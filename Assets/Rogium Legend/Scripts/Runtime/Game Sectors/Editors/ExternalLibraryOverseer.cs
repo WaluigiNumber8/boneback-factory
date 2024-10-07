@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using RedRats.Core;
 using RedRats.Safety;
 using Rogium.Core;
 using Rogium.Editors.Campaign;
-using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Packs;
 using Rogium.ExternalStorage;
 using Rogium.Options.Core;
 using Rogium.Systems.SceneTransferService;
-using UnityEngine;
 using static Rogium.Editors.Packs.AssetAssociation;
 
 namespace Rogium.Editors.Core
@@ -89,15 +88,6 @@ namespace Rogium.Editors.Core
             AssetAssociation.RemoveSpriteAssociation(packs[packIndex], packs[packIndex]);
             packs.Remove(packIndex);
         }
-        /// <summary>
-        /// Remove pack from the library.
-        /// </summary>
-        /// <param name="title">Pack's Title</param>
-        /// <param name="author">Pack's Author</param>
-        public void DeletePack(string title, string author)
-        {
-            packs.Remove(title, author);
-        }
 
         /// <summary>
         /// Prepare one of the packs in the library for editing.
@@ -109,6 +99,8 @@ namespace Rogium.Editors.Core
             packs[packIndex] = ex.LoadPack(packs[packIndex]);
             packEditor.AssignAsset(packs[packIndex], packIndex);
         }
+        
+        public void ClearPacks() => packs.Clear();
 
         private void RemoveSpriteAssociation(string id) => RemoveSpriteAssociationsAndSaveAsset(packs, id);
 
@@ -174,6 +166,8 @@ namespace Rogium.Editors.Core
             SafetyNet.EnsureIntIsInRange(campaignIndex, 0, campaigns.Count, "campaignIndex for activating Campaign Playthrough");
             SceneTransferOverseer.GetInstance().LoadUp(campaigns[campaignIndex]);
         }
+        
+        public void ClearCampaigns() => campaigns.Clear();
         #endregion
 
         #region Preferences
@@ -200,31 +194,8 @@ namespace Rogium.Editors.Core
 
         #endregion
         
-        /// <summary>
-        /// Amount of packs, stored in the library.
-        /// </summary>
-        public int PackCount => packs.Count;
-
-        /// <summary>
-        /// Returns a copy of the list of packs stored here.
-        /// </summary>
-        /// <returns>A copy of Pack Library.</returns>
-        public IList<PackAsset> GetPacksCopy => new List<PackAsset>(packs);
-        
-        /// <summary>
-        /// Amount of campaigns stored in the library.
-        /// </summary>
-        public int CampaignCount => campaigns.Count;
-
-        /// <summary>
-        /// Returns a copy of the list of campaigns stored here.
-        /// </summary>
-        /// <returns>A copy of Pack Library.</returns>
-        public IList<CampaignAsset> GetCampaignsCopy => new List<CampaignAsset>(campaigns);
-
-        /// <summary>
-        /// Returns the saved preferences.
-        /// </summary>
-        public GameDataAsset GetPreferences => preferences;
+        public ReadOnlyCollection<PackAsset> Packs { get => new(packs); }
+        public ReadOnlyCollection<CampaignAsset> Campaigns {get => new(campaigns);}
+        public GameDataAsset Preferences { get => preferences; }
     }
 }
