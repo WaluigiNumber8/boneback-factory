@@ -522,10 +522,16 @@ PrefabInstance:
       addedObject: {fileID: 7275039570778876891}
     - targetCorrespondingSourceObject: {fileID: 1060264257896056953, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5795531793731996583}
+      addedObject: {fileID: 2783419953545252205}
     - targetCorrespondingSourceObject: {fileID: 1060264257896056953, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1364859144941138124}
+      addedObject: {fileID: 8820561263228841022}
+    - targetCorrespondingSourceObject: {fileID: 1060264257896056953, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1923259324688977388}
+    - targetCorrespondingSourceObject: {fileID: 1060264257896056953, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 36906277721372154}
     - targetCorrespondingSourceObject: {fileID: 2772472915545151043, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3532283323764117844}
@@ -538,7 +544,125 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1060264257896056953, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
   m_PrefabInstance: {fileID: 2247555652760682647}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5795531793731996583
+--- !u!114 &2783419953545252205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262761946823313646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6f56e3bb57845b4ab18d84a67f13ca8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: Back Card 1 Return
+  active: 1
+  restartOnPlay: 1
+  keepStateOnStop: 1
+  noPlayWhenPlaying: 0
+  isRealtime: 0
+  initialDelayMin: 0
+  initialDelayMax: 0
+  randomizeDelay: 0
+  duration: 0.1
+  infiniteLoop: 0
+  loops: 1
+  loopType: 0
+  target: {fileID: 1584727584824989132}
+  anchor: {fileID: 0}
+  movement: 0
+  worldType: 1
+  mode: 0
+  uniform: 0
+  beginPosition: {x: 0, y: 0, z: 0}
+  beginPositionU: 0
+  targetPosition: {x: 0, y: 4, z: 0}
+  targetPositionU: 1
+  positionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &8820561263228841022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262761946823313646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6f56e3bb57845b4ab18d84a67f13ca8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: Back Card 2 Return
+  active: 1
+  restartOnPlay: 1
+  keepStateOnStop: 1
+  noPlayWhenPlaying: 0
+  isRealtime: 0
+  initialDelayMin: 0
+  initialDelayMax: 0
+  randomizeDelay: 0
+  duration: 0.18
+  infiniteLoop: 0
+  loops: 1
+  loopType: 0
+  target: {fileID: 4481847276503484577}
+  anchor: {fileID: 0}
+  movement: 0
+  worldType: 1
+  mode: 0
+  uniform: 0
+  beginPosition: {x: 0, y: 0, z: 0}
+  beginPositionU: 0
+  targetPosition: {x: 0, y: 6, z: 0}
+  targetPositionU: 1
+  positionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1923259324688977388
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -566,7 +690,7 @@ MonoBehaviour:
   target: {fileID: 1584727584824989132}
   mode: 0
   beginScale: 1
-  targetScale: 1.1
+  targetScale: 1.11
   affectedAxis: 2
   deformCurve:
     serializedVersion: 2
@@ -601,7 +725,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1364859144941138124
+--- !u!114 &36906277721372154
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -629,7 +753,7 @@ MonoBehaviour:
   target: {fileID: 4481847276503484577}
   mode: 0
   beginScale: 1
-  targetScale: 1.1
+  targetScale: 1.11
   affectedAxis: 2
   deformCurve:
     serializedVersion: 2
