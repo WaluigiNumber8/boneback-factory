@@ -31,6 +31,7 @@ namespace Rogium.Editors.NewAssetSelection
         public void Construct(IAsset asset)
         {
             ui.title.text = asset.Title;
+            PrepareIcon(asset.Icon);
             if (asset is RoomAsset room)
             {
                 PrepareBanner(room.Icon);
@@ -64,6 +65,8 @@ namespace Rogium.Editors.NewAssetSelection
         }
         
         public string Title { get => ui.title.text; }
+        public Sprite Icon { get => ui.previewIcon.sprite; }
+        public Sprite BannerIcon { get => ui.previewBanner.sprite; }
         
         [Serializable]
         public struct UIInfo
