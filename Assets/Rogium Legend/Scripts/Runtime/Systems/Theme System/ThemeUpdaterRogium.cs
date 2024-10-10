@@ -183,6 +183,13 @@ namespace Rogium.Systems.ThemeSystem
             colorField.UpdateTheme(t.Interactables.colorField,
                                    t.Fonts.general);
         }
+        
+        public static void UpdateAssetEmblemList(InteractablePropertyAssetEmblemList assetEmblemList, ThemeType theme = ThemeType.Current)
+        {
+            UpdateUsedTheme(theme);
+            assetEmblemList.UpdateTheme(t.Fonts.general);
+        }
+        
         #endregion
         
         /// <summary>
