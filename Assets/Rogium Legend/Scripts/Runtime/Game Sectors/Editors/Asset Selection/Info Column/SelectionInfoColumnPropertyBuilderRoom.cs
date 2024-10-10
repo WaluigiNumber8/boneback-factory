@@ -19,7 +19,7 @@ namespace Rogium.Editors.NewAssetSelection
         {
             Clear();
             b.BuildPlainText("Type", asset.Type.ToString(), contentMain);
-            b.BuildPlainText("Difficulty", asset.DifficultyLevel.ToString(), contentMain);
+            b.BuildPlainText("Tier", asset.DifficultyLevel.ToString(), contentMain);
         }
         
     }

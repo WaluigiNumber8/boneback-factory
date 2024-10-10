@@ -15,11 +15,11 @@ namespace RedRats.UI.Tabs
         [SerializeField] private GameObject page;
         [SerializeField] private EventInfo events;
         
-        private TabGroup group;
+        private TabGroupBase group;
 
         protected override void Awake()
         {
-            group = GetComponentInParent<TabGroup>();
+            group = GetComponentInParent<TabGroupBase>();
             SafetyNet.EnsureIsNotNull(group, group.name);
         }
 

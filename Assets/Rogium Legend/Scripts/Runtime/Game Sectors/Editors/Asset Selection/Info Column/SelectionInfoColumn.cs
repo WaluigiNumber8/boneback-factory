@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using RedRats.Core;
+using RedRats.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Rooms;
+using Rogium.UserInterface.Interactables.Properties;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -50,6 +52,13 @@ namespace Rogium.Editors.NewAssetSelection
             ui.content.KillChildren();
         }
         
+        public InteractablePropertyBase<T> GetProperty<T>(int i)
+        {
+            SafetyNet.EnsureIntIsBiggerOrEqualTo(i, ui.content.childCount, nameof(i));
+            SafetyNet.EnsureIntIsInRange(i, 0, ui.content.childCount, nameof(i));
+            return ui.content.GetChild(i).GetComponent<InteractablePropertyBase<T>>();
+        }
+        
         private void PrepareIcon(Sprite sprite)
         {
             ui.previewBannerContainer.SetActive(false);
@@ -64,6 +73,7 @@ namespace Rogium.Editors.NewAssetSelection
             ui.previewBannerContainer.SetActive(true);
         }
         
+        public int PropertiesCount => ui.content.childCount;
         public string Title { get => ui.title.text; }
         public Sprite Icon { get => ui.previewIcon.sprite; }
         public Sprite BannerIcon { get => ui.previewBanner.sprite; }
@@ -78,6 +88,5 @@ namespace Rogium.Editors.NewAssetSelection
             public Image previewIcon;
             public RectTransform content;
         }
-
     }
 }

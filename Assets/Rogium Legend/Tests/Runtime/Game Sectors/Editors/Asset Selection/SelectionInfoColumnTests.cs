@@ -8,6 +8,7 @@ using Rogium.Systems.GASExtension;
 using Rogium.Tests.Core;
 using UnityEngine.TestTools;
 using static Rogium.Tests.Editors.AssetCreator;
+using static Rogium.Tests.Editors.AssetSelection.SelectionInfoColumnTestsU;
 
 namespace Rogium.Tests.Editors.AssetSelection
 {
@@ -35,43 +36,50 @@ namespace Rogium.Tests.Editors.AssetSelection
         [UnityTest]
         public IEnumerator Should_ShowPaletteTitle_WhenPaletteCardClicked()
         {
-            GASButtonActions.OpenSelectionPack();
-            GASButtonActions.OpenEditor(0);
-            selectionMenu.CurrentSelector.GetCard(0).SetToggle(true);
-            yield return null;
+            yield return OpenPackAndSelectPalette();
             Assert.That(selectionInfoColumn.Title, Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Palettes[0].Title));
         }
         
         [UnityTest]
         public IEnumerator Should_ShowRoomTitle_WhenRoomCardClicked()
         {
-            GASButtonActions.OpenSelectionPack();
-            GASButtonActions.OpenEditor(0);
-            GASButtonActions.OpenSelectionRoom();
-            selectionMenu.CurrentSelector.GetCard(0).SetToggle(true);
-            yield return null;
+            yield return OpenPackAndSelectRoom();
             Assert.That(selectionInfoColumn.Title, Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Rooms[0].Title));
         }
 
         [UnityTest]
         public IEnumerator Should_ShowPaletteIcon_WhenPaletteCardClicked()
         {
-            GASButtonActions.OpenSelectionPack();
-            GASButtonActions.OpenEditor(0);
-            selectionMenu.CurrentSelector.GetCard(0).SetToggle(true);
-            yield return null;
+            yield return OpenPackAndSelectPalette();
             Assert.That(selectionInfoColumn.Icon, Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Palettes[0].Icon));
         }
 
         [UnityTest]
         public IEnumerator Should_ShowRoomBanner_WhenRoomCardClicked()
         {
-            GASButtonActions.OpenSelectionPack();
-            GASButtonActions.OpenEditor(0);
-            GASButtonActions.OpenSelectionRoom();
-            selectionMenu.CurrentSelector.GetCard(0).SetToggle(true);
-            yield return null;
+            yield return OpenPackAndSelectRoom();
             Assert.That(selectionInfoColumn.BannerIcon, Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Rooms[0].Icon));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowRoomProperties_WhenRoomCardClicked()
+        {
+            yield return OpenPackAndSelectRoom();
+            Assert.That(selectionInfoColumn.PropertiesCount, Is.GreaterThan(0));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowRoomTypeProperty_WhenRoomCardClicked()
+        {
+            yield return OpenPackAndSelectRoom();
+            Assert.That(selectionInfoColumn.GetProperty<string>(0).PropertyValue, Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Rooms[0].Type.ToString()));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowRoomTierProperty_WhenRoomCardClicked()
+        {
+            yield return OpenPackAndSelectRoom();
+            Assert.That(selectionInfoColumn.GetProperty<string>(1).PropertyValue, Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Rooms[0].DifficultyLevel.ToString()));
         }
     }
 }

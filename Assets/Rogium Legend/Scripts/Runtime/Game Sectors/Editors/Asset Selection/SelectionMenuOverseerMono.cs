@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using RedRats.Core;
 using RedRats.Safety;
-using RedRats.UI.Tabs;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
@@ -20,7 +19,7 @@ namespace Rogium.Editors.NewAssetSelection
         public event Action<AssetType> OnOpen;
 
         [SerializeField] private SelectionInfoColumn infoColumn;
-        [SerializeField] private TabGroup categoryTabGroup;
+        [SerializeField] private AssetTabGroup categoryTabGroup;
         [SerializeField] private SelectionDataInfo data;
         [Button] public void TestFill() => Open(AssetType.Pack);
         
@@ -58,6 +57,7 @@ namespace Rogium.Editors.NewAssetSelection
         {
             currentType = type;
             GetData(currentType).Load();
+            if (type != AssetType.Pack && type != AssetType.Campaign) categoryTabGroup.Switch(type);
             OnOpen?.Invoke(currentType);
         }
         

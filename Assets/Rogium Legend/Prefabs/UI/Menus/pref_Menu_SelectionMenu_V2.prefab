@@ -562,7 +562,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8310588583533359672}
   - component: {fileID: 8693869880388434707}
-  - component: {fileID: 1901541083048733567}
+  - component: {fileID: 6607888487670750614}
   - component: {fileID: 4854519582033858578}
   m_Layer: 5
   m_Name: Category Tabs
@@ -618,7 +618,7 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &1901541083048733567
+--- !u!114 &6607888487670750614
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -627,7 +627,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1219910126977040736}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1275d6528d5a48a4dabd5a596364e3ca, type: 3}
+  m_Script: {fileID: 11500000, guid: 157ba4fb41a54b6e81c520c684d4a201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   defaultTabIndex: 0
@@ -635,14 +635,21 @@ MonoBehaviour:
     tabIdle: {fileID: 1710142096185499444, guid: 36059e5069992c740b496603a94de3e5, type: 3}
     tabHover: {fileID: 5859310336560257863, guid: 36059e5069992c740b496603a94de3e5, type: 3}
     tabActive: {fileID: -6978822509411700170, guid: 36059e5069992c740b496603a94de3e5, type: 3}
-  buttons:
-  - {fileID: 2120596873744269781}
-  - {fileID: 6763860245739602169}
-  - {fileID: 5101067595287185897}
-  - {fileID: 668930880165653104}
-  - {fileID: 5360974143454523611}
-  - {fileID: 2043305280386563709}
-  - {fileID: 6691467568624697664}
+  buttonPairs:
+  - type: 2
+    button: {fileID: 2120596873744269781}
+  - type: 3
+    button: {fileID: 6763860245739602169}
+  - type: 4
+    button: {fileID: 5101067595287185897}
+  - type: 5
+    button: {fileID: 668930880165653104}
+  - type: 6
+    button: {fileID: 5360974143454523611}
+  - type: 7
+    button: {fileID: 2043305280386563709}
+  - type: 8
+    button: {fileID: 6691467568624697664}
 --- !u!114 &4854519582033858578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4453,7 +4460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoColumn: {fileID: 4898910739888546949}
-  categoryTabGroup: {fileID: 1901541083048733567}
+  categoryTabGroup: {fileID: 6607888487670750614}
   data:
     packSelection:
       assetSelector: {fileID: 3972849999520769450}
