@@ -254,7 +254,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             InteractablePropertyAssetEmblemList assetEmblemList = Instantiate(assetEmblemListProperty, parent);
             assetEmblemList.name = $"{title} Emblem List";
             assetEmblemList.Construct(title, values);
-            // ThemeUpdaterRogium.UpdateAssetEmblemList(assetEmblemList);
+            ThemeUpdaterRogium.UpdateAssetEmblemList(assetEmblemList);
         }
         
         #endregion

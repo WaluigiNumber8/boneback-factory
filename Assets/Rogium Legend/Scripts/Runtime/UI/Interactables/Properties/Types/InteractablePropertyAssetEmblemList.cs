@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using RedRats.UI.Core;
 using UnityEngine;
 
 namespace Rogium.UserInterface.Interactables.Properties
@@ -12,6 +13,11 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             ConstructTitle(titleText);
             emblemList.Construct(value);
+        }
+        
+        public void UpdateTheme(FontInfo titleFont)
+        {
+            if (title != null) UIExtensions.ChangeFont(title, titleFont);
         }
         
         public override void SetDisabled(bool isDisabled)
