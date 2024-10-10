@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using RedRats.Core;
 using RedRats.Safety;
 using UnityEngine;
@@ -13,23 +14,28 @@ namespace Rogium.UserInterface.Interactables
     {
         [SerializeField] private RectTransform content;
         [SerializeField] private Image emblemPrefab;
+        
+        private readonly IList<Sprite> emblems = new List<Sprite>();
 
         public void Construct(IList<Sprite> values)
         {
             content.KillChildren();
+            emblems.Clear();
             foreach (Sprite value in values)
             {
                 Image emblem = Instantiate(emblemPrefab, content);
                 emblem.sprite = value;
+                emblems.Add(value);
             }
         }
         
         public Sprite GetEmblem(int index)
         {
-            SafetyNet.EnsureIntIsLowerOrEqualTo(index, content.childCount, nameof(index));
-            return content.GetChild(index).GetComponent<Image>().sprite;
+            SafetyNet.EnsureIndexWithingCollectionRange(index, emblems, nameof(index));
+            return emblems[index];
         }
         
         public int EmblemCount { get => content.childCount; }
+        public ReadOnlyCollection<Sprite> Emblems { get => new(emblems); }
     }
 }

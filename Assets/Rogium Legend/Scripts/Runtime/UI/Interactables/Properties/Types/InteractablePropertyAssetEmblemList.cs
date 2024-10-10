@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using UnityEngine;
 
 namespace Rogium.UserInterface.Interactables.Properties
 {
-    public class InteractablePropertyAssetEmblemList : InteractablePropertyBase<IList<Sprite>>
+    public class InteractablePropertyAssetEmblemList : InteractablePropertyBase<ReadOnlyCollection<Sprite>>
     {
         [SerializeField] private AssetEmblemList emblemList;
         
@@ -18,6 +19,6 @@ namespace Rogium.UserInterface.Interactables.Properties
             // Do nothing
         }
 
-        public override IList<Sprite> PropertyValue { get; }
+        public override ReadOnlyCollection<Sprite> PropertyValue { get => emblemList.Emblems; }
     }
 }
