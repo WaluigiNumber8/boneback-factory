@@ -54,7 +54,7 @@ namespace Rogium.Editors.NewAssetSelection
         
         public InteractablePropertyBase<T> GetProperty<T>(int i)
         {
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(i, ui.content.childCount, nameof(i));
+            SafetyNet.EnsureIntIsLowerOrEqualTo(i, ui.content.childCount, nameof(i));
             SafetyNet.EnsureIntIsInRange(i, 0, ui.content.childCount, nameof(i));
             return ui.content.GetChild(i).GetComponent<InteractablePropertyBase<T>>();
         }
