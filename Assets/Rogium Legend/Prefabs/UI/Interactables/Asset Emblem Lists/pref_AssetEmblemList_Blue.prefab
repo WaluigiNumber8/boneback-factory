@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   content: {fileID: 9071080145150186302}
-  emblemPrefab: {fileID: 8542559235275118394, guid: 1044ee029d9cb514b8135542365c898a, type: 3}
+  emblemPrefab: {fileID: 3747914600523740175, guid: 1044ee029d9cb514b8135542365c898a, type: 3}
 --- !u!114 &4732229110213793049
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ namespace Rogium.UserInterface.Interactables
     public class AssetEmblemList : MonoBehaviour
     {
         [SerializeField] private RectTransform content;
-        [SerializeField] private Image emblemPrefab;
+        [SerializeField] private Button emblemPrefab;
         
         private readonly IList<Sprite> emblems = new List<Sprite>();
 
@@ -23,8 +23,8 @@ namespace Rogium.UserInterface.Interactables
             emblems.Clear();
             foreach (Sprite value in values)
             {
-                Image emblem = Instantiate(emblemPrefab, content);
-                emblem.sprite = value;
+                Button emblem = Instantiate(emblemPrefab, content);
+                emblem.GetComponentInChildren<Image>().sprite = value;
                 emblems.Add(value);
             }
         }
