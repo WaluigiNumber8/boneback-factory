@@ -243,9 +243,15 @@ namespace Rogium.UserInterface.Interactables.Properties
             ThemeUpdaterRogium.UpdateColorField(colorField);
         }
         
-        public void BuildAssetEmblemList(string title, IList<Sprite> values)
+        /// <summary>
+        /// Builds the Asset Emblem List property.
+        /// </summary>
+        /// <param name="title">The text of the property title.</param>
+        /// <param name="values">The list of icons to use for each emblem.</param>
+        /// <param name="parent">The parent under which to instantiate the property.</param>
+        public void BuildAssetEmblemList(string title, IList<Sprite> values, Transform parent)
         {
-            InteractablePropertyAssetEmblemList assetEmblemList = Instantiate(assetEmblemListProperty);
+            InteractablePropertyAssetEmblemList assetEmblemList = Instantiate(assetEmblemListProperty, parent);
             assetEmblemList.name = $"{title} Emblem List";
             assetEmblemList.Construct(title, values);
             // ThemeUpdaterRogium.UpdateAssetEmblemList(assetEmblemList);

@@ -15,6 +15,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         
         public override void SetDisabled(bool isDisabled)
         {
+            // Do nothing
         }
 
         public override IList<Sprite> PropertyValue { get; }

@@ -29,7 +29,7 @@ namespace Rogium.Tests.UI.Interactables
         [UnityTest]
         public IEnumerator Should_ShowProperEmblemCount_WhenConstructed()
         {
-            UIPropertyBuilder.GetInstance().BuildAssetEmblemList("Test", PackEditorOverseer.Instance.CurrentPack.Palettes.Select(pal => pal.Icon).ToList());
+            UIPropertyBuilder.GetInstance().BuildAssetEmblemList("Test", PackEditorOverseer.Instance.CurrentPack.Palettes.Select(pal => pal.Icon).ToList(), Object.FindFirstObjectByType<Canvas>().transform);
             yield return null;
             Assert.That(Object.FindFirstObjectByType<AssetEmblemList>().EmblemCount, Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Palettes.Count));
         }
@@ -37,7 +37,7 @@ namespace Rogium.Tests.UI.Interactables
         [UnityTest]
         public IEnumerator Should_ShowProperIconsInEmblems_WhenConstructed()
         {
-            UIPropertyBuilder.GetInstance().BuildAssetEmblemList("Test", PackEditorOverseer.Instance.CurrentPack.Palettes.Select(pal => pal.Icon).ToList());
+            UIPropertyBuilder.GetInstance().BuildAssetEmblemList("Test", PackEditorOverseer.Instance.CurrentPack.Palettes.Select(pal => pal.Icon).ToList(), Object.FindFirstObjectByType<Canvas>().transform);
             yield return null;
             Assert.That(Object.FindFirstObjectByType<AssetEmblemList>().GetEmblem(0), Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Palettes[0].Icon));
         }
