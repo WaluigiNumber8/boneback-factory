@@ -27,6 +27,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         [SerializeField] private InteractablePropertySlider sliderProperty;
         [SerializeField] private InteractablePropertySoundField soundFieldProperty;
         [SerializeField] private InteractablePropertyColorField colorFieldProperty;
+        [SerializeField] private InteractablePropertyAssetEmblemList assetEmblemListProperty;
         
         [Title("Other properties")]
         [SerializeField] private ContentBlockInfo contentBlocks;
@@ -241,6 +242,15 @@ namespace Rogium.UserInterface.Interactables.Properties
             colorField.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateColorField(colorField);
         }
+        
+        public void BuildAssetEmblemList(string title, IList<Sprite> values)
+        {
+            InteractablePropertyAssetEmblemList assetEmblemList = Instantiate(assetEmblemListProperty);
+            assetEmblemList.name = $"{title} Emblem List";
+            assetEmblemList.Construct(title, values);
+            // ThemeUpdaterRogium.UpdateAssetEmblemList(assetEmblemList);
+        }
+        
         #endregion
 
         #region Content Blocks
