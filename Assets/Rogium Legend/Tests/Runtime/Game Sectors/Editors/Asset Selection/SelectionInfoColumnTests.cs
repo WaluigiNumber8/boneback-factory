@@ -166,6 +166,34 @@ namespace Rogium.Tests.Editors.AssetSelection
             yield return OpenPackAndSelectWeapon();
             Assert.That(selectionInfoColumn.GetProperty<ReadOnlyCollection<Sprite>>(2).PropertyValue[0], Is.EqualTo(currentPack.Projectiles[0].Icon));
         }
+
+        [UnityTest]
+        public IEnumerator Should_ShowProjectileProperties_WhenProjectileCardClicked()
+        {
+            yield return OpenPackAndSelectProjectile();
+            Assert.That(selectionInfoColumn.PropertiesCount, Is.GreaterThan(0));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowProjectileDamageProperty_WhenProjectileCardClicked()
+        {
+            yield return OpenPackAndSelectProjectile();
+            Assert.That(selectionInfoColumn.GetProperty<string>(0).PropertyValue, Is.EqualTo(currentPack.Projectiles[0].BaseDamage.ToString()));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowProjectileFlightSpeedProperty_WhenProjectileCardClicked()
+        {
+            yield return OpenPackAndSelectProjectile();
+            Assert.That(selectionInfoColumn.GetProperty<string>(1).PropertyValue, Is.EqualTo(currentPack.Projectiles[0].FlightSpeed.ToString()));
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_ShowProjectilePierceTypeProperty_WhenProjectileCardClicked()
+        {
+            yield return OpenPackAndSelectProjectile();
+            Assert.That(selectionInfoColumn.GetProperty<string>(2).PropertyValue, Is.EqualTo(currentPack.Projectiles[0].PierceType.ToString()));
+        }
         
         [UnityTest]
         public IEnumerator Should_ShowRoomProperties_WhenRoomCardClicked()
