@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using RedRats.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
@@ -69,6 +70,14 @@ namespace Rogium.Core
             }
             throw new SafetyNetCollectionException($"Asset with id '{id}' not found.");
         }
+
+        /// <summary>
+        /// Tries to find all assets based on the IDs. <br/>
+        /// If an asset is not found, returns an empty asset.
+        /// </summary>
+        /// <param name="ids">The IDs of the assets to find.</param>
+        /// <param name="assets">The collection of assets to search through</param>
+        public static IList<T> TryGetAssets<T>(this ICollection<string> ids, ICollection<T> assets) where T : IAsset => ids.Select(id => id.ConvertToAsset(assets)).ToList();
 
         /// <summary>
         /// Tries to get the first asset with the given ID from the list. <br/>

@@ -21,7 +21,8 @@ namespace Rogium.Tests.Editors.AssetSelection
     {
         private SelectionMenuOverseerMono selectionMenu;
         private SelectionInfoColumn selectionInfoColumn;
-        
+        private PackAsset currentPack;
+
         public override IEnumerator Setup()
         {
             yield return base.Setup();
@@ -32,6 +33,7 @@ namespace Rogium.Tests.Editors.AssetSelection
             selectionInfoColumn = selectionMenu.GetComponentInChildren<SelectionInfoColumn>();
             AddNewPackToLibrary();
             AddNewPackToLibrary();
+            currentPack = PackEditorOverseer.Instance.CurrentPack;
             yield return null;
         }
 
@@ -39,36 +41,36 @@ namespace Rogium.Tests.Editors.AssetSelection
         public IEnumerator Should_ShowPaletteTitle_WhenPaletteCardClicked()
         {
             yield return OpenPackAndSelectPalette();
-            Assert.That(selectionInfoColumn.Title, Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Palettes[0].Title));
+            Assert.That(selectionInfoColumn.Title, Is.EqualTo(currentPack.Palettes[0].Title));
         }
         
         [UnityTest]
         public IEnumerator Should_ShowRoomTitle_WhenRoomCardClicked()
         {
             yield return OpenPackAndSelectRoom();
-            Assert.That(selectionInfoColumn.Title, Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Rooms[0].Title));
+            Assert.That(selectionInfoColumn.Title, Is.EqualTo(currentPack.Rooms[0].Title));
         }
 
         [UnityTest]
         public IEnumerator Should_ShowPaletteIcon_WhenPaletteCardClicked()
         {
             yield return OpenPackAndSelectPalette();
-            Assert.That(selectionInfoColumn.Icon, Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Palettes[0].Icon));
+            Assert.That(selectionInfoColumn.Icon, Is.EqualTo(currentPack.Palettes[0].Icon));
         }
 
         [UnityTest]
         public IEnumerator Should_ShowRoomBanner_WhenRoomCardClicked()
         {
             yield return OpenPackAndSelectRoom();
-            Assert.That(selectionInfoColumn.BannerIcon, Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Rooms[0].Icon));
+            Assert.That(selectionInfoColumn.BannerIcon, Is.EqualTo(currentPack.Rooms[0].Icon));
         }
         
         [UnityTest]
         public IEnumerator Should_ShowSpriteAssociatedPalette_WhenSpriteCardClicked()
         {
-            PackEditorOverseer.Instance.CurrentPack.Sprites[0].UpdateAssociatedPaletteID(PackEditorOverseer.Instance.CurrentPack.Palettes[0].ID);
+            currentPack.Sprites[0].UpdateAssociatedPaletteID(currentPack.Palettes[0].ID);
             yield return OpenPackAndSelectSprite();
-            Assert.That(selectionInfoColumn.GetProperty<ReadOnlyCollection<Sprite>>(0).PropertyValue[0], Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Palettes[0].Icon));
+            Assert.That(selectionInfoColumn.GetProperty<ReadOnlyCollection<Sprite>>(0).PropertyValue[0], Is.EqualTo(currentPack.Palettes[0].Icon));
         }
 
         [UnityTest]
@@ -82,7 +84,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         public IEnumerator Should_ShowWeaponDamageProperty_WhenWeaponCardClicked()
         {
             yield return OpenPackAndSelectWeapon();
-            Assert.That(selectionInfoColumn.GetProperty<string>(0).PropertyValue, Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Weapons[0].BaseDamage.ToString()));
+            Assert.That(selectionInfoColumn.GetProperty<string>(0).PropertyValue, Is.EqualTo(currentPack.Weapons[0].BaseDamage.ToString()));
         }
 
         [UnityTest]
@@ -95,9 +97,18 @@ namespace Rogium.Tests.Editors.AssetSelection
         [UnityTest]
         public IEnumerator Should_ShowWeaponTypeProperty_WhenWeaponCardClickedAndWeaponIsEvasive()
         {
-            PackEditorOverseer.Instance.CurrentPack.Weapons[0].UpdateIsEvasive(true);
+            currentPack.Weapons[0].UpdateIsEvasive(true);
             yield return OpenPackAndSelectWeapon();
             Assert.That(selectionInfoColumn.GetProperty<string>(1).PropertyValue, Is.EqualTo("Evasive"));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowWeaponProjectilesProperty_WhenWeaponCardClicked()
+        {
+            currentPack.Weapons[0].UpdateProjectileIDsLength(1);
+            currentPack.Weapons[0].UpdateProjectileIDsPosID(0, currentPack.Projectiles[0].ID);
+            yield return OpenPackAndSelectWeapon();
+            Assert.That(selectionInfoColumn.GetProperty<ReadOnlyCollection<Sprite>>(2).PropertyValue[0], Is.EqualTo(currentPack.Projectiles[0].Icon));
         }
         
         [UnityTest]
@@ -111,14 +122,14 @@ namespace Rogium.Tests.Editors.AssetSelection
         public IEnumerator Should_ShowRoomTypeProperty_WhenRoomCardClicked()
         {
             yield return OpenPackAndSelectRoom();
-            Assert.That(selectionInfoColumn.GetProperty<string>(0).PropertyValue, Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Rooms[0].Type.ToString()));
+            Assert.That(selectionInfoColumn.GetProperty<string>(0).PropertyValue, Is.EqualTo(currentPack.Rooms[0].Type.ToString()));
         }
 
         [UnityTest]
         public IEnumerator Should_ShowRoomTierProperty_WhenRoomCardClicked()
         {
             yield return OpenPackAndSelectRoom();
-            Assert.That(selectionInfoColumn.GetProperty<string>(1).PropertyValue, Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Rooms[0].DifficultyLevel.ToString()));
+            Assert.That(selectionInfoColumn.GetProperty<string>(1).PropertyValue, Is.EqualTo(currentPack.Rooms[0].DifficultyLevel.ToString()));
         }
     }
 }
