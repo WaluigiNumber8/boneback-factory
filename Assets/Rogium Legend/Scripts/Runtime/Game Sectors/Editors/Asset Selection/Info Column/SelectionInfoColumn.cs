@@ -4,6 +4,7 @@ using RedRats.Core;
 using RedRats.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
+using Rogium.Editors.Palettes;
 using Rogium.Editors.Rooms;
 using Rogium.Editors.Sprites;
 using Rogium.Editors.Weapons;
@@ -21,6 +22,7 @@ namespace Rogium.Editors.NewAssetSelection
     {
         [SerializeField] private UIInfo ui;
 
+        private IDictionary<Type, Action<IAsset>> builders;
         private SelectionInfoColumnPropertyBuilderSprite builderSprite;
         private SelectionInfoColumnPropertyBuilderRoom builderRoom;
         private SelectionInfoColumnPropertyBuilderWeapon builderWeapon;
@@ -30,6 +32,13 @@ namespace Rogium.Editors.NewAssetSelection
             builderSprite = new SelectionInfoColumnPropertyBuilderSprite(ui.content);
             builderRoom = new SelectionInfoColumnPropertyBuilderRoom(ui.content);
             builderWeapon = new SelectionInfoColumnPropertyBuilderWeapon(ui.content);
+            builders = new Dictionary<Type, Action<IAsset>>
+            {
+                {typeof(PaletteAsset), asset => {PrepareIcon(asset.Icon);}},
+                { typeof(SpriteAsset), asset => {PrepareIcon(asset.Icon); builderSprite.Build((SpriteAsset)asset);}},
+                { typeof(WeaponAsset), asset => {PrepareIcon(asset.Icon); builderWeapon.Build((WeaponAsset)asset);}},
+                { typeof(RoomAsset), asset => {PrepareBanner(asset.Icon); builderRoom.Build((RoomAsset)asset);}},
+            };
         }
         
         /// <summary>
@@ -39,24 +48,7 @@ namespace Rogium.Editors.NewAssetSelection
         public void Construct(IAsset asset)
         {
             ui.title.text = asset.Title;
-            switch (asset)
-            {
-                case SpriteAsset sprite:
-                PrepareIcon(asset.Icon);
-                    builderSprite.Build(sprite);
-                    break;
-                case WeaponAsset weapon:
-                    PrepareIcon(weapon.Icon);
-                    builderWeapon.Build(weapon);
-                    break;
-                case RoomAsset room:
-                    PrepareBanner(room.Icon);
-                    builderRoom.Build(room);
-                    break;
-                default:
-                    PrepareIcon(asset.Icon);
-                    break;
-            }
+            builders[asset.GetType()](asset);
         }
         
         /// <summary>
