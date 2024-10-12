@@ -34,6 +34,7 @@ namespace Rogium.Editors.NewAssetSelection
         private SelectionInfoColumnPropertyBuilderWeapon builderWeapon;
         private SelectionInfoColumnPropertyBuilderProjectile builderProjectile;
         private SelectionInfoColumnPropertyBuilderEnemy builderEnemy;
+        private SelectionInfoColumnPropertyBuilderTile builderTile;
 
         private void Awake()
         {
@@ -43,6 +44,7 @@ namespace Rogium.Editors.NewAssetSelection
             builderWeapon = new SelectionInfoColumnPropertyBuilderWeapon(ui.content);
             builderProjectile = new SelectionInfoColumnPropertyBuilderProjectile(ui.content);
             builderEnemy = new SelectionInfoColumnPropertyBuilderEnemy(ui.content);
+            builderTile = new SelectionInfoColumnPropertyBuilderTile(ui.content);
             builders = new Dictionary<Type, Action<IAsset>>
             {
                 { typeof(PackAsset), asset => {PrepareIcon(asset.Icon); builderPack.Build((PackAsset) asset); }},
@@ -53,7 +55,7 @@ namespace Rogium.Editors.NewAssetSelection
                 { typeof(ProjectileAsset), asset => {PrepareIcon(asset.Icon); builderProjectile.Build((ProjectileAsset)asset);}},
                 { typeof(EnemyAsset), asset => {PrepareIcon(asset.Icon); builderEnemy.Build((EnemyAsset)asset);}},
                 { typeof(RoomAsset), asset => {PrepareBanner(asset.Icon); builderRoom.Build((RoomAsset)asset);}},
-                { typeof(TileAsset), asset => {PrepareIcon(asset.Icon);}},
+                { typeof(TileAsset), asset => {PrepareIcon(asset.Icon); builderTile.Build((TileAsset)asset);}},
             };
         }
         

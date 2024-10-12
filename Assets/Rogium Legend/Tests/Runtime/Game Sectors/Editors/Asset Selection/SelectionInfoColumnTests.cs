@@ -245,5 +245,33 @@ namespace Rogium.Tests.Editors.AssetSelection
             yield return OpenPackAndSelectRoom();
             Assert.That(selectionInfoColumn.GetProperty<string>(1).PropertyValue, Is.EqualTo(currentPack.Rooms[0].DifficultyLevel.ToString()));
         }
+
+        [UnityTest]
+        public IEnumerator Should_ShowTileProperties_WhenTileCardClicked()
+        {
+            yield return OpenPackAndSelectTile();
+            Assert.That(selectionInfoColumn.PropertiesCount, Is.GreaterThan(0));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowTileTypeProperty_WhenTileCardClicked()
+        {
+            yield return OpenPackAndSelectTile();
+            Assert.That(selectionInfoColumn.GetProperty<string>(0).PropertyValue, Is.EqualTo(currentPack.Tiles[0].Type.ToString()));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowTileLayerProperty_WhenTileCardClicked()
+        {
+            yield return OpenPackAndSelectTile();
+            Assert.That(selectionInfoColumn.GetProperty<string>(1).PropertyValue, Is.EqualTo(currentPack.Tiles[0].LayerType.ToString()));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowTileTerrainTypeProperty_WhenTileCardClicked()
+        {
+            yield return OpenPackAndSelectTile();
+            Assert.That(selectionInfoColumn.GetProperty<string>(2).PropertyValue, Is.EqualTo(currentPack.Tiles[0].TerrainType.ToString()));
+        }
     }
 }
