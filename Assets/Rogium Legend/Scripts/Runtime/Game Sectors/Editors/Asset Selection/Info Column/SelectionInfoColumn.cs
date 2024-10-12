@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using RedRats.Core;
 using RedRats.Safety;
+using Rogium.Editors.Campaign;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
+using Rogium.Editors.Packs;
 using Rogium.Editors.Palettes;
+using Rogium.Editors.Projectiles;
 using Rogium.Editors.Rooms;
 using Rogium.Editors.Sprites;
+using Rogium.Editors.Tiles;
 using Rogium.Editors.Weapons;
 using Rogium.UserInterface.Interactables.Properties;
 using TMPro;
@@ -34,10 +38,14 @@ namespace Rogium.Editors.NewAssetSelection
             builderWeapon = new SelectionInfoColumnPropertyBuilderWeapon(ui.content);
             builders = new Dictionary<Type, Action<IAsset>>
             {
-                {typeof(PaletteAsset), asset => {PrepareIcon(asset.Icon);}},
+                { typeof(PackAsset), asset => {PrepareIcon(asset.Icon);}},
+                { typeof(CampaignAsset), asset => {PrepareIcon(asset.Icon);}},
+                { typeof(PaletteAsset), asset => {PrepareIcon(asset.Icon);}},
                 { typeof(SpriteAsset), asset => {PrepareIcon(asset.Icon); builderSprite.Build((SpriteAsset)asset);}},
                 { typeof(WeaponAsset), asset => {PrepareIcon(asset.Icon); builderWeapon.Build((WeaponAsset)asset);}},
+                { typeof(ProjectileAsset), asset => {PrepareIcon(asset.Icon);}},
                 { typeof(RoomAsset), asset => {PrepareBanner(asset.Icon); builderRoom.Build((RoomAsset)asset);}},
+                { typeof(TileAsset), asset => {PrepareIcon(asset.Icon);}},
             };
         }
         
