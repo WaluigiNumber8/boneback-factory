@@ -19,6 +19,7 @@ namespace Rogium.Editors.NewAssetSelection
         {
             Clear();
             b.BuildPlainText("Damage", asset.BaseDamage.ToString(), contentMain);
+            b.BuildPlainText("Type", (asset.IsEvasive) ? "Evasive" : "Active", contentMain);
         }
     }
 }

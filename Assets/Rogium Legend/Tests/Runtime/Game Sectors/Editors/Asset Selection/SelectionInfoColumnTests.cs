@@ -84,6 +84,21 @@ namespace Rogium.Tests.Editors.AssetSelection
             yield return OpenPackAndSelectWeapon();
             Assert.That(selectionInfoColumn.GetProperty<string>(0).PropertyValue, Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Weapons[0].BaseDamage.ToString()));
         }
+
+        [UnityTest]
+        public IEnumerator Should_ShowWeaponTypeProperty_WhenWeaponCardClickedAndWeaponIsActive()
+        {
+            yield return OpenPackAndSelectWeapon();
+            Assert.That(selectionInfoColumn.GetProperty<string>(1).PropertyValue, Is.EqualTo("Active"));
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_ShowWeaponTypeProperty_WhenWeaponCardClickedAndWeaponIsEvasive()
+        {
+            PackEditorOverseer.Instance.CurrentPack.Weapons[0].UpdateIsEvasive(true);
+            yield return OpenPackAndSelectWeapon();
+            Assert.That(selectionInfoColumn.GetProperty<string>(1).PropertyValue, Is.EqualTo("Evasive"));
+        }
         
         [UnityTest]
         public IEnumerator Should_ShowRoomProperties_WhenRoomCardClicked()
