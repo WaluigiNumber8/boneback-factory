@@ -1,0 +1,30 @@
+using System.Collections.Generic;
+using Rogium.Core;
+using Rogium.Editors.Core;
+using Rogium.Editors.Packs;
+using Rogium.Editors.Sprites;
+using Rogium.UserInterface.Interactables.Properties;
+using UnityEngine;
+
+namespace Rogium.Editors.NewAssetSelection
+{
+    /// <summary>
+    /// Builds the <see cref="SelectionInfoColumn"/> for a <see cref="Sprite"/>.
+    /// </summary>
+    public class SelectionInfoColumnPropertyBuilderSprite : UIPropertyContentBuilderBaseColumn1<SpriteAsset>
+    {
+        public SelectionInfoColumnPropertyBuilderSprite(Transform contentMain) : base(contentMain) { }
+
+        /// <summary>
+        /// Build <see cref="SelectionInfoColumn"/> properties for a sprite.
+        /// </summary>
+        /// <param name="asset">The sprite to build for.</param>
+        public override void Build(SpriteAsset asset)
+        {
+            Clear();
+            IAsset grabbed = asset.AssociatedPaletteID.TryGetAsset(PackEditorOverseer.Instance.CurrentPack.Palettes);
+            IList<Sprite> associatedPalette = new List<Sprite> {grabbed.Icon};
+            b.BuildAssetEmblemList("Palette", associatedPalette, contentMain);
+        }
+    }
+}

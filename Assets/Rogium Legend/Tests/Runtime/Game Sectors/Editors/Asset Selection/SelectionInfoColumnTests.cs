@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.ObjectModel;
 using NUnit.Framework;
 using Rogium.Core;
 using Rogium.Editors.Core;
@@ -6,6 +7,7 @@ using Rogium.Editors.NewAssetSelection;
 using Rogium.Editors.Packs;
 using Rogium.Systems.GASExtension;
 using Rogium.Tests.Core;
+using UnityEngine;
 using UnityEngine.TestTools;
 using static Rogium.Tests.Editors.AssetCreator;
 using static Rogium.Tests.Editors.AssetSelection.SelectionInfoColumnTestsU;
@@ -60,7 +62,15 @@ namespace Rogium.Tests.Editors.AssetSelection
             yield return OpenPackAndSelectRoom();
             Assert.That(selectionInfoColumn.BannerIcon, Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Rooms[0].Icon));
         }
-
+        
+        [UnityTest]
+        public IEnumerator Should_ShowSpriteAssociatedPalette_WhenSpriteCardClicked()
+        {
+            PackEditorOverseer.Instance.CurrentPack.Sprites[0].UpdateAssociatedPaletteID(PackEditorOverseer.Instance.CurrentPack.Palettes[0].ID);
+            yield return OpenPackAndSelectSprite();
+            Assert.That(selectionInfoColumn.GetProperty<ReadOnlyCollection<Sprite>>(0).PropertyValue[0], Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Palettes[0].Icon));
+        }
+        
         [UnityTest]
         public IEnumerator Should_ShowRoomProperties_WhenRoomCardClicked()
         {

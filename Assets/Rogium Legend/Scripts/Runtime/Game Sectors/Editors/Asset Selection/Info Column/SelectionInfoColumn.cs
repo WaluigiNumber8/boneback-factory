@@ -5,6 +5,7 @@ using RedRats.Safety;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Rooms;
+using Rogium.Editors.Sprites;
 using Rogium.UserInterface.Interactables.Properties;
 using TMPro;
 using UnityEngine;
@@ -19,10 +20,12 @@ namespace Rogium.Editors.NewAssetSelection
     {
         [SerializeField] private UIInfo ui;
 
+        private SelectionInfoColumnPropertyBuilderSprite builderSprite;
         private SelectionInfoColumnPropertyBuilderRoom builderRoom;
 
         private void Awake()
         {
+            builderSprite = new SelectionInfoColumnPropertyBuilderSprite(ui.content);
             builderRoom = new SelectionInfoColumnPropertyBuilderRoom(ui.content);
         }
         
@@ -33,11 +36,19 @@ namespace Rogium.Editors.NewAssetSelection
         public void Construct(IAsset asset)
         {
             ui.title.text = asset.Title;
-            PrepareIcon(asset.Icon);
-            if (asset is RoomAsset room)
+            switch (asset)
             {
-                PrepareBanner(room.Icon);
-                builderRoom.Build(room);
+                case SpriteAsset sprite:
+                PrepareIcon(asset.Icon);
+                    builderSprite.Build(sprite);
+                    break;
+                case RoomAsset room:
+                    PrepareBanner(room.Icon);
+                    builderRoom.Build(room);
+                    break;
+                default:
+                    PrepareIcon(asset.Icon);
+                    break;
             }
         }
         
