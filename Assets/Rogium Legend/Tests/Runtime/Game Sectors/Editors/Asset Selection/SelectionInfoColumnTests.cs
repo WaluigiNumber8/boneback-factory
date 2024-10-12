@@ -194,6 +194,36 @@ namespace Rogium.Tests.Editors.AssetSelection
             yield return OpenPackAndSelectProjectile();
             Assert.That(selectionInfoColumn.GetProperty<string>(2).PropertyValue, Is.EqualTo(currentPack.Projectiles[0].PierceType.ToString()));
         }
+
+        [UnityTest]
+        public IEnumerator Should_ShowEnemyProperties_WhenEnemyCardClicked()
+        {
+            yield return OpenPackAndSelectEnemy();
+            Assert.That(selectionInfoColumn.PropertiesCount, Is.GreaterThan(0));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowEnemyDamageProperty_WhenEnemyCardClicked()
+        {
+            yield return OpenPackAndSelectEnemy();
+            Assert.That(selectionInfoColumn.GetProperty<string>(0).PropertyValue, Is.EqualTo(currentPack.Enemies[0].BaseDamage.ToString()));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowEnemyHealthProperty_WhenEnemyCardClicked()
+        {
+            yield return OpenPackAndSelectEnemy();
+            Assert.That(selectionInfoColumn.GetProperty<string>(1).PropertyValue, Is.EqualTo(currentPack.Enemies[0].MaxHealth.ToString()));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowEnemyUsedWeaponsProperty_WhenEnemyCardClicked()
+        {
+            currentPack.Enemies[0].UpdateWeaponIDsLength(1);
+            currentPack.Enemies[0].UpdateWeaponIDPos(0, currentPack.Weapons[0].ID);
+            yield return OpenPackAndSelectEnemy();
+            Assert.That(selectionInfoColumn.GetProperty<ReadOnlyCollection<Sprite>>(2).PropertyValue[0], Is.EqualTo(currentPack.Weapons[0].Icon));
+        }
         
         [UnityTest]
         public IEnumerator Should_ShowRoomProperties_WhenRoomCardClicked()

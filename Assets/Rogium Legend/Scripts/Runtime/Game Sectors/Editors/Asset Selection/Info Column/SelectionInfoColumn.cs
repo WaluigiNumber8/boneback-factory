@@ -5,6 +5,7 @@ using RedRats.Safety;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
+using Rogium.Editors.Enemies;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Palettes;
 using Rogium.Editors.Projectiles;
@@ -32,6 +33,7 @@ namespace Rogium.Editors.NewAssetSelection
         private SelectionInfoColumnPropertyBuilderRoom builderRoom;
         private SelectionInfoColumnPropertyBuilderWeapon builderWeapon;
         private SelectionInfoColumnPropertyBuilderProjectile builderProjectile;
+        private SelectionInfoColumnPropertyBuilderEnemy builderEnemy;
 
         private void Awake()
         {
@@ -40,6 +42,7 @@ namespace Rogium.Editors.NewAssetSelection
             builderRoom = new SelectionInfoColumnPropertyBuilderRoom(ui.content);
             builderWeapon = new SelectionInfoColumnPropertyBuilderWeapon(ui.content);
             builderProjectile = new SelectionInfoColumnPropertyBuilderProjectile(ui.content);
+            builderEnemy = new SelectionInfoColumnPropertyBuilderEnemy(ui.content);
             builders = new Dictionary<Type, Action<IAsset>>
             {
                 { typeof(PackAsset), asset => {PrepareIcon(asset.Icon); builderPack.Build((PackAsset) asset); }},
@@ -48,6 +51,7 @@ namespace Rogium.Editors.NewAssetSelection
                 { typeof(SpriteAsset), asset => {PrepareIcon(asset.Icon); builderSprite.Build((SpriteAsset)asset);}},
                 { typeof(WeaponAsset), asset => {PrepareIcon(asset.Icon); builderWeapon.Build((WeaponAsset)asset);}},
                 { typeof(ProjectileAsset), asset => {PrepareIcon(asset.Icon); builderProjectile.Build((ProjectileAsset)asset);}},
+                { typeof(EnemyAsset), asset => {PrepareIcon(asset.Icon); builderEnemy.Build((EnemyAsset)asset);}},
                 { typeof(RoomAsset), asset => {PrepareBanner(asset.Icon); builderRoom.Build((RoomAsset)asset);}},
                 { typeof(TileAsset), asset => {PrepareIcon(asset.Icon);}},
             };
