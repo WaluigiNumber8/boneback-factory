@@ -77,7 +77,11 @@ namespace Rogium.Core
         /// </summary>
         /// <param name="ids">The IDs of the assets to find.</param>
         /// <param name="assets">The collection of assets to search through</param>
-        public static IList<T> TryGetAssets<T>(this ICollection<string> ids, ICollection<T> assets) where T : IAsset => ids.Select(id => id.ConvertToAsset(assets)).ToList();
+        public static IList<IAsset> TryGetAssets<T>(this ICollection<string> ids, ICollection<T> assets) where T : IAsset
+        {
+            if (assets == null || assets.Count == 0) return new List<IAsset>();
+            return ids.Select(id => id.TryGetAsset(assets)).ToList();
+        }
 
         /// <summary>
         /// Tries to get the first asset with the given ID from the list. <br/>
