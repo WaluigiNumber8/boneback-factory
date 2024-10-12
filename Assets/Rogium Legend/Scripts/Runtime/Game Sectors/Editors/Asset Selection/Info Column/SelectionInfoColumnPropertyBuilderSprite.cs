@@ -22,9 +22,7 @@ namespace Rogium.Editors.NewAssetSelection
         public override void Build(SpriteAsset asset)
         {
             Clear();
-            IAsset grabbed = asset.AssociatedPaletteID.TryGetAsset(PackEditorOverseer.Instance.CurrentPack.Palettes);
-            IList<Sprite> associatedPalette = new List<Sprite> {grabbed.Icon};
-            b.BuildAssetEmblemList("Palette", associatedPalette, contentMain);
+            b.BuildAssetEmblemList("Palette", asset.AssociatedPaletteID.TryGetAsset(PackEditorOverseer.Instance.CurrentPack.Palettes).Icon, contentMain);
         }
     }
 }
