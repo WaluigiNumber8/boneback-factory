@@ -6,6 +6,7 @@ using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Rooms;
 using Rogium.Editors.Sprites;
+using Rogium.Editors.Weapons;
 using Rogium.UserInterface.Interactables.Properties;
 using TMPro;
 using UnityEngine;
@@ -22,11 +23,13 @@ namespace Rogium.Editors.NewAssetSelection
 
         private SelectionInfoColumnPropertyBuilderSprite builderSprite;
         private SelectionInfoColumnPropertyBuilderRoom builderRoom;
+        private SelectionInfoColumnPropertyBuilderWeapon builderWeapon;
 
         private void Awake()
         {
             builderSprite = new SelectionInfoColumnPropertyBuilderSprite(ui.content);
             builderRoom = new SelectionInfoColumnPropertyBuilderRoom(ui.content);
+            builderWeapon = new SelectionInfoColumnPropertyBuilderWeapon(ui.content);
         }
         
         /// <summary>
@@ -41,6 +44,10 @@ namespace Rogium.Editors.NewAssetSelection
                 case SpriteAsset sprite:
                 PrepareIcon(asset.Icon);
                     builderSprite.Build(sprite);
+                    break;
+                case WeaponAsset weapon:
+                    PrepareIcon(weapon.Icon);
+                    builderWeapon.Build(weapon);
                     break;
                 case RoomAsset room:
                     PrepareBanner(room.Icon);

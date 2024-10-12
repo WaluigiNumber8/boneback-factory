@@ -70,6 +70,20 @@ namespace Rogium.Tests.Editors.AssetSelection
             yield return OpenPackAndSelectSprite();
             Assert.That(selectionInfoColumn.GetProperty<ReadOnlyCollection<Sprite>>(0).PropertyValue[0], Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Palettes[0].Icon));
         }
+
+        [UnityTest]
+        public IEnumerator Should_ShowWeaponProperties_WhenWeaponCardClicked()
+        {
+            yield return OpenPackAndSelectWeapon();
+            Assert.That(selectionInfoColumn.PropertiesCount, Is.GreaterThan(0));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowWeaponDamageProperty_WhenWeaponCardClicked()
+        {
+            yield return OpenPackAndSelectWeapon();
+            Assert.That(selectionInfoColumn.GetProperty<string>(0).PropertyValue, Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Weapons[0].BaseDamage.ToString()));
+        }
         
         [UnityTest]
         public IEnumerator Should_ShowRoomProperties_WhenRoomCardClicked()
