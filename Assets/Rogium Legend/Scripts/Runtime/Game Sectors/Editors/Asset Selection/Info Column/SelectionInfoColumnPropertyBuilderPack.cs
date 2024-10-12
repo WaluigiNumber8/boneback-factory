@@ -19,6 +19,12 @@ namespace Rogium.Editors.NewAssetSelection
         {
             Clear();
             b.BuildPlainText("Palettes", asset.Palettes.Count.ToString(), contentMain);
+            b.BuildPlainText("Sprites", asset.Sprites.Count.ToString(), contentMain);
+            b.BuildPlainText("Weapons", asset.Weapons.Count.ToString(), contentMain);
+            b.BuildPlainText("Projectiles", asset.Projectiles.Count.ToString(), contentMain);
+            b.BuildPlainText("Enemies", asset.Enemies.Count.ToString(), contentMain);
+            b.BuildPlainText("Rooms", asset.Rooms.Count.ToString(), contentMain);
+            b.BuildPlainText("Tiles", asset.Tiles.Count.ToString(), contentMain);
         }
     }
 }

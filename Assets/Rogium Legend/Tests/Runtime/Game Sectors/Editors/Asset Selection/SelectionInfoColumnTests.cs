@@ -62,7 +62,49 @@ namespace Rogium.Tests.Editors.AssetSelection
         public IEnumerator Should_ShowPackPalettesAmount_WhenPackCardClicked()
         {
             yield return SelectPack();
-            Assert.That(selectionInfoColumn.GetProperty<string>(0).PropertyValue, Is.EqualTo(currentPack.Palettes.Count.ToString()));
+            Assert.That(selectionInfoColumn.GetProperty<string>(0).PropertyValue, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[0].Palettes.Count.ToString()));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowPackSpritesAmount_WhenPackCardClicked()
+        {
+            yield return SelectPack();
+            Assert.That(selectionInfoColumn.GetProperty<string>(1).PropertyValue, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[0].Sprites.Count.ToString()));
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_ShowPackWeaponsAmount_WhenPackCardClicked()
+        {
+            yield return SelectPack();
+            Assert.That(selectionInfoColumn.GetProperty<string>(2).PropertyValue, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[0].Weapons.Count.ToString()));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowPackProjectilesAmount_WhenPackCardClicked()
+        {
+            yield return SelectPack();
+            Assert.That(selectionInfoColumn.GetProperty<string>(3).PropertyValue, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[0].Projectiles.Count.ToString()));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowPackEnemiesAmount_WhenPackCardClicked()
+        {
+            yield return SelectPack();
+            Assert.That(selectionInfoColumn.GetProperty<string>(4).PropertyValue, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[0].Enemies.Count.ToString()));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowPackRoomsAmount_WhenPackCardClicked()
+        {
+            yield return SelectPack();
+            Assert.That(selectionInfoColumn.GetProperty<string>(5).PropertyValue, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[0].Rooms.Count.ToString()));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowPackTilesAmount_WhenPackCardClicked()
+        {
+            yield return SelectPack();
+            Assert.That(selectionInfoColumn.GetProperty<string>(6).PropertyValue, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[0].Tiles.Count.ToString()));
         }
         
         [UnityTest]
