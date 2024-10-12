@@ -7,12 +7,20 @@ namespace Rogium.Tests.Editors.AssetSelection
 {
     public static class SelectionInfoColumnTestsU
     {
-        public static IEnumerator OpenPackAndSelectPalette()
+        public static IEnumerator SelectPack(int packIndex = 0)
         {
             GASButtonActions.OpenSelectionPack();
-            GASButtonActions.OpenEditor(0);
             yield return null;
-            SelectionMenuOverseerMono.GetInstance().CurrentSelector.GetCard(0).SetToggle(true);
+            SelectionMenuOverseerMono.GetInstance().CurrentSelector.GetCard(packIndex).SetToggle(true);
+            yield return null;
+        }
+        
+        public static IEnumerator OpenPackAndSelectPalette(int packIndex = 0, int paletteIndex = 0)
+        {
+            GASButtonActions.OpenSelectionPack();
+            GASButtonActions.OpenEditor(packIndex);
+            yield return null;
+            SelectionMenuOverseerMono.GetInstance().CurrentSelector.GetCard(paletteIndex).SetToggle(true);
             yield return null;
         }
         

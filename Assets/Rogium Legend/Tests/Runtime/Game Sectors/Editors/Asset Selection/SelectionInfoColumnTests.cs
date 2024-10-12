@@ -52,6 +52,20 @@ namespace Rogium.Tests.Editors.AssetSelection
         }
 
         [UnityTest]
+        public IEnumerator Should_ShowPackProperties_WhenPackCardClicked()
+        {
+            yield return SelectPack();
+            Assert.That(selectionInfoColumn.PropertiesCount, Is.GreaterThan(0));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowPackPalettesAmount_WhenPackCardClicked()
+        {
+            yield return SelectPack();
+            Assert.That(selectionInfoColumn.GetProperty<string>(0).PropertyValue, Is.EqualTo(currentPack.Palettes.Count.ToString()));
+        }
+        
+        [UnityTest]
         public IEnumerator Should_ShowPaletteIcon_WhenPaletteCardClicked()
         {
             yield return OpenPackAndSelectPalette();

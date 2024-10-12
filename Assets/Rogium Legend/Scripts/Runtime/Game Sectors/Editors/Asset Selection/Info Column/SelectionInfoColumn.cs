@@ -27,18 +27,20 @@ namespace Rogium.Editors.NewAssetSelection
         [SerializeField] private UIInfo ui;
 
         private IDictionary<Type, Action<IAsset>> builders;
+        private SelectionInfoColumnPropertyBuilderPack builderPack;
         private SelectionInfoColumnPropertyBuilderSprite builderSprite;
         private SelectionInfoColumnPropertyBuilderRoom builderRoom;
         private SelectionInfoColumnPropertyBuilderWeapon builderWeapon;
 
         private void Awake()
         {
+            builderPack = new SelectionInfoColumnPropertyBuilderPack(ui.content);
             builderSprite = new SelectionInfoColumnPropertyBuilderSprite(ui.content);
             builderRoom = new SelectionInfoColumnPropertyBuilderRoom(ui.content);
             builderWeapon = new SelectionInfoColumnPropertyBuilderWeapon(ui.content);
             builders = new Dictionary<Type, Action<IAsset>>
             {
-                { typeof(PackAsset), asset => {PrepareIcon(asset.Icon);}},
+                { typeof(PackAsset), asset => {PrepareIcon(asset.Icon); builderPack.Build((PackAsset) asset); }},
                 { typeof(CampaignAsset), asset => {PrepareIcon(asset.Icon);}},
                 { typeof(PaletteAsset), asset => {PrepareIcon(asset.Icon);}},
                 { typeof(SpriteAsset), asset => {PrepareIcon(asset.Icon); builderSprite.Build((SpriteAsset)asset);}},
