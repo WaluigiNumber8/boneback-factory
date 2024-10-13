@@ -91,6 +91,12 @@ namespace Rogium.Editors.NewAssetSelection
             else OnSelectNone?.Invoke();
         }
 
+        public void TryRefreshCard(int index)
+        {
+            if (lastSelectedIndex != index) return;
+            OnSelectCard?.Invoke(index);
+        }
+        
         public AssetCardControllerV2 GetCard(int index)
         {
             SafetyNet.EnsureIndexWithingCollectionRange(index, cards, nameof(cards));
@@ -118,5 +124,6 @@ namespace Rogium.Editors.NewAssetSelection
         private void TrackSelected(int index) => lastSelectedIndex = index;
 
         public RectTransform Content { get => content; }
+        
     }
 }

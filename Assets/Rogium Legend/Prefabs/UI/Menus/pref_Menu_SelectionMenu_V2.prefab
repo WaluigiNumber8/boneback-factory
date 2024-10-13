@@ -4548,6 +4548,7 @@ GameObject:
   - component: {fileID: 4158905001783247752}
   - component: {fileID: 5387387031878780692}
   - component: {fileID: 1817939171672941657}
+  - component: {fileID: 6389896488300716656}
   m_Layer: 5
   m_Name: pref_Menu_SelectionMenu_V2
   m_TagString: Untagged
@@ -4654,6 +4655,18 @@ MonoBehaviour:
   categoryTabsHolder: {fileID: 1219910126977040736}
   packScrollRect: {fileID: 6292032880814922508}
   otherAssetScrollRects: {fileID: 3441731964545889490}
+--- !u!114 &6389896488300716656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9045420700238847006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ea9c250c5a44cb8a12f758aab689c1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1013799183134346477
 PrefabInstance:
   m_ObjectHideFlags: 0
