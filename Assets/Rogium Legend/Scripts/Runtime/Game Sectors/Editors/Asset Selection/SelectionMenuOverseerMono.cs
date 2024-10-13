@@ -14,7 +14,7 @@ namespace Rogium.Editors.NewAssetSelection
     /// <summary>
     /// Overseers the Asset Selection Menu.
     /// </summary>
-    public sealed class SelectionMenuOverseerMono : MonoSingleton<SelectionMenuOverseerMono>
+    public sealed partial class SelectionMenuOverseerMono : MonoSingleton<SelectionMenuOverseerMono>
     {
         public event Action<AssetType> OnOpen;
 
@@ -46,12 +46,14 @@ namespace Rogium.Editors.NewAssetSelection
         {
             AssetCardControllerV2.OnSelect += PrepareInfoColumn;
             data.SubscribeToCardSelection(PrepareInfoColumn);
+            data.SubscribeToNoSelection(PrepareInfoColumnForEmpty);
         }
 
         private void OnDisable()
         {
             AssetCardControllerV2.OnSelect -= PrepareInfoColumn;
             data.UnsubscribeFromCardSelection(PrepareInfoColumn);
+            data.UnsubscribeFromNoSelection(PrepareInfoColumnForEmpty);
         }
 
         private static IList<IAsset> GetPaletteList() => PackEditorOverseer.Instance.CurrentPack.Palettes.Cast<IAsset>().ToList();
@@ -79,46 +81,9 @@ namespace Rogium.Editors.NewAssetSelection
         }
 
         private void PrepareInfoColumn(int index) => infoColumn.Construct(GetData(currentType).GetAssetList()[index]);
+        private void PrepareInfoColumnForEmpty() => infoColumn.ConstructEmpty(currentType);
 
         public AssetSelector CurrentSelector { get => GetData(currentType).AssetSelector; }
         public AssetType CurrentType { get => currentType; }
-
-        [Serializable]
-        public struct SelectionDataInfo
-        {
-            public SelectionMenuData packSelection;
-            public SelectionMenuData paletteSelection;
-            public SelectionMenuData spriteSelection;
-            public SelectionMenuData weaponSelection;
-            public SelectionMenuData projectileSelection;
-            public SelectionMenuData enemySelection;
-            public SelectionMenuData roomSelection;
-            public SelectionMenuData tileSelection;
-            
-            public void SubscribeToCardSelection(Action<int> action)
-            {
-                packSelection.AssetSelector.OnSelectCard += action;
-                paletteSelection.AssetSelector.OnSelectCard += action;
-                spriteSelection.AssetSelector.OnSelectCard += action;
-                weaponSelection.AssetSelector.OnSelectCard += action;
-                projectileSelection.AssetSelector.OnSelectCard += action;
-                enemySelection.AssetSelector.OnSelectCard += action;
-                roomSelection.AssetSelector.OnSelectCard += action;
-                tileSelection.AssetSelector.OnSelectCard += action;
-            }
-            
-            public void UnsubscribeFromCardSelection(Action<int> action)
-            {
-                packSelection.AssetSelector.OnSelectCard -= action;
-                paletteSelection.AssetSelector.OnSelectCard -= action;
-                spriteSelection.AssetSelector.OnSelectCard -= action;
-                weaponSelection.AssetSelector.OnSelectCard -= action;
-                projectileSelection.AssetSelector.OnSelectCard -= action;
-                enemySelection.AssetSelector.OnSelectCard -= action;
-                roomSelection.AssetSelector.OnSelectCard -= action;
-                tileSelection.AssetSelector.OnSelectCard -= action;
-            }
-        }
-
     }
 }

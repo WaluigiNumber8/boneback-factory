@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using RedRats.Core;
 using RedRats.Safety;
+using Rogium.Core;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
@@ -72,9 +73,9 @@ namespace Rogium.Editors.NewAssetSelection
         /// <summary>
         /// Empties out the Info Column.
         /// </summary>
-        public void ConstructEmpty()
+        public void ConstructEmpty(AssetType type)
         {
-            ui.title.text = string.Empty;
+            ui.title.text = $"Select a {type.ToString().ToLower()}";
             ui.previewIconContainer.SetActive(false);
             ui.previewBannerContainer.SetActive(false);
             ui.content.KillChildren();

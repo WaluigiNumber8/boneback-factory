@@ -105,7 +105,7 @@ namespace Rogium.Tests.Editors.AssetSelection
             yield return null;
             Assert.That(selectionInfoColumn.Title, Is.EqualTo(currentPack.Sprites[0].Title));
         }
-        
+    
         #region Properties
         [UnityTest]
         public IEnumerator Should_ShowPackProperties_WhenPackCardClicked()

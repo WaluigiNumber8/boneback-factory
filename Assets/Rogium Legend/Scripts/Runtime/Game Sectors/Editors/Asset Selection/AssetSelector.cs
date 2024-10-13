@@ -14,6 +14,7 @@ namespace Rogium.Editors.NewAssetSelection
     public class AssetSelector : MonoBehaviour
     {
         public event Action<int> OnSelectCard;
+        public event Action OnSelectNone;
         
         [SerializeField] private string title;
         [SerializeField] private RectTransform content;
@@ -85,7 +86,9 @@ namespace Rogium.Editors.NewAssetSelection
             }
             
             //Select the last card if no preselected assets and only if one was selected before
-            if (lastSelectedIndex != -1 && (preselectedAssets == null || preselectedAssets.Count == 0)) OnSelectCard?.Invoke(lastSelectedIndex);
+            if (preselectedAssets != null && preselectedAssets.Count != 0) return;
+            if (lastSelectedIndex != -1) OnSelectCard?.Invoke(lastSelectedIndex);
+            else OnSelectNone?.Invoke();
         }
 
         public AssetCardControllerV2 GetCard(int index)
