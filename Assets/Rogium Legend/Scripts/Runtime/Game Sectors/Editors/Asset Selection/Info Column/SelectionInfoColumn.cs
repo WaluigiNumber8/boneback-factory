@@ -50,7 +50,7 @@ namespace Rogium.Editors.NewAssetSelection
             {
                 { typeof(PackAsset), asset => {PrepareIcon(asset.Icon); builderPack.Build((PackAsset) asset); }},
                 { typeof(CampaignAsset), asset => {PrepareIcon(asset.Icon);}},
-                { typeof(PaletteAsset), asset => {PrepareIcon(asset.Icon);}},
+                { typeof(PaletteAsset), asset => {PrepareIcon(asset.Icon); ui.content.KillChildren();}},
                 { typeof(SpriteAsset), asset => {PrepareIcon(asset.Icon); builderSprite.Build((SpriteAsset)asset);}},
                 { typeof(WeaponAsset), asset => {PrepareIcon(asset.Icon); builderWeapon.Build((WeaponAsset)asset);}},
                 { typeof(ProjectileAsset), asset => {PrepareIcon(asset.Icon); builderProjectile.Build((ProjectileAsset)asset);}},

@@ -162,6 +162,13 @@ namespace Rogium.Tests.Editors.AssetSelection
             yield return SelectPack();
             Assert.That(selectionInfoColumn.GetProperty<string>(6).PropertyValue, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[0].Tiles.Count.ToString()));
         }
+
+        [UnityTest]
+        public IEnumerator Should_ShowNoProperties_WhenPaletteCardClicked()
+        {
+            yield return OpenPackAndSelectPalette();
+            Assert.That(selectionInfoColumn.PropertiesCount, Is.EqualTo(0));
+        }
         
         [UnityTest]
         public IEnumerator Should_ShowSpriteAssociatedPalette_WhenSpriteCardClicked()
