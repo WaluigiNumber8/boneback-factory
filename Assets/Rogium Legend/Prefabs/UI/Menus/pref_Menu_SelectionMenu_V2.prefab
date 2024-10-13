@@ -3515,6 +3515,7 @@ GameObject:
   - component: {fileID: 5554413112528077467}
   - component: {fileID: 3865962273010453364}
   - component: {fileID: 2019393054737247214}
+  - component: {fileID: 7132169732316835236}
   m_Layer: 5
   m_Name: Pack Scroll Rect
   m_TagString: Untagged
@@ -3606,6 +3607,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding: {x: 0, y: 0, z: 0, w: 0}
   m_Softness: {x: 0, y: 0}
+--- !u!114 &7132169732316835236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6292032880814922508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27dd1c5fd8c049a6a2d2879d94f8a434, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Packs
+  content: {fileID: 5276312561515409365}
+  cardPrefab: {fileID: 3952874868823821685, guid: 147692437204c584bb7663712e154aa7, type: 3}
+  assetCreateButtonPrefab: {fileID: 9189480147332028196, guid: 475160b8cb80c2f4e9fa692693538ea9, type: 3}
 --- !u!1 &6585672595617644993
 GameObject:
   m_ObjectHideFlags: 0

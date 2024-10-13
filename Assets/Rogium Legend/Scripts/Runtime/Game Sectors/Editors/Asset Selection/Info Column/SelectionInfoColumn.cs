@@ -101,7 +101,9 @@ namespace Rogium.Editors.NewAssetSelection
             ui.previewBannerContainer.SetActive(true);
         }
         
-        public int PropertiesCount => ui.content.childCount;
+        public bool IconShown { get => ui.previewIconContainer.activeSelf; }
+        public bool BannerShown { get => ui.previewBannerContainer.activeSelf; }
+        public int PropertiesCount { get => ui.content.childCount; }
         public string Title { get => ui.title.text; }
         public Sprite Icon { get => ui.previewIcon.sprite; }
         public Sprite BannerIcon { get => ui.previewBanner.sprite; }

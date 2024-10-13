@@ -42,8 +42,17 @@ namespace Rogium.Editors.NewAssetSelection
             };
         }
 
-        private void OnEnable() => AssetCardControllerV2.OnSelect += PrepareInfoColumn;
-        private void OnDisable() => AssetCardControllerV2.OnSelect -= PrepareInfoColumn;
+        private void OnEnable()
+        {
+            AssetCardControllerV2.OnSelect += PrepareInfoColumn;
+            data.SubscribeToCardSelection(PrepareInfoColumn);
+        }
+
+        private void OnDisable()
+        {
+            AssetCardControllerV2.OnSelect -= PrepareInfoColumn;
+            data.UnsubscribeFromCardSelection(PrepareInfoColumn);
+        }
 
         private static IList<IAsset> GetPaletteList() => PackEditorOverseer.Instance.CurrentPack.Palettes.Cast<IAsset>().ToList();
         private static IList<IAsset> GetSpriteList() => PackEditorOverseer.Instance.CurrentPack.Sprites.Cast<IAsset>().ToList();
@@ -85,6 +94,30 @@ namespace Rogium.Editors.NewAssetSelection
             public SelectionMenuData enemySelection;
             public SelectionMenuData roomSelection;
             public SelectionMenuData tileSelection;
+            
+            public void SubscribeToCardSelection(Action<int> action)
+            {
+                packSelection.AssetSelector.OnSelectCard += action;
+                paletteSelection.AssetSelector.OnSelectCard += action;
+                spriteSelection.AssetSelector.OnSelectCard += action;
+                weaponSelection.AssetSelector.OnSelectCard += action;
+                projectileSelection.AssetSelector.OnSelectCard += action;
+                enemySelection.AssetSelector.OnSelectCard += action;
+                roomSelection.AssetSelector.OnSelectCard += action;
+                tileSelection.AssetSelector.OnSelectCard += action;
+            }
+            
+            public void UnsubscribeFromCardSelection(Action<int> action)
+            {
+                packSelection.AssetSelector.OnSelectCard -= action;
+                paletteSelection.AssetSelector.OnSelectCard -= action;
+                spriteSelection.AssetSelector.OnSelectCard -= action;
+                weaponSelection.AssetSelector.OnSelectCard -= action;
+                projectileSelection.AssetSelector.OnSelectCard -= action;
+                enemySelection.AssetSelector.OnSelectCard -= action;
+                roomSelection.AssetSelector.OnSelectCard -= action;
+                tileSelection.AssetSelector.OnSelectCard -= action;
+            }
         }
 
     }

@@ -5,6 +5,7 @@ using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.NewAssetSelection;
 using Rogium.Editors.Packs;
+using Rogium.Editors.Weapons;
 using Rogium.Systems.GASExtension;
 using Rogium.Tests.Core;
 using UnityEngine;
@@ -51,6 +52,61 @@ namespace Rogium.Tests.Editors.AssetSelection
             Assert.That(selectionInfoColumn.Title, Is.EqualTo(currentPack.Rooms[0].Title));
         }
 
+        [UnityTest]
+        public IEnumerator Should_ShowPaletteIcon_WhenPaletteCardClicked()
+        {
+            yield return OpenPackAndSelectPalette();
+            Assert.That(selectionInfoColumn.Icon, Is.EqualTo(currentPack.Palettes[0].Icon));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowRoomBanner_WhenRoomCardClicked()
+        {
+            yield return OpenPackAndSelectRoom();
+            Assert.That(selectionInfoColumn.BannerIcon, Is.EqualTo(currentPack.Rooms[0].Icon));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowEmptyText_WhenSpriteMenuOpenedAndNothingSelected()
+        {
+            yield return OpenPackAndSelectPalette();
+            selectionMenu.Open(AssetType.Sprite);
+            yield return null;
+            Assert.That(selectionInfoColumn.Title, Is.EqualTo("Select a sprite"));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_HideIconAndBanner_WhenSpriteMenuOpenedAndNothingSelected()
+        {
+            yield return OpenPackAndSelectPalette();
+            selectionMenu.Open(AssetType.Sprite);
+            yield return null;
+            Assert.That(selectionInfoColumn.IconShown, Is.False);
+            Assert.That(selectionInfoColumn.BannerShown, Is.False);
+        }
+
+        [UnityTest]
+        public IEnumerator Should_RefreshInfo_WhenWeaponEdited()
+        {
+            yield return OpenPackAndSelectWeapon();
+            PackEditorOverseer.Instance.ActivateWeaponEditor(0, false);
+            WeaponEditorOverseer.Instance.CurrentAsset.UpdateBaseDamage(10);
+            WeaponEditorOverseer.Instance.CompleteEditing();
+            yield return null;
+            Assert.That(selectionInfoColumn.GetProperty<string>(0).PropertyValue, Is.EqualTo("10"));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_RefreshInfo_WhenWeaponSelectionOpenAfterSpriteSelection()
+        {
+            yield return OpenPackAndSelectSprite();
+            yield return OpenPackAndSelectWeapon();
+            selectionMenu.Open(AssetType.Sprite);
+            yield return null;
+            Assert.That(selectionInfoColumn.Title, Is.EqualTo(currentPack.Sprites[0].Title));
+        }
+        
+        #region Properties
         [UnityTest]
         public IEnumerator Should_ShowPackProperties_WhenPackCardClicked()
         {
@@ -105,20 +161,6 @@ namespace Rogium.Tests.Editors.AssetSelection
         {
             yield return SelectPack();
             Assert.That(selectionInfoColumn.GetProperty<string>(6).PropertyValue, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[0].Tiles.Count.ToString()));
-        }
-        
-        [UnityTest]
-        public IEnumerator Should_ShowPaletteIcon_WhenPaletteCardClicked()
-        {
-            yield return OpenPackAndSelectPalette();
-            Assert.That(selectionInfoColumn.Icon, Is.EqualTo(currentPack.Palettes[0].Icon));
-        }
-
-        [UnityTest]
-        public IEnumerator Should_ShowRoomBanner_WhenRoomCardClicked()
-        {
-            yield return OpenPackAndSelectRoom();
-            Assert.That(selectionInfoColumn.BannerIcon, Is.EqualTo(currentPack.Rooms[0].Icon));
         }
         
         [UnityTest]
@@ -273,5 +315,6 @@ namespace Rogium.Tests.Editors.AssetSelection
             yield return OpenPackAndSelectTile();
             Assert.That(selectionInfoColumn.GetProperty<string>(2).PropertyValue, Is.EqualTo(currentPack.Tiles[0].TerrainType.ToString()));
         }
+        #endregion
     }
 }

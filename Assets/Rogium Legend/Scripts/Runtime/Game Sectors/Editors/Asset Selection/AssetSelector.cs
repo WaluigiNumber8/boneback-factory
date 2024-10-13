@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using RedRats.Safety;
 using Rogium.Editors.Core;
@@ -12,6 +13,8 @@ namespace Rogium.Editors.NewAssetSelection
     /// </summary>
     public class AssetSelector : MonoBehaviour
     {
+        public event Action<int> OnSelectCard;
+        
         [SerializeField] private string title;
         [SerializeField] private RectTransform content;
         [SerializeField] private AssetCardControllerV2 cardPrefab;
@@ -19,12 +22,17 @@ namespace Rogium.Editors.NewAssetSelection
 
         private List<AssetCardControllerV2> cards;
         private Stack<AssetCardControllerV2> disabledCards;
+        private int lastSelectedIndex = -1;
 
         private void Awake()
         {
             cards = new List<AssetCardControllerV2>();
             disabledCards = new Stack<AssetCardControllerV2>();
         }
+
+        private void OnEnable() => AssetCardControllerV2.OnSelect += TrackSelected;
+        private void OnDisable() => AssetCardControllerV2.OnSelect -= TrackSelected;
+
 
         /// <summary>
         /// Loads up asset cards.
@@ -68,9 +76,16 @@ namespace Rogium.Editors.NewAssetSelection
                     .WithConfigButton(data.WhenAssetConfig)
                     .WithDeleteButton(data.WhenAssetDelete)
                     .Build());
-                card.SetToggle(preselectedAssets?.Contains(asset) ?? false);
+                if (preselectedAssets?.Contains(asset) == true)
+                {
+                    card.SetToggle(true);
+                    OnSelectCard?.Invoke(i);
+                }
                 ThemeUpdaterRogium.UpdateAssetCard(card);
             }
+            
+            //Select the last card if no preselected assets and only if one was selected before
+            if (lastSelectedIndex != -1 && (preselectedAssets == null || preselectedAssets.Count == 0)) OnSelectCard?.Invoke(lastSelectedIndex);
         }
 
         public AssetCardControllerV2 GetCard(int index)
@@ -96,6 +111,8 @@ namespace Rogium.Editors.NewAssetSelection
             InteractableButton addButton = (content.childCount > 0 && content.GetChild(0).TryGetComponent(out InteractableButton button)) ? button : Instantiate(assetCreateButtonPrefab, content);
             addButton.Action = data.WhenAssetCreate;
         }
+
+        private void TrackSelected(int index) => lastSelectedIndex = index;
 
         public RectTransform Content { get => content; }
     }
