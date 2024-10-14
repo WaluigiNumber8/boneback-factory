@@ -37,8 +37,7 @@ namespace Rogium.Editors.Packs
 
         public override bool Equals(object obj)
         {
-            PackAsset pack = (PackAsset) obj;
-            if (pack == null) return false;
+            if (obj is not PackAsset pack) return false;
             if (pack.Title == Title &&
                 pack.Author == Author &&
                 pack.CreationDate == CreationDate)

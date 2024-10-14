@@ -54,6 +54,7 @@ namespace Rogium.Editors.NewAssetSelection
 
         public override string ToString() => $"{index} - {ui.title.text}";
 
+        public int Index { get => index; }
         public string Title { get => ui.title.text; }
         public Sprite Icon {get => ui.iconImage.sprite;}
 
