@@ -12,8 +12,8 @@ namespace Rogium.Editors.NewAssetSelection
     /// </summary>
     public class AssetCardControllerV2 : ToggleableBase
     {
-        public static event Action<int> OnSelect;
-        public static event Action<int> OnDeselect;
+        public event Action<int> OnSelect;
+        public event Action<int> OnDeselect;
 
         [SerializeField] protected bool ignoreThemeUpdate;
         [SerializeField] private UIInfo ui;
@@ -38,6 +38,12 @@ namespace Rogium.Editors.NewAssetSelection
             if (ignoreThemeUpdate) return;
             UIExtensions.ChangeInteractableSprites(toggle, cardSet);
             if (ui.title != null) UIExtensions.ChangeFont(ui.title, titleFont);
+        }
+
+        public void RemoveAllListeners()
+        {
+            OnSelect = null;
+            OnDeselect = null;
         }
         
         private void CallSelectEvents(bool value)

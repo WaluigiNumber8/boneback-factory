@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Rogium.Core;
 using Rogium.Editors.Core;
-using Rogium.Editors.Packs;
-using Rogium.UserInterface.Interactables;
-using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Rogium.Editors.NewAssetSelection
 {
@@ -22,12 +18,14 @@ namespace Rogium.Editors.NewAssetSelection
         {
             this.whenConfirmed = whenConfirmed;
             lastIndex = -2; //-1 is empty card so has to lower
-            data = new SelectionMenuData(data, GetAssetListByType(type));
+            data = new SelectionMenuData.Builder().AsCopy(data).WithGetAssetList(GetAssetListByType(type)).Build();
 
             selector.Load(data, new HashSet<IAsset> {preselectedAsset});
 
             if (!canSelectEmpty) return;
             AssetCardControllerV2 emptyCard = Instantiate(emptyCardPrefab, selector.Content);
+            emptyCard.OnSelect += SelectAsset;
+            emptyCard.OnDeselect += DeselectAsset;
             emptyCard.transform.SetAsFirstSibling();
             emptyCard.Construct(new AssetCardData.Builder().WithIndex(-1).Build());
         }

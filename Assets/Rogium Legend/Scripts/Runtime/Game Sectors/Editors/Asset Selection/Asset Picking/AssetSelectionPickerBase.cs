@@ -23,20 +23,12 @@ namespace Rogium.Editors.NewAssetSelection
 
         protected virtual void Awake()
         {
-            data = new SelectionMenuData(selector, ButtonType.None, ButtonType.None, ButtonType.None, ButtonType.None, Array.Empty<IAsset>);
+            data = new SelectionMenuData.Builder()
+                .WithAssetSelector(selector)
+                .WithWhenCardSelected(SelectAsset)
+                .WithWhenCardDeselected(DeselectAsset)
+                .Build();
             selectedAssetIndexes = new HashSet<int>();
-        }
-
-        protected virtual void OnEnable()
-        {
-            AssetCardControllerV2.OnSelect += SelectAsset;
-            AssetCardControllerV2.OnDeselect += DeselectAsset;
-        }
-
-        protected virtual void OnDisable()
-        {
-            AssetCardControllerV2.OnSelect -= SelectAsset;
-            AssetCardControllerV2.OnDeselect -= DeselectAsset;
         }
 
         public void SelectAll(bool value)

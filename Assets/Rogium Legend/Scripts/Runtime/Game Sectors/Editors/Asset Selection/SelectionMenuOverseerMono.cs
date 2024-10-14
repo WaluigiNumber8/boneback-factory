@@ -31,27 +31,25 @@ namespace Rogium.Editors.NewAssetSelection
             base.Awake();
             menuData = new Dictionary<AssetType, SelectionMenuData>
             {
-                {AssetType.Pack, new SelectionMenuData(data.packSelection, ExternalLibraryOverseer.Instance.Packs.Cast<IAsset>().ToList)},
-                {AssetType.Palette, new SelectionMenuData(data.paletteSelection, GetPaletteList)},
-                {AssetType.Sprite, new SelectionMenuData(data.spriteSelection, GetSpriteList)},
-                {AssetType.Weapon, new SelectionMenuData(data.weaponSelection, GetWeaponList)},
-                {AssetType.Projectile, new SelectionMenuData(data.projectileSelection, GetProjectileList)},
-                {AssetType.Enemy, new SelectionMenuData(data.enemySelection, GetEnemyList)},
-                {AssetType.Room, new SelectionMenuData(data.roomSelection, GetRoomList)},
-                {AssetType.Tile, new SelectionMenuData(data.tileSelection, GetTileList)}
+                {AssetType.Pack, new SelectionMenuData.Builder().AsCopy(data.packSelection).WithGetAssetList(ExternalLibraryOverseer.Instance.Packs.Cast<IAsset>().ToList).WithWhenCardSelected(PrepareInfoColumn).Build()},
+                {AssetType.Palette, new SelectionMenuData.Builder().AsCopy(data.paletteSelection).WithGetAssetList(GetPaletteList).WithWhenCardSelected(PrepareInfoColumn).Build()},
+                {AssetType.Sprite, new SelectionMenuData.Builder().AsCopy(data.spriteSelection).WithGetAssetList(GetSpriteList).WithWhenCardSelected(PrepareInfoColumn).Build()},
+                {AssetType.Weapon, new SelectionMenuData.Builder().AsCopy(data.weaponSelection).WithGetAssetList(GetWeaponList).WithWhenCardSelected(PrepareInfoColumn).Build()},
+                {AssetType.Projectile, new SelectionMenuData.Builder().AsCopy(data.projectileSelection).WithGetAssetList(GetProjectileList).WithWhenCardSelected(PrepareInfoColumn).Build()},
+                {AssetType.Enemy, new SelectionMenuData.Builder().AsCopy(data.enemySelection).WithGetAssetList(GetEnemyList).WithWhenCardSelected(PrepareInfoColumn).Build()},
+                {AssetType.Room, new SelectionMenuData.Builder().AsCopy(data.roomSelection).WithGetAssetList(GetRoomList).WithWhenCardSelected(PrepareInfoColumn).Build()},
+                {AssetType.Tile, new SelectionMenuData.Builder().AsCopy(data.tileSelection).WithGetAssetList(GetTileList).WithWhenCardSelected(PrepareInfoColumn).Build()},
             };
         }
 
         private void OnEnable()
         {
-            AssetCardControllerV2.OnSelect += PrepareInfoColumn;
             data.SubscribeToCardSelection(PrepareInfoColumn);
             data.SubscribeToNoSelection(PrepareInfoColumnForEmpty);
         }
 
         private void OnDisable()
         {
-            AssetCardControllerV2.OnSelect -= PrepareInfoColumn;
             data.UnsubscribeFromCardSelection(PrepareInfoColumn);
             data.UnsubscribeFromNoSelection(PrepareInfoColumnForEmpty);
         }

@@ -31,10 +31,6 @@ namespace Rogium.Editors.NewAssetSelection
             disabledCards = new Stack<AssetCardControllerV2>();
         }
 
-        private void OnEnable() => AssetCardControllerV2.OnSelect += TrackSelected;
-        private void OnDisable() => AssetCardControllerV2.OnSelect -= TrackSelected;
-
-
         /// <summary>
         /// Loads up asset cards.
         /// </summary>
@@ -77,12 +73,27 @@ namespace Rogium.Editors.NewAssetSelection
                     .WithConfigButton(data.WhenAssetConfig)
                     .WithDeleteButton(data.WhenAssetDelete)
                     .Build());
+                card.RemoveAllListeners();
+                card.OnSelect += WhenCardSelect;
+                card.OnDeselect += WhenCardDeselect;
                 if (preselectedAssets?.Contains(asset) == true)
                 {
                     card.SetToggle(true);
                     OnSelectCard?.Invoke(i);
                 }
                 ThemeUpdaterRogium.UpdateAssetCard(card);
+                continue;
+
+                void WhenCardSelect(int index)
+                {
+                    data.WhenCardSelected?.Invoke(index);
+                    TrackSelected(index);
+                }
+                void WhenCardDeselect(int index)
+                {
+                    data.WhenCardDeselected?.Invoke(index);
+                    TrackSelected(index);
+                }
             }
             
             //Select the last card if no preselected assets and only if one was selected before
