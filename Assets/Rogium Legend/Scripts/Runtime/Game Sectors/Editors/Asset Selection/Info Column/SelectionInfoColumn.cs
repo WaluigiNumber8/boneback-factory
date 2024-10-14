@@ -76,8 +76,8 @@ namespace Rogium.Editors.NewAssetSelection
         public void ConstructEmpty(AssetType type)
         {
             ui.title.text = $"Select a {type.ToString().ToLower()}";
-            ui.previewIconContainer.SetActive(false);
-            ui.previewBannerContainer.SetActive(false);
+            if (ui.previewIconContainer != null) ui.previewIconContainer.SetActive(false);
+            if (ui.previewBannerContainer != null) ui.previewBannerContainer.SetActive(false);
             ui.content.KillChildren();
         }
         
@@ -90,14 +90,14 @@ namespace Rogium.Editors.NewAssetSelection
         
         private void PrepareIcon(Sprite sprite)
         {
-            ui.previewBannerContainer.SetActive(false);
+            if (ui.previewBannerContainer != null) ui.previewBannerContainer.SetActive(false);
             ui.previewIcon.sprite = sprite;
             ui.previewIconContainer.SetActive(true);
         }
         
         private void PrepareBanner(Sprite sprite)
         {
-            ui.previewIconContainer.SetActive(false);
+            if (ui.previewIconContainer != null) ui.previewIconContainer.SetActive(false);
             ui.previewBanner.sprite = sprite;
             ui.previewBannerContainer.SetActive(true);
         }

@@ -35,12 +35,14 @@ namespace Rogium.Editors.Campaign
         {
             editor.OnAssignAsset += PrepareEditor;
             selectionPicker.Selector.OnSelectCard += PreparePropertyColumn;
+            selectionPicker.Selector.OnSelectNone += PreparePropertyColumnEmpty;
         }
         
         private void OnDisable()
         {
             editor.OnAssignAsset -= PrepareEditor;
             selectionPicker.Selector.OnSelectCard -= PreparePropertyColumn;
+            selectionPicker.Selector.OnSelectNone -= PreparePropertyColumnEmpty;
         }
 
         /// <summary>
@@ -86,6 +88,7 @@ namespace Rogium.Editors.Campaign
         }
         
         private void PreparePropertyColumn(int index) => propertyColumn.Construct(ExternalLibraryOverseer.Instance.Packs[index]);
+        private void PreparePropertyColumnEmpty() => propertyColumn.ConstructEmpty(AssetType.Pack);
 
         public AssetSelectionPickerBase SelectionPicker { get => selectionPicker; }
     }
