@@ -41,9 +41,15 @@ namespace Rogium.Tests.Editors.Campaigns
         [UnityTest]
         public IEnumerator Should_ShowPackTitle_WhenPackCardClicked()
         {
-            campaignEditor.SelectionPicker.Selector.GetCard(0).SetToggle(true);
-            yield return null;
+            yield return CampaignSelectionColumnTestsU.SelectCard();
             Assert.That(infoColumn.Title, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[0].Title));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowPackIcon_WhenPackCardClicked()
+        {
+            yield return CampaignSelectionColumnTestsU.SelectCard();
+            Assert.That(infoColumn.Icon, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[0].Icon));
         }
     }
 }
