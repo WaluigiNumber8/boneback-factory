@@ -1,6 +1,7 @@
 using System.Collections;
 using NUnit.Framework;
 using Rogium.Editors.Campaign;
+using Rogium.Editors.Core;
 using Rogium.Editors.NewAssetSelection;
 using Rogium.Editors.Packs;
 using Rogium.Tests.Core;
@@ -35,6 +36,14 @@ namespace Rogium.Tests.Editors.Campaigns
         {
             yield return null;
             Assert.That(infoColumn.Title, Is.EqualTo("Select a pack"));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowPackTitle_WhenPackCardClicked()
+        {
+            campaignEditor.SelectionPicker.Selector.GetCard(0).SetToggle(true);
+            yield return null;
+            Assert.That(infoColumn.Title, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[0].Title));
         }
     }
 }

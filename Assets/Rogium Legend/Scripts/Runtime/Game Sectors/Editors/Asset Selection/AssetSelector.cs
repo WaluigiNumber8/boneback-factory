@@ -87,6 +87,7 @@ namespace Rogium.Editors.NewAssetSelection
                 void WhenCardSelect(int index)
                 {
                     data.WhenCardSelected?.Invoke(index);
+                    OnSelectCard?.Invoke(index);
                     TrackSelected(index);
                 }
                 void WhenCardDeselect(int index)
