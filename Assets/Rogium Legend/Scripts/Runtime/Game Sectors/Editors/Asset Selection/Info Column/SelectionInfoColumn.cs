@@ -59,6 +59,17 @@ namespace Rogium.Editors.NewAssetSelection
                 { typeof(TileAsset), asset => {PrepareIcon(asset.Icon); builderTile.Build((TileAsset)asset);}},
             };
         }
+
+        /// <summary>
+        /// Prepare the Info Column for an asset.
+        /// </summary>
+        /// <param name="asset">The asset to prepare the column for.</param>
+        public void Construct(IAssetWithDescription asset)
+        {
+            ui.description.text = asset.Description;
+            ui.descriptionContainer.SetActive(true);
+            Refresh(asset);
+        }
         
         /// <summary>
         /// Prepare the Info Column for an asset.
@@ -66,8 +77,8 @@ namespace Rogium.Editors.NewAssetSelection
         /// <param name="asset">The asset to prepare the column for.</param>
         public void Construct(IAsset asset)
         {
-            ui.title.text = asset.Title;
-            builders[asset.GetType()](asset);
+            if (ui.descriptionContainer != null) ui.descriptionContainer.SetActive(false);
+            Refresh(asset);
         }
         
         /// <summary>
@@ -88,6 +99,12 @@ namespace Rogium.Editors.NewAssetSelection
             return ui.content.GetChild(i).GetComponent<InteractablePropertyBase<T>>();
         }
         
+        private void Refresh(IAsset asset)
+        {
+            ui.title.text = asset.Title;
+            builders[asset.GetType()](asset);
+        }
+        
         private void PrepareIcon(Sprite sprite)
         {
             if (ui.previewBannerContainer != null) ui.previewBannerContainer.SetActive(false);
@@ -106,6 +123,7 @@ namespace Rogium.Editors.NewAssetSelection
         public bool BannerShown { get => ui.previewBannerContainer.activeSelf; }
         public int PropertiesCount { get => ui.content.childCount; }
         public string Title { get => ui.title.text; }
+        public string Description { get => ui.description.text; }
         public Sprite Icon { get => ui.previewIcon.sprite; }
         public Sprite BannerIcon { get => ui.previewBanner.sprite; }
         
@@ -113,10 +131,12 @@ namespace Rogium.Editors.NewAssetSelection
         public struct UIInfo
         {
             public TextMeshProUGUI title;
-            public GameObject previewBannerContainer;
-            public Image previewBanner;
-            public GameObject previewIconContainer;
+            public TextMeshProUGUI description;
             public Image previewIcon;
+            public Image previewBanner;
+            public GameObject descriptionContainer;
+            public GameObject previewIconContainer;
+            public GameObject previewBannerContainer;
             public RectTransform content;
         }
     }

@@ -51,5 +51,12 @@ namespace Rogium.Tests.Editors.Campaigns
             yield return CampaignSelectionColumnTestsU.SelectCard();
             Assert.That(infoColumn.Icon, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[0].Icon));
         }
+
+        [UnityTest]
+        public IEnumerator Should_ShowPackDescription_WhenPackCardClicked()
+        {
+            yield return CampaignSelectionColumnTestsU.SelectCard();
+            Assert.That(infoColumn.Description, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[0].Description));
+        }
     }
 }

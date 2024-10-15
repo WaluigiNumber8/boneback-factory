@@ -18,7 +18,7 @@ namespace Rogium.Editors.Packs
     /// <summary>
     /// Contains all important data for a given pack.
     /// </summary>
-    public class PackAsset : AssetWithReferencedSpriteBase
+    public class PackAsset : AssetWithReferencedSpriteBase, IAssetWithDescription
     {
         private string description;
         private AssetList<PaletteAsset> palettes;
