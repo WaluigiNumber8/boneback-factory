@@ -14,6 +14,7 @@ namespace Rogium.Editors.NewAssetSelection
     public class AssetSelector : MonoBehaviour
     {
         public event Action<int> OnSelectCard;
+        public event Action<int> OnDeselectCard;
         public event Action OnSelectNone;
         
         [SerializeField] private string title;
@@ -93,6 +94,7 @@ namespace Rogium.Editors.NewAssetSelection
                 void WhenCardDeselect(int index)
                 {
                     data.WhenCardDeselected?.Invoke(index);
+                    OnDeselectCard?.Invoke(index);
                     TrackSelected(index);
                 }
             }

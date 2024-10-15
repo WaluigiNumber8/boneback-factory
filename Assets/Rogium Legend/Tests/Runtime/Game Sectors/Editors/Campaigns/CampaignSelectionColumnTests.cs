@@ -3,7 +3,6 @@ using NUnit.Framework;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Core;
 using Rogium.Editors.NewAssetSelection;
-using Rogium.Editors.Packs;
 using Rogium.Tests.Core;
 using UnityEngine.TestTools;
 using static Rogium.Tests.Editors.AssetCreator;
@@ -23,11 +22,12 @@ namespace Rogium.Tests.Editors.Campaigns
             yield return base.Setup();
             OverseerLoader.LoadModalWindowBuilder();
             OverseerLoader.LoadUIBuilder();
+            AddNewPackToLibrary();
+            AddNewPackToLibrary();
+            yield return null;
             yield return MenuLoader.PrepareCampaignEditor();
             campaignEditor = CampaignEditorOverseerMono.GetInstance();
             infoColumn = campaignEditor.GetComponentInChildren<SelectionInfoColumn>();
-            AddNewPackToLibrary();
-            AddNewPackToLibrary();
             yield return null;
         }
 
@@ -42,6 +42,15 @@ namespace Rogium.Tests.Editors.Campaigns
         public IEnumerator Should_ShowPackTitle_WhenPackCardClicked()
         {
             yield return CampaignSelectionColumnTestsU.SelectCard();
+            Assert.That(infoColumn.Title, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[0].Title));
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_ShowPackTitle_WhenPackCardDeselected()
+        {
+            yield return CampaignSelectionColumnTestsU.SelectCard();
+            yield return CampaignSelectionColumnTestsU.SelectCard(1);
+            yield return CampaignSelectionColumnTestsU.DeselectCard();
             Assert.That(infoColumn.Title, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[0].Title));
         }
 

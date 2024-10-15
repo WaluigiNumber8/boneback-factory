@@ -35,6 +35,7 @@ namespace Rogium.Editors.Campaign
         {
             editor.OnAssignAsset += PrepareEditor;
             selectionPicker.Selector.OnSelectCard += PreparePropertyColumn;
+            selectionPicker.Selector.OnDeselectCard += PreparePropertyColumn;
             selectionPicker.Selector.OnSelectNone += PreparePropertyColumnEmpty;
         }
         
@@ -42,6 +43,7 @@ namespace Rogium.Editors.Campaign
         {
             editor.OnAssignAsset -= PrepareEditor;
             selectionPicker.Selector.OnSelectCard -= PreparePropertyColumn;
+            selectionPicker.Selector.OnDeselectCard -= PreparePropertyColumn;
             selectionPicker.Selector.OnSelectNone -= PreparePropertyColumnEmpty;
         }
 

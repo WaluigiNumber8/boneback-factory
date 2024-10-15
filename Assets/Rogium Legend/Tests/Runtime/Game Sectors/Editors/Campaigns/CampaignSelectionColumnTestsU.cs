@@ -10,5 +10,11 @@ namespace Rogium.Tests.Editors.Campaigns
             CampaignEditorOverseerMono.GetInstance().SelectionPicker.Selector.GetCard(index).SetToggle(true);
             return null;
         }
+        
+        public static IEnumerator DeselectCard(int index = 0)
+        {
+            CampaignEditorOverseerMono.GetInstance().SelectionPicker.Selector.GetCard(index).SetToggle(false);
+            return null;
+        }
     }
 }
