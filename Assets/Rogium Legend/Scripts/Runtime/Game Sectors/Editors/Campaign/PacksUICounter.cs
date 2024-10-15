@@ -1,5 +1,6 @@
-﻿using Rogium.Editors.Core;
-using Rogium.UserInterface.Editors.AssetSelection.PickerVariant;
+﻿using System;
+using Rogium.Editors.Core;
+using Rogium.Editors.NewAssetSelection;
 using UnityEngine;
 using TMPro;
 
@@ -12,57 +13,45 @@ namespace Rogium.Editors.Campaign
     {
         [SerializeField] private TextMeshProUGUI counterText;
 
+        private AssetSelector selector;
         private int counter;
+
+        private void Awake() => selector = CampaignEditorOverseerMono.GetInstance().SelectionPicker.Selector;
 
         private void OnEnable()
         {
-            AssetPickerCardController.OnSelected += WhenCounterIncrease;
-            AssetPickerCardController.OnDeselected += WhenCounterDecrease;
-            CampaignEditorOverseer.Instance.OnAssignAsset += ResetCounter;
+            selector.OnSelectCard += Increase;
+            selector.OnDeselectCard += Decrease;
+            CampaignEditorOverseer.Instance.OnAssignAsset += Reset;
         }
 
         private void OnDisable()
         {
-            AssetPickerCardController.OnSelected -= WhenCounterIncrease;
-            AssetPickerCardController.OnDeselected -= WhenCounterDecrease;
-            CampaignEditorOverseer.Instance.OnAssignAsset -= ResetCounter;
+            selector.OnSelectCard += Increase;
+            selector.OnDeselectCard += Decrease;
+            CampaignEditorOverseer.Instance.OnAssignAsset -= Reset;
         }
 
-        /// <summary>
-        /// Sets the counter to 0.
-        /// </summary>
-        private void ResetCounter(AssetBase asset)
+        private void Reset(IAsset asset)
         {
-            counter = 0;
+            counter = ((CampaignAsset)asset).PackReferences.Count;
             RefreshUI();
         }
         
-        /// <summary>
-        /// Increases the counter by 1.
-        /// </summary>
-        /// <param name="asset"></param>
-        private void WhenCounterIncrease(IAsset asset)
+        private void Increase(int _)
         {
             counter++;
             RefreshUI();
         }
         
-        /// <summary>
-        /// Decreases the Counter by 1.
-        /// </summary>
-        /// <param name="asset"></param>
-        private void WhenCounterDecrease(IAsset asset)
+        private void Decrease(int _)
         {
             counter--;
             RefreshUI();
         }
 
-        /// <summary>
-        /// Refreshes the User Interface.
-        /// </summary>
-        private void RefreshUI()
-        {
-            counterText.text = counter.ToString();
-        }
+        private void RefreshUI() => counterText.text = counter.ToString();
+        
+        public int Counter { get => Convert.ToInt32(counterText.text); }
     }
 }

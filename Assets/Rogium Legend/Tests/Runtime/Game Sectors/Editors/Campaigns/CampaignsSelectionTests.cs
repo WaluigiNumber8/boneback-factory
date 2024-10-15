@@ -123,5 +123,20 @@ namespace Rogium.Tests.Editors.Campaigns
             yield return null;
             Assert.That(editor.CurrentAsset.PackReferences.Count, Is.GreaterThan(0));
         }
+
+        [UnityTest]
+        public IEnumerator Should_SetPackCounterToPackReferenceCount_WhenEditorOpened()
+        {
+            yield return null;
+            Assert.That(editorMono.GetComponentInChildren<PacksUICounter>().Counter, Is.EqualTo(editor.CurrentAsset.PackReferences.Count));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_IncreasePackCounter_WhenPackSelected()
+        {
+            editorMono.SelectionPicker.Select(0);
+            yield return null;
+            Assert.That(editorMono.GetComponentInChildren<PacksUICounter>().Counter, Is.EqualTo(editor.CurrentAsset.PackReferences.Count));
+        }
     }
 }
