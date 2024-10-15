@@ -26,6 +26,7 @@ namespace Rogium.Editors.NewAssetSelection
     /// </summary>
     public class SelectionInfoColumn : MonoBehaviour
     {
+        [SerializeField, Tooltip("Build only essential properties")] private bool essentialsOnly;
         [SerializeField] private UIInfo ui;
 
         private IDictionary<Type, Action<IAsset>> builders;
@@ -39,7 +40,7 @@ namespace Rogium.Editors.NewAssetSelection
 
         private void Awake()
         {
-            builderPack = new SelectionInfoColumnPropertyBuilderPack(ui.content);
+            builderPack = new SelectionInfoColumnPropertyBuilderPack(ui.content, essentialsOnly);
             builderSprite = new SelectionInfoColumnPropertyBuilderSprite(ui.content);
             builderRoom = new SelectionInfoColumnPropertyBuilderRoom(ui.content);
             builderWeapon = new SelectionInfoColumnPropertyBuilderWeapon(ui.content);

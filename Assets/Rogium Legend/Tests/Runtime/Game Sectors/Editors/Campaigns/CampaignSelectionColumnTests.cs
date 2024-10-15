@@ -67,5 +67,12 @@ namespace Rogium.Tests.Editors.Campaigns
             yield return CampaignSelectionColumnTestsU.SelectCard();
             Assert.That(infoColumn.Description, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[0].Description));
         }
+
+        [UnityTest]
+        public IEnumerator Should_ShowOnly3Properties_WhenPackCardClicked()
+        {
+            yield return CampaignSelectionColumnTestsU.SelectCard();
+            Assert.That(infoColumn.PropertiesCount, Is.EqualTo(3));
+        }
     }
 }

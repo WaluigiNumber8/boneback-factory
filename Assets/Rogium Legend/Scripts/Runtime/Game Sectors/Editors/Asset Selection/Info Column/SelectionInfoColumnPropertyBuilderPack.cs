@@ -9,7 +9,12 @@ namespace Rogium.Editors.NewAssetSelection
     /// </summary>
     public class SelectionInfoColumnPropertyBuilderPack : UIPropertyContentBuilderBaseColumn1<PackAsset>
     {
-        public SelectionInfoColumnPropertyBuilderPack(Transform contentMain) : base(contentMain) { }
+        private readonly bool essentialOnly;
+
+        public SelectionInfoColumnPropertyBuilderPack(Transform contentMain, bool essentialOnly) : base(contentMain)
+        {
+            this.essentialOnly = essentialOnly;
+        }
 
         /// <summary>
         /// Build <see cref="SelectionInfoColumn"/> properties for a pack.
@@ -18,6 +23,12 @@ namespace Rogium.Editors.NewAssetSelection
         public override void Build(PackAsset asset)
         {
             Clear();
+            if (essentialOnly) BuildLite(asset);
+            else BuildFull(asset);
+        }
+
+        private void BuildFull(PackAsset asset)
+        {
             b.BuildPlainText("Palettes", asset.Palettes.Count.ToString(), contentMain);
             b.BuildPlainText("Sprites", asset.Sprites.Count.ToString(), contentMain);
             b.BuildPlainText("Weapons", asset.Weapons.Count.ToString(), contentMain);
@@ -25,6 +36,13 @@ namespace Rogium.Editors.NewAssetSelection
             b.BuildPlainText("Enemies", asset.Enemies.Count.ToString(), contentMain);
             b.BuildPlainText("Rooms", asset.Rooms.Count.ToString(), contentMain);
             b.BuildPlainText("Tiles", asset.Tiles.Count.ToString(), contentMain);
+        }
+        
+        private void BuildLite(PackAsset asset)
+        {
+            b.BuildPlainText("Weapons", asset.Weapons.Count.ToString(), contentMain);
+            b.BuildPlainText("Enemies", asset.Enemies.Count.ToString(), contentMain);
+            b.BuildPlainText("Rooms", asset.Rooms.Count.ToString(), contentMain);
         }
     }
 }
