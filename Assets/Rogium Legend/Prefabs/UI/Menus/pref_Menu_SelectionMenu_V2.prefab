@@ -2138,10 +2138,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ui:
     title: {fileID: 5406305671791262045}
-    previewBannerContainer: {fileID: 2696347238089589918}
-    previewBanner: {fileID: 5617769177519050609}
-    previewIconContainer: {fileID: 6585672595617644993}
+    description: {fileID: 0}
     previewIcon: {fileID: 800285747508903329}
+    previewBanner: {fileID: 5617769177519050609}
+    descriptionContainer: {fileID: 0}
+    previewIconContainer: {fileID: 6585672595617644993}
+    previewBannerContainer: {fileID: 2696347238089589918}
     content: {fileID: 5796702801054996205}
 --- !u!114 &6620750766450434762
 MonoBehaviour:
