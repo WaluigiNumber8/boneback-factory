@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using RedRats.Safety;
+using RedRats.Systems.Themes;
 using Rogium.Editors.Core;
 using Rogium.Systems.ThemeSystem;
 using Rogium.UserInterface.Interactables;
@@ -19,6 +20,7 @@ namespace Rogium.Editors.NewAssetSelection
         
         [SerializeField] private string title;
         [SerializeField] private RectTransform content;
+        [SerializeField] private ThemeType cardTheme = ThemeType.Blue;
         [SerializeField] private AssetCardControllerV2 cardPrefab;
         [SerializeField] private InteractableButton assetCreateButtonPrefab;
 
@@ -82,7 +84,7 @@ namespace Rogium.Editors.NewAssetSelection
                     card.SetToggle(true);
                     OnSelectCard?.Invoke(i);
                 }
-                ThemeUpdaterRogium.UpdateAssetCard(card);
+                ThemeUpdaterRogium.UpdateAssetCard(card, cardTheme);
                 continue;
 
                 void WhenCardSelect(int index)

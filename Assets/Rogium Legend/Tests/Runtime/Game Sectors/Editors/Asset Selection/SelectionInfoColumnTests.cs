@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.ObjectModel;
 using NUnit.Framework;
+using RedRats.Systems.Themes;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.NewAssetSelection;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Weapons;
 using Rogium.Tests.Core;
+using TMPro;
 using UnityEngine;
 using UnityEngine.TestTools;
+using UnityEngine.UI;
 using static Rogium.Tests.Editors.AssetCreator;
 using static Rogium.Tests.Editors.AssetSelection.SelectionInfoColumnTestsU;
 
@@ -114,6 +117,20 @@ namespace Rogium.Tests.Editors.AssetSelection
             yield return null;
             yield return SelectPack(0);
             Assert.That(infoColumn.Title, Is.EqualTo(title));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_KeepPropertyThemeToBlue_WhenCreatingPropertiesInColumn()
+        {
+            yield return OpenPackAndSelectEnemy();
+            Assert.That(infoColumn.GetProperty<string>(0).GetComponentInChildren<TextMeshProUGUI>().color, Is.EqualTo(ThemeOverseerMono.GetInstance().GetThemeData(ThemeType.Blue).Fonts.general.color));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_MakeEnemyCardsRed_WhenEnemySelectionOpened()
+        {
+            yield return OpenPackAndSelectEnemy();
+            Assert.That(selectionMenu.CurrentSelector.GetCard(0).GetComponentInChildren<Image>().sprite, Is.EqualTo(ThemeOverseerMono.GetInstance().GetThemeData(ThemeType.Red).Interactables.assetCard.normal));
         }
     
         #region Properties
