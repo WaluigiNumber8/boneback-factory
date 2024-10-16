@@ -716,6 +716,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Weapons
   content: {fileID: 7634937019703700140}
+  cardTheme: 2
   cardPrefab: {fileID: 3020654531083554274, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
   assetCreateButtonPrefab: {fileID: 9189480147332028196, guid: 475160b8cb80c2f4e9fa692693538ea9, type: 3}
 --- !u!114 &3286168972144075913
@@ -1120,6 +1121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Projectiles
   content: {fileID: 8089128776682258778}
+  cardTheme: 4
   cardPrefab: {fileID: 3020654531083554274, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
   assetCreateButtonPrefab: {fileID: 9189480147332028196, guid: 475160b8cb80c2f4e9fa692693538ea9, type: 3}
 --- !u!114 &4789661040330855882
@@ -1426,6 +1428,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Sprites
   content: {fileID: 5838327008951798175}
+  cardTheme: 5
   cardPrefab: {fileID: 3020654531083554274, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
   assetCreateButtonPrefab: {fileID: 9189480147332028196, guid: 475160b8cb80c2f4e9fa692693538ea9, type: 3}
 --- !u!114 &2278470943299211377
@@ -1546,6 +1549,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Palettes
   content: {fileID: 1017087434172153346}
+  cardTheme: 6
   cardPrefab: {fileID: 3020654531083554274, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
   assetCreateButtonPrefab: {fileID: 9189480147332028196, guid: 475160b8cb80c2f4e9fa692693538ea9, type: 3}
 --- !u!114 &7502018065910282837
@@ -2014,6 +2018,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Enemies
   content: {fileID: 7111832508738726196}
+  cardTheme: 1
   cardPrefab: {fileID: 3020654531083554274, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
   assetCreateButtonPrefab: {fileID: 9189480147332028196, guid: 475160b8cb80c2f4e9fa692693538ea9, type: 3}
 --- !u!114 &5877713210866338636
@@ -2136,6 +2141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 445a7318abcd4d239d7c101b5731a174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  essentialsOnly: 0
   ui:
     title: {fileID: 5406305671791262045}
     description: {fileID: 0}
@@ -3644,6 +3650,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Packs
   content: {fileID: 5276312561515409365}
+  cardTheme: 0
   cardPrefab: {fileID: 3952874868823821685, guid: 147692437204c584bb7663712e154aa7, type: 3}
   assetCreateButtonPrefab: {fileID: 9189480147332028196, guid: 475160b8cb80c2f4e9fa692693538ea9, type: 3}
 --- !u!114 &5554413112528077467
@@ -4035,6 +4042,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Rooms
   content: {fileID: 1962260172078582944}
+  cardTheme: 0
   cardPrefab: {fileID: 3020654531083554274, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
   assetCreateButtonPrefab: {fileID: 9189480147332028196, guid: 475160b8cb80c2f4e9fa692693538ea9, type: 3}
 --- !u!114 &5303570466104635384
@@ -4370,6 +4378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Tiles
   content: {fileID: 1116247974747082025}
+  cardTheme: 3
   cardPrefab: {fileID: 3020654531083554274, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
   assetCreateButtonPrefab: {fileID: 9189480147332028196, guid: 475160b8cb80c2f4e9fa692693538ea9, type: 3}
 --- !u!114 &2287063721032069820
