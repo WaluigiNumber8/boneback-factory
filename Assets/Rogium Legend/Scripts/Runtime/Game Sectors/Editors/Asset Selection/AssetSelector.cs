@@ -89,19 +89,19 @@ namespace Rogium.Editors.NewAssetSelection
                 {
                     data.WhenCardSelected?.Invoke(index);
                     OnSelectCard?.Invoke(index);
-                    TrackSelected(index);
+                    lastSelectedIndex = index;
                 }
                 void WhenCardDeselect(int index)
                 {
                     data.WhenCardDeselected?.Invoke(index);
                     OnDeselectCard?.Invoke(index);
-                    TrackSelected(index);
+                    lastSelectedIndex = index;
                 }
             }
             
             //Select the last card if no preselected assets and only if one was selected before
             if (preselectedAssets != null && preselectedAssets.Count != 0) return;
-            if (lastSelectedIndex != -1) OnSelectCard?.Invoke(lastSelectedIndex);
+            if (lastSelectedIndex != -1 && lastSelectedIndex < assets.Count) OnSelectCard?.Invoke(lastSelectedIndex);
             else OnSelectNone?.Invoke();
         }
 
@@ -134,8 +134,6 @@ namespace Rogium.Editors.NewAssetSelection
             InteractableButton addButton = (content.childCount > 0 && content.GetChild(0).TryGetComponent(out InteractableButton button)) ? button : Instantiate(assetCreateButtonPrefab, content);
             addButton.Action = data.WhenAssetCreate;
         }
-
-        private void TrackSelected(int index) => lastSelectedIndex = index;
 
         public RectTransform Content { get => content; }
         

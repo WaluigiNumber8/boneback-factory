@@ -104,6 +104,17 @@ namespace Rogium.Tests.Editors.AssetSelection
             yield return null;
             Assert.That(infoColumn.Title, Is.EqualTo(currentPack.Sprites[0].Title));
         }
+
+        [UnityTest]
+        public IEnumerator Should_ShowEmpty_WhenSelectedAssetDeleted()
+        {
+            string title = ExternalLibraryOverseer.Instance.Packs[1].Title;
+            yield return SelectPack(0);
+            ExternalLibraryOverseer.Instance.DeletePack(0);
+            yield return null;
+            yield return SelectPack(0);
+            Assert.That(infoColumn.Title, Is.EqualTo(title));
+        }
     
         #region Properties
         [UnityTest]
