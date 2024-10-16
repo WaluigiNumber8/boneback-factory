@@ -83,7 +83,6 @@ namespace Rogium.Editors.Core
             list[index] = asset;
             
             updateOnExternalStorage.Invoke(asset);
-            saveToExternalStorage.Invoke(asset);
         }
         
         /// <summary>
