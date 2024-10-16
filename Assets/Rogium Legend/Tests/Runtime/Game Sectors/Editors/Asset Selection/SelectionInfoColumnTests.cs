@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using NUnit.Framework;
 using RedRats.Systems.Themes;
 using Rogium.Core;
+using Rogium.Editors.Campaign;
 using Rogium.Editors.Core;
 using Rogium.Editors.NewAssetSelection;
 using Rogium.Editors.Packs;
@@ -10,6 +11,7 @@ using Rogium.Editors.Weapons;
 using Rogium.Systems.GASExtension;
 using Rogium.Tests.Core;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.UI;
@@ -143,6 +145,15 @@ namespace Rogium.Tests.Editors.AssetSelection
             GASButtonActions.CancelChangesEnemy();
             yield return null;
             Assert.That(infoColumn.GetProperty<string>(0).GetComponentInChildren<TextMeshProUGUI>().color, Is.EqualTo(ThemeOverseerMono.GetInstance().GetThemeData(ThemeType.Blue).Fonts.general.color));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_NotChangeCardsAccordingToTheme_WhenPackSelectionOpened()
+        {
+            yield return OpenPackAndSelectEnemy();
+            yield return SelectPack(0);
+            yield return null;
+            Assert.That(selectionMenu.CurrentSelector.GetCard(0).GetComponentInChildren<Image>().sprite, Is.EqualTo(AssetDatabase.LoadAssetAtPath<EditableAssetCardControllerV2>("Assets/Rogium Legend/Prefabs/UI/UI Assets/Selection V2/prefvar_AssetCard_V2 Pack.prefab").GetComponentInChildren<Image>().sprite));
         }
     
         #region Properties

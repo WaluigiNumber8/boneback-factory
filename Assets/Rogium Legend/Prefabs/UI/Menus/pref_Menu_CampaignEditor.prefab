@@ -5073,7 +5073,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Packs Selection
   content: {fileID: 2980958497971153499}
-  cardPrefab: {fileID: 7912177524985860092, guid: 1b74adb7b0888394695aecf249610140, type: 3}
+  cardTheme: 0
+  cardPrefab: {fileID: 4747340276104684807, guid: c2f818a701a60294980b4c96739947ff, type: 3}
   assetCreateButtonPrefab: {fileID: 0}
 --- !u!1 &5208986849712746218
 GameObject:
