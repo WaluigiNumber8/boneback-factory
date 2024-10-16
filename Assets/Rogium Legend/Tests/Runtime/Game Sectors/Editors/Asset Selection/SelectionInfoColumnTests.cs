@@ -7,6 +7,7 @@ using Rogium.Editors.Core;
 using Rogium.Editors.NewAssetSelection;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Weapons;
+using Rogium.Systems.GASExtension;
 using Rogium.Tests.Core;
 using TMPro;
 using UnityEngine;
@@ -131,6 +132,17 @@ namespace Rogium.Tests.Editors.AssetSelection
         {
             yield return OpenPackAndSelectEnemy();
             Assert.That(selectionMenu.CurrentSelector.GetCard(0).GetComponentInChildren<Image>().sprite, Is.EqualTo(ThemeOverseerMono.GetInstance().GetThemeData(ThemeType.Red).Interactables.assetCard.normal));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_KeepPropertiesThemeBlue_WhenReturnFromEnemyEditor()
+        {
+            yield return OpenPackAndSelectEnemy();
+            yield return MenuLoader.PrepareEnemyEditor(false);
+            GASButtonActions.OpenEditorEnemy(0);
+            GASButtonActions.CancelChangesEnemy();
+            yield return null;
+            Assert.That(infoColumn.GetProperty<string>(0).GetComponentInChildren<TextMeshProUGUI>().color, Is.EqualTo(ThemeOverseerMono.GetInstance().GetThemeData(ThemeType.Blue).Fonts.general.color));
         }
     
         #region Properties
