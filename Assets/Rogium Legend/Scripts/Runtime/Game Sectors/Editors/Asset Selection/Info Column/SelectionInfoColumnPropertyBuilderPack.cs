@@ -29,20 +29,20 @@ namespace Rogium.Editors.NewAssetSelection
 
         private void BuildFull(PackAsset asset)
         {
-            b.BuildPlainText("Palettes", asset.Palettes.Count.ToString(), contentMain);
-            b.BuildPlainText("Sprites", asset.Sprites.Count.ToString(), contentMain);
-            b.BuildPlainText("Weapons", asset.Weapons.Count.ToString(), contentMain);
-            b.BuildPlainText("Projectiles", asset.Projectiles.Count.ToString(), contentMain);
-            b.BuildPlainText("Enemies", asset.Enemies.Count.ToString(), contentMain);
-            b.BuildPlainText("Rooms", asset.Rooms.Count.ToString(), contentMain);
-            b.BuildPlainText("Tiles", asset.Tiles.Count.ToString(), contentMain);
+            b.BuildPlainText("Palettes", asset.PaletteCount.ToString(), contentMain);
+            b.BuildPlainText("Sprites", asset.SpriteCount.ToString(), contentMain);
+            b.BuildPlainText("Weapons", asset.WeaponCount.ToString(), contentMain);
+            b.BuildPlainText("Projectiles", asset.ProjectileCount.ToString(), contentMain);
+            b.BuildPlainText("Enemies", asset.EnemyCount.ToString(), contentMain);
+            b.BuildPlainText("Rooms", asset.RoomCount.ToString(), contentMain);
+            b.BuildPlainText("Tiles", asset.TileCount.ToString(), contentMain);
         }
         
         private void BuildLite(PackAsset asset)
         {
-            b.BuildPlainText("Weapons", asset.Weapons.Count.ToString(), contentMain);
-            b.BuildPlainText("Enemies", asset.Enemies.Count.ToString(), contentMain);
-            b.BuildPlainText("Rooms", asset.Rooms.Count.ToString(), contentMain);
+            b.BuildPlainText("Weapons", asset.WeaponCount.ToString(), contentMain);
+            b.BuildPlainText("Enemies", asset.EnemyCount.ToString(), contentMain);
+            b.BuildPlainText("Rooms", asset.RoomCount.ToString(), contentMain);
         }
     }
 }

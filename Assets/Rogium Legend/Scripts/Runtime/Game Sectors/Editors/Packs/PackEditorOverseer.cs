@@ -91,6 +91,7 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureIsNotNull(currentPack.Palettes, "Pack Editor - List of Palettes");
             CurrentPack.Palettes.Add(newAsset);
+            SavePackChanges();
         }
 
         /// <summary>
@@ -121,6 +122,7 @@ namespace Rogium.Editors.Packs
             }
             
             currentPack.Palettes.Remove(assetIndex);
+            SavePackChanges();
         }
 
         /// <summary>
@@ -148,6 +150,7 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureIsNotNull(currentPack.Sprites, "Pack Editor - List of Sprites");
             CurrentPack.Sprites.Add(newAsset);
+            SavePackChanges();
         }
 
         /// <summary>
@@ -200,6 +203,7 @@ namespace Rogium.Editors.Packs
                 }
             }
             currentPack.Sprites.Remove(assetIndex);
+            SavePackChanges();
         }
 
         /// <summary>
@@ -228,6 +232,7 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureIsNotNull(currentPack.Weapons, "Pack Editor - List of Weapons");
             CurrentPack.Weapons.Add(newAsset);
+            SavePackChanges();
         }
 
         /// <summary>
@@ -254,6 +259,7 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Weapons, "List of Weapons");
             RemoveSpriteAssociation(currentPack, currentPack.Weapons[assetIndex]);
             currentPack.Weapons.Remove(assetIndex);
+            SavePackChanges();
         }
 
         /// <summary>
@@ -281,6 +287,7 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureIsNotNull(currentPack.Projectiles, "Pack Editor - List of Projectiles");
             CurrentPack.Projectiles.Add(newAsset);
+            SavePackChanges();
         }
 
         /// <summary>
@@ -307,6 +314,7 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Projectiles, "List of Projectiles");
             RemoveSpriteAssociation(currentPack, currentPack.Projectiles[assetIndex]);
             currentPack.Projectiles.Remove(assetIndex);
+            SavePackChanges();
         }
 
         /// <summary>
@@ -334,12 +342,7 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureIsNotNull(currentPack.Enemies, "Pack Editor - List of Enemies");
             CurrentPack.Enemies.Add(newAsset);
-        }
-        public void CreateNewEnemy()
-        {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureIsNotNull(currentPack.Enemies, "Pack Editor - List of Enemies");
-            CurrentPack.Enemies.Add(new EnemyAsset.Builder().Build());
+            SavePackChanges();
         }
 
         /// <summary>
@@ -366,6 +369,7 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Enemies, "List of Enemies");
             RemoveSpriteAssociation(currentPack, currentPack.Enemies[assetIndex]);
             currentPack.Enemies.Remove(assetIndex);
+            SavePackChanges();
         }
 
         /// <summary>
@@ -383,6 +387,62 @@ namespace Rogium.Editors.Packs
 
         #endregion
         
+        #region Rooms
+        /// <summary>
+        /// Creates a new room, and adds it to the Pack Asset.
+        /// <param name="newAsset">The new Room Asset to Add.</param>
+        /// </summary>
+        public void CreateNewRoom(RoomAsset newAsset)
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
+            SafetyNet.EnsureIsNotNull(currentPack.Rooms, "Pack Editor - List of Rooms");
+
+            InternalLibraryOverseer library = InternalLibraryOverseer.GetInstance();
+            newAsset.ObjectGrid.SetTo(new Vector2Int(6, 5), AssetDataBuilder.ForObject(library.GetObjectByID("001")));
+            newAsset.ObjectGrid.SetTo(new Vector2Int(8, 5), AssetDataBuilder.ForObject(library.GetObjectByID("002")));
+            CurrentPack.Rooms.Add(newAsset);
+            SavePackChanges();
+        }
+
+        /// <summary>
+        /// Updates the room in the given pack.
+        /// </summary>
+        /// <param name="newAsset">Room Asset with the new details.</param>
+        /// <param name="positionIndex">Which room to override.</param>
+        public void UpdateRoom(RoomAsset newAsset, int positionIndex)
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
+            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Rooms, "List of Rooms");
+            CurrentPack.Rooms.Update(positionIndex, newAsset);
+        } 
+
+        /// <summary>
+        /// Deletes a room from the pack.
+        /// <param name="assetIndex">The index of the room to be deleted.</param>
+        /// </summary>
+        public void RemoveRoom(int assetIndex)
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
+            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Rooms, "List of Rooms");
+            currentPack.Rooms.Remove(assetIndex);
+            SavePackChanges();
+        }
+
+        /// <summary>
+        /// Send Command to Room Editor, to start editing a room.
+        /// </summary>
+        /// <param name="assetIndex">Room index from the list</param>
+        /// <param name="prepareEditor"></param>
+        public void ActivateRoomEditor(int assetIndex, bool prepareEditor = true)
+        {
+            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
+            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Rooms, "List of Rooms");
+            SafetyNet.EnsureIntIsInRange(assetIndex, 0, currentPack.Rooms.Count, "Room Index");
+            roomEditor.AssignAsset(CurrentPack.Rooms[assetIndex], assetIndex, prepareEditor);
+        }
+
+        #endregion
+        
         #region Tiles
         /// <summary>
         /// Creates a new tile, and adds it to the Pack Asset.
@@ -393,6 +453,7 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureIsNotNull(currentPack.Tiles, "Pack Editor - List of Tiles");
             CurrentPack.Tiles.Add(newAsset);
+            SavePackChanges();
         }
 
         /// <summary>
@@ -419,6 +480,7 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Tiles, "List of Tiles");
             RemoveSpriteAssociation(currentPack, currentPack.Tiles[assetIndex]);
             currentPack.Tiles.Remove(assetIndex);
+            SavePackChanges();
         }
 
         /// <summary>
@@ -432,60 +494,6 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Tiles, "List of Tiles");
             SafetyNet.EnsureIntIsInRange(assetIndex, 0, currentPack.Tiles.Count, "Tile Index");
             tileEditor.AssignAsset(CurrentPack.Tiles[assetIndex], assetIndex, prepareEditor);
-        }
-
-        #endregion
-        
-        #region Rooms
-        /// <summary>
-        /// Creates a new room, and adds it to the Pack Asset.
-        /// <param name="newAsset">The new Room Asset to Add.</param>
-        /// </summary>
-        public void CreateNewRoom(RoomAsset newAsset)
-        {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureIsNotNull(currentPack.Rooms, "Pack Editor - List of Rooms");
-
-            InternalLibraryOverseer library = InternalLibraryOverseer.GetInstance();
-            newAsset.ObjectGrid.SetTo(new Vector2Int(6, 5), AssetDataBuilder.ForObject(library.GetObjectByID("001")));
-            newAsset.ObjectGrid.SetTo(new Vector2Int(8, 5), AssetDataBuilder.ForObject(library.GetObjectByID("002")));
-            CurrentPack.Rooms.Add(newAsset);
-        }
-
-        /// <summary>
-        /// Updates the room in the given pack.
-        /// </summary>
-        /// <param name="newAsset">Room Asset with the new details.</param>
-        /// <param name="positionIndex">Which room to override.</param>
-        public void UpdateRoom(RoomAsset newAsset, int positionIndex)
-        {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Rooms, "List of Rooms");
-            CurrentPack.Rooms.Update(positionIndex, newAsset);
-        } 
-
-        /// <summary>
-        /// Deletes a room from the pack.
-        /// <param name="assetIndex">The index of the room to be deleted.</param>
-        /// </summary>
-        public void RemoveRoom(int assetIndex)
-        {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Rooms, "List of Rooms");
-            currentPack.Rooms.Remove(assetIndex);
-        }
-
-        /// <summary>
-        /// Send Command to Room Editor, to start editing a room.
-        /// </summary>
-        /// <param name="assetIndex">Room index from the list</param>
-        /// <param name="prepareEditor"></param>
-        public void ActivateRoomEditor(int assetIndex, bool prepareEditor = true)
-        {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Rooms, "List of Rooms");
-            SafetyNet.EnsureIntIsInRange(assetIndex, 0, currentPack.Rooms.Count, "Room Index");
-            roomEditor.AssignAsset(CurrentPack.Rooms[assetIndex], assetIndex, prepareEditor);
         }
 
         #endregion
