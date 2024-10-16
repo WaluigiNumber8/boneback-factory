@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Rogium.Editors.Core;
 using Rogium.Editors.NewAssetSelection;
 using UnityEngine;
@@ -13,45 +14,37 @@ namespace Rogium.Editors.Campaign
     {
         [SerializeField] private TextMeshProUGUI counterText;
 
-        private AssetSelector selector;
+        private AssetSelectionPickerBase picker;
         private int counter;
 
-        private void Awake() => selector = CampaignEditorOverseerMono.GetInstance().SelectionPicker.Selector;
+        private void Awake() => picker = CampaignEditorOverseerMono.GetInstance().SelectionPicker;
 
         private void OnEnable()
         {
-            selector.OnSelectCard += Increase;
-            selector.OnDeselectCard += Decrease;
-            CampaignEditorOverseer.Instance.OnAssignAsset += Reset;
+            picker.Selector.OnSelectCard += RefreshCounter;
+            picker.Selector.OnDeselectCard += RefreshCounter;
+            CampaignEditorOverseer.Instance.OnAssignAsset += RefreshCounter;
         }
 
         private void OnDisable()
         {
-            selector.OnSelectCard += Increase;
-            selector.OnDeselectCard += Decrease;
-            CampaignEditorOverseer.Instance.OnAssignAsset -= Reset;
+            picker.Selector.OnSelectCard += RefreshCounter;
+            picker.Selector.OnDeselectCard += RefreshCounter;
+            CampaignEditorOverseer.Instance.OnAssignAsset -= RefreshCounter;
         }
 
-        private void Reset(IAsset asset)
+        private void RefreshCounter(CampaignAsset obj)
         {
-            counter = ((CampaignAsset)asset).PackReferences.Count;
-            RefreshUI();
-        }
-        
-        private void Increase(int _)
-        {
-            counter++;
-            RefreshUI();
-        }
-        
-        private void Decrease(int _)
-        {
-            counter--;
-            RefreshUI();
+            StartCoroutine(DelayCoroutine());
+            IEnumerator DelayCoroutine()
+            {
+                yield return null;
+                RefreshCounter(0);
+            }
         }
 
-        private void RefreshUI() => counterText.text = counter.ToString();
-        
+        private void RefreshCounter(int _) => counterText.text = picker.SelectedAssetsCount.ToString();
+
         public int Counter { get => Convert.ToInt32(counterText.text); }
     }
 }

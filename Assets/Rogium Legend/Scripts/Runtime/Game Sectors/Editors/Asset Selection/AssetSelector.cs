@@ -82,7 +82,7 @@ namespace Rogium.Editors.NewAssetSelection
                 if (preselectedAssets?.Contains(asset) == true)
                 {
                     card.SetToggle(true);
-                    OnSelectCard?.Invoke(i);
+                    WhenCardSelect(i);
                 }
                 ThemeUpdaterRogium.UpdateAssetCard(card, cardTheme);
                 continue;
