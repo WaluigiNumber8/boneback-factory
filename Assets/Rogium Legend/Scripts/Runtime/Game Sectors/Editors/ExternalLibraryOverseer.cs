@@ -30,7 +30,7 @@ namespace Rogium.Editors.Core
         private ExternalLibraryOverseer()
         {
             packs = new AssetList<PackAsset>(ex.CreatePack, ex.UpdatePack, ex.DeletePack);
-            campaigns = new AssetList<CampaignAsset>(ex.Campaigns.Save, ex.Campaigns.UpdateTitle, ex.Campaigns.Delete);
+            campaigns = new AssetList<CampaignAsset>(ex.Campaigns.Save, ex.Campaigns.Update, ex.Campaigns.Delete);
             
             packEditor.OnSaveChanges += UpdatePack;
             packEditor.OnRemoveSprite += RemoveSpriteAssociation;

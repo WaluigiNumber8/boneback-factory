@@ -113,13 +113,13 @@ namespace Rogium.Editors.Packs
                 Asset.GenerateID();
                 
                 Asset.description = EditorDefaults.Instance.PackDescription;
-                Asset.palettes = new AssetList<PaletteAsset>(ex.Palettes.Save, ex.Palettes.UpdateTitle, ex.Palettes.Delete);
-                Asset.sprites = new AssetList<SpriteAsset>(ex.Sprites.Save, ex.Sprites.UpdateTitle, ex.Sprites.Delete);
-                Asset.weapons = new AssetList<WeaponAsset>(ex.Weapons.Save, ex.Weapons.UpdateTitle, ex.Weapons.Delete);
-                Asset.projectiles = new AssetList<ProjectileAsset>(ex.Projectiles.Save, ex.Projectiles.UpdateTitle, ex.Projectiles.Delete);
-                Asset.enemies = new AssetList<EnemyAsset>(ex.Enemies.Save, ex.Enemies.UpdateTitle, ex.Enemies.Delete);
-                Asset.rooms = new AssetList<RoomAsset>(ex.Rooms.Save, ex.Rooms.UpdateTitle, ex.Rooms.Delete);
-                Asset.tiles = new AssetList<TileAsset>(ex.Tiles.Save, ex.Tiles.UpdateTitle, ex.Tiles.Delete);
+                Asset.palettes = new AssetList<PaletteAsset>(ex.Palettes.Save, ex.Palettes.Update, ex.Palettes.Delete);
+                Asset.sprites = new AssetList<SpriteAsset>(ex.Sprites.Save, ex.Sprites.Update, ex.Sprites.Delete);
+                Asset.weapons = new AssetList<WeaponAsset>(ex.Weapons.Save, ex.Weapons.Update, ex.Weapons.Delete);
+                Asset.projectiles = new AssetList<ProjectileAsset>(ex.Projectiles.Save, ex.Projectiles.Update, ex.Projectiles.Delete);
+                Asset.enemies = new AssetList<EnemyAsset>(ex.Enemies.Save, ex.Enemies.Update, ex.Enemies.Delete);
+                Asset.rooms = new AssetList<RoomAsset>(ex.Rooms.Save, ex.Rooms.Update, ex.Rooms.Delete);
+                Asset.tiles = new AssetList<TileAsset>(ex.Tiles.Save, ex.Tiles.Update, ex.Tiles.Delete);
             }
 
             public Builder WithDescription(string description)
