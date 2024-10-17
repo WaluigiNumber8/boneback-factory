@@ -22,18 +22,10 @@ namespace Rogium.Tests.Core
         private static readonly GameObject selectionMenuProperty = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Menu_SelectionMenu.prefab");
         private static readonly GameObject selectionMenuV2Property = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Menu_SelectionMenu_V2.prefab");
         private static readonly GameObject mainMenuProperty = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Menu_Main.prefab");
-
-        public static IEnumerator PrepareSelectionMenu()
-        {
-            OverseerLoader.LoadInternalLibrary();
-            OverseerLoader.LoadThemeOverseer();
-            Object.Instantiate(selectionMenuProperty, Object.FindFirstObjectByType<Canvas>().transform);
-            yield return null;
-            GASButtonActions.OpenSelectionPack();
-        }
         
         public static IEnumerator PrepareSelectionMenuV2()
         {
+            OverseerLoader.LoadBackgroundOverseer();
             OverseerLoader.LoadInternalLibrary();
             OverseerLoader.LoadThemeOverseer();
             OverseerLoader.LoadUIBuilder();
@@ -43,6 +35,7 @@ namespace Rogium.Tests.Core
         
         public static IEnumerator PrepareMainMenu()
         {
+            OverseerLoader.LoadBackgroundOverseer();
             OverseerLoader.LoadInternalLibrary();
             OverseerLoader.LoadThemeOverseer();
             Object.Instantiate(mainMenuProperty, Object.FindFirstObjectByType<Canvas>().transform);
@@ -165,6 +158,7 @@ namespace Rogium.Tests.Core
         
         public static IEnumerator PrepareCampaignSelection()
         {
+            OverseerLoader.LoadBackgroundOverseer();
             OverseerLoader.LoadUIBuilder();
             OverseerLoader.LoadThemeOverseer();
             
