@@ -24,11 +24,8 @@ using Rogium.Systems.ActionHistory;
 using Rogium.Systems.Toolbox;
 using Rogium.UserInterface.Backgrounds;
 using Rogium.UserInterface.Editors.AssetSelection;
-using Rogium.UserInterface.Containers;
-using Rogium.UserInterface.Core;
 using Rogium.UserInterface.Editors.ModalWindowBuilding;
 using Rogium.UserInterface.Gameplay.PauseMenu;
-using Rogium.UserInterface.ModalWindows;
 using UnityEngine;
 
 namespace Rogium.Systems.GASExtension
