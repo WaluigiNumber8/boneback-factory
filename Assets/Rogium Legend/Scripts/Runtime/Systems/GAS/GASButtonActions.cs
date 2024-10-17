@@ -72,9 +72,6 @@ namespace Rogium.Systems.GASExtension
         #region Return from menus
         public static void ReturnToMainMenuSelection()
         {
-            GAS.ObjectSetActive(false, UIEditorContainer.GetInstance().Background);
-            GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundGameplayMenus);
-            GAS.ObjectSetActive(true, UIMainContainer.GetInstance().BackgroundMain);
             GAS.SwitchMenu(MenuType.MainMenu);
             GASRogium.ChangeTheme(ThemeType.Blue);
         }
@@ -96,8 +93,6 @@ namespace Rogium.Systems.GASExtension
         public static void OpenSelectionCampaign()
         {
             GASRogium.ChangeTheme(ThemeType.Red);
-            GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundMain);
-            GAS.ObjectSetActive(true, UIMainContainer.GetInstance().BackgroundGameplayMenus);
             GAS.SwitchMenu(MenuType.CampaignSelection);
             CampaignAssetSelectionOverseer.Instance.SelectCampaignFirst();
             GASRogium.ChangeTheme(ThemeType.Red);

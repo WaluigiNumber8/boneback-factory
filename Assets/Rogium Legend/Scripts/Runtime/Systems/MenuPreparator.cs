@@ -22,9 +22,6 @@ namespace Rogium.Core
             InputSystem inputSystem = InputSystem.GetInstance();
 
             inputSystem.EnableUIMap();
-            GAS.ObjectSetActive(true, UIMainContainer.GetInstance().BackgroundMain);
-            GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundGameplayMenus);
-            GAS.ObjectSetActive(false, UIEditorContainer.GetInstance().Background);
             
             //Force grouping on click/right click
             inputSystem.UI.Click.OnPress += ActionHistorySystem.ForceBeginGrouping;

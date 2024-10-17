@@ -2,6 +2,8 @@ using System.Collections;
 using NUnit.Framework;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Backgrounds;
+using UnityEngine;
+using UnityEngine.TestTools;
 
 namespace Rogium.Tests.UI.Backgrounds
 {
@@ -22,9 +24,17 @@ namespace Rogium.Tests.UI.Backgrounds
         }
 
         [Test]
-        public void Should_ShowRedBackground_WhenGameStarts()
+        public void Should_ShowMainMenuBackground_WhenGameStarts()
         {
             Assert.That(overseer.IsSetToMainMenu(), Is.EqualTo(true));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowEditorBackground_WhenSwitched()
+        {
+            overseer.SwitchToEditor();
+            yield return new WaitForSeconds(0.2f);
+            Assert.That(overseer.IsSetToEditor(), Is.EqualTo(true));
         }
     }
 }
