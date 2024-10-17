@@ -16,9 +16,11 @@ namespace Rogium.Editors.NewAssetSelection.UI
         public void Construct(PackAsset asset)
         {
             ui.packTitleText.text = asset.Title;
+            ui.packIcon.sprite = asset.Icon;
         }
         
         public string Title { get => ui.packTitleText.text; }
+        public Sprite Icon { get => ui.packIcon.sprite; }
         
         [Serializable]
         public struct NavBarUIInfo

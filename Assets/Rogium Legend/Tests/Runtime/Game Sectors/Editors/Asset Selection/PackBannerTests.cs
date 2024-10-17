@@ -49,5 +49,20 @@ namespace Rogium.Tests.Editors.AssetSelection
             yield return null;
             Assert.That(packBanner.Title, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[1].Title));
         }
+
+        [Test]
+        public void Should_DisplayPackIcon_WhenLoaded()
+        {
+            Assert.That(packBanner.Icon, Is.EqualTo(currentPack.Icon));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_DisplayPackIcon_WhenLoadedThenLoadedADifferentPack()
+        {
+            selectionMenu.Open(AssetType.Pack);
+            ((EditableAssetCardControllerV2)selectionMenu.CurrentSelector.GetCard(1)).Edit();
+            yield return null;
+            Assert.That(packBanner.Icon, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[1].Icon));
+        }
     }
 }
