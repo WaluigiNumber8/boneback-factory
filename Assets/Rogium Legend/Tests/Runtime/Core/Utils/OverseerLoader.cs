@@ -13,10 +13,12 @@ namespace Rogium.Tests.Core
         private static readonly GameObject uiBuilderPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/Global/Builders/pref_Builder_InteractableProperties.prefab");
         private static readonly ModalWindowBuilder modalWindowBuilderPrefab = AssetDatabase.LoadAssetAtPath<ModalWindowBuilder>("Assets/Rogium Legend/Prefabs/Global/Builders/pref_Builder_ModalWindows.prefab");
         private static readonly GameObject themeOverseerPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/Global/Overseers/pref_Overseer_Themes.prefab");
+        private static readonly GameObject backgroundOverseerPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/Global/Overseers/pref_Overseer_Backgrounds.prefab");
 
         public static void LoadInternalLibrary() => Object.Instantiate(internalLibraryPrefab);
         public static void LoadThemeOverseer() => Object.Instantiate(themeOverseerPrefab);
         public static void LoadUIBuilder() => Object.Instantiate(uiBuilderPrefab, GetCanvasTransform());
+        public static void LoadBackgroundOverseer() => Object.Instantiate(backgroundOverseerPrefab);
         public static void LoadModalWindowBuilder()
         {
             LoadThemeOverseer();
