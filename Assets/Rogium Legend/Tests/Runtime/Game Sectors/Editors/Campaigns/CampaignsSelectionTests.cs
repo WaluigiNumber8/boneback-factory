@@ -125,10 +125,10 @@ namespace Rogium.Tests.Editors.Campaigns
         }
 
         [UnityTest]
-        public IEnumerator Should_SetPackCounterToPackReferenceCount_WhenEditorOpened()
+        public IEnumerator Should_SetPackCounterToSelectedPacksCount_WhenEditorOpened()
         {
             yield return null;
-            Assert.That(editorMono.GetComponentInChildren<PacksUICounter>().Counter, Is.EqualTo(editor.CurrentAsset.PackReferences.Count));
+            Assert.That(editorMono.GetComponentInChildren<PacksUICounter>().Counter, Is.EqualTo(editorMono.SelectionPicker.SelectedAssetsCount));
         }
 
         [UnityTest]
@@ -136,7 +136,7 @@ namespace Rogium.Tests.Editors.Campaigns
         {
             editorMono.SelectionPicker.Select(0);
             yield return null;
-            Assert.That(editorMono.GetComponentInChildren<PacksUICounter>().Counter, Is.EqualTo(editor.CurrentAsset.PackReferences.Count));
+            Assert.That(editorMono.GetComponentInChildren<PacksUICounter>().Counter, Is.EqualTo(editorMono.SelectionPicker.SelectedAssetsCount));
         }
     }
 }
