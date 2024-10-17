@@ -4,7 +4,6 @@ using RedRats.UI.Core.Cursors;
 using Rogium.Systems.Toolbox;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Cursors;
-using UnityEngine;
 using UnityEngine.TestTools;
 using static Rogium.Tests.Systems.Cursors.CursorUtils;
 

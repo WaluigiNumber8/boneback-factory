@@ -45,6 +45,7 @@ namespace Rogium.Tests.Editors
             CampaignAsset campaign = new CampaignAsset.Builder()
                 .WithTitle("Test Campaign")
                 .WithIcon(RedRatBuilder.GenerateSprite(Color.black, 16, 16, 16))
+                .WithDataPack(CreatePack())
                 .Build();
             return campaign;
         }

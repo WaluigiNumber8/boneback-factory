@@ -22,12 +22,10 @@ using Rogium.Gameplay.Inventory;
 using Rogium.Options.Core;
 using Rogium.Systems.ActionHistory;
 using Rogium.Systems.Toolbox;
+using Rogium.UserInterface.Backgrounds;
 using Rogium.UserInterface.Editors.AssetSelection;
-using Rogium.UserInterface.Containers;
-using Rogium.UserInterface.Core;
 using Rogium.UserInterface.Editors.ModalWindowBuilding;
 using Rogium.UserInterface.Gameplay.PauseMenu;
-using Rogium.UserInterface.ModalWindows;
 using UnityEngine;
 
 namespace Rogium.Systems.GASExtension
@@ -72,10 +70,8 @@ namespace Rogium.Systems.GASExtension
         #region Return from menus
         public static void ReturnToMainMenuSelection()
         {
-            GAS.ObjectSetActive(false, UIEditorContainer.GetInstance().Background);
-            GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundGameplayMenus);
-            GAS.ObjectSetActive(true, UIMainContainer.GetInstance().BackgroundMain);
             GAS.SwitchMenu(MenuType.MainMenu);
+            BackgroundOverseerMono.GetInstance().SwitchToMainMenu();
             GASRogium.ChangeTheme(ThemeType.Blue);
         }
 
@@ -83,21 +79,13 @@ namespace Rogium.Systems.GASExtension
         {
             GAS.SwitchMenu(MenuType.MainMenu);
         }
-        
-        private static void ReturnToPackSelectionMenu()
-        {
-            GASRogium.ChangeTheme(ThemeType.Blue);
-            PackEditorOverseer.Instance.CompleteEditing();
-            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToMainMenuSelection);
-            GAS.SwitchMenu(MenuType.AssetSelection);
-            GASRogium.OpenSelectionMenu(AssetType.Pack);
-        }
         #endregion
 
         #region Open Selection Menus
         public static void OpenSelectionPack()
         {
             GASRogium.ChangeTheme(ThemeType.Blue);
+            BackgroundOverseerMono.GetInstance().SwitchToEditor();
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Pack);
         }
@@ -105,9 +93,8 @@ namespace Rogium.Systems.GASExtension
         public static void OpenSelectionCampaign()
         {
             GASRogium.ChangeTheme(ThemeType.Red);
-            GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundMain);
-            GAS.ObjectSetActive(true, UIMainContainer.GetInstance().BackgroundGameplayMenus);
             GAS.SwitchMenu(MenuType.CampaignSelection);
+            BackgroundOverseerMono.GetInstance().SwitchToGameMenu();
             CampaignAssetSelectionOverseer.Instance.SelectCampaignFirst();
             GASRogium.ChangeTheme(ThemeType.Red);
         }
@@ -518,6 +505,7 @@ namespace Rogium.Systems.GASExtension
 
         public static void OpenEditorCampaign(int assetIndex)
         {
+            BackgroundOverseerMono.GetInstance().SwitchToEditor();
             GAS.SwitchMenu(MenuType.CampaignEditor);
             ExternalLibraryOverseer.Instance.ActivateCampaignEditor(assetIndex);
             storedIndex = assetIndex;

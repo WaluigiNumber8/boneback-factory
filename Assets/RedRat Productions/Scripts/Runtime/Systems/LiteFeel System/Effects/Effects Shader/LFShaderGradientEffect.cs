@@ -45,6 +45,15 @@ namespace RedRats.Systems.LiteFeel.Effects
         private Color startColor1;
         private Color startColor2;
         private Color startColor3;
+
+        #region Update Values
+
+        public void UpdateTargetColor1(Color color) => targetColor01 = color;
+        public void UpdateTargetColor2(Color color) => targetColor02 = color;
+        public void UpdateTargetColor3(Color color) => targetColor03 = color;
+        public void UpdateTargetColors(Color color1, Color color2, Color color3) { UpdateTargetColor1(color1); UpdateTargetColor2(color2); UpdateTargetColor3(color3); }
+
+        #endregion
         
         protected override void ResetTargetState()
         {
@@ -103,5 +112,9 @@ namespace RedRats.Systems.LiteFeel.Effects
                 AddColorTween(Color3Property, targetColor03, colorCurve);
             }
         }
+        
+        public Color TargetColor1 { get => targetColor01; }
+        public Color TargetColor2 { get => targetColor02; }
+        public Color TargetColor3 { get => targetColor03; }
     }
 }

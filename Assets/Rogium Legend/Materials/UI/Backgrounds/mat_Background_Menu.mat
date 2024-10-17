@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: mat_Background_Editor
+  m_Name: mat_Background_Menu
   m_Shader: {fileID: -6465566751694194690, guid: 389aadf67837a5045b9b84210cf52f94, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -100,8 +100,8 @@ Material:
     - _ClipRect: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _FullBlendColor: {r: 0, g: 0, b: 0, a: 0}
-    - _GradientColor1: {r: 0.008023192, g: 0, b: 0.10946172, a: 1}
-    - _GradientColor2: {r: 0.001517635, g: 0.000303527, b: 0.013702081, a: 1}
+    - _GradientColor1: {r: 0.037000436, g: 0.004856432, b: 0.007353014, a: 1}
+    - _GradientColor2: {r: 0.004391442, g: 0.001214108, b: 0.001214108, a: 1}
     - _GradientColor3: {r: 0, g: 0, b: 0, a: 1}
     - _MainColor: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}

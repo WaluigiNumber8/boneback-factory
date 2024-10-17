@@ -1,8 +1,5 @@
-﻿using RedRats.Systems.GASCore;
-using Rogium.Systems.ActionHistory;
+﻿using Rogium.Systems.ActionHistory;
 using Rogium.Systems.Input;
-using Rogium.UserInterface.Containers;
-using Rogium.UserInterface.Core;
 using UnityEngine;
 
 namespace Rogium.Core
@@ -19,15 +16,9 @@ namespace Rogium.Core
 
         private void Start()
         {
-            CanvasOverseer canvasOverseer = CanvasOverseer.GetInstance();
             InputSystem inputSystem = InputSystem.GetInstance();
 
             inputSystem.EnableUIMap();
-            GAS.ObjectSetActive(true, UIMainContainer.GetInstance().BackgroundMain);
-            GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundGameplayMenus);
-            GAS.ObjectSetActive(false, UIEditorContainer.GetInstance().Background);
-            GAS.ObjectSetActive(false, canvasOverseer.NavigationBar.transform.GetChild(0).gameObject);
-            canvasOverseer.NavigationBar.Hide();
             
             //Force grouping on click/right click
             inputSystem.UI.Click.OnPress += ActionHistorySystem.ForceBeginGrouping;
