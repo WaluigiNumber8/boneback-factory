@@ -33,8 +33,20 @@ namespace Rogium.Tests.UI.Backgrounds
         public IEnumerator Should_ShowEditorBackground_WhenSwitched()
         {
             overseer.SwitchToEditor();
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(1f);
             Assert.That(overseer.IsSetToEditor(), Is.EqualTo(true));
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_ShowGameMenuBackgroundAfterOpeningEditor_WhenSwitched()
+        {
+            overseer.SwitchToEditor();
+            yield return new WaitForSeconds(1f);
+            overseer.SwitchToMainMenu();
+            yield return new WaitForSeconds(1f);
+            overseer.SwitchToGameMenu();
+            yield return new WaitForSeconds(1f);
+            Assert.That(overseer.IsSetToGameMenu(), Is.EqualTo(true));
         }
     }
 }
