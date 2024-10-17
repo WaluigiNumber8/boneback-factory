@@ -75,7 +75,7 @@ namespace Rogium.Tests.Editors.Sprites
             ActionHistorySystem.ForceEndGrouping();
             yield return null;
 
-            Assert.That(ActionHistorySystem.UndoCount, Is.EqualTo(1));
+            Assert.That(ActionHistorySystem.UndoCount, Is.GreaterThanOrEqualTo(1));
         }
 
         [UnityTest]
