@@ -153,7 +153,7 @@ namespace Rogium.Tests.Editors.AssetSelection
             yield return OpenPackAndSelectEnemy();
             yield return SelectPack(0);
             yield return null;
-            Assert.That(selectionMenu.CurrentSelector.GetCard(0).GetComponentInChildren<Image>().sprite, Is.EqualTo(AssetDatabase.LoadAssetAtPath<EditableAssetCardControllerV2>("Assets/Rogium Legend/Prefabs/UI/UI Assets/Selection V2/prefvar_AssetCard_V2 Pack.prefab").GetComponentInChildren<Image>().sprite));
+            Assert.That(selectionMenu.CurrentSelector.GetCard(0).GetComponentInChildren<Image>().sprite, Is.EqualTo(AssetDatabase.LoadAssetAtPath<EditableAssetCardControllerV2>("Assets/Rogium Legend/Prefabs/UI/UI Assets/Selection V2/prefvar_AssetCard_V2_Pack.prefab").GetComponentInChildren<Image>().sprite));
         }
     
         #region Properties

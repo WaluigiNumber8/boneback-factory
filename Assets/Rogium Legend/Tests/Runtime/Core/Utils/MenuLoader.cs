@@ -35,6 +35,7 @@ namespace Rogium.Tests.Core
         {
             OverseerLoader.LoadInternalLibrary();
             OverseerLoader.LoadThemeOverseer();
+            OverseerLoader.LoadUIBuilder();
             Object.Instantiate(selectionMenuV2Property, Object.FindFirstObjectByType<Canvas>().transform);
             yield return null;
         }

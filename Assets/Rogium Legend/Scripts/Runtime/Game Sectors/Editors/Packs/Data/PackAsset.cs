@@ -144,6 +144,7 @@ namespace Rogium.Editors.Packs
             {
                 Asset.palettes.Clear();
                 Asset.palettes.AddAllWithoutSave(palettes);
+                Asset.paletteCount = palettes.Count;
                 return This;
             }
 
@@ -151,6 +152,7 @@ namespace Rogium.Editors.Packs
             {
                 Asset.sprites.Clear();
                 Asset.sprites.AddAllWithoutSave(sprites);
+                Asset.spriteCount = sprites.Count;
                 return This;
             }
 
@@ -158,6 +160,7 @@ namespace Rogium.Editors.Packs
             {
                 Asset.weapons.Clear();
                 Asset.weapons.AddAllWithoutSave(weapons);
+                Asset.weaponCount = weapons.Count;
                 return This;
             }
 
@@ -165,6 +168,7 @@ namespace Rogium.Editors.Packs
             {
                 Asset.projectiles.Clear();
                 Asset.projectiles.AddAllWithoutSave(projectiles);
+                Asset.projectileCount = projectiles.Count;
                 return This;
             }
 
@@ -172,6 +176,7 @@ namespace Rogium.Editors.Packs
             {
                 Asset.enemies.Clear();
                 Asset.enemies.AddAllWithoutSave(enemies);
+                Asset.enemyCount = enemies.Count;
                 return This;
             }
 
@@ -179,6 +184,7 @@ namespace Rogium.Editors.Packs
             {
                 Asset.rooms.Clear();
                 Asset.rooms.AddAllWithoutSave(rooms);
+                Asset.roomCount = rooms.Count;
                 return This;
             }
 
@@ -186,6 +192,7 @@ namespace Rogium.Editors.Packs
             {
                 Asset.tiles.Clear();
                 Asset.tiles.AddAllWithoutSave(tiles);
+                Asset.tileCount = tiles.Count;
                 return This;
             }
             
