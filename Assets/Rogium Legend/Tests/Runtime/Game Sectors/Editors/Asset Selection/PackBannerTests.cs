@@ -6,6 +6,7 @@ using Rogium.Editors.NewAssetSelection;
 using Rogium.Editors.NewAssetSelection.UI;
 using Rogium.Editors.Packs;
 using Rogium.Tests.Core;
+using UnityEngine.TestTools;
 
 namespace Rogium.Tests.Editors.AssetSelection
 {
@@ -27,6 +28,7 @@ namespace Rogium.Tests.Editors.AssetSelection
             selectionMenu = SelectionMenuOverseerMono.GetInstance();
             packBanner = selectionMenu.GetComponentInChildren<PackBanner>();
             currentPack = ExternalLibraryOverseer.Instance.Packs[0];
+            AssetCreator.AddNewPackToLibrary();
             yield return null;
             selectionMenu.Open(AssetType.Pack);
             ((EditableAssetCardControllerV2)selectionMenu.CurrentSelector.GetCard(0)).Edit();
@@ -37,6 +39,15 @@ namespace Rogium.Tests.Editors.AssetSelection
         public void Should_DisplayPackTitle_WhenLoaded()
         {
             Assert.That(packBanner.Title, Is.EqualTo(currentPack.Title));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_DisplayPackTitle_WhenLoadedThenLoadedADifferentPack()
+        {
+            selectionMenu.Open(AssetType.Pack);
+            ((EditableAssetCardControllerV2)selectionMenu.CurrentSelector.GetCard(1)).Edit();
+            yield return null;
+            Assert.That(packBanner.Title, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[1].Title));
         }
     }
 }
