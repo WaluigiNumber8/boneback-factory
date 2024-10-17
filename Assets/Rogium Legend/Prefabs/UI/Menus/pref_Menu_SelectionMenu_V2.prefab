@@ -4140,7 +4140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e54dcbb1b4f4dbaab96a086f8ed5a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  packBanner: {fileID: 3553261225657407283}
+  packBanner: {fileID: 8315491535446317912}
   categoryTabsHolder: {fileID: 1219910126977040736}
   packScrollRect: {fileID: 6292032880814922508}
   otherAssetScrollRects: {fileID: 3441731964545889490}
@@ -5894,11 +5894,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8307282304612850291, guid: 0992973141ee3b145b8dc6cd0ea81c42, type: 3}
   m_PrefabInstance: {fileID: 6947928001956976478}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &3553261225657407283 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5846877342363287661, guid: 0992973141ee3b145b8dc6cd0ea81c42, type: 3}
+--- !u!114 &8315491535446317912 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1372877477502323718, guid: 0992973141ee3b145b8dc6cd0ea81c42, type: 3}
   m_PrefabInstance: {fileID: 6947928001956976478}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e2435054b5e4aaa918440c273e1e244, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7509159060124206842
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -86114,12 +86114,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ui:
-    area: {fileID: 583227328}
-    packInfo:
-      area: {fileID: 590345312}
-      titleText: {fileID: 1984051452}
-      icon: {fileID: 1961320185}
-    returnButton: {fileID: 404641151}
+    packTitleText: {fileID: 0}
+    packIcon: {fileID: 0}
     configButton: {fileID: 1014824738}
 --- !u!222 &1968003213
 CanvasRenderer:

@@ -1,4 +1,5 @@
 ﻿using System;
+using Rogium.Editors.Packs;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -11,6 +12,13 @@ namespace Rogium.Editors.NewAssetSelection.UI
     public class PackBanner : MonoBehaviour
     {
         [SerializeField] private NavBarUIInfo ui;
+
+        public void Construct(PackAsset asset)
+        {
+            ui.packTitleText.text = asset.Title;
+        }
+        
+        public string Title { get => ui.packTitleText.text; }
         
         [Serializable]
         public struct NavBarUIInfo
@@ -19,5 +27,6 @@ namespace Rogium.Editors.NewAssetSelection.UI
             public Image packIcon;
             public Button configButton;
         }
+
     }
 }

@@ -1,4 +1,5 @@
 using Rogium.Core;
+using Rogium.Editors.Packs;
 using UnityEngine;
 
 namespace Rogium.Editors.NewAssetSelection.UI
@@ -8,7 +9,7 @@ namespace Rogium.Editors.NewAssetSelection.UI
     /// </summary>
     public class SelectionMenuUIAdjuster : MonoBehaviour
     {
-        [SerializeField] private GameObject packBanner;
+        [SerializeField] private PackBanner packBanner;
         [SerializeField] private GameObject categoryTabsHolder;
         [SerializeField] private GameObject packScrollRect;
         [SerializeField] private GameObject otherAssetScrollRects;
@@ -21,13 +22,14 @@ namespace Rogium.Editors.NewAssetSelection.UI
 
         private void AdjustUI(AssetType type)
         {
-            packBanner.SetActive(type != AssetType.Pack);
+            packBanner.gameObject.SetActive(type != AssetType.Pack);
+            if (type == AssetType.Pack) packBanner.Construct(PackEditorOverseer.Instance.CurrentPack);
             categoryTabsHolder.SetActive(type != AssetType.Pack);
             otherAssetScrollRects.SetActive(type != AssetType.Pack);
             packScrollRect.SetActive(type == AssetType.Pack);
         }
 
-        public bool PackBannerActive => packBanner.activeSelf;
+        public bool PackBannerActive => packBanner.gameObject.activeSelf;
         public bool CategoryTabsActive => categoryTabsHolder.activeSelf;
         public bool OtherAssetScrollRectsActive => otherAssetScrollRects.activeSelf;
         public bool PackScrollRectActive => packScrollRect.activeSelf;
