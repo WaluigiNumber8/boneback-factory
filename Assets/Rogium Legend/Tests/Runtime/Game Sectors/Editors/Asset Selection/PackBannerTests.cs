@@ -1,4 +1,5 @@
 using System.Collections;
+using NSubstitute.Extensions;
 using NUnit.Framework;
 using Rogium.Core;
 using Rogium.Editors.Core;
@@ -6,6 +7,7 @@ using Rogium.Editors.NewAssetSelection;
 using Rogium.Editors.NewAssetSelection.UI;
 using Rogium.Editors.Packs;
 using Rogium.Tests.Core;
+using Rogium.UserInterface.ModalWindows;
 using UnityEngine.TestTools;
 
 namespace Rogium.Tests.Editors.AssetSelection
@@ -31,7 +33,7 @@ namespace Rogium.Tests.Editors.AssetSelection
             AssetCreator.AddNewPackToLibrary();
             yield return null;
             selectionMenu.Open(AssetType.Pack);
-            ((EditableAssetCardControllerV2)selectionMenu.CurrentSelector.GetCard(0)).Edit();
+            ((EditableAssetCardControllerV2) selectionMenu.CurrentSelector.GetCard(0)).Edit();
             yield return null;
         }
 
@@ -45,7 +47,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         public IEnumerator Should_DisplayPackTitle_WhenLoadedThenLoadedADifferentPack()
         {
             selectionMenu.Open(AssetType.Pack);
-            ((EditableAssetCardControllerV2)selectionMenu.CurrentSelector.GetCard(1)).Edit();
+            ((EditableAssetCardControllerV2) selectionMenu.CurrentSelector.GetCard(1)).Edit();
             yield return null;
             Assert.That(packBanner.Title, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[1].Title));
         }
@@ -60,9 +62,17 @@ namespace Rogium.Tests.Editors.AssetSelection
         public IEnumerator Should_DisplayPackIcon_WhenLoadedThenLoadedADifferentPack()
         {
             selectionMenu.Open(AssetType.Pack);
-            ((EditableAssetCardControllerV2)selectionMenu.CurrentSelector.GetCard(1)).Edit();
+            ((EditableAssetCardControllerV2) selectionMenu.CurrentSelector.GetCard(1)).Edit();
             yield return null;
             Assert.That(packBanner.Icon, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[1].Icon));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_DisplayPackConfigWindow_WhenBannerClicked()
+        {
+            packBanner.Config();
+            yield return null;
+            Assert.That(ModalWindowBuilder.GetInstance().GenericActiveWindows, Is.GreaterThan(0));
         }
     }
 }

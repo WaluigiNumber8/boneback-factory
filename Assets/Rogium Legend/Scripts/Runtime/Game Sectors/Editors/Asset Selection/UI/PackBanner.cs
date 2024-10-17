@@ -1,5 +1,6 @@
 ﻿using System;
 using Rogium.Editors.Packs;
+using Rogium.UserInterface.Editors.ModalWindowBuilding;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -12,6 +13,8 @@ namespace Rogium.Editors.NewAssetSelection.UI
     public class PackBanner : MonoBehaviour
     {
         [SerializeField] private NavBarUIInfo ui;
+
+        private void Awake() => ui.configButton.onClick.AddListener(Config);
 
         public void Construct(PackAsset asset)
         {
@@ -30,5 +33,9 @@ namespace Rogium.Editors.NewAssetSelection.UI
             public Button configButton;
         }
 
+        public void Config()
+        {
+            new ModalWindowPropertyBuilderPack().OpenForUpdate();
+        }
     }
 }
