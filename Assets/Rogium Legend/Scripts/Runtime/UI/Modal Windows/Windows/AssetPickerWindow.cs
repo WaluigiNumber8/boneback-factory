@@ -75,6 +75,8 @@ namespace Rogium.UserInterface.ModalWindows
             generalUI.windowArea.sprite = backgroundSprite;
         }
         
+        public void Select(int index) => picker.Select(index);
+        
         public void ConfirmSelection() => picker.ConfirmSelection();
 
         protected override void UpdateTheme() => ThemeUpdaterRogium.UpdateAssetPickerWindow(this);

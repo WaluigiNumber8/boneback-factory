@@ -1,14 +1,19 @@
 using System.Collections;
 using NSubstitute.Extensions;
 using NUnit.Framework;
+using RedRats.UI.ModalWindows;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.NewAssetSelection;
 using Rogium.Editors.NewAssetSelection.UI;
 using Rogium.Editors.Packs;
 using Rogium.Tests.Core;
+using Rogium.UserInterface.Interactables;
 using Rogium.UserInterface.ModalWindows;
+using TMPro;
+using UnityEngine;
 using UnityEngine.TestTools;
+using UnityEngine.UI;
 
 namespace Rogium.Tests.Editors.AssetSelection
 {
@@ -73,6 +78,37 @@ namespace Rogium.Tests.Editors.AssetSelection
             packBanner.Config();
             yield return null;
             Assert.That(ModalWindowBuilder.GetInstance().GenericActiveWindows, Is.GreaterThan(0));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_RefreshBannerTitle_WhenPackTitleEdited()
+        {
+            packBanner.Config();
+            yield return null;
+            ModalWindow window = Object.FindFirstObjectByType<ModalWindow>();
+            window.GetComponentInChildren<TMP_InputField>().text = "New Fred";
+            yield return new WaitForSeconds(5f);
+            window.OnAccept();
+            yield return new WaitForSeconds(2f);
+            Assert.That(packBanner.Title, Is.EqualTo("New Fred"));
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_RefreshBannerIcon_WhenPackTitleEdited()
+        {
+            PackEditorOverseer.Instance.CurrentPack.Sprites.Add(AssetCreator.CreateSprite(Color.green));
+            packBanner.Config();
+            yield return null;
+            ModalWindow window = Object.FindFirstObjectByType<ModalWindow>();
+            window.GetComponentInChildren<AssetField>().OnPointerClick(PointerDataCreator.LeftClick());
+            yield return null;
+            AssetPickerWindow picker = Object.FindFirstObjectByType<AssetPickerWindow>();
+            picker.Select(1);
+            picker.ConfirmSelection();
+            yield return new WaitForSeconds(5f);
+            window.OnAccept();
+            yield return new WaitForSeconds(2f);
+            Assert.That(packBanner.Icon, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[0].Sprites[1].Icon));
         }
     }
 }

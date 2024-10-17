@@ -23,7 +23,7 @@ namespace Rogium.Editors.NewAssetSelection.UI
         private void AdjustUI(AssetType type)
         {
             packBanner.gameObject.SetActive(type != AssetType.Pack);
-            if (type != AssetType.Pack) packBanner.Construct(PackEditorOverseer.Instance.CurrentPack);
+            if (type != AssetType.Pack) packBanner.RefreshWithCurrentPack();
             categoryTabsHolder.SetActive(type != AssetType.Pack);
             otherAssetScrollRects.SetActive(type != AssetType.Pack);
             packScrollRect.SetActive(type == AssetType.Pack);

@@ -91,7 +91,7 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureIsNotNull(currentPack.Palettes, "Pack Editor - List of Palettes");
             CurrentPack.Palettes.Add(newAsset);
-            SavePackChanges();
+            CompleteEditing();
         }
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace Rogium.Editors.Packs
         {
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Palettes, "List of Palettes");
-            RefreshPaletteForOtherAssets(newAsset, currentPack, SavePackChanges);
+            RefreshPaletteForOtherAssets(newAsset, currentPack, CompleteEditing);
             CurrentPack.Palettes.Update(positionIndex, newAsset);
         } 
 
@@ -122,7 +122,7 @@ namespace Rogium.Editors.Packs
             }
             
             currentPack.Palettes.Remove(assetIndex);
-            SavePackChanges();
+            CompleteEditing();
         }
 
         /// <summary>
@@ -150,7 +150,7 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureIsNotNull(currentPack.Sprites, "Pack Editor - List of Sprites");
             CurrentPack.Sprites.Add(newAsset);
-            SavePackChanges();
+            CompleteEditing();
         }
 
         /// <summary>
@@ -166,7 +166,7 @@ namespace Rogium.Editors.Packs
             
             ProcessPaletteAssociations(currentPack, newAsset, lastAssociatedPaletteID);
             CurrentPack.Sprites.Update(positionIndex, newAsset);
-            RefreshSpriteForOtherAssets(newAsset, currentPack, SavePackChanges);
+            RefreshSpriteForOtherAssets(newAsset, currentPack, CompleteEditing);
         }
 
         /// <summary>
@@ -203,7 +203,7 @@ namespace Rogium.Editors.Packs
                 }
             }
             currentPack.Sprites.Remove(assetIndex);
-            SavePackChanges();
+            CompleteEditing();
         }
 
         /// <summary>
@@ -232,7 +232,7 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureIsNotNull(currentPack.Weapons, "Pack Editor - List of Weapons");
             CurrentPack.Weapons.Add(newAsset);
-            SavePackChanges();
+            CompleteEditing();
         }
 
         /// <summary>
@@ -259,7 +259,7 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Weapons, "List of Weapons");
             RemoveSpriteAssociation(currentPack, currentPack.Weapons[assetIndex]);
             currentPack.Weapons.Remove(assetIndex);
-            SavePackChanges();
+            CompleteEditing();
         }
 
         /// <summary>
@@ -287,7 +287,7 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureIsNotNull(currentPack.Projectiles, "Pack Editor - List of Projectiles");
             CurrentPack.Projectiles.Add(newAsset);
-            SavePackChanges();
+            CompleteEditing();
         }
 
         /// <summary>
@@ -314,7 +314,7 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Projectiles, "List of Projectiles");
             RemoveSpriteAssociation(currentPack, currentPack.Projectiles[assetIndex]);
             currentPack.Projectiles.Remove(assetIndex);
-            SavePackChanges();
+            CompleteEditing();
         }
 
         /// <summary>
@@ -342,7 +342,7 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureIsNotNull(currentPack.Enemies, "Pack Editor - List of Enemies");
             CurrentPack.Enemies.Add(newAsset);
-            SavePackChanges();
+            CompleteEditing();
         }
 
         /// <summary>
@@ -369,7 +369,7 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Enemies, "List of Enemies");
             RemoveSpriteAssociation(currentPack, currentPack.Enemies[assetIndex]);
             currentPack.Enemies.Remove(assetIndex);
-            SavePackChanges();
+            CompleteEditing();
         }
 
         /// <summary>
@@ -401,7 +401,7 @@ namespace Rogium.Editors.Packs
             newAsset.ObjectGrid.SetTo(new Vector2Int(6, 5), AssetDataBuilder.ForObject(library.GetObjectByID("001")));
             newAsset.ObjectGrid.SetTo(new Vector2Int(8, 5), AssetDataBuilder.ForObject(library.GetObjectByID("002")));
             CurrentPack.Rooms.Add(newAsset);
-            SavePackChanges();
+            CompleteEditing();
         }
 
         /// <summary>
@@ -425,7 +425,7 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Rooms, "List of Rooms");
             currentPack.Rooms.Remove(assetIndex);
-            SavePackChanges();
+            CompleteEditing();
         }
 
         /// <summary>
@@ -453,7 +453,7 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
             SafetyNet.EnsureIsNotNull(currentPack.Tiles, "Pack Editor - List of Tiles");
             CurrentPack.Tiles.Add(newAsset);
-            SavePackChanges();
+            CompleteEditing();
         }
 
         /// <summary>
@@ -480,7 +480,7 @@ namespace Rogium.Editors.Packs
             SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Tiles, "List of Tiles");
             RemoveSpriteAssociation(currentPack, currentPack.Tiles[assetIndex]);
             currentPack.Tiles.Remove(assetIndex);
-            SavePackChanges();
+            CompleteEditing();
         }
 
         /// <summary>
@@ -497,20 +497,11 @@ namespace Rogium.Editors.Packs
         }
 
         #endregion
-
-        /// <summary>
-        /// Saves all edits done to a pack and "returns" it to the library.
-        /// </summary>
-        public void CompleteEditing()
-        {
-            SavePackChanges();
-            currentPack = null;
-        }
-
+        
         /// <summary>
         /// Save changes.
         /// </summary>
-        private void SavePackChanges() => OnSaveChanges?.Invoke(currentPack, myIndex, lastTitle, lastAuthor, lastAssociatedSpriteID);
+        public void CompleteEditing() => OnSaveChanges?.Invoke(currentPack, myIndex, lastTitle, lastAuthor, lastAssociatedSpriteID);
 
         public PackAsset CurrentPack { get => currentPack; }
     }

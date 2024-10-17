@@ -16,8 +16,9 @@ namespace Rogium.Editors.NewAssetSelection.UI
 
         private void Awake() => ui.configButton.onClick.AddListener(Config);
 
-        public void Construct(PackAsset asset)
+        public void RefreshWithCurrentPack()
         {
+            PackAsset asset = PackEditorOverseer.Instance.CurrentPack;
             ui.packTitleText.text = asset.Title;
             ui.packIcon.sprite = asset.Icon;
         }
@@ -35,7 +36,7 @@ namespace Rogium.Editors.NewAssetSelection.UI
 
         public void Config()
         {
-            new ModalWindowPropertyBuilderPack().OpenForUpdate();
+            new ModalWindowPropertyBuilderPack().OpenForUpdate(RefreshWithCurrentPack);
         }
     }
 }
