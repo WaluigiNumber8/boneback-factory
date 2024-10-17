@@ -1,7 +1,7 @@
 using Rogium.Core;
 using UnityEngine;
 
-namespace Rogium.Editors.NewAssetSelection
+namespace Rogium.Editors.NewAssetSelection.UI
 {
     /// <summary>
     /// Adjusts the UI of the Selection Menu for different types of assets.
