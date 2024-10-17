@@ -12,14 +12,14 @@ namespace Rogium.Editors.PropertyEditor.Builders
     /// <summary>
     /// Builds the property editor for <see cref="ProjectileAsset"/>.
     /// </summary>
-    public class PropertyEditorBuilderProjectile : PropertyEditorBuilderAnimationBase
+    public class PropertyEditorBuilderProjectile : PropertyEditorBuilderAnimationBase<ProjectileAsset>
     {
         private ProjectileAsset asset;
         private PackAsset currentPack;
         
         public PropertyEditorBuilderProjectile(Transform contentMain, Transform contentSecond) : base(contentMain, contentSecond) { }
 
-        public void Build(ProjectileAsset asset)
+        public override void Build(ProjectileAsset asset)
         {
             this.asset = asset;
             currentPack = PackEditorOverseer.Instance.CurrentPack;

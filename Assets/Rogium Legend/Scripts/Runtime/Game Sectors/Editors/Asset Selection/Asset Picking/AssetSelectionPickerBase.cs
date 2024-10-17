@@ -4,7 +4,6 @@ using System.Linq;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
-using Rogium.UserInterface.Interactables;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -23,20 +22,12 @@ namespace Rogium.Editors.NewAssetSelection
 
         protected virtual void Awake()
         {
-            data = new SelectionMenuData(selector, ButtonType.None, ButtonType.None, ButtonType.None, ButtonType.None, Array.Empty<IAsset>);
+            data = new SelectionMenuData.Builder()
+                .WithAssetSelector(selector)
+                .WithWhenCardSelected(SelectAsset)
+                .WithWhenCardDeselected(DeselectAsset)
+                .Build();
             selectedAssetIndexes = new HashSet<int>();
-        }
-
-        protected virtual void OnEnable()
-        {
-            AssetCardControllerV2.OnSelect += SelectAsset;
-            AssetCardControllerV2.OnDeselect += DeselectAsset;
-        }
-
-        protected virtual void OnDisable()
-        {
-            AssetCardControllerV2.OnSelect -= SelectAsset;
-            AssetCardControllerV2.OnDeselect -= DeselectAsset;
         }
 
         public void SelectAll(bool value)
@@ -50,10 +41,10 @@ namespace Rogium.Editors.NewAssetSelection
         public void SelectRandom()
         {
             SelectAll(false);
-            int amount = Random.Range(1, SelectorContent.childCount + 1);
+            int amount = Random.Range(1, Selector.Content.childCount + 1);
             for (int i = 0; i < amount; i++)
             {
-                Select(Random.Range(0, SelectorContent.childCount));
+                Select(Random.Range(0, Selector.Content.childCount));
             }
         }
         
@@ -81,7 +72,7 @@ namespace Rogium.Editors.NewAssetSelection
             };
         }
         
-        public RectTransform SelectorContent { get => selector.Content; }
+        public AssetSelector Selector { get => selector; }
         public int SelectedAssetsCount { get => selectedAssetIndexes.Count; }
     }
 }

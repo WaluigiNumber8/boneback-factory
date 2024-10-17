@@ -105,13 +105,13 @@ namespace RedRats.Safety
         }
 
         /// <summary>
-        /// Ensures an number is smaller than a specific value.
+        /// Ensures an number is lower than a specific value.
         /// </summary>
         /// <param name="number">The number to check.</param>
         /// <param name="maxSize">Maximum value allowed.</param>
         /// <param name="variableName">Name of the checked variable.</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        public static void EnsureIntIsSmallerThan(int number, int maxSize, string variableName, string customMessage = "")
+        public static void EnsureIntIsLowerThan(int number, int maxSize, string variableName, string customMessage = "")
         {
             if (number >= maxSize)
             {
@@ -120,13 +120,13 @@ namespace RedRats.Safety
         }
 
         /// <summary>
-        /// Ensures an number is smaller than or equal to a specific value.
+        /// Ensures an number is lower than or equal to a specific value.
         /// </summary>
         /// <param name="number">The number to check.</param>
         /// <param name="maxSize">Maximum value allowed.</param>
         /// <param name="variableName">Name of the checked variable.</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        public static void EnsureIntIsSmallerOrEqualTo(int number, int maxSize, string variableName, string customMessage = "")
+        public static void EnsureIntIsLowerOrEqualTo(int number, int maxSize, string variableName, string customMessage = "")
         {
             if (number > maxSize)
             {
@@ -215,13 +215,13 @@ namespace RedRats.Safety
         }
 
         /// <summary>
-        /// Ensures an number is smaller than a specific value.
+        /// Ensures an number is lower than a specific value.
         /// </summary>
         /// <param name="number">The number to check.</param>
         /// <param name="maxSize">Maximum value allowed.</param>
         /// <param name="variableName">Name of the checked variable.</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        public static void EnsureFloatIsSmallerThan(float number, float maxSize, string variableName, string customMessage = "")
+        public static void EnsureFloatIsLowerThan(float number, float maxSize, string variableName, string customMessage = "")
         {
             if (number >= maxSize) 
             {
@@ -230,13 +230,13 @@ namespace RedRats.Safety
         }
 
         /// <summary>
-        /// Ensures an number is smaller than or equal to a specific value.
+        /// Ensures an number is lower than or equal to a specific value.
         /// </summary>
         /// <param name="number">The number to check.</param>
         /// <param name="maxSize">Maximum value allowed.</param>
         /// <param name="variableName">Name of the checked variable.</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        public static void EnsureFloatIsSmallerOrEqualTo(float number, float maxSize, string variableName, string customMessage = "")
+        public static void EnsureFloatIsLowerOrEqualTo(float number, float maxSize, string variableName, string customMessage = "")
         {
             if (number > maxSize) 
             {

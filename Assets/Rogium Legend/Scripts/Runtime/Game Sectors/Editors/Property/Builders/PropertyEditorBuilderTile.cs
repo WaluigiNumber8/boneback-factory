@@ -12,7 +12,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
     /// <summary>
     /// Builds the property editor for <see cref="TileAsset"/>.
     /// </summary>
-    public class PropertyEditorBuilderTile : PropertyEditorBuilderBase
+    public class PropertyEditorBuilderTile : PropertyEditorBuilderBase<TileAsset>
     {
         private TileAsset asset;
         private PackAsset currentPack;
@@ -20,7 +20,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
         private InteractablePropertyContentBlock terrainTypeBlock;
         public PropertyEditorBuilderTile(Transform contentMain, Transform contentSecond) : base(contentMain, contentSecond) { }
 
-        public void Build(TileAsset asset)
+        public override void Build(TileAsset asset)
         {
             this.asset = asset;
             currentPack = PackEditorOverseer.Instance.CurrentPack;

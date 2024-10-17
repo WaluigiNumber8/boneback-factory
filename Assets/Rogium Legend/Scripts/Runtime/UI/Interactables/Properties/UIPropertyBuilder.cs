@@ -27,6 +27,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         [SerializeField] private InteractablePropertySlider sliderProperty;
         [SerializeField] private InteractablePropertySoundField soundFieldProperty;
         [SerializeField] private InteractablePropertyColorField colorFieldProperty;
+        [SerializeField] private InteractablePropertyAssetEmblemList assetEmblemListProperty;
         
         [Title("Other properties")]
         [SerializeField] private ContentBlockInfo contentBlocks;
@@ -241,6 +242,28 @@ namespace Rogium.UserInterface.Interactables.Properties
             colorField.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateColorField(colorField);
         }
+
+        /// <summary>
+        /// Builds the Asset Emblem List property.
+        /// </summary>
+        /// <param name="title">The text of the property title.</param>
+        /// <param name="value">The icon to use for the first emblem.</param>
+        /// <param name="parent">The parent under which to instantiate the property.</param>
+        public void BuildAssetEmblemList(string title, Sprite value, Transform parent) => BuildAssetEmblemList(title, new List<Sprite>{value}, parent);
+        /// <summary>
+        /// Builds the Asset Emblem List property.
+        /// </summary>
+        /// <param name="title">The text of the property title.</param>
+        /// <param name="values">The list of icons to use for each emblem.</param>
+        /// <param name="parent">The parent under which to instantiate the property.</param>
+        public void BuildAssetEmblemList(string title, IList<Sprite> values, Transform parent)
+        {
+            InteractablePropertyAssetEmblemList assetEmblemList = Instantiate(assetEmblemListProperty, parent);
+            assetEmblemList.name = $"{title} Emblem List";
+            assetEmblemList.Construct(title, values);
+            ThemeUpdaterRogium.UpdateAssetEmblemList(assetEmblemList);
+        }
+        
         #endregion
 
         #region Content Blocks

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Rogium.Editors.PropertyEditor.Builders
 {
-    public abstract class PropertyEditorBuilderAnimationBase : PropertyEditorBuilderBase
+    public abstract class PropertyEditorBuilderAnimationBase<T> : PropertyEditorBuilderBase<T> where T : IAsset
     {
         protected InteractablePropertyContentBlock animationBlock1Slot;
         protected InteractablePropertyContentBlock animationBlock2Slot;

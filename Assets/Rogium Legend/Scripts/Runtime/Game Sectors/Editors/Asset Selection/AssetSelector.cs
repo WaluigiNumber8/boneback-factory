@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using RedRats.Safety;
+using RedRats.Systems.Themes;
 using Rogium.Editors.Core;
 using Rogium.Systems.ThemeSystem;
 using Rogium.UserInterface.Interactables;
@@ -12,13 +14,19 @@ namespace Rogium.Editors.NewAssetSelection
     /// </summary>
     public class AssetSelector : MonoBehaviour
     {
+        public event Action<int> OnSelectCard;
+        public event Action<int> OnDeselectCard;
+        public event Action OnSelectNone;
+        
         [SerializeField] private string title;
         [SerializeField] private RectTransform content;
+        [SerializeField] private ThemeType cardTheme = ThemeType.Blue;
         [SerializeField] private AssetCardControllerV2 cardPrefab;
         [SerializeField] private InteractableButton assetCreateButtonPrefab;
 
         private List<AssetCardControllerV2> cards;
         private Stack<AssetCardControllerV2> disabledCards;
+        private int lastSelectedIndex = -1;
 
         private void Awake()
         {
@@ -68,11 +76,43 @@ namespace Rogium.Editors.NewAssetSelection
                     .WithConfigButton(data.WhenAssetConfig)
                     .WithDeleteButton(data.WhenAssetDelete)
                     .Build());
-                card.SetToggle(preselectedAssets?.Contains(asset) ?? false);
-                ThemeUpdaterRogium.UpdateAssetCard(card);
+                card.RemoveAllListeners();
+                card.OnSelect += WhenCardSelect;
+                card.OnDeselect += WhenCardDeselect;
+                if (preselectedAssets?.Contains(asset) == true)
+                {
+                    card.SetToggle(true);
+                    WhenCardSelect(i);
+                }
+                ThemeUpdaterRogium.UpdateAssetCard(card, cardTheme);
+                continue;
+
+                void WhenCardSelect(int index)
+                {
+                    data.WhenCardSelected?.Invoke(index);
+                    OnSelectCard?.Invoke(index);
+                    lastSelectedIndex = index;
+                }
+                void WhenCardDeselect(int index)
+                {
+                    data.WhenCardDeselected?.Invoke(index);
+                    OnDeselectCard?.Invoke(index);
+                    lastSelectedIndex = index;
+                }
             }
+            
+            //Select the last card if no preselected assets and only if one was selected before
+            if (preselectedAssets != null && preselectedAssets.Count != 0) return;
+            if (lastSelectedIndex != -1 && lastSelectedIndex < assets.Count) OnSelectCard?.Invoke(lastSelectedIndex);
+            else OnSelectNone?.Invoke();
         }
 
+        public void TryRefreshCard(int index)
+        {
+            if (lastSelectedIndex != index) return;
+            OnSelectCard?.Invoke(index);
+        }
+        
         public AssetCardControllerV2 GetCard(int index)
         {
             SafetyNet.EnsureIndexWithingCollectionRange(index, cards, nameof(cards));
@@ -98,5 +138,6 @@ namespace Rogium.Editors.NewAssetSelection
         }
 
         public RectTransform Content { get => content; }
+        
     }
 }

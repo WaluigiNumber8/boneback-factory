@@ -15,7 +15,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
     /// <summary>
     /// Builds the Room Property Column for different objects.
     /// </summary>
-    public class RoomPropertyColumnBuilderObject : UIPropertyContentBuilderBaseColumn1
+    public class RoomPropertyColumnBuilderObject : UIPropertyContentBuilderBaseColumn1<AssetData>
     {
         private readonly IDictionary<string, Action<AssetData>> presets;
 
@@ -33,7 +33,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         /// Decide, which object to build.
         /// </summary>
         /// <param name="data">The object data.</param>
-        public void Build(AssetData data)
+        public override void Build(AssetData data)
         {
             if (presets.TryGetValue(data.ID, out Action<AssetData> method))
             {

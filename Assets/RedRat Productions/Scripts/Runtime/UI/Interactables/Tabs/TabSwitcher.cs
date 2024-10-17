@@ -4,17 +4,17 @@ using UnityEngine;
 namespace RedRats.UI.Tabs
 {
     /// <summary>
-    /// An Addon for <see cref="TabGroup"/> that uses the <see cref="ObjectSwitcher"/>.
+    /// An Addon for <see cref="TabGroupBase"/> that uses the <see cref="ObjectSwitcher"/>.
     /// </summary>
-    [RequireComponent(typeof(TabGroup))]
+    [RequireComponent(typeof(TabGroupBase))]
     public class TabSwitcher : MonoBehaviour
     {
-        private TabGroup tabGroup;
+        private TabGroupBase tabGroup;
         private ObjectSwitcher switcher;
 
         private void Start()
         {
-            tabGroup = GetComponent<TabGroup>();
+            tabGroup = GetComponent<TabGroupBase>();
             switcher = new ObjectSwitcher(tabGroup.DefaultTabIndex, tabGroup.GetButtonsAsArray());
             tabGroup.onTabSwitch += Switch;
         }

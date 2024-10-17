@@ -50,7 +50,7 @@ namespace Rogium.UserInterface.ModalWindows
             generalUI.entireArea.GetComponentInParent<Transform>().SetAsLastSibling();
             ui.header.text.text = $"Select a {type.ToString().ToLower()}";
             picker.Pick(type, WhenAssetPicked, preselectedAsset, canSelectEmpty);
-            ui.layout.emptyMessage.gameObject.SetActive(picker.SelectorContent.childCount == 0);
+            ui.layout.emptyMessage.gameObject.SetActive(picker.Selector.Content.childCount == 0);
             Open();
         }
 
@@ -95,7 +95,7 @@ namespace Rogium.UserInterface.ModalWindows
         /// </summary>
         private void CancelSelection() => Close();
 
-        public RectTransform SelectorContent { get => picker.SelectorContent; }
+        public RectTransform SelectorContent { get => picker.Selector.Content; }
         public int SelectedAssetsCount { get => picker.SelectedAssetsCount; }
 
         [Serializable]

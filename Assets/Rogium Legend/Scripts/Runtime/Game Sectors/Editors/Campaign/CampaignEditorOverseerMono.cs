@@ -16,7 +16,7 @@ namespace Rogium.Editors.Campaign
     public class CampaignEditorOverseerMono : MonoSingleton<CampaignEditorOverseerMono>
     {
         [SerializeField] private AssetSelectionPickerMultiple selectionPicker;
-        [SerializeField] private CampaignSelectedPackPropertyController propertyColumn;
+        [SerializeField] private SelectionInfoColumn propertyColumn;
         
         private CampaignEditorOverseer editor;
         private ExternalLibraryOverseer lib;
@@ -34,22 +34,24 @@ namespace Rogium.Editors.Campaign
         private void OnEnable()
         {
             editor.OnAssignAsset += PrepareEditor;
-            // selectionPicker.OnAssetSelect += PreparePropertyColumn;
-            // selectionPicker.OnAssetDeselect += PreparePropertyColumn;
+            selectionPicker.Selector.OnSelectCard += PreparePropertyColumn;
+            selectionPicker.Selector.OnDeselectCard += PreparePropertyColumn;
+            selectionPicker.Selector.OnSelectNone += PreparePropertyColumnEmpty;
         }
         
         private void OnDisable()
         {
             editor.OnAssignAsset -= PrepareEditor;
-            // selectionPicker.OnAssetSelect -= PreparePropertyColumn;
-            // selectionPicker.OnAssetDeselect -= PreparePropertyColumn;
+            selectionPicker.Selector.OnSelectCard -= PreparePropertyColumn;
+            selectionPicker.Selector.OnDeselectCard -= PreparePropertyColumn;
+            selectionPicker.Selector.OnSelectNone -= PreparePropertyColumnEmpty;
         }
 
         /// <summary>
         /// Selects/Deselects an asset.
         /// </summary>
         /// <param name="assetIndex">The position of the asset on the list.</param>
-        public void ChangeSelectStatus(int assetIndex) => selectionPicker.SelectorContent.GetChild(assetIndex).GetComponent<AssetCardControllerV2>().Toggle();
+        public void ChangeSelectStatus(int assetIndex) => selectionPicker.Selector.GetCard(assetIndex).Toggle();
 
         /// <summary>
         /// Calls for applying current selection.
@@ -60,7 +62,6 @@ namespace Rogium.Editors.Campaign
         {
             PreselectAssetsFrom(asset);
             selectionPicker.Pick(AssetType.Pack, UpdatePacksFromSelection, selectedAssets);
-            if (selectedAssets != null && selectedAssets.Count > 0) PreparePropertyColumn(selectedAssets.First());
         }
         
         /// <summary>
@@ -87,16 +88,10 @@ namespace Rogium.Editors.Campaign
             ISet<IAsset> allPacks = lib.Packs.Cast<IAsset>().ToHashSet();
             selectedAssets = allPacks.GrabBasedOn(campaign.PackReferences);
         }
-
-        /// <summary>
-        /// Loads the proper pack into the Property Column.
-        /// </summary>
-        /// <param name="asset">The Position of the pack on the Library List.</param>
-        private void PreparePropertyColumn(IAsset asset)
-        {
-            propertyColumn.AssignAsset((PackAsset)asset, new PackImportInfo());
-        }
         
+        private void PreparePropertyColumn(int index) => propertyColumn.Construct(ExternalLibraryOverseer.Instance.Packs[index]);
+        private void PreparePropertyColumnEmpty() => propertyColumn.ConstructEmpty(AssetType.Pack);
+
         public AssetSelectionPickerBase SelectionPicker { get => selectionPicker; }
     }
 }

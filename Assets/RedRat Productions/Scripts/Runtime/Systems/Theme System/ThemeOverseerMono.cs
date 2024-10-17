@@ -37,7 +37,7 @@ namespace RedRats.Systems.Themes
         /// </summary>
         /// <param name="theme"></param>
         /// <returns></returns>
-        public ThemeStyleAsset GetTheme(ThemeType theme)
+        public ThemeStyleAsset GetThemeData(ThemeType theme)
         {
             return themes[(int) theme];
         }

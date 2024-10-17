@@ -97,5 +97,16 @@ namespace Rogium.Tests.Editors.AssetSelection
             yield return PickAssetAndConfirm(0);
             Assert.That(assetField.Value, Is.EqualTo(new EmptyAsset()));
         }
+
+        [UnityTest]
+        public IEnumerator Should_AlwaysSpawnOnly1EmptyAssetButton_WhenCanSelectEmptyIsTrue()
+        {
+            assetField.Construct(AssetType.Pack, ExternalLibraryOverseer.Instance.Packs[0], null, true);
+            yield return ClickAssetFieldToOpenAssetPickerWindow();
+            yield return PickAssetAndConfirm(0);
+            yield return ClickAssetFieldToOpenAssetPickerWindow();
+            yield return PickAssetAndConfirm(1);
+            Assert.That(assetField.Value, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[0]));
+        }
     }
 }

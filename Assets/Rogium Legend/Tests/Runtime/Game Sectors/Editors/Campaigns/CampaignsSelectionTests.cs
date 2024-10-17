@@ -29,7 +29,7 @@ namespace Rogium.Tests.Editors.Campaigns
         public IEnumerator Should_LoadAllPacksIntoContent_WhenEditorOpened()
         {
             yield return null;
-            Assert.That(editorMono.SelectionPicker.SelectorContent.childCount, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs.Count));
+            Assert.That(editorMono.SelectionPicker.Selector.Content.childCount, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs.Count));
         }
 
         [UnityTest]
@@ -122,6 +122,21 @@ namespace Rogium.Tests.Editors.Campaigns
             editorMono.SelectionPicker.ConfirmSelection();
             yield return null;
             Assert.That(editor.CurrentAsset.PackReferences.Count, Is.GreaterThan(0));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_SetPackCounterToSelectedPacksCount_WhenEditorOpened()
+        {
+            yield return null;
+            Assert.That(editorMono.GetComponentInChildren<PacksUICounter>().Counter, Is.EqualTo(editorMono.SelectionPicker.SelectedAssetsCount));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_IncreasePackCounter_WhenPackSelected()
+        {
+            editorMono.SelectionPicker.Select(0);
+            yield return null;
+            Assert.That(editorMono.GetComponentInChildren<PacksUICounter>().Counter, Is.EqualTo(editorMono.SelectionPicker.SelectedAssetsCount));
         }
     }
 }

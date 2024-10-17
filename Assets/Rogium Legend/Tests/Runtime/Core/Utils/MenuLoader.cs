@@ -35,6 +35,7 @@ namespace Rogium.Tests.Core
         {
             OverseerLoader.LoadInternalLibrary();
             OverseerLoader.LoadThemeOverseer();
+            OverseerLoader.LoadUIBuilder();
             Object.Instantiate(selectionMenuV2Property, Object.FindFirstObjectByType<Canvas>().transform);
             yield return null;
         }
@@ -50,28 +51,32 @@ namespace Rogium.Tests.Core
         /// <summary>
         /// Spawns & opens the Palette Editor with a test palette asset.
         /// </summary>
-        public static IEnumerator PreparePaletteEditor()
+        public static IEnumerator PreparePaletteEditor(bool openEditor = true)
         {
             Object.Instantiate(paletteEditorProperty, Object.FindFirstObjectByType<Canvas>().transform);
             yield return null;
+            if (!openEditor) yield break; 
             PackEditorOverseer.Instance.ActivatePaletteEditor(0);
         }
-        
+
         /// <summary>
         /// Spawns & opens the Sprite Editor with a test sprite asset.
         /// </summary>
-        public static IEnumerator PrepareSpriteEditor()
+        /// <param name="openEditor"></param>
+        public static IEnumerator PrepareSpriteEditor(bool openEditor = true)
         {
             OverseerLoader.LoadThemeOverseer();
             Object.Instantiate(spriteEditorProperty, Object.FindFirstObjectByType<Canvas>().transform);
             yield return null;
+            if (!openEditor) yield break; 
             PackEditorOverseer.Instance.ActivateSpriteEditor(0);
         }
 
         /// <summary>
         /// Spawns & opens the Weapon Editor with a test weapon asset.
         /// </summary>
-        public static IEnumerator PrepareWeaponEditor()
+        /// <param name="openEditor"></param>
+        public static IEnumerator PrepareWeaponEditor(bool openEditor = true)
         {
             OverseerLoader.LoadInternalLibrary();
             OverseerLoader.LoadUIBuilder();
@@ -79,13 +84,15 @@ namespace Rogium.Tests.Core
             
             Object.Instantiate(propertyEditorProperty, Object.FindFirstObjectByType<Canvas>().transform);
             yield return null;
+            if (!openEditor) yield break; 
             PackEditorOverseer.Instance.ActivateWeaponEditor(0);
         }
 
         /// <summary>
         /// Spawns & opens the Projectile Editor with a test projectile asset.
         /// </summary>
-        public static IEnumerator PrepareProjectileEditor()
+        /// <param name="openEditor"></param>
+        public static IEnumerator PrepareProjectileEditor(bool openEditor = true)
         {
             OverseerLoader.LoadInternalLibrary();
             OverseerLoader.LoadUIBuilder();
@@ -93,13 +100,14 @@ namespace Rogium.Tests.Core
             
             Object.Instantiate(propertyEditorProperty, Object.FindFirstObjectByType<Canvas>().transform);
             yield return null;
+            if (!openEditor) yield break; 
             PackEditorOverseer.Instance.ActivateProjectileEditor(0);
         }
 
         /// <summary>
         /// Spawns & opens the Enemy Editor with a test enemy asset.
         /// </summary>
-        public static IEnumerator PrepareEnemyEditor()
+        public static IEnumerator PrepareEnemyEditor(bool openEditor = true)
         {
             OverseerLoader.LoadInternalLibrary();
             OverseerLoader.LoadUIBuilder();
@@ -107,13 +115,15 @@ namespace Rogium.Tests.Core
             
             Object.Instantiate(propertyEditorProperty, Object.FindFirstObjectByType<Canvas>().transform);
             yield return null;
+            if (!openEditor) yield break; 
             PackEditorOverseer.Instance.ActivateEnemyEditor(0);
         }
-        
+
         /// <summary>
         /// Spawns & opens the Room Editor with a test room asset.
         /// </summary>
-        public static IEnumerator PrepareRoomEditor()
+        /// <param name="openEditor"></param>
+        public static IEnumerator PrepareRoomEditor(bool openEditor = true)
         {
             OverseerLoader.LoadInternalLibrary();
             OverseerLoader.LoadUIBuilder();
@@ -121,13 +131,15 @@ namespace Rogium.Tests.Core
             
             Object.Instantiate(roomEditorProperty, Object.FindFirstObjectByType<Canvas>().transform);
             yield return null;
+            if (!openEditor) yield break; 
             PackEditorOverseer.Instance.ActivateRoomEditor(0);
         }
 
         /// <summary>
         /// Spawns & opens the Tile Editor with a test tile asset.
         /// </summary>
-        public static IEnumerator PrepareTileEditor()
+        /// <param name="openEditor"></param>
+        public static IEnumerator PrepareTileEditor(bool openEditor = true)
         {
             OverseerLoader.LoadInternalLibrary();
             OverseerLoader.LoadUIBuilder();
@@ -135,6 +147,7 @@ namespace Rogium.Tests.Core
 
             Object.Instantiate(propertyEditorProperty, Object.FindFirstObjectByType<Canvas>().transform);
             yield return null;
+            if (!openEditor) yield break; 
             PackEditorOverseer.Instance.ActivateTileEditor(0);
         }
 

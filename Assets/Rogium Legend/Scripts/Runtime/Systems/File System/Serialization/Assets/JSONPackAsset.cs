@@ -10,10 +10,18 @@ namespace Rogium.ExternalStorage.Serialization
     public class JSONPackAsset : JSONAssetWithReferencedSpriteBase<PackAsset>
     {
         public string description;
+        public int paletteCount, spriteCount, weaponCount, projectileCount, enemyCount, roomCount, tileCount;
 
         public JSONPackAsset(PackAsset asset) : base(asset)
         {
             description = asset.Description;
+            paletteCount = asset.PaletteCount;
+            spriteCount = asset.SpriteCount;
+            weaponCount = asset.WeaponCount;
+            projectileCount = asset.ProjectileCount;
+            enemyCount = asset.EnemyCount;
+            roomCount = asset.RoomCount;
+            tileCount = asset.TileCount;
         }
 
         public override PackAsset Decode()
@@ -26,6 +34,7 @@ namespace Rogium.ExternalStorage.Serialization
                 .WithCreationDate(DateTime.Parse(creationDate))
                 .WithAssociatedSpriteID(associatedSpriteID)
                 .WithDescription(description)
+                .WithCounts(paletteCount, spriteCount, weaponCount, projectileCount, enemyCount, roomCount, tileCount)
                 .Build();
         }
         

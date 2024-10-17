@@ -72,7 +72,6 @@ namespace Rogium.Systems.GASExtension
         #region Return from menus
         public static void ReturnToMainMenuSelection()
         {
-            // CanvasOverseer.GetInstance().NavigationBar.Hide();
             GAS.ObjectSetActive(false, UIEditorContainer.GetInstance().Background);
             GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundGameplayMenus);
             GAS.ObjectSetActive(true, UIMainContainer.GetInstance().BackgroundMain);
@@ -93,21 +92,12 @@ namespace Rogium.Systems.GASExtension
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Pack);
         }
-        
-        private static void ReturnToAssetTypeSelection()
-        {
-            GAS.SwitchMenu(MenuType.AssetTypeSelection);
-            PackAsset pack = PackEditorOverseer.Instance.CurrentPack;
-            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToPackSelectionMenu, null, pack.Title, pack.Icon);
-        }
         #endregion
 
         #region Open Selection Menus
         public static void OpenSelectionPack()
         {
             GASRogium.ChangeTheme(ThemeType.Blue);
-            // GAS.ObjectSetActive(false, UIMainContainer.GetInstance().BackgroundMain);
-            // GAS.ObjectSetActive(true, UIEditorContainer.GetInstance().Background);
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Pack);
         }
@@ -124,35 +114,35 @@ namespace Rogium.Systems.GASExtension
         
         public static void OpenSelectionPalette()
         {
-            GASRogium.ChangeTheme(ThemeType.Purple);
+            GASRogium.ChangeTheme(ThemeType.Blue);
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Palette);
         }
         
         public static void OpenSelectionSprite()
         {
-            GASRogium.ChangeTheme(ThemeType.Pink);
+            GASRogium.ChangeTheme(ThemeType.Blue);
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Sprite);
         }
         
         public static void OpenSelectionWeapon()
         {
-            GASRogium.ChangeTheme(ThemeType.Green);
+            GASRogium.ChangeTheme(ThemeType.Blue);
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Weapon);
         }
         
         public static void OpenSelectionProjectile()
         {
-            GASRogium.ChangeTheme(ThemeType.Teal);
+            GASRogium.ChangeTheme(ThemeType.Blue);
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Projectile);
         }
         
         public static void OpenSelectionEnemy()
         {
-            GASRogium.ChangeTheme(ThemeType.Red);
+            GASRogium.ChangeTheme(ThemeType.Blue);
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Enemy);
         }
@@ -166,7 +156,7 @@ namespace Rogium.Systems.GASExtension
         
         public static void OpenSelectionTile()
         {
-            GASRogium.ChangeTheme(ThemeType.Yellow);
+            GASRogium.ChangeTheme(ThemeType.Blue);
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Tile);
         }
@@ -535,6 +525,7 @@ namespace Rogium.Systems.GASExtension
 
         public static void OpenEditorPalette(int assetIndex)
         {
+            GASRogium.ChangeTheme(ThemeType.Purple);
             GAS.SwitchMenu(MenuType.PaletteEditor);
             PackEditorOverseer.Instance.ActivatePaletteEditor(assetIndex);
             storedIndex = assetIndex;
@@ -542,7 +533,7 @@ namespace Rogium.Systems.GASExtension
         
         public static void OpenEditorSprite(int assetIndex)
         {
-            CanvasOverseer.GetInstance().NavigationBar.Hide();
+            GASRogium.ChangeTheme(ThemeType.Pink);
             GAS.SwitchMenu(MenuType.SpriteEditor);
             PackEditorOverseer.Instance.ActivateSpriteEditor(assetIndex);
             storedIndex = assetIndex;
@@ -550,7 +541,7 @@ namespace Rogium.Systems.GASExtension
         
         public static void OpenEditorWeapon(int assetIndex)
         {
-            CanvasOverseer.GetInstance().NavigationBar.Hide();
+            GASRogium.ChangeTheme(ThemeType.Green);
             GAS.SwitchMenu(MenuType.PropertyEditor);
             PackEditorOverseer.Instance.ActivateWeaponEditor(assetIndex);
             storedIndex = assetIndex;
@@ -558,7 +549,7 @@ namespace Rogium.Systems.GASExtension
         
         public static void OpenEditorProjectile(int assetIndex)
         {
-            CanvasOverseer.GetInstance().NavigationBar.Hide();
+            GASRogium.ChangeTheme(ThemeType.Teal);
             GAS.SwitchMenu(MenuType.PropertyEditor);
             PackEditorOverseer.Instance.ActivateProjectileEditor(assetIndex);
             storedIndex = assetIndex;
@@ -566,7 +557,7 @@ namespace Rogium.Systems.GASExtension
         
         public static void OpenEditorEnemy(int assetIndex)
         {
-            CanvasOverseer.GetInstance().NavigationBar.Hide();
+            GASRogium.ChangeTheme(ThemeType.Red);
             GAS.SwitchMenu(MenuType.PropertyEditor);
             PackEditorOverseer.Instance.ActivateEnemyEditor(assetIndex);
             storedIndex = assetIndex;
@@ -574,7 +565,7 @@ namespace Rogium.Systems.GASExtension
         
         public static void OpenEditorRoom(int assetIndex)
         {
-            CanvasOverseer.GetInstance().NavigationBar.Hide();
+            GASRogium.ChangeTheme(ThemeType.Blue);
             GAS.SwitchMenu(MenuType.RoomEditor);
             PackEditorOverseer.Instance.ActivateRoomEditor(assetIndex);
             storedIndex = assetIndex;
@@ -582,7 +573,6 @@ namespace Rogium.Systems.GASExtension
 
         public static void OpenEditorTile(int assetIndex)
         {
-            CanvasOverseer.GetInstance().NavigationBar.Hide();
             GASRogium.ChangeTheme(ThemeType.Yellow);
             GAS.SwitchMenu(MenuType.PropertyEditor);
             PackEditorOverseer.Instance.ActivateTileEditor(assetIndex);

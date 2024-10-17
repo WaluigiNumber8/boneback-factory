@@ -1,5 +1,6 @@
 ﻿using RedRats.Core;
 using RedRats.Safety;
+using Rogium.Editors.Core;
 using UnityEngine;
 
 namespace Rogium.UserInterface.Interactables.Properties
@@ -7,7 +8,7 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// <summary>
     /// A base for all Property Builders working with a 2-column setup.
     /// </summary>
-    public abstract class UIPropertyContentBuilderBaseColumn2 : UIPropertyContentBuilderBase
+    public abstract class UIPropertyContentBuilderBaseColumn2<T> : UIPropertyContentBuilderBase<T> where T : IAsset
     {
         protected readonly Transform contentSecond;
         

@@ -51,6 +51,8 @@ namespace Rogium.Editors.Campaign
                 Asset.author = EditorDefaults.Instance.Author;
                 Asset.creationDate = DateTime.Now;
                 Asset.GenerateID();
+                Asset.adventureLength = EditorDefaults.Instance.CampaignLength;
+                Asset.dataPack = new PackAsset.Builder().Build();
                 Asset.packReferences = new HashSet<string>();
             }
 

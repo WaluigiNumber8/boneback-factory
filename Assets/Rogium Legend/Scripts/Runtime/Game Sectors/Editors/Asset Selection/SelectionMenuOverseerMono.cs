@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using RedRats.Core;
 using RedRats.Safety;
-using RedRats.UI.Tabs;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
@@ -15,11 +14,12 @@ namespace Rogium.Editors.NewAssetSelection
     /// <summary>
     /// Overseers the Asset Selection Menu.
     /// </summary>
-    public sealed class SelectionMenuOverseerMono : MonoSingleton<SelectionMenuOverseerMono>
+    public sealed partial class SelectionMenuOverseerMono : MonoSingleton<SelectionMenuOverseerMono>
     {
         public event Action<AssetType> OnOpen;
 
-        [SerializeField] private TabGroup categoryTabGroup;
+        [SerializeField] private SelectionInfoColumn infoColumn;
+        [SerializeField] private AssetTabGroup categoryTabGroup;
         [SerializeField] private SelectionDataInfo data;
         [Button] public void TestFill() => Open(AssetType.Pack);
         
@@ -31,15 +31,27 @@ namespace Rogium.Editors.NewAssetSelection
             base.Awake();
             menuData = new Dictionary<AssetType, SelectionMenuData>
             {
-                {AssetType.Pack, new SelectionMenuData(data.packSelection, ExternalLibraryOverseer.Instance.Packs.Cast<IAsset>().ToList)},
-                {AssetType.Palette, new SelectionMenuData(data.paletteSelection, GetPaletteList)},
-                {AssetType.Sprite, new SelectionMenuData(data.spriteSelection, GetSpriteList)},
-                {AssetType.Weapon, new SelectionMenuData(data.weaponSelection, GetWeaponList)},
-                {AssetType.Projectile, new SelectionMenuData(data.projectileSelection, GetProjectileList)},
-                {AssetType.Enemy, new SelectionMenuData(data.enemySelection, GetEnemyList)},
-                {AssetType.Room, new SelectionMenuData(data.roomSelection, GetRoomList)},
-                {AssetType.Tile, new SelectionMenuData(data.tileSelection, GetTileList)}
+                {AssetType.Pack, new SelectionMenuData.Builder().AsCopy(data.packSelection).WithGetAssetList(ExternalLibraryOverseer.Instance.Packs.Cast<IAsset>().ToList).WithWhenCardSelected(PrepareInfoColumn).Build()},
+                {AssetType.Palette, new SelectionMenuData.Builder().AsCopy(data.paletteSelection).WithGetAssetList(GetPaletteList).WithWhenCardSelected(PrepareInfoColumn).Build()},
+                {AssetType.Sprite, new SelectionMenuData.Builder().AsCopy(data.spriteSelection).WithGetAssetList(GetSpriteList).WithWhenCardSelected(PrepareInfoColumn).Build()},
+                {AssetType.Weapon, new SelectionMenuData.Builder().AsCopy(data.weaponSelection).WithGetAssetList(GetWeaponList).WithWhenCardSelected(PrepareInfoColumn).Build()},
+                {AssetType.Projectile, new SelectionMenuData.Builder().AsCopy(data.projectileSelection).WithGetAssetList(GetProjectileList).WithWhenCardSelected(PrepareInfoColumn).Build()},
+                {AssetType.Enemy, new SelectionMenuData.Builder().AsCopy(data.enemySelection).WithGetAssetList(GetEnemyList).WithWhenCardSelected(PrepareInfoColumn).Build()},
+                {AssetType.Room, new SelectionMenuData.Builder().AsCopy(data.roomSelection).WithGetAssetList(GetRoomList).WithWhenCardSelected(PrepareInfoColumn).Build()},
+                {AssetType.Tile, new SelectionMenuData.Builder().AsCopy(data.tileSelection).WithGetAssetList(GetTileList).WithWhenCardSelected(PrepareInfoColumn).Build()},
             };
+        }
+
+        private void OnEnable()
+        {
+            data.SubscribeToCardSelection(PrepareInfoColumn);
+            data.SubscribeToNoSelection(PrepareInfoColumnForEmpty);
+        }
+
+        private void OnDisable()
+        {
+            data.UnsubscribeFromCardSelection(PrepareInfoColumn);
+            data.UnsubscribeFromNoSelection(PrepareInfoColumnForEmpty);
         }
 
         private static IList<IAsset> GetPaletteList() => PackEditorOverseer.Instance.CurrentPack.Palettes.Cast<IAsset>().ToList();
@@ -54,6 +66,7 @@ namespace Rogium.Editors.NewAssetSelection
         {
             currentType = type;
             GetData(currentType).Load();
+            if (type != AssetType.Pack && type != AssetType.Campaign) categoryTabGroup.Switch(type);
             OnOpen?.Invoke(currentType);
         }
         
@@ -65,21 +78,10 @@ namespace Rogium.Editors.NewAssetSelection
             return menuData[type];
         }
 
+        private void PrepareInfoColumn(int index) => infoColumn.Construct(GetData(currentType).GetAssetList()[index]);
+        private void PrepareInfoColumnForEmpty() => infoColumn.ConstructEmpty(currentType);
+
         public AssetSelector CurrentSelector { get => GetData(currentType).AssetSelector; }
         public AssetType CurrentType { get => currentType; }
-
-        [Serializable]
-        public struct SelectionDataInfo
-        {
-            public SelectionMenuData packSelection;
-            public SelectionMenuData paletteSelection;
-            public SelectionMenuData spriteSelection;
-            public SelectionMenuData weaponSelection;
-            public SelectionMenuData projectileSelection;
-            public SelectionMenuData enemySelection;
-            public SelectionMenuData roomSelection;
-            public SelectionMenuData tileSelection;
-        }
-
     }
 }

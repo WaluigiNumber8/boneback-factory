@@ -30,7 +30,7 @@ namespace Rogium.Editors.Core
         private ExternalLibraryOverseer()
         {
             packs = new AssetList<PackAsset>(ex.CreatePack, ex.UpdatePack, ex.DeletePack);
-            campaigns = new AssetList<CampaignAsset>(ex.Campaigns.Save, ex.Campaigns.UpdateTitle, ex.Campaigns.Delete);
+            campaigns = new AssetList<CampaignAsset>(ex.Campaigns.Save, ex.Campaigns.Update, ex.Campaigns.Delete);
             
             packEditor.OnSaveChanges += UpdatePack;
             packEditor.OnRemoveSprite += RemoveSpriteAssociation;
@@ -59,7 +59,10 @@ namespace Rogium.Editors.Core
         /// Creates a new Pack, and adds it to the library.
         /// </summary>
         /// <param name="pack">Information about the pack.</param>
-        public void CreateAndAddPack(PackAsset pack) => packs.Add(new PackAsset.Builder().AsCopy(pack).Build());
+        public void CreateAndAddPack(PackAsset pack)
+        {
+            packs.Add(new PackAsset.Builder().AsCopy(pack).Build());
+        }
 
         /// <summary>
         /// Updates the pack on a specific position in the library
@@ -71,6 +74,7 @@ namespace Rogium.Editors.Core
         /// <param name="lastAssociatedSpriteID">Pack's referenced sprite before updating.</param>
         public void UpdatePack(PackAsset pack, int index, string lastTitle, string lastAuthor, string lastAssociatedSpriteID)
         {
+            pack.RefreshAssetCounts();
             ProcessSpriteAssociations(pack, pack, lastAssociatedSpriteID);
             if (!string.IsNullOrEmpty(pack.AssociatedSpriteID))
             {
@@ -97,6 +101,7 @@ namespace Rogium.Editors.Core
             SafetyNet.EnsureListIsNotNullOrEmpty(packs, "Pack Library");
             SafetyNet.EnsureIntIsInRange(packIndex, 0, packs.Count, "packIndex for activating Pack Editor");
             packs[packIndex] = ex.LoadPack(packs[packIndex]);
+            packs[packIndex].RefreshAssetCounts();
             packEditor.AssignAsset(packs[packIndex], packIndex);
         }
         

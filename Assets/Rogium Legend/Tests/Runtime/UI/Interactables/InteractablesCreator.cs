@@ -20,6 +20,7 @@ namespace Rogium.Tests.UI.Interactables
         private static readonly InteractablePropertyAssetField assetFieldTextProperty = AssetDatabase.LoadAssetAtPath<InteractablePropertyAssetField>("Assets/Rogium Legend/Prefabs/UI/Interactables/Properties/Horizontal/pref_Property_AssetField_Text_Blue.prefab");
         private static readonly InteractablePropertyColorField colorFieldProperty = AssetDatabase.LoadAssetAtPath<InteractablePropertyColorField>("Assets/Rogium Legend/Prefabs/UI/Interactables/Properties/Horizontal/pref_Property_ColorField_Blue.prefab");
         private static readonly InteractablePropertySoundField soundFieldProperty = AssetDatabase.LoadAssetAtPath<InteractablePropertySoundField>("Assets/Rogium Legend/Prefabs/UI/Interactables/Properties/Horizontal/pref_Property_SoundField_Blue.prefab");
+        private static readonly InteractablePropertySoundField assetEmblemListProperty = AssetDatabase.LoadAssetAtPath<InteractablePropertySoundField>("Assets/Rogium Legend/Prefabs/UI/Interactables/Properties/Horizontal/pref_Property_AssetEmblemList_Blue.prefab");
 
         public static InteractablePropertyToggle CreateAndInitToggle(bool value = false)
         {

@@ -18,7 +18,7 @@ namespace Rogium.Editors.Packs
     /// <summary>
     /// Contains all important data for a given pack.
     /// </summary>
-    public class PackAsset : AssetWithReferencedSpriteBase
+    public class PackAsset : AssetWithReferencedSpriteBase, IAssetWithDescription
     {
         private string description;
         private AssetList<PaletteAsset> palettes;
@@ -28,6 +28,7 @@ namespace Rogium.Editors.Packs
         private AssetList<EnemyAsset> enemies;
         private AssetList<RoomAsset> rooms;
         private AssetList<TileAsset> tiles;
+        private int paletteCount, spriteCount, weaponCount, projectileCount, enemyCount, roomCount, tileCount;
 
         private PackAsset() { }
 
@@ -37,13 +38,10 @@ namespace Rogium.Editors.Packs
 
         public override bool Equals(object obj)
         {
-            PackAsset pack = (PackAsset) obj;
-            if (pack == null) return false;
-            if (pack.Title == Title &&
-                pack.Author == Author &&
-                pack.CreationDate == CreationDate)
-                return true;
-            return false;
+            if (obj is not PackAsset pack) return false;
+            return pack.Title == Title &&
+                   pack.Author == Author &&
+                   pack.CreationDate == CreationDate;
         }
 
         public override int GetHashCode() => int.Parse(ID);
@@ -67,6 +65,17 @@ namespace Rogium.Editors.Packs
             return Sprites.FindValueFirst(id) ?? (IAsset) new EmptyAsset(EditorDefaults.Instance.MissingSprite);
         }
 
+        public void RefreshAssetCounts()
+        {
+            paletteCount = palettes.Count;
+            spriteCount = sprites.Count;
+            weaponCount = weapons.Count;
+            projectileCount = projectiles.Count;
+            enemyCount = enemies.Count;
+            roomCount = rooms.Count;
+            tileCount = tiles.Count;
+        }
+        
         public bool ContainsAnyPalettes => (palettes?.Count > 0);
         public bool ContainsAnySprites => (sprites?.Count > 0);
         public bool ContainsAnyWeapons => (weapons?.Count > 0);
@@ -84,6 +93,14 @@ namespace Rogium.Editors.Packs
         public AssetList<RoomAsset> Rooms { get => rooms; }
         public AssetList<TileAsset> Tiles { get => tiles; }
         
+        public int PaletteCount { get => paletteCount; }
+        public int SpriteCount { get => spriteCount; }
+        public int WeaponCount { get => weaponCount; }
+        public int ProjectileCount { get => projectileCount; }
+        public int EnemyCount { get => enemyCount; }
+        public int RoomCount { get => roomCount; }
+        public int TileCount { get => tileCount; }
+        
         public class Builder : AssetWithReferencedSpriteBuilder<PackAsset, Builder>
         {
             private readonly IExternalStorageOverseer ex = ExternalCommunicator.Instance;
@@ -96,13 +113,13 @@ namespace Rogium.Editors.Packs
                 Asset.GenerateID();
                 
                 Asset.description = EditorDefaults.Instance.PackDescription;
-                Asset.palettes = new AssetList<PaletteAsset>(ex.Palettes.Save, ex.Palettes.UpdateTitle, ex.Palettes.Delete);
-                Asset.sprites = new AssetList<SpriteAsset>(ex.Sprites.Save, ex.Sprites.UpdateTitle, ex.Sprites.Delete);
-                Asset.weapons = new AssetList<WeaponAsset>(ex.Weapons.Save, ex.Weapons.UpdateTitle, ex.Weapons.Delete);
-                Asset.projectiles = new AssetList<ProjectileAsset>(ex.Projectiles.Save, ex.Projectiles.UpdateTitle, ex.Projectiles.Delete);
-                Asset.enemies = new AssetList<EnemyAsset>(ex.Enemies.Save, ex.Enemies.UpdateTitle, ex.Enemies.Delete);
-                Asset.rooms = new AssetList<RoomAsset>(ex.Rooms.Save, ex.Rooms.UpdateTitle, ex.Rooms.Delete);
-                Asset.tiles = new AssetList<TileAsset>(ex.Tiles.Save, ex.Tiles.UpdateTitle, ex.Tiles.Delete);
+                Asset.palettes = new AssetList<PaletteAsset>(ex.Palettes.Save, ex.Palettes.Update, ex.Palettes.Delete);
+                Asset.sprites = new AssetList<SpriteAsset>(ex.Sprites.Save, ex.Sprites.Update, ex.Sprites.Delete);
+                Asset.weapons = new AssetList<WeaponAsset>(ex.Weapons.Save, ex.Weapons.Update, ex.Weapons.Delete);
+                Asset.projectiles = new AssetList<ProjectileAsset>(ex.Projectiles.Save, ex.Projectiles.Update, ex.Projectiles.Delete);
+                Asset.enemies = new AssetList<EnemyAsset>(ex.Enemies.Save, ex.Enemies.Update, ex.Enemies.Delete);
+                Asset.rooms = new AssetList<RoomAsset>(ex.Rooms.Save, ex.Rooms.Update, ex.Rooms.Delete);
+                Asset.tiles = new AssetList<TileAsset>(ex.Tiles.Save, ex.Tiles.Update, ex.Tiles.Delete);
             }
 
             public Builder WithDescription(string description)
@@ -110,11 +127,24 @@ namespace Rogium.Editors.Packs
                 Asset.description = description;
                 return This;
             }
+            
+            public Builder WithCounts(int paletteCount, int spriteCount, int weaponCount, int projectileCount, int enemyCount, int roomCount, int tileCount)
+            {
+                Asset.paletteCount = paletteCount;
+                Asset.spriteCount = spriteCount;
+                Asset.weaponCount = weaponCount;
+                Asset.projectileCount = projectileCount;
+                Asset.enemyCount = enemyCount;
+                Asset.roomCount = roomCount;
+                Asset.tileCount = tileCount;
+                return This;
+            }
 
             public Builder WithPalettes(IList<PaletteAsset> palettes)
             {
                 Asset.palettes.Clear();
                 Asset.palettes.AddAllWithoutSave(palettes);
+                Asset.paletteCount = palettes.Count;
                 return This;
             }
 
@@ -122,6 +152,7 @@ namespace Rogium.Editors.Packs
             {
                 Asset.sprites.Clear();
                 Asset.sprites.AddAllWithoutSave(sprites);
+                Asset.spriteCount = sprites.Count;
                 return This;
             }
 
@@ -129,6 +160,7 @@ namespace Rogium.Editors.Packs
             {
                 Asset.weapons.Clear();
                 Asset.weapons.AddAllWithoutSave(weapons);
+                Asset.weaponCount = weapons.Count;
                 return This;
             }
 
@@ -136,6 +168,7 @@ namespace Rogium.Editors.Packs
             {
                 Asset.projectiles.Clear();
                 Asset.projectiles.AddAllWithoutSave(projectiles);
+                Asset.projectileCount = projectiles.Count;
                 return This;
             }
 
@@ -143,6 +176,7 @@ namespace Rogium.Editors.Packs
             {
                 Asset.enemies.Clear();
                 Asset.enemies.AddAllWithoutSave(enemies);
+                Asset.enemyCount = enemies.Count;
                 return This;
             }
 
@@ -150,6 +184,7 @@ namespace Rogium.Editors.Packs
             {
                 Asset.rooms.Clear();
                 Asset.rooms.AddAllWithoutSave(rooms);
+                Asset.roomCount = rooms.Count;
                 return This;
             }
 
@@ -157,6 +192,7 @@ namespace Rogium.Editors.Packs
             {
                 Asset.tiles.Clear();
                 Asset.tiles.AddAllWithoutSave(tiles);
+                Asset.tileCount = tiles.Count;
                 return This;
             }
             
@@ -183,6 +219,13 @@ namespace Rogium.Editors.Packs
                 Asset.enemies.AddAllWithoutSave(asset.Enemies);
                 Asset.rooms.AddAllWithoutSave(asset.Rooms);
                 Asset.tiles.AddAllWithoutSave(asset.Tiles);
+                Asset.paletteCount = asset.PaletteCount;
+                Asset.spriteCount = asset.SpriteCount;
+                Asset.weaponCount = asset.WeaponCount;
+                Asset.projectileCount = asset.ProjectileCount;
+                Asset.enemyCount = asset.EnemyCount;
+                Asset.roomCount = asset.RoomCount;
+                Asset.tileCount = asset.TileCount;
                 return This;
             }
 
