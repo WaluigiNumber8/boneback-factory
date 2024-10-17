@@ -83,15 +83,6 @@ namespace Rogium.Systems.GASExtension
         {
             GAS.SwitchMenu(MenuType.MainMenu);
         }
-        
-        private static void ReturnToPackSelectionMenu()
-        {
-            GASRogium.ChangeTheme(ThemeType.Blue);
-            PackEditorOverseer.Instance.CompleteEditing();
-            CanvasOverseer.GetInstance().NavigationBar.Show(ReturnToMainMenuSelection);
-            GAS.SwitchMenu(MenuType.AssetSelection);
-            GASRogium.OpenSelectionMenu(AssetType.Pack);
-        }
         #endregion
 
         #region Open Selection Menus
