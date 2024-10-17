@@ -17,6 +17,7 @@ namespace Rogium.Tests.Core
         private static readonly GameObject spriteEditorProperty = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Menu_SpriteEditor.prefab");
         private static readonly GameObject roomEditorProperty = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Menu_RoomEditor.prefab");
         private static readonly GameObject propertyEditorProperty = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Menu_PropertyEditor.prefab");
+        private static readonly GameObject campaignSelectionProperty = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Menu_CampaignSelection.prefab");
         private static readonly GameObject campaignEditorProperty = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Menu_CampaignEditor.prefab");
         private static readonly GameObject selectionMenuProperty = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Menu_SelectionMenu.prefab");
         private static readonly GameObject selectionMenuV2Property = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Menu_SelectionMenu_V2.prefab");
@@ -151,14 +152,24 @@ namespace Rogium.Tests.Core
             PackEditorOverseer.Instance.ActivateTileEditor(0);
         }
 
-        public static IEnumerator PrepareCampaignEditor()
+        public static IEnumerator PrepareCampaignEditor(bool openEditor = true)
         {
             OverseerLoader.LoadUIBuilder();
             OverseerLoader.LoadThemeOverseer();
             
             Object.Instantiate(campaignEditorProperty, Object.FindFirstObjectByType<Canvas>().transform);
             yield return null;
+            if (!openEditor) yield break;
             yield return AssetCreator.CreateAndAssignCampaign();
+        }
+        
+        public static IEnumerator PrepareCampaignSelection()
+        {
+            OverseerLoader.LoadUIBuilder();
+            OverseerLoader.LoadThemeOverseer();
+            
+            Object.Instantiate(campaignSelectionProperty, Object.FindFirstObjectByType<Canvas>().transform);
+            yield return null;
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using NUnit.Framework;
+using Rogium.Systems.GASExtension;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Backgrounds;
 using UnityEngine;
@@ -47,6 +48,46 @@ namespace Rogium.Tests.UI.Backgrounds
             overseer.SwitchToGameMenu();
             yield return new WaitForSeconds(1f);
             Assert.That(overseer.IsSetToGameMenu(), Is.EqualTo(true));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowEditorBackground_WhenGoToPackSelectionMenu()
+        {
+            yield return MenuLoader.PrepareSelectionMenuV2();
+            GASButtonActions.OpenSelectionPack();
+            yield return null;
+            Assert.That(overseer.IsSetToEditor(), Is.EqualTo(true));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowMainMenuBackground_WhenGoToMainMenuFromPackSelection()
+        {
+            yield return MenuLoader.PrepareSelectionMenuV2();
+            GASButtonActions.OpenSelectionPack();
+            yield return null;
+            GASButtonActions.ReturnToMainMenuSelection();
+            yield return null;
+            Assert.That(overseer.IsSetToMainMenu(), Is.EqualTo(true));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowGameMenuBackground_WhenGoToCampaignSelection()
+        {
+            yield return MenuLoader.PrepareCampaignSelection();
+            GASButtonActions.OpenSelectionCampaign();
+            yield return null;
+            Assert.That(overseer.IsSetToGameMenu(), Is.EqualTo(true));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowMainMenuBackground_WhenGoToMainMenuFromCampaignSelection()
+        {
+            yield return MenuLoader.PrepareCampaignSelection();
+            GASButtonActions.OpenSelectionCampaign();
+            yield return null;
+            GASButtonActions.ReturnToMainMenuSelection();
+            yield return null;
+            Assert.That(overseer.IsSetToMainMenu(), Is.EqualTo(true));
         }
     }
 }

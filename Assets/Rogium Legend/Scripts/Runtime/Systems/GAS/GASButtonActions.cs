@@ -22,6 +22,7 @@ using Rogium.Gameplay.Inventory;
 using Rogium.Options.Core;
 using Rogium.Systems.ActionHistory;
 using Rogium.Systems.Toolbox;
+using Rogium.UserInterface.Backgrounds;
 using Rogium.UserInterface.Editors.AssetSelection;
 using Rogium.UserInterface.Containers;
 using Rogium.UserInterface.Core;
@@ -73,6 +74,7 @@ namespace Rogium.Systems.GASExtension
         public static void ReturnToMainMenuSelection()
         {
             GAS.SwitchMenu(MenuType.MainMenu);
+            BackgroundOverseerMono.GetInstance().SwitchToMainMenu();
             GASRogium.ChangeTheme(ThemeType.Blue);
         }
 
@@ -86,6 +88,7 @@ namespace Rogium.Systems.GASExtension
         public static void OpenSelectionPack()
         {
             GASRogium.ChangeTheme(ThemeType.Blue);
+            BackgroundOverseerMono.GetInstance().SwitchToEditor();
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Pack);
         }
@@ -94,6 +97,7 @@ namespace Rogium.Systems.GASExtension
         {
             GASRogium.ChangeTheme(ThemeType.Red);
             GAS.SwitchMenu(MenuType.CampaignSelection);
+            BackgroundOverseerMono.GetInstance().SwitchToGameMenu();
             CampaignAssetSelectionOverseer.Instance.SelectCampaignFirst();
             GASRogium.ChangeTheme(ThemeType.Red);
         }
@@ -504,6 +508,7 @@ namespace Rogium.Systems.GASExtension
 
         public static void OpenEditorCampaign(int assetIndex)
         {
+            BackgroundOverseerMono.GetInstance().SwitchToEditor();
             GAS.SwitchMenu(MenuType.CampaignEditor);
             ExternalLibraryOverseer.Instance.ActivateCampaignEditor(assetIndex);
             storedIndex = assetIndex;
