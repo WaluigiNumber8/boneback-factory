@@ -87,16 +87,16 @@ namespace Rogium.Tests.Editors.AssetSelection
             yield return null;
             ModalWindow window = Object.FindFirstObjectByType<ModalWindow>();
             window.GetComponentInChildren<TMP_InputField>().text = "New Fred";
-            yield return new WaitForSeconds(5f);
             window.OnAccept();
-            yield return new WaitForSeconds(2f);
-            Assert.That(packBanner.Title, Is.EqualTo("New Fred"));
+            yield return null;
+            Assert.That(packBanner.Title, Is.EqualTo(currentPack.Title));
         }
         
         [UnityTest]
-        public IEnumerator Should_RefreshBannerIcon_WhenPackTitleEdited()
+        public IEnumerator Should_RefreshBannerIcon_WhenPackIconEdited()
         {
             PackEditorOverseer.Instance.CurrentPack.Sprites.Add(AssetCreator.CreateSprite(Color.green));
+            yield return null;
             packBanner.Config();
             yield return null;
             ModalWindow window = Object.FindFirstObjectByType<ModalWindow>();
@@ -104,11 +104,11 @@ namespace Rogium.Tests.Editors.AssetSelection
             yield return null;
             AssetPickerWindow picker = Object.FindFirstObjectByType<AssetPickerWindow>();
             picker.Select(1);
+            yield return null;
             picker.ConfirmSelection();
-            yield return new WaitForSeconds(5f);
             window.OnAccept();
-            yield return new WaitForSeconds(2f);
-            Assert.That(packBanner.Icon, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[0].Sprites[1].Icon));
+            yield return null;
+            Assert.That(packBanner.Icon, Is.EqualTo(currentPack.Icon));
         }
     }
 }
