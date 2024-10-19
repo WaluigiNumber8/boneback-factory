@@ -42,7 +42,7 @@ namespace Rogium.Systems.GridSystem
         /// </summary>
         /// <param name="indexGrid">The grid of IDs to read.</param>
         /// <param name="colorArray">The array of colors to take data from.</param>
-        public Sprite Build(ObjectGrid<int> indexGrid, Color[] colorArray)
+        public Sprite Draw(ObjectGrid<int> indexGrid, Color[] colorArray)
         {
             Texture2D tex = RedRatBuilder.GenerateTexture(indexGrid.Width * pixelsPerUnit, indexGrid.Height * pixelsPerUnit);
             Sprite sprite = RedRatBuilder.GenerateSprite(tex, pixelsPerUnit);
@@ -78,13 +78,13 @@ namespace Rogium.Systems.GridSystem
         /// <param name="assetList">The list of assets to take data from.</param>
         /// <typeparam name="T">Any type of <see cref="IAsset"/>.</typeparam>
         /// <typeparam name="TS">Any type of <see cref="IComparable"/>.</typeparam>
-        public Sprite Build<T, TS>(ObjectGrid<TS> IDGrid, IList<T> assetList) where T : IAsset where TS : IComparable
+        public Sprite Draw<T, TS>(ObjectGrid<TS> IDGrid, IList<T> assetList) where T : IAsset where TS : IComparable
         {
             Texture2D tex = RedRatBuilder.GenerateTexture(IDGrid.Width * pixelsPerUnit, IDGrid.Height * pixelsPerUnit);
             Sprite sprite = RedRatBuilder.GenerateSprite(tex, pixelsPerUnit);
             ClearAllCells(sprite);
 
-            return Build(IDGrid, assetList, sprite);
+            return Draw(IDGrid, assetList, sprite);
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace Rogium.Systems.GridSystem
         /// <param name="sprite">The sprite to draw onto.</param>
         /// <typeparam name="T">Any type of <see cref="IAsset"/>.</typeparam>
         /// <typeparam name="TS">Any type of <see cref="IComparable"/>.</typeparam>
-        public Sprite Build<T, TS>(ObjectGrid<TS> IDGrid, IList<T> assetList, Sprite sprite) where T : IAsset where TS : IComparable
+        public Sprite Draw<T, TS>(ObjectGrid<TS> IDGrid, IList<T> assetList, Sprite sprite) where T : IAsset where TS : IComparable
         {
             SafetyNet.EnsureIntIsEqual(sprite.texture.width, IDGrid.Width * unitSize.x, "Bottom Sprite Width");
             SafetyNet.EnsureIntIsEqual(sprite.texture.height, IDGrid.Height * unitSize.y, "Bottom Sprite Height");

@@ -56,7 +56,7 @@ namespace Rogium.Editors.NewAssetSelection
                 { typeof(WeaponAsset), asset => {PrepareIcon(asset.Icon); builderWeapon.Build((WeaponAsset)asset);}},
                 { typeof(ProjectileAsset), asset => {PrepareIcon(asset.Icon); builderProjectile.Build((ProjectileAsset)asset);}},
                 { typeof(EnemyAsset), asset => {PrepareIcon(asset.Icon); builderEnemy.Build((EnemyAsset)asset);}},
-                { typeof(RoomAsset), asset => {PrepareBanner(asset.Icon); builderRoom.Build((RoomAsset)asset);}},
+                { typeof(RoomAsset), asset => {PrepareBanner(((RoomAsset)asset).Banner); builderRoom.Build((RoomAsset)asset);}},
                 { typeof(TileAsset), asset => {PrepareIcon(asset.Icon); builderTile.Build((TileAsset)asset);}},
             };
         }

@@ -17,5 +17,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection
             overseer = CampaignAssetSelectionOverseer.Instance;
             overseer.Initialize(wallpaperController);
         }
+        
+        public AssetWallpaperController Wallpaper { get => wallpaperController; }
     }
 }

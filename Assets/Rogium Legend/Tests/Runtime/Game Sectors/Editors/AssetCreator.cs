@@ -2,6 +2,7 @@ using System.Collections;
 using RedRats.Core;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Core;
+using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Enemies;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Palettes;
@@ -11,6 +12,7 @@ using Rogium.Editors.Sprites;
 using Rogium.Editors.Tiles;
 using Rogium.Editors.Weapons;
 using Rogium.Systems.GridSystem;
+using Rogium.Tests.Core;
 using UnityEngine;
 
 namespace Rogium.Tests.Editors
@@ -115,10 +117,15 @@ namespace Rogium.Tests.Editors
 
         public static RoomAsset CreateRoom()
         {
-            return new RoomAsset.Builder()
-                .WithTitle("Test Room")
-                .WithIcon(RedRatBuilder.GenerateSprite(Color.blue, 16, 16, 16))
-                .Build();
+            OverseerLoader.LoadInternalLibrary();
+            RoomAsset room = new RoomAsset.Builder()
+                            .WithTitle("Test Room")
+                            .WithIcon(RedRatBuilder.GenerateSprite(Color.blue, 16, 16, 16))
+                            .WithObjectGrid(new ObjectGrid<AssetData>(EditorDefaults.Instance.RoomSize.x, EditorDefaults.Instance.RoomSize.y, () => new AssetData()))
+                            .Build();
+            room.ObjectGrid.SetTo(0, 0, AssetDataBuilder.ForObject(InternalLibraryOverseer.GetInstance().GetObjectByID("001")));
+            room.ObjectGrid.SetTo(0, 1, AssetDataBuilder.ForObject(InternalLibraryOverseer.GetInstance().GetObjectByID("002")));
+            return room;
         }
 
         public static TileAsset CreateTile()

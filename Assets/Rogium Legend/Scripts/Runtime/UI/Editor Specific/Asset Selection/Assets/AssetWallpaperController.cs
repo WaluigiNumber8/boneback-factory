@@ -51,6 +51,8 @@ namespace Rogium.UserInterface.Editors.AssetSelection
             OnConstruct?.Invoke(this.index);
         }
         
+        public Sprite BannerIcon { get => ui.wallpaper.sprite; }
+        
         [Serializable]
         public struct UIInfo
         {

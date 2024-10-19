@@ -88,7 +88,7 @@ namespace Rogium.Editors.Campaign
         /// <returns></returns>
         private Sprite GetIconDirty(PackAsset dataPack)
         {
-            Sprite icon = dataPack.Rooms.FirstOrDefault(rm => rm.Type == RoomType.Entrance)?.Icon;
+            Sprite icon = dataPack.Rooms.FirstOrDefault(rm => rm.Type == RoomType.Entrance)?.Banner;
             return icon;
         }
         

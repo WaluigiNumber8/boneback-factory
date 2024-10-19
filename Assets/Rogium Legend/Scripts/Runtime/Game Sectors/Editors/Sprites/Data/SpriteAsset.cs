@@ -32,7 +32,7 @@ namespace Rogium.Editors.Sprites
         public void ClearAssociatedPalette()
         {
             associatedPaletteID = EditorDefaults.EmptyAssetID;
-            UpdateIcon(IconBuilder.BuildFromGrid(SpriteData, EditorDefaults.Instance.MissingPalette));
+            UpdateIcon(IconBuilder.DrawFromGrid(SpriteData, EditorDefaults.Instance.MissingPalette));
         }
 
         public void UpdatePalette(IAsset newPalette)
@@ -42,10 +42,10 @@ namespace Rogium.Editors.Sprites
             {
                 SafetyNet.EnsureIsType<PaletteAsset>(newPalette, nameof(newPalette));
                 PaletteAsset p = (PaletteAsset) newPalette;
-                icon = IconBuilder.BuildFromGrid(SpriteData, p.Colors);
+                icon = IconBuilder.DrawFromGrid(SpriteData, p.Colors);
                 return;
             }
-            icon = IconBuilder.BuildFromGrid(SpriteData, EditorDefaults.Instance.MissingPalette);
+            icon = IconBuilder.DrawFromGrid(SpriteData, EditorDefaults.Instance.MissingPalette);
         }
         
         public ObjectGrid<int> SpriteData { get => spriteData; }
