@@ -5,6 +5,7 @@ using RedRats.Core;
 using RedRats.Safety;
 using Rogium.Core;
 using Rogium.Editors.Core;
+using Rogium.Editors.NewAssetSelection.UI;
 using Rogium.Editors.Packs;
 using Sirenix.OdinInspector;
 using UnityEngine;

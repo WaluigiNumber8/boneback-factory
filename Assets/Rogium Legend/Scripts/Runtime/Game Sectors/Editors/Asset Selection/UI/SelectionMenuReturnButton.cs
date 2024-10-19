@@ -1,11 +1,10 @@
-using System;
 using Rogium.Core;
 using Rogium.Systems.GASExtension;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace Rogium.Editors.NewAssetSelection
+namespace Rogium.Editors.NewAssetSelection.UI
 {
     /// <summary>
     /// Changes action of the return button in the Selection Menu based on currently open asset type.

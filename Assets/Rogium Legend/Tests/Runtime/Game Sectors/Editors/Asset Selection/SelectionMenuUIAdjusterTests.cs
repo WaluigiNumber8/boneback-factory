@@ -1,8 +1,8 @@
 using System.Collections;
 using NUnit.Framework;
 using Rogium.Core;
-using Rogium.Editors.Core;
 using Rogium.Editors.NewAssetSelection;
+using Rogium.Editors.NewAssetSelection.UI;
 using Rogium.Tests.Core;
 using UnityEngine;
 using UnityEngine.TestTools;

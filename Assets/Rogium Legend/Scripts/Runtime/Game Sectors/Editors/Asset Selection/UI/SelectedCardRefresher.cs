@@ -9,7 +9,7 @@ using Rogium.Editors.Tiles;
 using Rogium.Editors.Weapons;
 using UnityEngine;
 
-namespace Rogium.Editors.NewAssetSelection
+namespace Rogium.Editors.NewAssetSelection.UI
 {
     /// <summary>
     /// Refreshes the currently selected card if it's values were updated.

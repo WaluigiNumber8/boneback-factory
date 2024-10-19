@@ -5,7 +5,7 @@ using Rogium.Core;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Rogium.Editors.NewAssetSelection
+namespace Rogium.Editors.NewAssetSelection.UI
 {
     /// <summary>
     /// A special version of <see cref="TabGroup"/> that links <see cref="AssetType"/> to <see cref="TabPageButton"/>s.
