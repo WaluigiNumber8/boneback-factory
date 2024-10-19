@@ -505,7 +505,6 @@ namespace Rogium.Systems.GASExtension
 
         public static void OpenEditorCampaign(int assetIndex)
         {
-            BackgroundOverseerMono.GetInstance().SwitchToEditor();
             GAS.SwitchMenu(MenuType.CampaignEditor);
             ExternalLibraryOverseer.Instance.ActivateCampaignEditor(assetIndex);
             storedIndex = assetIndex;
