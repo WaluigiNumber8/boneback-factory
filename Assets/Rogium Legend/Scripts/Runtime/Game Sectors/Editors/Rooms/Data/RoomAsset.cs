@@ -77,6 +77,12 @@ namespace Rogium.Editors.Rooms
                 Asset.enemyGrid = new ObjectGrid<AssetData>(EditorDefaults.Instance.RoomSize.x, EditorDefaults.Instance.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForEnemy));
             }
 
+            public Builder WithBanner(Sprite banner)
+            {
+                Asset.banner = banner;
+                return This;
+            }
+            
             public Builder WithDifficultyLevel(int difficultyLevel)
             {
                 Asset.difficultyLevel = difficultyLevel;

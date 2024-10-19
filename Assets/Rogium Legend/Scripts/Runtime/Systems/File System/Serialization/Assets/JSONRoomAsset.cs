@@ -12,6 +12,7 @@ namespace Rogium.ExternalStorage.Serialization
     [System.Serializable]
     public class JSONRoomAsset : JSONAssetBase<RoomAsset>
     {
+        public JSONSprite banner;
         public int difficultyLevel;
         public int type;
         public int lightness;
@@ -23,6 +24,7 @@ namespace Rogium.ExternalStorage.Serialization
 
         public JSONRoomAsset(RoomAsset asset) : base(asset)
         {
+            banner = new JSONSprite(asset.Icon);
             difficultyLevel = asset.DifficultyLevel;
             type = (int)asset.Type;
             lightness = asset.Lightness;
@@ -50,6 +52,7 @@ namespace Rogium.ExternalStorage.Serialization
                 .WithIcon(icon.Decode())
                 .WithAuthor(author)
                 .WithCreationDate(DateTime.Parse(creationDate))
+                .WithBanner(banner.Decode())
                 .WithDifficultyLevel(difficultyLevel)
                 .WithType((RoomType)type)
                 .WithLightness(lightness)
