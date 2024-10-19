@@ -80,7 +80,7 @@ namespace Rogium.Editors.Sprites
         {
             OnCompleteEditingBefore?.Invoke();
 
-            Sprite newIcon = IconBuilder.BuildFromGrid(currentAsset.SpriteData, currentPalette.Colors);
+            Sprite newIcon = IconBuilder.DrawFromGrid(currentAsset.SpriteData, currentPalette.Colors);
             newIcon.name = currentAsset.Title;
             currentAsset.UpdateIcon(newIcon);
             

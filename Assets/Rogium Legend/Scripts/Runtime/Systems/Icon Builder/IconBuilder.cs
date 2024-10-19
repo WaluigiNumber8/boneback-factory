@@ -1,12 +1,18 @@
-﻿using RedRats.Core;
+﻿using System.Collections.Generic;
+using RedRats.Core;
+using Rogium.Core;
+using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
+using Rogium.Editors.Packs;
+using Rogium.Editors.Rooms;
+using Rogium.Editors.Tiles;
 using Rogium.Systems.GridSystem;
 using UnityEngine;
 
 namespace Rogium.Systems.IconBuilders
 {
     /// <summary>
-    /// Builds icons based on colors inputted colors.
+    /// Builds icons based on inputted colors.
     /// </summary>
     public static class IconBuilder
     {
@@ -15,7 +21,7 @@ namespace Rogium.Systems.IconBuilders
         /// </summary>
         /// <param name="colors">The colors to use for the sprite.</param>
         /// <returns>A sprite containing all the colors.</returns>
-        public static Sprite BuildFromArray(Color[] colors)
+        public static Sprite DrawFromArray(Color[] colors)
         {
             int texSize = CalculateSize(colors.Length);
             Texture2D tex = RedRatBuilder.GenerateTexture(texSize, texSize);
@@ -46,7 +52,7 @@ namespace Rogium.Systems.IconBuilders
         /// <param name="grid">The data to build from.</param>
         /// <param name="colors">The colors to use.</param>
         /// <returns>A Sprite.</returns>
-        public static Sprite BuildFromGrid(ObjectGrid<int> grid, Color[] colors)
+        public static Sprite DrawFromGrid(ObjectGrid<int> grid, Color[] colors)
         {
             Texture2D tex = RedRatBuilder.GenerateTexture(grid.Width, grid.Height);
             for (int y = 0; y < grid.Height; y++)
@@ -73,6 +79,31 @@ namespace Rogium.Systems.IconBuilders
             return RedRatBuilder.GenerateSprite(tex, EditorDefaults.Instance.PixelsPerUnit);
         }
 
+        public static Sprite DrawIconFromTiles(RoomAsset asset, IDictionary<string, TileAsset> tiles)
+        {
+            Color previousColor = Color.clear;
+            string previousID = string.Empty;
+            Texture2D tex = RedRatBuilder.GenerateTexture(asset.TileGrid.Width, asset.TileGrid.Height);
+            for (int x = 0; x < tex.width; x++)
+            {
+                for (int y = 0; y < tex.height; y++)
+                {
+                    AssetData data = asset.TileGrid.GetAt(x, y);
+                    if (data.ID == previousID)
+                    {
+                        tex.SetPixel(x, y, previousColor);
+                        continue;
+                    }
+                    Color color = (data.ID.IsEmpty()) ? Color.clear : tiles[data.ID].Icon.texture.GetPixel(8, 8);
+                    tex.SetPixel(x, y, color);
+                    previousColor = color;
+                    previousID = data.ID;
+                }
+            }
+            tex.Apply();
+            return RedRatBuilder.GenerateSprite(tex, EditorDefaults.Instance.SpriteSize);
+        }
+        
         private static int CalculateSize(int arraySize)
         {
             return Mathf.FloorToInt(Mathf.Sqrt(arraySize));

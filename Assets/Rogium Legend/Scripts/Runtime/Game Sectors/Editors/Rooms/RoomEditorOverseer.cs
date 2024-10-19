@@ -1,11 +1,13 @@
 ﻿using RedRats.Safety;
 using System;
+using System.Linq;
 using RedRats.Core;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Packs;
 using Rogium.Systems.GridSystem;
+using Rogium.Systems.IconBuilders;
 using UnityEngine;
 
 namespace Rogium.Editors.Rooms
@@ -53,28 +55,12 @@ namespace Rogium.Editors.Rooms
         
         public void CompleteEditing()
         {
-            Sprite banner = drawer.Build(currentAsset.TileGrid, PackEditorOverseer.Instance.CurrentPack.Tiles);
-            banner = drawer.Build(currentAsset.DecorGrid, PackEditorOverseer.Instance.CurrentPack.Tiles, banner);
+            Sprite banner = drawer.Draw(currentAsset.TileGrid, PackEditorOverseer.Instance.CurrentPack.Tiles);
+            banner = drawer.Draw(currentAsset.DecorGrid, PackEditorOverseer.Instance.CurrentPack.Tiles, banner);
             banner.name = currentAsset.Title;
-            currentAsset.UpdateIcon(DrawIcon());
+            currentAsset.UpdateIcon(IconBuilder.DrawIconFromTiles(currentAsset, PackEditorOverseer.Instance.CurrentPack.Tiles.ToDictionary(x => x.ID, x => x)));
             currentAsset.UpdateBanner(banner);
             OnCompleteEditing?.Invoke(CurrentAsset, myIndex);
-        }
-
-        private Sprite DrawIcon()
-        {
-            Texture2D tex = RedRatBuilder.GenerateTexture(currentAsset.TileGrid.Width, currentAsset.TileGrid.Height);
-            for (int x = 0; x < tex.width; x++)
-            {
-                for (int y = 0; y < tex.height; y++)
-                {
-                    AssetData data = currentAsset.TileGrid.GetAt(x, y);
-                    Color color = (data.ID.IsEmpty()) ? Color.clear : PackEditorOverseer.Instance.CurrentPack.Tiles.FindValueFirst(data.ID).Icon.texture.GetPixel(8, 8);
-                    tex.SetPixel(x, y, color);
-                }
-            }
-            tex.Apply();
-            return RedRatBuilder.GenerateSprite(tex, EditorDefaults.Instance.SpriteSize);
         }
 
         public RoomAsset CurrentAsset 

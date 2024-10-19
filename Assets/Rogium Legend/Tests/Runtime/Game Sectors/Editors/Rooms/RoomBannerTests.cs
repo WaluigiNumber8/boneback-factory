@@ -41,7 +41,7 @@ namespace Rogium.Tests.Editors.Rooms
         public void Should_UpdateBanner()
         {
             RoomAsset room = packEditor.CurrentPack.Rooms[0];
-            Sprite bannerSprite = drawer.Build(room.TileGrid, packEditor.CurrentPack.Tiles);
+            Sprite bannerSprite = drawer.Draw(room.TileGrid, packEditor.CurrentPack.Tiles);
             room.UpdateBanner(bannerSprite);
             Assert.That(room.Banner, Is.EqualTo(bannerSprite));
         }

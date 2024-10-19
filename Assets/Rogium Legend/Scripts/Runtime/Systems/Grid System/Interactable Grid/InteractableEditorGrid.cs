@@ -86,14 +86,14 @@ namespace Rogium.Systems.GridSystem
         {
             SafetyNet.EnsureIntIsEqual(IDGrid.Width, gridSize.x, "Grid Width");
             SafetyNet.EnsureIntIsEqual(IDGrid.Height, gridSize.y, "Grid Height");
-            layers[layer].layer.sprite = drawer.Build(IDGrid, assetList);
+            layers[layer].layer.sprite = drawer.Draw(IDGrid, assetList);
         }
         
         public override void LoadWithColors(ObjectGrid<int> indexGrid, Color[] colorArray)
         {
             SafetyNet.EnsureIntIsEqual(indexGrid.Width, gridSize.x, "Grid Width");
             SafetyNet.EnsureIntIsEqual(indexGrid.Height, gridSize.y, "Grid Height");
-            GetActiveLayer().sprite = drawer.Build(indexGrid, colorArray);
+            GetActiveLayer().sprite = drawer.Draw(indexGrid, colorArray);
         }
         
         public override void UpdateCell(Vector2Int position, Sprite value) => UpdateCell(activeLayerIndex, position, value);
