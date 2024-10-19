@@ -1,5 +1,7 @@
 using System.Collections;
 using NUnit.Framework;
+using RedRats.UI.ModalWindows;
+using Rogium.Editors.Campaign;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.NewAssetSelection;
@@ -9,9 +11,11 @@ using Rogium.Systems.GASExtension;
 using Rogium.Systems.GridSystem;
 using Rogium.Tests.Core;
 using Rogium.Tests.Editors.AssetSelection;
+using Rogium.UserInterface.Editors.AssetSelection;
 using UnityEngine;
 using UnityEngine.TestTools;
 using static Rogium.Tests.Editors.Rooms.RoomBannerTestsU;
+using SelectionInfoColumn = Rogium.Editors.NewAssetSelection.SelectionInfoColumn;
 
 namespace Rogium.Tests.Editors.Rooms
 {
@@ -54,7 +58,7 @@ namespace Rogium.Tests.Editors.Rooms
         [UnityTest]
         public IEnumerator Should_UpdateBannerWithRoomLayoutSprite_WhenCompleteEditing()
         {
-            yield return UpdateTileGridAndSave();
+            yield return SelectRoomAndUpdateTileGridThenSave();
             RoomAsset room = packEditor.CurrentPack.Rooms[0];
             Assert.That(room.Banner.texture.GetPixel(0, 0), Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Tiles[0].Icon.texture.GetPixel(0, 0)));
         }
@@ -62,8 +66,28 @@ namespace Rogium.Tests.Editors.Rooms
         [UnityTest]
         public IEnumerator Should_ShowRoomBannerInSelectionMenuInsteadOfIcon()
         {
-            yield return UpdateTileGridAndSave();
+            yield return SelectRoomAndUpdateTileGridThenSave();
             Assert.That(SelectionMenuOverseerMono.GetInstance().GetComponentInChildren<SelectionInfoColumn>().BannerIcon, Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Rooms[0].Banner));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowRoomBannerInCampaignSelectionInsteadOfIcon()
+        {
+            AssetCreator.AddNewCampaignToLibrary();
+            ExternalLibraryOverseer.Instance.Packs[0].Rooms[0].UpdateType(RoomType.Entrance);
+            yield return null;
+            OverseerLoader.LoadModalWindowBuilder();
+            yield return MenuLoader.PrepareCampaignSelection();
+            yield return MenuLoader.PrepareCampaignEditor(false);
+            GASButtonActions.OpenSelectionCampaign();
+            GASButtonActions.OpenEditorCampaign(0);
+            yield return null;
+            CampaignEditorOverseerMono.GetInstance().SelectionPicker.Select(0);
+            GASButtonActions.SaveChangesCampaign();
+            yield return null;
+            Object.FindFirstObjectByType<ModalWindow>().OnAccept();
+            yield return null;
+            Assert.That(CampaignAssetSelectionOverseerMono.GetInstance().Wallpaper.BannerIcon, Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Rooms[0].Banner));
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Rogium.Tests.Editors.Rooms
 {
     public static class RoomBannerTestsU
     {
-        public static IEnumerator UpdateTileGridAndSave()
+        public static IEnumerator SelectRoomAndUpdateTileGridThenSave()
         {
             yield return MenuLoader.PrepareSelectionMenuV2();
             yield return SelectionInfoColumnTestsU.OpenPackAndSelectRoom();
