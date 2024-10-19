@@ -1,6 +1,7 @@
 using System.Collections;
 using NUnit.Framework;
 using RedRats.UI.ModalWindows;
+using Rogium.Core;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
@@ -88,6 +89,23 @@ namespace Rogium.Tests.Editors.Rooms
             Object.FindFirstObjectByType<ModalWindow>().OnAccept();
             yield return null;
             Assert.That(CampaignAssetSelectionOverseerMono.GetInstance().Wallpaper.BannerIcon, Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Rooms[0].Banner));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_GenerateRoomIconWithSameDimensionsAsRoomSize_WhenCompleteEditing()
+        {
+            yield return SelectRoomAndUpdateTileGridThenSave();
+            RoomAsset room = packEditor.CurrentPack.Rooms[0];
+            Assert.That(room.Icon.texture.width, Is.EqualTo(EditorDefaults.Instance.RoomSize.x));
+            Assert.That(room.Icon.texture.height, Is.EqualTo(EditorDefaults.Instance.RoomSize.y));
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_GenerateRoomIconThatRepresentsTiles_WhenCompleteEditing()
+        {
+            yield return SelectRoomAndUpdateTileGridThenSave();
+            RoomAsset room = packEditor.CurrentPack.Rooms[0];
+            Assert.That(room.Icon.texture.GetPixel(0, 0), Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Tiles.FindValueFirst(room.TileGrid.GetAt(0, 0)).Icon.texture.GetPixel(8, 8)));
         }
     }
 }
