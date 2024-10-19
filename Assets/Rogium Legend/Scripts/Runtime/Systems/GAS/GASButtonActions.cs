@@ -697,7 +697,8 @@ namespace Rogium.Systems.GASExtension
         public static void SaveChangesRoom()
         {
             RoomAsset currentAsset = RoomEditorOverseer.Instance.CurrentAsset;
-            if (!currentAsset.ObjectGrid.Contains(AssetDataBuilder.ForObject(InternalLibraryOverseer.GetInstance().GetObjectByID("001"))) || !currentAsset.ObjectGrid.Contains(AssetDataBuilder.ForObject(InternalLibraryOverseer.GetInstance().GetObjectByID("002"))))
+            InternalLibraryOverseer lib = InternalLibraryOverseer.GetInstance();
+            if (!currentAsset.ObjectGrid.Contains(AssetDataBuilder.ForObject(lib.GetObjectByID("001"))) || !currentAsset.ObjectGrid.Contains(AssetDataBuilder.ForObject(lib.GetObjectByID("002"))))
             {
                 ModalWindowData data = new ModalWindowData.Builder()
                     .WithLayout(ModalWindowLayoutType.Message)

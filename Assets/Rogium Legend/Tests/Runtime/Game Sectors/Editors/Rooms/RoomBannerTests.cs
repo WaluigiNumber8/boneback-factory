@@ -2,12 +2,16 @@ using System.Collections;
 using NUnit.Framework;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
+using Rogium.Editors.NewAssetSelection;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Rooms;
+using Rogium.Systems.GASExtension;
 using Rogium.Systems.GridSystem;
 using Rogium.Tests.Core;
+using Rogium.Tests.Editors.AssetSelection;
 using UnityEngine;
 using UnityEngine.TestTools;
+using static Rogium.Tests.Editors.Rooms.RoomBannerTestsU;
 
 namespace Rogium.Tests.Editors.Rooms
 {
@@ -16,7 +20,7 @@ namespace Rogium.Tests.Editors.Rooms
     /// </summary>
     public class RoomBannerTests : MenuTestBase
     {
-        private PackAsset pack;
+        private PackEditorOverseer packEditor;
         private SpriteDrawer drawer;
         
         public override IEnumerator Setup()
@@ -25,14 +29,14 @@ namespace Rogium.Tests.Editors.Rooms
             yield return AssetCreator.CreateAndAssignPack();
             yield return MenuLoader.PrepareRoomEditor();
             drawer = new SpriteDrawer(EditorDefaults.Instance.RoomSize, new Vector2Int(EditorDefaults.Instance.SpriteSize, EditorDefaults.Instance.SpriteSize), EditorDefaults.Instance.SpriteSize);
-            pack = PackEditorOverseer.Instance.CurrentPack;
+            packEditor = PackEditorOverseer.Instance;
         }
         
         [Test]
         public void Should_UpdateBanner()
         {
-            RoomAsset room = pack.Rooms[0];
-            Sprite bannerSprite = drawer.Build(room.TileGrid, pack.Tiles);
+            RoomAsset room = packEditor.CurrentPack.Rooms[0];
+            Sprite bannerSprite = drawer.Build(room.TileGrid, packEditor.CurrentPack.Tiles);
             room.UpdateBanner(bannerSprite);
             Assert.That(room.Banner, Is.EqualTo(bannerSprite));
         }
@@ -44,18 +48,22 @@ namespace Rogium.Tests.Editors.Rooms
             RoomEditorOverseerMono.GetInstance().UpdateGridCell(new Vector2Int(1, 0));
             RoomEditorOverseer.Instance.CompleteEditing();
             yield return null;
-            Assert.That(pack.Rooms[0].Banner, Is.Not.Null);
+            Assert.That(packEditor.CurrentPack.Rooms[0].Banner, Is.Not.Null);
         }
         
         [UnityTest]
         public IEnumerator Should_UpdateBannerWithRoomLayoutSprite_WhenCompleteEditing()
         {
-            RoomEditorOverseerMono.GetInstance().UpdateGridCell(new Vector2Int(0, 0));
-            RoomEditorOverseerMono.GetInstance().UpdateGridCell(new Vector2Int(1, 0));
-            RoomEditorOverseer.Instance.CompleteEditing();
-            yield return null;
-            RoomAsset room = pack.Rooms[0];
+            yield return UpdateTileGridAndSave();
+            RoomAsset room = packEditor.CurrentPack.Rooms[0];
             Assert.That(room.Banner.texture.GetPixel(0, 0), Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Tiles[0].Icon.texture.GetPixel(0, 0)));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowRoomBannerInSelectionMenuInsteadOfIcon()
+        {
+            yield return UpdateTileGridAndSave();
+            Assert.That(SelectionMenuOverseerMono.GetInstance().GetComponentInChildren<SelectionInfoColumn>().BannerIcon, Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Rooms[0].Banner));
         }
     }
 }
