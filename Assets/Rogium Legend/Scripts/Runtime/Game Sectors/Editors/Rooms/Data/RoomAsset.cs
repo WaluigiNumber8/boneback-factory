@@ -13,6 +13,7 @@ namespace Rogium.Editors.Rooms
     /// </summary>
     public class RoomAsset : AssetWithDirectSpriteBase
     {
+        private Sprite banner;
         private int difficultyLevel;
         private RoomType type;
         private int lightness;
@@ -25,17 +26,15 @@ namespace Rogium.Editors.Rooms
         private RoomAsset() { }
 
         #region Update Values
+        public void UpdateBanner(Sprite newBanner) => banner = newBanner;
+
         public void UpdateDifficultyLevel(int newLevel)
         {
             newLevel = Mathf.Clamp(newLevel, 0, 10);
             difficultyLevel = newLevel;
         }
 
-        public void UpdateType(int newType)
-        {
-            UpdateType((RoomType) newType);
-        }
-
+        public void UpdateType(int newType) => UpdateType((RoomType) newType);
         public void UpdateType(RoomType newType) => type = newType;
 
         public void UpdateLightness(int newLightness)
@@ -48,6 +47,7 @@ namespace Rogium.Editors.Rooms
 
         #endregion
 
+        public Sprite Banner { get => banner; }
         public int DifficultyLevel { get => difficultyLevel; }
         public RoomType Type {get => type;}
         public int Lightness { get => lightness; }
@@ -152,6 +152,5 @@ namespace Rogium.Editors.Rooms
 
             protected sealed override RoomAsset Asset { get; } = new();
         }
-
     }
 }
