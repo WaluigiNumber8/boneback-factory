@@ -79,25 +79,26 @@ namespace Rogium.Systems.IconBuilders
             return RedRatBuilder.GenerateSprite(tex, EditorDefaults.Instance.PixelsPerUnit);
         }
 
-        public static Sprite DrawIconFromTiles(RoomAsset asset, IDictionary<string, TileAsset> tiles)
+        public static Sprite DrawLowResIconFrom<T>(ObjectGrid<AssetData> dataGrid, IDictionary<string, T> assets, Sprite backgroundSprite = null) where T : IAsset
         {
             Color previousColor = Color.clear;
             string previousID = string.Empty;
-            Texture2D tex = RedRatBuilder.GenerateTexture(asset.TileGrid.Width, asset.TileGrid.Height);
+            Texture2D tex = (backgroundSprite != null) ? backgroundSprite.texture : RedRatBuilder.GenerateTexture(dataGrid.Width, dataGrid.Height);
             for (int x = 0; x < tex.width; x++)
             {
                 for (int y = 0; y < tex.height; y++)
                 {
-                    AssetData data = asset.TileGrid.GetAt(x, y);
-                    if (data.ID == previousID)
+                    AssetData value = dataGrid.GetAt(x, y);
+                    if (value.IsEmpty()) continue;
+                    if (value.ID == previousID)
                     {
                         tex.SetPixel(x, y, previousColor);
                         continue;
                     }
-                    Color color = (data.ID.IsEmpty()) ? Color.clear : tiles[data.ID].Icon.texture.GetPixel(8, 8);
+                    Color color = assets[value.ID].Icon.texture.GetPixel(8, 8);
                     tex.SetPixel(x, y, color);
                     previousColor = color;
-                    previousID = data.ID;
+                    previousID = value.ID;
                 }
             }
             tex.Apply();

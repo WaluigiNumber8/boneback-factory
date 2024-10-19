@@ -697,16 +697,16 @@ namespace Rogium.Systems.GASExtension
         {
             RoomAsset currentAsset = RoomEditorOverseer.Instance.CurrentAsset;
             InternalLibraryOverseer lib = InternalLibraryOverseer.GetInstance();
-            if (!currentAsset.ObjectGrid.Contains(AssetDataBuilder.ForObject(lib.GetObjectByID("001"))) || !currentAsset.ObjectGrid.Contains(AssetDataBuilder.ForObject(lib.GetObjectByID("002"))))
-            {
-                ModalWindowData data = new ModalWindowData.Builder()
-                    .WithLayout(ModalWindowLayoutType.Message)
-                    .WithMessage("There must be at least 1 <style=\"ExitGate\"> Exit Gate</style>\n and <style=\"StartingPoint\">Starting Point</style> present.")
-                    .WithAcceptButton("OK")
-                    .Build();
-                GASRogium.OpenWindow(data);
-                return;
-            }
+            // if (!currentAsset.ObjectGrid.Contains(AssetDataBuilder.ForObject(lib.GetObjectByID("001"))) || !currentAsset.ObjectGrid.Contains(AssetDataBuilder.ForObject(lib.GetObjectByID("002"))))
+            // {
+            //     ModalWindowData data = new ModalWindowData.Builder()
+            //         .WithLayout(ModalWindowLayoutType.Message)
+            //         .WithMessage("There must be at least 1 <style=\"ExitGate\"> Exit Gate</style>\n and <style=\"StartingPoint\">Starting Point</style> present.")
+            //         .WithAcceptButton("OK")
+            //         .Build();
+            //     GASRogium.OpenWindow(data);
+            //     return;
+            // }
             RoomEditorOverseer.Instance.CompleteEditing();
             OpenSelectionRoom();
         }
