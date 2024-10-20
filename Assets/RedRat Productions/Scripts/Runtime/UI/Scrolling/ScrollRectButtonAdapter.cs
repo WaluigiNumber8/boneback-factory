@@ -13,6 +13,7 @@ namespace RedRats.UI.Core.Scrolling
     public class ScrollRectButtonAdapter : MonoBehaviour
     {
         [SerializeField] private float scrollSpeed = 0.01f;
+        [SerializeField, Range(0f, 0.5f)] private float edgeTolerance = 0.05f;
         [SerializeField] private HoldableButton scrollRightButton;
         [SerializeField] private HoldableButton scrollLeftButton;
         
@@ -25,8 +26,8 @@ namespace RedRats.UI.Core.Scrolling
             scrollRect = GetComponent<ScrollRect>();
             scrollData = new Dictionary<DirectionType, ScrollInfo>
             {
-                {DirectionType.Right, new ScrollInfo(scrollRightButton, () => scrollRect.horizontalNormalizedPosition += scrollSpeed, () => scrollRect.normalizedPosition.x >= 1f)},
-                {DirectionType.Left, new ScrollInfo(scrollLeftButton, () => scrollRect.horizontalNormalizedPosition -= scrollSpeed, () => scrollRect.normalizedPosition.x <= 0f)}
+                {DirectionType.Right, new ScrollInfo(scrollRightButton, () => scrollRect.horizontalNormalizedPosition += scrollSpeed, () => scrollRect.normalizedPosition.x >= 1 - edgeTolerance)},
+                {DirectionType.Left, new ScrollInfo(scrollLeftButton, () => scrollRect.horizontalNormalizedPosition -= scrollSpeed, () => scrollRect.normalizedPosition.x <= 0 + edgeTolerance)}
             };
         }
 
@@ -48,38 +49,29 @@ namespace RedRats.UI.Core.Scrolling
 
         private void Update()
         {
+            foreach (ScrollInfo data in scrollData.Values) data.ProcessButtonStatus();
             if (currentScroll == null) return;
-            foreach (ScrollInfo data in scrollData.Values) data.TryShowButton();
             currentScroll?.scrollAction();
             
             if (currentScroll?.canButtonHide() == false) return;
-            currentScroll?.HideButton();
             StopScrolling();
         }
 
-        public void ScrollRight()
-        {
-            currentScroll = scrollData[DirectionType.Right];
-            currentScroll?.TryShowButton();
-        }
-        
-        public void ScrollLeft()
-        {
-            currentScroll = scrollData[DirectionType.Left];
-            currentScroll?.TryShowButton();
-        }
+        public void ScrollRight() => currentScroll = scrollData[DirectionType.Right];
+
+        public void ScrollLeft() => currentScroll = scrollData[DirectionType.Left];
 
         public void StopScrolling() => currentScroll = null;
 
-        public bool IsScrollRightButtonHidden() => !scrollRightButton.gameObject.activeSelf;
-        public bool IsScrollLeftButtonHidden() => !scrollLeftButton.gameObject.activeSelf;
+        public bool IsScrollRightButtonHidden() => !scrollData[DirectionType.Right].IsButtonHidden();
+        public bool IsScrollLeftButtonHidden() => !scrollData[DirectionType.Left].IsButtonHidden();
         public ScrollRect ScrollRect { get => scrollRect; }
 
         private readonly struct ScrollInfo
         {
             public readonly Action scrollAction;
             public readonly Func<bool> canButtonHide;
-            private readonly HoldableButton button;
+            public readonly HoldableButton button;
             
             public ScrollInfo(HoldableButton button, Action scrollAction, Func<bool> canButtonHide)
             {
@@ -88,12 +80,9 @@ namespace RedRats.UI.Core.Scrolling
                 this.canButtonHide = canButtonHide;
             }
             
-            public void TryShowButton()
-            {
-                button.gameObject.SetActive(true);
-            }
-
-            public void HideButton() => button.gameObject.SetActive(false);
+            public void ProcessButtonStatus() => button.gameObject.SetActive(!canButtonHide());
+            
+            public bool IsButtonHidden() => !button.gameObject.activeSelf;
         }
     }
 }

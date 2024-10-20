@@ -72,8 +72,7 @@ namespace Rogium.Tests.UI.Scrolling
         public IEnumerator Should_HideScrollRightButton_WhenReachedEndOfScroll()
         {
             adapter.ScrollRight();
-            yield return new WaitForSeconds(2f);
-            Assert.That(scroll.horizontalNormalizedPosition.IsSameAs(1f), Is.True);
+            yield return new WaitForSeconds(2.0f);
             Assert.That(adapter.IsScrollRightButtonHidden, Is.True);
         }
 
@@ -81,9 +80,28 @@ namespace Rogium.Tests.UI.Scrolling
         public IEnumerator Should_HideScrollLeftButton_WhenReachedStartOfScroll()
         {
             adapter.ScrollLeft();
-            yield return new WaitForSeconds(2f);
-            Assert.That(scroll.horizontalNormalizedPosition.IsSameAs(0f), Is.True);
+            yield return new WaitForSeconds(2.0f);
             Assert.That(adapter.IsScrollLeftButtonHidden, Is.True);
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowScrollRightButton_WhenScrollToEndAndBack()
+        {
+            adapter.ScrollRight();
+            yield return new WaitForSeconds(2f);
+            adapter.ScrollLeft();
+            yield return new WaitForSeconds(2f);
+            Assert.That(adapter.IsScrollRightButtonHidden, Is.False);
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowScrollLeftButton_WhenScrollToStartAndBack()
+        {
+            adapter.ScrollLeft();
+            yield return new WaitForSeconds(2f);
+            adapter.ScrollRight();
+            yield return new WaitForSeconds(2f);
+            Assert.That(adapter.IsScrollLeftButtonHidden, Is.False);
         }
     }
 }
