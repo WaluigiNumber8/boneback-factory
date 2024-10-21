@@ -49,7 +49,7 @@ namespace RedRats.UI.Core.Scrolling
 
         private void Update()
         {
-            foreach (ScrollInfo data in scrollData.Values) data.ProcessButtonStatus();
+            RecalculateButtonStatus();
             if (currentScroll == null) return;
             currentScroll?.scrollAction();
             
@@ -65,6 +65,12 @@ namespace RedRats.UI.Core.Scrolling
 
         public bool IsScrollRightButtonHidden() => scrollData[DirectionType.Right].IsButtonHidden();
         public bool IsScrollLeftButtonHidden() => scrollData[DirectionType.Left].IsButtonHidden();
+        
+        private void RecalculateButtonStatus()
+        {
+            foreach (ScrollInfo data in scrollData.Values) data.ProcessButtonStatus();
+        }
+        
         public ScrollRect ScrollRect { get => scrollRect; }
 
         private readonly struct ScrollInfo
