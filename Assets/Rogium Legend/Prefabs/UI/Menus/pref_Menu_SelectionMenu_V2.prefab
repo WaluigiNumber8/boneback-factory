@@ -2027,7 +2027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf16266030a14792848d0bd5ea48a2bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: 0.025
+  scrollSpeed: 10
   edgeTolerance: 0.01
   scrollRightButton: {fileID: 5457164238259082769}
   scrollLeftButton: {fileID: 9165784478994134603}

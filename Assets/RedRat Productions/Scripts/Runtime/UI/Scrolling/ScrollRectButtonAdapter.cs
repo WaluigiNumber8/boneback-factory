@@ -26,8 +26,8 @@ namespace RedRats.UI.Core.Scrolling
             scrollRect = GetComponent<ScrollRect>();
             scrollData = new Dictionary<DirectionType, ScrollInfo>
             {
-                {DirectionType.Right, new ScrollInfo(scrollRightButton, () => scrollRect.horizontalNormalizedPosition += scrollSpeed, () => scrollRect.normalizedPosition.x >= 1 - edgeTolerance)},
-                {DirectionType.Left, new ScrollInfo(scrollLeftButton, () => scrollRect.horizontalNormalizedPosition -= scrollSpeed, () => scrollRect.normalizedPosition.x <= 0 + edgeTolerance)}
+                {DirectionType.Right, new ScrollInfo(scrollRightButton, () => scrollRect.horizontalNormalizedPosition += scrollSpeed * Time.deltaTime, () => scrollRect.normalizedPosition.x >= 1 - edgeTolerance)},
+                {DirectionType.Left, new ScrollInfo(scrollLeftButton, () => scrollRect.horizontalNormalizedPosition -= scrollSpeed * Time.deltaTime, () => scrollRect.normalizedPosition.x <= 0 + edgeTolerance)}
             };
         }
 
