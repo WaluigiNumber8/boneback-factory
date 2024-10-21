@@ -49,6 +49,7 @@ namespace RedRats.UI.Core.Scrolling
 
         private void Update()
         {
+            if (Time.frameCount % 3 != 0) return;
             RecalculateButtonStatus();
             if (currentScroll == null) return;
             currentScroll?.scrollAction();
