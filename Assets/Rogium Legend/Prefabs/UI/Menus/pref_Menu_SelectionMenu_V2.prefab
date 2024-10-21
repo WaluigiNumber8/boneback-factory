@@ -441,7 +441,7 @@ MonoBehaviour:
     m_Top: 8
     m_Bottom: 8
   m_ChildAlignment: 3
-  m_Spacing: 0
+  m_Spacing: 8
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
@@ -2028,6 +2028,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: 0.01
+  edgeTolerance: 0.01
   scrollRightButton: {fileID: 5457164238259082769}
   scrollLeftButton: {fileID: 9165784478994134603}
 --- !u!1 &4248741534192736165
@@ -5863,22 +5864,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scroll Left
       objectReference: {fileID: 0}
-    - target: {fileID: 5375959998942984653, guid: 3ce3a28cdae4b604691bc77e57a1b6df, type: 3}
-      propertyPath: m_LocalScale.x
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5375959998942984653, guid: 3ce3a28cdae4b604691bc77e57a1b6df, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5375959998942984653, guid: 3ce3a28cdae4b604691bc77e57a1b6df, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5861990959663372431, guid: 3ce3a28cdae4b604691bc77e57a1b6df, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -1987075125, guid: 1abf6ad819805b740841dc5b73ba4957, type: 3}
+      objectReference: {fileID: 377081708, guid: 1abf6ad819805b740841dc5b73ba4957, type: 3}
     - target: {fileID: 7009068785161423821, guid: 3ce3a28cdae4b604691bc77e57a1b6df, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -7043,7 +7032,7 @@ PrefabInstance:
     - target: {fileID: 5861990959663372431, guid: 3ce3a28cdae4b604691bc77e57a1b6df, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -1987075125, guid: 1abf6ad819805b740841dc5b73ba4957, type: 3}
+      objectReference: {fileID: 1436613439, guid: 1abf6ad819805b740841dc5b73ba4957, type: 3}
     - target: {fileID: 7009068785161423821, guid: 3ce3a28cdae4b604691bc77e57a1b6df, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
