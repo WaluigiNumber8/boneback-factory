@@ -63,8 +63,8 @@ namespace RedRats.UI.Core.Scrolling
 
         public void StopScrolling() => currentScroll = null;
 
-        public bool IsScrollRightButtonHidden() => !scrollData[DirectionType.Right].IsButtonHidden();
-        public bool IsScrollLeftButtonHidden() => !scrollData[DirectionType.Left].IsButtonHidden();
+        public bool IsScrollRightButtonHidden() => scrollData[DirectionType.Right].IsButtonHidden();
+        public bool IsScrollLeftButtonHidden() => scrollData[DirectionType.Left].IsButtonHidden();
         public ScrollRect ScrollRect { get => scrollRect; }
 
         private readonly struct ScrollInfo
