@@ -1,5 +1,6 @@
 using System.Collections;
 using NUnit.Framework;
+using RedRats.Core.Utils;
 using RedRats.Systems.Themes;
 using RedRats.UI.Core;
 using Rogium.Core;
@@ -7,6 +8,8 @@ using Rogium.Editors.Core;
 using Rogium.Editors.NewAssetSelection;
 using Rogium.Tests.Core;
 using TMPro;
+using UnityEngine;
+using UnityEngine.TestTools;
 using UnityEngine.UI;
 using static Rogium.Tests.Editors.AssetCreator;
 
@@ -104,6 +107,16 @@ namespace Rogium.Tests.Editors.AssetSelection
             Assert.That(titleText.font, Is.EqualTo(fontInfo.font));
             Assert.That(titleText.fontSize, Is.EqualTo(fontInfo.size));
             Assert.That(titleText.color, Is.EqualTo(fontInfo.color));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_HaveProperShimmerColorOnMaterial_WhenMenuOpened()
+        {
+            ThemeOverseerMono.GetInstance().ChangeTheme(ThemeType.Green);
+            selectionMenu.Open(AssetType.Weapon);
+            yield return null;
+            Color shimmerColor = selectionMenu.CurrentSelector.GetCard(0).GetComponentInChildren<MaterialExtractor>().Get().GetColor("_ShimmerColor");
+            Assert.That(shimmerColor, Is.EqualTo(ThemeOverseerMono.GetInstance().CurrentThemeData.Colors.shimmerEffects));
         }
     }
 }

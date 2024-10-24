@@ -110,3 +110,5 @@ MonoBehaviour:
       font: {fileID: 11400000, guid: 7dcbf3f25fb09e840ab6875dff99cba5, type: 2}
       size: 42
       color: {r: 0.9019608, g: 0.9019608, b: 0.9019608, a: 1}
+  colors:
+    shimmerEffects: {r: 0.43137258, g: 0.854902, b: 0.9803922, a: 1}
