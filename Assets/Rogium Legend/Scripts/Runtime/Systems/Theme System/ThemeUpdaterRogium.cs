@@ -45,6 +45,7 @@ namespace Rogium.Systems.ThemeSystem
             card.UpdateTheme(t.Interactables.assetCard,
                              t.Interactables.buttonCard,
                              t.Fonts.assetCardInfo);
+            card.ShimmerColorAdjuster.Adjust(theme);
         }
         #endregion
 

@@ -116,7 +116,7 @@ namespace Rogium.Tests.Editors.AssetSelection
             selectionMenu.Open(AssetType.Weapon);
             yield return null;
             Color shimmerColor = selectionMenu.CurrentSelector.GetCard(0).GetComponentInChildren<MaterialExtractor>().Get().GetColor("_ShimmerColor");
-            Assert.That(shimmerColor, Is.EqualTo(ThemeOverseerMono.GetInstance().CurrentThemeData.Colors.shimmerEffects));
+            Assert.That(shimmerColor, Is.EqualTo(ThemeOverseerMono.GetInstance().GetThemeData(ThemeType.Green).Colors.shimmerEffects));
         }
     }
 }

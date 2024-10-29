@@ -278,6 +278,7 @@ GameObject:
   - component: {fileID: 3868680373851914290}
   - component: {fileID: 5516293383244308249}
   - component: {fileID: 3973788961323147876}
+  - component: {fileID: 8220214129875319324}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -375,6 +376,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   assignedRenderer: {fileID: 0}
   assignedImage: {fileID: 0}
+--- !u!114 &8220214129875319324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979781193318545337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4196fcf23aeb425eb44ac71abfa5c0ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 3973788961323147876}
+  adjustOnEnable: 0
 --- !u!1 &2208114022544519810
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,9 +658,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggle: {fileID: 2114998893701717382}
+  ignoreThemeUpdate: 0
   ui:
     title: {fileID: 523678977462294359}
     iconImage: {fileID: 3233806977577021699}
+    shimmerAdjuster: {fileID: 8220214129875319324}
 --- !u!1 &2690565944880931137
 GameObject:
   m_ObjectHideFlags: 0
