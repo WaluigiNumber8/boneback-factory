@@ -44,12 +44,12 @@ namespace Rogium.Gameplay.Entities.Characteristics
         /// <param name="direction">The direction of the movement.</param>
         public void Move(Vector2 direction)
         {
-            Vector2 force = (direction != Vector2.zero) ? rb.velocity + accel * direction : Vector2.zero;
-            Vector2 decelerationForce = (direction != Vector2.zero) ? Vector2.zero : -brakeForce * rb.velocity;
+            Vector2 force = (direction != Vector2.zero) ? rb.linearVelocity + accel * direction : Vector2.zero;
+            Vector2 decelerationForce = (direction != Vector2.zero) ? Vector2.zero : -brakeForce * rb.linearVelocity;
             
             rb.AddForce(force, ForceMode2D.Force);
             rb.AddForce(decelerationForce, breakForceType);
-            rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);
+            rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, maxSpeed);
         }
     }
 }

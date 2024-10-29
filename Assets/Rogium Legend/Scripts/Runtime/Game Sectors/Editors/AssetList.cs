@@ -11,7 +11,7 @@ namespace Rogium.Editors.Core
     /// </summary>
     public class AssetList<T> : IList<T> where T : IAsset
     {
-        private List<T> list;
+        private readonly List<T> list;
         private readonly Action<T> saveToExternalStorage;
         private readonly Action<T> updateOnExternalStorage;
         private readonly Action<T> deleteFromExternalStorage;
@@ -53,7 +53,7 @@ namespace Rogium.Editors.Core
         /// Adds a list of assets to this list without saving.
         /// </summary>
         /// <param name="assets"></param>
-        public void AddAllWithoutSave(AssetList<T> assets)
+        public void AddAllWithoutSave(IList<T> assets)
         {
             SafetyNet.EnsureIsNotNull(assets, "List of assets to add.");
             
@@ -83,7 +83,6 @@ namespace Rogium.Editors.Core
             list[index] = asset;
             
             updateOnExternalStorage.Invoke(asset);
-            saveToExternalStorage.Invoke(asset);
         }
         
         /// <summary>
@@ -139,8 +138,12 @@ namespace Rogium.Editors.Core
         /// <param name="newList">the list to replace it with.</param>
         public void ReplaceAll(IList<T> newList)
         {
-            list = new List<T>(newList);
+            SafetyNet.EnsureIsNotNull(newList, "New List");
+            list.Clear();
+            list.AddRange(newList);
         }
+
+        public override string ToString() => $"Count: {list.Count}";
 
         #region Untouched Overrides
         public int Count => list.Count;
@@ -154,10 +157,16 @@ namespace Rogium.Editors.Core
             return list.IndexOf(item);
         }
 
-        public void Insert(int index, T item)
+        public void Insert(int index, T asset)
         {
-            SafetyNet.EnsureListNotContains(this, item, "List of Packs");
-            list.Insert(index, item);
+            SafetyNet.EnsureIsNotNull(asset, "Asset to add");
+            if (TryFinding(asset.Title, asset.Author) != null)
+            {
+                SafetyNet.ThrowMessage("The asset cannot have the same name as an already existing one.");
+                throw new FoundDuplicationException("You are trying to create an asset, that already exists. Cannot have the same title and author!");
+            }
+            list.Insert(index, asset);
+            saveToExternalStorage.Invoke(asset);
         }
 
         public void RemoveAt(int index)
@@ -171,35 +180,29 @@ namespace Rogium.Editors.Core
             list.Clear();
         }
 
-        public bool Contains(T item)
+        public bool Contains(T item) => list.Contains(item);
+
+        public void CopyTo(T[] array, int arrayIndex) => list.CopyTo(array, arrayIndex);
+
+        public bool Remove(T asset)
         {
-            return list.Contains(item);
+            SafetyNet.EnsureIsNotNull(asset, "Asset to add");
+            if (TryFinding(asset.Title, asset.Author) != null)
+            {
+                SafetyNet.ThrowMessage("The asset cannot have the same name as an already existing one.");
+                throw new FoundDuplicationException("You are trying to create an asset, that already exists. Cannot have the same title and author!");
+            }
+            if (!list.Remove(asset)) return false;
+            deleteFromExternalStorage.Invoke(asset);
+            return true;
         }
 
-        public void CopyTo(T[] array, int arrayIndex)
-        {
-            list.CopyTo(array, arrayIndex);
-        }
+        public IEnumerator<T> GetEnumerator() => list.GetEnumerator();
 
-        public bool Remove(T item)
-        {
-            return list.Remove(item);
-        }
+        IEnumerator IEnumerable.GetEnumerator() => list.GetEnumerator();
 
-        public IEnumerator<T> GetEnumerator()
-        {
-            return list.GetEnumerator();
-        }
+        IEnumerator<T> IEnumerable<T>.GetEnumerator() => list.GetEnumerator();
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return list.GetEnumerator();
-        }
-
-        IEnumerator<T> IEnumerable<T>.GetEnumerator()
-        {
-            return list.GetEnumerator();
-        }
         #endregion
     }
 }

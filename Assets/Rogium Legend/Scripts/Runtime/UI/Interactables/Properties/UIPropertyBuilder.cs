@@ -4,7 +4,6 @@ using RedRats.Core;
 using RedRats.Systems.Themes;
 using Rogium.Core;
 using Rogium.Editors.Core;
-using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.ThemeSystem;
 using Sirenix.OdinInspector;
 using TMPro;
@@ -28,6 +27,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         [SerializeField] private InteractablePropertySlider sliderProperty;
         [SerializeField] private InteractablePropertySoundField soundFieldProperty;
         [SerializeField] private InteractablePropertyColorField colorFieldProperty;
+        [SerializeField] private InteractablePropertyAssetEmblemList assetEmblemListProperty;
         
         [Title("Other properties")]
         [SerializeField] private ContentBlockInfo contentBlocks;
@@ -44,6 +44,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         public void BuildHeader(string headerText, Transform parent)
         {
             InteractablePropertyHeader header = Instantiate(headerProperty, parent);
+            header.name = $"{headerText} Header";
             header.Construct(headerText);
             ThemeUpdaterRogium.UpdateHeader(header);
         }
@@ -64,6 +65,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         public void BuildInputField(string title, string value, Transform parent, Action<string> whenFinishEditing, bool isDisabled = false, bool isVertical = false, TMP_InputField.CharacterValidation characterValidation = TMP_InputField.CharacterValidation.Regex, float minLimit = float.MinValue, float maxLimit = float.MaxValue)
         {
             InteractablePropertyInputField inputField = Instantiate((isVertical) ? verticalVariants.inputFieldProperty : inputFieldProperty, parent);
+            inputField.name = $"{title} InputField";
             inputField.Construct(title, value, whenFinishEditing, characterValidation, minLimit, maxLimit);
             inputField.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateInputField(inputField);
@@ -84,6 +86,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         public void BuildInputFieldArea(string title, string value, Transform parent, Action<string> whenFinishEditing, bool isDisabled = false, TMP_InputField.CharacterValidation characterValidation = TMP_InputField.CharacterValidation.Regex, float minLimit = float.MinValue, float maxLimit = float.MaxValue)
         {
             InteractablePropertyInputField inputField = Instantiate(inputFieldAreaProperty, parent);
+            inputField.name = $"{title} InputField";
             inputField.Construct(title, value, whenFinishEditing, characterValidation, minLimit, maxLimit);
             inputField.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateInputField(inputField);
@@ -101,6 +104,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         public void BuildToggle(string title, bool value, Transform parent, Action<bool> whenValueChange, bool isDisabled = false)
         {
             InteractablePropertyToggle toggle = Instantiate(toggleProperty, parent).GetComponent<InteractablePropertyToggle>();
+            toggle.name = $"{title} Toggle";
             toggle.Construct(title, value, whenValueChange);
             toggle.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateToggle(toggle);
@@ -120,6 +124,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         public void BuildDropdown(string title, IEnumerable<string> options, int value, Transform parent, Action<int> whenValueChange, bool isDisabled = false, bool isVertical = false)
         {
             InteractablePropertyDropdown dropdown = Instantiate((isVertical) ? verticalVariants.dropdownProperty : dropdownProperty, parent);
+            dropdown.name = $"{title} Dropdown";
             dropdown.Construct(title, options, value, whenValueChange);
             dropdown.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateDropdown(dropdown);
@@ -136,6 +141,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         public void BuildPlainText(string title, string value, Transform parent, bool isVertical = false)
         {
             InteractablePropertyPlainText plainText = Instantiate((isVertical) ? verticalVariants.plainTextProperty : plainTextProperty, parent);
+            plainText.name = $"{title} PlainText";
             plainText.Construct(title, value);
             ThemeUpdaterRogium.UpdatePlainText(plainText);
         }
@@ -155,6 +161,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         public void BuildAssetField(string title, AssetType type, IAsset value, Transform parent, Action<IAsset> whenValueChange, Action whenSelectEmpty = null, bool isDisabled = false, ThemeType theme = ThemeType.Current)
         {
             InteractablePropertyAssetField assetField = Instantiate(assetFieldProperty, parent);
+            assetField.name = $"{title} AssetField";
             assetField.Construct(title, type, value, whenValueChange, whenSelectEmpty, theme);
             assetField.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateAssetField(assetField);
@@ -174,6 +181,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         public void BuildSlider(string title, float minValue, float maxValue, float startingValue, Transform parent, Action<float> whenValueChange, bool isDisabled = false)
         {
             InteractablePropertySlider slider = Instantiate(sliderProperty, parent);
+            slider.name = $"{title} Slider";
             slider.Construct(title, minValue, maxValue, startingValue, whenValueChange);
             slider.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateSlider(slider);
@@ -194,6 +202,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         public void BuildSlider(string title, int minValue, int maxValue, int startingValue, Transform parent, Action<float> whenValueChange, bool isDisabled = false)
         {
             InteractablePropertySlider slider = Instantiate(sliderProperty, parent);
+            slider.name = $"{title} Slider";
             slider.Construct(title, minValue, maxValue, startingValue, whenValueChange);
             slider.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateSlider(slider);
@@ -211,6 +220,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         public void BuildSoundField(string title, AssetData value, Transform parent, Action<AssetData> whenValueChange, bool canBeEmpty = false, bool isDisabled = false)
         {
             InteractablePropertySoundField soundField = Instantiate(soundFieldProperty, parent);
+            soundField.name = $"{title} SoundField";
             soundField.Construct(title, value, whenValueChange, canBeEmpty);
             soundField.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateSoundField(soundField);
@@ -227,10 +237,33 @@ namespace Rogium.UserInterface.Interactables.Properties
         public void BuildColorField(string title, Color value, Transform parent, Action<Color> whenValueChange, bool isDisabled = false)
         {
             InteractablePropertyColorField colorField = Instantiate(colorFieldProperty, parent);
+            colorField.name = $"{title} ColorField";
             colorField.Construct(title, value, whenValueChange);
             colorField.SetDisabled(isDisabled);
             ThemeUpdaterRogium.UpdateColorField(colorField);
         }
+
+        /// <summary>
+        /// Builds the Asset Emblem List property.
+        /// </summary>
+        /// <param name="title">The text of the property title.</param>
+        /// <param name="value">The icon to use for the first emblem.</param>
+        /// <param name="parent">The parent under which to instantiate the property.</param>
+        public void BuildAssetEmblemList(string title, Sprite value, Transform parent) => BuildAssetEmblemList(title, new List<Sprite>{value}, parent);
+        /// <summary>
+        /// Builds the Asset Emblem List property.
+        /// </summary>
+        /// <param name="title">The text of the property title.</param>
+        /// <param name="values">The list of icons to use for each emblem.</param>
+        /// <param name="parent">The parent under which to instantiate the property.</param>
+        public void BuildAssetEmblemList(string title, IList<Sprite> values, Transform parent)
+        {
+            InteractablePropertyAssetEmblemList assetEmblemList = Instantiate(assetEmblemListProperty, parent);
+            assetEmblemList.name = $"{title} Emblem List";
+            assetEmblemList.Construct(title, values);
+            ThemeUpdaterRogium.UpdateAssetEmblemList(assetEmblemList);
+        }
+        
         #endregion
 
         #region Content Blocks

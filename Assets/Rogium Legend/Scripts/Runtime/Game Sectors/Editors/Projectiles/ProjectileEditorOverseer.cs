@@ -30,7 +30,7 @@ namespace Rogium.Editors.Projectiles
             SafetyNet.EnsureIsNotNull(asset, "Assigned Tile");
             SafetyNet.EnsureIntIsBiggerOrEqualTo(index, 0, "Assigned asset index");
             
-            currentAsset = new ProjectileAsset(asset);
+            currentAsset = new ProjectileAsset.Builder().AsCopy(asset).Build();
             myIndex = index;
             lastAssociatedSpriteID = asset.AssociatedSpriteID;
 
@@ -45,7 +45,7 @@ namespace Rogium.Editors.Projectiles
         public void UpdateAsset(ProjectileAsset updatedAsset)
         { 
             SafetyNet.EnsureIsNotNull(currentAsset, "Currently active asset.");
-            currentAsset = new ProjectileAsset(updatedAsset);
+            currentAsset = new ProjectileAsset.Builder().AsCopy(updatedAsset).Build();
         }
         
         public void CompleteEditing()

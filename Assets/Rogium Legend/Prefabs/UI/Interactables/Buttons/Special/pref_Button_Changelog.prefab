@@ -405,6 +405,7 @@ MonoBehaviour:
   onDeselectEffector: {fileID: 8298902003769538223}
   onClickLeftEffector: {fileID: 4107324967729934366}
   onClickRightEffector: {fileID: 0}
+  onClickDisabledEffector: {fileID: 0}
   onClickLeftDownEffector: {fileID: 0}
   onClickLeftUpEffector: {fileID: 0}
   onClickRightDownEffector: {fileID: 0}
@@ -424,6 +425,7 @@ GameObject:
   - component: {fileID: 6674863543972897250}
   - component: {fileID: 7237612205390197828}
   - component: {fileID: 8759381475209376291}
+  - component: {fileID: 7100689850217699548}
   m_Layer: 5
   m_Name: pref_Button_Changelog
   m_TagString: Untagged
@@ -566,6 +568,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a8061150b14197a9b0d990e72b6162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7100689850217699548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7633738580895326832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6cc70302f2b4d979cb7b63207f0fdea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
 --- !u!1 &8573549162851040257
 GameObject:
   m_ObjectHideFlags: 0

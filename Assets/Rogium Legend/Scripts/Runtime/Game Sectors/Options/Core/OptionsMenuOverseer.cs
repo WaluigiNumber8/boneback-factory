@@ -24,7 +24,7 @@ namespace Rogium.Options.Core
         public void AssignAsset(GameDataAsset asset)
         {
             SafetyNet.EnsureIsNotNull(asset, "Preferences Asset");
-            currentAsset = new GameDataAsset(asset);
+            currentAsset = new GameDataAsset.Builder().AsCopy(asset).Build();
             
             OnAssignAsset?.Invoke(CurrentAsset);
         }

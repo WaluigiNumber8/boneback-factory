@@ -13,12 +13,19 @@ namespace Rogium.Editors.Core
         public EmptyAsset()
         {
             Texture2D tex = new(1, 1);
-            tex.SetPixel(0, 0, new Color(0, 0, 0, 0));
+            tex.SetPixel(0, 0, EditorDefaults.Instance.NoColor);
             tex.Apply();
             icon = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100.0f);
         }
-        
-        public string ID { get => EditorConstants.EmptyAssetID; }
+
+        public EmptyAsset(Sprite icon) => this.icon = icon;
+
+        public override bool Equals(object obj) => obj is EmptyAsset;
+        public override int GetHashCode() => (-1).GetHashCode();
+
+        public override string ToString() => "Empty Asset";
+
+        public string ID { get => EditorDefaults.EmptyAssetID; }
         public string Title { get => ""; }
         public Sprite Icon { get => icon; }
         public string Author { get => ""; }

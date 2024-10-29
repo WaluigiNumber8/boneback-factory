@@ -1,4 +1,5 @@
 ﻿using RedRats.Systems.Themes;
+using Rogium.Editors.NewAssetSelection;
 using Rogium.UserInterface.Interactables;
 using Rogium.UserInterface.Interactables.Properties;
 using Rogium.UserInterface.ModalWindows;
@@ -13,6 +14,7 @@ namespace Rogium.Systems.ThemeSystem
     {
         private static ThemeStyleAsset t;
 
+        #region Buttons
         /// <summary>
         /// Updates a button with correct data from the current theme.
         /// Style is "Menu."
@@ -36,7 +38,17 @@ namespace Rogium.Systems.ThemeSystem
             button.UpdateTheme(t.Interactables.buttonCard,
                                t.Fonts.general);
         }
-        
+
+        public static void UpdateAssetCard(AssetCardControllerV2 card, ThemeType theme = ThemeType.Current)
+        {
+            UpdateUsedTheme(theme);
+            card.UpdateTheme(t.Interactables.assetCard,
+                             t.Interactables.buttonCard,
+                             t.Fonts.assetCardInfo);
+        }
+        #endregion
+
+        #region Interactables
         /// <summary>
         /// Updates a scrollbar with correct data from the current theme.
         /// </summary>
@@ -171,7 +183,15 @@ namespace Rogium.Systems.ThemeSystem
             colorField.UpdateTheme(t.Interactables.colorField,
                                    t.Fonts.general);
         }
-
+        
+        public static void UpdateAssetEmblemList(InteractablePropertyAssetEmblemList assetEmblemList, ThemeType theme = ThemeType.Current)
+        {
+            UpdateUsedTheme(theme);
+            assetEmblemList.UpdateTheme(t.Fonts.general);
+        }
+        
+        #endregion
+        
         /// <summary>
         /// Updates an editor element with correct data from the correct theme.
         /// </summary>
@@ -182,6 +202,8 @@ namespace Rogium.Systems.ThemeSystem
             element.sprite = t.Elements.editorBackground;
         }
 
+        #region Modal Windows
+        
         /// <summary>
         /// Updates the Asset Picker Window with correct data from the current theme.
         /// </summary>
@@ -221,6 +243,7 @@ namespace Rogium.Systems.ThemeSystem
                                t.Elements.toggleBorder,
                                t.Fonts.inputted);   
         }
+        #endregion
         
         /// <summary>
         /// Gets the correct theme to work with.
@@ -229,7 +252,7 @@ namespace Rogium.Systems.ThemeSystem
         /// <returns></returns>
         private static void UpdateUsedTheme(ThemeType theme = ThemeType.Current)
         {
-            t = (theme == ThemeType.Current) ? ThemeOverseerMono.GetInstance().CurrentThemeData : ThemeOverseerMono.GetInstance().GetTheme(theme);
+            t = (theme == ThemeType.Current) ? ThemeOverseerMono.GetInstance().CurrentThemeData : ThemeOverseerMono.GetInstance().GetThemeData(theme);
         }
     }
 }

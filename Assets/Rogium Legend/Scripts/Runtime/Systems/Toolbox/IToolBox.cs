@@ -20,8 +20,9 @@ namespace Rogium.Systems.Toolbox
         /// <summary>
         /// Draws on the UI grid.
         /// </summary>
+        /// <param name="layerIndex">The layer to draw onto.</param>
         /// <param name="position">The position to draw on.</param>
-        /// <param name="useEmpty">If true, use the empty value instead.</param>
-        void WhenDrawOnUIGrid(Vector2Int position, bool useEmpty);
+        /// <param name="value">The value to draw.</param>
+        public void WhenDrawOnUIGrid(int layerIndex, Vector2Int position, Sprite value);
     }
 }

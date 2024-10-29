@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using RedRats.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
-using Rogium.Systems.Validation;
+using Rogium.Editors.Sprites;
 using UnityEngine;
 
 namespace Rogium.Editors.Palettes
@@ -10,52 +12,67 @@ namespace Rogium.Editors.Palettes
     /// <summary>
     /// Contains all data needed for a palette.
     /// </summary>
-    public class PaletteAsset : AssetWithDirectSpriteBase
+    public class PaletteAsset : AssetWithDirectSpriteBase, IAssetForAssociation
     {
         private Color[] colors;
+        private ISet<string> associatedAssetsIDs;
 
-        #region Constructors
-        public PaletteAsset()
-        {
-            this.title = EditorConstants.PaletteTitle;
-            this.icon = EditorConstants.EmptyGridSprite;
-            this.author = EditorConstants.Author;
-            this.creationDate = DateTime.Now;
-            GenerateID(EditorAssetIDs.PaletteIdentifier);
-
-            this.colors = RedRatBuilder.GenerateColorArray(EditorConstants.PaletteSize, Color.black);
-        }
-
-        public PaletteAsset(PaletteAsset asset)
-        {
-            AssetValidation.ValidateTitle(asset.title);
-            
-            this.id = asset.ID;
-            this.title = asset.Title;
-            this.icon = asset.Icon;
-            this.author = asset.Author;
-            this.creationDate = asset.creationDate;
-
-            this.colors = asset.Colors;
-        }
+        private PaletteAsset() { }
         
-        public PaletteAsset(string id, string title, Sprite icon, string author, Color[] colors, DateTime creationDate)
-        {
-            AssetValidation.ValidateTitle(title);
-            
-            this.id = id;
-            this.title = title;
-            this.icon = icon;
-            this.author = author;
-            this.creationDate = creationDate;
+        public void AddAssociation(string id) => associatedAssetsIDs.Add(id);
+        public void RemoveAssociation(string id) => associatedAssetsIDs.Remove(id);
 
-            this.colors = colors;
-        }
-        #endregion
-        
-        #region Update Values
-        #endregion
-        
         public Color[] Colors { get => colors; }
+        public ISet<string> AssociatedAssetsIDs { get => associatedAssetsIDs; }
+        
+        
+        public class Builder : BaseBuilder<PaletteAsset, Builder>
+        {
+            public Builder()
+            {
+                Asset.title = EditorDefaults.Instance.PaletteTitle;
+                Asset.icon = EditorDefaults.Instance.EmptySprite;
+                Asset.author = EditorDefaults.Instance.Author;
+                Asset.creationDate = DateTime.Now;
+                Asset.GenerateID();
+                
+                Asset.colors = RedRatBuilder.GenerateColorArray(EditorDefaults.Instance.PaletteSize, Color.black);
+                Asset.associatedAssetsIDs = new HashSet<string>();
+            }
+            
+            public Builder WithColors(Color[] colors)
+            {
+                Asset.colors = colors.AsCopy();
+                return This;
+            }
+            
+            public Builder WithAssociatedAssetIDs(ISet<string> ids)
+            {
+                Asset.associatedAssetsIDs = new HashSet<string>(ids);
+                return This;
+            }
+            
+            public override Builder AsClone(PaletteAsset asset)
+            {
+                AsCopy(asset);
+                Asset.associatedAssetsIDs.Clear();
+                Asset.GenerateID();
+                return This;
+            }
+
+            public override Builder AsCopy(PaletteAsset asset)
+            {
+                Asset.id = asset.ID;
+                Asset.title = asset.Title;
+                Asset.icon = asset.Icon;
+                Asset.author = asset.Author;
+                Asset.creationDate = asset.CreationDate;
+                Asset.colors = asset.Colors.AsCopy();
+                Asset.associatedAssetsIDs = new HashSet<string>(asset.AssociatedAssetsIDs);
+                return This;
+            }
+
+            protected sealed override PaletteAsset Asset { get; } = new();
+        }
     }
 }

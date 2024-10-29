@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8180333505644680096}
   - component: {fileID: 1810875663955269579}
   - component: {fileID: -421584340355227751}
+  - component: {fileID: 4439344265191130709}
   m_Layer: 5
   m_Name: pref_Card_Button_Blue
   m_TagString: Untagged
@@ -157,6 +158,19 @@ MonoBehaviour:
   ui:
     buttonImage: {fileID: 6473774808908048863}
     buttonText: {fileID: 661851586290184786}
+--- !u!114 &4439344265191130709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305523389597949465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6cc70302f2b4d979cb7b63207f0fdea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
 --- !u!1 &1939359166324508879
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,6 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoplay: 0
+  timescale: 1
 --- !u!114 &2501661875161694406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,6 +332,7 @@ MonoBehaviour:
   restartOnPlay: 1
   keepStateOnStop: 0
   noPlayWhenPlaying: 0
+  isRealtime: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -382,6 +398,7 @@ MonoBehaviour:
   restartOnPlay: 1
   keepStateOnStop: 0
   noPlayWhenPlaying: 0
+  isRealtime: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -397,6 +414,164 @@ MonoBehaviour:
     soundTarget: {fileID: 0}
     minDistance: 0
     maxDistance: 0
+  ignoreEffectStop: 1
+  overrideMixerGroup: 0
+  mixerGroup: {fileID: 0}
+  overrideVolume: 0
+  volume: 1
+  overridePitch: 0
+  pitchMin: 0.95
+  pitchMax: 1.05
+--- !u!1 &4163510908569952491
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7824094287735973170}
+  - component: {fileID: 176372353192009957}
+  - component: {fileID: 5677256283151713692}
+  - component: {fileID: 4405797177158207136}
+  m_Layer: 5
+  m_Name: ClickDisabled Effect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7824094287735973170
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4163510908569952491}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 928717118598775620}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &176372353192009957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4163510908569952491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1b7c33ecf1848afa24fa9e7e16f6514, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoplay: 0
+  timescale: 1
+--- !u!114 &5677256283151713692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4163510908569952491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9bce07581904299aae4054436dd87be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: Shake button around
+  active: 1
+  restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
+  isRealtime: 0
+  initialDelayMin: 0
+  initialDelayMax: 0
+  randomizeDelay: 0
+  duration: 0.16
+  infiniteLoop: 0
+  loops: 1
+  loopType: 0
+  target: {fileID: 3429142370186202072}
+  uniform: 1
+  strength: 2.5
+  strengthVector: {x: 0.1, y: 0.1, z: 0.1}
+  vibration: 20
+  randomness: 90
+  fadeout: 1
+  shakeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &4405797177158207136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4163510908569952491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eddd293576b14eb3ac886f883b9590d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: Disabled sound
+  active: 1
+  restartOnPlay: 1
+  keepStateOnStop: 0
+  noPlayWhenPlaying: 0
+  isRealtime: 0
+  initialDelayMin: 0
+  initialDelayMax: 0
+  randomizeDelay: 0
+  clips:
+  - {fileID: 11400000, guid: c19ea2a5ced5b384287faec0a0f6fad5, type: 2}
+  sourceSettings:
+    id: 0
+    loop: 0
+    playOnlyWhenNotPlaying: 0
+    muteSameSound: 0
+  spatialSettings:
+    spatialBlend: 0
+    soundTarget: {fileID: 0}
+    minDistance: 2.5
+    maxDistance: 4
   ignoreEffectStop: 1
   overrideMixerGroup: 0
   mixerGroup: {fileID: 0}
@@ -455,6 +630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoplay: 0
+  timescale: 1
 --- !u!114 &3117009170412393379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,6 +648,7 @@ MonoBehaviour:
   restartOnPlay: 1
   keepStateOnStop: 1
   noPlayWhenPlaying: 0
+  isRealtime: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -541,6 +718,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8253263422475189798}
+  - {fileID: 7824094287735973170}
   - {fileID: 2628383208186664896}
   - {fileID: 8485032958190317455}
   m_Father: {fileID: 8139803418870760900}
@@ -567,6 +745,7 @@ MonoBehaviour:
   onDeselectEffector: {fileID: 2947905093503546400}
   onClickLeftEffector: {fileID: 3068595608364080050}
   onClickRightEffector: {fileID: 0}
+  onClickDisabledEffector: {fileID: 176372353192009957}
   onClickLeftDownEffector: {fileID: 0}
   onClickLeftUpEffector: {fileID: 0}
   onClickRightDownEffector: {fileID: 0}
@@ -622,6 +801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoplay: 0
+  timescale: 1
 --- !u!114 &800439517765948020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -639,6 +819,7 @@ MonoBehaviour:
   restartOnPlay: 1
   keepStateOnStop: 1
   noPlayWhenPlaying: 0
+  isRealtime: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -695,6 +876,7 @@ MonoBehaviour:
   restartOnPlay: 1
   keepStateOnStop: 0
   noPlayWhenPlaying: 0
+  isRealtime: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0

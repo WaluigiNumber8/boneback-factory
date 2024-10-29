@@ -33,7 +33,7 @@ namespace Rogium.Systems.GridSystem
             emptyPixels = new Color[width * height];
             for (int index = 0; index < emptyPixels.Length; index++)
             {
-                emptyPixels[index] = EditorConstants.NoColor;
+                emptyPixels[index] = EditorDefaults.Instance.NoColor;
             }
         }
 
@@ -42,7 +42,7 @@ namespace Rogium.Systems.GridSystem
         /// </summary>
         /// <param name="indexGrid">The grid of IDs to read.</param>
         /// <param name="colorArray">The array of colors to take data from.</param>
-        public Sprite Build(ObjectGrid<int> indexGrid, Color[] colorArray)
+        public Sprite Draw(ObjectGrid<int> indexGrid, Color[] colorArray)
         {
             Texture2D tex = RedRatBuilder.GenerateTexture(indexGrid.Width * pixelsPerUnit, indexGrid.Height * pixelsPerUnit);
             Sprite sprite = RedRatBuilder.GenerateSprite(tex, pixelsPerUnit);
@@ -52,17 +52,17 @@ namespace Rogium.Systems.GridSystem
             {
                 for (int x = 0; x < size.x; x++)
                 {
-                    int id = indexGrid.GetValue(x, y);
+                    int id = indexGrid.GetAt(x, y);
                     
-                    if (id == EditorConstants.EmptyColorID) continue;
+                    if (id == EditorDefaults.EmptyColorID) continue;
 
                     try
                     {
-                        UpdateValue(sprite, new Vector2Int(x, y), colorArray[id]);
+                        DrawTo(sprite, new Vector2Int(x, y), colorArray[id]);
                     }
                     catch (InvalidOperationException)
                     {
-                        UpdateValue(sprite, new Vector2Int(x, y), EditorConstants.MissingColor);
+                        DrawTo(sprite, new Vector2Int(x, y), EditorDefaults.Instance.MissingColor);
                     }
                 }
             }
@@ -78,13 +78,13 @@ namespace Rogium.Systems.GridSystem
         /// <param name="assetList">The list of assets to take data from.</param>
         /// <typeparam name="T">Any type of <see cref="IAsset"/>.</typeparam>
         /// <typeparam name="TS">Any type of <see cref="IComparable"/>.</typeparam>
-        public Sprite Build<T, TS>(ObjectGrid<TS> IDGrid, IList<T> assetList) where T : IAsset where TS : IComparable
+        public Sprite Draw<T, TS>(ObjectGrid<TS> IDGrid, IList<T> assetList) where T : IAsset where TS : IComparable
         {
             Texture2D tex = RedRatBuilder.GenerateTexture(IDGrid.Width * pixelsPerUnit, IDGrid.Height * pixelsPerUnit);
             Sprite sprite = RedRatBuilder.GenerateSprite(tex, pixelsPerUnit);
             ClearAllCells(sprite);
 
-            return Build(IDGrid, assetList, sprite);
+            return Draw(IDGrid, assetList, sprite);
         }
 
         /// <summary>
@@ -95,15 +95,15 @@ namespace Rogium.Systems.GridSystem
         /// <param name="sprite">The sprite to draw onto.</param>
         /// <typeparam name="T">Any type of <see cref="IAsset"/>.</typeparam>
         /// <typeparam name="TS">Any type of <see cref="IComparable"/>.</typeparam>
-        public Sprite Build<T, TS>(ObjectGrid<TS> IDGrid, IList<T> assetList, Sprite sprite) where T : IAsset where TS : IComparable
+        public Sprite Draw<T, TS>(ObjectGrid<TS> IDGrid, IList<T> assetList, Sprite sprite) where T : IAsset where TS : IComparable
         {
             SafetyNet.EnsureIntIsEqual(sprite.texture.width, IDGrid.Width * unitSize.x, "Bottom Sprite Width");
             SafetyNet.EnsureIntIsEqual(sprite.texture.height, IDGrid.Height * unitSize.y, "Bottom Sprite Height");
             SafetyNet.EnsureFloatIsEqual(sprite.pixelsPerUnit, pixelsPerUnit, "Pixels per unit");
             
             AssetUtils.UpdateFromGridByList(IDGrid, assetList, 
-                (x, y, asset) => UpdateValue(sprite, new Vector2Int(x, y), asset.Icon),
-                (x, y) => UpdateValue(sprite, new Vector2Int(x, y), EditorConstants.MissingSprite));
+                (x, y, asset) => DrawTo(sprite, new Vector2Int(x, y), asset.Icon),
+                (x, y) => DrawTo(sprite, new Vector2Int(x, y), EditorDefaults.Instance.MissingSprite));
             
             Apply(sprite);
             return sprite;
@@ -112,33 +112,33 @@ namespace Rogium.Systems.GridSystem
         /// <summary>
         /// Adds a new sprite onto the edited one.
         /// </summary>
-        /// <param name="sprite">The sprite to draw on.</param>
+        /// <param name="canvas">The sprite to draw on.</param>
         /// <param name="pos">The position (in units) to draw at.</param>
         /// <param name="value">The color to draw.</param>
-        public void UpdateValue(Sprite sprite, Vector2Int pos, Color value)
+        public void DrawTo(Sprite canvas, Vector2Int pos, Color value)
         {
             Sprite colorValue = RedRatBuilder.GenerateSprite(value, unitSize.x, unitSize.y, pixelsPerUnit);
-            UpdateValue(sprite, pos, colorValue);
+            DrawTo(canvas, pos, colorValue);
         }
         
         /// <summary>
         /// Draws a new 16x16 sprite on a layer.
         /// </summary>
-        /// <param name="sprite">The sprite to draw on.</param>
+        /// <param name="canvas">The sprite to draw on.</param>
         /// <param name="pos">The position (in units) to draw at.</param>
-        /// <param name="value">The sprite to draw (MUST be same size as unit).</param>
-        public void UpdateValue(Sprite sprite, Vector2Int pos, Sprite value)
+        /// <param name="sprite">The sprite to draw (MUST be same size as unit).</param>
+        public void DrawTo(Sprite canvas, Vector2Int pos, Sprite sprite)
         {
-            Texture2D layer = sprite.texture;
-            Texture2D tex = value.texture;
-            SafetyNet.EnsureIntIsEqual(tex.width, 16, $"{sprite.name}'s width");
-            SafetyNet.EnsureIntIsEqual(tex.height, 16, $"{sprite.name}'s height");
+            Texture2D canvasTex = canvas.texture;
+            Texture2D tex = sprite.texture;
+            SafetyNet.EnsureIntIsEqual(tex.width, 16, $"{tex.name}'s width");
+            SafetyNet.EnsureIntIsEqual(tex.height, 16, $"{tex.name}'s height");
 
             int startX = pos.x * unitSize.x;
             int startY = pos.y * unitSize.y;
             
             Color[] texPixels = tex.GetPixels();
-            Color[] layerPixels = layer.GetPixels(startX, startY, tex.width, tex.height);
+            Color[] layerPixels = canvasTex.GetPixels(startX, startY, tex.width, tex.height);
 
             for (int i = 0; i < texPixels.Length; i++)
             {
@@ -146,9 +146,29 @@ namespace Rogium.Systems.GridSystem
                 layerPixels[i] = texPixels[i];
             }
 
-            layer.SetPixels(startX, startY, tex.width, tex.height, layerPixels);
+            canvasTex.SetPixels(startX, startY, tex.width, tex.height, layerPixels);
         }
 
+        /// <summary>
+        /// Returns a section of the sprite based on the unitSize.
+        /// </summary>
+        /// <param name="canvas">The sprite to read from.</param>
+        /// <param name="pos">The starting position to read from. Width and Height are unitSize.</param>
+        public Sprite Get(Sprite canvas, Vector2Int pos)
+        {
+            Texture2D canvasTex = canvas.texture;
+            
+            int startX = pos.x * unitSize.x;
+            int startY = pos.y * unitSize.y;
+            Color[] spritePixels = canvasTex.GetPixels(startX, startY, unitSize.x, unitSize.y);
+            
+            Texture2D tex = RedRatBuilder.GenerateTexture(unitSize.x, unitSize.y);
+            tex.SetPixels(spritePixels);
+            tex.Apply();
+
+            return RedRatBuilder.GenerateSprite(tex, pixelsPerUnit);
+        }
+        
         /// <summary>
         /// Refreshes the sprite's pixel changes (costly).
         /// </summary>

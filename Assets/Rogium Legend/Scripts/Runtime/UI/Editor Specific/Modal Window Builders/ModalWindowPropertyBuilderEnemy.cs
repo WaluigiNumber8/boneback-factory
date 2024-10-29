@@ -1,6 +1,6 @@
 ﻿using System;
-using Rogium.Core;
 using Rogium.Editors.Enemies;
+using Rogium.Editors.Packs;
 using UnityEngine;
 
 namespace Rogium.UserInterface.Editors.ModalWindowBuilding
@@ -8,46 +8,46 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     /// <summary>
     /// Constructor for the Enemy Properties Modal Window.
     /// </summary>
-    public class ModalWindowPropertyBuilderEnemy : ModalWindowPropertyBuilder
+    public class ModalWindowPropertyBuilderEnemy : ModalWindowPropertyBuilderBase
     {
-        private readonly EnemyEditorOverseer enemyEditor;
+        private readonly EnemyEditorOverseer enemyEditor = EnemyEditorOverseer.Instance;
 
-        public ModalWindowPropertyBuilderEnemy()
-        {
-            enemyEditor = EnemyEditorOverseer.Instance;
-        }
+        public override void OpenForCreate(Action whenConfirm = null) => OpenWindow(new EnemyAsset.Builder().Build(), () => CreateAsset(whenConfirm), "Creating a new Enemy", AssetModificationType.Create);
+
+        public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new EnemyAsset.Builder().AsCopy(enemyEditor.CurrentAsset).Build(), () => UpdateAsset(whenConfirm), $"Updating {enemyEditor.CurrentAsset.Title}", AssetModificationType.Update);
+
+        public override void OpenForClone(Action whenConfirm = null) => OpenWindow(new EnemyAsset.Builder().AsClone(enemyEditor.CurrentAsset).Build(), () => CloneAsset(whenConfirm), $"Creating a clone of {enemyEditor.CurrentAsset.Title}", AssetModificationType.Clone);
         
-        public override void OpenForCreate()
+        private void OpenWindow(EnemyAsset asset, Action onConfirm, string headerText, AssetModificationType modification)
         {
-            OpenWindow(new EnemyAsset(), CreateAsset, "Creating a new Enemy");
-        }
-
-        public override void OpenForUpdate()
-        {
-            OpenWindow(new EnemyAsset(enemyEditor.CurrentAsset), UpdateAsset, $"Updating {enemyEditor.CurrentAsset.Title}");
-        }
-
-        private void OpenWindow(EnemyAsset enemy, Action onConfirm, string headerText)
-        {
+            asset.UpdateTitle(GetTitleByModificationType(asset, modification));
             OpenForColumns1(headerText, onConfirm, out Transform col);
-            b.BuildInputField("Title", enemy.Title, col, enemy.UpdateTitle);
-            b.BuildPlainText("Created by", enemy.Author, col);
-            b.BuildPlainText("Created on", enemy.CreationDate.ToString(), col);
+            b.BuildInputField("Title", asset.Title, col, asset.UpdateTitle);
+            b.BuildPlainText("Created by", asset.Author, col);
+            b.BuildPlainText("Created on", asset.CreationDate.ToString(), col);
             
-            editedAssetBase = enemy;
+            editedAssetBase = asset;
         }
 
-        protected override void CreateAsset()
+        protected override void CreateAsset(Action whenConfirm)
         {
             editor.CreateNewEnemy((EnemyAsset)editedAssetBase);
-            selectionMenu.Open(AssetType.Enemy);
+            whenConfirm?.Invoke();
         }
 
-        protected override void UpdateAsset()
+        protected override void UpdateAsset(Action whenConfirm)
         {
             enemyEditor.UpdateAsset((EnemyAsset)editedAssetBase);
             enemyEditor.CompleteEditing();
-            selectionMenu.Open(AssetType.Enemy);
+            whenConfirm?.Invoke();
+        }
+        
+        protected override void CloneAsset(Action whenConfirm)
+        {
+            editor.CreateNewEnemy((EnemyAsset) editedAssetBase);
+            enemyEditor.AssignAsset((EnemyAsset)editedAssetBase, PackEditorOverseer.Instance.CurrentPack.Enemies.Count - 1);
+            enemyEditor.CompleteEditing();
+            whenConfirm?.Invoke();
         }
     }
 }

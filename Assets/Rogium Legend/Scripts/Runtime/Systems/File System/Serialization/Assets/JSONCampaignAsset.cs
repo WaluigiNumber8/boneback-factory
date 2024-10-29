@@ -25,7 +25,7 @@ namespace Rogium.ExternalStorage.Serialization
         public JSONList<WeaponAsset, JSONWeaponAsset> weapons;
         public JSONList<ProjectileAsset, JSONProjectileAsset> projectiles;
         public JSONList<EnemyAsset, JSONEnemyAsset> enemies;
-        public JSONList<RoomAsset, JSONRoomAsset> rooms; 
+        public JSONList<RoomAsset, JSONRoomAsset> rooms;
         public JSONList<TileAsset, JSONTileAsset> tiles;
 
         public int adventureLength;
@@ -44,7 +44,7 @@ namespace Rogium.ExternalStorage.Serialization
             adventureLength = asset.AdventureLength;
             packReferences = asset.PackReferences.ToArray();
         }
-        
+
         /// <summary>
         /// Deserialize this Campaign.
         /// </summary>
@@ -58,19 +58,27 @@ namespace Rogium.ExternalStorage.Serialization
             enemies.SetDecodingMethod(e => e.Decode());
             rooms.SetDecodingMethod(r => r.Decode());
             tiles.SetDecodingMethod(t => t.Decode());
-            
-            PackAsset dataPack = new(palettes.Decode(), sprites.Decode(), weapons.Decode(), projectiles.Decode(), 
-                                     enemies.Decode(), rooms.Decode(), tiles.Decode());
-            
-            return new CampaignAsset(id,
-                                     title,
-                                     icon.Decode(),
-                                     author,
-                                     DateTime.Parse(creationDate),
-                                     adventureLength,
-                                     dataPack,
-                                     packReferences);
+
+            PackAsset dataPack = new PackAsset.Builder()
+                .WithPalettes(palettes.Decode())
+                .WithSprites(sprites.Decode())
+                .WithWeapons(weapons.Decode())
+                .WithProjectiles(projectiles.Decode())
+                .WithEnemies(enemies.Decode())
+                .WithRooms(rooms.Decode())
+                .WithTiles(tiles.Decode())
+                .Build();
+
+            return new CampaignAsset.Builder()
+                .WithID(id)
+                .WithTitle(title)
+                .WithIcon(icon.Decode())
+                .WithAuthor(author)
+                .WithCreationDate(DateTime.Parse(creationDate))
+                .WithAdventureLength(adventureLength)
+                .WithDataPack(dataPack)
+                .WithPackReferences(packReferences)
+                .Build();
         }
-        
     }
 }

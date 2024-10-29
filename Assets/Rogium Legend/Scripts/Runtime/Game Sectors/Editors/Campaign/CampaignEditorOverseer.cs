@@ -35,7 +35,7 @@ namespace Rogium.Editors.Campaign
         public void AssignAsset(CampaignAsset campaign, int index, bool prepareEditor = true)
         {
             SafetyNet.EnsureIsNotNull(campaign, "Campaign to assign.");
-            currentCampaign = new CampaignAsset(campaign);
+            currentCampaign = new CampaignAsset.Builder().AsCopy(campaign).Build();
             myIndex = index;
             originalTitle = campaign.Title;
             originalAuthor = campaign.Author;
@@ -51,19 +51,19 @@ namespace Rogium.Editors.Campaign
         public void UpdateAsset(CampaignAsset updatedAsset)
         { 
             SafetyNet.EnsureIsNotNull(currentCampaign, "Currently active asset.");
-            currentCampaign = new CampaignAsset(updatedAsset);
+            currentCampaign = new CampaignAsset.Builder().AsCopy(updatedAsset).Build();
         }
 
         /// <summary>
         /// Updates current campaign's Data Pack with data from a list of packs.
         /// </summary>
         /// <param name="data">The list of packs to combine.</param>
-        public void UpdateDataPack(IList<PackAsset> data)
+        public void UpdateDataPack(ISet<PackAsset> data)
         {
             PackAsset ultimatePack = packCombiner.Combine(data);
             
             currentCampaign.UpdateDataPack(ultimatePack);
-            currentCampaign.UpdatePackReferences(data.ConvertToIDs());
+            currentCampaign.UpdatePackReferences(data.Select(p => p.ID).ToHashSet());
         }
         
         public void CompleteEditing()
@@ -88,7 +88,7 @@ namespace Rogium.Editors.Campaign
         /// <returns></returns>
         private Sprite GetIconDirty(PackAsset dataPack)
         {
-            Sprite icon = dataPack.Rooms.FirstOrDefault(rm => rm.Type == RoomType.Entrance)?.Icon;
+            Sprite icon = dataPack.Rooms.FirstOrDefault(rm => rm.Type == RoomType.Entrance)?.Banner;
             return icon;
         }
         

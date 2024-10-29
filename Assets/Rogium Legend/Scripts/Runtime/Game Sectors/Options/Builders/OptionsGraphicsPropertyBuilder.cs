@@ -10,7 +10,7 @@ namespace Rogium.Options.Core
     /// <summary>
     /// Builds the properties of the options menu.
     /// </summary>
-    public class OptionsGraphicsPropertyBuilder : UIPropertyContentBuilderBaseColumn1
+    public class OptionsGraphicsPropertyBuilder : UIPropertyContentBuilderBaseColumn1<GameDataAsset>
     {
         private readonly GraphicsOptionsController graphics;
         
@@ -25,7 +25,7 @@ namespace Rogium.Options.Core
             resolutionStrings = resolutions.Select(r => $"{r.width}x{r.height}").ToList();
         }
 
-        public void Build(GameDataAsset gameData)
+        public override void Build(GameDataAsset gameData)
         {
             Clear();
 

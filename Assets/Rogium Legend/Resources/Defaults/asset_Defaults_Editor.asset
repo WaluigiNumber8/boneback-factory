@@ -1,0 +1,124 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f47f74a9ee6468eaa4d170e42780513, type: 3}
+  m_Name: asset_Defaults_Editor
+  m_EditorClassIdentifier: 
+  pixelsPerUnit: 16
+  emptySprite: {fileID: 21300000, guid: 867a7406668b8f3418388e421ed39770, type: 3}
+  missingSprite: {fileID: 21300000, guid: f08744a35567ed040b9403dac891ac75, type: 3}
+  emptyGridColor: {r: 0, g: 0, b: 0, a: 1}
+  noColor: {r: 0, g: 0, b: 0, a: 0}
+  missingColor: {r: 255, g: 88, b: 227, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  author: NO_AUTHOR
+  authorGame: Game
+  packTitle: New Pack
+  packIcon: {fileID: 21300000, guid: b43ac7d93a106884db47dcff5f07d3fb, type: 3}
+  packDescription: A new pack filled with adventure!
+  campaignTitle: New Campaign
+  campaignLength: 25
+  paletteTitle: New Palette
+  paletteSize: 9
+  missingPalette:
+  - {r: 0.8509804, g: 0.27058825, b: 0.7529412, a: 1}
+  - {r: 0.05490196, g: 0.05490196, b: 0.06666667, a: 1}
+  - {r: 0.8509804, g: 0.27058825, b: 0.7529412, a: 1}
+  - {r: 0.05490196, g: 0.05490196, b: 0.06666667, a: 1}
+  - {r: 0.8509804, g: 0.27058825, b: 0.7529412, a: 1}
+  - {r: 0.05490196, g: 0.05490196, b: 0.06666667, a: 1}
+  - {r: 0.8509804, g: 0.27058825, b: 0.7529412, a: 1}
+  - {r: 0.05490196, g: 0.05490196, b: 0.06666667, a: 1}
+  - {r: 0.8509804, g: 0.27058825, b: 0.7529412, a: 1}
+  spriteTitle: New Sprite
+  spriteSize: 16
+  weaponTitle: New Weapon
+  weaponIcon: {fileID: 21300000, guid: 25f032b44042d94409d46bb244620951, type: 3}
+  weaponColor: {r: 0, g: 1, b: 0, a: 1}
+  weaponAnimationType: 0
+  weaponFrameDuration: 40
+  weaponFrameDurationMax: 1200
+  weaponBaseDamage: 2
+  weaponUseDelay: 1.2
+  weaponUseCooldownMax: 1.2
+  weaponKnockbackForceSelf: 0
+  weaponKnockbackLockDirectionSelf: 1
+  weaponKnockbackForceOther: 10
+  weaponKnockbackLockDirectionOther: 1
+  weaponKnockbackForceMax: 60
+  weaponUseType: 0
+  weaponUseDuration: 0.2
+  weaponUseDurationMax: 20
+  weaponUseStartDelay: 0
+  weaponUseStartDelayMax: 20
+  weaponIsEvasive: 0
+  weaponFreezeUser: 1
+  weaponProjectileMaxCount: 12
+  weaponProjectileAngleOffset: 0
+  weaponProjectileAngleOffsetMax: 180
+  weaponProjectileSpawnDelay: 0
+  weaponProjectileSpawnDelayMax: 20
+  projectileTitle: New Projectile
+  projectileIcon: {fileID: 21300000, guid: 8d27d6aebf5ddfd4da0caac3f4153a55, type: 3}
+  projectileColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  projectileAnimationType: 0
+  projectileFrameDuration: 40
+  projectileFrameDurationMax: 1200
+  projectileBaseDamage: 1
+  projectileLifetime: 0.5
+  projectileLifetimeMax: 120
+  projectileKnockbackForceSelf: 0
+  projectileKnockbackLockDirectionSelf: 1
+  projectileKnockbackForceOther: 5
+  projectileKnockbackLockDirectionOther: 1
+  projectileKnockbackForceMax: 60
+  projectileFlightSpeed: 16
+  projectileAcceleration: 0.5
+  projectileAccelerationMax: 1
+  projectileBrakeForce: 0.01
+  projectileBrakeForceMax: 2
+  projectilePierceType: 0
+  enemyTitle: New Enemy
+  enemyIcon: {fileID: 21300000, guid: 9e166e266ae0a4649a8672d5066cf7e3, type: 3}
+  enemyColor: {r: 1, g: 0, b: 0, a: 1}
+  enemyAnimationType: 1
+  enemyFrameDuration: 50
+  enemyFrameDurationMax: 1200
+  enemyBaseDamage: 1
+  enemyInvincibilityTimeMax: 20
+  enemyAttackDelay: 2
+  enemyAttackDelayMax: 20
+  enemyKnockbackForceSelf: 1
+  enemyKnockbackLockDirectionSelf: 1
+  enemyKnockbackForceOther: 10
+  enemyKnockbackLockDirectionOther: 1
+  enemyKnockbackForceMax: 60
+  enemyMaxHealth: 5
+  enemyAttackProbability: 100
+  enemyInvincibilityTime: 0.25
+  enemyWeaponMaxCount: 9
+  enemyAI: 0
+  enemyStartingDirection: 1
+  enemySeamlessMovement: 0
+  enemyNextStepTime: 0.25
+  enemyNextStepTimeMax: 20
+  roomTitle: New Room
+  roomSize: {x: 15, y: 10}
+  roomDifficulty: 0
+  roomType: 0
+  roomLightness: 255
+  roomLightnessColor: {r: 1, g: 1, b: 1, a: 1}
+  tileTitle: New Tile
+  tileIcon: {fileID: 21300000, guid: d0a7cc62853138d42bd93340ccdcc1a3, type: 3}
+  tileType: 0
+  tileLayer: 1
+  tileTerrainType: 0
+  soundPitchOffset: 0.05

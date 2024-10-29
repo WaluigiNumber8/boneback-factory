@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoplay: 0
+  timescale: 1
 --- !u!114 &3731793122047101098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,6 +69,7 @@ MonoBehaviour:
   restartOnPlay: 1
   keepStateOnStop: 0
   noPlayWhenPlaying: 0
+  isRealtime: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -123,6 +125,7 @@ MonoBehaviour:
   restartOnPlay: 1
   keepStateOnStop: 0
   noPlayWhenPlaying: 0
+  isRealtime: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -197,6 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoplay: 0
+  timescale: 1
 --- !u!114 &7660018842021028384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,6 +218,7 @@ MonoBehaviour:
   restartOnPlay: 1
   keepStateOnStop: 0
   noPlayWhenPlaying: 0
+  isRealtime: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -236,6 +241,7 @@ MonoBehaviour:
   restartOnPlay: 1
   keepStateOnStop: 0
   noPlayWhenPlaying: 0
+  isRealtime: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -404,6 +410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoplay: 0
+  timescale: 1
 --- !u!114 &3481880800897146226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,6 +428,7 @@ MonoBehaviour:
   restartOnPlay: 1
   keepStateOnStop: 0
   noPlayWhenPlaying: 0
+  isRealtime: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -486,6 +494,7 @@ MonoBehaviour:
   restartOnPlay: 1
   keepStateOnStop: 0
   noPlayWhenPlaying: 0
+  isRealtime: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -678,6 +687,7 @@ MonoBehaviour:
   onDeselectEffector: {fileID: 3572038180110195124}
   onClickLeftEffector: {fileID: 3157826702505419251}
   onClickRightEffector: {fileID: 0}
+  onClickDisabledEffector: {fileID: 0}
   onClickLeftDownEffector: {fileID: 0}
   onClickLeftUpEffector: {fileID: 0}
   onClickRightDownEffector: {fileID: 0}
@@ -749,6 +759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoplay: 0
+  timescale: 1
 --- !u!114 &4226452629741012650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -766,6 +777,7 @@ MonoBehaviour:
   restartOnPlay: 1
   keepStateOnStop: 0
   noPlayWhenPlaying: 0
+  isRealtime: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -806,6 +818,7 @@ MonoBehaviour:
   restartOnPlay: 1
   keepStateOnStop: 0
   noPlayWhenPlaying: 0
+  isRealtime: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -846,6 +859,7 @@ MonoBehaviour:
   restartOnPlay: 1
   keepStateOnStop: 0
   noPlayWhenPlaying: 0
+  isRealtime: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -897,6 +911,7 @@ MonoBehaviour:
   restartOnPlay: 1
   keepStateOnStop: 0
   noPlayWhenPlaying: 0
+  isRealtime: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -943,6 +958,7 @@ GameObject:
   - component: {fileID: 6469395521216708047}
   - component: {fileID: 8314343363808421178}
   - component: {fileID: 1994307648032125949}
+  - component: {fileID: 6240001734816056929}
   m_Layer: 5
   m_Name: pref_AssetField_Blue
   m_TagString: Untagged
@@ -1049,6 +1065,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a8061150b14197a9b0d990e72b6162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6240001734816056929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8464327280619493826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6cc70302f2b4d979cb7b63207f0fdea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
 --- !u!1 &9139944479354712524
 GameObject:
   m_ObjectHideFlags: 0

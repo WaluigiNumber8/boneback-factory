@@ -12,6 +12,7 @@ namespace Rogium.ExternalStorage.Serialization
     [System.Serializable]
     public class JSONRoomAsset : JSONAssetBase<RoomAsset>
     {
+        public JSONSprite banner;
         public int difficultyLevel;
         public int type;
         public int lightness;
@@ -23,6 +24,7 @@ namespace Rogium.ExternalStorage.Serialization
 
         public JSONRoomAsset(RoomAsset asset) : base(asset)
         {
+            banner = new JSONSprite(asset.Icon);
             difficultyLevel = asset.DifficultyLevel;
             type = (int)asset.Type;
             lightness = asset.Lightness;
@@ -43,20 +45,23 @@ namespace Rogium.ExternalStorage.Serialization
             decorGrid.SetDefaultCreator(() => new AssetData(ParameterInfoConstants.ForDecor));
             objectGrid.SetDefaultCreator(() => new AssetData(ParameterInfoConstants.ForEmpty));
             enemyGrid.SetDefaultCreator(() => new AssetData(ParameterInfoConstants.ForEnemy));
-            
-            return new RoomAsset(id,
-                                 title,
-                                 icon.Decode(),
-                                 author,
-                                 difficultyLevel,
-                                 (RoomType)type,
-                                 lightness,
-                                 lightnessColor.Decode(),
-                                 tileGrid.Decode(),
-                                 decorGrid.Decode(),
-                                 objectGrid.Decode(),
-                                 enemyGrid.Decode(),
-                                 DateTime.Parse(creationDate));
+
+            return new RoomAsset.Builder()
+                .WithID(id)
+                .WithTitle(title)
+                .WithIcon(icon.Decode())
+                .WithAuthor(author)
+                .WithCreationDate(DateTime.Parse(creationDate))
+                .WithBanner(banner.Decode())
+                .WithDifficultyLevel(difficultyLevel)
+                .WithType((RoomType)type)
+                .WithLightness(lightness)
+                .WithLightnessColor(lightnessColor.Decode())
+                .WithTileGrid(tileGrid.Decode())
+                .WithDecorGrid(decorGrid.Decode())
+                .WithObjectGrid(objectGrid.Decode())
+                .WithEnemyGrid(enemyGrid.Decode())
+                .Build();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using RedRats.Safety;
 using System;
 using RedRats.Core;
+using Rogium.Editors.Palettes;
 using Rogium.Systems.IconBuilders;
 using UnityEngine;
 
@@ -13,19 +14,17 @@ namespace Rogium.Editors.Sprites
     {
         public event Action<SpriteAsset> OnAssignAsset;
         public event Action OnCompleteEditingBefore, OnCompleteEditingAfter;
-        public event Action<SpriteAsset, int> OnCompleteEditing;
+        public event Action<SpriteAsset, int, string> OnCompleteEditing;
 
-        private readonly IconBuilder iconBuilder;
         private readonly PalettePicker palettePicker;
         
         private SpriteAsset currentAsset;
+        private PaletteAsset currentPalette;
         private int myIndex;
+        private string lastAssociatedPaletteID;
+        private Color[] originalColors;
         
-        private SpriteEditorOverseer()
-        {
-            iconBuilder = new IconBuilder();
-            palettePicker = new PalettePicker();
-        }
+        private SpriteEditorOverseer() => palettePicker = new PalettePicker();
 
         /// <summary>
         /// Assign an asset, that is going to be edited.
@@ -37,9 +36,12 @@ namespace Rogium.Editors.Sprites
         {
             SafetyNet.EnsureIsNotNull(asset, "Assigned Sprite");
             SafetyNet.EnsureIntIsBiggerOrEqualTo(index, 0, "Assigned asset index");
-            
-            currentAsset = new SpriteAsset(asset);
+
+            currentAsset = new SpriteAsset.Builder().AsCopy(asset).Build();
+            currentPalette = palettePicker.GrabBasedOn(currentAsset.AssociatedPaletteID);
             myIndex = index;
+            lastAssociatedPaletteID = asset.AssociatedPaletteID;
+            originalColors = currentPalette.Colors.AsCopy();
             
             if (!prepareEditor) return;
             OnAssignAsset?.Invoke(currentAsset);
@@ -52,20 +54,40 @@ namespace Rogium.Editors.Sprites
         public void UpdateAsset(SpriteAsset updatedAsset)
         { 
             SafetyNet.EnsureIsNotNull(currentAsset, "Currently active asset.");
-            currentAsset = new SpriteAsset(updatedAsset);
+            currentAsset = new SpriteAsset.Builder().AsCopy(updatedAsset).Build();
         }
 
+        public void UpdatePalette(PaletteAsset updatedPalette)
+        {
+            SafetyNet.EnsureIsNotNull(currentPalette, "Currently active palette.");
+            currentPalette = new PaletteAsset.Builder().AsCopy(updatedPalette).Build();
+            currentAsset.UpdateAssociatedPaletteID(currentPalette.ID);
+            originalColors = currentPalette.Colors.AsCopy();
+        }
+        
+        /// <summary>
+        /// Revert all changes made to the palette.
+        /// </summary>
+        public void ResetPalette()
+        {
+            for (int i = 0; i < currentPalette.Colors.Length; i++)
+            {
+                currentPalette.Colors[i] = originalColors[i];
+            }
+        }
+        
         public void CompleteEditing()
         {
             OnCompleteEditingBefore?.Invoke();
 
-            Sprite newIcon = iconBuilder.BuildFromGrid(currentAsset.SpriteData, palettePicker.GrabBasedOn(currentAsset.PreferredPaletteID));
+            Sprite newIcon = IconBuilder.DrawFromGrid(currentAsset.SpriteData, currentPalette.Colors);
+            newIcon.name = currentAsset.Title;
             currentAsset.UpdateIcon(newIcon);
             
-            OnCompleteEditing?.Invoke(currentAsset, myIndex);
+            OnCompleteEditing?.Invoke(currentAsset, myIndex, lastAssociatedPaletteID);
             OnCompleteEditingAfter?.Invoke();
         }
-        
+
         public SpriteAsset CurrentAsset 
         {
             get 
@@ -74,6 +96,8 @@ namespace Rogium.Editors.Sprites
                 return currentAsset;
             } 
         }
+        
+        public PaletteAsset CurrentPalette { get => currentPalette; }
         
     }
 }

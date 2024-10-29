@@ -20,6 +20,7 @@ namespace RedRats.UI.Sliders
 
         private bool changingValue;
         private int decimalMultiplier = 1;
+        private string decimalsInText;
 
         private void Awake()
         {
@@ -54,13 +55,18 @@ namespace RedRats.UI.Sliders
             if (changingValue) return;
 
             changingValue = true;
-            slider.value = value * decimalMultiplier;
+            slider.SetValueWithoutNotify(value * decimalMultiplier);
             inputField.text = value.ToString();
             OnValueChanged?.Invoke(value);
             changingValue = false;
         }
 
-        public void OverrideDecimalMultiplier(int multiplier) => decimalMultiplier = multiplier;
+        public void OverrideDecimalMultiplier(int multiplier)
+        {
+            decimalMultiplier = multiplier;
+            int decimals = multiplier.ToString().Length - 1;
+            decimalsInText = $"0.{new string('#', decimals)}";
+        }
         public void ResetDecimalMultiplier() => decimalMultiplier = 1;
 
         /// <summary>
@@ -73,7 +79,7 @@ namespace RedRats.UI.Sliders
 
             changingValue = true;
             value /= decimalMultiplier;
-            inputField.text = (value).ToString();
+            inputField.text = (value).ToString(decimalsInText);
             
             OnValueChanged?.Invoke(value);
             changingValue = false;

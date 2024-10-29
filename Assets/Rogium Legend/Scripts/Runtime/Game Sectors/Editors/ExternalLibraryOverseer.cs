@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using RedRats.Core;
 using RedRats.Safety;
 using Rogium.Core;
 using Rogium.Editors.Campaign;
-using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Packs;
 using Rogium.ExternalStorage;
 using Rogium.Options.Core;
 using Rogium.Systems.SceneTransferService;
-using UnityEngine;
-using static Rogium.Editors.Packs.SpriteAssociation;
+using static Rogium.Editors.Packs.AssetAssociation;
 
 namespace Rogium.Editors.Core
 {
@@ -19,7 +18,7 @@ namespace Rogium.Editors.Core
     /// </summary>
     public sealed class ExternalLibraryOverseer : Singleton<ExternalLibraryOverseer>
     {
-        private readonly ExternalStorageOverseer ex = ExternalStorageOverseer.Instance;
+        private readonly IExternalStorageOverseer ex = ExternalCommunicator.Instance;
         private readonly PackEditorOverseer packEditor = PackEditorOverseer.Instance;
         private readonly CampaignEditorOverseer campaignEditor = CampaignEditorOverseer.Instance;
         private readonly OptionsMenuOverseer optionsEditor = OptionsMenuOverseer.Instance;
@@ -31,7 +30,7 @@ namespace Rogium.Editors.Core
         private ExternalLibraryOverseer()
         {
             packs = new AssetList<PackAsset>(ex.CreatePack, ex.UpdatePack, ex.DeletePack);
-            campaigns = new AssetList<CampaignAsset>(ex.Campaigns.Save, ex.Campaigns.UpdateTitle, ex.Campaigns.Delete);
+            campaigns = new AssetList<CampaignAsset>(ex.Campaigns.Save, ex.Campaigns.Update, ex.Campaigns.Delete);
             
             packEditor.OnSaveChanges += UpdatePack;
             packEditor.OnRemoveSprite += RemoveSpriteAssociation;
@@ -52,7 +51,7 @@ namespace Rogium.Editors.Core
             campaigns.RemoveAll(campaign => campaign.PackReferences.Count <= 0);
             
             IList<GameDataAsset> data = ex.Preferences.LoadAll();
-            preferences = (data == null || data.Count <= 0) ? new GameDataAsset() : data[0];
+            preferences = (data == null || data.Count <= 0) ? new GameDataAsset.Builder().Build() : data[0];
         }
 
         #region Packs
@@ -62,8 +61,7 @@ namespace Rogium.Editors.Core
         /// <param name="pack">Information about the pack.</param>
         public void CreateAndAddPack(PackAsset pack)
         {
-            PackAsset newPack = new(pack.ID, pack.Title, pack.Icon, pack.Author, pack.AssociatedSpriteID, pack.Description, pack.CreationDate);
-            packs.Add(newPack);
+            packs.Add(new PackAsset.Builder().AsCopy(pack).Build());
         }
 
         /// <summary>
@@ -76,6 +74,7 @@ namespace Rogium.Editors.Core
         /// <param name="lastAssociatedSpriteID">Pack's referenced sprite before updating.</param>
         public void UpdatePack(PackAsset pack, int index, string lastTitle, string lastAuthor, string lastAssociatedSpriteID)
         {
+            pack.RefreshAssetCounts();
             ProcessSpriteAssociations(pack, pack, lastAssociatedSpriteID);
             if (!string.IsNullOrEmpty(pack.AssociatedSpriteID))
             {
@@ -90,17 +89,8 @@ namespace Rogium.Editors.Core
         /// <param name="packIndex">Pack ID in the list.</param>
         public void DeletePack(int packIndex)
         {
-            RemoveAssociation(packs[packIndex], packs[packIndex]);
+            AssetAssociation.RemoveSpriteAssociation(packs[packIndex], packs[packIndex]);
             packs.Remove(packIndex);
-        }
-        /// <summary>
-        /// Remove pack from the library.
-        /// </summary>
-        /// <param name="title">Pack's Title</param>
-        /// <param name="author">Pack's Author</param>
-        public void DeletePack(string title, string author)
-        {
-            packs.Remove(title, author);
         }
 
         /// <summary>
@@ -111,8 +101,11 @@ namespace Rogium.Editors.Core
             SafetyNet.EnsureListIsNotNullOrEmpty(packs, "Pack Library");
             SafetyNet.EnsureIntIsInRange(packIndex, 0, packs.Count, "packIndex for activating Pack Editor");
             packs[packIndex] = ex.LoadPack(packs[packIndex]);
+            packs[packIndex].RefreshAssetCounts();
             packEditor.AssignAsset(packs[packIndex], packIndex);
         }
+        
+        public void ClearPacks() => packs.Clear();
 
         private void RemoveSpriteAssociation(string id) => RemoveSpriteAssociationsAndSaveAsset(packs, id);
 
@@ -123,18 +116,9 @@ namespace Rogium.Editors.Core
         /// <summary>
         /// Creates a new Campaign, and adds it to the library.
         /// </summary>
-        /// <param name="title">Title of the campaign.</param>
-        /// <param name="icon">Icon of the campaign.</param>
-        /// <param name="author">Author, who made the campaign.</param>
-        /// <param name="dataPack">Pack Asset, containing everything used in the campaign.</param>
-        public void CreateAndAddCampaign(string title, Sprite icon, string author, PackAsset dataPack)
-        {
-            CampaignAsset newCampaign = new(title, icon, author, new PackAsset(dataPack));
-            campaigns.Add(newCampaign);
-        }
         public void CreateAndAddCampaign(CampaignAsset campaign)
         {
-            campaigns.Add(new CampaignAsset(campaign));
+            campaigns.Add(new CampaignAsset.Builder().AsCopy(campaign).Build());
         }
 
         /// <summary>
@@ -187,6 +171,8 @@ namespace Rogium.Editors.Core
             SafetyNet.EnsureIntIsInRange(campaignIndex, 0, campaigns.Count, "campaignIndex for activating Campaign Playthrough");
             SceneTransferOverseer.GetInstance().LoadUp(campaigns[campaignIndex]);
         }
+        
+        public void ClearCampaigns() => campaigns.Clear();
         #endregion
 
         #region Preferences
@@ -194,7 +180,6 @@ namespace Rogium.Editors.Core
         public void UpdatePreferences(GameDataAsset gameData)
         {
             preferences = gameData;
-            // optionsEditor.ApplyAllSettings();
             ex.Preferences.Save(preferences);
         }
 
@@ -214,31 +199,8 @@ namespace Rogium.Editors.Core
 
         #endregion
         
-        /// <summary>
-        /// Amount of packs, stored in the library.
-        /// </summary>
-        public int PackCount => packs.Count;
-
-        /// <summary>
-        /// Returns a copy of the list of packs stored here.
-        /// </summary>
-        /// <returns>A copy of Pack Library.</returns>
-        public IList<PackAsset> GetPacksCopy => new List<PackAsset>(packs);
-        
-        /// <summary>
-        /// Amount of campaigns stored in the library.
-        /// </summary>
-        public int CampaignCount => campaigns.Count;
-
-        /// <summary>
-        /// Returns a copy of the list of campaigns stored here.
-        /// </summary>
-        /// <returns>A copy of Pack Library.</returns>
-        public IList<CampaignAsset> GetCampaignsCopy => new List<CampaignAsset>(campaigns);
-
-        /// <summary>
-        /// Returns the saved preferences.
-        /// </summary>
-        public GameDataAsset GetPreferences => preferences;
+        public ReadOnlyCollection<PackAsset> Packs { get => new(packs); }
+        public ReadOnlyCollection<CampaignAsset> Campaigns {get => new(campaigns);}
+        public GameDataAsset Preferences { get => preferences; }
     }
 }

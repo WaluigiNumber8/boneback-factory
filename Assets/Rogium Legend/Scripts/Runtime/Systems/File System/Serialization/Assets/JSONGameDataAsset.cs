@@ -32,14 +32,15 @@ namespace Rogium.ExternalStorage.Serialization
         
         public GameDataAsset Decode()
         {
-            return new GameDataAsset(MasterVolume,
-                                     MusicVolume,
-                                     SoundVolume,
-                                     UIVolume,
-                                     new Vector2Int(ResolutionX, ResolutionY), 
-                                     (ScreenType) ScreenMode,
-                                     VSync
-                                     );
+            return new GameDataAsset.Builder()
+                .WithMasterVolume(MasterVolume)
+                .WithMusicVolume(MusicVolume)
+                .WithSoundVolume(SoundVolume)
+                .WithUIVolume(UIVolume)
+                .WithResolution(new Vector2Int(ResolutionX, ResolutionY))
+                .WithScreenMode((ScreenType) ScreenMode)
+                .WithVSync(VSync)
+                .Build();
         }
     }
 }

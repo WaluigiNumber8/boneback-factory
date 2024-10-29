@@ -32,7 +32,6 @@ RectTransform:
   m_Children:
   - {fileID: 3877380355893009214}
   m_Father: {fileID: 3877380354456385576}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -90,6 +89,7 @@ GameObject:
   - component: {fileID: 6904868392368096890}
   - component: {fileID: 3877380354456385579}
   - component: {fileID: 1056626421539438251}
+  - component: {fileID: 6970452106897436396}
   m_Layer: 5
   m_Name: pref_Scrollbar_Vertical_Blue
   m_TagString: Untagged
@@ -111,7 +111,6 @@ RectTransform:
   m_Children:
   - {fileID: 3877380353989297297}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -210,6 +209,19 @@ MonoBehaviour:
   scrollbar: {fileID: 3877380354456385579}
   ui:
     handle: {fileID: 3877380355893009185}
+--- !u!114 &6970452106897436396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3877380354456385577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6cc70302f2b4d979cb7b63207f0fdea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
 --- !u!1 &3877380355893009215
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,7 +253,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3877380353989297297}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

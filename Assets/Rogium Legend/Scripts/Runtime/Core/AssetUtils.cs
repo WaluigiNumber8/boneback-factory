@@ -36,10 +36,10 @@ namespace Rogium.Core
                 for (int x = 0; x < IDGrid.Width; x++)
                 {
                     int Y = (flipY) ? IntUtils.Flip(y, IDGrid.Height) : y;
-                    TS data = IDGrid.GetValue(x, y);
+                    TS data = IDGrid.GetAt(x, y);
 
                     //Id is empty.
-                    if (data.ID == EditorConstants.EmptyAssetID)
+                    if (data.ID == EditorDefaults.EmptyAssetID)
                     {
                         if (lastValue == null) continue;
                         whenIDEmpty?.Invoke(x, Y, lastValue, data);
@@ -91,10 +91,10 @@ namespace Rogium.Core
                 for (int x = 0; x < IDGrid.Width; x++)
                 {
                     int Y = (flipY) ? IntUtils.Flip(y, IDGrid.Height) : y;
-                    TS id = IDGrid.GetValue(x, y);
+                    TS id = IDGrid.GetAt(x, y);
 
                     //Id is empty.
-                    if (id.CompareTo(EditorConstants.EmptyAssetID) == 0)
+                    if (id.CompareTo(EditorDefaults.EmptyAssetID) == 0)
                     {
                         if (lastValue == null) continue;
                         whenIDEmpty?.Invoke(x, Y, lastValue);

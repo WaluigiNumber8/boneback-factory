@@ -9,6 +9,7 @@ namespace RedRats.Systems.FileSystem.JSON.Serialization
     [System.Serializable]
     public class JSONSprite : IEncodedObject<Sprite>
     {
+        public string name;
         public float rectX;
         public float rectY;
         public float rectWidth;
@@ -22,6 +23,7 @@ namespace RedRats.Systems.FileSystem.JSON.Serialization
         public JSONSprite(Sprite sprite)
         {
             Sprite spriteToUse = (sprite == null) ? RedRatBuilder.GenerateSprite(new Color(0, 0, 0, 1), 16, 16, 16) : sprite;
+            name = spriteToUse.name;
             rectX = spriteToUse.rect.x;
             rectY = spriteToUse.rect.y;
             rectWidth = spriteToUse.rect.width;
@@ -33,8 +35,9 @@ namespace RedRats.Systems.FileSystem.JSON.Serialization
             textureBytes = spriteToUse.texture.EncodeToPNG();
         }
 
-        public JSONSprite(float rectX, float rectY, float rectWidth, float rectHeight, float pivotX, float pivotY, int textureWidth, int textureHeight, byte[] textureBytes)
+        public JSONSprite(string name, float rectX, float rectY, float rectWidth, float rectHeight, float pivotX, float pivotY, int textureWidth, int textureHeight, byte[] textureBytes)
         {
+            this.name = name;
             this.rectX = rectX;
             this.rectY = rectY;
             this.rectWidth = rectWidth;
@@ -59,6 +62,7 @@ namespace RedRats.Systems.FileSystem.JSON.Serialization
                                           new Rect(rectX, rectY, rectWidth, rectHeight),
                                           new Vector2(pivotX / rectWidth, pivotY / rectHeight),
                                           16);
+            sprite.name = name;
             return sprite;
         }
 

@@ -1,5 +1,5 @@
 ﻿using System;
-using Rogium.Core;
+using Rogium.Editors.Packs;
 using Rogium.Editors.Sprites;
 using UnityEngine;
 
@@ -8,47 +8,47 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     /// <summary>
     /// Constructor for the Palette Properties Modal Window.
     /// </summary>
-    public class ModalWindowPropertyBuilderSprite : ModalWindowPropertyBuilder
+    public class ModalWindowPropertyBuilderSprite : ModalWindowPropertyBuilderBase
     {
-        private readonly SpriteEditorOverseer spriteEditor;
+        private readonly SpriteEditorOverseer spriteEditor = SpriteEditorOverseer.Instance;
 
-        public ModalWindowPropertyBuilderSprite()
-        {
-            spriteEditor = SpriteEditorOverseer.Instance;
-        }
+        public override void OpenForCreate(Action whenConfirm = null) => OpenWindow(new SpriteAsset.Builder().Build(), () => CreateAsset(whenConfirm), "Creating a new Sprite", AssetModificationType.Create);
+
+        public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new SpriteAsset.Builder().AsCopy(spriteEditor.CurrentAsset).Build() , () => UpdateAsset(whenConfirm), $"Updating {spriteEditor.CurrentAsset.Title}", AssetModificationType.Update);
+
+        public override void OpenForClone(Action whenConfirm = null) => OpenWindow(new SpriteAsset.Builder().AsClone(spriteEditor.CurrentAsset).Build(), () => CloneAsset(whenConfirm), $"Creating a clone of {spriteEditor.CurrentAsset.Title}", AssetModificationType.Clone);
         
-        public override void OpenForCreate()
+        private void OpenWindow(SpriteAsset asset, Action onConfirm, string headerText, AssetModificationType modification)
         {
-            OpenWindow(new SpriteAsset(), CreateAsset, "Creating a new Sprite");
-        }
-
-        public override void OpenForUpdate()
-        {
-            OpenWindow(new SpriteAsset(spriteEditor.CurrentAsset), UpdateAsset, $"Updating {spriteEditor.CurrentAsset.Title}");
-        }
-
-        private void OpenWindow(SpriteAsset sprite, Action onConfirm, string headerText)
-        {
+            asset.UpdateTitle(GetTitleByModificationType(asset, modification));
             OpenForColumns1(headerText, onConfirm, out Transform col1);
             
-            b.BuildInputField("Title", sprite.Title, col1, sprite.UpdateTitle);
-            b.BuildPlainText("Created by", sprite.Author, col1);
-            b.BuildPlainText("Created on", sprite.CreationDate.ToString(), col1);
+            b.BuildInputField("Title", asset.Title, col1, asset.UpdateTitle);
+            b.BuildPlainText("Created by", asset.Author, col1);
+            b.BuildPlainText("Created on", asset.CreationDate.ToString(), col1);
             
-            editedAssetBase = sprite;
+            editedAssetBase = asset;
         }
         
-        protected override void CreateAsset()
+        protected override void CreateAsset(Action whenConfirm)
         {
             editor.CreateNewSprite((SpriteAsset)editedAssetBase);
-            selectionMenu.Open(AssetType.Sprite);
+            whenConfirm?.Invoke();
         }
 
-        protected override void UpdateAsset()
+        protected override void UpdateAsset(Action whenConfirm)
         {
             spriteEditor.UpdateAsset((SpriteAsset)editedAssetBase);
             spriteEditor.CompleteEditing();
-            selectionMenu.Open(AssetType.Sprite);
+            whenConfirm?.Invoke();
+        }
+
+        protected override void CloneAsset(Action whenConfirm)
+        {
+            editor.CreateNewSprite((SpriteAsset) editedAssetBase);
+            spriteEditor.AssignAsset((SpriteAsset)editedAssetBase, PackEditorOverseer.Instance.CurrentPack.Sprites.Count - 1);
+            spriteEditor.CompleteEditing();
+            whenConfirm?.Invoke();
         }
     }
 }

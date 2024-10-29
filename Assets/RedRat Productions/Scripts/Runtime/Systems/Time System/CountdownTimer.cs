@@ -37,14 +37,13 @@ namespace RedRats.Systems.Clocks
         /// </summary>
         public void Tick()
         {
-            if (timer > 0)
+            if (timer <= 0) return;
+            
+            timer -= Time.deltaTime;
+            if (timer <= 0)
             {
-                timer -= Time.deltaTime;
-                if (timer <= 0)
-                {
-                    timer = 0;
-                    whenFinished?.Invoke();
-                }
+                timer = 0;
+                whenFinished?.Invoke();
             }
         }
         

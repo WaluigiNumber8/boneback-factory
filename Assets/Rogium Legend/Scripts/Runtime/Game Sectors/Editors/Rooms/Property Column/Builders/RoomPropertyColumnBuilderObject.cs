@@ -15,7 +15,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
     /// <summary>
     /// Builds the Room Property Column for different objects.
     /// </summary>
-    public class RoomPropertyColumnBuilderObject : UIPropertyContentBuilderBaseColumn1
+    public class RoomPropertyColumnBuilderObject : UIPropertyContentBuilderBaseColumn1<AssetData>
     {
         private readonly IDictionary<string, Action<AssetData>> presets;
 
@@ -33,7 +33,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         /// Decide, which object to build.
         /// </summary>
         /// <param name="data">The object data.</param>
-        public void Build(AssetData data)
+        public override void Build(AssetData data)
         {
             if (presets.TryGetValue(data.ID, out Action<AssetData> method))
             {
@@ -63,7 +63,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         /// <param name="data">The data to use.</param>
         private void BuildStartingPoint(AssetData data)
         {
-            b.BuildDropdown("Direction", Enum.GetNames(typeof(DirectionType)), data.Parameters.intValue1, contentMain, data.UpdateIntValue1);
+            b.BuildDropdown("Move", Enum.GetNames(typeof(DirectionType)), data.Parameters.intValue1, contentMain, data.UpdateIntValue1);
         }
         
         /// <summary>

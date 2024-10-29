@@ -4,6 +4,7 @@ using Rogium.Editors.Palettes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Rogium.Editors.Core.Defaults;
 using UnityEngine;
 
 namespace Rogium.Editors.Sprites
@@ -16,7 +17,7 @@ namespace Rogium.Editors.Sprites
         private IList<PaletteAsset> palettes;
 
         private string previousID;
-        private Color[] previousColors;
+        private PaletteAsset previousAsset;
 
         public PalettePicker() => palettes = new List<PaletteAsset>();
 
@@ -26,50 +27,53 @@ namespace Rogium.Editors.Sprites
         /// </summary>
         /// <param name="paletteID">The ID of the palette to search for.</param>
         /// <returns>An array of colors form found the palette.</returns>
-        public Color[] GrabBasedOn(string paletteID)
+        public PaletteAsset GrabBasedOn(string paletteID)
         {
             UpdateList();
 
-            //TODO Fill with a default palette if no palettes are created the user chose to import the default pack.
-            SafetyNet.EnsureListIsNotNullOrEmpty(palettes, "List of Pack Palettes");
-
-            //If ID is not set yet.
+            //If ID is not set yet, return first palette.
             if (string.IsNullOrEmpty(paletteID))
             {
                 previousID = paletteID;
-                previousColors = palettes[0].Colors;
-                return previousColors;
+                previousAsset = palettes[0];
+                return previousAsset;
+            }
+
+            //If ID is empty, return default palette.
+            if (paletteID == EditorDefaults.EmptyAssetID)
+            {
+                return new PaletteAsset.Builder()
+                    .WithID(EditorDefaults.EmptyAssetID)
+                    .WithColors(EditorDefaults.Instance.MissingPalette)
+                    .Build();
             }
 
             //If ID is the same as the last grab.
             if (paletteID == previousID)
             {
-                return previousColors;
+                return previousAsset;
             }
 
             //Search for the ID in the list.
             try
             {
-                previousColors = palettes.First(palette => palette.ID == paletteID).Colors;
+                previousAsset = palettes.First(palette => palette.ID == paletteID);
                 previousID = paletteID;
-                return previousColors;
+                return previousAsset;
             }
             //If no ID was found, replace with "Not Found" Palette.
             catch (ArgumentNullException)
             {
-                //TODO Replace with "Not Found Palette"
                 previousID = paletteID;
-                previousColors = palettes[0].Colors;
-                return previousColors;
+                previousAsset = palettes.First();
+                SafetyNet.ThrowMessage("Assigned palette was not found. Replaced with first one found");
+                return previousAsset;
             }
         }
 
         /// <summary>
         /// Updates the list of palettes.
         /// </summary>
-        private void UpdateList()
-        {
-            palettes = PackEditorOverseer.Instance.CurrentPack.Palettes;
-        }
+        private void UpdateList() => palettes = PackEditorOverseer.Instance.CurrentPack.Palettes;
     }
 }

@@ -15,7 +15,7 @@ namespace Rogium.ExternalStorage
         private readonly string identifier;
         private string path;
 
-        private readonly IList<FilePathInfo> filePaths;
+        private readonly IList<FilePathInfo> filePaths = new List<FilePathInfo>();
 
         /// <summary>
         /// The Constructor.
@@ -34,8 +34,6 @@ namespace Rogium.ExternalStorage
             this.folderTitle = folderTitle;
             this.identifier = identifier;
             UpdatePath(path);
-            
-            filePaths = new List<FilePathInfo>();
         }
 
         /// <summary>
@@ -45,6 +43,10 @@ namespace Rogium.ExternalStorage
         public void UpdatePath(string newPath)
         {
             path = System.IO.Path.Combine(newPath, folderTitle);
+            foreach (FilePathInfo filePath in filePaths)
+            {
+                filePath.UpdatePath(CombineFilePath(filePath.Title));
+            }
         }
 
         /// <summary>

@@ -16,7 +16,6 @@ namespace Rogium.UserInterface.ModalWindows
         [SerializeField] private UIInfo ui;
         [SerializeField] private ColorPicker colorPicker;
         
-        
         private Color currentColor;
         private Action<Color> onChangeColor;
 
@@ -25,9 +24,11 @@ namespace Rogium.UserInterface.ModalWindows
             currentColor = value;
             this.onChangeColor = onChangeColor;
             
-            colorPicker.Construct(currentColor);
+            colorPicker.UpdateValue(currentColor);
             colorPicker.OnValueChanged += this.onChangeColor;
         }
+
+        public void UpdateColor(Color value) => colorPicker.UpdateValue(value);
 
         public void UpdateTheme(InteractableSpriteInfo buttonSet, InteractableSpriteInfo inputFieldSet,
                                 Sprite windowBackgroundSprite, Sprite colorGuideBorder, Sprite actionRowBackground, 

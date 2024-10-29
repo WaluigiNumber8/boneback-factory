@@ -1,7 +1,9 @@
-﻿using RedRats.Safety;
-using RedRats.Systems.Themes;
+﻿using RedRats.Systems.Themes;
+using RedRats.UI.ModalWindows;
 using Rogium.Core;
+using Rogium.Editors.NewAssetSelection;
 using Rogium.UserInterface.Editors.AssetSelection;
+using Rogium.UserInterface.ModalWindows;
 
 namespace Rogium.Systems.GASExtension
 {
@@ -10,17 +12,9 @@ namespace Rogium.Systems.GASExtension
     /// </summary>
     public static class GASRogium
     {
-        public static AssetSelectionMenu assetSelection;
+        public static void OpenSelectionMenu(AssetType type) => SelectionMenuOverseerMono.GetInstance().Open(type);
 
-        public static void OpenSelectionMenu(AssetType type)
-        {
-            SafetyNet.EnsureIsNotNull(assetSelection, "GAS Asset Selection");
-            assetSelection.Open(type);
-        }
-
-        public static void ChangeTheme(ThemeType type)
-        {
-            ThemeOverseerMono.GetInstance().ChangeTheme(type);
-        }
+        public static void ChangeTheme(ThemeType type) => ThemeOverseerMono.GetInstance().ChangeTheme(type);
+        public static void OpenWindow(ModalWindowData data) => ModalWindowBuilder.GetInstance().OpenWindow(data);
     }
 }

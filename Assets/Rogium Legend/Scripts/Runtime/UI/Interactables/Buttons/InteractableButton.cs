@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using RedRats.UI.Core;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,22 +14,22 @@ namespace Rogium.UserInterface.Interactables
     public class InteractableButton : MonoBehaviour
     {
         [SerializeField] private ButtonType action;
-        [SerializeField, Min(0f)] private float delay = 0;
+        [SerializeField, MinValue(0f)] private float delay = 0;
         [SerializeField] private int index = -1;
         [SerializeField] private UIInfo ui;
         
         private Button button;
 
         private void Awake() => button = GetComponent<Button>();
-        private void OnEnable() => button.onClick.AddListener(WhenButtonClicked);
-        private void OnDisable() => button.onClick.RemoveListener(WhenButtonClicked);
+        private void OnEnable() => button.onClick.AddListener(Click);
+        private void OnDisable() => button.onClick.RemoveListener(Click);
 
-        public void WhenButtonClicked()
+        public void Click()
         {
             StartCoroutine(DelayCoroutine());
             IEnumerator DelayCoroutine()
             {
-                yield return new WaitForSeconds(delay);
+                yield return new WaitForSecondsRealtime(delay);
                 InteractableInput.Handle(action, index);
             }
         }

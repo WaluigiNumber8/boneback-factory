@@ -1,6 +1,9 @@
 ﻿using System;
+using Rogium.Systems.ActionHistory;
 using Rogium.UserInterface.Editors.AssetSelection;
+using Rogium.UserInterface.ModalWindows;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Rogium.Editors.Palettes
@@ -8,25 +11,26 @@ namespace Rogium.Editors.Palettes
     /// <summary>
     /// Holds information about a given color slot from a palette.
     /// </summary>
-    public class ColorSlot : ToggleableIndexBase
+    public class ColorSlot : ToggleableIndexBase, IColorSlot, IPointerClickHandler
     {
         public static event Action<int> OnSelectedAny;
+        public static event Action<int> OnChangeColor;
         
         [SerializeField] private UIInfo ui;
         
         private Color currentColor;
+        private Color lastColor;
+        private Color originalColor;
 
-        private void OnEnable() => toggle.onValueChanged.AddListener(WhenSelected);
-        private void OnDisable() => toggle.onValueChanged.RemoveListener(WhenSelected);
+        private void OnEnable() => toggle.onValueChanged.AddListener(NotifyListeners);
+        private void OnDisable() => toggle.onValueChanged.RemoveListener(NotifyListeners);
         
-        /// <summary>
-        /// Constructs a color slot, without giving it a new index.
-        /// </summary>
-        /// <param name="color">The new color it's going to carry.</param>
-        public void Construct(Color color)
+        public void OnPointerClick(PointerEventData eventData)
         {
-            Construct(color, index);
+            if (eventData.button != PointerEventData.InputButton.Right) return;
+            ModalWindowBuilder.GetInstance().OpenColorPickerWindow(color => ActionHistorySystem.AddAndExecute(new UpdateColorSlotAction(this, color, lastColor)), currentColor);
         }
+        
         /// <summary>
         /// Constructs the color slot.
         /// </summary>
@@ -35,28 +39,32 @@ namespace Rogium.Editors.Palettes
         public void Construct(Color color, int index)
         {
             this.currentColor = color;
+            this.originalColor = color;
             this.index = index;
-            RefreshUI();
+            UpdateColor(color);
         }
 
-        /// <summary>
-        /// Refreshes all the slots UI elements.
-        /// </summary>
-        private void RefreshUI()
+        public void UpdateColor(Color color)
         {
+            lastColor = currentColor;
+            currentColor = color;
             ui.colorImg.color = currentColor;
+            if (currentColor != lastColor) OnChangeColor?.Invoke(index);
         }
         
         /// <summary>
         /// Fires the select event when the toggle was clicked.
         /// </summary>
-        private void WhenSelected(bool value)
+        private void NotifyListeners(bool value)
         {
             if (!value) return;
             OnSelectedAny?.Invoke(index);
         }
 
+        public override string ToString() => $"Color Slot {index} - {currentColor}";
+
         public Color CurrentColor { get => currentColor; }
+        public Color OriginalColor { get => originalColor; }
         public Image ColorImage { get => ui.colorImg; }
 
         [Serializable]

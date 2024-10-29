@@ -1,10 +1,15 @@
 ﻿using RedRats.Safety;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using RedRats.Core;
+using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Packs;
+using Rogium.Editors.Tiles;
 using Rogium.Systems.GridSystem;
+using Rogium.Systems.IconBuilders;
 using UnityEngine;
 
 namespace Rogium.Editors.Rooms
@@ -22,25 +27,22 @@ namespace Rogium.Editors.Rooms
         private RoomAsset currentAsset;
         private int myIndex;
 
-        private RoomEditorOverseer()
-        {
-            drawer = new SpriteDrawer(EditorConstants.RoomSize, new Vector2Int(EditorConstants.SpriteSize, EditorConstants.SpriteSize), EditorConstants.SpriteSize, false);
-        }
+        private RoomEditorOverseer() => drawer = new SpriteDrawer(EditorDefaults.Instance.RoomSize, new Vector2Int(EditorDefaults.Instance.SpriteSize, EditorDefaults.Instance.SpriteSize), EditorDefaults.Instance.SpriteSize, false);
 
         /// <summary>
         /// Assigns a new pack for editing.
         /// </summary>
-        /// <param name="room">The room that will be edited.</param>
+        /// <param name="asset">The room that will be edited.</param>
         /// <param name="index">The position in the list.</param>
         /// <param name="prepareEditor">If true, load asset into the editor.</param>
-        public void AssignAsset(RoomAsset room, int index, bool prepareEditor = true)
+        public void AssignAsset(RoomAsset asset, int index, bool prepareEditor = true)
         {
-            SafetyNet.EnsureIsNotNull(room, "Assigned Room");
-            currentAsset = new RoomAsset(room);
+            SafetyNet.EnsureIsNotNull(asset, "Assigned Room");
+            currentAsset = new RoomAsset.Builder().AsCopy(asset).Build();
             myIndex = index;
 
             if (!prepareEditor) return;
-            OnAssignAsset?.Invoke(room);
+            OnAssignAsset?.Invoke(asset);
         }
 
         /// <summary>
@@ -50,14 +52,20 @@ namespace Rogium.Editors.Rooms
         public void UpdateAsset(RoomAsset updatedAsset)
         { 
             SafetyNet.EnsureIsNotNull(currentAsset, "Currently active asset.");
-            currentAsset = new RoomAsset(updatedAsset);
+            currentAsset = new RoomAsset.Builder().AsCopy(updatedAsset).Build();
         }
         
         public void CompleteEditing()
         {
-            Sprite newIcon = drawer.Build(currentAsset.TileGrid, PackEditorOverseer.Instance.CurrentPack.Tiles);
-            newIcon = drawer.Build(currentAsset.DecorGrid, PackEditorOverseer.Instance.CurrentPack.Tiles, newIcon);
-            currentAsset.UpdateIcon(newIcon);
+            Sprite banner = drawer.Draw(currentAsset.TileGrid, PackEditorOverseer.Instance.CurrentPack.Tiles);
+            banner = drawer.Draw(currentAsset.DecorGrid, PackEditorOverseer.Instance.CurrentPack.Tiles, banner);
+            banner.name = currentAsset.Title;
+
+            IDictionary<string,TileAsset> tiles = PackEditorOverseer.Instance.CurrentPack.Tiles.ToDictionary(x => x.ID, x => x);
+            Sprite icon = IconBuilder.DrawLowResIconFrom(currentAsset.TileGrid, tiles);
+            icon = IconBuilder.DrawLowResIconFrom(currentAsset.DecorGrid, tiles, icon);
+            currentAsset.UpdateIcon(icon);
+            currentAsset.UpdateBanner(banner);
             OnCompleteEditing?.Invoke(CurrentAsset, myIndex);
         }
 

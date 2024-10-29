@@ -18,6 +18,11 @@ namespace Rogium.UserInterface.Editors.AssetSelection
         /// </summary>
         /// <param name="value">The new value to set.</param>
         public void SetToggle(bool value) => toggle.isOn = value;
+        
+        /// <summary>
+        /// Toggles the value.
+        /// </summary>
+        public void Toggle() => toggle.isOn = !toggle.isOn;
 
         /// <summary>
         /// Assign a toggle group to the toggle.

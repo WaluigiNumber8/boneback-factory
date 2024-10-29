@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Rogium.UserInterface.Editors.AssetSelection
 {
-    [CreateAssetMenu(fileName = "New Selection Menu Asset", menuName = EditorConstants.AssetMenuEditor + "Asset Selection Menu")]
+    [CreateAssetMenu(fileName = "New Selection Menu Asset", menuName = EditorAssetPaths.AssetMenuEditor + "Asset Selection Menu")]
     public class SelectionMenuAsset : ScriptableObject
     {
         public AssetHolderBase assetObject;

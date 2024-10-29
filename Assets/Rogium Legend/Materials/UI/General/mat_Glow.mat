@@ -33,7 +33,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 680589a0053c0a24aa1db3390f0cabaf, type: 3}
+        m_Texture: {fileID: 10307, guid: 0000000000000000f000000000000000, type: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -71,6 +71,7 @@ Material:
     - _EnableExternalAlpha: 0
     - _Enable_Full_Color: 0
     - _Enable_Glow: 1
+    - _Enable_Gradient: 0
     - _Enable_Hologram: 0
     - _Enable_Scroll_And_Offset: 0
     - _Enable_Shimmer: 0
@@ -80,6 +81,9 @@ Material:
     - _FullColorGlow: 1
     - _GlowIntensity: 1
     - _GlowSaturation: 1
+    - _GradientBlend: 1
+    - _GradientColor1Influence: 0.5
+    - _GradientColor2Influence: 0.5
     - _HologramBlend: 0
     - _HologramScrollSpeed: 100
     - _HologramTiling: 4
@@ -103,6 +107,9 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _FullBlendColor: {r: 0, g: 0, b: 0, a: 0}
+    - _GradientColor1: {r: 0, g: 0.5333334, b: 1, a: 1}
+    - _GradientColor2: {r: 0.04245281, g: 0.08668217, b: 1, a: 1}
+    - _GradientColor3: {r: 2, g: 0.6059344, b: 0, a: 1}
     - _MainColor: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _ScrollDirection: {r: 0, g: 0, b: 0, a: 0}

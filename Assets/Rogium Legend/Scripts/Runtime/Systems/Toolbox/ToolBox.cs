@@ -1,59 +1,65 @@
 ﻿using System;
+using Rogium.Editors.Core.Defaults;
+using Rogium.Systems.ActionHistory;
 using Rogium.Systems.GridSystem;
 using UnityEngine;
 
 namespace Rogium.Systems.Toolbox
 {
     /// <summary>
-    /// Houses all the tools used on an <see cref="InteractableEditorGridOBSOLETE"/>.
+    /// Houses all the tools used on an <see cref="InteractableEditorGrid"/>.
     /// </summary>
-    public class ToolBox<T, TS> : IToolBox where T : IComparable
+    /// <typeparam name="T">The type in which to store data.</typeparam>
+    public class ToolBox<T> : IToolBox where T : IComparable
     {
         public event Action<ToolType> OnSwitchTool;
         public event Action<T> OnChangePaletteValue;
         public event Action<T> OnSelectValue;
 
+        private readonly InteractableEditorGridBase UIGrid;
+        
         private readonly SelectionTool<T> toolSelection;
         private readonly BrushTool<T> toolBrush;
-        private readonly EraserTool<T> toolEraser;
+        private readonly BrushTool<T> toolEraser;
         private readonly BucketTool<T> toolBucket;
         private readonly PickerTool<T> toolPicker;
 
-        private readonly InteractableEditorGridBase UIGrid;
-        private readonly Action<Vector2Int, TS> drawOnGrid;
-        private readonly TS emptyValueEditor;
-        private TS currentBrush;
-        private ITool<T> currentTool;
+        private readonly Action<int, Vector2Int, Sprite> whenGraphicDraw;
+        private readonly T emptyValue;
+        private ToolBase<T> currentTool;
         private ToolType currentToolType;
 
-        public ToolBox(InteractableEditorGridBase UIGrid, T emptyValue, TS emptyValueEditor, Action<Vector2Int, TS> drawOnGrid)
+        public ToolBox(InteractableEditorGridBase UIGrid, Action<int, Vector2Int, Sprite> whenGraphicDraw, T emptyValue)
         {
+            this.emptyValue = emptyValue;
             this.UIGrid = UIGrid;
-            this.drawOnGrid = drawOnGrid;
-            this.emptyValueEditor = emptyValueEditor;
-
-            toolSelection = new SelectionTool<T>();
-            toolBrush = new BrushTool<T>();
-            toolEraser = new EraserTool<T>(emptyValue);
-            toolBucket = new BucketTool<T>();
-            toolPicker = new PickerTool<T>();
+            this.whenGraphicDraw = whenGraphicDraw;
+            
+            toolSelection = new SelectionTool<T>(WhenDrawOnUIGrid, this.UIGrid.Apply);
+            toolBrush = new BrushTool<T>(WhenDrawOnUIGrid, this.UIGrid.Apply);
+            toolEraser = new BrushTool<T>(WhenDrawOnUIGrid, this.UIGrid.Apply);
+            toolBucket = new BucketTool<T>(WhenDrawOnUIGrid, this.UIGrid.Apply);
+            toolPicker = new PickerTool<T>(WhenDrawOnUIGrid, this.UIGrid.Apply);
+            
 
             toolSelection.OnSelectValue += data => OnSelectValue?.Invoke(data);
             toolPicker.OnPickValue += data => OnChangePaletteValue?.Invoke(data);
             
-            currentTool = toolBrush;
+            currentToolType = ToolType.None;
+            SwitchTool(ToolType.Brush);
         }
-        
+
         /// <summary>
         /// Applies the effect of the current tool on a specific grid position.
         /// </summary>
         /// <param name="grid">The grid to affect.</param>
         /// <param name="position">The position to start with.</param>
         /// <param name="value">The value to set.</param>
-        public void ApplyCurrent(ObjectGrid<T> grid, Vector2Int position, T value, TS brush)
+        /// <param name="graphicValue">The sprite to draw onto the grid.</param>
+        /// <param name="layerIndex">The index of the layer to draw onto.</param>
+        public void ApplyCurrent(ObjectGrid<T> grid, Vector2Int position, T value, Sprite graphicValue, int layerIndex)
         {
-            currentBrush = brush;
-            currentTool.ApplyEffect(grid, position, value, WhenDrawOnUIGrid, UIGrid.Apply);
+            UseTool(currentTool, grid, position, value, graphicValue, layerIndex);
         }
 
         /// <summary>
@@ -63,9 +69,11 @@ namespace Rogium.Systems.Toolbox
         /// <param name="grid">The grid to affect.</param>
         /// <param name="position">The position to start with.</param>
         /// <param name="value">The value to set.</param>
-        public void ApplySpecific(ToolType tool, ObjectGrid<T> grid, Vector2Int position, T value)
+        /// <param name="graphicValue">The sprite to draw onto the grid.</param>
+        /// <param name="layerIndex">The index of the layer to draw onto.</param>
+        public void ApplySpecific(ToolType tool, ObjectGrid<T> grid, Vector2Int position, T value, Sprite graphicValue, int layerIndex)
         {
-            GetTool(tool).ApplyEffect(grid, position, value, WhenDrawOnUIGrid, UIGrid.Apply);
+            UseTool(GetTool(tool), grid, position, value, graphicValue, layerIndex);
         }
         
         public void SwitchTool(ToolType tool)
@@ -76,7 +84,7 @@ namespace Rogium.Systems.Toolbox
                 ToolType.Selection => toolSelection,
                 ToolType.Brush => toolBrush,
                 ToolType.Eraser => toolEraser,
-                ToolType.Bucket => toolBucket,
+                ToolType.Fill => toolBucket,
                 ToolType.ColorPicker => toolPicker,
                 _ => throw new InvalidOperationException("Unknown or not yet supported Tool Type.")
             };
@@ -84,31 +92,49 @@ namespace Rogium.Systems.Toolbox
             OnSwitchTool?.Invoke(tool);
         }
 
-        public void WhenDrawOnUIGrid(Vector2Int position, bool useEmpty)
-        {
-            TS value = (useEmpty) ? emptyValueEditor : currentBrush;
-            drawOnGrid?.Invoke(position, value);
-        }
-        
+        public void WhenDrawOnUIGrid(int layerIndex, Vector2Int position, Sprite value) => whenGraphicDraw?.Invoke(layerIndex, position, value);
+
+        /// <summary>
+        /// Refreshes the toolbox.
+        /// </summary>
+        public void Refresh() => OnSwitchTool?.Invoke(currentToolType);
+
         /// <summary>
         /// Grabs a tool based on entered tool type.
         /// </summary>
         /// <param name="toolType">The type of tool to get.</param>
         /// <returns></returns>
         /// <exception cref="InvalidOperationException">Is thrown when <see cref="ToolType"/> is unknown or unsupported.</exception>
-        private ITool<T> GetTool(ToolType toolType)
+        private ToolBase<T> GetTool(ToolType toolType)
         {
-            ITool<T> tool = toolType switch
+            ToolBase<T> tool = toolType switch
             {
                 ToolType.Selection => toolSelection,
                 ToolType.Brush => toolBrush,
                 ToolType.Eraser => toolEraser,
-                ToolType.Bucket => toolBucket,
+                ToolType.Fill => toolBucket,
                 ToolType.ColorPicker => toolPicker,
                 _ => throw new InvalidOperationException("Unknown or not yet supported Tool Type.")
             };
             return tool;
         }
 
+        private void UseTool(ToolBase<T> tool, ObjectGrid<T> grid, Vector2Int position, T value, Sprite graphicValue, int layerIndex)
+        {
+            // If the tool is an eraser, set the value to empty.
+            if (tool == toolEraser)
+            {
+                value = emptyValue;
+                graphicValue = EditorDefaults.Instance.EmptySprite;
+            }
+            
+            //Update old values
+            T oldValue = grid.GetAt(position);
+            Sprite oldGraphicValue = UIGrid.GetCell(position);
+            
+            //Select action based on tool
+            ActionBase<T> toolAction = ToolActionCreator<T>.Create(tool, grid, position, value, oldValue, graphicValue, oldGraphicValue, layerIndex, null);
+            ActionHistorySystem.AddAndExecute(toolAction);
+        }
     }
 }

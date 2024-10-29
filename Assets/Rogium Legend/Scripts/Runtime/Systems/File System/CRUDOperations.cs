@@ -12,7 +12,7 @@ namespace Rogium.ExternalStorage
     /// </summary>
     /// <typeparam name="T">The type of asset.</typeparam>
     /// <typeparam name="TS">Serialized form of the asset.</typeparam>
-    public class CRUDOperations<T, TS> where T : IDataAsset where TS : IEncodedObject<T>
+    public class CRUDOperations<T, TS> : ICRUDOperations<T, TS> where T : IDataAsset where TS : IEncodedObject<T>
     {
         private SaveableData data;
         private readonly Func<T,TS> newSerializedObject;
@@ -57,10 +57,11 @@ namespace Rogium.ExternalStorage
         /// Updates the title of a room under the currently edited pack.
         /// </summary>
         /// <param name="asset">The room, whose title to update.</param>
-        public void UpdateTitle(T asset)
+        public void Update(T asset)
         {
             SafetyNet.EnsureIsNotNull(data, "Saveable Data");
             
+            Save(asset);
             data.GetFileTitleAndPath(asset.ID, out string title, out string oldPath);
             if (asset.Title == title) return;
 

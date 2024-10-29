@@ -7,19 +7,19 @@ namespace Rogium.UserInterface.Editors.AssetSelection
     /// <summary>
     /// Builds the <see cref="SelectionInfoColumn"/> for a <see cref="RoomAsset"/>.
     /// </summary>
-    public class SelectionInfoColumnPropertyBuilderRoom : UIPropertyContentBuilderBaseColumn1
+    public class SelectionInfoColumnPropertyBuilderRoom : UIPropertyContentBuilderBaseColumn1<RoomAsset>
     {
         public SelectionInfoColumnPropertyBuilderRoom(Transform contentMain) : base(contentMain) { }
 
         /// <summary>
         /// Build <see cref="SelectionInfoColumn"/> properties for a room.
         /// </summary>
-        /// <param name="room">The room to build for.</param>
-        public void Build(RoomAsset room)
+        /// <param name="asset">The room to build for.</param>
+        public override void Build(RoomAsset asset)
         {
             Clear();
-            b.BuildPlainText("Type", room.Type.ToString(), contentMain);
-            b.BuildPlainText("Difficulty", room.DifficultyLevel.ToString(), contentMain);
+            b.BuildPlainText("Type", asset.Type.ToString(), contentMain);
+            b.BuildPlainText("Difficulty", asset.DifficultyLevel.ToString(), contentMain);
         }
         
     }

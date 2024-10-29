@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using RedRats.Core;
 using RedRats.Safety;
 using Rogium.Editors.Objects;
@@ -19,8 +20,8 @@ namespace Rogium.Editors.Core
         protected override void Awake()
         {
             base.Awake();
-            SafetyNet.EnsureListDoesNotHaveDuplicities(objects.GetAssetListCopy(), "Iobjects list");
-            SafetyNet.EnsureListDoesNotHaveDuplicities(sounds.GetAssetListCopy(), "sounds list");
+            SafetyNet.EnsureListDoesNotHaveDuplicities(objects.ReadOnlyList, "Iobjects list");
+            SafetyNet.EnsureListDoesNotHaveDuplicities(sounds.ReadOnlyList, "sounds list");
         }
 
         #region Interactable Objects
@@ -33,9 +34,9 @@ namespace Rogium.Editors.Core
         public ObjectAsset GetObjectByID(string id) => objects.GetAssetByID(id);
 
         /// <summary>
-        /// Returns a copy of all interactable objects.
+        /// Returns a read-only list of all interactable objects.
         /// </summary>
-        public IList<ObjectAsset> GetObjectsCopy() => objects.GetAssetListCopy();
+        public ReadOnlyCollection<ObjectAsset> Objects { get => objects.ReadOnlyList; } 
 
         #endregion
 
@@ -49,9 +50,9 @@ namespace Rogium.Editors.Core
         public SoundAsset GetSoundByID(string id) => sounds.GetAssetByID(id);
 
         /// <summary>
-        /// Returns a copy of the list of all sound assets.
+        /// Returns a read-only list of all sound assets.
         /// </summary>
-        public IList<SoundAsset> GetSoundsCopy() => sounds.GetAssetListCopy();
+        public IList<SoundAsset> Sounds { get => sounds.ReadOnlyList; }
 
         #endregion
     }

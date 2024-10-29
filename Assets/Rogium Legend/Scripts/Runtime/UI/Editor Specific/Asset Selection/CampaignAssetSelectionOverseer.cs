@@ -32,7 +32,7 @@ namespace Rogium.UserInterface.Editors.AssetSelection
 
         private void ReloadList()
         {
-            campaigns = new List<CampaignAsset>(lib.GetCampaignsCopy);
+            campaigns = new List<CampaignAsset>(lib.Campaigns);
         }
         
         /// <summary>

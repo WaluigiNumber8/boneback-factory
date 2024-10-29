@@ -1,6 +1,7 @@
 ﻿using System;
 using RedRats.UI.Core;
 using RedRats.UI.Sliders;
+using Rogium.Systems.ActionHistory;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -19,6 +20,8 @@ namespace Rogium.UserInterface.Interactables.Properties
         [SerializeField] private UIInfo ui;
 
         private int decimalMultiplier;
+        private float lastValue;
+        private Action<float> whenValueChange;
 
         public override void SetDisabled(bool isDisabled)
         {
@@ -45,9 +48,11 @@ namespace Rogium.UserInterface.Interactables.Properties
             inputField.UpdateContentType(TMP_InputField.ContentType.DecimalNumber);
             slider.maxValue = Mathf.RoundToInt(maxValue * decimalMultiplier);
             slider.minValue = Mathf.RoundToInt(minValue * decimalMultiplier);
-            slider.value = Mathf.RoundToInt(startingValue * decimalMultiplier);
-            slider.onValueChanged.AddListener(_ => whenValueChange(slider.value / decimalMultiplier));
             decimals.sliderWithInput.SetValue(startingValue);
+            lastValue = startingValue * decimalMultiplier;
+            
+            this.whenValueChange = whenValueChange;
+            slider.onValueChanged.AddListener(WhenValueChanged);
         }
         
         /// <summary>
@@ -60,17 +65,27 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="whenValueChange">Method that will run when the slider changes value.</param>
         public void Construct(string titleText, int minValue, int maxValue, int startingValue, Action<float> whenValueChange)
         {
+            decimalMultiplier = 1;
+            decimals.sliderWithInput.ResetDecimalMultiplier();
+            
             ConstructTitle(titleText);
             
-            decimals.sliderWithInput.ResetDecimalMultiplier();
             inputField.UpdateContentType(TMP_InputField.ContentType.IntegerNumber);
             slider.maxValue = maxValue;
             slider.minValue = minValue;
-            slider.value = startingValue;
-            slider.onValueChanged.AddListener(_ => whenValueChange(slider.value));
-            decimals.sliderWithInput.SetValue(startingValue);
+            UpdateValueWithoutNotify(startingValue);
+            
+            this.whenValueChange = whenValueChange;
+            slider.onValueChanged.AddListener(value => WhenValueChanged((int)value));
         }
 
+        public void UpdateValueWithoutNotify(float value)
+        {
+            decimals.sliderWithInput.SetValue(value);
+            whenValueChange?.Invoke(value);
+            lastValue = value * decimalMultiplier;
+        }
+        
         /// <summary>
         /// Updates the slider's UI elements.
         /// </summary>
@@ -84,6 +99,18 @@ namespace Rogium.UserInterface.Interactables.Properties
             UIExtensions.ChangeFont(title, titleFont);
             ui.backgroundImage.sprite = backgroundSprite;
             ui.handleImage.sprite = handleSprite;
+        }
+
+        private void WhenValueChanged(float value)
+        {
+            ActionHistorySystem.AddAndExecute(new UpdateSliderAction(this, value / decimalMultiplier, lastValue / decimalMultiplier, whenValueChange));
+            lastValue = value;
+        }
+        
+        private void WhenValueChanged(int value)
+        {
+            ActionHistorySystem.AddAndExecute(new UpdateSliderAction(this, value, lastValue, whenValueChange));
+            lastValue = value;
         }
         
         public override float PropertyValue { get => slider.value / decimalMultiplier; }

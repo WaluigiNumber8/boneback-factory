@@ -51,14 +51,14 @@ namespace Rogium.Editors.Palettes
         /// <param name="otherGuideImage">A secondary image, that will also get it's color changed.</param>
         public void Construct(Color color, Image otherGuideImage)
         {
-            Construct(color);
+            UpdateValue(color);
             this.otherGuideImage = otherGuideImage;
         }
         /// <summary>
         /// Assigns a new color to the Color Picker.
         /// </summary>
         /// <param name="color">The new color to assign.</param>
-        public void Construct(Color color)
+        public void UpdateValue(Color color)
         {
             this.currentColor = color;
             this.otherGuideImage = null;

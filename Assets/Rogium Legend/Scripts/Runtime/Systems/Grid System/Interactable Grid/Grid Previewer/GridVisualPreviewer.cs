@@ -1,5 +1,4 @@
 ﻿using System;
-using RedRats.UI.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Palettes;
@@ -16,7 +15,7 @@ namespace Rogium.Systems.GridSystem
     public class GridVisualPreviewer : MonoBehaviour
     {
         [SerializeField] private InteractableEditorGrid grid;
-        [SerializeField] private ToolBoxUIManagerBase toolbox;
+        [SerializeField] private ToolBoxUIManager toolbox;
         [SerializeField] private PreviewerInfo gridPreviewer;
         
         [Header("Palettes")]
@@ -28,7 +27,7 @@ namespace Rogium.Systems.GridSystem
         
         private RectTransform gridTransform;
         
-        private ToolType currentTool = ToolType.Eraser;
+        private ToolType currentTool = ToolType.Fill;
         private bool isVisible;
         private bool allowMaterialSwitching;
         private bool followCursor;
@@ -44,7 +43,7 @@ namespace Rogium.Systems.GridSystem
             gridPreviewer.transform.localScale = new Vector3(1f / (grid.Size.x+1), 1f / (grid.Size.y+1), 1);
             
             followCursor = true;
-            lastColor = EditorConstants.DefaultColor;
+            lastColor = EditorDefaults.Instance.DefaultColor;
             
             PrepareForTool(ToolType.Brush);
             Show();
@@ -64,6 +63,7 @@ namespace Rogium.Systems.GridSystem
             foreach (ItemPaletteColor palette in colorPalettes)
             {
                 palette.OnSelect += ChangeColor;
+                palette.OnChangeColorOnSelectedSlot += ChangeColor;
             }
         }
 
@@ -136,7 +136,7 @@ namespace Rogium.Systems.GridSystem
             
             if (!allowMaterialSwitching) return;
             
-            gridPreviewer.image.color = EditorConstants.DefaultColor;
+            gridPreviewer.image.color = EditorDefaults.Instance.DefaultColor;
             gridPreviewer.image.sprite = lastMaterial;
         }
         private void ChangeMaterial(IAsset brush) => ChangeMaterial(brush.Icon);
@@ -182,7 +182,10 @@ namespace Rogium.Systems.GridSystem
 
                 currentTool = type;
             }
+            
         }
+        
+        public Color Color { get => gridPreviewer.image.color; }
         
         [Serializable]
         public struct PreviewerInfo

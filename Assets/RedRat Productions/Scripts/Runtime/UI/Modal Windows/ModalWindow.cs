@@ -17,82 +17,48 @@ namespace RedRats.UI.ModalWindows
         [SerializeField] private UIInfo ui;
         private ThemeType lastTheme = ThemeType.Current;
 
-        /// <summary>
-        /// Opens the Modal Window as a message window.
-        /// </summary>
-        /// <param name="data">Data used to create the window.</param>
-        public void OpenAsMessage(MessageWindowInfo data)
+        public void OpenFor(ModalWindowData data)
         {
-            SafetyNet.EnsureStringNotNullOrEmpty(data.Message, "Modal Window Title");
-
-            WindowSetup(data.Theme);
-
-            ui.layout.area.gameObject.SetActive(true);
-            ui.layout.message.area.gameObject.SetActive(true);
-            ui.layout.message.text.gameObject.SetActive(true);
-
-            ui.layout.message.text.text = data.Message;
-
-            DrawFooter(data.AcceptButtonText, data.DenyButtonText, data.SpecialButtonText, data.OnAcceptAction, 
-                       data.OnDenyAction, data.OnSpecialAction);
+            Init(data.Theme);
+            DrawHeader(data);
+            switch (data.Layout)
+            {
+                case ModalWindowLayoutType.Message:
+                    ui.layout.area.gameObject.SetActive(true);
+                    ui.layout.message.area.gameObject.SetActive(true);
+                    ui.layout.message.text.gameObject.SetActive(true);
+                    ui.layout.message.text.text = data.Message;
+                    break;
+                case ModalWindowLayoutType.Columns1:
+                    ui.layout.properties.area.gameObject.SetActive(true);
+                    ui.layout.properties.firstColumn.gameObject.SetActive(true);
+                    ui.layout.properties.secondColumn.gameObject.SetActive(false);
+                    ui.layout.properties.firstColumnContent.gameObject.SetActive(true);
+                    ui.layout.properties.secondColumnContent.gameObject.SetActive(false);
+                    ui.layout.area.gameObject.SetActive(true);
+                    break;
+                case ModalWindowLayoutType.Columns2:
+                    ui.layout.properties.area.gameObject.SetActive(true);
+                    ui.layout.properties.firstColumn.gameObject.SetActive(true);
+                    ui.layout.properties.secondColumn.gameObject.SetActive(true);
+                    ui.layout.properties.firstColumnContent.gameObject.SetActive(true);
+                    ui.layout.properties.secondColumnContent.gameObject.SetActive(true);
+                    ui.layout.area.gameObject.SetActive(true);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            
+            DrawFooter(data);
             UpdateRect();
             Open();
         }
-
-        /// <summary>
-        /// Draws the window as a properties window with 2 columns.
-        /// </summary>
-        /// <param name="data">Data used to create the window.</param>
-        public void OpenAsPropertiesColumn2(PropertyWindowInfo data)
-        {
-            WindowSetup(data.Theme);
-            DrawHeader(data.HeaderText);
-
-            ui.layout.properties.area.gameObject.SetActive(true);
-            ui.layout.properties.firstColumn.gameObject.SetActive(true);
-            ui.layout.properties.secondColumn.gameObject.SetActive(true);
-            ui.layout.properties.firstColumnContent.gameObject.SetActive(true);
-            ui.layout.properties.secondColumnContent.gameObject.SetActive(true);
-
-            ui.layout.area.gameObject.SetActive(true);
-
-            DrawFooter(data.AcceptButtonText, data.DenyButtonText, data.SpecialButtonText, data.OnAcceptAction, 
-                       data.OnDenyAction, data.OnSpecialAction);
-            UpdateRect();
-            Open();
-        }
-
-        /// <summary>
-        /// Draws the window as a properties window with 1 column.
-        /// </summary>
-        /// <param name="data">Data used to create the window.</param>
-        public void OpenAsPropertiesColumn1(PropertyWindowInfo data)
-        {
-            WindowSetup(data.Theme);
-            DrawHeader(data.HeaderText);
-
-            ui.layout.properties.area.gameObject.SetActive(true);
-            ui.layout.properties.firstColumn.gameObject.SetActive(true);
-            ui.layout.properties.secondColumn.gameObject.SetActive(false);
-            ui.layout.properties.firstColumnContent.gameObject.SetActive(true);
-            ui.layout.properties.secondColumnContent.gameObject.SetActive(false);
-
-            ui.layout.area.gameObject.SetActive(true);
-
-            DrawFooter(data.AcceptButtonText, data.DenyButtonText, data.SpecialButtonText, data.OnAcceptAction, 
-                       data.OnDenyAction, data.OnSpecialAction);
-            UpdateRect();
-            Open();
-        }
-
+        
         /// <summary>
         /// Update the message of the window.
         /// </summary>
         /// <param name="newMessage">The new text to use.</param>
-        public void UpdateMessageText(string newMessage)
-        {
-            ui.layout.message.text.text = newMessage;
-        }
+        public void UpdateMessageText(string newMessage) => ui.layout.message.text.text = newMessage;
 
         /// <summary>
         /// Fills the Modal Window with a proper theme.
@@ -162,48 +128,40 @@ namespace RedRats.UI.ModalWindows
         /// <summary>
         /// Draws the Header part of the Window.
         /// </summary>
-        /// <param name="headerText"></param>
-        private void DrawHeader(string headerText)
+        private void DrawHeader(ModalWindowData data)
         {
-            ui.header.text.text = headerText;
-            ui.header.text.gameObject.SetActive(true);
-            ui.header.area.gameObject.SetActive(true);
+            bool usesHeader = !string.IsNullOrEmpty(data.HeaderText);
+            ui.header.text.text = data.HeaderText;
+            ui.header.text.gameObject.SetActive(usesHeader);
+            ui.header.area.gameObject.SetActive(usesHeader);
         }
 
         /// <summary>
         /// Draws the Footer of the Window.
         /// </summary>
-        /// <param name="acceptButtonText">Text in the Accept Button.</param>
-        /// <param name="denyButtonText">Text in the Deny Button.</param>
-        /// <param name="specialButtonText">Text in the Special Button.</param>
-        /// <param name="onAcceptAction">Method, that happens when the Accept Button is clicked.</param>
-        /// <param name="onDenyAction">Method, that happens when the Dccept Button is clicked.</param>
-        /// <param name="onSpecialAction">Method, that happens when the Special Button is clicked.</param>
-        private void DrawFooter(string acceptButtonText, string denyButtonText, string specialButtonText,
-                                Action onAcceptAction, Action onDenyAction, Action onSpecialAction)
+        private void DrawFooter(ModalWindowData data)
         {
-            ui.footer.acceptButtonText.text = acceptButtonText;
-            ui.footer.OnAcceptButtonClick = onAcceptAction;
+            ui.footer.acceptButtonText.text = data.AcceptButtonText;
+            ui.footer.OnAcceptButtonClick = data.OnAcceptAction;
 
-            bool usesDeny = !string.IsNullOrEmpty(denyButtonText);
+            bool usesDeny = !string.IsNullOrEmpty(data.DenyButtonText);
             ui.footer.denyButton.gameObject.SetActive(usesDeny);
-            ui.footer.denyButtonText.text = denyButtonText;
-            ui.footer.OnDenyButtonClick = onDenyAction;
+            ui.footer.denyButtonText.text = data.DenyButtonText;
+            ui.footer.OnDenyButtonClick = data.OnDenyAction;
 
-            bool usesSpecial = !string.IsNullOrEmpty(specialButtonText);
+            bool usesSpecial = !string.IsNullOrEmpty(data.SpecialButtonText);
             ui.footer.specialButton.gameObject.SetActive(usesSpecial);
-            ui.footer.specialButtonText.text = specialButtonText;
-            ui.footer.OnSpecialButtonClick = onSpecialAction;
+            ui.footer.specialButtonText.text = data.SpecialButtonText;
+            ui.footer.OnSpecialButtonClick = data.OnSpecialAction;
             
             ui.footer.area.gameObject.SetActive(true);
         }
-
         #endregion
 
         /// <summary>
         /// Prepares the window.
         /// </summary>
-        private void WindowSetup(ThemeType theme)
+        private void Init(ThemeType theme)
         {
             lastTheme = theme;
             ui.header.area.gameObject.SetActive(false);

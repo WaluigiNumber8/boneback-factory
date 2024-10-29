@@ -3,7 +3,7 @@
     /// <summary>
     /// A base for all classes working with an internal toggle and index storing.
     /// </summary>
-    public abstract class ToggleableIndexBase : ToggleableBase
+    public abstract class ToggleableIndexBase : ToggleableBase, IIndexHolder
     {
         protected int index;
         

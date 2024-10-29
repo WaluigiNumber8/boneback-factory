@@ -14,7 +14,9 @@ namespace RedRats.UI.MenuSwitching
     {
         [SerializeField] private MenuType defaultMenu = MenuType.MainMenu;
 
-        private List<MenuObject> menus = new List<MenuObject>();
+        private List<MenuObject> menus = new();
+        
+        private MenuType currentMenu;
         private MenuObject lastOpenMenu;
 
         private void Start()
@@ -53,9 +55,10 @@ namespace RedRats.UI.MenuSwitching
             {
                 menuToShow.gameObject.SetActive(true);
                 lastOpenMenu = menuToShow;
+                currentMenu = newMenu;
             }
         }
 
-        public int GetAmountOfMenus => menus.Count();
+        public MenuType CurrentMenu { get => currentMenu; }
     }
 }

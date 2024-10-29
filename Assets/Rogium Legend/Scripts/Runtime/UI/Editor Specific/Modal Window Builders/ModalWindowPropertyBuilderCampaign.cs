@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Rogium.Editors.Campaign;
-using Rogium.Systems.GASExtension;
-using Rogium.UserInterface.Editors.AssetSelection;
+using Rogium.Editors.Core;
 using UnityEngine;
 
 namespace Rogium.UserInterface.Editors.ModalWindowBuilding
@@ -11,7 +10,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     /// <summary>
     /// Constructor for the Campaign Properties Modal Window
     /// </summary>
-    public class ModalWindowPropertyBuilderCampaign : ModalWindowPropertyBuilder
+    public class ModalWindowPropertyBuilderCampaign : ModalWindowPropertyBuilderBase
     {
         private readonly CampaignEditorOverseer campaignEditor;
         private readonly string[] lengthOptions;
@@ -34,19 +33,15 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             conversionData.Add(3, 50);
         }
 
-        public override void OpenForCreate()
-        {
-            OpenWindow(new CampaignAsset(), CreateAsset, "Creating a new campaign");
-        }
+        public override void OpenForCreate(Action whenConfirm = null) => OpenWindow(new CampaignAsset.Builder().Build() , () => CreateAsset(whenConfirm), "Creating a new campaign", AssetModificationType.Create);
 
-        public override void OpenForUpdate()
-        {
-            OpenWindow(new CampaignAsset(campaignEditor.CurrentAsset), UpdateAsset,
-                $"Updating {campaignEditor.CurrentAsset.Title}");
-        }
+        public override void OpenForUpdate(Action whenConfirm = null) => OpenWindow(new CampaignAsset.Builder().AsCopy(campaignEditor.CurrentAsset).Build(), () => UpdateAsset(whenConfirm), $"Updating {campaignEditor.CurrentAsset.Title}", AssetModificationType.Update);
 
-        private void OpenWindow(CampaignAsset asset, Action onConfirm, string headerText)
+        public override void OpenForClone(Action whenConfirm = null) => OpenWindow(new CampaignAsset.Builder().AsClone(campaignEditor.CurrentAsset).Build(), () => CloneAsset(whenConfirm), $"Creating a clone of {campaignEditor.CurrentAsset.Title}", AssetModificationType.Clone);
+        
+        private void OpenWindow(CampaignAsset asset, Action onConfirm, string headerText, AssetModificationType modification)
         {
+            asset.UpdateTitle(GetTitleByModificationType(asset, modification));
             OpenForColumns1(headerText, onConfirm, out Transform col);
             
             b.BuildInputField("Name", asset.Title, col, asset.UpdateTitle);
@@ -57,18 +52,25 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             editedAssetBase = asset;
         }
 
-        protected override void CreateAsset()
+        protected override void CreateAsset(Action whenConfirm)
         {
-            lib.CreateAndAddCampaign((CampaignAsset) editedAssetBase);
-            CampaignAssetSelectionOverseer.Instance.SelectCampaignLast();
-            GASButtonActions.OpenEditorCampaign(lib.CampaignCount - 1);
+            ExternalLibraryOverseer.Instance.CreateAndAddCampaign((CampaignAsset) editedAssetBase);
+            whenConfirm?.Invoke();
         }
 
-        protected override void UpdateAsset()
+        protected override void UpdateAsset(Action whenConfirm)
         {
             campaignEditor.UpdateAsset((CampaignAsset) editedAssetBase);
             campaignEditor.CompleteEditing();
-            CampaignAssetSelectionOverseer.Instance.SelectAgain();
+            whenConfirm?.Invoke();
+        }
+        
+        protected override void CloneAsset(Action whenConfirm)
+        {
+            ExternalLibraryOverseer.Instance.CreateAndAddCampaign((CampaignAsset) editedAssetBase);
+            campaignEditor.AssignAsset((CampaignAsset) editedAssetBase, ExternalLibraryOverseer.Instance.Campaigns.Count - 1);
+            campaignEditor.CompleteEditing();
+            whenConfirm?.Invoke();
         }
 
         /// <summary>

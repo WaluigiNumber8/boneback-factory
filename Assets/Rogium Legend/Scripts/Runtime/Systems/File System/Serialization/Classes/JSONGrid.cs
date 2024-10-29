@@ -25,7 +25,7 @@ namespace Rogium.ExternalStorage.Serialization
             {
                 for (int y = 0; y < height; y++)
                 {
-                    T content = grid.GetValue(x, y);
+                    T content = grid.GetAt(x, y);
                     serializedGrid[index] = content;
                     index++;
                 }
@@ -51,7 +51,7 @@ namespace Rogium.ExternalStorage.Serialization
                 for (int y = 0; y < height; y++)
                 {
                     T value = serializedGrid[index];
-                    grid.SetValue(x, y, value);
+                    grid.SetTo(x, y, value);
                     index++;
                 }
             }

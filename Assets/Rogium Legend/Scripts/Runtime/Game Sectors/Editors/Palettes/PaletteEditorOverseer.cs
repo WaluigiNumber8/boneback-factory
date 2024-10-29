@@ -15,12 +15,10 @@ namespace Rogium.Editors.Palettes
         public event Action OnCompleteEditingBefore, OnCompleteEditingAfter;
         public event Action<PaletteAsset, int> OnCompleteEditing;
 
-        private readonly IconBuilder iconBuilder;
-        
         private PaletteAsset currentAsset;
         private int myIndex;
-        
-        private PaletteEditorOverseer() => iconBuilder = new IconBuilder();
+
+        private PaletteEditorOverseer() { }
 
         /// <summary>
         /// Assign an asset, that is going to be edited.
@@ -32,8 +30,8 @@ namespace Rogium.Editors.Palettes
         {
             SafetyNet.EnsureIsNotNull(asset, "Assigned Palette");
             SafetyNet.EnsureIntIsBiggerOrEqualTo(index, 0, "Assigned asset index");
-            
-            currentAsset = new PaletteAsset(asset);
+
+            currentAsset = new PaletteAsset.Builder().AsCopy(asset).Build();
             myIndex = index;
 
             if (!prepareEditor) return;
@@ -47,7 +45,7 @@ namespace Rogium.Editors.Palettes
         public void UpdateAsset(PaletteAsset updatedAsset)
         { 
             SafetyNet.EnsureIsNotNull(currentAsset, "Currently active asset.");
-            currentAsset = new PaletteAsset(updatedAsset);
+            currentAsset = new PaletteAsset.Builder().AsCopy(updatedAsset).Build();
         }
 
         /// <summary>
@@ -64,8 +62,10 @@ namespace Rogium.Editors.Palettes
         public void CompleteEditing()
         {
             OnCompleteEditingBefore?.Invoke();
-            
-            currentAsset.UpdateIcon(iconBuilder.BuildFromArray(currentAsset.Colors));
+
+            Sprite newIcon = IconBuilder.DrawFromArray(currentAsset.Colors);
+            newIcon.name = currentAsset.Title;
+            currentAsset.UpdateIcon(newIcon);
             OnCompleteEditing?.Invoke(currentAsset, myIndex);
             
             OnCompleteEditingAfter?.Invoke();

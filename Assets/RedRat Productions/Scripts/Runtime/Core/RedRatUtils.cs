@@ -44,7 +44,7 @@ namespace RedRats.Core
         /// <returns>Time of force in seconds.</returns>
         public static float GetTimeOfForce(float f, Rigidbody2D rb)
         {
-            float d = (f * f) / (100 * rb.drag * rb.mass);
+            float d = (f * f) / (100 * rb.linearDamping * rb.mass);
             return Mathf.Sqrt(2 * d / rb.mass); 
         }
 
@@ -125,10 +125,16 @@ namespace RedRats.Core
             return newPos;
         }
         
-        private static (Vector2, Vector2) GetAllowedMinMaxPositions(RectTransform ttransform, RectTransform canvasTransform)
+        /// <summary>
+        /// Returns the allowed min and max positions for a <see cref="RectTransform"/> within a canvas.
+        /// </summary>
+        /// <param name="transform">The transform to find positions for.</param>
+        /// <param name="canvasTransform">A bigger transform the previous one wants to stay in.</param>
+        /// <returns>Min/max positions for both X & Y.</returns>
+        private static (Vector2, Vector2) GetAllowedMinMaxPositions(RectTransform transform, RectTransform canvasTransform)
         {
-            Vector2 minPos = canvasTransform.rect.min - ttransform.rect.min;
-            Vector2 maxPos = canvasTransform.rect.max - ttransform.rect.max;
+            Vector2 minPos = canvasTransform.rect.min - transform.rect.min;
+            Vector2 maxPos = canvasTransform.rect.max - transform.rect.max;
             return (minPos, maxPos);
         }
     }

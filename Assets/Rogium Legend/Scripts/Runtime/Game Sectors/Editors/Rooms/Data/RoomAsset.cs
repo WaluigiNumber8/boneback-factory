@@ -13,92 +13,28 @@ namespace Rogium.Editors.Rooms
     /// </summary>
     public class RoomAsset : AssetWithDirectSpriteBase
     {
+        private Sprite banner;
         private int difficultyLevel;
         private RoomType type;
         private int lightness;
         private Color lightnessColor;
-        private readonly ObjectGrid<AssetData> tileGrid;
-        private readonly ObjectGrid<AssetData> decorGrid;
-        private readonly ObjectGrid<AssetData> objectGrid;
-        private readonly ObjectGrid<AssetData> enemyGrid;
+        private ObjectGrid<AssetData> tileGrid;
+        private ObjectGrid<AssetData> decorGrid;
+        private ObjectGrid<AssetData> objectGrid;
+        private ObjectGrid<AssetData> enemyGrid;
 
-        #region Constructors
-        public RoomAsset()
-        {
-            this.title = EditorConstants.RoomTitle;
-            this.icon = EditorConstants.RoomIcon;
-            this.author = EditorConstants.Author;
-            this.creationDate = DateTime.Now;
-            
-            this.difficultyLevel = EditorConstants.RoomDifficulty;
-            this.type = EditorConstants.RoomType;
-            this.lightness = EditorConstants.RoomLightness;
-            this.lightnessColor = EditorConstants.RoomLightnessColor;
-            this.tileGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForTile));
-            this.decorGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForDecor));
-            this.objectGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForEmpty));
-            this.enemyGrid = new ObjectGrid<AssetData>(EditorConstants.RoomSize.x, EditorConstants.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForEnemy));
-            
-            GenerateID(EditorAssetIDs.RoomIdentifier);
-        }
-        public RoomAsset(RoomAsset asset)
-        {
-            AssetValidation.ValidateTitle(asset.title);
-            
-            this.id = asset.ID;
-            this.title = asset.Title;
-            this.icon = asset.Icon;
-            this.author = asset.Author;
-            this.creationDate = asset.CreationDate;
-            
-            this.difficultyLevel = asset.DifficultyLevel;
-            this.type = asset.Type;
-            this.lightness = asset.Lightness;
-            this.lightnessColor = asset.LightnessColor;
-            
-            this.tileGrid = new ObjectGrid<AssetData>(asset.TileGrid);
-            this.decorGrid = new ObjectGrid<AssetData>(asset.DecorGrid);
-            this.objectGrid = new ObjectGrid<AssetData>(asset.ObjectGrid);
-            this.enemyGrid = new ObjectGrid<AssetData>(asset.EnemyGrid);
-        }
-        
-        public RoomAsset(string id, string title, Sprite icon, string author, int difficultyLevel, RoomType type, int lightness,
-                         Color lightnessColor, ObjectGrid<AssetData> tileGrid, ObjectGrid<AssetData> decorGrid, 
-                         ObjectGrid<AssetData> objectGrid, ObjectGrid<AssetData> enemyGrid, DateTime creationDate)
-        {
-            AssetValidation.ValidateTitle(title);
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(difficultyLevel, 0, "New Room Difficulty Level");
-
-            this.id = id;
-            this.title = title;
-            this.icon = icon;
-            this.author = author;
-            this.creationDate = creationDate;
-            
-            this.difficultyLevel = difficultyLevel;
-            this.type = type;
-            this.lightness = lightness;
-            this.lightnessColor = lightnessColor;
-            
-            this.tileGrid = new ObjectGrid<AssetData>(tileGrid);
-            this.decorGrid = new ObjectGrid<AssetData>(decorGrid);
-            this.objectGrid = new ObjectGrid<AssetData>(objectGrid);
-            this.enemyGrid = new ObjectGrid<AssetData>(enemyGrid);
-        }
-        #endregion
+        private RoomAsset() { }
 
         #region Update Values
+        public void UpdateBanner(Sprite newBanner) => banner = newBanner;
+
         public void UpdateDifficultyLevel(int newLevel)
         {
             newLevel = Mathf.Clamp(newLevel, 0, 10);
             difficultyLevel = newLevel;
         }
 
-        public void UpdateType(int newType)
-        {
-            UpdateType((RoomType) newType);
-        }
-
+        public void UpdateType(int newType) => UpdateType((RoomType) newType);
         public void UpdateType(RoomType newType) => type = newType;
 
         public void UpdateLightness(int newLightness)
@@ -111,6 +47,7 @@ namespace Rogium.Editors.Rooms
 
         #endregion
 
+        public Sprite Banner { get => banner; }
         public int DifficultyLevel { get => difficultyLevel; }
         public RoomType Type {get => type;}
         public int Lightness { get => lightness; }
@@ -120,5 +57,106 @@ namespace Rogium.Editors.Rooms
         public ObjectGrid<AssetData> ObjectGrid { get => objectGrid; }
         public ObjectGrid<AssetData> EnemyGrid { get => enemyGrid; }
 
+        public class Builder : BaseBuilder<RoomAsset, Builder>
+        {
+            public Builder()
+            {
+                Asset.title = EditorDefaults.Instance.RoomTitle;
+                Asset.icon = EditorDefaults.Instance.EmptySprite;
+                Asset.author = EditorDefaults.Instance.Author;
+                Asset.creationDate = DateTime.Now;
+                Asset.GenerateID();
+
+                Asset.difficultyLevel = EditorDefaults.Instance.RoomDifficulty;
+                Asset.type = EditorDefaults.Instance.RoomType;
+                Asset.lightness = EditorDefaults.Instance.RoomLightness;
+                Asset.lightnessColor = EditorDefaults.Instance.RoomLightnessColor;
+                Asset.tileGrid = new ObjectGrid<AssetData>(EditorDefaults.Instance.RoomSize.x, EditorDefaults.Instance.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForTile));
+                Asset.decorGrid = new ObjectGrid<AssetData>(EditorDefaults.Instance.RoomSize.x, EditorDefaults.Instance.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForDecor));
+                Asset.objectGrid = new ObjectGrid<AssetData>(EditorDefaults.Instance.RoomSize.x, EditorDefaults.Instance.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForEmpty));
+                Asset.enemyGrid = new ObjectGrid<AssetData>(EditorDefaults.Instance.RoomSize.x, EditorDefaults.Instance.RoomSize.y, () => new AssetData(ParameterInfoConstants.ForEnemy));
+            }
+
+            public Builder WithBanner(Sprite banner)
+            {
+                Asset.banner = banner;
+                return This;
+            }
+            
+            public Builder WithDifficultyLevel(int difficultyLevel)
+            {
+                Asset.difficultyLevel = difficultyLevel;
+                return This;
+            }
+
+            public Builder WithType(RoomType type)
+            {
+                Asset.type = type;
+                return This;
+            }
+
+            public Builder WithLightness(int lightness)
+            {
+                Asset.lightness = lightness;
+                return This;
+            }
+
+            public Builder WithLightnessColor(Color lightnessColor)
+            {
+                Asset.lightnessColor = lightnessColor;
+                return This;
+            }
+
+            public Builder WithTileGrid(ObjectGrid<AssetData> tileGrid)
+            {
+                Asset.tileGrid = new ObjectGrid<AssetData>(tileGrid);
+                return This;
+            }
+
+            public Builder WithDecorGrid(ObjectGrid<AssetData> decorGrid)
+            {
+                Asset.decorGrid = new ObjectGrid<AssetData>(decorGrid);
+                return This;
+            }
+
+            public Builder WithObjectGrid(ObjectGrid<AssetData> objectGrid)
+            {
+                Asset.objectGrid = new ObjectGrid<AssetData>(objectGrid);
+                return This;
+            }
+
+            public Builder WithEnemyGrid(ObjectGrid<AssetData> enemyGrid)
+            {
+                Asset.enemyGrid = new ObjectGrid<AssetData>(enemyGrid);
+                return This;
+            }
+
+            public override Builder AsClone(RoomAsset asset)
+            {
+                AsCopy(asset);
+                Asset.GenerateID();
+                return This;
+            }
+
+            public override Builder AsCopy(RoomAsset asset)
+            {
+                Asset.id = asset.ID;
+                Asset.title = asset.Title;
+                Asset.icon = asset.Icon;
+                Asset.author = asset.Author;
+                Asset.creationDate = asset.CreationDate;
+                Asset.difficultyLevel = asset.DifficultyLevel;
+                Asset.type = asset.Type;
+                Asset.lightness = asset.Lightness;
+                Asset.lightnessColor = asset.LightnessColor;
+                Asset.tileGrid = new ObjectGrid<AssetData>(asset.TileGrid);
+                Asset.decorGrid = new ObjectGrid<AssetData>(asset.DecorGrid);
+                Asset.objectGrid = new ObjectGrid<AssetData>(asset.ObjectGrid);
+                Asset.enemyGrid = new ObjectGrid<AssetData>(asset.EnemyGrid);
+                return This;
+            }
+
+            protected sealed override RoomAsset Asset { get; } = new();
+        }
     }
 }
