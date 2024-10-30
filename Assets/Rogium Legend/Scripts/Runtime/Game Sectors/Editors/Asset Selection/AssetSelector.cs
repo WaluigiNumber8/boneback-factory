@@ -20,7 +20,6 @@ namespace Rogium.Editors.NewAssetSelection
         
         [SerializeField] private string title;
         [SerializeField] private RectTransform content;
-        [SerializeField] private ThemeType cardTheme = ThemeType.Blue;
         [SerializeField] private AssetCardControllerV2 cardPrefab;
         [SerializeField] private InteractableButton assetCreateButtonPrefab;
 
@@ -84,7 +83,7 @@ namespace Rogium.Editors.NewAssetSelection
                     card.SetToggle(true);
                     WhenCardSelect(i);
                 }
-                ThemeUpdaterRogium.UpdateAssetCard(card, cardTheme);
+                ThemeUpdaterRogium.UpdateAssetCard(card, data.CardTheme);
                 continue;
 
                 void WhenCardSelect(int index)

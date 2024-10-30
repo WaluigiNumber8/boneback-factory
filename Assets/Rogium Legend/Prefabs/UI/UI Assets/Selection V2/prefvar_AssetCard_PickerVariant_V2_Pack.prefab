@@ -862,6 +862,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1213128511734711869, guid: d05e4cc0e3631bf4e9a1594017bd2023, type: 3}
+    - target: {fileID: 3868680373851914290, guid: 1b74adb7b0888394695aecf249610140, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 49a5a93d4ff9e0c438b7906131ba0384, type: 2}
     - target: {fileID: 4557638931779628813, guid: 1b74adb7b0888394695aecf249610140, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -886,11 +890,20 @@ PrefabInstance:
       propertyPath: ignoreThemeUpdate
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7912177524985860092, guid: 1b74adb7b0888394695aecf249610140, type: 3}
+      propertyPath: ui.shimmerAdjuster
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8220214129875319324, guid: 1b74adb7b0888394695aecf249610140, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8335906822925030361, guid: 1b74adb7b0888394695aecf249610140, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8220214129875319324, guid: 1b74adb7b0888394695aecf249610140, type: 3}
     m_RemovedGameObjects:
     - {fileID: 2208114022544519810, guid: 1b74adb7b0888394695aecf249610140, type: 3}
     - {fileID: 4557638931779628813, guid: 1b74adb7b0888394695aecf249610140, type: 3}

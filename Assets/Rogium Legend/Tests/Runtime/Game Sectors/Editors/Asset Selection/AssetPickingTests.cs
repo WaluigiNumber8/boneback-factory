@@ -6,10 +6,8 @@ using Rogium.Editors.NewAssetSelection;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables;
 using Rogium.UserInterface.ModalWindows;
-using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.TestTools;
-using UnityEngine.UI;
 using static Rogium.Tests.Editors.AssetSelection.AssetPickingTestsU;
 
 namespace Rogium.Tests.Editors.AssetSelection

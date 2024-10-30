@@ -1,12 +1,18 @@
 using System.Collections;
 using NUnit.Framework;
+using RedRats.Core;
+using RedRats.Core.Utils;
 using RedRats.Systems.Themes;
 using RedRats.UI.Core;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.NewAssetSelection;
 using Rogium.Tests.Core;
+using Rogium.UserInterface.Interactables.Properties;
+using Rogium.UserInterface.ModalWindows;
 using TMPro;
+using UnityEngine;
+using UnityEngine.TestTools;
 using UnityEngine.UI;
 using static Rogium.Tests.Editors.AssetCreator;
 
@@ -104,6 +110,38 @@ namespace Rogium.Tests.Editors.AssetSelection
             Assert.That(titleText.font, Is.EqualTo(fontInfo.font));
             Assert.That(titleText.fontSize, Is.EqualTo(fontInfo.size));
             Assert.That(titleText.color, Is.EqualTo(fontInfo.color));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_HaveProperShimmerColorOnMaterial_WhenMenuOpened()
+        {
+            selectionMenu.Open(AssetType.Weapon);
+            yield return null;
+            Color shimmerColor = selectionMenu.CurrentSelector.GetCard(0).GetComponentInChildren<MaterialExtractor>().Get().GetColor("_ShimmerColor");
+            Color targetColor = ThemeOverseerMono.GetInstance().GetThemeData(ThemeType.Green).Colors.shimmerEffects;
+            yield return null;
+            Assert.That(shimmerColor.r.IsSameAs(targetColor.r), Is.True);
+            Assert.That(shimmerColor.g.IsSameAs(targetColor.g), Is.True);
+            Assert.That(shimmerColor.b.IsSameAs(targetColor.b), Is.True);
+            Assert.That(shimmerColor.a.IsSameAs(targetColor.a), Is.True);
+        }
+
+        [UnityTest]
+        public IEnumerator Should_HaveProperShimmerColorOnMaterial_WhenAssetPickerWindowOpened()
+        {
+            OverseerLoader.LoadModalWindowBuilder();
+            OverseerLoader.LoadUIBuilder();
+            yield return null;
+            UIPropertyBuilder.GetInstance().BuildAssetField("Test", AssetType.Weapon, null, Object.FindFirstObjectByType<Canvas>().transform, null);
+            yield return null;
+            yield return AssetPickingTestsU.ClickAssetFieldToOpenAssetPickerWindow();
+            Color shimmerColor = Object.FindFirstObjectByType<AssetPickerWindow>().SelectorContent.GetChild(0).GetComponentInChildren<MaterialExtractor>().Get().GetColor("_ShimmerColor");
+            Color targetColor = ThemeOverseerMono.GetInstance().GetThemeData(ThemeType.Green).Colors.shimmerEffects;
+            yield return null;
+            Assert.That(shimmerColor.r.IsSameAs(targetColor.r), Is.True);
+            Assert.That(shimmerColor.g.IsSameAs(targetColor.g), Is.True);
+            Assert.That(shimmerColor.b.IsSameAs(targetColor.b), Is.True);
+            Assert.That(shimmerColor.a.IsSameAs(targetColor.a), Is.True);
         }
     }
 }

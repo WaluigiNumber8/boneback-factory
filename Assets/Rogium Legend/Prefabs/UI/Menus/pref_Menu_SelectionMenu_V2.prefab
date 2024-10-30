@@ -547,7 +547,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Weapons
   content: {fileID: 7634937019703700140}
-  cardTheme: 2
   cardPrefab: {fileID: 3020654531083554274, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
   assetCreateButtonPrefab: {fileID: 9189480147332028196, guid: 475160b8cb80c2f4e9fa692693538ea9, type: 3}
 --- !u!114 &3286168972144075913
@@ -816,7 +815,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Projectiles
   content: {fileID: 8089128776682258778}
-  cardTheme: 4
   cardPrefab: {fileID: 3020654531083554274, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
   assetCreateButtonPrefab: {fileID: 9189480147332028196, guid: 475160b8cb80c2f4e9fa692693538ea9, type: 3}
 --- !u!114 &4789661040330855882
@@ -1123,7 +1121,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Sprites
   content: {fileID: 5838327008951798175}
-  cardTheme: 5
   cardPrefab: {fileID: 3020654531083554274, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
   assetCreateButtonPrefab: {fileID: 9189480147332028196, guid: 475160b8cb80c2f4e9fa692693538ea9, type: 3}
 --- !u!114 &2278470943299211377
@@ -1244,7 +1241,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Palettes
   content: {fileID: 1017087434172153346}
-  cardTheme: 6
   cardPrefab: {fileID: 3020654531083554274, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
   assetCreateButtonPrefab: {fileID: 9189480147332028196, guid: 475160b8cb80c2f4e9fa692693538ea9, type: 3}
 --- !u!114 &7502018065910282837
@@ -1629,7 +1625,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Enemies
   content: {fileID: 7111832508738726196}
-  cardTheme: 1
   cardPrefab: {fileID: 3020654531083554274, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
   assetCreateButtonPrefab: {fileID: 9189480147332028196, guid: 475160b8cb80c2f4e9fa692693538ea9, type: 3}
 --- !u!114 &5877713210866338636
@@ -3221,7 +3216,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Packs
   content: {fileID: 5276312561515409365}
-  cardTheme: 0
   cardPrefab: {fileID: 3952874868823821685, guid: 147692437204c584bb7663712e154aa7, type: 3}
   assetCreateButtonPrefab: {fileID: 9189480147332028196, guid: 475160b8cb80c2f4e9fa692693538ea9, type: 3}
 --- !u!114 &5554413112528077467
@@ -3652,7 +3646,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Rooms
   content: {fileID: 1962260172078582944}
-  cardTheme: 0
   cardPrefab: {fileID: 3020654531083554274, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
   assetCreateButtonPrefab: {fileID: 9189480147332028196, guid: 475160b8cb80c2f4e9fa692693538ea9, type: 3}
 --- !u!114 &5303570466104635384
@@ -3988,7 +3981,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Tiles
   content: {fileID: 1116247974747082025}
-  cardTheme: 3
   cardPrefab: {fileID: 3020654531083554274, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
   assetCreateButtonPrefab: {fileID: 9189480147332028196, guid: 475160b8cb80c2f4e9fa692693538ea9, type: 3}
 --- !u!114 &2287063721032069820
@@ -4218,48 +4210,56 @@ MonoBehaviour:
       whenAssetEdit: 10
       whenAssetConfig: 22
       whenAssetDelete: 31
+      cardTheme: 0
     paletteSelection:
       assetSelector: {fileID: 350566301424990708}
       whenAssetCreate: 14
       whenAssetEdit: 40
       whenAssetConfig: 23
       whenAssetDelete: 32
+      cardTheme: 6
     spriteSelection:
       assetSelector: {fileID: 723110187993866909}
       whenAssetCreate: 15
       whenAssetEdit: 41
       whenAssetConfig: 24
       whenAssetDelete: 33
+      cardTheme: 5
     weaponSelection:
       assetSelector: {fileID: 1947813960308369673}
       whenAssetCreate: 16
       whenAssetEdit: 42
       whenAssetConfig: 25
       whenAssetDelete: 34
+      cardTheme: 2
     projectileSelection:
       assetSelector: {fileID: 543566913760512831}
       whenAssetCreate: 20
       whenAssetEdit: 46
       whenAssetConfig: 29
       whenAssetDelete: 38
+      cardTheme: 4
     enemySelection:
       assetSelector: {fileID: 4364148609024925631}
       whenAssetCreate: 17
       whenAssetEdit: 43
       whenAssetConfig: 26
       whenAssetDelete: 35
+      cardTheme: 1
     roomSelection:
       assetSelector: {fileID: 2866794848141036887}
       whenAssetCreate: 18
       whenAssetEdit: 44
       whenAssetConfig: 27
       whenAssetDelete: 36
+      cardTheme: 0
     tileSelection:
       assetSelector: {fileID: 3637908092930118916}
       whenAssetCreate: 19
       whenAssetEdit: 45
       whenAssetConfig: 28
       whenAssetDelete: 37
+      cardTheme: 3
 --- !u!114 &1817939171672941657
 MonoBehaviour:
   m_ObjectHideFlags: 0

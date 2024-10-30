@@ -1,5 +1,6 @@
 using System;
 using RedRats.UI.Core;
+using Rogium.Editors.NewAssetSelection.UI;
 using Rogium.UserInterface.Editors.AssetSelection;
 using TMPro;
 using UnityEngine;
@@ -57,12 +58,14 @@ namespace Rogium.Editors.NewAssetSelection
         public int Index { get => index; }
         public string Title { get => ui.title.text; }
         public Sprite Icon {get => ui.iconImage.sprite;}
+        public ShimmerColorAdjuster ShimmerColorAdjuster { get => ui.shimmerAdjuster; }
 
         [Serializable]
         public struct UIInfo
         {
             public TextMeshProUGUI title;
             public Image iconImage;
+            public ShimmerColorAdjuster shimmerAdjuster;
         }
     }
 }
