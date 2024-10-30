@@ -25,6 +25,7 @@ namespace Rogium.Editors.NewAssetSelection.UI
         
         public async void Adjust(ThemeType theme = ThemeType.Current)
         {
+            if (!isActiveAndEnabled) return;
             await Awaitable.NextFrameAsync();
             material.Get().SetColor(ShimmerColor, themeOverseer.GetThemeData(theme).Colors.shimmerEffects);
         }

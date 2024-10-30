@@ -330,7 +330,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 61901961728102061, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
       propertyPath: m_Name
-      value: prefvar_AssetCard_V2 Pack
+      value: prefvar_AssetCard_V2_Pack
+      objectReference: {fileID: 0}
+    - target: {fileID: 526339641976603838, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1138939867736549462, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
       propertyPath: m_Sprite
@@ -504,6 +508,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1213128511734711869, guid: d05e4cc0e3631bf4e9a1594017bd2023, type: 3}
+    - target: {fileID: 7271722871233547930, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 49a5a93d4ff9e0c438b7906131ba0384, type: 2}
     - target: {fileID: 7844129722421966933, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
       propertyPath: m_SpriteState.m_PressedSprite
       value: 
