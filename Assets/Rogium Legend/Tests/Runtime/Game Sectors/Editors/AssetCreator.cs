@@ -46,7 +46,7 @@ namespace Rogium.Tests.Editors
         {
             CampaignAsset campaign = new CampaignAsset.Builder()
                 .WithTitle("Test Campaign")
-                .WithIcon(RedRatBuilder.GenerateSprite(Color.black, 16, 16, 16))
+                .WithIcon(new SpriteBuilder().WithSingleColorTexture(Color.black, 16, 16).Build())
                 .WithDataPack(CreatePack())
                 .Build();
             return campaign;
@@ -56,7 +56,7 @@ namespace Rogium.Tests.Editors
         {
             return new PackAsset.Builder()
                 .WithTitle($"Test Pack {Time.time + Random.Range(0, 1000)}")
-                .WithIcon(RedRatBuilder.GenerateSprite(Color.magenta, 16, 16, 16))
+                .WithIcon(new SpriteBuilder().WithSingleColorTexture(Color.magenta, 16, 16).Build())
                 .WithPalettes(new[] {CreatePalette()})
                 .WithSprites(new[] {CreateSprite()})
                 .WithWeapons(new[] {CreateWeapon()})
@@ -71,7 +71,7 @@ namespace Rogium.Tests.Editors
         {
             return new PaletteAsset.Builder()
                 .WithTitle($"Test Palette {Random.Range(0, 1000)}")
-                .WithIcon(RedRatBuilder.GenerateSprite(Color.magenta, 16, 16, 16))
+                .WithIcon(new SpriteBuilder().WithSingleColorTexture(Color.magenta, 16, 16).Build())
                 .WithColors(new[] {Color.magenta, Color.red, Color.green, Color.blue, Color.yellow})
                 .Build();
         }
@@ -80,7 +80,7 @@ namespace Rogium.Tests.Editors
         {
             return new SpriteAsset.Builder()
                 .WithTitle($"Test Sprite {Random.Range(0, 1000)}")
-                .WithIcon(RedRatBuilder.GenerateSprite(color, 16, 16, 16))
+                .WithIcon(new SpriteBuilder().WithSingleColorTexture(color, 16, 16).Build())
                 .Build();
         }
 
@@ -119,7 +119,7 @@ namespace Rogium.Tests.Editors
         {
             RoomAsset room = new RoomAsset.Builder()
                             .WithTitle("Test Room")
-                            .WithIcon(RedRatBuilder.GenerateSprite(Color.blue, 16, 16, 16))
+                            .WithIcon(new SpriteBuilder().WithSingleColorTexture(Color.blue, 16, 16).Build())
                             .WithObjectGrid(new ObjectGrid<AssetData>(EditorDefaults.Instance.RoomSize.x, EditorDefaults.Instance.RoomSize.y, () => new AssetData()))
                             .Build();
             room.ObjectGrid.SetTo(0, 0, new AssetData("001", ParameterInfoConstants.ForEmpty));

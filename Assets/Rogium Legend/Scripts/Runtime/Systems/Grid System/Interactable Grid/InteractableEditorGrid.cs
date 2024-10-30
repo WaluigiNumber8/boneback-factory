@@ -136,10 +136,10 @@ namespace Rogium.Systems.GridSystem
             foreach (LayerInfo info in layers)
             {
                 info.layer.color = Color.white;
-                info.layer.sprite = RedRatBuilder.GenerateSprite(EditorDefaults.Instance.NoColor,
-                                                                 EditorDefaults.Instance.SpriteSize * gridSize.x,
-                                                                 EditorDefaults.Instance.SpriteSize * gridSize.y,
-                                                                 EditorDefaults.Instance.SpriteSize);
+                info.layer.sprite = new SpriteBuilder()
+                                        .WithSingleColorTexture(EditorDefaults.Instance.NoColor, EditorDefaults.Instance.SpriteSize * gridSize.x, EditorDefaults.Instance.SpriteSize * gridSize.y)
+                                        .WithPPU(EditorDefaults.Instance.SpriteSize)
+                                        .Build();
             }
         }
         

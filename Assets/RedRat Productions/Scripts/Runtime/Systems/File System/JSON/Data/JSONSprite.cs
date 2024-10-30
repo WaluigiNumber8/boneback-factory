@@ -22,7 +22,7 @@ namespace RedRats.Systems.FileSystem.JSON.Serialization
 
         public JSONSprite(Sprite sprite)
         {
-            Sprite spriteToUse = (sprite == null) ? RedRatBuilder.GenerateSprite(new Color(0, 0, 0, 1), 16, 16, 16) : sprite;
+            Sprite spriteToUse = (sprite == null) ? new SpriteBuilder().WithEmptyTexture(16, 16).WithPPU(16).Build() : sprite;
             name = spriteToUse.name;
             rectX = spriteToUse.rect.x;
             rectY = spriteToUse.rect.y;

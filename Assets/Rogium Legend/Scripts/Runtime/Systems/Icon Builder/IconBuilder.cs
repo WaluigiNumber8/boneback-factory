@@ -24,7 +24,7 @@ namespace Rogium.Systems.IconBuilders
         public static Sprite DrawFromArray(Color[] colors)
         {
             int texSize = CalculateSize(colors.Length);
-            Texture2D tex = RedRatBuilder.GenerateTexture(texSize, texSize);
+            Texture2D tex = new TextureBuilder().WithSize(texSize).Build();
 
             int counter = 0;
             for (int y = texSize-1; y >= 0; y--)
@@ -42,8 +42,8 @@ namespace Rogium.Systems.IconBuilders
                 }
             }
             tex.Apply();
-            
-            return RedRatBuilder.GenerateSprite(tex, 16);
+
+            return new SpriteBuilder().WithTexture(tex).WithPPU(EditorDefaults.Instance.PixelsPerUnit).Build();
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace Rogium.Systems.IconBuilders
         /// <returns>A Sprite.</returns>
         public static Sprite DrawFromGrid(ObjectGrid<int> grid, Color[] colors)
         {
-            Texture2D tex = RedRatBuilder.GenerateTexture(grid.Width, grid.Height);
+            Texture2D tex = new TextureBuilder().WithSize(grid.Width, grid.Height).Build();
             for (int y = 0; y < grid.Height; y++)
             {
                 for (int x = 0; x < grid.Width; x++)
@@ -76,14 +76,14 @@ namespace Rogium.Systems.IconBuilders
                     tex.SetPixel(x, y, colors[posValue]);
                 }
             }
-            return RedRatBuilder.GenerateSprite(tex, EditorDefaults.Instance.PixelsPerUnit);
+            return new SpriteBuilder().WithTexture(tex).WithPPU(EditorDefaults.Instance.PixelsPerUnit).Build();
         }
 
         public static Sprite DrawLowResIconFrom<T>(ObjectGrid<AssetData> dataGrid, IDictionary<string, T> assets, Sprite backgroundSprite = null) where T : IAsset
         {
             Color previousColor = Color.clear;
             string previousID = string.Empty;
-            Texture2D tex = (backgroundSprite != null) ? backgroundSprite.texture : RedRatBuilder.GenerateTexture(dataGrid.Width, dataGrid.Height);
+            Texture2D tex = (backgroundSprite != null) ? backgroundSprite.texture : new TextureBuilder().WithSize(dataGrid.Width, dataGrid.Height).Build();;
             for (int x = 0; x < tex.width; x++)
             {
                 for (int y = 0; y < tex.height; y++)
@@ -102,7 +102,7 @@ namespace Rogium.Systems.IconBuilders
                 }
             }
             tex.Apply();
-            return RedRatBuilder.GenerateSprite(tex, EditorDefaults.Instance.SpriteSize);
+            return new SpriteBuilder().WithTexture(tex).WithPPU(EditorDefaults.Instance.SpriteSize).Build();
         }
         
         private static int CalculateSize(int arraySize)

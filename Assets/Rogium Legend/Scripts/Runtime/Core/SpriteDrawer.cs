@@ -44,8 +44,8 @@ namespace Rogium.Systems.GridSystem
         /// <param name="colorArray">The array of colors to take data from.</param>
         public Sprite Draw(ObjectGrid<int> indexGrid, Color[] colorArray)
         {
-            Texture2D tex = RedRatBuilder.GenerateTexture(indexGrid.Width * pixelsPerUnit, indexGrid.Height * pixelsPerUnit);
-            Sprite sprite = RedRatBuilder.GenerateSprite(tex, pixelsPerUnit);
+            Texture2D tex = new TextureBuilder().WithSize(indexGrid.Width * pixelsPerUnit, indexGrid.Height * pixelsPerUnit).Build();
+            Sprite sprite = new SpriteBuilder().WithTexture(tex).WithPPU(pixelsPerUnit).Build();
             ClearAllCells(sprite);
             
             for (int y = 0; y < size.y; y++)
@@ -80,8 +80,8 @@ namespace Rogium.Systems.GridSystem
         /// <typeparam name="TS">Any type of <see cref="IComparable"/>.</typeparam>
         public Sprite Draw<T, TS>(ObjectGrid<TS> IDGrid, IList<T> assetList) where T : IAsset where TS : IComparable
         {
-            Texture2D tex = RedRatBuilder.GenerateTexture(IDGrid.Width * pixelsPerUnit, IDGrid.Height * pixelsPerUnit);
-            Sprite sprite = RedRatBuilder.GenerateSprite(tex, pixelsPerUnit);
+            Texture2D tex = new TextureBuilder().WithSize(IDGrid.Width * pixelsPerUnit, IDGrid.Height * pixelsPerUnit).Build();
+            Sprite sprite = new SpriteBuilder().WithTexture(tex).WithPPU(pixelsPerUnit).Build();
             ClearAllCells(sprite);
 
             return Draw(IDGrid, assetList, sprite);
@@ -117,7 +117,7 @@ namespace Rogium.Systems.GridSystem
         /// <param name="value">The color to draw.</param>
         public void DrawTo(Sprite canvas, Vector2Int pos, Color value)
         {
-            Sprite colorValue = RedRatBuilder.GenerateSprite(value, unitSize.x, unitSize.y, pixelsPerUnit);
+            Sprite colorValue = new SpriteBuilder().WithSingleColorTexture(value, unitSize.x, unitSize.y).WithPPU(pixelsPerUnit).Build();
             DrawTo(canvas, pos, colorValue);
         }
         
@@ -161,12 +161,12 @@ namespace Rogium.Systems.GridSystem
             int startX = pos.x * unitSize.x;
             int startY = pos.y * unitSize.y;
             Color[] spritePixels = canvasTex.GetPixels(startX, startY, unitSize.x, unitSize.y);
-            
-            Texture2D tex = RedRatBuilder.GenerateTexture(unitSize.x, unitSize.y);
+
+            Texture2D tex = new TextureBuilder().WithSize(unitSize).Build();
             tex.SetPixels(spritePixels);
             tex.Apply();
 
-            return RedRatBuilder.GenerateSprite(tex, pixelsPerUnit);
+            return new SpriteBuilder().WithTexture(tex).WithPPU(pixelsPerUnit).Build();
         }
         
         /// <summary>
