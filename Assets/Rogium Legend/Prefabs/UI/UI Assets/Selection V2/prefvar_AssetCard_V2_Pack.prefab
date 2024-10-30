@@ -372,6 +372,10 @@ PrefabInstance:
       propertyPath: ignoreThemeUpdate
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3020654531083554274, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
+      propertyPath: ui.shimmerAdjuster
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4954225807346287012, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
       propertyPath: m_SpriteState.m_PressedSprite
       value: 
@@ -552,7 +556,8 @@ PrefabInstance:
       propertyPath: m_SpriteState.m_HighlightedSprite
       value: 
       objectReference: {fileID: -1355027963, guid: d05e4cc0e3631bf4e9a1594017bd2023, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 526339641976603838, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 61901961728102060, guid: 993d18552fb2be44eb2ce46549258e75, type: 3}
