@@ -68,7 +68,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         public IEnumerator Should_ShowRoomBanner_WhenRoomCardClicked()
         {
             yield return OpenPackAndSelectRoom();
-            Assert.That(infoColumn.BannerIcon, Is.EqualTo(currentPack.Rooms[0].Icon));
+            Assert.That(infoColumn.BannerIcon, Is.EqualTo(currentPack.Rooms[0].Banner));
         }
 
         [UnityTest]
