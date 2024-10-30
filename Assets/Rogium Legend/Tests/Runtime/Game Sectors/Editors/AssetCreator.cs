@@ -117,14 +117,13 @@ namespace Rogium.Tests.Editors
 
         public static RoomAsset CreateRoom()
         {
-            OverseerLoader.LoadInternalLibrary();
             RoomAsset room = new RoomAsset.Builder()
                             .WithTitle("Test Room")
                             .WithIcon(RedRatBuilder.GenerateSprite(Color.blue, 16, 16, 16))
                             .WithObjectGrid(new ObjectGrid<AssetData>(EditorDefaults.Instance.RoomSize.x, EditorDefaults.Instance.RoomSize.y, () => new AssetData()))
                             .Build();
-            room.ObjectGrid.SetTo(0, 0, AssetDataBuilder.ForObject(InternalLibraryOverseer.GetInstance().GetObjectByID("001")));
-            room.ObjectGrid.SetTo(0, 1, AssetDataBuilder.ForObject(InternalLibraryOverseer.GetInstance().GetObjectByID("002")));
+            room.ObjectGrid.SetTo(0, 0, new AssetData("001", ParameterInfoConstants.ForEmpty));
+            room.ObjectGrid.SetTo(0, 1, new AssetData("002", ParameterInfoConstants.ForEmpty));
             return room;
         }
 
