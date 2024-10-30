@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Rogium.Core;
 using Rogium.Editors.Core;
+using static Rogium.Editors.NewAssetSelection.AssetSelectionUtils;
 
 namespace Rogium.Editors.NewAssetSelection
 {
@@ -16,7 +17,11 @@ namespace Rogium.Editors.NewAssetSelection
         public void Pick(AssetType type, Action<ISet<IAsset>> whenConfirmed, ISet<IAsset> preselectedAssets = null, bool canSelectEmpty = false)
         {
             this.whenConfirmed = whenConfirmed;
-            data = new SelectionMenuData.Builder().AsCopy(data).WithGetAssetList(GetAssetListByType(type)).Build();
+            data = new SelectionMenuData.Builder()
+                .AsCopy(data)
+                .WithGetAssetList(GetAssetListByType(type))
+                .WithTheme(GetThemeByType(type))
+                .Build();
             
             selector.Load(data, preselectedAssets);
 

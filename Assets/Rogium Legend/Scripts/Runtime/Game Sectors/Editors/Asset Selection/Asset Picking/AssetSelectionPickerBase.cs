@@ -54,24 +54,7 @@ namespace Rogium.Editors.NewAssetSelection
         
         protected virtual void SelectAsset(int index) => selectedAssetIndexes.Add(index);
         protected virtual void DeselectAsset(int index) => selectedAssetIndexes.Remove(index);
-        
-        protected Func<IList<IAsset>> GetAssetListByType(AssetType type)
-        {
-            return (type) switch {
-                AssetType.Pack => ExternalLibraryOverseer.Instance.Packs.Cast<IAsset>().ToList,
-                AssetType.Palette => PackEditorOverseer.Instance.CurrentPack.Palettes.Cast<IAsset>().ToList,
-                AssetType.Sprite => PackEditorOverseer.Instance.CurrentPack.Sprites.Cast<IAsset>().ToList,
-                AssetType.Weapon => PackEditorOverseer.Instance.CurrentPack.Weapons.Cast<IAsset>().ToList,
-                AssetType.Projectile => PackEditorOverseer.Instance.CurrentPack.Projectiles.Cast<IAsset>().ToList,
-                AssetType.Enemy => PackEditorOverseer.Instance.CurrentPack.Enemies.Cast<IAsset>().ToList,
-                AssetType.Room => PackEditorOverseer.Instance.CurrentPack.Rooms.Cast<IAsset>().ToList,
-                AssetType.Tile => PackEditorOverseer.Instance.CurrentPack.Tiles.Cast<IAsset>().ToList,
-                AssetType.Object => InternalLibraryOverseer.GetInstance().Objects.Cast<IAsset>().ToList,
-                AssetType.Sound => InternalLibraryOverseer.GetInstance().Sounds.Cast<IAsset>().ToList,
-                _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
-            };
-        }
-        
+
         public AssetSelector Selector { get => selector; }
         public int SelectedAssetsCount { get => selectedAssetIndexes.Count; }
     }

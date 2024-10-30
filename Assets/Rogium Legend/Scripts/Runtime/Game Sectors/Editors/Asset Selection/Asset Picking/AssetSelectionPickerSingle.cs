@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using RedRats.Systems.Themes;
 using Rogium.Core;
 using Rogium.Editors.Core;
+using static Rogium.Editors.NewAssetSelection.AssetSelectionUtils;
 
 namespace Rogium.Editors.NewAssetSelection
 {
@@ -18,7 +20,10 @@ namespace Rogium.Editors.NewAssetSelection
         {
             this.whenConfirmed = whenConfirmed;
             lastIndex = -2; //-1 is empty card so has to lower
-            data = new SelectionMenuData.Builder().AsCopy(data).WithGetAssetList(GetAssetListByType(type)).Build();
+            data = new SelectionMenuData.Builder().AsCopy(data)
+                .WithGetAssetList(GetAssetListByType(type))
+                .WithTheme(GetThemeByType(type))
+                .Build();
 
             selector.Load(data, new HashSet<IAsset> {preselectedAsset});
 
