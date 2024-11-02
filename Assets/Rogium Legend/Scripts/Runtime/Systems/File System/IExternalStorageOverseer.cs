@@ -16,7 +16,7 @@ namespace Rogium.ExternalStorage
 {
     public interface IExternalStorageOverseer
     {
-        CRUDPackOperations Packs { get; }
+        ICRUDOperations<PackAsset, JSONPackAsset>  Packs { get; }
         ICRUDOperations<CampaignAsset, JSONCampaignAsset> Campaigns { get; }
         ICRUDOperations<PaletteAsset, JSONPaletteAsset> Palettes { get; }
         ICRUDOperations<SpriteAsset, JSONSpriteAsset> Sprites { get; }

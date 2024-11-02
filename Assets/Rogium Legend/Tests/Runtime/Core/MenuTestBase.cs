@@ -38,9 +38,10 @@ namespace Rogium.Tests.Core
             yield return AssetCreator.CreateAndAssignPack();
         }
 
-        private void PrepareExternalStorageSubstitute()
+        private static void PrepareExternalStorageSubstitute()
         {
             IExternalStorageOverseer ex = Substitute.For<IExternalStorageOverseer>();
+            ex.Packs.Returns(Substitute.For<ICRUDOperations<PackAsset, JSONPackAsset>>());
             ex.Packs.Load(Arg.Any<PackAsset>()).Returns(info => info.Arg<PackAsset>());
             ex.Palettes.Returns(Substitute.For<ICRUDOperations<PaletteAsset, JSONPaletteAsset>>());
             ex.Palettes.Returns(Substitute.For<ICRUDOperations<PaletteAsset, JSONPaletteAsset>>());

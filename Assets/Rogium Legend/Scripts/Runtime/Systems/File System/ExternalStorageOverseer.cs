@@ -92,7 +92,7 @@ namespace Rogium.ExternalStorage
                 .Build();
         }
 
-        public CRUDPackOperations Packs { get => packCRUD; }
+        public ICRUDOperations<PackAsset, JSONPackAsset> Packs { get => packCRUD; }
         public ICRUDOperations<CampaignAsset, JSONCampaignAsset> Campaigns { get => campaignCRUD; }
         public ICRUDOperations<PaletteAsset, JSONPaletteAsset> Palettes { get => paletteCRUD; }
         public ICRUDOperations<SpriteAsset, JSONSpriteAsset> Sprites { get => spriteCRUD; }

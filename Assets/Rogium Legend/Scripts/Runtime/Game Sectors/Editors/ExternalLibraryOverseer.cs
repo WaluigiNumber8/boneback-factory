@@ -29,7 +29,7 @@ namespace Rogium.Editors.Core
 
         private ExternalLibraryOverseer()
         {
-            packs = new AssetList<PackAsset>(ex.Packs.Create, ex.Packs.Update, ex.Packs.Delete);
+            packs = new AssetList<PackAsset>(ex.Packs.Save, ex.Packs.Update, ex.Packs.Delete);
             campaigns = new AssetList<CampaignAsset>(ex.Campaigns.Save, ex.Campaigns.Update, ex.Campaigns.Delete);
             
             packEditor.OnSaveChanges += UpdatePack;

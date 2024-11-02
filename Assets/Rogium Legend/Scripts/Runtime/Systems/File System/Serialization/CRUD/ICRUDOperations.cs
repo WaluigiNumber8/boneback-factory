@@ -11,6 +11,12 @@ namespace Rogium.ExternalStorage
         /// </summary>
         /// <param name="asset">The asset to save.</param>
         public void Save(T asset);
+        
+        /// <summary>
+        /// Load an asset.
+        /// </summary>
+        /// <param name="asset">The asset to load.</param>
+        public T Load(T asset);
 
         /// <summary>
         /// Loads all assets.

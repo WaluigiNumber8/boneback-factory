@@ -23,7 +23,7 @@ namespace Rogium.ExternalStorage
         
         public void OverrideStorageOverseer(IExternalStorageOverseer newStorage) => storage = newStorage;
         
-        public CRUDPackOperations Packs { get => storage.Packs; }
+        public ICRUDOperations<PackAsset, JSONPackAsset>  Packs { get => storage.Packs; }
         public ICRUDOperations<CampaignAsset, JSONCampaignAsset> Campaigns { get => storage.Campaigns; }
         public ICRUDOperations<PaletteAsset, JSONPaletteAsset> Palettes { get => storage.Palettes; }
         public ICRUDOperations<SpriteAsset, JSONSpriteAsset> Sprites { get => storage.Sprites; }
