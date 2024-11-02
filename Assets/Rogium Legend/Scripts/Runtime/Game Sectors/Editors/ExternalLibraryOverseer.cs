@@ -29,7 +29,7 @@ namespace Rogium.Editors.Core
 
         private ExternalLibraryOverseer()
         {
-            packs = new AssetList<PackAsset>(ex.CreatePack, ex.UpdatePack, ex.DeletePack);
+            packs = new AssetList<PackAsset>(ex.Packs.Create, ex.Packs.Update, ex.Packs.Delete);
             campaigns = new AssetList<CampaignAsset>(ex.Campaigns.Save, ex.Campaigns.Update, ex.Campaigns.Delete);
             
             packEditor.OnSaveChanges += UpdatePack;
@@ -46,7 +46,7 @@ namespace Rogium.Editors.Core
         /// </summary>
         public void ReloadFromExternalStorage()
         {
-            packs.ReplaceAll(ex.LoadAllPacks());
+            packs.ReplaceAll(ex.Packs.LoadAll());
             campaigns.ReplaceAll(ex.Campaigns.LoadAll());
             campaigns.RemoveAll(campaign => campaign.PackReferences.Count <= 0);
             
@@ -100,7 +100,7 @@ namespace Rogium.Editors.Core
         {
             SafetyNet.EnsureListIsNotNullOrEmpty(packs, "Pack Library");
             SafetyNet.EnsureIntIsInRange(packIndex, 0, packs.Count, "packIndex for activating Pack Editor");
-            packs[packIndex] = ex.LoadPack(packs[packIndex]);
+            packs[packIndex] = ex.Packs.Load(packs[packIndex]);
             packs[packIndex].RefreshAssetCounts();
             packEditor.AssignAsset(packs[packIndex], packIndex);
         }

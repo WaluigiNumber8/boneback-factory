@@ -41,7 +41,8 @@ namespace Rogium.Tests.Core
         private void PrepareExternalStorageSubstitute()
         {
             IExternalStorageOverseer ex = Substitute.For<IExternalStorageOverseer>();
-            ex.LoadPack(Arg.Any<PackAsset>()).Returns(info => info.Arg<PackAsset>());
+            ex.Packs.Load(Arg.Any<PackAsset>()).Returns(info => info.Arg<PackAsset>());
+            ex.Palettes.Returns(Substitute.For<ICRUDOperations<PaletteAsset, JSONPaletteAsset>>());
             ex.Palettes.Returns(Substitute.For<ICRUDOperations<PaletteAsset, JSONPaletteAsset>>());
             ex.Sprites.Returns(Substitute.For<ICRUDOperations<SpriteAsset, JSONSpriteAsset>>());
             ex.Enemies.Returns(Substitute.For<ICRUDOperations<EnemyAsset, JSONEnemyAsset>>());

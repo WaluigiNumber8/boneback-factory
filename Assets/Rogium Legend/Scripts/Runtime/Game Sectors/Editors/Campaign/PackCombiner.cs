@@ -21,7 +21,7 @@ namespace Rogium.Editors.Campaign
             PackAsset ultimatePack = new PackAsset.Builder().Build();
             foreach (PackAsset pack in packs)
             {
-                PackAsset p = ExternalCommunicator.Instance.LoadPack(pack);
+                PackAsset p = ExternalCommunicator.Instance.Packs.Load(pack);
                 ultimatePack.Palettes.AddAllWithoutSave(p.Palettes);
                 ultimatePack.Sprites.AddAllWithoutSave(p.Sprites);
                 ultimatePack.Weapons.AddAllWithoutSave(p.Weapons);
