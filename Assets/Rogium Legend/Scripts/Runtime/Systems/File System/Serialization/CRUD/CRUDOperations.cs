@@ -38,6 +38,8 @@ namespace Rogium.ExternalStorage
             JSONSystem.Save(data.GetFilePath(asset.ID), dataIdentifier, asset, r => newSerializedObject(r), useCompression);
         }
 
+        public T Load(T asset) => throw new NotImplementedException();
+
         /// <summary>
         /// Loads all assets.
         /// </summary>

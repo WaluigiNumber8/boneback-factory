@@ -23,12 +23,7 @@ namespace Rogium.ExternalStorage
         
         public void OverrideStorageOverseer(IExternalStorageOverseer newStorage) => storage = newStorage;
         
-        public void CreatePack(PackAsset pack) => storage.CreatePack(pack);
-        public void UpdatePack(PackAsset pack) => storage.UpdatePack(pack);
-        public IList<PackAsset> LoadAllPacks() => storage.LoadAllPacks();
-        public void DeletePack(PackAsset pack) => storage.DeletePack(pack);
-        public PackAsset LoadPack(PackAsset pack) => storage.LoadPack(pack);
-
+        public ICRUDOperations<PackAsset, JSONPackAsset>  Packs { get => storage.Packs; }
         public ICRUDOperations<CampaignAsset, JSONCampaignAsset> Campaigns { get => storage.Campaigns; }
         public ICRUDOperations<PaletteAsset, JSONPaletteAsset> Palettes { get => storage.Palettes; }
         public ICRUDOperations<SpriteAsset, JSONSpriteAsset> Sprites { get => storage.Sprites; }
