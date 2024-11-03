@@ -39,7 +39,7 @@ namespace RedRats.Editor
         {
             PrefabStage stage = PrefabStageUtility.GetCurrentPrefabStage();
             if (stage == null) return;
-            ScrollRect[] scrollRects = stage.prefabContentsRoot.GetComponentsInChildren<ScrollRect>();
+            ScrollRect[] scrollRects = stage.prefabContentsRoot.GetComponentsInChildren<ScrollRect>(true);
             UpdateScrollRects(scrollRects);
         }
         
