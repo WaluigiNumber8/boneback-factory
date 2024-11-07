@@ -22,6 +22,7 @@ namespace Rogium.Tests.Core
         private static readonly GameObject selectionMenuProperty = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Menu_SelectionMenu.prefab");
         private static readonly GameObject selectionMenuV2Property = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Menu_SelectionMenu_V2.prefab");
         private static readonly GameObject mainMenuProperty = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Menu_Main.prefab");
+        private static readonly GameObject optionsMenuProperty = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/UI/Menus/pref_Menu_Options.prefab");
         
         public static IEnumerator PrepareSelectionMenuV2()
         {
@@ -39,6 +40,17 @@ namespace Rogium.Tests.Core
             OverseerLoader.LoadInternalLibrary();
             OverseerLoader.LoadThemeOverseer();
             Object.Instantiate(mainMenuProperty, Object.FindFirstObjectByType<Canvas>().transform);
+            yield return null;
+        }
+        
+        public static IEnumerator PrepareOptionsMenu()
+        {
+            OverseerLoader.LoadBackgroundOverseer();
+            OverseerLoader.LoadInternalLibrary();
+            OverseerLoader.LoadThemeOverseer();
+            OverseerLoader.LoadModalWindowBuilder();
+            OverseerLoader.LoadUIBuilder();
+            Object.Instantiate(optionsMenuProperty, Object.FindFirstObjectByType<Canvas>().transform);
             yield return null;
         }
 
