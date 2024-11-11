@@ -115,8 +115,8 @@ namespace Rogium.UserInterface.Interactables
         [Serializable]
         public struct UIInfo
         {
-            public EnhancedButton showWindowButton;
-            public EnhancedButton playButton;
+            public ClickDetectingButton showWindowButton;
+            public ClickDetectingButton playButton;
             public TextMeshProUGUI soundTitle;
             public Image soundIcon;
             public Image playSoundButtonIcon;

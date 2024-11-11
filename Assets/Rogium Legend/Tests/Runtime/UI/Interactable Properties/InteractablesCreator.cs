@@ -21,7 +21,8 @@ namespace Rogium.Tests.UI.Interactables
         private static readonly InteractablePropertyColorField colorFieldProperty = AssetDatabase.LoadAssetAtPath<InteractablePropertyColorField>("Assets/Rogium Legend/Prefabs/UI/Interactables/Properties/Horizontal/pref_Property_ColorField_Blue.prefab");
         private static readonly InteractablePropertySoundField soundFieldProperty = AssetDatabase.LoadAssetAtPath<InteractablePropertySoundField>("Assets/Rogium Legend/Prefabs/UI/Interactables/Properties/Horizontal/pref_Property_SoundField_Blue.prefab");
         private static readonly InteractablePropertySoundField assetEmblemListProperty = AssetDatabase.LoadAssetAtPath<InteractablePropertySoundField>("Assets/Rogium Legend/Prefabs/UI/Interactables/Properties/Horizontal/pref_Property_AssetEmblemList_Blue.prefab");
-
+        private static readonly InteractablePropertyInputBinding inputBindingProperty = AssetDatabase.LoadAssetAtPath<InteractablePropertyInputBinding>("Assets/Rogium Legend/Prefabs/UI/Interactables/Properties/Horizontal/pref_Property_InputBinding_Blue.prefab");
+        
         public static InteractablePropertyToggle CreateAndInitToggle(bool value = false)
         {
             InteractablePropertyToggle toggle = Object.Instantiate(toggleProperty, Vector3.zero, Quaternion.identity);
@@ -83,6 +84,13 @@ namespace Rogium.Tests.UI.Interactables
             InteractablePropertySoundField soundField = Object.Instantiate(soundFieldProperty, Vector3.zero, Quaternion.identity);
             soundField.Construct("Test SoundField", value, null);
             return soundField;
+        }
+
+        public static InteractablePropertyInputBinding CreateAndInitInputBinding()
+        {
+            InteractablePropertyInputBinding inputBinding = Object.Instantiate(inputBindingProperty, Vector3.zero, Quaternion.identity);
+            inputBinding.Construct("Test InputBinding");
+            return inputBinding;
         }
     }
 }
