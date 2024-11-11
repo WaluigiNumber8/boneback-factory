@@ -8,6 +8,7 @@ using Rogium.Systems.ThemeSystem;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Rogium.UserInterface.Interactables.Properties
 {
@@ -28,6 +29,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         [SerializeField] private InteractablePropertySoundField soundFieldProperty;
         [SerializeField] private InteractablePropertyColorField colorFieldProperty;
         [SerializeField] private InteractablePropertyAssetEmblemList assetEmblemListProperty;
+        [SerializeField] private InteractablePropertyInputBinding inputBindingProperty;
         
         [Title("Other properties")]
         [SerializeField] private ContentBlockInfo contentBlocks;
@@ -262,6 +264,15 @@ namespace Rogium.UserInterface.Interactables.Properties
             assetEmblemList.name = $"{title} Emblem List";
             assetEmblemList.Construct(title, values);
             ThemeUpdaterRogium.UpdateAssetEmblemList(assetEmblemList);
+        }
+        
+        public void BuildInputBinding(InputAction action, Transform parent, bool isDisabled = false)
+        {
+            InteractablePropertyInputBinding inputBinding = Instantiate(inputBindingProperty, parent);
+            inputBinding.name = $"{action.name} InputBinding";
+            inputBinding.Construct(action);
+            inputBinding.SetDisabled(isDisabled);
+            // ThemeUpdaterRogium.UpdateInputBinding(inputBinding);
         }
         
         #endregion

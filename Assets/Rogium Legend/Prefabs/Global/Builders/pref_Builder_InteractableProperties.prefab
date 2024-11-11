@@ -55,6 +55,7 @@ MonoBehaviour:
   soundFieldProperty: {fileID: -6442256854003865143, guid: 265ffbdbe0362eb4bb190412d60a2d4e, type: 3}
   colorFieldProperty: {fileID: 1842585937195790312, guid: 9aac755f24bfd05449573f874b088ddb, type: 3}
   assetEmblemListProperty: {fileID: 8444355007439703427, guid: 0ef39fa818f5efa4ca59275b25cad33a, type: 3}
+  inputBindingProperty: {fileID: 7107962841123839837, guid: 36b8c10104961984c84d83da20f35c1f, type: 3}
   contentBlocks:
     vertical: {fileID: 6676184992414329906, guid: 989ea3128eb11db43a4b4162653a693c, type: 3}
     horizontal: {fileID: -7927541557845290291, guid: 0221749ea3ade4d46a297f60b2ec512f, type: 3}

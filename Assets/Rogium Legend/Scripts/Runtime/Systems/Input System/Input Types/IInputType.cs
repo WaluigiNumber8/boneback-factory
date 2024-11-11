@@ -1,4 +1,6 @@
-﻿namespace Rogium.Systems.Input
+﻿using UnityEngine.InputSystem;
+
+namespace Rogium.Systems.Input
 {
     public interface IInputType
     {
@@ -12,5 +14,9 @@
         /// </summary>
         public void Disable();
         
+        /// <summary>
+        /// Get the action associated with this input.
+        /// </summary>
+        public InputAction Action { get; }
     }
 }

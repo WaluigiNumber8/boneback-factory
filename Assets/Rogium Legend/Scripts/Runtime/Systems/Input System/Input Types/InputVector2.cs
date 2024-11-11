@@ -28,9 +28,9 @@ namespace Rogium.Systems.Input
             action.performed -= CallPress;
             action.canceled -= CallRelease;
         }
-        
         private void CallPress(InputAction.CallbackContext ctx) => OnPressed?.Invoke(ctx.ReadValue<Vector2>());
         private void CallRelease(InputAction.CallbackContext ctx) => OnReleased?.Invoke(Vector2.zero);
         
+        public InputAction Action { get => action; }
     }
 }

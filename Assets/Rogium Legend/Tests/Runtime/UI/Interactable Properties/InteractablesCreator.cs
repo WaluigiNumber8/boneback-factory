@@ -4,6 +4,7 @@ using Rogium.UserInterface.Interactables.Properties;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Rogium.Tests.UI.Interactables
 {
@@ -85,12 +86,11 @@ namespace Rogium.Tests.UI.Interactables
             soundField.Construct("Test SoundField", value, null);
             return soundField;
         }
-
-        public static InteractablePropertyInputBinding CreateAndInitInputBinding()
+        
+        public static InteractablePropertyInputBinding BuildInputBinding(InputAction action)
         {
-            InteractablePropertyInputBinding inputBinding = Object.Instantiate(inputBindingProperty, Vector3.zero, Quaternion.identity);
-            inputBinding.Construct("Test InputBinding");
-            return inputBinding;
+            UIPropertyBuilder.GetInstance().BuildInputBinding(action, Object.FindFirstObjectByType<Canvas>().transform);
+            return Object.FindFirstObjectByType<InteractablePropertyInputBinding>();
         }
     }
 }
