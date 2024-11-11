@@ -7,7 +7,7 @@ namespace RedRats.UI.Core.Interactables.Buttons
     /// <summary>
     /// A <see cref="Button"/>, enhanced with different click events.
     /// </summary>
-    public class EnhancedButton : Button
+    public class ClickDetectingButton : Button
     {
         public event Action OnClickRight;
         public event Action OnClickMiddle;
