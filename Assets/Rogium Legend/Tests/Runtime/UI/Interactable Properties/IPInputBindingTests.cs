@@ -61,6 +61,52 @@ namespace Rogium.Tests.UI.Interactables
             yield return null;
             Assert.That(GetBindingForActionMap(action, input.KeyboardSchemeGroup), Is.Not.EqualTo(original));
         }
+
+        [UnityTest]
+        public IEnumerator Should_ShowBindingDisplay_WhenStartListening()
+        {
+            inputBinding.StartListening();
+            yield return null;
+            Assert.That(inputBinding.BindingDisplay.activeSelf, Is.True);
+        }
+
+        [UnityTest]
+        public IEnumerator Should_HideBindingDisplay_WhenStopListening()
+        {
+            inputBinding.StartListening();
+            yield return null;
+            Press(keyboard.spaceKey);
+            yield return null;
+            Assert.That(inputBinding.BindingDisplay.activeSelf, Is.False);
+        }
+        
+        [UnityTest]
+        public IEnumerator ShouldHideBoundInputDisplay_WhenStartListening()
+        {
+            inputBinding.StartListening();
+            yield return null;
+            Assert.That(inputBinding.BoundInputDisplay.activeSelf, Is.False);
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowBoundInputDisplay_WhenStopListening()
+        {
+            inputBinding.StartListening();
+            yield return null;
+            Press(keyboard.spaceKey);
+            yield return null;
+            Assert.That(inputBinding.BoundInputDisplay.activeSelf, Is.True);
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_HideBindingText_WhenStopListening()
+        {
+            inputBinding.StartListening();
+            yield return null;
+            Press(keyboard.spaceKey);
+            yield return null;
+            Assert.That(inputBinding.BindingDisplay.gameObject.activeSelf, Is.False);
+        }
         
         private static InputBinding GetBindingForActionMap(InputAction action, string schemeGroup)
         {
