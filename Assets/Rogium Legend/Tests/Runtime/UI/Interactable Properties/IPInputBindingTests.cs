@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Linq;
 using NUnit.Framework;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables.Properties;
-using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.TestTools;
 using static Rogium.Tests.UI.Interactables.InteractablesCreator;
@@ -26,7 +27,7 @@ namespace Rogium.Tests.UI.Interactables
             OverseerLoader.LoadUIBuilder();
             input = InputSystem.GetInstance();
             yield return null;
-            action = input.UI.Click.Action.Clone();
+            action = input.Player.ButtonMain.Action.Clone();
             inputBinding = BuildInputBinding(action);
         }
 
@@ -36,15 +37,30 @@ namespace Rogium.Tests.UI.Interactables
             Assert.That(inputBinding.Title, Is.EqualTo(action.name));
         }
 
+        [Test]
+        public void Should_SetActionInputString_WhenConstructed()
+        {
+            Assert.That(inputBinding.InputString, Is.EqualTo(action.bindings[0].ToDisplayString()));
+        }
+        
         [UnityTest]
         public IEnumerator Should_BindInputToAction_WhenClicked()
         {
+            InputBinding original = GetBindingForActionMap(action, input.KeyboardSchemeGroup);
             inputBinding.StartListening();
             yield return null;
             Press(keyboard.spaceKey);
             yield return null;
-            foreach (InputBinding binding in action.bindings) Debug.Log(binding);
-            Assert.That(action.bindings[0], Is.True);
+            Assert.That(GetBindingForActionMap(action, input.KeyboardSchemeGroup), Is.Not.EqualTo(original));
+        }
+        
+        private static InputBinding GetBindingForActionMap(InputAction action, string schemeGroup)
+        {
+            foreach (InputBinding binding in action.bindings.Where(binding => binding.groups.Contains(schemeGroup)))
+            {
+                return binding;
+            }
+            throw new Exception($"No binding found for {action.name}.");
         }
     }
 }

@@ -11,16 +11,17 @@ namespace Rogium.Systems.Input
     /// </summary>
     public class InputSystem : PersistentMonoSingleton<InputSystem>
     {
+        private EventSystem eventSystem;
+        private RogiumInputActions input;
         private InputProfilePlayer inputPlayer;
         private InputProfileUI inputUI;
-        private EventSystem eventSystem;
         
         private Vector2 pointerPosition;
 
         protected override void Awake()
         {
             base.Awake();
-            RogiumInputActions input = new();
+            input = new RogiumInputActions();
             inputPlayer = new InputProfilePlayer(input);
             inputUI = new InputProfileUI(input);
             SceneManager.sceneLoaded += (_, __) => eventSystem = FindFirstObjectByType<EventSystem>();
@@ -74,5 +75,7 @@ namespace Rogium.Systems.Input
         public Vector2 PointerPosition { get => pointerPosition; }
         public InputProfilePlayer Player { get => inputPlayer; }
         public InputProfileUI UI { get => inputUI; }
+        public string KeyboardSchemeGroup { get => input.KeyboardMouseScheme.bindingGroup; }
+        public string GamepadSchemeGroup { get => input.GamepadScheme.bindingGroup; }
     }
 }
