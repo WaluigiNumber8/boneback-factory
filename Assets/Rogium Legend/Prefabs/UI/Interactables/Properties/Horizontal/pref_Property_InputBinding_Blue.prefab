@@ -558,6 +558,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: {fileID: 2633623453000180668}
   middleSpace: {fileID: 1057479197100194272}
+  ui:
+    inputText: {fileID: 1153561556830742084}
 --- !u!1 &4850421069650574127
 GameObject:
   m_ObjectHideFlags: 0

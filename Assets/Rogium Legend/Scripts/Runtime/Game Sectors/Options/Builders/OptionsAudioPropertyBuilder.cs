@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Rogium.Options.Core
 {
+    /// <summary>
+    /// Builds properties for the Audio section in the Options Menu.
+    /// </summary>
     public class OptionsAudioPropertyBuilder : UIPropertyContentBuilderBaseColumn1<GameDataAsset>
     {
         private readonly AudioOptionsController audio;

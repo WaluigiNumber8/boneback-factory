@@ -8744,6 +8744,7 @@ MonoBehaviour:
   graphicsOptions: {fileID: 7746538370393941874}
   audioColumn: {fileID: 3301855970359816677}
   graphicsColumn: {fileID: 4560257647583701661}
+  inputColumn: {fileID: 5331408327903989925}
 --- !u!114 &7746538370393941874
 MonoBehaviour:
   m_ObjectHideFlags: 0

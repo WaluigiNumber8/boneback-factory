@@ -15,9 +15,11 @@ namespace Rogium.Options.Core
         
         [SerializeField, FoldoutGroup("Columns")] private Transform audioColumn;
         [SerializeField, FoldoutGroup("Columns")] private Transform graphicsColumn;
+        [SerializeField, FoldoutGroup("Columns")] private Transform inputColumn;
         
         private OptionsAudioPropertyBuilder audioPropertyBuilder;
         private OptionsGraphicsPropertyBuilder graphicsPropertyBuilder;
+        private OptionsInputPropertyBuilder inputPropertyBuilder;
         
         private OptionsMenuOverseer editor;
         
@@ -27,6 +29,7 @@ namespace Rogium.Options.Core
             editor = OptionsMenuOverseer.Instance;
             audioPropertyBuilder = new OptionsAudioPropertyBuilder(audioColumn, audioOptions);
             graphicsPropertyBuilder = new OptionsGraphicsPropertyBuilder(graphicsColumn, graphicsOptions);
+            inputPropertyBuilder = new OptionsInputPropertyBuilder(inputColumn);
         }
 
         private void OnEnable()
@@ -40,8 +43,7 @@ namespace Rogium.Options.Core
             editor.OnAssignAsset -= PrepareEditor;
             editor.OnApplySettings -= ApplyAllSettings;
         }
-
-
+        
         /// <summary>
         /// Applies all settings from a specific <see cref="GameDataAsset"/>.
         /// </summary>
@@ -56,6 +58,7 @@ namespace Rogium.Options.Core
             graphicsOptions.UpdateResolution(asset.GetResolution());
             graphicsOptions.UpdateScreen(asset.ScreenMode);
             graphicsOptions.UpdateVSync(asset.VSync);
+            //TODO: Update Input Bindings
         }
         
         /// <summary>
@@ -65,7 +68,7 @@ namespace Rogium.Options.Core
         {
             audioPropertyBuilder.Build(asset);
             graphicsPropertyBuilder.Build(asset);
+            inputPropertyBuilder.Build(asset);
         }
-        
     }
 }
