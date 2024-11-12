@@ -6,6 +6,7 @@ using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine.InputSystem;
 using UnityEngine.TestTools;
+using UnityEngine.UI;
 using static Rogium.Tests.UI.Interactables.InteractablesCreator;
 using InputSystem = Rogium.Systems.Input.InputSystem;
 
@@ -41,6 +42,13 @@ namespace Rogium.Tests.UI.Interactables
         public void Should_SetActionInputString_WhenConstructed()
         {
             Assert.That(inputBinding.InputString, Is.EqualTo(action.bindings[0].ToDisplayString()));
+        }
+
+        [Test]
+        public void Should_SetButtonAsDisabled_WhenConstructed()
+        {
+            inputBinding.SetDisabled(true);
+            Assert.That(inputBinding.GetComponentInChildren<Button>().interactable, Is.False);
         }
         
         [UnityTest]

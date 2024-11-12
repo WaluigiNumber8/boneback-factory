@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace Rogium.UserInterface.Interactables.Properties
 {
@@ -34,9 +35,7 @@ namespace Rogium.UserInterface.Interactables.Properties
                                     .Start();   
         }
         
-        public override void SetDisabled(bool isDisabled)
-        {
-        }
+        public override void SetDisabled(bool isDisabled) => ui.button.interactable = !isDisabled;
 
         private void Refresh() => ui.inputText.text = InputString;
 
@@ -46,6 +45,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         [Serializable]
         public struct UIInfo
         {
+            public Button button;
             public TextMeshProUGUI inputText;
         }
     }
