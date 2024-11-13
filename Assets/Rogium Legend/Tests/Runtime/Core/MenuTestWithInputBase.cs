@@ -28,22 +28,27 @@ namespace Rogium.Tests.Core
     {
         protected Keyboard keyboard;
         protected Mouse mouse;
+        protected Gamepad gamepad;
 
         public override void Setup()
         {
             base.Setup();
             mouse = InputSystem.AddDevice<Mouse>();
             keyboard = InputSystem.AddDevice<Keyboard>();
+            gamepad = InputSystem.AddDevice<Gamepad>();
             Press(mouse.leftButton);
             Release(mouse.leftButton);
             Press(keyboard.spaceKey);
             Release(keyboard.spaceKey);
+            Press(gamepad.buttonSouth);
+            Release(gamepad.buttonSouth);
         }
 
         public override void TearDown()
         {
             InputSystem.RemoveDevice(mouse);
             InputSystem.RemoveDevice(keyboard);
+            InputSystem.RemoveDevice(gamepad);
             base.TearDown();
         }
         

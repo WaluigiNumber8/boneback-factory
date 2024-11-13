@@ -1,74 +1,38 @@
-﻿using System;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 namespace Rogium.UserInterface.Interactables.Properties
 {
+    /// <summary>
+    /// Represents a property that allows rebinding an single-button input for both keyboard and gamepad.
+    /// </summary>
     public class InteractablePropertyInputBinding : InteractablePropertyBase<InputAction>
     {
-        [SerializeField] private UIInfo ui;
+        [SerializeField] private InputBindingReader keyboardBinding;
+        [SerializeField] private InputBindingReader gamepadBinding;
         
         private InputAction action;
-        private InputActionRebindingExtensions.RebindingOperation rebindOperation;
-
-        private void Awake() => ui.button.onClick.AddListener(StartListening);
-
+        
         public void Construct(InputAction action)
         {
-            this.action = action;
             ConstructTitle(action.name);
-            ui.ShowBoundInputDisplay();
-            Refresh();
+            keyboardBinding.Construct(action);
+            gamepadBinding.Construct(action);
+            this.action = action;
         }
         
-        /// <summary>
-        /// Start listening for new input.
-        /// </summary>
-        public void StartListening()
+        public override void SetDisabled(bool isDisabled)
         {
-            action.Disable();
-            ui.ShowBindingDisplay();
-            rebindOperation = action.PerformInteractiveRebinding(0)
-                                    .OnComplete(operation =>
-                                    {
-                                        ui.ShowBoundInputDisplay();
-                                        action.Enable();
-                                        rebindOperation.Dispose();
-                                        Refresh();
-                                    })
-                                    .Start();   
+            keyboardBinding.SetActive(!isDisabled);
+            gamepadBinding.SetActive(!isDisabled);
         }
         
-        public override void SetDisabled(bool isDisabled) => ui.button.interactable = !isDisabled;
-
-        private void Refresh() => ui.inputText.text = InputString;
+        public void StartListeningToKeyboard() => keyboardBinding.StartListening();
+        public void StartListeningToGamepad() => gamepadBinding.StartListening();
 
         public override InputAction PropertyValue { get => action; }
-        public string InputString { get => action.bindings[0].ToDisplayString(); }
-        public GameObject BindingDisplay { get => ui.bindingDisplay; }
-        public GameObject BoundInputDisplay { get => ui.boundInputDisplay; }
 
-        [Serializable]
-        public struct UIInfo
-        {
-            public Button button;
-            public TextMeshProUGUI inputText;
-            public GameObject boundInputDisplay;
-            public GameObject bindingDisplay;
-            
-            public void ShowBoundInputDisplay()
-            {
-                bindingDisplay.SetActive(false);
-                boundInputDisplay.SetActive(true);
-            }
-            
-            public void ShowBindingDisplay()
-            {
-                boundInputDisplay.SetActive(false);
-                bindingDisplay.SetActive(true);
-            }
-        }
+        public string KeyboardInputString { get => keyboardBinding.InputString; }
+        public string GamepadInputString { get => gamepadBinding.InputString; }
     }
 }

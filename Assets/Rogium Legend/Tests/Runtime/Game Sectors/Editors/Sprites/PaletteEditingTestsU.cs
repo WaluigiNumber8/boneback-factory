@@ -5,7 +5,7 @@ using Rogium.Editors.Sprites;
 using Rogium.Systems.GASExtension;
 using Rogium.Systems.Toolbox;
 using Rogium.Tests.Core;
-using Rogium.Tests.UI.Interactables;
+using Rogium.Tests.UI.Interactables.Properties;
 using Rogium.UserInterface.ModalWindows;
 using UnityEngine;
 

@@ -5,14 +5,14 @@ using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine.TestTools;
 using UnityEngine.UI;
-using static Rogium.Tests.UI.Interactables.InteractablesCreator;
+using static Rogium.Tests.UI.Interactables.Properties.InteractablesCreator;
 
-namespace Rogium.Tests.UI.Interactables
+namespace Rogium.Tests.UI.Interactables.Properties
 {
     /// <summary>
-    /// Tests for the Slider interactable property.
+    /// Tests for the Toggle interactable property.
     /// </summary>
-    public class IPSliderTests : MenuTestBase
+    public class IPToggleTests : MenuTestBase
     {
         [UnitySetUp]
         public override IEnumerator Setup()
@@ -24,41 +24,41 @@ namespace Rogium.Tests.UI.Interactables
         [UnityTest]
         public IEnumerator WhenValueChanged_Should_UpdateSelfValue_WhenClicked()
         {
-            InteractablePropertySlider slider = CreateAndInitSlider(0f);
+            InteractablePropertyToggle toggle = CreateAndInitToggle();
             
             yield return null;
-            slider.GetComponentInChildren<Slider>().onValueChanged.Invoke(0.5f * 100); //  * 100 because the default decimalMultiplier is 100
+            toggle.GetComponentInChildren<Toggle>().onValueChanged.Invoke(true);
             yield return null;
 
-            Assert.That(slider.PropertyValue, Is.EqualTo(0.5f));
+            Assert.That(toggle.PropertyValue, Is.True);
         }
         
         [UnityTest]
         public IEnumerator WhenValueChanged_Should_AddToActionHistory_WhenClicked()
         {
-            InteractablePropertySlider slider = CreateAndInitSlider(0f);
+            InteractablePropertyToggle toggle = CreateAndInitToggle();
             
             yield return null;
-            slider.GetComponentInChildren<Slider>().onValueChanged.Invoke(0.5f);
+            toggle.GetComponentInChildren<Toggle>().onValueChanged.Invoke(true);
             yield return null;
             ActionHistorySystem.ForceEndGrouping();
 
             Assert.That(ActionHistorySystem.UndoCount, Is.EqualTo(1));
         }
-        
+
         [UnityTest]
         public IEnumerator UndoLast_Should_RevertValue_WhenClicked()
         {
-            InteractablePropertySlider slider = CreateAndInitSlider(0f);
+            InteractablePropertyToggle toggle = CreateAndInitToggle();
             
             yield return null;
-            slider.GetComponentInChildren<Slider>().onValueChanged.Invoke(0.5f);
+            toggle.GetComponentInChildren<Toggle>().onValueChanged.Invoke(true);
             yield return null;
             ActionHistorySystem.ForceEndGrouping();
             ActionHistorySystem.UndoLast();
             yield return null;
 
-            Assert.That(slider.PropertyValue, Is.EqualTo(0f));
+            Assert.That(toggle.PropertyValue, Is.False);
         }
     }
 }

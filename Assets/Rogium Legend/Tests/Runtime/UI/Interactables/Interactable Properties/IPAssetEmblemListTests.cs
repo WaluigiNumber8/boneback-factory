@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Linq;
 using NUnit.Framework;
 using RedRats.Systems.Themes;
 using Rogium.Editors.Packs;
@@ -10,9 +9,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.TestTools;
 using static Rogium.Tests.Editors.AssetCreator;
-using static Rogium.Tests.UI.Interactables.IPAssetEmblemListTestsU;
+using static Rogium.Tests.UI.Interactables.Properties.IPAssetEmblemListTestsU;
 
-namespace Rogium.Tests.UI.Interactables
+namespace Rogium.Tests.UI.Interactables.Properties
 {
     /// <summary>
     /// Tests for the Asset Emblem List Interactable property.

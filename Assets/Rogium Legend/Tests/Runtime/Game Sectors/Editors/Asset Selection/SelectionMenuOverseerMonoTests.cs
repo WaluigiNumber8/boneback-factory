@@ -6,7 +6,7 @@ using Rogium.Editors.NewAssetSelection;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Palettes;
 using Rogium.Tests.Core;
-using Rogium.Tests.UI.Interactables;
+using Rogium.Tests.UI.Interactables.Properties;
 using Rogium.UserInterface.Interactables;
 using UnityEngine;
 using UnityEngine.TestTools;

@@ -12,11 +12,9 @@ using Rogium.Tests.Core;
 using Rogium.UserInterface.ModalWindows;
 using UnityEngine;
 using UnityEngine.TestTools;
-using UnityEngine.UI;
 using static Rogium.Tests.Core.PointerDataCreator;
 using static Rogium.Tests.Editors.Sprites.PaletteEditingTestsU;
-using static Rogium.Tests.Editors.Sprites.SpriteEditorOverseerMonoTestsU;
-using static Rogium.Tests.UI.Interactables.InteractableUtils;
+using static Rogium.Tests.UI.Interactables.Properties.InteractableUtils;
 
 namespace Rogium.Tests.Editors.Sprites
 {

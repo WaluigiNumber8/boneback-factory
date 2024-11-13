@@ -9,10 +9,10 @@ using Rogium.UserInterface.ModalWindows;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.TestTools;
-using static Rogium.Tests.UI.Interactables.InteractablesCreator;
-using static Rogium.Tests.UI.Interactables.InteractableUtils;
+using static Rogium.Tests.UI.Interactables.Properties.InteractablesCreator;
+using static Rogium.Tests.UI.Interactables.Properties.InteractableUtils;
 
-namespace Rogium.Tests.UI.Interactables
+namespace Rogium.Tests.UI.Interactables.Properties
 {
     /// <summary>
     /// Tests for the <see cref="ColorField"/> interactable property.

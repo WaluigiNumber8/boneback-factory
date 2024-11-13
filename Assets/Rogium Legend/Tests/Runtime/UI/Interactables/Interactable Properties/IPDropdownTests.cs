@@ -3,16 +3,16 @@ using NUnit.Framework;
 using Rogium.Systems.ActionHistory;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables.Properties;
+using TMPro;
 using UnityEngine.TestTools;
-using UnityEngine.UI;
-using static Rogium.Tests.UI.Interactables.InteractablesCreator;
+using static Rogium.Tests.UI.Interactables.Properties.InteractablesCreator;
 
-namespace Rogium.Tests.UI.Interactables
+namespace Rogium.Tests.UI.Interactables.Properties
 {
     /// <summary>
-    /// Tests for the Toggle interactable property.
+    /// Tests for the Dropdown interactable property.
     /// </summary>
-    public class IPToggleTests : MenuTestBase
+    public class IPDropdownTests : MenuTestBase
     {
         [UnitySetUp]
         public override IEnumerator Setup()
@@ -24,41 +24,41 @@ namespace Rogium.Tests.UI.Interactables
         [UnityTest]
         public IEnumerator WhenValueChanged_Should_UpdateSelfValue_WhenClicked()
         {
-            InteractablePropertyToggle toggle = CreateAndInitToggle();
+            InteractablePropertyDropdown dropdown = CreateAndInitDropdown();
             
             yield return null;
-            toggle.GetComponentInChildren<Toggle>().onValueChanged.Invoke(true);
+            dropdown.GetComponentInChildren<TMP_Dropdown>().onValueChanged.Invoke(1);
             yield return null;
 
-            Assert.That(toggle.PropertyValue, Is.True);
+            Assert.That(dropdown.PropertyValue, Is.EqualTo(1));
         }
         
         [UnityTest]
         public IEnumerator WhenValueChanged_Should_AddToActionHistory_WhenClicked()
         {
-            InteractablePropertyToggle toggle = CreateAndInitToggle();
+            InteractablePropertyDropdown dropdown = CreateAndInitDropdown();
             
             yield return null;
-            toggle.GetComponentInChildren<Toggle>().onValueChanged.Invoke(true);
+            dropdown.GetComponentInChildren<TMP_Dropdown>().onValueChanged.Invoke(1);
             yield return null;
             ActionHistorySystem.ForceEndGrouping();
 
             Assert.That(ActionHistorySystem.UndoCount, Is.EqualTo(1));
         }
-
+        
         [UnityTest]
         public IEnumerator UndoLast_Should_RevertValue_WhenClicked()
         {
-            InteractablePropertyToggle toggle = CreateAndInitToggle();
+            InteractablePropertyDropdown dropdown = CreateAndInitDropdown();
             
             yield return null;
-            toggle.GetComponentInChildren<Toggle>().onValueChanged.Invoke(true);
+            dropdown.GetComponentInChildren<TMP_Dropdown>().onValueChanged.Invoke(1);
             yield return null;
             ActionHistorySystem.ForceEndGrouping();
             ActionHistorySystem.UndoLast();
             yield return null;
 
-            Assert.That(toggle.PropertyValue, Is.False);
+            Assert.That(dropdown.PropertyValue, Is.EqualTo(0));
         }
     }
 }

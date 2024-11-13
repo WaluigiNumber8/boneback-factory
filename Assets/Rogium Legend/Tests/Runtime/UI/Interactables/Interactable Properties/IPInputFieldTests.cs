@@ -5,9 +5,9 @@ using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables.Properties;
 using TMPro;
 using UnityEngine.TestTools;
-using static Rogium.Tests.UI.Interactables.InteractablesCreator;
+using static Rogium.Tests.UI.Interactables.Properties.InteractablesCreator;
 
-namespace Rogium.Tests.UI.Interactables
+namespace Rogium.Tests.UI.Interactables.Properties
 {
     /// <summary>
     /// Tests for the InputField interactable property.
