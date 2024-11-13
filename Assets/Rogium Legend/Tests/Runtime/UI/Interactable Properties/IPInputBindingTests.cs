@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Linq;
+﻿using System.Collections;
 using NUnit.Framework;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables.Properties;
@@ -54,11 +52,18 @@ namespace Rogium.Tests.UI.Interactables
         }
         
         [UnityTest]
-        public IEnumerator Should_BindInputToAction_WhenClicked()
+        public IEnumerator Should_BeBoundToNewInput_WhenClicked()
         {
-            InputBinding original = GetBindingForActionMap(action, input.KeyboardSchemeGroup);
-            yield return ReadKey(keyboard.spaceKey);
-            Assert.That(GetBindingForActionMap(action, input.KeyboardSchemeGroup), Is.Not.EqualTo(original));
+            yield return BindKey(keyboard.spaceKey);
+            Assert.That(inputBinding.PropertyValue.bindings[0], Is.Not.EqualTo(keyboard.spaceKey));
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_BeBoundToDifferentInput_WhenClicked()
+        {
+            InputBinding original = inputBinding.PropertyValue.bindings[0];
+            yield return BindKey(keyboard.spaceKey);
+            Assert.That(inputBinding.PropertyValue.bindings[0], Is.Not.EqualTo(original));
         }
 
         [UnityTest]
@@ -72,8 +77,7 @@ namespace Rogium.Tests.UI.Interactables
         [UnityTest]
         public IEnumerator Should_HideBindingDisplay_WhenStopListening()
         {
-            inputBinding.StartListening();
-            yield return ReadKey(keyboard.spaceKey);
+            yield return BindKey(keyboard.spaceKey);
             Assert.That(inputBinding.BindingDisplay.activeSelf, Is.False);
         }
         
@@ -88,30 +92,27 @@ namespace Rogium.Tests.UI.Interactables
         [UnityTest]
         public IEnumerator Should_ShowBoundInputDisplay_WhenStopListening()
         {
-            inputBinding.StartListening();
-            yield return ReadKey(keyboard.spaceKey);
+            yield return BindKey(keyboard.spaceKey);
             Assert.That(inputBinding.BoundInputDisplay.activeSelf, Is.True);
         }
         
         [UnityTest]
         public IEnumerator Should_HideBindingText_WhenStopListening()
         {
-            inputBinding.StartListening();
-            yield return ReadKey(keyboard.spaceKey);
+            yield return BindKey(keyboard.spaceKey);
             Assert.That(inputBinding.BindingDisplay.activeSelf, Is.False);
         }
-        
-        private static InputBinding GetBindingForActionMap(InputAction action, string schemeGroup)
+
+        [UnityTest]
+        public IEnumerator Should_Refresh_BoundInputText_WhenRebound()
         {
-            foreach (InputBinding binding in action.bindings.Where(binding => binding.groups.Contains(schemeGroup)))
-            {
-                return binding;
-            }
-            throw new Exception($"No binding found for {action.name}.");
+            yield return BindKey(keyboard.spaceKey);
+            Assert.That(inputBinding.InputString, Is.EqualTo(keyboard.spaceKey.displayName));
         }
-        
-        private IEnumerator ReadKey(KeyControl key)
+
+        private IEnumerator BindKey(KeyControl key)
         {
+            inputBinding.StartListening();
             yield return new WaitForSecondsRealtime(0.1f);
             Press(key);
             yield return new WaitForSecondsRealtime(0.1f);

@@ -13,6 +13,8 @@ namespace Rogium.UserInterface.Interactables.Properties
         private InputAction action;
         private InputActionRebindingExtensions.RebindingOperation rebindOperation;
 
+        private void Awake() => ui.button.onClick.AddListener(StartListening);
+
         public void Construct(InputAction action)
         {
             this.action = action;
@@ -28,12 +30,13 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             action.Disable();
             ui.ShowBindingDisplay();
-            rebindOperation = action.PerformInteractiveRebinding()
+            rebindOperation = action.PerformInteractiveRebinding(0)
                                     .OnComplete(operation =>
                                     {
                                         ui.ShowBoundInputDisplay();
                                         action.Enable();
                                         rebindOperation.Dispose();
+                                        Refresh();
                                     })
                                     .Start();   
         }
