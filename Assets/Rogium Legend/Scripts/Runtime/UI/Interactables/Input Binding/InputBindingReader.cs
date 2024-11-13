@@ -1,4 +1,5 @@
 ﻿using System;
+using RedRats.Safety;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,13 +15,16 @@ namespace Rogium.UserInterface.Interactables
         [SerializeField] private UIInfo ui;
         
         private InputAction action;
+        private int bindingIndex;
         private InputActionRebindingExtensions.RebindingOperation rebindOperation;
 
         private void Awake() => ui.button.onClick.AddListener(StartListening);
 
-        public void Construct(InputAction action)
+        public void Construct(InputAction action, int bindingIndex)
         {
+            SafetyNet.EnsureIndexWithingCollectionRange(bindingIndex, action.bindings, nameof(action.bindings));
             this.action = action;
+            this.bindingIndex = bindingIndex;
             ui.ShowBoundInputDisplay();
             Refresh();
         }
@@ -32,7 +36,7 @@ namespace Rogium.UserInterface.Interactables
         {
             action.Disable();
             ui.ShowBindingDisplay();
-            rebindOperation = action.PerformInteractiveRebinding(0)
+            rebindOperation = action.PerformInteractiveRebinding(bindingIndex)
                                     .OnComplete(operation =>
                                     {
                                         ui.ShowBoundInputDisplay();
@@ -47,8 +51,8 @@ namespace Rogium.UserInterface.Interactables
 
         private void Refresh() => ui.inputText.text = InputString;
 
-        public InputBinding Binding { get => action.bindings[0]; } //TODO Adjust based on Construct
-        public string InputString { get => action.bindings[0].ToDisplayString(); }
+        public InputBinding Binding { get => action.bindings[bindingIndex]; }
+        public string InputString { get => action.bindings[bindingIndex].ToDisplayString(); }
         public GameObject BindingDisplay { get => ui.bindingDisplay; }
         public GameObject BoundInputDisplay { get => ui.boundInputDisplay; }
 

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using InputSystem = Rogium.Systems.Input.InputSystem;
 
 namespace Rogium.UserInterface.Interactables.Properties
 {
@@ -16,8 +17,8 @@ namespace Rogium.UserInterface.Interactables.Properties
         public void Construct(InputAction action)
         {
             ConstructTitle(action.name);
-            keyboardBinding.Construct(action);
-            gamepadBinding.Construct(action);
+            keyboardBinding.Construct(action, action.GetBindingIndex(InputSystem.GetInstance().KeyboardSchemeGroup));
+            gamepadBinding.Construct(action, action.GetBindingIndex(InputSystem.GetInstance().GamepadSchemeGroup));
             this.action = action;
         }
         

@@ -1,6 +1,7 @@
 ﻿using RedRats.Core;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace RedRats.Safety
 {
@@ -499,12 +500,13 @@ namespace RedRats.Safety
                 ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} cannot have any duplicates. Duplicates found: {duplicateString}");
             }
         }
-
-        public static void EnsureIndexWithingCollectionRange<T>(int index, ICollection<T> collection, string collectionName, string customMessage = "")
+        
+        public static void EnsureIndexWithingCollectionRange<T>(int index, IEnumerable<T> collection, string collectionName, string customMessage = "")
         {
-            if (index < 0 || index > collection.Count - 1) 
+            int count = collection.Count();
+            if (index < 0 || index > count - 1) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"Index ({index.ToString()}) must fit within {collectionName} of size-{collection.Count.ToString()}.");
+                ThrowException(s => new SafetyNetException(s), customMessage, $"Index ({index.ToString()}) must fit within {collectionName} of size-{count.ToString()}.");
             }
         }
         #endregion

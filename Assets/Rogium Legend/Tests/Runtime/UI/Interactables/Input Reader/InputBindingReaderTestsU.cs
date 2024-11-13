@@ -12,7 +12,7 @@ namespace Rogium.Tests.UI.Interactables
         public static InputBindingReader BuildInputReader(InputAction action)
         {
             InputBindingReader reader = Object.Instantiate(inputReaderProperty, Object.FindFirstObjectByType<Canvas>().transform);
-            reader.Construct(action);
+            reader.Construct(action, 0);
             return reader;
         }
     }
