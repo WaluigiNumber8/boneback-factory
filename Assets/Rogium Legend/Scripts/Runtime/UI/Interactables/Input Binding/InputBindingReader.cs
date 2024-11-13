@@ -38,8 +38,8 @@ namespace Rogium.UserInterface.Interactables
             action.Disable();
             ui.ShowBindingDisplay();
             rebindOperation = action.PerformInteractiveRebinding(bindingIndex)
-                                    .OnCancel(operation => StopListening())  
-                                    .OnComplete(operation => StopListening())
+                                    .OnCancel(_ => StopListening())  
+                                    .OnComplete(_ => StopListening())
                                     .WithTimeout(EditorDefaults.Instance.InputTimeout)
                                     .Start();
 
