@@ -84,7 +84,7 @@ namespace Rogium.Tests.UI.Interactables
         public IEnumerator Should_BeBoundToNewInput_WhenClicked()
         {
             yield return BindKey(keyboard.spaceKey);
-            Assert.That(inputReader.Binding.ToDisplayString(), Is.EqualTo(keyboard.spaceKey.displayName));
+            Assert.That(inputReader.Binding, Is.EqualTo(keyboard.spaceKey.displayName));
         }
         
         [UnityTest]
