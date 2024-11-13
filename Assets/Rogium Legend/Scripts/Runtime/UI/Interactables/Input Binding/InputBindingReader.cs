@@ -1,5 +1,6 @@
 ﻿using System;
 using RedRats.Safety;
+using Rogium.Editors.Core.Defaults;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -26,7 +27,7 @@ namespace Rogium.UserInterface.Interactables
             this.action = action;
             this.bindingIndex = bindingIndex;
             ui.ShowBoundInputDisplay();
-            Refresh();
+            RefreshInputString();
         }
         
         /// <summary>
@@ -37,19 +38,24 @@ namespace Rogium.UserInterface.Interactables
             action.Disable();
             ui.ShowBindingDisplay();
             rebindOperation = action.PerformInteractiveRebinding(bindingIndex)
-                                    .OnComplete(operation =>
-                                    {
-                                        ui.ShowBoundInputDisplay();
-                                        action.Enable();
-                                        rebindOperation.Dispose();
-                                        Refresh();
-                                    })
-                                    .Start();   
+                                    .OnCancel(operation => StopListening())  
+                                    .OnComplete(operation => StopListening())
+                                    .WithTimeout(EditorDefaults.Instance.InputTimeout)
+                                    .Start();
+
+            void StopListening()
+            {
+                action.Enable();
+                rebindOperation.Dispose();
+                rebindOperation = null;
+                RefreshInputString();
+                ui.ShowBoundInputDisplay();
+            }
         }
         
         public void SetActive(bool value) => ui.button.interactable = value;
 
-        private void Refresh() => ui.inputText.text = InputString;
+        private void RefreshInputString() => ui.inputText.text = InputString;
 
         public InputBinding Binding { get => action.bindings[bindingIndex]; }
         public string InputString { get => action.bindings[bindingIndex].ToDisplayString(); }

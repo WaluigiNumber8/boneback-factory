@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using NUnit.Framework;
+using Rogium.Editors.Core.Defaults;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables;
 using UnityEngine;
@@ -100,6 +101,16 @@ namespace Rogium.Tests.UI.Interactables
         {
             yield return BindKey(keyboard.spaceKey);
             Assert.That(inputReader.InputString, Is.EqualTo(keyboard.spaceKey.displayName));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_Timeout_WhenNotBoundInTime()
+        {
+            InputBinding original = inputReader.Binding;
+            inputReader.StartListening();
+            yield return new WaitForSecondsRealtime(EditorDefaults.Instance.InputTimeout);
+            Assert.That(inputReader.Binding, Is.EqualTo(original));
+            Assert.That(inputReader.BindingDisplay.activeSelf, Is.False);
         }
         
         private IEnumerator BindKey(KeyControl key)
