@@ -18,7 +18,7 @@
             navigate = new InputVector2(map.Navigate);
             pointerPosition = new InputVector2(map.Point);
             click = new InputButton(map.Click);
-            clickAlternative = new InputButton(map.RightClick);
+            clickAlternative = new InputButton(map.ContextClick);
             menu = new InputButton(map.Menu);
         }
         

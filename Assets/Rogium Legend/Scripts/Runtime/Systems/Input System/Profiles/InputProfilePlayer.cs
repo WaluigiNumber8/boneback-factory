@@ -26,9 +26,9 @@ namespace Rogium.Systems.Input
             buttonMain = new InputButton(map.UseMain);
             buttonSub = new InputButton(map.UseSub);
             buttonDash = new InputButton(map.UseDash);
-            buttonMainAlt = new InputButton(map.AlternativeMain);
-            buttonSubAlt = new InputButton(map.AlternativeSub);
-            buttonDashAlt = new InputButton(map.AlternativeDash);
+            buttonMainAlt = new InputButton(map.UseMainAlt);
+            buttonSubAlt = new InputButton(map.UseSubAlt);
+            buttonDashAlt = new InputButton(map.UseDashAlt);
             buttonStart = new InputButton(map.Start);
         }
         

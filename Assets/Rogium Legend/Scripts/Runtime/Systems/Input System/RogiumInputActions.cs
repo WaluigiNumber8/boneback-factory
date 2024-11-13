@@ -69,7 +69,7 @@ namespace Rogium.Systems.Input
                     ""name"": ""Click"",
                     ""type"": ""Button"",
                     ""id"": ""9f328427-371b-4e5f-8c49-b85f36c302ac"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -93,10 +93,10 @@ namespace Rogium.Systems.Input
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""RightClick"",
+                    ""name"": ""ContextClick"",
                     ""type"": ""Button"",
                     ""id"": ""dfbd1ea4-f298-4fb8-a1d4-356120368f27"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -484,6 +484,17 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": """",
+                    ""id"": ""84b4f6cb-7e4d-4d74-90ac-47f2b5510661"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""02e28ae3-7a9d-4183-b73f-260d693f06aa"",
                     ""path"": ""<Mouse>/scroll"",
                     ""interactions"": """",
@@ -511,7 +522,18 @@ namespace Rogium.Systems.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse;Keyboard + Mouse"",
-                    ""action"": ""RightClick"",
+                    ""action"": ""ContextClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e2050888-2670-49c3-b981-6ccb57764d5c"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ContextClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -606,10 +628,28 @@ namespace Rogium.Systems.Input
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""UseMainAlt"",
+                    ""type"": ""Button"",
+                    ""id"": ""06e4be37-bc84-471f-9c4d-389afc65a89b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""UseSub"",
                     ""type"": ""Button"",
                     ""id"": ""d2a8f845-c16c-4fb5-8df0-ca121efdcc3b"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseSubAlt"",
+                    ""type"": ""Button"",
+                    ""id"": ""11a38efb-6422-4b08-814d-18ec632194ed"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -624,28 +664,10 @@ namespace Rogium.Systems.Input
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""AlternativeMain"",
-                    ""type"": ""Button"",
-                    ""id"": ""06e4be37-bc84-471f-9c4d-389afc65a89b"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""AlternativeSub"",
-                    ""type"": ""Button"",
-                    ""id"": ""11a38efb-6422-4b08-814d-18ec632194ed"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""AlternativeDash"",
+                    ""name"": ""UseDashAlt"",
                     ""type"": ""Button"",
                     ""id"": ""1ea652b5-1bb8-43a8-b759-0621642ccba7"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -654,7 +676,7 @@ namespace Rogium.Systems.Input
                     ""name"": ""Start"",
                     ""type"": ""Button"",
                     ""id"": ""78db4df8-8bf2-4faa-8031-90a7f42b80ef"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -752,7 +774,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": """",
                     ""id"": ""4f391983-742c-4f47-a138-e1f2f1184692"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -774,10 +796,10 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": """",
                     ""id"": ""4ee35727-c730-42cf-8161-d9360de25505"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Gamepad"",
                     ""action"": ""UseSub"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -796,7 +818,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": """",
                     ""id"": ""32814283-3bfe-4df4-b93d-b836cbe9a121"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -811,18 +833,18 @@ namespace Rogium.Systems.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard + Mouse"",
-                    ""action"": ""AlternativeMain"",
+                    ""action"": ""UseMainAlt"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""4b48b233-0633-48ef-8bc9-0efb103b5aa9"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""AlternativeMain"",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""UseMainAlt"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -833,18 +855,18 @@ namespace Rogium.Systems.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard + Mouse"",
-                    ""action"": ""AlternativeSub"",
+                    ""action"": ""UseSubAlt"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""c5bbca05-68bf-45da-bee3-63084e42b2d7"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""AlternativeSub"",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""UseSubAlt"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -855,18 +877,18 @@ namespace Rogium.Systems.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard + Mouse"",
-                    ""action"": ""AlternativeDash"",
+                    ""action"": ""UseDashAlt"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""ff8b4bea-7e8d-4c2d-a72e-bb372abf1ed3"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""AlternativeDash"",
+                    ""action"": ""UseDashAlt"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -877,6 +899,17 @@ namespace Rogium.Systems.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard + Mouse"",
+                    ""action"": ""Start"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""74c5ef75-f225-4779-9a21-3183bad86219"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
                     ""action"": ""Start"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -934,7 +967,7 @@ namespace Rogium.Systems.Input
             m_UI_Click = m_UI.FindAction("Click", throwIfNotFound: true);
             m_UI_ScrollWheel = m_UI.FindAction("ScrollWheel", throwIfNotFound: true);
             m_UI_MiddleClick = m_UI.FindAction("MiddleClick", throwIfNotFound: true);
-            m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
+            m_UI_ContextClick = m_UI.FindAction("ContextClick", throwIfNotFound: true);
             m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
             m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
             m_UI_Menu = m_UI.FindAction("Menu", throwIfNotFound: true);
@@ -942,11 +975,11 @@ namespace Rogium.Systems.Input
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
             m_Player_UseMain = m_Player.FindAction("UseMain", throwIfNotFound: true);
+            m_Player_UseMainAlt = m_Player.FindAction("UseMainAlt", throwIfNotFound: true);
             m_Player_UseSub = m_Player.FindAction("UseSub", throwIfNotFound: true);
+            m_Player_UseSubAlt = m_Player.FindAction("UseSubAlt", throwIfNotFound: true);
             m_Player_UseDash = m_Player.FindAction("UseDash", throwIfNotFound: true);
-            m_Player_AlternativeMain = m_Player.FindAction("AlternativeMain", throwIfNotFound: true);
-            m_Player_AlternativeSub = m_Player.FindAction("AlternativeSub", throwIfNotFound: true);
-            m_Player_AlternativeDash = m_Player.FindAction("AlternativeDash", throwIfNotFound: true);
+            m_Player_UseDashAlt = m_Player.FindAction("UseDashAlt", throwIfNotFound: true);
             m_Player_Start = m_Player.FindAction("Start", throwIfNotFound: true);
         }
 
@@ -1022,7 +1055,7 @@ namespace Rogium.Systems.Input
         private readonly InputAction m_UI_Click;
         private readonly InputAction m_UI_ScrollWheel;
         private readonly InputAction m_UI_MiddleClick;
-        private readonly InputAction m_UI_RightClick;
+        private readonly InputAction m_UI_ContextClick;
         private readonly InputAction m_UI_TrackedDevicePosition;
         private readonly InputAction m_UI_TrackedDeviceOrientation;
         private readonly InputAction m_UI_Menu;
@@ -1037,7 +1070,7 @@ namespace Rogium.Systems.Input
             public InputAction @Click => m_Wrapper.m_UI_Click;
             public InputAction @ScrollWheel => m_Wrapper.m_UI_ScrollWheel;
             public InputAction @MiddleClick => m_Wrapper.m_UI_MiddleClick;
-            public InputAction @RightClick => m_Wrapper.m_UI_RightClick;
+            public InputAction @ContextClick => m_Wrapper.m_UI_ContextClick;
             public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
             public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
             public InputAction @Menu => m_Wrapper.m_UI_Menu;
@@ -1071,9 +1104,9 @@ namespace Rogium.Systems.Input
                 @MiddleClick.started += instance.OnMiddleClick;
                 @MiddleClick.performed += instance.OnMiddleClick;
                 @MiddleClick.canceled += instance.OnMiddleClick;
-                @RightClick.started += instance.OnRightClick;
-                @RightClick.performed += instance.OnRightClick;
-                @RightClick.canceled += instance.OnRightClick;
+                @ContextClick.started += instance.OnContextClick;
+                @ContextClick.performed += instance.OnContextClick;
+                @ContextClick.canceled += instance.OnContextClick;
                 @TrackedDevicePosition.started += instance.OnTrackedDevicePosition;
                 @TrackedDevicePosition.performed += instance.OnTrackedDevicePosition;
                 @TrackedDevicePosition.canceled += instance.OnTrackedDevicePosition;
@@ -1108,9 +1141,9 @@ namespace Rogium.Systems.Input
                 @MiddleClick.started -= instance.OnMiddleClick;
                 @MiddleClick.performed -= instance.OnMiddleClick;
                 @MiddleClick.canceled -= instance.OnMiddleClick;
-                @RightClick.started -= instance.OnRightClick;
-                @RightClick.performed -= instance.OnRightClick;
-                @RightClick.canceled -= instance.OnRightClick;
+                @ContextClick.started -= instance.OnContextClick;
+                @ContextClick.performed -= instance.OnContextClick;
+                @ContextClick.canceled -= instance.OnContextClick;
                 @TrackedDevicePosition.started -= instance.OnTrackedDevicePosition;
                 @TrackedDevicePosition.performed -= instance.OnTrackedDevicePosition;
                 @TrackedDevicePosition.canceled -= instance.OnTrackedDevicePosition;
@@ -1143,11 +1176,11 @@ namespace Rogium.Systems.Input
         private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
         private readonly InputAction m_Player_Movement;
         private readonly InputAction m_Player_UseMain;
+        private readonly InputAction m_Player_UseMainAlt;
         private readonly InputAction m_Player_UseSub;
+        private readonly InputAction m_Player_UseSubAlt;
         private readonly InputAction m_Player_UseDash;
-        private readonly InputAction m_Player_AlternativeMain;
-        private readonly InputAction m_Player_AlternativeSub;
-        private readonly InputAction m_Player_AlternativeDash;
+        private readonly InputAction m_Player_UseDashAlt;
         private readonly InputAction m_Player_Start;
         public struct PlayerActions
         {
@@ -1155,11 +1188,11 @@ namespace Rogium.Systems.Input
             public PlayerActions(@RogiumInputActions wrapper) { m_Wrapper = wrapper; }
             public InputAction @Movement => m_Wrapper.m_Player_Movement;
             public InputAction @UseMain => m_Wrapper.m_Player_UseMain;
+            public InputAction @UseMainAlt => m_Wrapper.m_Player_UseMainAlt;
             public InputAction @UseSub => m_Wrapper.m_Player_UseSub;
+            public InputAction @UseSubAlt => m_Wrapper.m_Player_UseSubAlt;
             public InputAction @UseDash => m_Wrapper.m_Player_UseDash;
-            public InputAction @AlternativeMain => m_Wrapper.m_Player_AlternativeMain;
-            public InputAction @AlternativeSub => m_Wrapper.m_Player_AlternativeSub;
-            public InputAction @AlternativeDash => m_Wrapper.m_Player_AlternativeDash;
+            public InputAction @UseDashAlt => m_Wrapper.m_Player_UseDashAlt;
             public InputAction @Start => m_Wrapper.m_Player_Start;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
@@ -1176,21 +1209,21 @@ namespace Rogium.Systems.Input
                 @UseMain.started += instance.OnUseMain;
                 @UseMain.performed += instance.OnUseMain;
                 @UseMain.canceled += instance.OnUseMain;
+                @UseMainAlt.started += instance.OnUseMainAlt;
+                @UseMainAlt.performed += instance.OnUseMainAlt;
+                @UseMainAlt.canceled += instance.OnUseMainAlt;
                 @UseSub.started += instance.OnUseSub;
                 @UseSub.performed += instance.OnUseSub;
                 @UseSub.canceled += instance.OnUseSub;
+                @UseSubAlt.started += instance.OnUseSubAlt;
+                @UseSubAlt.performed += instance.OnUseSubAlt;
+                @UseSubAlt.canceled += instance.OnUseSubAlt;
                 @UseDash.started += instance.OnUseDash;
                 @UseDash.performed += instance.OnUseDash;
                 @UseDash.canceled += instance.OnUseDash;
-                @AlternativeMain.started += instance.OnAlternativeMain;
-                @AlternativeMain.performed += instance.OnAlternativeMain;
-                @AlternativeMain.canceled += instance.OnAlternativeMain;
-                @AlternativeSub.started += instance.OnAlternativeSub;
-                @AlternativeSub.performed += instance.OnAlternativeSub;
-                @AlternativeSub.canceled += instance.OnAlternativeSub;
-                @AlternativeDash.started += instance.OnAlternativeDash;
-                @AlternativeDash.performed += instance.OnAlternativeDash;
-                @AlternativeDash.canceled += instance.OnAlternativeDash;
+                @UseDashAlt.started += instance.OnUseDashAlt;
+                @UseDashAlt.performed += instance.OnUseDashAlt;
+                @UseDashAlt.canceled += instance.OnUseDashAlt;
                 @Start.started += instance.OnStart;
                 @Start.performed += instance.OnStart;
                 @Start.canceled += instance.OnStart;
@@ -1204,21 +1237,21 @@ namespace Rogium.Systems.Input
                 @UseMain.started -= instance.OnUseMain;
                 @UseMain.performed -= instance.OnUseMain;
                 @UseMain.canceled -= instance.OnUseMain;
+                @UseMainAlt.started -= instance.OnUseMainAlt;
+                @UseMainAlt.performed -= instance.OnUseMainAlt;
+                @UseMainAlt.canceled -= instance.OnUseMainAlt;
                 @UseSub.started -= instance.OnUseSub;
                 @UseSub.performed -= instance.OnUseSub;
                 @UseSub.canceled -= instance.OnUseSub;
+                @UseSubAlt.started -= instance.OnUseSubAlt;
+                @UseSubAlt.performed -= instance.OnUseSubAlt;
+                @UseSubAlt.canceled -= instance.OnUseSubAlt;
                 @UseDash.started -= instance.OnUseDash;
                 @UseDash.performed -= instance.OnUseDash;
                 @UseDash.canceled -= instance.OnUseDash;
-                @AlternativeMain.started -= instance.OnAlternativeMain;
-                @AlternativeMain.performed -= instance.OnAlternativeMain;
-                @AlternativeMain.canceled -= instance.OnAlternativeMain;
-                @AlternativeSub.started -= instance.OnAlternativeSub;
-                @AlternativeSub.performed -= instance.OnAlternativeSub;
-                @AlternativeSub.canceled -= instance.OnAlternativeSub;
-                @AlternativeDash.started -= instance.OnAlternativeDash;
-                @AlternativeDash.performed -= instance.OnAlternativeDash;
-                @AlternativeDash.canceled -= instance.OnAlternativeDash;
+                @UseDashAlt.started -= instance.OnUseDashAlt;
+                @UseDashAlt.performed -= instance.OnUseDashAlt;
+                @UseDashAlt.canceled -= instance.OnUseDashAlt;
                 @Start.started -= instance.OnStart;
                 @Start.performed -= instance.OnStart;
                 @Start.canceled -= instance.OnStart;
@@ -1266,7 +1299,7 @@ namespace Rogium.Systems.Input
             void OnClick(InputAction.CallbackContext context);
             void OnScrollWheel(InputAction.CallbackContext context);
             void OnMiddleClick(InputAction.CallbackContext context);
-            void OnRightClick(InputAction.CallbackContext context);
+            void OnContextClick(InputAction.CallbackContext context);
             void OnTrackedDevicePosition(InputAction.CallbackContext context);
             void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
             void OnMenu(InputAction.CallbackContext context);
@@ -1275,11 +1308,11 @@ namespace Rogium.Systems.Input
         {
             void OnMovement(InputAction.CallbackContext context);
             void OnUseMain(InputAction.CallbackContext context);
+            void OnUseMainAlt(InputAction.CallbackContext context);
             void OnUseSub(InputAction.CallbackContext context);
+            void OnUseSubAlt(InputAction.CallbackContext context);
             void OnUseDash(InputAction.CallbackContext context);
-            void OnAlternativeMain(InputAction.CallbackContext context);
-            void OnAlternativeSub(InputAction.CallbackContext context);
-            void OnAlternativeDash(InputAction.CallbackContext context);
+            void OnUseDashAlt(InputAction.CallbackContext context);
             void OnStart(InputAction.CallbackContext context);
         }
     }

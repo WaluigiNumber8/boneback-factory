@@ -45,7 +45,7 @@
                     "name": "Click",
                     "type": "Button",
                     "id": "9f328427-371b-4e5f-8c49-b85f36c302ac",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -69,10 +69,10 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "RightClick",
+                    "name": "ContextClick",
                     "type": "Button",
                     "id": "dfbd1ea4-f298-4fb8-a1d4-356120368f27",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -460,6 +460,17 @@
                 },
                 {
                     "name": "",
+                    "id": "84b4f6cb-7e4d-4d74-90ac-47f2b5510661",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "02e28ae3-7a9d-4183-b73f-260d693f06aa",
                     "path": "<Mouse>/scroll",
                     "interactions": "",
@@ -487,7 +498,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse;Keyboard + Mouse",
-                    "action": "RightClick",
+                    "action": "ContextClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e2050888-2670-49c3-b981-6ccb57764d5c",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "ContextClick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -582,10 +604,28 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "UseMainAlt",
+                    "type": "Button",
+                    "id": "06e4be37-bc84-471f-9c4d-389afc65a89b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "UseSub",
                     "type": "Button",
                     "id": "d2a8f845-c16c-4fb5-8df0-ca121efdcc3b",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UseSubAlt",
+                    "type": "Button",
+                    "id": "11a38efb-6422-4b08-814d-18ec632194ed",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -600,28 +640,10 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "AlternativeMain",
-                    "type": "Button",
-                    "id": "06e4be37-bc84-471f-9c4d-389afc65a89b",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "AlternativeSub",
-                    "type": "Button",
-                    "id": "11a38efb-6422-4b08-814d-18ec632194ed",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "AlternativeDash",
+                    "name": "UseDashAlt",
                     "type": "Button",
                     "id": "1ea652b5-1bb8-43a8-b759-0621642ccba7",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -630,7 +652,7 @@
                     "name": "Start",
                     "type": "Button",
                     "id": "78db4df8-8bf2-4faa-8031-90a7f42b80ef",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -728,7 +750,7 @@
                 {
                     "name": "",
                     "id": "4f391983-742c-4f47-a138-e1f2f1184692",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -750,10 +772,10 @@
                 {
                     "name": "",
                     "id": "4ee35727-c730-42cf-8161-d9360de25505",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Gamepad",
                     "action": "UseSub",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -772,7 +794,7 @@
                 {
                     "name": "",
                     "id": "32814283-3bfe-4df4-b93d-b836cbe9a121",
-                    "path": "<Gamepad>/leftShoulder",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -787,18 +809,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard + Mouse",
-                    "action": "AlternativeMain",
+                    "action": "UseMainAlt",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "4b48b233-0633-48ef-8bc9-0efb103b5aa9",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "AlternativeMain",
+                    "groups": ";Gamepad",
+                    "action": "UseMainAlt",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -809,18 +831,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard + Mouse",
-                    "action": "AlternativeSub",
+                    "action": "UseSubAlt",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "c5bbca05-68bf-45da-bee3-63084e42b2d7",
-                    "path": "<Gamepad>/buttonNorth",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "AlternativeSub",
+                    "groups": ";Gamepad",
+                    "action": "UseSubAlt",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -831,18 +853,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard + Mouse",
-                    "action": "AlternativeDash",
+                    "action": "UseDashAlt",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "ff8b4bea-7e8d-4c2d-a72e-bb372abf1ed3",
-                    "path": "<Gamepad>/leftTrigger",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "AlternativeDash",
+                    "action": "UseDashAlt",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -853,6 +875,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard + Mouse",
+                    "action": "Start",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "74c5ef75-f225-4779-9a21-3183bad86219",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard + Mouse",
                     "action": "Start",
                     "isComposite": false,
                     "isPartOfComposite": false
