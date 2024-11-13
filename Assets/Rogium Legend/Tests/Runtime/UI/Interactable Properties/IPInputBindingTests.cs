@@ -4,7 +4,9 @@ using System.Linq;
 using NUnit.Framework;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables.Properties;
+using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.TestTools;
 using UnityEngine.UI;
 using static Rogium.Tests.UI.Interactables.InteractablesCreator;
@@ -55,10 +57,7 @@ namespace Rogium.Tests.UI.Interactables
         public IEnumerator Should_BindInputToAction_WhenClicked()
         {
             InputBinding original = GetBindingForActionMap(action, input.KeyboardSchemeGroup);
-            inputBinding.StartListening();
-            yield return null;
-            Press(keyboard.spaceKey);
-            yield return null;
+            yield return ReadKey(keyboard.spaceKey);
             Assert.That(GetBindingForActionMap(action, input.KeyboardSchemeGroup), Is.Not.EqualTo(original));
         }
 
@@ -74,9 +73,7 @@ namespace Rogium.Tests.UI.Interactables
         public IEnumerator Should_HideBindingDisplay_WhenStopListening()
         {
             inputBinding.StartListening();
-            yield return null;
-            Press(keyboard.spaceKey);
-            yield return null;
+            yield return ReadKey(keyboard.spaceKey);
             Assert.That(inputBinding.BindingDisplay.activeSelf, Is.False);
         }
         
@@ -92,9 +89,7 @@ namespace Rogium.Tests.UI.Interactables
         public IEnumerator Should_ShowBoundInputDisplay_WhenStopListening()
         {
             inputBinding.StartListening();
-            yield return null;
-            Press(keyboard.spaceKey);
-            yield return null;
+            yield return ReadKey(keyboard.spaceKey);
             Assert.That(inputBinding.BoundInputDisplay.activeSelf, Is.True);
         }
         
@@ -102,10 +97,8 @@ namespace Rogium.Tests.UI.Interactables
         public IEnumerator Should_HideBindingText_WhenStopListening()
         {
             inputBinding.StartListening();
-            yield return null;
-            Press(keyboard.spaceKey);
-            yield return null;
-            Assert.That(inputBinding.BindingDisplay.gameObject.activeSelf, Is.False);
+            yield return ReadKey(keyboard.spaceKey);
+            Assert.That(inputBinding.BindingDisplay.activeSelf, Is.False);
         }
         
         private static InputBinding GetBindingForActionMap(InputAction action, string schemeGroup)
@@ -115,6 +108,13 @@ namespace Rogium.Tests.UI.Interactables
                 return binding;
             }
             throw new Exception($"No binding found for {action.name}.");
+        }
+        
+        private IEnumerator ReadKey(KeyControl key)
+        {
+            yield return new WaitForSecondsRealtime(0.1f);
+            Press(key);
+            yield return new WaitForSecondsRealtime(0.1f);
         }
     }
 }
