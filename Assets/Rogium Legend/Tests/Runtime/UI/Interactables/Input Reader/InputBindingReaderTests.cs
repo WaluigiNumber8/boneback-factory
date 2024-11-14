@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using NUnit.Framework;
+using RedRats.UI.ModalWindows;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables;
@@ -26,6 +27,7 @@ namespace Rogium.Tests.UI.Interactables
             yield return base.SetUp();
             OverseerLoader.LoadThemeOverseer();
             OverseerLoader.LoadUIBuilder();
+            OverseerLoader.LoadModalWindowBuilder();
             input = InputSystem.GetInstance();
             yield return null;
             inputReader = BuildInputReader(input.Player.ButtonMain.Action);
@@ -47,7 +49,7 @@ namespace Rogium.Tests.UI.Interactables
         [UnityTest]
         public IEnumerator Should_ShowBindingDisplay_WhenStartListening()
         {
-            inputReader.StartListening();
+            inputReader.StartRebinding();
             yield return null;
             Assert.That(inputReader.BindingDisplay.activeSelf, Is.True);
         }
@@ -62,7 +64,7 @@ namespace Rogium.Tests.UI.Interactables
         [UnityTest]
         public IEnumerator ShouldHideBoundInputDisplay_WhenStartListening()
         {
-            inputReader.StartListening();
+            inputReader.StartRebinding();
             yield return null;
             Assert.That(inputReader.BoundInputDisplay.activeSelf, Is.False);
         }
@@ -107,15 +109,30 @@ namespace Rogium.Tests.UI.Interactables
         public IEnumerator Should_Timeout_WhenNotBoundInTime()
         {
             InputBinding original = inputReader.Binding;
-            inputReader.StartListening();
+            inputReader.StartRebinding();
             yield return new WaitForSecondsRealtime(EditorDefaults.Instance.InputTimeout);
             Assert.That(inputReader.Binding, Is.EqualTo(original));
             Assert.That(inputReader.BindingDisplay.activeSelf, Is.False);
         }
+
+        [UnityTest]
+        public IEnumerator Should_ShowMessage_WhenBindingIsAlreadyUsed()
+        {
+            yield return BindKey(keyboard.spaceKey);
+            Assert.That(Object.FindFirstObjectByType<ModalWindow>().transform.GetChild(0).gameObject.activeSelf, Is.True);
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_NotShowMessage_WhenBindingIsNotUsed()
+        {
+            yield return BindKey(keyboard.oKey);
+            ModalWindow window = Object.FindFirstObjectByType<ModalWindow>();
+            Assert.That(window, Is.Null);
+        }
         
         private IEnumerator BindKey(KeyControl key)
         {
-            inputReader.StartListening();
+            inputReader.StartRebinding();
             yield return new WaitForSecondsRealtime(0.1f);
             Press(key);
             yield return new WaitForSecondsRealtime(0.1f);

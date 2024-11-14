@@ -28,8 +28,8 @@ namespace Rogium.UserInterface.Interactables.Properties
             gamepadBinding.SetActive(!isDisabled);
         }
         
-        public void StartListeningToKeyboard() => keyboardBinding.StartListening();
-        public void StartListeningToGamepad() => gamepadBinding.StartListening();
+        public void StartListeningToKeyboard() => keyboardBinding.StartRebinding();
+        public void StartListeningToGamepad() => gamepadBinding.StartRebinding();
 
         public override InputAction PropertyValue { get => action; }
 

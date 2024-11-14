@@ -2,6 +2,7 @@
 using RedRats.Core;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 namespace Rogium.Systems.Input
@@ -44,6 +45,21 @@ namespace Rogium.Systems.Input
         {
             DisableAll();
             inputPlayer.Enable();
+        }
+        
+        public (InputAction, int) FindDuplicateBinding(InputAction action, int bindingIndex)
+        {
+            InputBinding newBinding = action.bindings[bindingIndex];
+            foreach (InputBinding binding in action.actionMap.bindings)
+            {
+                if (binding.effectivePath.Equals(newBinding.effectivePath) && newBinding.id != binding.id)
+                {
+                    InputAction foundAction = input.FindAction(binding.action);
+                    int foundIndex = foundAction.bindings.IndexOf(b => b == binding);
+                    return (foundAction, foundIndex);
+                }
+            }
+            return (null, -1);
         }
         
         /// <summary>

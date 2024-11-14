@@ -1,10 +1,13 @@
 ﻿using System;
 using RedRats.Safety;
+using RedRats.UI.ModalWindows;
 using Rogium.Editors.Core.Defaults;
+using Rogium.UserInterface.ModalWindows;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using InputSystem = Rogium.Systems.Input.InputSystem;
 
 namespace Rogium.UserInterface.Interactables
 {
@@ -19,7 +22,7 @@ namespace Rogium.UserInterface.Interactables
         private int bindingIndex;
         private InputActionRebindingExtensions.RebindingOperation rebindOperation;
 
-        private void Awake() => ui.button.onClick.AddListener(StartListening);
+        private void Awake() => ui.button.onClick.AddListener(StartRebinding);
 
         public void Construct(InputAction action, int bindingIndex)
         {
@@ -33,17 +36,37 @@ namespace Rogium.UserInterface.Interactables
         /// <summary>
         /// Start listening for new input.
         /// </summary>
-        public void StartListening()
+        public void StartRebinding()
         {
             action.Disable();
             ui.ShowBindingDisplay();
             rebindOperation = action.PerformInteractiveRebinding(bindingIndex)
-                                    .OnCancel(_ => StopListening())  
-                                    .OnComplete(_ => StopListening())
+                                    .OnCancel(_ => StopRebinding())  
+                                    .OnComplete(FinishRebinding)
                                     .WithTimeout(EditorDefaults.Instance.InputTimeout)
                                     .Start();
 
-            void StopListening()
+            void FinishRebinding(InputActionRebindingExtensions.RebindingOperation operation)
+            {
+                (InputAction duplicateAction, int duplicateIndex) = InputSystem.GetInstance().FindDuplicateBinding(action, bindingIndex);
+                if (duplicateAction != null)
+                {
+                    ModalWindowBuilder.GetInstance().OpenWindow(new ModalWindowData.Builder()
+                        .WithMessage($"The input is already used in {duplicateAction.name}. Want to rebind?")
+                        .WithAcceptButton("Yes", () =>
+                        {
+                            duplicateAction.Disable();
+                            duplicateAction.ApplyBindingOverride(duplicateIndex, "");
+                            duplicateAction.Enable();
+                            operation.Complete();
+                        })
+                        .WithDenyButton("No", operation.Cancel)
+                        .Build());
+                }
+                StopRebinding();
+            }
+            
+            void StopRebinding()
             {
                 action.Enable();
                 rebindOperation.Dispose();
