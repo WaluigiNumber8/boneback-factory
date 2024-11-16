@@ -5,6 +5,7 @@ using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables;
 using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.TestTools;
 
 namespace Rogium.Tests.UI.Interactables
@@ -28,14 +29,31 @@ namespace Rogium.Tests.UI.Interactables
             yield return null;
             bindingParent = new GameObject("Input Bindings").transform;
             bindingParent.SetParent(Object.FindFirstObjectByType<Canvas>().transform);
-        }
-        
-        [UnityTest]
-        public IEnumerator Should_InstantiateAllPartsOfComposite_WhenCompositeBindingUsed()
-        {
             UIPropertyBuilder.GetInstance().BuildInputBinding(input.Player.Movement.Action, InputDeviceType.Keyboard, bindingParent);
             yield return null;
+        }
+        
+        [Test]
+        public void Should_InstantiateAllPartsOfComposite_WhenCompositeBindingUsed()
+        {
             Assert.That(bindingParent.childCount, Is.EqualTo(4));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_RebindCompositePart_WhenStartListening()
+        {
+            InputBindingReader reader = bindingParent.GetComponentInChildren<InputBindingReader>();
+            yield return BindKey(reader, keyboard.gKey);
+            yield return null;
+            Assert.That(input.Player.Movement.Action.bindings[1].effectivePath, Is.EqualTo("<Keyboard>/g"));
+        }
+        
+        private IEnumerator BindKey(InputBindingReader reader, KeyControl key)
+        {
+            reader.StartRebinding();
+            yield return new WaitForSecondsRealtime(0.1f);
+            Press(key);
+            yield return new WaitForSecondsRealtime(0.1f);
         }
     }
 }
