@@ -47,6 +47,13 @@ namespace Rogium.Tests.UI.Interactables
             yield return null;
             Assert.That(input.Player.Movement.Action.bindings[1].effectivePath, Is.EqualTo("<Keyboard>/g"));
         }
+
+        [Test]
+        public void Should_ShowCompositePartInTitle_WhenConstructed()
+        {
+            InteractablePropertyInputBinding binding = bindingParent.GetComponentInChildren<InteractablePropertyInputBinding>();
+            Assert.That(binding.Title, Is.EqualTo("Movement Up"));
+        }
         
         private IEnumerator BindKey(InputBindingReader reader, KeyControl key)
         {

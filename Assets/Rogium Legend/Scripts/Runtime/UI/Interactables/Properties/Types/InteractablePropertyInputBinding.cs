@@ -12,9 +12,9 @@ namespace Rogium.UserInterface.Interactables.Properties
         
         private InputAction action;
         
-        public void Construct(InputAction action, int bindingIndex)
+        public void Construct(string title, InputAction action, int bindingIndex)
         {
-            ConstructTitle(action.name);
+            ConstructTitle(title);
             inputReader.Construct(action, bindingIndex);
             this.action = action;
         }

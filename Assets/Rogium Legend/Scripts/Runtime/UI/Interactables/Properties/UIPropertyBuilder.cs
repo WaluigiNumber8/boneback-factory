@@ -271,23 +271,26 @@ namespace Rogium.UserInterface.Interactables.Properties
         public void BuildInputBinding(InputAction action, InputDeviceType device, Transform parent, bool isDisabled = false)
         {
             int bindingIndex = InputSystem.GetInstance().GetBindingIndexByType(action, device);
-            ConstructInputBinding(action, bindingIndex, parent, isDisabled);
             
             //If action is composite, spawn for each binding
-            if (!action.bindings[bindingIndex].isPartOfComposite) return;
-            bindingIndex++;
-            while (bindingIndex < action.bindings.Count && action.bindings[bindingIndex].isPartOfComposite)
+            if (action.bindings[bindingIndex].isPartOfComposite)
             {
-                ConstructInputBinding(action, bindingIndex, parent, isDisabled);
-                bindingIndex++;
+                while (bindingIndex < action.bindings.Count && action.bindings[bindingIndex].isPartOfComposite)
+                {
+                    string title = $"{action.name} {action.bindings[bindingIndex].name.Capitalize()}";
+                    ConstructInputBinding(title, action, bindingIndex, parent, isDisabled);
+                    bindingIndex++;
+                }
+                return;
             }
+            ConstructInputBinding(action.name, action, bindingIndex, parent, isDisabled);
         }
 
-        private void ConstructInputBinding(InputAction action, int bindingIndex, Transform parent, bool isDisabled)
+        private void ConstructInputBinding(string title, InputAction action, int bindingIndex, Transform parent, bool isDisabled)
         {
             InteractablePropertyInputBinding inputBinding = Instantiate(inputBindingProperty, parent);
-            inputBinding.name = $"{action.name} InputBinding";
-            inputBinding.Construct(action, bindingIndex);
+            inputBinding.name = $"{title} InputBinding";
+            inputBinding.Construct(title, action, bindingIndex);
             inputBinding.SetDisabled(isDisabled);
             // ThemeUpdaterRogium.UpdateInputBinding(inputBinding);
         }
