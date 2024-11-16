@@ -55,8 +55,8 @@ namespace Rogium.UserInterface.Interactables
                 {
                     ModalWindowBuilder.GetInstance().OpenWindow(new ModalWindowData.Builder()
                         .WithMessage($"The input is already used in {duplicateAction.name}. Want to rebind?")
-                        .WithAcceptButton("Yes", () => OverrideDuplicateBinding(duplicateAction, duplicateIndex))
-                        .WithDenyButton("No", RevertBinding)
+                        .WithAcceptButton("Override", () => OverrideDuplicateBinding(duplicateAction, duplicateIndex))
+                        .WithDenyButton("Cancel", RevertBinding)
                         .Build());
                 }
                 else previousBinding = action.bindings[bindingIndex];
