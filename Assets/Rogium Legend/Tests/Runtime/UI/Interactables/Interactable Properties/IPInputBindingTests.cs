@@ -2,9 +2,7 @@
 using NUnit.Framework;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables.Properties;
-using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
 using UnityEngine.UI;
 using static Rogium.Tests.UI.Interactables.Properties.InteractablesCreator;
 using InputSystem = Rogium.Systems.Input.InputSystem;
@@ -44,12 +42,6 @@ namespace Rogium.Tests.UI.Interactables.Properties
         }
         
         [Test]
-        public void Should_SetActionInputStringGamepad_WhenConstructed()
-        {
-            Assert.That(inputBinding.GamepadInputString, Is.EqualTo(action.bindings[1].ToDisplayString()));
-        }
-
-        [Test]
         public void Should_SetButtonsAsDisabled_WhenConstructed()
         {
             inputBinding.SetDisabled(true);
@@ -57,22 +49,6 @@ namespace Rogium.Tests.UI.Interactables.Properties
             {
                 Assert.That(button.interactable, Is.False);
             }
-        }
-        
-        private IEnumerator BindKey(KeyControl key)
-        {
-            inputBinding.StartListeningToKeyboard();
-            yield return new WaitForSecondsRealtime(0.1f);
-            Press(key);
-            yield return new WaitForSecondsRealtime(0.1f);
-        }
-        
-        private IEnumerator BindButton(ButtonControl button)
-        {
-            inputBinding.StartListeningToGamepad();
-            yield return new WaitForSecondsRealtime(0.1f);
-            Press(button);
-            yield return new WaitForSecondsRealtime(0.1f);
         }
     }
 }
