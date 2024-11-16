@@ -16,6 +16,9 @@ namespace Rogium.UserInterface.Interactables
     /// </summary>
     public class InputBindingReader : MonoBehaviour
     {
+        public static event Action<InputAction, int> OnRebindStartAny, OnRebindEndAny;
+        public event Action OnRebindStart, OnRebindEnd;
+        
         [SerializeField] private UIInfo ui;
         
         private InputAction action;
@@ -24,6 +27,18 @@ namespace Rogium.UserInterface.Interactables
         private InputBinding previousBinding;
 
         private void Awake() => ui.button.onClick.AddListener(StartRebinding);
+
+        private void OnEnable()
+        {
+            OnRebindStartAny += Deactivate;
+            OnRebindEndAny += Activate;
+        }
+
+        private void OnDisable()
+        {
+            OnRebindStartAny -= Deactivate;
+            OnRebindEndAny -= Activate;
+        }
 
         public void Construct(InputAction action, int bindingIndex)
         {
@@ -42,6 +57,8 @@ namespace Rogium.UserInterface.Interactables
         {
             action.Disable();
             ui.ShowBindingDisplay();
+            OnRebindStartAny?.Invoke(action, bindingIndex);
+            OnRebindStart?.Invoke();
             rebindOperation = action.PerformInteractiveRebinding(bindingIndex)
                                     .OnCancel(_ => StopRebinding())  
                                     .OnComplete(FinishRebinding)
@@ -69,6 +86,8 @@ namespace Rogium.UserInterface.Interactables
                 rebindOperation.Dispose();
                 rebindOperation = null;
                 RefreshInputString();
+                OnRebindEndAny?.Invoke(action, bindingIndex);
+                OnRebindEnd?.Invoke();
                 ui.ShowBoundInputDisplay();
             }
             
@@ -90,7 +109,18 @@ namespace Rogium.UserInterface.Interactables
         }
         
         public void SetActive(bool value) => ui.button.interactable = value;
+        private void Activate(InputAction action, int bindingIndex)
+        {
+            if (action == this.action && bindingIndex == this.bindingIndex) return;
+            SetActive(true);
+        }
 
+        private void Deactivate(InputAction action, int bindingIndex)
+        {
+            if (action == this.action && bindingIndex == this.bindingIndex) return;
+            SetActive(false);
+        }
+        
         private static void RefreshAllInputBindingReaders()
         {
             InputBindingReader[] readers = FindObjectsByType<InputBindingReader>(FindObjectsSortMode.None);

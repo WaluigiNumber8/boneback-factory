@@ -188,6 +188,25 @@ namespace Rogium.Tests.UI.Interactables
             Assert.That(inputReader.InputString, Is.EqualTo(original));
             Assert.That(inputReader2.InputString, Is.EqualTo(original2));
         }
+
+        [UnityTest]
+        public IEnumerator Should_DisableAllOtherInputReaders_WhenStartListening()
+        {
+            InputBindingReader inputReader2 = BuildInputReader(input.Player.ButtonDash.Action);
+            yield return null;
+            inputReader.StartRebinding();
+            yield return null;
+            Assert.That(inputReader2.GetComponentInChildren<Button>().interactable, Is.False);
+        }
+
+        [UnityTest]
+        public IEnumerator Should_EnableAllOtherInputReaders_WhenStopListening()
+        {
+            InputBindingReader inputReader2 = BuildInputReader(input.Player.ButtonDash.Action);
+            yield return null;
+            yield return BindKey(keyboard.iKey);
+            Assert.That(inputReader2.GetComponentInChildren<Button>().interactable, Is.True);
+        }
         
         private IEnumerator BindKey(KeyControl key)
         {
