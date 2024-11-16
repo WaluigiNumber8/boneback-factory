@@ -22,14 +22,14 @@ namespace Rogium.Systems.Input
         public InputProfilePlayer(RogiumInputActions input) : base(input)
         {
             map = input.Player;
-            movement = new InputVector2(map.Movement);
-            buttonMain = new InputButton(map.UseMain);
-            buttonSub = new InputButton(map.UseSub);
-            buttonDash = new InputButton(map.UseDash);
-            buttonMainAlt = new InputButton(map.UseMainAlt);
-            buttonSubAlt = new InputButton(map.UseSubAlt);
-            buttonDashAlt = new InputButton(map.UseDashAlt);
-            buttonStart = new InputButton(map.Start);
+            movement = new InputVector2(map.Move);
+            buttonMain = new InputButton(map.Main);
+            buttonSub = new InputButton(map.Sub);
+            buttonDash = new InputButton(map.Dash);
+            buttonMainAlt = new InputButton(map.MainAlt);
+            buttonSubAlt = new InputButton(map.SubAlt);
+            buttonDashAlt = new InputButton(map.DashAlt);
+            buttonStart = new InputButton(map.Pause);
         }
         
         protected override void WhenEnabled()

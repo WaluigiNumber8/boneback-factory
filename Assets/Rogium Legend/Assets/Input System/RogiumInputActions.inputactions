@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Click",
+                    "name": "Select",
                     "type": "Button",
                     "id": "9f328427-371b-4e5f-8c49-b85f36c302ac",
                     "expectedControlType": "",
@@ -69,7 +69,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ContextClick",
+                    "name": "ContextSelect",
                     "type": "Button",
                     "id": "dfbd1ea4-f298-4fb8-a1d4-356120368f27",
                     "expectedControlType": "",
@@ -421,7 +421,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse;Keyboard + Mouse",
-                    "action": "Click",
+                    "action": "Select",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -432,7 +432,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Click",
+                    "action": "Select",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -443,7 +443,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Touch",
-                    "action": "Click",
+                    "action": "Select",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -454,7 +454,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "Click",
+                    "action": "Select",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -465,7 +465,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Click",
+                    "action": "Select",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -498,7 +498,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse;Keyboard + Mouse",
-                    "action": "ContextClick",
+                    "action": "ContextSelect",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -509,7 +509,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "ContextClick",
+                    "action": "ContextSelect",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -586,7 +586,7 @@
             "id": "04605154-b833-43f6-ac54-58ea40a76698",
             "actions": [
                 {
-                    "name": "Movement",
+                    "name": "Move",
                     "type": "Value",
                     "id": "92f6b1f4-cec8-4a35-b943-0159a523ad4d",
                     "expectedControlType": "Vector2",
@@ -595,16 +595,16 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "UseMain",
+                    "name": "Main",
                     "type": "Button",
                     "id": "a8c81f43-e58e-4fae-998a-c7f5d9b5dd95",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "UseMainAlt",
+                    "name": "MainAlt",
                     "type": "Button",
                     "id": "06e4be37-bc84-471f-9c4d-389afc65a89b",
                     "expectedControlType": "",
@@ -613,7 +613,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "UseSub",
+                    "name": "Sub",
                     "type": "Button",
                     "id": "d2a8f845-c16c-4fb5-8df0-ca121efdcc3b",
                     "expectedControlType": "",
@@ -622,7 +622,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "UseSubAlt",
+                    "name": "SubAlt",
                     "type": "Button",
                     "id": "11a38efb-6422-4b08-814d-18ec632194ed",
                     "expectedControlType": "",
@@ -631,16 +631,16 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "UseDash",
+                    "name": "Dash",
                     "type": "Button",
                     "id": "ed27ace3-7d60-437d-8a83-bdb11d2e8238",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "UseDashAlt",
+                    "name": "DashAlt",
                     "type": "Button",
                     "id": "1ea652b5-1bb8-43a8-b759-0621642ccba7",
                     "expectedControlType": "",
@@ -649,7 +649,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Start",
+                    "name": "Pause",
                     "type": "Button",
                     "id": "78db4df8-8bf2-4faa-8031-90a7f42b80ef",
                     "expectedControlType": "",
@@ -666,7 +666,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movement",
+                    "action": "Move",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -677,7 +677,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard + Mouse",
-                    "action": "Movement",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -688,7 +688,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard + Mouse",
-                    "action": "Movement",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -699,7 +699,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard + Mouse",
-                    "action": "Movement",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -710,7 +710,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard + Mouse",
-                    "action": "Movement",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -721,7 +721,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Movement",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -732,7 +732,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Movement",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -743,7 +743,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard + Mouse",
-                    "action": "UseMain",
+                    "action": "Main",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -754,7 +754,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "UseMain",
+                    "action": "Main",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -765,7 +765,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard + Mouse",
-                    "action": "UseSub",
+                    "action": "Sub",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -776,7 +776,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "UseSub",
+                    "action": "Sub",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -787,7 +787,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard + Mouse",
-                    "action": "UseDash",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -798,7 +798,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "UseDash",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -809,7 +809,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard + Mouse",
-                    "action": "UseMainAlt",
+                    "action": "MainAlt",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -820,7 +820,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "UseMainAlt",
+                    "action": "MainAlt",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -831,7 +831,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard + Mouse",
-                    "action": "UseSubAlt",
+                    "action": "SubAlt",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -842,7 +842,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "UseSubAlt",
+                    "action": "SubAlt",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -853,7 +853,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard + Mouse",
-                    "action": "UseDashAlt",
+                    "action": "DashAlt",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -864,7 +864,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "UseDashAlt",
+                    "action": "DashAlt",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -875,7 +875,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard + Mouse",
-                    "action": "Start",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -886,7 +886,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard + Mouse",
-                    "action": "Start",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -897,7 +897,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Start",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
