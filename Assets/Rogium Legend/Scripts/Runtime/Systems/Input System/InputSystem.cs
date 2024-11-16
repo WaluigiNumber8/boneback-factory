@@ -82,6 +82,16 @@ namespace Rogium.Systems.Input
                 eventSystem.sendNavigationEvents = true;
             }
         }
+
+        public int GetBindingIndexByType(InputAction action, InputDeviceType type)
+        {
+            return type switch
+            {
+                InputDeviceType.Keyboard => action.GetBindingIndex(KeyboardSchemeGroup),
+                InputDeviceType.Gamepad => action.GetBindingIndex(GamepadSchemeGroup),
+                _ => throw new System.ArgumentOutOfRangeException(nameof(type), type, null)
+            };
+        }
         
         /// <summary>
         /// Disables all Action Maps except UI.

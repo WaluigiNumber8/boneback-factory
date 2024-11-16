@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
-using InputSystem = Rogium.Systems.Input.InputSystem;
 
 namespace Rogium.UserInterface.Interactables.Properties
 {
@@ -9,24 +8,24 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// </summary>
     public class InteractablePropertyInputBinding : InteractablePropertyBase<InputAction>
     {
-        [SerializeField] private InputBindingReader keyboardBinding;
+        [SerializeField] private InputBindingReader inputReader;
         
         private InputAction action;
         
-        public void Construct(InputAction action)
+        public void Construct(InputAction action, int bindingIndex)
         {
             ConstructTitle(action.name);
-            keyboardBinding.Construct(action, action.GetBindingIndex(InputSystem.GetInstance().KeyboardSchemeGroup));
+            inputReader.Construct(action, bindingIndex);
             this.action = action;
         }
         
         public override void SetDisabled(bool isDisabled)
         {
-            keyboardBinding.SetActive(!isDisabled);
+            inputReader.SetActive(!isDisabled);
         }
         
-        public override InputAction PropertyValue { get => action; }
+        public override InputAction PropertyValue { get => inputReader.Action; }
 
-        public string KeyboardInputString { get => keyboardBinding.InputString; }
+        public string KeyboardInputString { get => inputReader.InputString; }
     }
 }

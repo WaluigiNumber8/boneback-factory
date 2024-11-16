@@ -18,16 +18,17 @@ namespace Rogium.Options.Core
             Clear();
             
             b.BuildHeader("UI", contentMain);
-            b.BuildInputBinding(input.UI.Click.Action, contentMain);
-            b.BuildInputBinding(input.UI.ClickAlternative.Action, contentMain);
+            b.BuildInputBinding(input.UI.Click.Action, InputDeviceType.Keyboard, contentMain);
+            b.BuildInputBinding(input.UI.ClickAlternative.Action, InputDeviceType.Keyboard, contentMain);
             
             b.BuildHeader("Player", contentMain);
-            b.BuildInputBinding(input.Player.ButtonMain.Action, contentMain);
-            b.BuildInputBinding(input.Player.ButtonMainAlt.Action, contentMain);
-            b.BuildInputBinding(input.Player.ButtonSub.Action, contentMain);
-            b.BuildInputBinding(input.Player.ButtonSubAlt.Action, contentMain);
-            b.BuildInputBinding(input.Player.ButtonDash.Action, contentMain);
-            b.BuildInputBinding(input.Player.ButtonDashAlt.Action, contentMain);
+            b.BuildInputBinding(input.Player.Movement.Action, InputDeviceType.Keyboard, contentMain);
+            b.BuildInputBinding(input.Player.ButtonMain.Action, InputDeviceType.Keyboard, contentMain);
+            b.BuildInputBinding(input.Player.ButtonMainAlt.Action, InputDeviceType.Keyboard, contentMain);
+            b.BuildInputBinding(input.Player.ButtonSub.Action, InputDeviceType.Keyboard, contentMain);
+            b.BuildInputBinding(input.Player.ButtonSubAlt.Action, InputDeviceType.Keyboard, contentMain);
+            b.BuildInputBinding(input.Player.ButtonDash.Action, InputDeviceType.Keyboard, contentMain);
+            b.BuildInputBinding(input.Player.ButtonDashAlt.Action, InputDeviceType.Keyboard, contentMain);
         }
     }
 }

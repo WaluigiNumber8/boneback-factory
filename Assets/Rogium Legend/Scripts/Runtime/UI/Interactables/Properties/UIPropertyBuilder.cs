@@ -4,11 +4,13 @@ using RedRats.Core;
 using RedRats.Systems.Themes;
 using Rogium.Core;
 using Rogium.Editors.Core;
+using Rogium.Systems.Input;
 using Rogium.Systems.ThemeSystem;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using InputSystem = Rogium.Systems.Input.InputSystem;
 
 namespace Rogium.UserInterface.Interactables.Properties
 {
@@ -266,15 +268,30 @@ namespace Rogium.UserInterface.Interactables.Properties
             ThemeUpdaterRogium.UpdateAssetEmblemList(assetEmblemList);
         }
         
-        public void BuildInputBinding(InputAction action, Transform parent, bool isDisabled = false)
+        public void BuildInputBinding(InputAction action, InputDeviceType device, Transform parent, bool isDisabled = false)
+        {
+            int bindingIndex = InputSystem.GetInstance().GetBindingIndexByType(action, device);
+            ConstructInputBinding(action, bindingIndex, parent, isDisabled);
+            
+            //If action is composite, spawn for each binding
+            if (!action.bindings[bindingIndex].isPartOfComposite) return;
+            bindingIndex++;
+            while (bindingIndex < action.bindings.Count && action.bindings[bindingIndex].isPartOfComposite)
+            {
+                ConstructInputBinding(action, bindingIndex, parent, isDisabled);
+                bindingIndex++;
+            }
+        }
+
+        private void ConstructInputBinding(InputAction action, int bindingIndex, Transform parent, bool isDisabled)
         {
             InteractablePropertyInputBinding inputBinding = Instantiate(inputBindingProperty, parent);
             inputBinding.name = $"{action.name} InputBinding";
-            inputBinding.Construct(action);
+            inputBinding.Construct(action, bindingIndex);
             inputBinding.SetDisabled(isDisabled);
             // ThemeUpdaterRogium.UpdateInputBinding(inputBinding);
         }
-        
+
         #endregion
 
         #region Content Blocks

@@ -1,5 +1,6 @@
 using Rogium.Core;
 using Rogium.Editors.Core;
+using Rogium.Systems.Input;
 using Rogium.UserInterface.Interactables.Properties;
 using TMPro;
 using UnityEditor;
@@ -89,7 +90,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
         
         public static InteractablePropertyInputBinding BuildInputBinding(InputAction action)
         {
-            UIPropertyBuilder.GetInstance().BuildInputBinding(action, Object.FindFirstObjectByType<Canvas>().transform);
+            UIPropertyBuilder.GetInstance().BuildInputBinding(action, InputDeviceType.Keyboard, Object.FindFirstObjectByType<Canvas>().transform);
             return Object.FindFirstObjectByType<InteractablePropertyInputBinding>();
         }
     }

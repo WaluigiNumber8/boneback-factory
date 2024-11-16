@@ -259,7 +259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: {fileID: 2633623453000180668}
   middleSpace: {fileID: 1057479197100194272}
-  keyboardBinding: {fileID: 708615780714807755}
+  inputReader: {fileID: 708615780714807755}
 --- !u!1 &5916930201562933575
 GameObject:
   m_ObjectHideFlags: 0

@@ -99,6 +99,7 @@ namespace Rogium.UserInterface.Interactables
 
         private void RefreshInputString() => ui.inputText.text = InputString;
 
+        public InputAction Action { get => action; }
         public InputBinding Binding { get => action.bindings[bindingIndex]; }
         public string InputString { get => action.bindings[bindingIndex].ToDisplayString(); }
         public GameObject BindingDisplay { get => ui.bindingDisplay; }
