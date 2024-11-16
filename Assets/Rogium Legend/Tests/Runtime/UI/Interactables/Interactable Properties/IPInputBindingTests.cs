@@ -15,7 +15,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
     /// </summary>
     public class IPInputBindingTests : MenuTestWithInputBase
     {
-        private InteractablePropertyInputBinding inputBinding;
+        private InteractablePropertyInputBinding inputProperty;
         private InputAction action;
         private InputSystem input;
 
@@ -26,27 +26,27 @@ namespace Rogium.Tests.UI.Interactables.Properties
             OverseerLoader.LoadUIBuilder();
             input = InputSystem.GetInstance();
             yield return null;
-            action = input.Player.ButtonMain.Action.Clone();
-            inputBinding = BuildInputBinding(action);
+            action = input.Player.ButtonMainAlt.Action.Clone();
+            inputProperty = BuildInputBinding(action);
         }
 
         [Test]
         public void Should_SetActionNameAsTitle_WhenConstructed()
         {
-            Assert.That(inputBinding.Title, Is.EqualTo(action.name));
+            Assert.That(inputProperty.Title, Is.EqualTo(action.name));
         }
 
         [Test]
         public void Should_SetActionInputStringKeyboard_WhenConstructed()
         {
-            Assert.That(inputBinding.KeyboardInputString, Is.EqualTo(action.bindings[0].ToDisplayString()));
+            Assert.That(inputProperty.KeyboardInputString, Is.EqualTo(action.bindings[0].ToDisplayString()));
         }
         
         [Test]
         public void Should_SetButtonsAsDisabled_WhenConstructed()
         {
-            inputBinding.SetDisabled(true);
-            foreach (Button button in inputBinding.GetComponentsInChildren<Button>())
+            inputProperty.SetDisabled(true);
+            foreach (Button button in inputProperty.GetComponentsInChildren<Button>())
             {
                 Assert.That(button.interactable, Is.False);
             }
@@ -56,8 +56,14 @@ namespace Rogium.Tests.UI.Interactables.Properties
         public void Should_SetProperTheme_WhenConstructed()
         {
             ThemeOverseerMono.GetInstance().ChangeTheme(ThemeType.Red);
-            inputBinding = BuildInputBinding(action);
-            Assert.That(inputBinding.GetComponentInChildren<Button>().image.sprite, Is.EqualTo(ThemeOverseerMono.GetInstance().GetThemeData(ThemeType.Red).Interactables.inputBinding.normal));
+            inputProperty = BuildInputBinding(action);
+            Assert.That(inputProperty.GetComponentInChildren<Button>().image.sprite, Is.EqualTo(ThemeOverseerMono.GetInstance().GetThemeData(ThemeType.Red).Interactables.inputBinding.normal));
+        }
+        
+        [Test]
+        public void Should_AddSpacesToTitle_WhenConstructed()
+        {
+            Assert.That(inputProperty.Title, Is.EqualTo("Main Alt"));
         }
     }
 }

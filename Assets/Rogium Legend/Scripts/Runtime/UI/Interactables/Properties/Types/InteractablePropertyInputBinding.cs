@@ -1,4 +1,5 @@
-﻿using RedRats.UI.Core;
+﻿using System.Text.RegularExpressions;
+using RedRats.UI.Core;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -17,6 +18,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         
         public void Construct(string title, InputAction action, int bindingIndex)
         {
+            title = Regex.Replace(title, "([A-Z])", " $1").Trim();
             ConstructTitle(title);
             inputReader.Construct(action, bindingIndex);
             this.action = action;

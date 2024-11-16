@@ -277,7 +277,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             {
                 while (bindingIndex < action.bindings.Count && action.bindings[bindingIndex].isPartOfComposite)
                 {
-                    string title = $"{action.name} {action.bindings[bindingIndex].name.Capitalize()}";
+                    string title = $"{action.name}{action.bindings[bindingIndex].name.Capitalize()}";
                     ConstructInputBinding(title, action, bindingIndex, parent, isDisabled);
                     bindingIndex++;
                 }
