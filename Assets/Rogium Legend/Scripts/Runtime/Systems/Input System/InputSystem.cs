@@ -22,11 +22,16 @@ namespace Rogium.Systems.Input
         protected override void Awake()
         {
             base.Awake();
+            ClearAllInput();
+            SceneManager.sceneLoaded += (_, __) => eventSystem = FindFirstObjectByType<EventSystem>();
+            inputUI.PointerPosition.OnPressed += UpdatePointerPosition;
+        }
+
+        public void ClearAllInput()
+        {
             input = new RogiumInputActions();
             inputPlayer = new InputProfilePlayer(input);
             inputUI = new InputProfileUI(input);
-            SceneManager.sceneLoaded += (_, __) => eventSystem = FindFirstObjectByType<EventSystem>();
-            inputUI.PointerPosition.OnPressed += UpdatePointerPosition;
         }
 
         /// <summary>

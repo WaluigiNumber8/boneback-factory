@@ -55,10 +55,12 @@ namespace Rogium.UserInterface.Interactables
                         .WithMessage($"The input is already used in {duplicateAction.name}. Want to rebind?")
                         .WithAcceptButton("Yes", () =>
                         {
+                            //Clear the duplicate binding
                             duplicateAction.Disable();
                             duplicateAction.ApplyBindingOverride(duplicateIndex, "");
                             duplicateAction.Enable();
                             operation.Complete();
+                            RefreshAllInputBindingReaders();
                         })
                         .WithDenyButton("No", operation.Cancel)
                         .Build());
@@ -77,6 +79,12 @@ namespace Rogium.UserInterface.Interactables
         }
         
         public void SetActive(bool value) => ui.button.interactable = value;
+
+        private static void RefreshAllInputBindingReaders()
+        {
+            InputBindingReader[] readers = FindObjectsByType<InputBindingReader>(FindObjectsSortMode.None);
+            foreach (InputBindingReader reader in readers) reader.RefreshInputString();
+        }
 
         private void RefreshInputString() => ui.inputText.text = InputString;
 

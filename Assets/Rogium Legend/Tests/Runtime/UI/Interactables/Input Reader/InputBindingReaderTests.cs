@@ -29,6 +29,7 @@ namespace Rogium.Tests.UI.Interactables
             OverseerLoader.LoadUIBuilder();
             OverseerLoader.LoadModalWindowBuilder();
             input = InputSystem.GetInstance();
+            input.ClearAllInput();
             yield return null;
             inputReader = BuildInputReader(input.Player.ButtonMain.Action);
         }
@@ -87,7 +88,7 @@ namespace Rogium.Tests.UI.Interactables
         public IEnumerator Should_BeBoundToNewInput_WhenClicked()
         {
             yield return BindKey(keyboard.spaceKey);
-            Assert.That(inputReader.Binding, Is.EqualTo(keyboard.spaceKey.displayName));
+            Assert.That(inputReader.Binding.ToDisplayString(), Is.EqualTo(keyboard.spaceKey.displayName));
         }
         
         [UnityTest]
@@ -128,6 +129,35 @@ namespace Rogium.Tests.UI.Interactables
             yield return BindKey(keyboard.oKey);
             ModalWindow window = Object.FindFirstObjectByType<ModalWindow>();
             Assert.That(window, Is.Null);
+        }
+
+        [UnityTest]
+        public IEnumerator Should_RemoveBindingFromDuplicate_WhenOverride()
+        {
+            yield return BindKey(keyboard.spaceKey);
+            Object.FindFirstObjectByType<ModalWindow>().OnAccept();
+            yield return null;
+            Assert.That(input.Player.ButtonDash.Action.bindings[0].ToDisplayString(), Is.EqualTo(""));
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_SetBindingToEditedOne_WhenOverride()
+        {
+            yield return BindKey(keyboard.spaceKey);
+            Object.FindFirstObjectByType<ModalWindow>().OnAccept();
+            yield return null;
+            Assert.That(input.Player.ButtonMain.Action.bindings[0].ToDisplayString(), Is.EqualTo("Space"));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_UpdateInputStringOfDuplicate_WhenOverride()
+        {
+            InputBindingReader inputReader2 = BuildInputReader(input.Player.ButtonDash.Action);
+            yield return null;
+            yield return BindKey(keyboard.spaceKey);
+            Object.FindFirstObjectByType<ModalWindow>().OnAccept();
+            yield return null;
+            Assert.That(inputReader2.InputString, Is.EqualTo(""));
         }
         
         private IEnumerator BindKey(KeyControl key)
