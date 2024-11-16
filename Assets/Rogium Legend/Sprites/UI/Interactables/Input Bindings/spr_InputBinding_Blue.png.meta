@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 458ac971c38e8484989936dcdec8cdce
+guid: e8d3b9b8c9acbe947b3cfc63fa130922
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sprset_Icons_Input_Key_Blue
+      name: spr_InputBinding_Blue_0
       rect:
         serializedVersion: 2
         x: 0
@@ -119,20 +119,20 @@ TextureImporter:
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 4, y: 4, z: 4, w: 4}
+      border: {x: 2, y: 2, z: 2, w: 2}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e25fd7c7d6e6ef046817b320bb8a8c23
-      internalID: 640811678
+      spriteID: a53561383d620e24c856476ba62e3f7e
+      internalID: -1708343385
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sprset_Icons_Input_Key_Red
+      name: spr_InputBinding_Blue_1
       rect:
         serializedVersion: 2
         x: 16
@@ -141,14 +141,80 @@ TextureImporter:
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 4, y: 4, z: 4, w: 4}
+      border: {x: 2, y: 2, z: 2, w: 2}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d36f85841761c464c907ea91b74bbee3
-      internalID: 589673279
+      spriteID: 98c414ce77a88f74fa8489f4a505c7b0
+      internalID: 1989829099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_InputBinding_Blue_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 2, y: 2, z: 2, w: 2}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f63ee010fdc067e439ecaec280b68af9
+      internalID: 996701531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_InputBinding_Blue_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 2, y: 2, z: 2, w: 2}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af252558a7bc1e44c85c036284f9b57f
+      internalID: -132434916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_InputBinding_Blue_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 2, y: 2, z: 2, w: 2}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c12dac725fbb56448a22ff20ea4bb7f3
+      internalID: -428431321
       vertices: []
       indices: 
       edges: []
@@ -167,8 +233,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      sprset_Icons_Input_Key_Blue: 640811678
-      sprset_Icons_Input_Key_Red: 589673279
+      spr_InputBinding_Blue_0: -1708343385
+      spr_InputBinding_Blue_1: 1989829099
+      spr_InputBinding_Blue_2: 996701531
+      spr_InputBinding_Blue_3: -132434916
+      spr_InputBinding_Blue_4: -428431321
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

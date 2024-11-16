@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using NUnit.Framework;
+using RedRats.Systems.Themes;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine.InputSystem;
@@ -49,6 +50,14 @@ namespace Rogium.Tests.UI.Interactables.Properties
             {
                 Assert.That(button.interactable, Is.False);
             }
+        }
+
+        [Test]
+        public void Should_SetProperTheme_WhenConstructed()
+        {
+            ThemeOverseerMono.GetInstance().ChangeTheme(ThemeType.Red);
+            inputBinding = BuildInputBinding(action);
+            Assert.That(inputBinding.GetComponentInChildren<Button>().image.sprite, Is.EqualTo(ThemeOverseerMono.GetInstance().GetThemeData(ThemeType.Red).Interactables.inputBinding.normal));
         }
     }
 }

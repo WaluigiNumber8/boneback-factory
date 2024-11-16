@@ -292,7 +292,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             inputBinding.name = $"{title} InputBinding";
             inputBinding.Construct(title, action, bindingIndex);
             inputBinding.SetDisabled(isDisabled);
-            // ThemeUpdaterRogium.UpdateInputBinding(inputBinding);
+            ThemeUpdaterRogium.UpdateInputBinding(inputBinding);
         }
 
         #endregion

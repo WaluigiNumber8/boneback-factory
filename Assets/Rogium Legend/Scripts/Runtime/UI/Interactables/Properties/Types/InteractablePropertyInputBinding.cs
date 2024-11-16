@@ -1,5 +1,8 @@
-﻿using UnityEngine;
+﻿using RedRats.UI.Core;
+using TMPro;
+using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace Rogium.UserInterface.Interactables.Properties
 {
@@ -22,6 +25,13 @@ namespace Rogium.UserInterface.Interactables.Properties
         public override void SetDisabled(bool isDisabled)
         {
             inputReader.SetActive(!isDisabled);
+        }
+
+        public void UpdateTheme(InteractableSpriteInfo inputButtonSet, FontInfo titleFont, FontInfo inputFont)
+        {
+            UIExtensions.ChangeInteractableSprites(inputReader.GetComponentInChildren<Button>(), inputButtonSet);
+            UIExtensions.ChangeFont(inputReader.GetComponentInChildren<TextMeshProUGUI>(), inputFont);
+            UIExtensions.ChangeFont(title, titleFont);
         }
         
         public override InputAction PropertyValue { get => inputReader.Action; }
