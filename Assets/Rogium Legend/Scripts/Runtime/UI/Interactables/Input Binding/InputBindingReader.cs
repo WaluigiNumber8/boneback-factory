@@ -21,6 +21,7 @@ namespace Rogium.UserInterface.Interactables
         private InputAction action;
         private int bindingIndex;
         private InputActionRebindingExtensions.RebindingOperation rebindOperation;
+        private InputBinding previousBinding;
 
         private void Awake() => ui.button.onClick.AddListener(StartRebinding);
 
@@ -29,6 +30,7 @@ namespace Rogium.UserInterface.Interactables
             SafetyNet.EnsureIndexWithingCollectionRange(bindingIndex, action.bindings, nameof(action.bindings));
             this.action = action;
             this.bindingIndex = bindingIndex;
+            this.previousBinding = action.bindings[bindingIndex];
             ui.ShowBoundInputDisplay();
             RefreshInputString();
         }
@@ -53,18 +55,11 @@ namespace Rogium.UserInterface.Interactables
                 {
                     ModalWindowBuilder.GetInstance().OpenWindow(new ModalWindowData.Builder()
                         .WithMessage($"The input is already used in {duplicateAction.name}. Want to rebind?")
-                        .WithAcceptButton("Yes", () =>
-                        {
-                            //Clear the duplicate binding
-                            duplicateAction.Disable();
-                            duplicateAction.ApplyBindingOverride(duplicateIndex, "");
-                            duplicateAction.Enable();
-                            operation.Complete();
-                            RefreshAllInputBindingReaders();
-                        })
-                        .WithDenyButton("No", operation.Cancel)
+                        .WithAcceptButton("Yes", () => OverrideDuplicateBinding(duplicateAction, duplicateIndex))
+                        .WithDenyButton("No", RevertBinding)
                         .Build());
                 }
+                else previousBinding = action.bindings[bindingIndex];
                 StopRebinding();
             }
             
@@ -75,6 +70,22 @@ namespace Rogium.UserInterface.Interactables
                 rebindOperation = null;
                 RefreshInputString();
                 ui.ShowBoundInputDisplay();
+            }
+            
+            void OverrideDuplicateBinding(InputAction duplicateAction, int duplicateIndex)
+            {
+                //Clear the duplicate binding
+                duplicateAction.Disable();
+                duplicateAction.ApplyBindingOverride(duplicateIndex, "");
+                duplicateAction.Enable();
+                RefreshAllInputBindingReaders();
+            }
+            
+            void RevertBinding()
+            {
+                //Revert the rebind operation
+                action.ApplyBindingOverride(bindingIndex, previousBinding);
+                RefreshInputString();
             }
         }
         

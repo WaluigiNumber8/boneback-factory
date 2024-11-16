@@ -159,6 +159,35 @@ namespace Rogium.Tests.UI.Interactables
             yield return null;
             Assert.That(inputReader2.InputString, Is.EqualTo(""));
         }
+
+        [UnityTest]
+        public IEnumerator Should_RevertBinding_WhenOverrideDenied()
+        {
+            InputBindingReader inputReader2 = BuildInputReader(input.Player.ButtonDash.Action);
+            yield return null;
+            string original = inputReader.InputString;
+            string original2 = inputReader2.InputString;
+            yield return BindKey(keyboard.spaceKey);
+            Object.FindFirstObjectByType<ModalWindow>().OnDeny();
+            yield return null;
+            Assert.That(inputReader.InputString, Is.EqualTo(original));
+            Assert.That(inputReader2.InputString, Is.EqualTo(original2));
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_RevertBinding_WhenOverrideDeniedAfterSuccessfulRebind()
+        {
+            InputBindingReader inputReader2 = BuildInputReader(input.Player.ButtonDash.Action);
+            yield return null;
+            yield return BindKey(keyboard.iKey);
+            string original = inputReader.InputString;
+            string original2 = inputReader2.InputString;
+            yield return BindKey(keyboard.spaceKey);
+            Object.FindFirstObjectByType<ModalWindow>().OnDeny();
+            yield return null;
+            Assert.That(inputReader.InputString, Is.EqualTo(original));
+            Assert.That(inputReader2.InputString, Is.EqualTo(original2));
+        }
         
         private IEnumerator BindKey(KeyControl key)
         {
