@@ -131,11 +131,15 @@ namespace Rogium.UserInterface.Interactables
             foreach (InputBindingReader reader in readers) reader.RefreshInputString();
         }
 
-        private void RefreshInputString() => ui.inputText.text = InputString;
+        private void RefreshInputString()
+        {
+            string inputText = action.bindings[bindingIndex].ToDisplayString();
+            ui.inputText.text = (string.IsNullOrEmpty(inputText)) ? EditorDefaults.Instance.InputEmptyText : inputText;
+        }
 
         public InputAction Action { get => action; }
         public InputBinding Binding { get => action.bindings[bindingIndex]; }
-        public string InputString { get => action.bindings[bindingIndex].ToDisplayString(); }
+        public string InputString { get => ui.inputText.text ; }
         public GameObject BindingDisplay { get => ui.bindingDisplay; }
         public GameObject BoundInputDisplay { get => ui.boundInputDisplay; }
 

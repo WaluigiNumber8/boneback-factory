@@ -207,6 +207,16 @@ namespace Rogium.Tests.UI.Interactables
             yield return BindKey(keyboard.iKey);
             Assert.That(inputReader2.GetComponentInChildren<Button>().interactable, Is.True);
         }
+
+        [UnityTest]
+        public IEnumerator Should_ShowEmptySymbol_WhenNoBindingAssigned()
+        {
+            InputBindingReader inputReader2 = BuildInputReader(input.Player.ButtonDash.Action);
+            yield return null;
+            yield return BindKey(keyboard.spaceKey);
+            Object.FindFirstObjectByType<ModalWindow>().OnAccept();
+            Assert.That(inputReader2.InputString, Is.EqualTo(EditorDefaults.Instance.InputEmptyText));
+        }
         
         private IEnumerator BindKey(KeyControl key)
         {
