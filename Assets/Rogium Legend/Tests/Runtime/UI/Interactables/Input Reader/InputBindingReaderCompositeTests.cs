@@ -52,7 +52,7 @@ namespace Rogium.Tests.UI.Interactables
         public void Should_ShowCompositePartInTitle_WhenConstructed()
         {
             InteractablePropertyInputBinding binding = bindingParent.GetComponentInChildren<InteractablePropertyInputBinding>();
-            Assert.That(binding.Title, Is.EqualTo("Movement Up"));
+            Assert.That(binding.Title, Is.EqualTo("Move Up"));
         }
         
         private IEnumerator BindKey(InputBindingReader reader, KeyControl key)

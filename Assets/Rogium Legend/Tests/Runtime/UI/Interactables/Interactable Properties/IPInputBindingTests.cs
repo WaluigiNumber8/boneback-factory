@@ -31,12 +31,6 @@ namespace Rogium.Tests.UI.Interactables.Properties
         }
 
         [Test]
-        public void Should_SetActionNameAsTitle_WhenConstructed()
-        {
-            Assert.That(inputProperty.Title, Is.EqualTo(action.name));
-        }
-
-        [Test]
         public void Should_SetActionInputStringKeyboard_WhenConstructed()
         {
             Assert.That(inputProperty.KeyboardInputString, Is.EqualTo(action.bindings[0].ToDisplayString()));

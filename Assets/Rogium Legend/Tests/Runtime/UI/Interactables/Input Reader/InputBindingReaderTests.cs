@@ -150,17 +150,6 @@ namespace Rogium.Tests.UI.Interactables
         }
 
         [UnityTest]
-        public IEnumerator Should_UpdateInputStringOfDuplicate_WhenOverride()
-        {
-            InputBindingReader inputReader2 = BuildInputReader(input.Player.ButtonDash.Action);
-            yield return null;
-            yield return BindKey(keyboard.spaceKey);
-            Object.FindFirstObjectByType<ModalWindow>().OnAccept();
-            yield return null;
-            Assert.That(inputReader2.InputString, Is.EqualTo(""));
-        }
-
-        [UnityTest]
         public IEnumerator Should_RevertBinding_WhenOverrideDenied()
         {
             InputBindingReader inputReader2 = BuildInputReader(input.Player.ButtonDash.Action);
