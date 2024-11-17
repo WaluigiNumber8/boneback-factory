@@ -191,6 +191,14 @@ namespace Rogium.Systems.ThemeSystem
             assetEmblemList.UpdateTheme(t.Fonts.general);
         }
         
+        public static void UpdateInputBinding(InteractablePropertyInputBinding inputBinding, ThemeType theme = ThemeType.Current)
+        {
+            UpdateUsedTheme(theme);
+            inputBinding.UpdateTheme(t.Interactables.inputBinding,
+                                     t.Fonts.general,
+                                     t.Fonts.inputted);
+        }
+        
         #endregion
         
         /// <summary>

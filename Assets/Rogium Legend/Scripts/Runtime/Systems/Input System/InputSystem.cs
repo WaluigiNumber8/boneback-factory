@@ -2,6 +2,7 @@
 using RedRats.Core;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 namespace Rogium.Systems.Input
@@ -11,20 +12,26 @@ namespace Rogium.Systems.Input
     /// </summary>
     public class InputSystem : PersistentMonoSingleton<InputSystem>
     {
+        private EventSystem eventSystem;
+        private RogiumInputActions input;
         private InputProfilePlayer inputPlayer;
         private InputProfileUI inputUI;
-        private EventSystem eventSystem;
         
         private Vector2 pointerPosition;
 
         protected override void Awake()
         {
             base.Awake();
-            RogiumInputActions input = new();
-            inputPlayer = new InputProfilePlayer(input);
-            inputUI = new InputProfileUI(input);
+            ClearAllInput();
             SceneManager.sceneLoaded += (_, __) => eventSystem = FindFirstObjectByType<EventSystem>();
             inputUI.PointerPosition.OnPressed += UpdatePointerPosition;
+        }
+
+        public void ClearAllInput()
+        {
+            input = new RogiumInputActions();
+            inputPlayer = new InputProfilePlayer(input);
+            inputUI = new InputProfileUI(input);
         }
 
         /// <summary>
@@ -45,6 +52,21 @@ namespace Rogium.Systems.Input
             inputPlayer.Enable();
         }
         
+        public (InputAction, int) FindDuplicateBinding(InputAction action, int bindingIndex)
+        {
+            InputBinding newBinding = action.bindings[bindingIndex];
+            foreach (InputBinding binding in action.actionMap.bindings)
+            {
+                if (binding.effectivePath.Equals(newBinding.effectivePath) && binding.id != newBinding.id)
+                {
+                    InputAction foundAction = input.FindAction(binding.action);
+                    int foundIndex = foundAction.bindings.IndexOf(b => b.id == binding.id);
+                    return (foundAction, foundIndex);
+                }
+            }
+            return (null, -1);
+        }
+        
         /// <summary>
         /// Disables all input for a specified amount of time.
         /// </summary>
@@ -60,6 +82,16 @@ namespace Rogium.Systems.Input
                 eventSystem.sendNavigationEvents = true;
             }
         }
+
+        public int GetBindingIndexByType(InputAction action, InputDeviceType type)
+        {
+            return type switch
+            {
+                InputDeviceType.Keyboard => action.GetBindingIndex(KeyboardSchemeGroup),
+                InputDeviceType.Gamepad => action.GetBindingIndex(GamepadSchemeGroup),
+                _ => throw new System.ArgumentOutOfRangeException(nameof(type), type, null)
+            };
+        }
         
         /// <summary>
         /// Disables all Action Maps except UI.
@@ -74,5 +106,7 @@ namespace Rogium.Systems.Input
         public Vector2 PointerPosition { get => pointerPosition; }
         public InputProfilePlayer Player { get => inputPlayer; }
         public InputProfileUI UI { get => inputUI; }
+        public string KeyboardSchemeGroup { get => input.KeyboardMouseScheme.bindingGroup; }
+        public string GamepadSchemeGroup { get => input.GamepadScheme.bindingGroup; }
     }
 }

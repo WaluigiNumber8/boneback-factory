@@ -85,7 +85,7 @@ namespace RedRats.UI.Tabs
         /// Get all pages from tab group as an array of GameObjects.
         /// </summary>
         /// <returns>An array of pages.</returns>
-        public GameObject[] GetButtonsAsArray() => pageButtons.Select(button => button.Page).ToArray();
+        public GameObject[] GetPagesAsArray() => pageButtons.Select(button => button.Page).ToArray();
 
         [Serializable]
         protected struct ButtonVisualInfo

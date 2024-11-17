@@ -25,6 +25,8 @@ namespace Rogium.Editors.Core.Defaults
         [SerializeField, Required, FoldoutGroup("General")] private Color defaultColor = Color.white;
         [SerializeField, Required, FoldoutGroup("General")] private string author = "NO_AUTHOR";
         [SerializeField, Required, FoldoutGroup("General")] private string authorGame = "Game";
+        [SerializeField, Required, FoldoutGroup("General"), Range(0.1f, 16f)] private float inputTimeout = 5f;
+        [SerializeField, Required, FoldoutGroup("General")] private string inputEmptyText = "-";
         
         [SerializeField, Required, FoldoutGroup("Packs")] private string packTitle = "New Pack";
         [SerializeField, Required, FoldoutGroup("Packs"), PreviewField] private Sprite packIcon;
@@ -128,6 +130,8 @@ namespace Rogium.Editors.Core.Defaults
         
         [SerializeField, Required, FoldoutGroup("Sounds"), MinValue(0f)] private float soundPitchOffset = 0.05f;
         
+        public float InputTimeout { get => inputTimeout; }
+        public string InputEmptyText { get => inputEmptyText; }
         public string PackTitle { get => packTitle; }
         public string PackDescription { get => packDescription; }
         public string CampaignTitle { get => campaignTitle; }

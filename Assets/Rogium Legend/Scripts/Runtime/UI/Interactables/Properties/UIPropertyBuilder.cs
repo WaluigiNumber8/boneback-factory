@@ -4,10 +4,13 @@ using RedRats.Core;
 using RedRats.Systems.Themes;
 using Rogium.Core;
 using Rogium.Editors.Core;
+using Rogium.Systems.Input;
 using Rogium.Systems.ThemeSystem;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using InputSystem = Rogium.Systems.Input.InputSystem;
 
 namespace Rogium.UserInterface.Interactables.Properties
 {
@@ -28,6 +31,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         [SerializeField] private InteractablePropertySoundField soundFieldProperty;
         [SerializeField] private InteractablePropertyColorField colorFieldProperty;
         [SerializeField] private InteractablePropertyAssetEmblemList assetEmblemListProperty;
+        [SerializeField] private InteractablePropertyInputBinding inputBindingProperty;
         
         [Title("Other properties")]
         [SerializeField] private ContentBlockInfo contentBlocks;
@@ -264,6 +268,33 @@ namespace Rogium.UserInterface.Interactables.Properties
             ThemeUpdaterRogium.UpdateAssetEmblemList(assetEmblemList);
         }
         
+        public void BuildInputBinding(InputAction action, InputDeviceType device, Transform parent, bool isDisabled = false)
+        {
+            int bindingIndex = InputSystem.GetInstance().GetBindingIndexByType(action, device);
+            
+            //If action is composite, spawn for each binding
+            if (action.bindings[bindingIndex].isPartOfComposite)
+            {
+                while (bindingIndex < action.bindings.Count && action.bindings[bindingIndex].isPartOfComposite)
+                {
+                    string title = $"{action.name}{action.bindings[bindingIndex].name.Capitalize()}";
+                    ConstructInputBinding(title, action, bindingIndex, parent, isDisabled);
+                    bindingIndex++;
+                }
+                return;
+            }
+            ConstructInputBinding(action.name, action, bindingIndex, parent, isDisabled);
+        }
+
+        private void ConstructInputBinding(string title, InputAction action, int bindingIndex, Transform parent, bool isDisabled)
+        {
+            InteractablePropertyInputBinding inputBinding = Instantiate(inputBindingProperty, parent);
+            inputBinding.name = $"{title} InputBinding";
+            inputBinding.Construct(title, action, bindingIndex);
+            inputBinding.SetDisabled(isDisabled);
+            ThemeUpdaterRogium.UpdateInputBinding(inputBinding);
+        }
+
         #endregion
 
         #region Content Blocks

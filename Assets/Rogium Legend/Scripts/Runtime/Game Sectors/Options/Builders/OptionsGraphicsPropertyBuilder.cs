@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Rogium.Options.Core
 {
     /// <summary>
-    /// Builds the properties of the options menu.
+    /// Builds properties for the Graphics section in the Options Menu.
     /// </summary>
     public class OptionsGraphicsPropertyBuilder : UIPropertyContentBuilderBaseColumn1<GameDataAsset>
     {

@@ -90,6 +90,12 @@ MonoBehaviour:
       pressed: {fileID: -4003167621112270131, guid: b60a823efbc4ee24c96d21c6fd96f1f2, type: 3}
       selected: {fileID: -3542005200973976324, guid: b60a823efbc4ee24c96d21c6fd96f1f2, type: 3}
       disabled: {fileID: -4508515265745168286, guid: b60a823efbc4ee24c96d21c6fd96f1f2, type: 3}
+    inputBinding:
+      normal: {fileID: -1708343385, guid: e8d3b9b8c9acbe947b3cfc63fa130922, type: 3}
+      highlighted: {fileID: 1989829099, guid: e8d3b9b8c9acbe947b3cfc63fa130922, type: 3}
+      pressed: {fileID: 996701531, guid: e8d3b9b8c9acbe947b3cfc63fa130922, type: 3}
+      selected: {fileID: -132434916, guid: e8d3b9b8c9acbe947b3cfc63fa130922, type: 3}
+      disabled: {fileID: -428431321, guid: e8d3b9b8c9acbe947b3cfc63fa130922, type: 3}
   icons:
     play: {fileID: -1987075125, guid: 1abf6ad819805b740841dc5b73ba4957, type: 3}
     stop: {fileID: 850185798, guid: 1abf6ad819805b740841dc5b73ba4957, type: 3}
