@@ -57,10 +57,10 @@ namespace Rogium.Systems.Input
             InputBinding newBinding = action.bindings[bindingIndex];
             foreach (InputBinding binding in action.actionMap.bindings)
             {
-                if (binding.effectivePath.Equals(newBinding.effectivePath) && newBinding.id != binding.id)
+                if (binding.effectivePath.Equals(newBinding.effectivePath) && binding.id != newBinding.id)
                 {
                     InputAction foundAction = input.FindAction(binding.action);
-                    int foundIndex = foundAction.bindings.IndexOf(b => b == binding);
+                    int foundIndex = foundAction.bindings.IndexOf(b => b.id == binding.id);
                     return (foundAction, foundIndex);
                 }
             }
