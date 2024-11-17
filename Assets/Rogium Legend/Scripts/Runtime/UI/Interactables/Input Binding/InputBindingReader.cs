@@ -103,7 +103,11 @@ namespace Rogium.UserInterface.Interactables
             void RevertBinding()
             {
                 //Revert the rebind operation
+                action.Disable();
                 action.ApplyBindingOverride(bindingIndex, previousBinding);
+                action.Enable();
+                OnRebindEndAny?.Invoke(action, bindingIndex);
+                OnRebindEnd?.Invoke();
                 RefreshInputString();
             }
         }
