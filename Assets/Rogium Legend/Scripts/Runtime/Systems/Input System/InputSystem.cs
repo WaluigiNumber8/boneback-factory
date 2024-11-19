@@ -84,22 +84,32 @@ namespace Rogium.Systems.Input
             }
         }
 
-        public int GetBindingIndexByType(InputAction action, InputDeviceType type, bool getSecondary = false)
+        public int GetBindingIndexByDevice(InputAction action, InputDeviceType device, bool getSecondary = false)
         {
-            return type switch
+            return device switch
             {
                 InputDeviceType.Keyboard => GetBindingIndex(new InputBinding(groups: KeyboardSchemeGroup, path: default)),
                 InputDeviceType.Gamepad => action.GetBindingIndex(new InputBinding(groups: GamepadSchemeGroup, path: default)),
-                _ => throw new System.ArgumentOutOfRangeException(nameof(type), type, null)
+                _ => throw new System.ArgumentOutOfRangeException(nameof(device), device, null)
             };
 
             int GetBindingIndex(InputBinding group)
             {
                 ReadOnlyArray<InputBinding> bindings = action.bindings;
+                bool waitForComposite = false;
                 for (int i = 0; i < bindings.Count; ++i)
                 {
-                    if (!group.Matches(bindings[i])) continue;
-                    if (getSecondary) { getSecondary = false; continue; }
+                    InputBinding b = bindings[i];
+                    if (b.isComposite) waitForComposite = false;
+                    if (!group.Matches(b)) continue;
+                    if (waitForComposite) continue;
+
+                    if (getSecondary)
+                    {
+                        getSecondary = false;
+                        if (b.isPartOfComposite) waitForComposite = true;
+                        continue;
+                    }
                     return i;
                 }
                 return -1;

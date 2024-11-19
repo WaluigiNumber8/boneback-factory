@@ -5,7 +5,9 @@ using Rogium.Editors.Core.Defaults;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables;
 using Rogium.UserInterface.Interactables.Properties;
+using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.TestTools;
 using UnityEngine.UI;
 using static Rogium.Tests.UI.Interactables.Properties.InteractablesCreator;
 using InputSystem = Rogium.Systems.Input.InputSystem;
@@ -80,6 +82,14 @@ namespace Rogium.Tests.UI.Interactables.Properties
         public void Should_AddSpacesToTitle_WhenConstructed()
         {
             Assert.That(inputProperty.Title, Is.EqualTo("Main Alt"));
+        }
+
+        [Test]
+        public void Should_CreateAlternativeComposite_WhenConstructedAndAltIsUsed()
+        {
+            inputProperty = BuildInputBinding(input.Player.Movement.Action);
+            InputBindingReader[] readers = Object.FindObjectsByType<InteractablePropertyInputBinding>(FindObjectsSortMode.InstanceID)[1].GetComponentsInChildren<InputBindingReader>(true);
+            Assert.That(readers[1].InputString, Is.EqualTo(input.Player.Movement.Action.bindings[8].ToDisplayString()));
         }
     }
 }
