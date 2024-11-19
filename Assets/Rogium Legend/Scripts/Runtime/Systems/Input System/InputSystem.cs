@@ -103,7 +103,6 @@ namespace Rogium.Systems.Input
                     if (b.isComposite) waitForComposite = false;
                     if (!group.Matches(b)) continue;
                     if (waitForComposite) continue;
-
                     if (getSecondary)
                     {
                         getSecondary = false;

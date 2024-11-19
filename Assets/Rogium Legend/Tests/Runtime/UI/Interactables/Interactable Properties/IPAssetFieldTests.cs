@@ -8,7 +8,6 @@ using Rogium.Tests.Editors;
 using Rogium.UserInterface.Interactables;
 using Rogium.UserInterface.Interactables.Properties;
 using Rogium.UserInterface.ModalWindows;
-using UnityEngine.EventSystems;
 using UnityEngine.TestTools;
 using static Rogium.Tests.UI.Interactables.Properties.InteractablesCreator;
 using static Rogium.Tests.UI.Interactables.Properties.InteractableUtils;
@@ -42,7 +41,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
         [Test]
         public void OnPointerClick_Should_OpenAssetPickerMenu()
         {
-            assetField.GetComponentInChildren<AssetField>().OnPointerClick(new PointerEventData(EventSystem.current));
+            assetField.GetComponentInChildren<AssetField>().OnPointerClick(PointerDataCreator.LeftClick());
             AssetPickerWindow assetPickerWindow = FindFirstAssetPickerWindow();
             
             Assert.That(assetPickerWindow.gameObject.activeSelf, Is.True);
@@ -52,7 +51,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
         public IEnumerator WhenValueChanged_Should_ClearValue_WhenCleared()
         {
             yield return FillAssetField();
-            assetField.GetComponentInChildren<AssetField>().OnPointerClick(new PointerEventData(EventSystem.current) {button = PointerEventData.InputButton.Right});
+            assetField.GetComponentInChildren<AssetField>().OnPointerClick(PointerDataCreator.RightClick());
             
             Assert.That(assetField.PropertyValue, Is.EqualTo(new EmptyAsset()));
         }
@@ -81,7 +80,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
         {
             yield return FillAssetField();
             ActionHistorySystem.ForceEndGrouping();
-            assetField.GetComponentInChildren<AssetField>().OnPointerClick(new PointerEventData(EventSystem.current) {button = PointerEventData.InputButton.Right});
+            assetField.GetComponentInChildren<AssetField>().OnPointerClick(PointerDataCreator.RightClick());
             ActionHistorySystem.ForceEndGrouping();
             
             Assert.That(ActionHistorySystem.UndoCount, Is.EqualTo(2));
@@ -92,7 +91,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
         /// </summary>
         private IEnumerator FillAssetField()
         {
-            assetField.GetComponentInChildren<AssetField>().OnPointerClick(new PointerEventData(EventSystem.current));
+            assetField.GetComponentInChildren<AssetField>().OnPointerClick(PointerDataCreator.LeftClick());
             AssetPickerWindow assetPickerWindow = FindFirstAssetPickerWindow();
             yield return null;
             assetPickerWindow.ConfirmSelection();
