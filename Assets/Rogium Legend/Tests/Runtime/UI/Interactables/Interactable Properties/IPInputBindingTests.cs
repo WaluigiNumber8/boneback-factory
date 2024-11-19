@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using NUnit.Framework;
 using RedRats.Systems.Themes;
+using Rogium.Editors.Core.Defaults;
 using Rogium.Tests.Core;
+using Rogium.UserInterface.Interactables;
 using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -31,9 +33,29 @@ namespace Rogium.Tests.UI.Interactables.Properties
         }
 
         [Test]
-        public void Should_SetActionInputStringKeyboard_WhenConstructed()
+        public void Should_SetActionInputString_WhenConstructed()
         {
-            Assert.That(inputProperty.KeyboardInputString, Is.EqualTo(action.bindings[0].ToDisplayString()));
+            Assert.That(inputProperty.InputString, Is.EqualTo(action.bindings[0].ToDisplayString()));
+        }
+
+        [Test]
+        public void Should_SetActionInputStringAlt_WhenConstructed()
+        {
+            Assert.That(inputProperty.InputStringAlt, Is.EqualTo(action.bindings[1].ToDisplayString()));
+        }
+
+        [Test]
+        public void Should_SetActionInputStringAltAsEmpty_WhenConstructedAndAltNotUsed()
+        {
+            inputProperty = BuildInputBinding(action, false);
+            Assert.That(inputProperty.InputStringAlt, Is.Empty);
+        }
+
+        [Test]
+        public void Should_SetInputReaderAltAsInactive_WhenConstructedAndAltNotUsed()
+        {
+            inputProperty = BuildInputBinding(action, false);
+            Assert.That(!inputProperty.GetComponentsInChildren<InputBindingReader>(true)[1].gameObject.activeSelf, Is.True);
         }
         
         [Test]

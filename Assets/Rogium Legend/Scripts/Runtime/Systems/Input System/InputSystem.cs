@@ -3,6 +3,7 @@ using RedRats.Core;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
 using UnityEngine.SceneManagement;
 
 namespace Rogium.Systems.Input
@@ -83,14 +84,26 @@ namespace Rogium.Systems.Input
             }
         }
 
-        public int GetBindingIndexByType(InputAction action, InputDeviceType type)
+        public int GetBindingIndexByType(InputAction action, InputDeviceType type, bool getSecondary = false)
         {
             return type switch
             {
-                InputDeviceType.Keyboard => action.GetBindingIndex(KeyboardSchemeGroup),
-                InputDeviceType.Gamepad => action.GetBindingIndex(GamepadSchemeGroup),
+                InputDeviceType.Keyboard => GetBindingIndex(new InputBinding(groups: KeyboardSchemeGroup, path: default)),
+                InputDeviceType.Gamepad => action.GetBindingIndex(new InputBinding(groups: GamepadSchemeGroup, path: default)),
                 _ => throw new System.ArgumentOutOfRangeException(nameof(type), type, null)
             };
+
+            int GetBindingIndex(InputBinding group)
+            {
+                ReadOnlyArray<InputBinding> bindings = action.bindings;
+                for (int i = 0; i < bindings.Count; ++i)
+                {
+                    if (!group.Matches(bindings[i])) continue;
+                    if (getSecondary) { getSecondary = false; continue; }
+                    return i;
+                }
+                return -1;
+            }
         }
         
         /// <summary>

@@ -267,10 +267,19 @@ namespace Rogium.UserInterface.Interactables.Properties
             assetEmblemList.Construct(title, values);
             ThemeUpdaterRogium.UpdateAssetEmblemList(assetEmblemList);
         }
-        
-        public void BuildInputBinding(InputAction action, InputDeviceType device, Transform parent, bool isDisabled = false)
+
+        /// <summary>
+        /// Builds the Input Binding property.
+        /// </summary>
+        /// <param name="action">The input action the binding is assigned to.</param>
+        /// <param name="device">To which device is the property limited to.</param>
+        /// <param name="parent">The parent under which to instantiate the property.</param>
+        /// <param name="useAlt">The action can have an alternative input.</param>
+        /// <param name="isDisabled">Initialize the property as a non-interactable</param>
+        public void BuildInputBinding(InputAction action, InputDeviceType device, Transform parent, bool useAlt = true, bool isDisabled = false)
         {
             int bindingIndex = InputSystem.GetInstance().GetBindingIndexByType(action, device);
+            int bindingIndexAlt = useAlt ? InputSystem.GetInstance().GetBindingIndexByType(action, device, true) : -1;
             
             //If action is composite, spawn for each binding
             if (action.bindings[bindingIndex].isPartOfComposite)
@@ -278,21 +287,21 @@ namespace Rogium.UserInterface.Interactables.Properties
                 while (bindingIndex < action.bindings.Count && action.bindings[bindingIndex].isPartOfComposite)
                 {
                     string title = $"{action.name}{action.bindings[bindingIndex].name.Capitalize()}";
-                    ConstructInputBinding(title, action, bindingIndex, parent, isDisabled);
+                    ConstructInputBinding(title);
                     bindingIndex++;
                 }
                 return;
             }
-            ConstructInputBinding(action.name, action, bindingIndex, parent, isDisabled);
-        }
-
-        private void ConstructInputBinding(string title, InputAction action, int bindingIndex, Transform parent, bool isDisabled)
-        {
-            InteractablePropertyInputBinding inputBinding = Instantiate(inputBindingProperty, parent);
-            inputBinding.name = $"{title} InputBinding";
-            inputBinding.Construct(title, action, bindingIndex);
-            inputBinding.SetDisabled(isDisabled);
-            ThemeUpdaterRogium.UpdateInputBinding(inputBinding);
+            ConstructInputBinding(action.name);
+            
+            void ConstructInputBinding(string title)
+            {
+                InteractablePropertyInputBinding inputBinding = Instantiate(inputBindingProperty, parent);
+                inputBinding.name = $"{title} InputBinding";
+                inputBinding.Construct(title, action, bindingIndex, bindingIndexAlt);
+                inputBinding.SetDisabled(isDisabled);
+                ThemeUpdaterRogium.UpdateInputBinding(inputBinding);
+            }
         }
 
         #endregion
