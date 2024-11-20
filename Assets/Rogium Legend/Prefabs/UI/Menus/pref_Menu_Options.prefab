@@ -221,6 +221,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5331408327903989925}
   - component: {fileID: 6100824103922559840}
+  - component: {fileID: 7517499434901188411}
   m_Layer: 5
   m_Name: Input Tab
   m_TagString: Untagged
@@ -276,6 +277,21 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &7517499434901188411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173643875086307901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 217b4db528cc4a5290cea0aae0ea4e6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollViews:
+  - {fileID: 6241912323990985039}
+  - {fileID: 5672569028481182389}
 --- !u!1 &220312436376399235
 GameObject:
   m_ObjectHideFlags: 0
