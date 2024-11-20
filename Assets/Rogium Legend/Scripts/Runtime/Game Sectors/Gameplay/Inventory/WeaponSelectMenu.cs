@@ -82,11 +82,11 @@ namespace Rogium.Gameplay.Inventory
             Hide();
         }
         
-        public void RefreshSlotIcons(Sprite main, Sprite sub, Sprite mainAlt, Sprite subAlt, Sprite dash, Sprite dashAlt)
+        public void RefreshSlotIcons(Sprite main, Sprite mainAlt, Sprite sub, Sprite subAlt, Sprite dash, Sprite dashAlt)
         {
             UpdateIconImage(ui.slotIcons.mainIconImage, main);
-            UpdateIconImage(ui.slotIcons.subIconImage, sub);
             UpdateIconImage(ui.slotIcons.mainAltIconImage, mainAlt);
+            UpdateIconImage(ui.slotIcons.subIconImage, sub);
             UpdateIconImage(ui.slotIcons.subAltIconImage, subAlt);
             UpdateIconImage(ui.slotIcons.dashIconImage, dash);
             UpdateIconImage(ui.slotIcons.dashAltIconImage, dashAlt);
