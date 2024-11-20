@@ -15,7 +15,8 @@ namespace Rogium.Options.Core
         
         [SerializeField, FoldoutGroup("Columns")] private Transform audioColumn;
         [SerializeField, FoldoutGroup("Columns")] private Transform graphicsColumn;
-        [SerializeField, FoldoutGroup("Columns")] private Transform inputColumn;
+        [SerializeField, FoldoutGroup("Columns")] private Transform inputKeyboardColumn;
+        [SerializeField, FoldoutGroup("Columns")] private Transform inputGamepadColumn;
         
         private OptionsAudioPropertyBuilder audioPropertyBuilder;
         private OptionsGraphicsPropertyBuilder graphicsPropertyBuilder;
@@ -29,7 +30,7 @@ namespace Rogium.Options.Core
             editor = OptionsMenuOverseer.Instance;
             audioPropertyBuilder = new OptionsAudioPropertyBuilder(audioColumn, audioOptions);
             graphicsPropertyBuilder = new OptionsGraphicsPropertyBuilder(graphicsColumn, graphicsOptions);
-            inputPropertyBuilder = new OptionsInputPropertyBuilder(inputColumn);
+            inputPropertyBuilder = new OptionsInputPropertyBuilder(inputKeyboardColumn, inputGamepadColumn);
         }
 
         private void OnEnable()
