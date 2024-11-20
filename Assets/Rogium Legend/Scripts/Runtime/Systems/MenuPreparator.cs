@@ -21,10 +21,10 @@ namespace Rogium.Core
             inputSystem.EnableUIMap();
             
             //Force grouping on click/right click
-            inputSystem.UI.Click.OnPress += ActionHistorySystem.ForceBeginGrouping;
-            inputSystem.UI.ClickAlternative.OnPress += ActionHistorySystem.ForceBeginGrouping;
-            inputSystem.UI.Click.OnRelease += ActionHistorySystem.ForceEndGrouping;
-            inputSystem.UI.ClickAlternative.OnRelease += ActionHistorySystem.ForceEndGrouping;
+            inputSystem.UI.Select.OnPress += ActionHistorySystem.ForceBeginGrouping;
+            inputSystem.UI.ContextSelect.OnPress += ActionHistorySystem.ForceBeginGrouping;
+            inputSystem.UI.Select.OnRelease += ActionHistorySystem.ForceEndGrouping;
+            inputSystem.UI.ContextSelect.OnRelease += ActionHistorySystem.ForceEndGrouping;
         }
 
     }

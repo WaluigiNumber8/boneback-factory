@@ -26,9 +26,12 @@ namespace Rogium.Options.Core
 
         private void BuildFor(InputDeviceType device, Transform parent)
         {
+            //TODO: Enable input bindings when implemented
             b.BuildHeader("UI", parent);
-            b.BuildInputBinding(input.UI.Click.Action, device, parent);
-            b.BuildInputBinding(input.UI.ClickAlternative.Action, device, parent);
+            b.BuildInputBinding(input.UI.Select.Action, device, parent);
+            // b.BuildInputBinding(input.UI.Cancel.Action, device, parent);
+            b.BuildInputBinding(input.UI.ContextSelect.Action, device, parent);
+            // b.BuildInputBinding(input.UI.ShowTooltip.Action, device, parent);
 
             b.BuildHeader("Player", parent);
             b.BuildInputBinding(input.Player.Movement.Action, device, parent);
@@ -38,6 +41,7 @@ namespace Rogium.Options.Core
             b.BuildInputBinding(input.Player.ButtonSubAlt.Action, device, parent);
             b.BuildInputBinding(input.Player.ButtonDash.Action, device, parent);
             b.BuildInputBinding(input.Player.ButtonDashAlt.Action, device, parent);
+            b.BuildInputBinding(input.Player.ButtonStart.Action, device, parent);
         }
     }
 }
