@@ -207,6 +207,14 @@ namespace Rogium.Tests.UI.Interactables
             Assert.That(inputReader2.InputString, Is.EqualTo(EditorDefaults.Instance.InputEmptyText));
         }
         
+        [UnityTest]
+        public IEnumerator Should_ClearBinding_WhenCleared()
+        {
+            inputReader.OnPointerClick(PointerDataCreator.RightClick());
+            yield return null;
+            Assert.That(inputReader.InputString, Is.EqualTo(EditorDefaults.Instance.InputEmptyText));
+        }
+        
         private IEnumerator BindKey(KeyControl key)
         {
             inputReader.StartRebinding();

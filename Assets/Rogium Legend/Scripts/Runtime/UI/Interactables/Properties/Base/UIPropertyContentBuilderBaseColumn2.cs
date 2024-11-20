@@ -8,7 +8,7 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// <summary>
     /// A base for all Property Builders working with a 2-column setup.
     /// </summary>
-    public abstract class UIPropertyContentBuilderBaseColumn2<T> : UIPropertyContentBuilderBase<T> where T : IAsset
+    public abstract class UIPropertyContentBuilderBaseColumn2<T> : UIPropertyContentBuilderBase<T> where T : IIDHolder
     {
         protected readonly Transform contentSecond;
         

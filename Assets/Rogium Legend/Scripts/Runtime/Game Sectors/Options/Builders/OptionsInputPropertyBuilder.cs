@@ -7,28 +7,41 @@ namespace Rogium.Options.Core
     /// <summary>
     /// Builds properties for the Input section in the Options Menu.
     /// </summary>
-    public class OptionsInputPropertyBuilder : UIPropertyContentBuilderBaseColumn1<GameDataAsset>
+    public class OptionsInputPropertyBuilder : UIPropertyContentBuilderBaseColumn2<GameDataAsset>
     {
         private readonly InputSystem input;
 
-        public OptionsInputPropertyBuilder(Transform contentMain) : base(contentMain) => input = InputSystem.GetInstance();
+        public OptionsInputPropertyBuilder(Transform contentMain, Transform contentSecond) : base(contentMain, contentSecond)
+        {
+            input = InputSystem.GetInstance();
+        }
 
         public override void Build(GameDataAsset data)
         {
             Clear();
             
-            b.BuildHeader("UI", contentMain);
-            b.BuildInputBinding(input.UI.Click.Action, InputDeviceType.Keyboard, contentMain);
-            b.BuildInputBinding(input.UI.ClickAlternative.Action, InputDeviceType.Keyboard, contentMain);
-            
-            b.BuildHeader("Player", contentMain);
-            b.BuildInputBinding(input.Player.Movement.Action, InputDeviceType.Keyboard, contentMain);
-            b.BuildInputBinding(input.Player.ButtonMain.Action, InputDeviceType.Keyboard, contentMain);
-            b.BuildInputBinding(input.Player.ButtonMainAlt.Action, InputDeviceType.Keyboard, contentMain);
-            b.BuildInputBinding(input.Player.ButtonSub.Action, InputDeviceType.Keyboard, contentMain);
-            b.BuildInputBinding(input.Player.ButtonSubAlt.Action, InputDeviceType.Keyboard, contentMain);
-            b.BuildInputBinding(input.Player.ButtonDash.Action, InputDeviceType.Keyboard, contentMain);
-            b.BuildInputBinding(input.Player.ButtonDashAlt.Action, InputDeviceType.Keyboard, contentMain);
+            BuildFor(InputDeviceType.Keyboard, contentMain);
+            BuildFor(InputDeviceType.Gamepad, contentSecond);
+        }
+
+        private void BuildFor(InputDeviceType device, Transform parent)
+        {
+            //TODO: Enable input bindings when implemented
+            b.BuildHeader("UI", parent);
+            b.BuildInputBinding(input.UI.Select.Action, device, parent);
+            // b.BuildInputBinding(input.UI.Cancel.Action, device, parent);
+            b.BuildInputBinding(input.UI.ContextSelect.Action, device, parent);
+            // b.BuildInputBinding(input.UI.ShowTooltip.Action, device, parent);
+
+            b.BuildHeader("Player", parent);
+            b.BuildInputBinding(input.Player.Movement.Action, device, parent);
+            b.BuildInputBinding(input.Player.ButtonMain.Action, device, parent);
+            b.BuildInputBinding(input.Player.ButtonMainAlt.Action, device, parent);
+            b.BuildInputBinding(input.Player.ButtonSub.Action, device, parent);
+            b.BuildInputBinding(input.Player.ButtonSubAlt.Action, device, parent);
+            b.BuildInputBinding(input.Player.ButtonDash.Action, device, parent);
+            b.BuildInputBinding(input.Player.ButtonDashAlt.Action, device, parent);
+            b.BuildInputBinding(input.Pause.Pause.Action, device, parent);
         }
     }
 }

@@ -16,8 +16,6 @@ namespace Rogium.Systems.Input
         private readonly InputButton buttonMainAlt;
         private readonly InputButton buttonSubAlt;
         private readonly InputButton buttonDashAlt;
-        
-        private readonly InputButton buttonStart;
 
         public InputProfilePlayer(RogiumInputActions input) : base(input)
         {
@@ -29,7 +27,6 @@ namespace Rogium.Systems.Input
             buttonMainAlt = new InputButton(map.MainAlt);
             buttonSubAlt = new InputButton(map.SubAlt);
             buttonDashAlt = new InputButton(map.DashAlt);
-            buttonStart = new InputButton(map.Pause);
         }
         
         protected override void WhenEnabled()
@@ -43,7 +40,6 @@ namespace Rogium.Systems.Input
             buttonMainAlt.Enable();
             buttonSubAlt.Enable();
             buttonDashAlt.Enable();
-            buttonStart.Enable();
         }
 
         protected override void WhenDisabled()
@@ -55,7 +51,6 @@ namespace Rogium.Systems.Input
             buttonMainAlt.Disable();
             buttonSubAlt.Disable();
             buttonDashAlt.Disable();
-            buttonStart.Disable();
             
             map.Disable();
         }
@@ -68,6 +63,5 @@ namespace Rogium.Systems.Input
         public InputButton ButtonSubAlt { get => buttonSubAlt; }
         public InputButton ButtonDashAlt { get => buttonDashAlt; }
         
-        public InputButton ButtonStart { get => buttonStart; }
     }
 }

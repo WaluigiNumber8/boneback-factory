@@ -3,6 +3,7 @@ using RedRats.Core;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
 using UnityEngine.SceneManagement;
 
 namespace Rogium.Systems.Input
@@ -16,6 +17,7 @@ namespace Rogium.Systems.Input
         private RogiumInputActions input;
         private InputProfilePlayer inputPlayer;
         private InputProfileUI inputUI;
+        private InputProfilePause inputPause;
         
         private Vector2 pointerPosition;
 
@@ -25,6 +27,7 @@ namespace Rogium.Systems.Input
             ClearAllInput();
             SceneManager.sceneLoaded += (_, __) => eventSystem = FindFirstObjectByType<EventSystem>();
             inputUI.PointerPosition.OnPressed += UpdatePointerPosition;
+            EnablePauseMap();
         }
 
         public void ClearAllInput()
@@ -32,6 +35,7 @@ namespace Rogium.Systems.Input
             input = new RogiumInputActions();
             inputPlayer = new InputProfilePlayer(input);
             inputUI = new InputProfileUI(input);
+            inputPause = new InputProfilePause(input);
         }
 
         /// <summary>
@@ -50,6 +54,12 @@ namespace Rogium.Systems.Input
         {
             DisableAll();
             inputPlayer.Enable();
+        }
+        
+        public void EnablePauseMap()
+        {
+            DisableAll();
+            inputPause.Enable();
         }
         
         public (InputAction, int) FindDuplicateBinding(InputAction action, int bindingIndex)
@@ -83,14 +93,35 @@ namespace Rogium.Systems.Input
             }
         }
 
-        public int GetBindingIndexByType(InputAction action, InputDeviceType type)
+        public int GetBindingIndexByDevice(InputAction action, InputDeviceType device, bool getSecondary = false)
         {
-            return type switch
+            return device switch
             {
-                InputDeviceType.Keyboard => action.GetBindingIndex(KeyboardSchemeGroup),
-                InputDeviceType.Gamepad => action.GetBindingIndex(GamepadSchemeGroup),
-                _ => throw new System.ArgumentOutOfRangeException(nameof(type), type, null)
+                InputDeviceType.Keyboard => GetBindingIndex(new InputBinding(groups: KeyboardSchemeGroup, path: default)),
+                InputDeviceType.Gamepad => GetBindingIndex(new InputBinding(groups: GamepadSchemeGroup, path: default)),
+                _ => throw new System.ArgumentOutOfRangeException(nameof(device), device, null)
             };
+
+            int GetBindingIndex(InputBinding group)
+            {
+                ReadOnlyArray<InputBinding> bindings = action.bindings;
+                bool waitForComposite = false;
+                for (int i = 0; i < bindings.Count; ++i)
+                {
+                    InputBinding b = bindings[i];
+                    if (b.isComposite) waitForComposite = false;
+                    if (!group.Matches(b)) continue;
+                    if (waitForComposite) continue;
+                    if (getSecondary)
+                    {
+                        getSecondary = false;
+                        if (b.isPartOfComposite) waitForComposite = true;
+                        continue;
+                    }
+                    return i;
+                }
+                return -1;
+            }
         }
         
         /// <summary>
@@ -106,6 +137,7 @@ namespace Rogium.Systems.Input
         public Vector2 PointerPosition { get => pointerPosition; }
         public InputProfilePlayer Player { get => inputPlayer; }
         public InputProfileUI UI { get => inputUI; }
+        public InputProfilePause Pause { get => inputPause; }
         public string KeyboardSchemeGroup { get => input.KeyboardMouseScheme.bindingGroup; }
         public string GamepadSchemeGroup { get => input.GamepadScheme.bindingGroup; }
     }

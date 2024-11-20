@@ -13,31 +13,39 @@ namespace Rogium.UserInterface.Interactables.Properties
     public class InteractablePropertyInputBinding : InteractablePropertyBase<InputAction>
     {
         [SerializeField] private InputBindingReader inputReader;
+        [SerializeField] private InputBindingReader inputReaderAlt;
         
         private InputAction action;
         
-        public void Construct(string title, InputAction action, int bindingIndex)
+        public void Construct(string title, InputAction action, int bindingIndex, int bindingIndexAlt = -1)
         {
+            this.action = action;
             title = Regex.Replace(title, "([A-Z])", " $1").Trim();
             ConstructTitle(title);
+            
             inputReader.Construct(action, bindingIndex);
-            this.action = action;
+            inputReaderAlt.gameObject.SetActive(bindingIndexAlt != -1);
+            if (bindingIndexAlt != -1) inputReaderAlt.Construct(action, bindingIndexAlt);
         }
         
         public override void SetDisabled(bool isDisabled)
         {
             inputReader.SetActive(!isDisabled);
+            inputReaderAlt.SetActive(!isDisabled);
         }
 
         public void UpdateTheme(InteractableSpriteInfo inputButtonSet, FontInfo titleFont, FontInfo inputFont)
         {
             UIExtensions.ChangeInteractableSprites(inputReader.GetComponentInChildren<Button>(), inputButtonSet);
+            UIExtensions.ChangeInteractableSprites(inputReaderAlt.GetComponentInChildren<Button>(), inputButtonSet);
             UIExtensions.ChangeFont(inputReader.GetComponentInChildren<TextMeshProUGUI>(), inputFont);
+            UIExtensions.ChangeFont(inputReaderAlt.GetComponentInChildren<TextMeshProUGUI>(), inputFont);
             UIExtensions.ChangeFont(title, titleFont);
         }
         
         public override InputAction PropertyValue { get => inputReader.Action; }
 
-        public string KeyboardInputString { get => inputReader.InputString; }
+        public string InputString { get => inputReader.InputString; }
+        public string InputStringAlt { get => inputReaderAlt.InputString; }
     }
 }

@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using NUnit.Framework;
 using RedRats.Systems.Themes;
+using Rogium.Editors.Core.Defaults;
+using Rogium.Systems.Input;
 using Rogium.Tests.Core;
+using Rogium.UserInterface.Interactables;
 using Rogium.UserInterface.Interactables.Properties;
+using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.TestTools;
 using UnityEngine.UI;
 using static Rogium.Tests.UI.Interactables.Properties.InteractablesCreator;
 using InputSystem = Rogium.Systems.Input.InputSystem;
@@ -31,9 +36,37 @@ namespace Rogium.Tests.UI.Interactables.Properties
         }
 
         [Test]
-        public void Should_SetActionInputStringKeyboard_WhenConstructed()
+        public void Should_SetActionInputString_WhenConstructed()
         {
-            Assert.That(inputProperty.KeyboardInputString, Is.EqualTo(action.bindings[0].ToDisplayString()));
+            Assert.That(inputProperty.InputString, Is.EqualTo(action.bindings[0].ToDisplayString()));
+        }
+
+        [Test]
+        public void Should_SetActionInputStringAlt_WhenConstructed()
+        {
+            Assert.That(inputProperty.InputStringAlt, Is.EqualTo(action.bindings[1].ToDisplayString()));
+        }
+        
+        [Test]
+        public void Should_SetActionInputStringGamepadAlt_WhenConstructed()
+        {
+            inputProperty = BuildInputBinding(input.Player.ButtonMain.Action, true, InputDeviceType.Gamepad);
+            string inputString = (inputProperty.InputStringAlt == EditorDefaults.Instance.InputEmptyText) ? string.Empty : inputProperty.InputStringAlt;
+            Assert.That(inputString, Is.EqualTo(action.bindings[3].ToDisplayString()));
+        }
+
+        [Test]
+        public void Should_SetActionInputStringAltAsEmpty_WhenConstructedAndAltNotUsed()
+        {
+            inputProperty = BuildInputBinding(action, false);
+            Assert.That(inputProperty.InputStringAlt, Is.Empty);
+        }
+
+        [Test]
+        public void Should_SetInputReaderAltAsInactive_WhenConstructedAndAltNotUsed()
+        {
+            inputProperty = BuildInputBinding(action, false);
+            Assert.That(!inputProperty.GetComponentsInChildren<InputBindingReader>(true)[1].gameObject.activeSelf, Is.True);
         }
         
         [Test]
@@ -58,6 +91,14 @@ namespace Rogium.Tests.UI.Interactables.Properties
         public void Should_AddSpacesToTitle_WhenConstructed()
         {
             Assert.That(inputProperty.Title, Is.EqualTo("Main Alt"));
+        }
+
+        [Test]
+        public void Should_CreateAlternativeComposite_WhenConstructedAndAltIsUsed()
+        {
+            inputProperty = BuildInputBinding(input.Player.Movement.Action);
+            InputBindingReader[] readers = Object.FindObjectsByType<InteractablePropertyInputBinding>(FindObjectsSortMode.InstanceID)[1].GetComponentsInChildren<InputBindingReader>(true);
+            Assert.That(readers[1].InputString, Is.EqualTo(input.Player.Movement.Action.bindings[8].ToDisplayString()));
         }
     }
 }

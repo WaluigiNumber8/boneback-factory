@@ -5,6 +5,7 @@ using Rogium.Editors.Core.Defaults;
 using Rogium.UserInterface.ModalWindows;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using InputSystem = Rogium.Systems.Input.InputSystem;
@@ -14,10 +15,11 @@ namespace Rogium.UserInterface.Interactables
     /// <summary>
     /// Reads user inputs from devices and binds them to actions.
     /// </summary>
-    public class InputBindingReader : MonoBehaviour
+    public class InputBindingReader : MonoBehaviour, IPointerClickHandler
     {
         public static event Action<InputAction, int> OnRebindStartAny, OnRebindEndAny;
         public event Action OnRebindStart, OnRebindEnd;
+        public event Action OnClear;
         
         [SerializeField] private UIInfo ui;
         
@@ -48,6 +50,17 @@ namespace Rogium.UserInterface.Interactables
             this.previousBinding = action.bindings[bindingIndex];
             ui.ShowBoundInputDisplay();
             RefreshInputString();
+        }
+        
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            if (!ui.button.interactable) return;
+            if (eventData.button != PointerEventData.InputButton.Right) return;
+            action.Disable();
+            action.ApplyBindingOverride(bindingIndex, "");
+            action.Enable();
+            RefreshInputString();
+            OnClear?.Invoke();
         }
         
         /// <summary>
@@ -106,9 +119,9 @@ namespace Rogium.UserInterface.Interactables
                 action.Disable();
                 action.ApplyBindingOverride(bindingIndex, previousBinding);
                 action.Enable();
+                RefreshInputString();
                 OnRebindEndAny?.Invoke(action, bindingIndex);
                 OnRebindEnd?.Invoke();
-                RefreshInputString();
             }
         }
         
@@ -118,25 +131,24 @@ namespace Rogium.UserInterface.Interactables
             if (action == this.action && bindingIndex == this.bindingIndex) return;
             SetActive(true);
         }
-
         private void Deactivate(InputAction action, int bindingIndex)
         {
             if (action == this.action && bindingIndex == this.bindingIndex) return;
             SetActive(false);
         }
         
-        private static void RefreshAllInputBindingReaders()
-        {
-            InputBindingReader[] readers = FindObjectsByType<InputBindingReader>(FindObjectsSortMode.None);
-            foreach (InputBindingReader reader in readers) reader.RefreshInputString();
-        }
-
         private void RefreshInputString()
         {
             string inputText = action.bindings[bindingIndex].ToDisplayString();
             ui.inputText.text = (string.IsNullOrEmpty(inputText)) ? EditorDefaults.Instance.InputEmptyText : inputText;
         }
 
+        private static void RefreshAllInputBindingReaders()
+        {
+            InputBindingReader[] readers = FindObjectsByType<InputBindingReader>(FindObjectsSortMode.None);
+            foreach (InputBindingReader reader in readers) reader.RefreshInputString();
+        }
+        
         public InputAction Action { get => action; }
         public InputBinding Binding { get => action.bindings[bindingIndex]; }
         public string InputString { get => ui.inputText.text ; }
