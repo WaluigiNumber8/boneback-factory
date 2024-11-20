@@ -719,7 +719,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""WASD"",
                     ""id"": ""1f41e964-a0ed-417f-995f-222a00063952"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""2DVector(mode=2)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -774,7 +774,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""UDLR"",
                     ""id"": ""484d7fa6-4611-46d8-8f88-719ff193ddb9"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""2DVector(mode=2)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -884,7 +884,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""DPAD"",
                     ""id"": ""79a8d623-9f11-41b2-b49e-98c87ffbfc52"",
-                    ""path"": ""2DVector(mode=1)"",
+                    ""path"": ""2DVector(mode=2)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
