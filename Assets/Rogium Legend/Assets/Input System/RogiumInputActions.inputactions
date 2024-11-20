@@ -51,15 +51,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Menu",
-                    "type": "Button",
-                    "id": "917fc69a-822e-4fee-9701-7a8bdbf130ba",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "ScrollWheel",
                     "type": "PassThrough",
                     "id": "cb759677-e253-4b8f-9cf9-6446dcd1b999",
@@ -612,50 +603,6 @@
                 },
                 {
                     "name": "",
-                    "id": "89ee995d-180c-40c0-8ffe-4d8b28b2233e",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard + Mouse",
-                    "action": "Menu",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "83333533-0e50-47f9-b61c-621786ab1a63",
-                    "path": "<Keyboard>/backspace",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard + Mouse",
-                    "action": "Menu",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ee037bec-a534-4a61-b3ce-db074bf5534c",
-                    "path": "<Gamepad>/start",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Menu",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "41189365-925e-4fc1-8200-eee29f7f6093",
-                    "path": "<Gamepad>/select",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Menu",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "173bf1d6-43bc-4106-985c-9717362dafb5",
                     "path": "<Mouse>/middleButton",
                     "interactions": "",
@@ -762,15 +709,6 @@
                     "name": "DashAlt",
                     "type": "Button",
                     "id": "1ea652b5-1bb8-43a8-b759-0621642ccba7",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Pause",
-                    "type": "Button",
-                    "id": "78db4df8-8bf2-4faa-8031-90a7f42b80ef",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -1261,10 +1199,27 @@
                     "action": "DashAlt",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
+                }
+            ]
+        },
+        {
+            "name": "PauseGame",
+            "id": "c2b3ec7f-2a93-4860-a485-a6919321b92a",
+            "actions": [
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "2194d314-1747-4bf8-945c-4ff3d3056fef",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
                 {
                     "name": "",
-                    "id": "74c5ef75-f225-4779-9a21-3183bad86219",
+                    "id": "524a28de-dd14-4c30-9c7f-980717c3561a",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
@@ -1275,7 +1230,7 @@
                 },
                 {
                     "name": "",
-                    "id": "a735878a-27ac-4b15-afce-2b2c2b848c75",
+                    "id": "1819859e-8d95-4e34-a236-fd063ce1343f",
                     "path": "<Keyboard>/backspace",
                     "interactions": "",
                     "processors": "",
@@ -1286,7 +1241,7 @@
                 },
                 {
                     "name": "",
-                    "id": "ff1d9433-f9d1-4df3-a8c3-f469938fab41",
+                    "id": "8073d4cb-66da-4ca1-b328-8aa4b8d9b95b",
                     "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
@@ -1297,7 +1252,7 @@
                 },
                 {
                     "name": "",
-                    "id": "37e6349e-efb9-4349-93bb-a136746df2c1",
+                    "id": "f78a2d64-6a27-49e9-b629-0978d7f18c20",
                     "path": "",
                     "interactions": "",
                     "processors": "",

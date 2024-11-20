@@ -1,8 +1,6 @@
 ﻿using RedRats.Core;
-using RedRats.UI.ModalWindows;
 using Rogium.Gameplay.Core;
 using Rogium.Systems.Input;
-using Rogium.UserInterface.ModalWindows;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -27,17 +25,12 @@ namespace Rogium.UserInterface.Gameplay.PauseMenu
         }
 
         private void Start() => SwitchVisibilityStatus(false);
-        private void OnEnable()
-        {
-            inputSystem.Player.ButtonStart.OnPress += SwitchMenuState;
-            inputSystem.UI.Menu.OnPress += SwitchMenuState;
-        }
+        private void OnEnable() => inputSystem.Pause.Pause.OnPress += SwitchMenuState;
 
         private void OnDisable()
         {
             if (inputSystem == null) return;
-            inputSystem.Player.ButtonStart.OnPress -= SwitchMenuState;
-            inputSystem.UI.Menu.OnPress -= SwitchMenuState;
+            inputSystem.Pause.Pause.OnPress -= SwitchMenuState;
         }
 
         public void SwitchVisibilityStatus(bool isVisible) => pauseMenuObject.SetActive(isVisible);

@@ -75,15 +75,6 @@ namespace Rogium.Systems.Input
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Menu"",
-                    ""type"": ""Button"",
-                    ""id"": ""917fc69a-822e-4fee-9701-7a8bdbf130ba"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""ScrollWheel"",
                     ""type"": ""PassThrough"",
                     ""id"": ""cb759677-e253-4b8f-9cf9-6446dcd1b999"",
@@ -636,50 +627,6 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": """",
-                    ""id"": ""89ee995d-180c-40c0-8ffe-4d8b28b2233e"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""Menu"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""83333533-0e50-47f9-b61c-621786ab1a63"",
-                    ""path"": ""<Keyboard>/backspace"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard + Mouse"",
-                    ""action"": ""Menu"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ee037bec-a534-4a61-b3ce-db074bf5534c"",
-                    ""path"": ""<Gamepad>/start"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Menu"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""41189365-925e-4fc1-8200-eee29f7f6093"",
-                    ""path"": ""<Gamepad>/select"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Menu"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""173bf1d6-43bc-4106-985c-9717362dafb5"",
                     ""path"": ""<Mouse>/middleButton"",
                     ""interactions"": """",
@@ -786,15 +733,6 @@ namespace Rogium.Systems.Input
                     ""name"": ""DashAlt"",
                     ""type"": ""Button"",
                     ""id"": ""1ea652b5-1bb8-43a8-b759-0621642ccba7"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Pause"",
-                    ""type"": ""Button"",
-                    ""id"": ""78db4df8-8bf2-4faa-8031-90a7f42b80ef"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1285,10 +1223,27 @@ namespace Rogium.Systems.Input
                     ""action"": ""DashAlt"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
+                }
+            ]
+        },
+        {
+            ""name"": ""PauseGame"",
+            ""id"": ""c2b3ec7f-2a93-4860-a485-a6919321b92a"",
+            ""actions"": [
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""2194d314-1747-4bf8-945c-4ff3d3056fef"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""74c5ef75-f225-4779-9a21-3183bad86219"",
+                    ""id"": ""524a28de-dd14-4c30-9c7f-980717c3561a"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1299,7 +1254,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": """",
-                    ""id"": ""a735878a-27ac-4b15-afce-2b2c2b848c75"",
+                    ""id"": ""1819859e-8d95-4e34-a236-fd063ce1343f"",
                     ""path"": ""<Keyboard>/backspace"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1310,7 +1265,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ff1d9433-f9d1-4df3-a8c3-f469938fab41"",
+                    ""id"": ""8073d4cb-66da-4ca1-b328-8aa4b8d9b95b"",
                     ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1321,7 +1276,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": """",
-                    ""id"": ""37e6349e-efb9-4349-93bb-a136746df2c1"",
+                    ""id"": ""f78a2d64-6a27-49e9-b629-0978d7f18c20"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1370,7 +1325,6 @@ namespace Rogium.Systems.Input
             m_UI_Cancel = m_UI.FindAction("Cancel", throwIfNotFound: true);
             m_UI_ContextSelect = m_UI.FindAction("ContextSelect", throwIfNotFound: true);
             m_UI_ShowTooltip = m_UI.FindAction("ShowTooltip", throwIfNotFound: true);
-            m_UI_Menu = m_UI.FindAction("Menu", throwIfNotFound: true);
             m_UI_ScrollWheel = m_UI.FindAction("ScrollWheel", throwIfNotFound: true);
             m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
             m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
@@ -1386,13 +1340,16 @@ namespace Rogium.Systems.Input
             m_Player_SubAlt = m_Player.FindAction("SubAlt", throwIfNotFound: true);
             m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
             m_Player_DashAlt = m_Player.FindAction("DashAlt", throwIfNotFound: true);
-            m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+            // PauseGame
+            m_PauseGame = asset.FindActionMap("PauseGame", throwIfNotFound: true);
+            m_PauseGame_Pause = m_PauseGame.FindAction("Pause", throwIfNotFound: true);
         }
 
         ~@RogiumInputActions()
         {
             UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, RogiumInputActions.UI.Disable() has not been called.");
             UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, RogiumInputActions.Player.Disable() has not been called.");
+            UnityEngine.Debug.Assert(!m_PauseGame.enabled, "This will cause a leak and performance issues, RogiumInputActions.PauseGame.Disable() has not been called.");
         }
 
         public void Dispose()
@@ -1459,7 +1416,6 @@ namespace Rogium.Systems.Input
         private readonly InputAction m_UI_Cancel;
         private readonly InputAction m_UI_ContextSelect;
         private readonly InputAction m_UI_ShowTooltip;
-        private readonly InputAction m_UI_Menu;
         private readonly InputAction m_UI_ScrollWheel;
         private readonly InputAction m_UI_TrackedDeviceOrientation;
         private readonly InputAction m_UI_TrackedDevicePosition;
@@ -1475,7 +1431,6 @@ namespace Rogium.Systems.Input
             public InputAction @Cancel => m_Wrapper.m_UI_Cancel;
             public InputAction @ContextSelect => m_Wrapper.m_UI_ContextSelect;
             public InputAction @ShowTooltip => m_Wrapper.m_UI_ShowTooltip;
-            public InputAction @Menu => m_Wrapper.m_UI_Menu;
             public InputAction @ScrollWheel => m_Wrapper.m_UI_ScrollWheel;
             public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
             public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
@@ -1506,9 +1461,6 @@ namespace Rogium.Systems.Input
                 @ShowTooltip.started += instance.OnShowTooltip;
                 @ShowTooltip.performed += instance.OnShowTooltip;
                 @ShowTooltip.canceled += instance.OnShowTooltip;
-                @Menu.started += instance.OnMenu;
-                @Menu.performed += instance.OnMenu;
-                @Menu.canceled += instance.OnMenu;
                 @ScrollWheel.started += instance.OnScrollWheel;
                 @ScrollWheel.performed += instance.OnScrollWheel;
                 @ScrollWheel.canceled += instance.OnScrollWheel;
@@ -1546,9 +1498,6 @@ namespace Rogium.Systems.Input
                 @ShowTooltip.started -= instance.OnShowTooltip;
                 @ShowTooltip.performed -= instance.OnShowTooltip;
                 @ShowTooltip.canceled -= instance.OnShowTooltip;
-                @Menu.started -= instance.OnMenu;
-                @Menu.performed -= instance.OnMenu;
-                @Menu.canceled -= instance.OnMenu;
                 @ScrollWheel.started -= instance.OnScrollWheel;
                 @ScrollWheel.performed -= instance.OnScrollWheel;
                 @ScrollWheel.canceled -= instance.OnScrollWheel;
@@ -1595,7 +1544,6 @@ namespace Rogium.Systems.Input
         private readonly InputAction m_Player_SubAlt;
         private readonly InputAction m_Player_Dash;
         private readonly InputAction m_Player_DashAlt;
-        private readonly InputAction m_Player_Pause;
         public struct PlayerActions
         {
             private @RogiumInputActions m_Wrapper;
@@ -1607,7 +1555,6 @@ namespace Rogium.Systems.Input
             public InputAction @SubAlt => m_Wrapper.m_Player_SubAlt;
             public InputAction @Dash => m_Wrapper.m_Player_Dash;
             public InputAction @DashAlt => m_Wrapper.m_Player_DashAlt;
-            public InputAction @Pause => m_Wrapper.m_Player_Pause;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1638,9 +1585,6 @@ namespace Rogium.Systems.Input
                 @DashAlt.started += instance.OnDashAlt;
                 @DashAlt.performed += instance.OnDashAlt;
                 @DashAlt.canceled += instance.OnDashAlt;
-                @Pause.started += instance.OnPause;
-                @Pause.performed += instance.OnPause;
-                @Pause.canceled += instance.OnPause;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -1666,9 +1610,6 @@ namespace Rogium.Systems.Input
                 @DashAlt.started -= instance.OnDashAlt;
                 @DashAlt.performed -= instance.OnDashAlt;
                 @DashAlt.canceled -= instance.OnDashAlt;
-                @Pause.started -= instance.OnPause;
-                @Pause.performed -= instance.OnPause;
-                @Pause.canceled -= instance.OnPause;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1686,6 +1627,52 @@ namespace Rogium.Systems.Input
             }
         }
         public PlayerActions @Player => new PlayerActions(this);
+
+        // PauseGame
+        private readonly InputActionMap m_PauseGame;
+        private List<IPauseGameActions> m_PauseGameActionsCallbackInterfaces = new List<IPauseGameActions>();
+        private readonly InputAction m_PauseGame_Pause;
+        public struct PauseGameActions
+        {
+            private @RogiumInputActions m_Wrapper;
+            public PauseGameActions(@RogiumInputActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Pause => m_Wrapper.m_PauseGame_Pause;
+            public InputActionMap Get() { return m_Wrapper.m_PauseGame; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(PauseGameActions set) { return set.Get(); }
+            public void AddCallbacks(IPauseGameActions instance)
+            {
+                if (instance == null || m_Wrapper.m_PauseGameActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_PauseGameActionsCallbackInterfaces.Add(instance);
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+            }
+
+            private void UnregisterCallbacks(IPauseGameActions instance)
+            {
+                @Pause.started -= instance.OnPause;
+                @Pause.performed -= instance.OnPause;
+                @Pause.canceled -= instance.OnPause;
+            }
+
+            public void RemoveCallbacks(IPauseGameActions instance)
+            {
+                if (m_Wrapper.m_PauseGameActionsCallbackInterfaces.Remove(instance))
+                    UnregisterCallbacks(instance);
+            }
+
+            public void SetCallbacks(IPauseGameActions instance)
+            {
+                foreach (var item in m_Wrapper.m_PauseGameActionsCallbackInterfaces)
+                    UnregisterCallbacks(item);
+                m_Wrapper.m_PauseGameActionsCallbackInterfaces.Clear();
+                AddCallbacks(instance);
+            }
+        }
+        public PauseGameActions @PauseGame => new PauseGameActions(this);
         private int m_KeyboardMouseSchemeIndex = -1;
         public InputControlScheme KeyboardMouseScheme
         {
@@ -1711,7 +1698,6 @@ namespace Rogium.Systems.Input
             void OnCancel(InputAction.CallbackContext context);
             void OnContextSelect(InputAction.CallbackContext context);
             void OnShowTooltip(InputAction.CallbackContext context);
-            void OnMenu(InputAction.CallbackContext context);
             void OnScrollWheel(InputAction.CallbackContext context);
             void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
             void OnTrackedDevicePosition(InputAction.CallbackContext context);
@@ -1728,6 +1714,9 @@ namespace Rogium.Systems.Input
             void OnSubAlt(InputAction.CallbackContext context);
             void OnDash(InputAction.CallbackContext context);
             void OnDashAlt(InputAction.CallbackContext context);
+        }
+        public interface IPauseGameActions
+        {
             void OnPause(InputAction.CallbackContext context);
         }
     }

@@ -11,7 +11,6 @@
         private readonly InputButton cancel;
         private readonly InputButton contextSelect;
         private readonly InputButton showTooltip;
-        private readonly InputButton menu;
 
         public InputProfileUI(RogiumInputActions input) : base(input)
         {
@@ -23,7 +22,6 @@
             cancel = new InputButton(map.Cancel);
             contextSelect = new InputButton(map.ContextSelect);
             showTooltip = new InputButton(map.ShowTooltip);
-            menu = new InputButton(map.Menu);
         }
         
         protected override void WhenEnabled()
@@ -36,7 +34,6 @@
             cancel.Enable();
             contextSelect.Enable();
             showTooltip.Enable();
-            menu.Enable();
         }
 
         protected override void WhenDisabled()
@@ -49,7 +46,6 @@
             cancel.Disable();
             contextSelect.Disable();
             showTooltip.Disable();
-            menu.Disable();
         }
         
         public InputVector2 Navigate { get => navigate; }
@@ -58,6 +54,5 @@
         public InputButton Cancel { get => cancel; }
         public InputButton ContextSelect { get => contextSelect; }
         public InputButton ShowTooltip { get => showTooltip; }
-        public InputButton Menu { get => menu; }
     }
 }

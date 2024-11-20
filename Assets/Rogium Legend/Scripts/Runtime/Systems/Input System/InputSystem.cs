@@ -17,6 +17,7 @@ namespace Rogium.Systems.Input
         private RogiumInputActions input;
         private InputProfilePlayer inputPlayer;
         private InputProfileUI inputUI;
+        private InputProfilePause inputPause;
         
         private Vector2 pointerPosition;
 
@@ -26,6 +27,7 @@ namespace Rogium.Systems.Input
             ClearAllInput();
             SceneManager.sceneLoaded += (_, __) => eventSystem = FindFirstObjectByType<EventSystem>();
             inputUI.PointerPosition.OnPressed += UpdatePointerPosition;
+            EnablePauseMap();
         }
 
         public void ClearAllInput()
@@ -33,6 +35,7 @@ namespace Rogium.Systems.Input
             input = new RogiumInputActions();
             inputPlayer = new InputProfilePlayer(input);
             inputUI = new InputProfileUI(input);
+            inputPause = new InputProfilePause(input);
         }
 
         /// <summary>
@@ -51,6 +54,12 @@ namespace Rogium.Systems.Input
         {
             DisableAll();
             inputPlayer.Enable();
+        }
+        
+        public void EnablePauseMap()
+        {
+            DisableAll();
+            inputPause.Enable();
         }
         
         public (InputAction, int) FindDuplicateBinding(InputAction action, int bindingIndex)
@@ -128,6 +137,7 @@ namespace Rogium.Systems.Input
         public Vector2 PointerPosition { get => pointerPosition; }
         public InputProfilePlayer Player { get => inputPlayer; }
         public InputProfileUI UI { get => inputUI; }
+        public InputProfilePause Pause { get => inputPause; }
         public string KeyboardSchemeGroup { get => input.KeyboardMouseScheme.bindingGroup; }
         public string GamepadSchemeGroup { get => input.GamepadScheme.bindingGroup; }
     }

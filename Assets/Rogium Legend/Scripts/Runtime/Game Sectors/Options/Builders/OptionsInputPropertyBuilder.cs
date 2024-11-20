@@ -41,7 +41,7 @@ namespace Rogium.Options.Core
             b.BuildInputBinding(input.Player.ButtonSubAlt.Action, device, parent);
             b.BuildInputBinding(input.Player.ButtonDash.Action, device, parent);
             b.BuildInputBinding(input.Player.ButtonDashAlt.Action, device, parent);
-            b.BuildInputBinding(input.Player.ButtonStart.Action, device, parent);
+            b.BuildInputBinding(input.Pause.Pause.Action, device, parent);
         }
     }
 }
