@@ -89,7 +89,7 @@ namespace Rogium.Systems.Input
             return device switch
             {
                 InputDeviceType.Keyboard => GetBindingIndex(new InputBinding(groups: KeyboardSchemeGroup, path: default)),
-                InputDeviceType.Gamepad => action.GetBindingIndex(new InputBinding(groups: GamepadSchemeGroup, path: default)),
+                InputDeviceType.Gamepad => GetBindingIndex(new InputBinding(groups: GamepadSchemeGroup, path: default)),
                 _ => throw new System.ArgumentOutOfRangeException(nameof(device), device, null)
             };
 

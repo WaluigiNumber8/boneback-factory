@@ -88,9 +88,9 @@ namespace Rogium.Tests.UI.Interactables.Properties
             return soundField;
         }
         
-        public static InteractablePropertyInputBinding BuildInputBinding(InputAction action, bool useAlt = true)
+        public static InteractablePropertyInputBinding BuildInputBinding(InputAction action, bool useAlt = true, InputDeviceType device = InputDeviceType.Keyboard)
         {
-            UIPropertyBuilder.GetInstance().BuildInputBinding(action, InputDeviceType.Keyboard, Object.FindFirstObjectByType<Canvas>().transform, useAlt);
+            UIPropertyBuilder.GetInstance().BuildInputBinding(action, device, Object.FindFirstObjectByType<Canvas>().transform, useAlt);
             return Object.FindFirstObjectByType<InteractablePropertyInputBinding>();
         }
     }

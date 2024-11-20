@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using RedRats.Systems.Themes;
 using Rogium.Editors.Core.Defaults;
+using Rogium.Systems.Input;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables;
 using Rogium.UserInterface.Interactables.Properties;
@@ -44,6 +45,14 @@ namespace Rogium.Tests.UI.Interactables.Properties
         public void Should_SetActionInputStringAlt_WhenConstructed()
         {
             Assert.That(inputProperty.InputStringAlt, Is.EqualTo(action.bindings[1].ToDisplayString()));
+        }
+        
+        [Test]
+        public void Should_SetActionInputStringGamepadAlt_WhenConstructed()
+        {
+            inputProperty = BuildInputBinding(input.Player.ButtonMain.Action, true, InputDeviceType.Gamepad);
+            string inputString = (inputProperty.InputStringAlt == EditorDefaults.Instance.InputEmptyText) ? string.Empty : inputProperty.InputStringAlt;
+            Assert.That(inputString, Is.EqualTo(action.bindings[3].ToDisplayString()));
         }
 
         [Test]
