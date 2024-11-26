@@ -59,7 +59,6 @@ namespace Rogium.Options.Core
             graphicsOptions.UpdateResolution(asset.GetResolution());
             graphicsOptions.UpdateScreen(asset.ScreenMode);
             graphicsOptions.UpdateVSync(asset.VSync);
-            //TODO: Update Input Bindings
         }
         
         /// <summary>

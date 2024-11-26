@@ -9,7 +9,7 @@ namespace Rogium.Options.Core
     /// <summary>
     /// Overseers the currently edited <see cref="GameDataAsset"/>.
     /// </summary>
-    public class OptionsMenuOverseer : Singleton<OptionsMenuOverseer>, IEditorOverseer
+    public sealed class OptionsMenuOverseer : Singleton<OptionsMenuOverseer>, IEditorOverseer
     {
         public event Action<GameDataAsset> OnAssignAsset;
         public event Action<GameDataAsset> OnApplySettings;
@@ -32,7 +32,7 @@ namespace Rogium.Options.Core
         /// <summary>
         /// Apply all settings to the game for a specific asset.
         /// </summary>
-        public void ApplyAllSettings(GameDataAsset gameData) =>  OnApplySettings?.Invoke(gameData);
+        public void ApplyAllSettings(GameDataAsset gameData) => OnApplySettings?.Invoke(gameData);
         public void CompleteEditing()
         {
             OnSaveChanges?.Invoke(CurrentAsset);
