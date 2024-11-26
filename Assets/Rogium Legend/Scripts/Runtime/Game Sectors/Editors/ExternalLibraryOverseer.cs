@@ -7,6 +7,7 @@ using Rogium.Editors.Campaign;
 using Rogium.Editors.Packs;
 using Rogium.ExternalStorage;
 using Rogium.Options.Core;
+using Rogium.Systems.Input;
 using Rogium.Systems.SceneTransferService;
 using static Rogium.Editors.Packs.AssetAssociation;
 
@@ -26,6 +27,7 @@ namespace Rogium.Editors.Core
         private readonly AssetList<PackAsset> packs;
         private readonly AssetList<CampaignAsset> campaigns;
         private GameDataAsset preferences;
+        private string inputJSON;
 
         private ExternalLibraryOverseer()
         {
@@ -37,21 +39,6 @@ namespace Rogium.Editors.Core
             campaignEditor.OnSaveChanges += UpdateCampaign;
             optionsEditor.OnSaveChanges += UpdatePreferences;
             ReloadFromExternalStorage();
-            
-            optionsEditor.ApplyAllSettings(preferences);
-        }
-
-        /// <summary>
-        /// Repopulates the library with all packs located on external storage.
-        /// </summary>
-        public void ReloadFromExternalStorage()
-        {
-            packs.ReplaceAll(ex.Packs.LoadAll());
-            campaigns.ReplaceAll(ex.Campaigns.LoadAll());
-            campaigns.RemoveAll(campaign => campaign.PackReferences.Count <= 0);
-            
-            IList<GameDataAsset> data = ex.Preferences.LoadAll();
-            preferences = (data == null || data.Count <= 0) ? new GameDataAsset.Builder().Build() : data[0];
         }
 
         #region Packs
@@ -181,6 +168,8 @@ namespace Rogium.Editors.Core
         {
             preferences = gameData;
             ex.Preferences.Save(preferences);
+            inputJSON = InputSystem.GetInstance().GetInputsAsJSON();
+            ex.Input.Save(inputJSON);
         }
 
         public void ActivateOptionsEditor()
@@ -193,11 +182,31 @@ namespace Rogium.Editors.Core
         /// </summary>
         public void RefreshSettings()
         {
+            InputSystem.GetInstance().LoadInputsFromJSON(inputJSON);
             ActivateOptionsEditor();
             optionsEditor.ApplyAllSettings(preferences);
         }
 
         #endregion
+        
+        /// <summary>
+        /// Loads all external storage data into the library.
+        /// </summary>
+        private void ReloadFromExternalStorage()
+        {
+            packs.ReplaceAll(ex.Packs.LoadAll());
+            campaigns.ReplaceAll(ex.Campaigns.LoadAll());
+            campaigns.RemoveAll(campaign => campaign.PackReferences.Count <= 0);
+            
+            IList<GameDataAsset> data = ex.Preferences.LoadAll();
+            preferences = (data == null || data.Count <= 0) ? new GameDataAsset.Builder().Build() : data[0];
+            inputJSON = ex.Input.Load();
+            if (string.IsNullOrEmpty(inputJSON))
+            {
+                inputJSON = InputSystem.GetInstance().GetInputsAsJSON();
+                ex.Input.Save(inputJSON);
+            }
+        }
         
         public ReadOnlyCollection<PackAsset> Packs { get => new(packs); }
         public ReadOnlyCollection<CampaignAsset> Campaigns {get => new(campaigns);}

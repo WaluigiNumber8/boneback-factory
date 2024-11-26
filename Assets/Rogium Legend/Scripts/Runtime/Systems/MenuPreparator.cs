@@ -1,4 +1,5 @@
-﻿using Rogium.Systems.ActionHistory;
+﻿using Rogium.Editors.Core;
+using Rogium.Systems.ActionHistory;
 using Rogium.Systems.Input;
 using UnityEngine;
 
@@ -17,8 +18,8 @@ namespace Rogium.Core
         private void Start()
         {
             InputSystem inputSystem = InputSystem.GetInstance();
-
             inputSystem.EnableUIMap();
+            ExternalLibraryOverseer.Instance.RefreshSettings();
             
             //Force grouping on click/right click
             inputSystem.UI.Select.OnPress += ActionHistorySystem.ForceBeginGrouping;

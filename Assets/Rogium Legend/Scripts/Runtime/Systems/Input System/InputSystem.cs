@@ -124,6 +124,9 @@ namespace Rogium.Systems.Input
             }
         }
         
+        public string GetInputsAsJSON() => input.SaveBindingOverridesAsJson();
+        public void LoadInputsFromJSON(string json) => input.LoadBindingOverridesFromJson(json);
+
         /// <summary>
         /// Disables all Action Maps except UI.
         /// </summary>

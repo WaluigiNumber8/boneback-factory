@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Enemies;
 using Rogium.Editors.Packs;
@@ -14,17 +12,21 @@ using Rogium.Options.Core;
 
 namespace Rogium.ExternalStorage
 {
+    /// <summary>
+    /// Represents an overseer that manages all external storage operations.
+    /// </summary>
     public interface IExternalStorageOverseer
     {
-        ICRUDOperations<PackAsset, JSONPackAsset>  Packs { get; }
-        ICRUDOperations<CampaignAsset, JSONCampaignAsset> Campaigns { get; }
-        ICRUDOperations<PaletteAsset, JSONPaletteAsset> Palettes { get; }
-        ICRUDOperations<SpriteAsset, JSONSpriteAsset> Sprites { get; }
-        ICRUDOperations<WeaponAsset, JSONWeaponAsset> Weapons { get; }
-        ICRUDOperations<ProjectileAsset, JSONProjectileAsset> Projectiles { get; }
-        ICRUDOperations<EnemyAsset, JSONEnemyAsset> Enemies { get; }
-        ICRUDOperations<RoomAsset, JSONRoomAsset> Rooms { get; }
-        ICRUDOperations<TileAsset, JSONTileAsset> Tiles { get; }
-        ICRUDOperations<GameDataAsset, JSONGameDataAsset> Preferences { get; }
+        public ICRUDOperations<PackAsset, JSONPackAsset>  Packs { get; }
+        public ICRUDOperations<CampaignAsset, JSONCampaignAsset> Campaigns { get; }
+        public ICRUDOperations<PaletteAsset, JSONPaletteAsset> Palettes { get; }
+        public ICRUDOperations<SpriteAsset, JSONSpriteAsset> Sprites { get; }
+        public ICRUDOperations<WeaponAsset, JSONWeaponAsset> Weapons { get; }
+        public ICRUDOperations<ProjectileAsset, JSONProjectileAsset> Projectiles { get; }
+        public ICRUDOperations<EnemyAsset, JSONEnemyAsset> Enemies { get; }
+        public ICRUDOperations<RoomAsset, JSONRoomAsset> Rooms { get; }
+        public ICRUDOperations<TileAsset, JSONTileAsset> Tiles { get; }
+        public ICRUDOperations<GameDataAsset, JSONGameDataAsset> Preferences { get; }
+        public ICRUDFileOperations Input { get; }
     }
 }
