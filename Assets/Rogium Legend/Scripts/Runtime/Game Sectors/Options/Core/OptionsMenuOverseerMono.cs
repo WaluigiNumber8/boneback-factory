@@ -37,20 +37,20 @@ namespace Rogium.Options.Core
         private void OnEnable()
         {
             editor.OnAssignAsset += PrepareEditor;
-            editor.OnApplySettings += ApplyAllSettings;
+            editor.OnApplySettings += ApplyAllOptions;
         }
 
         private void OnDisable()
         {
             editor.OnAssignAsset -= PrepareEditor;
-            editor.OnApplySettings -= ApplyAllSettings;
+            editor.OnApplySettings -= ApplyAllOptions;
         }
         
         /// <summary>
         /// Applies all settings from a specific <see cref="PreferencesAsset"/>.
         /// </summary>
         /// <param name="asset">The data to apply to settings.</param>
-        public void ApplyAllSettings(GameDataAsset asset)
+        public void ApplyAllOptions(GameDataAsset asset)
         {
             audioOptions.UpdateMasterVolume(asset.Preferences.MasterVolume);
             audioOptions.UpdateMusicVolume(asset.Preferences.MusicVolume);
