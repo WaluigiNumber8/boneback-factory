@@ -26,7 +26,7 @@ namespace Rogium.ExternalStorage
         public ICRUDOperations<EnemyAsset, JSONEnemyAsset> Enemies { get; }
         public ICRUDOperations<RoomAsset, JSONRoomAsset> Rooms { get; }
         public ICRUDOperations<TileAsset, JSONTileAsset> Tiles { get; }
-        public ICRUDOperations<GameDataAsset, JSONGameDataAsset> Preferences { get; }
-        public ICRUDFileOperations Input { get; }
+        public ICRUDOperations<PreferencesAsset, JSONPreferencesAsset> Preferences { get; }
+        public ICRUDOperations<InputBindingsAsset, JSONInputBindingsAsset> InputBindings { get; }
     }
 }

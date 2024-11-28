@@ -7,17 +7,19 @@ namespace Rogium.Options.Core
     /// <summary>
     /// Builds properties for the Input section in the Options Menu.
     /// </summary>
-    public class OptionsInputPropertyBuilder : UIPropertyContentBuilderBaseColumn2<GameDataAsset>
+    public class OptionsInputPropertyBuilder : UIPropertyContentBuilderBaseColumn2<InputBindingsAsset>
     {
         private readonly InputSystem input;
+        private InputBindingsAsset asset;
 
         public OptionsInputPropertyBuilder(Transform contentMain, Transform contentSecond) : base(contentMain, contentSecond)
         {
             input = InputSystem.GetInstance();
         }
 
-        public override void Build(GameDataAsset data)
+        public override void Build(InputBindingsAsset asset)
         {
+            this.asset = asset;
             Clear();
             
             BuildFor(InputDeviceType.Keyboard, contentMain);

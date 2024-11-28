@@ -56,6 +56,8 @@ namespace Rogium.UserInterface.Interactables
         {
             if (!ui.button.interactable) return;
             if (eventData.button != PointerEventData.InputButton.Right) return;
+            
+            //Clear the binding
             action.Disable();
             action.ApplyBindingOverride(bindingIndex, "");
             action.Enable();

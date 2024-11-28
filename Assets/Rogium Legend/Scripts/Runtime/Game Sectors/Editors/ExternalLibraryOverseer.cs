@@ -7,7 +7,6 @@ using Rogium.Editors.Campaign;
 using Rogium.Editors.Packs;
 using Rogium.ExternalStorage;
 using Rogium.Options.Core;
-using Rogium.Systems.Input;
 using Rogium.Systems.SceneTransferService;
 using static Rogium.Editors.Packs.AssetAssociation;
 
@@ -26,8 +25,7 @@ namespace Rogium.Editors.Core
         
         private readonly AssetList<PackAsset> packs;
         private readonly AssetList<CampaignAsset> campaigns;
-        private GameDataAsset preferences;
-        private string inputJSON;
+        private GameDataAsset gameData;
 
         private ExternalLibraryOverseer()
         {
@@ -37,7 +35,7 @@ namespace Rogium.Editors.Core
             packEditor.OnSaveChanges += UpdatePack;
             packEditor.OnRemoveSprite += RemoveSpriteAssociation;
             campaignEditor.OnSaveChanges += UpdateCampaign;
-            optionsEditor.OnSaveChanges += UpdatePreferences;
+            optionsEditor.OnSaveChanges += UpdateGameData;
             ReloadFromExternalStorage();
         }
 
@@ -164,27 +162,25 @@ namespace Rogium.Editors.Core
 
         #region Preferences
 
-        public void UpdatePreferences(GameDataAsset gameData)
+        public void UpdateGameData(GameDataAsset gameData)
         {
-            preferences = gameData;
-            ex.Preferences.Save(preferences);
-            inputJSON = InputSystem.GetInstance().GetInputsAsJSON();
-            ex.Input.Save(inputJSON);
+            this.gameData = gameData;
+            ex.Preferences.Save(this.gameData.Preferences);
+            ex.InputBindings.Save(this.gameData.InputBindings);
         }
 
         public void ActivateOptionsEditor()
         {
-            optionsEditor.AssignAsset(preferences);
+            optionsEditor.AssignAsset(gameData);
         }
 
         /// <summary>
         /// Refresh game settings from the currently saved data.
         /// </summary>
-        public void RefreshSettings()
+        public void RefreshOptions()
         {
-            InputSystem.GetInstance().LoadInputsFromJSON(inputJSON);
             ActivateOptionsEditor();
-            optionsEditor.ApplyAllSettings(preferences);
+            optionsEditor.ApplyAllOptions(gameData);
         }
 
         #endregion
@@ -198,18 +194,17 @@ namespace Rogium.Editors.Core
             campaigns.ReplaceAll(ex.Campaigns.LoadAll());
             campaigns.RemoveAll(campaign => campaign.PackReferences.Count <= 0);
             
-            IList<GameDataAsset> data = ex.Preferences.LoadAll();
-            preferences = (data == null || data.Count <= 0) ? new GameDataAsset.Builder().Build() : data[0];
-            inputJSON = ex.Input.Load();
-            if (string.IsNullOrEmpty(inputJSON))
-            {
-                inputJSON = InputSystem.GetInstance().GetInputsAsJSON();
-                ex.Input.Save(inputJSON);
-            }
+            IList<PreferencesAsset> preferencesData = ex.Preferences.LoadAll();
+            PreferencesAsset preferences = (preferencesData == null || preferencesData.Count <= 0) ? new PreferencesAsset.Builder().Build() : preferencesData[0];
+            IList<InputBindingsAsset> inputBindingsData = ex.InputBindings.LoadAll();
+            InputBindingsAsset inputBindings = (inputBindingsData == null || inputBindingsData.Count <= 0) ? new InputBindingsAsset.Builder().Build() : inputBindingsData[0];
+            gameData = new GameDataAsset.Builder()
+                          .WithPreferences(preferences)
+                          .WithInputBindings(inputBindings)
+                          .Build();
         }
         
         public ReadOnlyCollection<PackAsset> Packs { get => new(packs); }
         public ReadOnlyCollection<CampaignAsset> Campaigns {get => new(campaigns);}
-        public GameDataAsset Preferences { get => preferences; }
     }
 }

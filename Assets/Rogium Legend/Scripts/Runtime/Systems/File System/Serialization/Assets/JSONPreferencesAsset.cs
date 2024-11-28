@@ -7,32 +7,32 @@ using UnityEngine;
 namespace Rogium.ExternalStorage.Serialization
 {
     /// <summary>
-    /// Serialized form of the <see cref="GameDataAsset"/>.
+    /// Serialized form of the <see cref="PreferencesAsset"/>.
     /// </summary>
     [Serializable]
-    public class JSONGameDataAsset : IEncodedObject<GameDataAsset>
+    public class JSONPreferencesAsset : IEncodedObject<PreferencesAsset>
     {
         public float MasterVolume, MusicVolume, SoundVolume, UIVolume;
         public int ResolutionX, ResolutionY;
         public int ScreenMode;
         public bool VSync;
 
-        public JSONGameDataAsset(GameDataAsset gameData)
+        public JSONPreferencesAsset(PreferencesAsset preferences)
         {
-            MasterVolume = gameData.MasterVolume;
-            MusicVolume = gameData.MusicVolume;
-            SoundVolume = gameData.SoundVolume;
-            UIVolume = gameData.UIVolume;
+            MasterVolume = preferences.MasterVolume;
+            MusicVolume = preferences.MusicVolume;
+            SoundVolume = preferences.SoundVolume;
+            UIVolume = preferences.UIVolume;
             
-            ResolutionX = gameData.Resolution.x;
-            ResolutionY = gameData.Resolution.y;
-            ScreenMode = (int) gameData.ScreenMode;
-            VSync = gameData.VSync;
+            ResolutionX = preferences.Resolution.x;
+            ResolutionY = preferences.Resolution.y;
+            ScreenMode = (int) preferences.ScreenMode;
+            VSync = preferences.VSync;
         }
         
-        public GameDataAsset Decode()
+        public PreferencesAsset Decode()
         {
-            return new GameDataAsset.Builder()
+            return new PreferencesAsset.Builder()
                 .WithMasterVolume(MasterVolume)
                 .WithMusicVolume(MusicVolume)
                 .WithSoundVolume(SoundVolume)

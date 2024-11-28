@@ -29,8 +29,8 @@ namespace Rogium.ExternalStorage
         private readonly CRUDOperations<RoomAsset, JSONRoomAsset> roomCRUD;
         private readonly CRUDOperations<TileAsset, JSONTileAsset> tileCRUD;
         
-        private readonly CRUDOperations<GameDataAsset, JSONGameDataAsset> preferencesCRUD;
-        private readonly CRUDFileOperations inputCRUD;
+        private readonly CRUDOperations<PreferencesAsset, JSONPreferencesAsset> preferencesCRUD;
+        private readonly CRUDOperations<InputBindingsAsset, JSONInputBindingsAsset> inputBindingsCRUD;
 
         public ExternalStorageOverseer()
         {
@@ -40,8 +40,10 @@ namespace Rogium.ExternalStorage
             campaignCRUD = new CRUDOperations<CampaignAsset, JSONCampaignAsset>(p => new JSONCampaignAsset(p), EditorAssetIDs.CampaignIdentifier);
             campaignCRUD.RefreshSaveableData(new SaveableData("Campaigns", EditorAssetIDs.CampaignIdentifier));
 
-            preferencesCRUD = new CRUDOperations<GameDataAsset, JSONGameDataAsset>(p => new JSONGameDataAsset(p), EditorAssetIDs.PreferencesIdentifier, false);
+            preferencesCRUD = new CRUDOperations<PreferencesAsset, JSONPreferencesAsset>(p => new JSONPreferencesAsset(p), EditorAssetIDs.PreferencesIdentifier, false);
             preferencesCRUD.RefreshSaveableData(new SaveableData("", EditorAssetIDs.PreferencesIdentifier));
+            inputBindingsCRUD = new CRUDOperations<InputBindingsAsset, JSONInputBindingsAsset>(i => new JSONInputBindingsAsset(i), EditorAssetIDs.InputIdentifier, false);
+            inputBindingsCRUD.RefreshSaveableData(new SaveableData("", EditorAssetIDs.InputIdentifier));
             
             paletteCRUD = new CRUDOperations<PaletteAsset, JSONPaletteAsset>(p => new JSONPaletteAsset(p), EditorAssetIDs.PaletteIdentifier);
             spriteCRUD = new CRUDOperations<SpriteAsset, JSONSpriteAsset>(s => new JSONSpriteAsset(s), EditorAssetIDs.SpriteIdentifier);
@@ -50,8 +52,6 @@ namespace Rogium.ExternalStorage
             enemyCRUD = new CRUDOperations<EnemyAsset, JSONEnemyAsset>(e => new JSONEnemyAsset(e), EditorAssetIDs.EnemyIdentifier);
             roomCRUD = new CRUDOperations<RoomAsset, JSONRoomAsset>(r => new JSONRoomAsset(r), EditorAssetIDs.RoomIdentifier);
             tileCRUD = new CRUDOperations<TileAsset, JSONTileAsset>(t => new JSONTileAsset(t), EditorAssetIDs.TileIdentifier);
-            
-            inputCRUD = new CRUDFileOperations("Input", Application.persistentDataPath);
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace Rogium.ExternalStorage
         public ICRUDOperations<EnemyAsset, JSONEnemyAsset> Enemies { get => enemyCRUD; }
         public ICRUDOperations<RoomAsset, JSONRoomAsset> Rooms { get => roomCRUD; }
         public ICRUDOperations<TileAsset, JSONTileAsset> Tiles { get => tileCRUD; }
-        public ICRUDOperations<GameDataAsset, JSONGameDataAsset> Preferences { get => preferencesCRUD; }
-        public ICRUDFileOperations Input { get => inputCRUD; }
+        public ICRUDOperations<PreferencesAsset, JSONPreferencesAsset> Preferences { get => preferencesCRUD; }
+        public ICRUDOperations<InputBindingsAsset, JSONInputBindingsAsset> InputBindings { get => inputBindingsCRUD; }
     }
 }

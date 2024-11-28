@@ -596,8 +596,8 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Copy_Should_CreatePreferencesWithSameParameters()
         {
-            GameDataAsset original = new GameDataAsset.Builder().Build();
-            GameDataAsset copy = new GameDataAsset.Builder().AsCopy(original).Build();
+            PreferencesAsset original = new PreferencesAsset.Builder().Build();
+            PreferencesAsset copy = new PreferencesAsset.Builder().AsCopy(original).Build();
             Assert.That(copy.MasterVolume, Is.EqualTo(original.MasterVolume));
             Assert.That(copy.MusicVolume, Is.EqualTo(original.MusicVolume));
             Assert.That(copy.SoundVolume, Is.EqualTo(original.SoundVolume));

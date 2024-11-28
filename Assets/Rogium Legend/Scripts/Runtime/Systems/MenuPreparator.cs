@@ -19,7 +19,7 @@ namespace Rogium.Core
         {
             InputSystem inputSystem = InputSystem.GetInstance();
             inputSystem.EnableUIMap();
-            ExternalLibraryOverseer.Instance.RefreshSettings();
+            ExternalLibraryOverseer.Instance.RefreshOptions();
             
             //Force grouping on click/right click
             inputSystem.UI.Select.OnPress += ActionHistorySystem.ForceBeginGrouping;
