@@ -36,7 +36,7 @@ namespace Rogium.Options.Core
         public void ApplyAllOptions(GameDataAsset gameData) => OnApplySettings?.Invoke(gameData);
         public void CompleteEditing()
         {
-            currentAsset.UpdateInputBindings(InputSystem.GetInstance().GetInputAsAsset());
+            currentAsset.UpdateInputBindings(InputToAssetConverter.GetInputAsAsset());
             OnSaveChanges?.Invoke(CurrentAsset);
         }
         

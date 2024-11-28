@@ -61,7 +61,7 @@ namespace Rogium.Options.Core
             graphicsOptions.UpdateScreen(asset.Preferences.ScreenMode);
             graphicsOptions.UpdateVSync(asset.Preferences.VSync);
             
-            InputSystem.GetInstance().ApplyInput(asset.InputBindings);
+            InputToAssetConverter.ApplyInput(asset.InputBindings);
         }
         
         /// <summary>
