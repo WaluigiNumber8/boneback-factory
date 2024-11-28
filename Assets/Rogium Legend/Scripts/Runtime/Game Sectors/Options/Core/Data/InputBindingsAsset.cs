@@ -25,50 +25,50 @@ namespace Rogium.Options.Core
         
         public class Builder
         {
-            private readonly InputBindingsAsset asset = new();
+            private readonly InputBindingsAsset Asset = new();
             
             public Builder()
             {
-                asset.keyboard = new InputBindingData();
-                asset.keyboardAlt = new InputBindingData();
-                asset.gamepad = new InputBindingData();
-                asset.gamepadAlt = new InputBindingData();
+                Asset.keyboard = new InputBindingData();
+                Asset.keyboardAlt = new InputBindingData();
+                Asset.gamepad = new InputBindingData();
+                Asset.gamepadAlt = new InputBindingData();
             }
         
             public Builder WithKeyboard(InputBindingData data)
             {
-                asset.keyboard = data;
+                Asset.keyboard = data;
                 return this;
             }
             
             public Builder WithKeyboardAlt(InputBindingData data)
             {
-                asset.keyboardAlt = data;
+                Asset.keyboardAlt = data;
                 return this;
             }
             
             public Builder WithGamepad(InputBindingData data)
             {
-                asset.gamepad = data;
+                Asset.gamepad = data;
                 return this;
             }
             
             public Builder WithGamepadAlt(InputBindingData data)
             {
-                asset.gamepadAlt = data;
+                Asset.gamepadAlt = data;
                 return this;
             }
             
             public Builder AsCopy(InputBindingsAsset asset)
             {
-                this.asset.keyboard = asset.keyboard;
-                this.asset.keyboardAlt = asset.keyboardAlt;
-                this.asset.gamepad = asset.gamepad;
-                this.asset.gamepadAlt = asset.gamepadAlt;
+                Asset.keyboard = asset.keyboard;
+                Asset.keyboardAlt = asset.keyboardAlt;
+                Asset.gamepad = asset.gamepad;
+                Asset.gamepadAlt = asset.gamepadAlt;
                 return this;
             }
         
-            public InputBindingsAsset Build() => asset;
+            public InputBindingsAsset Build() => Asset;
         }
     }
 }

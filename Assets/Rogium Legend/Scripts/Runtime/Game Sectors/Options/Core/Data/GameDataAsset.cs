@@ -23,34 +23,34 @@ namespace Rogium.Options.Core
         
         public class Builder
         {
-            private readonly GameDataAsset asset = new();
+            private readonly GameDataAsset Asset = new();
             
             public Builder()
             {
-                asset.preferences = new PreferencesAsset.Builder().Build();
-                asset.inputBindings = new InputBindingsAsset.Builder().Build();
+                Asset.preferences = new PreferencesAsset.Builder().Build();
+                Asset.inputBindings = new InputBindingsAsset.Builder().Build();
             }
             
             public Builder WithPreferences(PreferencesAsset preferences)
             {
-                asset.preferences = new PreferencesAsset.Builder().AsCopy(preferences).Build();
+                Asset.preferences = new PreferencesAsset.Builder().AsCopy(preferences).Build();
                 return this;
             }
             
             public Builder WithInputBindings(InputBindingsAsset inputBindings)
             {
-                asset.inputBindings = new InputBindingsAsset.Builder().AsCopy(inputBindings).Build();
+                Asset.inputBindings = new InputBindingsAsset.Builder().AsCopy(inputBindings).Build();
                 return this;
             }
             
             public Builder AsCopy(GameDataAsset asset)
             {
-                asset.preferences = new PreferencesAsset.Builder().AsCopy(asset.preferences).Build();
-                asset.inputBindings = new InputBindingsAsset.Builder().AsCopy(asset.inputBindings).Build();
+                Asset.preferences = new PreferencesAsset.Builder().AsCopy(asset.preferences).Build();
+                Asset.inputBindings = new InputBindingsAsset.Builder().AsCopy(asset.inputBindings).Build();
                 return this;
             }
             
-            public GameDataAsset Build() => asset;
+            public GameDataAsset Build() => Asset;
         }
     }
 }
