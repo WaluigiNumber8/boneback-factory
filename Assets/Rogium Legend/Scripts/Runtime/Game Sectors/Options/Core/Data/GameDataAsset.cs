@@ -1,138 +1,56 @@
-using Rogium.Editors.Core;
-using Rogium.Options.OptionControllers;
-using UnityEngine;
+﻿using Rogium.Editors.Core;
 
 namespace Rogium.Options.Core
 {
     /// <summary>
-    /// Holds all of user's preferences for the game.
+    /// Contains all settings data for the game.
     /// </summary>
     public class GameDataAsset : IDataAsset
     {
-        private float masterVolume;
-        private float musicVolume;
-        private float soundVolume;
-        private float uiVolume;
-        
-        private Vector2Int resolution;
-        private ScreenType screenMode;
-        private bool vSync;
+        private PreferencesAsset preferences;
+        private InputBindingsAsset inputBindings;
 
         private GameDataAsset() { }
         
-        #region Update Values
-        public void UpdateMasterVolume(float newValue) => masterVolume = newValue;
-        public void UpdateMusicVolume(float newValue) => musicVolume = newValue;
-        public void UpdateSoundVolume(float newValue) => soundVolume = newValue;
-        public void UpdateUIVolume(float newValue) => uiVolume = newValue;
-        public void UpdateResolution(Resolution newValue) => UpdateResolution(new Vector2Int(newValue.width, newValue.height));
-        public void UpdateResolution(Vector2Int newValue) => resolution = newValue;
-        public void UpdateScreenMode(int newValue) => UpdateScreenMode((ScreenType)newValue);
-        public void UpdateScreenMode(ScreenType newValue) => screenMode = newValue;
-        public void UpdateVSync(bool newValue) => vSync = newValue;
-
-        #endregion
-
-        /// <summary>
-        /// Returns the <see cref="Resolution"/> as a UnityEngine <see cref="UnityEngine.Resolution"/>.
-        /// </summary>
-        /// <returns></returns>
-        public Resolution GetResolution()
-        {
-            Resolution res = new();
-            res.width = resolution.x;
-            res.height = resolution.y;
-            res.refreshRateRatio = Screen.currentResolution.refreshRateRatio;
-            return res;
-        }
-
+        public void UpdatePreferences(PreferencesAsset newPreferences) => preferences = new PreferencesAsset.Builder().AsCopy(newPreferences).Build();
+        public void UpdateInputBindings(InputBindingsAsset newInputBindings) => inputBindings = new InputBindingsAsset.Builder().AsCopy(newInputBindings).Build();
+        
         public override string ToString() => $"{Title}";
-
-        public string ID { get => "ZX"; }
-        public string Title { get => "Preferences"; }
-        public float MasterVolume { get => masterVolume; }
-        public float MusicVolume { get => musicVolume; }
-        public float SoundVolume { get => soundVolume; }
-        public float UIVolume { get => uiVolume; }
-        public ScreenType ScreenMode { get => screenMode; }
-        public Vector2Int Resolution { get => resolution; }
-        public bool VSync { get => vSync; }
-
+        public string ID { get => "Z"; }
+        public string Title { get => "Game Data"; }
+        public PreferencesAsset Preferences { get => preferences; }
+        public InputBindingsAsset InputBindings { get => inputBindings; }
+        
         public class Builder
         {
-            private readonly GameDataAsset asset = new();
+            private readonly GameDataAsset Asset = new();
             
             public Builder()
             {
-                asset.masterVolume = PreferencesDefaults.MasterVolume;
-                asset.musicVolume = PreferencesDefaults.MusicVolume;
-                asset.soundVolume = PreferencesDefaults.SoundVolume;
-                asset.uiVolume = PreferencesDefaults.UIVolume;
-                asset.resolution = PreferencesDefaults.Resolution;
-                asset.screenMode = PreferencesDefaults.ScreenMode;
-                asset.vSync = PreferencesDefaults.VSync;
+                Asset.preferences = new PreferencesAsset.Builder().Build();
+                Asset.inputBindings = new InputBindingsAsset.Builder().Build();
             }
-
-            public Builder WithMasterVolume(float masterVolume)
+            
+            public Builder WithPreferences(PreferencesAsset preferences)
             {
-                asset.masterVolume = masterVolume;
+                Asset.preferences = new PreferencesAsset.Builder().AsCopy(preferences).Build();
                 return this;
             }
             
-            public Builder WithMusicVolume(float musicVolume)
+            public Builder WithInputBindings(InputBindingsAsset inputBindings)
             {
-                asset.musicVolume = musicVolume;
+                Asset.inputBindings = new InputBindingsAsset.Builder().AsCopy(inputBindings).Build();
                 return this;
             }
             
-            public Builder WithSoundVolume(float soundVolume)
-            {
-                asset.soundVolume = soundVolume;
-                return this;
-            }
-            
-            public Builder WithUIVolume(float uiVolume)
-            {
-                asset.uiVolume = uiVolume;
-                return this;
-            }
-            
-            public Builder WithResolution(Vector2Int resolution)
-            {
-                asset.resolution = resolution;
-                return this;
-            }
-            
-            public Builder WithScreenMode(ScreenType screenMode)
-            {
-                asset.screenMode = screenMode;
-                return this;
-            }
-            
-            public Builder WithVSync(bool vSync)
-            {
-                asset.vSync = vSync;
-                return this;
-            }
-            
-            /// <summary>
-            /// Copies the values from another asset.
-            /// </summary>
-            /// <param name="asset">The asset to copy from.</param>
             public Builder AsCopy(GameDataAsset asset)
             {
-                this.asset.masterVolume = asset.MasterVolume;
-                this.asset.musicVolume = asset.MusicVolume;
-                this.asset.soundVolume = asset.SoundVolume;
-                this.asset.uiVolume = asset.UIVolume;
-                     
-                this.asset.resolution = asset.Resolution;
-                this.asset.screenMode = asset.ScreenMode;
-                this.asset.vSync = asset.VSync;
+                Asset.preferences = new PreferencesAsset.Builder().AsCopy(asset.preferences).Build();
+                Asset.inputBindings = new InputBindingsAsset.Builder().AsCopy(asset.inputBindings).Build();
                 return this;
             }
             
-            public GameDataAsset Build() => asset;
+            public GameDataAsset Build() => Asset;
         }
     }
 }

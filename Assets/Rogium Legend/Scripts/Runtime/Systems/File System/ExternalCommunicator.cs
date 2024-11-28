@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using RedRats.Core;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Enemies;
@@ -32,6 +31,7 @@ namespace Rogium.ExternalStorage
         public ICRUDOperations<EnemyAsset, JSONEnemyAsset> Enemies { get => storage.Enemies; }
         public ICRUDOperations<RoomAsset, JSONRoomAsset> Rooms { get => storage.Rooms; }
         public ICRUDOperations<TileAsset, JSONTileAsset> Tiles { get => storage.Tiles; }
-        public ICRUDOperations<GameDataAsset, JSONGameDataAsset> Preferences { get => storage.Preferences; }
+        public ICRUDOperations<PreferencesAsset, JSONPreferencesAsset> Preferences { get => storage.Preferences; }
+        public ICRUDOperations<InputBindingsAsset, JSONInputBindingsAsset> InputBindings { get => storage.InputBindings; }
     }
 }

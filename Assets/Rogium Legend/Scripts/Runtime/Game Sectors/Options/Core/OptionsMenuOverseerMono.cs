@@ -1,5 +1,6 @@
 ﻿using RedRats.Core;
 using Rogium.Options.OptionControllers;
+using Rogium.Systems.Input;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -36,30 +37,31 @@ namespace Rogium.Options.Core
         private void OnEnable()
         {
             editor.OnAssignAsset += PrepareEditor;
-            editor.OnApplySettings += ApplyAllSettings;
+            editor.OnApplySettings += ApplyAllOptions;
         }
 
         private void OnDisable()
         {
             editor.OnAssignAsset -= PrepareEditor;
-            editor.OnApplySettings -= ApplyAllSettings;
+            editor.OnApplySettings -= ApplyAllOptions;
         }
         
         /// <summary>
-        /// Applies all settings from a specific <see cref="GameDataAsset"/>.
+        /// Applies all settings from a specific <see cref="PreferencesAsset"/>.
         /// </summary>
         /// <param name="asset">The data to apply to settings.</param>
-        public void ApplyAllSettings(GameDataAsset asset)
+        public void ApplyAllOptions(GameDataAsset asset)
         {
-            audioOptions.UpdateMasterVolume(asset.MasterVolume);
-            audioOptions.UpdateMusicVolume(asset.MusicVolume);
-            audioOptions.UpdateSoundVolume(asset.SoundVolume);
-            audioOptions.UpdateUIVolume(asset.UIVolume);
+            audioOptions.UpdateMasterVolume(asset.Preferences.MasterVolume);
+            audioOptions.UpdateMusicVolume(asset.Preferences.MusicVolume);
+            audioOptions.UpdateSoundVolume(asset.Preferences.SoundVolume);
+            audioOptions.UpdateUIVolume(asset.Preferences.UIVolume);
             
-            graphicsOptions.UpdateResolution(asset.GetResolution());
-            graphicsOptions.UpdateScreen(asset.ScreenMode);
-            graphicsOptions.UpdateVSync(asset.VSync);
-            //TODO: Update Input Bindings
+            graphicsOptions.UpdateResolution(asset.Preferences.GetResolution());
+            graphicsOptions.UpdateScreen(asset.Preferences.ScreenMode);
+            graphicsOptions.UpdateVSync(asset.Preferences.VSync);
+            
+            InputToAssetConverter.Load(asset.InputBindings);
         }
         
         /// <summary>
@@ -67,9 +69,9 @@ namespace Rogium.Options.Core
         /// </summary>
         private void PrepareEditor(GameDataAsset asset)
         {
-            audioPropertyBuilder.Build(asset);
-            graphicsPropertyBuilder.Build(asset);
-            inputPropertyBuilder.Build(asset);
+            audioPropertyBuilder.Build(asset.Preferences);
+            graphicsPropertyBuilder.Build(asset.Preferences);
+            inputPropertyBuilder.Build(asset.InputBindings);
         }
     }
 }

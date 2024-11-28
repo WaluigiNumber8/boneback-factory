@@ -19,7 +19,7 @@ namespace Rogium.Gameplay.Core
     /// <summary>
     /// Overseers the gameplay portion of the game.
     /// </summary>
-    public class GameplayOverseerMono : MonoSingleton<GameplayOverseerMono>
+    public sealed class GameplayOverseerMono : MonoSingleton<GameplayOverseerMono>
     {
         public event Action OnGameplayPause;
         public event Action OnGameplayResume;
@@ -42,7 +42,6 @@ namespace Rogium.Gameplay.Core
             base.Awake();
             try { currentCampaign = new CampaignAsset.Builder().AsCopy(SceneTransferOverseer.GetInstance().PickUpCampaign()).Build(); }
             catch (Exception) { currentCampaign = ExternalLibraryOverseer.Instance.Campaigns[0]; }
-            
         }
         private void OnEnable()
         {

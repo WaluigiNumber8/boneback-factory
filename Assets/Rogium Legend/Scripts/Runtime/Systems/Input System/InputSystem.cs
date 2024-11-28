@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using RedRats.Core;
+using Rogium.Options.Core;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -92,7 +93,7 @@ namespace Rogium.Systems.Input
                 eventSystem.sendNavigationEvents = true;
             }
         }
-
+        
         public int GetBindingIndexByDevice(InputAction action, InputDeviceType device, bool getSecondary = false)
         {
             return device switch

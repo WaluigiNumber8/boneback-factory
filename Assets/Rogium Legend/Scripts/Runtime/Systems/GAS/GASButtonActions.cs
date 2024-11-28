@@ -876,7 +876,7 @@ namespace Rogium.Systems.GASExtension
             
             void CancelChangesOptionsConfirm()
             {
-                ExternalLibraryOverseer.Instance.RefreshSettings();
+                ExternalLibraryOverseer.Instance.RefreshOptions();
                 ReturnToMainMenuOptionsConfirm();
             }
         }

@@ -79,7 +79,7 @@ namespace Rogium.Tests.Core
             ex.Rooms.Returns(Substitute.For<ICRUDOperations<RoomAsset, JSONRoomAsset>>());
             ex.Tiles.Returns(Substitute.For<ICRUDOperations<TileAsset, JSONTileAsset>>());
             ex.Campaigns.Returns(Substitute.For<ICRUDOperations<CampaignAsset, JSONCampaignAsset>>());
-            ex.Preferences.Returns(Substitute.For<ICRUDOperations<GameDataAsset, JSONGameDataAsset>>());
+            ex.Preferences.Returns(Substitute.For<ICRUDOperations<PreferencesAsset, JSONPreferencesAsset>>());
             ExternalCommunicator.Instance.OverrideStorageOverseer(ex);
         }
     }

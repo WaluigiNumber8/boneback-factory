@@ -25,7 +25,7 @@ namespace Rogium.Editors.Core
         
         private readonly AssetList<PackAsset> packs;
         private readonly AssetList<CampaignAsset> campaigns;
-        private GameDataAsset preferences;
+        private GameDataAsset gameData;
 
         private ExternalLibraryOverseer()
         {
@@ -35,23 +35,8 @@ namespace Rogium.Editors.Core
             packEditor.OnSaveChanges += UpdatePack;
             packEditor.OnRemoveSprite += RemoveSpriteAssociation;
             campaignEditor.OnSaveChanges += UpdateCampaign;
-            optionsEditor.OnSaveChanges += UpdatePreferences;
+            optionsEditor.OnSaveChanges += UpdateGameData;
             ReloadFromExternalStorage();
-            
-            optionsEditor.ApplyAllSettings(preferences);
-        }
-
-        /// <summary>
-        /// Repopulates the library with all packs located on external storage.
-        /// </summary>
-        public void ReloadFromExternalStorage()
-        {
-            packs.ReplaceAll(ex.Packs.LoadAll());
-            campaigns.ReplaceAll(ex.Campaigns.LoadAll());
-            campaigns.RemoveAll(campaign => campaign.PackReferences.Count <= 0);
-            
-            IList<GameDataAsset> data = ex.Preferences.LoadAll();
-            preferences = (data == null || data.Count <= 0) ? new GameDataAsset.Builder().Build() : data[0];
         }
 
         #region Packs
@@ -177,30 +162,49 @@ namespace Rogium.Editors.Core
 
         #region Preferences
 
-        public void UpdatePreferences(GameDataAsset gameData)
+        public void UpdateGameData(GameDataAsset gameData)
         {
-            preferences = gameData;
-            ex.Preferences.Save(preferences);
+            this.gameData = gameData;
+            ex.Preferences.Save(this.gameData.Preferences);
+            ex.InputBindings.Save(this.gameData.InputBindings);
         }
 
         public void ActivateOptionsEditor()
         {
-            optionsEditor.AssignAsset(preferences);
+            optionsEditor.AssignAsset(gameData);
         }
 
         /// <summary>
         /// Refresh game settings from the currently saved data.
         /// </summary>
-        public void RefreshSettings()
+        public void RefreshOptions()
         {
             ActivateOptionsEditor();
-            optionsEditor.ApplyAllSettings(preferences);
+            optionsEditor.ApplyAllOptions(gameData);
         }
 
         #endregion
         
+        /// <summary>
+        /// Loads all external storage data into the library.
+        /// </summary>
+        private void ReloadFromExternalStorage()
+        {
+            packs.ReplaceAll(ex.Packs.LoadAll());
+            campaigns.ReplaceAll(ex.Campaigns.LoadAll());
+            campaigns.RemoveAll(campaign => campaign.PackReferences.Count <= 0);
+            
+            IList<PreferencesAsset> preferencesData = ex.Preferences.LoadAll();
+            PreferencesAsset preferences = (preferencesData == null || preferencesData.Count <= 0) ? new PreferencesAsset.Builder().Build() : preferencesData[0];
+            IList<InputBindingsAsset> inputBindingsData = ex.InputBindings.LoadAll();
+            InputBindingsAsset inputBindings = (inputBindingsData == null || inputBindingsData.Count <= 0) ? new InputBindingsAsset.Builder().Build() : inputBindingsData[0];
+            gameData = new GameDataAsset.Builder()
+                          .WithPreferences(preferences)
+                          .WithInputBindings(inputBindings)
+                          .Build();
+        }
+        
         public ReadOnlyCollection<PackAsset> Packs { get => new(packs); }
         public ReadOnlyCollection<CampaignAsset> Campaigns {get => new(campaigns);}
-        public GameDataAsset Preferences { get => preferences; }
     }
 }

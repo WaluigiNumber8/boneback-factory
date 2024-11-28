@@ -14,12 +14,9 @@ namespace Rogium.UserInterface.Interactables.Properties
     {
         [SerializeField] private InputBindingReader inputReader;
         [SerializeField] private InputBindingReader inputReaderAlt;
-        
-        private InputAction action;
-        
+
         public void Construct(string title, InputAction action, int bindingIndex, int bindingIndexAlt = -1)
         {
-            this.action = action;
             title = Regex.Replace(title, "([A-Z])", " $1").Trim();
             ConstructTitle(title);
             

@@ -98,7 +98,7 @@ namespace Rogium.ExternalStorage
         /// </summary>
         /// <param name="list">The list to search.</param>
         /// <returns>Returns a cleaned up list.</returns>
-        private IList<T> FindAndRemoveDuplicates(IList<T> list)
+        private static IList<T> FindAndRemoveDuplicates(IList<T> list)
         {
             if (list == null || list.Count <= 1) return list;
             

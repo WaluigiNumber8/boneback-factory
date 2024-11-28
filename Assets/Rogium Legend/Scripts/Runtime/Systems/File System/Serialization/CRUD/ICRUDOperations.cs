@@ -4,6 +4,11 @@ using Rogium.Editors.Core;
 
 namespace Rogium.ExternalStorage
 {
+    /// <summary>
+    /// Represents a class that can perform CRUD operations on assets. 
+    /// </summary>
+    /// <typeparam name="T">Any type of <see cref="IDataAsset"/>.</typeparam>
+    /// <typeparam name="TS">Any type of <see cref="IEncodedObject{T}"/>.</typeparam>
     public interface ICRUDOperations<T, TS> where T : IDataAsset where TS : IEncodedObject<T>
     {
         /// <summary>

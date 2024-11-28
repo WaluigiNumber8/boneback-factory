@@ -7,7 +7,7 @@ namespace Rogium.Options.Core
     /// <summary>
     /// Builds properties for the Audio section in the Options Menu.
     /// </summary>
-    public class OptionsAudioPropertyBuilder : UIPropertyContentBuilderBaseColumn1<GameDataAsset>
+    public class OptionsAudioPropertyBuilder : UIPropertyContentBuilderBaseColumn1<PreferencesAsset>
     {
         private readonly AudioOptionsController audio;
 
@@ -16,7 +16,7 @@ namespace Rogium.Options.Core
             this.audio = audio;
         }
 
-        public override void Build(GameDataAsset data)
+        public override void Build(PreferencesAsset data)
         {
             Clear();
             b.BuildSlider("Master", 0f, 1f, data.MasterVolume, contentMain, value =>

@@ -10,6 +10,7 @@ using Rogium.Editors.Tiles;
 using Rogium.Editors.Weapons;
 using Rogium.ExternalStorage.Serialization;
 using Rogium.Options.Core;
+using UnityEngine;
 
 namespace Rogium.ExternalStorage
 {
@@ -18,10 +19,6 @@ namespace Rogium.ExternalStorage
     /// </summary>
     public sealed class ExternalStorageOverseer : IExternalStorageOverseer
     {
-        private readonly SaveableData packData;
-        private readonly SaveableData campaignData;
-        private readonly SaveableData gameData;
-
         private readonly CRUDPackOperations packCRUD;
         private readonly CRUDOperations<CampaignAsset, JSONCampaignAsset> campaignCRUD;
         private readonly CRUDOperations<PaletteAsset, JSONPaletteAsset> paletteCRUD;
@@ -32,22 +29,21 @@ namespace Rogium.ExternalStorage
         private readonly CRUDOperations<RoomAsset, JSONRoomAsset> roomCRUD;
         private readonly CRUDOperations<TileAsset, JSONTileAsset> tileCRUD;
         
-        private readonly CRUDOperations<GameDataAsset, JSONGameDataAsset> preferencesCRUD;
+        private readonly CRUDOperations<PreferencesAsset, JSONPreferencesAsset> preferencesCRUD;
+        private readonly CRUDOperations<InputBindingsAsset, JSONInputBindingsAsset> inputBindingsCRUD;
 
         public ExternalStorageOverseer()
         {
-            packData = new SaveableData("Packs", EditorAssetIDs.PackIdentifier);
-            campaignData = new SaveableData("Campaigns", EditorAssetIDs.CampaignIdentifier);
-            gameData = new SaveableData("", EditorAssetIDs.PreferencesIdentifier);
-            
             packCRUD = new CRUDPackOperations(RefreshAssetSaveableData, CreatePack);
-            packCRUD.RefreshSaveableData(packData);
+            packCRUD.RefreshSaveableData(new SaveableData("Packs", EditorAssetIDs.PackIdentifier));
 
             campaignCRUD = new CRUDOperations<CampaignAsset, JSONCampaignAsset>(p => new JSONCampaignAsset(p), EditorAssetIDs.CampaignIdentifier);
-            campaignCRUD.RefreshSaveableData(campaignData);
+            campaignCRUD.RefreshSaveableData(new SaveableData("Campaigns", EditorAssetIDs.CampaignIdentifier));
 
-            preferencesCRUD = new CRUDOperations<GameDataAsset, JSONGameDataAsset>(p => new JSONGameDataAsset(p),EditorAssetIDs.PreferencesIdentifier, false);
-            preferencesCRUD.RefreshSaveableData(gameData);
+            preferencesCRUD = new CRUDOperations<PreferencesAsset, JSONPreferencesAsset>(p => new JSONPreferencesAsset(p), EditorAssetIDs.PreferencesIdentifier, false);
+            preferencesCRUD.RefreshSaveableData(new SaveableData("", EditorAssetIDs.PreferencesIdentifier));
+            inputBindingsCRUD = new CRUDOperations<InputBindingsAsset, JSONInputBindingsAsset>(i => new JSONInputBindingsAsset(i), EditorAssetIDs.InputIdentifier, false);
+            inputBindingsCRUD.RefreshSaveableData(new SaveableData("", EditorAssetIDs.InputIdentifier));
             
             paletteCRUD = new CRUDOperations<PaletteAsset, JSONPaletteAsset>(p => new JSONPaletteAsset(p), EditorAssetIDs.PaletteIdentifier);
             spriteCRUD = new CRUDOperations<SpriteAsset, JSONSpriteAsset>(s => new JSONSpriteAsset(s), EditorAssetIDs.SpriteIdentifier);
@@ -101,6 +97,7 @@ namespace Rogium.ExternalStorage
         public ICRUDOperations<EnemyAsset, JSONEnemyAsset> Enemies { get => enemyCRUD; }
         public ICRUDOperations<RoomAsset, JSONRoomAsset> Rooms { get => roomCRUD; }
         public ICRUDOperations<TileAsset, JSONTileAsset> Tiles { get => tileCRUD; }
-        public ICRUDOperations<GameDataAsset, JSONGameDataAsset> Preferences { get => preferencesCRUD; }
+        public ICRUDOperations<PreferencesAsset, JSONPreferencesAsset> Preferences { get => preferencesCRUD; }
+        public ICRUDOperations<InputBindingsAsset, JSONInputBindingsAsset> InputBindings { get => inputBindingsCRUD; }
     }
 }
