@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using RedRats.UI.ModalWindows;
 using Rogium.Editors.Core.Defaults;
+using Rogium.Systems.ActionHistory;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables;
 using UnityEngine;

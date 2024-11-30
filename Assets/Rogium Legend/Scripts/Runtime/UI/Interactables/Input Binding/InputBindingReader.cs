@@ -2,6 +2,7 @@
 using RedRats.Safety;
 using RedRats.UI.ModalWindows;
 using Rogium.Editors.Core.Defaults;
+using Rogium.Systems.ActionHistory;
 using Rogium.UserInterface.ModalWindows;
 using TMPro;
 using UnityEngine;
@@ -26,7 +27,7 @@ namespace Rogium.UserInterface.Interactables
         private InputAction action;
         private int bindingIndex;
         private InputActionRebindingExtensions.RebindingOperation rebindOperation;
-        private InputBinding previousBinding;
+        private InputBinding lastBinding;
 
         private void Awake() => ui.button.onClick.AddListener(StartRebinding);
 
@@ -47,7 +48,7 @@ namespace Rogium.UserInterface.Interactables
             SafetyNet.EnsureIndexWithingCollectionRange(bindingIndex, action.bindings, nameof(action.bindings));
             this.action = action;
             this.bindingIndex = bindingIndex;
-            this.previousBinding = action.bindings[bindingIndex];
+            this.lastBinding = action.bindings[bindingIndex];
             ui.ShowBoundInputDisplay();
             RefreshInputString();
         }
@@ -91,7 +92,7 @@ namespace Rogium.UserInterface.Interactables
                         .WithDenyButton("Cancel", RevertBinding)
                         .Build());
                 }
-                else previousBinding = action.bindings[bindingIndex];
+                else ActionHistorySystem.AddAndExecute(new UpdateInputBindingAction(this, operation.action.bindings[bindingIndex].effectivePath, lastBinding.effectivePath, Rebind));
                 StopRebinding();
             }
             
@@ -119,12 +120,20 @@ namespace Rogium.UserInterface.Interactables
             {
                 //Revert the rebind operation
                 action.Disable();
-                action.ApplyBindingOverride(bindingIndex, previousBinding);
+                action.ApplyBindingOverride(bindingIndex, lastBinding);
                 action.Enable();
                 RefreshInputString();
                 OnRebindEndAny?.Invoke(action, bindingIndex);
                 OnRebindEnd?.Invoke();
             }
+        }
+
+        public void Rebind(string path)
+        {
+            lastBinding = action.bindings[bindingIndex];
+            action.Disable();
+            action.ApplyBindingOverride(bindingIndex, path);
+            action.Enable();
         }
         
         public void SetActive(bool value) => ui.button.interactable = value;
