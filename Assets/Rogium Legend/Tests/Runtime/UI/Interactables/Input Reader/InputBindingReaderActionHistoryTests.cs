@@ -116,6 +116,28 @@ namespace Rogium.Tests.UI.Interactables
             ActionHistorySystem.UndoLast();
             Assert.That(reader2.InputString, Is.EqualTo("RMB"));
         }
+
+        [UnityTest]
+        public IEnumerator Should_RevertActionBinding_WhenReaderIsInactiveAndUndone()
+        {
+            yield return BindKey(keyboard.lKey);
+            ActionHistorySystem.ForceEndGrouping();
+            reader.gameObject.SetActive(false);
+            ActionHistorySystem.UndoLast();
+            yield return null;
+            Assert.That(reader.InputString, Is.EqualTo("LMB"));
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_NotKeepNewAction_WhenReaderIsInactiveAndUndone()
+        {
+            yield return BindKey(keyboard.lKey);
+            ActionHistorySystem.ForceEndGrouping();
+            reader.gameObject.SetActive(false);
+            ActionHistorySystem.UndoLast();
+            yield return null;
+            Assert.That(reader.InputString, Is.Not.EqualTo("L"));
+        }
         
         private IEnumerator BindKey(ButtonControl key)
         {
