@@ -20,7 +20,7 @@ namespace Rogium.Tests.UI.Interactables
     /// </summary>
     public class InputBindingReaderActionHistoryTests : MenuTestWithInputBase
     {
-        private InputBindingReader inputReader;
+        private InputBindingReader reader;
         private InputSystem input;
 
         public override IEnumerator SetUp()
@@ -32,7 +32,7 @@ namespace Rogium.Tests.UI.Interactables
             input = InputSystem.GetInstance();
             input.ClearAllInput();
             yield return null;
-            inputReader = BuildInputReader(input.Player.ButtonMain.Action);
+            reader = BuildInputReader(input.Player.ButtonMain.Action);
         }
         
         [UnityTest]
@@ -46,11 +46,11 @@ namespace Rogium.Tests.UI.Interactables
         [UnityTest]
         public IEnumerator Should_UndoRebinding_WhenUndone()
         {
-            string originalKey = inputReader.Binding.effectivePath;
+            string originalKey = reader.Binding.effectivePath;
             yield return BindKey(keyboard.lKey);
             ActionHistorySystem.ForceEndGrouping();
             ActionHistorySystem.UndoLast();
-            Assert.That(inputReader.Binding.effectivePath, Is.EqualTo(originalKey));
+            Assert.That(reader.Binding.effectivePath, Is.EqualTo(originalKey));
         }
 
         [UnityTest]
@@ -58,9 +58,9 @@ namespace Rogium.Tests.UI.Interactables
         {
             yield return BindKey(keyboard.lKey);
             ActionHistorySystem.ForceEndGrouping();
-            string reboundKey = inputReader.Binding.effectivePath;
+            string reboundKey = reader.Binding.effectivePath;
             ActionHistorySystem.UndoLast();
-            Assert.That(inputReader.Binding.effectivePath, Is.Not.EqualTo(reboundKey));
+            Assert.That(reader.Binding.effectivePath, Is.Not.EqualTo(reboundKey));
         }
 
         [UnityTest]
@@ -68,36 +68,58 @@ namespace Rogium.Tests.UI.Interactables
         {
             yield return BindKey(keyboard.lKey);
             ActionHistorySystem.ForceEndGrouping();
-            string reboundKey = inputReader.Binding.effectivePath;
+            string reboundKey = reader.Binding.effectivePath;
             ActionHistorySystem.UndoLast();
             ActionHistorySystem.RedoLast();
-            Assert.That(inputReader.Binding.effectivePath, Is.EqualTo(reboundKey));
+            Assert.That(reader.Binding.effectivePath, Is.EqualTo(reboundKey));
         }
 
         [UnityTest]
         public IEnumerator Should_NotEqualToOriginalKey_WhenRedone()
         {
-            string originalKey = inputReader.Binding.effectivePath;
+            string originalKey = reader.Binding.effectivePath;
             yield return BindKey(keyboard.lKey);
             ActionHistorySystem.ForceEndGrouping();
             ActionHistorySystem.UndoLast();
             ActionHistorySystem.RedoLast();
-            Assert.That(inputReader.Binding.effectivePath, Is.Not.EqualTo(originalKey));
+            Assert.That(reader.Binding.effectivePath, Is.Not.EqualTo(originalKey));
         }
 
         [UnityTest]
         public IEnumerator Should_RefreshDisplayedInputString_WhenUndone()
         {
-            string originalSymbol = inputReader.InputString;
+            string originalSymbol = reader.InputString;
             yield return BindKey(keyboard.lKey);
             ActionHistorySystem.ForceEndGrouping();
             ActionHistorySystem.UndoLast();
-            Assert.That(inputReader.InputString, Is.EqualTo(originalSymbol));
+            Assert.That(reader.InputString, Is.EqualTo(originalSymbol));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_RevertActiveReader_WhenDuplicateOverridenAndUndone()
+        {
+            BuildInputReader(input.Player.ButtonMainAlt.Action);
+            yield return BindKey(mouse.rightButton);
+            Object.FindFirstObjectByType<ModalWindow>().OnAccept();
+            yield return null;
+            ActionHistorySystem.UndoLast();
+            Assert.That(reader.InputString, Is.EqualTo("LMB"));
         }
         
-        private IEnumerator BindKey(KeyControl key)
+        [UnityTest]
+        public IEnumerator Should_RevertDuplicateReader_WhenDuplicateOverridenAndUndone()
         {
-            inputReader.StartRebinding();
+            InputBindingReader reader2 = BuildInputReader(input.Player.ButtonMainAlt.Action);
+            yield return BindKey(mouse.rightButton);
+            Object.FindFirstObjectByType<ModalWindow>().OnAccept();
+            yield return null;
+            ActionHistorySystem.UndoLast();
+            Assert.That(reader2.InputString, Is.EqualTo("RMB"));
+        }
+        
+        private IEnumerator BindKey(ButtonControl key)
+        {
+            reader.StartRebinding();
             yield return new WaitForSecondsRealtime(0.1f);
             Press(key);
             yield return new WaitForSecondsRealtime(0.1f);

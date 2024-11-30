@@ -19,6 +19,7 @@ namespace Rogium.Systems.ActionHistory
         private static IAction lastAction;
         private static GroupAction currentGroup;
         private static bool canCreateGroups = true;
+        private static bool ignoreConstructs = false;
 
         static ActionHistorySystem()
         {
@@ -93,6 +94,24 @@ namespace Rogium.Systems.ActionHistory
             canCreateGroups = false;
             AddCurrentGroupToUndo();
         }
+
+        /// <summary>
+        /// The next actions will gruped regardless of the construct.
+        /// </summary>
+        public static void ForceGroupAllActions()
+        {
+            ignoreConstructs = true;
+            ForceBeginGrouping();
+        }
+
+        /// <summary>
+        /// Ends the forced grouping of all actions.
+        /// </summary>
+        public static void ForceGroupAllActionsEnd()
+        {
+            ignoreConstructs = false;
+            ForceEndGrouping();
+        }
         
         private static void DecideUndoStatusFor(IAction action, bool blockGrouping = false)
         {
@@ -108,7 +127,7 @@ namespace Rogium.Systems.ActionHistory
                 }
                 
                 //Add to group if action is on the same construct
-                if (action.AffectedConstruct == lastAction?.AffectedConstruct)
+                if (ignoreConstructs || action.AffectedConstruct == lastAction?.AffectedConstruct)
                 {
                     currentGroup.AddAction(action);
                     return;

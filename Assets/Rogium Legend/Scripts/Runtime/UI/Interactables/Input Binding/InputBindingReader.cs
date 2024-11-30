@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using RedRats.Safety;
 using RedRats.UI.ModalWindows;
 using Rogium.Editors.Core.Defaults;
@@ -83,12 +84,12 @@ namespace Rogium.UserInterface.Interactables
 
             void FinishRebinding(InputActionRebindingExtensions.RebindingOperation operation)
             {
-                (InputAction duplicateAction, int duplicateIndex) = InputSystem.GetInstance().FindDuplicateBinding(action, bindingIndex);
+                (InputAction duplicateAction, int _) = InputSystem.GetInstance().FindDuplicateBinding(action, bindingIndex);
                 if (duplicateAction != null)
                 {
                     ModalWindowBuilder.GetInstance().OpenWindow(new ModalWindowData.Builder()
                         .WithMessage($"The input is already used in {duplicateAction.name}. Want to rebind?")
-                        .WithAcceptButton("Override", () => OverrideDuplicateBinding(duplicateAction, duplicateIndex))
+                        .WithAcceptButton("Override", () => OverrideDuplicateBinding(operation))
                         .WithDenyButton("Cancel", RevertBinding)
                         .Build());
                 }
@@ -107,13 +108,15 @@ namespace Rogium.UserInterface.Interactables
                 ui.ShowBoundInputDisplay();
             }
             
-            void OverrideDuplicateBinding(InputAction duplicateAction, int duplicateIndex)
+            void OverrideDuplicateBinding(InputActionRebindingExtensions.RebindingOperation operation)
             {
+                ActionHistorySystem.ForceGroupAllActions();
+                ActionHistorySystem.AddAndExecute(new UpdateInputBindingAction(this, operation.action.bindings[bindingIndex].effectivePath, lastBinding.effectivePath, Rebind));
+                
                 //Clear the duplicate binding
-                duplicateAction.Disable();
-                duplicateAction.ApplyBindingOverride(duplicateIndex, "");
-                duplicateAction.Enable();
-                RefreshAllInputBindingReaders();
+                InputBindingReader duplicateReader = FindObjectsByType<InputBindingReader>(FindObjectsSortMode.None).FirstOrDefault(r => r.InputString == InputString);
+                if (duplicateReader != null) ActionHistorySystem.AddAndExecute(new UpdateInputBindingAction(duplicateReader, "", duplicateReader.Binding.effectivePath, duplicateReader.Rebind));
+                ActionHistorySystem.ForceGroupAllActionsEnd();
             }
             
             void RevertBinding() => Rebind(lastBinding.effectivePath);
@@ -148,12 +151,6 @@ namespace Rogium.UserInterface.Interactables
             ui.inputText.text = (string.IsNullOrEmpty(inputText)) ? EditorDefaults.Instance.InputEmptyText : inputText;
         }
 
-        private static void RefreshAllInputBindingReaders()
-        {
-            InputBindingReader[] readers = FindObjectsByType<InputBindingReader>(FindObjectsSortMode.None);
-            foreach (InputBindingReader reader in readers) reader.RefreshInputString();
-        }
-        
         public InputAction Action { get => action; }
         public InputBinding Binding { get => action.bindings[bindingIndex]; }
         public string InputString { get => ui.inputText.text ; }
