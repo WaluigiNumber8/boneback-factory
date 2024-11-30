@@ -138,6 +138,17 @@ namespace Rogium.Tests.UI.Interactables
             yield return null;
             Assert.That(reader.InputString, Is.Not.EqualTo("L"));
         }
+
+        [UnityTest]
+        public IEnumerator Should_NotAddToActionHistory_WhenDuplicateFoundAndRevertNewAction()
+        {
+            BuildInputReader(input.Player.ButtonMainAlt.Action);
+            yield return BindKey(mouse.rightButton);
+            Object.FindFirstObjectByType<ModalWindow>().OnDeny();
+            yield return null;
+            ActionHistorySystem.ForceEndGrouping();
+            Assert.That(ActionHistorySystem.UndoCount, Is.EqualTo(0));
+        }
         
         private IEnumerator BindKey(ButtonControl key)
         {
