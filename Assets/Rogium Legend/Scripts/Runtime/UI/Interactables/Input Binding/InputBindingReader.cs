@@ -84,12 +84,12 @@ namespace Rogium.UserInterface.Interactables
 
             void FinishRebinding(InputActionRebindingExtensions.RebindingOperation operation)
             {
-                (InputAction duplicateAction, int _) = InputSystem.GetInstance().FindDuplicateBinding(action, bindingIndex);
+                (InputAction duplicateAction, int duplicateIndex) = InputSystem.GetInstance().FindDuplicateBinding(action, bindingIndex);
                 if (duplicateAction != null)
                 {
                     ModalWindowBuilder.GetInstance().OpenWindow(new ModalWindowData.Builder()
                         .WithMessage($"The input is already used in {duplicateAction.name}. Want to rebind?")
-                        .WithAcceptButton("Override", () => OverrideDuplicateBinding(operation))
+                        .WithAcceptButton("Override", () => OverrideDuplicateBinding(operation, duplicateAction, duplicateIndex))
                         .WithDenyButton("Cancel", RevertBinding)
                         .Build());
                 }
@@ -108,14 +108,15 @@ namespace Rogium.UserInterface.Interactables
                 ui.ShowBoundInputDisplay();
             }
             
-            void OverrideDuplicateBinding(InputActionRebindingExtensions.RebindingOperation operation)
+            void OverrideDuplicateBinding(InputActionRebindingExtensions.RebindingOperation operation, InputAction duplicateAction, int duplicateIndex)
             {
                 ActionHistorySystem.ForceGroupAllActions();
-                ActionHistorySystem.AddAndExecute(new UpdateInputBindingAction(this, operation.action.bindings[bindingIndex].effectivePath, lastBinding.effectivePath, Rebind));
                 
                 //Clear the duplicate binding
-                InputBindingReader duplicateReader = FindObjectsByType<InputBindingReader>(FindObjectsSortMode.None).FirstOrDefault(r => r.InputString == InputString);
+                InputBindingReader duplicateReader = FindObjectsByType<InputBindingReader>(FindObjectsSortMode.None).FirstOrDefault(r => r.action == duplicateAction && r.bindingIndex == duplicateIndex);
                 if (duplicateReader != null) ActionHistorySystem.AddAndExecute(new UpdateInputBindingAction(duplicateReader, "", duplicateReader.Binding.effectivePath, duplicateReader.Rebind));
+                
+                ActionHistorySystem.AddAndExecute(new UpdateInputBindingAction(this, operation.action.bindings[bindingIndex].effectivePath, lastBinding.effectivePath, Rebind));
                 ActionHistorySystem.ForceGroupAllActionsEnd();
             }
             
