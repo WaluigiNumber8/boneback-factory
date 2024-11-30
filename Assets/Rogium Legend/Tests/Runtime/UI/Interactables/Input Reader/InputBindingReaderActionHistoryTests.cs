@@ -42,6 +42,48 @@ namespace Rogium.Tests.UI.Interactables
             ActionHistorySystem.ForceEndGrouping();
             Assert.That(ActionHistorySystem.UndoCount, Is.EqualTo(1));
         }
+
+        [UnityTest]
+        public IEnumerator Should_UndoRebinding_WhenUndone()
+        {
+            string originalKey = inputReader.Binding.effectivePath;
+            yield return BindKey(keyboard.lKey);
+            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.UndoLast();
+            Assert.That(inputReader.Binding.effectivePath, Is.EqualTo(originalKey));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_NotEqualToNewKey_WhenUndone()
+        {
+            yield return BindKey(keyboard.lKey);
+            ActionHistorySystem.ForceEndGrouping();
+            string reboundKey = inputReader.Binding.effectivePath;
+            ActionHistorySystem.UndoLast();
+            Assert.That(inputReader.Binding.effectivePath, Is.Not.EqualTo(reboundKey));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_RedoRebinding_WhenRedone()
+        {
+            yield return BindKey(keyboard.lKey);
+            ActionHistorySystem.ForceEndGrouping();
+            string reboundKey = inputReader.Binding.effectivePath;
+            ActionHistorySystem.UndoLast();
+            ActionHistorySystem.RedoLast();
+            Assert.That(inputReader.Binding.effectivePath, Is.EqualTo(reboundKey));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_NotEqualToOriginalKey_WhenRedone()
+        {
+            string originalKey = inputReader.Binding.effectivePath;
+            yield return BindKey(keyboard.lKey);
+            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.UndoLast();
+            ActionHistorySystem.RedoLast();
+            Assert.That(inputReader.Binding.effectivePath, Is.Not.EqualTo(originalKey));
+        }
         
         private IEnumerator BindKey(KeyControl key)
         {
