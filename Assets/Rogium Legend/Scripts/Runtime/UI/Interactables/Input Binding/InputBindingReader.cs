@@ -116,16 +116,7 @@ namespace Rogium.UserInterface.Interactables
                 RefreshAllInputBindingReaders();
             }
             
-            void RevertBinding()
-            {
-                //Revert the rebind operation
-                action.Disable();
-                action.ApplyBindingOverride(bindingIndex, lastBinding);
-                action.Enable();
-                RefreshInputString();
-                OnRebindEndAny?.Invoke(action, bindingIndex);
-                OnRebindEnd?.Invoke();
-            }
+            void RevertBinding() => Rebind(lastBinding.effectivePath);
         }
 
         public void Rebind(string path)
@@ -134,6 +125,9 @@ namespace Rogium.UserInterface.Interactables
             action.Disable();
             action.ApplyBindingOverride(bindingIndex, path);
             action.Enable();
+            RefreshInputString();
+            OnRebindEndAny?.Invoke(action, bindingIndex);
+            OnRebindEnd?.Invoke();
         }
         
         public void SetActive(bool value) => ui.button.interactable = value;

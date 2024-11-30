@@ -84,6 +84,16 @@ namespace Rogium.Tests.UI.Interactables
             ActionHistorySystem.RedoLast();
             Assert.That(inputReader.Binding.effectivePath, Is.Not.EqualTo(originalKey));
         }
+
+        [UnityTest]
+        public IEnumerator Should_RefreshDisplayedInputString_WhenUndone()
+        {
+            string originalSymbol = inputReader.InputString;
+            yield return BindKey(keyboard.lKey);
+            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.UndoLast();
+            Assert.That(inputReader.InputString, Is.EqualTo(originalSymbol));
+        }
         
         private IEnumerator BindKey(KeyControl key)
         {
