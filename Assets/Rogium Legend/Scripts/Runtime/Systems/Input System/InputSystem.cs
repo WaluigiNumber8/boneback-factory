@@ -28,7 +28,7 @@ namespace Rogium.Systems.Input
             ClearAllInput();
             SceneManager.sceneLoaded += (_, __) => eventSystem = FindFirstObjectByType<EventSystem>();
             inputUI.PointerPosition.OnPressed += UpdatePointerPosition;
-            EnablePauseMap();
+            inputPause.Disable();
         }
 
         public void ClearAllInput()
@@ -63,6 +63,8 @@ namespace Rogium.Systems.Input
             inputPause.Enable();
         }
         
+        public void DisablePauseMap() => inputPause.Disable();
+
         public (InputAction, int) FindDuplicateBinding(InputAction action, int bindingIndex)
         {
             InputBinding newBinding = action.bindings[bindingIndex];
