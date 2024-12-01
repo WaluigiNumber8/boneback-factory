@@ -112,11 +112,11 @@ namespace Rogium.UserInterface.Interactables
             {
                 ActionHistorySystem.ForceGroupAllActions();
                 
-                //Clear the duplicate binding
+                //Clear the duplicate binding reader
                 InputBindingReader duplicateReader = FindObjectsByType<InputBindingReader>(FindObjectsSortMode.None).FirstOrDefault(r => r.action == duplicateAction && r.bindingIndex == duplicateIndex);
-                if (duplicateReader != null) ActionHistorySystem.AddAndExecute(new UpdateInputBindingAction(duplicateReader, "", duplicateReader.Binding.effectivePath, duplicateReader.Rebind));
+                ActionHistorySystem.AddAndExecute(new UpdateInputBindingAction(duplicateReader, "", duplicateAction.bindings[duplicateIndex].effectivePath, p => RebindAction(duplicateAction, duplicateIndex, p)));
                 
-                ActionHistorySystem.AddAndExecute(new UpdateInputBindingAction(this, operation.action.bindings[bindingIndex].effectivePath, lastBinding.effectivePath, Rebind));
+                ActionHistorySystem.AddAndExecute(new UpdateInputBindingAction(this, operation.action.bindings[bindingIndex].effectivePath, lastBinding.effectivePath, p => RebindAction(action, bindingIndex, p)));
                 ActionHistorySystem.ForceGroupAllActionsEnd();
             }
             
@@ -150,6 +150,13 @@ namespace Rogium.UserInterface.Interactables
         {
             string inputText = action.bindings[bindingIndex].ToDisplayString();
             ui.inputText.text = (string.IsNullOrEmpty(inputText)) ? EditorDefaults.Instance.InputEmptyText : inputText;
+        }
+
+        private static void RebindAction(InputAction action, int bindingIndex , string path)
+        {
+            action.Disable();
+            action.ApplyBindingOverride(bindingIndex, path);
+            action.Enable();
         }
 
         public InputAction Action { get => action; }
