@@ -1,15 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 
 namespace Rogium.Systems.ActionHistory
 {
     /// <summary>
-    /// Groups multiple actions into one.
+    /// A base for all group actions.
     /// </summary>
-    public class GroupAction : IAction
+    public abstract class GroupActionBase : IAction
     {
-        private readonly IList<IAction> actions = new List<IAction>();
+        protected readonly IList<IAction> actions = new List<IAction>();
 
         public void Execute()
         {
@@ -28,13 +26,10 @@ namespace Rogium.Systems.ActionHistory
         }
 
         public void AddAction(IAction action) => actions.Add(action);
-
-        public bool NothingChanged() => actions[0].LastValue.Equals(actions[^1].Value);
         public int ActionsCount => actions.Count;
+        public abstract bool NothingChanged();
         public object AffectedConstruct => actions[0]?.AffectedConstruct;
         public object Value { get => -1; }
         public object LastValue { get => -1; }
-
-        public override string ToString() => $"{actions[0].AffectedConstruct} x {actions.Count}";
     }
 }

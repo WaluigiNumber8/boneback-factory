@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using RedRats.Safety;
 using RedRats.UI.ModalWindows;
 using Rogium.Editors.Core.Defaults;
+using Rogium.Systems.ActionHistory;
 using Rogium.UserInterface.ModalWindows;
 using TMPro;
 using UnityEngine;
@@ -26,7 +28,7 @@ namespace Rogium.UserInterface.Interactables
         private InputAction action;
         private int bindingIndex;
         private InputActionRebindingExtensions.RebindingOperation rebindOperation;
-        private InputBinding previousBinding;
+        private InputBinding lastBinding;
 
         private void Awake() => ui.button.onClick.AddListener(StartRebinding);
 
@@ -47,7 +49,7 @@ namespace Rogium.UserInterface.Interactables
             SafetyNet.EnsureIndexWithingCollectionRange(bindingIndex, action.bindings, nameof(action.bindings));
             this.action = action;
             this.bindingIndex = bindingIndex;
-            this.previousBinding = action.bindings[bindingIndex];
+            this.lastBinding = action.bindings[bindingIndex];
             ui.ShowBoundInputDisplay();
             RefreshInputString();
         }
@@ -87,11 +89,11 @@ namespace Rogium.UserInterface.Interactables
                 {
                     ModalWindowBuilder.GetInstance().OpenWindow(new ModalWindowData.Builder()
                         .WithMessage($"The input is already used in {duplicateAction.name}. Want to rebind?")
-                        .WithAcceptButton("Override", () => OverrideDuplicateBinding(duplicateAction, duplicateIndex))
+                        .WithAcceptButton("Override", () => OverrideDuplicateBinding(operation, duplicateAction, duplicateIndex))
                         .WithDenyButton("Cancel", RevertBinding)
                         .Build());
                 }
-                else previousBinding = action.bindings[bindingIndex];
+                else ActionHistorySystem.AddAndExecute(new UpdateInputBindingAction(this, operation.action.bindings[bindingIndex].effectivePath, lastBinding.effectivePath, Rebind));
                 StopRebinding();
             }
             
@@ -106,25 +108,30 @@ namespace Rogium.UserInterface.Interactables
                 ui.ShowBoundInputDisplay();
             }
             
-            void OverrideDuplicateBinding(InputAction duplicateAction, int duplicateIndex)
+            void OverrideDuplicateBinding(InputActionRebindingExtensions.RebindingOperation operation, InputAction duplicateAction, int duplicateIndex)
             {
-                //Clear the duplicate binding
-                duplicateAction.Disable();
-                duplicateAction.ApplyBindingOverride(duplicateIndex, "");
-                duplicateAction.Enable();
-                RefreshAllInputBindingReaders();
+                ActionHistorySystem.ForceGroupAllActions();
+                
+                //Clear the duplicate binding reader
+                InputBindingReader duplicateReader = FindObjectsByType<InputBindingReader>(FindObjectsSortMode.None).FirstOrDefault(r => r.action == duplicateAction && r.bindingIndex == duplicateIndex);
+                ActionHistorySystem.AddAndExecute(new UpdateInputBindingAction(duplicateReader, "", duplicateAction.bindings[duplicateIndex].effectivePath, p => RebindAction(duplicateAction, duplicateIndex, p)));
+                
+                ActionHistorySystem.AddAndExecute(new UpdateInputBindingAction(this, operation.action.bindings[bindingIndex].effectivePath, lastBinding.effectivePath, p => RebindAction(action, bindingIndex, p)));
+                ActionHistorySystem.ForceGroupAllActionsEnd();
             }
             
-            void RevertBinding()
-            {
-                //Revert the rebind operation
-                action.Disable();
-                action.ApplyBindingOverride(bindingIndex, previousBinding);
-                action.Enable();
-                RefreshInputString();
-                OnRebindEndAny?.Invoke(action, bindingIndex);
-                OnRebindEnd?.Invoke();
-            }
+            void RevertBinding() => Rebind(lastBinding.effectivePath);
+        }
+
+        public void Rebind(string path)
+        {
+            lastBinding = action.bindings[bindingIndex];
+            action.Disable();
+            action.ApplyBindingOverride(bindingIndex, path);
+            action.Enable();
+            RefreshInputString();
+            OnRebindEndAny?.Invoke(action, bindingIndex);
+            OnRebindEnd?.Invoke();
         }
         
         public void SetActive(bool value) => ui.button.interactable = value;
@@ -145,12 +152,13 @@ namespace Rogium.UserInterface.Interactables
             ui.inputText.text = (string.IsNullOrEmpty(inputText)) ? EditorDefaults.Instance.InputEmptyText : inputText;
         }
 
-        private static void RefreshAllInputBindingReaders()
+        private static void RebindAction(InputAction action, int bindingIndex , string path)
         {
-            InputBindingReader[] readers = FindObjectsByType<InputBindingReader>(FindObjectsSortMode.None);
-            foreach (InputBindingReader reader in readers) reader.RefreshInputString();
+            action.Disable();
+            action.ApplyBindingOverride(bindingIndex, path);
+            action.Enable();
         }
-        
+
         public InputAction Action { get => action; }
         public InputBinding Binding { get => action.bindings[bindingIndex]; }
         public string InputString { get => ui.inputText.text ; }
