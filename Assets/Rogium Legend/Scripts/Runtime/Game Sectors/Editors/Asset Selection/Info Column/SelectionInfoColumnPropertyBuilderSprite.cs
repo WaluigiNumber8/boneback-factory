@@ -1,12 +1,10 @@
-using System.Collections.Generic;
 using Rogium.Core;
-using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Sprites;
 using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine;
 
-namespace Rogium.Editors.NewAssetSelection
+namespace Rogium.Editors.AssetSelection
 {
     /// <summary>
     /// Builds the <see cref="SelectionInfoColumn"/> for a <see cref="Sprite"/>.

@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using RedRats.Core.Utils;
+﻿using RedRats.Core.Utils;
 using RedRats.Systems.Themes;
 using UnityEngine;
 
-namespace Rogium.Editors.NewAssetSelection.UI
+namespace Rogium.Editors.AssetSelection.UI
 {
     /// <summary>
     /// Adjusts a shimmer effect color based on current theme.

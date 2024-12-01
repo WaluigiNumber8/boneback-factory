@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-namespace Rogium.Editors.NewAssetSelection.UI
+namespace Rogium.Editors.AssetSelection.UI
 {
     /// <summary>
     /// Controls everything happening on the Navigation Bar. Everything from what buttons do what, to what shows up.

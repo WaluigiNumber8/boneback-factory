@@ -1,9 +1,7 @@
 using System.Collections;
 using NUnit.Framework;
-using NUnit.Framework.Constraints;
-using RedRats.Core;
 using RedRats.UI.Core.Scrolling;
-using Rogium.Editors.NewAssetSelection;
+using Rogium.Editors.AssetSelection;
 using Rogium.Tests.Core;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -22,7 +20,7 @@ namespace Rogium.Tests.UI.Scrolling
         public override IEnumerator Setup()
         {
             yield return base.Setup();
-            yield return MenuLoader.PrepareSelectionMenuV2();
+            yield return MenuLoader.PrepareSelectionMenu();
             adapter = SelectionMenuOverseerMono.GetInstance().GetComponentInChildren<ScrollRectButtonAdapter>();
             scroll = adapter.ScrollRect;
             scroll.horizontalNormalizedPosition = 0.5f;

@@ -3,7 +3,7 @@ using NUnit.Framework;
 using RedRats.Core;
 using Rogium.Core;
 using Rogium.Editors.Core;
-using Rogium.Editors.NewAssetSelection;
+using Rogium.Editors.AssetSelection;
 using Rogium.Editors.Packs;
 using Rogium.Systems.GASExtension;
 using Rogium.Tests.Core;
@@ -24,7 +24,7 @@ namespace Rogium.Tests.Editors.AssetSelection
             yield return base.Setup();
             OverseerLoader.LoadModalWindowBuilder();
             OverseerLoader.LoadUIBuilder();
-            yield return MenuLoader.PrepareSelectionMenuV2();
+            yield return MenuLoader.PrepareSelectionMenu();
             selectionMenu = SelectionMenuOverseerMono.GetInstance();
             AddNewPackToLibrary();
             AddNewPackToLibrary();

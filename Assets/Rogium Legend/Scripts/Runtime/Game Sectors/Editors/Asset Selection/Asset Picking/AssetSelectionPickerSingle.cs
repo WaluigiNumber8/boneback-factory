@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using RedRats.Systems.Themes;
 using Rogium.Core;
 using Rogium.Editors.Core;
-using static Rogium.Editors.NewAssetSelection.AssetSelectionUtils;
+using static Rogium.Editors.AssetSelection.AssetSelectionUtils;
 
-namespace Rogium.Editors.NewAssetSelection
+namespace Rogium.Editors.AssetSelection
 {
     /// <summary>
     /// Works with <see cref="AssetSelector"/> to pick a single asset.
@@ -53,7 +52,7 @@ namespace Rogium.Editors.NewAssetSelection
         
         private void PrepareSelectNoneButton(IAsset preselectedAsset)
         {
-            AssetCardControllerV2 emptyCard = selector.Content.GetChild(0).GetComponent<AssetCardControllerV2>();
+            AssetCardController emptyCard = selector.Content.GetChild(0).GetComponent<AssetCardController>();
             emptyCard = (emptyCard.Index != -1) ? Instantiate(emptyCardPrefab, selector.Content) : emptyCard;
             emptyCard.RemoveAllListeners();
             emptyCard.OnSelect += data.WhenCardSelected;

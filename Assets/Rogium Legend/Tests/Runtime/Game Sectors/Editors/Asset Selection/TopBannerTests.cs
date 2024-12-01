@@ -2,8 +2,8 @@ using System.Collections;
 using NUnit.Framework;
 using RedRats.UI.MenuSwitching;
 using Rogium.Core;
-using Rogium.Editors.NewAssetSelection;
-using Rogium.Editors.NewAssetSelection.UI;
+using Rogium.Editors.AssetSelection;
+using Rogium.Editors.AssetSelection.UI;
 using Rogium.Tests.Core;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -21,7 +21,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         public override IEnumerator Setup()
         {
             yield return base.Setup();
-            yield return MenuLoader.PrepareSelectionMenuV2();
+            yield return MenuLoader.PrepareSelectionMenu();
             selectionMenu = SelectionMenuOverseerMono.GetInstance();
             AddNewPackToLibrary();
             AddNewPackToLibrary();

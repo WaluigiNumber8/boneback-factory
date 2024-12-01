@@ -1,7 +1,6 @@
 ﻿using RedRats.Safety;
 using Rogium.Core;
 using Rogium.Editors.Core;
-using Rogium.UserInterface.Editors.AssetSelection;
 using System;
 using System.Collections.Generic;
 using RedRats.UI.MenuFilling;

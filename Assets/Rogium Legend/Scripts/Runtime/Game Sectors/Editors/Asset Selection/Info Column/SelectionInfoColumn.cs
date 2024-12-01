@@ -5,7 +5,6 @@ using RedRats.Safety;
 using Rogium.Core;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Core;
-using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Enemies;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Palettes;
@@ -19,7 +18,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Rogium.Editors.NewAssetSelection
+namespace Rogium.Editors.AssetSelection
 {
     /// <summary>
     /// Controls the content of the Selection Menu Info Column.

@@ -1,5 +1,5 @@
 ﻿using RedRats.Systems.Themes;
-using Rogium.Editors.NewAssetSelection;
+using Rogium.Editors.AssetSelection;
 using Rogium.UserInterface.Interactables;
 using Rogium.UserInterface.Interactables.Properties;
 using Rogium.UserInterface.ModalWindows;
@@ -39,7 +39,7 @@ namespace Rogium.Systems.ThemeSystem
                                t.Fonts.general);
         }
 
-        public static void UpdateAssetCard(AssetCardControllerV2 card, ThemeType theme = ThemeType.Current)
+        public static void UpdateAssetCard(AssetCardController card, ThemeType theme = ThemeType.Current)
         {
             UpdateUsedTheme(theme);
             card.UpdateTheme(t.Interactables.assetCard,

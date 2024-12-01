@@ -5,12 +5,12 @@ using RedRats.Core;
 using RedRats.Safety;
 using Rogium.Core;
 using Rogium.Editors.Core;
-using Rogium.Editors.NewAssetSelection.UI;
+using Rogium.Editors.AssetSelection.UI;
 using Rogium.Editors.Packs;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Rogium.Editors.NewAssetSelection
+namespace Rogium.Editors.AssetSelection
 {
     /// <summary>
     /// Overseers the Asset Selection Menu.

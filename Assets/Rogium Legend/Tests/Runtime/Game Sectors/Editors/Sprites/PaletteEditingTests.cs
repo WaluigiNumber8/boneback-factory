@@ -31,7 +31,7 @@ namespace Rogium.Tests.Editors.Sprites
             OverseerLoader.LoadModalWindowBuilder();
             OverseerLoader.LoadUIBuilder();
             yield return null;
-            yield return MenuLoader.PrepareSelectionMenuV2();
+            yield return MenuLoader.PrepareSelectionMenu();
             yield return MenuLoader.PrepareSpriteEditor();
             spriteEditor = SpriteEditorOverseerMono.GetInstance();
             ActionHistorySystem.ClearHistory();

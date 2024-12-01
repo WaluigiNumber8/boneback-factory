@@ -5,18 +5,17 @@ using Rogium.Core;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
-using Rogium.Editors.NewAssetSelection;
+using Rogium.Editors.AssetSelection;
+using Rogium.Editors.AssetSelection.Campaigns;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Rooms;
 using Rogium.Systems.GASExtension;
 using Rogium.Systems.GridSystem;
 using Rogium.Tests.Core;
-using Rogium.Tests.Editors.AssetSelection;
-using Rogium.UserInterface.Editors.AssetSelection;
 using UnityEngine;
 using UnityEngine.TestTools;
 using static Rogium.Tests.Editors.Rooms.RoomBannerTestsU;
-using SelectionInfoColumn = Rogium.Editors.NewAssetSelection.SelectionInfoColumn;
+using SelectionInfoColumn = Rogium.Editors.AssetSelection.SelectionInfoColumn;
 
 namespace Rogium.Tests.Editors.Rooms
 {

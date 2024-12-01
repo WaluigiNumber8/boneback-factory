@@ -1,11 +1,10 @@
 using System.Collections;
-using NSubstitute.Extensions;
 using NUnit.Framework;
 using RedRats.UI.ModalWindows;
 using Rogium.Core;
 using Rogium.Editors.Core;
-using Rogium.Editors.NewAssetSelection;
-using Rogium.Editors.NewAssetSelection.UI;
+using Rogium.Editors.AssetSelection;
+using Rogium.Editors.AssetSelection.UI;
 using Rogium.Editors.Packs;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables;
@@ -13,7 +12,6 @@ using Rogium.UserInterface.ModalWindows;
 using TMPro;
 using UnityEngine;
 using UnityEngine.TestTools;
-using UnityEngine.UI;
 
 namespace Rogium.Tests.Editors.AssetSelection
 {
@@ -31,14 +29,14 @@ namespace Rogium.Tests.Editors.AssetSelection
             yield return base.Setup();
             OverseerLoader.LoadModalWindowBuilder();
             OverseerLoader.LoadUIBuilder();
-            yield return MenuLoader.PrepareSelectionMenuV2();
+            yield return MenuLoader.PrepareSelectionMenu();
             selectionMenu = SelectionMenuOverseerMono.GetInstance();
             packBanner = selectionMenu.GetComponentInChildren<PackBanner>();
             currentPack = ExternalLibraryOverseer.Instance.Packs[0];
             AssetCreator.AddNewPackToLibrary();
             yield return null;
             selectionMenu.Open(AssetType.Pack);
-            ((EditableAssetCardControllerV2) selectionMenu.CurrentSelector.GetCard(0)).Edit();
+            ((EditableAssetCardController) selectionMenu.CurrentSelector.GetCard(0)).Edit();
             yield return null;
         }
 
@@ -52,7 +50,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         public IEnumerator Should_DisplayPackTitle_WhenLoadedThenLoadedADifferentPack()
         {
             selectionMenu.Open(AssetType.Pack);
-            ((EditableAssetCardControllerV2) selectionMenu.CurrentSelector.GetCard(1)).Edit();
+            ((EditableAssetCardController) selectionMenu.CurrentSelector.GetCard(1)).Edit();
             yield return null;
             Assert.That(packBanner.Title, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[1].Title));
         }
@@ -67,7 +65,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         public IEnumerator Should_DisplayPackIcon_WhenLoadedThenLoadedADifferentPack()
         {
             selectionMenu.Open(AssetType.Pack);
-            ((EditableAssetCardControllerV2) selectionMenu.CurrentSelector.GetCard(1)).Edit();
+            ((EditableAssetCardController) selectionMenu.CurrentSelector.GetCard(1)).Edit();
             yield return null;
             Assert.That(packBanner.Icon, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[1].Icon));
         }

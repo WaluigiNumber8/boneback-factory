@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Rogium.Core;
 using Rogium.Editors.Core;
-using static Rogium.Editors.NewAssetSelection.AssetSelectionUtils;
+using static Rogium.Editors.AssetSelection.AssetSelectionUtils;
 
-namespace Rogium.Editors.NewAssetSelection
+namespace Rogium.Editors.AssetSelection
 {
     /// <summary>
     /// Works with <see cref="AssetSelector"/> to pick multiple assets.
@@ -26,7 +26,7 @@ namespace Rogium.Editors.NewAssetSelection
             selector.Load(data, preselectedAssets);
 
             if (!canSelectEmpty) return;
-            AssetCardControllerV2 emptyCard = Instantiate(emptyCardPrefab, selector.Content);
+            AssetCardController emptyCard = Instantiate(emptyCardPrefab, selector.Content);
             emptyCard.transform.SetAsFirstSibling();
             emptyCard.Construct(new AssetCardData.Builder().WithIndex(-1).Build());
         }

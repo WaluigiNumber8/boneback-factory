@@ -53,7 +53,7 @@ namespace Rogium.Tests.UI.Backgrounds
         [UnityTest]
         public IEnumerator Should_ShowEditorBackground_WhenGoToPackSelectionMenu()
         {
-            yield return MenuLoader.PrepareSelectionMenuV2();
+            yield return MenuLoader.PrepareSelectionMenu();
             GASButtonActions.OpenSelectionPack();
             yield return null;
             Assert.That(overseer.IsSetToEditor(), Is.EqualTo(true));
@@ -62,7 +62,7 @@ namespace Rogium.Tests.UI.Backgrounds
         [UnityTest]
         public IEnumerator Should_ShowMainMenuBackground_WhenGoToMainMenuFromPackSelection()
         {
-            yield return MenuLoader.PrepareSelectionMenuV2();
+            yield return MenuLoader.PrepareSelectionMenu();
             GASButtonActions.OpenSelectionPack();
             yield return null;
             GASButtonActions.ReturnToMainMenuSelection();

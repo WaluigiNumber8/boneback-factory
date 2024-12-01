@@ -1,13 +1,8 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using Rogium.Core;
-using Rogium.Editors.Core;
-using Rogium.Editors.Packs;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Rogium.Editors.NewAssetSelection
+namespace Rogium.Editors.AssetSelection
 {
     /// <summary>
     /// A base for asset selection pickers.
@@ -15,7 +10,7 @@ namespace Rogium.Editors.NewAssetSelection
     public abstract class AssetSelectionPickerBase : MonoBehaviour
     {
         [SerializeField] protected AssetSelector selector;
-        [SerializeField] protected AssetCardControllerV2 emptyCardPrefab;
+        [SerializeField] protected AssetCardController emptyCardPrefab;
 
         protected SelectionMenuData data;
         protected ISet<int> selectedAssetIndexes;
