@@ -1,6 +1,5 @@
-﻿using Rogium.UserInterface.Editors.AssetSelection;
+﻿using Rogium.Editors.NewAssetSelection.Campaigns;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Rogium.UserInterface.Interactables
 {
@@ -13,19 +12,9 @@ namespace Rogium.UserInterface.Interactables
         [SerializeField] private InteractableButton interactableButton;
         [SerializeField] private AssetWallpaperController assetController;
         
-        private void OnEnable()
-        {
-            assetController.OnConstruct += UpdateSignal;
-        }
+        private void OnEnable() => assetController.OnConstruct += UpdateSignal;
+        private void OnDisable() => assetController.OnConstruct -= UpdateSignal;
 
-        private void OnDisable()
-        {
-            assetController.OnConstruct -= UpdateSignal;
-        }
-
-        private void UpdateSignal(int newValue)
-        {
-            interactableButton.Index = newValue;
-        }
+        private void UpdateSignal(int newValue) => interactableButton.Index = newValue;
     }
 }

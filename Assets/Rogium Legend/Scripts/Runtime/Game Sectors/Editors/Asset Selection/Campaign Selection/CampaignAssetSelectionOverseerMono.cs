@@ -1,0 +1,23 @@
+﻿using RedRats.Core;
+using UnityEngine;
+
+namespace Rogium.Editors.NewAssetSelection.Campaigns
+{
+    /// <summary>
+    /// Is responsible for overseeing the campaign selection menu.
+    /// </summary>
+    public class CampaignAssetSelectionOverseerMono : MonoSingleton<CampaignAssetSelectionOverseerMono>
+    {
+        [SerializeField] private AssetWallpaperController wallpaperController;
+        
+        private CampaignAssetSelectionOverseer overseer;
+        
+        private void Start()
+        {
+            overseer = CampaignAssetSelectionOverseer.Instance;
+            overseer.Initialize(wallpaperController);
+        }
+        
+        public AssetWallpaperController Wallpaper { get => wallpaperController; }
+    }
+}

@@ -1,6 +1,6 @@
 ﻿using System;
+using Rogium.Editors.Core;
 using Rogium.Systems.ActionHistory;
-using Rogium.UserInterface.Editors.AssetSelection;
 using Rogium.UserInterface.ModalWindows;
 using UnityEngine;
 using UnityEngine.EventSystems;

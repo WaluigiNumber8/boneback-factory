@@ -1,4 +1,4 @@
-using Rogium.UserInterface.Editors.AssetSelection;
+using Rogium.Editors.Core;
 using UnityEngine;
 using UnityEngine.UI;
 

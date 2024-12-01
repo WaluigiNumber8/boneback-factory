@@ -1,7 +1,7 @@
 using System;
 using RedRats.UI.Core;
+using Rogium.Editors.Core;
 using Rogium.Editors.NewAssetSelection.UI;
-using Rogium.UserInterface.Editors.AssetSelection;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
