@@ -21,6 +21,7 @@ namespace Rogium.Systems.ActionHistory
         protected override void UndoSelf() => reader.Rebind(lastValue);
         
         public override bool NothingChanged() => value == lastValue;
+        public override string ToString() => $"{reader.name}: {lastValue} -> {value}";
         public override object AffectedConstruct { get => reader; }
         public override string Value { get => value; }
         public override string LastValue { get => lastValue; }
