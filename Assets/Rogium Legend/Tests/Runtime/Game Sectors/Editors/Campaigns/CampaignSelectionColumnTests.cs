@@ -2,7 +2,7 @@ using System.Collections;
 using NUnit.Framework;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Core;
-using Rogium.Editors.NewAssetSelection;
+using Rogium.Editors.AssetSelection;
 using Rogium.Tests.Core;
 using UnityEngine.TestTools;
 using static Rogium.Tests.Editors.AssetCreator;

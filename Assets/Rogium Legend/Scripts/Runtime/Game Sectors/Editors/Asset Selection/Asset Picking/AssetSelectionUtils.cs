@@ -6,7 +6,7 @@ using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
 
-namespace Rogium.Editors.NewAssetSelection
+namespace Rogium.Editors.AssetSelection
 {
     public static class AssetSelectionUtils
     {

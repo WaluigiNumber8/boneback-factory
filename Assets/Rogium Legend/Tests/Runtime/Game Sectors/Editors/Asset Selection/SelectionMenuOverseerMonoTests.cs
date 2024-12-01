@@ -2,7 +2,7 @@ using System.Collections;
 using NUnit.Framework;
 using Rogium.Core;
 using Rogium.Editors.Core;
-using Rogium.Editors.NewAssetSelection;
+using Rogium.Editors.AssetSelection;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Palettes;
 using Rogium.Tests.Core;

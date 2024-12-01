@@ -3,7 +3,7 @@ using RedRats.UI.Core;
 using RedRats.UI.ModalWindows;
 using Rogium.Core;
 using Rogium.Editors.Core;
-using Rogium.Editors.NewAssetSelection;
+using Rogium.Editors.AssetSelection;
 using Rogium.Systems.ThemeSystem;
 using Rogium.UserInterface.Interactables;
 using TMPro;

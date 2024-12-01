@@ -1,12 +1,12 @@
 using System;
 using RedRats.UI.Core;
 using Rogium.Editors.Core;
-using Rogium.Editors.NewAssetSelection.UI;
+using Rogium.Editors.AssetSelection.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Rogium.Editors.NewAssetSelection
+namespace Rogium.Editors.AssetSelection
 {
     /// <summary>
     /// Represents an asset in the form of a card.

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-namespace Rogium.Editors.NewAssetSelection.Campaigns
+namespace Rogium.Editors.AssetSelection.Campaigns
 {
     /// <summary>
     /// Contains References to an Asset Wallpaper, as well as the ability to be constructed with data.

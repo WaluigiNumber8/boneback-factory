@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
-using Rogium.Editors.Core;
-using Rogium.Editors.NewAssetSelection;
+using Rogium.Editors.AssetSelection;
 using UnityEngine;
 using TMPro;
 

@@ -4,7 +4,7 @@ using Rogium.UserInterface.Interactables;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Rogium.Editors.NewAssetSelection
+namespace Rogium.Editors.AssetSelection
 {
     /// <summary>
     /// Represents an asset in the form of a card that has buttons for editing it.

@@ -3,7 +3,7 @@ using NUnit.Framework;
 using RedRats.Core;
 using Rogium.Core;
 using Rogium.Editors.Core;
-using Rogium.Editors.NewAssetSelection;
+using Rogium.Editors.AssetSelection;
 using Rogium.Editors.Packs;
 using Rogium.Systems.GASExtension;
 using Rogium.Tests.Core;

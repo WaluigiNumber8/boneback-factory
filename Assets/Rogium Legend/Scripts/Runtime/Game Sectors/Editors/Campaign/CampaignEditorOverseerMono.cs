@@ -5,7 +5,7 @@ using Rogium.Editors.Packs;
 using System.Collections.Generic;
 using System.Linq;
 using RedRats.Safety;
-using Rogium.Editors.NewAssetSelection;
+using Rogium.Editors.AssetSelection;
 using UnityEngine;
 
 namespace Rogium.Editors.Campaign

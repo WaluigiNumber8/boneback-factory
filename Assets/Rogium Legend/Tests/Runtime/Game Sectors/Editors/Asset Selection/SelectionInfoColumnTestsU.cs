@@ -1,7 +1,6 @@
 using System.Collections;
-using Rogium.Editors.NewAssetSelection;
+using Rogium.Editors.AssetSelection;
 using Rogium.Systems.GASExtension;
-using UnityEngine;
 
 namespace Rogium.Tests.Editors.AssetSelection
 {

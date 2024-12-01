@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
 using RedRats.Safety;
-using RedRats.Systems.Themes;
 using Rogium.Editors.Core;
 using Rogium.Systems.ThemeSystem;
 using Rogium.UserInterface.Interactables;
 using UnityEngine;
 
-namespace Rogium.Editors.NewAssetSelection
+namespace Rogium.Editors.AssetSelection
 {
     /// <summary>
     /// Controls a single instance of a selection menu.

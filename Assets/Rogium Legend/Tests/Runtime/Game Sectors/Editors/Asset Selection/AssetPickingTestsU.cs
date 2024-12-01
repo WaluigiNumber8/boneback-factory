@@ -1,6 +1,6 @@
 using System.Collections;
 using Rogium.Core;
-using Rogium.Editors.NewAssetSelection;
+using Rogium.Editors.AssetSelection;
 using Rogium.Editors.Packs;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables;

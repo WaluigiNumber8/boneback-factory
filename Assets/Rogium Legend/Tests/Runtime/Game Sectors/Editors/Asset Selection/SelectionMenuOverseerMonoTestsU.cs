@@ -1,5 +1,5 @@
 using Rogium.Core;
-using Rogium.Editors.NewAssetSelection;
+using Rogium.Editors.AssetSelection;
 
 namespace Rogium.Tests.Editors.AssetSelection
 {

@@ -1,11 +1,10 @@
 using System.Collections;
-using NSubstitute.Extensions;
 using NUnit.Framework;
 using RedRats.UI.ModalWindows;
 using Rogium.Core;
 using Rogium.Editors.Core;
-using Rogium.Editors.NewAssetSelection;
-using Rogium.Editors.NewAssetSelection.UI;
+using Rogium.Editors.AssetSelection;
+using Rogium.Editors.AssetSelection.UI;
 using Rogium.Editors.Packs;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables;
@@ -13,7 +12,6 @@ using Rogium.UserInterface.ModalWindows;
 using TMPro;
 using UnityEngine;
 using UnityEngine.TestTools;
-using UnityEngine.UI;
 
 namespace Rogium.Tests.Editors.AssetSelection
 {

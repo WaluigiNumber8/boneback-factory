@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using RedRats.Systems.Themes;
 using Rogium.Core;
 using Rogium.Editors.Core;
-using static Rogium.Editors.NewAssetSelection.AssetSelectionUtils;
+using static Rogium.Editors.AssetSelection.AssetSelectionUtils;
 
-namespace Rogium.Editors.NewAssetSelection
+namespace Rogium.Editors.AssetSelection
 {
     /// <summary>
     /// Works with <see cref="AssetSelector"/> to pick a single asset.

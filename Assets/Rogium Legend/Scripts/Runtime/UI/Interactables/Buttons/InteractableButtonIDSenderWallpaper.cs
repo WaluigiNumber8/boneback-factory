@@ -1,4 +1,4 @@
-﻿using Rogium.Editors.NewAssetSelection.Campaigns;
+﻿using Rogium.Editors.AssetSelection.Campaigns;
 using UnityEngine;
 
 namespace Rogium.UserInterface.Interactables

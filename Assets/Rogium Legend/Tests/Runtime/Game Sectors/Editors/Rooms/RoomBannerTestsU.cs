@@ -1,6 +1,5 @@
 using System.Collections;
-using Rogium.Editors.NewAssetSelection;
-using Rogium.Editors.Packs;
+using Rogium.Editors.AssetSelection;
 using Rogium.Editors.Rooms;
 using Rogium.Systems.GASExtension;
 using Rogium.Tests.Core;

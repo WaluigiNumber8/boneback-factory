@@ -5,7 +5,7 @@ using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Campaign;
 
-namespace Rogium.Editors.NewAssetSelection.Campaigns
+namespace Rogium.Editors.AssetSelection.Campaigns
 {
     /// <summary>
     /// Overseers asset selection for Campaigns.

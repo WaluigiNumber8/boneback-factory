@@ -5,7 +5,7 @@ using Rogium.Editors.Core;
 using Rogium.UserInterface.Interactables;
 using UnityEngine;
 
-namespace Rogium.Editors.NewAssetSelection
+namespace Rogium.Editors.AssetSelection
 {
     /// <summary>
     /// Contains data needed to setup a Selection Menu via <see cref="SelectionMenuOverseerMono"/>.

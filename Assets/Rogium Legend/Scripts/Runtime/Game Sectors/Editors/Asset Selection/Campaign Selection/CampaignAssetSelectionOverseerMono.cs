@@ -1,7 +1,7 @@
 ﻿using RedRats.Core;
 using UnityEngine;
 
-namespace Rogium.Editors.NewAssetSelection.Campaigns
+namespace Rogium.Editors.AssetSelection.Campaigns
 {
     /// <summary>
     /// Is responsible for overseeing the campaign selection menu.
