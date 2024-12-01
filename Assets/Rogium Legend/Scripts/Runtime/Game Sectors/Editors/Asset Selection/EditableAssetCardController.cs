@@ -9,7 +9,7 @@ namespace Rogium.Editors.NewAssetSelection
     /// <summary>
     /// Represents an asset in the form of a card that has buttons for editing it.
     /// </summary>
-    public class EditableAssetCardControllerV2 : AssetCardControllerV2
+    public class EditableAssetCardController : AssetCardController
     {
         [SerializeField] private EditableUIInfo editUI;
 

@@ -69,7 +69,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         {
             yield return ClickAssetFieldToOpenAssetPickerWindow();
             AssetPickerWindow window = Object.FindFirstObjectByType<AssetPickerWindow>();
-            AssetCardControllerV2 card = window.SelectorContent.GetChild(0).GetComponent<AssetCardControllerV2>();
+            AssetCardController card = window.SelectorContent.GetChild(0).GetComponent<AssetCardController>();
             card.SetToggle(true);
             yield return null;
             card.SetToggle(false);
@@ -83,7 +83,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         {
             yield return ClickAssetFieldToOpenAssetPickerWindow();
             AssetPickerWindow window = Object.FindFirstObjectByType<AssetPickerWindow>();
-            AssetCardControllerV2 card = window.SelectorContent.GetChild(1).GetComponent<AssetCardControllerV2>();
+            AssetCardController card = window.SelectorContent.GetChild(1).GetComponent<AssetCardController>();
             Assert.That(card.IsOn, Is.True);
         }
 

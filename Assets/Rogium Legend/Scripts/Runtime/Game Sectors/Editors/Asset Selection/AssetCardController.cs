@@ -11,7 +11,7 @@ namespace Rogium.Editors.NewAssetSelection
     /// <summary>
     /// Represents an asset in the form of a card.
     /// </summary>
-    public class AssetCardControllerV2 : ToggleableBase
+    public class AssetCardController : ToggleableBase
     {
         public event Action<int> OnSelect;
         public event Action<int> OnDeselect;

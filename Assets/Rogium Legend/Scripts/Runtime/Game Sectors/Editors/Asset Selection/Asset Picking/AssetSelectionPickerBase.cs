@@ -10,7 +10,7 @@ namespace Rogium.Editors.NewAssetSelection
     public abstract class AssetSelectionPickerBase : MonoBehaviour
     {
         [SerializeField] protected AssetSelector selector;
-        [SerializeField] protected AssetCardControllerV2 emptyCardPrefab;
+        [SerializeField] protected AssetCardController emptyCardPrefab;
 
         protected SelectionMenuData data;
         protected ISet<int> selectedAssetIndexes;

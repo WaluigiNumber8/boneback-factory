@@ -39,7 +39,7 @@ namespace Rogium.Systems.ThemeSystem
                                t.Fonts.general);
         }
 
-        public static void UpdateAssetCard(AssetCardControllerV2 card, ThemeType theme = ThemeType.Current)
+        public static void UpdateAssetCard(AssetCardController card, ThemeType theme = ThemeType.Current)
         {
             UpdateUsedTheme(theme);
             card.UpdateTheme(t.Interactables.assetCard,

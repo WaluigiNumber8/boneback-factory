@@ -27,7 +27,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         public static IEnumerator PickAssetAndConfirm(int childIndex = 0)
         {
             AssetPickerWindow window = Object.FindFirstObjectByType<AssetPickerWindow>();
-            AssetCardControllerV2 card = window.SelectorContent.GetChild(childIndex).GetComponent<AssetCardControllerV2>();
+            AssetCardController card = window.SelectorContent.GetChild(childIndex).GetComponent<AssetCardController>();
             card.SetToggle(true);
             yield return null;
             window.ConfirmSelection();

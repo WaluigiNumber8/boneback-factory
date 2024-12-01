@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Rogium.Editors.NewAssetSelection
 {
     /// <summary>
-    /// Contains data needed to setup an <see cref="EditableAssetCardControllerV2"/>.
+    /// Contains data needed to setup an <see cref="EditableAssetCardController"/>.
     /// </summary>
     [Serializable]
     public class AssetCardData

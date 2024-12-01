@@ -38,7 +38,7 @@ namespace Rogium.Tests.Editors.AssetSelection
             AssetCreator.AddNewPackToLibrary();
             yield return null;
             selectionMenu.Open(AssetType.Pack);
-            ((EditableAssetCardControllerV2) selectionMenu.CurrentSelector.GetCard(0)).Edit();
+            ((EditableAssetCardController) selectionMenu.CurrentSelector.GetCard(0)).Edit();
             yield return null;
         }
 
@@ -52,7 +52,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         public IEnumerator Should_DisplayPackTitle_WhenLoadedThenLoadedADifferentPack()
         {
             selectionMenu.Open(AssetType.Pack);
-            ((EditableAssetCardControllerV2) selectionMenu.CurrentSelector.GetCard(1)).Edit();
+            ((EditableAssetCardController) selectionMenu.CurrentSelector.GetCard(1)).Edit();
             yield return null;
             Assert.That(packBanner.Title, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[1].Title));
         }
@@ -67,7 +67,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         public IEnumerator Should_DisplayPackIcon_WhenLoadedThenLoadedADifferentPack()
         {
             selectionMenu.Open(AssetType.Pack);
-            ((EditableAssetCardControllerV2) selectionMenu.CurrentSelector.GetCard(1)).Edit();
+            ((EditableAssetCardController) selectionMenu.CurrentSelector.GetCard(1)).Edit();
             yield return null;
             Assert.That(packBanner.Icon, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[1].Icon));
         }

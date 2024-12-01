@@ -20,17 +20,17 @@ namespace Rogium.Editors.NewAssetSelection
         
         [SerializeField] private string title;
         [SerializeField] private RectTransform content;
-        [SerializeField] private AssetCardControllerV2 cardPrefab;
+        [SerializeField] private AssetCardController cardPrefab;
         [SerializeField] private InteractableButton assetCreateButtonPrefab;
 
-        private List<AssetCardControllerV2> cards;
-        private Stack<AssetCardControllerV2> disabledCards;
+        private List<AssetCardController> cards;
+        private Stack<AssetCardController> disabledCards;
         private int lastSelectedIndex = -1;
 
         private void Awake()
         {
-            cards = new List<AssetCardControllerV2>();
-            disabledCards = new Stack<AssetCardControllerV2>();
+            cards = new List<AssetCardController>();
+            disabledCards = new Stack<AssetCardController>();
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Rogium.Editors.NewAssetSelection
             for (int i = 0; i < assets.Count; i++)
             {
                 IAsset asset = assets[i];
-                AssetCardControllerV2 card = GenerateCard(i);
+                AssetCardController card = GenerateCard(i);
                 card.gameObject.SetActive(true);
                 card.Construct(new AssetCardData.Builder()
                     .WithIndex(i)
@@ -112,17 +112,17 @@ namespace Rogium.Editors.NewAssetSelection
             OnSelectCard?.Invoke(index);
         }
         
-        public AssetCardControllerV2 GetCard(int index)
+        public AssetCardController GetCard(int index)
         {
             SafetyNet.EnsureIndexWithingCollectionRange(index, cards, nameof(cards));
             return cards[index];
         }
         
-        private AssetCardControllerV2 GenerateCard(int assetIndex)
+        private AssetCardController GenerateCard(int assetIndex)
         {
             if (assetIndex < cards.Count) return cards[assetIndex];
             
-            AssetCardControllerV2 card = (disabledCards.Count > 0) ? disabledCards.Pop() : Instantiate(cardPrefab, content);
+            AssetCardController card = (disabledCards.Count > 0) ? disabledCards.Pop() : Instantiate(cardPrefab, content);
             cards.Add(card);
             return card;
         }

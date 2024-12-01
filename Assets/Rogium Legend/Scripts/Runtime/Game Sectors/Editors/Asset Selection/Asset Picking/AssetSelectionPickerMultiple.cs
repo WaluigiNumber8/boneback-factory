@@ -26,7 +26,7 @@ namespace Rogium.Editors.NewAssetSelection
             selector.Load(data, preselectedAssets);
 
             if (!canSelectEmpty) return;
-            AssetCardControllerV2 emptyCard = Instantiate(emptyCardPrefab, selector.Content);
+            AssetCardController emptyCard = Instantiate(emptyCardPrefab, selector.Content);
             emptyCard.transform.SetAsFirstSibling();
             emptyCard.Construct(new AssetCardData.Builder().WithIndex(-1).Build());
         }

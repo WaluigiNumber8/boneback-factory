@@ -15,7 +15,7 @@ namespace Rogium.Tests.Editors.Rooms
         {
             yield return MenuLoader.PrepareSelectionMenu();
             yield return SelectionInfoColumnTestsU.OpenPackAndSelectRoom();
-            ((EditableAssetCardControllerV2)SelectionMenuOverseerMono.GetInstance().CurrentSelector.GetCard(0)).Edit();
+            ((EditableAssetCardController)SelectionMenuOverseerMono.GetInstance().CurrentSelector.GetCard(0)).Edit();
             yield return null;
             RoomEditorOverseerMono.GetInstance().UpdateGridCell(new Vector2Int(0, 0));
             RoomEditorOverseerMono.GetInstance().UpdateGridCell(new Vector2Int(1, 0));

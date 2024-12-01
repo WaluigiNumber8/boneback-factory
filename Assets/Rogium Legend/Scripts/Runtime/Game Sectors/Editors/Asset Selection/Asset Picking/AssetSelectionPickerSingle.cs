@@ -53,7 +53,7 @@ namespace Rogium.Editors.NewAssetSelection
         
         private void PrepareSelectNoneButton(IAsset preselectedAsset)
         {
-            AssetCardControllerV2 emptyCard = selector.Content.GetChild(0).GetComponent<AssetCardControllerV2>();
+            AssetCardController emptyCard = selector.Content.GetChild(0).GetComponent<AssetCardController>();
             emptyCard = (emptyCard.Index != -1) ? Instantiate(emptyCardPrefab, selector.Content) : emptyCard;
             emptyCard.RemoveAllListeners();
             emptyCard.OnSelect += data.WhenCardSelected;
