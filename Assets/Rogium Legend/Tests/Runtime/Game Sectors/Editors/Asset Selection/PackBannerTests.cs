@@ -31,7 +31,7 @@ namespace Rogium.Tests.Editors.AssetSelection
             yield return base.Setup();
             OverseerLoader.LoadModalWindowBuilder();
             OverseerLoader.LoadUIBuilder();
-            yield return MenuLoader.PrepareSelectionMenuV2();
+            yield return MenuLoader.PrepareSelectionMenu();
             selectionMenu = SelectionMenuOverseerMono.GetInstance();
             packBanner = selectionMenu.GetComponentInChildren<PackBanner>();
             currentPack = ExternalLibraryOverseer.Instance.Packs[0];

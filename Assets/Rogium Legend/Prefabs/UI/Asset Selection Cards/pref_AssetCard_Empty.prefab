@@ -387,7 +387,7 @@ GameObject:
   - component: {fileID: 2568525361362333774}
   - component: {fileID: 8954324602289435375}
   m_Layer: 5
-  m_Name: pref_AssetCard_Empty_V2
+  m_Name: pref_AssetCard_Empty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

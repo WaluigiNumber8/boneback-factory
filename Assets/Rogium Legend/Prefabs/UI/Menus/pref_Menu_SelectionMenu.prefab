@@ -4163,7 +4163,7 @@ GameObject:
   - component: {fileID: 1817939171672941657}
   - component: {fileID: 6389896488300716656}
   m_Layer: 5
-  m_Name: pref_Menu_SelectionMenu_V2
+  m_Name: pref_Menu_SelectionMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

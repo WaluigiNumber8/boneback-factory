@@ -537,7 +537,7 @@ GameObject:
   - component: {fileID: 1906520982349615393}
   - component: {fileID: 7912177524985860092}
   m_Layer: 5
-  m_Name: pref_AssetCard_PickerVariant_V2
+  m_Name: pref_AssetCard_PickerVariant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -13,7 +13,7 @@ namespace Rogium.Tests.Editors.Rooms
     {
         public static IEnumerator SelectRoomAndUpdateTileGridThenSave()
         {
-            yield return MenuLoader.PrepareSelectionMenuV2();
+            yield return MenuLoader.PrepareSelectionMenu();
             yield return SelectionInfoColumnTestsU.OpenPackAndSelectRoom();
             ((EditableAssetCardControllerV2)SelectionMenuOverseerMono.GetInstance().CurrentSelector.GetCard(0)).Edit();
             yield return null;
