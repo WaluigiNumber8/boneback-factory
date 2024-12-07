@@ -39,7 +39,7 @@ namespace Rogium.Editors.AssetSelection
                 AssetType.Enemy => ThemeType.Red,
                 AssetType.Room => ThemeType.Blue,
                 AssetType.Tile => ThemeType.Yellow,
-                _ => throw new ArgumentOutOfRangeException(nameof(assetType), assetType, null)
+                _ => ThemeType.Blue
             };
         }
     }
