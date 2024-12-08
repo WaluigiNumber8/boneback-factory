@@ -143,6 +143,13 @@ namespace Rogium.Systems.Input
             inputPlayer.Disable();
         }
         
+        public void DisableAllShortcuts()
+        {
+            inputShortcutsRoom.Disable();
+            inputShortcutsDrawingEditors.Disable();
+            inputShortcutsGeneral.Disable();
+        }
+        
         private void UpdatePointerPosition(Vector2 value) => pointerPosition = value;
         
         public Vector2 PointerPosition { get => pointerPosition; }

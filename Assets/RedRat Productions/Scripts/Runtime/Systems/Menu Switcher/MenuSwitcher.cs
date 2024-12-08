@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using RedRats.Core;
 using RedRats.Safety;
@@ -12,6 +13,8 @@ namespace RedRats.UI.MenuSwitching
     /// </summary>
     public class MenuSwitcher : MonoSingleton<MenuSwitcher>, IMenuSwitcher
     {
+        public event Action<MenuType> OnSwitch;
+        
         [SerializeField] private MenuType defaultMenu = MenuType.MainMenu;
 
         private List<MenuObject> menus = new();
@@ -51,12 +54,12 @@ namespace RedRats.UI.MenuSwitching
 
             //Show wanted canvas.
             MenuObject menuToShow = menus.Find(canvasObject => canvasObject.MenuType == newMenu);
-            if (menuToShow != null)
-            {
-                menuToShow.gameObject.SetActive(true);
-                lastOpenMenu = menuToShow;
-                currentMenu = newMenu;
-            }
+            
+            if (menuToShow == null) return;
+            menuToShow.gameObject.SetActive(true);
+            lastOpenMenu = menuToShow;
+            currentMenu = newMenu;
+            OnSwitch?.Invoke(currentMenu);
         }
 
         public MenuType CurrentMenu { get => currentMenu; }

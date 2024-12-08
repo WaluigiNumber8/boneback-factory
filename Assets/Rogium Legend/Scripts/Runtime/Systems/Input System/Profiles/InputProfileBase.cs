@@ -7,27 +7,17 @@
     {
         protected readonly RogiumInputActions input;
         
-        private bool isEnabled;
-
         protected InputProfileBase(RogiumInputActions input) => this.input = input;
         
         /// <summary>
         /// Enables the profile.
         /// </summary>
-        public void Enable()
-        {
-            WhenEnabled();
-            isEnabled = true;
-        }
-        
+        public void Enable() => WhenEnabled();
+
         /// <summary>
         /// Disables the profile.
         /// </summary>
-        public void Disable()
-        {
-            isEnabled = false;
-            WhenDisabled();
-        }
+        public void Disable() => WhenDisabled();
 
         public abstract bool IsMapEnabled { get; }
         
