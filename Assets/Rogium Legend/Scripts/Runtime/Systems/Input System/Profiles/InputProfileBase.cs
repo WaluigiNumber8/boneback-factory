@@ -29,6 +29,8 @@
             WhenDisabled();
         }
 
+        public abstract bool IsMapEnabled { get; }
+        
         /// <summary>
         /// Actions that happen when the profile is enabled.
         /// </summary>
@@ -38,7 +40,5 @@
         /// Actions that happen when the profile is disabled.
         /// </summary>
         protected abstract void WhenDisabled();
-        
-        public bool IsEnabled { get => isEnabled; }
     }
 }

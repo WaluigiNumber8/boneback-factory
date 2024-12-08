@@ -1,15 +1,12 @@
 ﻿using System.Collections;
 using NUnit.Framework;
 using RedRats.UI.ModalWindows;
-using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.ActionHistory;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.TestTools;
-using UnityEngine.UI;
 using static Rogium.Tests.UI.Interactables.InputBindingReaderTestsU;
 using InputSystem = Rogium.Systems.Input.InputSystem;
 

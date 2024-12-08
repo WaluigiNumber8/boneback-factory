@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using RedRats.Core;
-using Rogium.Options.Core;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -16,9 +15,13 @@ namespace Rogium.Systems.Input
     {
         private EventSystem eventSystem;
         private RogiumInputActions input;
+        
         private InputProfilePlayer inputPlayer;
         private InputProfileUI inputUI;
         private InputProfilePause inputPause;
+        private InputProfileShortcutsGeneral inputShortcutsGeneral;
+        private InputProfileShortcutsDrawingEditors inputShortcutsDrawingEditors;
+        private InputProfileShortcutsRoom inputShortcutsRoom;
         
         private Vector2 pointerPosition;
 
@@ -37,20 +40,17 @@ namespace Rogium.Systems.Input
             inputPlayer = new InputProfilePlayer(input);
             inputUI = new InputProfileUI(input);
             inputPause = new InputProfilePause(input);
+            inputShortcutsGeneral = new InputProfileShortcutsGeneral(input);
+            inputShortcutsDrawingEditors = new InputProfileShortcutsDrawingEditors(input);
+            inputShortcutsRoom = new InputProfileShortcutsRoom(input);
         }
 
-        /// <summary>
-        /// Enables the UI Action Map.
-        /// </summary>
         public void EnableUIMap()
         {
             DisableAll();
             inputUI.Enable();
         }
         
-        /// <summary>
-        /// Enables the Player Action Map.
-        /// </summary>
         public void EnablePlayerMap()
         {
             DisableAll();
@@ -63,6 +63,14 @@ namespace Rogium.Systems.Input
             inputPause.Enable();
         }
         
+        public void EnableShortcutsGeneralMap() => inputShortcutsGeneral.Enable();
+        public void EnableShortcutsDrawingEditorsMap() => inputShortcutsDrawingEditors.Enable();
+        public void EnableShortcutsRoomMap()
+        {
+            inputShortcutsDrawingEditors.Enable();
+            inputShortcutsRoom.Enable();
+        }
+
         public void DisablePauseMap() => inputPause.Disable();
 
         public (InputAction, int) FindDuplicateBinding(InputAction action, int bindingIndex)
@@ -136,12 +144,15 @@ namespace Rogium.Systems.Input
         }
         
         private void UpdatePointerPosition(Vector2 value) => pointerPosition = value;
-
+        
         public Vector2 PointerPosition { get => pointerPosition; }
         public InputProfilePlayer Player { get => inputPlayer; }
         public InputProfileUI UI { get => inputUI; }
         public InputProfilePause Pause { get => inputPause; }
-        public string KeyboardSchemeGroup { get => input.KeyboardMouseScheme.bindingGroup; }
-        public string GamepadSchemeGroup { get => input.GamepadScheme.bindingGroup; }
+        public InputProfileShortcutsGeneral ShortcutsGeneral { get => inputShortcutsGeneral; }
+        public InputProfileShortcutsDrawingEditors ShortcutsDrawingEditors { get => inputShortcutsDrawingEditors; }
+        public InputProfileShortcutsRoom ShortcutsRoom { get => inputShortcutsRoom; }
+        private string KeyboardSchemeGroup { get => input.KeyboardMouseScheme.bindingGroup; }
+        private string GamepadSchemeGroup { get => input.GamepadScheme.bindingGroup; }
     }
 }
