@@ -1264,7 +1264,7 @@
             ]
         },
         {
-            "name": "ShortcutsGeneral",
+            "name": "Shortcuts",
             "id": "a4da67ed-99a9-4791-957d-5e46d79d6b27",
             "actions": [
                 {
@@ -1298,6 +1298,105 @@
                     "name": "Cancel",
                     "type": "Button",
                     "id": "25d42c3b-913e-4638-aa19-bab561143c31",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TilesLayer",
+                    "type": "Button",
+                    "id": "63986a13-65cf-495f-849d-29bce6b8f870",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DecorLayer",
+                    "type": "Button",
+                    "id": "b2c97333-5123-4475-a54a-f84b496c9190",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ObjectsLayer",
+                    "type": "Button",
+                    "id": "54ccdab3-92c9-4c16-b6ca-e799197beaee",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "EnemiesLayer",
+                    "type": "Button",
+                    "id": "dd5db618-0e3b-4783-b375-eb3a049df2a2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SelectionTool",
+                    "type": "Button",
+                    "id": "89b0d44b-e5f2-4304-957a-3333f1cda8e2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BrushTool",
+                    "type": "Button",
+                    "id": "075f90e8-5ae1-4ddc-9b88-f27d4fc02a4b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "EraserTool",
+                    "type": "Button",
+                    "id": "dbbdc9c3-6573-482e-9502-cf6c506fc9be",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "FillTool",
+                    "type": "Button",
+                    "id": "4520dc96-b67e-4520-b569-5f3a2753f889",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PickerTool",
+                    "type": "Button",
+                    "id": "8c9098d4-426a-42e4-a2ab-eacc1de70b98",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ClearCanvas",
+                    "type": "Button",
+                    "id": "86ae7c3d-a2c3-4089-85d7-8ba90e656575",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ToggleGrid",
+                    "type": "Button",
+                    "id": "ed5f6ffc-17c0-4b74-aeda-1565ad9510b4",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -1414,92 +1513,65 @@
                     "action": "Cancel",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "ShortcutsDrawingEditors",
-            "id": "fa7797ea-2093-404d-8926-fb5dd5c95228",
-            "actions": [
-                {
-                    "name": "SelectTool",
-                    "type": "Button",
-                    "id": "739c0c65-858e-4a87-bc17-50937761c62d",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 },
-                {
-                    "name": "BrushTool",
-                    "type": "Button",
-                    "id": "a9ebe9fe-eb47-43cd-a502-1a314a00b897",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "EraserTool",
-                    "type": "Button",
-                    "id": "eec1b66e-f196-420a-a5c2-2992a5634cf1",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "FillTool",
-                    "type": "Button",
-                    "id": "f16031e6-7caf-426c-8e40-61f562ac8e03",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "PickerTool",
-                    "type": "Button",
-                    "id": "fd6d1e73-9725-4084-b592-bf9d02424f53",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ClearCanvas",
-                    "type": "Button",
-                    "id": "acb1e392-8227-46d6-bfc0-de46dfc01911",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ToggleGrid",
-                    "type": "Button",
-                    "id": "2fb61a60-37d8-4af9-912d-60e2782e990c",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
                 {
                     "name": "",
-                    "id": "e45d2b12-e2be-4338-a699-b5c9216ef78c",
-                    "path": "<Keyboard>/s",
+                    "id": "c19cfa4c-7370-4cb3-a6d7-22c450ec6985",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard + Mouse",
-                    "action": "SelectTool",
+                    "action": "TilesLayer",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "52af7891-7d15-437e-b9f3-31fd0be2b3fd",
+                    "id": "44287411-752a-4331-8d48-13c1be48c27e",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard + Mouse",
+                    "action": "DecorLayer",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1bee85af-579d-4972-807b-eb5bcb551397",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard + Mouse",
+                    "action": "ObjectsLayer",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a2aa84d6-baf4-4ef1-afbc-ca97a38e4765",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard + Mouse",
+                    "action": "EnemiesLayer",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e5650585-dd41-4d87-969f-d0e2eab9af40",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard + Mouse",
+                    "action": "SelectionTool",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7d64b29f-a267-4b41-8434-d1517a1101a9",
                     "path": "<Keyboard>/b",
                     "interactions": "",
                     "processors": "",
@@ -1510,7 +1582,7 @@
                 },
                 {
                     "name": "",
-                    "id": "6ab2a8f4-fa56-41db-baea-a548a09c9b97",
+                    "id": "792a1e84-bc7c-4d89-9c45-399768a3aa83",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
@@ -1521,7 +1593,7 @@
                 },
                 {
                     "name": "",
-                    "id": "a3890215-78c5-4cfb-b910-a74d95f34606",
+                    "id": "8d8581ad-0d4a-4b71-9516-6214cb3b76ab",
                     "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
@@ -1532,7 +1604,7 @@
                 },
                 {
                     "name": "",
-                    "id": "690b805f-8fa2-4caa-836d-2c1361eab61b",
+                    "id": "101f3074-197b-43a2-8ba4-084e3c13669f",
                     "path": "<Keyboard>/alt",
                     "interactions": "",
                     "processors": "",
@@ -1542,19 +1614,8 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "8b881652-3bb2-4598-80c4-6a40cda8f2e9",
-                    "path": "<Keyboard>/backquote",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard + Mouse",
-                    "action": "ToggleGrid",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
                     "name": "One Modifier",
-                    "id": "54eb9087-fa40-4915-84a6-355fcfbc5fbe",
+                    "id": "9e09026d-d88c-46e9-9c43-6de19f34921c",
                     "path": "OneModifier",
                     "interactions": "",
                     "processors": "",
@@ -1565,7 +1626,7 @@
                 },
                 {
                     "name": "modifier",
-                    "id": "71b30c7a-cee3-4ba1-b62d-ca3da01031b3",
+                    "id": "2f313d3d-4671-4faf-9fde-e8b4bcf839e6",
                     "path": "<Keyboard>/ctrl",
                     "interactions": "",
                     "processors": "",
@@ -1576,7 +1637,7 @@
                 },
                 {
                     "name": "binding",
-                    "id": "439b10f5-caf5-4832-8905-8de9884b79c5",
+                    "id": "bff02335-0189-4371-a884-27c37461399e",
                     "path": "<Keyboard>/c",
                     "interactions": "",
                     "processors": "",
@@ -1584,92 +1645,15 @@
                     "action": "ClearCanvas",
                     "isComposite": false,
                     "isPartOfComposite": true
-                }
-            ]
-        },
-        {
-            "name": "ShortcutsRoom",
-            "id": "df7aa932-9a5c-4131-bf8a-e7c34797d7fc",
-            "actions": [
-                {
-                    "name": "ShowTiles",
-                    "type": "Button",
-                    "id": "9221f8a4-fc28-4aad-a615-569c58378186",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ShowDecors",
-                    "type": "Button",
-                    "id": "68cc2b8d-c573-4394-a0fb-685b9d9f9ae9",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ShowObjects",
-                    "type": "Button",
-                    "id": "f5f91390-05f7-426e-ae68-6c2af1ffd36e",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ShowEnemies",
-                    "type": "Button",
-                    "id": "962257f0-8f79-4282-8b5c-9950026f32ad",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "74efdecd-6e79-43ec-b7da-1c2561de00aa",
-                    "path": "<Keyboard>/1",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard + Mouse",
-                    "action": "ShowTiles",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "069cd2d5-1a6d-487f-a48d-a6183d0112f7",
-                    "path": "<Keyboard>/2",
+                    "id": "25d76655-a592-4b26-8aea-636688037e1b",
+                    "path": "<Keyboard>/backquote",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard + Mouse",
-                    "action": "ShowDecors",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "dbf8d14d-8f45-4fd0-8e75-b69e30a95788",
-                    "path": "<Keyboard>/3",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard + Mouse",
-                    "action": "ShowObjects",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a9ba8e00-97df-47d0-8b55-d07a3c56f651",
-                    "path": "<Keyboard>/4",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard + Mouse",
-                    "action": "ShowEnemies",
+                    "action": "ToggleGrid",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

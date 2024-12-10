@@ -1288,7 +1288,7 @@ namespace Rogium.Systems.Input
             ]
         },
         {
-            ""name"": ""ShortcutsGeneral"",
+            ""name"": ""Shortcuts"",
             ""id"": ""a4da67ed-99a9-4791-957d-5e46d79d6b27"",
             ""actions"": [
                 {
@@ -1322,6 +1322,105 @@ namespace Rogium.Systems.Input
                     ""name"": ""Cancel"",
                     ""type"": ""Button"",
                     ""id"": ""25d42c3b-913e-4638-aa19-bab561143c31"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TilesLayer"",
+                    ""type"": ""Button"",
+                    ""id"": ""63986a13-65cf-495f-849d-29bce6b8f870"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DecorLayer"",
+                    ""type"": ""Button"",
+                    ""id"": ""b2c97333-5123-4475-a54a-f84b496c9190"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ObjectsLayer"",
+                    ""type"": ""Button"",
+                    ""id"": ""54ccdab3-92c9-4c16-b6ca-e799197beaee"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EnemiesLayer"",
+                    ""type"": ""Button"",
+                    ""id"": ""dd5db618-0e3b-4783-b375-eb3a049df2a2"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectionTool"",
+                    ""type"": ""Button"",
+                    ""id"": ""89b0d44b-e5f2-4304-957a-3333f1cda8e2"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""BrushTool"",
+                    ""type"": ""Button"",
+                    ""id"": ""075f90e8-5ae1-4ddc-9b88-f27d4fc02a4b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EraserTool"",
+                    ""type"": ""Button"",
+                    ""id"": ""dbbdc9c3-6573-482e-9502-cf6c506fc9be"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FillTool"",
+                    ""type"": ""Button"",
+                    ""id"": ""4520dc96-b67e-4520-b569-5f3a2753f889"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PickerTool"",
+                    ""type"": ""Button"",
+                    ""id"": ""8c9098d4-426a-42e4-a2ab-eacc1de70b98"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ClearCanvas"",
+                    ""type"": ""Button"",
+                    ""id"": ""86ae7c3d-a2c3-4089-85d7-8ba90e656575"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleGrid"",
+                    ""type"": ""Button"",
+                    ""id"": ""ed5f6ffc-17c0-4b74-aeda-1565ad9510b4"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1438,92 +1537,65 @@ namespace Rogium.Systems.Input
                     ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""ShortcutsDrawingEditors"",
-            ""id"": ""fa7797ea-2093-404d-8926-fb5dd5c95228"",
-            ""actions"": [
-                {
-                    ""name"": ""SelectTool"",
-                    ""type"": ""Button"",
-                    ""id"": ""739c0c65-858e-4a87-bc17-50937761c62d"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 },
-                {
-                    ""name"": ""BrushTool"",
-                    ""type"": ""Button"",
-                    ""id"": ""a9ebe9fe-eb47-43cd-a502-1a314a00b897"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""EraserTool"",
-                    ""type"": ""Button"",
-                    ""id"": ""eec1b66e-f196-420a-a5c2-2992a5634cf1"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""FillTool"",
-                    ""type"": ""Button"",
-                    ""id"": ""f16031e6-7caf-426c-8e40-61f562ac8e03"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""PickerTool"",
-                    ""type"": ""Button"",
-                    ""id"": ""fd6d1e73-9725-4084-b592-bf9d02424f53"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ClearCanvas"",
-                    ""type"": ""Button"",
-                    ""id"": ""acb1e392-8227-46d6-bfc0-de46dfc01911"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ToggleGrid"",
-                    ""type"": ""Button"",
-                    ""id"": ""2fb61a60-37d8-4af9-912d-60e2782e990c"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""e45d2b12-e2be-4338-a699-b5c9216ef78c"",
-                    ""path"": ""<Keyboard>/s"",
+                    ""id"": ""c19cfa4c-7370-4cb3-a6d7-22c450ec6985"",
+                    ""path"": ""<Keyboard>/1"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""SelectTool"",
+                    ""action"": ""TilesLayer"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""52af7891-7d15-437e-b9f3-31fd0be2b3fd"",
+                    ""id"": ""44287411-752a-4331-8d48-13c1be48c27e"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""DecorLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1bee85af-579d-4972-807b-eb5bcb551397"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ObjectsLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a2aa84d6-baf4-4ef1-afbc-ca97a38e4765"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""EnemiesLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e5650585-dd41-4d87-969f-d0e2eab9af40"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SelectionTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7d64b29f-a267-4b41-8434-d1517a1101a9"",
                     ""path"": ""<Keyboard>/b"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1534,7 +1606,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": """",
-                    ""id"": ""6ab2a8f4-fa56-41db-baea-a548a09c9b97"",
+                    ""id"": ""792a1e84-bc7c-4d89-9c45-399768a3aa83"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1545,7 +1617,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": """",
-                    ""id"": ""a3890215-78c5-4cfb-b910-a74d95f34606"",
+                    ""id"": ""8d8581ad-0d4a-4b71-9516-6214cb3b76ab"",
                     ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1556,7 +1628,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": """",
-                    ""id"": ""690b805f-8fa2-4caa-836d-2c1361eab61b"",
+                    ""id"": ""101f3074-197b-43a2-8ba4-084e3c13669f"",
                     ""path"": ""<Keyboard>/alt"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1566,19 +1638,8 @@ namespace Rogium.Systems.Input
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""8b881652-3bb2-4598-80c4-6a40cda8f2e9"",
-                    ""path"": ""<Keyboard>/backquote"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""ToggleGrid"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
                     ""name"": ""One Modifier"",
-                    ""id"": ""54eb9087-fa40-4915-84a6-355fcfbc5fbe"",
+                    ""id"": ""9e09026d-d88c-46e9-9c43-6de19f34921c"",
                     ""path"": ""OneModifier"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1589,7 +1650,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier"",
-                    ""id"": ""71b30c7a-cee3-4ba1-b62d-ca3da01031b3"",
+                    ""id"": ""2f313d3d-4671-4faf-9fde-e8b4bcf839e6"",
                     ""path"": ""<Keyboard>/ctrl"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1600,7 +1661,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""binding"",
-                    ""id"": ""439b10f5-caf5-4832-8905-8de9884b79c5"",
+                    ""id"": ""bff02335-0189-4371-a884-27c37461399e"",
                     ""path"": ""<Keyboard>/c"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1608,92 +1669,15 @@ namespace Rogium.Systems.Input
                     ""action"": ""ClearCanvas"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                }
-            ]
-        },
-        {
-            ""name"": ""ShortcutsRoom"",
-            ""id"": ""df7aa932-9a5c-4131-bf8a-e7c34797d7fc"",
-            ""actions"": [
-                {
-                    ""name"": ""ShowTiles"",
-                    ""type"": ""Button"",
-                    ""id"": ""9221f8a4-fc28-4aad-a615-569c58378186"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ShowDecors"",
-                    ""type"": ""Button"",
-                    ""id"": ""68cc2b8d-c573-4394-a0fb-685b9d9f9ae9"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ShowObjects"",
-                    ""type"": ""Button"",
-                    ""id"": ""f5f91390-05f7-426e-ae68-6c2af1ffd36e"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ShowEnemies"",
-                    ""type"": ""Button"",
-                    ""id"": ""962257f0-8f79-4282-8b5c-9950026f32ad"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""74efdecd-6e79-43ec-b7da-1c2561de00aa"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""ShowTiles"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""069cd2d5-1a6d-487f-a48d-a6183d0112f7"",
-                    ""path"": ""<Keyboard>/2"",
+                    ""id"": ""25d76655-a592-4b26-8aea-636688037e1b"",
+                    ""path"": ""<Keyboard>/backquote"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""ShowDecors"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""dbf8d14d-8f45-4fd0-8e75-b69e30a95788"",
-                    ""path"": ""<Keyboard>/3"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""ShowObjects"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a9ba8e00-97df-47d0-8b55-d07a3c56f651"",
-                    ""path"": ""<Keyboard>/4"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""ShowEnemies"",
+                    ""action"": ""ToggleGrid"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1755,27 +1739,23 @@ namespace Rogium.Systems.Input
             // PauseGame
             m_PauseGame = asset.FindActionMap("PauseGame", throwIfNotFound: true);
             m_PauseGame_Pause = m_PauseGame.FindAction("Pause", throwIfNotFound: true);
-            // ShortcutsGeneral
-            m_ShortcutsGeneral = asset.FindActionMap("ShortcutsGeneral", throwIfNotFound: true);
-            m_ShortcutsGeneral_Undo = m_ShortcutsGeneral.FindAction("Undo", throwIfNotFound: true);
-            m_ShortcutsGeneral_Redo = m_ShortcutsGeneral.FindAction("Redo", throwIfNotFound: true);
-            m_ShortcutsGeneral_Save = m_ShortcutsGeneral.FindAction("Save", throwIfNotFound: true);
-            m_ShortcutsGeneral_Cancel = m_ShortcutsGeneral.FindAction("Cancel", throwIfNotFound: true);
-            // ShortcutsDrawingEditors
-            m_ShortcutsDrawingEditors = asset.FindActionMap("ShortcutsDrawingEditors", throwIfNotFound: true);
-            m_ShortcutsDrawingEditors_SelectTool = m_ShortcutsDrawingEditors.FindAction("SelectTool", throwIfNotFound: true);
-            m_ShortcutsDrawingEditors_BrushTool = m_ShortcutsDrawingEditors.FindAction("BrushTool", throwIfNotFound: true);
-            m_ShortcutsDrawingEditors_EraserTool = m_ShortcutsDrawingEditors.FindAction("EraserTool", throwIfNotFound: true);
-            m_ShortcutsDrawingEditors_FillTool = m_ShortcutsDrawingEditors.FindAction("FillTool", throwIfNotFound: true);
-            m_ShortcutsDrawingEditors_PickerTool = m_ShortcutsDrawingEditors.FindAction("PickerTool", throwIfNotFound: true);
-            m_ShortcutsDrawingEditors_ClearCanvas = m_ShortcutsDrawingEditors.FindAction("ClearCanvas", throwIfNotFound: true);
-            m_ShortcutsDrawingEditors_ToggleGrid = m_ShortcutsDrawingEditors.FindAction("ToggleGrid", throwIfNotFound: true);
-            // ShortcutsRoom
-            m_ShortcutsRoom = asset.FindActionMap("ShortcutsRoom", throwIfNotFound: true);
-            m_ShortcutsRoom_ShowTiles = m_ShortcutsRoom.FindAction("ShowTiles", throwIfNotFound: true);
-            m_ShortcutsRoom_ShowDecors = m_ShortcutsRoom.FindAction("ShowDecors", throwIfNotFound: true);
-            m_ShortcutsRoom_ShowObjects = m_ShortcutsRoom.FindAction("ShowObjects", throwIfNotFound: true);
-            m_ShortcutsRoom_ShowEnemies = m_ShortcutsRoom.FindAction("ShowEnemies", throwIfNotFound: true);
+            // Shortcuts
+            m_Shortcuts = asset.FindActionMap("Shortcuts", throwIfNotFound: true);
+            m_Shortcuts_Undo = m_Shortcuts.FindAction("Undo", throwIfNotFound: true);
+            m_Shortcuts_Redo = m_Shortcuts.FindAction("Redo", throwIfNotFound: true);
+            m_Shortcuts_Save = m_Shortcuts.FindAction("Save", throwIfNotFound: true);
+            m_Shortcuts_Cancel = m_Shortcuts.FindAction("Cancel", throwIfNotFound: true);
+            m_Shortcuts_TilesLayer = m_Shortcuts.FindAction("TilesLayer", throwIfNotFound: true);
+            m_Shortcuts_DecorLayer = m_Shortcuts.FindAction("DecorLayer", throwIfNotFound: true);
+            m_Shortcuts_ObjectsLayer = m_Shortcuts.FindAction("ObjectsLayer", throwIfNotFound: true);
+            m_Shortcuts_EnemiesLayer = m_Shortcuts.FindAction("EnemiesLayer", throwIfNotFound: true);
+            m_Shortcuts_SelectionTool = m_Shortcuts.FindAction("SelectionTool", throwIfNotFound: true);
+            m_Shortcuts_BrushTool = m_Shortcuts.FindAction("BrushTool", throwIfNotFound: true);
+            m_Shortcuts_EraserTool = m_Shortcuts.FindAction("EraserTool", throwIfNotFound: true);
+            m_Shortcuts_FillTool = m_Shortcuts.FindAction("FillTool", throwIfNotFound: true);
+            m_Shortcuts_PickerTool = m_Shortcuts.FindAction("PickerTool", throwIfNotFound: true);
+            m_Shortcuts_ClearCanvas = m_Shortcuts.FindAction("ClearCanvas", throwIfNotFound: true);
+            m_Shortcuts_ToggleGrid = m_Shortcuts.FindAction("ToggleGrid", throwIfNotFound: true);
         }
 
         ~@RogiumInputActions()
@@ -1783,9 +1763,7 @@ namespace Rogium.Systems.Input
             UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, RogiumInputActions.UI.Disable() has not been called.");
             UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, RogiumInputActions.Player.Disable() has not been called.");
             UnityEngine.Debug.Assert(!m_PauseGame.enabled, "This will cause a leak and performance issues, RogiumInputActions.PauseGame.Disable() has not been called.");
-            UnityEngine.Debug.Assert(!m_ShortcutsGeneral.enabled, "This will cause a leak and performance issues, RogiumInputActions.ShortcutsGeneral.Disable() has not been called.");
-            UnityEngine.Debug.Assert(!m_ShortcutsDrawingEditors.enabled, "This will cause a leak and performance issues, RogiumInputActions.ShortcutsDrawingEditors.Disable() has not been called.");
-            UnityEngine.Debug.Assert(!m_ShortcutsRoom.enabled, "This will cause a leak and performance issues, RogiumInputActions.ShortcutsRoom.Disable() has not been called.");
+            UnityEngine.Debug.Assert(!m_Shortcuts.enabled, "This will cause a leak and performance issues, RogiumInputActions.Shortcuts.Disable() has not been called.");
         }
 
         public void Dispose()
@@ -2110,30 +2088,52 @@ namespace Rogium.Systems.Input
         }
         public PauseGameActions @PauseGame => new PauseGameActions(this);
 
-        // ShortcutsGeneral
-        private readonly InputActionMap m_ShortcutsGeneral;
-        private List<IShortcutsGeneralActions> m_ShortcutsGeneralActionsCallbackInterfaces = new List<IShortcutsGeneralActions>();
-        private readonly InputAction m_ShortcutsGeneral_Undo;
-        private readonly InputAction m_ShortcutsGeneral_Redo;
-        private readonly InputAction m_ShortcutsGeneral_Save;
-        private readonly InputAction m_ShortcutsGeneral_Cancel;
-        public struct ShortcutsGeneralActions
+        // Shortcuts
+        private readonly InputActionMap m_Shortcuts;
+        private List<IShortcutsActions> m_ShortcutsActionsCallbackInterfaces = new List<IShortcutsActions>();
+        private readonly InputAction m_Shortcuts_Undo;
+        private readonly InputAction m_Shortcuts_Redo;
+        private readonly InputAction m_Shortcuts_Save;
+        private readonly InputAction m_Shortcuts_Cancel;
+        private readonly InputAction m_Shortcuts_TilesLayer;
+        private readonly InputAction m_Shortcuts_DecorLayer;
+        private readonly InputAction m_Shortcuts_ObjectsLayer;
+        private readonly InputAction m_Shortcuts_EnemiesLayer;
+        private readonly InputAction m_Shortcuts_SelectionTool;
+        private readonly InputAction m_Shortcuts_BrushTool;
+        private readonly InputAction m_Shortcuts_EraserTool;
+        private readonly InputAction m_Shortcuts_FillTool;
+        private readonly InputAction m_Shortcuts_PickerTool;
+        private readonly InputAction m_Shortcuts_ClearCanvas;
+        private readonly InputAction m_Shortcuts_ToggleGrid;
+        public struct ShortcutsActions
         {
             private @RogiumInputActions m_Wrapper;
-            public ShortcutsGeneralActions(@RogiumInputActions wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Undo => m_Wrapper.m_ShortcutsGeneral_Undo;
-            public InputAction @Redo => m_Wrapper.m_ShortcutsGeneral_Redo;
-            public InputAction @Save => m_Wrapper.m_ShortcutsGeneral_Save;
-            public InputAction @Cancel => m_Wrapper.m_ShortcutsGeneral_Cancel;
-            public InputActionMap Get() { return m_Wrapper.m_ShortcutsGeneral; }
+            public ShortcutsActions(@RogiumInputActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Undo => m_Wrapper.m_Shortcuts_Undo;
+            public InputAction @Redo => m_Wrapper.m_Shortcuts_Redo;
+            public InputAction @Save => m_Wrapper.m_Shortcuts_Save;
+            public InputAction @Cancel => m_Wrapper.m_Shortcuts_Cancel;
+            public InputAction @TilesLayer => m_Wrapper.m_Shortcuts_TilesLayer;
+            public InputAction @DecorLayer => m_Wrapper.m_Shortcuts_DecorLayer;
+            public InputAction @ObjectsLayer => m_Wrapper.m_Shortcuts_ObjectsLayer;
+            public InputAction @EnemiesLayer => m_Wrapper.m_Shortcuts_EnemiesLayer;
+            public InputAction @SelectionTool => m_Wrapper.m_Shortcuts_SelectionTool;
+            public InputAction @BrushTool => m_Wrapper.m_Shortcuts_BrushTool;
+            public InputAction @EraserTool => m_Wrapper.m_Shortcuts_EraserTool;
+            public InputAction @FillTool => m_Wrapper.m_Shortcuts_FillTool;
+            public InputAction @PickerTool => m_Wrapper.m_Shortcuts_PickerTool;
+            public InputAction @ClearCanvas => m_Wrapper.m_Shortcuts_ClearCanvas;
+            public InputAction @ToggleGrid => m_Wrapper.m_Shortcuts_ToggleGrid;
+            public InputActionMap Get() { return m_Wrapper.m_Shortcuts; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
             public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(ShortcutsGeneralActions set) { return set.Get(); }
-            public void AddCallbacks(IShortcutsGeneralActions instance)
+            public static implicit operator InputActionMap(ShortcutsActions set) { return set.Get(); }
+            public void AddCallbacks(IShortcutsActions instance)
             {
-                if (instance == null || m_Wrapper.m_ShortcutsGeneralActionsCallbackInterfaces.Contains(instance)) return;
-                m_Wrapper.m_ShortcutsGeneralActionsCallbackInterfaces.Add(instance);
+                if (instance == null || m_Wrapper.m_ShortcutsActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_ShortcutsActionsCallbackInterfaces.Add(instance);
                 @Undo.started += instance.OnUndo;
                 @Undo.performed += instance.OnUndo;
                 @Undo.canceled += instance.OnUndo;
@@ -2146,73 +2146,21 @@ namespace Rogium.Systems.Input
                 @Cancel.started += instance.OnCancel;
                 @Cancel.performed += instance.OnCancel;
                 @Cancel.canceled += instance.OnCancel;
-            }
-
-            private void UnregisterCallbacks(IShortcutsGeneralActions instance)
-            {
-                @Undo.started -= instance.OnUndo;
-                @Undo.performed -= instance.OnUndo;
-                @Undo.canceled -= instance.OnUndo;
-                @Redo.started -= instance.OnRedo;
-                @Redo.performed -= instance.OnRedo;
-                @Redo.canceled -= instance.OnRedo;
-                @Save.started -= instance.OnSave;
-                @Save.performed -= instance.OnSave;
-                @Save.canceled -= instance.OnSave;
-                @Cancel.started -= instance.OnCancel;
-                @Cancel.performed -= instance.OnCancel;
-                @Cancel.canceled -= instance.OnCancel;
-            }
-
-            public void RemoveCallbacks(IShortcutsGeneralActions instance)
-            {
-                if (m_Wrapper.m_ShortcutsGeneralActionsCallbackInterfaces.Remove(instance))
-                    UnregisterCallbacks(instance);
-            }
-
-            public void SetCallbacks(IShortcutsGeneralActions instance)
-            {
-                foreach (var item in m_Wrapper.m_ShortcutsGeneralActionsCallbackInterfaces)
-                    UnregisterCallbacks(item);
-                m_Wrapper.m_ShortcutsGeneralActionsCallbackInterfaces.Clear();
-                AddCallbacks(instance);
-            }
-        }
-        public ShortcutsGeneralActions @ShortcutsGeneral => new ShortcutsGeneralActions(this);
-
-        // ShortcutsDrawingEditors
-        private readonly InputActionMap m_ShortcutsDrawingEditors;
-        private List<IShortcutsDrawingEditorsActions> m_ShortcutsDrawingEditorsActionsCallbackInterfaces = new List<IShortcutsDrawingEditorsActions>();
-        private readonly InputAction m_ShortcutsDrawingEditors_SelectTool;
-        private readonly InputAction m_ShortcutsDrawingEditors_BrushTool;
-        private readonly InputAction m_ShortcutsDrawingEditors_EraserTool;
-        private readonly InputAction m_ShortcutsDrawingEditors_FillTool;
-        private readonly InputAction m_ShortcutsDrawingEditors_PickerTool;
-        private readonly InputAction m_ShortcutsDrawingEditors_ClearCanvas;
-        private readonly InputAction m_ShortcutsDrawingEditors_ToggleGrid;
-        public struct ShortcutsDrawingEditorsActions
-        {
-            private @RogiumInputActions m_Wrapper;
-            public ShortcutsDrawingEditorsActions(@RogiumInputActions wrapper) { m_Wrapper = wrapper; }
-            public InputAction @SelectTool => m_Wrapper.m_ShortcutsDrawingEditors_SelectTool;
-            public InputAction @BrushTool => m_Wrapper.m_ShortcutsDrawingEditors_BrushTool;
-            public InputAction @EraserTool => m_Wrapper.m_ShortcutsDrawingEditors_EraserTool;
-            public InputAction @FillTool => m_Wrapper.m_ShortcutsDrawingEditors_FillTool;
-            public InputAction @PickerTool => m_Wrapper.m_ShortcutsDrawingEditors_PickerTool;
-            public InputAction @ClearCanvas => m_Wrapper.m_ShortcutsDrawingEditors_ClearCanvas;
-            public InputAction @ToggleGrid => m_Wrapper.m_ShortcutsDrawingEditors_ToggleGrid;
-            public InputActionMap Get() { return m_Wrapper.m_ShortcutsDrawingEditors; }
-            public void Enable() { Get().Enable(); }
-            public void Disable() { Get().Disable(); }
-            public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(ShortcutsDrawingEditorsActions set) { return set.Get(); }
-            public void AddCallbacks(IShortcutsDrawingEditorsActions instance)
-            {
-                if (instance == null || m_Wrapper.m_ShortcutsDrawingEditorsActionsCallbackInterfaces.Contains(instance)) return;
-                m_Wrapper.m_ShortcutsDrawingEditorsActionsCallbackInterfaces.Add(instance);
-                @SelectTool.started += instance.OnSelectTool;
-                @SelectTool.performed += instance.OnSelectTool;
-                @SelectTool.canceled += instance.OnSelectTool;
+                @TilesLayer.started += instance.OnTilesLayer;
+                @TilesLayer.performed += instance.OnTilesLayer;
+                @TilesLayer.canceled += instance.OnTilesLayer;
+                @DecorLayer.started += instance.OnDecorLayer;
+                @DecorLayer.performed += instance.OnDecorLayer;
+                @DecorLayer.canceled += instance.OnDecorLayer;
+                @ObjectsLayer.started += instance.OnObjectsLayer;
+                @ObjectsLayer.performed += instance.OnObjectsLayer;
+                @ObjectsLayer.canceled += instance.OnObjectsLayer;
+                @EnemiesLayer.started += instance.OnEnemiesLayer;
+                @EnemiesLayer.performed += instance.OnEnemiesLayer;
+                @EnemiesLayer.canceled += instance.OnEnemiesLayer;
+                @SelectionTool.started += instance.OnSelectionTool;
+                @SelectionTool.performed += instance.OnSelectionTool;
+                @SelectionTool.canceled += instance.OnSelectionTool;
                 @BrushTool.started += instance.OnBrushTool;
                 @BrushTool.performed += instance.OnBrushTool;
                 @BrushTool.canceled += instance.OnBrushTool;
@@ -2233,11 +2181,35 @@ namespace Rogium.Systems.Input
                 @ToggleGrid.canceled += instance.OnToggleGrid;
             }
 
-            private void UnregisterCallbacks(IShortcutsDrawingEditorsActions instance)
+            private void UnregisterCallbacks(IShortcutsActions instance)
             {
-                @SelectTool.started -= instance.OnSelectTool;
-                @SelectTool.performed -= instance.OnSelectTool;
-                @SelectTool.canceled -= instance.OnSelectTool;
+                @Undo.started -= instance.OnUndo;
+                @Undo.performed -= instance.OnUndo;
+                @Undo.canceled -= instance.OnUndo;
+                @Redo.started -= instance.OnRedo;
+                @Redo.performed -= instance.OnRedo;
+                @Redo.canceled -= instance.OnRedo;
+                @Save.started -= instance.OnSave;
+                @Save.performed -= instance.OnSave;
+                @Save.canceled -= instance.OnSave;
+                @Cancel.started -= instance.OnCancel;
+                @Cancel.performed -= instance.OnCancel;
+                @Cancel.canceled -= instance.OnCancel;
+                @TilesLayer.started -= instance.OnTilesLayer;
+                @TilesLayer.performed -= instance.OnTilesLayer;
+                @TilesLayer.canceled -= instance.OnTilesLayer;
+                @DecorLayer.started -= instance.OnDecorLayer;
+                @DecorLayer.performed -= instance.OnDecorLayer;
+                @DecorLayer.canceled -= instance.OnDecorLayer;
+                @ObjectsLayer.started -= instance.OnObjectsLayer;
+                @ObjectsLayer.performed -= instance.OnObjectsLayer;
+                @ObjectsLayer.canceled -= instance.OnObjectsLayer;
+                @EnemiesLayer.started -= instance.OnEnemiesLayer;
+                @EnemiesLayer.performed -= instance.OnEnemiesLayer;
+                @EnemiesLayer.canceled -= instance.OnEnemiesLayer;
+                @SelectionTool.started -= instance.OnSelectionTool;
+                @SelectionTool.performed -= instance.OnSelectionTool;
+                @SelectionTool.canceled -= instance.OnSelectionTool;
                 @BrushTool.started -= instance.OnBrushTool;
                 @BrushTool.performed -= instance.OnBrushTool;
                 @BrushTool.canceled -= instance.OnBrushTool;
@@ -2258,91 +2230,21 @@ namespace Rogium.Systems.Input
                 @ToggleGrid.canceled -= instance.OnToggleGrid;
             }
 
-            public void RemoveCallbacks(IShortcutsDrawingEditorsActions instance)
+            public void RemoveCallbacks(IShortcutsActions instance)
             {
-                if (m_Wrapper.m_ShortcutsDrawingEditorsActionsCallbackInterfaces.Remove(instance))
+                if (m_Wrapper.m_ShortcutsActionsCallbackInterfaces.Remove(instance))
                     UnregisterCallbacks(instance);
             }
 
-            public void SetCallbacks(IShortcutsDrawingEditorsActions instance)
+            public void SetCallbacks(IShortcutsActions instance)
             {
-                foreach (var item in m_Wrapper.m_ShortcutsDrawingEditorsActionsCallbackInterfaces)
+                foreach (var item in m_Wrapper.m_ShortcutsActionsCallbackInterfaces)
                     UnregisterCallbacks(item);
-                m_Wrapper.m_ShortcutsDrawingEditorsActionsCallbackInterfaces.Clear();
+                m_Wrapper.m_ShortcutsActionsCallbackInterfaces.Clear();
                 AddCallbacks(instance);
             }
         }
-        public ShortcutsDrawingEditorsActions @ShortcutsDrawingEditors => new ShortcutsDrawingEditorsActions(this);
-
-        // ShortcutsRoom
-        private readonly InputActionMap m_ShortcutsRoom;
-        private List<IShortcutsRoomActions> m_ShortcutsRoomActionsCallbackInterfaces = new List<IShortcutsRoomActions>();
-        private readonly InputAction m_ShortcutsRoom_ShowTiles;
-        private readonly InputAction m_ShortcutsRoom_ShowDecors;
-        private readonly InputAction m_ShortcutsRoom_ShowObjects;
-        private readonly InputAction m_ShortcutsRoom_ShowEnemies;
-        public struct ShortcutsRoomActions
-        {
-            private @RogiumInputActions m_Wrapper;
-            public ShortcutsRoomActions(@RogiumInputActions wrapper) { m_Wrapper = wrapper; }
-            public InputAction @ShowTiles => m_Wrapper.m_ShortcutsRoom_ShowTiles;
-            public InputAction @ShowDecors => m_Wrapper.m_ShortcutsRoom_ShowDecors;
-            public InputAction @ShowObjects => m_Wrapper.m_ShortcutsRoom_ShowObjects;
-            public InputAction @ShowEnemies => m_Wrapper.m_ShortcutsRoom_ShowEnemies;
-            public InputActionMap Get() { return m_Wrapper.m_ShortcutsRoom; }
-            public void Enable() { Get().Enable(); }
-            public void Disable() { Get().Disable(); }
-            public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(ShortcutsRoomActions set) { return set.Get(); }
-            public void AddCallbacks(IShortcutsRoomActions instance)
-            {
-                if (instance == null || m_Wrapper.m_ShortcutsRoomActionsCallbackInterfaces.Contains(instance)) return;
-                m_Wrapper.m_ShortcutsRoomActionsCallbackInterfaces.Add(instance);
-                @ShowTiles.started += instance.OnShowTiles;
-                @ShowTiles.performed += instance.OnShowTiles;
-                @ShowTiles.canceled += instance.OnShowTiles;
-                @ShowDecors.started += instance.OnShowDecors;
-                @ShowDecors.performed += instance.OnShowDecors;
-                @ShowDecors.canceled += instance.OnShowDecors;
-                @ShowObjects.started += instance.OnShowObjects;
-                @ShowObjects.performed += instance.OnShowObjects;
-                @ShowObjects.canceled += instance.OnShowObjects;
-                @ShowEnemies.started += instance.OnShowEnemies;
-                @ShowEnemies.performed += instance.OnShowEnemies;
-                @ShowEnemies.canceled += instance.OnShowEnemies;
-            }
-
-            private void UnregisterCallbacks(IShortcutsRoomActions instance)
-            {
-                @ShowTiles.started -= instance.OnShowTiles;
-                @ShowTiles.performed -= instance.OnShowTiles;
-                @ShowTiles.canceled -= instance.OnShowTiles;
-                @ShowDecors.started -= instance.OnShowDecors;
-                @ShowDecors.performed -= instance.OnShowDecors;
-                @ShowDecors.canceled -= instance.OnShowDecors;
-                @ShowObjects.started -= instance.OnShowObjects;
-                @ShowObjects.performed -= instance.OnShowObjects;
-                @ShowObjects.canceled -= instance.OnShowObjects;
-                @ShowEnemies.started -= instance.OnShowEnemies;
-                @ShowEnemies.performed -= instance.OnShowEnemies;
-                @ShowEnemies.canceled -= instance.OnShowEnemies;
-            }
-
-            public void RemoveCallbacks(IShortcutsRoomActions instance)
-            {
-                if (m_Wrapper.m_ShortcutsRoomActionsCallbackInterfaces.Remove(instance))
-                    UnregisterCallbacks(instance);
-            }
-
-            public void SetCallbacks(IShortcutsRoomActions instance)
-            {
-                foreach (var item in m_Wrapper.m_ShortcutsRoomActionsCallbackInterfaces)
-                    UnregisterCallbacks(item);
-                m_Wrapper.m_ShortcutsRoomActionsCallbackInterfaces.Clear();
-                AddCallbacks(instance);
-            }
-        }
-        public ShortcutsRoomActions @ShortcutsRoom => new ShortcutsRoomActions(this);
+        public ShortcutsActions @Shortcuts => new ShortcutsActions(this);
         private int m_KeyboardMouseSchemeIndex = -1;
         public InputControlScheme KeyboardMouseScheme
         {
@@ -2389,29 +2291,23 @@ namespace Rogium.Systems.Input
         {
             void OnPause(InputAction.CallbackContext context);
         }
-        public interface IShortcutsGeneralActions
+        public interface IShortcutsActions
         {
             void OnUndo(InputAction.CallbackContext context);
             void OnRedo(InputAction.CallbackContext context);
             void OnSave(InputAction.CallbackContext context);
             void OnCancel(InputAction.CallbackContext context);
-        }
-        public interface IShortcutsDrawingEditorsActions
-        {
-            void OnSelectTool(InputAction.CallbackContext context);
+            void OnTilesLayer(InputAction.CallbackContext context);
+            void OnDecorLayer(InputAction.CallbackContext context);
+            void OnObjectsLayer(InputAction.CallbackContext context);
+            void OnEnemiesLayer(InputAction.CallbackContext context);
+            void OnSelectionTool(InputAction.CallbackContext context);
             void OnBrushTool(InputAction.CallbackContext context);
             void OnEraserTool(InputAction.CallbackContext context);
             void OnFillTool(InputAction.CallbackContext context);
             void OnPickerTool(InputAction.CallbackContext context);
             void OnClearCanvas(InputAction.CallbackContext context);
             void OnToggleGrid(InputAction.CallbackContext context);
-        }
-        public interface IShortcutsRoomActions
-        {
-            void OnShowTiles(InputAction.CallbackContext context);
-            void OnShowDecors(InputAction.CallbackContext context);
-            void OnShowObjects(InputAction.CallbackContext context);
-            void OnShowEnemies(InputAction.CallbackContext context);
         }
     }
 }

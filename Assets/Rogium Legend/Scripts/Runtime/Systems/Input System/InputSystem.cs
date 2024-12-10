@@ -20,9 +20,7 @@ namespace Rogium.Systems.Input
         private InputProfilePlayer inputPlayer;
         private InputProfileUI inputUI;
         private InputProfilePause inputPause;
-        private InputProfileShortcutsGeneral inputShortcutsGeneral;
-        private InputProfileShortcutsDrawingEditors inputShortcutsDrawingEditors;
-        private InputProfileShortcutsRoom inputShortcutsRoom;
+        private InputProfileShortcuts inputShortcuts;
         
         private Vector2 pointerPosition;
 
@@ -33,7 +31,7 @@ namespace Rogium.Systems.Input
             SceneManager.sceneLoaded += (_, __) => eventSystem = FindFirstObjectByType<EventSystem>();
             inputUI.PointerPosition.OnPressed += UpdatePointerPosition;
             inputPause.Disable();
-            EnableShortcutsRoomMap();
+            EnableShortcutsMap();
         }
 
         public void ClearAllInput()
@@ -42,9 +40,7 @@ namespace Rogium.Systems.Input
             inputPlayer = new InputProfilePlayer(input);
             inputUI = new InputProfileUI(input);
             inputPause = new InputProfilePause(input);
-            inputShortcutsGeneral = new InputProfileShortcutsGeneral(input);
-            inputShortcutsDrawingEditors = new InputProfileShortcutsDrawingEditors(input);
-            inputShortcutsRoom = new InputProfileShortcutsRoom(input);
+            inputShortcuts = new InputProfileShortcuts(input);
         }
 
         public void EnableUIMap()
@@ -65,13 +61,9 @@ namespace Rogium.Systems.Input
             inputPause.Enable();
         }
         
-        public void EnableShortcutsGeneralMap() => inputShortcutsGeneral.Enable();
-        public void EnableShortcutsDrawingEditorsMap() => inputShortcutsDrawingEditors.Enable();
-        public void EnableShortcutsRoomMap()
+        public void EnableShortcutsMap()
         {
-            inputShortcutsGeneral.Enable();
-            inputShortcutsDrawingEditors.Enable();
-            inputShortcutsRoom.Enable();
+            inputShortcuts.Enable();
         }
 
         public void DisablePauseMap() => inputPause.Disable();
@@ -146,22 +138,13 @@ namespace Rogium.Systems.Input
             inputPlayer.Disable();
         }
         
-        public void DisableAllShortcuts()
-        {
-            inputShortcutsRoom.Disable();
-            inputShortcutsDrawingEditors.Disable();
-            inputShortcutsGeneral.Disable();
-        }
-        
         private void UpdatePointerPosition(Vector2 value) => pointerPosition = value;
         
         public Vector2 PointerPosition { get => pointerPosition; }
         public InputProfilePlayer Player { get => inputPlayer; }
         public InputProfileUI UI { get => inputUI; }
         public InputProfilePause Pause { get => inputPause; }
-        public InputProfileShortcutsGeneral ShortcutsGeneral { get => inputShortcutsGeneral; }
-        public InputProfileShortcutsDrawingEditors ShortcutsDrawingEditors { get => inputShortcutsDrawingEditors; }
-        public InputProfileShortcutsRoom ShortcutsRoom { get => inputShortcutsRoom; }
+        public InputProfileShortcuts ShortcutsGeneral { get => inputShortcuts; }
         private string KeyboardSchemeGroup { get => input.KeyboardMouseScheme.bindingGroup; }
         private string GamepadSchemeGroup { get => input.GamepadScheme.bindingGroup; }
     }

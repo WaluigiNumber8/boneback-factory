@@ -22,7 +22,7 @@ namespace Rogium.Core.Shortcuts
             shortcutEvent = shortcut switch
             {
                 ShortcutType.Undo => input.ShortcutsGeneral.Undo,
-                ShortcutType.SelectionTool => input.ShortcutsDrawingEditors.SelectTool,
+                ShortcutType.SelectionTool => input.ShortcutsGeneral.SelectionTool,
                 _ => throw new ArgumentOutOfRangeException($"Shortcut {shortcut} not implemented.")
             };
         }
