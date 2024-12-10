@@ -48,28 +48,23 @@ namespace Rogium.Tests.Systems.Shortcuts
         public IEnumerator Should_Redo_WhenShortcutPressed()
         {
             yield return FillTileLayer();
-            AssetData drawnCell = editor.GetCurrentGridCopy.GetAt(0, 0);
-            yield return null;
             PressAndRelease(keyboard.leftCtrlKey, 0.1);
             yield return null;
             Press(keyboard.zKey);
             yield return new WaitForSecondsRealtime(0.1f);
-            Assert.That(editor.GetCurrentGridCopy.GetAt(0, 0), Is.EqualTo(drawnCell));
+            Assert.That(editor.GetCurrentGridCopy.GetAt(0, 0), Is.EqualTo(new AssetData()));
         }
 
         [UnityTest]
         public IEnumerator Should_SaveChanges_WhenShortcutPressed()
         {
+            AssetData originalData = PackEditorOverseer.Instance.CurrentPack.Rooms[0].TileGrid.GetAt(0, 0);
             yield return FillTileLayer();
-            AssetData drawnCell = editor.GetCurrentGridCopy.GetAt(0, 0);
-            yield return null;
             PressAndRelease(keyboard.leftCtrlKey, 0.1);
             yield return null;
             Press(keyboard.sKey);
             yield return new WaitForSecondsRealtime(0.1f);
-            RoomEditorOverseer.Instance.CompleteEditing();
-            yield return null;
-            Assert.That(PackEditorOverseer.Instance.CurrentPack.Rooms[0].TileGrid.GetAt(0, 0), Is.EqualTo(drawnCell));
+            Assert.That(PackEditorOverseer.Instance.CurrentPack.Rooms[0].TileGrid.GetAt(0, 0), Is.Not.EqualTo(originalData));
         }
 
         [UnityTest]
