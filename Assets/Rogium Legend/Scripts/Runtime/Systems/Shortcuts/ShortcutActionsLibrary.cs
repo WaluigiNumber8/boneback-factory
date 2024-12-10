@@ -1,4 +1,5 @@
-﻿using Rogium.Systems.Input;
+﻿using System;
+using Rogium.Systems.Input;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,9 +10,8 @@ namespace Rogium.Core.Shortcuts
     /// </summary>
     public class ShortcutActionsLibrary : MonoBehaviour
     {
-        [Header("Room Editor")] 
-        [SerializeField] private UnityEvent roomUndo;
-
+        [SerializeField] private RoomEditorShortcutsData roomEditor;
+        
         private InputSystem input;
 
         private void Awake() => input = InputSystem.GetInstance();
@@ -19,12 +19,21 @@ namespace Rogium.Core.Shortcuts
         public void ActivateRoomShortcuts()
         {
             DeactivateAllShortcuts();
-            input.ShortcutsGeneral.Undo.OnPress += () => roomUndo.Invoke();
+            input.ShortcutsGeneral.Undo.OnPress += roomEditor.undo.Invoke;
+            input.ShortcutsDrawingEditors.SelectTool.OnPress += roomEditor.selectTool.Invoke;
         }
         
         private void DeactivateAllShortcuts()
         {
-            input.ShortcutsGeneral.Undo.OnPress -= roomUndo.Invoke;
+            input.ShortcutsGeneral.Undo.OnPress -= roomEditor.undo.Invoke;
+            input.ShortcutsDrawingEditors.SelectTool.OnPress -= roomEditor.selectTool.Invoke;
+        }
+
+        [Serializable]
+        public struct RoomEditorShortcutsData
+        {
+            public UnityEvent undo;
+            public UnityEvent selectTool;
         }
     }
 }

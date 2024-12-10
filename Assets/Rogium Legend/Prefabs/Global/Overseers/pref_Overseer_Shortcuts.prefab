@@ -58,6 +58,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7479889a95bd467293524153b0f70700, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomUndo:
-    m_PersistentCalls:
-      m_Calls: []
+  roomEditor:
+    undo:
+      m_PersistentCalls:
+        m_Calls: []
+    selectTool:
+      m_PersistentCalls:
+        m_Calls: []
