@@ -8,7 +8,8 @@ using Rogium.Systems.Toolbox;
 using Rogium.Tests.Core;
 using UnityEngine;
 using UnityEngine.TestTools;
-using static Rogium.Tests.Systems.Shortcuts.ShortcutsU;
+using static Rogium.Tests.Core.TUtilsMenuNavigation;
+using static Rogium.Tests.Core.TUtilsRoomEditor;
 
 namespace Rogium.Tests.Systems.Shortcuts
 {
@@ -33,10 +34,7 @@ namespace Rogium.Tests.Systems.Shortcuts
         public IEnumerator Should_Undo_WhenUndoShortcutPressed()
         {
             yield return OpenEditor(AssetType.Room);
-            editor.Toolbox.SwitchTool(ToolType.Fill);
-            editor.UpdateGridCell(new Vector2Int(0, 0));
-            ActionHistorySystem.ForceEndGrouping();
-            yield return null;
+            yield return FillTileLayer();
             AssetData drawnCell = editor.GetCurrentGridCopy.GetAt(0, 0);
             yield return null;
             PressAndRelease(keyboard.leftCtrlKey, 0.1);

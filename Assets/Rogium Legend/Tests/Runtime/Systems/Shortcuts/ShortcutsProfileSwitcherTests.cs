@@ -1,12 +1,10 @@
 ﻿using System.Collections;
 using NUnit.Framework;
 using Rogium.Core;
-using Rogium.Editors.AssetSelection;
-using Rogium.Systems.GASExtension;
 using Rogium.Systems.Input;
 using Rogium.Tests.Core;
-using UnityEngine;
 using UnityEngine.TestTools;
+using static Rogium.Tests.Core.TUtilsMenuNavigation;
 
 namespace Rogium.Tests.Systems.Shortcuts
 {
@@ -27,7 +25,7 @@ namespace Rogium.Tests.Systems.Shortcuts
         [UnityTest]
         public IEnumerator Should_SwitchToRoomShortcutsMap_WhenRoomEditorOpened()
         {
-            yield return ShortcutsU.OpenEditor(AssetType.Room);
+            yield return OpenEditor(AssetType.Room);
             Assert.That(input.ShortcutsRoom.IsMapEnabled, Is.True);
         }
     }
