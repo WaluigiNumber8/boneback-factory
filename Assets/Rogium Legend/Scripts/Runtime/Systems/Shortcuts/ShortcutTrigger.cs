@@ -21,8 +21,8 @@ namespace Rogium.Core.Shortcuts
             InputSystem input = InputSystem.GetInstance();
             shortcutEvent = shortcut switch
             {
-                ShortcutType.Undo => input.ShortcutsGeneral.Undo,
-                ShortcutType.SelectionTool => input.ShortcutsGeneral.SelectionTool,
+                ShortcutType.Undo => input.Shortcuts.Undo,
+                ShortcutType.SelectionTool => input.Shortcuts.SelectionTool,
                 _ => throw new ArgumentOutOfRangeException($"Shortcut {shortcut} not implemented.")
             };
         }
