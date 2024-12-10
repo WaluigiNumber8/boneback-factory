@@ -27,14 +27,8 @@ namespace Rogium.Tests.Systems.Shortcuts
         [UnityTest]
         public IEnumerator Should_SwitchToRoomShortcutsMap_WhenRoomEditorOpened()
         {
-            GASButtonActions.OpenSelectionPack();
-            yield return null;
-            Object.FindFirstObjectByType<EditableAssetCardController>().Edit();
-            SelectionMenuOverseerMono.GetInstance().Open(AssetType.Room);
-            yield return null;
-            Object.FindFirstObjectByType<EditableAssetCardController>().Edit();
+            yield return ShortcutsU.OpenEditor(AssetType.Room);
             Assert.That(input.ShortcutsRoom.IsMapEnabled, Is.True);
         }
-    
     }
 }

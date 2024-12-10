@@ -10,6 +10,9 @@ namespace Rogium.Core.Shortcuts
     /// </summary>
     public class ShortcutProfileSwitcher : MonoBehaviour
     {
+        [SerializeField] private ShortcutActionsLibrary shortcutLibrary;
+        
+        
         private InputSystem input;
         private MenuSwitcher menuSwitcher;
 
@@ -42,6 +45,7 @@ namespace Rogium.Core.Shortcuts
                     break;
                 case MenuType.RoomEditor:
                     input.EnableShortcutsRoomMap();
+                    shortcutLibrary.ActivateRoomShortcuts();
                     break;
                 case MenuType.PaletteEditor:
                     break;

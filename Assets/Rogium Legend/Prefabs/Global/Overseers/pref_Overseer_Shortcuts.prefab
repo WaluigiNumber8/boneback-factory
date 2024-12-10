@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7383066136729789631}
   - component: {fileID: 6305202863875402271}
+  - component: {fileID: 5616812438376803893}
   m_Layer: 0
   m_Name: pref_Overseer_Shortcuts
   m_TagString: Untagged
@@ -44,3 +45,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84d36a2edc594923a4f2357722945a0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shortcutLibrary: {fileID: 5616812438376803893}
+--- !u!114 &5616812438376803893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243899684654790718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7479889a95bd467293524153b0f70700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomUndo:
+    m_PersistentCalls:
+      m_Calls: []

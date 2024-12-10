@@ -67,6 +67,7 @@ namespace Rogium.Systems.Input
         public void EnableShortcutsDrawingEditorsMap() => inputShortcutsDrawingEditors.Enable();
         public void EnableShortcutsRoomMap()
         {
+            inputShortcutsGeneral.Enable();
             inputShortcutsDrawingEditors.Enable();
             inputShortcutsRoom.Enable();
         }

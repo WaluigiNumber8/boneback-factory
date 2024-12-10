@@ -1354,7 +1354,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""binding"",
                     ""id"": ""f4e73f0d-31ad-42fd-a9de-2c05794d5043"",
-                    ""path"": ""<Keyboard>/z"",
+                    ""path"": ""<Keyboard>/y"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
@@ -1387,7 +1387,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""binding"",
                     ""id"": ""dfcdb8b0-45de-4fc2-9dbe-045079d230fa"",
-                    ""path"": ""<Keyboard>/y"",
+                    ""path"": ""<Keyboard>/z"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
