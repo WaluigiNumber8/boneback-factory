@@ -3,7 +3,6 @@ using NUnit.Framework;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Rooms;
-using Rogium.Systems.ActionHistory;
 using Rogium.Systems.Toolbox;
 using Rogium.Tests.Core;
 using UnityEngine;
@@ -25,13 +24,12 @@ namespace Rogium.Tests.Systems.Shortcuts
             yield return base.SetUp();
             yield return MenuLoader.PrepareSelectionMenu();
             yield return MenuLoader.PrepareRoomEditor(false);
-            OverseerLoader.LoadShortcutsOverseer();
             editor = RoomEditorOverseerMono.GetInstance();
             yield return null;
         }
         
         [UnityTest]
-        public IEnumerator Should_Undo_WhenUndoShortcutPressed()
+        public IEnumerator Should_Undo_WhenShortcutPressed()
         {
             yield return OpenEditor(AssetType.Room);
             yield return FillTileLayer();
@@ -42,6 +40,17 @@ namespace Rogium.Tests.Systems.Shortcuts
             Press(keyboard.yKey);
             yield return new WaitForSecondsRealtime(0.1f);
             Assert.That(editor.GetCurrentGridCopy.GetAt(0, 0), Is.Not.EqualTo(drawnCell));
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_SelectTheSelectTool_WhenShortcutPressed()
+        {
+            yield return OpenEditor(AssetType.Room);
+            SelectTool(ToolType.Eraser);
+            yield return null;
+            Press(keyboard.sKey);
+            yield return null;
+            Assert.That(editor.Toolbox.CurrentTool, Is.EqualTo(ToolType.Selection));
         }
     }
 }

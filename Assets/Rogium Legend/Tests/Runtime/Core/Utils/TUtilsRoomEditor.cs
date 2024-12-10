@@ -13,10 +13,12 @@ namespace Rogium.Tests.Core
     {
         public static IEnumerator FillTileLayer()
         {
-            RoomEditorOverseerMono.GetInstance().Toolbox.SwitchTool(ToolType.Fill);
+            SelectTool(ToolType.Fill);
             RoomEditorOverseerMono.GetInstance().UpdateGridCell(new Vector2Int(0, 0));
             ActionHistorySystem.ForceEndGrouping();
             yield return null;
         }
+
+        public static void SelectTool(ToolType toolType) => RoomEditorOverseerMono.GetInstance().Toolbox.SwitchTool(toolType);
     }
 }

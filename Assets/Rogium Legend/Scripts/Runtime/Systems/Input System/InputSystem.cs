@@ -11,6 +11,7 @@ namespace Rogium.Systems.Input
     /// <summary>
     /// Overseers all input profiles and deals with their switching.
     /// </summary>
+    [DefaultExecutionOrder(-50)]
     public class InputSystem : PersistentMonoSingleton<InputSystem>
     {
         private EventSystem eventSystem;
@@ -32,6 +33,7 @@ namespace Rogium.Systems.Input
             SceneManager.sceneLoaded += (_, __) => eventSystem = FindFirstObjectByType<EventSystem>();
             inputUI.PointerPosition.OnPressed += UpdatePointerPosition;
             inputPause.Disable();
+            EnableShortcutsRoomMap();
         }
 
         public void ClearAllInput()
