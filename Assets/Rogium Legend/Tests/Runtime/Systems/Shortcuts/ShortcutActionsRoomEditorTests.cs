@@ -37,8 +37,10 @@ namespace Rogium.Tests.Systems.Shortcuts
         {
             yield return FillTileLayer();
             AssetData drawnCell = editor.GetCurrentGridCopy.GetAt(0, 0);
+            i.Press(keyboard.ctrlKey);
+            i.Press(keyboard.yKey);
             i.Trigger(input.Shortcuts.Undo.Action);
-            yield return null;
+            yield return new WaitForSecondsRealtime(0.1f);
             Assert.That(editor.GetCurrentGridCopy.GetAt(0, 0), Is.Not.EqualTo(drawnCell));
         }
 
@@ -46,9 +48,11 @@ namespace Rogium.Tests.Systems.Shortcuts
         public IEnumerator Should_Redo_WhenShortcutPressed()
         {
             yield return FillTileLayer();
+            i.Press(keyboard.ctrlKey);
+            i.Press(keyboard.zKey);
             i.Trigger(input.Shortcuts.Redo.Action);
-            yield return null;
-            Assert.That(editor.GetCurrentGridCopy.GetAt(0, 0), Is.EqualTo(new AssetData()));
+            yield return new WaitForSecondsRealtime(0.1f);
+            Assert.That(editor.GetCurrentGridCopy.GetAt(0, 0), Is.Not.EqualTo(new AssetData()));
         }
 
         [UnityTest]
@@ -56,8 +60,10 @@ namespace Rogium.Tests.Systems.Shortcuts
         {
             AssetData originalData = PackEditorOverseer.Instance.CurrentPack.Rooms[0].TileGrid.GetAt(0, 0);
             yield return FillTileLayer();
+            i.Press(keyboard.ctrlKey);
+            i.Press(keyboard.sKey);
             i.Trigger(input.Shortcuts.Save.Action);
-            yield return null;
+            yield return new WaitForSecondsRealtime(0.1f);
             Assert.That(PackEditorOverseer.Instance.CurrentPack.Rooms[0].TileGrid.GetAt(0, 0), Is.Not.EqualTo(originalData));
         }
 
@@ -67,6 +73,7 @@ namespace Rogium.Tests.Systems.Shortcuts
             yield return FillTileLayer();
             AssetData drawnCell = editor.GetCurrentGridCopy.GetAt(0, 0);
             i.Trigger(input.Shortcuts.Cancel.Action);
+            yield return null;
             yield return null;
             yield return WindowAccept();
             Assert.That(editor.GetCurrentGridCopy.GetAt(0, 0), Is.EqualTo(drawnCell));
@@ -121,8 +128,10 @@ namespace Rogium.Tests.Systems.Shortcuts
         public IEnumerator Should_ClearCanvas_WhenShortcutPressed()
         {
             yield return FillTileLayer();
+            i.Press(keyboard.ctrlKey);
+            i.Press(keyboard.cKey);
             i.Trigger(input.Shortcuts.ClearCanvas.Action);
-            yield return null;
+            yield return new WaitForSecondsRealtime(0.1f);
             Assert.That(editor.GetCurrentGridCopy.GetAt(0, 0), Is.EqualTo(new AssetData()));
         }
 

@@ -1496,7 +1496,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""One Modifier"",
-                    ""id"": ""7986aa79-371e-4339-916b-3f29f529f384"",
+                    ""id"": ""5553f10c-6cd4-49e7-94d8-7946affbb433"",
                     ""path"": ""OneModifier"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1507,7 +1507,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier"",
-                    ""id"": ""f96d247e-e46d-4212-b2ae-171a1f144f7a"",
+                    ""id"": ""23c6d467-3a86-41be-9d4f-ebf9560a2bff"",
                     ""path"": ""<Keyboard>/ctrl"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1518,7 +1518,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""binding"",
-                    ""id"": ""e49e71c6-89fc-4ada-8a6b-4ca5735f3a4f"",
+                    ""id"": ""73649c4d-4a09-4604-8554-0295b3fdb562"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
