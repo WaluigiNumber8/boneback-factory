@@ -12,12 +12,33 @@ namespace Rogium.Core.Shortcuts
     {
         [SerializeField] private ShortcutType shortcut;
 
-        private IPointerClickHandler selectable;
+        private IPointerClickHandler[] clickables;
         private InputButton shortcutEvent;
         
-        private void Awake()
+        private void Awake() => DetectEvent();
+
+        private void OnEnable()
         {
-            selectable = GetComponent<IPointerClickHandler>();
+            shortcutEvent.OnPress -= Click;
+            shortcutEvent.OnPress += Click;
+        }
+
+        private void OnDisable() => shortcutEvent.OnPress -= Click;
+        
+        /// <summary>
+        /// Sets the shortcut type.
+        /// </summary>
+        public void Set(ShortcutType shortcut)
+        {
+            this.shortcut = shortcut;
+            DetectEvent();
+        }
+        
+        private void DetectEvent()
+        {
+            if (shortcutEvent != null) shortcutEvent.OnPress -= Click;
+            
+            clickables = GetComponents<IPointerClickHandler>();
             InputSystem input = InputSystem.GetInstance();
             shortcutEvent = shortcut switch
             {
@@ -38,11 +59,17 @@ namespace Rogium.Core.Shortcuts
                 ShortcutType.LayerEnemies => input.Shortcuts.EnemiesLayer,
                 _ => throw new ArgumentOutOfRangeException($"Shortcut {shortcut} not implemented.")
             };
+            
+            shortcutEvent.OnPress += Click;
         }
-
-        private void OnEnable() => shortcutEvent.OnPress += Click;
-        private void OnDisable() => shortcutEvent.OnPress -= Click;
         
-        private void Click() => selectable.OnPointerClick((new PointerEventData(EventSystem.current) { button = PointerEventData.InputButton.Left }));
+        private void Click()
+        {
+            PointerEventData data = new(EventSystem.current) {button = PointerEventData.InputButton.Left};
+            foreach (IPointerClickHandler clickable in clickables)
+            {
+                clickable.OnPointerClick(data);
+            }
+        }
     }
 }
