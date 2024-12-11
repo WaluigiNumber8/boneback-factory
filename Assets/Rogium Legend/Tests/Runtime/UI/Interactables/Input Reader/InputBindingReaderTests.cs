@@ -30,7 +30,6 @@ namespace Rogium.Tests.UI.Interactables
             OverseerLoader.LoadUIBuilder();
             OverseerLoader.LoadModalWindowBuilder();
             input = InputSystem.GetInstance();
-            input.ClearAllInput();
             yield return null;
             inputReader = BuildInputReader(input.Player.ButtonMain.Action);
         }

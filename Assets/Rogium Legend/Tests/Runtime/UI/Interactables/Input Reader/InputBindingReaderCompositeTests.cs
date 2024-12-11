@@ -25,7 +25,6 @@ namespace Rogium.Tests.UI.Interactables
             OverseerLoader.LoadUIBuilder();
             OverseerLoader.LoadModalWindowBuilder();
             input = InputSystem.GetInstance();
-            input.ClearAllInput();
             yield return null;
             bindingParent = new GameObject("Input Bindings").transform;
             bindingParent.SetParent(Object.FindFirstObjectByType<Canvas>().transform);

@@ -31,16 +31,17 @@ namespace Rogium.Systems.Input
             SceneManager.sceneLoaded += (_, __) => eventSystem = FindFirstObjectByType<EventSystem>();
             inputUI.PointerPosition.OnPressed += UpdatePointerPosition;
             inputPause.Disable();
-            EnableShortcutsMap();
         }
 
         public void ClearAllInput()
         {
+            inputShortcuts?.Disable();
             input = new RogiumInputActions();
             inputPlayer = new InputProfilePlayer(input);
             inputUI = new InputProfileUI(input);
             inputPause = new InputProfilePause(input);
             inputShortcuts = new InputProfileShortcuts(input);
+            EnableShortcutsMap();
         }
 
         public void EnableUIMap()
