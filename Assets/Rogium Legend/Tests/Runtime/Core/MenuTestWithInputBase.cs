@@ -10,6 +10,7 @@ namespace Rogium.Tests.Core
     public abstract class MenuTestWithInputBase : MenuTestBase
     {
         protected readonly InputTestFixture i = new();
+        protected Rogium.Systems.Input.InputSystem input;
         
         protected Keyboard keyboard;
         protected Mouse mouse;
@@ -30,6 +31,7 @@ namespace Rogium.Tests.Core
             i.Release(gamepad.buttonSouth);
 
             yield return base.Setup();
+            input = Rogium.Systems.Input.InputSystem.GetInstance();
         }
         
         [UnityTearDown]

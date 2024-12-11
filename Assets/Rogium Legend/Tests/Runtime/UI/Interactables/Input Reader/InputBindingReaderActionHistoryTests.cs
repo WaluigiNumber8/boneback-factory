@@ -8,7 +8,6 @@ using UnityEngine;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.TestTools;
 using static Rogium.Tests.UI.Interactables.InputBindingReaderTestsU;
-using InputSystem = Rogium.Systems.Input.InputSystem;
 
 namespace Rogium.Tests.UI.Interactables
 {
@@ -18,7 +17,6 @@ namespace Rogium.Tests.UI.Interactables
     public class InputBindingReaderActionHistoryTests : MenuTestWithInputBase
     {
         private InputBindingReader reader;
-        private InputSystem input;
 
         public override IEnumerator SetUp()
         {
@@ -26,7 +24,6 @@ namespace Rogium.Tests.UI.Interactables
             OverseerLoader.LoadThemeOverseer();
             OverseerLoader.LoadUIBuilder();
             OverseerLoader.LoadModalWindowBuilder();
-            input = InputSystem.GetInstance();
             yield return null;
             reader = BuildInputReader(input.Player.ButtonMain.Action);
         }

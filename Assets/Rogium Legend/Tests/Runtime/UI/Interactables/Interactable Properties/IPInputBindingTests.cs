@@ -8,10 +8,8 @@ using Rogium.UserInterface.Interactables;
 using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.TestTools;
 using UnityEngine.UI;
 using static Rogium.Tests.UI.Interactables.Properties.InteractablesCreator;
-using InputSystem = Rogium.Systems.Input.InputSystem;
 
 namespace Rogium.Tests.UI.Interactables.Properties
 {
@@ -22,14 +20,11 @@ namespace Rogium.Tests.UI.Interactables.Properties
     {
         private InteractablePropertyInputBinding inputProperty;
         private InputAction action;
-        private InputSystem input;
-
         public override IEnumerator SetUp()
         {
             yield return base.SetUp();
             OverseerLoader.LoadThemeOverseer();
             OverseerLoader.LoadUIBuilder();
-            input = InputSystem.GetInstance();
             yield return null;
             action = input.Player.ButtonMainAlt.Action.Clone();
             inputProperty = BuildInputBinding(action);
