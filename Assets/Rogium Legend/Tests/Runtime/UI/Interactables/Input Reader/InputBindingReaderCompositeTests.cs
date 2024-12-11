@@ -59,7 +59,7 @@ namespace Rogium.Tests.UI.Interactables
         {
             reader.StartRebinding();
             yield return new WaitForSecondsRealtime(0.1f);
-            Press(key);
+            i.Press(key);
             yield return new WaitForSecondsRealtime(0.1f);
         }
     }

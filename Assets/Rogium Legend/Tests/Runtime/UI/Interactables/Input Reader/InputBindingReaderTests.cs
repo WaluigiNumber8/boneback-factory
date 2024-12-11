@@ -220,7 +220,7 @@ namespace Rogium.Tests.UI.Interactables
         {
             inputReader.StartRebinding();
             yield return new WaitForSecondsRealtime(0.1f);
-            Press(key);
+            i.Press(key);
             yield return new WaitForSecondsRealtime(0.1f);
         }
     }

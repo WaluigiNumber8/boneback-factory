@@ -27,12 +27,12 @@ namespace Rogium.Tests.Systems.ActionHistory
             IAction action2 = CreateAction(construct);
             yield return null;
             
-            Press(mouse.leftButton);
+            i.Press(mouse.leftButton);
             yield return new WaitForSecondsRealtime(0.1f);
             ActionHistorySystem.AddAndExecute(action1);
             yield return new WaitForSecondsRealtime(0.1f);
             ActionHistorySystem.AddAndExecute(action2);
-            Release(mouse.leftButton);
+            i.Release(mouse.leftButton);
             yield return new WaitForSecondsRealtime(0.1f);
             
             Assert.That(ActionHistorySystem.CurrentGroup, Is.Null);
@@ -48,11 +48,11 @@ namespace Rogium.Tests.Systems.ActionHistory
             IAction action2 = CreateAction(construct);
             yield return null;
             
-            Press(mouse.leftButton);
+            i.Press(mouse.leftButton);
             yield return new WaitForSecondsRealtime(0.1f);
             ActionHistorySystem.AddAndExecute(action1);
             yield return new WaitForSecondsRealtime(0.1f);
-            Release(mouse.leftButton);
+            i.Release(mouse.leftButton);
             yield return new WaitForSecondsRealtime(0.1f);
             ActionHistorySystem.AddAndExecute(action2);
             

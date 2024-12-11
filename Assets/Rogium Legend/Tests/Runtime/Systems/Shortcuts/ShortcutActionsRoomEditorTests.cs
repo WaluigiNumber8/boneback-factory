@@ -4,6 +4,7 @@ using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Rooms;
+using Rogium.Systems.Input;
 using Rogium.Systems.Toolbox;
 using Rogium.Tests.Core;
 using UnityEngine;
@@ -26,6 +27,7 @@ namespace Rogium.Tests.Systems.Shortcuts
             yield return base.SetUp();
             yield return MenuLoader.PrepareSelectionMenu();
             yield return MenuLoader.PrepareRoomEditor(false);
+            OverseerLoader.LoadModalWindowBuilder();
             editor = RoomEditorOverseerMono.GetInstance();
             yield return null;
             yield return OpenEditor(AssetType.Room);
@@ -37,9 +39,7 @@ namespace Rogium.Tests.Systems.Shortcuts
             yield return FillTileLayer();
             AssetData drawnCell = editor.GetCurrentGridCopy.GetAt(0, 0);
             yield return null;
-            PressAndRelease(keyboard.leftCtrlKey, 0.1);
-            yield return null;
-            Press(keyboard.yKey);
+            i.Trigger(InputSystem.GetInstance().Shortcuts.Undo.Action);
             yield return new WaitForSecondsRealtime(0.1f);
             Assert.That(editor.GetCurrentGridCopy.GetAt(0, 0), Is.Not.EqualTo(drawnCell));
         }
@@ -48,9 +48,9 @@ namespace Rogium.Tests.Systems.Shortcuts
         public IEnumerator Should_Redo_WhenShortcutPressed()
         {
             yield return FillTileLayer();
-            PressAndRelease(keyboard.leftCtrlKey, 0.1);
+            i.PressAndRelease(keyboard.leftCtrlKey, 0.1);
             yield return null;
-            Press(keyboard.zKey);
+            i.Press(keyboard.zKey);
             yield return new WaitForSecondsRealtime(0.1f);
             Assert.That(editor.GetCurrentGridCopy.GetAt(0, 0), Is.EqualTo(new AssetData()));
         }
@@ -60,9 +60,9 @@ namespace Rogium.Tests.Systems.Shortcuts
         {
             AssetData originalData = PackEditorOverseer.Instance.CurrentPack.Rooms[0].TileGrid.GetAt(0, 0);
             yield return FillTileLayer();
-            PressAndRelease(keyboard.leftCtrlKey, 0.1);
+            i.PressAndRelease(keyboard.leftCtrlKey, 0.1);
             yield return null;
-            Press(keyboard.sKey);
+            i.Press(keyboard.sKey);
             yield return new WaitForSecondsRealtime(0.1f);
             Assert.That(PackEditorOverseer.Instance.CurrentPack.Rooms[0].TileGrid.GetAt(0, 0), Is.Not.EqualTo(originalData));
         }
@@ -73,7 +73,7 @@ namespace Rogium.Tests.Systems.Shortcuts
             yield return FillTileLayer();
             AssetData drawnCell = editor.GetCurrentGridCopy.GetAt(0, 0);
             yield return null;
-            Press(keyboard.escapeKey, 0.1);
+            i.Press(keyboard.escapeKey, 0.1);
             yield return new WaitForSecondsRealtime(0.1f);
             yield return WindowAccept();
             Assert.That(editor.GetCurrentGridCopy.GetAt(0, 0), Is.EqualTo(drawnCell));
@@ -84,7 +84,7 @@ namespace Rogium.Tests.Systems.Shortcuts
         {
             SelectTool(ToolType.Eraser);
             yield return null;
-            Press(keyboard.sKey);
+            i.Press(keyboard.sKey);
             yield return null;
             Assert.That(editor.Toolbox.CurrentTool, Is.EqualTo(ToolType.Selection));
         }
@@ -94,7 +94,7 @@ namespace Rogium.Tests.Systems.Shortcuts
         {
             SelectTool(ToolType.Eraser);
             yield return null;
-            Press(keyboard.bKey);
+            i.Press(keyboard.bKey);
             yield return null;
             Assert.That(editor.Toolbox.CurrentTool, Is.EqualTo(ToolType.Brush));
         }
@@ -104,7 +104,7 @@ namespace Rogium.Tests.Systems.Shortcuts
         {
             SelectTool(ToolType.Brush);
             yield return null;
-            Press(keyboard.eKey);
+            i.Press(keyboard.eKey);
             yield return null;
             Assert.That(editor.Toolbox.CurrentTool, Is.EqualTo(ToolType.Eraser));
         }
@@ -114,7 +114,7 @@ namespace Rogium.Tests.Systems.Shortcuts
         {
             SelectTool(ToolType.Brush);
             yield return null;
-            Press(keyboard.fKey);
+            i.Press(keyboard.fKey);
             yield return null;
             Assert.That(editor.Toolbox.CurrentTool, Is.EqualTo(ToolType.Fill));
         }
@@ -124,7 +124,7 @@ namespace Rogium.Tests.Systems.Shortcuts
         {
             SelectTool(ToolType.Brush);
             yield return null;
-            Press(keyboard.pKey);
+            i.Press(keyboard.pKey);
             yield return null;
             Assert.That(editor.Toolbox.CurrentTool, Is.EqualTo(ToolType.ColorPicker));
         }
@@ -134,9 +134,9 @@ namespace Rogium.Tests.Systems.Shortcuts
         {
             yield return FillTileLayer();
             yield return null;
-            PressAndRelease(keyboard.leftCtrlKey, 0.1);
+            i.PressAndRelease(keyboard.leftCtrlKey, 0.1);
             yield return null;
-            Press(keyboard.cKey);
+            i.Press(keyboard.cKey);
             yield return new WaitForSecondsRealtime(0.1f);
             Assert.That(editor.GetCurrentGridCopy.GetAt(0, 0), Is.EqualTo(new AssetData()));
         }
@@ -147,7 +147,7 @@ namespace Rogium.Tests.Systems.Shortcuts
             GameObject grid = GameObject.Find("Gridlines");
             bool startActiveStatus = grid.activeSelf;
             yield return null;
-            Press(keyboard.semicolonKey);
+            i.Press(keyboard.semicolonKey);
             yield return null;
             Assert.That(grid.activeSelf, Is.Not.EqualTo(startActiveStatus));
         }
