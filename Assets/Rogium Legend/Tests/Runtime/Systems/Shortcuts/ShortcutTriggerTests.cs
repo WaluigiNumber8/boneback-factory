@@ -2,10 +2,8 @@
 using NUnit.Framework;
 using RedRats.UI.Core;
 using Rogium.Core.Shortcuts;
-using Rogium.Systems.Input;
 using Rogium.Tests.Core;
 using UnityEngine;
-using UnityEngine.InputSystem.Controls;
 using UnityEngine.TestTools;
 using UnityEngine.UI;
 
@@ -37,18 +35,32 @@ namespace Rogium.Tests.Systems.Shortcuts
             bool triggered = false;
             button.onClick.AddListener(() => triggered = true);
             yield return null;
-            i.Trigger(InputSystem.GetInstance().Shortcuts.FillTool.Action);
+            i.Trigger(input.Shortcuts.FillTool.Action);
             yield return null;
             Assert.That(triggered, Is.True);
         }
 
         [UnityTest]
-        public IEnumerator Should_PressKey()
+        public IEnumerator Should_NotTrigger_WhenTriggerDisabled()
         {
-            KeyControl key = keyboard.fKey;
-            i.Press(key);
+            bool triggered = false;
+            button.onClick.AddListener(() => triggered = true);
             yield return null;
-            Assert.That(key.isPressed, Is.True);
+            trigger.gameObject.SetActive(false);
+            i.Trigger(input.Shortcuts.FillTool.Action);
+            yield return null;
+            Assert.That(triggered, Is.False);
+        }
+
+        [UnityTest]
+        public IEnumerator Should_TriggerEffects_WhenTriggered()
+        {
+            bool triggered = false;
+            caller.OnClickLeft += () => triggered = true;
+            yield return null;
+            i.Trigger(input.Shortcuts.FillTool.Action);
+            yield return null;
+            Assert.That(triggered, Is.True);
         }
         
     }
