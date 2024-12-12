@@ -1328,36 +1328,36 @@ namespace Rogium.Systems.Input
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""TilesLayer"",
+                    ""name"": ""New"",
                     ""type"": ""Button"",
-                    ""id"": ""63986a13-65cf-495f-849d-29bce6b8f870"",
+                    ""id"": ""770180ca-8917-4958-8be7-6646b52830ca"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""DecorLayer"",
+                    ""name"": ""Edit"",
                     ""type"": ""Button"",
-                    ""id"": ""b2c97333-5123-4475-a54a-f84b496c9190"",
+                    ""id"": ""d0a4ce71-f1d5-4384-b5dc-fb047e4e7505"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ObjectsLayer"",
+                    ""name"": ""EditProperties"",
                     ""type"": ""Button"",
-                    ""id"": ""54ccdab3-92c9-4c16-b6ca-e799197beaee"",
+                    ""id"": ""e1daef8f-449b-4b6e-b95e-e84bd92fab39"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""EnemiesLayer"",
+                    ""name"": ""Delete"",
                     ""type"": ""Button"",
-                    ""id"": ""dd5db618-0e3b-4783-b375-eb3a049df2a2"",
+                    ""id"": ""2411496f-0679-445a-a0f8-f480f301fda2"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1421,6 +1421,186 @@ namespace Rogium.Systems.Input
                     ""name"": ""ToggleGrid"",
                     ""type"": ""Button"",
                     ""id"": ""ed5f6ffc-17c0-4b74-aeda-1565ad9510b4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TilesLayer"",
+                    ""type"": ""Button"",
+                    ""id"": ""63986a13-65cf-495f-849d-29bce6b8f870"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DecorLayer"",
+                    ""type"": ""Button"",
+                    ""id"": ""b2c97333-5123-4475-a54a-f84b496c9190"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ObjectsLayer"",
+                    ""type"": ""Button"",
+                    ""id"": ""54ccdab3-92c9-4c16-b6ca-e799197beaee"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EnemiesLayer"",
+                    ""type"": ""Button"",
+                    ""id"": ""dd5db618-0e3b-4783-b375-eb3a049df2a2"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""2cfbf068-8ef8-4923-9161-df53788b552d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""ca110d43-4ddb-4116-8004-facf4e236d93"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RefreshCurrent"",
+                    ""type"": ""Button"",
+                    ""id"": ""becb5745-c8a3-49fd-b94a-be7050c41ab5"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RefreshAll"",
+                    ""type"": ""Button"",
+                    ""id"": ""83301a57-ee00-464d-9445-88775e6da371"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShowPalettes"",
+                    ""type"": ""Button"",
+                    ""id"": ""52ec244d-b9e2-444e-9864-a80885852664"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShowSprites"",
+                    ""type"": ""Button"",
+                    ""id"": ""0ebcee0a-62f0-4181-86a9-0aef45d572ec"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShowWeapons"",
+                    ""type"": ""Button"",
+                    ""id"": ""bdbc0c14-abdd-4cf1-94b7-7470ce2508d5"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShowProjectiles"",
+                    ""type"": ""Button"",
+                    ""id"": ""83b4e05f-f87e-40ff-a3b0-e2711e371d71"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShowEnemies"",
+                    ""type"": ""Button"",
+                    ""id"": ""85767298-4cf6-4a9f-91f4-407c156ac794"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShowRooms"",
+                    ""type"": ""Button"",
+                    ""id"": ""290d3ec0-9170-433c-aae7-be2dee0b297c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShowTiles"",
+                    ""type"": ""Button"",
+                    ""id"": ""681ac6d8-fc9c-4e5f-9ea1-74b77e62b36a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangePalette"",
+                    ""type"": ""Button"",
+                    ""id"": ""1c5495c5-d6c0-4cf5-ac82-8ea0faffb12f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ResetToDefault"",
+                    ""type"": ""Button"",
+                    ""id"": ""0d44e1d6-3e3c-46b6-812b-0e55c26a328d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectAll"",
+                    ""type"": ""Button"",
+                    ""id"": ""a1df79d2-e181-4b19-8ef4-e7b7146513ce"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DeselectAll"",
+                    ""type"": ""Button"",
+                    ""id"": ""5fc6b76d-3182-4981-b391-efa3275ce202"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectRandom"",
+                    ""type"": ""Button"",
+                    ""id"": ""f670dfbc-0e55-4094-ae55-8c9ddc8e570a"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1680,6 +1860,402 @@ namespace Rogium.Systems.Input
                     ""action"": ""ToggleGrid"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1714d337-173b-420d-a3e7-bb10971a915c"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Edit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fc0aed14-bc18-4350-9aa0-5bca5aff96b7"",
+                    ""path"": ""<Keyboard>/delete"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Delete"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""One Modifier"",
+                    ""id"": ""ce6067d6-c2f5-49de-bdaa-02c60afdd3e2"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""6ec72348-8b8d-4490-852c-6fd20fbf30df"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""New"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""82200dc6-51dd-422f-a029-8276b01fbce4"",
+                    ""path"": ""<Keyboard>/n"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""New"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""One Modifier"",
+                    ""id"": ""dfefd134-d8c5-4a1e-8ed4-c85ae8c3e2dd"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EditProperties"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""de5f1d86-8cb0-45c3-a0c1-313730c9a428"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""EditProperties"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""869c9390-f36b-4036-adb5-0baabf4bf3b0"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EditProperties"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""baa81b04-5ef9-4e7c-94b5-f51afb77333e"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SwitchLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""11c23723-c2bb-489f-a41f-16a97e82dc49"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SwitchLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0ae159ba-cdd5-4d5f-852a-0c91420b17dc"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SwitchRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a3052159-3dce-4dae-8402-4fc677f4ebea"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SwitchRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1b91e830-1763-4d50-a44c-95b33a7fb86a"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""RefreshCurrent"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0121bea3-88c7-4a73-9f07-b114ec70004b"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowPalettes"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ed8b56c4-f340-4ebe-9285-597247d1ad6c"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowSprites"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""84940cb6-eaa6-4d8c-bf6a-bc819a5dd445"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowWeapons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c287c309-d53c-45e0-875b-d2e8d1bca091"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowProjectiles"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ba355bd5-d6c3-44b5-85c0-29003cd0690a"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowEnemies"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""33bf1412-0863-462b-aeea-a1b3ebc666bd"",
+                    ""path"": ""<Keyboard>/6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowRooms"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0126e7ef-ca23-4eef-90b0-1ba112655009"",
+                    ""path"": ""<Keyboard>/7"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowTiles"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""One Modifier"",
+                    ""id"": ""288ebd45-ef20-4099-8d70-b1a21eb9c7ed"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RefreshAll"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""f90f48d7-8967-41dc-9156-0f84048c3041"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""RefreshAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""1bba9328-e9e4-4ffe-b0ba-f56c47b27f19"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""RefreshAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8add3d7a-0367-42a9-8c6c-5a156746700d"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ChangePalette"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""One Modifier"",
+                    ""id"": ""d0c194af-ec0a-4a2d-ac7e-eb18fbe3b7f2"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResetToDefault"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""f35fafc4-baad-43eb-b6b8-22fd5c2116e6"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ResetToDefault"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""c7d2ea2a-380f-4f6e-963a-ae665b161a17"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ResetToDefault"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""One Modifier"",
+                    ""id"": ""6100528a-9e94-4c0f-964c-56630278415a"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectAll"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""95be9ca8-984c-4872-ac5a-4482a5207a72"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SelectAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""524d9615-d4c8-4785-bb42-41e9daf18929"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SelectAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""One Modifier"",
+                    ""id"": ""822ee30e-325a-4113-bbf7-42e35ded97e6"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DeselectAll"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""25b213a0-29c0-4538-b7ea-b7f6f48aade4"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""DeselectAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""2c269f8a-5547-46c1-831e-4ddcae7d1a46"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""DeselectAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""One Modifier"",
+                    ""id"": ""c469d6bd-6f2f-4ac0-a68d-32869ce2330f"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectRandom"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""8e2923cf-45fc-411e-b66a-39027c220f4e"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SelectRandom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""4f04eefb-bafb-40be-9172-db015f4b9ec2"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectRandom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -1745,10 +2321,10 @@ namespace Rogium.Systems.Input
             m_Shortcuts_Redo = m_Shortcuts.FindAction("Redo", throwIfNotFound: true);
             m_Shortcuts_Save = m_Shortcuts.FindAction("Save", throwIfNotFound: true);
             m_Shortcuts_Cancel = m_Shortcuts.FindAction("Cancel", throwIfNotFound: true);
-            m_Shortcuts_TilesLayer = m_Shortcuts.FindAction("TilesLayer", throwIfNotFound: true);
-            m_Shortcuts_DecorLayer = m_Shortcuts.FindAction("DecorLayer", throwIfNotFound: true);
-            m_Shortcuts_ObjectsLayer = m_Shortcuts.FindAction("ObjectsLayer", throwIfNotFound: true);
-            m_Shortcuts_EnemiesLayer = m_Shortcuts.FindAction("EnemiesLayer", throwIfNotFound: true);
+            m_Shortcuts_New = m_Shortcuts.FindAction("New", throwIfNotFound: true);
+            m_Shortcuts_Edit = m_Shortcuts.FindAction("Edit", throwIfNotFound: true);
+            m_Shortcuts_EditProperties = m_Shortcuts.FindAction("EditProperties", throwIfNotFound: true);
+            m_Shortcuts_Delete = m_Shortcuts.FindAction("Delete", throwIfNotFound: true);
             m_Shortcuts_SelectionTool = m_Shortcuts.FindAction("SelectionTool", throwIfNotFound: true);
             m_Shortcuts_BrushTool = m_Shortcuts.FindAction("BrushTool", throwIfNotFound: true);
             m_Shortcuts_EraserTool = m_Shortcuts.FindAction("EraserTool", throwIfNotFound: true);
@@ -1756,6 +2332,26 @@ namespace Rogium.Systems.Input
             m_Shortcuts_PickerTool = m_Shortcuts.FindAction("PickerTool", throwIfNotFound: true);
             m_Shortcuts_ClearCanvas = m_Shortcuts.FindAction("ClearCanvas", throwIfNotFound: true);
             m_Shortcuts_ToggleGrid = m_Shortcuts.FindAction("ToggleGrid", throwIfNotFound: true);
+            m_Shortcuts_TilesLayer = m_Shortcuts.FindAction("TilesLayer", throwIfNotFound: true);
+            m_Shortcuts_DecorLayer = m_Shortcuts.FindAction("DecorLayer", throwIfNotFound: true);
+            m_Shortcuts_ObjectsLayer = m_Shortcuts.FindAction("ObjectsLayer", throwIfNotFound: true);
+            m_Shortcuts_EnemiesLayer = m_Shortcuts.FindAction("EnemiesLayer", throwIfNotFound: true);
+            m_Shortcuts_SwitchLeft = m_Shortcuts.FindAction("SwitchLeft", throwIfNotFound: true);
+            m_Shortcuts_SwitchRight = m_Shortcuts.FindAction("SwitchRight", throwIfNotFound: true);
+            m_Shortcuts_RefreshCurrent = m_Shortcuts.FindAction("RefreshCurrent", throwIfNotFound: true);
+            m_Shortcuts_RefreshAll = m_Shortcuts.FindAction("RefreshAll", throwIfNotFound: true);
+            m_Shortcuts_ShowPalettes = m_Shortcuts.FindAction("ShowPalettes", throwIfNotFound: true);
+            m_Shortcuts_ShowSprites = m_Shortcuts.FindAction("ShowSprites", throwIfNotFound: true);
+            m_Shortcuts_ShowWeapons = m_Shortcuts.FindAction("ShowWeapons", throwIfNotFound: true);
+            m_Shortcuts_ShowProjectiles = m_Shortcuts.FindAction("ShowProjectiles", throwIfNotFound: true);
+            m_Shortcuts_ShowEnemies = m_Shortcuts.FindAction("ShowEnemies", throwIfNotFound: true);
+            m_Shortcuts_ShowRooms = m_Shortcuts.FindAction("ShowRooms", throwIfNotFound: true);
+            m_Shortcuts_ShowTiles = m_Shortcuts.FindAction("ShowTiles", throwIfNotFound: true);
+            m_Shortcuts_ChangePalette = m_Shortcuts.FindAction("ChangePalette", throwIfNotFound: true);
+            m_Shortcuts_ResetToDefault = m_Shortcuts.FindAction("ResetToDefault", throwIfNotFound: true);
+            m_Shortcuts_SelectAll = m_Shortcuts.FindAction("SelectAll", throwIfNotFound: true);
+            m_Shortcuts_DeselectAll = m_Shortcuts.FindAction("DeselectAll", throwIfNotFound: true);
+            m_Shortcuts_SelectRandom = m_Shortcuts.FindAction("SelectRandom", throwIfNotFound: true);
         }
 
         ~@RogiumInputActions()
@@ -2095,10 +2691,10 @@ namespace Rogium.Systems.Input
         private readonly InputAction m_Shortcuts_Redo;
         private readonly InputAction m_Shortcuts_Save;
         private readonly InputAction m_Shortcuts_Cancel;
-        private readonly InputAction m_Shortcuts_TilesLayer;
-        private readonly InputAction m_Shortcuts_DecorLayer;
-        private readonly InputAction m_Shortcuts_ObjectsLayer;
-        private readonly InputAction m_Shortcuts_EnemiesLayer;
+        private readonly InputAction m_Shortcuts_New;
+        private readonly InputAction m_Shortcuts_Edit;
+        private readonly InputAction m_Shortcuts_EditProperties;
+        private readonly InputAction m_Shortcuts_Delete;
         private readonly InputAction m_Shortcuts_SelectionTool;
         private readonly InputAction m_Shortcuts_BrushTool;
         private readonly InputAction m_Shortcuts_EraserTool;
@@ -2106,6 +2702,26 @@ namespace Rogium.Systems.Input
         private readonly InputAction m_Shortcuts_PickerTool;
         private readonly InputAction m_Shortcuts_ClearCanvas;
         private readonly InputAction m_Shortcuts_ToggleGrid;
+        private readonly InputAction m_Shortcuts_TilesLayer;
+        private readonly InputAction m_Shortcuts_DecorLayer;
+        private readonly InputAction m_Shortcuts_ObjectsLayer;
+        private readonly InputAction m_Shortcuts_EnemiesLayer;
+        private readonly InputAction m_Shortcuts_SwitchLeft;
+        private readonly InputAction m_Shortcuts_SwitchRight;
+        private readonly InputAction m_Shortcuts_RefreshCurrent;
+        private readonly InputAction m_Shortcuts_RefreshAll;
+        private readonly InputAction m_Shortcuts_ShowPalettes;
+        private readonly InputAction m_Shortcuts_ShowSprites;
+        private readonly InputAction m_Shortcuts_ShowWeapons;
+        private readonly InputAction m_Shortcuts_ShowProjectiles;
+        private readonly InputAction m_Shortcuts_ShowEnemies;
+        private readonly InputAction m_Shortcuts_ShowRooms;
+        private readonly InputAction m_Shortcuts_ShowTiles;
+        private readonly InputAction m_Shortcuts_ChangePalette;
+        private readonly InputAction m_Shortcuts_ResetToDefault;
+        private readonly InputAction m_Shortcuts_SelectAll;
+        private readonly InputAction m_Shortcuts_DeselectAll;
+        private readonly InputAction m_Shortcuts_SelectRandom;
         public struct ShortcutsActions
         {
             private @RogiumInputActions m_Wrapper;
@@ -2114,10 +2730,10 @@ namespace Rogium.Systems.Input
             public InputAction @Redo => m_Wrapper.m_Shortcuts_Redo;
             public InputAction @Save => m_Wrapper.m_Shortcuts_Save;
             public InputAction @Cancel => m_Wrapper.m_Shortcuts_Cancel;
-            public InputAction @TilesLayer => m_Wrapper.m_Shortcuts_TilesLayer;
-            public InputAction @DecorLayer => m_Wrapper.m_Shortcuts_DecorLayer;
-            public InputAction @ObjectsLayer => m_Wrapper.m_Shortcuts_ObjectsLayer;
-            public InputAction @EnemiesLayer => m_Wrapper.m_Shortcuts_EnemiesLayer;
+            public InputAction @New => m_Wrapper.m_Shortcuts_New;
+            public InputAction @Edit => m_Wrapper.m_Shortcuts_Edit;
+            public InputAction @EditProperties => m_Wrapper.m_Shortcuts_EditProperties;
+            public InputAction @Delete => m_Wrapper.m_Shortcuts_Delete;
             public InputAction @SelectionTool => m_Wrapper.m_Shortcuts_SelectionTool;
             public InputAction @BrushTool => m_Wrapper.m_Shortcuts_BrushTool;
             public InputAction @EraserTool => m_Wrapper.m_Shortcuts_EraserTool;
@@ -2125,6 +2741,26 @@ namespace Rogium.Systems.Input
             public InputAction @PickerTool => m_Wrapper.m_Shortcuts_PickerTool;
             public InputAction @ClearCanvas => m_Wrapper.m_Shortcuts_ClearCanvas;
             public InputAction @ToggleGrid => m_Wrapper.m_Shortcuts_ToggleGrid;
+            public InputAction @TilesLayer => m_Wrapper.m_Shortcuts_TilesLayer;
+            public InputAction @DecorLayer => m_Wrapper.m_Shortcuts_DecorLayer;
+            public InputAction @ObjectsLayer => m_Wrapper.m_Shortcuts_ObjectsLayer;
+            public InputAction @EnemiesLayer => m_Wrapper.m_Shortcuts_EnemiesLayer;
+            public InputAction @SwitchLeft => m_Wrapper.m_Shortcuts_SwitchLeft;
+            public InputAction @SwitchRight => m_Wrapper.m_Shortcuts_SwitchRight;
+            public InputAction @RefreshCurrent => m_Wrapper.m_Shortcuts_RefreshCurrent;
+            public InputAction @RefreshAll => m_Wrapper.m_Shortcuts_RefreshAll;
+            public InputAction @ShowPalettes => m_Wrapper.m_Shortcuts_ShowPalettes;
+            public InputAction @ShowSprites => m_Wrapper.m_Shortcuts_ShowSprites;
+            public InputAction @ShowWeapons => m_Wrapper.m_Shortcuts_ShowWeapons;
+            public InputAction @ShowProjectiles => m_Wrapper.m_Shortcuts_ShowProjectiles;
+            public InputAction @ShowEnemies => m_Wrapper.m_Shortcuts_ShowEnemies;
+            public InputAction @ShowRooms => m_Wrapper.m_Shortcuts_ShowRooms;
+            public InputAction @ShowTiles => m_Wrapper.m_Shortcuts_ShowTiles;
+            public InputAction @ChangePalette => m_Wrapper.m_Shortcuts_ChangePalette;
+            public InputAction @ResetToDefault => m_Wrapper.m_Shortcuts_ResetToDefault;
+            public InputAction @SelectAll => m_Wrapper.m_Shortcuts_SelectAll;
+            public InputAction @DeselectAll => m_Wrapper.m_Shortcuts_DeselectAll;
+            public InputAction @SelectRandom => m_Wrapper.m_Shortcuts_SelectRandom;
             public InputActionMap Get() { return m_Wrapper.m_Shortcuts; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -2146,18 +2782,18 @@ namespace Rogium.Systems.Input
                 @Cancel.started += instance.OnCancel;
                 @Cancel.performed += instance.OnCancel;
                 @Cancel.canceled += instance.OnCancel;
-                @TilesLayer.started += instance.OnTilesLayer;
-                @TilesLayer.performed += instance.OnTilesLayer;
-                @TilesLayer.canceled += instance.OnTilesLayer;
-                @DecorLayer.started += instance.OnDecorLayer;
-                @DecorLayer.performed += instance.OnDecorLayer;
-                @DecorLayer.canceled += instance.OnDecorLayer;
-                @ObjectsLayer.started += instance.OnObjectsLayer;
-                @ObjectsLayer.performed += instance.OnObjectsLayer;
-                @ObjectsLayer.canceled += instance.OnObjectsLayer;
-                @EnemiesLayer.started += instance.OnEnemiesLayer;
-                @EnemiesLayer.performed += instance.OnEnemiesLayer;
-                @EnemiesLayer.canceled += instance.OnEnemiesLayer;
+                @New.started += instance.OnNew;
+                @New.performed += instance.OnNew;
+                @New.canceled += instance.OnNew;
+                @Edit.started += instance.OnEdit;
+                @Edit.performed += instance.OnEdit;
+                @Edit.canceled += instance.OnEdit;
+                @EditProperties.started += instance.OnEditProperties;
+                @EditProperties.performed += instance.OnEditProperties;
+                @EditProperties.canceled += instance.OnEditProperties;
+                @Delete.started += instance.OnDelete;
+                @Delete.performed += instance.OnDelete;
+                @Delete.canceled += instance.OnDelete;
                 @SelectionTool.started += instance.OnSelectionTool;
                 @SelectionTool.performed += instance.OnSelectionTool;
                 @SelectionTool.canceled += instance.OnSelectionTool;
@@ -2179,6 +2815,66 @@ namespace Rogium.Systems.Input
                 @ToggleGrid.started += instance.OnToggleGrid;
                 @ToggleGrid.performed += instance.OnToggleGrid;
                 @ToggleGrid.canceled += instance.OnToggleGrid;
+                @TilesLayer.started += instance.OnTilesLayer;
+                @TilesLayer.performed += instance.OnTilesLayer;
+                @TilesLayer.canceled += instance.OnTilesLayer;
+                @DecorLayer.started += instance.OnDecorLayer;
+                @DecorLayer.performed += instance.OnDecorLayer;
+                @DecorLayer.canceled += instance.OnDecorLayer;
+                @ObjectsLayer.started += instance.OnObjectsLayer;
+                @ObjectsLayer.performed += instance.OnObjectsLayer;
+                @ObjectsLayer.canceled += instance.OnObjectsLayer;
+                @EnemiesLayer.started += instance.OnEnemiesLayer;
+                @EnemiesLayer.performed += instance.OnEnemiesLayer;
+                @EnemiesLayer.canceled += instance.OnEnemiesLayer;
+                @SwitchLeft.started += instance.OnSwitchLeft;
+                @SwitchLeft.performed += instance.OnSwitchLeft;
+                @SwitchLeft.canceled += instance.OnSwitchLeft;
+                @SwitchRight.started += instance.OnSwitchRight;
+                @SwitchRight.performed += instance.OnSwitchRight;
+                @SwitchRight.canceled += instance.OnSwitchRight;
+                @RefreshCurrent.started += instance.OnRefreshCurrent;
+                @RefreshCurrent.performed += instance.OnRefreshCurrent;
+                @RefreshCurrent.canceled += instance.OnRefreshCurrent;
+                @RefreshAll.started += instance.OnRefreshAll;
+                @RefreshAll.performed += instance.OnRefreshAll;
+                @RefreshAll.canceled += instance.OnRefreshAll;
+                @ShowPalettes.started += instance.OnShowPalettes;
+                @ShowPalettes.performed += instance.OnShowPalettes;
+                @ShowPalettes.canceled += instance.OnShowPalettes;
+                @ShowSprites.started += instance.OnShowSprites;
+                @ShowSprites.performed += instance.OnShowSprites;
+                @ShowSprites.canceled += instance.OnShowSprites;
+                @ShowWeapons.started += instance.OnShowWeapons;
+                @ShowWeapons.performed += instance.OnShowWeapons;
+                @ShowWeapons.canceled += instance.OnShowWeapons;
+                @ShowProjectiles.started += instance.OnShowProjectiles;
+                @ShowProjectiles.performed += instance.OnShowProjectiles;
+                @ShowProjectiles.canceled += instance.OnShowProjectiles;
+                @ShowEnemies.started += instance.OnShowEnemies;
+                @ShowEnemies.performed += instance.OnShowEnemies;
+                @ShowEnemies.canceled += instance.OnShowEnemies;
+                @ShowRooms.started += instance.OnShowRooms;
+                @ShowRooms.performed += instance.OnShowRooms;
+                @ShowRooms.canceled += instance.OnShowRooms;
+                @ShowTiles.started += instance.OnShowTiles;
+                @ShowTiles.performed += instance.OnShowTiles;
+                @ShowTiles.canceled += instance.OnShowTiles;
+                @ChangePalette.started += instance.OnChangePalette;
+                @ChangePalette.performed += instance.OnChangePalette;
+                @ChangePalette.canceled += instance.OnChangePalette;
+                @ResetToDefault.started += instance.OnResetToDefault;
+                @ResetToDefault.performed += instance.OnResetToDefault;
+                @ResetToDefault.canceled += instance.OnResetToDefault;
+                @SelectAll.started += instance.OnSelectAll;
+                @SelectAll.performed += instance.OnSelectAll;
+                @SelectAll.canceled += instance.OnSelectAll;
+                @DeselectAll.started += instance.OnDeselectAll;
+                @DeselectAll.performed += instance.OnDeselectAll;
+                @DeselectAll.canceled += instance.OnDeselectAll;
+                @SelectRandom.started += instance.OnSelectRandom;
+                @SelectRandom.performed += instance.OnSelectRandom;
+                @SelectRandom.canceled += instance.OnSelectRandom;
             }
 
             private void UnregisterCallbacks(IShortcutsActions instance)
@@ -2195,18 +2891,18 @@ namespace Rogium.Systems.Input
                 @Cancel.started -= instance.OnCancel;
                 @Cancel.performed -= instance.OnCancel;
                 @Cancel.canceled -= instance.OnCancel;
-                @TilesLayer.started -= instance.OnTilesLayer;
-                @TilesLayer.performed -= instance.OnTilesLayer;
-                @TilesLayer.canceled -= instance.OnTilesLayer;
-                @DecorLayer.started -= instance.OnDecorLayer;
-                @DecorLayer.performed -= instance.OnDecorLayer;
-                @DecorLayer.canceled -= instance.OnDecorLayer;
-                @ObjectsLayer.started -= instance.OnObjectsLayer;
-                @ObjectsLayer.performed -= instance.OnObjectsLayer;
-                @ObjectsLayer.canceled -= instance.OnObjectsLayer;
-                @EnemiesLayer.started -= instance.OnEnemiesLayer;
-                @EnemiesLayer.performed -= instance.OnEnemiesLayer;
-                @EnemiesLayer.canceled -= instance.OnEnemiesLayer;
+                @New.started -= instance.OnNew;
+                @New.performed -= instance.OnNew;
+                @New.canceled -= instance.OnNew;
+                @Edit.started -= instance.OnEdit;
+                @Edit.performed -= instance.OnEdit;
+                @Edit.canceled -= instance.OnEdit;
+                @EditProperties.started -= instance.OnEditProperties;
+                @EditProperties.performed -= instance.OnEditProperties;
+                @EditProperties.canceled -= instance.OnEditProperties;
+                @Delete.started -= instance.OnDelete;
+                @Delete.performed -= instance.OnDelete;
+                @Delete.canceled -= instance.OnDelete;
                 @SelectionTool.started -= instance.OnSelectionTool;
                 @SelectionTool.performed -= instance.OnSelectionTool;
                 @SelectionTool.canceled -= instance.OnSelectionTool;
@@ -2228,6 +2924,66 @@ namespace Rogium.Systems.Input
                 @ToggleGrid.started -= instance.OnToggleGrid;
                 @ToggleGrid.performed -= instance.OnToggleGrid;
                 @ToggleGrid.canceled -= instance.OnToggleGrid;
+                @TilesLayer.started -= instance.OnTilesLayer;
+                @TilesLayer.performed -= instance.OnTilesLayer;
+                @TilesLayer.canceled -= instance.OnTilesLayer;
+                @DecorLayer.started -= instance.OnDecorLayer;
+                @DecorLayer.performed -= instance.OnDecorLayer;
+                @DecorLayer.canceled -= instance.OnDecorLayer;
+                @ObjectsLayer.started -= instance.OnObjectsLayer;
+                @ObjectsLayer.performed -= instance.OnObjectsLayer;
+                @ObjectsLayer.canceled -= instance.OnObjectsLayer;
+                @EnemiesLayer.started -= instance.OnEnemiesLayer;
+                @EnemiesLayer.performed -= instance.OnEnemiesLayer;
+                @EnemiesLayer.canceled -= instance.OnEnemiesLayer;
+                @SwitchLeft.started -= instance.OnSwitchLeft;
+                @SwitchLeft.performed -= instance.OnSwitchLeft;
+                @SwitchLeft.canceled -= instance.OnSwitchLeft;
+                @SwitchRight.started -= instance.OnSwitchRight;
+                @SwitchRight.performed -= instance.OnSwitchRight;
+                @SwitchRight.canceled -= instance.OnSwitchRight;
+                @RefreshCurrent.started -= instance.OnRefreshCurrent;
+                @RefreshCurrent.performed -= instance.OnRefreshCurrent;
+                @RefreshCurrent.canceled -= instance.OnRefreshCurrent;
+                @RefreshAll.started -= instance.OnRefreshAll;
+                @RefreshAll.performed -= instance.OnRefreshAll;
+                @RefreshAll.canceled -= instance.OnRefreshAll;
+                @ShowPalettes.started -= instance.OnShowPalettes;
+                @ShowPalettes.performed -= instance.OnShowPalettes;
+                @ShowPalettes.canceled -= instance.OnShowPalettes;
+                @ShowSprites.started -= instance.OnShowSprites;
+                @ShowSprites.performed -= instance.OnShowSprites;
+                @ShowSprites.canceled -= instance.OnShowSprites;
+                @ShowWeapons.started -= instance.OnShowWeapons;
+                @ShowWeapons.performed -= instance.OnShowWeapons;
+                @ShowWeapons.canceled -= instance.OnShowWeapons;
+                @ShowProjectiles.started -= instance.OnShowProjectiles;
+                @ShowProjectiles.performed -= instance.OnShowProjectiles;
+                @ShowProjectiles.canceled -= instance.OnShowProjectiles;
+                @ShowEnemies.started -= instance.OnShowEnemies;
+                @ShowEnemies.performed -= instance.OnShowEnemies;
+                @ShowEnemies.canceled -= instance.OnShowEnemies;
+                @ShowRooms.started -= instance.OnShowRooms;
+                @ShowRooms.performed -= instance.OnShowRooms;
+                @ShowRooms.canceled -= instance.OnShowRooms;
+                @ShowTiles.started -= instance.OnShowTiles;
+                @ShowTiles.performed -= instance.OnShowTiles;
+                @ShowTiles.canceled -= instance.OnShowTiles;
+                @ChangePalette.started -= instance.OnChangePalette;
+                @ChangePalette.performed -= instance.OnChangePalette;
+                @ChangePalette.canceled -= instance.OnChangePalette;
+                @ResetToDefault.started -= instance.OnResetToDefault;
+                @ResetToDefault.performed -= instance.OnResetToDefault;
+                @ResetToDefault.canceled -= instance.OnResetToDefault;
+                @SelectAll.started -= instance.OnSelectAll;
+                @SelectAll.performed -= instance.OnSelectAll;
+                @SelectAll.canceled -= instance.OnSelectAll;
+                @DeselectAll.started -= instance.OnDeselectAll;
+                @DeselectAll.performed -= instance.OnDeselectAll;
+                @DeselectAll.canceled -= instance.OnDeselectAll;
+                @SelectRandom.started -= instance.OnSelectRandom;
+                @SelectRandom.performed -= instance.OnSelectRandom;
+                @SelectRandom.canceled -= instance.OnSelectRandom;
             }
 
             public void RemoveCallbacks(IShortcutsActions instance)
@@ -2297,10 +3053,10 @@ namespace Rogium.Systems.Input
             void OnRedo(InputAction.CallbackContext context);
             void OnSave(InputAction.CallbackContext context);
             void OnCancel(InputAction.CallbackContext context);
-            void OnTilesLayer(InputAction.CallbackContext context);
-            void OnDecorLayer(InputAction.CallbackContext context);
-            void OnObjectsLayer(InputAction.CallbackContext context);
-            void OnEnemiesLayer(InputAction.CallbackContext context);
+            void OnNew(InputAction.CallbackContext context);
+            void OnEdit(InputAction.CallbackContext context);
+            void OnEditProperties(InputAction.CallbackContext context);
+            void OnDelete(InputAction.CallbackContext context);
             void OnSelectionTool(InputAction.CallbackContext context);
             void OnBrushTool(InputAction.CallbackContext context);
             void OnEraserTool(InputAction.CallbackContext context);
@@ -2308,6 +3064,26 @@ namespace Rogium.Systems.Input
             void OnPickerTool(InputAction.CallbackContext context);
             void OnClearCanvas(InputAction.CallbackContext context);
             void OnToggleGrid(InputAction.CallbackContext context);
+            void OnTilesLayer(InputAction.CallbackContext context);
+            void OnDecorLayer(InputAction.CallbackContext context);
+            void OnObjectsLayer(InputAction.CallbackContext context);
+            void OnEnemiesLayer(InputAction.CallbackContext context);
+            void OnSwitchLeft(InputAction.CallbackContext context);
+            void OnSwitchRight(InputAction.CallbackContext context);
+            void OnRefreshCurrent(InputAction.CallbackContext context);
+            void OnRefreshAll(InputAction.CallbackContext context);
+            void OnShowPalettes(InputAction.CallbackContext context);
+            void OnShowSprites(InputAction.CallbackContext context);
+            void OnShowWeapons(InputAction.CallbackContext context);
+            void OnShowProjectiles(InputAction.CallbackContext context);
+            void OnShowEnemies(InputAction.CallbackContext context);
+            void OnShowRooms(InputAction.CallbackContext context);
+            void OnShowTiles(InputAction.CallbackContext context);
+            void OnChangePalette(InputAction.CallbackContext context);
+            void OnResetToDefault(InputAction.CallbackContext context);
+            void OnSelectAll(InputAction.CallbackContext context);
+            void OnDeselectAll(InputAction.CallbackContext context);
+            void OnSelectRandom(InputAction.CallbackContext context);
         }
     }
 }

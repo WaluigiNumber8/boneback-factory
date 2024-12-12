@@ -7,24 +7,22 @@
     {
         private RogiumInputActions.ShortcutsActions map;
 
-        private readonly InputButton undo;
-        private readonly InputButton redo;
-        private readonly InputButton save;
-        private readonly InputButton cancel;
+        private readonly InputButton undo, redo, save, cancel;
+        private readonly InputButton newAsset, edit, editProperties, delete;
         
-        private readonly InputButton selectionTool;
-        private readonly InputButton brushTool;
-        private readonly InputButton eraserTool;
-        private readonly InputButton fillTool;
-        private readonly InputButton pickerTool;
-        private readonly InputButton clearCanvas;
-        private readonly InputButton toggleGrid;
-
-        private readonly InputButton tilesLayer;
-        private readonly InputButton decorLayer;
-        private readonly InputButton objectsLayer;
-        private readonly InputButton enemiesLayer;
+        private readonly InputButton selectionTool, brushTool, eraserTool, fillTool, pickerTool;
+        private readonly InputButton clearCanvas, toggleGrid;
+        private readonly InputButton tilesLayer,  decorLayer, objectsLayer, enemiesLayer;
+        private readonly InputButton changePalette;
         
+        private readonly InputButton switchLeft, switchRight;
+        private readonly InputButton refreshCurrent, refreshAll;
+        
+        private readonly InputButton showPalettes, showSprites, showWeapons, showProjectiles, showEnemies, showRooms, showTiles;
+        
+        private readonly InputButton resetToDefault;
+        
+        private readonly InputButton selectAll, deselectAll, selectRandom;
         
         public InputProfileShortcuts(RogiumInputActions input) : base(input)
         {
@@ -33,6 +31,10 @@
             redo = new InputButton(map.Redo);
             save = new InputButton(map.Save);
             cancel = new InputButton(map.Cancel);
+            newAsset = new InputButton(map.New);
+            edit = new InputButton(map.Edit);
+            editProperties = new InputButton(map.EditProperties);
+            delete = new InputButton(map.Delete);
             selectionTool = new InputButton(map.SelectionTool);
             brushTool = new InputButton(map.BrushTool);
             eraserTool = new InputButton(map.EraserTool);
@@ -44,6 +46,22 @@
             decorLayer = new InputButton(map.DecorLayer);
             objectsLayer = new InputButton(map.ObjectsLayer);
             enemiesLayer = new InputButton(map.EnemiesLayer);
+            changePalette = new InputButton(map.ChangePalette);
+            switchLeft = new InputButton(map.SwitchLeft);
+            switchRight = new InputButton(map.SwitchRight);
+            refreshCurrent = new InputButton(map.RefreshCurrent);
+            refreshAll = new InputButton(map.RefreshAll);
+            showPalettes = new InputButton(map.ShowPalettes);
+            showSprites = new InputButton(map.ShowSprites);
+            showWeapons = new InputButton(map.ShowWeapons);
+            showProjectiles = new InputButton(map.ShowProjectiles);
+            showEnemies = new InputButton(map.ShowEnemies);
+            showRooms = new InputButton(map.ShowRooms);
+            showTiles = new InputButton(map.ShowTiles);
+            resetToDefault = new InputButton(map.ResetToDefault);
+            selectAll = new InputButton(map.SelectAll);
+            deselectAll = new InputButton(map.DeselectAll);
+            selectRandom = new InputButton(map.SelectRandom);
         }
 
         protected override void WhenEnabled()
@@ -54,6 +72,10 @@
             redo.Enable();
             save.Enable();
             cancel.Enable();
+            newAsset.Enable();
+            edit.Enable();
+            editProperties.Enable();    
+            delete.Enable();
             selectionTool.Enable();
             brushTool.Enable();
             eraserTool.Enable();
@@ -65,6 +87,22 @@
             decorLayer.Enable();
             objectsLayer.Enable();
             enemiesLayer.Enable();
+            changePalette.Enable();
+            switchLeft.Enable();
+            switchRight.Enable();
+            refreshCurrent.Enable();
+            refreshAll.Enable();
+            showPalettes.Enable();
+            showSprites.Enable();
+            showWeapons.Enable();
+            showProjectiles.Enable();
+            showEnemies.Enable();
+            showRooms.Enable();
+            showTiles.Enable();
+            resetToDefault.Enable();
+            selectAll.Enable();
+            deselectAll.Enable();
+            selectRandom.Enable();
         }
 
         protected override void WhenDisabled()
@@ -75,6 +113,10 @@
             redo.Disable();
             save.Disable();
             cancel.Disable();
+            newAsset.Disable();
+            edit.Disable();
+            editProperties.Disable();
+            delete.Disable();
             selectionTool.Disable();
             brushTool.Disable();
             eraserTool.Disable();
@@ -86,6 +128,22 @@
             decorLayer.Disable();
             objectsLayer.Disable();
             enemiesLayer.Disable();
+            changePalette.Disable();
+            switchLeft.Disable();
+            switchRight.Disable();
+            refreshCurrent.Disable();
+            refreshAll.Disable();
+            showPalettes.Disable();
+            showSprites.Disable();
+            showWeapons.Disable();
+            showProjectiles.Disable();
+            showEnemies.Disable();
+            showRooms.Disable();
+            showTiles.Disable();
+            resetToDefault.Disable();
+            selectAll.Disable();
+            deselectAll.Disable();
+            selectRandom.Disable();
         }
 
         public override bool IsMapEnabled { get => map.enabled; }
@@ -94,6 +152,10 @@
         public InputButton Redo { get => redo; }
         public InputButton Save { get => save; }
         public InputButton Cancel { get => cancel; }
+        public InputButton NewAsset { get => newAsset; }
+        public InputButton Edit { get => edit; }
+        public InputButton EditProperties { get => editProperties; }
+        public InputButton Delete { get => delete; }
         public InputButton SelectionTool { get => selectionTool; }
         public InputButton BrushTool { get => brushTool; }
         public InputButton EraserTool { get => eraserTool; }
@@ -105,5 +167,21 @@
         public InputButton DecorLayer { get => decorLayer; }
         public InputButton ObjectsLayer { get => objectsLayer; }
         public InputButton EnemiesLayer { get => enemiesLayer; }
+        public InputButton ChangePalette { get => changePalette; }
+        public InputButton SwitchLeft { get => switchLeft; }
+        public InputButton SwitchRight { get => switchRight; }
+        public InputButton RefreshCurrent { get => refreshCurrent; }
+        public InputButton RefreshAll { get => refreshAll; }
+        public InputButton ShowPalettes { get => showPalettes; }
+        public InputButton ShowSprites { get => showSprites; }
+        public InputButton ShowWeapons { get => showWeapons; }
+        public InputButton ShowProjectiles { get => showProjectiles; }
+        public InputButton ShowEnemies { get => showEnemies; }
+        public InputButton ShowRooms { get => showRooms; }
+        public InputButton ShowTiles { get => showTiles; }
+        public InputButton ResetToDefault { get => resetToDefault; }
+        public InputButton SelectAll { get => selectAll; }
+        public InputButton DeselectAll { get => deselectAll; }
+        public InputButton SelectRandom { get => selectRandom; }
     }
 }
