@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using RedRats.Core;
 using Rogium.Systems.Input;
 using Sirenix.OdinInspector;
@@ -13,6 +15,10 @@ namespace Rogium.Core.Shortcuts
     public class ShortcutProfile : MonoBehaviour
     {
         [SerializeField] private ShortcutData[] shortcuts;
+        [SerializeField] private bool overrideAll;
+
+        private List<ShortcutProfile> lastProfiles;
+        
 
         private void Awake()
         {
@@ -22,9 +28,26 @@ namespace Rogium.Core.Shortcuts
             }
         }
 
-        private void OnEnable() => LinkAll();
-        private void OnDisable() => UnlinkAll();
-        
+        private void OnEnable()
+        {
+            if (overrideAll)
+            {
+                lastProfiles = FindObjectsByType<ShortcutProfile>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).Where(p => p != this).ToList();
+                lastProfiles.ForEach(profile => profile.enabled = false);
+            }
+            LinkAll();
+        }
+
+        private void OnDisable()
+        {
+            if (overrideAll)
+            {
+                lastProfiles.ForEach(profile => profile.enabled = true);
+                lastProfiles = null;
+            }
+            UnlinkAll();
+        }
+
         public void Set(ShortcutData[] newShortcuts)
         {
             UnlinkAll();

@@ -156,7 +156,7 @@ namespace Rogium.Tests.Systems.Shortcuts
             yield return null;
             i.Trigger(input.Shortcuts.Cancel.Action);
             yield return new WaitForSecondsRealtime(2f);
-            // Assert.That(Object.FindFirstObjectByType<ModalWindow>(FindObjectsInactive.Include).transform.GetChild(0).gameObject.activeSelf, Is.False);
+            Assert.That(Object.FindFirstObjectByType<ModalWindow>(FindObjectsInactive.Include).transform.GetChild(0).gameObject.activeSelf, Is.False);
         }
         
     }
