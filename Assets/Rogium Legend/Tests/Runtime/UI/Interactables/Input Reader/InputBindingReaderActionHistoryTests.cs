@@ -42,7 +42,7 @@ namespace Rogium.Tests.UI.Interactables
             string originalKey = reader.Binding.effectivePath;
             yield return BindKey(keyboard.lKey);
             ActionHistorySystem.ForceEndGrouping();
-            ActionHistorySystem.UndoLast();
+            ActionHistorySystem.Undo();
             Assert.That(reader.Binding.effectivePath, Is.EqualTo(originalKey));
         }
 
@@ -52,7 +52,7 @@ namespace Rogium.Tests.UI.Interactables
             yield return BindKey(keyboard.lKey);
             ActionHistorySystem.ForceEndGrouping();
             string reboundKey = reader.Binding.effectivePath;
-            ActionHistorySystem.UndoLast();
+            ActionHistorySystem.Undo();
             Assert.That(reader.Binding.effectivePath, Is.Not.EqualTo(reboundKey));
         }
 
@@ -62,8 +62,8 @@ namespace Rogium.Tests.UI.Interactables
             yield return BindKey(keyboard.lKey);
             ActionHistorySystem.ForceEndGrouping();
             string reboundKey = reader.Binding.effectivePath;
-            ActionHistorySystem.UndoLast();
-            ActionHistorySystem.RedoLast();
+            ActionHistorySystem.Undo();
+            ActionHistorySystem.Redo();
             Assert.That(reader.Binding.effectivePath, Is.EqualTo(reboundKey));
         }
 
@@ -73,8 +73,8 @@ namespace Rogium.Tests.UI.Interactables
             string originalKey = reader.Binding.effectivePath;
             yield return BindKey(keyboard.lKey);
             ActionHistorySystem.ForceEndGrouping();
-            ActionHistorySystem.UndoLast();
-            ActionHistorySystem.RedoLast();
+            ActionHistorySystem.Undo();
+            ActionHistorySystem.Redo();
             Assert.That(reader.Binding.effectivePath, Is.Not.EqualTo(originalKey));
         }
 
@@ -84,7 +84,7 @@ namespace Rogium.Tests.UI.Interactables
             string originalSymbol = reader.InputString;
             yield return BindKey(keyboard.lKey);
             ActionHistorySystem.ForceEndGrouping();
-            ActionHistorySystem.UndoLast();
+            ActionHistorySystem.Undo();
             Assert.That(reader.InputString, Is.EqualTo(originalSymbol));
         }
 
@@ -95,7 +95,7 @@ namespace Rogium.Tests.UI.Interactables
             yield return BindKey(mouse.rightButton);
             Object.FindFirstObjectByType<ModalWindow>().OnAccept();
             yield return null;
-            ActionHistorySystem.UndoLast();
+            ActionHistorySystem.Undo();
             Assert.That(reader.InputString, Is.EqualTo("LMB"));
         }
         
@@ -106,7 +106,7 @@ namespace Rogium.Tests.UI.Interactables
             yield return BindKey(mouse.rightButton);
             Object.FindFirstObjectByType<ModalWindow>().OnAccept();
             yield return null;
-            ActionHistorySystem.UndoLast();
+            ActionHistorySystem.Undo();
             Assert.That(reader2.InputString, Is.EqualTo("RMB"));
         }
 
@@ -116,7 +116,7 @@ namespace Rogium.Tests.UI.Interactables
             yield return BindKey(keyboard.lKey);
             ActionHistorySystem.ForceEndGrouping();
             reader.gameObject.SetActive(false);
-            ActionHistorySystem.UndoLast();
+            ActionHistorySystem.Undo();
             yield return null;
             Assert.That(reader.InputString, Is.EqualTo("LMB"));
         }
@@ -127,7 +127,7 @@ namespace Rogium.Tests.UI.Interactables
             yield return BindKey(keyboard.lKey);
             ActionHistorySystem.ForceEndGrouping();
             reader.gameObject.SetActive(false);
-            ActionHistorySystem.UndoLast();
+            ActionHistorySystem.Undo();
             yield return null;
             Assert.That(reader.InputString, Is.Not.EqualTo("L"));
         }

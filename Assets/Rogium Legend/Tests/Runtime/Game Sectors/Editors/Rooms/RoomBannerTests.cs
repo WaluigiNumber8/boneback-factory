@@ -79,11 +79,11 @@ namespace Rogium.Tests.Editors.Rooms
             OverseerLoader.LoadModalWindowBuilder();
             yield return MenuLoader.PrepareCampaignSelection();
             yield return MenuLoader.PrepareCampaignEditor(false);
-            GASButtonActions.OpenSelectionCampaign();
-            GASButtonActions.OpenEditorCampaign(0);
+            GASActions.OpenSelectionCampaign();
+            GASActions.OpenEditorCampaign(0);
             yield return null;
             CampaignEditorOverseerMono.GetInstance().SelectionPicker.Select(0);
-            GASButtonActions.SaveChangesCampaign();
+            GASActions.SaveChangesCampaign();
             yield return null;
             Object.FindFirstObjectByType<ModalWindow>().OnAccept();
             yield return null;

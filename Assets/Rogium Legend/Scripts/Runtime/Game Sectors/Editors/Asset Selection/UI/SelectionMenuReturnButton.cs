@@ -32,7 +32,7 @@ namespace Rogium.Editors.AssetSelection.UI
         private void AdjustAction(AssetType type)
         {
             button.onClick.RemoveAllListeners();
-            UnityAction whenClick = (type == AssetType.Pack) ? GASButtonActions.ReturnToMainMenuSelection : () => selectionMenu.Open(AssetType.Pack);
+            UnityAction whenClick = (type == AssetType.Pack) ? GASActions.ReturnToMainMenuSelection : () => selectionMenu.Open(AssetType.Pack);
             button.onClick.AddListener(whenClick);
         }
     }

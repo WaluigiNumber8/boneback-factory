@@ -31,12 +31,12 @@ using UnityEngine;
 namespace Rogium.Systems.GASExtension
 {
     /// <summary>
-    /// A Container for GAS actions when a button is clicked.
+    /// Contains general actions for the game's menu system.
     /// </summary>
-    public static class GASButtonActions
+    public class GASActions : MonoBehaviour
     {
         private static int storedIndex = -1; //Used for method traveling.
-
+        
         public static void GameQuit()
         {
             Application.Quit();
@@ -57,12 +57,12 @@ namespace Rogium.Systems.GASExtension
 
         public static void UndoLastAction()
         {
-            ActionHistorySystem.UndoLast();
+            ActionHistorySystem.Undo();
         }
         
         public static void RedoLastAction()
         {
-            ActionHistorySystem.RedoLast();
+            ActionHistorySystem.Redo();
         }
 
         #endregion

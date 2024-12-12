@@ -71,7 +71,7 @@ namespace Rogium.Tests.Editors.Sprites
         {
             SpriteEditorOverseerMonoTestsU.FillEntireGrid();
             spriteEditor.ClearActiveGrid();
-            ActionHistorySystem.UndoLast();
+            ActionHistorySystem.Undo();
             
             Assert.That(spriteEditor.GetCurrentGridCopy.GetCellsCopy, Is.Not.All.EqualTo(EditorDefaults.EmptyColorID));
         }

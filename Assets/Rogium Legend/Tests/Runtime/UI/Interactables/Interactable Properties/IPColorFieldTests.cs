@@ -64,7 +64,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
             ActionHistorySystem.ForceEndGrouping();
             yield return null;
             
-            ActionHistorySystem.UndoLast();
+            ActionHistorySystem.Undo();
             yield return null;
             
             Assert.That(colorField.PropertyValue, Is.EqualTo(EditorDefaults.Instance.DefaultColor));

@@ -27,7 +27,7 @@ namespace Rogium.Tests.Core
         
         private static IEnumerator OpenSelectionMenuEditor(AssetType assetType, int cardIndex)
         {
-            GASButtonActions.OpenSelectionPack();
+            GASActions.OpenSelectionPack();
             yield return null;
             if (assetType == AssetType.Pack) yield break;
             Object.FindObjectsByType<EditableAssetCardController>(FindObjectsSortMode.None)[cardIndex].Edit();

@@ -114,7 +114,7 @@ namespace Rogium.Tests.Systems.ActionHistory
         {
             ActionHistorySystem.AddAndExecute(mockAction);
             ActionHistorySystem.ForceEndGrouping();
-            ActionHistorySystem.UndoLast();
+            ActionHistorySystem.Undo();
             
             mockAction.Received().Undo();
         }
@@ -124,7 +124,7 @@ namespace Rogium.Tests.Systems.ActionHistory
         {
             ActionHistorySystem.AddAndExecute(mockAction);
             ActionHistorySystem.ForceEndGrouping();
-            ActionHistorySystem.UndoLast();
+            ActionHistorySystem.Undo();
             
             mockAction.Received().Undo();
         }
@@ -134,7 +134,7 @@ namespace Rogium.Tests.Systems.ActionHistory
         {
             ActionHistorySystem.AddAndExecute(mockAction);
             ActionHistorySystem.ForceEndGrouping();
-            ActionHistorySystem.UndoLast();
+            ActionHistorySystem.Undo();
             
             Assert.That(ActionHistorySystem.RedoCount, Is.EqualTo(1));
         }
@@ -148,7 +148,7 @@ namespace Rogium.Tests.Systems.ActionHistory
             
             ActionHistorySystem.AddAndExecute(mockAction);
             ActionHistorySystem.AddAndExecute(mockAction2);
-            ActionHistorySystem.UndoLast();
+            ActionHistorySystem.Undo();
             
             Assert.That(ActionHistorySystem.CurrentGroup, Is.Null);
             mockAction.Received().Undo();
@@ -160,8 +160,8 @@ namespace Rogium.Tests.Systems.ActionHistory
         {
             ActionHistorySystem.AddAndExecute(mockAction);
             ActionHistorySystem.ForceEndGrouping();
-            ActionHistorySystem.UndoLast();
-            ActionHistorySystem.RedoLast();
+            ActionHistorySystem.Undo();
+            ActionHistorySystem.Redo();
             
             mockAction.Received().Execute();
         }
@@ -171,8 +171,8 @@ namespace Rogium.Tests.Systems.ActionHistory
         {
             ActionHistorySystem.AddAndExecute(mockAction);
             ActionHistorySystem.ForceEndGrouping();
-            ActionHistorySystem.UndoLast();
-            ActionHistorySystem.RedoLast();
+            ActionHistorySystem.Undo();
+            ActionHistorySystem.Redo();
             
             Assert.That(ActionHistorySystem.UndoCount, Is.EqualTo(1));
         }

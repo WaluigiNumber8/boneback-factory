@@ -55,7 +55,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
             dropdown.GetComponentInChildren<TMP_Dropdown>().onValueChanged.Invoke(1);
             yield return null;
             ActionHistorySystem.ForceEndGrouping();
-            ActionHistorySystem.UndoLast();
+            ActionHistorySystem.Undo();
             yield return null;
 
             Assert.That(dropdown.PropertyValue, Is.EqualTo(0));

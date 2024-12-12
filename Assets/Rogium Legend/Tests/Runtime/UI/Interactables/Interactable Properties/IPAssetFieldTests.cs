@@ -70,7 +70,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
         {
             yield return FillAssetField();
             ActionHistorySystem.ForceEndGrouping();
-            ActionHistorySystem.UndoLast();
+            ActionHistorySystem.Undo();
 
             Assert.That(assetField.PropertyValue, Is.EqualTo(new EmptyAsset()));
         }

@@ -55,7 +55,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
             inputField.GetComponentInChildren<TMP_InputField>().onEndEdit.Invoke("Test");
             yield return null;
             ActionHistorySystem.ForceEndGrouping();
-            ActionHistorySystem.UndoLast();
+            ActionHistorySystem.Undo();
             yield return null;
 
             Assert.That(inputField.PropertyValue, Is.EqualTo(""));

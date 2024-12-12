@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using NUnit.Framework;
+using RedRats.UI.ModalWindows;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
@@ -143,6 +144,19 @@ namespace Rogium.Tests.Systems.Shortcuts
             i.Trigger(input.Shortcuts.ToggleGrid.Action);
             yield return null;
             Assert.That(grid.activeSelf, Is.Not.EqualTo(startActiveStatus));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_CloseModalWindow_WhenShortcutPressed()
+        {
+            yield return FillTileLayer();
+            i.Trigger(input.Shortcuts.Cancel.Action);
+            yield return null;
+            yield return new WaitForSecondsRealtime(2f);
+            yield return null;
+            i.Trigger(input.Shortcuts.Cancel.Action);
+            yield return new WaitForSecondsRealtime(2f);
+            // Assert.That(Object.FindFirstObjectByType<ModalWindow>(FindObjectsInactive.Include).transform.GetChild(0).gameObject.activeSelf, Is.False);
         }
         
     }

@@ -69,7 +69,7 @@ namespace Rogium.Tests.Editors.Rooms
         {
             RoomEditorUtils.FillEntireActiveLayer();
             roomEditor.ClearActiveLayer();
-            ActionHistorySystem.UndoLast();
+            ActionHistorySystem.Undo();
             
             Assert.That(roomEditor.GetCurrentGridCopy.GetCellsCopy, Is.Not.All.EqualTo(new AssetData()));
         }

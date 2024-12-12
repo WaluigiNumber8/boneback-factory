@@ -18,7 +18,7 @@ namespace Rogium.Tests.Editors.Rooms
             yield return null;
             RoomEditorOverseerMono.GetInstance().UpdateGridCell(new Vector2Int(0, 0));
             RoomEditorOverseerMono.GetInstance().UpdateGridCell(new Vector2Int(1, 0));
-            GASButtonActions.SaveChangesRoom();
+            GASActions.SaveChangesRoom();
             yield return null;
         }
     }
