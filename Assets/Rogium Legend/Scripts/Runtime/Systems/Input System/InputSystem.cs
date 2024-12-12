@@ -100,36 +100,7 @@ namespace Rogium.Systems.Input
             }
         }
         
-        public int GetBindingIndexByDevice(InputAction action, InputDeviceType device, bool getSecondary = false)
-        {
-            return device switch
-            {
-                InputDeviceType.Keyboard => GetBindingIndex(new InputBinding(groups: KeyboardSchemeGroup, path: default)),
-                InputDeviceType.Gamepad => GetBindingIndex(new InputBinding(groups: GamepadSchemeGroup, path: default)),
-                _ => throw new System.ArgumentOutOfRangeException(nameof(device), device, null)
-            };
-
-            int GetBindingIndex(InputBinding group)
-            {
-                ReadOnlyArray<InputBinding> bindings = action.bindings;
-                bool waitForComposite = false;
-                for (int i = 0; i < bindings.Count; ++i)
-                {
-                    InputBinding b = bindings[i];
-                    if (b.isComposite) waitForComposite = false;
-                    if (!group.Matches(b)) continue;
-                    if (waitForComposite) continue;
-                    if (getSecondary)
-                    {
-                        getSecondary = false;
-                        if (b.isPartOfComposite) waitForComposite = true;
-                        continue;
-                    }
-                    return i;
-                }
-                return -1;
-            }
-        }
+        
         
         /// <summary>
         /// Disables all Action Maps except UI.
@@ -146,7 +117,5 @@ namespace Rogium.Systems.Input
         public InputProfileUI UI { get => inputUI; }
         public InputProfilePause Pause { get => inputPause; }
         public InputProfileShortcuts Shortcuts { get => inputShortcuts; }
-        private string KeyboardSchemeGroup { get => input.KeyboardMouseScheme.bindingGroup; }
-        private string GamepadSchemeGroup { get => input.GamepadScheme.bindingGroup; }
     }
 }

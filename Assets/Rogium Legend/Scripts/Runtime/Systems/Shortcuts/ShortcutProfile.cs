@@ -6,6 +6,7 @@ using Rogium.Systems.Input;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
+using static Rogium.Systems.Input.InputSystemUtils;
 
 namespace Rogium.Core.Shortcuts
 {
@@ -110,51 +111,6 @@ namespace Rogium.Core.Shortcuts
 
             public void Link() => input.OnPress += action.Invoke;
             public void Unlink() => input.OnPress -= action.Invoke;
-
-            private static InputButton GetInput(ShortcutType shortcut)
-            {
-                InputSystem input = InputSystem.GetInstance();
-                InputButton shortcutEvent = shortcut switch
-                {
-                    ShortcutType.Undo => input.Shortcuts.Undo,
-                    ShortcutType.Redo => input.Shortcuts.Redo,
-                    ShortcutType.Save => input.Shortcuts.Save,
-                    ShortcutType.Cancel => input.Shortcuts.Cancel,
-                    ShortcutType.NewAsset => input.Shortcuts.NewAsset,
-                    ShortcutType.Edit => input.Shortcuts.Edit,
-                    ShortcutType.EditProperties => input.Shortcuts.EditProperties,
-                    ShortcutType.Delete => input.Shortcuts.Delete,
-                    ShortcutType.SelectionTool => input.Shortcuts.SelectionTool,
-                    ShortcutType.BrushTool => input.Shortcuts.BrushTool,
-                    ShortcutType.EraserTool => input.Shortcuts.EraserTool,
-                    ShortcutType.FillTool => input.Shortcuts.FillTool,
-                    ShortcutType.PickerTool => input.Shortcuts.PickerTool,
-                    ShortcutType.ClearCanvas => input.Shortcuts.ClearCanvas,
-                    ShortcutType.ToggleGrid => input.Shortcuts.ToggleGrid,
-                    ShortcutType.LayerTiles => input.Shortcuts.TilesLayer,
-                    ShortcutType.LayerDecors => input.Shortcuts.DecorLayer,
-                    ShortcutType.LayerObjects => input.Shortcuts.ObjectsLayer,
-                    ShortcutType.LayerEnemies => input.Shortcuts.EnemiesLayer,
-                    ShortcutType.ChangePalette => input.Shortcuts.ChangePalette,
-                    ShortcutType.SwitchLeft => input.Shortcuts.SwitchLeft,
-                    ShortcutType.SwitchRight => input.Shortcuts.SwitchRight,
-                    ShortcutType.RefreshCurrent => input.Shortcuts.RefreshCurrent,
-                    ShortcutType.RefreshAll => input.Shortcuts.RefreshAll,
-                    ShortcutType.SwitchToPalettes => input.Shortcuts.ShowPalettes,
-                    ShortcutType.SwitchToSprites => input.Shortcuts.ShowSprites,
-                    ShortcutType.SwitchToWeapons => input.Shortcuts.ShowWeapons,
-                    ShortcutType.SwitchToProjectiles => input.Shortcuts.ShowProjectiles,
-                    ShortcutType.SwitchToEnemies => input.Shortcuts.ShowEnemies,
-                    ShortcutType.SwitchToRooms => input.Shortcuts.ShowRooms,
-                    ShortcutType.SwitchToTiles => input.Shortcuts.ShowTiles,
-                    ShortcutType.ResetToDefault => input.Shortcuts.ResetToDefault,
-                    ShortcutType.SelectAll => input.Shortcuts.SelectAll,
-                    ShortcutType.DeselectAll => input.Shortcuts.DeselectAll,
-                    ShortcutType.SelectRandom => input.Shortcuts.SelectRandom,
-                    _ => throw new ArgumentOutOfRangeException($"Shortcut {shortcut} not implemented.")
-                };
-                return shortcutEvent;
-            }
         }
     }
 }
