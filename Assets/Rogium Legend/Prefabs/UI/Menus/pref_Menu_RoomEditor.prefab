@@ -939,19 +939,68 @@ MonoBehaviour:
   - trigger: 0
     action:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
+          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASButtonActions,
+            Rogium.Runtime
+          m_MethodName: UndoLastAction
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - trigger: 1
     action:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
+          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
+          m_MethodName: RedoLastAction
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - trigger: 2
     action:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
+          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
+          m_MethodName: SaveChangesRoom
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - trigger: 3
     action:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
+          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
+          m_MethodName: CancelChangesRoom
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - trigger: 19
     action:
       m_PersistentCalls:
