@@ -18,10 +18,10 @@ namespace Rogium.Core.Shortcuts
         [SerializeField] private bool overrideAll;
 
         private List<ShortcutProfile> lastProfiles;
-        
 
         private void Awake()
         {
+            if (shortcuts == null || shortcuts.Length == 0) return;
             foreach (ShortcutData shortcut in shortcuts)
             {
                 shortcut.RefreshInput();
@@ -30,21 +30,15 @@ namespace Rogium.Core.Shortcuts
 
         private void OnEnable()
         {
-            if (overrideAll)
-            {
-                lastProfiles = FindObjectsByType<ShortcutProfile>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).Where(p => p != this).ToList();
-                lastProfiles.ForEach(profile => profile.enabled = false);
-            }
+            FindAndDisableProfiles();
             LinkAll();
         }
 
+        
+
         private void OnDisable()
         {
-            if (overrideAll)
-            {
-                lastProfiles.ForEach(profile => profile.enabled = true);
-                lastProfiles = null;
-            }
+            EnableLastProfiles();
             UnlinkAll();
         }
 
@@ -55,6 +49,13 @@ namespace Rogium.Core.Shortcuts
             LinkAll();
         }
         
+        public void SetAsOverrideAll(bool value)
+        {
+            overrideAll = value;
+            if (!gameObject.activeSelf) return;
+            FindAndDisableProfiles();
+        }
+
         private void LinkAll()
         {
             if (shortcuts == null || shortcuts.Length == 0) return;
@@ -71,6 +72,21 @@ namespace Rogium.Core.Shortcuts
             {
                 shortcut.Unlink();
             }
+        }
+        
+        private void FindAndDisableProfiles()
+        {
+            if (!overrideAll) return;
+            lastProfiles = FindObjectsByType<ShortcutProfile>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).Where(p => p != this).ToList();
+            lastProfiles.ForEach(profile => profile.enabled = false);
+        }
+        
+        private void EnableLastProfiles()
+        {
+            if (!overrideAll) return;
+            if (lastProfiles == null) return;
+            lastProfiles.ForEach(profile => { if (profile != null) profile.enabled = true; });
+            lastProfiles = null;
         }
 
         [Serializable]
