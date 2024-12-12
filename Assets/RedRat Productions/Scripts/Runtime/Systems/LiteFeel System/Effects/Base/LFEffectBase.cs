@@ -111,7 +111,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         private IEnumerator PlayCoroutine()
         {
             float delay = (randomizeDelay) ? Random.Range(initialDelayMin, initialDelayMax) : initialDelayMin;
-            yield return WaitFor(delay);
+            if (delay > 0) yield return WaitFor(delay);
             PlaySelf();
             yield return WaitFor(TotalDuration);
             Stop();
