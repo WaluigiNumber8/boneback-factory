@@ -44,7 +44,7 @@ namespace Rogium.Tests.Systems.Shortcuts
         [UnityTest]
         public IEnumerator Should_NotTrigger_WhenOverrideAllProfileIsActive()
         {
-            GameObject affectedObject2 = new GameObject("AffectedObject2");
+            GameObject affectedObject2 = new("AffectedObject2");
             CreateShortcutProfile(ShortcutType.EraserTool, () => affectedObject2.SetActive(false), true);
             yield return null;
             i.Trigger(input.Shortcuts.FillTool.Action);
@@ -55,12 +55,68 @@ namespace Rogium.Tests.Systems.Shortcuts
         [UnityTest]
         public IEnumerator Should_TriggerOnlyOverrideAllProfile()
         {
-            GameObject affectedObject2 = new GameObject("AffectedObject2");
+            GameObject affectedObject2 = new("AffectedObject2");
             CreateShortcutProfile(ShortcutType.EraserTool, () => affectedObject2.SetActive(false), true);
             yield return null;
             i.Trigger(input.Shortcuts.EraserTool.Action);
             yield return null;
             Assert.That(affectedObject2.activeSelf, Is.False);
+        }
+
+        [UnityTest]
+        public IEnumerator Should_TriggerOnlyLatestOverrideAllProfile()
+        {
+            GameObject affectedObject2 = new("AffectedObject2");
+            CreateShortcutProfile(ShortcutType.EraserTool, () => affectedObject2.SetActive(false), true);
+            GameObject affectedObject3 = new("AffectedObject3");
+            CreateShortcutProfile(ShortcutType.SelectionTool, () => affectedObject3.SetActive(false), true);
+            yield return null;
+            i.Trigger(input.Shortcuts.SelectionTool.Action);
+            yield return null;
+            Assert.That(affectedObject3.activeSelf, Is.False);
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_NotTrigger_WhenOverrideAllProfileIsNotLatest()
+        {
+            GameObject affectedObject2 = new("AffectedObject2");
+            CreateShortcutProfile(ShortcutType.EraserTool, () => affectedObject2.SetActive(false), true);
+            GameObject affectedObject3 = new("AffectedObject3");
+            CreateShortcutProfile(ShortcutType.SelectionTool, () => affectedObject3.SetActive(false), true);
+            yield return null;
+            i.Trigger(input.Shortcuts.SelectionTool.Action);
+            yield return null;
+            Assert.That(affectedObject2.activeSelf, Is.True);
+        }
+
+        [UnityTest]
+        public IEnumerator Should_TriggerOverrideAllProfile_WhenNewerOverrideAllProfileDisabled()
+        {
+            GameObject affectedObject2 = new("AffectedObject2");
+            CreateShortcutProfile(ShortcutType.EraserTool, () => affectedObject2.SetActive(false), true);
+            GameObject affectedObject3 = new("AffectedObject3");
+            ShortcutProfile profile3 = CreateShortcutProfile(ShortcutType.SelectionTool, () => affectedObject3.SetActive(false), true);
+            yield return null;
+            profile3.gameObject.SetActive(false);
+            yield return null;
+            i.Trigger(input.Shortcuts.EraserTool.Action);
+            yield return null;
+            Assert.That(affectedObject2.activeSelf, Is.False);
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_NotTriggerNewestOverrideAllProfile_WhenNewerOverrideAllProfileDisabled()
+        {
+            GameObject affectedObject2 = new("AffectedObject2");
+            CreateShortcutProfile(ShortcutType.EraserTool, () => affectedObject2.SetActive(false), true);
+            GameObject affectedObject3 = new("AffectedObject3");
+            ShortcutProfile profile3 = CreateShortcutProfile(ShortcutType.SelectionTool, () => affectedObject3.SetActive(false), true);
+            yield return null;
+            profile3.gameObject.SetActive(false);
+            yield return null;
+            i.Trigger(input.Shortcuts.SelectionTool.Action);
+            yield return null;
+            Assert.That(affectedObject3.activeSelf, Is.True);
         }
         
         private static ShortcutProfile CreateShortcutProfile(ShortcutType shortcut, UnityAction action, bool overrideAll = false)
