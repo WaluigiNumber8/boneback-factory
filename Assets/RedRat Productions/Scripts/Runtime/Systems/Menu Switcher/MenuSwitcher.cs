@@ -25,7 +25,7 @@ namespace RedRats.UI.MenuSwitching
         private void Start()
         {
             base.Awake();
-            menus = GatherMenus();
+            ReloadMenus();
             SwitchTo(defaultMenu);
         }
 
@@ -33,17 +33,17 @@ namespace RedRats.UI.MenuSwitching
         /// Search this objects children for all Canvas Menu Objects and return them as a list.
         /// </summary>
         /// <returns>List of menu objects.</returns>
-        private List<MenuObject> GatherMenus()
+        public void ReloadMenus()
         {
             List<MenuObject> gatheredMenus = GetComponentsInChildren<MenuObject>(true).ToList();
             SafetyNet.EnsureListDoesNotHaveDuplicities(gatheredMenus, nameof(gatheredMenus));
-            return gatheredMenus;
+            menus = gatheredMenus;
         }
 
         public void SwitchTo(MenuType newMenu)
         {
             if (menus == null) menus = new List<MenuObject>();
-            if (menus.Count <= 0) menus = GatherMenus();
+            if (menus.Count <= 0) ReloadMenus();
 
             //Disable all canvases.
             if (lastOpenMenu == null)

@@ -35,8 +35,6 @@ namespace Rogium.Core.Shortcuts
             LinkAll();
         }
 
-        
-
         private void OnDisable()
         {
             EnableLastProfiles();
@@ -49,7 +47,7 @@ namespace Rogium.Core.Shortcuts
             shortcuts = newShortcuts.AsCopy();
             LinkAll();
         }
-        
+
         public void SetAsOverrideAll(bool value)
         {
             overrideAll = value;
@@ -74,19 +72,22 @@ namespace Rogium.Core.Shortcuts
                 shortcut.Unlink();
             }
         }
-        
+
         private void FindAndDisableProfiles()
         {
             if (!overrideAll) return;
             lastProfiles = FindObjectsByType<ShortcutProfile>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).Where(p => p != this).ToList();
             lastProfiles.ForEach(profile => profile.enabled = false);
         }
-        
+
         private void EnableLastProfiles()
         {
             if (!overrideAll) return;
             if (lastProfiles == null) return;
-            lastProfiles.ForEach(profile => { if (profile != null) profile.enabled = true; });
+            lastProfiles.ForEach(profile =>
+            {
+                if (profile != null) profile.enabled = true;
+            });
             lastProfiles = null;
         }
 
@@ -94,12 +95,11 @@ namespace Rogium.Core.Shortcuts
         public class ShortcutData
         {
             private string GroupTitle() => trigger.ToString();
-            [FoldoutGroup("$GroupTitle")]
-            public ShortcutType trigger;
-            [FoldoutGroup("$GroupTitle")]
-            public UnityEvent action;
-            
+            [FoldoutGroup("$GroupTitle")] public ShortcutType trigger;
+            [FoldoutGroup("$GroupTitle")] public UnityEvent action;
+
             private InputButton input;
+
             public ShortcutData(ShortcutType trigger, UnityEvent action)
             {
                 this.trigger = trigger;

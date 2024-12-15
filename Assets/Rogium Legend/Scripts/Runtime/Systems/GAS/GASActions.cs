@@ -68,8 +68,14 @@ namespace Rogium.Systems.GASExtension
         #endregion
         
         #region Return from menus
-        public static void ReturnToMainMenuSelection()
+        public static void SelectionMenuReturn()
         {
+            if (SelectionMenuOverseerMono.GetInstance().CurrentType != AssetType.Pack)
+            {
+                OpenSelectionPack();
+                return;
+            }
+
             GAS.SwitchMenu(MenuType.MainMenu);
             BackgroundOverseerMono.GetInstance().SwitchToMainMenu();
             GASRogium.ChangeTheme(ThemeType.Blue);

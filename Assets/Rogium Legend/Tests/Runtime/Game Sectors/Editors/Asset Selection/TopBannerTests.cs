@@ -7,6 +7,7 @@ using Rogium.Editors.AssetSelection.UI;
 using Rogium.Tests.Core;
 using UnityEngine;
 using UnityEngine.TestTools;
+using UnityEngine.UI;
 using static Rogium.Tests.Editors.AssetCreator;
 
 namespace Rogium.Tests.Editors.AssetSelection
@@ -34,8 +35,8 @@ namespace Rogium.Tests.Editors.AssetSelection
             yield return MenuLoader.PrepareMainMenu();
             selectionMenu.Open(AssetType.Pack);
             yield return null;
-            SelectionMenuReturnButton returnButton = Object.FindFirstObjectByType<SelectionMenuReturnButton>();
-            returnButton.Click();
+            Button returnButton = GameObject.Find("Top Banner").GetComponentInChildren<Button>();
+            returnButton.onClick.Invoke();
             yield return null;
             Assert.That(MenuSwitcher.GetInstance().CurrentMenu, Is.EqualTo(MenuType.MainMenu));
         }
@@ -45,8 +46,8 @@ namespace Rogium.Tests.Editors.AssetSelection
         {
             SelectionMenuOverseerMonoTestsU.OpenPackSelectionAndEditFirstPack();
             yield return null;
-            SelectionMenuReturnButton returnButton = Object.FindFirstObjectByType<SelectionMenuReturnButton>();
-            returnButton.Click();
+            Button returnButton = GameObject.Find("Top Banner").GetComponentInChildren<Button>();
+            returnButton.onClick.Invoke();
             yield return null;
             Assert.That(selectionMenu.CurrentType, Is.EqualTo(AssetType.Pack));
         }

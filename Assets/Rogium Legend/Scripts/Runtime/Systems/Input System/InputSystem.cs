@@ -100,8 +100,6 @@ namespace Rogium.Systems.Input
             }
         }
         
-        
-        
         /// <summary>
         /// Disables all Action Maps except UI.
         /// </summary>

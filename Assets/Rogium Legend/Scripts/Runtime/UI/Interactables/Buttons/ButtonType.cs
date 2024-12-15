@@ -22,7 +22,7 @@ namespace Rogium.UserInterface.Interactables
 
         #region Return from Menus
         ReturnToAssetTypeSelection = 11,
-        ReturnToMainMenuFromSelection = 12,
+        SelectionMenuReturn = 12,
         ReturnToMainMenuFromOptions = 74,
         ReturnToMainMenuFromChangelog = 82,
 
