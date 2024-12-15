@@ -1611,7 +1611,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""One Modifier"",
                     ""id"": ""9a56c73c-8acc-43d1-8ab7-45b22aae02ca"",
-                    ""path"": ""OneModifier"",
+                    ""path"": ""OneModifier(overrideModifiersNeedToBePressedFirst=true)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1644,7 +1644,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""One Modifier"",
                     ""id"": ""998f6af4-5418-4c0b-9d74-e00596bc0f63"",
-                    ""path"": ""OneModifier"",
+                    ""path"": ""OneModifier(overrideModifiersNeedToBePressedFirst=true)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1677,7 +1677,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""One Modifier"",
                     ""id"": ""5553f10c-6cd4-49e7-94d8-7946affbb433"",
-                    ""path"": ""OneModifier"",
+                    ""path"": ""OneModifier(overrideModifiersNeedToBePressedFirst=true)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1820,7 +1820,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""One Modifier"",
                     ""id"": ""9e09026d-d88c-46e9-9c43-6de19f34921c"",
-                    ""path"": ""OneModifier"",
+                    ""path"": ""OneModifier(overrideModifiersNeedToBePressedFirst=true)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1886,7 +1886,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""One Modifier"",
                     ""id"": ""ce6067d6-c2f5-49de-bdaa-02c60afdd3e2"",
-                    ""path"": ""OneModifier"",
+                    ""path"": ""OneModifier(overrideModifiersNeedToBePressedFirst=true)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1919,7 +1919,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""One Modifier"",
                     ""id"": ""dfefd134-d8c5-4a1e-8ed4-c85ae8c3e2dd"",
-                    ""path"": ""OneModifier"",
+                    ""path"": ""OneModifier(overrideModifiersNeedToBePressedFirst=true)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -2084,7 +2084,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""One Modifier"",
                     ""id"": ""288ebd45-ef20-4099-8d70-b1a21eb9c7ed"",
-                    ""path"": ""OneModifier"",
+                    ""path"": ""OneModifier(overrideModifiersNeedToBePressedFirst=true)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -2128,7 +2128,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""One Modifier"",
                     ""id"": ""d0c194af-ec0a-4a2d-ac7e-eb18fbe3b7f2"",
-                    ""path"": ""OneModifier"",
+                    ""path"": ""OneModifier(overrideModifiersNeedToBePressedFirst=true)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -2161,7 +2161,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""One Modifier"",
                     ""id"": ""6100528a-9e94-4c0f-964c-56630278415a"",
-                    ""path"": ""OneModifier"",
+                    ""path"": ""OneModifier(overrideModifiersNeedToBePressedFirst=true)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -2194,7 +2194,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""One Modifier"",
                     ""id"": ""822ee30e-325a-4113-bbf7-42e35ded97e6"",
-                    ""path"": ""OneModifier"",
+                    ""path"": ""OneModifier(overrideModifiersNeedToBePressedFirst=true)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -2227,7 +2227,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""One Modifier"",
                     ""id"": ""c469d6bd-6f2f-4ac0-a68d-32869ce2330f"",
-                    ""path"": ""OneModifier"",
+                    ""path"": ""OneModifier(overrideModifiersNeedToBePressedFirst=true)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

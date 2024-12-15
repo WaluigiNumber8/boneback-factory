@@ -7,6 +7,7 @@ using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.AssetSelection.UI;
 using Rogium.Editors.Packs;
+using Rogium.UserInterface.Interactables;
 using Sirenix.OdinInspector;
 using UnityEngine;
 

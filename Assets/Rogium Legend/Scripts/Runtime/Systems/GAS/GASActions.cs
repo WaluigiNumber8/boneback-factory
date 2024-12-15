@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using RedRats.Systems.GASCore;
 using RedRats.Safety;
@@ -157,6 +158,39 @@ namespace Rogium.Systems.GASExtension
         #endregion
 
         #region Create Assets
+
+        public static void CreateNewAssetBasedOnSelectionMenu()
+        {
+            switch (SelectionMenuOverseerMono.GetInstance().CurrentType)
+            {
+                case AssetType.Pack:
+                    CreatePack();
+                    break;
+                case AssetType.Palette:
+                    CreatePalette();
+                    break;
+                case AssetType.Sprite:
+                    CreateSprite();
+                    break;
+                case AssetType.Weapon:
+                    CreateWeapon();
+                    break;
+                case AssetType.Projectile:
+                    CreateProjectile();
+                    break;
+                case AssetType.Enemy:
+                    CreateEnemy();
+                    break;
+                case AssetType.Room:
+                    CreateRoom();
+                    break;
+                case AssetType.Tile:
+                    CreateTile();
+                    break;
+                default: throw new ArgumentOutOfRangeException($"Asset type {SelectionMenuOverseerMono.GetInstance().CurrentType} is not supported by this method.");
+            }
+        }
+        
         public static void CreatePack()
         {
             new ModalWindowPropertyBuilderPack().OpenForCreate(OpenSelectionPack);
