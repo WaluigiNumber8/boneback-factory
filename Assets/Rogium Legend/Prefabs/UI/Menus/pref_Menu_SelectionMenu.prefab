@@ -1490,7 +1490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shortcuts:
-  - trigger: 3
+  - trigger: {fileID: -4531501882662290933, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
     action:
       m_PersistentCalls:
         m_Calls:
@@ -1506,7 +1506,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - trigger: 4
+  - trigger: {fileID: 8610477003855033981, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
     action:
       m_PersistentCalls:
         m_Calls:
@@ -1632,7 +1632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shortcuts:
-  - trigger: 12
+  - trigger: {fileID: 745696771081051140, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
     action:
       m_PersistentCalls:
         m_Calls:
@@ -1648,7 +1648,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - trigger: 13
+  - trigger: {fileID: 2676700358860830262, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
     action:
       m_PersistentCalls:
         m_Calls:
@@ -1664,7 +1664,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - trigger: 14
+  - trigger: {fileID: 9147014384786786214, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
     action:
       m_PersistentCalls:
         m_Calls:
@@ -1680,7 +1680,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - trigger: 15
+  - trigger: {fileID: -8403669081686663906, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
     action:
       m_PersistentCalls:
         m_Calls:
@@ -1696,7 +1696,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - trigger: 16
+  - trigger: {fileID: -6482357571834360714, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
     action:
       m_PersistentCalls:
         m_Calls:
@@ -1712,7 +1712,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - trigger: 17
+  - trigger: {fileID: -2560970349022734593, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
     action:
       m_PersistentCalls:
         m_Calls:
@@ -1728,7 +1728,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - trigger: 18
+  - trigger: {fileID: 3492044639877968511, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
     action:
       m_PersistentCalls:
         m_Calls:

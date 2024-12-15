@@ -100,6 +100,8 @@ namespace Rogium.Systems.Input
             }
         }
         
+        public InputAction GetAction(InputAction action) => input.FindAction(action.name);
+        
         /// <summary>
         /// Disables all Action Maps except UI.
         /// </summary>

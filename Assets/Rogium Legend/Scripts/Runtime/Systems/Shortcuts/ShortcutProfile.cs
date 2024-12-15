@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using RedRats.Core;
-using Rogium.Systems.Input;
-using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Events;
-using static Rogium.Systems.Input.InputSystemUtils;
 
 namespace Rogium.Core.Shortcuts
 {
@@ -89,28 +84,6 @@ namespace Rogium.Core.Shortcuts
                 if (profile != null) profile.enabled = true;
             });
             lastProfiles = null;
-        }
-
-        [Serializable]
-        public class ShortcutData
-        {
-            private string GroupTitle() => trigger.ToString();
-            [FoldoutGroup("$GroupTitle")] public ShortcutType trigger;
-            [FoldoutGroup("$GroupTitle")] public UnityEvent action;
-
-            private InputButton input;
-
-            public ShortcutData(ShortcutType trigger, UnityEvent action)
-            {
-                this.trigger = trigger;
-                this.action = action;
-                this.input = GetInput(trigger);
-            }
-
-            public void RefreshInput() => input = GetInput(trigger);
-
-            public void Link() => input.OnPress += action.Invoke;
-            public void Unlink() => input.OnPress -= action.Invoke;
         }
     }
 }
