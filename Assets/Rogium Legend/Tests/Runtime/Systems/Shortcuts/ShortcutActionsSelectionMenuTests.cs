@@ -114,5 +114,76 @@ namespace Rogium.Tests.Systems.Shortcuts
             yield return null;
             Assert.That(Object.FindFirstObjectByType<ModalWindow>(), Is.Null);
         }
+
+        [UnityTest]
+        public IEnumerator Should_ShowPaletteSelection_WhenShortcutPressed()
+        {
+            yield return OpenSelectionMenu(AssetType.Enemy, 0);
+            i.Trigger(input.Shortcuts.ShowPalettes.Action);
+            yield return null;
+            Assert.That(menu.CurrentType, Is.EqualTo(AssetType.Palette));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowSpriteSelection_WhenShortcutPressed()
+        {
+            yield return OpenSelectionMenu(AssetType.Enemy, 0);
+            i.Trigger(input.Shortcuts.ShowSprites.Action);
+            yield return null;
+            Assert.That(menu.CurrentType, Is.EqualTo(AssetType.Sprite));
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_ShowWeaponSelection_WhenShortcutPressed()
+        {
+            yield return OpenSelectionMenu(AssetType.Enemy, 0);
+            i.Trigger(input.Shortcuts.ShowWeapons.Action);
+            yield return null;
+            Assert.That(menu.CurrentType, Is.EqualTo(AssetType.Weapon));
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_ShowProjectileSelection_WhenShortcutPressed()
+        {
+            yield return OpenSelectionMenu(AssetType.Enemy, 0);
+            i.Trigger(input.Shortcuts.ShowProjectiles.Action);
+            yield return null;
+            Assert.That(menu.CurrentType, Is.EqualTo(AssetType.Projectile));
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_ShowEnemySelection_WhenShortcutPressed()
+        {
+            yield return OpenSelectionMenu(AssetType.Room, 0);
+            i.Trigger(input.Shortcuts.ShowEnemies.Action);
+            yield return null;
+            Assert.That(menu.CurrentType, Is.EqualTo(AssetType.Enemy));
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_ShowRoomSelection_WhenShortcutPressed()
+        {
+            yield return OpenSelectionMenu(AssetType.Enemy, 0);
+            i.Trigger(input.Shortcuts.ShowRooms.Action);
+            yield return null;
+            Assert.That(menu.CurrentType, Is.EqualTo(AssetType.Room));
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_ShowTileSelection_WhenShortcutPressed()
+        {
+            yield return OpenSelectionMenu(AssetType.Enemy, 0);
+            i.Trigger(input.Shortcuts.ShowTiles.Action);
+            yield return null;
+            Assert.That(menu.CurrentType, Is.EqualTo(AssetType.Tile));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_NotShowSpriteSelection_WhenInPackSelectionAndShortcutPressed()
+        {
+            i.Trigger(input.Shortcuts.ShowSprites.Action);
+            yield return null;
+            Assert.That(menu.CurrentType, Is.EqualTo(AssetType.Pack));
+        }
     }
 }
