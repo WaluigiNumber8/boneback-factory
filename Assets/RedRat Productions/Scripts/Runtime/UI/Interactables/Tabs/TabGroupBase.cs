@@ -17,7 +17,6 @@ namespace RedRats.UI.Tabs
         private TabPageButton[] pageButtons;
         private TabPageButton selectedTab;
 
-        public int DefaultTabIndex { get => defaultTabIndex; }
 
         private void Awake() => pageButtons = GetButtons();
         
@@ -86,6 +85,8 @@ namespace RedRats.UI.Tabs
         /// </summary>
         /// <returns>An array of pages.</returns>
         public GameObject[] GetPagesAsArray() => pageButtons.Select(button => button.Page).ToArray();
+        
+        public int DefaultTabIndex { get => defaultTabIndex; }
 
         [Serializable]
         protected struct ButtonVisualInfo

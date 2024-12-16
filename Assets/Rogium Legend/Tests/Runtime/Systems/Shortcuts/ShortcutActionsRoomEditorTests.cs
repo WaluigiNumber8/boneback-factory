@@ -158,6 +158,37 @@ namespace Rogium.Tests.Systems.Shortcuts
             yield return new WaitForSecondsRealtime(2f);
             Assert.That(Object.FindFirstObjectByType<ModalWindow>(FindObjectsInactive.Include).transform.GetChild(0).gameObject.activeSelf, Is.False);
         }
-        
+
+        [UnityTest]
+        public IEnumerator Should_ShowTilesLayer_WhenShortcutPressed()
+        {
+            i.Trigger(input.Shortcuts.TilesLayer.Action);
+            yield return null;
+            Assert.That(editor.ActiveLayerIndex, Is.EqualTo(0));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowDecorLayer_WhenShortcutPressed()
+        {
+            i.Trigger(input.Shortcuts.DecorLayer.Action);
+            yield return null;
+            Assert.That(editor.ActiveLayerIndex, Is.EqualTo(1));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowObjectsLayer_WhenShortcutPressed()
+        {
+            i.Trigger(input.Shortcuts.ObjectsLayer.Action);
+            yield return null;
+            Assert.That(editor.ActiveLayerIndex, Is.EqualTo(2));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowEnemyLayer_WhenShortcutPressed()
+        {
+            i.Trigger(input.Shortcuts.EnemiesLayer.Action);
+            yield return null;
+            Assert.That(editor.ActiveLayerIndex, Is.EqualTo(3));
+        }
     }
 }
