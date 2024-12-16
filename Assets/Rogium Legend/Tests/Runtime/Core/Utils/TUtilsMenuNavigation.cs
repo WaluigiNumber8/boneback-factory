@@ -21,7 +21,12 @@ namespace Rogium.Tests.Core
 
         public static IEnumerator OpenSelectionMenu(AssetType assetType, int cardIndex)
         {
-            //TODO: Add Open campaign selection once needed
+            if (assetType == AssetType.Campaign)
+            {
+                GASActions.OpenSelectionCampaign();
+                yield return null;
+                yield break;
+            }
             yield return OpenSelectionMenuEditor(assetType, cardIndex);
         }
         

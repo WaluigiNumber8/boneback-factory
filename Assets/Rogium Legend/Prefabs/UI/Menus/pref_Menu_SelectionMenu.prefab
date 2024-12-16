@@ -1496,7 +1496,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
           m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
-          m_MethodName: SelectionMenuReturn
+          m_MethodName: ReturnFromSelectionMenu
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
