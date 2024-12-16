@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using RedRats.Core;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Core;
@@ -40,13 +41,16 @@ namespace Rogium.Tests.Core
         public static void AddNewPackToLibrary() => ExternalLibraryOverseer.Instance.CreateAndAddPack(CreatePack());
 
         public static void AddNewCampaignToLibrary() => ExternalLibraryOverseer.Instance.CreateAndAddCampaign(CreateCampaign());
+        public static void AddNewCampaignToLibrary(PackAsset defaultPack) => ExternalLibraryOverseer.Instance.CreateAndAddCampaign(CreateCampaign(defaultPack));
 
-        public static CampaignAsset CreateCampaign()
+        public static CampaignAsset CreateCampaign() => CreateCampaign(CreatePack());
+        public static CampaignAsset CreateCampaign(PackAsset defaultPack)
         {
             CampaignAsset campaign = new CampaignAsset.Builder()
-                .WithTitle($"Test Pack {Time.time + Random.Range(0, 1000)}")
+                .WithTitle($"Test Campaign {Time.time + Random.Range(0, 1000)}")
                 .WithIcon(new SpriteBuilder().WithSingleColorTexture(Color.black, 16, 16).Build())
-                .WithDataPack(CreatePack())
+                .WithDataPack(defaultPack)
+                .WithPackReferences(new HashSet<string>() {defaultPack.ID})
                 .Build();
             return campaign;
         }

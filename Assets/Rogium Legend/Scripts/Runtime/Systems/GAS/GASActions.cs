@@ -987,6 +987,7 @@ namespace Rogium.Systems.GASExtension
             CampaignAssetSelectionOverseer.Instance.SelectAgain();
         }
         
+        public static void CampaignRefreshCurrent() => CampaignRefresh(CampaignAssetSelectionOverseer.Instance.SelectedIndex);
         public static void CampaignRefresh(int index)
         {
             CampaignAssetSelectionOverseer overseer = CampaignAssetSelectionOverseer.Instance;

@@ -5,6 +5,9 @@ using RedRats.UI.ModalWindows;
 using Rogium.Core;
 using Rogium.Editors.AssetSelection.Campaigns;
 using Rogium.Editors.Core;
+using Rogium.Editors.Packs;
+using Rogium.Editors.Rooms;
+using Rogium.Systems.GASExtension;
 using Rogium.Tests.Core;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -24,9 +27,9 @@ namespace Rogium.Tests.Systems.Shortcuts
             yield return MenuLoader.PrepareCampaignSelection();
             OverseerLoader.LoadModalWindowBuilder();
             yield return null;
-            AddNewCampaignToLibrary();
-            AddNewCampaignToLibrary();
-            AddNewCampaignToLibrary();
+            AddNewCampaignToLibrary(PackEditorOverseer.Instance.CurrentPack);
+            AddNewCampaignToLibrary(PackEditorOverseer.Instance.CurrentPack);
+            AddNewCampaignToLibrary(PackEditorOverseer.Instance.CurrentPack);
             yield return OpenSelectionMenu(AssetType.Campaign, 0);
         }
         
@@ -105,6 +108,11 @@ namespace Rogium.Tests.Systems.Shortcuts
             yield return OpenSelectionMenu(AssetType.Pack, 0);
             yield return OpenEditor(AssetType.Room);
             yield return TUtilsRoomEditor.FillTileLayer();
+            GASActions.SaveChangesRoom();
+            GASActions.ReturnFromSelectionMenu();
+            GASActions.ReturnFromSelectionMenu();
+            PackEditorOverseer.Instance.CompleteEditing();
+            yield return null;
             yield return OpenSelectionMenu(AssetType.Campaign, 0);
             i.Trigger(input.Shortcuts.RefreshCurrent.Action);
             yield return null;
