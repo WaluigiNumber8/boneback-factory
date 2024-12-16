@@ -22,7 +22,7 @@ namespace Rogium.Tests.Editors.Rooms
         public override IEnumerator Setup()
         {
             yield return base.Setup();
-            yield return AssetCreator.CreateAndAssignPack();
+            yield return TUtilsAssetCreator.CreateAndAssignPack();
             OverseerLoader.LoadInternalLibrary();
             
             yield return null;

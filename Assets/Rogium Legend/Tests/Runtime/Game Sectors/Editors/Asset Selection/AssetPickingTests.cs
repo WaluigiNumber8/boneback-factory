@@ -8,6 +8,7 @@ using Rogium.UserInterface.Interactables;
 using Rogium.UserInterface.ModalWindows;
 using UnityEngine;
 using UnityEngine.TestTools;
+using static Rogium.Tests.Core.TUtilsAssetCreator;
 using static Rogium.Tests.Editors.AssetSelection.AssetPickingTestsU;
 
 namespace Rogium.Tests.Editors.AssetSelection
@@ -25,8 +26,8 @@ namespace Rogium.Tests.Editors.AssetSelection
             OverseerLoader.LoadModalWindowBuilder();
             OverseerLoader.LoadUIBuilder();
             yield return null;
-            AssetCreator.AddNewPackToLibrary();
-            AssetCreator.AddNewPackToLibrary();
+            AddNewPackToLibrary();
+            AddNewPackToLibrary();
             yield return BuildAssetField(ExternalLibraryOverseer.Instance.Packs[1]);
             assetField = Object.FindFirstObjectByType<AssetField>();
         }

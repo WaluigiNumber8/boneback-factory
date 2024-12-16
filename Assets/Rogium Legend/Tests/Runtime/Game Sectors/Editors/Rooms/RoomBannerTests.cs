@@ -30,7 +30,7 @@ namespace Rogium.Tests.Editors.Rooms
         public override IEnumerator Setup()
         {
             yield return base.Setup();
-            yield return AssetCreator.CreateAndAssignPack();
+            yield return TUtilsAssetCreator.CreateAndAssignPack();
             yield return MenuLoader.PrepareRoomEditor();
             drawer = new SpriteDrawer(EditorDefaults.Instance.RoomSize, new Vector2Int(EditorDefaults.Instance.SpriteSize, EditorDefaults.Instance.SpriteSize), EditorDefaults.Instance.SpriteSize);
             packEditor = PackEditorOverseer.Instance;
@@ -73,7 +73,7 @@ namespace Rogium.Tests.Editors.Rooms
         [UnityTest]
         public IEnumerator Should_ShowRoomBannerInCampaignSelectionInsteadOfIcon()
         {
-            AssetCreator.AddNewCampaignToLibrary();
+            TUtilsAssetCreator.AddNewCampaignToLibrary();
             ExternalLibraryOverseer.Instance.Packs[0].Rooms[0].UpdateType(RoomType.Entrance);
             yield return null;
             OverseerLoader.LoadModalWindowBuilder();

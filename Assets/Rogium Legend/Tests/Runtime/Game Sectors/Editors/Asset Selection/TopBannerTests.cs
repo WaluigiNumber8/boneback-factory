@@ -3,12 +3,11 @@ using NUnit.Framework;
 using RedRats.UI.MenuSwitching;
 using Rogium.Core;
 using Rogium.Editors.AssetSelection;
-using Rogium.Editors.AssetSelection.UI;
 using Rogium.Tests.Core;
 using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.UI;
-using static Rogium.Tests.Editors.AssetCreator;
+using static Rogium.Tests.Core.TUtilsAssetCreator;
 
 namespace Rogium.Tests.Editors.AssetSelection
 {

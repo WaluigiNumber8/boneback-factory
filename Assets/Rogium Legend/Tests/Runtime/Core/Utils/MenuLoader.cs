@@ -177,7 +177,7 @@ namespace Rogium.Tests.Core
             MenuSwitcher.GetInstance().ReloadMenus();
             yield return null;
             if (!openEditor) yield break;
-            yield return AssetCreator.CreateAndAssignCampaign();
+            yield return TUtilsAssetCreator.CreateAndAssignCampaign();
         }
         
         public static IEnumerator PrepareCampaignSelection()

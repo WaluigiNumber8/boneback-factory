@@ -69,9 +69,9 @@ namespace Rogium.Systems.GASExtension
         #endregion
         
         #region Return from menus
-        public static void SelectionMenuReturn()
+        public static void ReturnFromSelectionMenu()
         {
-            if (SelectionMenuOverseerMono.GetInstance().CurrentType != AssetType.Pack)
+            if (SelectionMenuOverseerMono.GetInstance().CurrentType != AssetType.Pack && MenuSwitcher.GetInstance().CurrentMenu  != MenuType.CampaignSelection)
             {
                 OpenSelectionPack();
                 return;
@@ -103,7 +103,6 @@ namespace Rogium.Systems.GASExtension
             GAS.SwitchMenu(MenuType.CampaignSelection);
             BackgroundOverseerMono.GetInstance().SwitchToGameMenu();
             CampaignAssetSelectionOverseer.Instance.SelectCampaignFirst();
-            GASRogium.ChangeTheme(ThemeType.Red);
         }
         
         public static void OpenSelectionPalette()

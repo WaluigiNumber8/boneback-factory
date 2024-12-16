@@ -32,7 +32,7 @@ namespace Rogium.UserInterface.Interactables
                 case ButtonType.ReturnToAssetTypeSelection:
                     break;
                 case ButtonType.SelectionMenuReturn:
-                    GASActions.SelectionMenuReturn();
+                    GASActions.ReturnFromSelectionMenu();
                     break;
                 case ButtonType.ReturnToMainMenuFromOptions:
                     GASActions.CancelChangesOptions();

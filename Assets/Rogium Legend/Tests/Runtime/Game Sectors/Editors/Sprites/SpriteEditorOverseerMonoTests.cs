@@ -33,7 +33,7 @@ namespace Rogium.Tests.Editors.Sprites
         [Test]
         public void SwitchPalette_Should_ChangeCurrentPalette()
         {
-            PaletteAsset newPalette = AssetCreator.CreatePalette();
+            PaletteAsset newPalette = TUtilsAssetCreator.CreatePalette();
             spriteEditor.SwitchPalette(newPalette);
             Assert.That(spriteEditor.CurrentPaletteAsset, Is.EqualTo(newPalette));
         }

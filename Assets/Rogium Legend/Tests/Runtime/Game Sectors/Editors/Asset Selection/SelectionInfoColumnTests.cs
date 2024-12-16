@@ -14,7 +14,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.UI;
-using static Rogium.Tests.Editors.AssetCreator;
+using static Rogium.Tests.Core.TUtilsAssetCreator;
 using static Rogium.Tests.Editors.AssetSelection.SelectionInfoColumnTestsU;
 
 namespace Rogium.Tests.Editors.AssetSelection

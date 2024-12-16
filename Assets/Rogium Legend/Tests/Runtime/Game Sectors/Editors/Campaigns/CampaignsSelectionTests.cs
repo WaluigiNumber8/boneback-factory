@@ -18,8 +18,8 @@ namespace Rogium.Tests.Editors.Campaigns
         public override IEnumerator Setup()
         {
             yield return base.Setup();
-            AssetCreator.AddNewPackToLibrary();
-            AssetCreator.AddNewPackToLibrary();
+            TUtilsAssetCreator.AddNewPackToLibrary();
+            TUtilsAssetCreator.AddNewPackToLibrary();
             yield return MenuLoader.PrepareCampaignEditor();
             editor = CampaignEditorOverseer.Instance;
             editorMono = CampaignEditorOverseerMono.GetInstance();

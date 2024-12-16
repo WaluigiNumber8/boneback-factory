@@ -65,7 +65,7 @@ namespace Rogium.Tests.UI.Backgrounds
             yield return MenuLoader.PrepareSelectionMenu();
             GASActions.OpenSelectionPack();
             yield return null;
-            GASActions.SelectionMenuReturn();
+            GASActions.ReturnFromSelectionMenu();
             yield return null;
             Assert.That(overseer.IsSetToMainMenu(), Is.EqualTo(true));
         }
@@ -85,7 +85,7 @@ namespace Rogium.Tests.UI.Backgrounds
             yield return MenuLoader.PrepareCampaignSelection();
             GASActions.OpenSelectionCampaign();
             yield return null;
-            GASActions.SelectionMenuReturn();
+            GASActions.ReturnFromSelectionMenu();
             yield return null;
             Assert.That(overseer.IsSetToMainMenu(), Is.EqualTo(true));
         }

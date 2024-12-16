@@ -32,7 +32,7 @@ namespace Rogium.Tests.Editors.Sprites
 
         public static IEnumerator UpdateColorSlotForSpriteWithMissingPalette()
         {
-            SpriteEditorOverseer.Instance.UpdateAsset(AssetCreator.CreateSpriteFromSlot1());
+            SpriteEditorOverseer.Instance.UpdateAsset(TUtilsAssetCreator.CreateSpriteFromSlot1());
             SpriteEditorOverseer.Instance.CompleteEditing();
             PackEditorOverseer.Instance.CurrentPack.Sprites[0].ClearAssociatedPalette();
             PackEditorOverseer.Instance.ActivateSpriteEditor(0);

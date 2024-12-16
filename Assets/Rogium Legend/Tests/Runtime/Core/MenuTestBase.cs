@@ -37,7 +37,7 @@ namespace Rogium.Tests.Core
             ExternalLibraryOverseer.Instance.ClearCampaigns();
             ActionHistorySystem.ClearHistory();
             InputSystem.GetInstance().ClearAllInput();
-            yield return AssetCreator.CreateAndAssignPack();
+            yield return TUtilsAssetCreator.CreateAndAssignPack();
         }
 
         private static void PrepareExternalStorageSubstitute()

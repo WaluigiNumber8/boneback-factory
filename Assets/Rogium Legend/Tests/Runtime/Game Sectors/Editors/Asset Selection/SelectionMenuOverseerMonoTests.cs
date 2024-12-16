@@ -10,7 +10,7 @@ using Rogium.Tests.UI.Interactables.Properties;
 using Rogium.UserInterface.Interactables;
 using UnityEngine;
 using UnityEngine.TestTools;
-using static Rogium.Tests.Editors.AssetCreator;
+using static Rogium.Tests.Core.TUtilsAssetCreator;
 using static Rogium.Tests.Editors.AssetSelection.SelectionMenuOverseerMonoTestsU;
 
 namespace Rogium.Tests.Editors.AssetSelection

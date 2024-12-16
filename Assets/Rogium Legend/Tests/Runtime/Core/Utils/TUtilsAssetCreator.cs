@@ -12,15 +12,14 @@ using Rogium.Editors.Sprites;
 using Rogium.Editors.Tiles;
 using Rogium.Editors.Weapons;
 using Rogium.Systems.GridSystem;
-using Rogium.Tests.Core;
 using UnityEngine;
 
-namespace Rogium.Tests.Editors
+namespace Rogium.Tests.Core
 {
     /// <summary>
     /// Creates assets for testing purposes.
     /// </summary>
-    public static class AssetCreator
+    public static class TUtilsAssetCreator
     {
         public static IEnumerator CreateAndAssignPack()
         {
@@ -45,7 +44,7 @@ namespace Rogium.Tests.Editors
         public static CampaignAsset CreateCampaign()
         {
             CampaignAsset campaign = new CampaignAsset.Builder()
-                .WithTitle("Test Campaign")
+                .WithTitle($"Test Pack {Time.time + Random.Range(0, 1000)}")
                 .WithIcon(new SpriteBuilder().WithSingleColorTexture(Color.black, 16, 16).Build())
                 .WithDataPack(CreatePack())
                 .Build();
