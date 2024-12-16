@@ -542,6 +542,8 @@ namespace Rogium.Systems.GASExtension
             OpenSelectionPalette();
         }
 
+        public static void OpenEditorCampaignCurrent() => OpenEditorCampaign(CampaignAssetSelectionOverseer.Instance.SelectedIndex);
+
         public static void OpenEditorCampaign(int assetIndex)
         {
             GAS.SwitchMenu(MenuType.CampaignEditor);
