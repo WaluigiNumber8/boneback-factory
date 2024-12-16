@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using Rogium.Editors.Rooms;
+using Rogium.Editors.Sprites;
 using Rogium.Systems.ActionHistory;
 using Rogium.Systems.Toolbox;
 using UnityEngine;
@@ -9,16 +9,16 @@ namespace Rogium.Tests.Core
     /// <summary>
     /// General utility methods for the Room Editor.
     /// </summary>
-    public static class TUtilsRoomEditor
+    public static class TUtilsSpriteEditor
     {
-        public static IEnumerator FillTileLayer()
+        public static IEnumerator FillCanvas()
         {
             SelectTool(ToolType.Fill);
-            RoomEditorOverseerMono.GetInstance().UpdateGridCell(new Vector2Int(0, 0));
+            SpriteEditorOverseerMono.GetInstance().UpdateCell(new Vector2Int(0, 0));
             ActionHistorySystem.ForceEndGrouping();
             yield return null;
         }
 
-        public static void SelectTool(ToolType toolType) => RoomEditorOverseerMono.GetInstance().Toolbox.SwitchTool(toolType);
+        public static void SelectTool(ToolType toolType) => SpriteEditorOverseerMono.GetInstance().Toolbox.SwitchTool(toolType);
     }
 }
