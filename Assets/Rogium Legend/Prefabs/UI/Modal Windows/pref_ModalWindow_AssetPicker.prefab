@@ -241,6 +241,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6427428329681563472}
   - component: {fileID: 8636682362788151932}
+  - component: {fileID: 156578934333408087}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -284,6 +285,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selector: {fileID: 4230734503977755563}
   emptyCardPrefab: {fileID: 3580076542102759393, guid: 897be32dd44bc89419209931757222cb, type: 3}
+--- !u!114 &156578934333408087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327511568023603892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e407ec64132b41d19a9b2efba8be9663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shortcuts:
+  - trigger: {fileID: -4531501882662290933, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 68577838218189983}
+          m_TargetAssemblyTypeName: RedRats.UI.ModalWindows.ModalWindowBase, RedRats.Runtime
+          m_MethodName: Close
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  overrideAll: 1
 --- !u!1 &1375507332188280144
 GameObject:
   m_ObjectHideFlags: 0

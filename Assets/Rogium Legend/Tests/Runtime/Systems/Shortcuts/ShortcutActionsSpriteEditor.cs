@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using NUnit.Framework;
+using RedRats.UI.MenuSwitching;
 using Rogium.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Packs;
@@ -144,6 +145,26 @@ namespace Rogium.Tests.Systems.Shortcuts
             yield return new WaitForSeconds(0.1f);
             Assert.That(Object.FindFirstObjectByType<AssetPickerWindow>(), Is.Not.Null);
             Assert.That(Object.FindFirstObjectByType<AssetPickerWindow>().CurrentType, Is.EqualTo(AssetType.Palette));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_CloseAssetPickerForPalettes_WhenShortcutPressed()
+        {
+            i.Trigger(input.Shortcuts.ChangePalette.Action);
+            yield return new WaitForSeconds(0.1f);
+            i.Trigger(input.Shortcuts.Cancel.Action);
+            yield return new WaitForSeconds(0.1f);
+            Assert.That(Object.FindFirstObjectByType<AssetPickerWindow>(FindObjectsInactive.Include).IsOpen, Is.False);
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_CloseAssetPickerForPalettesWithoutLEavingSpriteEditor_WhenShortcutPressed()
+        {
+            i.Trigger(input.Shortcuts.ChangePalette.Action);
+            yield return new WaitForSeconds(0.1f);
+            i.Trigger(input.Shortcuts.Cancel.Action);
+            yield return new WaitForSeconds(0.1f);
+            Assert.That(MenuSwitcher.GetInstance().CurrentMenu, Is.EqualTo(MenuType.SpriteEditor));
         }
     }
 }
