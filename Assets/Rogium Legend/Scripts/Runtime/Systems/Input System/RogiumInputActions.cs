@@ -1481,6 +1481,15 @@ namespace Rogium.Systems.Input
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Play"",
+                    ""type"": ""Button"",
+                    ""id"": ""7b64672b-884c-48de-ab9c-8258e1606db2"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""RefreshCurrent"",
                     ""type"": ""Button"",
                     ""id"": ""becb5745-c8a3-49fd-b94a-be7050c41ab5"",
@@ -2256,6 +2265,17 @@ namespace Rogium.Systems.Input
                     ""action"": ""SelectRandom"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ed73495a-741d-40ee-a1b8-26df977fb892"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Play"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -2338,6 +2358,7 @@ namespace Rogium.Systems.Input
             m_Shortcuts_EnemiesLayer = m_Shortcuts.FindAction("EnemiesLayer", throwIfNotFound: true);
             m_Shortcuts_SwitchLeft = m_Shortcuts.FindAction("SwitchLeft", throwIfNotFound: true);
             m_Shortcuts_SwitchRight = m_Shortcuts.FindAction("SwitchRight", throwIfNotFound: true);
+            m_Shortcuts_Play = m_Shortcuts.FindAction("Play", throwIfNotFound: true);
             m_Shortcuts_RefreshCurrent = m_Shortcuts.FindAction("RefreshCurrent", throwIfNotFound: true);
             m_Shortcuts_RefreshAll = m_Shortcuts.FindAction("RefreshAll", throwIfNotFound: true);
             m_Shortcuts_ShowPalettes = m_Shortcuts.FindAction("ShowPalettes", throwIfNotFound: true);
@@ -2708,6 +2729,7 @@ namespace Rogium.Systems.Input
         private readonly InputAction m_Shortcuts_EnemiesLayer;
         private readonly InputAction m_Shortcuts_SwitchLeft;
         private readonly InputAction m_Shortcuts_SwitchRight;
+        private readonly InputAction m_Shortcuts_Play;
         private readonly InputAction m_Shortcuts_RefreshCurrent;
         private readonly InputAction m_Shortcuts_RefreshAll;
         private readonly InputAction m_Shortcuts_ShowPalettes;
@@ -2747,6 +2769,7 @@ namespace Rogium.Systems.Input
             public InputAction @EnemiesLayer => m_Wrapper.m_Shortcuts_EnemiesLayer;
             public InputAction @SwitchLeft => m_Wrapper.m_Shortcuts_SwitchLeft;
             public InputAction @SwitchRight => m_Wrapper.m_Shortcuts_SwitchRight;
+            public InputAction @Play => m_Wrapper.m_Shortcuts_Play;
             public InputAction @RefreshCurrent => m_Wrapper.m_Shortcuts_RefreshCurrent;
             public InputAction @RefreshAll => m_Wrapper.m_Shortcuts_RefreshAll;
             public InputAction @ShowPalettes => m_Wrapper.m_Shortcuts_ShowPalettes;
@@ -2833,6 +2856,9 @@ namespace Rogium.Systems.Input
                 @SwitchRight.started += instance.OnSwitchRight;
                 @SwitchRight.performed += instance.OnSwitchRight;
                 @SwitchRight.canceled += instance.OnSwitchRight;
+                @Play.started += instance.OnPlay;
+                @Play.performed += instance.OnPlay;
+                @Play.canceled += instance.OnPlay;
                 @RefreshCurrent.started += instance.OnRefreshCurrent;
                 @RefreshCurrent.performed += instance.OnRefreshCurrent;
                 @RefreshCurrent.canceled += instance.OnRefreshCurrent;
@@ -2942,6 +2968,9 @@ namespace Rogium.Systems.Input
                 @SwitchRight.started -= instance.OnSwitchRight;
                 @SwitchRight.performed -= instance.OnSwitchRight;
                 @SwitchRight.canceled -= instance.OnSwitchRight;
+                @Play.started -= instance.OnPlay;
+                @Play.performed -= instance.OnPlay;
+                @Play.canceled -= instance.OnPlay;
                 @RefreshCurrent.started -= instance.OnRefreshCurrent;
                 @RefreshCurrent.performed -= instance.OnRefreshCurrent;
                 @RefreshCurrent.canceled -= instance.OnRefreshCurrent;
@@ -3070,6 +3099,7 @@ namespace Rogium.Systems.Input
             void OnEnemiesLayer(InputAction.CallbackContext context);
             void OnSwitchLeft(InputAction.CallbackContext context);
             void OnSwitchRight(InputAction.CallbackContext context);
+            void OnPlay(InputAction.CallbackContext context);
             void OnRefreshCurrent(InputAction.CallbackContext context);
             void OnRefreshAll(InputAction.CallbackContext context);
             void OnShowPalettes(InputAction.CallbackContext context);

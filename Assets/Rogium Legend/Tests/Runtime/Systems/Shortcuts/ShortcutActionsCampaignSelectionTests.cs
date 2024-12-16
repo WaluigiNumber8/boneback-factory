@@ -10,6 +10,7 @@ using Rogium.Editors.Rooms;
 using Rogium.Systems.GASExtension;
 using Rogium.Tests.Core;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 using static Rogium.Tests.Core.TUtilsAssetCreator;
 using static Rogium.Tests.Core.TUtilsMenuNavigation;
@@ -126,6 +127,14 @@ namespace Rogium.Tests.Systems.Shortcuts
             yield return new WaitForSecondsRealtime(0.1f);
             Assert.That(Object.FindFirstObjectByType<ModalWindow>(), Is.Not.Null);
             Assert.That(Object.FindFirstObjectByType<ModalWindow>().IsOpen, Is.True);
+        }
+
+        [UnityTest]
+        public IEnumerator Should_Play_WhenShortcutPressed()
+        {
+            i.Trigger(input.Shortcuts.Play.Action);
+            yield return new WaitForSecondsRealtime(5f);
+            Assert.That(SceneManager.GetActiveScene().buildIndex, Is.EqualTo(1));
         }
     }
 }

@@ -43,6 +43,7 @@ namespace Rogium.Systems.GASExtension
             Application.Quit();
         }
         
+        public static void PlayCampaignCurrent() => PlayCampaign(CampaignAssetSelectionOverseer.Instance.SelectedIndex);
         public static void PlayCampaign(int campaignIndex)
         {
             ExternalLibraryOverseer.Instance.ActivateCampaignPlaythrough(campaignIndex);

@@ -1457,6 +1457,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Play",
+                    "type": "Button",
+                    "id": "7b64672b-884c-48de-ab9c-8258e1606db2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "RefreshCurrent",
                     "type": "Button",
                     "id": "becb5745-c8a3-49fd-b94a-be7050c41ab5",
@@ -2232,6 +2241,17 @@
                     "action": "SelectRandom",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "ed73495a-741d-40ee-a1b8-26df977fb892",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard + Mouse",
+                    "action": "Play",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

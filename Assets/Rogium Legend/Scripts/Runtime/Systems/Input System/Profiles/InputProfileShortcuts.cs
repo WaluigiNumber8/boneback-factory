@@ -17,6 +17,7 @@
         
         private readonly InputButton switchLeft, switchRight;
         private readonly InputButton refreshCurrent, refreshAll;
+        private readonly InputButton play;
         
         private readonly InputButton showPalettes, showSprites, showWeapons, showProjectiles, showEnemies, showRooms, showTiles;
         
@@ -27,6 +28,7 @@
         public InputProfileShortcuts(RogiumInputActions input) : base(input)
         {
             map = input.Shortcuts;
+            
             undo = new InputButton(map.Undo);
             redo = new InputButton(map.Redo);
             save = new InputButton(map.Save);
@@ -35,6 +37,7 @@
             edit = new InputButton(map.Edit);
             editProperties = new InputButton(map.EditProperties);
             delete = new InputButton(map.Delete);
+            
             selectionTool = new InputButton(map.SelectionTool);
             brushTool = new InputButton(map.BrushTool);
             eraserTool = new InputButton(map.EraserTool);
@@ -42,15 +45,20 @@
             pickerTool = new InputButton(map.PickerTool);
             clearCanvas = new InputButton(map.ClearCanvas);
             toggleGrid = new InputButton(map.ToggleGrid);
+            
             tilesLayer = new InputButton(map.TilesLayer);
             decorLayer = new InputButton(map.DecorLayer);
             objectsLayer = new InputButton(map.ObjectsLayer);
             enemiesLayer = new InputButton(map.EnemiesLayer);
+            
             changePalette = new InputButton(map.ChangePalette);
+            
             switchLeft = new InputButton(map.SwitchLeft);
             switchRight = new InputButton(map.SwitchRight);
             refreshCurrent = new InputButton(map.RefreshCurrent);
             refreshAll = new InputButton(map.RefreshAll);
+            play = new InputButton(map.Play);
+            
             showPalettes = new InputButton(map.ShowPalettes);
             showSprites = new InputButton(map.ShowSprites);
             showWeapons = new InputButton(map.ShowWeapons);
@@ -58,7 +66,9 @@
             showEnemies = new InputButton(map.ShowEnemies);
             showRooms = new InputButton(map.ShowRooms);
             showTiles = new InputButton(map.ShowTiles);
+            
             resetToDefault = new InputButton(map.ResetToDefault);
+            
             selectAll = new InputButton(map.SelectAll);
             deselectAll = new InputButton(map.DeselectAll);
             selectRandom = new InputButton(map.SelectRandom);
@@ -76,6 +86,7 @@
             edit.Enable();
             editProperties.Enable();    
             delete.Enable();
+            
             selectionTool.Enable();
             brushTool.Enable();
             eraserTool.Enable();
@@ -83,15 +94,20 @@
             pickerTool.Enable();
             clearCanvas.Enable();
             toggleGrid.Enable();
+            
             tilesLayer.Enable();
             decorLayer.Enable();
             objectsLayer.Enable();
             enemiesLayer.Enable();
+            
             changePalette.Enable();
+            
             switchLeft.Enable();
             switchRight.Enable();
             refreshCurrent.Enable();
             refreshAll.Enable();
+            play.Enable();
+            
             showPalettes.Enable();
             showSprites.Enable();
             showWeapons.Enable();
@@ -99,7 +115,9 @@
             showEnemies.Enable();
             showRooms.Enable();
             showTiles.Enable();
+            
             resetToDefault.Enable();
+            
             selectAll.Enable();
             deselectAll.Enable();
             selectRandom.Enable();
@@ -117,6 +135,7 @@
             edit.Disable();
             editProperties.Disable();
             delete.Disable();
+            
             selectionTool.Disable();
             brushTool.Disable();
             eraserTool.Disable();
@@ -124,15 +143,20 @@
             pickerTool.Disable();
             clearCanvas.Disable();
             toggleGrid.Disable();
+            
             tilesLayer.Disable();
             decorLayer.Disable();
             objectsLayer.Disable();
             enemiesLayer.Disable();
+            
             changePalette.Disable();
+            
             switchLeft.Disable();
             switchRight.Disable();
             refreshCurrent.Disable();
             refreshAll.Disable();
+            play.Disable();
+            
             showPalettes.Disable();
             showSprites.Disable();
             showWeapons.Disable();
@@ -140,7 +164,9 @@
             showEnemies.Disable();
             showRooms.Disable();
             showTiles.Disable();
+            
             resetToDefault.Disable();
+            
             selectAll.Disable();
             deselectAll.Disable();
             selectRandom.Disable();
@@ -172,6 +198,7 @@
         public InputButton SwitchRight { get => switchRight; }
         public InputButton RefreshCurrent { get => refreshCurrent; }
         public InputButton RefreshAll { get => refreshAll; }
+        public InputButton Play { get => play; }
         public InputButton ShowPalettes { get => showPalettes; }
         public InputButton ShowSprites { get => showSprites; }
         public InputButton ShowWeapons { get => showWeapons; }
