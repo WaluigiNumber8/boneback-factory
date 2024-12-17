@@ -129,6 +129,7 @@ namespace Rogium.Editors.PropertyEditor
             ThemeUpdaterRogium.UpdateScrollbar(ui.propertyScrollbar);
             ThemeUpdaterRogium.UpdateButtonMenu(ui.undoButton);
             ThemeUpdaterRogium.UpdateButtonMenu(ui.redoButton);
+            //TODO: Enable when reset button is added.
             // ThemeUpdaterRogium.UpdateButtonMenu(ui.resetButton);
         }
         

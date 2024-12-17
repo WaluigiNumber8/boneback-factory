@@ -47,6 +47,8 @@ namespace Rogium.UserInterface.Interactables.Properties
             inputField.onEndEdit.AddListener(WhenValueChanged);
         }
 
+        public void UpdateValue(string value) => WhenValueChanged(value);
+        
         public void UpdateValueWithoutNotify(string value)
         {
             // Clamp the value if it's a number.
