@@ -937,6 +937,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoplay: 2
+  timescale: 1
 --- !u!114 &3114721536260387357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -954,6 +955,7 @@ MonoBehaviour:
   restartOnPlay: 1
   keepStateOnStop: 1
   noPlayWhenPlaying: 0
+  isRealtime: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -963,6 +965,8 @@ MonoBehaviour:
   loopType: 0
   target: {fileID: 250063484630288813}
   fade: 0
+  beginAlpha: 0
+  targetAlpha: 1
   fadeCurve:
     serializedVersion: 2
     m_Curve:
@@ -1005,6 +1009,7 @@ MonoBehaviour:
   restartOnPlay: 1
   keepStateOnStop: 1
   noPlayWhenPlaying: 0
+  isRealtime: 0
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
@@ -1198,6 +1203,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5871883750339017923}
+  - component: {fileID: 3567107532320740778}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -1227,6 +1233,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3567107532320740778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6616796135418397548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e407ec64132b41d19a9b2efba8be9663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shortcuts:
+  - trigger: {fileID: -4531501882662290933, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3072775963780375276}
+          m_TargetAssemblyTypeName: Rogium.UserInterface.ModalWindows.ColorPickerWindow,
+            Rogium.Runtime
+          m_MethodName: Close
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  overrideAll: 1
 --- !u!1 &7252773919354627793
 GameObject:
   m_ObjectHideFlags: 0

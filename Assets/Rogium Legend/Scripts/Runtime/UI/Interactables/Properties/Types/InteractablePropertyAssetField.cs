@@ -50,6 +50,9 @@ namespace Rogium.UserInterface.Interactables.Properties
             if (assetField.Title != null) UIExtensions.ChangeFont(assetField.Title, valueFont);
         }
 
+        public void OpenWindow() => assetField.OpenWindow();
+        public void UpdateValue(IAsset asset) => assetField.UpdateValue(asset);
+        
         private void WhenAssetPicked(IAsset asset)
         {
             if (asset.IsEmpty())

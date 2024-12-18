@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using NUnit.Framework;
+using RedRats.UI.MenuSwitching;
 using Rogium.Core;
 using Rogium.Editors.Packs;
 using Rogium.Editors.PropertyEditor;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables.Properties;
+using Rogium.UserInterface.ModalWindows;
 using UnityEngine;
 using UnityEngine.TestTools;
 using static Rogium.Tests.Core.TUtilsMenuNavigation;
@@ -77,6 +79,50 @@ namespace Rogium.Tests.Systems.Shortcuts
             yield return WindowAccept();
             Assert.That(PackEditorOverseer.Instance.CurrentPack.Weapons[0].Title, Is.EqualTo(originalData));
         }
+
+        [UnityTest]
+        public IEnumerator Should_CloseSoundPickerWindow_WhenShortcutPressed()
+        {
+            editor.GetComponentInChildren<InteractablePropertySoundField>().OpenWindow();
+            yield return null;
+            i.Trigger(input.Shortcuts.Cancel.Action);
+            yield return null;
+            Assert.That(Object.FindFirstObjectByType<SoundPickerWindow>(), Is.Not.Null);
+            Assert.That(Object.FindFirstObjectByType<SoundPickerWindow>().IsOpen, Is.False);
+        }
+
+        [UnityTest]
+        public IEnumerator Should_CloseSoundPickerWindowWithoutLeavingPropertyEditor_WhenShortcutPressed()
+        {
+            editor.GetComponentInChildren<InteractablePropertySoundField>().OpenWindow();
+            yield return null;
+            i.Trigger(input.Shortcuts.Cancel.Action);
+            yield return null;
+            Assert.That(MenuSwitcher.GetInstance().CurrentMenu, Is.EqualTo(MenuType.PropertyEditor));
+        }
         
+        [UnityTest]
+        public IEnumerator Should_CloseSoundPickingWindowButNotSoundPickerWindow_WhenShortcutPressed()
+        {
+            editor.GetComponentInChildren<InteractablePropertySoundField>().OpenWindow();
+            yield return null;
+            Object.FindFirstObjectByType<SoundPickerWindow>().GetComponentInChildren<InteractablePropertyAssetField>().OpenWindow();
+            i.Trigger(input.Shortcuts.Cancel.Action);
+            yield return null;
+            Assert.That(Object.FindFirstObjectByType<SoundPickerWindow>().IsOpen, Is.True);
+            Assert.That(Object.FindFirstObjectByType<AssetPickerWindow>().IsOpen, Is.False);
+        }
+        
+        [UnityTest]
+        public IEnumerator Should_CloseSoundPickingWindowAndNotLeavePropertyEditor_WhenShortcutPressed()
+        {
+            editor.GetComponentInChildren<InteractablePropertySoundField>().OpenWindow();
+            yield return new WaitForSeconds(0.1f);
+            Object.FindFirstObjectByType<SoundPickerWindow>().GetComponentInChildren<InteractablePropertyAssetField>().OpenWindow();
+            yield return new WaitForSeconds(0.1f);
+            i.Trigger(input.Shortcuts.Cancel.Action);
+            yield return new WaitForSeconds(0.1f);
+            Assert.That(MenuSwitcher.GetInstance().CurrentMenu, Is.EqualTo(MenuType.PropertyEditor));
+        }
     }
 }
