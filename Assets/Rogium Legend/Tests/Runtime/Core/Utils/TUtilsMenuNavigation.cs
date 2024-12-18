@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Rogium.Core;
 using Rogium.Editors.AssetSelection;
+using Rogium.Editors.AssetSelection.Campaigns;
 using Rogium.Systems.GASExtension;
 using UnityEngine;
 
@@ -15,6 +16,11 @@ namespace Rogium.Tests.Core
         {
             yield return OpenSelectionMenu(assetType, cardIndex);
             yield return null;
+            if (assetType == AssetType.Campaign)
+            {
+                GASActions.OpenEditorCampaign(cardIndex);
+                yield break;
+            }
             Object.FindFirstObjectByType<EditableAssetCardController>().Edit();
             yield return null;
         }
