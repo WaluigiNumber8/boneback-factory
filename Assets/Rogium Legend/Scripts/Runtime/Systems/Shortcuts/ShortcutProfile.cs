@@ -71,19 +71,24 @@ namespace Rogium.Core.Shortcuts
         private void FindAndDisableProfiles()
         {
             if (!overrideAll) return;
-            lastProfiles = FindObjectsByType<ShortcutProfile>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).Where(p => p != this).ToList();
+            if (lastProfiles != null && lastProfiles.Count > 0) return;
+            lastProfiles = FindObjectsByType<ShortcutProfile>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).Where(p => p != this && p.enabled).ToList();
             lastProfiles.ForEach(profile => profile.enabled = false);
         }
 
         private void EnableLastProfiles()
         {
             if (!overrideAll) return;
-            if (lastProfiles == null) return;
+            if (lastProfiles == null || lastProfiles.Count == 0) return;
+            ShortcutProfile[] profiles = FindObjectsByType<ShortcutProfile>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+            if (profiles.Any(p => p != this && (p.enabled && p.OverridesAll))) return;
             lastProfiles.ForEach(profile =>
             {
                 if (profile != null) profile.enabled = true;
             });
             lastProfiles = null;
         }
+        
+        public bool OverridesAll { get => overrideAll; }
     }
 }
