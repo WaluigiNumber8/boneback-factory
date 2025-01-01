@@ -68,6 +68,7 @@ namespace Rogium.Systems.Input
         }
 
         public void DisablePauseMap() => inputPause.Disable();
+        public void DisableShortcutsMap() => inputShortcuts.Disable();
 
         public (InputAction, int) FindDuplicateBinding(InputAction action, int bindingIndex)
         {

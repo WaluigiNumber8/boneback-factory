@@ -11,23 +11,21 @@ namespace Rogium.Core
     /// </summary>
     public class MenuPreparator : MonoBehaviour
     {
-        private void Awake()
-        {
-            ActionHistorySystem.ClearHistory();
-        }
+        private void Awake() => ActionHistorySystem.ClearHistory();
 
         private void Start()
         {
-            InputSystem inputSystem = InputSystem.GetInstance();
-            inputSystem.EnableUIMap();
+            InputSystem input = InputSystem.GetInstance();
+            input.EnableUIMap();
+            input.EnableShortcutsMap();
             ExternalLibraryOverseer.Instance.RefreshOptions();
             OptionsMenuOverseer.Instance.CompleteEditing();
             
             //Force grouping on click/right click
-            inputSystem.UI.Select.OnPress += ActionHistorySystem.ForceBeginGrouping;
-            inputSystem.UI.ContextSelect.OnPress += ActionHistorySystem.ForceBeginGrouping;
-            inputSystem.UI.Select.OnRelease += ActionHistorySystem.ForceEndGrouping;
-            inputSystem.UI.ContextSelect.OnRelease += ActionHistorySystem.ForceEndGrouping;
+            input.UI.Select.OnPress += ActionHistorySystem.ForceBeginGrouping;
+            input.UI.ContextSelect.OnPress += ActionHistorySystem.ForceBeginGrouping;
+            input.UI.Select.OnRelease += ActionHistorySystem.ForceEndGrouping;
+            input.UI.ContextSelect.OnRelease += ActionHistorySystem.ForceEndGrouping;
         }
 
     }

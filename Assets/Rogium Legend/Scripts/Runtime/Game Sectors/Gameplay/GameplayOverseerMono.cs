@@ -42,6 +42,7 @@ namespace Rogium.Gameplay.Core
         {
             base.Awake();
             input = InputSystem.GetInstance();
+            input.DisableShortcutsMap();
             input.EnablePauseMap();
             try { currentCampaign = new CampaignAsset.Builder().AsCopy(SceneTransferOverseer.GetInstance().PickUpCampaign()).Build(); }
             catch (Exception) { currentCampaign = ExternalLibraryOverseer.Instance.Campaigns[0]; }
