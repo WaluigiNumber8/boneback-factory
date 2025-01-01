@@ -11,10 +11,9 @@ namespace Rogium.Tests.Editors.Rooms
     /// </summary>
     public static class RoomEditorUtils
     {
-        private static readonly RoomEditorOverseerMono roomEditor = RoomEditorOverseerMono.GetInstance();
-        
         public static void FillEntireActiveLayer()
         {
+            RoomEditorOverseerMono roomEditor = RoomEditorOverseerMono.GetInstance();
             ObjectGrid<AssetData> layer = roomEditor.GetCurrentGridCopy;
             ActionHistorySystem.ForceBeginGrouping();
             for (int i = 0; i < layer.Width; i++)
