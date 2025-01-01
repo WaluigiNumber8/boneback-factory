@@ -248,12 +248,13 @@ namespace Rogium.Systems.GASExtension
             new ModalWindowPropertyBuilderPack().OpenForUpdate(OpenSelectionPack);
         }
 
+        public static void EditPropertiesCampaignCurrent() => EditPropertiesCampaign(CampaignAssetSelectionOverseer.Instance.SelectedIndex);
         public static void EditPropertiesCampaign(int campaignIndex)
         {
             ExternalLibraryOverseer.Instance.ActivateCampaignEditor(campaignIndex, false);
             new ModalWindowPropertyBuilderCampaign().OpenForUpdate(CampaignAssetSelectionOverseer.Instance.SelectAgain);
         }
-        
+
         public static void EditPropertiesPalette(int assetIndex)
         {
             PackEditorOverseer.Instance.ActivatePaletteEditor(assetIndex, false);
