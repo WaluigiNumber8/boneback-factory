@@ -72,7 +72,7 @@ namespace Rogium.Systems.GASExtension
         #region Return from menus
         public static void ReturnFromSelectionMenu()
         {
-            if (SelectionMenuOverseerMono.GetInstance().CurrentType != AssetType.Pack && MenuSwitcher.GetInstance().CurrentMenu  != MenuType.CampaignSelection)
+            if (MenuSwitcher.GetInstance().CurrentMenu != MenuType.CampaignSelection && SelectionMenuOverseerMono.GetInstance().CurrentType != AssetType.Pack)
             {
                 OpenSelectionPack();
                 return;

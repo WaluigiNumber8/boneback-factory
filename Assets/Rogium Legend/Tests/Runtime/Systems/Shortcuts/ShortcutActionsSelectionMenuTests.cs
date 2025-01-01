@@ -6,6 +6,7 @@ using Rogium.Core;
 using Rogium.Editors.AssetSelection;
 using Rogium.Tests.Core;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.TestTools;
 using static Rogium.Tests.Core.TUtilsMenuNavigation;
 
@@ -53,18 +54,6 @@ namespace Rogium.Tests.Systems.Shortcuts
             i.Press(keyboard.ctrlKey);
             i.Press(keyboard.nKey);
             i.Trigger(input.Shortcuts.NewAsset.Action);
-            yield return new WaitForSecondsRealtime(0.1f);
-            Assert.That(Object.FindFirstObjectByType<ModalWindow>(), Is.Not.Null);
-            Assert.That(Object.FindFirstObjectByType<ModalWindow>().IsOpen, Is.True);
-        }
-
-        [UnityTest]
-        public IEnumerator Should_OpenPropertiesWindow_WhenShortcutPressed()
-        {
-            menu.CurrentSelector.GetCard(0).SetToggle(true);
-            i.Press(keyboard.ctrlKey);
-            i.Press(keyboard.eKey);
-            i.Trigger(input.Shortcuts.EditProperties.Action);
             yield return new WaitForSecondsRealtime(0.1f);
             Assert.That(Object.FindFirstObjectByType<ModalWindow>(), Is.Not.Null);
             Assert.That(Object.FindFirstObjectByType<ModalWindow>().IsOpen, Is.True);

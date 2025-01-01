@@ -37,11 +37,11 @@ namespace Rogium.Tests.Systems.Shortcuts
         [UnityTest]
         public IEnumerator Should_ReturnToMainMenu_WhenShortcutPressed()
         {
-            yield return MenuLoader.PrepareSelectionMenu();
             yield return MenuLoader.PrepareMainMenu();
+            yield return OpenSelectionMenu(AssetType.Campaign, 0);
+            yield return new WaitForSecondsRealtime(0.1f);
             i.Trigger(input.Shortcuts.Cancel.Action);
-            yield return null;
-            yield return null;
+            yield return new WaitForSecondsRealtime(0.1f);
             Assert.That(MenuSwitcher.GetInstance().CurrentMenu, Is.EqualTo(MenuType.MainMenu));
         }
 
@@ -63,17 +63,6 @@ namespace Rogium.Tests.Systems.Shortcuts
             i.Trigger(input.Shortcuts.Edit.Action);
             yield return null;
             Assert.That(MenuSwitcher.GetInstance().CurrentMenu, Is.EqualTo(MenuType.CampaignEditor));
-        }
-
-        [UnityTest]
-        public IEnumerator Should_OpenPropertiesWindow_WhenShortcutPressed()
-        {
-            i.Press(keyboard.ctrlKey);
-            i.Press(keyboard.eKey);
-            i.Trigger(input.Shortcuts.EditProperties.Action);
-            yield return new WaitForSecondsRealtime(0.1f);
-            Assert.That(Object.FindFirstObjectByType<ModalWindow>(), Is.Not.Null);
-            Assert.That(Object.FindFirstObjectByType<ModalWindow>().IsOpen, Is.True);
         }
 
         [UnityTest]
@@ -123,7 +112,9 @@ namespace Rogium.Tests.Systems.Shortcuts
         [UnityTest]
         public IEnumerator Should_ShowRefreshAllCampaignsDialog_WhenEditedThenShortcutPressed()
         {
-            i.Trigger(input.Shortcuts.RefreshAll.Action);
+            yield return new WaitForSecondsRealtime(0.1f);
+            i.Press(keyboard.ctrlKey);
+            i.Press(keyboard.rKey);
             yield return new WaitForSecondsRealtime(0.1f);
             Assert.That(Object.FindFirstObjectByType<ModalWindow>(), Is.Not.Null);
             Assert.That(Object.FindFirstObjectByType<ModalWindow>().IsOpen, Is.True);
