@@ -16,8 +16,7 @@ namespace Rogium.Core
         private void Start()
         {
             InputSystem input = InputSystem.GetInstance();
-            input.EnableUIMap();
-            input.EnableShortcutsMap();
+            input.SwitchToMenuMaps();
             ExternalLibraryOverseer.Instance.RefreshOptions();
             OptionsMenuOverseer.Instance.CompleteEditing();
             

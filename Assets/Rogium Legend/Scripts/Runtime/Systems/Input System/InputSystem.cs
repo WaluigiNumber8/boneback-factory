@@ -35,40 +35,54 @@ namespace Rogium.Systems.Input
 
         public void ClearAllInput()
         {
-            inputShortcuts?.Disable();
+            Shortcuts?.Disable();
             input = new RogiumInputActions();
             inputPlayer = new InputProfilePlayer(input);
             inputUI = new InputProfileUI(input);
             inputPause = new InputProfilePause(input);
             inputShortcuts = new InputProfileShortcuts(input);
-            EnableShortcutsMap();
+            Shortcuts.Enable();
         }
 
-        public void EnableUIMap()
+        public void SwitchToGameplayMaps()
         {
-            DisableAll();
-            inputUI.Enable();
+            UI.Disable();
+            Shortcuts.Disable();
+            Player.Enable();
         }
         
-        public void EnablePlayerMap()
+        public void SwitchToMenuMaps()
         {
-            DisableAll();
-            inputPlayer.Enable();
+            Player.Disable();
+            Shortcuts.Enable();
+            UI.Enable();
         }
         
-        public void EnablePauseMap()
-        {
-            DisableAll();
-            inputPause.Enable();
-        }
-        
-        public void EnableShortcutsMap()
-        {
-            inputShortcuts.Enable();
-        }
-
-        public void DisablePauseMap() => inputPause.Disable();
-        public void DisableShortcutsMap() => inputShortcuts.Disable();
+        // public void EnableUIMap()
+        // {
+        //     DisableAll();
+        //     inputUI.Enable();
+        // }
+        //
+        // public void EnablePlayerMap()
+        // {
+        //     DisableAll();
+        //     inputPlayer.Enable();
+        // }
+        //
+        // public void EnablePauseMap()
+        // {
+        //     DisableAll();
+        //     inputPause.Enable();
+        // }
+        //
+        // public void EnableShortcutsMap()
+        // {
+        //     inputShortcuts.Enable();
+        // }
+        //
+        // public void DisablePauseMap() => inputPause.Disable();
+        // public void DisableShortcutsMap() => inputShortcuts.Disable();
 
         public (InputAction, int) FindDuplicateBinding(InputAction action, int bindingIndex)
         {
@@ -102,14 +116,6 @@ namespace Rogium.Systems.Input
         }
         
         public InputAction GetAction(InputAction action) => input.FindAction(action.name);
-        
-        /// <summary>
-        /// Disables all Action Maps except UI.
-        /// </summary>
-        private void DisableAll()
-        {
-            inputPlayer.Disable();
-        }
         
         private void UpdatePointerPosition(Vector2 value) => pointerPosition = value;
         
