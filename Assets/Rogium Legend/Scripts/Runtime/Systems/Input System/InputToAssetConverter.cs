@@ -15,15 +15,16 @@ namespace Rogium.Systems.Input
         public static InputBindingsAsset Get()
         {
             InputBindingData keyboard = new();
-            int navigateIndex = GetBindingIndexByDevice(input.UI.Navigate.Action, InputDeviceType.Keyboard);
-            // keyboard.NavigateUp = inputSystem.UI.Navigate.Action.bindings[navigateIndex].effectivePath;
-            // keyboard.NavigateDown = inputSystem.UI.Navigate.Action.bindings[navigateIndex + 1].effectivePath;
-            // keyboard.NavigateLeft = inputSystem.UI.Navigate.Action.bindings[navigateIndex + 2].effectivePath;
-            // keyboard.NavigateRight = inputSystem.UI.Navigate.Action.bindings[navigateIndex + 3].effectivePath;
+            // int navigateIndex = GetBindingIndexByDevice(input.UI.Navigate.Action, InputDeviceType.Keyboard);
+            // keyboard.NavigateUp = input.UI.Navigate.Action.bindings[navigateIndex].effectivePath;
+            // keyboard.NavigateDown = input.UI.Navigate.Action.bindings[navigateIndex + 1].effectivePath;
+            // keyboard.NavigateLeft = input.UI.Navigate.Action.bindings[navigateIndex + 2].effectivePath;
+            // keyboard.NavigateRight = input.UI.Navigate.Action.bindings[navigateIndex + 3].effectivePath;
             keyboard.Select = input.UI.Select.Action.bindings[GetBindingIndexByDevice(input.UI.Select.Action, InputDeviceType.Keyboard)].effectivePath;
             keyboard.ContextSelect = input.UI.ContextSelect.Action.bindings[GetBindingIndexByDevice(input.UI.ContextSelect.Action, InputDeviceType.Keyboard)].effectivePath;
             keyboard.Cancel = input.UI.Cancel.Action.bindings[GetBindingIndexByDevice(input.UI.Cancel.Action, InputDeviceType.Keyboard)].effectivePath;
             keyboard.ShowTooltip = input.UI.ShowTooltip.Action.bindings[GetBindingIndexByDevice(input.UI.ShowTooltip.Action, InputDeviceType.Keyboard)].effectivePath;
+            
             int movementIndex = GetBindingIndexByDevice(input.Player.Movement.Action, InputDeviceType.Keyboard);
             keyboard.MoveUp = input.Player.Movement.Action.bindings[movementIndex].effectivePath;
             keyboard.MoveDown = input.Player.Movement.Action.bindings[movementIndex + 1].effectivePath;
@@ -38,15 +39,16 @@ namespace Rogium.Systems.Input
             keyboard.Pause = input.Pause.Pause.Action.bindings[GetBindingIndexByDevice(input.Pause.Pause.Action, InputDeviceType.Keyboard)].effectivePath;
 
             InputBindingData keyboardAlt = new();
-            int navigateIndexAlt = GetBindingIndexByDevice(input.UI.Navigate.Action, InputDeviceType.Keyboard, true);
-            // keyboardAlt.NavigateUp = inputSystem.UI.Navigate.Action.bindings[navigateIndexAlt].effectivePath;
-            // keyboardAlt.NavigateDown = inputSystem.UI.Navigate.Action.bindings[navigateIndexAlt + 1].effectivePath;
-            // keyboardAlt.NavigateLeft = inputSystem.UI.Navigate.Action.bindings[navigateIndexAlt + 2].effectivePath;
-            // keyboardAlt.NavigateRight = inputSystem.UI.Navigate.Action.bindings[navigateIndexAlt + 3].effectivePath;
+            // int navigateIndexAlt = GetBindingIndexByDevice(input.UI.Navigate.Action, InputDeviceType.Keyboard, true);
+            // keyboardAlt.NavigateUp = input.UI.Navigate.Action.bindings[navigateIndexAlt].effectivePath;
+            // keyboardAlt.NavigateDown = input.UI.Navigate.Action.bindings[navigateIndexAlt + 1].effectivePath;
+            // keyboardAlt.NavigateLeft = input.UI.Navigate.Action.bindings[navigateIndexAlt + 2].effectivePath;
+            // keyboardAlt.NavigateRight = input.UI.Navigate.Action.bindings[navigateIndexAlt + 3].effectivePath;
             keyboardAlt.Select = input.UI.Select.Action.bindings[GetBindingIndexByDevice(input.UI.Select.Action, InputDeviceType.Keyboard, true)].effectivePath;
             keyboardAlt.ContextSelect = input.UI.ContextSelect.Action.bindings[GetBindingIndexByDevice(input.UI.ContextSelect.Action, InputDeviceType.Keyboard, true)].effectivePath;
             keyboardAlt.Cancel = input.UI.Cancel.Action.bindings[GetBindingIndexByDevice(input.UI.Cancel.Action, InputDeviceType.Keyboard, true)].effectivePath;
             keyboardAlt.ShowTooltip = input.UI.ShowTooltip.Action.bindings[GetBindingIndexByDevice(input.UI.ShowTooltip.Action, InputDeviceType.Keyboard, true)].effectivePath;
+            
             int movementIndexAlt = GetBindingIndexByDevice(input.Player.Movement.Action, InputDeviceType.Keyboard, true);
             keyboardAlt.MoveUp = input.Player.Movement.Action.bindings[movementIndexAlt].effectivePath;
             keyboardAlt.MoveDown = input.Player.Movement.Action.bindings[movementIndexAlt + 1].effectivePath;
@@ -61,15 +63,16 @@ namespace Rogium.Systems.Input
             keyboardAlt.Pause = input.Pause.Pause.Action.bindings[GetBindingIndexByDevice(input.Pause.Pause.Action, InputDeviceType.Keyboard, true)].effectivePath;
 
             InputBindingData gamepad = new();
-            navigateIndex = GetBindingIndexByDevice(input.UI.Navigate.Action, InputDeviceType.Gamepad);
-            // gamepad.NavigateUp = inputSystem.UI.Navigate.Action.bindings[navigateIndex].effectivePath;
-            // gamepad.NavigateDown = inputSystem.UI.Navigate.Action.bindings[navigateIndex + 1].effectivePath;
-            // gamepad.NavigateLeft = inputSystem.UI.Navigate.Action.bindings[navigateIndex + 2].effectivePath;
-            // gamepad.NavigateRight = inputSystem.UI.Navigate.Action.bindings[navigateIndex + 3].effectivePath;
+            // navigateIndex = GetBindingIndexByDevice(input.UI.Navigate.Action, InputDeviceType.Gamepad);
+            // gamepad.NavigateUp = input.UI.Navigate.Action.bindings[navigateIndex].effectivePath;
+            // gamepad.NavigateDown = input.UI.Navigate.Action.bindings[navigateIndex + 1].effectivePath;
+            // gamepad.NavigateLeft = input.UI.Navigate.Action.bindings[navigateIndex + 2].effectivePath;
+            // gamepad.NavigateRight = input.UI.Navigate.Action.bindings[navigateIndex + 3].effectivePath;
             gamepad.Select = input.UI.Select.Action.bindings[GetBindingIndexByDevice(input.UI.Select.Action, InputDeviceType.Gamepad)].effectivePath;
             gamepad.ContextSelect = input.UI.ContextSelect.Action.bindings[GetBindingIndexByDevice(input.UI.ContextSelect.Action, InputDeviceType.Gamepad)].effectivePath;
             gamepad.Cancel = input.UI.Cancel.Action.bindings[GetBindingIndexByDevice(input.UI.Cancel.Action, InputDeviceType.Gamepad)].effectivePath;
             gamepad.ShowTooltip = input.UI.ShowTooltip.Action.bindings[GetBindingIndexByDevice(input.UI.ShowTooltip.Action, InputDeviceType.Gamepad)].effectivePath;
+            
             movementIndex = GetBindingIndexByDevice(input.Player.Movement.Action, InputDeviceType.Gamepad);
             gamepad.MoveUp = input.Player.Movement.Action.bindings[movementIndex].effectivePath;
             gamepad.MoveDown = input.Player.Movement.Action.bindings[movementIndex + 1].effectivePath;
@@ -84,15 +87,16 @@ namespace Rogium.Systems.Input
             gamepad.Pause = input.Pause.Pause.Action.bindings[GetBindingIndexByDevice(input.Pause.Pause.Action, InputDeviceType.Gamepad)].effectivePath;
 
             InputBindingData gamepadAlt = new();
-            navigateIndexAlt = GetBindingIndexByDevice(input.UI.Navigate.Action, InputDeviceType.Gamepad, true);
-            // gamepadAlt.NavigateUp = inputSystem.UI.Navigate.Action.bindings[navigateIndexAlt].effectivePath;
-            // gamepadAlt.NavigateDown = inputSystem.UI.Navigate.Action.bindings[navigateIndexAlt + 1].effectivePath;
-            // gamepadAlt.NavigateLeft = inputSystem.UI.Navigate.Action.bindings[navigateIndexAlt + 2].effectivePath;
-            // gamepadAlt.NavigateRight = inputSystem.UI.Navigate.Action.bindings[navigateIndexAlt + 3].effectivePath;
+            // navigateIndexAlt = GetBindingIndexByDevice(input.UI.Navigate.Action, InputDeviceType.Gamepad, true);
+            // gamepadAlt.NavigateUp = input.UI.Navigate.Action.bindings[navigateIndexAlt].effectivePath;
+            // gamepadAlt.NavigateDown = input.UI.Navigate.Action.bindings[navigateIndexAlt + 1].effectivePath;
+            // gamepadAlt.NavigateLeft = input.UI.Navigate.Action.bindings[navigateIndexAlt + 2].effectivePath;
+            // gamepadAlt.NavigateRight = input.UI.Navigate.Action.bindings[navigateIndexAlt + 3].effectivePath;
             gamepadAlt.Select = input.UI.Select.Action.bindings[GetBindingIndexByDevice(input.UI.Select.Action, InputDeviceType.Gamepad, true)].effectivePath;
             gamepadAlt.ContextSelect = input.UI.ContextSelect.Action.bindings[GetBindingIndexByDevice(input.UI.ContextSelect.Action, InputDeviceType.Gamepad, true)].effectivePath;
             gamepadAlt.Cancel = input.UI.Cancel.Action.bindings[GetBindingIndexByDevice(input.UI.Cancel.Action, InputDeviceType.Gamepad, true)].effectivePath;
             gamepadAlt.ShowTooltip = input.UI.ShowTooltip.Action.bindings[GetBindingIndexByDevice(input.UI.ShowTooltip.Action, InputDeviceType.Gamepad, true)].effectivePath;
+            
             movementIndexAlt = GetBindingIndexByDevice(input.Player.Movement.Action, InputDeviceType.Gamepad, true);
             gamepadAlt.MoveUp = input.Player.Movement.Action.bindings[movementIndexAlt].effectivePath;
             gamepadAlt.MoveDown = input.Player.Movement.Action.bindings[movementIndexAlt + 1].effectivePath;
@@ -120,42 +124,42 @@ namespace Rogium.Systems.Input
             if (asset.Keyboard.Select == null || asset.Gamepad.Select == null) return;
             
             //inputSystem.UI - Keyboard
-            // int navigateIndex = inputSystem.GetBindingIndexByDevice(inputSystem.UI.Navigate.Action, InputDeviceType.Keyboard);
-            // inputSystem.UI.Navigate.Action.ApplyBindingOverride(navigateIndex, asset.Keyboard.MoveUp);
-            // inputSystem.UI.Navigate.Action.ApplyBindingOverride(navigateIndex + 1, asset.Keyboard.MoveDown);
-            // inputSystem.UI.Navigate.Action.ApplyBindingOverride(navigateIndex + 2, asset.Keyboard.MoveLeft);
-            // inputSystem.UI.Navigate.Action.ApplyBindingOverride(navigateIndex + 3, asset.Keyboard.MoveRight);
+            // int navigateIndex = GetBindingIndexByDevice(input.UI.Navigate.Action, InputDeviceType.Keyboard);
+            // input.UI.Navigate.Action.ApplyBindingOverride(navigateIndex, asset.Keyboard.NavigateUp);
+            // input.UI.Navigate.Action.ApplyBindingOverride(navigateIndex + 1, asset.Keyboard.NavigateDown);
+            // input.UI.Navigate.Action.ApplyBindingOverride(navigateIndex + 2, asset.Keyboard.NavigateLeft);
+            // input.UI.Navigate.Action.ApplyBindingOverride(navigateIndex + 3, asset.Keyboard.NavigateRight);
             input.UI.Select.Action.ApplyBindingOverride(GetBindingIndexByDevice(input.UI.Select.Action, InputDeviceType.Keyboard), asset.Keyboard.Select);
             input.UI.ContextSelect.Action.ApplyBindingOverride(GetBindingIndexByDevice(input.UI.ContextSelect.Action, InputDeviceType.Keyboard), asset.Keyboard.ContextSelect);
             input.UI.Cancel.Action.ApplyBindingOverride(GetBindingIndexByDevice(input.UI.Cancel.Action, InputDeviceType.Keyboard), asset.Keyboard.Cancel);
             input.UI.ShowTooltip.Action.ApplyBindingOverride(GetBindingIndexByDevice(input.UI.ShowTooltip.Action, InputDeviceType.Keyboard), asset.Keyboard.ShowTooltip);
 
-            // int navigateIndexAlt = inputSystem.GetBindingIndexByDevice(inputSystem.UI.Navigate.Action, InputDeviceType.Keyboard, true);
-            // inputSystem.UI.Navigate.Action.ApplyBindingOverride(navigateIndexAlt, asset.KeyboardAlt.MoveUp);
-            // inputSystem.UI.Navigate.Action.ApplyBindingOverride(navigateIndexAlt + 1, asset.KeyboardAlt.MoveDown);
-            // inputSystem.UI.Navigate.Action.ApplyBindingOverride(navigateIndexAlt + 2, asset.KeyboardAlt.MoveLeft);
-            // inputSystem.UI.Navigate.Action.ApplyBindingOverride(navigateIndexAlt + 3, asset.KeyboardAlt.MoveRight);
+            // int navigateIndexAlt = GetBindingIndexByDevice(input.UI.Navigate.Action, InputDeviceType.Keyboard, true);
+            // input.UI.Navigate.Action.ApplyBindingOverride(navigateIndexAlt, asset.KeyboardAlt.NavigateUp);
+            // input.UI.Navigate.Action.ApplyBindingOverride(navigateIndexAlt + 1, asset.KeyboardAlt.NavigateDown);
+            // input.UI.Navigate.Action.ApplyBindingOverride(navigateIndexAlt + 2, asset.KeyboardAlt.NavigateLeft);
+            // input.UI.Navigate.Action.ApplyBindingOverride(navigateIndexAlt + 3, asset.KeyboardAlt.NavigateRight);
             input.UI.Select.Action.ApplyBindingOverride(GetBindingIndexByDevice(input.UI.Select.Action, InputDeviceType.Keyboard, true), asset.KeyboardAlt.Select);
             input.UI.ContextSelect.Action.ApplyBindingOverride(GetBindingIndexByDevice(input.UI.ContextSelect.Action, InputDeviceType.Keyboard, true), asset.KeyboardAlt.ContextSelect);
             input.UI.Cancel.Action.ApplyBindingOverride(GetBindingIndexByDevice(input.UI.Cancel.Action, InputDeviceType.Keyboard, true), asset.KeyboardAlt.Cancel);
             input.UI.ShowTooltip.Action.ApplyBindingOverride(GetBindingIndexByDevice(input.UI.ShowTooltip.Action, InputDeviceType.Keyboard, true), asset.KeyboardAlt.ShowTooltip);
 
             //inputSystem.UI - Gamepad
-            // navigateIndex = inputSystem.GetBindingIndexByDevice(inputSystem.UI.Navigate.Action, InputDeviceType.Gamepad);
-            // inputSystem.UI.Navigate.Action.ApplyBindingOverride(navigateIndex, asset.Gamepad.MoveUp);
-            // inputSystem.UI.Navigate.Action.ApplyBindingOverride(navigateIndex + 1, asset.Gamepad.MoveDown);
-            // inputSystem.UI.Navigate.Action.ApplyBindingOverride(navigateIndex + 2, asset.Gamepad.MoveLeft);
-            // inputSystem.UI.Navigate.Action.ApplyBindingOverride(navigateIndex + 3, asset.Gamepad.MoveRight);
+            // navigateIndex = GetBindingIndexByDevice(input.UI.Navigate.Action, InputDeviceType.Gamepad);
+            // input.UI.Navigate.Action.ApplyBindingOverride(navigateIndex, asset.Gamepad.NavigateUp);
+            // input.UI.Navigate.Action.ApplyBindingOverride(navigateIndex + 1, asset.Gamepad.NavigateDown);
+            // input.UI.Navigate.Action.ApplyBindingOverride(navigateIndex + 2, asset.Gamepad.NavigateLeft);
+            // input.UI.Navigate.Action.ApplyBindingOverride(navigateIndex + 3, asset.Gamepad.NavigateRight);
             input.UI.Select.Action.ApplyBindingOverride(GetBindingIndexByDevice(input.UI.Select.Action, InputDeviceType.Gamepad), asset.Gamepad.Select);
             input.UI.ContextSelect.Action.ApplyBindingOverride(GetBindingIndexByDevice(input.UI.ContextSelect.Action, InputDeviceType.Gamepad), asset.Gamepad.ContextSelect);
             input.UI.Cancel.Action.ApplyBindingOverride(GetBindingIndexByDevice(input.UI.Cancel.Action, InputDeviceType.Gamepad), asset.Gamepad.Cancel);
             input.UI.ShowTooltip.Action.ApplyBindingOverride(GetBindingIndexByDevice(input.UI.ShowTooltip.Action, InputDeviceType.Gamepad), asset.Gamepad.ShowTooltip);
 
-            // navigateIndexAlt = inputSystem.GetBindingIndexByDevice(inputSystem.UI.Navigate.Action, InputDeviceType.Gamepad, true);
-            // inputSystem.UI.Navigate.Action.ApplyBindingOverride(navigateIndexAlt, asset.GamepadAlt.MoveUp);
-            // inputSystem.UI.Navigate.Action.ApplyBindingOverride(navigateIndexAlt + 1, asset.GamepadAlt.MoveDown);
-            // inputSystem.UI.Navigate.Action.ApplyBindingOverride(navigateIndexAlt + 2, asset.GamepadAlt.MoveLeft);
-            // inputSystem.UI.Navigate.Action.ApplyBindingOverride(navigateIndexAlt + 3, asset.GamepadAlt.MoveRight);
+            // navigateIndexAlt = GetBindingIndexByDevice(input.UI.Navigate.Action, InputDeviceType.Gamepad, true);
+            // input.UI.Navigate.Action.ApplyBindingOverride(navigateIndexAlt, asset.GamepadAlt.NavigateUp);
+            // input.UI.Navigate.Action.ApplyBindingOverride(navigateIndexAlt + 1, asset.GamepadAlt.NavigateDown);
+            // input.UI.Navigate.Action.ApplyBindingOverride(navigateIndexAlt + 2, asset.GamepadAlt.NavigateLeft);
+            // input.UI.Navigate.Action.ApplyBindingOverride(navigateIndexAlt + 3, asset.GamepadAlt.NavigateRight);
             input.UI.Select.Action.ApplyBindingOverride(GetBindingIndexByDevice(input.UI.Select.Action, InputDeviceType.Gamepad, true), asset.GamepadAlt.Select);
             input.UI.ContextSelect.Action.ApplyBindingOverride(GetBindingIndexByDevice(input.UI.ContextSelect.Action, InputDeviceType.Gamepad, true), asset.GamepadAlt.ContextSelect);
             input.UI.Cancel.Action.ApplyBindingOverride(GetBindingIndexByDevice(input.UI.Cancel.Action, InputDeviceType.Gamepad, true), asset.GamepadAlt.Cancel);
