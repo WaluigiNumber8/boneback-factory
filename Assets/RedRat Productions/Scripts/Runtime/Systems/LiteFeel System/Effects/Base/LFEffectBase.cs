@@ -95,7 +95,6 @@ namespace RedRats.Systems.LiteFeel.Effects
             if (delayCoroutine != null) StopCoroutine(delayCoroutine);
             StopSelf();
             if (!keepStateOnStop) ResetState();
-            else Initialize();
             isPlaying = false;
         }
         
