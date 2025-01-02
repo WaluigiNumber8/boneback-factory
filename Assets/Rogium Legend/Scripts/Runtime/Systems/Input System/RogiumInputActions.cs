@@ -1961,18 +1961,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": """",
                     ""id"": ""baa81b04-5ef9-4e7c-94b5-f51afb77333e"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""SwitchLeft"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""11c23723-c2bb-489f-a41f-16a97e82dc49"",
-                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""path"": ""<Keyboard>/z"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
@@ -1983,18 +1972,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": """",
                     ""id"": ""0ae159ba-cdd5-4d5f-852a-0c91420b17dc"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""SwitchRight"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a3052159-3dce-4dae-8402-4fc677f4ebea"",
-                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
