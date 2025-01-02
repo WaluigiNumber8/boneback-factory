@@ -10,6 +10,7 @@ using Rogium.Editors.Sprites;
 using Rogium.Editors.Tiles;
 using Rogium.Editors.Weapons;
 using Rogium.Options.Core;
+using static Rogium.Tests.Core.TUtilsAssetCreator;
 
 namespace Rogium.Tests.Editors.AssetManipulation
 {
@@ -27,7 +28,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Copy_Should_CreatePackWithSameID()
         {
-            PackAsset original = AssetCreator.CreatePack();
+            PackAsset original = CreatePack();
             PackAsset copy = new PackAsset.Builder().AsCopy(original).Build();
             Assert.That(copy.ID, Is.EqualTo(original.ID));
         }
@@ -35,7 +36,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Copy_Should_CreatePackWithSameParameters()
         {
-            PackAsset original = AssetCreator.CreatePack();
+            PackAsset original = CreatePack();
             PackAsset copy = new PackAsset.Builder().AsCopy(original).Build();
             Assert.That(copy.Palettes, Is.EqualTo(original.Palettes));
             Assert.That(copy.Sprites, Is.EqualTo(original.Sprites));
@@ -49,7 +50,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Copy_Should_CreatePackBaseWithSameParameters()
         {
-            PackAsset original = AssetCreator.CreatePack();
+            PackAsset original = CreatePack();
             PackAsset copy = new PackAsset.Builder().AsCopy(original).Build();
             Assert.That(copy.Title, Is.EqualTo(original.Title));
             Assert.That(copy.Author, Is.EqualTo(original.Author));
@@ -59,7 +60,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Clone_Should_CreatePackWithDifferentID()
         {
-            PackAsset original = AssetCreator.CreatePack();
+            PackAsset original = CreatePack();
             PackAsset clone = new PackAsset.Builder().AsClone(original).Build();
             Assert.That(clone.ID, Is.Not.EqualTo(original.ID));
         }
@@ -67,7 +68,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Clone_Should_CreatePackBaseWithSameParameters()
         {
-            PackAsset original = AssetCreator.CreatePack();
+            PackAsset original = CreatePack();
             PackAsset clone = new PackAsset.Builder().AsClone(original).Build();
             Assert.That(clone.Title, Is.EqualTo(original.Title));
             Assert.That(clone.Author, Is.EqualTo(original.Author));
@@ -77,7 +78,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Clone_Should_CreatePackWithSameParameters()
         {
-            PackAsset original = AssetCreator.CreatePack();
+            PackAsset original = CreatePack();
             PackAsset clone = new PackAsset.Builder().AsClone(original).Build();
             Assert.That(clone.Palettes, Is.EqualTo(original.Palettes));
             Assert.That(clone.Sprites, Is.EqualTo(original.Sprites));
@@ -102,7 +103,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Copy_Should_CreatePaletteWithSameID()
         {
-            PaletteAsset original = AssetCreator.CreatePalette();
+            PaletteAsset original = CreatePalette();
             PaletteAsset copy = new PaletteAsset.Builder().AsCopy(original).Build();
             Assert.That(copy.ID, Is.EqualTo(original.ID));
         }
@@ -110,7 +111,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Copy_Should_CreatePaletteWithSameParameters()
         {
-            PaletteAsset original = AssetCreator.CreatePalette();
+            PaletteAsset original = CreatePalette();
             PaletteAsset copy = new PaletteAsset.Builder().AsCopy(original).Build();
             Assert.That(copy.Colors, Is.EqualTo(original.Colors));
         }
@@ -118,7 +119,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Copy_Should_CreatePaletteBaseWithSameParameters()
         {
-            PaletteAsset original = AssetCreator.CreatePalette();
+            PaletteAsset original = CreatePalette();
             PaletteAsset copy = new PaletteAsset.Builder().AsCopy(original).Build();
             Assert.That(copy.Title, Is.EqualTo(original.Title));
             Assert.That(copy.Author, Is.EqualTo(original.Author));
@@ -128,7 +129,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Clone_Should_CreatePaletteWithDifferentID()
         {
-            PaletteAsset original = AssetCreator.CreatePalette();
+            PaletteAsset original = CreatePalette();
             PaletteAsset clone = new PaletteAsset.Builder().AsClone(original).Build();
             Assert.That(clone.ID, Is.Not.EqualTo(original.ID));
         }
@@ -136,7 +137,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Clone_Should_CreatePaletteBaseWithSameParameters()
         {
-            PaletteAsset original = AssetCreator.CreatePalette();
+            PaletteAsset original = CreatePalette();
             PaletteAsset clone = new PaletteAsset.Builder().AsClone(original).Build();
             Assert.That(clone.Title, Is.EqualTo(original.Title));
             Assert.That(clone.Author, Is.EqualTo(original.Author));
@@ -146,7 +147,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Clone_Should_CreatePaletteWithSameParameters()
         {
-            PaletteAsset original = AssetCreator.CreatePalette();
+            PaletteAsset original = CreatePalette();
             PaletteAsset clone = new PaletteAsset.Builder().AsClone(original).Build();
             Assert.That(clone.Colors, Is.EqualTo(original.Colors));
         }
@@ -164,7 +165,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Copy_Should_CreateSpriteWithSameID()
         {
-            SpriteAsset original = AssetCreator.CreateSprite();
+            SpriteAsset original = CreateSprite();
             SpriteAsset copy = new SpriteAsset.Builder().AsCopy(original).Build();
             Assert.That(copy.ID, Is.EqualTo(original.ID));
         }
@@ -172,7 +173,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Copy_Should_CreateSpriteWithSameParameters()
         {
-            SpriteAsset original = AssetCreator.CreateSprite();
+            SpriteAsset original = CreateSprite();
             SpriteAsset copy = new SpriteAsset.Builder().AsCopy(original).Build();
             Assert.That(copy.SpriteData, Is.EqualTo(original.SpriteData));
         }
@@ -180,7 +181,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Copy_Should_CreateSpriteBaseWithSameParameters()
         {
-            SpriteAsset original = AssetCreator.CreateSprite();
+            SpriteAsset original = CreateSprite();
             SpriteAsset copy = new SpriteAsset.Builder().AsCopy(original).Build();
             Assert.That(copy.Title, Is.EqualTo(original.Title));
             Assert.That(copy.Author, Is.EqualTo(original.Author));
@@ -190,7 +191,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Clone_Should_CreateSpriteWithDifferentID()
         {
-            SpriteAsset original = AssetCreator.CreateSprite();
+            SpriteAsset original = CreateSprite();
             SpriteAsset clone = new SpriteAsset.Builder().AsClone(original).Build();
             Assert.That(clone.ID, Is.Not.EqualTo(original.ID));
         }
@@ -198,7 +199,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Clone_Should_CreateSpriteBaseWithSameParameters()
         {
-            SpriteAsset original = AssetCreator.CreateSprite();
+            SpriteAsset original = CreateSprite();
             SpriteAsset clone = new SpriteAsset.Builder().AsClone(original).Build();
             Assert.That(clone.Title, Is.EqualTo(original.Title));
             Assert.That(clone.Author, Is.EqualTo(original.Author));
@@ -208,7 +209,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Clone_Should_CreateSpriteWithSameParameters()
         {
-            SpriteAsset original = AssetCreator.CreateSprite();
+            SpriteAsset original = CreateSprite();
             SpriteAsset clone = new SpriteAsset.Builder().AsClone(original).Build();
             Assert.That(clone.SpriteData, Is.EqualTo(original.SpriteData));
         }
@@ -227,7 +228,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Copy_Should_CreateWeaponWithSameID()
         {
-            WeaponAsset original = AssetCreator.CreateWeapon();
+            WeaponAsset original = CreateWeapon();
             WeaponAsset copy = new WeaponAsset.Builder().AsCopy(original).Build();
             Assert.That(copy.ID, Is.EqualTo(original.ID));
         }
@@ -235,7 +236,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Copy_Should_CreateWeaponWithSameParameters()
         {
-            WeaponAsset original = AssetCreator.CreateWeapon();
+            WeaponAsset original = CreateWeapon();
             WeaponAsset copy = new WeaponAsset.Builder().AsCopy(original).Build();
             Assert.That(copy.UseType, Is.EqualTo(original.UseType));
         }
@@ -243,7 +244,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Copy_Should_CreateWeaponBaseWithSameParameters()
         {
-            WeaponAsset original = AssetCreator.CreateWeapon();
+            WeaponAsset original = CreateWeapon();
             WeaponAsset copy = new WeaponAsset.Builder().AsCopy(original).Build();
             Assert.That(copy.Title, Is.EqualTo(original.Title));
             Assert.That(copy.Author, Is.EqualTo(original.Author));
@@ -253,7 +254,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Clone_Should_CreateWeaponWithDifferentID()
         {
-            WeaponAsset original = AssetCreator.CreateWeapon();
+            WeaponAsset original = CreateWeapon();
             WeaponAsset clone = new WeaponAsset.Builder().AsClone(original).Build();
             Assert.That(clone.ID, Is.Not.EqualTo(original.ID));
         }
@@ -261,7 +262,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Clone_Should_CreateWeaponBaseWithSameParameters()
         {
-            WeaponAsset original = AssetCreator.CreateWeapon();
+            WeaponAsset original = CreateWeapon();
             WeaponAsset clone = new WeaponAsset.Builder().AsClone(original).Build();
             Assert.That(clone.Title, Is.EqualTo(original.Title));
             Assert.That(clone.Author, Is.EqualTo(original.Author));
@@ -271,7 +272,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Clone_Should_CreateWeaponWithSameParameters()
         {
-            WeaponAsset original = AssetCreator.CreateWeapon();
+            WeaponAsset original = CreateWeapon();
             WeaponAsset clone = new WeaponAsset.Builder().AsClone(original).Build();
             Assert.That(clone.UseType, Is.EqualTo(original.UseType));
         }
@@ -290,7 +291,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Copy_Should_CreateProjectileWithSameID()
         {
-            ProjectileAsset original = AssetCreator.CreateProjectile();
+            ProjectileAsset original = CreateProjectile();
             ProjectileAsset copy = new ProjectileAsset.Builder().AsCopy(original).Build();
             Assert.That(copy.ID, Is.EqualTo(original.ID));
         }
@@ -298,7 +299,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Copy_Should_CreateProjectileWithSameParameters()
         {
-            ProjectileAsset original = AssetCreator.CreateProjectile();
+            ProjectileAsset original = CreateProjectile();
             ProjectileAsset copy = new ProjectileAsset.Builder().AsCopy(original).Build();
             Assert.That(copy.BaseDamage, Is.EqualTo(original.BaseDamage));
         }
@@ -306,7 +307,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Copy_Should_CreateProjectileBaseWithSameParameters()
         {
-            ProjectileAsset original = AssetCreator.CreateProjectile();
+            ProjectileAsset original = CreateProjectile();
             ProjectileAsset copy = new ProjectileAsset.Builder().AsCopy(original).Build();
             Assert.That(copy.Title, Is.EqualTo(original.Title));
             Assert.That(copy.Author, Is.EqualTo(original.Author));
@@ -316,7 +317,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Clone_Should_CreateProjectileWithDifferentID()
         {
-            ProjectileAsset original = AssetCreator.CreateProjectile();
+            ProjectileAsset original = CreateProjectile();
             ProjectileAsset clone = new ProjectileAsset.Builder().AsClone(original).Build();
             Assert.That(clone.ID, Is.Not.EqualTo(original.ID));
         }
@@ -324,7 +325,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Clone_Should_CreateProjectileBaseWithSameParameters()
         {
-            ProjectileAsset original = AssetCreator.CreateProjectile();
+            ProjectileAsset original = CreateProjectile();
             ProjectileAsset clone = new ProjectileAsset.Builder().AsClone(original).Build();
             Assert.That(clone.Title, Is.EqualTo(original.Title));
             Assert.That(clone.Author, Is.EqualTo(original.Author));
@@ -334,7 +335,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Clone_Should_CreateProjectileWithSameParameters()
         {
-            ProjectileAsset original = AssetCreator.CreateProjectile();
+            ProjectileAsset original = CreateProjectile();
             ProjectileAsset clone = new ProjectileAsset.Builder().AsClone(original).Build();
             Assert.That(clone.BaseDamage, Is.EqualTo(original.BaseDamage));
         }
@@ -352,7 +353,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Copy_Should_CreateEnemyWithSameID()
         {
-            EnemyAsset original = AssetCreator.CreateEnemy();
+            EnemyAsset original = CreateEnemy();
             EnemyAsset copy = new EnemyAsset.Builder().AsCopy(original).Build();
             Assert.That(copy.ID, Is.EqualTo(original.ID));
         }
@@ -360,7 +361,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Copy_Should_CreateEnemyWithSameParameters()
         {
-            EnemyAsset original = AssetCreator.CreateEnemy();
+            EnemyAsset original = CreateEnemy();
             EnemyAsset copy = new EnemyAsset.Builder().AsCopy(original).Build();
             Assert.That(copy.MaxHealth, Is.EqualTo(original.MaxHealth));
         }
@@ -368,7 +369,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Copy_Should_CreateEnemyBaseWithSameParameters()
         {
-            EnemyAsset original = AssetCreator.CreateEnemy();
+            EnemyAsset original = CreateEnemy();
             EnemyAsset copy = new EnemyAsset.Builder().AsCopy(original).Build();
             Assert.That(copy.Title, Is.EqualTo(original.Title));
             Assert.That(copy.Author, Is.EqualTo(original.Author));
@@ -378,7 +379,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Clone_Should_CreateEnemyWithDifferentID()
         {
-            EnemyAsset original = AssetCreator.CreateEnemy();
+            EnemyAsset original = CreateEnemy();
             EnemyAsset clone = new EnemyAsset.Builder().AsClone(original).Build();
             Assert.That(clone.ID, Is.Not.EqualTo(original.ID));
         }
@@ -386,7 +387,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Clone_Should_CreateEnemyBaseWithSameParameters()
         {
-            EnemyAsset original = AssetCreator.CreateEnemy();
+            EnemyAsset original = CreateEnemy();
             EnemyAsset clone = new EnemyAsset.Builder().AsClone(original).Build();
             Assert.That(clone.Title, Is.EqualTo(original.Title));
             Assert.That(clone.Author, Is.EqualTo(original.Author));
@@ -396,7 +397,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Clone_Should_CreateEnemyWithSameParameters()
         {
-            EnemyAsset original = AssetCreator.CreateEnemy();
+            EnemyAsset original = CreateEnemy();
             EnemyAsset clone = new EnemyAsset.Builder().AsClone(original).Build();
             Assert.That(clone.MaxHealth, Is.EqualTo(original.MaxHealth));
         }
@@ -415,7 +416,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Copy_Should_CreateRoomWithSameID()
         {
-            RoomAsset original = AssetCreator.CreateRoom();
+            RoomAsset original = CreateRoom();
             RoomAsset copy = new RoomAsset.Builder().AsCopy(original).Build();
             Assert.That(copy.ID, Is.EqualTo(original.ID));
         }
@@ -423,7 +424,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Copy_Should_CreateRoomWithSameParameters()
         {
-            RoomAsset original = AssetCreator.CreateRoom();
+            RoomAsset original = CreateRoom();
             RoomAsset copy = new RoomAsset.Builder().AsCopy(original).Build();
             Assert.That(copy.TileGrid, Is.EqualTo(original.TileGrid));
         }
@@ -431,7 +432,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Copy_Should_CreateRoomBaseWithSameParameters()
         {
-            RoomAsset original = AssetCreator.CreateRoom();
+            RoomAsset original = CreateRoom();
             RoomAsset copy = new RoomAsset.Builder().AsCopy(original).Build();
             Assert.That(copy.Title, Is.EqualTo(original.Title));
             Assert.That(copy.Author, Is.EqualTo(original.Author));
@@ -441,7 +442,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Clone_Should_CreateRoomWithDifferentID()
         {
-            RoomAsset original = AssetCreator.CreateRoom();
+            RoomAsset original = CreateRoom();
             RoomAsset clone = new RoomAsset.Builder().AsClone(original).Build();
             Assert.That(clone.ID, Is.Not.EqualTo(original.ID));
         }
@@ -449,7 +450,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Clone_Should_CreateRoomBaseWithSameParameters()
         {
-            RoomAsset original = AssetCreator.CreateRoom();
+            RoomAsset original = CreateRoom();
             RoomAsset clone = new RoomAsset.Builder().AsClone(original).Build();
             Assert.That(clone.Title, Is.EqualTo(original.Title));
             Assert.That(clone.Author, Is.EqualTo(original.Author));
@@ -459,7 +460,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Clone_Should_CreateRoomWithSameParameters()
         {
-            RoomAsset original = AssetCreator.CreateRoom();
+            RoomAsset original = CreateRoom();
             RoomAsset clone = new RoomAsset.Builder().AsClone(original).Build();
             Assert.That(clone.TileGrid, Is.EqualTo(original.TileGrid));
         }
@@ -478,7 +479,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Copy_Should_CreateTileWithSameID()
         {
-            TileAsset original = AssetCreator.CreateTile();
+            TileAsset original = CreateTile();
             TileAsset copy = new TileAsset.Builder().AsCopy(original).Build();
             Assert.That(copy.ID, Is.EqualTo(original.ID));
         }
@@ -486,7 +487,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Copy_Should_CreateTileWithSameParameters()
         {
-            TileAsset original = AssetCreator.CreateTile();
+            TileAsset original = CreateTile();
             TileAsset copy = new TileAsset.Builder().AsCopy(original).Build();
             Assert.That(copy.Tile, Is.EqualTo(original.Tile));
         }
@@ -494,7 +495,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Copy_Should_CreateTileBaseWithSameParameters()
         {
-            TileAsset original = AssetCreator.CreateTile();
+            TileAsset original = CreateTile();
             TileAsset copy = new TileAsset.Builder().AsCopy(original).Build();
             Assert.That(copy.Title, Is.EqualTo(original.Title));
             Assert.That(copy.Author, Is.EqualTo(original.Author));
@@ -504,7 +505,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Clone_Should_CreateTileWithDifferentID()
         {
-            TileAsset original = AssetCreator.CreateTile();
+            TileAsset original = CreateTile();
             TileAsset clone = new TileAsset.Builder().AsClone(original).Build();
             Assert.That(clone.ID, Is.Not.EqualTo(original.ID));
         }
@@ -512,7 +513,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Clone_Should_CreateTileBaseWithSameParameters()
         {
-            TileAsset original = AssetCreator.CreateTile();
+            TileAsset original = CreateTile();
             TileAsset clone = new TileAsset.Builder().AsClone(original).Build();
             Assert.That(clone.Title, Is.EqualTo(original.Title));
             Assert.That(clone.Author, Is.EqualTo(original.Author));
@@ -522,7 +523,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Clone_Should_CreateTileWithSameParameters()
         {
-            TileAsset original = AssetCreator.CreateTile();
+            TileAsset original = CreateTile();
             TileAsset clone = new TileAsset.Builder().AsClone(original).Build();
             Assert.That(clone.Tile, Is.EqualTo(original.Tile));
         }
@@ -540,7 +541,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Copy_Should_CreateCampaignWithSameID()
         {
-            CampaignAsset original = AssetCreator.CreateCampaign();
+            CampaignAsset original = CreateCampaign();
             CampaignAsset copy = new CampaignAsset.Builder().AsCopy(original).Build();
             Assert.That(copy.ID, Is.EqualTo(original.ID));
         }
@@ -548,7 +549,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Copy_Should_CreateCampaignWithSameParameters()
         {
-            CampaignAsset original = AssetCreator.CreateCampaign();
+            CampaignAsset original = CreateCampaign();
             CampaignAsset copy = new CampaignAsset.Builder().AsCopy(original).Build();
             Assert.That(copy.AdventureLength, Is.EqualTo(original.AdventureLength));
         }
@@ -556,7 +557,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Copy_Should_CreateCampaignBaseWithSameParameters()
         {
-            CampaignAsset original = AssetCreator.CreateCampaign();
+            CampaignAsset original = CreateCampaign();
             CampaignAsset copy = new CampaignAsset.Builder().AsCopy(original).Build();
             Assert.That(copy.Title, Is.EqualTo(original.Title));
             Assert.That(copy.Author, Is.EqualTo(original.Author));
@@ -566,7 +567,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Clone_Should_CreateCampaignWithDifferentID()
         {
-            CampaignAsset original = AssetCreator.CreateCampaign();
+            CampaignAsset original = CreateCampaign();
             CampaignAsset clone = new CampaignAsset.Builder().AsClone(original).Build();
             Assert.That(clone.ID, Is.Not.EqualTo(original.ID));
         }
@@ -574,7 +575,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Clone_Should_CreateCampaignBaseWithSameParameters()
         {
-            CampaignAsset original = AssetCreator.CreateCampaign();
+            CampaignAsset original = CreateCampaign();
             CampaignAsset clone = new CampaignAsset.Builder().AsClone(original).Build();
             Assert.That(clone.Title, Is.EqualTo(original.Title));
             Assert.That(clone.Author, Is.EqualTo(original.Author));
@@ -584,7 +585,7 @@ namespace Rogium.Tests.Editors.AssetManipulation
         [Test]
         public void Clone_Should_CreateCampaignWithSameParameters()
         {
-            CampaignAsset original = AssetCreator.CreateCampaign();
+            CampaignAsset original = CreateCampaign();
             CampaignAsset clone = new CampaignAsset.Builder().AsClone(original).Build();
             Assert.That(clone.AdventureLength, Is.EqualTo(original.AdventureLength));
         }

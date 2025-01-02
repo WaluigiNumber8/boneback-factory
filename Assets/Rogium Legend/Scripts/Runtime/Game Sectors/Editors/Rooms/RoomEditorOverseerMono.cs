@@ -254,6 +254,7 @@ namespace Rogium.Editors.Rooms
         public ToolBox<AssetData> Toolbox { get => toolbox; }
         public ObjectGrid<AssetData> GetCurrentGridCopy => new(currentData.Grid);
         public Sprite CurrentGridSprite => grid.ActiveLayerSprite;
+        public int ActiveLayerIndex { get => grid.ActiveLayer; }
 
         [Serializable]
         public struct CursorChangerLayersInfo

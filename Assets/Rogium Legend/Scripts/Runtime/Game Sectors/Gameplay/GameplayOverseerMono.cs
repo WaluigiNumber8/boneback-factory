@@ -42,7 +42,8 @@ namespace Rogium.Gameplay.Core
         {
             base.Awake();
             input = InputSystem.GetInstance();
-            input.EnablePauseMap();
+            input.SwitchToGameplayMaps();
+            input.Pause.Enable();
             try { currentCampaign = new CampaignAsset.Builder().AsCopy(SceneTransferOverseer.GetInstance().PickUpCampaign()).Build(); }
             catch (Exception) { currentCampaign = ExternalLibraryOverseer.Instance.Campaigns[0]; }
         }
@@ -78,8 +79,8 @@ namespace Rogium.Gameplay.Core
             IEnumerator FinishGameCoroutine(Vector2 dir)
             {
                 yield return sequencer.RunEndCoroutine(dir);
-                input.EnableUIMap();
-                input.DisablePauseMap();
+                input.Pause.Disable();
+                input.SwitchToMenuMaps();
                 GAS.SwitchScene(0);
             }
         }
@@ -89,7 +90,8 @@ namespace Rogium.Gameplay.Core
             StartCoroutine(GameOverGameCoroutine());
             IEnumerator GameOverGameCoroutine()
             {
-                input.EnableUIMap();
+                input.Pause.Disable();
+                input.SwitchToMenuMaps();
                 yield return sequencer.RunGameOverCoroutine();
                 GAS.SwitchScene(0);
             }
@@ -101,7 +103,7 @@ namespace Rogium.Gameplay.Core
         public void Pause()
         {
             GameClock.Instance.Pause();
-            input.EnableUIMap();
+            input.SwitchToMenuMaps();
             OnGameplayPause?.Invoke();
         }
 
@@ -116,7 +118,7 @@ namespace Rogium.Gameplay.Core
             IEnumerator EnableMap()
             {
                 yield return new WaitForSeconds(0.1f);
-                input.EnablePlayerMap();
+                input.SwitchToGameplayMaps();
             }
         }
 

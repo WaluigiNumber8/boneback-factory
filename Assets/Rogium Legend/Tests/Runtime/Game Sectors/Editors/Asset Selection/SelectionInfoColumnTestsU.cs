@@ -8,7 +8,7 @@ namespace Rogium.Tests.Editors.AssetSelection
     {
         public static IEnumerator SelectPack(int packIndex = 0)
         {
-            GASButtonActions.OpenSelectionPack();
+            GASActions.OpenSelectionPack();
             yield return null;
             SelectionMenuOverseerMono.GetInstance().CurrentSelector.GetCard(packIndex).SetToggle(true);
             yield return null;
@@ -16,8 +16,8 @@ namespace Rogium.Tests.Editors.AssetSelection
         
         public static IEnumerator OpenPackAndSelectPalette(int packIndex = 0, int paletteIndex = 0)
         {
-            GASButtonActions.OpenSelectionPack();
-            GASButtonActions.OpenEditor(packIndex);
+            GASActions.OpenSelectionPack();
+            GASActions.OpenEditor(packIndex);
             yield return null;
             SelectionMenuOverseerMono.GetInstance().CurrentSelector.GetCard(paletteIndex).SetToggle(true);
             yield return null;
@@ -25,9 +25,9 @@ namespace Rogium.Tests.Editors.AssetSelection
         
         public static IEnumerator OpenPackAndSelectSprite(int packIndex = 0, int spriteIndex = 0)
         {
-            GASButtonActions.OpenSelectionPack();
+            GASActions.OpenSelectionPack();
             ((EditableAssetCardController)SelectionMenuOverseerMono.GetInstance().CurrentSelector.GetCard(packIndex)).Edit();
-            GASButtonActions.OpenSelectionSprite();
+            GASActions.OpenSelectionSprite();
             yield return null;
             SelectionMenuOverseerMono.GetInstance().CurrentSelector.GetCard(spriteIndex).SetToggle(true);
             yield return null;
@@ -35,9 +35,9 @@ namespace Rogium.Tests.Editors.AssetSelection
 
         public static IEnumerator OpenPackAndSelectWeapon(int packIndex = 0, int weaponIndex = 0)
         {
-            GASButtonActions.OpenSelectionPack();
+            GASActions.OpenSelectionPack();
             ((EditableAssetCardController)SelectionMenuOverseerMono.GetInstance().CurrentSelector.GetCard(packIndex)).Edit();
-            GASButtonActions.OpenSelectionWeapon();
+            GASActions.OpenSelectionWeapon();
             yield return null;
             SelectionMenuOverseerMono.GetInstance().CurrentSelector.GetCard(weaponIndex).SetToggle(true);
             yield return null;
@@ -45,9 +45,9 @@ namespace Rogium.Tests.Editors.AssetSelection
 
         public static IEnumerator OpenPackAndSelectProjectile(int packIndex = 0, int projectileIndex = 0)
         {
-            GASButtonActions.OpenSelectionPack();
+            GASActions.OpenSelectionPack();
             ((EditableAssetCardController)SelectionMenuOverseerMono.GetInstance().CurrentSelector.GetCard(packIndex)).Edit();
-            GASButtonActions.OpenSelectionProjectile();
+            GASActions.OpenSelectionProjectile();
             yield return null;
             SelectionMenuOverseerMono.GetInstance().CurrentSelector.GetCard(projectileIndex).SetToggle(true);
             yield return null;
@@ -55,9 +55,9 @@ namespace Rogium.Tests.Editors.AssetSelection
 
         public static IEnumerator OpenPackAndSelectEnemy(int packIndex = 0, int enemyIndex = 0)
         {
-            GASButtonActions.OpenSelectionPack();
+            GASActions.OpenSelectionPack();
             ((EditableAssetCardController)SelectionMenuOverseerMono.GetInstance().CurrentSelector.GetCard(packIndex)).Edit();
-            GASButtonActions.OpenSelectionEnemy();
+            GASActions.OpenSelectionEnemy();
             yield return null;
             SelectionMenuOverseerMono.GetInstance().CurrentSelector.GetCard(enemyIndex).SetToggle(true);
             yield return null;
@@ -65,9 +65,9 @@ namespace Rogium.Tests.Editors.AssetSelection
         
         public static IEnumerator OpenPackAndSelectRoom(int packIndex = 0, int roomIndex = 0)
         {
-            GASButtonActions.OpenSelectionPack();
+            GASActions.OpenSelectionPack();
             ((EditableAssetCardController)SelectionMenuOverseerMono.GetInstance().CurrentSelector.GetCard(packIndex)).Edit();
-            GASButtonActions.OpenSelectionRoom();
+            GASActions.OpenSelectionRoom();
             yield return null;
             SelectionMenuOverseerMono.GetInstance().CurrentSelector.GetCard(roomIndex).SetToggle(true);
             yield return null;
@@ -75,9 +75,9 @@ namespace Rogium.Tests.Editors.AssetSelection
 
         public static IEnumerator OpenPackAndSelectTile(int packIndex = 0, int tileIndex = 0)
         {
-            GASButtonActions.OpenSelectionPack();
+            GASActions.OpenSelectionPack();
             ((EditableAssetCardController)SelectionMenuOverseerMono.GetInstance().CurrentSelector.GetCard(packIndex)).Edit();
-            GASButtonActions.OpenSelectionTile();
+            GASActions.OpenSelectionTile();
             yield return null;
             SelectionMenuOverseerMono.GetInstance().CurrentSelector.GetCard(tileIndex).SetToggle(true);
             yield return null;

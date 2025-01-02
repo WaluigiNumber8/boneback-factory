@@ -54,7 +54,7 @@ namespace Rogium.Tests.UI.Backgrounds
         public IEnumerator Should_ShowEditorBackground_WhenGoToPackSelectionMenu()
         {
             yield return MenuLoader.PrepareSelectionMenu();
-            GASButtonActions.OpenSelectionPack();
+            GASActions.OpenSelectionPack();
             yield return null;
             Assert.That(overseer.IsSetToEditor(), Is.EqualTo(true));
         }
@@ -63,9 +63,9 @@ namespace Rogium.Tests.UI.Backgrounds
         public IEnumerator Should_ShowMainMenuBackground_WhenGoToMainMenuFromPackSelection()
         {
             yield return MenuLoader.PrepareSelectionMenu();
-            GASButtonActions.OpenSelectionPack();
+            GASActions.OpenSelectionPack();
             yield return null;
-            GASButtonActions.ReturnToMainMenuSelection();
+            GASActions.ReturnFromSelectionMenu();
             yield return null;
             Assert.That(overseer.IsSetToMainMenu(), Is.EqualTo(true));
         }
@@ -74,7 +74,7 @@ namespace Rogium.Tests.UI.Backgrounds
         public IEnumerator Should_ShowGameMenuBackground_WhenGoToCampaignSelection()
         {
             yield return MenuLoader.PrepareCampaignSelection();
-            GASButtonActions.OpenSelectionCampaign();
+            GASActions.OpenSelectionCampaign();
             yield return null;
             Assert.That(overseer.IsSetToGameMenu(), Is.EqualTo(true));
         }
@@ -83,9 +83,9 @@ namespace Rogium.Tests.UI.Backgrounds
         public IEnumerator Should_ShowMainMenuBackground_WhenGoToMainMenuFromCampaignSelection()
         {
             yield return MenuLoader.PrepareCampaignSelection();
-            GASButtonActions.OpenSelectionCampaign();
+            GASActions.OpenSelectionCampaign();
             yield return null;
-            GASButtonActions.ReturnToMainMenuSelection();
+            GASActions.ReturnFromSelectionMenu();
             yield return null;
             Assert.That(overseer.IsSetToMainMenu(), Is.EqualTo(true));
         }

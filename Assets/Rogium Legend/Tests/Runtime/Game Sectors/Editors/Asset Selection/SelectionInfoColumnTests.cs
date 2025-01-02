@@ -14,7 +14,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.UI;
-using static Rogium.Tests.Editors.AssetCreator;
+using static Rogium.Tests.Core.TUtilsAssetCreator;
 using static Rogium.Tests.Editors.AssetSelection.SelectionInfoColumnTestsU;
 
 namespace Rogium.Tests.Editors.AssetSelection
@@ -140,8 +140,8 @@ namespace Rogium.Tests.Editors.AssetSelection
         {
             yield return OpenPackAndSelectEnemy();
             yield return MenuLoader.PrepareEnemyEditor(false);
-            GASButtonActions.OpenEditorEnemy(0);
-            GASButtonActions.CancelChangesEnemy();
+            GASActions.OpenEditorEnemy(0);
+            GASActions.CancelChangesEnemy();
             yield return null;
             Assert.That(infoColumn.GetProperty<string>(0).GetComponentInChildren<TextMeshProUGUI>().color, Is.EqualTo(ThemeOverseerMono.GetInstance().GetThemeData(ThemeType.Blue).Fonts.general.color));
         }

@@ -25,20 +25,20 @@ namespace Rogium.Tests.Editors.Sprites
         public static IEnumerator SavePaletteAsNewAndConfirm()
         {
             yield return UpdateColorSlot(Color.blue);
-            GASButtonActions.SavePaletteAsNew();
+            GASActions.SavePaletteAsNew();
             yield return null;
             Object.FindFirstObjectByType<ModalWindow>()?.OnAccept();
         }
 
         public static IEnumerator UpdateColorSlotForSpriteWithMissingPalette()
         {
-            SpriteEditorOverseer.Instance.UpdateAsset(AssetCreator.CreateSpriteFromSlot1());
+            SpriteEditorOverseer.Instance.UpdateAsset(TUtilsAssetCreator.CreateSpriteFromSlot1());
             SpriteEditorOverseer.Instance.CompleteEditing();
             PackEditorOverseer.Instance.CurrentPack.Sprites[0].ClearAssociatedPalette();
             PackEditorOverseer.Instance.ActivateSpriteEditor(0);
             yield return null;
             yield return UpdateColorSlot(Color.blue);
-            GASButtonActions.SaveChangesSprite();
+            GASActions.SaveChangesSprite();
             Object.FindFirstObjectByType<ModalWindow>()?.OnAccept();
         }
         

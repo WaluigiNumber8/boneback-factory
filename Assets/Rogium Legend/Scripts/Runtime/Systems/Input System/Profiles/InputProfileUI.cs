@@ -47,7 +47,9 @@
             contextSelect.Disable();
             showTooltip.Disable();
         }
-        
+
+        public override bool IsMapEnabled { get => map.enabled; }
+
         public InputVector2 Navigate { get => navigate; }
         public InputVector2 PointerPosition { get => pointerPosition; }
         public InputButton Select { get => select; }

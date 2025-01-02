@@ -15,7 +15,6 @@ namespace Rogium.Tests.UI.Interactables
     /// </summary>
     public class InputBindingReaderCompositeTests : MenuTestWithInputBase
     {
-        private InputSystem input;
         private Transform bindingParent;
 
         public override IEnumerator SetUp()
@@ -24,8 +23,6 @@ namespace Rogium.Tests.UI.Interactables
             OverseerLoader.LoadThemeOverseer();
             OverseerLoader.LoadUIBuilder();
             OverseerLoader.LoadModalWindowBuilder();
-            input = InputSystem.GetInstance();
-            input.ClearAllInput();
             yield return null;
             bindingParent = new GameObject("Input Bindings").transform;
             bindingParent.SetParent(Object.FindFirstObjectByType<Canvas>().transform);
@@ -59,7 +56,7 @@ namespace Rogium.Tests.UI.Interactables
         {
             reader.StartRebinding();
             yield return new WaitForSecondsRealtime(0.1f);
-            Press(key);
+            i.Press(key);
             yield return new WaitForSecondsRealtime(0.1f);
         }
     }

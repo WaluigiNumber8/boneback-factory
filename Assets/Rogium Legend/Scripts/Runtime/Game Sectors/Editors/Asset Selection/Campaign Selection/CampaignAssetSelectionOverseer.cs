@@ -119,5 +119,7 @@ namespace Rogium.Editors.AssetSelection.Campaigns
             
             wallpaper.Construct(AssetType.Campaign, currentIndex, campaigns[currentIndex]);
         }
+        
+        public int SelectedIndex { get => currentIndex; }
     }
 }

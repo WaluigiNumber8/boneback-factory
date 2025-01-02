@@ -6,7 +6,7 @@ using Rogium.Editors.AssetSelection.UI;
 using Rogium.Tests.Core;
 using UnityEngine;
 using UnityEngine.TestTools;
-using static Rogium.Tests.Editors.AssetCreator;
+using static Rogium.Tests.Core.TUtilsAssetCreator;
 
 namespace Rogium.Tests.Editors.AssetSelection
 {

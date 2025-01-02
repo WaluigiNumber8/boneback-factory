@@ -55,6 +55,8 @@ namespace Rogium.Systems.Input
             map.Disable();
         }
 
+        public override bool IsMapEnabled { get => map.enabled; }
+
         public InputVector2 Movement { get => movement; }
         public InputButton ButtonMain { get => buttonMain; }
         public InputButton ButtonSub { get => buttonSub; }

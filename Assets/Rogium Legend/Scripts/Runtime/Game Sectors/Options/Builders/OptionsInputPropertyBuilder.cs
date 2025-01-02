@@ -30,8 +30,9 @@ namespace Rogium.Options.Core
         {
             //TODO: Enable input bindings when implemented
             b.BuildHeader("UI", parent);
+            // b.BuildInputBinding(input.UI.Navigate.Action, device, parent);
             b.BuildInputBinding(input.UI.Select.Action, device, parent);
-            // b.BuildInputBinding(input.UI.Cancel.Action, device, parent);
+            b.BuildInputBinding(input.UI.Cancel.Action, device, parent);
             b.BuildInputBinding(input.UI.ContextSelect.Action, device, parent);
             // b.BuildInputBinding(input.UI.ShowTooltip.Action, device, parent);
 

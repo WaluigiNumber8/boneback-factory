@@ -33,7 +33,7 @@ namespace Rogium.Tests.Editors.AssetSelection
             selectionMenu = SelectionMenuOverseerMono.GetInstance();
             packBanner = selectionMenu.GetComponentInChildren<PackBanner>();
             currentPack = ExternalLibraryOverseer.Instance.Packs[0];
-            AssetCreator.AddNewPackToLibrary();
+            TUtilsAssetCreator.AddNewPackToLibrary();
             yield return null;
             selectionMenu.Open(AssetType.Pack);
             ((EditableAssetCardController) selectionMenu.CurrentSelector.GetCard(0)).Edit();
@@ -93,7 +93,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         [UnityTest]
         public IEnumerator Should_RefreshBannerIcon_WhenPackIconEdited()
         {
-            PackEditorOverseer.Instance.CurrentPack.Sprites.Add(AssetCreator.CreateSprite(Color.green));
+            PackEditorOverseer.Instance.CurrentPack.Sprites.Add(TUtilsAssetCreator.CreateSprite(Color.green));
             yield return null;
             packBanner.Config();
             yield return null;

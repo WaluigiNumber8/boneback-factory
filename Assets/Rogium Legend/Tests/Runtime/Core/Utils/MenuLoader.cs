@@ -1,4 +1,5 @@
 using System.Collections;
+using RedRats.UI.MenuSwitching;
 using Rogium.Editors.Core;
 using Rogium.Editors.Packs;
 using Rogium.Systems.GASExtension;
@@ -29,7 +30,9 @@ namespace Rogium.Tests.Core
             OverseerLoader.LoadInternalLibrary();
             OverseerLoader.LoadThemeOverseer();
             OverseerLoader.LoadUIBuilder();
+            OverseerLoader.LoadModalWindowBuilder();
             Object.Instantiate(selectionMenuProperty, Object.FindFirstObjectByType<Canvas>().transform);
+            MenuSwitcher.GetInstance().ReloadMenus();
             yield return null;
         }
         
@@ -39,6 +42,7 @@ namespace Rogium.Tests.Core
             OverseerLoader.LoadInternalLibrary();
             OverseerLoader.LoadThemeOverseer();
             Object.Instantiate(mainMenuProperty, Object.FindFirstObjectByType<Canvas>().transform);
+            MenuSwitcher.GetInstance().ReloadMenus();
             yield return null;
         }
         
@@ -50,6 +54,7 @@ namespace Rogium.Tests.Core
             OverseerLoader.LoadModalWindowBuilder();
             OverseerLoader.LoadUIBuilder();
             Object.Instantiate(optionsMenuProperty, Object.FindFirstObjectByType<Canvas>().transform);
+            MenuSwitcher.GetInstance().ReloadMenus();
             yield return null;
         }
 
@@ -59,6 +64,7 @@ namespace Rogium.Tests.Core
         public static IEnumerator PreparePaletteEditor(bool openEditor = true)
         {
             Object.Instantiate(paletteEditorProperty, Object.FindFirstObjectByType<Canvas>().transform);
+            MenuSwitcher.GetInstance().ReloadMenus();
             yield return null;
             if (!openEditor) yield break; 
             PackEditorOverseer.Instance.ActivatePaletteEditor(0);
@@ -72,6 +78,7 @@ namespace Rogium.Tests.Core
         {
             OverseerLoader.LoadThemeOverseer();
             Object.Instantiate(spriteEditorProperty, Object.FindFirstObjectByType<Canvas>().transform);
+            MenuSwitcher.GetInstance().ReloadMenus();
             yield return null;
             if (!openEditor) yield break; 
             PackEditorOverseer.Instance.ActivateSpriteEditor(0);
@@ -88,6 +95,7 @@ namespace Rogium.Tests.Core
             OverseerLoader.LoadThemeOverseer();
             
             Object.Instantiate(propertyEditorProperty, Object.FindFirstObjectByType<Canvas>().transform);
+            MenuSwitcher.GetInstance().ReloadMenus();
             yield return null;
             if (!openEditor) yield break; 
             PackEditorOverseer.Instance.ActivateWeaponEditor(0);
@@ -104,6 +112,7 @@ namespace Rogium.Tests.Core
             OverseerLoader.LoadThemeOverseer();
             
             Object.Instantiate(propertyEditorProperty, Object.FindFirstObjectByType<Canvas>().transform);
+            MenuSwitcher.GetInstance().ReloadMenus();
             yield return null;
             if (!openEditor) yield break; 
             PackEditorOverseer.Instance.ActivateProjectileEditor(0);
@@ -119,6 +128,7 @@ namespace Rogium.Tests.Core
             OverseerLoader.LoadThemeOverseer();
             
             Object.Instantiate(propertyEditorProperty, Object.FindFirstObjectByType<Canvas>().transform);
+            MenuSwitcher.GetInstance().ReloadMenus();
             yield return null;
             if (!openEditor) yield break; 
             PackEditorOverseer.Instance.ActivateEnemyEditor(0);
@@ -135,6 +145,7 @@ namespace Rogium.Tests.Core
             OverseerLoader.LoadThemeOverseer();
             
             Object.Instantiate(roomEditorProperty, Object.FindFirstObjectByType<Canvas>().transform);
+            MenuSwitcher.GetInstance().ReloadMenus();
             yield return null;
             if (!openEditor) yield break; 
             PackEditorOverseer.Instance.ActivateRoomEditor(0);
@@ -151,6 +162,7 @@ namespace Rogium.Tests.Core
             OverseerLoader.LoadThemeOverseer();
 
             Object.Instantiate(propertyEditorProperty, Object.FindFirstObjectByType<Canvas>().transform);
+            MenuSwitcher.GetInstance().ReloadMenus();
             yield return null;
             if (!openEditor) yield break; 
             PackEditorOverseer.Instance.ActivateTileEditor(0);
@@ -162,9 +174,10 @@ namespace Rogium.Tests.Core
             OverseerLoader.LoadThemeOverseer();
             
             Object.Instantiate(campaignEditorProperty, Object.FindFirstObjectByType<Canvas>().transform);
+            MenuSwitcher.GetInstance().ReloadMenus();
             yield return null;
             if (!openEditor) yield break;
-            yield return AssetCreator.CreateAndAssignCampaign();
+            yield return TUtilsAssetCreator.CreateAndAssignCampaign();
         }
         
         public static IEnumerator PrepareCampaignSelection()
@@ -174,6 +187,7 @@ namespace Rogium.Tests.Core
             OverseerLoader.LoadThemeOverseer();
             
             Object.Instantiate(campaignSelectionProperty, Object.FindFirstObjectByType<Canvas>().transform);
+            MenuSwitcher.GetInstance().ReloadMenus();
             yield return null;
         }
     }

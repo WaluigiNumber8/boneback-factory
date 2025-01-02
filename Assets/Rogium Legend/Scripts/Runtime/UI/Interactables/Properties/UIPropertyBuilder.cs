@@ -278,8 +278,8 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="isDisabled">Initialize the property as a non-interactable</param>
         public void BuildInputBinding(InputAction action, InputDeviceType device, Transform parent, bool useAlt = true, bool isDisabled = false)
         {
-            int bindingIndex = InputSystem.GetInstance().GetBindingIndexByDevice(action, device);
-            int bindingIndexAlt = useAlt ? InputSystem.GetInstance().GetBindingIndexByDevice(action, device, true) : -1;
+            int bindingIndex = InputSystemUtils.GetBindingIndexByDevice(action, device);
+            int bindingIndexAlt = useAlt ? InputSystemUtils.GetBindingIndexByDevice(action, device, true) : -1;
             
             //If action is composite, spawn for each binding
             if (action.bindings[bindingIndex].isPartOfComposite)

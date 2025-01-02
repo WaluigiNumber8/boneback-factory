@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using RedRats.Core;
-using Rogium.Options.Core;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -12,13 +11,16 @@ namespace Rogium.Systems.Input
     /// <summary>
     /// Overseers all input profiles and deals with their switching.
     /// </summary>
+    [DefaultExecutionOrder(-50)]
     public class InputSystem : PersistentMonoSingleton<InputSystem>
     {
         private EventSystem eventSystem;
         private RogiumInputActions input;
+        
         private InputProfilePlayer inputPlayer;
         private InputProfileUI inputUI;
         private InputProfilePause inputPause;
+        private InputProfileShortcuts inputShortcuts;
         
         private Vector2 pointerPosition;
 
@@ -33,37 +35,54 @@ namespace Rogium.Systems.Input
 
         public void ClearAllInput()
         {
+            Shortcuts?.Disable();
             input = new RogiumInputActions();
             inputPlayer = new InputProfilePlayer(input);
             inputUI = new InputProfileUI(input);
             inputPause = new InputProfilePause(input);
+            inputShortcuts = new InputProfileShortcuts(input);
+            Shortcuts.Enable();
         }
 
-        /// <summary>
-        /// Enables the UI Action Map.
-        /// </summary>
-        public void EnableUIMap()
+        public void SwitchToGameplayMaps()
         {
-            DisableAll();
-            inputUI.Enable();
+            UI.Disable();
+            Shortcuts.Disable();
+            Player.Enable();
         }
         
-        /// <summary>
-        /// Enables the Player Action Map.
-        /// </summary>
-        public void EnablePlayerMap()
+        public void SwitchToMenuMaps()
         {
-            DisableAll();
-            inputPlayer.Enable();
+            Player.Disable();
+            Shortcuts.Enable();
+            UI.Enable();
         }
         
-        public void EnablePauseMap()
-        {
-            DisableAll();
-            inputPause.Enable();
-        }
-        
-        public void DisablePauseMap() => inputPause.Disable();
+        // public void EnableUIMap()
+        // {
+        //     DisableAll();
+        //     inputUI.Enable();
+        // }
+        //
+        // public void EnablePlayerMap()
+        // {
+        //     DisableAll();
+        //     inputPlayer.Enable();
+        // }
+        //
+        // public void EnablePauseMap()
+        // {
+        //     DisableAll();
+        //     inputPause.Enable();
+        // }
+        //
+        // public void EnableShortcutsMap()
+        // {
+        //     inputShortcuts.Enable();
+        // }
+        //
+        // public void DisablePauseMap() => inputPause.Disable();
+        // public void DisableShortcutsMap() => inputShortcuts.Disable();
 
         public (InputAction, int) FindDuplicateBinding(InputAction action, int bindingIndex)
         {
@@ -96,52 +115,14 @@ namespace Rogium.Systems.Input
             }
         }
         
-        public int GetBindingIndexByDevice(InputAction action, InputDeviceType device, bool getSecondary = false)
-        {
-            return device switch
-            {
-                InputDeviceType.Keyboard => GetBindingIndex(new InputBinding(groups: KeyboardSchemeGroup, path: default)),
-                InputDeviceType.Gamepad => GetBindingIndex(new InputBinding(groups: GamepadSchemeGroup, path: default)),
-                _ => throw new System.ArgumentOutOfRangeException(nameof(device), device, null)
-            };
-
-            int GetBindingIndex(InputBinding group)
-            {
-                ReadOnlyArray<InputBinding> bindings = action.bindings;
-                bool waitForComposite = false;
-                for (int i = 0; i < bindings.Count; ++i)
-                {
-                    InputBinding b = bindings[i];
-                    if (b.isComposite) waitForComposite = false;
-                    if (!group.Matches(b)) continue;
-                    if (waitForComposite) continue;
-                    if (getSecondary)
-                    {
-                        getSecondary = false;
-                        if (b.isPartOfComposite) waitForComposite = true;
-                        continue;
-                    }
-                    return i;
-                }
-                return -1;
-            }
-        }
-        
-        /// <summary>
-        /// Disables all Action Maps except UI.
-        /// </summary>
-        private void DisableAll()
-        {
-            inputPlayer.Disable();
-        }
+        public InputAction GetAction(InputAction action) => input.FindAction(action.name);
         
         private void UpdatePointerPosition(Vector2 value) => pointerPosition = value;
-
+        
         public Vector2 PointerPosition { get => pointerPosition; }
         public InputProfilePlayer Player { get => inputPlayer; }
         public InputProfileUI UI { get => inputUI; }
         public InputProfilePause Pause { get => inputPause; }
-        public string KeyboardSchemeGroup { get => input.KeyboardMouseScheme.bindingGroup; }
-        public string GamepadSchemeGroup { get => input.GamepadScheme.bindingGroup; }
+        public InputProfileShortcuts Shortcuts { get => inputShortcuts; }
     }
 }

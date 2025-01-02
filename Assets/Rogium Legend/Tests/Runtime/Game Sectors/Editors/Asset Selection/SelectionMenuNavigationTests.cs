@@ -8,7 +8,7 @@ using Rogium.Editors.Packs;
 using Rogium.Systems.GASExtension;
 using Rogium.Tests.Core;
 using UnityEngine.TestTools;
-using static Rogium.Tests.Editors.AssetCreator;
+using static Rogium.Tests.Core.TUtilsAssetCreator;
 
 namespace Rogium.Tests.Editors.AssetSelection
 {
@@ -37,11 +37,11 @@ namespace Rogium.Tests.Editors.AssetSelection
         [UnityTest]
         public IEnumerator Should_OpenForPalettes_WhenOpenPackThenPalettesThenPackThenPalettes()
         {
-            GASButtonActions.OpenSelectionPack();
-            GASButtonActions.OpenEditor(0);
+            GASActions.OpenSelectionPack();
+            GASActions.OpenEditor(0);
             yield return null;
-            GASButtonActions.OpenSelectionPack();
-            GASButtonActions.OpenEditor(1);
+            GASActions.OpenSelectionPack();
+            GASActions.OpenEditor(1);
             yield return null;
             Assert.That(selectionMenu.CurrentType, Is.EqualTo(AssetType.Palette));
         }
@@ -49,11 +49,11 @@ namespace Rogium.Tests.Editors.AssetSelection
         [UnityTest]
         public IEnumerator Should_ContainOnlyPalettesFromCurrentPack_WhenOpenPackThenPalettesThenPackThenPalettes()
         {
-            GASButtonActions.OpenSelectionPack();
-            GASButtonActions.OpenEditor(0);
+            GASActions.OpenSelectionPack();
+            GASActions.OpenEditor(0);
             yield return null;
-            GASButtonActions.OpenSelectionPack();
-            GASButtonActions.OpenEditor(1);
+            GASActions.OpenSelectionPack();
+            GASActions.OpenEditor(1);
             yield return null;
             Assert.That(selectionMenu.CurrentSelector.Content.ActiveChildCount(), Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Palettes.Count + 1));
         }
@@ -61,12 +61,12 @@ namespace Rogium.Tests.Editors.AssetSelection
         [UnityTest]
         public IEnumerator Should_OpenForPalettes_WhenOpenPackThenPalettesThenSpritesThenPackThenPalettes()
         {
-            GASButtonActions.OpenSelectionPack();
-            GASButtonActions.OpenEditor(0);
-            GASButtonActions.OpenSelectionSprite();
+            GASActions.OpenSelectionPack();
+            GASActions.OpenEditor(0);
+            GASActions.OpenSelectionSprite();
             yield return null;
-            GASButtonActions.OpenSelectionPack();
-            GASButtonActions.OpenEditor(1);
+            GASActions.OpenSelectionPack();
+            GASActions.OpenEditor(1);
             yield return null;
             Assert.That(selectionMenu.CurrentType, Is.EqualTo(AssetType.Palette));
         }
@@ -74,12 +74,12 @@ namespace Rogium.Tests.Editors.AssetSelection
         [UnityTest]
         public IEnumerator Should_ContainOnlyPalettesFromCurrentPack_WhenOpenPackThenPalettesThenSpritesThenPackThenPalettes()
         {
-            GASButtonActions.OpenSelectionPack();
-            GASButtonActions.OpenEditor(0);
-            GASButtonActions.OpenSelectionSprite();
+            GASActions.OpenSelectionPack();
+            GASActions.OpenEditor(0);
+            GASActions.OpenSelectionSprite();
             yield return null;
-            GASButtonActions.OpenSelectionPack();
-            GASButtonActions.OpenEditor(1);
+            GASActions.OpenSelectionPack();
+            GASActions.OpenEditor(1);
             yield return null;
             Assert.That(selectionMenu.CurrentSelector.Content.ActiveChildCount(), Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Palettes.Count + 1));
         }

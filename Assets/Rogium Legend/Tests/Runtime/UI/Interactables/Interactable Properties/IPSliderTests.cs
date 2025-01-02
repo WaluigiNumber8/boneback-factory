@@ -55,7 +55,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
             slider.GetComponentInChildren<Slider>().onValueChanged.Invoke(0.5f);
             yield return null;
             ActionHistorySystem.ForceEndGrouping();
-            ActionHistorySystem.UndoLast();
+            ActionHistorySystem.Undo();
             yield return null;
 
             Assert.That(slider.PropertyValue, Is.EqualTo(0f));

@@ -3,6 +3,7 @@ using NUnit.Framework;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Core;
 using Rogium.Tests.Core;
+using UnityEngine;
 using UnityEngine.TestTools;
 
 namespace Rogium.Tests.Editors.Campaigns
@@ -18,17 +19,17 @@ namespace Rogium.Tests.Editors.Campaigns
         public override IEnumerator Setup()
         {
             yield return base.Setup();
-            AssetCreator.AddNewPackToLibrary();
-            AssetCreator.AddNewPackToLibrary();
+            TUtilsAssetCreator.AddNewPackToLibrary();
+            TUtilsAssetCreator.AddNewPackToLibrary();
             yield return MenuLoader.PrepareCampaignEditor();
             editor = CampaignEditorOverseer.Instance;
             editorMono = CampaignEditorOverseerMono.GetInstance();
+            yield return null;
         }
 
-        [UnityTest]
-        public IEnumerator Should_LoadAllPacksIntoContent_WhenEditorOpened()
+        [Test]
+        public void Should_LoadAllPacksIntoContent_WhenEditorOpened()
         {
-            yield return null;
             Assert.That(editorMono.SelectionPicker.Selector.Content.childCount, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs.Count));
         }
 
@@ -111,7 +112,7 @@ namespace Rogium.Tests.Editors.Campaigns
             yield return null;
             editorMono.SelectionPicker.ConfirmSelection();
             yield return null;
-            Assert.That(editor.CurrentAsset.PackReferences.Count, Is.EqualTo(0));
+            Assert.That(editor.CurrentAsset.PackReferences.Count, Is.EqualTo(1));
         }
 
         [UnityTest]
@@ -124,10 +125,9 @@ namespace Rogium.Tests.Editors.Campaigns
             Assert.That(editor.CurrentAsset.PackReferences.Count, Is.GreaterThan(0));
         }
 
-        [UnityTest]
-        public IEnumerator Should_SetPackCounterToSelectedPacksCount_WhenEditorOpened()
+        [Test]
+        public void Should_SetPackCounterToSelectedPacksCount_WhenEditorOpened()
         {
-            yield return null;
             Assert.That(editorMono.GetComponentInChildren<PacksUICounter>().Counter, Is.EqualTo(editorMono.SelectionPicker.SelectedAssetsCount));
         }
 

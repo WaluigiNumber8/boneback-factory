@@ -8,7 +8,7 @@ using Rogium.UserInterface.Interactables.Properties;
 using TMPro;
 using UnityEngine;
 using UnityEngine.TestTools;
-using static Rogium.Tests.Editors.AssetCreator;
+using static Rogium.Tests.Core.TUtilsAssetCreator;
 using static Rogium.Tests.UI.Interactables.Properties.IPAssetEmblemListTestsU;
 
 namespace Rogium.Tests.UI.Interactables.Properties

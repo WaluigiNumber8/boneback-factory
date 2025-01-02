@@ -68,7 +68,7 @@ namespace Rogium.Editors.Campaign
                 return This;
             }
 
-            public Builder WithPackReferences(IList<string> packReferences)
+            public Builder WithPackReferences(ISet<string> packReferences)
             {
                 Asset.packReferences = new HashSet<string>(packReferences);
                 return This;

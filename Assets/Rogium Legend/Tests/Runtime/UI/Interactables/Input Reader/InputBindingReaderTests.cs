@@ -2,7 +2,6 @@
 using NUnit.Framework;
 using RedRats.UI.ModalWindows;
 using Rogium.Editors.Core.Defaults;
-using Rogium.Systems.ActionHistory;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables;
 using UnityEngine;
@@ -11,7 +10,6 @@ using UnityEngine.InputSystem.Controls;
 using UnityEngine.TestTools;
 using UnityEngine.UI;
 using static Rogium.Tests.UI.Interactables.InputBindingReaderTestsU;
-using InputSystem = Rogium.Systems.Input.InputSystem;
 
 namespace Rogium.Tests.UI.Interactables
 {
@@ -21,7 +19,6 @@ namespace Rogium.Tests.UI.Interactables
     public class InputBindingReaderTests : MenuTestWithInputBase
     {
         private InputBindingReader inputReader;
-        private InputSystem input;
 
         public override IEnumerator SetUp()
         {
@@ -29,8 +26,6 @@ namespace Rogium.Tests.UI.Interactables
             OverseerLoader.LoadThemeOverseer();
             OverseerLoader.LoadUIBuilder();
             OverseerLoader.LoadModalWindowBuilder();
-            input = InputSystem.GetInstance();
-            input.ClearAllInput();
             yield return null;
             inputReader = BuildInputReader(input.Player.ButtonMain.Action);
         }
@@ -220,7 +215,7 @@ namespace Rogium.Tests.UI.Interactables
         {
             inputReader.StartRebinding();
             yield return new WaitForSecondsRealtime(0.1f);
-            Press(key);
+            i.Press(key);
             yield return new WaitForSecondsRealtime(0.1f);
         }
     }

@@ -46,7 +46,7 @@ namespace Rogium.Systems.ActionHistory
             assetDetector.MarkAsEdited();
         }
 
-        public static void UndoLast()
+        public static void Undo()
         {
             //If there is a group open, add it to undo
             if (currentGroup != null) AddCurrentGroupToUndo();
@@ -57,7 +57,7 @@ namespace Rogium.Systems.ActionHistory
             newestAction.Undo();
         }
 
-        public static void RedoLast()
+        public static void Redo()
         {
             if (redoHistory.Count == 0) return;
 

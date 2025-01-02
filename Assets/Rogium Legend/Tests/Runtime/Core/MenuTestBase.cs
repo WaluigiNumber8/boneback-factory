@@ -14,6 +14,7 @@ using Rogium.ExternalStorage;
 using Rogium.ExternalStorage.Serialization;
 using Rogium.Options.Core;
 using Rogium.Systems.ActionHistory;
+using Rogium.Systems.Input;
 using Rogium.Tests.Editors;
 using UnityEngine.TestTools;
 
@@ -35,7 +36,8 @@ namespace Rogium.Tests.Core
             ExternalLibraryOverseer.Instance.ClearPacks();
             ExternalLibraryOverseer.Instance.ClearCampaigns();
             ActionHistorySystem.ClearHistory();
-            yield return AssetCreator.CreateAndAssignPack();
+            InputSystem.GetInstance().ClearAllInput();
+            yield return TUtilsAssetCreator.CreateAndAssignPack();
         }
 
         private static void PrepareExternalStorageSubstitute()

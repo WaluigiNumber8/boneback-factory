@@ -19,6 +19,12 @@ namespace Rogium.Systems.Toolbox
 
         private ToolType currentToolType;
 
+        public void SwitchToolSelection() => SwitchTool(ToolType.Selection);
+        public void SwitchToolBrush() => SwitchTool(ToolType.Brush);
+        public void SwitchToolEraser() => SwitchTool(ToolType.Eraser);
+        public void SwitchToolBucket() => SwitchTool(ToolType.Fill);
+        public void SwitchToolPicker() => SwitchTool(ToolType.ColorPicker);
+        
         public void SwitchTool(ToolType toolType)
         {
             if (currentToolType == toolType) return;

@@ -23,7 +23,9 @@
             pause.Disable();
             map.Disable();
         }
-        
+
+        public override bool IsMapEnabled { get => map.enabled; }
+
         public InputButton Pause { get => pause; }
     }
 }

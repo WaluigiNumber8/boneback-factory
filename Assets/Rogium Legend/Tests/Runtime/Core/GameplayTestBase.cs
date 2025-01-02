@@ -18,7 +18,7 @@ namespace Rogium.Tests.Core
             SceneLoader.LoadGameplayTestingScene();
             ExternalLibraryOverseer.Instance.ClearCampaigns();
             ActionHistorySystem.ClearHistory();
-            AssetCreator.AddNewCampaignToLibrary();
+            TUtilsAssetCreator.AddNewCampaignToLibrary();
             yield return null;
         }
     }

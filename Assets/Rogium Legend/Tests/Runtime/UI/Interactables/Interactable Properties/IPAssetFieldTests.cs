@@ -29,7 +29,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
             OverseerLoader.LoadInternalLibrary();
             
             yield return null;
-            yield return AssetCreator.CreateAndAssignPack();
+            yield return TUtilsAssetCreator.CreateAndAssignPack();
             OverseerLoader.LoadModalWindowBuilder();
             OverseerLoader.LoadThemeOverseer();
             
@@ -70,7 +70,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
         {
             yield return FillAssetField();
             ActionHistorySystem.ForceEndGrouping();
-            ActionHistorySystem.UndoLast();
+            ActionHistorySystem.Undo();
 
             Assert.That(assetField.PropertyValue, Is.EqualTo(new EmptyAsset()));
         }

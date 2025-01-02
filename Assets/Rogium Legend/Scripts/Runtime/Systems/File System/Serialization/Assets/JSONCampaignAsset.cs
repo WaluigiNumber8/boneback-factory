@@ -77,7 +77,7 @@ namespace Rogium.ExternalStorage.Serialization
                 .WithCreationDate(DateTime.Parse(creationDate))
                 .WithAdventureLength(adventureLength)
                 .WithDataPack(dataPack)
-                .WithPackReferences(packReferences)
+                .WithPackReferences(packReferences.ToHashSet())
                 .Build();
         }
     }
