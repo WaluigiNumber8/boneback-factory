@@ -10,7 +10,6 @@ namespace Rogium.Options.Core
     public class OptionsInputPropertyBuilder : UIPropertyContentBuilderBaseColumn2<InputBindingsAsset>
     {
         private readonly InputSystem input;
-        private InputBindingsAsset asset;
 
         public OptionsInputPropertyBuilder(Transform contentMain, Transform contentSecond) : base(contentMain, contentSecond)
         {
@@ -19,7 +18,6 @@ namespace Rogium.Options.Core
 
         public override void Build(InputBindingsAsset asset)
         {
-            this.asset = asset;
             Clear();
             
             BuildFor(InputDeviceType.Keyboard, contentMain);

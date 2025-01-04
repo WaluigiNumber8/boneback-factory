@@ -16,11 +16,14 @@ namespace Rogium.Options.Core
         
         [SerializeField, FoldoutGroup("Columns")] private Transform audioColumn;
         [SerializeField, FoldoutGroup("Columns")] private Transform graphicsColumn;
+        [SerializeField, FoldoutGroup("Columns")] private Transform shortcutKeyboardColumn;
+        [SerializeField, FoldoutGroup("Columns")] private Transform shortcutGamepadColumn;
         [SerializeField, FoldoutGroup("Columns")] private Transform inputKeyboardColumn;
         [SerializeField, FoldoutGroup("Columns")] private Transform inputGamepadColumn;
         
         private OptionsAudioPropertyBuilder audioPropertyBuilder;
         private OptionsGraphicsPropertyBuilder graphicsPropertyBuilder;
+        private OptionsShortcutPropertyBuilder shortcutPropertyBuilder;
         private OptionsInputPropertyBuilder inputPropertyBuilder;
         
         private OptionsMenuOverseer editor;
@@ -31,6 +34,7 @@ namespace Rogium.Options.Core
             editor = OptionsMenuOverseer.Instance;
             audioPropertyBuilder = new OptionsAudioPropertyBuilder(audioColumn, audioOptions);
             graphicsPropertyBuilder = new OptionsGraphicsPropertyBuilder(graphicsColumn, graphicsOptions);
+            shortcutPropertyBuilder = new OptionsShortcutPropertyBuilder(shortcutKeyboardColumn, shortcutGamepadColumn);
             inputPropertyBuilder = new OptionsInputPropertyBuilder(inputKeyboardColumn, inputGamepadColumn);
         }
 
@@ -71,6 +75,7 @@ namespace Rogium.Options.Core
         {
             audioPropertyBuilder.Build(asset.Preferences);
             graphicsPropertyBuilder.Build(asset.Preferences);
+            shortcutPropertyBuilder.Build(asset.Preferences);
             inputPropertyBuilder.Build(asset.InputBindings);
         }
     }
