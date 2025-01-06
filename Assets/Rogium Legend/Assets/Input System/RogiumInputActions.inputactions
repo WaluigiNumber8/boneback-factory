@@ -1594,9 +1594,9 @@
             ],
             "bindings": [
                 {
-                    "name": "One Modifier",
-                    "id": "9a56c73c-8acc-43d1-8ab7-45b22aae02ca",
-                    "path": "OneModifier",
+                    "name": "Two Optional Modifiers",
+                    "id": "cb76c16b-46d4-4b22-9041-2daf56144451",
+                    "path": "TwoOptionalModifiers",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -1605,8 +1605,8 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "modifier",
-                    "id": "d5268ead-3d78-4e6c-b561-bc64184d935e",
+                    "name": "modifier1",
+                    "id": "2096e56b-190e-4fe1-a42d-15c284c5da51",
                     "path": "<Keyboard>/ctrl",
                     "interactions": "",
                     "processors": "",
@@ -1616,8 +1616,19 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "binding",
-                    "id": "f4e73f0d-31ad-42fd-a9de-2c05794d5043",
+                    "name": "modifier2",
+                    "id": "c02b7463-bb1b-4192-9a64-b0eab766d083",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard + Mouse",
+                    "action": "Undo",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "5a1dc050-7e4e-410e-b787-59a3480a8af3",
                     "path": "<Keyboard>/y",
                     "interactions": "",
                     "processors": "",
@@ -1627,9 +1638,9 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "One Modifier",
-                    "id": "998f6af4-5418-4c0b-9d74-e00596bc0f63",
-                    "path": "OneModifier",
+                    "name": "Two Optional Modifiers",
+                    "id": "a49a4f2f-a844-4068-aa57-cd5f4fcd41fa",
+                    "path": "TwoOptionalModifiers",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -1638,8 +1649,8 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "modifier",
-                    "id": "9d17e401-4480-46cd-8747-7f6d22c7ec60",
+                    "name": "modifier1",
+                    "id": "15f88da8-102e-4c1e-aa15-5c9ecbd684e5",
                     "path": "<Keyboard>/ctrl",
                     "interactions": "",
                     "processors": "",
@@ -1649,8 +1660,19 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "binding",
-                    "id": "dfcdb8b0-45de-4fc2-9dbe-045079d230fa",
+                    "name": "modifier2",
+                    "id": "3b48c0e8-2090-465f-a291-35e24153d26a",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard + Mouse",
+                    "action": "Redo",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "d1a31edc-04aa-4b3e-bdf6-27125e026e82",
                     "path": "<Keyboard>/z",
                     "interactions": "",
                     "processors": "",

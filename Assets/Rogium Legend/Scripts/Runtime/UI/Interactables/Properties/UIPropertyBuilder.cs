@@ -5,6 +5,7 @@ using RedRats.Systems.Themes;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Systems.Input;
+using Rogium.Systems.Shortcuts;
 using Rogium.Systems.ThemeSystem;
 using Sirenix.OdinInspector;
 using TMPro;
@@ -36,6 +37,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         [Title("Other properties")]
         [SerializeField] private ContentBlockInfo contentBlocks;
         [SerializeField] private VerticalVariantsInfo verticalVariants;
+        private InputBinding binding;
 
         #region Properties
 
@@ -280,13 +282,21 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             int bindingIndex = InputSystemUtils.GetBindingIndexByDevice(action, device);
             int bindingIndexAlt = useAlt ? InputSystemUtils.GetBindingIndexByDevice(action, device, true) : -1;
+            binding = action.bindings[bindingIndex];
             
             //If action is composite, spawn for each binding
-            if (action.bindings[bindingIndex].isPartOfComposite)
+            if (binding.isPartOfComposite)
             {
-                while (bindingIndex < action.bindings.Count && action.bindings[bindingIndex].isPartOfComposite)
+                //If is a modifier composite, spawn only one
+                if (action.bindings[--bindingIndex].path == nameof(TwoOptionalModifiersComposite).Replace("Composite", ""))
                 {
-                    string title = $"{action.name}{action.bindings[bindingIndex].name.Capitalize()}";
+                    ConstructInputBinding(action.name, true);
+                    return;
+                }
+                //Any other type spawn for each binding
+                while (bindingIndex < action.bindings.Count && binding.isPartOfComposite)
+                {
+                    string title = $"{action.name}{binding.name.Capitalize()}";
                     ConstructInputBinding(title);
                     bindingIndex++;
                     bindingIndexAlt++;
@@ -295,11 +305,11 @@ namespace Rogium.UserInterface.Interactables.Properties
             }
             ConstructInputBinding(action.name);
             
-            void ConstructInputBinding(string title)
+            void ConstructInputBinding(string title, bool useModifiers = false)
             {
                 InteractablePropertyInputBinding inputBinding = Instantiate(inputBindingProperty, parent);
                 inputBinding.name = $"{title} InputBinding";
-                inputBinding.Construct(title, action, bindingIndex, bindingIndexAlt);
+                inputBinding.Construct(title, action, bindingIndex, bindingIndexAlt, useModifiers);
                 inputBinding.SetDisabled(isDisabled);
                 ThemeUpdaterRogium.UpdateInputBinding(inputBinding);
             }

@@ -44,7 +44,7 @@ namespace Rogium.UserInterface.Interactables
             OnRebindEndAny -= Activate;
         }
 
-        public void Construct(InputAction action, int bindingIndex)
+        public void Construct(InputAction action, int bindingIndex, bool useModifiers = false)
         {
             SafetyNet.EnsureIndexWithingCollectionRange(bindingIndex, action.bindings, nameof(action.bindings));
             this.action = action;
