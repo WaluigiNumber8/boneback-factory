@@ -27,8 +27,8 @@ namespace Rogium.Options.Core
         private void BuildFor(InputDeviceType device, Transform parent)
         {
             b.BuildHeader("General", parent);
-            // b.BuildInputBinding(input.Shortcuts.Undo.Action, device, parent);
-            // b.BuildInputBinding(input.Shortcuts.Redo.Action, device, parent);
+            b.BuildInputBinding(input.Shortcuts.Undo.Action, device, parent);
+            b.BuildInputBinding(input.Shortcuts.Redo.Action, device, parent);
             // b.BuildInputBinding(input.Shortcuts.Save.Action, device, parent);
             // b.BuildInputBinding(input.Shortcuts.Cancel.Action, device, parent);
         }

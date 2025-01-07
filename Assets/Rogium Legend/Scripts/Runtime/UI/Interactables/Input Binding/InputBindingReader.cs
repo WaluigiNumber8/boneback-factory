@@ -9,6 +9,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.UI;
 using InputSystem = Rogium.Systems.Input.InputSystem;
 
@@ -141,11 +142,11 @@ namespace Rogium.UserInterface.Interactables
             //If modifiers are not allowed, return the first binding
             if (modifier1Index == -1 || modifier2Index == -1) return new InputBindingCombination(null, null, new InputBinding(operation.candidates[0].path));
             
-            InputBindingCombination newBinding = operation.candidates.Count switch
+            InputBindingCombination newBinding = operation.candidates.Where(c => c is KeyControl).ToList().Count switch
             {
-                1 or 2 => new InputBindingCombination(null, null, new InputBinding(operation.candidates[0].path)),
-                3 => new InputBindingCombination(new InputBinding(operation.candidates[modifier1Index - 1].path), null, new InputBinding(action.bindings[buttonIndex - 1].effectivePath)),
-                _ => new InputBindingCombination(new InputBinding(operation.candidates[modifier1Index - 1].path), new InputBinding(operation.candidates[modifier2Index - 1].path), new InputBinding(operation.candidates[buttonIndex - 1].path))
+                1 => new InputBindingCombination(null, null, new InputBinding(operation.candidates[0].path)),
+                2 => new InputBindingCombination(new InputBinding(operation.candidates[0].path), null, new InputBinding(operation.candidates[1].path)),
+                _ => new InputBindingCombination(new InputBinding(operation.candidates[0].path), new InputBinding(operation.candidates[1].path), new InputBinding(operation.candidates[2].path))
             };
             return newBinding;
         }

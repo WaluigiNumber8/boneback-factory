@@ -1663,6 +1663,50 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""Two Optional Modifiers"",
+                    ""id"": ""50ebbeb1-9ea0-4c43-887d-f0b09443c535"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Undo"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""9460f2ed-857a-4ab8-a1c6-8b9faed6fcb9"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Undo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""4b72bde2-52e7-4290-8eb4-70ee8f17ebf1"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Undo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""0d50d810-9e14-4b74-8083-09d5f08cec7b"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Undo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Two Optional Modifiers"",
                     ""id"": ""a49a4f2f-a844-4068-aa57-cd5f4fcd41fa"",
                     ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
@@ -1701,6 +1745,50 @@ namespace Rogium.Systems.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Redo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Two Optional Modifiers"",
+                    ""id"": ""f465f22c-e344-4b8d-99b6-10986d23a23f"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Redo"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""cd77d98c-5940-4569-8d57-3c1658b2b49c"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Redo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""3639b29c-6b74-4966-8d79-f5e15ba53bfd"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Redo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""b8a7cb39-da47-4998-b159-9c1c5af9990d"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
                     ""action"": ""Redo"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
