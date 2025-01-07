@@ -1,5 +1,6 @@
-﻿using Rogium.UserInterface.Interactables;
-using UnityEditor;
+﻿using Rogium.Systems.Input;
+using Rogium.UserInterface.Interactables;
+using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,13 +8,10 @@ namespace Rogium.Tests.UI.Interactables
 {
     public static class InputBindingReaderTestsU
     {
-        private static readonly InputBindingReader inputReaderProperty = AssetDatabase.LoadAssetAtPath<InputBindingReader>("Assets/Rogium Legend/Prefabs/UI/Interactables/Input Binding Readers/pref_InputBindingReader_Blue.prefab");
-
         public static InputBindingReader BuildInputReader(InputAction action)
         {
-            InputBindingReader reader = Object.Instantiate(inputReaderProperty, Object.FindFirstObjectByType<Canvas>().transform);
-            reader.Construct(action, 0);
-            return reader;
+            UIPropertyBuilder.GetInstance().BuildInputBinding(action, InputDeviceType.Keyboard, Object.FindFirstObjectByType<Canvas>().transform);
+            return Object.FindFirstObjectByType<InputBindingReader>();
         }
     }
 }

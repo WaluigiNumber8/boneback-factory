@@ -70,8 +70,8 @@ namespace Rogium.UserInterface.Interactables
             //Clear the binding
             action.Disable();
             action.ApplyBindingOverride(buttonIndex, "");
-            action.ApplyBindingOverride(modifier1Index, "");
-            action.ApplyBindingOverride(modifier2Index, "");
+            if (modifier1Index != -1) action.ApplyBindingOverride(modifier1Index, "");
+            if (modifier2Index != -1) action.ApplyBindingOverride(modifier2Index, "");
             action.Enable();
             RefreshInputString();
             OnClear?.Invoke();
@@ -138,6 +138,9 @@ namespace Rogium.UserInterface.Interactables
 
         private InputBindingCombination GetBindingCombinationFrom(InputActionRebindingExtensions.RebindingOperation operation)
         {
+            //If modifiers are not allowed, return the first binding
+            if (modifier1Index == -1 || modifier2Index == -1) return new InputBindingCombination(null, null, new InputBinding(operation.candidates[0].path));
+            
             InputBindingCombination newBinding = operation.candidates.Count switch
             {
                 1 or 2 => new InputBindingCombination(null, null, new InputBinding(operation.candidates[0].path)),
@@ -151,8 +154,8 @@ namespace Rogium.UserInterface.Interactables
         {
             lastBinding = binding;
             action.Disable();
-            action.ApplyBindingOverride(modifier1Index, combination.Modifier1.Path);
-            action.ApplyBindingOverride(modifier2Index, combination.Modifier2.Path);
+            if (modifier1Index != -1) action.ApplyBindingOverride(modifier1Index, combination.Modifier1.Path);
+            if (modifier2Index != -1) action.ApplyBindingOverride(modifier2Index, combination.Modifier2.Path);
             action.ApplyBindingOverride(buttonIndex, combination.Button.effectivePath);
             action.Enable();
             RefreshInputString();
