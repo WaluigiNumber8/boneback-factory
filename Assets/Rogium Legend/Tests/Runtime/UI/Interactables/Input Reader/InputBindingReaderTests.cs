@@ -84,13 +84,13 @@ namespace Rogium.Tests.UI.Interactables
         public IEnumerator Should_BeBoundToNewInput_WhenClicked()
         {
             yield return BindKey(keyboard.spaceKey);
-            Assert.That(inputReader.Binding.ToDisplayString(), Is.EqualTo(keyboard.spaceKey.displayName));
+            Assert.That(inputReader.Binding.DisplayString, Is.EqualTo(keyboard.spaceKey.displayName));
         }
         
         [UnityTest]
         public IEnumerator Should_BeBoundToDifferentInput_WhenClicked()
         {
-            InputBinding original = inputReader.Binding;
+            InputBinding original = inputReader.Binding.Button;
             yield return BindKey(keyboard.spaceKey);
             Assert.That(inputReader.Binding, Is.Not.EqualTo(original));
         }
@@ -105,7 +105,7 @@ namespace Rogium.Tests.UI.Interactables
         [UnityTest]
         public IEnumerator Should_Timeout_WhenNotBoundInTime()
         {
-            InputBinding original = inputReader.Binding;
+            InputBinding original = inputReader.Binding.Button;
             inputReader.StartRebinding();
             yield return new WaitForSecondsRealtime(EditorDefaults.Instance.InputTimeout);
             Assert.That(inputReader.Binding, Is.EqualTo(original));

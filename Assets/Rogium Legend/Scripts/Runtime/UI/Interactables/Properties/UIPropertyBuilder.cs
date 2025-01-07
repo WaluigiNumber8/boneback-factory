@@ -37,7 +37,6 @@ namespace Rogium.UserInterface.Interactables.Properties
         [Title("Other properties")]
         [SerializeField] private ContentBlockInfo contentBlocks;
         [SerializeField] private VerticalVariantsInfo verticalVariants;
-        private InputBinding binding;
 
         #region Properties
 
@@ -282,13 +281,13 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             int bindingIndex = InputSystemUtils.GetBindingIndexByDevice(action, device);
             int bindingIndexAlt = useAlt ? InputSystemUtils.GetBindingIndexByDevice(action, device, true) : -1;
-            binding = action.bindings[bindingIndex];
+            InputBinding binding = action.bindings[bindingIndex];
             
             //If action is composite, spawn for each binding
             if (binding.isPartOfComposite)
             {
                 //If is a modifier composite, spawn only one
-                if (action.bindings[--bindingIndex].path == nameof(TwoOptionalModifiersComposite).Replace("Composite", ""))
+                if (action.bindings[bindingIndex - 1].path == nameof(TwoOptionalModifiersComposite).Replace("Composite", ""))
                 {
                     ConstructInputBinding(action.name, true);
                     return;
@@ -309,7 +308,13 @@ namespace Rogium.UserInterface.Interactables.Properties
             {
                 InteractablePropertyInputBinding inputBinding = Instantiate(inputBindingProperty, parent);
                 inputBinding.name = $"{title} InputBinding";
-                inputBinding.Construct(title, action, bindingIndex, bindingIndexAlt, useModifiers);
+                inputBinding.Construct(title, action, 
+                                       (useModifiers) ? bindingIndex + 2 : bindingIndex,
+                                       (useModifiers) ? bindingIndex : -1,
+                                       (useModifiers) ? bindingIndex + 1 : -1,
+                                       (useModifiers) ? bindingIndexAlt + 2 : bindingIndexAlt, 
+                                       (useModifiers) ? bindingIndexAlt : -1, 
+                                       (useModifiers) ? bindingIndexAlt + 1 : -1);
                 inputBinding.SetDisabled(isDisabled);
                 ThemeUpdaterRogium.UpdateInputBinding(inputBinding);
             }

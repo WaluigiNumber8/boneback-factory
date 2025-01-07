@@ -15,14 +15,14 @@ namespace Rogium.UserInterface.Interactables.Properties
         [SerializeField] private InputBindingReader inputReader;
         [SerializeField] private InputBindingReader inputReaderAlt;
 
-        public void Construct(string title, InputAction action, int bindingIndex, int bindingIndexAlt = -1, bool useModifiers = false)
+        public void Construct(string title, InputAction action, int bindingIndex, int modifier1Index = -1, int modifier2Index = -1, int bindingIndexAlt = -1, int modifier1IndexAlt = -1, int modifier2IndexAlt = -1)
         {
             title = Regex.Replace(title, "([A-Z])", " $1").Trim();
             ConstructTitle(title);
             
-            inputReader.Construct(action, bindingIndex, useModifiers);
+            inputReader.Construct(action, bindingIndex, modifier1Index, modifier2Index);
             inputReaderAlt.gameObject.SetActive(bindingIndexAlt != -1);
-            if (bindingIndexAlt != -1) inputReaderAlt.Construct(action, bindingIndexAlt, useModifiers);
+            if (bindingIndexAlt != -1) inputReaderAlt.Construct(action, bindingIndexAlt, modifier1IndexAlt, modifier2IndexAlt);
         }
         
         public override void SetDisabled(bool isDisabled)

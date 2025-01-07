@@ -39,11 +39,11 @@ namespace Rogium.Tests.UI.Interactables
         [UnityTest]
         public IEnumerator Should_UndoRebinding_WhenUndone()
         {
-            string originalKey = reader.Binding.effectivePath;
+            string originalKey = reader.Binding.DisplayString;
             yield return BindKey(keyboard.lKey);
             ActionHistorySystem.ForceEndGrouping();
             ActionHistorySystem.Undo();
-            Assert.That(reader.Binding.effectivePath, Is.EqualTo(originalKey));
+            Assert.That(reader.Binding.DisplayString, Is.EqualTo(originalKey));
         }
 
         [UnityTest]
@@ -51,9 +51,9 @@ namespace Rogium.Tests.UI.Interactables
         {
             yield return BindKey(keyboard.lKey);
             ActionHistorySystem.ForceEndGrouping();
-            string reboundKey = reader.Binding.effectivePath;
+            string reboundKey = reader.Binding.DisplayString;
             ActionHistorySystem.Undo();
-            Assert.That(reader.Binding.effectivePath, Is.Not.EqualTo(reboundKey));
+            Assert.That(reader.Binding.DisplayString, Is.Not.EqualTo(reboundKey));
         }
 
         [UnityTest]
@@ -61,21 +61,21 @@ namespace Rogium.Tests.UI.Interactables
         {
             yield return BindKey(keyboard.lKey);
             ActionHistorySystem.ForceEndGrouping();
-            string reboundKey = reader.Binding.effectivePath;
+            string reboundKey = reader.Binding.DisplayString;
             ActionHistorySystem.Undo();
             ActionHistorySystem.Redo();
-            Assert.That(reader.Binding.effectivePath, Is.EqualTo(reboundKey));
+            Assert.That(reader.Binding.DisplayString, Is.EqualTo(reboundKey));
         }
 
         [UnityTest]
         public IEnumerator Should_NotEqualToOriginalKey_WhenRedone()
         {
-            string originalKey = reader.Binding.effectivePath;
+            string originalKey = reader.Binding.DisplayString;
             yield return BindKey(keyboard.lKey);
             ActionHistorySystem.ForceEndGrouping();
             ActionHistorySystem.Undo();
             ActionHistorySystem.Redo();
-            Assert.That(reader.Binding.effectivePath, Is.Not.EqualTo(originalKey));
+            Assert.That(reader.Binding.DisplayString, Is.Not.EqualTo(originalKey));
         }
 
         [UnityTest]

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using RedRats.Core;
+using Rogium.UserInterface.Interactables;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -57,46 +58,22 @@ namespace Rogium.Systems.Input
             Shortcuts.Enable();
             UI.Enable();
         }
-        
-        // public void EnableUIMap()
-        // {
-        //     DisableAll();
-        //     inputUI.Enable();
-        // }
-        //
-        // public void EnablePlayerMap()
-        // {
-        //     DisableAll();
-        //     inputPlayer.Enable();
-        // }
-        //
-        // public void EnablePauseMap()
-        // {
-        //     DisableAll();
-        //     inputPause.Enable();
-        // }
-        //
-        // public void EnableShortcutsMap()
-        // {
-        //     inputShortcuts.Enable();
-        // }
-        //
-        // public void DisablePauseMap() => inputPause.Disable();
-        // public void DisableShortcutsMap() => inputShortcuts.Disable();
 
-        public (InputAction, int) FindDuplicateBinding(InputAction action, int bindingIndex)
+        public (InputAction, InputBindingCombination) FindDuplicateBinding(InputAction action, InputBindingCombination bindingCombo)
         {
-            InputBinding newBinding = action.bindings[bindingIndex];
-            foreach (InputBinding binding in action.actionMap.bindings)
+            for (int i = 0; i < action.actionMap.bindings.Count; i++)
             {
-                if (binding.effectivePath.Equals(newBinding.effectivePath) && binding.id != newBinding.id)
-                {
-                    InputAction foundAction = input.FindAction(binding.action);
-                    int foundIndex = foundAction.bindings.IndexOf(b => b.id == binding.id);
-                    return (foundAction, foundIndex);
-                }
+                InputBinding binding = action.actionMap.bindings[i];
+                if (!binding.effectivePath.Equals(bindingCombo.Button.effectivePath) || binding.id == bindingCombo.Button.id) continue;
+                if (!bindingCombo.Modifier1.HasValue || !action.actionMap.bindings[i-1].effectivePath.Equals(bindingCombo.Modifier1.Path) || action.actionMap.bindings[i-1].id == bindingCombo.Modifier1.ID) continue;
+                if (!bindingCombo.Modifier2.HasValue || !action.actionMap.bindings[i-2].effectivePath.Equals(bindingCombo.Modifier2.Path) || action.actionMap.bindings[i-2].id == bindingCombo.Modifier2.ID) continue;
+                    
+                InputAction foundAction = input.FindAction(binding.action);
+                InputBindingCombination foundIndex = new(action.actionMap.bindings[i-2], action.actionMap.bindings[i-1], action.actionMap.bindings[i]);
+                return (foundAction, foundIndex);
             }
-            return (null, -1);
+
+            return (null, new InputBindingCombination());
         }
         
         /// <summary>

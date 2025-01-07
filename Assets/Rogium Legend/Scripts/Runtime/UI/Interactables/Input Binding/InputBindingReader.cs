@@ -19,16 +19,19 @@ namespace Rogium.UserInterface.Interactables
     /// </summary>
     public class InputBindingReader : MonoBehaviour, IPointerClickHandler
     {
-        public static event Action<InputAction, int> OnRebindStartAny, OnRebindEndAny;
+        public static event Action<InputAction, InputBindingCombination> OnRebindStartAny, OnRebindEndAny;
         public event Action OnRebindStart, OnRebindEnd;
         public event Action OnClear;
         
         [SerializeField] private UIInfo ui;
         
         private InputAction action;
-        private int bindingIndex;
         private InputActionRebindingExtensions.RebindingOperation rebindOperation;
-        private InputBinding lastBinding;
+        private InputBindingCombination binding;
+        private InputBindingCombination lastBinding;
+        private int modifier1Index;
+        private int modifier2Index;
+        private int buttonIndex;
 
         private void Awake() => ui.button.onClick.AddListener(StartRebinding);
 
@@ -44,12 +47,17 @@ namespace Rogium.UserInterface.Interactables
             OnRebindEndAny -= Activate;
         }
 
-        public void Construct(InputAction action, int bindingIndex, bool useModifiers = false)
+        public void Construct(InputAction action, int bindingIndex, int modifier1Index = -1, int modifier2Index = -1)
         {
-            SafetyNet.EnsureIndexWithingCollectionRange(bindingIndex, action.bindings, nameof(action.bindings));
+            SafetyNet.EnsureIndexWithingCollectionRange(buttonIndex, action.bindings, nameof(action.bindings));
             this.action = action;
-            this.bindingIndex = bindingIndex;
-            this.lastBinding = action.bindings[bindingIndex];
+            this.modifier1Index = modifier1Index;
+            this.modifier2Index = modifier2Index;
+            this.buttonIndex = bindingIndex;
+            this.binding = new InputBindingCombination((this.modifier1Index != -1) ? action.bindings[this.modifier1Index] : null,
+                                                       (this.modifier2Index != -1) ? action.bindings[this.modifier2Index] : null,
+                                                        action.bindings[buttonIndex]);
+            this.lastBinding = binding;
             ui.ShowBoundInputDisplay();
             RefreshInputString();
         }
@@ -61,7 +69,9 @@ namespace Rogium.UserInterface.Interactables
             
             //Clear the binding
             action.Disable();
-            action.ApplyBindingOverride(bindingIndex, "");
+            action.ApplyBindingOverride(buttonIndex, "");
+            action.ApplyBindingOverride(modifier1Index, "");
+            action.ApplyBindingOverride(modifier2Index, "");
             action.Enable();
             RefreshInputString();
             OnClear?.Invoke();
@@ -74,26 +84,29 @@ namespace Rogium.UserInterface.Interactables
         {
             action.Disable();
             ui.ShowBindingDisplay();
-            OnRebindStartAny?.Invoke(action, bindingIndex);
+            OnRebindStartAny?.Invoke(action, binding);
             OnRebindStart?.Invoke();
-            rebindOperation = action.PerformInteractiveRebinding(bindingIndex)
+            rebindOperation = action.PerformInteractiveRebinding(buttonIndex)
                                     .OnCancel(_ => StopRebinding())  
                                     .OnComplete(FinishRebinding)
+                                    .OnMatchWaitForAnother(EditorDefaults.Instance.InputWaitForAnother)
                                     .WithTimeout(EditorDefaults.Instance.InputTimeout)
                                     .Start();
 
             void FinishRebinding(InputActionRebindingExtensions.RebindingOperation operation)
             {
-                (InputAction duplicateAction, int duplicateIndex) = InputSystem.GetInstance().FindDuplicateBinding(action, bindingIndex);
+                binding = GetBindingCombinationFrom(operation);
+
+                (InputAction duplicateAction, InputBindingCombination duplicateCombination) = InputSystem.GetInstance().FindDuplicateBinding(action, binding);
                 if (duplicateAction != null)
                 {
                     ModalWindowBuilder.GetInstance().OpenWindow(new ModalWindowData.Builder()
                         .WithMessage($"The input is already used in {duplicateAction.name}. Want to rebind?")
-                        .WithAcceptButton("Override", () => OverrideDuplicateBinding(operation, duplicateAction, duplicateIndex))
+                        .WithAcceptButton("Override", () => OverrideDuplicateBinding(operation, duplicateAction, duplicateCombination))
                         .WithDenyButton("Cancel", RevertBinding)
                         .Build());
                 }
-                else ActionHistorySystem.AddAndExecute(new UpdateInputBindingAction(this, operation.action.bindings[bindingIndex].effectivePath, lastBinding.effectivePath, Rebind));
+                else ActionHistorySystem.AddAndExecute(new UpdateInputBindingAction(this, binding, lastBinding, Rebind));
                 StopRebinding();
             }
             
@@ -103,64 +116,79 @@ namespace Rogium.UserInterface.Interactables
                 rebindOperation.Dispose();
                 rebindOperation = null;
                 RefreshInputString();
-                OnRebindEndAny?.Invoke(action, bindingIndex);
+                OnRebindEndAny?.Invoke(action, binding);
                 OnRebindEnd?.Invoke();
                 ui.ShowBoundInputDisplay();
             }
             
-            void OverrideDuplicateBinding(InputActionRebindingExtensions.RebindingOperation operation, InputAction duplicateAction, int duplicateIndex)
+            void OverrideDuplicateBinding(InputActionRebindingExtensions.RebindingOperation operation, InputAction duplicateAction, InputBindingCombination combo)
             {
                 ActionHistorySystem.ForceGroupAllActions();
                 
                 //Clear the duplicate binding reader
-                InputBindingReader duplicateReader = FindObjectsByType<InputBindingReader>(FindObjectsSortMode.None).FirstOrDefault(r => r.action == duplicateAction && r.bindingIndex == duplicateIndex);
-                ActionHistorySystem.AddAndExecute(new UpdateInputBindingAction(duplicateReader, "", duplicateAction.bindings[duplicateIndex].effectivePath, p => RebindAction(duplicateAction, duplicateIndex, p)));
+                InputBindingReader duplicateReader = FindObjectsByType<InputBindingReader>(FindObjectsSortMode.None).FirstOrDefault(r => r.action == duplicateAction && r.Binding == combo);
+                ActionHistorySystem.AddAndExecute(new UpdateInputBindingAction(duplicateReader, new InputBindingCombination(), Binding, c => RebindAction(duplicateAction, c)));
                 
-                ActionHistorySystem.AddAndExecute(new UpdateInputBindingAction(this, operation.action.bindings[bindingIndex].effectivePath, lastBinding.effectivePath, p => RebindAction(action, bindingIndex, p)));
+                ActionHistorySystem.AddAndExecute(new UpdateInputBindingAction(this, GetBindingCombinationFrom(operation), lastBinding, c => RebindAction(action, c)));
                 ActionHistorySystem.ForceGroupAllActionsEnd();
             }
             
-            void RevertBinding() => Rebind(lastBinding.effectivePath);
+            void RevertBinding() => Rebind(lastBinding);
         }
 
-        public void Rebind(string path)
+        private InputBindingCombination GetBindingCombinationFrom(InputActionRebindingExtensions.RebindingOperation operation)
         {
-            lastBinding = action.bindings[bindingIndex];
+            InputBindingCombination newBinding = operation.candidates.Count switch
+            {
+                1 or 2 => new InputBindingCombination(null, null, new InputBinding(operation.candidates[0].path)),
+                3 => new InputBindingCombination(new InputBinding(operation.candidates[modifier1Index - 1].path), null, new InputBinding(action.bindings[buttonIndex - 1].effectivePath)),
+                _ => new InputBindingCombination(new InputBinding(operation.candidates[modifier1Index - 1].path), new InputBinding(operation.candidates[modifier2Index - 1].path), new InputBinding(operation.candidates[buttonIndex - 1].path))
+            };
+            return newBinding;
+        }
+
+        public void Rebind(InputBindingCombination combination)
+        {
+            lastBinding = binding;
             action.Disable();
-            action.ApplyBindingOverride(bindingIndex, path);
+            action.ApplyBindingOverride(modifier1Index, combination.Modifier1.Path);
+            action.ApplyBindingOverride(modifier2Index, combination.Modifier2.Path);
+            action.ApplyBindingOverride(buttonIndex, combination.Button.effectivePath);
             action.Enable();
             RefreshInputString();
-            OnRebindEndAny?.Invoke(action, bindingIndex);
+            OnRebindEndAny?.Invoke(action, binding);
             OnRebindEnd?.Invoke();
         }
         
         public void SetActive(bool value) => ui.button.interactable = value;
-        private void Activate(InputAction action, int bindingIndex)
+        private void Activate(InputAction action, InputBindingCombination binding)
         {
-            if (action == this.action && bindingIndex == this.bindingIndex) return;
+            if (action == this.action && binding == this.binding) return;
             SetActive(true);
         }
-        private void Deactivate(InputAction action, int bindingIndex)
+        private void Deactivate(InputAction action, InputBindingCombination binding)
         {
-            if (action == this.action && bindingIndex == this.bindingIndex) return;
+            if (action == this.action && binding == this.binding) return;
             SetActive(false);
         }
         
         private void RefreshInputString()
         {
-            string inputText = action.bindings[bindingIndex].ToDisplayString();
+            string inputText = binding.DisplayString;
             ui.inputText.text = (string.IsNullOrEmpty(inputText)) ? EditorDefaults.Instance.InputEmptyText : inputText;
         }
 
-        private static void RebindAction(InputAction action, int bindingIndex , string path)
+        private static void RebindAction(InputAction action, InputBindingCombination combo)
         {
             action.Disable();
-            action.ApplyBindingOverride(bindingIndex, path);
+            action.ApplyBindingOverride(combo.Modifier1.Binding);
+            action.ApplyBindingOverride(combo.Modifier2.Binding);
+            action.ApplyBindingOverride(combo.Button);
             action.Enable();
         }
 
         public InputAction Action { get => action; }
-        public InputBinding Binding { get => action.bindings[bindingIndex]; }
+        public InputBindingCombination Binding { get => binding; }
         public string InputString { get => ui.inputText.text ; }
         public GameObject BindingDisplay { get => ui.bindingDisplay; }
         public GameObject BoundInputDisplay { get => ui.boundInputDisplay; }
