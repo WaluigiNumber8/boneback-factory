@@ -281,10 +281,9 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             int bindingIndex = InputSystemUtils.GetBindingIndexByDevice(action, device);
             int bindingIndexAlt = useAlt ? InputSystemUtils.GetBindingIndexByDevice(action, device, true) : -1;
-            InputBinding binding = action.bindings[bindingIndex];
             
             //If action is composite, spawn for each binding
-            if (binding.isPartOfComposite)
+            if (action.bindings[bindingIndex].isPartOfComposite)
             {
                 //If is a modifier composite, spawn only one
                 if (action.bindings[bindingIndex - 1].path == nameof(TwoOptionalModifiersComposite).Replace("Composite", ""))
@@ -293,9 +292,9 @@ namespace Rogium.UserInterface.Interactables.Properties
                     return;
                 }
                 //Any other type spawn for each binding
-                while (bindingIndex < action.bindings.Count && binding.isPartOfComposite)
+                while (bindingIndex < action.bindings.Count && action.bindings[bindingIndex].isPartOfComposite)
                 {
-                    string title = $"{action.name}{binding.name.Capitalize()}";
+                    string title = $"{action.name}{action.bindings[bindingIndex].name.Capitalize()}";
                     ConstructInputBinding(title);
                     bindingIndex++;
                     bindingIndexAlt++;
