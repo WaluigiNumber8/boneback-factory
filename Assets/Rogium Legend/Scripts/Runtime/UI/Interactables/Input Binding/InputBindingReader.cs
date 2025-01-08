@@ -98,6 +98,7 @@ namespace Rogium.UserInterface.Interactables
             void FinishRebinding(InputActionRebindingExtensions.RebindingOperation operation)
             {
                 binding = GetBindingCombinationFrom(operation);
+                Rebind(binding);
 
                 (InputAction duplicateAction, InputBindingCombination duplicateCombination) = InputSystem.GetInstance().FindDuplicateBinding(action, binding);
                 if (duplicateAction != null)
