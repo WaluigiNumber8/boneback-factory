@@ -14,7 +14,7 @@ namespace Rogium.UserInterface.Interactables
         
         public OptionalInputBinding(InputBinding? binding)
         {
-            this.binding = binding;
+            this.binding = binding ?? new InputBinding();
         }
         
         public bool HasValue => binding.HasValue;
