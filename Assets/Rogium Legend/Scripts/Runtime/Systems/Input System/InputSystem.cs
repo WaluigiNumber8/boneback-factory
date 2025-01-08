@@ -65,8 +65,8 @@ namespace Rogium.Systems.Input
             {
                 InputBinding binding = action.actionMap.bindings[i];
                 if (!binding.effectivePath.Equals(bindingCombo.Button.effectivePath) || binding.id == bindingCombo.Button.id) continue;
-                if (bindingCombo.Modifier1.HasValue && (!action.actionMap.bindings[i - 1].effectivePath.Equals(bindingCombo.Modifier1.Path) || action.actionMap.bindings[i - 1].id == bindingCombo.Modifier1.ID)) continue;
-                if (bindingCombo.Modifier2.HasValue && (!action.actionMap.bindings[i-2].effectivePath.Equals(bindingCombo.Modifier2.Path) || action.actionMap.bindings[i-2].id == bindingCombo.Modifier2.ID)) continue;
+                if (bindingCombo.Modifier1.HasValue && (!action.actionMap.bindings[i - 2].effectivePath.Equals(bindingCombo.Modifier1.Path) || action.actionMap.bindings[i - 2].id == bindingCombo.Modifier1.ID)) continue;
+                if (bindingCombo.Modifier2.HasValue && (!action.actionMap.bindings[i - 1].effectivePath.Equals(bindingCombo.Modifier2.Path) || action.actionMap.bindings[i - 1].id == bindingCombo.Modifier2.ID)) continue;
 
                 InputAction foundAction = input.FindAction(binding.action);
                 InputBindingCombination foundIndex = new(action.actionMap.bindings[i-2], action.actionMap.bindings[i-1], action.actionMap.bindings[i]);
