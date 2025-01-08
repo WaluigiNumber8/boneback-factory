@@ -1631,7 +1631,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""modifier1"",
                     ""id"": ""2096e56b-190e-4fe1-a42d-15c284c5da51"",
-                    ""path"": ""<Keyboard>/ctrl"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
@@ -1719,7 +1719,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""modifier1"",
                     ""id"": ""15f88da8-102e-4c1e-aa15-5c9ecbd684e5"",
-                    ""path"": ""<Keyboard>/ctrl"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
