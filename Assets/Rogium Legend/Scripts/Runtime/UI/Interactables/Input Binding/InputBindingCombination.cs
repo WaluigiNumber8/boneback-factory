@@ -14,8 +14,8 @@ namespace Rogium.UserInterface.Interactables
 
         public InputBindingCombination()
         {
-            modifier1 = new OptionalInputBinding();
-            modifier2 = new OptionalInputBinding();
+            modifier1 = new OptionalInputBinding(new InputBinding());
+            modifier2 = new OptionalInputBinding(new InputBinding());
             button = new InputBinding();
         }
         
@@ -33,6 +33,8 @@ namespace Rogium.UserInterface.Interactables
         public static bool operator ==(InputBindingCombination left, InputBindingCombination right) => left.Equals(right);
         public static bool operator !=(InputBindingCombination left, InputBindingCombination right) => !(left == right);
         #endregion
+        
+        public void SetButtonID(Guid id) => button.id = id;
 
         public override string ToString() => DisplayString;
 

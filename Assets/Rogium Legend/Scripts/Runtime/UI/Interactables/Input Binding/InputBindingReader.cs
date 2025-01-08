@@ -171,15 +171,25 @@ namespace Rogium.UserInterface.Interactables
 
         private InputBindingCombination GetBindingCombinationFrom(InputActionRebindingExtensions.RebindingOperation operation)
         {
-            //If modifiers are not allowed, return the first binding
-            if (modifier1Index == -1 || modifier2Index == -1) return new InputBindingCombination(null, null, new InputBinding(operation.candidates[0].path.FormatForBindingPath()));
+            InputBindingCombination newBinding;
             
-            InputBindingCombination newBinding = operation.candidates.Where(c => c is KeyControl).ToList().Count switch
+            //If modifiers are not allowed, return the first binding
+            if (modifier1Index == -1 || modifier2Index == -1)
+            {
+                newBinding = new InputBindingCombination(null, null, new InputBinding(operation.candidates[0].path.FormatForBindingPath()));
+                newBinding.SetButtonID(binding.Button.id);
+                return newBinding;
+            }
+            
+            newBinding = operation.candidates.Where(c => c is KeyControl).ToList().Count switch
             {
                 1 => new InputBindingCombination(null, null, new InputBinding(operation.candidates[0].path.FormatForBindingPath())),
                 2 => new InputBindingCombination(new InputBinding(operation.candidates[0].path.FormatForBindingPath()), null, new InputBinding(operation.candidates[1].path.FormatForBindingPath())),
                 _ => new InputBindingCombination(new InputBinding(operation.candidates[0].path.FormatForBindingPath()), new InputBinding(operation.candidates[1].path.FormatForBindingPath()), new InputBinding(operation.candidates[2].path.FormatForBindingPath()))
             };
+            newBinding.Modifier1.SetID(binding.Modifier1.ID);
+            newBinding.Modifier2.SetID(binding.Modifier2.ID);
+            newBinding.SetButtonID(binding.Button.id);
             return newBinding;
         }
         

@@ -3,9 +3,9 @@ using UnityEngine.InputSystem;
 
 namespace Rogium.UserInterface.Interactables
 {
-    public readonly struct OptionalInputBinding : IEquatable<OptionalInputBinding>
+    public class OptionalInputBinding : IEquatable<OptionalInputBinding>
     {
-        private readonly InputBinding? binding;
+        private InputBinding? binding;
         
         public OptionalInputBinding(InputBinding binding)
         {
@@ -18,6 +18,14 @@ namespace Rogium.UserInterface.Interactables
         }
         
         public bool HasValue => binding.HasValue;
+
+        public void SetID(Guid id)
+        {
+            if (!binding.HasValue) throw new InvalidOperationException("Cannot set ID on a null binding.");
+            InputBinding inputBinding = binding.Value;
+            inputBinding.id = id;
+            binding = inputBinding;
+        }
 
         public override string ToString() => binding?.effectivePath ?? string.Empty;
 
