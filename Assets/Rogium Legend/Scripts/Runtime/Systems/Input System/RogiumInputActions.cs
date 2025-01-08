@@ -1303,7 +1303,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""Redo"",
                     ""type"": ""Button"",
-                    ""id"": ""73b87947-b2f5-4e0b-917d-c41ed584b0df"",
+                    ""id"": ""e16d95f3-8286-4832-8d63-8fb8f49b0a6e"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1312,7 +1312,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""Save"",
                     ""type"": ""Button"",
-                    ""id"": ""f6f397b6-7a82-4a93-9a64-bcffcc7f0b14"",
+                    ""id"": ""f248a0a7-938c-43fc-ab14-0cefbce2cc91"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1321,7 +1321,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""Cancel"",
                     ""type"": ""Button"",
-                    ""id"": ""25d42c3b-913e-4638-aa19-bab561143c31"",
+                    ""id"": ""9361bef5-f194-4151-87b9-46d1e99f815a"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1330,7 +1330,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""New"",
                     ""type"": ""Button"",
-                    ""id"": ""770180ca-8917-4958-8be7-6646b52830ca"",
+                    ""id"": ""3fa51034-ac48-4ce7-8576-7622172aabaf"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1339,7 +1339,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""Edit"",
                     ""type"": ""Button"",
-                    ""id"": ""d0a4ce71-f1d5-4384-b5dc-fb047e4e7505"",
+                    ""id"": ""d00b6c8c-f798-4ccf-8bb2-57f466e27787"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1348,7 +1348,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""EditProperties"",
                     ""type"": ""Button"",
-                    ""id"": ""e1daef8f-449b-4b6e-b95e-e84bd92fab39"",
+                    ""id"": ""ae48f0b4-848e-4d5d-9c41-0febf1d6a37c"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1357,151 +1357,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""Delete"",
                     ""type"": ""Button"",
-                    ""id"": ""2411496f-0679-445a-a0f8-f480f301fda2"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""SelectionTool"",
-                    ""type"": ""Button"",
-                    ""id"": ""89b0d44b-e5f2-4304-957a-3333f1cda8e2"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""BrushTool"",
-                    ""type"": ""Button"",
-                    ""id"": ""075f90e8-5ae1-4ddc-9b88-f27d4fc02a4b"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""EraserTool"",
-                    ""type"": ""Button"",
-                    ""id"": ""dbbdc9c3-6573-482e-9502-cf6c506fc9be"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""FillTool"",
-                    ""type"": ""Button"",
-                    ""id"": ""4520dc96-b67e-4520-b569-5f3a2753f889"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""PickerTool"",
-                    ""type"": ""Button"",
-                    ""id"": ""8c9098d4-426a-42e4-a2ab-eacc1de70b98"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ClearCanvas"",
-                    ""type"": ""Button"",
-                    ""id"": ""86ae7c3d-a2c3-4089-85d7-8ba90e656575"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ToggleGrid"",
-                    ""type"": ""Button"",
-                    ""id"": ""ed5f6ffc-17c0-4b74-aeda-1565ad9510b4"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""TilesLayer"",
-                    ""type"": ""Button"",
-                    ""id"": ""63986a13-65cf-495f-849d-29bce6b8f870"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""DecorLayer"",
-                    ""type"": ""Button"",
-                    ""id"": ""b2c97333-5123-4475-a54a-f84b496c9190"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ObjectsLayer"",
-                    ""type"": ""Button"",
-                    ""id"": ""54ccdab3-92c9-4c16-b6ca-e799197beaee"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""EnemiesLayer"",
-                    ""type"": ""Button"",
-                    ""id"": ""dd5db618-0e3b-4783-b375-eb3a049df2a2"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""SwitchLeft"",
-                    ""type"": ""Button"",
-                    ""id"": ""2cfbf068-8ef8-4923-9161-df53788b552d"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""SwitchRight"",
-                    ""type"": ""Button"",
-                    ""id"": ""ca110d43-4ddb-4116-8004-facf4e236d93"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Play"",
-                    ""type"": ""Button"",
-                    ""id"": ""7b64672b-884c-48de-ab9c-8258e1606db2"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""RefreshCurrent"",
-                    ""type"": ""Button"",
-                    ""id"": ""becb5745-c8a3-49fd-b94a-be7050c41ab5"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""RefreshAll"",
-                    ""type"": ""Button"",
-                    ""id"": ""83301a57-ee00-464d-9445-88775e6da371"",
+                    ""id"": ""d8ead8de-0f91-4a55-8d5d-f33c25cd9dff"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1510,7 +1366,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""ShowPalettes"",
                     ""type"": ""Button"",
-                    ""id"": ""52ec244d-b9e2-444e-9864-a80885852664"",
+                    ""id"": ""9092efe2-b6f1-401b-bcc1-1ae2d4af5734"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1519,7 +1375,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""ShowSprites"",
                     ""type"": ""Button"",
-                    ""id"": ""0ebcee0a-62f0-4181-86a9-0aef45d572ec"",
+                    ""id"": ""dd2b5069-ccc9-4ef9-97c4-8ad95b44abab"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1528,7 +1384,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""ShowWeapons"",
                     ""type"": ""Button"",
-                    ""id"": ""bdbc0c14-abdd-4cf1-94b7-7470ce2508d5"",
+                    ""id"": ""054bf238-1dfd-458a-8b77-bb32322c42c5"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1537,7 +1393,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""ShowProjectiles"",
                     ""type"": ""Button"",
-                    ""id"": ""83b4e05f-f87e-40ff-a3b0-e2711e371d71"",
+                    ""id"": ""1e4d17f8-3201-4705-b2b5-e4109ac0e1d7"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1546,7 +1402,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""ShowEnemies"",
                     ""type"": ""Button"",
-                    ""id"": ""85767298-4cf6-4a9f-91f4-407c156ac794"",
+                    ""id"": ""b3f42c84-e2ad-4815-9de2-4a3340b463fa"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1555,7 +1411,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""ShowRooms"",
                     ""type"": ""Button"",
-                    ""id"": ""290d3ec0-9170-433c-aae7-be2dee0b297c"",
+                    ""id"": ""c0a5b0d4-f0fa-4a34-a722-dbd387c3cb88"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1564,25 +1420,52 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""ShowTiles"",
                     ""type"": ""Button"",
-                    ""id"": ""681ac6d8-fc9c-4e5f-9ea1-74b77e62b36a"",
+                    ""id"": ""846cc377-f653-4e7f-a9e0-1d4f867513c7"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ChangePalette"",
+                    ""name"": ""SwitchLeft"",
                     ""type"": ""Button"",
-                    ""id"": ""1c5495c5-d6c0-4cf5-ac82-8ea0faffb12f"",
+                    ""id"": ""12e27748-191e-4861-b426-17d92ef1cc57"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ResetToDefault"",
+                    ""name"": ""SwitchRight"",
                     ""type"": ""Button"",
-                    ""id"": ""0d44e1d6-3e3c-46b6-812b-0e55c26a328d"",
+                    ""id"": ""c80aa1b1-31a5-4b49-8e80-92856bc98513"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Refresh"",
+                    ""type"": ""Button"",
+                    ""id"": ""11fe9e13-cf79-43e7-9afc-f33423e2a60f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RefreshAll"",
+                    ""type"": ""Button"",
+                    ""id"": ""0b52de15-e9d7-475d-a184-5776df7cb483"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Play"",
+                    ""type"": ""Button"",
+                    ""id"": ""8ab222d4-0916-4d54-98ab-dca45649fb59"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1591,7 +1474,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""SelectAll"",
                     ""type"": ""Button"",
-                    ""id"": ""a1df79d2-e181-4b19-8ef4-e7b7146513ce"",
+                    ""id"": ""e7001645-d16c-42dd-9b53-283fbd6809bc"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1600,7 +1483,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""DeselectAll"",
                     ""type"": ""Button"",
-                    ""id"": ""5fc6b76d-3182-4981-b391-efa3275ce202"",
+                    ""id"": ""c136c223-53c3-4bb8-bba0-b2d7ce546c32"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1609,7 +1492,115 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""SelectRandom"",
                     ""type"": ""Button"",
-                    ""id"": ""f670dfbc-0e55-4094-ae55-8c9ddc8e570a"",
+                    ""id"": ""193a5281-5485-47fc-bb3a-74fd5776659a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectTool"",
+                    ""type"": ""Button"",
+                    ""id"": ""b759bc5d-49dc-43ca-a140-e08ef42c7625"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""BrushTool"",
+                    ""type"": ""Button"",
+                    ""id"": ""dae68f2a-cbe7-4054-9ad3-ba5b8192ce78"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EraserTool"",
+                    ""type"": ""Button"",
+                    ""id"": ""ef585b96-f670-4f0e-bf9b-6fe0f3549d0b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FillTool"",
+                    ""type"": ""Button"",
+                    ""id"": ""6edf5c2f-10f6-40d7-b159-c35e723c44b5"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PickerTool"",
+                    ""type"": ""Button"",
+                    ""id"": ""653fc4cf-0d7d-4e77-9a9b-1e56eaef5b59"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ClearCanvas"",
+                    ""type"": ""Button"",
+                    ""id"": ""b5d91d07-95fe-446d-961b-533d59de7801"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleGrid"",
+                    ""type"": ""Button"",
+                    ""id"": ""4d65221a-c0a3-4883-b2d8-d6dad8bc6830"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangePalette"",
+                    ""type"": ""Button"",
+                    ""id"": ""b8d8d01e-bdd8-4ba0-9cfa-7a23d218b0d7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TileLayer"",
+                    ""type"": ""Button"",
+                    ""id"": ""6085595b-ae0e-4b2f-bb2c-93d5bb2448da"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DecorLayer"",
+                    ""type"": ""Button"",
+                    ""id"": ""4b086f53-807f-42fa-be10-1ee3a830ab9c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ObjectLayer"",
+                    ""type"": ""Button"",
+                    ""id"": ""c8bd26ee-c2ef-4406-944d-4d51a399b5e3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EnemyLayer"",
+                    ""type"": ""Button"",
+                    ""id"": ""fae11c90-0e58-448d-99ae-5ef32a89bea7"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1618,7 +1609,7 @@ namespace Rogium.Systems.Input
             ],
             ""bindings"": [
                 {
-                    ""name"": ""Two Optional Modifiers"",
+                    ""name"": ""Keyboard1"",
                     ""id"": ""cb76c16b-46d4-4b22-9041-2daf56144451"",
                     ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
@@ -1662,7 +1653,51 @@ namespace Rogium.Systems.Input
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Two Optional Modifiers"",
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""386e06ef-9c21-44e0-a94f-37abcda9d253"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Undo"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""bc54d47b-9e77-4311-a2e6-c51b3854fb37"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Undo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""ea4b6e43-0deb-408b-8db4-709e18881da0"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Undo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""8da25db9-2a2a-4b9e-a8e1-3c5ba2ad2886"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Undo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
                     ""id"": ""50ebbeb1-9ea0-4c43-887d-f0b09443c535"",
                     ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
@@ -1675,7 +1710,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""modifier1"",
                     ""id"": ""9460f2ed-857a-4ab8-a1c6-8b9faed6fcb9"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
@@ -1706,8 +1741,52 @@ namespace Rogium.Systems.Input
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Two Optional Modifiers"",
-                    ""id"": ""a49a4f2f-a844-4068-aa57-cd5f4fcd41fa"",
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""e21bf69a-f05c-47e1-a249-03728e5df075"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Undo"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""20e82d29-45f7-4959-bc40-778bba2f3d5d"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Undo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""96fae66e-3e34-49fa-958d-ebb69681c89f"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Undo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""3135789f-6983-4fa4-a26f-41179870c647"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Undo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""670dac31-c4dd-4027-a43b-bcea3e64b8ee"",
                     ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1718,7 +1797,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier1"",
-                    ""id"": ""15f88da8-102e-4c1e-aa15-5c9ecbd684e5"",
+                    ""id"": ""29372b5c-9007-4c1a-afcf-4dbe000c248d"",
                     ""path"": ""<Keyboard>/leftCtrl"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1729,7 +1808,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier2"",
-                    ""id"": ""3b48c0e8-2090-465f-a291-35e24153d26a"",
+                    ""id"": ""50fbe676-2ced-44ca-8df0-0d61f594fc60"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1740,7 +1819,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""button"",
-                    ""id"": ""d1a31edc-04aa-4b3e-bdf6-27125e026e82"",
+                    ""id"": ""2f8a6502-f112-42fd-ae42-247bc0b9902b"",
                     ""path"": ""<Keyboard>/z"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1750,8 +1829,8 @@ namespace Rogium.Systems.Input
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Two Optional Modifiers"",
-                    ""id"": ""f465f22c-e344-4b8d-99b6-10986d23a23f"",
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""e8a40ad6-047d-4dad-847f-3fa21d553d89"",
                     ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1762,8 +1841,52 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier1"",
-                    ""id"": ""cd77d98c-5940-4569-8d57-3c1658b2b49c"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""id"": ""17c861dd-2d8d-426d-84c9-dd6dd60eeec8"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Redo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""757fa23c-3419-4e46-804d-73f26eaacdbc"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Redo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""0dd8f1f3-9d8f-49d5-88d0-dfb313d0f4ea"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Redo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""9062e085-2b88-4971-be53-5f16f737db53"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Redo"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""5cd8732f-4cf7-4c46-a93a-703e722aed5a"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
@@ -1773,7 +1896,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier2"",
-                    ""id"": ""3639b29c-6b74-4966-8d79-f5e15ba53bfd"",
+                    ""id"": ""5d0887f2-0c8f-4cbf-bad1-e98b0e80722b"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1784,7 +1907,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""button"",
-                    ""id"": ""b8a7cb39-da47-4998-b159-9c1c5af9990d"",
+                    ""id"": ""85ce8ec6-16d3-43d5-af9f-11facac8878c"",
                     ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1794,9 +1917,53 @@ namespace Rogium.Systems.Input
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""One Modifier"",
-                    ""id"": ""5553f10c-6cd4-49e7-94d8-7946affbb433"",
-                    ""path"": ""OneModifier"",
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""af54db61-353a-4bb9-a4d1-3ea63cc5108d"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Redo"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""788cc52b-acc4-4e7d-a05c-2e882780933c"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Redo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""cc6d2a09-9016-4286-9b74-2efcd12a2c6c"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Redo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""f702b45d-8efa-4b0d-a77d-2efbbd493b56"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Redo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""1fa9fbc2-87aa-489c-8c8b-844dcd7b49c1"",
+                    ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1805,9 +1972,9 @@ namespace Rogium.Systems.Input
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""modifier"",
-                    ""id"": ""23c6d467-3a86-41be-9d4f-ebf9560a2bff"",
-                    ""path"": ""<Keyboard>/ctrl"",
+                    ""name"": ""modifier1"",
+                    ""id"": ""d190c2a6-b0ad-46b9-8f24-40f15174a862"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
@@ -1816,8 +1983,19 @@ namespace Rogium.Systems.Input
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""binding"",
-                    ""id"": ""73649c4d-4a09-4604-8554-0295b3fdb562"",
+                    ""name"": ""modifier2"",
+                    ""id"": ""a6ad45e7-11c2-4e8d-839f-b297f5eeee71"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Save"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""92bd22c6-4e41-4d20-a7d3-413161e0704d"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1827,185 +2005,317 @@ namespace Rogium.Systems.Input
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""b211c3a7-3a6e-434c-9fb0-8deb249fbdae"",
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""2460240f-3483-4439-9d8a-2e55c08f0a82"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Save"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""e1bcdf58-ec74-4b1d-8b9b-58ab4752c570"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Save"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""f590f973-2313-4ca3-88a7-7da98c2f428d"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Save"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""5ed6381d-ccbe-4fce-a317-9ec7e0901abb"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Save"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""1b4aec85-5fe0-4d2b-8b83-9f65cec4be95"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Save"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""55b625ae-0860-4b28-b94a-75ba01c4a900"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Save"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""18308d30-fcd4-4763-aab2-7c49b32f6fb5"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Save"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""3e8fa254-359b-48f5-b7a7-dcb20d01d2ae"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Save"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""30169310-7f68-46df-9d3c-54f53065c487"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Save"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""292a18a8-811a-4062-8e5d-b544e86c2898"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Save"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""d8fc6f0c-0a57-4b83-b50a-6fbd833f2ac4"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Save"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""d79b98ec-78a0-4de9-b440-eb6aafa196c5"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Save"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""a9e21dcc-3d8c-4f29-85e4-b4ead8e96d02"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""8b06f79b-e01d-498a-b62a-42e4ca41ef09"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""918dc1ff-42d6-47e9-a4b4-c55d47bf2ddc"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""cdfe600f-6b1d-4710-abf5-e5020c1384dc"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
                     ""action"": ""Cancel"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""c19cfa4c-7370-4cb3-a6d7-22c450ec6985"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""TilesLayer"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""44287411-752a-4331-8d48-13c1be48c27e"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""DecorLayer"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1bee85af-579d-4972-807b-eb5bcb551397"",
-                    ""path"": ""<Keyboard>/3"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""ObjectsLayer"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a2aa84d6-baf4-4ef1-afbc-ca97a38e4765"",
-                    ""path"": ""<Keyboard>/4"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""EnemiesLayer"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e5650585-dd41-4d87-969f-d0e2eab9af40"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""SelectionTool"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7d64b29f-a267-4b41-8434-d1517a1101a9"",
-                    ""path"": ""<Keyboard>/b"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""BrushTool"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""792a1e84-bc7c-4d89-9c45-399768a3aa83"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""EraserTool"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8d8581ad-0d4a-4b71-9516-6214cb3b76ab"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""FillTool"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""101f3074-197b-43a2-8ba4-084e3c13669f"",
-                    ""path"": ""<Keyboard>/alt"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""PickerTool"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""One Modifier"",
-                    ""id"": ""9e09026d-d88c-46e9-9c43-6de19f34921c"",
-                    ""path"": ""OneModifier"",
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""a8a66da7-7513-4742-8ba1-80e8ae8d3934"",
+                    ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ClearCanvas"",
+                    ""action"": ""Cancel"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""modifier"",
-                    ""id"": ""2f313d3d-4671-4faf-9fde-e8b4bcf839e6"",
-                    ""path"": ""<Keyboard>/ctrl"",
+                    ""name"": ""modifier1"",
+                    ""id"": ""0be21b13-9843-4463-9ee4-73ae7acd427f"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""ClearCanvas"",
+                    ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""binding"",
-                    ""id"": ""bff02335-0189-4371-a884-27c37461399e"",
-                    ""path"": ""<Keyboard>/c"",
+                    ""name"": ""modifier2"",
+                    ""id"": ""a0092382-bc43-47fa-98fe-5c2c06d9be79"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""ClearCanvas"",
+                    ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""25d76655-a592-4b26-8aea-636688037e1b"",
-                    ""path"": ""<Keyboard>/backquote"",
+                    ""name"": ""button"",
+                    ""id"": ""e74f92f3-78ae-4277-87e7-1d6d51c01aca"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""ToggleGrid"",
+                    ""action"": ""Cancel"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""1714d337-173b-420d-a3e7-bb10971a915c"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""25e4a880-c5d4-4c72-821b-8929fb3253f5"",
+                    ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""Edit"",
-                    ""isComposite"": false,
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""fc0aed14-bc18-4350-9aa0-5bca5aff96b7"",
-                    ""path"": ""<Keyboard>/delete"",
+                    ""name"": ""modifier1"",
+                    ""id"": ""f0ecee01-e56e-4d94-8f5e-2c8c3b5c66d0"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""Delete"",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Cancel"",
                     ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""778721b5-ddfc-444b-af09-7ebef5ca01e9"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""89e40fff-fe94-46c2-9aca-1aad770c1a7f"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""83619c20-9924-499e-af82-c4421ad06e30"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""One Modifier"",
-                    ""id"": ""ce6067d6-c2f5-49de-bdaa-02c60afdd3e2"",
-                    ""path"": ""OneModifier"",
+                    ""name"": ""modifier1"",
+                    ""id"": ""8beca053-9254-470e-913d-1a098df6bf6d"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""ca8f15b4-45b1-40b9-9489-e49d45d2f8ff"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""e217b7fc-fc68-48f4-b2ce-c682f3301f7c"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""9c2dcb24-f29d-435d-840b-e43191ab7b44"",
+                    ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -2014,9 +2324,9 @@ namespace Rogium.Systems.Input
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""modifier"",
-                    ""id"": ""6ec72348-8b8d-4490-852c-6fd20fbf30df"",
-                    ""path"": ""<Keyboard>/ctrl"",
+                    ""name"": ""modifier1"",
+                    ""id"": ""007ec13c-3356-48e4-85d9-a764d5483245"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
@@ -2025,8 +2335,19 @@ namespace Rogium.Systems.Input
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""binding"",
-                    ""id"": ""82200dc6-51dd-422f-a029-8276b01fbce4"",
+                    ""name"": ""modifier2"",
+                    ""id"": ""e453398b-3894-4e9c-b469-950f62d00fad"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""New"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""3eba2823-e0be-4d10-abf5-5bf66b0904e7"",
                     ""path"": ""<Keyboard>/n"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2036,9 +2357,317 @@ namespace Rogium.Systems.Input
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""One Modifier"",
-                    ""id"": ""dfefd134-d8c5-4a1e-8ed4-c85ae8c3e2dd"",
-                    ""path"": ""OneModifier"",
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""59ad951e-4423-46d6-86db-773af2bb17bc"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""e124eb64-4f5d-46d4-80f5-6efab62d10c1"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""New"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""502cdf3a-e808-475a-8a05-9095624cb976"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""New"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""a931dbbc-45e6-4f43-ab53-ca3db52bec24"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""New"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""d042d95b-ff5c-40de-bd34-04a178acb4ca"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""c1590b86-b6fa-4f99-a491-7b57c3cac6e9"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""New"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""2f122ca2-2102-4548-b0ac-acf03f6e3ae9"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""New"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""2288e870-2f9d-4e17-8c6f-a6a2776372ac"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""New"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""6b34a78f-e972-40bd-9b23-065edf566019"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""d90337b1-6f4a-4d6f-a779-93087fdddfc6"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""New"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""fd628e86-1355-44d2-a8d3-2a4686b7f06f"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""New"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""41b14a24-7ee3-4c5b-a792-456587f5000d"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""New"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""83a7e2e9-95b9-477c-81dd-bee0d3a203be"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Edit"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""946f2b49-6cb5-4859-b145-fc681945e286"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Edit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""8f1f1751-4760-4213-a4f5-e493a70883da"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Edit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""6919618f-2cde-4c30-aa2d-60f2a3dd4e2b"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Edit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""268410f6-c937-4f18-bb7a-50ac6e507697"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Edit"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""fe53138b-b805-4940-b41c-a80115943850"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Edit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""00c1aa36-cdb5-4978-a910-a1b3c5a1da46"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Edit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""5cd8b130-b748-4362-9f77-b199ae4accf7"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Edit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""5f25d22a-1b81-4198-a3f3-84b3ec9dee95"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Edit"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""e56c5827-acc2-405a-a954-ee8bd6f1bd3f"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Edit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""66052f4f-41b4-4453-a46a-a026c44b0b72"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Edit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""5f174135-02e5-47eb-8267-71e31a0b2692"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Edit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""348d23aa-c513-4179-9697-3618a11cd2c9"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Edit"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""30d8e3de-dc5a-42d1-a52e-469ad2378842"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Edit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""20db7386-13aa-423a-bdd2-655f6fc7fe89"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Edit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""920ca714-ff4c-4aa4-99de-11f2e35298ef"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Edit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""da7b2550-1e98-4344-b152-dedc0bb2d8df"",
+                    ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -2047,9 +2676,9 @@ namespace Rogium.Systems.Input
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""modifier"",
-                    ""id"": ""de5f1d86-8cb0-45c3-a0c1-313730c9a428"",
-                    ""path"": ""<Keyboard>/ctrl"",
+                    ""name"": ""modifier1"",
+                    ""id"": ""96d7b217-25fd-4e0c-acc5-7db506a5c715"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
@@ -2058,130 +2687,2099 @@ namespace Rogium.Systems.Input
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""binding"",
-                    ""id"": ""869c9390-f36b-4036-adb5-0baabf4bf3b0"",
+                    ""name"": ""modifier2"",
+                    ""id"": ""6bed7111-ad32-4845-9d37-6707acdfb8fc"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""EditProperties"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""2bd95521-fc71-4050-8190-e4df10bfd600"",
                     ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""EditProperties"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""66234242-8419-49f0-95e2-f636842bf4c9"",
+                    ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""EditProperties"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""5c07735c-3048-4a99-ad01-1ccb5a10d4dc"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""EditProperties"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""baa81b04-5ef9-4e7c-94b5-f51afb77333e"",
-                    ""path"": ""<Keyboard>/z"",
+                    ""name"": ""modifier2"",
+                    ""id"": ""7b1d7608-1060-427a-80df-d35fb716311a"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""SwitchLeft"",
+                    ""action"": ""EditProperties"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""0ae159ba-cdd5-4d5f-852a-0c91420b17dc"",
-                    ""path"": ""<Keyboard>/x"",
+                    ""name"": ""button"",
+                    ""id"": ""6de0bfc5-ca90-4baa-b09b-9f2781a1455e"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""SwitchRight"",
+                    ""action"": ""EditProperties"",
                     ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""a54aa317-bc62-42e6-8792-73e86aaa5db0"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EditProperties"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""1b91e830-1763-4d50-a44c-95b33a7fb86a"",
-                    ""path"": ""<Keyboard>/r"",
+                    ""name"": ""modifier1"",
+                    ""id"": ""2c27db2c-0029-4c5c-8ad5-907e6724069c"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""EditProperties"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""ee549e8c-2928-4234-b5ed-77d64f75a8c1"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""EditProperties"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""2b4d64ae-9ff9-4deb-8ef6-47f71fefcddc"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""EditProperties"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""1f94e5da-983f-4b50-8b4c-9704693744b6"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EditProperties"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""beae1e47-4eaf-41dc-a626-f56076cf02e0"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""EditProperties"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""8ea96275-9dda-4bc7-ba66-0a0d81b63ba8"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""EditProperties"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""d96d72b7-e22c-42b5-81ca-f0abb587671a"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""EditProperties"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""481daa11-b2fa-48f7-8c76-ed1f0dce759b"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Delete"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""596b3a6b-6e15-42d4-965e-16443d592e81"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""RefreshCurrent"",
+                    ""action"": ""Delete"",
                     ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""7f243abf-a0e9-47c4-8e3b-955092bc0405"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Delete"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""63549d00-46f1-4c9f-b58c-4eda44149e3a"",
+                    ""path"": ""<Keyboard>/delete"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Delete"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""9f3e2cd1-c3bc-4644-b7bb-d67096feba7c"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Delete"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""0121bea3-88c7-4a73-9f07-b114ec70004b"",
-                    ""path"": ""<Keyboard>/1"",
+                    ""name"": ""modifier1"",
+                    ""id"": ""75eb316f-290b-4a02-89a7-231d6fce7b43"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Delete"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""03100570-377c-47f2-9c5c-dc00551e2f54"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Delete"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""ee3b9f3b-7824-4125-844c-5f182b53bf12"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Delete"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""a8191c3a-edf9-4803-937b-8dfab43a2cf4"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Delete"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""715fa11c-9b61-44a3-b1dc-24f53bdc1760"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Delete"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""a7b55fdc-dd2e-4780-b579-755ec64398c3"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Delete"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""dbadbeb5-edc5-4397-aad6-41f5b0af2974"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Delete"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""e003315e-956b-4f36-a9fa-3905309cf42a"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Delete"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""d65cdd65-7cce-426e-a034-0ddc0e947647"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Delete"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""82ba23b9-3ff2-4f67-8dca-a4005a4d78dd"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Delete"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""2e5742d2-1303-43f6-8603-8b21f2c9c38b"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Delete"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""d943184b-1b5f-403e-9873-adaa93373b64"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowPalettes"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""1cdd3e1a-f191-45a0-b694-62735337843e"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
                     ""action"": ""ShowPalettes"",
                     ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""6badbc1e-75c1-4cdc-8a2c-68c2525d0ded"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowPalettes"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""2d14cb92-a790-4332-95a6-fa49418d7174"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowPalettes"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""f3f91cd7-0e95-4f80-becc-e742bd9f2a4f"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowPalettes"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""ed8b56c4-f340-4ebe-9285-597247d1ad6c"",
-                    ""path"": ""<Keyboard>/2"",
+                    ""name"": ""modifier1"",
+                    ""id"": ""6db70cdd-6bb7-4f7c-97d9-eafa79dbf8ee"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowPalettes"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""05067360-87f0-4ec9-aecb-4d744a6159fb"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowPalettes"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""5fd5ced2-b7a5-4e9c-bf33-122c8e2d487a"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowPalettes"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""3e892a12-fc3e-4a69-a2f2-78499f231346"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowPalettes"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""1de161dc-7a19-4d20-9e3d-e29e75419090"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowPalettes"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""8858dded-159f-4cbd-b427-5af9ff97c70f"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowPalettes"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""e86d40f4-9b69-4ce6-a925-5f5de0a8e081"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowPalettes"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""8f0e1ef3-5d7c-45fd-afc7-f70e57f88b4c"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowPalettes"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""321901c8-1141-4979-9d62-ee56687e0078"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowPalettes"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""6f6fb999-4696-4506-8657-effb039144a3"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowPalettes"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""bf403b3b-c97a-45cf-9bbf-cf0722e5bec4"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowPalettes"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""ef77dfc4-1b74-4204-8371-3b256eefb244"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowSprites"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""683a99fb-f852-46c2-9669-2eff63989f2f"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
                     ""action"": ""ShowSprites"",
                     ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""99f1f808-b184-463f-a864-5be1dab11eba"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowSprites"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""12ad5f3c-4889-4b33-8cb6-06ada96ca683"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowSprites"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""623f3f4a-8825-4568-a70b-c2cbb3f0f981"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowSprites"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""84940cb6-eaa6-4d8c-bf6a-bc819a5dd445"",
-                    ""path"": ""<Keyboard>/3"",
+                    ""name"": ""modifier1"",
+                    ""id"": ""a36463f7-fc6d-463b-9e36-df68189fa668"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowSprites"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""a8bae88b-ceed-42f1-aaab-addfe8b09169"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowSprites"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""8d2b3cd6-cd8c-4e48-8141-88ae6e4dda8d"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowSprites"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""903eb407-7b16-41c9-b21a-1c49a8b3c140"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowSprites"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""e493ee9c-732b-42f3-aa15-e6a1e09b8494"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowSprites"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""572894aa-2564-4aea-9448-a3de3856ad1d"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowSprites"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""36fa8f22-677c-4a48-a5b2-7e52a6d6d7ab"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowSprites"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""116a1f23-5334-4ea1-9bf2-cbf59dbd35d5"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowSprites"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""aa9d929b-e76d-4190-bcd1-af145f3adf2d"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowSprites"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""0093962b-ee58-4e1c-b10a-9bc5c5bbfab2"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowSprites"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""7027cd4a-8b3b-4a27-b74b-142316f23ceb"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowSprites"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""87feb8aa-dd28-4ae8-8888-4a837698249a"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowWeapons"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""9a97c918-579c-4cbe-9203-9cda92e5c5fa"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
                     ""action"": ""ShowWeapons"",
                     ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""12482876-76c4-496c-a5e7-ab5c7d89a801"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowWeapons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""a7462757-f9f6-461a-8638-a9102a0cad5c"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowWeapons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""212d7689-b9e1-4393-8c98-4d7cf09dac9b"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowWeapons"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""c287c309-d53c-45e0-875b-d2e8d1bca091"",
-                    ""path"": ""<Keyboard>/4"",
+                    ""name"": ""modifier1"",
+                    ""id"": ""6f80a66e-72e2-45d4-b5b5-73e4902d964b"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowWeapons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""cfa08b5a-c78e-474f-bbb3-ab4986b2a50e"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowWeapons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""459d81a8-0045-40d0-86e6-61d1ac4a3ce5"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowWeapons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""0ff1c9e9-549c-4409-8275-09e18fa0f06b"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowWeapons"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""5c7d6015-924f-4cd8-8dc6-7dd1f5422b1c"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowWeapons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""8bc5b440-0892-47c8-a8d8-bfb30738b04c"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowWeapons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""2c59b2ac-7de9-4481-bfc6-85714bd8c4e3"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowWeapons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""00d29a2b-ba14-4f5a-a96c-c931b4cb9329"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowWeapons"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""0f741374-6a5d-412d-9126-b782a1e78e27"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowWeapons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""a0474fa8-9229-4e87-a5e2-b2c58f4ca6f7"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowWeapons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""44c8b545-d266-40bc-a08b-56ed3d472b3b"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowWeapons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""56d263f4-00bf-4c50-b35a-e12381601be2"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowProjectiles"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""d1ad7a9f-6041-4d0d-b0d5-d472644281ca"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
                     ""action"": ""ShowProjectiles"",
                     ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""16932ff1-db10-4e92-b45d-cececcc7ea04"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowProjectiles"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""7cd86f0b-432b-40d0-b74f-a2e577f54c29"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowProjectiles"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""93ca4905-9125-41da-a6cc-cae0be75a4b3"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowProjectiles"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""ba355bd5-d6c3-44b5-85c0-29003cd0690a"",
-                    ""path"": ""<Keyboard>/5"",
+                    ""name"": ""modifier1"",
+                    ""id"": ""2a13974c-7c86-475a-b570-82273274bad7"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowProjectiles"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""7545bbf8-2c82-4165-8fe1-e68330580962"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowProjectiles"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""ae772744-3e2f-46a5-a126-a0987b92c4a3"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowProjectiles"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""fa03f3d8-a6c6-47ae-aa81-2c9c4ebc00cc"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowProjectiles"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""5ceb5b14-0ddb-40dc-b2cf-d12b646601c6"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowProjectiles"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""fd66c288-ce3a-4d40-9cff-d3c7963c86de"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowProjectiles"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""eddb19bd-f7cf-4cb2-ae24-1400a973ef65"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowProjectiles"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""fbab9494-89fe-45d9-8145-eef4e17e2fb6"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowProjectiles"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""b8cf51a7-6521-4aee-80e2-6252a901f420"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowProjectiles"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""2a377011-aaef-4d23-84af-abba340210ee"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowProjectiles"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""f157921a-65c8-4b30-b1b0-a6911f7dbb6c"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowProjectiles"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""8e87617a-cabc-474f-874c-e94e8a2300b4"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowEnemies"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""4391a907-4e9a-482a-8452-c1e04de28d90"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
                     ""action"": ""ShowEnemies"",
                     ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""72b09e0a-21a8-4978-89d8-c8191203e2e6"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowEnemies"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""0d8dabda-1131-47a3-9c3d-432c2f41ffd0"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowEnemies"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""403bcc10-6cae-42a0-9864-a1d40f07e4fe"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowEnemies"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""33bf1412-0863-462b-aeea-a1b3ebc666bd"",
-                    ""path"": ""<Keyboard>/6"",
+                    ""name"": ""modifier1"",
+                    ""id"": ""0de21888-a92a-4e0a-8325-b57d0ba700cd"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowEnemies"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""3b41970f-96cf-4a11-aef9-ef6fd9ab5fff"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowEnemies"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""b3ee3d6b-dfa4-4971-8322-41c9c067fd50"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowEnemies"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""2ac1f3fb-d797-471d-a49f-ad35c1cb1f16"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowEnemies"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""5d70b58f-88d6-4275-b7e7-10000ec68292"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowEnemies"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""e4d8a6bf-4506-4fb2-bd00-3ce28c1e4b4d"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowEnemies"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""b3d21f5e-33a0-49b3-be38-a11be412f15a"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowEnemies"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""2541c5b5-87c3-4149-b998-c90f0490af02"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowEnemies"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""ea3f95b8-4a6d-46c5-b6f5-8a8bb2f88cd3"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowEnemies"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""a212d7a5-dade-4d29-84e2-4694a38979c1"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowEnemies"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""90834312-31e0-4dbe-8519-3423e5b0faf8"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowEnemies"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""98bcc4c6-68ce-4f6d-81fc-4ce8b3d2a74b"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowRooms"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""12a750e1-20b1-458e-a1a5-c16dcc8507a1"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
                     ""action"": ""ShowRooms"",
                     ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""27f61a37-89e5-4478-ad50-980bd4139514"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowRooms"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""7f1238c2-7bad-4987-886e-9df4c2292b58"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowRooms"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""def0c1b0-c9e4-4f45-bbd5-41636f97d80e"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowRooms"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""0126e7ef-ca23-4eef-90b0-1ba112655009"",
-                    ""path"": ""<Keyboard>/7"",
+                    ""name"": ""modifier1"",
+                    ""id"": ""a2270d29-319b-4aa1-9aaa-9c014b93d02f"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowRooms"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""82381c13-d3ce-4bcf-b0f3-48f32ea7b071"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowRooms"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""523f4c5a-509d-42d4-8df0-f744c914e8d8"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowRooms"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""c8bf0a50-1a53-4d52-8905-feb02a8c025f"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowRooms"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""2fae82c9-e5d3-44de-bf59-aa086144c568"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowRooms"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""c37eee2f-641a-4abc-817b-3d84bccee880"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowRooms"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""0a43dc74-4d6c-446f-9884-7749c6888e75"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowRooms"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""cfe16905-8f32-493b-84e9-68e093f2cdde"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowRooms"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""6cd0a993-2df0-466d-83f0-504354f6cab1"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowRooms"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""b0e1a0a4-f4e2-48c2-afff-0e7f490f9343"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowRooms"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""6ca30262-3101-4de7-9a40-a44effa47b5f"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowRooms"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""c2a7dcee-405f-401c-845b-e8d394851e20"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowTiles"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""862134ec-4c94-476d-8ae2-35d6a462b7ca"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
                     ""action"": ""ShowTiles"",
                     ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""5142e846-0314-46f8-8258-c5be7087c2ca"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowTiles"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""8db1ae6b-2894-4875-924d-dcd668f7d380"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowTiles"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""8eb32b5f-bc17-4a97-9f12-728d64d8b933"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowTiles"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""One Modifier"",
-                    ""id"": ""288ebd45-ef20-4099-8d70-b1a21eb9c7ed"",
-                    ""path"": ""OneModifier"",
+                    ""name"": ""modifier1"",
+                    ""id"": ""d2d0cf85-7cb2-4ce9-a40e-814d1b46a8e1"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowTiles"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""c7e5532d-038d-4dc3-b3f3-72b77358a1e5"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowTiles"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""bcf10157-c824-4bd3-ac93-eaafeccfbdbf"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ShowTiles"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""8480afee-e62c-4c67-964e-f4466a4906c3"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowTiles"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""4be87959-d74a-4cce-99a6-b22a6caa5edf"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowTiles"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""4b05d26f-f270-4ef6-92a0-94e088383b4a"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowTiles"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""cb76a9a2-6b53-4f82-b563-ba9b958c7591"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowTiles"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""f1d4c665-62a8-4e94-97d3-1957ab015171"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowTiles"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""bd1707bf-8fc9-410a-ac86-ae0946b9fa93"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowTiles"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""d45adaa7-55d4-46e7-91c1-b5944f18ac43"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowTiles"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""48629a9c-be58-4ec4-9daf-eff856ef38df"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ShowTiles"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""075075f8-439c-41ab-8404-312b000e4503"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchLeft"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""7e54828b-5c3f-4f40-b651-4364649d1de0"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SwitchLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""396ae7ac-cb08-436c-be36-7acf8f04c8e5"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SwitchLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""d10a9949-0b00-43b3-a86d-9ecd7ffe80f8"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SwitchLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""a6910ae6-9b5f-4b35-8095-81c1a606e191"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchLeft"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""dc671bf6-b750-4d08-b972-af0c64d4746d"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SwitchLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""e3c2d498-b140-4766-9c42-98f6b3943e19"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SwitchLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""16a053f1-95a1-464c-9392-25f1b610dff9"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SwitchLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""20738ed7-84cb-4ae5-826c-aa5211e49d3b"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchLeft"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""76653c2c-62f9-4539-b1e0-f2b2e62deff4"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SwitchLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""ff916280-852f-4c75-8588-2cf64abcdc31"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SwitchLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""2ebffa23-bc11-45d9-88ef-c05dc7689c4f"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SwitchLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""3dee1e34-67b6-4d00-b11c-d66025797ac1"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchLeft"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""3ae61deb-f2c9-4898-a91d-62d1d8f3eb7c"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SwitchLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""514eacb0-413b-40f3-af88-90c985632215"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SwitchLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""2c1b690a-8c41-4425-b318-087df4a5b48d"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SwitchLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""0c3807a8-c2e8-479e-ad63-1fdf29d85c26"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchRight"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""ddf33dbb-9bcd-4a6c-b0f8-51e087e16680"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SwitchRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""3159ea45-0a6f-4400-af10-b04f49af2a80"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SwitchRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""28fabd45-7862-4b1f-81fe-b28b941fd6f5"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SwitchRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""509bd114-c962-406e-b19a-3409ed90caa5"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchRight"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""9df94e91-a699-4651-b458-9efd07b3a3e3"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SwitchRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""d46cdba0-c5fd-40e9-92e6-665c808f7ea4"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SwitchRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""b21e3f91-bf00-4f90-ac11-2a0833df435a"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SwitchRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""71394358-24ce-4fa6-b172-b4c0ea39d222"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchRight"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""0d4e4b0a-7fb9-4da7-8880-a651ec434fd7"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SwitchRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""31af3a89-5289-41e8-8db3-1e7fc3f44166"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SwitchRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""e0dd1243-af1f-41cf-81a3-52b11d164234"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SwitchRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""35fbe6ab-0457-43d8-89b0-699e26a68799"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchRight"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""20f088b3-ad34-4e23-882f-2f45c710a5ce"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SwitchRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""df3fa6df-9964-4102-8baa-747175c8e371"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SwitchRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""7d1f2c8b-40c1-4a74-ba4b-4f9201377e7b"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SwitchRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""fa3df4c9-9507-420e-99a3-b9f47cc69f3e"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Refresh"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""1aac4743-25bb-4169-bacd-d948284ad825"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Refresh"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""34e8ca85-437d-418f-a078-f952b1c5eff5"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Refresh"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""d56aaaef-cf19-4ccf-b524-9f93ff3d6966"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Refresh"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""e6daa7f3-ab1b-4367-bab8-ed9953a5b2ed"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Refresh"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""d6cf58ca-a95f-4f83-86e6-45e540fa43b2"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Refresh"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""b851477a-74b3-4444-88f7-4f8838909e2e"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Refresh"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""a11c9c5a-4189-4d67-8baf-4580e71487e5"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Refresh"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""c20226f6-f7e8-4a15-bdca-ba1fec70761f"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Refresh"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""d0f9d027-131b-4ebc-898b-c899197e9a2f"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Refresh"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""e7c33d7c-a7cc-4d54-a727-371e464d1e44"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Refresh"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""20583671-097e-4c1d-b15f-b71600167bbe"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Refresh"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""fb46096d-ae8e-4f54-9e07-8b4f2f8a0f51"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Refresh"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""b28ddd4d-0a62-4089-b867-50f6f9867491"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Refresh"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""509f3425-575b-4e90-b062-bebdad17f9bf"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Refresh"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""ddbe3024-0578-45d7-a9e1-a62a0feb7639"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Refresh"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""021a3bc1-1454-4438-8af0-6e9308976934"",
+                    ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -2190,9 +4788,9 @@ namespace Rogium.Systems.Input
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""modifier"",
-                    ""id"": ""f90f48d7-8967-41dc-9156-0f84048c3041"",
-                    ""path"": ""<Keyboard>/ctrl"",
+                    ""name"": ""modifier1"",
+                    ""id"": ""8640ff15-7f93-41aa-ac6e-2d3cd1dfa169"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
@@ -2201,9 +4799,9 @@ namespace Rogium.Systems.Input
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""binding"",
-                    ""id"": ""1bba9328-e9e4-4ffe-b0ba-f56c47b27f19"",
-                    ""path"": ""<Keyboard>/r"",
+                    ""name"": ""modifier2"",
+                    ""id"": ""923a5095-ba04-4990-9bac-2cf97144f9f2"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
@@ -2212,158 +4810,2963 @@ namespace Rogium.Systems.Input
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""8add3d7a-0367-42a9-8c6c-5a156746700d"",
-                    ""path"": ""<Keyboard>/p"",
+                    ""name"": ""button"",
+                    ""id"": ""b2e2122f-2e98-4aed-82db-51756b0e3a8e"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""ChangePalette"",
+                    ""action"": ""RefreshAll"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""One Modifier"",
-                    ""id"": ""d0c194af-ec0a-4a2d-ac7e-eb18fbe3b7f2"",
-                    ""path"": ""OneModifier"",
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""1f967778-1472-4d52-9fa6-833c07f70082"",
+                    ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ResetToDefault"",
+                    ""action"": ""RefreshAll"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""modifier"",
-                    ""id"": ""f35fafc4-baad-43eb-b6b8-22fd5c2116e6"",
-                    ""path"": ""<Keyboard>/ctrl"",
+                    ""name"": ""modifier1"",
+                    ""id"": ""74aae09e-ec15-46a3-a2a1-0963e9ada8ea"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""ResetToDefault"",
+                    ""action"": ""RefreshAll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""binding"",
-                    ""id"": ""c7d2ea2a-380f-4f6e-963a-ae665b161a17"",
-                    ""path"": ""<Keyboard>/r"",
+                    ""name"": ""modifier2"",
+                    ""id"": ""d616c014-5d29-4536-bb29-bbb4c6c8e55e"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""ResetToDefault"",
+                    ""action"": ""RefreshAll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""One Modifier"",
-                    ""id"": ""6100528a-9e94-4c0f-964c-56630278415a"",
-                    ""path"": ""OneModifier"",
+                    ""name"": ""button"",
+                    ""id"": ""18daafc5-9888-4ac5-8b30-d47ff2114d0a"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""RefreshAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""40528603-285e-481c-9202-9fd0a5e0fcec"",
+                    ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""SelectAll"",
+                    ""action"": ""RefreshAll"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""modifier"",
-                    ""id"": ""95be9ca8-984c-4872-ac5a-4482a5207a72"",
-                    ""path"": ""<Keyboard>/ctrl"",
+                    ""name"": ""modifier1"",
+                    ""id"": ""19bbaf8b-3878-4c1b-8eba-4a7d33c905b9"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""SelectAll"",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""RefreshAll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""binding"",
-                    ""id"": ""524d9615-d4c8-4785-bb42-41e9daf18929"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""name"": ""modifier2"",
+                    ""id"": ""8658c06a-023d-4adb-a8b5-448bc5d7684c"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""SelectAll"",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""RefreshAll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""One Modifier"",
-                    ""id"": ""822ee30e-325a-4113-bbf7-42e35ded97e6"",
-                    ""path"": ""OneModifier"",
+                    ""name"": ""button"",
+                    ""id"": ""69004a8b-d5f2-44b5-943c-00318a729e9f"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""RefreshAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""3489e896-c31e-4760-afca-2e1730b99fc8"",
+                    ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""DeselectAll"",
+                    ""action"": ""RefreshAll"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""modifier"",
-                    ""id"": ""25b213a0-29c0-4538-b7ea-b7f6f48aade4"",
-                    ""path"": ""<Keyboard>/ctrl"",
+                    ""name"": ""modifier1"",
+                    ""id"": ""c8d8ecc9-4f4c-4444-b3cc-996f517815d0"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""DeselectAll"",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""RefreshAll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""binding"",
-                    ""id"": ""2c269f8a-5547-46c1-831e-4ddcae7d1a46"",
-                    ""path"": ""<Keyboard>/d"",
+                    ""name"": ""modifier2"",
+                    ""id"": ""d1c5c5f7-6a50-47d2-81aa-4fa760a8c107"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""DeselectAll"",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""RefreshAll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""One Modifier"",
-                    ""id"": ""c469d6bd-6f2f-4ac0-a68d-32869ce2330f"",
-                    ""path"": ""OneModifier"",
+                    ""name"": ""button"",
+                    ""id"": ""3c8a97c7-4116-408a-abb7-76f1ae81be98"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""RefreshAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""57854478-8cad-4ab5-9f63-8ca45a3480cd"",
+                    ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""SelectRandom"",
+                    ""action"": ""Play"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""modifier"",
-                    ""id"": ""8e2923cf-45fc-411e-b66a-39027c220f4e"",
-                    ""path"": ""<Keyboard>/ctrl"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""SelectRandom"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""binding"",
-                    ""id"": ""4f04eefb-bafb-40be-9172-db015f4b9ec2"",
-                    ""path"": ""<Keyboard>/r"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SelectRandom"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ed73495a-741d-40ee-a1b8-26df977fb892"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""name"": ""modifier1"",
+                    ""id"": ""f9e66c03-e1e0-4146-b111-fdd24f8b840d"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
                     ""action"": ""Play"",
                     ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""7aeff9c2-3b03-4167-833f-e85231e9502e"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Play"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""ae2e0bf7-04d8-4afa-ad80-86135459aa4b"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Play"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""b4832705-187e-40ee-b25b-e29806829861"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Play"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""905a1eef-a3ef-4ecf-a1c5-e59b3280fb4b"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Play"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""6e8bad50-237a-43f3-816c-254f42fd8271"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Play"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""d8b3b8d2-9b52-48b9-ba7c-a19fcd0a800f"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""Play"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""85843bbc-fc20-40d3-85fa-57d0d3da2550"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Play"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""e37b41d6-0118-482e-b62c-7fc8313cee13"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Play"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""9c6f21f6-5781-42f5-ae9e-3b1885b8d334"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Play"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""89e65261-cadc-4532-be25-f8f098463bd2"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Play"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""74ff11f2-7fb9-4079-bde8-74ff99c836cb"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Play"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""ece1cbe3-21a7-4104-9e38-888d3424586a"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Play"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""f3089985-3705-4d80-91ef-60772b8f66cb"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Play"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""4d2a9aa3-8ab5-45ee-bc86-c5a3a07430b4"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Play"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""c73ac319-3cfa-4fc7-8acd-2a74c73cacc3"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectAll"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""7a7b3a2e-4ad8-42e5-9dbc-a22090173091"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SelectAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""f2bc8395-eeca-406b-a4e1-d3914bee105a"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SelectAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""849b27fb-18ab-4e97-9220-12d256f696a4"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SelectAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""392a3e29-a0a3-4150-be20-2dfc6fc999c5"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectAll"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""88a5a04a-17c9-47b5-8c03-bcaf990dc156"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SelectAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""8165e6a5-e458-4e3e-8b29-b8f5120e2313"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SelectAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""a0ed9832-1390-4efa-a94d-4faa3f41fc98"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SelectAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""43e003e8-6280-434f-970a-c792a42e7442"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectAll"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""7b163790-a9f2-40c7-bac5-47cfe3381cd1"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SelectAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""e6ea00c9-5b12-480f-a368-4475dbe6444e"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SelectAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""b43ef46a-ca05-470f-9434-f7934fca6df6"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SelectAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""c288c3a5-ecd1-4e1b-a641-3393803cdb1b"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectAll"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""5aa93aa4-42a3-4d78-bd0c-b0127efa91e4"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SelectAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""2dae55c2-f5c5-4fe1-8247-7b056752b5c6"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SelectAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""f92d387f-c617-4509-a24a-9596c1fd951d"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SelectAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""253f1675-3e45-4091-ac84-f910f385106f"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DeselectAll"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""46224c9b-c58d-427c-927e-a4969df25ff6"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""DeselectAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""1de8a69b-233a-40d1-b24c-1b17aada16f0"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""DeselectAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""d0f366ee-eecb-42cb-8ed2-fb9e3fbdfbb5"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""DeselectAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""e4e45cac-6675-4a24-a496-b24dfc7f8b40"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DeselectAll"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""29b2a59f-4c65-4861-a1ca-d60d7e1320e6"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""DeselectAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""05e705c0-6eae-4dca-b907-a581776cb85e"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""DeselectAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""516e0242-299e-4817-877e-7971bf04126a"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""DeselectAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""5953ca1f-29eb-481a-ae11-b7e1a349e3d2"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DeselectAll"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""a9233537-9a76-49a7-b556-5b147071242b"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""DeselectAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""a7fb53d3-88c2-4893-b80a-80cd24b7725a"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""DeselectAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""ba9b21af-c98d-4567-a7fb-4ac36bd35c33"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""DeselectAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""77c3d4c6-631c-42e3-b55a-17e2a761706d"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DeselectAll"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""2169c189-5a27-4bd1-be45-5a53d3fc0f5a"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""DeselectAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""1cd1eaf9-ad02-4561-9510-7eb065172990"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""DeselectAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""1d4f12c7-92d3-4d1f-93d2-a53d879e55fd"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""DeselectAll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""7d79ed24-1aaf-4667-b3a8-5a3e3da7a367"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectRandom"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""d72d93a5-f4df-4701-9402-66461d41526e"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SelectRandom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""49c7d44f-ef8c-4fc2-a28d-31d23a0e3fe2"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SelectRandom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""53e6e7af-907c-402c-b3b8-5aa85a81ea64"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SelectRandom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""997b8d64-9ce3-45f3-91d7-7fa8cbc49d2a"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectRandom"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""13e2ca2e-9199-4758-acfa-be7fb2eac778"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SelectRandom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""3a1571ff-59a7-4946-8e63-10639ceb7a79"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SelectRandom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""707d0354-cfca-413a-aef6-4c4428b5c43f"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SelectRandom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""030faa56-b9a0-4860-b945-672469949b3f"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectRandom"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""9518f539-42c3-4b81-9910-cc351d1ff0d6"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SelectRandom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""fe5d4266-676e-4ff0-8b29-987b245a5cda"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SelectRandom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""ad7e6c2b-0af0-4628-9fdd-62a736aff794"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SelectRandom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""eed68da2-6e42-4e3e-9af2-cc8950c49755"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectRandom"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""bd835939-438a-4fb7-b775-8ddebb2be211"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SelectRandom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""7160b6f6-8d74-4bd0-b9e0-4df64211a934"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SelectRandom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""65d8d6b2-3278-4aeb-a4e9-45fd727d0805"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SelectRandom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""d7e3c3e5-24e8-46b4-9ccd-d0bcd0ddc6bb"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectTool"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""f267c65a-a15d-4a1d-9da7-d39ab6212046"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SelectTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""f808e5e2-1270-4f06-8e91-8a89b47bb185"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SelectTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""caf328f9-e680-463a-811c-8042678e643a"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SelectTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""3db68a25-3f95-45bd-85ba-9c7c55dc5467"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectTool"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""e9389694-c8fe-4ffd-9b49-69db448c42f3"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SelectTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""f445d573-bc62-4918-8b77-a825022bdc17"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SelectTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""a9710db7-3123-47aa-b271-3984bc352fda"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""SelectTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""d3b790dd-b58f-4ccc-9ad2-adebc274d0bf"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectTool"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""cca1611b-8602-4db0-ba6c-cee1e70cfb70"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SelectTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""845158cc-0beb-444d-8d31-f466ab738f59"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SelectTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""e08fbdfd-7cc6-44a2-bb85-132c0fbadf82"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SelectTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""bccd4c40-97be-4ce7-891c-4681eb450834"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectTool"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""7ebc0c12-f940-481e-b041-8817b3cb4881"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SelectTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""c05e81d3-9c09-49c3-8602-73b4d4584146"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SelectTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""6b2e2bbd-bc5c-4c3c-b235-11cf477f390e"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""SelectTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""58aff87e-acdd-47c5-9050-316e982156ca"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BrushTool"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""7db580b8-3363-4878-ae27-2b79cbf443d8"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""BrushTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""9635d8ef-1451-4bf3-b284-3fee3fd49a47"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""BrushTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""928a99fa-4f74-4262-b938-657cd1968390"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""BrushTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""de52d922-387d-4e9e-bdec-2634dac88490"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BrushTool"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""7973df4f-8700-4295-83fd-3f4f63abf164"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""BrushTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""810c619c-c24d-43ab-93d4-794dea354edd"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""BrushTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""b6e274bb-ffd1-46be-a097-f979d9e7a190"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""BrushTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""ccd510ef-8614-4ca8-8b8d-dd108d6994ef"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BrushTool"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""0b77fd38-0101-4147-b81c-36efb766b54e"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""BrushTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""77511b37-5913-4090-a496-e3d3ae4b1f84"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""BrushTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""adf17037-8a00-4426-bc61-faee7dbb7dae"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""BrushTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""5174a6af-8910-420c-b336-d66e05f1d490"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BrushTool"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""45d53514-ba6b-46c7-aa0b-0297d287b03b"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""BrushTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""611389c2-1bf8-4b51-87e1-33a08f2678ac"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""BrushTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""e176f973-1ef5-4b99-bece-0c62bc8f3de1"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""BrushTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""352c64ed-1cb7-421c-9986-24865dfe2358"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EraserTool"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""49cbcd73-e653-41d5-8d8d-290ff57a5f81"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""EraserTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""0413f12c-3091-4524-8a1f-a671394afb8b"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""EraserTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""09bc761d-efe6-435a-aa3c-aeeac99bae8d"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""EraserTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""7a41dc16-2037-4c72-80ca-5a68c6f1dd8a"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EraserTool"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""377c68f7-b4d8-404f-ba0e-571f1b26fede"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""EraserTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""45871d0a-04de-42a7-8c7f-062ea9a6b77a"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""EraserTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""94fdcf30-3e3d-4e8b-8d3a-86e6d1069015"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""EraserTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""0691d290-4ac2-4eda-b1ba-084c236402e4"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EraserTool"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""1edda9ce-a6c2-4a14-a38f-08178f82a8f8"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""EraserTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""a81011bb-fc5d-4696-9b24-7c483bd7804b"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""EraserTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""3931d047-5bb6-4df8-886f-2538ba8ff5a3"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""EraserTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""50dffd56-5cf1-4335-9f55-f5a0e08026b4"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EraserTool"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""8c15d0bc-e0c9-4ab7-a924-3a48d69703ba"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""EraserTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""946315db-ed6b-4f5a-b0d9-f833a1764181"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""EraserTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""232773cd-2629-45f7-853e-79f55ded21df"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""EraserTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""20edd3f3-29bf-4f3f-bf3c-1c41ae4095c5"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FillTool"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""e8475299-068c-490c-ab49-1deec27c9062"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""FillTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""ce88b274-a8e5-482c-a908-f68c0a6c588e"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""FillTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""401ba0a3-1789-4eef-9d95-491f91e36e0d"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""FillTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""6514f443-2a16-4edd-a033-b607ecb3288c"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FillTool"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""53cec4e4-214b-4cec-9933-c80974178baf"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""FillTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""94b97ebb-2d07-4341-9a74-40f8d6cdba33"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""FillTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""9d291164-42e3-4728-b3a7-74f1a9812051"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""FillTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""14b16f08-4fbb-4737-aa7a-1787353c0b32"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FillTool"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""d4bc5f13-fb47-416c-84a4-fbd9de9ac85a"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""FillTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""d783488f-11c0-43f3-a53e-b86b5b551206"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""FillTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""3086e380-d119-4662-9764-c23d56f81b1e"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""FillTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""af7febe3-3b1f-4b58-840e-8cd1479f79f8"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FillTool"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""2acde3e1-8924-4f27-b0b0-311bbecba09a"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""FillTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""b8c14e2d-cbd3-40c0-9c33-ded914dfc58e"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""FillTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""24eb07e3-602d-4924-a05f-d8db82bb59ca"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""FillTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""3cd5faf7-e0d8-4808-9903-0dd9d0c18775"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PickerTool"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""50424819-9873-401a-8f69-16a4ba8a93fb"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""PickerTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""7fda05e4-44ea-4196-aead-b41488c572a4"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""PickerTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""33fec17a-df4d-41d4-a09b-8de5aa389278"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""PickerTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""8f4f5d0d-dde5-4f9a-a9e3-c27926d93f9d"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PickerTool"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""d6e08901-bbec-4dc3-ab77-37c1d799a22a"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""PickerTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""444709e6-019c-4e37-b88f-39d74f075745"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""PickerTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""1522eae2-6c67-4478-829e-19814a794e79"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""PickerTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""473a528e-239b-4f53-a0c3-213ad2725826"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PickerTool"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""c55169ea-4329-48e3-bc14-2799be6f8da4"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""PickerTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""311fbf65-4321-4ab9-b4bb-07508b46b423"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""PickerTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""0c5f0303-112d-4af1-8b77-2f31e4afafca"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""PickerTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""5b61894a-b77f-4571-97f5-b86ec3cee9e4"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PickerTool"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""c3d94524-bd02-404d-b2e9-be3c9a3a52c4"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""PickerTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""c7796e87-d1f7-44d3-88ff-edd878a0c795"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""PickerTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""96c69a28-6419-4353-b55d-ccd79a883483"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""PickerTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""6ff41b92-fa16-4053-a2e3-95c088c8ca19"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ClearCanvas"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""cac9e7b1-fd6b-4512-9045-9de5432f63b6"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ClearCanvas"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""44391a7f-97d6-4f25-807f-01fbd140a6d4"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ClearCanvas"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""080bac95-b8e5-4608-92d7-af48f7761736"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ClearCanvas"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""763ea1dd-fa18-43cc-8b63-ba4b56fea7ca"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ClearCanvas"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""1d207f02-5728-4030-acdc-9729ab3c73d6"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ClearCanvas"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""e2f08443-c72a-4429-b5e7-fc7f48704921"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ClearCanvas"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""bd6a2937-688c-415b-9a9f-d4fea36596a2"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ClearCanvas"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""39594c66-b1fa-4f3a-84a6-049572f0b8d8"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ClearCanvas"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""d5312dd2-1f06-4878-9faf-00d2df9e5816"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ClearCanvas"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""24cde4b1-77b3-42f4-9c1b-ba365adc4e62"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ClearCanvas"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""963a889b-9692-45a8-a48b-a321d5cf978f"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ClearCanvas"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""249c8c59-812c-4797-b466-5fa1a761c322"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ClearCanvas"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""3ebc7171-2262-4e19-a8af-777d2bfabdea"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ClearCanvas"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""a1fb3b95-7e73-425e-b094-a455743e4461"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ClearCanvas"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""364dc7e9-cba3-48dc-ac93-a431b25a4c96"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ClearCanvas"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""f3458630-2be1-4e59-9023-7566793a3189"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleGrid"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""1d257ed3-bf1d-42e3-b277-25d7a81806c4"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ToggleGrid"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""08df85ad-07b3-4146-8f2c-22f89a98fdd7"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ToggleGrid"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""2ae95d1f-ed2e-4b77-8bfe-10d6c84141c3"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ToggleGrid"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""b0f0bfc8-868e-450a-81cd-7ae92f5f3476"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleGrid"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""4620b68d-825a-4f7c-8431-e028857e0aeb"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ToggleGrid"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""ab5db7ae-dbba-4e31-8df6-b2ba2878cc49"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ToggleGrid"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""2eebb0ad-f9ac-4943-b6f3-e52e0512df32"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ToggleGrid"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""6c71784c-f88c-4b70-951f-e13122594f13"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleGrid"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""48193608-56f0-463f-ada2-41c1f257974a"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ToggleGrid"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""cb6bed25-ab75-4691-acd6-cc5ed1fad4a8"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ToggleGrid"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""4b373d55-8c8e-4b32-b9f4-137f162bc2c7"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ToggleGrid"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""483a94c4-e362-4b1f-9eb6-0fb1c82b3bb4"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleGrid"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""b423e040-698f-451c-9762-caafb90f15e8"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ToggleGrid"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""888446f4-881c-48d4-8a09-afbcc49bfbb9"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ToggleGrid"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""56c0ba65-c1ff-48dc-bd59-beb8864c5524"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ToggleGrid"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""a2dcc124-f4c3-46bb-8311-05d5211c4f1a"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangePalette"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""7d94f245-d647-49cf-bf94-89b1a6086b72"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ChangePalette"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""ec738f1c-dec2-4f9a-a50b-1993845f0e64"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ChangePalette"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""20062e92-f204-4f1b-ac51-e8d2cd5076de"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ChangePalette"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""810b3c77-1591-4eb6-a480-2f4ec6cd1915"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangePalette"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""376f4167-4b32-4f4f-bf2c-27994f5278b8"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ChangePalette"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""88e6ec2a-c79f-42bc-9320-893ee81b470b"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ChangePalette"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""eb9e64b2-38b3-4728-be0a-c2c7643fb600"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ChangePalette"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""a0030a42-784e-47ed-b9fd-19a8859e623c"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangePalette"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""14c456d6-6021-40cf-aef3-16ab7bbb2651"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ChangePalette"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""3b9ecccd-6775-4dbd-bb5a-6caf1bc50199"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ChangePalette"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""0ae33773-1feb-483c-a32d-d23f1c409ed5"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ChangePalette"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""021a9325-02cd-4061-b04b-ed96924fb9ab"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangePalette"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""da9ca56a-0dc8-427d-bbdb-89fba7b6a1e8"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ChangePalette"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""7e0772a0-76b5-445c-a627-21d84fefbba5"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ChangePalette"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""c0748048-db4b-4380-9495-bed8abb61926"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ChangePalette"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""df0f26ae-0c40-4876-9638-450278ae15e7"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TileLayer"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""7ad714ee-8c32-4898-9238-21e7ce50ad5a"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""TileLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""06bf5a7b-5c10-4498-9e56-e9f35f5d09df"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""TileLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""c321c7d3-56c5-4b00-9fd2-95d97f8c167f"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""TileLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""19d74b85-abd7-4f02-ae0c-855441f8e1d3"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TileLayer"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""73190e4e-e6de-4506-8dcb-35f165c3523c"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""TileLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""ce7fe7c9-f2c6-4683-b974-aad81e166e6d"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""TileLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""76ac7037-d4f5-466c-98d9-cb285bc651d1"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""TileLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""4b516293-46dd-4dd3-ae93-213b244b46f9"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TileLayer"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""f574a785-20fd-4893-8933-367e572e07f5"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""TileLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""a6ffc857-a551-4180-a7ad-eb199fcf4773"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""TileLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""3afc2a97-f6c2-4fcf-8549-facb9bd462f0"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""TileLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""b8c5aa87-e687-424a-a54c-b407aa2e2458"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TileLayer"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""f9412184-667a-42c8-9193-88001c7039da"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""TileLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""ea30ef5a-8722-4be7-9bc1-e20551b9f4d1"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""TileLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""18b861b1-8920-4979-bea8-3fe2465baed2"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""TileLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""f6ff2515-5aa8-4792-adb2-98f21fb0a596"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DecorLayer"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""53ad0c81-13d1-408f-865b-d3b4bae1f26c"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""DecorLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""f01296e7-a923-4efe-b8e1-666a27a705de"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""DecorLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""d7027267-5ee9-4b65-9473-2b9d02ba6303"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""DecorLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""3bfbad24-8172-42ef-b5e0-60a3b4e0d1e2"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DecorLayer"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""951d2b4b-5819-47d4-afbd-8a224f8e6281"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""DecorLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""d522b528-b1ac-4361-a889-1f620c80152e"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""DecorLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""6608c8ff-1044-46f3-a709-91ba4c360e90"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""DecorLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""50299cf4-4adc-4c50-b795-f95d667229df"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DecorLayer"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""728aaf80-0182-480a-9206-96b3444de6a0"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""DecorLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""1c048d21-2cfb-41a7-a928-c14d91ea1ce4"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""DecorLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""36ec9c83-6104-402c-b33d-c36b78d7677e"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""DecorLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""2fcf39c3-d58b-4f15-ba58-e503ca344b85"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DecorLayer"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""8d183bf8-7999-4415-8de1-e973e9a3b6e3"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""DecorLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""0ffa0d1f-4aec-4e7b-bb03-e5f24a33132c"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""DecorLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""bbad6b2f-3cb2-4933-9aad-c91807ff1fd2"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""DecorLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""cf0e35d4-6ab4-490f-b782-0aea3441f45c"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ObjectLayer"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""3793502c-a657-452c-be8d-f3f82d4df317"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ObjectLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""531890a5-6719-44bf-bcf2-d7fbcdda6da4"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ObjectLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""09962aa9-4e03-4189-8f25-0d586037b51d"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ObjectLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""f7a8b532-e7b7-44f7-b71e-0f47633b02f2"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ObjectLayer"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""5f141c17-9b2f-4a45-ad95-7bb27df5de4f"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ObjectLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""1994dbd8-39d1-457a-9534-b5350358bdc0"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ObjectLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""f09a15e1-3137-4960-8445-082bd48ff300"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""ObjectLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""6387fc08-abd2-4893-9112-5e6d27bd9e17"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ObjectLayer"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""a1c9ab0e-a0a3-463b-be3b-795c1acea77c"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ObjectLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""6a7cb6f2-63ab-44cf-bc52-aa5f6d595ef9"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ObjectLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""8f370a89-c93f-4a9f-b57c-fe244667f581"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ObjectLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""b0bb5d57-01aa-4919-bad2-2c3b9332ad8d"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ObjectLayer"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""40bfc095-16c5-49e6-83fd-e41a83d20a87"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ObjectLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""3ce4ca52-b57c-4d44-bded-ea59616a4a4b"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ObjectLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""1d75fec3-f998-4dbb-ada4-e5b74f65556a"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""ObjectLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard1"",
+                    ""id"": ""e5b32b08-69ab-4efb-adc3-26387b5a5366"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EnemyLayer"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""fe7a0949-f0ec-4804-821d-537930107e85"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""EnemyLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""4ef10ef9-af8b-4dab-9dbb-2c3f4385f39d"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""EnemyLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""4335e5f3-f528-42d1-a95b-92f3823843e4"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""EnemyLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard2"",
+                    ""id"": ""eb239d41-e37a-4944-a4f1-3bceabd5b89b"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EnemyLayer"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""b743af8f-7c47-47a5-8be2-3043e0ff4c5b"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""EnemyLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""5a54defd-b10d-432d-af70-6b4839f0a229"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""EnemyLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""c7023187-681b-4d82-9078-6f1c92cc3883"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard + Mouse"",
+                    ""action"": ""EnemyLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad1"",
+                    ""id"": ""d572ef62-aae9-4539-ae0e-78fd02ea53c5"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EnemyLayer"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""7b3f83ea-c2e6-4281-b09a-3f9198aaa4d8"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""EnemyLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""db4ec828-0462-49dc-8db5-73dd191d333d"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""EnemyLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""ff6a25b4-222f-4707-b5a6-95b62bd36622"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""EnemyLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad2"",
+                    ""id"": ""cf1b9f04-0490-464c-a673-d3be58dec636"",
+                    ""path"": ""TwoOptionalModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EnemyLayer"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""d175c293-9b82-4d81-a9ae-8f026c698f3f"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""EnemyLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""778bf9cc-1d7f-47c6-8d39-9b566eb5dc05"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""EnemyLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""cb6d4c62-b783-4e42-adf0-5c1a664b532a"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""EnemyLayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -2433,22 +7836,6 @@ namespace Rogium.Systems.Input
             m_Shortcuts_Edit = m_Shortcuts.FindAction("Edit", throwIfNotFound: true);
             m_Shortcuts_EditProperties = m_Shortcuts.FindAction("EditProperties", throwIfNotFound: true);
             m_Shortcuts_Delete = m_Shortcuts.FindAction("Delete", throwIfNotFound: true);
-            m_Shortcuts_SelectionTool = m_Shortcuts.FindAction("SelectionTool", throwIfNotFound: true);
-            m_Shortcuts_BrushTool = m_Shortcuts.FindAction("BrushTool", throwIfNotFound: true);
-            m_Shortcuts_EraserTool = m_Shortcuts.FindAction("EraserTool", throwIfNotFound: true);
-            m_Shortcuts_FillTool = m_Shortcuts.FindAction("FillTool", throwIfNotFound: true);
-            m_Shortcuts_PickerTool = m_Shortcuts.FindAction("PickerTool", throwIfNotFound: true);
-            m_Shortcuts_ClearCanvas = m_Shortcuts.FindAction("ClearCanvas", throwIfNotFound: true);
-            m_Shortcuts_ToggleGrid = m_Shortcuts.FindAction("ToggleGrid", throwIfNotFound: true);
-            m_Shortcuts_TilesLayer = m_Shortcuts.FindAction("TilesLayer", throwIfNotFound: true);
-            m_Shortcuts_DecorLayer = m_Shortcuts.FindAction("DecorLayer", throwIfNotFound: true);
-            m_Shortcuts_ObjectsLayer = m_Shortcuts.FindAction("ObjectsLayer", throwIfNotFound: true);
-            m_Shortcuts_EnemiesLayer = m_Shortcuts.FindAction("EnemiesLayer", throwIfNotFound: true);
-            m_Shortcuts_SwitchLeft = m_Shortcuts.FindAction("SwitchLeft", throwIfNotFound: true);
-            m_Shortcuts_SwitchRight = m_Shortcuts.FindAction("SwitchRight", throwIfNotFound: true);
-            m_Shortcuts_Play = m_Shortcuts.FindAction("Play", throwIfNotFound: true);
-            m_Shortcuts_RefreshCurrent = m_Shortcuts.FindAction("RefreshCurrent", throwIfNotFound: true);
-            m_Shortcuts_RefreshAll = m_Shortcuts.FindAction("RefreshAll", throwIfNotFound: true);
             m_Shortcuts_ShowPalettes = m_Shortcuts.FindAction("ShowPalettes", throwIfNotFound: true);
             m_Shortcuts_ShowSprites = m_Shortcuts.FindAction("ShowSprites", throwIfNotFound: true);
             m_Shortcuts_ShowWeapons = m_Shortcuts.FindAction("ShowWeapons", throwIfNotFound: true);
@@ -2456,11 +7843,26 @@ namespace Rogium.Systems.Input
             m_Shortcuts_ShowEnemies = m_Shortcuts.FindAction("ShowEnemies", throwIfNotFound: true);
             m_Shortcuts_ShowRooms = m_Shortcuts.FindAction("ShowRooms", throwIfNotFound: true);
             m_Shortcuts_ShowTiles = m_Shortcuts.FindAction("ShowTiles", throwIfNotFound: true);
-            m_Shortcuts_ChangePalette = m_Shortcuts.FindAction("ChangePalette", throwIfNotFound: true);
-            m_Shortcuts_ResetToDefault = m_Shortcuts.FindAction("ResetToDefault", throwIfNotFound: true);
+            m_Shortcuts_SwitchLeft = m_Shortcuts.FindAction("SwitchLeft", throwIfNotFound: true);
+            m_Shortcuts_SwitchRight = m_Shortcuts.FindAction("SwitchRight", throwIfNotFound: true);
+            m_Shortcuts_Refresh = m_Shortcuts.FindAction("Refresh", throwIfNotFound: true);
+            m_Shortcuts_RefreshAll = m_Shortcuts.FindAction("RefreshAll", throwIfNotFound: true);
+            m_Shortcuts_Play = m_Shortcuts.FindAction("Play", throwIfNotFound: true);
             m_Shortcuts_SelectAll = m_Shortcuts.FindAction("SelectAll", throwIfNotFound: true);
             m_Shortcuts_DeselectAll = m_Shortcuts.FindAction("DeselectAll", throwIfNotFound: true);
             m_Shortcuts_SelectRandom = m_Shortcuts.FindAction("SelectRandom", throwIfNotFound: true);
+            m_Shortcuts_SelectTool = m_Shortcuts.FindAction("SelectTool", throwIfNotFound: true);
+            m_Shortcuts_BrushTool = m_Shortcuts.FindAction("BrushTool", throwIfNotFound: true);
+            m_Shortcuts_EraserTool = m_Shortcuts.FindAction("EraserTool", throwIfNotFound: true);
+            m_Shortcuts_FillTool = m_Shortcuts.FindAction("FillTool", throwIfNotFound: true);
+            m_Shortcuts_PickerTool = m_Shortcuts.FindAction("PickerTool", throwIfNotFound: true);
+            m_Shortcuts_ClearCanvas = m_Shortcuts.FindAction("ClearCanvas", throwIfNotFound: true);
+            m_Shortcuts_ToggleGrid = m_Shortcuts.FindAction("ToggleGrid", throwIfNotFound: true);
+            m_Shortcuts_ChangePalette = m_Shortcuts.FindAction("ChangePalette", throwIfNotFound: true);
+            m_Shortcuts_TileLayer = m_Shortcuts.FindAction("TileLayer", throwIfNotFound: true);
+            m_Shortcuts_DecorLayer = m_Shortcuts.FindAction("DecorLayer", throwIfNotFound: true);
+            m_Shortcuts_ObjectLayer = m_Shortcuts.FindAction("ObjectLayer", throwIfNotFound: true);
+            m_Shortcuts_EnemyLayer = m_Shortcuts.FindAction("EnemyLayer", throwIfNotFound: true);
         }
 
         ~@RogiumInputActions()
@@ -2804,22 +8206,6 @@ namespace Rogium.Systems.Input
         private readonly InputAction m_Shortcuts_Edit;
         private readonly InputAction m_Shortcuts_EditProperties;
         private readonly InputAction m_Shortcuts_Delete;
-        private readonly InputAction m_Shortcuts_SelectionTool;
-        private readonly InputAction m_Shortcuts_BrushTool;
-        private readonly InputAction m_Shortcuts_EraserTool;
-        private readonly InputAction m_Shortcuts_FillTool;
-        private readonly InputAction m_Shortcuts_PickerTool;
-        private readonly InputAction m_Shortcuts_ClearCanvas;
-        private readonly InputAction m_Shortcuts_ToggleGrid;
-        private readonly InputAction m_Shortcuts_TilesLayer;
-        private readonly InputAction m_Shortcuts_DecorLayer;
-        private readonly InputAction m_Shortcuts_ObjectsLayer;
-        private readonly InputAction m_Shortcuts_EnemiesLayer;
-        private readonly InputAction m_Shortcuts_SwitchLeft;
-        private readonly InputAction m_Shortcuts_SwitchRight;
-        private readonly InputAction m_Shortcuts_Play;
-        private readonly InputAction m_Shortcuts_RefreshCurrent;
-        private readonly InputAction m_Shortcuts_RefreshAll;
         private readonly InputAction m_Shortcuts_ShowPalettes;
         private readonly InputAction m_Shortcuts_ShowSprites;
         private readonly InputAction m_Shortcuts_ShowWeapons;
@@ -2827,11 +8213,26 @@ namespace Rogium.Systems.Input
         private readonly InputAction m_Shortcuts_ShowEnemies;
         private readonly InputAction m_Shortcuts_ShowRooms;
         private readonly InputAction m_Shortcuts_ShowTiles;
-        private readonly InputAction m_Shortcuts_ChangePalette;
-        private readonly InputAction m_Shortcuts_ResetToDefault;
+        private readonly InputAction m_Shortcuts_SwitchLeft;
+        private readonly InputAction m_Shortcuts_SwitchRight;
+        private readonly InputAction m_Shortcuts_Refresh;
+        private readonly InputAction m_Shortcuts_RefreshAll;
+        private readonly InputAction m_Shortcuts_Play;
         private readonly InputAction m_Shortcuts_SelectAll;
         private readonly InputAction m_Shortcuts_DeselectAll;
         private readonly InputAction m_Shortcuts_SelectRandom;
+        private readonly InputAction m_Shortcuts_SelectTool;
+        private readonly InputAction m_Shortcuts_BrushTool;
+        private readonly InputAction m_Shortcuts_EraserTool;
+        private readonly InputAction m_Shortcuts_FillTool;
+        private readonly InputAction m_Shortcuts_PickerTool;
+        private readonly InputAction m_Shortcuts_ClearCanvas;
+        private readonly InputAction m_Shortcuts_ToggleGrid;
+        private readonly InputAction m_Shortcuts_ChangePalette;
+        private readonly InputAction m_Shortcuts_TileLayer;
+        private readonly InputAction m_Shortcuts_DecorLayer;
+        private readonly InputAction m_Shortcuts_ObjectLayer;
+        private readonly InputAction m_Shortcuts_EnemyLayer;
         public struct ShortcutsActions
         {
             private @RogiumInputActions m_Wrapper;
@@ -2844,22 +8245,6 @@ namespace Rogium.Systems.Input
             public InputAction @Edit => m_Wrapper.m_Shortcuts_Edit;
             public InputAction @EditProperties => m_Wrapper.m_Shortcuts_EditProperties;
             public InputAction @Delete => m_Wrapper.m_Shortcuts_Delete;
-            public InputAction @SelectionTool => m_Wrapper.m_Shortcuts_SelectionTool;
-            public InputAction @BrushTool => m_Wrapper.m_Shortcuts_BrushTool;
-            public InputAction @EraserTool => m_Wrapper.m_Shortcuts_EraserTool;
-            public InputAction @FillTool => m_Wrapper.m_Shortcuts_FillTool;
-            public InputAction @PickerTool => m_Wrapper.m_Shortcuts_PickerTool;
-            public InputAction @ClearCanvas => m_Wrapper.m_Shortcuts_ClearCanvas;
-            public InputAction @ToggleGrid => m_Wrapper.m_Shortcuts_ToggleGrid;
-            public InputAction @TilesLayer => m_Wrapper.m_Shortcuts_TilesLayer;
-            public InputAction @DecorLayer => m_Wrapper.m_Shortcuts_DecorLayer;
-            public InputAction @ObjectsLayer => m_Wrapper.m_Shortcuts_ObjectsLayer;
-            public InputAction @EnemiesLayer => m_Wrapper.m_Shortcuts_EnemiesLayer;
-            public InputAction @SwitchLeft => m_Wrapper.m_Shortcuts_SwitchLeft;
-            public InputAction @SwitchRight => m_Wrapper.m_Shortcuts_SwitchRight;
-            public InputAction @Play => m_Wrapper.m_Shortcuts_Play;
-            public InputAction @RefreshCurrent => m_Wrapper.m_Shortcuts_RefreshCurrent;
-            public InputAction @RefreshAll => m_Wrapper.m_Shortcuts_RefreshAll;
             public InputAction @ShowPalettes => m_Wrapper.m_Shortcuts_ShowPalettes;
             public InputAction @ShowSprites => m_Wrapper.m_Shortcuts_ShowSprites;
             public InputAction @ShowWeapons => m_Wrapper.m_Shortcuts_ShowWeapons;
@@ -2867,11 +8252,26 @@ namespace Rogium.Systems.Input
             public InputAction @ShowEnemies => m_Wrapper.m_Shortcuts_ShowEnemies;
             public InputAction @ShowRooms => m_Wrapper.m_Shortcuts_ShowRooms;
             public InputAction @ShowTiles => m_Wrapper.m_Shortcuts_ShowTiles;
-            public InputAction @ChangePalette => m_Wrapper.m_Shortcuts_ChangePalette;
-            public InputAction @ResetToDefault => m_Wrapper.m_Shortcuts_ResetToDefault;
+            public InputAction @SwitchLeft => m_Wrapper.m_Shortcuts_SwitchLeft;
+            public InputAction @SwitchRight => m_Wrapper.m_Shortcuts_SwitchRight;
+            public InputAction @Refresh => m_Wrapper.m_Shortcuts_Refresh;
+            public InputAction @RefreshAll => m_Wrapper.m_Shortcuts_RefreshAll;
+            public InputAction @Play => m_Wrapper.m_Shortcuts_Play;
             public InputAction @SelectAll => m_Wrapper.m_Shortcuts_SelectAll;
             public InputAction @DeselectAll => m_Wrapper.m_Shortcuts_DeselectAll;
             public InputAction @SelectRandom => m_Wrapper.m_Shortcuts_SelectRandom;
+            public InputAction @SelectTool => m_Wrapper.m_Shortcuts_SelectTool;
+            public InputAction @BrushTool => m_Wrapper.m_Shortcuts_BrushTool;
+            public InputAction @EraserTool => m_Wrapper.m_Shortcuts_EraserTool;
+            public InputAction @FillTool => m_Wrapper.m_Shortcuts_FillTool;
+            public InputAction @PickerTool => m_Wrapper.m_Shortcuts_PickerTool;
+            public InputAction @ClearCanvas => m_Wrapper.m_Shortcuts_ClearCanvas;
+            public InputAction @ToggleGrid => m_Wrapper.m_Shortcuts_ToggleGrid;
+            public InputAction @ChangePalette => m_Wrapper.m_Shortcuts_ChangePalette;
+            public InputAction @TileLayer => m_Wrapper.m_Shortcuts_TileLayer;
+            public InputAction @DecorLayer => m_Wrapper.m_Shortcuts_DecorLayer;
+            public InputAction @ObjectLayer => m_Wrapper.m_Shortcuts_ObjectLayer;
+            public InputAction @EnemyLayer => m_Wrapper.m_Shortcuts_EnemyLayer;
             public InputActionMap Get() { return m_Wrapper.m_Shortcuts; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -2905,54 +8305,6 @@ namespace Rogium.Systems.Input
                 @Delete.started += instance.OnDelete;
                 @Delete.performed += instance.OnDelete;
                 @Delete.canceled += instance.OnDelete;
-                @SelectionTool.started += instance.OnSelectionTool;
-                @SelectionTool.performed += instance.OnSelectionTool;
-                @SelectionTool.canceled += instance.OnSelectionTool;
-                @BrushTool.started += instance.OnBrushTool;
-                @BrushTool.performed += instance.OnBrushTool;
-                @BrushTool.canceled += instance.OnBrushTool;
-                @EraserTool.started += instance.OnEraserTool;
-                @EraserTool.performed += instance.OnEraserTool;
-                @EraserTool.canceled += instance.OnEraserTool;
-                @FillTool.started += instance.OnFillTool;
-                @FillTool.performed += instance.OnFillTool;
-                @FillTool.canceled += instance.OnFillTool;
-                @PickerTool.started += instance.OnPickerTool;
-                @PickerTool.performed += instance.OnPickerTool;
-                @PickerTool.canceled += instance.OnPickerTool;
-                @ClearCanvas.started += instance.OnClearCanvas;
-                @ClearCanvas.performed += instance.OnClearCanvas;
-                @ClearCanvas.canceled += instance.OnClearCanvas;
-                @ToggleGrid.started += instance.OnToggleGrid;
-                @ToggleGrid.performed += instance.OnToggleGrid;
-                @ToggleGrid.canceled += instance.OnToggleGrid;
-                @TilesLayer.started += instance.OnTilesLayer;
-                @TilesLayer.performed += instance.OnTilesLayer;
-                @TilesLayer.canceled += instance.OnTilesLayer;
-                @DecorLayer.started += instance.OnDecorLayer;
-                @DecorLayer.performed += instance.OnDecorLayer;
-                @DecorLayer.canceled += instance.OnDecorLayer;
-                @ObjectsLayer.started += instance.OnObjectsLayer;
-                @ObjectsLayer.performed += instance.OnObjectsLayer;
-                @ObjectsLayer.canceled += instance.OnObjectsLayer;
-                @EnemiesLayer.started += instance.OnEnemiesLayer;
-                @EnemiesLayer.performed += instance.OnEnemiesLayer;
-                @EnemiesLayer.canceled += instance.OnEnemiesLayer;
-                @SwitchLeft.started += instance.OnSwitchLeft;
-                @SwitchLeft.performed += instance.OnSwitchLeft;
-                @SwitchLeft.canceled += instance.OnSwitchLeft;
-                @SwitchRight.started += instance.OnSwitchRight;
-                @SwitchRight.performed += instance.OnSwitchRight;
-                @SwitchRight.canceled += instance.OnSwitchRight;
-                @Play.started += instance.OnPlay;
-                @Play.performed += instance.OnPlay;
-                @Play.canceled += instance.OnPlay;
-                @RefreshCurrent.started += instance.OnRefreshCurrent;
-                @RefreshCurrent.performed += instance.OnRefreshCurrent;
-                @RefreshCurrent.canceled += instance.OnRefreshCurrent;
-                @RefreshAll.started += instance.OnRefreshAll;
-                @RefreshAll.performed += instance.OnRefreshAll;
-                @RefreshAll.canceled += instance.OnRefreshAll;
                 @ShowPalettes.started += instance.OnShowPalettes;
                 @ShowPalettes.performed += instance.OnShowPalettes;
                 @ShowPalettes.canceled += instance.OnShowPalettes;
@@ -2974,12 +8326,21 @@ namespace Rogium.Systems.Input
                 @ShowTiles.started += instance.OnShowTiles;
                 @ShowTiles.performed += instance.OnShowTiles;
                 @ShowTiles.canceled += instance.OnShowTiles;
-                @ChangePalette.started += instance.OnChangePalette;
-                @ChangePalette.performed += instance.OnChangePalette;
-                @ChangePalette.canceled += instance.OnChangePalette;
-                @ResetToDefault.started += instance.OnResetToDefault;
-                @ResetToDefault.performed += instance.OnResetToDefault;
-                @ResetToDefault.canceled += instance.OnResetToDefault;
+                @SwitchLeft.started += instance.OnSwitchLeft;
+                @SwitchLeft.performed += instance.OnSwitchLeft;
+                @SwitchLeft.canceled += instance.OnSwitchLeft;
+                @SwitchRight.started += instance.OnSwitchRight;
+                @SwitchRight.performed += instance.OnSwitchRight;
+                @SwitchRight.canceled += instance.OnSwitchRight;
+                @Refresh.started += instance.OnRefresh;
+                @Refresh.performed += instance.OnRefresh;
+                @Refresh.canceled += instance.OnRefresh;
+                @RefreshAll.started += instance.OnRefreshAll;
+                @RefreshAll.performed += instance.OnRefreshAll;
+                @RefreshAll.canceled += instance.OnRefreshAll;
+                @Play.started += instance.OnPlay;
+                @Play.performed += instance.OnPlay;
+                @Play.canceled += instance.OnPlay;
                 @SelectAll.started += instance.OnSelectAll;
                 @SelectAll.performed += instance.OnSelectAll;
                 @SelectAll.canceled += instance.OnSelectAll;
@@ -2989,6 +8350,42 @@ namespace Rogium.Systems.Input
                 @SelectRandom.started += instance.OnSelectRandom;
                 @SelectRandom.performed += instance.OnSelectRandom;
                 @SelectRandom.canceled += instance.OnSelectRandom;
+                @SelectTool.started += instance.OnSelectTool;
+                @SelectTool.performed += instance.OnSelectTool;
+                @SelectTool.canceled += instance.OnSelectTool;
+                @BrushTool.started += instance.OnBrushTool;
+                @BrushTool.performed += instance.OnBrushTool;
+                @BrushTool.canceled += instance.OnBrushTool;
+                @EraserTool.started += instance.OnEraserTool;
+                @EraserTool.performed += instance.OnEraserTool;
+                @EraserTool.canceled += instance.OnEraserTool;
+                @FillTool.started += instance.OnFillTool;
+                @FillTool.performed += instance.OnFillTool;
+                @FillTool.canceled += instance.OnFillTool;
+                @PickerTool.started += instance.OnPickerTool;
+                @PickerTool.performed += instance.OnPickerTool;
+                @PickerTool.canceled += instance.OnPickerTool;
+                @ClearCanvas.started += instance.OnClearCanvas;
+                @ClearCanvas.performed += instance.OnClearCanvas;
+                @ClearCanvas.canceled += instance.OnClearCanvas;
+                @ToggleGrid.started += instance.OnToggleGrid;
+                @ToggleGrid.performed += instance.OnToggleGrid;
+                @ToggleGrid.canceled += instance.OnToggleGrid;
+                @ChangePalette.started += instance.OnChangePalette;
+                @ChangePalette.performed += instance.OnChangePalette;
+                @ChangePalette.canceled += instance.OnChangePalette;
+                @TileLayer.started += instance.OnTileLayer;
+                @TileLayer.performed += instance.OnTileLayer;
+                @TileLayer.canceled += instance.OnTileLayer;
+                @DecorLayer.started += instance.OnDecorLayer;
+                @DecorLayer.performed += instance.OnDecorLayer;
+                @DecorLayer.canceled += instance.OnDecorLayer;
+                @ObjectLayer.started += instance.OnObjectLayer;
+                @ObjectLayer.performed += instance.OnObjectLayer;
+                @ObjectLayer.canceled += instance.OnObjectLayer;
+                @EnemyLayer.started += instance.OnEnemyLayer;
+                @EnemyLayer.performed += instance.OnEnemyLayer;
+                @EnemyLayer.canceled += instance.OnEnemyLayer;
             }
 
             private void UnregisterCallbacks(IShortcutsActions instance)
@@ -3017,54 +8414,6 @@ namespace Rogium.Systems.Input
                 @Delete.started -= instance.OnDelete;
                 @Delete.performed -= instance.OnDelete;
                 @Delete.canceled -= instance.OnDelete;
-                @SelectionTool.started -= instance.OnSelectionTool;
-                @SelectionTool.performed -= instance.OnSelectionTool;
-                @SelectionTool.canceled -= instance.OnSelectionTool;
-                @BrushTool.started -= instance.OnBrushTool;
-                @BrushTool.performed -= instance.OnBrushTool;
-                @BrushTool.canceled -= instance.OnBrushTool;
-                @EraserTool.started -= instance.OnEraserTool;
-                @EraserTool.performed -= instance.OnEraserTool;
-                @EraserTool.canceled -= instance.OnEraserTool;
-                @FillTool.started -= instance.OnFillTool;
-                @FillTool.performed -= instance.OnFillTool;
-                @FillTool.canceled -= instance.OnFillTool;
-                @PickerTool.started -= instance.OnPickerTool;
-                @PickerTool.performed -= instance.OnPickerTool;
-                @PickerTool.canceled -= instance.OnPickerTool;
-                @ClearCanvas.started -= instance.OnClearCanvas;
-                @ClearCanvas.performed -= instance.OnClearCanvas;
-                @ClearCanvas.canceled -= instance.OnClearCanvas;
-                @ToggleGrid.started -= instance.OnToggleGrid;
-                @ToggleGrid.performed -= instance.OnToggleGrid;
-                @ToggleGrid.canceled -= instance.OnToggleGrid;
-                @TilesLayer.started -= instance.OnTilesLayer;
-                @TilesLayer.performed -= instance.OnTilesLayer;
-                @TilesLayer.canceled -= instance.OnTilesLayer;
-                @DecorLayer.started -= instance.OnDecorLayer;
-                @DecorLayer.performed -= instance.OnDecorLayer;
-                @DecorLayer.canceled -= instance.OnDecorLayer;
-                @ObjectsLayer.started -= instance.OnObjectsLayer;
-                @ObjectsLayer.performed -= instance.OnObjectsLayer;
-                @ObjectsLayer.canceled -= instance.OnObjectsLayer;
-                @EnemiesLayer.started -= instance.OnEnemiesLayer;
-                @EnemiesLayer.performed -= instance.OnEnemiesLayer;
-                @EnemiesLayer.canceled -= instance.OnEnemiesLayer;
-                @SwitchLeft.started -= instance.OnSwitchLeft;
-                @SwitchLeft.performed -= instance.OnSwitchLeft;
-                @SwitchLeft.canceled -= instance.OnSwitchLeft;
-                @SwitchRight.started -= instance.OnSwitchRight;
-                @SwitchRight.performed -= instance.OnSwitchRight;
-                @SwitchRight.canceled -= instance.OnSwitchRight;
-                @Play.started -= instance.OnPlay;
-                @Play.performed -= instance.OnPlay;
-                @Play.canceled -= instance.OnPlay;
-                @RefreshCurrent.started -= instance.OnRefreshCurrent;
-                @RefreshCurrent.performed -= instance.OnRefreshCurrent;
-                @RefreshCurrent.canceled -= instance.OnRefreshCurrent;
-                @RefreshAll.started -= instance.OnRefreshAll;
-                @RefreshAll.performed -= instance.OnRefreshAll;
-                @RefreshAll.canceled -= instance.OnRefreshAll;
                 @ShowPalettes.started -= instance.OnShowPalettes;
                 @ShowPalettes.performed -= instance.OnShowPalettes;
                 @ShowPalettes.canceled -= instance.OnShowPalettes;
@@ -3086,12 +8435,21 @@ namespace Rogium.Systems.Input
                 @ShowTiles.started -= instance.OnShowTiles;
                 @ShowTiles.performed -= instance.OnShowTiles;
                 @ShowTiles.canceled -= instance.OnShowTiles;
-                @ChangePalette.started -= instance.OnChangePalette;
-                @ChangePalette.performed -= instance.OnChangePalette;
-                @ChangePalette.canceled -= instance.OnChangePalette;
-                @ResetToDefault.started -= instance.OnResetToDefault;
-                @ResetToDefault.performed -= instance.OnResetToDefault;
-                @ResetToDefault.canceled -= instance.OnResetToDefault;
+                @SwitchLeft.started -= instance.OnSwitchLeft;
+                @SwitchLeft.performed -= instance.OnSwitchLeft;
+                @SwitchLeft.canceled -= instance.OnSwitchLeft;
+                @SwitchRight.started -= instance.OnSwitchRight;
+                @SwitchRight.performed -= instance.OnSwitchRight;
+                @SwitchRight.canceled -= instance.OnSwitchRight;
+                @Refresh.started -= instance.OnRefresh;
+                @Refresh.performed -= instance.OnRefresh;
+                @Refresh.canceled -= instance.OnRefresh;
+                @RefreshAll.started -= instance.OnRefreshAll;
+                @RefreshAll.performed -= instance.OnRefreshAll;
+                @RefreshAll.canceled -= instance.OnRefreshAll;
+                @Play.started -= instance.OnPlay;
+                @Play.performed -= instance.OnPlay;
+                @Play.canceled -= instance.OnPlay;
                 @SelectAll.started -= instance.OnSelectAll;
                 @SelectAll.performed -= instance.OnSelectAll;
                 @SelectAll.canceled -= instance.OnSelectAll;
@@ -3101,6 +8459,42 @@ namespace Rogium.Systems.Input
                 @SelectRandom.started -= instance.OnSelectRandom;
                 @SelectRandom.performed -= instance.OnSelectRandom;
                 @SelectRandom.canceled -= instance.OnSelectRandom;
+                @SelectTool.started -= instance.OnSelectTool;
+                @SelectTool.performed -= instance.OnSelectTool;
+                @SelectTool.canceled -= instance.OnSelectTool;
+                @BrushTool.started -= instance.OnBrushTool;
+                @BrushTool.performed -= instance.OnBrushTool;
+                @BrushTool.canceled -= instance.OnBrushTool;
+                @EraserTool.started -= instance.OnEraserTool;
+                @EraserTool.performed -= instance.OnEraserTool;
+                @EraserTool.canceled -= instance.OnEraserTool;
+                @FillTool.started -= instance.OnFillTool;
+                @FillTool.performed -= instance.OnFillTool;
+                @FillTool.canceled -= instance.OnFillTool;
+                @PickerTool.started -= instance.OnPickerTool;
+                @PickerTool.performed -= instance.OnPickerTool;
+                @PickerTool.canceled -= instance.OnPickerTool;
+                @ClearCanvas.started -= instance.OnClearCanvas;
+                @ClearCanvas.performed -= instance.OnClearCanvas;
+                @ClearCanvas.canceled -= instance.OnClearCanvas;
+                @ToggleGrid.started -= instance.OnToggleGrid;
+                @ToggleGrid.performed -= instance.OnToggleGrid;
+                @ToggleGrid.canceled -= instance.OnToggleGrid;
+                @ChangePalette.started -= instance.OnChangePalette;
+                @ChangePalette.performed -= instance.OnChangePalette;
+                @ChangePalette.canceled -= instance.OnChangePalette;
+                @TileLayer.started -= instance.OnTileLayer;
+                @TileLayer.performed -= instance.OnTileLayer;
+                @TileLayer.canceled -= instance.OnTileLayer;
+                @DecorLayer.started -= instance.OnDecorLayer;
+                @DecorLayer.performed -= instance.OnDecorLayer;
+                @DecorLayer.canceled -= instance.OnDecorLayer;
+                @ObjectLayer.started -= instance.OnObjectLayer;
+                @ObjectLayer.performed -= instance.OnObjectLayer;
+                @ObjectLayer.canceled -= instance.OnObjectLayer;
+                @EnemyLayer.started -= instance.OnEnemyLayer;
+                @EnemyLayer.performed -= instance.OnEnemyLayer;
+                @EnemyLayer.canceled -= instance.OnEnemyLayer;
             }
 
             public void RemoveCallbacks(IShortcutsActions instance)
@@ -3174,22 +8568,6 @@ namespace Rogium.Systems.Input
             void OnEdit(InputAction.CallbackContext context);
             void OnEditProperties(InputAction.CallbackContext context);
             void OnDelete(InputAction.CallbackContext context);
-            void OnSelectionTool(InputAction.CallbackContext context);
-            void OnBrushTool(InputAction.CallbackContext context);
-            void OnEraserTool(InputAction.CallbackContext context);
-            void OnFillTool(InputAction.CallbackContext context);
-            void OnPickerTool(InputAction.CallbackContext context);
-            void OnClearCanvas(InputAction.CallbackContext context);
-            void OnToggleGrid(InputAction.CallbackContext context);
-            void OnTilesLayer(InputAction.CallbackContext context);
-            void OnDecorLayer(InputAction.CallbackContext context);
-            void OnObjectsLayer(InputAction.CallbackContext context);
-            void OnEnemiesLayer(InputAction.CallbackContext context);
-            void OnSwitchLeft(InputAction.CallbackContext context);
-            void OnSwitchRight(InputAction.CallbackContext context);
-            void OnPlay(InputAction.CallbackContext context);
-            void OnRefreshCurrent(InputAction.CallbackContext context);
-            void OnRefreshAll(InputAction.CallbackContext context);
             void OnShowPalettes(InputAction.CallbackContext context);
             void OnShowSprites(InputAction.CallbackContext context);
             void OnShowWeapons(InputAction.CallbackContext context);
@@ -3197,11 +8575,26 @@ namespace Rogium.Systems.Input
             void OnShowEnemies(InputAction.CallbackContext context);
             void OnShowRooms(InputAction.CallbackContext context);
             void OnShowTiles(InputAction.CallbackContext context);
-            void OnChangePalette(InputAction.CallbackContext context);
-            void OnResetToDefault(InputAction.CallbackContext context);
+            void OnSwitchLeft(InputAction.CallbackContext context);
+            void OnSwitchRight(InputAction.CallbackContext context);
+            void OnRefresh(InputAction.CallbackContext context);
+            void OnRefreshAll(InputAction.CallbackContext context);
+            void OnPlay(InputAction.CallbackContext context);
             void OnSelectAll(InputAction.CallbackContext context);
             void OnDeselectAll(InputAction.CallbackContext context);
             void OnSelectRandom(InputAction.CallbackContext context);
+            void OnSelectTool(InputAction.CallbackContext context);
+            void OnBrushTool(InputAction.CallbackContext context);
+            void OnEraserTool(InputAction.CallbackContext context);
+            void OnFillTool(InputAction.CallbackContext context);
+            void OnPickerTool(InputAction.CallbackContext context);
+            void OnClearCanvas(InputAction.CallbackContext context);
+            void OnToggleGrid(InputAction.CallbackContext context);
+            void OnChangePalette(InputAction.CallbackContext context);
+            void OnTileLayer(InputAction.CallbackContext context);
+            void OnDecorLayer(InputAction.CallbackContext context);
+            void OnObjectLayer(InputAction.CallbackContext context);
+            void OnEnemyLayer(InputAction.CallbackContext context);
         }
     }
 }

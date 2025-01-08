@@ -42,7 +42,7 @@ namespace Rogium.Tests.UI.Interactables
         {
             InputBindingReader reader = bindingParent.GetComponentInChildren<InputBindingReader>();
             yield return BindKey(reader, keyboard.gKey);
-            Assert.That(input.Player.Movement.Action.bindings[1].effectivePath, Is.EqualTo(keyboard.gKey.path));
+            Assert.That(input.Player.Movement.Action.bindings[1].effectivePath, Is.EqualTo(keyboard.gKey.path.FormatForBindingPath()));
         }
 
         [Test]

@@ -21,8 +21,6 @@
         
         private readonly InputButton showPalettes, showSprites, showWeapons, showProjectiles, showEnemies, showRooms, showTiles;
         
-        private readonly InputButton resetToDefault;
-        
         private readonly InputButton selectAll, deselectAll, selectRandom;
         
         public InputProfileShortcuts(RogiumInputActions input) : base(input)
@@ -38,7 +36,7 @@
             editProperties = new InputButton(map.EditProperties);
             delete = new InputButton(map.Delete);
             
-            selectionTool = new InputButton(map.SelectionTool);
+            selectionTool = new InputButton(map.SelectTool);
             brushTool = new InputButton(map.BrushTool);
             eraserTool = new InputButton(map.EraserTool);
             fillTool = new InputButton(map.FillTool);
@@ -46,16 +44,16 @@
             clearCanvas = new InputButton(map.ClearCanvas);
             toggleGrid = new InputButton(map.ToggleGrid);
             
-            tilesLayer = new InputButton(map.TilesLayer);
+            tilesLayer = new InputButton(map.TileLayer);
             decorLayer = new InputButton(map.DecorLayer);
-            objectsLayer = new InputButton(map.ObjectsLayer);
-            enemiesLayer = new InputButton(map.EnemiesLayer);
+            objectsLayer = new InputButton(map.ObjectLayer);
+            enemiesLayer = new InputButton(map.EnemyLayer);
             
             changePalette = new InputButton(map.ChangePalette);
             
             switchLeft = new InputButton(map.SwitchLeft);
             switchRight = new InputButton(map.SwitchRight);
-            refreshCurrent = new InputButton(map.RefreshCurrent);
+            refreshCurrent = new InputButton(map.Refresh);
             refreshAll = new InputButton(map.RefreshAll);
             play = new InputButton(map.Play);
             
@@ -66,8 +64,6 @@
             showEnemies = new InputButton(map.ShowEnemies);
             showRooms = new InputButton(map.ShowRooms);
             showTiles = new InputButton(map.ShowTiles);
-            
-            resetToDefault = new InputButton(map.ResetToDefault);
             
             selectAll = new InputButton(map.SelectAll);
             deselectAll = new InputButton(map.DeselectAll);
@@ -116,8 +112,6 @@
             showRooms.Enable();
             showTiles.Enable();
             
-            resetToDefault.Enable();
-            
             selectAll.Enable();
             deselectAll.Enable();
             selectRandom.Enable();
@@ -165,8 +159,6 @@
             showRooms.Disable();
             showTiles.Disable();
             
-            resetToDefault.Disable();
-            
             selectAll.Disable();
             deselectAll.Disable();
             selectRandom.Disable();
@@ -206,7 +198,6 @@
         public InputButton ShowEnemies { get => showEnemies; }
         public InputButton ShowRooms { get => showRooms; }
         public InputButton ShowTiles { get => showTiles; }
-        public InputButton ResetToDefault { get => resetToDefault; }
         public InputButton SelectAll { get => selectAll; }
         public InputButton DeselectAll { get => deselectAll; }
         public InputButton SelectRandom { get => selectRandom; }
