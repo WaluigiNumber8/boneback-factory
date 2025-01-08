@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace Rogium.UserInterface.Interactables
 {
-    public class OptionalInputBinding : IEquatable<OptionalInputBinding>
+    public struct OptionalInputBinding : IEquatable<OptionalInputBinding>
     {
         private InputBinding? binding;
         
