@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
@@ -48,6 +49,17 @@ namespace Rogium.Systems.Input
 
                 return -1;
             }
+        }
+
+        /// <summary>
+        /// Formats a <see cref="InputControl"/> path to a <see cref="InputBinding"/> path style.
+        /// </summary>
+        /// <param name="path">The path to format</param>
+        public static string FormatForBindingPath(this string path)
+        {
+            string formatForBindingPath = Regex.Replace(path, @"^/(\w+)", "<$1>");
+            formatForBindingPath = Regex.Replace(formatForBindingPath, "^/", "");
+            return formatForBindingPath;
         }
     }
 }

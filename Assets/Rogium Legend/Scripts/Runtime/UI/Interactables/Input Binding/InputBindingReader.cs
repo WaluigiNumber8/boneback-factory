@@ -4,6 +4,7 @@ using RedRats.Safety;
 using RedRats.UI.ModalWindows;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.ActionHistory;
+using Rogium.Systems.Input;
 using Rogium.UserInterface.ModalWindows;
 using TMPro;
 using UnityEngine;
@@ -137,20 +138,6 @@ namespace Rogium.UserInterface.Interactables
             void RevertBinding() => Rebind(lastBinding);
         }
 
-        private InputBindingCombination GetBindingCombinationFrom(InputActionRebindingExtensions.RebindingOperation operation)
-        {
-            //If modifiers are not allowed, return the first binding
-            if (modifier1Index == -1 || modifier2Index == -1) return new InputBindingCombination(null, null, new InputBinding(operation.candidates[0].path));
-            
-            InputBindingCombination newBinding = operation.candidates.Where(c => c is KeyControl).ToList().Count switch
-            {
-                1 => new InputBindingCombination(null, null, new InputBinding(operation.candidates[0].path)),
-                2 => new InputBindingCombination(new InputBinding(operation.candidates[0].path), null, new InputBinding(operation.candidates[1].path)),
-                _ => new InputBindingCombination(new InputBinding(operation.candidates[0].path), new InputBinding(operation.candidates[1].path), new InputBinding(operation.candidates[2].path))
-            };
-            return newBinding;
-        }
-
         public void Rebind(InputBindingCombination combination)
         {
             lastBinding = binding;
@@ -182,6 +169,20 @@ namespace Rogium.UserInterface.Interactables
             ui.inputText.text = (string.IsNullOrEmpty(inputText)) ? EditorDefaults.Instance.InputEmptyText : inputText;
         }
 
+        private InputBindingCombination GetBindingCombinationFrom(InputActionRebindingExtensions.RebindingOperation operation)
+        {
+            //If modifiers are not allowed, return the first binding
+            if (modifier1Index == -1 || modifier2Index == -1) return new InputBindingCombination(null, null, new InputBinding(operation.candidates[0].path.FormatForBindingPath()));
+            
+            InputBindingCombination newBinding = operation.candidates.Where(c => c is KeyControl).ToList().Count switch
+            {
+                1 => new InputBindingCombination(null, null, new InputBinding(operation.candidates[0].path.FormatForBindingPath())),
+                2 => new InputBindingCombination(new InputBinding(operation.candidates[0].path.FormatForBindingPath()), null, new InputBinding(operation.candidates[1].path.FormatForBindingPath())),
+                _ => new InputBindingCombination(new InputBinding(operation.candidates[0].path.FormatForBindingPath()), new InputBinding(operation.candidates[1].path.FormatForBindingPath()), new InputBinding(operation.candidates[2].path.FormatForBindingPath()))
+            };
+            return newBinding;
+        }
+        
         private static void RebindAction(InputAction action, InputBindingCombination combo)
         {
             action.Disable();
