@@ -116,6 +116,7 @@ namespace Rogium.Tests.UI.Interactables
         public IEnumerator Should_ShowMessage_WhenBindingIsAlreadyUsed()
         {
             yield return BindKey(keyboard.spaceKey);
+            yield return new WaitForSecondsRealtime(1f);
             Assert.That(Object.FindFirstObjectByType<ModalWindow>().transform.GetChild(0).gameObject.activeSelf, Is.True);
         }
         
@@ -214,9 +215,9 @@ namespace Rogium.Tests.UI.Interactables
         private IEnumerator BindKey(KeyControl key)
         {
             inputReader.StartRebinding();
-            yield return new WaitForSecondsRealtime(0.1f);
+            yield return new WaitForSecondsRealtime(0.01f);
             i.Press(key);
-            yield return new WaitForSecondsRealtime(0.1f);
+            yield return new WaitForSecondsRealtime(EditorDefaults.Instance.InputWaitForAnother);
         }
     }
 }

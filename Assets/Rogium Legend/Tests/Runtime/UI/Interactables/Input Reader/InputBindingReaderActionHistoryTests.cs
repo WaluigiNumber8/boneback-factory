@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using NUnit.Framework;
 using RedRats.UI.ModalWindows;
+using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.ActionHistory;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables;
@@ -146,9 +147,9 @@ namespace Rogium.Tests.UI.Interactables
         private IEnumerator BindKey(ButtonControl key)
         {
             reader.StartRebinding();
-            yield return new WaitForSecondsRealtime(0.1f);
+            yield return new WaitForSecondsRealtime(0.01f);
             i.Press(key);
-            yield return new WaitForSecondsRealtime(0.1f);
+            yield return new WaitForSecondsRealtime(EditorDefaults.Instance.InputWaitForAnother);
         }
     }
 }

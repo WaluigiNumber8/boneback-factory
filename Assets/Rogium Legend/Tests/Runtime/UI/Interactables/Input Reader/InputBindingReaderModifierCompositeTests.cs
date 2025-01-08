@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using NUnit.Framework;
+using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.Input;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables;
@@ -69,13 +70,13 @@ namespace Rogium.Tests.UI.Interactables
         private IEnumerator BindKey(KeyControl modifier1, KeyControl modifier2, KeyControl key)
         {
             inputReader.StartRebinding();
-            yield return new WaitForSecondsRealtime(0.05f);
+            yield return new WaitForSecondsRealtime(0.01f);
             if (modifier1 != null) i.Press(modifier1);
             yield return null;
             if (modifier2 != null) i.Press(modifier2);
             yield return null;
             i.Press(key);
-            yield return new WaitForSecondsRealtime(0.1f);
+            yield return new WaitForSecondsRealtime(EditorDefaults.Instance.InputWaitForAnother);
         }
     }
 }
