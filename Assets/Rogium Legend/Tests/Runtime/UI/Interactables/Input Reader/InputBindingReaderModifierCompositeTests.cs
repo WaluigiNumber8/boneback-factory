@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using NUnit.Framework;
+using RedRats.UI.ModalWindows;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.Input;
 using Rogium.Tests.Core;
@@ -43,28 +44,36 @@ namespace Rogium.Tests.UI.Interactables
         public IEnumerator Should_BindFirstModifier_WhenCombinationPressed()
         {
             yield return BindKey(keyboard.leftAltKey, null, keyboard.gKey);
-            Assert.That(inputReader.Action.bindings[1].effectivePath, Is.EqualTo(keyboard.leftAltKey.path));
+            Assert.That(inputReader.Action.bindings[1].effectivePath, Is.EqualTo(keyboard.leftAltKey.path.FormatForBindingPath()));
         }
 
         [UnityTest]
         public IEnumerator Should_BindSecondModifier_WhenCombinationPressed()
         {
             yield return BindKey(keyboard.leftAltKey, keyboard.leftCtrlKey, keyboard.gKey);
-            Assert.That(inputReader.Action.bindings[2].effectivePath, Is.EqualTo(keyboard.leftCtrlKey.path));
+            Assert.That(inputReader.Action.bindings[2].effectivePath, Is.EqualTo(keyboard.leftCtrlKey.path.FormatForBindingPath()));
         }
 
         [UnityTest]
         public IEnumerator Should_BindButton_WhenCombinationPressed()
         {
             yield return BindKey(keyboard.leftAltKey, keyboard.leftCtrlKey, keyboard.gKey);
-            Assert.That(inputReader.Action.bindings[3].effectivePath, Is.EqualTo(keyboard.gKey.path));
+            Assert.That(inputReader.Action.bindings[3].effectivePath, Is.EqualTo(keyboard.gKey.path.FormatForBindingPath()));
         }
         
         [UnityTest]
         public IEnumerator Should_BindButton_WhenNoModifiersPressed()
         {
             yield return BindKey(null, null, keyboard.gKey);
-            Assert.That(inputReader.Action.bindings[3].effectivePath, Is.EqualTo(keyboard.gKey.path));
+            Assert.That(inputReader.Action.bindings[3].effectivePath, Is.EqualTo(keyboard.gKey.path.FormatForBindingPath()));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_ShowMessage_WhenBindingWithModifiersIsAlreadyUsed()
+        {
+            yield return BindKey(keyboard.leftCtrlKey, null, keyboard.zKey);
+            yield return new WaitForSecondsRealtime(1f);
+            Assert.That(Object.FindFirstObjectByType<ModalWindow>().transform.GetChild(0).gameObject.activeSelf, Is.True);
         }
         
         private IEnumerator BindKey(KeyControl modifier1, KeyControl modifier2, KeyControl key)
