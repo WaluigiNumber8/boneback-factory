@@ -70,12 +70,7 @@ namespace Rogium.UserInterface.Interactables
             if (eventData.button != PointerEventData.InputButton.Right) return;
             
             //Clear the binding
-            action.Disable();
-            action.ApplyBindingOverride(buttonIndex, "");
-            if (modifier1Index != -1) action.ApplyBindingOverride(modifier1Index, "");
-            if (modifier2Index != -1) action.ApplyBindingOverride(modifier2Index, "");
-            action.Enable();
-            RefreshInputString();
+            Rebind(new InputBindingCombination(new InputBinding(""), new InputBinding(""), new InputBinding("")));
             OnClear?.Invoke();
         }
         
@@ -97,8 +92,7 @@ namespace Rogium.UserInterface.Interactables
 
             void FinishRebinding(InputActionRebindingExtensions.RebindingOperation operation)
             {
-                binding = GetBindingCombinationFrom(operation);
-                Rebind(binding);
+                Rebind(GetBindingCombinationFrom(operation));
 
                 (InputAction duplicateAction, InputBindingCombination duplicateCombination) = InputSystem.GetInstance().FindDuplicateBinding(action, binding);
                 if (duplicateAction != null)
@@ -142,10 +136,11 @@ namespace Rogium.UserInterface.Interactables
         public void Rebind(InputBindingCombination combination)
         {
             lastBinding = binding;
+            binding = combination;
             action.Disable();
-            if (modifier1Index != -1) action.ApplyBindingOverride(modifier1Index, combination.Modifier1.Path);
-            if (modifier2Index != -1) action.ApplyBindingOverride(modifier2Index, combination.Modifier2.Path);
-            action.ApplyBindingOverride(buttonIndex, combination.Button.effectivePath);
+            if (modifier1Index != -1) action.ApplyBindingOverride(modifier1Index, binding.Modifier1.Path);
+            if (modifier2Index != -1) action.ApplyBindingOverride(modifier2Index, binding.Modifier2.Path);
+            action.ApplyBindingOverride(buttonIndex, binding.Button.effectivePath);
             action.Enable();
             RefreshInputString();
             OnRebindEndAny?.Invoke(action, binding);
