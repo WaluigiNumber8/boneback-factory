@@ -145,7 +145,19 @@ namespace Rogium.Tests.UI.Interactables
             yield return null;
             Assert.That(input.Player.ButtonMain.Action.bindings[0].ToDisplayString(), Is.EqualTo("Space"));
         }
-
+        
+        [UnityTest]
+        public IEnumerator Should_RemoveSameBindingFromAlt_WhenOverride()
+        {
+            InputBindingReader altReader = inputReader.transform.parent.GetChild(inputReader.transform.parent.childCount-1).GetComponent<InputBindingReader>();
+            altReader.Rebind(new InputBindingCombination(null, null, new InputBinding("<Mouse>/leftButton")));
+            yield return null;
+            yield return BindKey(mouse.leftButton);
+            Object.FindFirstObjectByType<ModalWindow>().OnAccept();
+            yield return null;
+            Assert.That(input.Player.ButtonMain.Action.bindings[1].ToDisplayString(), Is.EqualTo(""));
+        }
+        
         [UnityTest]
         public IEnumerator Should_RevertBinding_WhenOverrideDenied()
         {
@@ -212,7 +224,7 @@ namespace Rogium.Tests.UI.Interactables
             Assert.That(inputReader.InputString, Is.EqualTo(EditorDefaults.Instance.InputEmptyText));
         }
         
-        private IEnumerator BindKey(KeyControl key)
+        private IEnumerator BindKey(ButtonControl key)
         {
             inputReader.StartRebinding();
             yield return new WaitForSecondsRealtime(0.01f);
