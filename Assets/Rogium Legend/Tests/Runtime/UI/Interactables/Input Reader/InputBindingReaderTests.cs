@@ -108,7 +108,7 @@ namespace Rogium.Tests.UI.Interactables
             InputBinding original = inputReader.Binding.Button;
             inputReader.StartRebinding();
             yield return new WaitForSecondsRealtime(EditorDefaults.Instance.InputTimeout);
-            Assert.That(inputReader.Binding, Is.EqualTo(original));
+            Assert.That(inputReader.Binding.DisplayString, Is.EqualTo(original.ToDisplayString()));
             Assert.That(inputReader.BindingDisplay.activeSelf, Is.False);
         }
 
