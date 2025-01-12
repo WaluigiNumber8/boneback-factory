@@ -5,41 +5,35 @@ namespace Rogium.UserInterface.Interactables
 {
     public struct OptionalInputBinding : IEquatable<OptionalInputBinding>
     {
-        private InputBinding? binding;
+        private InputBinding binding;
         
         public OptionalInputBinding(InputBinding binding)
         {
             this.binding = binding;
         }
         
-        public OptionalInputBinding(InputBinding? binding)
-        {
-            this.binding = binding ?? new InputBinding();
-        }
-        
-        public bool HasValue => binding.HasValue;
+        public bool HasValue => string.IsNullOrEmpty(binding.effectivePath) == false;
 
         public void SetID(Guid id)
         {
-            if (!binding.HasValue) throw new InvalidOperationException("Cannot set ID on a null binding.");
-            InputBinding inputBinding = binding.Value;
+            InputBinding inputBinding = binding;
             inputBinding.id = id;
             binding = inputBinding;
         }
 
-        public override string ToString() => binding?.effectivePath ?? string.Empty;
+        public override string ToString() => binding.effectivePath;
 
         #region Equals
-        public bool Equals(OptionalInputBinding other) => Nullable.Equals(binding, other.binding);
+        public bool Equals(OptionalInputBinding other) => binding.Equals(other.binding);
         public override bool Equals(object obj) => obj is OptionalInputBinding other && Equals(other);
         public override int GetHashCode() => binding.GetHashCode();
         public static bool operator ==(OptionalInputBinding left, OptionalInputBinding right) => left.Equals(right);
         public static bool operator !=(OptionalInputBinding left, OptionalInputBinding right) => !left.Equals(right);
         #endregion
         
-        public InputBinding Binding { get => binding.Value; }
-        public string Path { get => binding?.effectivePath ?? string.Empty; }
-        public string DisplayString { get => binding?.ToDisplayString() ?? string.Empty; }
-        public Guid ID { get => binding?.id ?? Guid.Empty; }
+        public InputBinding Binding { get => binding; }
+        public string Path { get => binding.effectivePath; }
+        public string DisplayString { get => binding.ToDisplayString(); }
+        public Guid ID { get => binding.id; }
     }
 }

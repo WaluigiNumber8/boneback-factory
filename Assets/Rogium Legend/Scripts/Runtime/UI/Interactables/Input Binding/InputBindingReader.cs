@@ -124,9 +124,9 @@ namespace Rogium.UserInterface.Interactables
                 
                 //Clear the duplicate binding reader
                 InputBindingReader duplicateReader = FindObjectsByType<InputBindingReader>(FindObjectsSortMode.None).FirstOrDefault(r => r.action == duplicateAction && r.Binding == combo);
-                ActionHistorySystem.AddAndExecute(new UpdateInputBindingAction(duplicateReader, new InputBindingCombination(), Binding, c => RebindAction(duplicateAction, c)));
+                ActionHistorySystem.AddAndExecute(new UpdateInputBindingAction(duplicateReader, new InputBindingCombination(), Binding, c => RebindAction(duplicateAction, c, modifier1Index, modifier2Index, buttonIndex)));
                 
-                ActionHistorySystem.AddAndExecute(new UpdateInputBindingAction(this, GetBindingCombinationFrom(operation), lastBinding, c => RebindAction(action, c)));
+                ActionHistorySystem.AddAndExecute(new UpdateInputBindingAction(this, binding, lastBinding, c => RebindAction(action, c, modifier1Index, modifier2Index, buttonIndex)));
                 ActionHistorySystem.ForceGroupAllActionsEnd();
             }
             
@@ -189,12 +189,12 @@ namespace Rogium.UserInterface.Interactables
             return newBinding;
         }
         
-        private static void RebindAction(InputAction action, InputBindingCombination combo)
+        private static void RebindAction(InputAction action, InputBindingCombination combo, int modifier1Index, int modifier2Index, int buttonIndex)
         {
             action.Disable();
-            action.ApplyBindingOverride(combo.Modifier1.Binding);
-            action.ApplyBindingOverride(combo.Modifier2.Binding);
-            action.ApplyBindingOverride(combo.Button);
+            if (modifier1Index != -1) action.ApplyBindingOverride(modifier1Index, combo.Modifier1.Binding.effectivePath);
+            if (modifier2Index != -1) action.ApplyBindingOverride(modifier2Index, combo.Modifier2.Binding.effectivePath);
+            action.ApplyBindingOverride(buttonIndex, combo.Button.effectivePath);
             action.Enable();
         }
 

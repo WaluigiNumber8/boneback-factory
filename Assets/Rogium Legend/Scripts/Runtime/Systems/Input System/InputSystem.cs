@@ -61,16 +61,20 @@ namespace Rogium.Systems.Input
 
         public (InputAction, InputBindingCombination) FindDuplicateBinding(InputAction action, InputBindingCombination bindingCombo)
         {
+            bool usesModifier1 = bindingCombo.Modifier1.HasValue;
+            bool usesModifer2 = bindingCombo.Modifier2.HasValue;
             for (int i = 0; i < action.actionMap.bindings.Count; i++)
             {
                 InputBinding binding = action.actionMap.bindings[i];
                 if (!binding.effectivePath.Equals(bindingCombo.Button.effectivePath) || binding.id == bindingCombo.Button.id) continue;
-                if (bindingCombo.Modifier1.HasValue && (!action.actionMap.bindings[i - 2].effectivePath.Equals(bindingCombo.Modifier1.Path) || action.actionMap.bindings[i - 2].id == bindingCombo.Modifier1.ID)) continue;
-                if (bindingCombo.Modifier2.HasValue && (!action.actionMap.bindings[i - 1].effectivePath.Equals(bindingCombo.Modifier2.Path) || action.actionMap.bindings[i - 1].id == bindingCombo.Modifier2.ID)) continue;
+                if (usesModifier1 && (!action.actionMap.bindings[i - 2].effectivePath.Equals(bindingCombo.Modifier1.Path) || action.actionMap.bindings[i - 2].id == bindingCombo.Modifier1.ID)) continue;
+                if (usesModifer2 && (!action.actionMap.bindings[i - 1].effectivePath.Equals(bindingCombo.Modifier2.Path) || action.actionMap.bindings[i - 1].id == bindingCombo.Modifier2.ID)) continue;
 
                 InputAction foundAction = input.FindAction(binding.action);
-                InputBindingCombination foundIndex = new(action.actionMap.bindings[i-2], action.actionMap.bindings[i-1], action.actionMap.bindings[i]);
-                return (foundAction, foundIndex);
+                InputBindingCombination foundCombination = new((usesModifier1) ? action.actionMap.bindings[i-2] : new InputBinding(""), 
+                                                               (usesModifer2) ? action.actionMap.bindings[i-1] : new InputBinding(""), 
+                                                               action.actionMap.bindings[i]);
+                return (foundAction, foundCombination);
             }
 
             return (null, new InputBindingCombination());

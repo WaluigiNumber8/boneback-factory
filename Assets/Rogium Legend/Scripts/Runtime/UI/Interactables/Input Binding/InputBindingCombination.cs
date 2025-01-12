@@ -14,23 +14,24 @@ namespace Rogium.UserInterface.Interactables
 
         public InputBindingCombination()
         {
-            modifier1 = new OptionalInputBinding(new InputBinding());
-            modifier2 = new OptionalInputBinding(new InputBinding());
-            button = new InputBinding();
+            modifier1 = new OptionalInputBinding(new InputBinding(""));
+            modifier2 = new OptionalInputBinding(new InputBinding(""));
+            button = new InputBinding("");
         }
         
         public InputBindingCombination(InputBinding? modifier1, InputBinding? modifier2, InputBinding button)
         {
-            this.modifier1 = new OptionalInputBinding(modifier1);
-            this.modifier2 = new OptionalInputBinding(modifier2);
+            this.modifier1 = new OptionalInputBinding(modifier1 ?? new InputBinding(""));
+            this.modifier2 = new OptionalInputBinding(modifier2 ?? new InputBinding(""));
             this.button = button;
         }
 
         #region Equals
         public override bool Equals(object obj) => obj is InputBindingCombination container && modifier1 == container.modifier1 && modifier2 == container.modifier2 && button == container.button;
-        public bool Equals(InputBindingCombination other) => Nullable.Equals(modifier1, other.modifier1) && Nullable.Equals(modifier2, other.modifier2) && button.Equals(other.button);
+        public bool Equals(InputBindingCombination other) => Equals((object)other);
         public override int GetHashCode() => HashCode.Combine(modifier1, modifier2, button);
-        public static bool operator ==(InputBindingCombination left, InputBindingCombination right) => left.Equals(right);
+        public static bool operator ==(InputBindingCombination left, InputBindingCombination right) => left is null && right is null || left is not null && right is not null && left.Equals(right);
+
         public static bool operator !=(InputBindingCombination left, InputBindingCombination right) => !(left == right);
         #endregion
         
