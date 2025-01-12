@@ -35,6 +35,14 @@ namespace Rogium.Options.Core
             b.BuildInputBinding(input.Shortcuts.Edit.Action, device, parent);
             b.BuildInputBinding(input.Shortcuts.EditProperties.Action, device, parent);
             b.BuildInputBinding(input.Shortcuts.Delete.Action, device, parent);
+            b.BuildHeader("Selection Menu", parent);
+            b.BuildInputBinding(input.Shortcuts.ShowPalettes.Action, device, parent);
+            b.BuildInputBinding(input.Shortcuts.ShowSprites.Action, device, parent);
+            b.BuildInputBinding(input.Shortcuts.ShowWeapons.Action, device, parent);
+            b.BuildInputBinding(input.Shortcuts.ShowProjectiles.Action, device, parent);
+            b.BuildInputBinding(input.Shortcuts.ShowEnemies.Action, device, parent);
+            b.BuildInputBinding(input.Shortcuts.ShowRooms.Action, device, parent);
+            b.BuildInputBinding(input.Shortcuts.ShowTiles.Action, device, parent);
             b.BuildHeader("Campaign Selection", parent);
             b.BuildInputBinding(input.Shortcuts.SwitchLeft.Action, device, parent);
             b.BuildInputBinding(input.Shortcuts.SwitchRight.Action, device, parent);
