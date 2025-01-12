@@ -544,6 +544,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2417038758134245247, guid: 1cecbe3dd846894438522ff9e9bfaaa0, type: 3}
+      propertyPath: m_PreferredWidth
+      value: 192
+      objectReference: {fileID: 0}
     - target: {fileID: 2979973294124447884, guid: 1cecbe3dd846894438522ff9e9bfaaa0, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -571,6 +575,10 @@ PrefabInstance:
     - target: {fileID: 6102057819009839782, guid: 1cecbe3dd846894438522ff9e9bfaaa0, type: 3}
       propertyPath: m_Name
       value: Alt Input Binding Reader
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586008331804518307, guid: 1cecbe3dd846894438522ff9e9bfaaa0, type: 3}
+      propertyPath: m_PreferredWidth
+      value: 192
       objectReference: {fileID: 0}
     - target: {fileID: 7617156118665799438, guid: 1cecbe3dd846894438522ff9e9bfaaa0, type: 3}
       propertyPath: m_Pivot.x
@@ -757,6 +765,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2417038758134245247, guid: 1cecbe3dd846894438522ff9e9bfaaa0, type: 3}
+      propertyPath: m_PreferredWidth
+      value: 192
+      objectReference: {fileID: 0}
     - target: {fileID: 2979973294124447884, guid: 1cecbe3dd846894438522ff9e9bfaaa0, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -784,6 +796,10 @@ PrefabInstance:
     - target: {fileID: 6102057819009839782, guid: 1cecbe3dd846894438522ff9e9bfaaa0, type: 3}
       propertyPath: m_Name
       value: Input Binding Reader
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586008331804518307, guid: 1cecbe3dd846894438522ff9e9bfaaa0, type: 3}
+      propertyPath: m_PreferredWidth
+      value: 192
       objectReference: {fileID: 0}
     - target: {fileID: 7617156118665799438, guid: 1cecbe3dd846894438522ff9e9bfaaa0, type: 3}
       propertyPath: m_Pivot.x
