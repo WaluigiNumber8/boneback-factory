@@ -179,7 +179,7 @@ namespace Rogium.Editors.Core
         /// </summary>
         public void RefreshOptions()
         {
-            ActivateOptionsEditor();
+            optionsEditor.AssignAsset(gameData, false);
             optionsEditor.ApplyAllOptions(gameData);
         }
 

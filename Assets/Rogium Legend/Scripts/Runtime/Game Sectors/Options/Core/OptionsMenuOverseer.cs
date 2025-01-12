@@ -22,11 +22,12 @@ namespace Rogium.Options.Core
         /// Assign a new Preferences file to edit.
         /// </summary>
         /// <param name="asset">The preferences to edit.</param>
-        public void AssignAsset(GameDataAsset asset)
+        /// <param name="prepareEditor">If TRUE, load asset into the editor.</param>
+        public void AssignAsset(GameDataAsset asset, bool prepareEditor = true)
         {
             SafetyNet.EnsureIsNotNull(asset, "Preferences Asset");
             currentAsset = new GameDataAsset.Builder().AsCopy(asset).Build();
-            
+            if (!prepareEditor) return;
             OnAssignAsset?.Invoke(CurrentAsset);
         }
 
