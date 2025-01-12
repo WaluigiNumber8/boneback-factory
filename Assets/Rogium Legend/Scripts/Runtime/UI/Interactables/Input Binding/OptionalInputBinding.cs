@@ -33,7 +33,7 @@ namespace Rogium.UserInterface.Interactables
         
         public InputBinding Binding { get => binding; }
         public string Path { get => binding.effectivePath; }
-        public string DisplayString { get => binding.ToDisplayString(); }
+        public string DisplayString { get => (string.IsNullOrEmpty(Path)) ? "" : binding.ToDisplayString(); }
         public Guid ID { get => binding.id; }
     }
 }

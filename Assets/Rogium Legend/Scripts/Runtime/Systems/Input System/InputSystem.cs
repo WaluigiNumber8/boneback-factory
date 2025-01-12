@@ -105,5 +105,7 @@ namespace Rogium.Systems.Input
         public InputProfileUI UI { get => inputUI; }
         public InputProfilePause Pause { get => inputPause; }
         public InputProfileShortcuts Shortcuts { get => inputShortcuts; }
+        public string KeyboardBindingGroup { get => input.KeyboardMouseScheme.bindingGroup; }
+        public string GamepadBindingGroup { get => input.GamepadScheme.bindingGroup;}
     }
 }
