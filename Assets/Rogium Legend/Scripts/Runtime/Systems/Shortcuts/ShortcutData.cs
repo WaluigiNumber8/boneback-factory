@@ -1,5 +1,4 @@
 ﻿using System;
-using Rogium.Systems.Input;
 using Sirenix.OdinInspector;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -32,5 +31,7 @@ namespace Rogium.Core.Shortcuts
         public void Link() => input.performed += Press;
         public void Unlink() => input.performed -= Press;
         private void Press(InputAction.CallbackContext ctx) => action.Invoke();
+
+        public override string ToString() => $"{input.name} -> {action.GetPersistentMethodName(0)}()";
     }
 }
