@@ -73,7 +73,7 @@ namespace Rogium.Tests.Systems.Shortcuts
         {
             string originalData = PackEditorOverseer.Instance.CurrentPack.Weapons[0].Title;
             yield return EditFirstInputField("Fred");
-            i.Trigger(input.Shortcuts.Cancel.Action);
+            i.Trigger(input.UI.Cancel.Action);
             yield return null;
             yield return null;
             yield return WindowAccept();
@@ -85,7 +85,7 @@ namespace Rogium.Tests.Systems.Shortcuts
         {
             editor.GetComponentInChildren<InteractablePropertySoundField>().OpenWindow();
             yield return null;
-            i.Trigger(input.Shortcuts.Cancel.Action);
+            i.Trigger(input.UI.Cancel.Action);
             yield return null;
             Assert.That(Object.FindFirstObjectByType<SoundPickerWindow>(), Is.Not.Null);
             Assert.That(Object.FindFirstObjectByType<SoundPickerWindow>().IsOpen, Is.False);
@@ -96,7 +96,7 @@ namespace Rogium.Tests.Systems.Shortcuts
         {
             editor.GetComponentInChildren<InteractablePropertySoundField>().OpenWindow();
             yield return null;
-            i.Trigger(input.Shortcuts.Cancel.Action);
+            i.Trigger(input.UI.Cancel.Action);
             yield return null;
             Assert.That(MenuSwitcher.GetInstance().CurrentMenu, Is.EqualTo(MenuType.PropertyEditor));
         }
@@ -107,7 +107,7 @@ namespace Rogium.Tests.Systems.Shortcuts
             editor.GetComponentInChildren<InteractablePropertySoundField>().OpenWindow();
             yield return null;
             Object.FindFirstObjectByType<SoundPickerWindow>().GetComponentInChildren<InteractablePropertyAssetField>().OpenWindow();
-            i.Trigger(input.Shortcuts.Cancel.Action);
+            i.Trigger(input.UI.Cancel.Action);
             yield return null;
             Assert.That(Object.FindFirstObjectByType<SoundPickerWindow>().IsOpen, Is.True);
             Assert.That(Object.FindFirstObjectByType<AssetPickerWindow>().IsOpen, Is.False);
@@ -120,7 +120,7 @@ namespace Rogium.Tests.Systems.Shortcuts
             yield return new WaitForSeconds(0.1f);
             Object.FindFirstObjectByType<SoundPickerWindow>().GetComponentInChildren<InteractablePropertyAssetField>().OpenWindow();
             yield return new WaitForSeconds(0.1f);
-            i.Trigger(input.Shortcuts.Cancel.Action);
+            i.Trigger(input.UI.Cancel.Action);
             yield return new WaitForSeconds(0.1f);
             Assert.That(MenuSwitcher.GetInstance().CurrentMenu, Is.EqualTo(MenuType.PropertyEditor));
         }

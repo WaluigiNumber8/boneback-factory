@@ -40,7 +40,7 @@ namespace Rogium.Tests.Systems.Shortcuts
             yield return MenuLoader.PrepareMainMenu();
             yield return OpenSelectionMenu(AssetType.Campaign, 0);
             yield return new WaitForSecondsRealtime(0.1f);
-            i.Trigger(input.Shortcuts.Cancel.Action);
+            i.Trigger(input.UI.Cancel.Action);
             yield return new WaitForSecondsRealtime(0.1f);
             Assert.That(MenuSwitcher.GetInstance().CurrentMenu, Is.EqualTo(MenuType.MainMenu));
         }

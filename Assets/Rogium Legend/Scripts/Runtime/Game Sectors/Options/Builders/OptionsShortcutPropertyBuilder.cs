@@ -30,7 +30,6 @@ namespace Rogium.Options.Core
             b.BuildInputBinding(input.Shortcuts.Undo.Action, device, parent);
             b.BuildInputBinding(input.Shortcuts.Redo.Action, device, parent);
             b.BuildInputBinding(input.Shortcuts.Save.Action, device, parent);
-            b.BuildInputBinding(input.Shortcuts.Cancel.Action, device, parent);
             b.BuildInputBinding(input.Shortcuts.NewAsset.Action, device, parent);
             b.BuildInputBinding(input.Shortcuts.Edit.Action, device, parent);
             b.BuildInputBinding(input.Shortcuts.EditProperties.Action, device, parent);

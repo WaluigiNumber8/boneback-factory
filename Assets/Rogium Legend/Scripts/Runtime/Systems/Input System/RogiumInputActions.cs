@@ -1319,15 +1319,6 @@ namespace Rogium.Systems.Input
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Cancel"",
-                    ""type"": ""Button"",
-                    ""id"": ""9361bef5-f194-4151-87b9-46d1e99f815a"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""New"",
                     ""type"": ""Button"",
                     ""id"": ""3fa51034-ac48-4ce7-8576-7622172aabaf"",
@@ -2133,182 +2124,6 @@ namespace Rogium.Systems.Input
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
                     ""action"": ""Save"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Keyboard1"",
-                    ""id"": ""a9e21dcc-3d8c-4f29-85e4-b4ead8e96d02"",
-                    ""path"": ""TwoOptionalModifiers"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Cancel"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""modifier1"",
-                    ""id"": ""8b06f79b-e01d-498a-b62a-42e4ca41ef09"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""Cancel"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""modifier2"",
-                    ""id"": ""918dc1ff-42d6-47e9-a4b4-c55d47bf2ddc"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""Cancel"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""button"",
-                    ""id"": ""cdfe600f-6b1d-4710-abf5-e5020c1384dc"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""Cancel"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Keyboard2"",
-                    ""id"": ""a8a66da7-7513-4742-8ba1-80e8ae8d3934"",
-                    ""path"": ""TwoOptionalModifiers"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Cancel"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""modifier1"",
-                    ""id"": ""0be21b13-9843-4463-9ee4-73ae7acd427f"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""Cancel"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""modifier2"",
-                    ""id"": ""a0092382-bc43-47fa-98fe-5c2c06d9be79"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""Cancel"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""button"",
-                    ""id"": ""e74f92f3-78ae-4277-87e7-1d6d51c01aca"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard + Mouse"",
-                    ""action"": ""Cancel"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Gamepad1"",
-                    ""id"": ""25e4a880-c5d4-4c72-821b-8929fb3253f5"",
-                    ""path"": ""TwoOptionalModifiers"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Cancel"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""modifier1"",
-                    ""id"": ""f0ecee01-e56e-4d94-8f5e-2c8c3b5c66d0"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Cancel"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""modifier2"",
-                    ""id"": ""778721b5-ddfc-444b-af09-7ebef5ca01e9"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Cancel"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""button"",
-                    ""id"": ""89e40fff-fe94-46c2-9aca-1aad770c1a7f"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Cancel"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Gamepad2"",
-                    ""id"": ""83619c20-9924-499e-af82-c4421ad06e30"",
-                    ""path"": ""TwoOptionalModifiers"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Cancel"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""modifier1"",
-                    ""id"": ""8beca053-9254-470e-913d-1a098df6bf6d"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Cancel"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""modifier2"",
-                    ""id"": ""ca8f15b4-45b1-40b9-9489-e49d45d2f8ff"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Cancel"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""button"",
-                    ""id"": ""e217b7fc-fc68-48f4-b2ce-c682f3301f7c"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -7831,7 +7646,6 @@ namespace Rogium.Systems.Input
             m_Shortcuts_Undo = m_Shortcuts.FindAction("Undo", throwIfNotFound: true);
             m_Shortcuts_Redo = m_Shortcuts.FindAction("Redo", throwIfNotFound: true);
             m_Shortcuts_Save = m_Shortcuts.FindAction("Save", throwIfNotFound: true);
-            m_Shortcuts_Cancel = m_Shortcuts.FindAction("Cancel", throwIfNotFound: true);
             m_Shortcuts_New = m_Shortcuts.FindAction("New", throwIfNotFound: true);
             m_Shortcuts_Edit = m_Shortcuts.FindAction("Edit", throwIfNotFound: true);
             m_Shortcuts_EditProperties = m_Shortcuts.FindAction("EditProperties", throwIfNotFound: true);
@@ -8201,7 +8015,6 @@ namespace Rogium.Systems.Input
         private readonly InputAction m_Shortcuts_Undo;
         private readonly InputAction m_Shortcuts_Redo;
         private readonly InputAction m_Shortcuts_Save;
-        private readonly InputAction m_Shortcuts_Cancel;
         private readonly InputAction m_Shortcuts_New;
         private readonly InputAction m_Shortcuts_Edit;
         private readonly InputAction m_Shortcuts_EditProperties;
@@ -8240,7 +8053,6 @@ namespace Rogium.Systems.Input
             public InputAction @Undo => m_Wrapper.m_Shortcuts_Undo;
             public InputAction @Redo => m_Wrapper.m_Shortcuts_Redo;
             public InputAction @Save => m_Wrapper.m_Shortcuts_Save;
-            public InputAction @Cancel => m_Wrapper.m_Shortcuts_Cancel;
             public InputAction @New => m_Wrapper.m_Shortcuts_New;
             public InputAction @Edit => m_Wrapper.m_Shortcuts_Edit;
             public InputAction @EditProperties => m_Wrapper.m_Shortcuts_EditProperties;
@@ -8290,9 +8102,6 @@ namespace Rogium.Systems.Input
                 @Save.started += instance.OnSave;
                 @Save.performed += instance.OnSave;
                 @Save.canceled += instance.OnSave;
-                @Cancel.started += instance.OnCancel;
-                @Cancel.performed += instance.OnCancel;
-                @Cancel.canceled += instance.OnCancel;
                 @New.started += instance.OnNew;
                 @New.performed += instance.OnNew;
                 @New.canceled += instance.OnNew;
@@ -8399,9 +8208,6 @@ namespace Rogium.Systems.Input
                 @Save.started -= instance.OnSave;
                 @Save.performed -= instance.OnSave;
                 @Save.canceled -= instance.OnSave;
-                @Cancel.started -= instance.OnCancel;
-                @Cancel.performed -= instance.OnCancel;
-                @Cancel.canceled -= instance.OnCancel;
                 @New.started -= instance.OnNew;
                 @New.performed -= instance.OnNew;
                 @New.canceled -= instance.OnNew;
@@ -8563,7 +8369,6 @@ namespace Rogium.Systems.Input
             void OnUndo(InputAction.CallbackContext context);
             void OnRedo(InputAction.CallbackContext context);
             void OnSave(InputAction.CallbackContext context);
-            void OnCancel(InputAction.CallbackContext context);
             void OnNew(InputAction.CallbackContext context);
             void OnEdit(InputAction.CallbackContext context);
             void OnEditProperties(InputAction.CallbackContext context);

@@ -74,7 +74,7 @@ namespace Rogium.Tests.Systems.Shortcuts
         {
             yield return FillCanvas();
             int drawnCell = editor.GetCurrentGridCopy.GetAt(0, 0);
-            i.Trigger(input.Shortcuts.Cancel.Action);
+            i.Trigger(input.UI.Cancel.Action);
             yield return null;
             yield return null;
             yield return WindowAccept();
@@ -152,7 +152,7 @@ namespace Rogium.Tests.Systems.Shortcuts
         {
             i.Trigger(input.Shortcuts.ChangePalette.Action);
             yield return new WaitForSeconds(0.1f);
-            i.Trigger(input.Shortcuts.Cancel.Action);
+            i.Trigger(input.UI.Cancel.Action);
             yield return new WaitForSeconds(0.1f);
             Assert.That(Object.FindFirstObjectByType<AssetPickerWindow>(FindObjectsInactive.Include).IsOpen, Is.False);
         }
@@ -162,7 +162,7 @@ namespace Rogium.Tests.Systems.Shortcuts
         {
             i.Trigger(input.Shortcuts.ChangePalette.Action);
             yield return new WaitForSeconds(0.1f);
-            i.Trigger(input.Shortcuts.Cancel.Action);
+            i.Trigger(input.UI.Cancel.Action);
             yield return new WaitForSeconds(0.1f);
             Assert.That(MenuSwitcher.GetInstance().CurrentMenu, Is.EqualTo(MenuType.SpriteEditor));
         }

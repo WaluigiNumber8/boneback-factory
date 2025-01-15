@@ -40,8 +40,8 @@ namespace Rogium.Systems.Shortcuts
             if (modifiersDown && modifiersOrder == ModifiersOrder.Ordered)
             {
                 double timestamp = context.GetPressTime(button);
-                double timestamp1 = context.GetPressTime(modifier1);
-                double timestamp2 = context.GetPressTime(modifier2);
+                double timestamp1 = (modifier1 == 0) ? timestamp : context.GetPressTime(modifier1);
+                double timestamp2 = (modifier1 == 0) ? timestamp : context.GetPressTime(modifier2);
 
                 return timestamp1 <= timestamp && timestamp2 <= timestamp;
             }
@@ -60,7 +60,7 @@ namespace Rogium.Systems.Shortcuts
         
         protected override void FinishSetup(ref InputBindingCompositeContext context)
         {
-            if (modifiersOrder == ModifiersOrder.Default) modifiersOrder = ModifiersOrder.Unordered;
+            if (modifiersOrder == ModifiersOrder.Default) modifiersOrder = ModifiersOrder.Ordered;
             else modifiersOrder = InputSystem.settings.shortcutKeysConsumeInput ? ModifiersOrder.Ordered : ModifiersOrder.Unordered;
         }
     }

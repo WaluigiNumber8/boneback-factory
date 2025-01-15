@@ -48,7 +48,7 @@ namespace Rogium.Tests.Systems.Shortcuts
         [UnityTest]
         public IEnumerator Should_CancelChanges_WhenShortcutPressed()
         {
-            i.Trigger(input.Shortcuts.Cancel.Action);
+            i.Trigger(input.UI.Cancel.Action);
             yield return new WaitForSecondsRealtime(0.1f);
             Assert.That(Object.FindFirstObjectByType<ModalWindow>(), Is.Not.Null);
             Assert.That(Object.FindFirstObjectByType<ModalWindow>().IsOpen, Is.True);

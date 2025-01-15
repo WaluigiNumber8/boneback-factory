@@ -33,7 +33,7 @@ namespace Rogium.Tests.Systems.Shortcuts
         public IEnumerator Should_ReturnToMainMenu_WhenShortcutPressed()
         {
             yield return MenuLoader.PrepareMainMenu();
-            i.Trigger(input.Shortcuts.Cancel.Action);
+            i.Trigger(input.UI.Cancel.Action);
             yield return null;
             yield return null;
             Assert.That(MenuSwitcher.GetInstance().CurrentMenu, Is.EqualTo(MenuType.MainMenu));
@@ -43,7 +43,7 @@ namespace Rogium.Tests.Systems.Shortcuts
         public IEnumerator Should_ReturnToPackSelection_WhenShortcutPressed()
         {
             yield return OpenSelectionMenu(AssetType.Room, 0);
-            i.Trigger(input.Shortcuts.Cancel.Action);
+            i.Trigger(input.UI.Cancel.Action);
             yield return null;
             Assert.That(menu.CurrentType, Is.EqualTo(AssetType.Pack));
         }

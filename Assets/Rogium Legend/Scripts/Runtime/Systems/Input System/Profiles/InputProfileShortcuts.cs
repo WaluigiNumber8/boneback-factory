@@ -7,7 +7,7 @@
     {
         private RogiumInputActions.ShortcutsActions map;
 
-        private readonly InputButton undo, redo, save, cancel;
+        private readonly InputButton undo, redo, save;
         private readonly InputButton newAsset, edit, editProperties, delete;
         
         private readonly InputButton selectionTool, brushTool, eraserTool, fillTool, pickerTool;
@@ -30,7 +30,6 @@
             undo = new InputButton(map.Undo);
             redo = new InputButton(map.Redo);
             save = new InputButton(map.Save);
-            cancel = new InputButton(map.Cancel);
             newAsset = new InputButton(map.New);
             edit = new InputButton(map.Edit);
             editProperties = new InputButton(map.EditProperties);
@@ -77,7 +76,6 @@
             undo.Enable();
             redo.Enable();
             save.Enable();
-            cancel.Enable();
             newAsset.Enable();
             edit.Enable();
             editProperties.Enable();    
@@ -124,7 +122,6 @@
             undo.Disable();
             redo.Disable();
             save.Disable();
-            cancel.Disable();
             newAsset.Disable();
             edit.Disable();
             editProperties.Disable();
@@ -169,7 +166,6 @@
         public InputButton Undo { get => undo; }
         public InputButton Redo { get => redo; }
         public InputButton Save { get => save; }
-        public InputButton Cancel { get => cancel; }
         public InputButton NewAsset { get => newAsset; }
         public InputButton Edit { get => edit; }
         public InputButton EditProperties { get => editProperties; }
