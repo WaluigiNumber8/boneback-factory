@@ -4,7 +4,7 @@ using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Rogium.Tests.UI.Interactables
+namespace Rogium.Tests.UI.Interactables.InputReader
 {
     public static class InputBindingReaderTestsU
     {

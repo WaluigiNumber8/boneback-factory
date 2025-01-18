@@ -8,9 +8,9 @@ using Rogium.UserInterface.Interactables;
 using UnityEngine;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.TestTools;
-using static Rogium.Tests.UI.Interactables.InputBindingReaderTestsU;
+using static Rogium.Tests.UI.Interactables.InputReader.InputBindingReaderTestsU;
 
-namespace Rogium.Tests.UI.Interactables
+namespace Rogium.Tests.UI.Interactables.InputReader
 {
     /// <summary>
     /// Tests for interactions between <see cref="InputBindingReader"/> and <see cref="ActionHistorySystem"/>.

@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.TestTools;
 
-namespace Rogium.Tests.UI.Interactables
+namespace Rogium.Tests.UI.Interactables.InputReader
 {
     /// <summary>
     /// Tests for the <see cref="InputBindingReader"/> that deals with composite actions.
