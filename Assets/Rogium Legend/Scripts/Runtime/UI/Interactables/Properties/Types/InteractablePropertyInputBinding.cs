@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using RedRats.Core;
 using RedRats.UI.Core;
 using TMPro;
 using UnityEngine;
@@ -17,14 +18,13 @@ namespace Rogium.UserInterface.Interactables.Properties
 
         public void Construct(string title, InputAction action, int bindingIndex, int modifier1Index = -1, int modifier2Index = -1, int bindingIndexAlt = -1, int modifier1IndexAlt = -1, int modifier2IndexAlt = -1)
         {
-            title = Regex.Replace(title, "([A-Z])", " $1").Trim();
-            ConstructTitle(title);
+            ConstructTitle(title.WithSpacesBeforeCapitals());
             
             inputReader.Construct(action, bindingIndex, modifier1Index, modifier2Index);
             inputReaderAlt.gameObject.SetActive(bindingIndexAlt != -1);
             if (bindingIndexAlt != -1) inputReaderAlt.Construct(action, bindingIndexAlt, modifier1IndexAlt, modifier2IndexAlt);
         }
-        
+
         public override void SetDisabled(bool isDisabled)
         {
             inputReader.SetActive(!isDisabled);
