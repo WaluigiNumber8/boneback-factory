@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using RedRats.Core;
 using RedRats.Safety;
 using RedRats.UI.ModalWindows;
 using Rogium.Editors.Core.Defaults;
@@ -86,7 +87,7 @@ namespace Rogium.UserInterface.Interactables
             rebindOperation = action.PerformInteractiveRebinding(buttonIndex)
                                     .OnCancel(_ => StopRebinding())  
                                     .OnComplete(FinishRebinding)
-                                    .OnMatchWaitForAnother(EditorDefaults.Instance.InputWaitForAnother)
+                                    .OnMatchWaitForAnother((modifier1Index != -1 || modifier2Index != -1) ? EditorDefaults.Instance.InputWaitForAnother : 0)
                                     .WithTimeout(EditorDefaults.Instance.InputTimeout)
                                     .Start();
 
