@@ -98,9 +98,9 @@ namespace Rogium.UserInterface.Interactables
                 if (duplicateAction != null)
                 {
                     ModalWindowBuilder.GetInstance().OpenWindow(new ModalWindowData.Builder()
-                        .WithMessage($"The input is already used in {duplicateAction.name}. Want to rebind?")
+                        .WithMessage($"The input is already used in <style=\"Important\">{duplicateAction.name}</style>.")
                         .WithAcceptButton("Override", () => OverrideDuplicateBinding(operation, duplicateAction, duplicateCombination))
-                        .WithDenyButton("Cancel", RevertBinding)
+                        .WithDenyButton("Revert", RevertBinding)
                         .Build());
                 }
                 else ActionHistorySystem.AddAndExecute(new UpdateInputBindingAction(this, binding, lastBinding, Rebind));
