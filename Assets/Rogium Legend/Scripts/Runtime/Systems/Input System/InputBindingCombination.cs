@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine.InputSystem;
 
-namespace Rogium.UserInterface.Interactables
+namespace Rogium.Systems.Input
 {
     /// <summary>
     /// Contains a binding for an action made up of a button and 2 optional modifiers.

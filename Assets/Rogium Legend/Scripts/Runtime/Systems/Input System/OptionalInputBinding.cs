@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine.InputSystem;
 
-namespace Rogium.UserInterface.Interactables
+namespace Rogium.Systems.Input
 {
     public struct OptionalInputBinding : IEquatable<OptionalInputBinding>
     {
