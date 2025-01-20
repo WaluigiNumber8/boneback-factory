@@ -8,26 +8,25 @@ namespace Rogium.Systems.Input
     /// </summary>
     public class InputBindingCombination : IEquatable<InputBindingCombination>
     {
-        private readonly OptionalInputBinding modifier1;
-        private readonly OptionalInputBinding modifier2;
+        private InputBinding modifier1;
+        private InputBinding modifier2;
         private InputBinding button;
 
-        public InputBindingCombination()
+        private InputBindingCombination() { }
+
+        public bool HasSameInputs(InputBindingCombination other) => modifier1.effectivePath == other.modifier1.effectivePath &&
+                                                                    modifier2.effectivePath == other.modifier2.effectivePath &&
+                                                                    button.effectivePath == other.button.effectivePath;
+            
+        #region Equals
+        public override bool Equals(object obj)
         {
-            modifier1 = new OptionalInputBinding(new InputBinding(""));
-            modifier2 = new OptionalInputBinding(new InputBinding(""));
-            button = new InputBinding("");
-        }
-        
-        public InputBindingCombination(InputBinding? modifier1, InputBinding? modifier2, InputBinding button)
-        {
-            this.modifier1 = new OptionalInputBinding(modifier1 ?? new InputBinding(""));
-            this.modifier2 = new OptionalInputBinding(modifier2 ?? new InputBinding(""));
-            this.button = button;
+            if (obj is not InputBindingCombination combo) return false;
+            if (modifier1 != combo.modifier1) return false;
+            if (modifier2 != combo.modifier2) return false;
+            return button == combo.button;
         }
 
-        #region Equals
-        public override bool Equals(object obj) => obj is InputBindingCombination container && modifier1 == container.modifier1 && modifier2 == container.modifier2 && button == container.button;
         public bool Equals(InputBindingCombination other) => Equals((object)other);
         public override int GetHashCode() => HashCode.Combine(modifier1, modifier2, button);
         public static bool operator ==(InputBindingCombination left, InputBindingCombination right) => left is null && right is null || left is not null && right is not null && left.Equals(right);
@@ -35,21 +34,73 @@ namespace Rogium.Systems.Input
         public static bool operator !=(InputBindingCombination left, InputBindingCombination right) => !(left == right);
         #endregion
         
-        public void SetButtonID(Guid id) => button.id = id;
-
         public override string ToString() => DisplayString;
 
-        public OptionalInputBinding Modifier1 { get => modifier1; }
-        public OptionalInputBinding Modifier2 { get => modifier2; }
+        public InputBinding Modifier1 { get => modifier1; }
+        public InputBinding Modifier2 { get => modifier2; }
         public InputBinding Button { get => button; }
         public string DisplayString
         {
             get
             {
-                string plus1 = (modifier1.HasValue && !string.IsNullOrEmpty(modifier1.Path)) ? "+" : "";
-                string plus2 = (modifier2.HasValue && !string.IsNullOrEmpty(modifier2.Path)) ? "+" : "";
-                return $"{modifier1.DisplayString}{plus1}{modifier2.DisplayString}{plus2}{button.ToDisplayString()}";
+                string plus1 = (modifier1.effectivePath != "") ? "+" : "";
+                string plus2 = (modifier2.effectivePath != "") ? "+" : "";
+                return $"{modifier1.ToDisplayString()}{plus1}{modifier2.ToDisplayString()}{plus2}{button.ToDisplayString()}";
             }
+        }
+
+        public class Builder
+        {
+            private readonly InputBindingCombination combo = new();
+
+            public Builder From(InputBindingCombination source)
+            {
+                combo.modifier1 = source.modifier1;
+                combo.modifier2 = source.modifier2;
+                combo.button = source.button;
+                return this;
+            }
+
+            public Builder WithLinkedBindings(InputBinding buttonBinding, InputBinding modifier1Binding, InputBinding modifier2Binding)
+            {
+                combo.modifier1 = modifier1Binding;
+                combo.modifier2 = modifier2Binding;
+                combo.button = buttonBinding;
+                return this;
+            }
+
+            public Builder WithLinkedBindings(InputAction action, int buttonIndex, int modifier1Index = -1, int modifier2Index = -1)
+            {
+                combo.modifier1 = (modifier1Index == -1) ? new InputBinding("") : action.bindings[modifier1Index];
+                combo.modifier2 = (modifier2Index == -1) ? new InputBinding("") : action.bindings[modifier2Index];
+                combo.button = action.bindings[buttonIndex];
+                return this;
+            }
+            
+            public Builder WithModifier1(string bindingPath)
+            {
+                combo.modifier1.overridePath = bindingPath;
+                return this;
+            }
+            
+            public Builder WithModifier2(string bindingPath)
+            {
+                combo.modifier2.overridePath = bindingPath;
+                return this;
+            }
+            
+            public Builder WithButton(string bindingPath)
+            {
+                combo.button.overridePath = bindingPath;
+                return this;
+            }
+            
+            public Builder WithEmptyModifier1() => WithModifier1("");
+            public Builder WithEmptyModifier2() => WithModifier2("");
+            public Builder WithEmptyButton() => WithButton("");
+
+            public InputBindingCombination Build() => combo;
+            public InputBindingCombination AsEmpty() => WithEmptyModifier1().WithEmptyModifier2().WithEmptyButton().Build();
         }
 
     }

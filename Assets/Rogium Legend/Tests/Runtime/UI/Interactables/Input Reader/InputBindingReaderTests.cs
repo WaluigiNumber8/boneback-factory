@@ -151,7 +151,7 @@ namespace Rogium.Tests.UI.Interactables.InputReader
         public IEnumerator Should_RemoveSameBindingFromAlt_WhenOverride()
         {
             InputBindingReader altReader = inputReader.transform.parent.GetChild(inputReader.transform.parent.childCount-1).GetComponent<InputBindingReader>();
-            altReader.Rebind(new InputBindingCombination(null, null, new InputBinding("<Mouse>/leftButton")));
+            altReader.Rebind(new InputBindingCombination.Builder().WithButton("<Mouse>/leftButton").Build());
             yield return null;
             yield return BindKey(mouse.leftButton);
             Object.FindFirstObjectByType<ModalWindow>().OnAccept();
