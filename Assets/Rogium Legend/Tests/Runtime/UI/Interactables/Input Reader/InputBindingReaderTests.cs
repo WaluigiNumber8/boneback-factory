@@ -10,6 +10,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.TestTools;
 using UnityEngine.UI;
+using static Rogium.Tests.Core.TUtilsModalWindow;
 using static Rogium.Tests.UI.Interactables.InputReader.InputBindingReaderTestsU;
 
 namespace Rogium.Tests.UI.Interactables.InputReader
@@ -133,7 +134,7 @@ namespace Rogium.Tests.UI.Interactables.InputReader
         public IEnumerator Should_RemoveBindingFromDuplicate_WhenOverride()
         {
             yield return BindKey(keyboard.spaceKey);
-            Object.FindFirstObjectByType<ModalWindow>().OnAccept();
+            yield return WindowAccept();
             yield return null;
             Assert.That(input.Player.ButtonDash.Action.bindings[0].ToDisplayString(), Is.EqualTo(""));
         }
@@ -142,7 +143,7 @@ namespace Rogium.Tests.UI.Interactables.InputReader
         public IEnumerator Should_SetBindingToEditedOne_WhenOverride()
         {
             yield return BindKey(keyboard.spaceKey);
-            Object.FindFirstObjectByType<ModalWindow>().OnAccept();
+            yield return WindowAccept();
             yield return null;
             Assert.That(input.Player.ButtonMain.Action.bindings[0].ToDisplayString(), Is.EqualTo("Space"));
         }
@@ -154,7 +155,7 @@ namespace Rogium.Tests.UI.Interactables.InputReader
             altReader.Rebind(new InputBindingCombination.Builder().WithButton("<Mouse>/leftButton").Build());
             yield return null;
             yield return BindKey(mouse.leftButton);
-            Object.FindFirstObjectByType<ModalWindow>().OnAccept();
+            yield return WindowAccept();
             yield return null;
             Assert.That(input.Player.ButtonMain.Action.bindings[1].ToDisplayString(), Is.EqualTo(""));
         }
@@ -213,7 +214,7 @@ namespace Rogium.Tests.UI.Interactables.InputReader
             InputBindingReader inputReader2 = BuildInputReader(input.Player.ButtonDash.Action);
             yield return null;
             yield return BindKey(keyboard.spaceKey);
-            Object.FindFirstObjectByType<ModalWindow>().OnAccept();
+            yield return WindowAccept();
             Assert.That(inputReader2.InputString, Is.EqualTo(EditorDefaults.Instance.InputEmptyText));
         }
         

@@ -94,12 +94,12 @@ namespace Rogium.UserInterface.Interactables
                 InputBindingCombination c = GetBindingCombinationFrom(operation);
                 Rebind(c);
 
-                (InputAction duplicateAction, InputBindingCombination duplicateCombination) = InputSystem.GetInstance().FindDuplicateBinding(action, binding);
+                (InputAction duplicateAction, InputBindingCombination duplicateCombination, int duplicateIndex) = InputSystem.GetInstance().FindDuplicateBinding(action, binding);
                 if (duplicateAction != null)
                 {
                     ModalWindowBuilder.GetInstance().OpenWindow(new ModalWindowData.Builder()
                         .WithMessage($"The input is already used in <style=\"Important\">{duplicateAction.name.WithSpacesBeforeCapitals()}</style>.")
-                        .WithAcceptButton("Override", () => OverrideDuplicateBinding(duplicateAction, duplicateCombination))
+                        .WithAcceptButton("Override", () => OverrideDuplicateBinding(duplicateAction, duplicateCombination, duplicateIndex))
                         .WithDenyButton("Revert", RevertBinding)
                         .Build());
                 }
@@ -118,7 +118,7 @@ namespace Rogium.UserInterface.Interactables
                 ui.ShowBoundInputDisplay();
             }
             
-            void OverrideDuplicateBinding(InputAction duplicateAction, InputBindingCombination combo)
+            void OverrideDuplicateBinding(InputAction duplicateAction, InputBindingCombination combo, int duplicateIndex)
             {
                 ActionHistorySystem.ForceGroupAllActions();
                 
@@ -128,6 +128,7 @@ namespace Rogium.UserInterface.Interactables
                 {
                     if (r.action.id != duplicateAction.id) continue;
                     if (!r.Binding.HasSameInputs(combo)) continue;
+                    if (r.buttonIndex != duplicateIndex) continue;
                     duplicateReader = r;
                     break;
                 }

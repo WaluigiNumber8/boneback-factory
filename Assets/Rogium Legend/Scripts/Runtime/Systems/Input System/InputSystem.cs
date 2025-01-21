@@ -59,7 +59,7 @@ namespace Rogium.Systems.Input
             UI.Enable();
         }
 
-        public (InputAction, InputBindingCombination) FindDuplicateBinding(InputAction action, InputBindingCombination bindingCombo)
+        public (InputAction, InputBindingCombination, int) FindDuplicateBinding(InputAction action, InputBindingCombination bindingCombo)
         {
             bool usesModifiers = bindingCombo.Modifier1.effectivePath != "" || bindingCombo.Modifier2.effectivePath != "";
             for (int i = 0; i < action.actionMap.bindings.Count; i++)
@@ -71,10 +71,11 @@ namespace Rogium.Systems.Input
 
                 InputAction foundAction = input.FindAction(binding.action);
                 InputBindingCombination foundCombination = new InputBindingCombination.Builder().WithLinkedBindings(foundAction.actionMap.bindings[i], (usesModifiers) ? foundAction.actionMap.bindings[i-2] : new InputBinding(""), (usesModifiers) ? foundAction.actionMap.bindings[i-1] : new InputBinding("")).Build();
-                return (foundAction, foundCombination);
+                int foundIndex = foundAction.GetBindingIndex(binding);
+                return (foundAction, foundCombination, foundIndex);
             }
 
-            return (null, new InputBindingCombination.Builder().AsEmpty());
+            return (null, new InputBindingCombination.Builder().AsEmpty(), -1);
         }
 
         /// <summary>

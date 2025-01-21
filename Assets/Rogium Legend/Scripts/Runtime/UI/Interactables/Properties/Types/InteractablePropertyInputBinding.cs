@@ -44,5 +44,7 @@ namespace Rogium.UserInterface.Interactables.Properties
 
         public string InputString { get => inputReader.InputString; }
         public string InputStringAlt { get => inputReaderAlt.InputString; }
+        public InputBindingReader InputReader { get => inputReader; }
+        public InputBindingReader InputReaderAlt { get => inputReaderAlt; }
     }
 }
