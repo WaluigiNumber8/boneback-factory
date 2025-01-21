@@ -22,7 +22,7 @@ namespace Rogium.UserInterface.Interactables
     /// </summary>
     public class InputBindingReader : MonoBehaviour, IPointerClickHandler
     {
-        public static event Action<InputAction, InputBindingCombination> OnRebindStartAny, OnRebindEndAny;
+        public static event Action<InputAction, InputBindingCombination, int> OnRebindStartAny, OnRebindEndAny;
         public event Action OnRebindStart, OnRebindEnd;
         public event Action OnClear;
         
@@ -80,7 +80,7 @@ namespace Rogium.UserInterface.Interactables
         {
             action.Disable();
             ui.ShowBindingDisplay();
-            OnRebindStartAny?.Invoke(action, binding);
+            OnRebindStartAny?.Invoke(action, binding, buttonIndex);
             OnRebindStart?.Invoke();
             rebindOperation = action.PerformInteractiveRebinding(buttonIndex)
                                     .OnCancel(_ => StopRebinding())  
@@ -113,7 +113,7 @@ namespace Rogium.UserInterface.Interactables
                 rebindOperation.Dispose();
                 rebindOperation = null;
                 RefreshInputString();
-                OnRebindEndAny?.Invoke(action, binding);
+                OnRebindEndAny?.Invoke(action, binding, buttonIndex);
                 OnRebindEnd?.Invoke();
                 ui.ShowBoundInputDisplay();
             }
@@ -151,19 +151,19 @@ namespace Rogium.UserInterface.Interactables
             action.ApplyBindingOverride(buttonIndex, binding.Button.effectivePath);
             action.Enable();
             RefreshInputString();
-            OnRebindEndAny?.Invoke(action, binding);
+            OnRebindEndAny?.Invoke(action, binding, buttonIndex);
             OnRebindEnd?.Invoke();
         }
         
         public void SetActive(bool value) => ui.button.interactable = value;
-        private void Activate(InputAction action, InputBindingCombination binding)
+        private void Activate(InputAction action, InputBindingCombination binding, int index)
         {
-            if (action == this.action && binding == this.binding) return;
+            if (action == this.action && binding == this.binding && this.buttonIndex == index) return;
             SetActive(true);
         }
-        private void Deactivate(InputAction action, InputBindingCombination binding)
+        private void Deactivate(InputAction action, InputBindingCombination binding, int index)
         {
-            if (action == this.action && binding == this.binding) return;
+            if (action == this.action && binding == this.binding && this.buttonIndex == index) return;
             SetActive(false);
         }
         
