@@ -126,15 +126,6 @@ namespace Rogium.Editors.Core
         {
             campaigns.Remove(campaignIndex);
         }
-        /// <summary>
-        /// Remove Campaign from the library.
-        /// </summary>
-        /// <param name="title">Campaign's Title</param>
-        /// <param name="author">Campaign's Author</param>
-        public void DeleteCampaign(string title, string author)
-        {
-            campaigns.Remove(title, author);
-        }
         
         /// <summary>
         /// Prepare one of the campaigns in the library for editing.
@@ -167,6 +158,7 @@ namespace Rogium.Editors.Core
             this.gameData = gameData;
             ex.Preferences.Save(this.gameData.Preferences);
             ex.InputBindings.Save(this.gameData.InputBindings);
+            ex.ShortcutBindings.Save(this.gameData.ShortcutBindings);
         }
 
         public void ActivateOptionsEditor()
@@ -198,9 +190,13 @@ namespace Rogium.Editors.Core
             PreferencesAsset preferences = (preferencesData == null || preferencesData.Count <= 0) ? new PreferencesAsset.Builder().Build() : preferencesData[0];
             IList<InputBindingsAsset> inputBindingsData = ex.InputBindings.LoadAll();
             InputBindingsAsset inputBindings = (inputBindingsData == null || inputBindingsData.Count <= 0) ? new InputBindingsAsset.Builder().Build() : inputBindingsData[0];
+            IList<ShortcutBindingsAsset> shortcutBindingsData = ex.ShortcutBindings.LoadAll();
+            ShortcutBindingsAsset shortcutBindings = (shortcutBindingsData == null || shortcutBindingsData.Count <= 0) ? new ShortcutBindingsAsset.Builder().Build() : shortcutBindingsData[0];
+            
             gameData = new GameDataAsset.Builder()
                           .WithPreferences(preferences)
                           .WithInputBindings(inputBindings)
+                          .WithShortcutBindings(shortcutBindings)
                           .Build();
         }
         

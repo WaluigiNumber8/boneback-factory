@@ -65,6 +65,7 @@ namespace Rogium.Options.Core
             graphicsOptions.UpdateScreen(asset.Preferences.ScreenMode);
             graphicsOptions.UpdateVSync(asset.Preferences.VSync);
             
+            ShortcutToAssetConverter.Load(asset.ShortcutBindings);
             InputToAssetConverter.Load(asset.InputBindings);
         }
         
@@ -75,7 +76,7 @@ namespace Rogium.Options.Core
         {
             audioPropertyBuilder.Build(asset.Preferences);
             graphicsPropertyBuilder.Build(asset.Preferences);
-            shortcutPropertyBuilder.Build(asset.Preferences);
+            shortcutPropertyBuilder.Build(asset.ShortcutBindings);
             inputPropertyBuilder.Build(asset.InputBindings);
         }
     }

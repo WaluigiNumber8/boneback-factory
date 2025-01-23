@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using RedRats.Core;
 using Rogium.UserInterface.Interactables;
 using UnityEngine;
@@ -24,10 +25,12 @@ namespace Rogium.Systems.Input
         private InputProfileShortcuts inputShortcuts;
         
         private Vector2 pointerPosition;
+        private IList<InputBinding> allBindings;
 
         protected override void Awake()
         {
             base.Awake();
+            allBindings = new List<InputBinding>();
             ClearAllInput();
             SceneManager.sceneLoaded += (_, __) => eventSystem = FindFirstObjectByType<EventSystem>();
             inputUI.PointerPosition.OnPressed += UpdatePointerPosition;
@@ -92,6 +95,22 @@ namespace Rogium.Systems.Input
                 eventSystem.sendNavigationEvents = false;
                 yield return new WaitForSecondsRealtime(delayTime);
                 eventSystem.sendNavigationEvents = true;
+            }
+        }
+
+        public void RemoveAllEmptyBindings()
+        {
+            allBindings.Clear();
+            foreach (InputBinding binding in input.bindings)
+            {
+                allBindings.Add(binding);
+                if (binding.effectivePath != "") continue;
+                InputAction action = input.FindAction(binding.action);
+                for (int i = 0; i < action.bindings.Count; i++)
+                {
+                    if (action.bindings[i].effectivePath != "") continue;
+                    action.ChangeBinding(i).Erase();
+                }
             }
         }
         

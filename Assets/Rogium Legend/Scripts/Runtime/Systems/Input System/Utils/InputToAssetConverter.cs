@@ -12,6 +12,9 @@ namespace Rogium.Systems.Input
     {
         private static readonly InputSystem input = InputSystem.GetInstance();
 
+        /// <summary>
+        /// Builds an <see cref="InputBindingsAsset"/> from the current <see cref="RogiumInputActions"/> and returns it.
+        /// </summary>
         public static InputBindingsAsset Get()
         {
             InputBindingData keyboard = new();
@@ -118,6 +121,10 @@ namespace Rogium.Systems.Input
                 .Build();
         }
 
+        /// <summary>
+        /// Loads the <see cref="InputBindingsAsset"/> binding paths into the current <see cref="RogiumInputActions"/>.
+        /// </summary>
+        /// <param name="asset">The asset to load the paths from.</param>
         public static void Load(InputBindingsAsset asset)
         {
             SafetyNet.EnsureIsNotNull(asset, nameof(asset));

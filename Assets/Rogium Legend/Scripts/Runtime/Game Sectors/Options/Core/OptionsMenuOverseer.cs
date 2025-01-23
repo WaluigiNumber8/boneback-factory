@@ -35,10 +35,15 @@ namespace Rogium.Options.Core
         /// Apply all settings to the game for a specific asset.
         /// </summary>
         public void ApplyAllOptions(GameDataAsset gameData) => OnApplySettings?.Invoke(gameData);
+        
         public void CompleteEditing()
         {
             currentAsset.UpdateInputBindings(InputToAssetConverter.Get());
+            currentAsset.UpdateShortcutBindings(ShortcutToAssetConverter.Get());
             OnSaveChanges?.Invoke(CurrentAsset);
+            
+            //TODO: Remove empty bindings from InputAsset
+            // InputSystem.GetInstance().RemoveAllEmptyBindings();
         }
         
         public GameDataAsset CurrentAsset 

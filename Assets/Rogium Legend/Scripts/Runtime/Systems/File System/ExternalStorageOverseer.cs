@@ -31,6 +31,7 @@ namespace Rogium.ExternalStorage
         
         private readonly CRUDOperations<PreferencesAsset, JSONPreferencesAsset> preferencesCRUD;
         private readonly CRUDOperations<InputBindingsAsset, JSONInputBindingsAsset> inputBindingsCRUD;
+        private readonly CRUDOperations<ShortcutBindingsAsset, JSONShortcutBindingsAsset> shortcutBindingsCRUD;
 
         public ExternalStorageOverseer()
         {
@@ -44,6 +45,8 @@ namespace Rogium.ExternalStorage
             preferencesCRUD.RefreshSaveableData(new SaveableData("", EditorAssetIDs.PreferencesIdentifier));
             inputBindingsCRUD = new CRUDOperations<InputBindingsAsset, JSONInputBindingsAsset>(i => new JSONInputBindingsAsset(i), EditorAssetIDs.InputIdentifier, false);
             inputBindingsCRUD.RefreshSaveableData(new SaveableData("", EditorAssetIDs.InputIdentifier));
+            shortcutBindingsCRUD = new CRUDOperations<ShortcutBindingsAsset, JSONShortcutBindingsAsset>(s => new JSONShortcutBindingsAsset(s), EditorAssetIDs.ShortcutIdentifier, false);
+            shortcutBindingsCRUD.RefreshSaveableData(new SaveableData("", EditorAssetIDs.ShortcutIdentifier));
             
             paletteCRUD = new CRUDOperations<PaletteAsset, JSONPaletteAsset>(p => new JSONPaletteAsset(p), EditorAssetIDs.PaletteIdentifier);
             spriteCRUD = new CRUDOperations<SpriteAsset, JSONSpriteAsset>(s => new JSONSpriteAsset(s), EditorAssetIDs.SpriteIdentifier);
@@ -99,5 +102,6 @@ namespace Rogium.ExternalStorage
         public ICRUDOperations<TileAsset, JSONTileAsset> Tiles { get => tileCRUD; }
         public ICRUDOperations<PreferencesAsset, JSONPreferencesAsset> Preferences { get => preferencesCRUD; }
         public ICRUDOperations<InputBindingsAsset, JSONInputBindingsAsset> InputBindings { get => inputBindingsCRUD; }
+        public ICRUDOperations<ShortcutBindingsAsset, JSONShortcutBindingsAsset> ShortcutBindings { get => shortcutBindingsCRUD; }
     }
 }

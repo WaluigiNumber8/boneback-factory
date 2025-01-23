@@ -28,5 +28,6 @@ namespace Rogium.ExternalStorage
         public ICRUDOperations<TileAsset, JSONTileAsset> Tiles { get; }
         public ICRUDOperations<PreferencesAsset, JSONPreferencesAsset> Preferences { get; }
         public ICRUDOperations<InputBindingsAsset, JSONInputBindingsAsset> InputBindings { get; }
+        public ICRUDOperations<ShortcutBindingsAsset, JSONShortcutBindingsAsset> ShortcutBindings { get; }
     }
 }

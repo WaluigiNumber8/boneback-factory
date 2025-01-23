@@ -55,6 +55,8 @@ namespace Rogium.Tests.Core
             ex.Tiles.Returns(Substitute.For<ICRUDOperations<TileAsset, JSONTileAsset>>());
             ex.Campaigns.Returns(Substitute.For<ICRUDOperations<CampaignAsset, JSONCampaignAsset>>());
             ex.Preferences.Returns(Substitute.For<ICRUDOperations<PreferencesAsset, JSONPreferencesAsset>>());
+            ex.InputBindings.Returns(Substitute.For<ICRUDOperations<InputBindingsAsset, JSONInputBindingsAsset>>());
+            ex.ShortcutBindings.Returns(Substitute.For<ICRUDOperations<ShortcutBindingsAsset, JSONShortcutBindingsAsset>>());
             ExternalCommunicator.Instance.OverrideStorageOverseer(ex);
         }
     }

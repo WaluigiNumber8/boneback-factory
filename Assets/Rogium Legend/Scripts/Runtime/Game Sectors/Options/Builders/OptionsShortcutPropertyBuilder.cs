@@ -7,7 +7,7 @@ namespace Rogium.Options.Core
     /// <summary>
     /// Builds properties for the Input section in the Options Menu.
     /// </summary>
-    public class OptionsShortcutPropertyBuilder : UIPropertyContentBuilderBaseColumn2<PreferencesAsset>
+    public class OptionsShortcutPropertyBuilder : UIPropertyContentBuilderBaseColumn2<ShortcutBindingsAsset>
     {
         private readonly InputSystem input;
 
@@ -16,7 +16,7 @@ namespace Rogium.Options.Core
             input = InputSystem.GetInstance();
         }
 
-        public override void Build(PreferencesAsset asset)
+        public override void Build(ShortcutBindingsAsset asset)
         {
             Clear();
             

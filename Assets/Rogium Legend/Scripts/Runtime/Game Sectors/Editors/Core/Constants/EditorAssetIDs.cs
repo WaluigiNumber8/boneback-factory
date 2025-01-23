@@ -29,6 +29,7 @@ namespace Rogium.Editors.Core.Defaults
         public const string CampaignIdentifier = "09";
         public const string PreferencesIdentifier = "10";
         public const string InputIdentifier = "11";
+        public const string ShortcutIdentifier = "12";
         
         private static readonly IDictionary<Type, string> identifiers = new Dictionary<Type, string>
         {
@@ -42,7 +43,8 @@ namespace Rogium.Editors.Core.Defaults
             {typeof(ProjectileAsset), ProjectileIdentifier},
             {typeof(CampaignAsset), CampaignIdentifier},
             {typeof(PreferencesAsset), PreferencesIdentifier},
-            {typeof(InputBindingsAsset), InputIdentifier}
+            {typeof(InputBindingsAsset), InputIdentifier},
+            {typeof(ShortcutBindingsAsset), ShortcutIdentifier}
         };
         
         public static string GetIdentifier(Type type) => identifiers[type];
