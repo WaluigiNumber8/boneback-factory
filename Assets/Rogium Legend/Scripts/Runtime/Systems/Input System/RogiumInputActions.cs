@@ -4187,7 +4187,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""button"",
                     ""id"": ""2ebffa23-bc11-45d9-88ef-c05dc7689c4f"",
-                    ""path"": ""gamepad/leftShoulder"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
@@ -4363,7 +4363,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""button"",
                     ""id"": ""e0dd1243-af1f-41cf-81a3-52b11d164234"",
-                    ""path"": ""gamepad/rightShoulder"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
@@ -4891,7 +4891,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""button"",
                     ""id"": ""89e65261-cadc-4532-be25-f8f098463bd2"",
-                    ""path"": ""gamepad/start"",
+                    ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
