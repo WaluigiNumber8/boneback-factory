@@ -1,4 +1,5 @@
-﻿using RedRats.Safety;
+﻿using System.Text;
+using RedRats.Safety;
 using Rogium.Options.Core;
 using Rogium.Systems.Shortcuts;
 using UnityEngine.InputSystem;
@@ -338,17 +339,23 @@ namespace Rogium.Systems.Input
         /// <returns>A human-readable path.</returns>
         private static string GetPath(InputAction action, InputDeviceType device, bool useAlt = false)
         {
+            string devicePath =(device == InputDeviceType.Gamepad) ? "<Gamepad>/" : "<Keyboard>/";
             int index = GetBindingIndexByDevice(action, device, useAlt);
+            
             if (action.bindings[index].isPartOfComposite)
             {
                 if (action.bindings[index - 1].path == nameof(TwoOptionalModifiersComposite).Replace("Composite", ""))
                 {
-                    string plus1 = (action.bindings[index].effectivePath == "") ? "" : "+";
-                    string plus2 = (action.bindings[index + 1].effectivePath == "") ? "" : "+";
-                    return $"{action.bindings[index].effectivePath}{plus1}{action.bindings[index + 1].effectivePath}{plus2}{action.bindings[index + 2].effectivePath}";
+                    StringBuilder path = new();
+                    path.Append($"{action.bindings[index].effectivePath.Replace(devicePath, "")}");     //Modifier 1
+                    path.Append((action.bindings[index].effectivePath == "") ? "" : "+");               //Plus
+                    path.Append($"{action.bindings[index + 1].effectivePath.Replace(devicePath, "")}"); //Modifier 2
+                    path.Append((action.bindings[index + 1].effectivePath == "") ? "" : "+");           //Plus
+                    path.Append($"{action.bindings[index + 2].effectivePath.Replace(devicePath, "")}"); //Button
+                    return path.ToString();
                 }
             }
-            return action.bindings[index].effectivePath;
+            return action.bindings[index].effectivePath.Replace(devicePath, "");
         }
 
         /// <summary>
@@ -366,6 +373,12 @@ namespace Rogium.Systems.Input
                 if (action.bindings[index - 1].path == nameof(TwoOptionalModifiersComposite).Replace("Composite", ""))
                 {
                     string[] paths = path.Split('+');
+                    string devicePath = (device == InputDeviceType.Gamepad) ? "<Gamepad>/" : "<Keyboard>/";
+                    for (int i = 0; i < paths.Length; i++)
+                    {
+                        paths[i] = $"{devicePath}{paths[i]}";
+                    }
+
                     switch (paths.Length)
                     {
                         case 1:
