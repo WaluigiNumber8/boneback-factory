@@ -1,8 +1,5 @@
-﻿using System.Text;
-using RedRats.Safety;
+﻿using RedRats.Safety;
 using Rogium.Options.Core;
-using Rogium.Systems.Shortcuts;
-using UnityEngine.InputSystem;
 using static Rogium.Systems.Input.InputSystemUtils;
 
 namespace Rogium.Systems.Input
@@ -184,7 +181,7 @@ namespace Rogium.Systems.Input
         {
             SafetyNet.EnsureIsNotNull(asset, nameof(asset));
             if (asset.Keyboard.Undo == null || asset.Gamepad.Undo == null) return;
-            
+
             ApplyBindingOverride(asset.Keyboard.Undo, input.Shortcuts.Undo.Action, InputDeviceType.Keyboard);
             ApplyBindingOverride(asset.KeyboardAlt.Undo, input.Shortcuts.Undo.Action, InputDeviceType.Keyboard, true);
             ApplyBindingOverride(asset.Gamepad.Undo, input.Shortcuts.Undo.Action, InputDeviceType.Gamepad);
@@ -197,7 +194,7 @@ namespace Rogium.Systems.Input
             ApplyBindingOverride(asset.KeyboardAlt.Save, input.Shortcuts.Save.Action, InputDeviceType.Keyboard, true);
             ApplyBindingOverride(asset.Gamepad.Save, input.Shortcuts.Save.Action, InputDeviceType.Gamepad);
             ApplyBindingOverride(asset.GamepadAlt.Save, input.Shortcuts.Save.Action, InputDeviceType.Gamepad, true);
-            
+
             ApplyBindingOverride(asset.Keyboard.New, input.Shortcuts.NewAsset.Action, InputDeviceType.Keyboard);
             ApplyBindingOverride(asset.KeyboardAlt.New, input.Shortcuts.NewAsset.Action, InputDeviceType.Keyboard, true);
             ApplyBindingOverride(asset.Gamepad.New, input.Shortcuts.NewAsset.Action, InputDeviceType.Gamepad);
@@ -214,7 +211,7 @@ namespace Rogium.Systems.Input
             ApplyBindingOverride(asset.KeyboardAlt.Delete, input.Shortcuts.Delete.Action, InputDeviceType.Keyboard, true);
             ApplyBindingOverride(asset.Gamepad.Delete, input.Shortcuts.Delete.Action, InputDeviceType.Gamepad);
             ApplyBindingOverride(asset.GamepadAlt.Delete, input.Shortcuts.Delete.Action, InputDeviceType.Gamepad, true);
-            
+
             ApplyBindingOverride(asset.Keyboard.ShowPalettes, input.Shortcuts.ShowPalettes.Action, InputDeviceType.Keyboard);
             ApplyBindingOverride(asset.KeyboardAlt.ShowPalettes, input.Shortcuts.ShowPalettes.Action, InputDeviceType.Keyboard, true);
             ApplyBindingOverride(asset.Gamepad.ShowPalettes, input.Shortcuts.ShowPalettes.Action, InputDeviceType.Gamepad);
@@ -243,7 +240,7 @@ namespace Rogium.Systems.Input
             ApplyBindingOverride(asset.KeyboardAlt.ShowTiles, input.Shortcuts.ShowTiles.Action, InputDeviceType.Keyboard, true);
             ApplyBindingOverride(asset.Gamepad.ShowTiles, input.Shortcuts.ShowTiles.Action, InputDeviceType.Gamepad);
             ApplyBindingOverride(asset.GamepadAlt.ShowTiles, input.Shortcuts.ShowTiles.Action, InputDeviceType.Gamepad, true);
-            
+
             ApplyBindingOverride(asset.Keyboard.SwitchLeft, input.Shortcuts.SwitchLeft.Action, InputDeviceType.Keyboard);
             ApplyBindingOverride(asset.KeyboardAlt.SwitchLeft, input.Shortcuts.SwitchLeft.Action, InputDeviceType.Keyboard, true);
             ApplyBindingOverride(asset.Gamepad.SwitchLeft, input.Shortcuts.SwitchLeft.Action, InputDeviceType.Gamepad);
@@ -264,7 +261,7 @@ namespace Rogium.Systems.Input
             ApplyBindingOverride(asset.KeyboardAlt.Play, input.Shortcuts.Play.Action, InputDeviceType.Keyboard, true);
             ApplyBindingOverride(asset.Gamepad.Play, input.Shortcuts.Play.Action, InputDeviceType.Gamepad);
             ApplyBindingOverride(asset.GamepadAlt.Play, input.Shortcuts.Play.Action, InputDeviceType.Gamepad, true);
-            
+
             ApplyBindingOverride(asset.Keyboard.SelectAll, input.Shortcuts.SelectAll.Action, InputDeviceType.Keyboard);
             ApplyBindingOverride(asset.KeyboardAlt.SelectAll, input.Shortcuts.SelectAll.Action, InputDeviceType.Keyboard, true);
             ApplyBindingOverride(asset.Gamepad.SelectAll, input.Shortcuts.SelectAll.Action, InputDeviceType.Gamepad);
@@ -277,7 +274,7 @@ namespace Rogium.Systems.Input
             ApplyBindingOverride(asset.KeyboardAlt.SelectRandom, input.Shortcuts.SelectRandom.Action, InputDeviceType.Keyboard, true);
             ApplyBindingOverride(asset.Gamepad.SelectRandom, input.Shortcuts.SelectRandom.Action, InputDeviceType.Gamepad);
             ApplyBindingOverride(asset.GamepadAlt.SelectRandom, input.Shortcuts.SelectRandom.Action, InputDeviceType.Gamepad, true);
-            
+
             ApplyBindingOverride(asset.Keyboard.SelectionTool, input.Shortcuts.SelectionTool.Action, InputDeviceType.Keyboard);
             ApplyBindingOverride(asset.KeyboardAlt.SelectionTool, input.Shortcuts.SelectionTool.Action, InputDeviceType.Keyboard, true);
             ApplyBindingOverride(asset.Gamepad.SelectionTool, input.Shortcuts.SelectionTool.Action, InputDeviceType.Gamepad);
@@ -306,7 +303,7 @@ namespace Rogium.Systems.Input
             ApplyBindingOverride(asset.KeyboardAlt.ToggleGrid, input.Shortcuts.ToggleGrid.Action, InputDeviceType.Keyboard, true);
             ApplyBindingOverride(asset.Gamepad.ToggleGrid, input.Shortcuts.ToggleGrid.Action, InputDeviceType.Gamepad);
             ApplyBindingOverride(asset.GamepadAlt.ToggleGrid, input.Shortcuts.ToggleGrid.Action, InputDeviceType.Gamepad, true);
-            
+
             ApplyBindingOverride(asset.Keyboard.TileLayer, input.Shortcuts.TilesLayer.Action, InputDeviceType.Keyboard);
             ApplyBindingOverride(asset.KeyboardAlt.TileLayer, input.Shortcuts.TilesLayer.Action, InputDeviceType.Keyboard, true);
             ApplyBindingOverride(asset.Gamepad.TileLayer, input.Shortcuts.TilesLayer.Action, InputDeviceType.Gamepad);
@@ -323,80 +320,11 @@ namespace Rogium.Systems.Input
             ApplyBindingOverride(asset.KeyboardAlt.EnemyLayer, input.Shortcuts.EnemiesLayer.Action, InputDeviceType.Keyboard, true);
             ApplyBindingOverride(asset.Gamepad.EnemyLayer, input.Shortcuts.EnemiesLayer.Action, InputDeviceType.Gamepad);
             ApplyBindingOverride(asset.GamepadAlt.EnemyLayer, input.Shortcuts.EnemiesLayer.Action, InputDeviceType.Gamepad, true);
-            
+
             ApplyBindingOverride(asset.Keyboard.ChangePalette, input.Shortcuts.ChangePalette.Action, InputDeviceType.Keyboard);
             ApplyBindingOverride(asset.KeyboardAlt.ChangePalette, input.Shortcuts.ChangePalette.Action, InputDeviceType.Keyboard, true);
             ApplyBindingOverride(asset.Gamepad.ChangePalette, input.Shortcuts.ChangePalette.Action, InputDeviceType.Gamepad);
             ApplyBindingOverride(asset.GamepadAlt.ChangePalette, input.Shortcuts.ChangePalette.Action, InputDeviceType.Gamepad, true);
-        }
-
-        /// <summary>
-        /// Get a human-readable path for a specific action.
-        /// </summary>
-        /// <param name="action">The action to get the binding path from.</param>
-        /// <param name="device">For which device to take the path for</param>
-        /// <param name="useAlt">Use the main or alt binding?</param>
-        /// <returns>A human-readable path.</returns>
-        private static string GetPath(InputAction action, InputDeviceType device, bool useAlt = false)
-        {
-            string devicePath =(device == InputDeviceType.Gamepad) ? "<Gamepad>/" : "<Keyboard>/";
-            int index = GetBindingIndexByDevice(action, device, useAlt);
-            
-            if (action.bindings[index].isPartOfComposite)
-            {
-                if (action.bindings[index - 1].path == nameof(TwoOptionalModifiersComposite).Replace("Composite", ""))
-                {
-                    StringBuilder path = new();
-                    path.Append($"{action.bindings[index].effectivePath.Replace(devicePath, "")}");     //Modifier 1
-                    path.Append((action.bindings[index].effectivePath == "") ? "" : "+");               //Plus
-                    path.Append($"{action.bindings[index + 1].effectivePath.Replace(devicePath, "")}"); //Modifier 2
-                    path.Append((action.bindings[index + 1].effectivePath == "") ? "" : "+");           //Plus
-                    path.Append($"{action.bindings[index + 2].effectivePath.Replace(devicePath, "")}"); //Button
-                    return path.ToString();
-                }
-            }
-            return action.bindings[index].effectivePath.Replace(devicePath, "");
-        }
-
-        /// <summary>
-        /// Converts a human-readable path and overrides a binding for a specific action.
-        /// </summary>
-        /// <param name="path">The human-readable path to use for the override.</param>
-        /// <param name="action">The action to affect.</param>
-        /// <param name="device">The device, the binding belongs to.</param>
-        /// <param name="useAlt">Use the main or alt binding.</param>
-        private static void ApplyBindingOverride(string path, InputAction action, InputDeviceType device, bool useAlt = false)
-        {
-            int index = GetBindingIndexByDevice(action, device, useAlt);
-            if (action.bindings[index].isPartOfComposite)
-            {
-                if (action.bindings[index - 1].path == nameof(TwoOptionalModifiersComposite).Replace("Composite", ""))
-                {
-                    string[] paths = path.Split('+');
-                    string devicePath = (device == InputDeviceType.Gamepad) ? "<Gamepad>/" : "<Keyboard>/";
-                    for (int i = 0; i < paths.Length; i++)
-                    {
-                        paths[i] = $"{devicePath}{paths[i]}";
-                    }
-
-                    switch (paths.Length)
-                    {
-                        case 1:
-                            action.ApplyBindingOverride(index + 2, paths[0]);
-                            return;
-                        case 2:
-                            action.ApplyBindingOverride(index, paths[0]);
-                            action.ApplyBindingOverride(index + 2, paths[1]);
-                            return;
-                        case 3:
-                            action.ApplyBindingOverride(index, paths[0]);
-                            action.ApplyBindingOverride(index + 1, paths[1]);
-                            action.ApplyBindingOverride(index + 2, paths[2]);
-                            return;
-                    }
-                }
-            }
-            action.ApplyBindingOverride(index, path);
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Text;
 using System.Text.RegularExpressions;
+using Rogium.Systems.Shortcuts;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
@@ -60,6 +62,77 @@ namespace Rogium.Systems.Input
             string formatForBindingPath = Regex.Replace(path, @"^/(\w+)", "<$1>");
             formatForBindingPath = Regex.Replace(formatForBindingPath, "^/", "");
             return formatForBindingPath;
+        }
+
+        /// <summary>
+        /// Get a human-readable path for a specific action.
+        /// </summary>
+        /// <param name="action">The action to get the binding path from.</param>
+        /// <param name="device">For which device to take the path for</param>
+        /// <param name="useAlt">Use the main or alt binding?</param>
+        /// <param name="indexOverride">Use custom index instead of detecting by device.</param>
+        /// <returns>A human-readable path.</returns>
+        public static string GetPath(InputAction action, InputDeviceType device, bool useAlt = false, int indexOverride = -1)
+        {
+            string devicePath =(device == InputDeviceType.Gamepad) ? "<Gamepad>/" : "<Keyboard>/";
+            int index = (indexOverride > -1) ? indexOverride : GetBindingIndexByDevice(action, device, useAlt);
+            
+            if (action.bindings[index].isPartOfComposite)
+            {
+                if (action.bindings[index - 1].path == nameof(TwoOptionalModifiersComposite).Replace("Composite", ""))
+                {
+                    StringBuilder path = new();
+                    path.Append($"{action.bindings[index].effectivePath.Replace(devicePath, "")}");     //Modifier 1
+                    path.Append((action.bindings[index].effectivePath == "") ? "" : "+");               //Plus
+                    path.Append($"{action.bindings[index + 1].effectivePath.Replace(devicePath, "")}"); //Modifier 2
+                    path.Append((action.bindings[index + 1].effectivePath == "") ? "" : "+");           //Plus
+                    path.Append($"{action.bindings[index + 2].effectivePath.Replace(devicePath, "")}"); //Button
+                    return path.ToString();
+                }
+            }
+            return action.bindings[index].effectivePath.Replace(devicePath, "");
+        }
+
+        /// <summary>
+        /// Converts a human-readable path and overrides a binding for a specific action.
+        /// </summary>
+        /// <param name="path">The human-readable path to use for the override.</param>
+        /// <param name="action">The action to affect.</param>
+        /// <param name="device">The device, the binding belongs to.</param>
+        /// <param name="useAlt">Use the main or alt binding.</param>
+        /// <param name="indexOverride">Use custom index instead of detecting by device.</param>
+        public static void ApplyBindingOverride(string path, InputAction action, InputDeviceType device, bool useAlt = false, int indexOverride = -1)
+        {
+            int index = (indexOverride > -1) ? indexOverride : GetBindingIndexByDevice(action, device, useAlt);
+            if (action.bindings[index].isPartOfComposite)
+            {
+                if (action.bindings[index - 1].path == nameof(TwoOptionalModifiersComposite).Replace("Composite", ""))
+                {
+                    string[] paths = path.Split('+');
+                    string devicePath = (device == InputDeviceType.Gamepad) ? "<Gamepad>/" : "<Keyboard>/";
+                    for (int i = 0; i < paths.Length; i++)
+                    {
+                        paths[i] = $"{devicePath}{paths[i]}";
+                    }
+
+                    switch (paths.Length)
+                    {
+                        case 1:
+                            action.ApplyBindingOverride(index + 2, paths[0]);
+                            return;
+                        case 2:
+                            action.ApplyBindingOverride(index, paths[0]);
+                            action.ApplyBindingOverride(index + 2, paths[1]);
+                            return;
+                        case 3:
+                            action.ApplyBindingOverride(index, paths[0]);
+                            action.ApplyBindingOverride(index + 1, paths[1]);
+                            action.ApplyBindingOverride(index + 2, paths[2]);
+                            return;
+                    }
+                }
+            }
+            action.ApplyBindingOverride(index, path);
         }
     }
 }
