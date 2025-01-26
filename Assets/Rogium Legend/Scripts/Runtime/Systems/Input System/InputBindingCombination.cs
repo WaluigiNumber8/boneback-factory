@@ -94,11 +94,12 @@ namespace Rogium.Systems.Input
                 combo.button.overridePath = bindingPath;
                 return this;
             }
-            
+
             public Builder WithEmptyModifier1() => WithModifier1("");
             public Builder WithEmptyModifier2() => WithModifier2("");
             public Builder WithEmptyButton() => WithButton("");
 
+            public Builder ClearPaths() => WithEmptyModifier1().WithEmptyModifier2().WithEmptyButton();
             public InputBindingCombination Build() => combo;
             public InputBindingCombination AsEmpty() => WithEmptyModifier1().WithEmptyModifier2().WithEmptyButton().Build();
         }

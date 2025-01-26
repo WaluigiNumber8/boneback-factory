@@ -186,9 +186,9 @@ namespace Rogium.UserInterface.Interactables
             
             newBinding = operation.candidates.Where(c => c is KeyControl).ToList().Count switch
             {
-                1 => new InputBindingCombination.Builder().From(binding).WithButton(operation.candidates[0].path.FormatForBindingPath()).Build(),
-                2 => new InputBindingCombination.Builder().From(binding).WithModifier1(operation.candidates[0].path.FormatForBindingPath()).WithButton(operation.candidates[1].path.FormatForBindingPath()).Build(),
-                _ => new InputBindingCombination.Builder().From(binding).WithModifier1(operation.candidates[0].path.FormatForBindingPath()).WithModifier2(operation.candidates[1].path.FormatForBindingPath()).WithButton(operation.candidates[2].path.FormatForBindingPath()).Build()
+                1 => new InputBindingCombination.Builder().From(binding).ClearPaths().WithButton(operation.candidates[0].path.FormatForBindingPath()).Build(),
+                2 => new InputBindingCombination.Builder().From(binding).ClearPaths().WithModifier1(operation.candidates[0].path.FormatForBindingPath()).WithButton(operation.candidates[1].path.FormatForBindingPath()).Build(),
+                _ => new InputBindingCombination.Builder().From(binding).ClearPaths().WithModifier1(operation.candidates[0].path.FormatForBindingPath()).WithModifier2(operation.candidates[1].path.FormatForBindingPath()).WithButton(operation.candidates[2].path.FormatForBindingPath()).Build()
             };
             return newBinding;
         }
