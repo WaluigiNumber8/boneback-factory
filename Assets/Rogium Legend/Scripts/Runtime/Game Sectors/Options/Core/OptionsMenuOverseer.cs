@@ -27,6 +27,9 @@ namespace Rogium.Options.Core
         {
             SafetyNet.EnsureIsNotNull(asset, "Preferences Asset");
             currentAsset = new GameDataAsset.Builder().AsCopy(asset).Build();
+            InputSystem.GetInstance().ClearAllInput();
+            ShortcutToAssetConverter.Load(asset.ShortcutBindings);
+            InputToAssetConverter.Load(asset.InputBindings);
             if (!prepareEditor) return;
             OnAssignAsset?.Invoke(CurrentAsset);
         }
@@ -42,8 +45,7 @@ namespace Rogium.Options.Core
             currentAsset.UpdateShortcutBindings(ShortcutToAssetConverter.Get());
             OnSaveChanges?.Invoke(CurrentAsset);
             
-            //TODO: Remove empty bindings from InputAsset
-            // InputSystem.GetInstance().RemoveAllEmptyBindings();
+            InputSystem.GetInstance().RemoveAllEmptyBindings();
         }
         
         public GameDataAsset CurrentAsset 
