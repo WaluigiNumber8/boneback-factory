@@ -69,10 +69,10 @@ namespace Rogium.Systems.Input
             {
                 InputBinding binding = action.actionMap.bindings[i];
                 if (!binding.effectivePath.Equals(bindingCombo.Button.effectivePath) || binding.id == bindingCombo.Button.id) continue;
-                if (!usesModifiers && binding.IsTwoOptionalModifiersComposite() && !string.IsNullOrEmpty(action.actionMap.bindings[i - 2].effectivePath)) continue;
-                if (!usesModifiers && binding.IsTwoOptionalModifiersComposite() && !string.IsNullOrEmpty(action.actionMap.bindings[i - 1].effectivePath)) continue;
-                if (usesModifiers && (!action.actionMap.bindings[i - 2].effectivePath.Equals(bindingCombo.Modifier1.effectivePath) || action.actionMap.bindings[i - 2].id == bindingCombo.Modifier1.id)) continue;
-                if (usesModifiers && (!action.actionMap.bindings[i - 1].effectivePath.Equals(bindingCombo.Modifier2.effectivePath) || action.actionMap.bindings[i - 1].id == bindingCombo.Modifier2.id)) continue;
+                if (HasNoModifiersButIsModifierComposite(binding, i - 2)) continue;
+                if (HasNoModifiersButIsModifierComposite(binding, i - 1)) continue;
+                if (HasModifiersButNotSame(bindingCombo.Modifier1, i - 2)) continue;
+                if (HasModifiersButNotSame(bindingCombo.Modifier2, i - 1)) continue;
 
                 InputAction foundAction = input.FindAction(binding.action);
                 InputBindingCombination foundCombination = new InputBindingCombination.Builder().WithLinkedBindings(foundAction.actionMap.bindings[i], (usesModifiers) ? foundAction.actionMap.bindings[i-2] : new InputBinding(""), (usesModifiers) ? foundAction.actionMap.bindings[i-1] : new InputBinding("")).Build();
@@ -82,6 +82,9 @@ namespace Rogium.Systems.Input
             }
 
             return (null, new InputBindingCombination.Builder().AsEmpty(), -1);
+
+            bool HasNoModifiersButIsModifierComposite(InputBinding binding, int indexOffset) => !usesModifiers && binding.IsTwoOptionalModifiersComposite() && !string.IsNullOrEmpty(action.actionMap.bindings[indexOffset].effectivePath);
+            bool HasModifiersButNotSame(InputBinding other, int indexOffset) => usesModifiers && (!action.actionMap.bindings[indexOffset].effectivePath.Equals(other.effectivePath) || action.actionMap.bindings[indexOffset].id == other.id);
         }
 
         /// <summary>
