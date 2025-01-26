@@ -80,7 +80,7 @@ namespace Rogium.Systems.Input
             
             if (action.bindings[index].isPartOfComposite)
             {
-                if (action.bindings[index - 1].path == nameof(TwoOptionalModifiersComposite).Replace("Composite", ""))
+                if (action.bindings[index - 1].IsTwoOptionalModifiersComposite())
                 {
                     StringBuilder path = new();
                     path.Append($"{action.bindings[index].effectivePath.Replace(devicePath, "").Replace(mouseDevice, "")}");     //Modifier 1
@@ -111,7 +111,7 @@ namespace Rogium.Systems.Input
             
             if (action.bindings[index].isPartOfComposite)
             {
-                if (action.bindings[index - 1].path == nameof(TwoOptionalModifiersComposite).Replace("Composite", ""))
+                if (action.bindings[index - 1].IsTwoOptionalModifiersComposite())
                 {
                     string[] paths = path.Split('+');
                     for (int i = 0; i < paths.Length; i++)
@@ -141,6 +141,40 @@ namespace Rogium.Systems.Input
             action.ApplyBindingOverride(index, $"{finalDevice}{path}");
          
             bool IsForMouse(string humanReadablePath) => (humanReadablePath is "leftButton" or "rightButton" or "middleButton" or "forwardButton" or "backButton");
+        }
+
+        /// <summary>
+        /// Checks if the given binding is of type <see cref="TwoOptionalModifiersComposite"/>. <br/>
+        /// If the binding is part of a composite, it will check the previous binding.
+        /// </summary>
+        /// <param name="binding">The binding to check</param>
+        /// <returns>TRUE if it is <see cref="TwoOptionalModifiersComposite"/>.</returns>
+        public static bool IsTwoOptionalModifiersComposite(this InputBinding binding)
+        {
+            while (true)
+            {
+                if (!binding.isPartOfComposite || binding.isComposite) return binding.path == nameof(TwoOptionalModifiersComposite).Replace("Composite", "");
+
+                InputAction action = InputSystem.GetInstance().GetAction(binding);
+                int index = action.GetBindingIndexWithEmptySupport(binding);
+                binding = action.bindings[index - 1];
+            }
+        }
+
+        /// <summary>
+        /// Returns the index of the binding in the action's bindings list. <br/>
+        /// Supports empty bindings.
+        /// </summary>
+        /// <param name="action">The action to find the binding in.</param>
+        /// <param name="binding">Which binding's index to find.</param>
+        /// <returns>The index of binding in the given action.</returns>
+        public static int GetBindingIndexWithEmptySupport(this InputAction action, InputBinding binding)
+        {
+            for (int i = 0; i < action.bindings.Count; i++)
+            {
+                if (action.bindings[i].id == binding.id) return i;
+            }
+            return -1;
         }
     }
 }

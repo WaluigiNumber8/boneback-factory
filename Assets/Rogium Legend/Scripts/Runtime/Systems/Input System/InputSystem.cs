@@ -69,12 +69,14 @@ namespace Rogium.Systems.Input
             {
                 InputBinding binding = action.actionMap.bindings[i];
                 if (!binding.effectivePath.Equals(bindingCombo.Button.effectivePath) || binding.id == bindingCombo.Button.id) continue;
+                if (!usesModifiers && binding.IsTwoOptionalModifiersComposite() && !string.IsNullOrEmpty(action.actionMap.bindings[i - 2].effectivePath)) continue;
+                if (!usesModifiers && binding.IsTwoOptionalModifiersComposite() && !string.IsNullOrEmpty(action.actionMap.bindings[i - 1].effectivePath)) continue;
                 if (usesModifiers && (!action.actionMap.bindings[i - 2].effectivePath.Equals(bindingCombo.Modifier1.effectivePath) || action.actionMap.bindings[i - 2].id == bindingCombo.Modifier1.id)) continue;
                 if (usesModifiers && (!action.actionMap.bindings[i - 1].effectivePath.Equals(bindingCombo.Modifier2.effectivePath) || action.actionMap.bindings[i - 1].id == bindingCombo.Modifier2.id)) continue;
 
                 InputAction foundAction = input.FindAction(binding.action);
                 InputBindingCombination foundCombination = new InputBindingCombination.Builder().WithLinkedBindings(foundAction.actionMap.bindings[i], (usesModifiers) ? foundAction.actionMap.bindings[i-2] : new InputBinding(""), (usesModifiers) ? foundAction.actionMap.bindings[i-1] : new InputBinding("")).Build();
-                int foundIndex = foundAction.GetBindingIndex(binding);
+                int foundIndex = foundAction.GetBindingIndexWithEmptySupport(binding);
                 foundIndex = (foundIndex == -1) ? 1 : foundIndex; //MUST BE HERE. Rebinding the cancel binding's alt and then using same button for another binding NEVER removes the one from cancel.
                 return (foundAction, foundCombination, foundIndex);
             }
@@ -115,6 +117,7 @@ namespace Rogium.Systems.Input
         }
         
         public InputAction GetAction(InputAction action) => input.FindAction(action.name);
+        public InputAction GetAction(InputBinding binding) => input.FindAction(binding.action);
         
         private void UpdatePointerPosition(Vector2 value) => pointerPosition = value;
         

@@ -286,7 +286,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             if (action.bindings[bindingIndex].isPartOfComposite)
             {
                 //If is a modifier composite, spawn only one
-                if (action.bindings[bindingIndex - 1].path == nameof(TwoOptionalModifiersComposite).Replace("Composite", ""))
+                if (action.bindings[bindingIndex - 1].IsTwoOptionalModifiersComposite())
                 {
                     ConstructInputBinding(action.name, true);
                     return;
