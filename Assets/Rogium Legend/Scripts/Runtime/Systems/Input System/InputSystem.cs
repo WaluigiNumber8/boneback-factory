@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using RedRats.Core;
-using Rogium.UserInterface.Interactables;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Utilities;
 using UnityEngine.SceneManagement;
 
 namespace Rogium.Systems.Input
@@ -105,12 +104,8 @@ namespace Rogium.Systems.Input
 
         public void RemoveAllEmptyBindings()
         {
-            allBindings.Clear();
-            foreach (InputBinding binding in input.bindings)
+            foreach (InputAction action in input.asset.actionMaps.SelectMany(map => map.actions))
             {
-                allBindings.Add(binding);
-                if (binding.effectivePath != "") continue;
-                InputAction action = input.FindAction(binding.action);
                 for (int i = 0; i < action.bindings.Count; i++)
                 {
                     if (action.bindings[i].effectivePath != "") continue;
