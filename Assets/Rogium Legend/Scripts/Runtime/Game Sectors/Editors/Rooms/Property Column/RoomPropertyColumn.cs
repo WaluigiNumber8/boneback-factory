@@ -6,6 +6,7 @@ using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Tiles;
 using Rogium.Systems.ActionHistory;
+using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -102,7 +103,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         /// </summary>
         public void ConstructEmpty()
         {
-            assetContent.gameObject.KillChildren();
+            assetContent.ReleaseAllProperties();
             ui.assetTitleText.text = defaultText;
             ui.typeText.text = "";
             ui.iconImage.color = EditorDefaults.Instance.NoColor;

@@ -21,15 +21,8 @@ namespace Rogium.UserInterface.Interactables.Properties
 
         public override void Clear()
         {
-            foreach (InteractablePropertyBase property in contentMain.GetComponentsInChildren<InteractablePropertyBase>())
-            {
-                property.ReleaseToPool();
-            }
-            
-            foreach (InteractablePropertyBase property in contentSecond.GetComponentsInChildren<InteractablePropertyBase>())
-            {
-                property.ReleaseToPool();
-            }
+            contentMain.ReleaseAllProperties();
+            contentSecond.ReleaseAllProperties();
         }
     }
 }

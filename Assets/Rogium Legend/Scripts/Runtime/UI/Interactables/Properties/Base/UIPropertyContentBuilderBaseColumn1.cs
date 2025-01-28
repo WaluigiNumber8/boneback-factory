@@ -1,5 +1,4 @@
-﻿using RedRats.Core;
-using Rogium.Editors.Core;
+﻿using Rogium.Editors.Core;
 using UnityEngine;
 
 namespace Rogium.UserInterface.Interactables.Properties
@@ -13,10 +12,7 @@ namespace Rogium.UserInterface.Interactables.Properties
 
         public override void Clear()
         {
-            foreach (InteractablePropertyBase property in contentMain.GetComponentsInChildren<InteractablePropertyBase>())
-            {
-                property.ReleaseToPool();
-            }
+            contentMain.ReleaseAllProperties();
         }
     }
 }

@@ -51,6 +51,8 @@ namespace Rogium.UserInterface.Interactables.Properties
             decimals.sliderWithInput.SetValue(startingValue);
             lastValue = startingValue * decimalMultiplier;
             
+            
+            slider.onValueChanged.RemoveListener(WhenValueChanged);
             this.whenValueChange = whenValueChange;
             slider.onValueChanged.AddListener(WhenValueChanged);
         }
@@ -75,8 +77,9 @@ namespace Rogium.UserInterface.Interactables.Properties
             slider.minValue = minValue;
             UpdateValueWithoutNotify(startingValue);
             
+            slider.onValueChanged.RemoveListener(WhenValueChangedToInt);
             this.whenValueChange = whenValueChange;
-            slider.onValueChanged.AddListener(value => WhenValueChanged((int)value));
+            slider.onValueChanged.AddListener(WhenValueChangedToInt);
         }
 
         public void UpdateValueWithoutNotify(float value)
@@ -107,10 +110,11 @@ namespace Rogium.UserInterface.Interactables.Properties
             lastValue = value;
         }
         
-        private void WhenValueChanged(int value)
+        private void WhenValueChangedToInt(float value)
         {
-            ActionHistorySystem.AddAndExecute(new UpdateSliderAction(this, value, lastValue, whenValueChange));
-            lastValue = value;
+            int v = Mathf.RoundToInt(value);
+            ActionHistorySystem.AddAndExecute(new UpdateSliderAction(this, v, lastValue, whenValueChange));
+            lastValue = v;
         }
         
         public override float PropertyValue { get => slider.value / decimalMultiplier; }

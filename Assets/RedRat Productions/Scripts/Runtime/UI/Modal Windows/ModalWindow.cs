@@ -117,6 +117,7 @@ namespace RedRats.UI.ModalWindows
             Close();
             ui.layout.message.area.gameObject.SetActive(false);
             ui.layout.properties.area.gameObject.SetActive(false);
+            //TODO: Instead of Kill, there's a chance the content could be released to pool
             ui.layout.properties.firstColumnContent.gameObject.KillChildren();
             ui.layout.properties.secondColumnContent.gameObject.KillChildren();
         }

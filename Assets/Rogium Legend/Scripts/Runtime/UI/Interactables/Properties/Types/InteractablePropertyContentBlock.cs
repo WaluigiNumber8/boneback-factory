@@ -1,5 +1,4 @@
-﻿using RedRats.Core;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Rogium.UserInterface.Interactables.Properties
 {
@@ -12,7 +11,13 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <summary>
         /// Clears the content block's content.
         /// </summary>
-        public void Clear() => transform.KillChildren();
+        public void Clear() => transform.ReleaseAllProperties();
+
+        public override void ReleaseToPool()
+        {
+            transform.ReleaseAllProperties();
+            base.ReleaseToPool();
+        }
 
         public Transform GetTransform => transform;
     }

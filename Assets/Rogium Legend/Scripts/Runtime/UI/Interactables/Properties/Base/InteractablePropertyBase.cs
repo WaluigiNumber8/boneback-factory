@@ -20,7 +20,11 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="isDisabled">When on, the property is disabled and cannot be edited.</param>
         public abstract void SetDisabled(bool isDisabled);
         
-        public void ReleaseToPool() => OnReleaseToPool?.Invoke();
+        public virtual void ReleaseToPool()
+        {
+            if (gameObject.activeSelf == false) return;
+            OnReleaseToPool?.Invoke();
+        }
 
         protected void ConstructTitle(string titleText)
         {
