@@ -10,7 +10,7 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// <summary>
     /// Overseers everything happening in a sprite interactable property.
     /// </summary>
-    public class InteractablePropertyAssetField : InteractablePropertyBase<IAsset>
+    public class InteractablePropertyAssetField : InteractablePropertyWithValueBase<IAsset>
     {
         [SerializeField] private AssetField assetField;
 

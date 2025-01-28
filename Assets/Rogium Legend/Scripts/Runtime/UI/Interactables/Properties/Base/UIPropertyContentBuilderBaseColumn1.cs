@@ -11,6 +11,12 @@ namespace Rogium.UserInterface.Interactables.Properties
     {
         protected UIPropertyContentBuilderBaseColumn1(Transform contentMain) : base(contentMain) { }
 
-        public override void Clear() => contentMain.gameObject.KillChildren();
+        public override void Clear()
+        {
+            foreach (InteractablePropertyBase property in contentMain.GetComponentsInChildren<InteractablePropertyBase>())
+            {
+                property.ReleaseToPool();
+            }
+        }
     }
 }

@@ -7,7 +7,7 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// <summary>
     /// Prepares the Header property for correct use.
     /// </summary>
-    public class InteractablePropertyHeader : InteractablePropertyBase<bool>
+    public class InteractablePropertyHeader : InteractablePropertyWithValueBase<bool>
     {
         [SerializeField] private Image line;
         

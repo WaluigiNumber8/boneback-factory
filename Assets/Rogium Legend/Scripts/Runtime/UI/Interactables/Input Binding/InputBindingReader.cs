@@ -46,13 +46,17 @@ namespace Rogium.UserInterface.Interactables
 
         private void OnDisable()
         {
+            rebindOperation?.Dispose();
             OnRebindStartAny -= Deactivate;
             OnRebindEndAny -= Activate;
         }
 
         public void Construct(InputAction action, int bindingIndex, int modifier1Index = -1, int modifier2Index = -1)
         {
-            SafetyNet.EnsureIndexWithingCollectionRange(buttonIndex, action.bindings, nameof(action.bindings));
+            SafetyNet.EnsureIndexWithingCollectionRange(bindingIndex, action.bindings, nameof(action.bindings));
+            if (modifier1Index != -1) SafetyNet.EnsureIndexWithingCollectionRange(modifier1Index, action.bindings, nameof(action.bindings));
+            if (modifier2Index != -1) SafetyNet.EnsureIndexWithingCollectionRange(modifier2Index, action.bindings, nameof(action.bindings));
+            
             this.action = action;
             this.modifier1Index = modifier1Index;
             this.modifier2Index = modifier2Index;

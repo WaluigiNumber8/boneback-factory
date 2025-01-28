@@ -1,5 +1,4 @@
-﻿using System.Text.RegularExpressions;
-using RedRats.Core;
+﻿using RedRats.Core;
 using RedRats.UI.Core;
 using TMPro;
 using UnityEngine;
@@ -11,7 +10,7 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// <summary>
     /// Represents a property that allows rebinding an single-button input for both keyboard and gamepad.
     /// </summary>
-    public class InteractablePropertyInputBinding : InteractablePropertyBase<InputAction>
+    public class InteractablePropertyInputBinding : InteractablePropertyWithValueBase<InputAction>
     {
         [SerializeField] private InputBindingReader inputReader;
         [SerializeField] private InputBindingReader inputReaderAlt;

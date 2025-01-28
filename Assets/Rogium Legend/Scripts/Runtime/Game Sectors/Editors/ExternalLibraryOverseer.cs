@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using RedRats.Core;
 using RedRats.Safety;
 using Rogium.Core;
@@ -9,6 +10,7 @@ using Rogium.ExternalStorage;
 using Rogium.Options.Core;
 using Rogium.Systems.SceneTransferService;
 using static Rogium.Editors.Packs.AssetAssociation;
+using Debug = UnityEngine.Debug;
 
 namespace Rogium.Editors.Core
 {
@@ -163,7 +165,10 @@ namespace Rogium.Editors.Core
 
         public void ActivateOptionsEditor()
         {
+            Stopwatch s = Stopwatch.StartNew();
             optionsEditor.AssignAsset(gameData);
+            s.Stop();
+            Debug.Log($"Options Launch: {s.ElapsedMilliseconds}ms.");
         }
 
         /// <summary>
@@ -171,8 +176,12 @@ namespace Rogium.Editors.Core
         /// </summary>
         public void RefreshOptions()
         {
+            Stopwatch s = Stopwatch.StartNew();
             optionsEditor.AssignAsset(gameData, false);
+            long at = s.ElapsedMilliseconds;
             optionsEditor.ApplyAllOptions(gameData);
+            s.Stop();
+            Debug.Log($"Options Assign: {at}ms | Options Refresh: {s.ElapsedMilliseconds}ms");
         }
 
         #endregion

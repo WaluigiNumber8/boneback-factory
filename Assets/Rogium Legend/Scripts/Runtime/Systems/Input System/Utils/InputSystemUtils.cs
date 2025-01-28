@@ -37,18 +37,16 @@ namespace Rogium.Systems.Input
                 {
                     InputBinding b = bindings[i];
                     if (b.isComposite) waitForComposite = false;
-                    if (!group.Matches(b)) continue;
                     if (waitForComposite) continue;
+                    if (!group.Matches(b)) continue;
                     if (getSecondary)
                     {
                         getSecondary = false;
                         if (b.isPartOfComposite) waitForComposite = true;
                         continue;
                     }
-
                     return i;
                 }
-
                 return -1;
             }
         }

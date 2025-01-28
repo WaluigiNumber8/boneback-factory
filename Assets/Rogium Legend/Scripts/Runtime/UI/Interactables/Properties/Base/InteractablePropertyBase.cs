@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using TMPro;
 
 namespace Rogium.UserInterface.Interactables.Properties
@@ -6,8 +7,10 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// <summary>
     /// A base for all interactable properties.
     /// </summary>
-    public abstract class InteractablePropertyBase<T> : MonoBehaviour
+    public abstract class InteractablePropertyBase : MonoBehaviour
     {
+        public event Action OnReleaseToPool;
+        
         [SerializeField] protected TextMeshProUGUI title;
         [SerializeField] protected GameObject middleSpace;
 
@@ -17,6 +20,8 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="isDisabled">When on, the property is disabled and cannot be edited.</param>
         public abstract void SetDisabled(bool isDisabled);
         
+        public void ReleaseToPool() => OnReleaseToPool?.Invoke();
+
         protected void ConstructTitle(string titleText)
         {
             if (title == null) return;
@@ -26,6 +31,5 @@ namespace Rogium.UserInterface.Interactables.Properties
         }
         
         public string Title { get => title.text; }
-        public abstract T PropertyValue { get; }
     }
 }

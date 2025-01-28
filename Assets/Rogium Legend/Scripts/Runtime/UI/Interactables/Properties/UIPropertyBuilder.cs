@@ -5,13 +5,11 @@ using RedRats.Systems.Themes;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Systems.Input;
-using Rogium.Systems.Shortcuts;
 using Rogium.Systems.ThemeSystem;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using InputSystem = Rogium.Systems.Input.InputSystem;
 
 namespace Rogium.UserInterface.Interactables.Properties
 {
@@ -37,6 +35,17 @@ namespace Rogium.UserInterface.Interactables.Properties
         [Title("Other properties")]
         [SerializeField] private ContentBlockInfo contentBlocks;
         [SerializeField] private VerticalVariantsInfo verticalVariants;
+        
+        [Title("Other")] [SerializeField]
+        private Transform poolParent;
+
+        private UIPropertyPool<InteractablePropertyInputBinding> inputBindingPool;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            inputBindingPool = new UIPropertyPool<InteractablePropertyInputBinding>(inputBindingProperty, poolParent, 50, 150);
+        }
 
         #region Properties
 
@@ -305,7 +314,7 @@ namespace Rogium.UserInterface.Interactables.Properties
             
             void ConstructInputBinding(string title, bool useModifiers = false)
             {
-                InteractablePropertyInputBinding inputBinding = Instantiate(inputBindingProperty, parent);
+                InteractablePropertyInputBinding inputBinding = inputBindingPool.Get(parent);
                 inputBinding.name = $"{title} InputBinding";
                 inputBinding.Construct(title, action, 
                                        (useModifiers) ? bindingIndex + 2 : bindingIndex,

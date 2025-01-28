@@ -92,11 +92,11 @@ namespace Rogium.Editors.AssetSelection
             ui.content.KillChildren();
         }
         
-        public InteractablePropertyBase<T> GetProperty<T>(int i)
+        public InteractablePropertyWithValueBase<T> GetProperty<T>(int i)
         {
             SafetyNet.EnsureIntIsLowerOrEqualTo(i, ui.content.childCount, nameof(i));
             SafetyNet.EnsureIntIsInRange(i, 0, ui.content.childCount, nameof(i));
-            return ui.content.GetChild(i).GetComponent<InteractablePropertyBase<T>>();
+            return ui.content.GetChild(i).GetComponent<InteractablePropertyWithValueBase<T>>();
         }
         
         private void Refresh(IAsset asset)

@@ -11,7 +11,7 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// <summary>
     /// Prepares the Slider property for correct use.
     /// </summary>
-    public class InteractablePropertySlider : InteractablePropertyBase<float>
+    public class InteractablePropertySlider : InteractablePropertyWithValueBase<float>
     {
         [SerializeField] private Slider slider;
         [SerializeField] private InteractablePropertyInputField inputField;

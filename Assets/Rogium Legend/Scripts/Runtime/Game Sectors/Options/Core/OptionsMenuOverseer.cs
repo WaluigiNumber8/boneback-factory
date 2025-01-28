@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using RedRats.Core;
 using RedRats.Safety;
 using Rogium.Editors;
