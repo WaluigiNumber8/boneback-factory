@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using RedRats.Core;
 using RedRats.Safety;
@@ -180,19 +181,20 @@ namespace Rogium.UserInterface.Interactables
         private InputBindingCombination GetBindingCombinationFrom(InputActionRebindingExtensions.RebindingOperation operation)
         {
             InputBindingCombination newBinding;
+            List<InputControl> controls = operation.candidates.Where(c => c is ButtonControl and not AnyKeyControl and not DiscreteButtonControl).ToList();
             
             //If modifiers are not allowed, return the first binding
             if (modifier1Index == -1 || modifier2Index == -1)
             {
-                newBinding = new InputBindingCombination.Builder().From(binding).WithButton(operation.candidates[0].path.FormatForBindingPath()).Build();
+                newBinding = new InputBindingCombination.Builder().From(binding).WithButton(controls[0].path.FormatForBindingPath()).Build();
                 return newBinding;
             }
-            
-            newBinding = operation.candidates.Where(c => c is KeyControl).ToList().Count switch
+
+            newBinding = controls.Count switch
             {
-                1 => new InputBindingCombination.Builder().From(binding).ClearPaths().WithButton(operation.candidates[0].path.FormatForBindingPath()).Build(),
-                2 => new InputBindingCombination.Builder().From(binding).ClearPaths().WithModifier1(operation.candidates[0].path.FormatForBindingPath()).WithButton(operation.candidates[1].path.FormatForBindingPath()).Build(),
-                _ => new InputBindingCombination.Builder().From(binding).ClearPaths().WithModifier1(operation.candidates[0].path.FormatForBindingPath()).WithModifier2(operation.candidates[1].path.FormatForBindingPath()).WithButton(operation.candidates[2].path.FormatForBindingPath()).Build()
+                1 => new InputBindingCombination.Builder().From(binding).ClearPaths().WithButton(controls[0].path.FormatForBindingPath()).Build(),
+                2 => new InputBindingCombination.Builder().From(binding).ClearPaths().WithModifier1(controls[0].path.FormatForBindingPath()).WithButton(controls[1].path.FormatForBindingPath()).Build(),
+                _ => new InputBindingCombination.Builder().From(binding).ClearPaths().WithModifier1(controls[0].path.FormatForBindingPath()).WithModifier2(controls[1].path.FormatForBindingPath()).WithButton(controls[2].path.FormatForBindingPath()).Build()
             };
             return newBinding;
         }
