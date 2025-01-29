@@ -174,15 +174,7 @@ namespace Rogium.Editors.Core
         /// <summary>
         /// Refresh game settings from the currently saved data.
         /// </summary>
-        public void RefreshOptions()
-        {
-            Stopwatch s = Stopwatch.StartNew();
-            optionsEditor.AssignAsset(gameData, false);
-            long at = s.ElapsedMilliseconds;
-            optionsEditor.ApplyAllOptions(gameData);
-            s.Stop();
-            Debug.Log($"Options Assign: {at}ms | Options Refresh: {s.ElapsedMilliseconds - at}ms");
-        }
+        public void RefreshOptions() => optionsEditor.ApplyAllOptions(gameData);
 
         #endregion
         
