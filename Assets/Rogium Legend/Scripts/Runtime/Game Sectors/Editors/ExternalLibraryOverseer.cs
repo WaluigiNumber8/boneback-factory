@@ -181,7 +181,7 @@ namespace Rogium.Editors.Core
             long at = s.ElapsedMilliseconds;
             optionsEditor.ApplyAllOptions(gameData);
             s.Stop();
-            Debug.Log($"Options Assign: {at}ms | Options Refresh: {s.ElapsedMilliseconds}ms");
+            Debug.Log($"Options Assign: {at}ms | Options Refresh: {s.ElapsedMilliseconds - at}ms");
         }
 
         #endregion

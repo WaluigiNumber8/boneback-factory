@@ -12,6 +12,11 @@ namespace Rogium.Systems.Input
     /// </summary>
     public static class InputSystemUtils
     {
+        private const string gamepadDevicePath = "<Gamepad>/";
+        private const string KeyboardDevicePath = "<Keyboard>/";
+        private const string MouseDevicePath = "<Mouse>/";
+        
+        
         /// <summary>
         /// Gets the index of the binding for the given action and device.
         /// </summary>
@@ -95,50 +100,50 @@ namespace Rogium.Systems.Input
         /// <summary>
         /// Converts a human-readable path and overrides a binding for a specific action.
         /// </summary>
-        /// <param name="path">The human-readable path to use for the override.</param>
+        /// <param name="humanReadablePath">The human-readable path to use for the override.</param>
         /// <param name="action">The action to affect.</param>
         /// <param name="device">The device, the binding belongs to.</param>
         /// <param name="useAlt">Use the main or alt binding.</param>
         /// <param name="indexOverride">Use custom index instead of detecting by device.</param>
-        public static void ApplyBindingOverride(string path, InputAction action, InputDeviceType device, bool useAlt = false, int indexOverride = -1)
+        public static void ApplyBindingOverride(string humanReadablePath, InputAction action, InputDeviceType device, bool useAlt = false, int indexOverride = -1)
         {
-            const string mouseDevice = "<Mouse>/";
             int index = (indexOverride > -1) ? indexOverride : GetBindingIndexByDevice(action, device, useAlt);
-            string devicePath = (device == InputDeviceType.Gamepad) ? "<Gamepad>/" : "<Keyboard>/";
-            string finalDevice = "";
             
-            if (action.bindings[index].isPartOfComposite)
+            if (action.bindings[index].isPartOfComposite && action.bindings[index - 1].IsTwoOptionalModifiersComposite()) // If is part of composite and previous is TwoOptionalModifiers
             {
-                if (action.bindings[index - 1].IsTwoOptionalModifiersComposite())
+                string[] paths = humanReadablePath.Split('+');
+                switch (paths.Length)
                 {
-                    string[] paths = path.Split('+');
-                    for (int i = 0; i < paths.Length; i++)
-                    {
-                        if (!string.IsNullOrEmpty(paths[i])) finalDevice = (device == InputDeviceType.Keyboard && IsForMouse(paths[i])) ? mouseDevice : devicePath;
-                        paths[i] = $"{finalDevice}{paths[i]}";
-                    }
-
-                    switch (paths.Length)
-                    {
-                        case 1:
-                            action.ApplyBindingOverride(index + 2, paths[0]);
-                            return;
-                        case 2:
-                            action.ApplyBindingOverride(index, paths[0]);
-                            action.ApplyBindingOverride(index + 2, paths[1]);
-                            return;
-                        case 3:
-                            action.ApplyBindingOverride(index, paths[0]);
-                            action.ApplyBindingOverride(index + 1, paths[1]);
-                            action.ApplyBindingOverride(index + 2, paths[2]);
-                            return;
-                    }
+                    case 1:
+                        ApplyBinding(index + 2, paths[0]);
+                        return;
+                    case 2:
+                        ApplyBinding(index, paths[0]);
+                        ApplyBinding(index + 2, paths[1]);
+                        return;
+                    case 3:
+                        ApplyBinding(index, paths[0]);
+                        ApplyBinding(index + 1, paths[1]);
+                        ApplyBinding(index + 2, paths[2]);
+                        return;
                 }
             }
-            if (!string.IsNullOrEmpty(path)) finalDevice = (device == InputDeviceType.Keyboard && IsForMouse(path)) ? mouseDevice : devicePath;
-            action.ApplyBindingOverride(index, $"{finalDevice}{path}");
-         
-            bool IsForMouse(string humanReadablePath) => (humanReadablePath is "leftButton" or "rightButton" or "middleButton" or "forwardButton" or "backButton");
+            ApplyBinding(index, humanReadablePath);
+
+            void ApplyBinding(int idx, string path)
+            {
+                string finalPath = $"{GetDevice(path)}{path}";
+                if (finalPath == action.bindings[idx].effectivePath) return;
+                action.ApplyBindingOverride(idx, finalPath);
+            }
+            string GetDevice(string path)
+            {
+                if (string.IsNullOrEmpty(path)) return "";
+                if (device == InputDeviceType.Keyboard && IsForMouse()) return MouseDevicePath;
+                return (device == InputDeviceType.Gamepad) ? gamepadDevicePath : KeyboardDevicePath; 
+                
+                bool IsForMouse() => (path is "leftButton" or "rightButton" or "middleButton" or "forwardButton" or "backButton");
+            }
         }
 
         /// <summary>
@@ -149,11 +154,12 @@ namespace Rogium.Systems.Input
         /// <returns>TRUE if it is <see cref="TwoOptionalModifiersComposite"/>.</returns>
         public static bool IsTwoOptionalModifiersComposite(this InputBinding binding)
         {
+            InputSystem input = InputSystem.GetInstance();
             while (true)
             {
                 if (!binding.isPartOfComposite || binding.isComposite) return binding.path == nameof(TwoOptionalModifiersComposite).Replace("Composite", "");
 
-                InputAction action = InputSystem.GetInstance().GetAction(binding);
+                InputAction action = input.GetAction(binding);
                 int index = action.GetBindingIndexWithEmptySupport(binding);
                 binding = action.bindings[index - 1];
             }
