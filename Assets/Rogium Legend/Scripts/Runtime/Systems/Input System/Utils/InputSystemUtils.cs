@@ -33,7 +33,7 @@ namespace Rogium.Systems.Input
                 InputDeviceType.Gamepad => GetBindingIndex(new InputBinding(groups: InputSystem.GetInstance().GamepadBindingGroup, path: null)),
                 _ => throw new ArgumentOutOfRangeException(nameof(device), device, null)
             };
-
+            
             int GetBindingIndex(InputBinding group)
             {
                 ReadOnlyArray<InputBinding> bindings = action.bindings;
@@ -77,24 +77,18 @@ namespace Rogium.Systems.Input
         /// <returns>A human-readable path.</returns>
         public static string GetPath(InputAction action, InputDeviceType device, bool useAlt = false, int indexOverride = -1)
         {
-            const string mouseDevice = "<Mouse>/";
-            string devicePath =(device == InputDeviceType.Gamepad) ? "<Gamepad>/" : "<Keyboard>/";
             int index = (indexOverride > -1) ? indexOverride : GetBindingIndexByDevice(action, device, useAlt);
-            
-            if (action.bindings[index].isPartOfComposite)
+            if (PreviousIsOptionalModifiersComposite(action, index))
             {
-                if (action.bindings[index - 1].IsTwoOptionalModifiersComposite())
-                {
-                    StringBuilder path = new();
-                    path.Append($"{action.bindings[index].effectivePath.Replace(devicePath, "").Replace(mouseDevice, "")}");     //Modifier 1
-                    path.Append((action.bindings[index].effectivePath == "") ? "" : "+");                                        //Plus
-                    path.Append($"{action.bindings[index + 1].effectivePath.Replace(devicePath, "").Replace(mouseDevice, "")}"); //Modifier 2
-                    path.Append((action.bindings[index + 1].effectivePath == "") ? "" : "+");                                    //Plus
-                    path.Append($"{action.bindings[index + 2].effectivePath.Replace(devicePath, "").Replace(mouseDevice, "")}"); //Button
-                    return path.ToString();
-                }
+                StringBuilder path = new();
+                path.Append(action.bindings[index].GetPathWithoutDevice(device));           //Modifier 1
+                path.Append((action.bindings[index].effectivePath == "") ? "" : "+");       //Plus
+                path.Append(action.bindings[index + 1].GetPathWithoutDevice(device));       //Modifier 2
+                path.Append((action.bindings[index + 1].effectivePath == "") ? "" : "+");   //Plus
+                path.Append(action.bindings[index + 2].GetPathWithoutDevice(device));       //Button
+                return path.ToString();
             }
-            return action.bindings[index].effectivePath.Replace(devicePath, "").Replace(mouseDevice, "");
+            return action.bindings[index].GetPathWithoutDevice(device);
         }
 
         /// <summary>
@@ -108,8 +102,7 @@ namespace Rogium.Systems.Input
         public static void ApplyBindingOverride(string humanReadablePath, InputAction action, InputDeviceType device, bool useAlt = false, int indexOverride = -1)
         {
             int index = (indexOverride > -1) ? indexOverride : GetBindingIndexByDevice(action, device, useAlt);
-            
-            if (action.bindings[index].isPartOfComposite && action.bindings[index - 1].IsTwoOptionalModifiersComposite()) // If is part of composite and previous is TwoOptionalModifiers
+            if (PreviousIsOptionalModifiersComposite(action, index))
             {
                 string[] paths = humanReadablePath.Split('+');
                 switch (paths.Length)
@@ -129,20 +122,13 @@ namespace Rogium.Systems.Input
                 }
             }
             ApplyBinding(index, humanReadablePath);
-
+            return;
+            
             void ApplyBinding(int idx, string path)
             {
-                string finalPath = $"{GetDevice(path)}{path}";
+                string finalPath = $"{GetDevicePath(path, device)}{path}";
                 if (finalPath == action.bindings[idx].effectivePath) return;
                 action.ApplyBindingOverride(idx, finalPath);
-            }
-            string GetDevice(string path)
-            {
-                if (string.IsNullOrEmpty(path)) return "";
-                if (device == InputDeviceType.Keyboard && IsForMouse()) return MouseDevicePath;
-                return (device == InputDeviceType.Gamepad) ? gamepadDevicePath : KeyboardDevicePath; 
-                
-                bool IsForMouse() => (path is "leftButton" or "rightButton" or "middleButton" or "forwardButton" or "backButton");
             }
         }
 
@@ -179,6 +165,33 @@ namespace Rogium.Systems.Input
                 if (action.bindings[i].id == binding.id) return i;
             }
             return -1;
+        }
+
+        private static string GetDevicePath(string path, InputDeviceType device)
+        {
+            if (string.IsNullOrEmpty(path)) return "";
+            if (device == InputDeviceType.Keyboard && IsForMouse()) return MouseDevicePath;
+            return (device == InputDeviceType.Gamepad) ? gamepadDevicePath : KeyboardDevicePath; 
+                
+            bool IsForMouse() => (path is "leftButton" or "rightButton" or "middleButton" or "forwardButton" or "backButton");
+        }
+        
+        /// <summary>
+        /// Returns TRUE if the previous binding is the header of a <see cref="TwoOptionalModifiersComposite"/>.
+        /// </summary>
+        /// <param name="action">The action the binding belongs to.</param>
+        /// <param name="index">The index of the current binding. Previous one will be checked.</param>
+        private static bool PreviousIsOptionalModifiersComposite(InputAction action, int index) => action.bindings[index].isPartOfComposite && action.bindings[index - 1].IsTwoOptionalModifiersComposite();
+        
+        /// <summary>
+        /// Returns the effective path without the device section (e.g. "Keyboard/s -> s").
+        /// </summary>
+        /// <param name="binding">The binding, whose path to clean.</param>
+        /// <param name="device">For which device to check.</param>
+        /// <returns>The effective path without the device portion.</returns>
+        private static string GetPathWithoutDevice(this InputBinding binding, InputDeviceType device)
+        {
+            return (string.IsNullOrEmpty(binding.effectivePath)) ? "" : binding.effectivePath.Replace(GetDevicePath(binding.effectivePath, device), "");
         }
     }
 }
