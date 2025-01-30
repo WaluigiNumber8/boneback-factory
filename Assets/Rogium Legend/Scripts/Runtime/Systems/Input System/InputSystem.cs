@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using RedRats.Core;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using Debug = UnityEngine.Debug;
 
 namespace Rogium.Systems.Input
 {
@@ -24,12 +26,10 @@ namespace Rogium.Systems.Input
         private InputProfileShortcuts inputShortcuts;
         
         private Vector2 pointerPosition;
-        private IList<InputBinding> allBindings;
 
         protected override void Awake()
         {
             base.Awake();
-            allBindings = new List<InputBinding>();
             ClearAllInput();
             SceneManager.sceneLoaded += (_, __) => eventSystem = FindFirstObjectByType<EventSystem>();
             inputUI.PointerPosition.OnPressed += UpdatePointerPosition;
@@ -104,14 +104,17 @@ namespace Rogium.Systems.Input
 
         public void RemoveAllEmptyBindings()
         {
+            Stopwatch s = Stopwatch.StartNew();
             foreach (InputAction action in input.asset.actionMaps.SelectMany(map => map.actions))
             {
-                for (int i = 0; i < action.bindings.Count; i++)
+                for (int i = action.bindings.Count - 1; i >= 0; i--)
                 {
                     if (action.bindings[i].effectivePath != "") continue;
                     action.ChangeBinding(i).Erase();
                 }
             }
+            s.Stop();
+            Debug.Log($"Remove empty: {s.ElapsedMilliseconds}ms.");
         }
         
         public InputAction GetAction(InputAction action) => input.FindAction(action.name);

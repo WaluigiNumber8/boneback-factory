@@ -12,7 +12,7 @@ namespace Rogium.Systems.Input
     /// </summary>
     public static class InputSystemUtils
     {
-        private const string gamepadDevicePath = "<Gamepad>/";
+        private const string GamepadDevicePath = "<Gamepad>/";
         private const string KeyboardDevicePath = "<Keyboard>/";
         private const string MouseDevicePath = "<Mouse>/";
         
@@ -171,7 +171,7 @@ namespace Rogium.Systems.Input
         {
             if (string.IsNullOrEmpty(path)) return "";
             if (device == InputDeviceType.Keyboard && IsForMouse()) return MouseDevicePath;
-            return (device == InputDeviceType.Gamepad) ? gamepadDevicePath : KeyboardDevicePath; 
+            return (device == InputDeviceType.Gamepad) ? GamepadDevicePath : KeyboardDevicePath; 
                 
             bool IsForMouse() => (path is "leftButton" or "rightButton" or "middleButton" or "forwardButton" or "backButton");
         }
@@ -181,8 +181,18 @@ namespace Rogium.Systems.Input
         /// </summary>
         /// <param name="action">The action the binding belongs to.</param>
         /// <param name="index">The index of the current binding. Previous one will be checked.</param>
-        private static bool PreviousIsOptionalModifiersComposite(InputAction action, int index) => action.bindings[index].isPartOfComposite && action.bindings[index - 1].IsTwoOptionalModifiersComposite();
-        
+        public static bool PreviousIsOptionalModifiersComposite(InputAction action, int index)
+        {
+            int currentIndex = index;
+            while (true)
+            {
+                InputBinding binding = action.bindings[currentIndex];
+                if (!binding.isPartOfComposite && !binding.isComposite) return false;
+                if (binding.isComposite) return binding.IsTwoOptionalModifiersComposite();
+                currentIndex--;
+            }
+        }
+
         /// <summary>
         /// Returns the effective path without the device section (e.g. "Keyboard/s -> s").
         /// </summary>
