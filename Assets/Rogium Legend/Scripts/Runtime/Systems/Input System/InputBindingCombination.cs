@@ -11,8 +11,9 @@ namespace Rogium.Systems.Input
         private InputBinding modifier1;
         private InputBinding modifier2;
         private InputBinding button;
+        private readonly string displayString;
 
-        private InputBindingCombination() { }
+        private InputBindingCombination() => displayString = BuildDisplayString();
 
         public bool HasSameInputs(InputBindingCombination other) => modifier1.effectivePath == other.modifier1.effectivePath &&
                                                                     modifier2.effectivePath == other.modifier2.effectivePath &&
@@ -39,14 +40,13 @@ namespace Rogium.Systems.Input
         public InputBinding Modifier1 { get => modifier1; }
         public InputBinding Modifier2 { get => modifier2; }
         public InputBinding Button { get => button; }
-        public string DisplayString
+        public string DisplayString { get => displayString; }
+
+        private string BuildDisplayString()
         {
-            get
-            {
-                string plus1 = (modifier1.effectivePath != "") ? "+" : "";
-                string plus2 = (modifier2.effectivePath != "") ? "+" : "";
-                return $"{modifier1.ToDisplayString()}{plus1}{modifier2.ToDisplayString()}{plus2}{button.ToDisplayString()}";
-            }
+            string plus1 = (modifier1.effectivePath != "") ? "+" : "";
+            string plus2 = (modifier2.effectivePath != "") ? "+" : "";
+            return $"{modifier1.ToDisplayString()}{plus1}{modifier2.ToDisplayString()}{plus2}{button.ToDisplayString()}";
         }
 
         public class Builder
