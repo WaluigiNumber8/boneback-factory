@@ -173,7 +173,6 @@ namespace Rogium.Systems.Input
             if (device == InputDeviceType.Keyboard && IsForMouse()) return MouseDevicePath;
             return (device == InputDeviceType.Gamepad) ? GamepadDevicePath : KeyboardDevicePath; 
             
-            // bool IsForMouse() => (path is "leftButton" or "rightButton" or "middleButton" or "forwardButton" or "backButton");
             bool IsForMouse() => path.Contains("leftButton") || path.Contains("rightButton") || path.Contains("middleButton") || path.Contains("forwardButton") || path.Contains("backButton");
         }
         

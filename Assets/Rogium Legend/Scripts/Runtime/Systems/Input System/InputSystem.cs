@@ -82,8 +82,8 @@ namespace Rogium.Systems.Input
 
             return (null, new InputBindingCombination.Builder().AsEmpty(), -1);
 
-            bool HasNoModifiersButIsModifierComposite(InputBinding binding, int indexOffset) => !usesModifiers && binding.IsTwoOptionalModifiersComposite() && !string.IsNullOrEmpty(action.actionMap.bindings[indexOffset].effectivePath);
-            bool HasModifiersButNotSame(InputBinding other, int indexOffset) => usesModifiers && (!action.actionMap.bindings[indexOffset].effectivePath.Equals(other.effectivePath) || action.actionMap.bindings[indexOffset].id == other.id);
+            bool HasNoModifiersButIsModifierComposite(InputBinding binding, int indexOffset) => !usesModifiers && binding.IsTwoOptionalModifiersComposite() && indexOffset > -1 && !string.IsNullOrEmpty(action.actionMap.bindings[indexOffset].effectivePath);
+            bool HasModifiersButNotSame(InputBinding other, int indexOffset) => usesModifiers &&  indexOffset > -1 && (!action.actionMap.bindings[indexOffset].effectivePath.Equals(other.effectivePath) || action.actionMap.bindings[indexOffset].id == other.id);
         }
 
         /// <summary>
