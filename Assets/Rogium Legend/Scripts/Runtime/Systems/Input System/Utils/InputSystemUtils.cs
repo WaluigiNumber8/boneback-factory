@@ -172,8 +172,9 @@ namespace Rogium.Systems.Input
             if (string.IsNullOrEmpty(path)) return "";
             if (device == InputDeviceType.Keyboard && IsForMouse()) return MouseDevicePath;
             return (device == InputDeviceType.Gamepad) ? GamepadDevicePath : KeyboardDevicePath; 
-                
-            bool IsForMouse() => (path is "leftButton" or "rightButton" or "middleButton" or "forwardButton" or "backButton");
+            
+            // bool IsForMouse() => (path is "leftButton" or "rightButton" or "middleButton" or "forwardButton" or "backButton");
+            bool IsForMouse() => path.Contains("leftButton") || path.Contains("rightButton") || path.Contains("middleButton") || path.Contains("forwardButton") || path.Contains("backButton");
         }
         
         /// <summary>
@@ -201,7 +202,9 @@ namespace Rogium.Systems.Input
         /// <returns>The effective path without the device portion.</returns>
         private static string GetPathWithoutDevice(this InputBinding binding, InputDeviceType device)
         {
-            return (string.IsNullOrEmpty(binding.effectivePath)) ? "" : binding.effectivePath.Replace(GetDevicePath(binding.effectivePath, device), "");
+            if (string.IsNullOrEmpty(binding.effectivePath)) return "";
+            string devicePath = GetDevicePath(binding.effectivePath, device);
+            return binding.effectivePath.Replace(devicePath, "");
         }
     }
 }
