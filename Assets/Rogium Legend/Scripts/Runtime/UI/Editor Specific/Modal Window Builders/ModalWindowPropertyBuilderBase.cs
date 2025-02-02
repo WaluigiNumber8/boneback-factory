@@ -31,7 +31,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
                 .WithDenyButton("Cancel")
                 .Build();
             wb.OpenWindow(data, ModalWindowKey, out column1);
-            column1.KillChildren();
+            column1.ReleaseAllProperties();
         }
         
         protected void OpenForColumns2(string headerText, Action onConfirm, out Transform column1, out Transform column2)
@@ -43,8 +43,8 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
                 .WithDenyButton("Cancel")
                 .Build();
             wb.OpenWindow(data, ModalWindowKey, out column1, out column2);
-            column1.KillChildren();
-            column2.KillChildren();
+            column1.ReleaseAllProperties();
+            column2.ReleaseAllProperties();
         }
 
         protected string GetTitleByModificationType(IAsset asset, AssetModificationType type)
