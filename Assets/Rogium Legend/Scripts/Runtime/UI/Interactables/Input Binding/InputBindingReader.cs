@@ -64,8 +64,8 @@ namespace Rogium.UserInterface.Interactables
             this.buttonIndex = bindingIndex;
             this.binding = new InputBindingCombination.Builder().WithLinkedBindings(action, buttonIndex, modifier1Index, modifier2Index).Build();
             this.lastBinding = binding;
-            ui.ShowBoundInputDisplay();
             RefreshInputString();
+            ui.ShowBoundInputDisplay();
         }
         
         public void OnPointerClick(PointerEventData eventData)

@@ -11,9 +11,9 @@ namespace Rogium.Systems.Input
         private InputBinding modifier1;
         private InputBinding modifier2;
         private InputBinding button;
-        private readonly string displayString;
+        private string displayString;
 
-        private InputBindingCombination() => displayString = BuildDisplayString();
+        private InputBindingCombination() {}
 
         public bool HasSameInputs(InputBindingCombination other) => modifier1.effectivePath == other.modifier1.effectivePath &&
                                                                     modifier2.effectivePath == other.modifier2.effectivePath &&
@@ -41,13 +41,6 @@ namespace Rogium.Systems.Input
         public InputBinding Modifier2 { get => modifier2; }
         public InputBinding Button { get => button; }
         public string DisplayString { get => displayString; }
-
-        private string BuildDisplayString()
-        {
-            string plus1 = (modifier1.effectivePath != "") ? "+" : "";
-            string plus2 = (modifier2.effectivePath != "") ? "+" : "";
-            return $"{modifier1.ToDisplayString()}{plus1}{modifier2.ToDisplayString()}{plus2}{button.ToDisplayString()}";
-        }
 
         public class Builder
         {
@@ -100,8 +93,21 @@ namespace Rogium.Systems.Input
             public Builder WithEmptyButton() => WithButton("");
 
             public Builder ClearPaths() => WithEmptyModifier1().WithEmptyModifier2().WithEmptyButton();
-            public InputBindingCombination Build() => combo;
+            
+            public InputBindingCombination Build()
+            {
+                combo.displayString = BuildDisplayString();
+                return combo;
+            }
+
             public InputBindingCombination AsEmpty() => WithEmptyModifier1().WithEmptyModifier2().WithEmptyButton().Build();
+            
+            private string BuildDisplayString()
+            {
+                string plus1 = (combo.modifier1.effectivePath != "") ? "+" : "";
+                string plus2 = (combo.modifier2.effectivePath != "") ? "+" : "";
+                return $"{combo.modifier1.ToDisplayString()}{plus1}{combo.modifier2.ToDisplayString()}{plus2}{combo.button.ToDisplayString()}";
+            }
         }
 
     }
