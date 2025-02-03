@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using RedRats.Core;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -102,93 +100,8 @@ namespace Rogium.Systems.Input
             }
         }
 
-        public void RemoveAllEmptyBindings()
-        {
-            Stopwatch s = Stopwatch.StartNew();
-            foreach (InputActionMap map in input.asset.actionMaps)
-            {
-                foreach (InputAction action in map.actions)
-                {
-                    bool isInsideComposite = false;
-                    int bindingsInComposite = 0;
-                    IList<int> emptyIndexes = new List<int>();
+        public void RemoveAllEmptyBindings() => BindingRemover.RemoveEmptyBindings(input);
 
-                    for (int i = action.bindings.Count - 1; i >= 0; i--)
-                    {
-                        InputBinding binding = action.bindings[i];
-
-                        //If is composite header
-                        if (binding.isComposite)
-                        {
-                            if (isInsideComposite)
-                            {
-                                isInsideComposite = false;
-
-                                //Reach last part of composite
-                                if (bindingsInComposite == emptyIndexes.Count)
-                                {
-                                    //All parts of composite are empty
-                                    action.ChangeBinding(i).Erase();
-                                    continue;
-                                }
-                                else
-                                {
-                                    //Not all parts of composite are empty
-                                    foreach (int idx in emptyIndexes)
-                                    {
-                                        action.ChangeBinding(idx).Erase();
-                                    }
-                                    continue;
-                                }
-                            }
-                            else
-                            {
-                                //First composite found, can be ignored
-                                continue;
-                            }
-                        }
-
-                        //If is composite part
-                        if (binding.isPartOfComposite)
-                        {
-                            if (isInsideComposite)
-                            {
-                                //Every other part of composite
-                                bindingsInComposite++;
-                                if (binding.effectivePath == "") emptyIndexes.Add(i);
-                                continue;
-                            }
-                            else
-                            {
-                                //First part of composite
-                                isInsideComposite = true;
-                                bindingsInComposite = 0;
-                                emptyIndexes.Clear();
-
-                                bindingsInComposite++;
-                                if (binding.effectivePath == "") emptyIndexes.Add(i);
-                                continue;
-                            }
-                        }
-
-
-                        //If is normal binding
-                        EraseBinding();
-                        continue;
-
-                        void EraseBinding()
-                        {
-                            if (binding.effectivePath != "") return;
-                            action.ChangeBinding(i).Erase();
-                        }
-                    }
-                }
-            }
-
-            s.Stop();
-            Debug.Log($"Remove empty: {s.ElapsedMilliseconds}ms.");
-        }
-        
         public InputAction GetAction(InputAction action) => input.FindAction(action.name);
         public InputAction GetAction(InputBinding binding) => input.FindAction(binding.action);
         
