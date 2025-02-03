@@ -163,13 +163,7 @@ namespace Rogium.Editors.Core
             ex.ShortcutBindings.Save(this.gameData.ShortcutBindings);
         }
 
-        public void ActivateOptionsEditor()
-        {
-            Stopwatch s = Stopwatch.StartNew();
-            optionsEditor.AssignAsset(gameData);
-            s.Stop();
-            Debug.Log($"Options Launch: {s.ElapsedMilliseconds}ms.");
-        }
+        public void ActivateOptionsEditor() => optionsEditor.AssignAsset(gameData);
 
         /// <summary>
         /// Refresh game settings from the currently saved data.
