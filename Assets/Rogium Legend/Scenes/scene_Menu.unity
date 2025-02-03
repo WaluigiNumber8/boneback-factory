@@ -124,6 +124,41 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8364532465747921607, guid: 3670cc033e4d86d4ba79294fbe887f56, type: 3}
   m_PrefabInstance: {fileID: 7896840035819769952}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &57048417
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 57048418}
+  m_Layer: 5
+  m_Name: Property Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &57048418
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57048417}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 774623953}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &136118140 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2009361616536966613, guid: d1cf52ec05bed074c8dde38c0fe1d1c5, type: 3}
@@ -3402,6 +3437,7 @@ RectTransform:
   - {fileID: 1232054476}
   - {fileID: 1594718112}
   - {fileID: 913386668}
+  - {fileID: 57048418}
   m_Father: {fileID: 1440990917}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -11030,7 +11066,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2071037581049914761, guid: d790e035213896e419da527b1da6f0df, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 221.54999
+      value: 221.55005
       objectReference: {fileID: 0}
     - target: {fileID: 2071037581049914761, guid: d790e035213896e419da527b1da6f0df, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -12366,6 +12402,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Property Builder
       objectReference: {fileID: 0}
+    - target: {fileID: 2989114975649579698, guid: 3670cc033e4d86d4ba79294fbe887f56, type: 3}
+      propertyPath: poolParent
+      value: 
+      objectReference: {fileID: 57048418}
     - target: {fileID: 8364532465747921607, guid: 3670cc033e4d86d4ba79294fbe887f56, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
