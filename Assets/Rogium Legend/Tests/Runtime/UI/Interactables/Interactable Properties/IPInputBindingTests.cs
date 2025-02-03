@@ -106,25 +106,25 @@ namespace Rogium.Tests.UI.Interactables.Properties
         [UnityTest]
         public IEnumerator Should_RevertBinding_WhenOverrideDeniedForAlt()
         {
-            string original = inputProperty.InputStringAlt;
             yield return BindKey(inputProperty.InputReaderAlt, keyboard.bKey);
             yield return null;
+            string original = inputProperty.InputStringAlt;
             yield return BindKey(inputProperty.InputReader, keyboard.bKey);
             yield return null;
             yield return WindowCancel();
-            Assert.That(inputProperty.InputString, Is.EqualTo(original));
+            Assert.That(inputProperty.InputStringAlt, Is.EqualTo(original));
         }
         
         [UnityTest]
         public IEnumerator Should_RevertBinding_WhenOverrideDeniedForMain()
         {
-            string original = inputProperty.InputString;
             yield return BindKey(inputProperty.InputReader, keyboard.bKey);
             yield return null;
+            string original = inputProperty.InputString;
             yield return BindKey(inputProperty.InputReaderAlt, keyboard.bKey);
             yield return null;
             yield return WindowCancel();
-            Assert.That(inputProperty.InputStringAlt, Is.EqualTo(original));
+            Assert.That(inputProperty.InputString, Is.EqualTo(original));
         }
 
         [UnityTest]
