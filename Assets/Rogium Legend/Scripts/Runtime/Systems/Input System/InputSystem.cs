@@ -72,7 +72,6 @@ namespace Rogium.Systems.Input
                 InputAction foundAction = input.FindAction(binding.action);
                 InputBindingCombination foundCombination = new InputBindingCombination.Builder().WithLinkedBindings(foundAction.actionMap.bindings[i], (usesModifiers) ? foundAction.actionMap.bindings[i-2] : new InputBinding(""), (usesModifiers) ? foundAction.actionMap.bindings[i-1] : new InputBinding("")).Build();
                 int foundIndex = foundAction.GetBindingIndexWithEmptySupport(binding);
-                foundIndex = (foundIndex == -1) ? 1 : foundIndex; //MUST BE HERE. Rebinding the cancel binding's alt and then using same button for another binding NEVER removes the one from cancel.
                 return (foundAction, foundCombination, foundIndex);
             }
 

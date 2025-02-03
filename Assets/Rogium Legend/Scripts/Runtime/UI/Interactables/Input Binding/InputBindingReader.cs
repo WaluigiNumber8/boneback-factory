@@ -91,6 +91,7 @@ namespace Rogium.UserInterface.Interactables
                                     .OnCancel(_ => StopRebinding())  
                                     .OnComplete(FinishRebinding)
                                     .OnMatchWaitForAnother((modifier1Index != -1 || modifier2Index != -1) ? EditorDefaults.Instance.InputWaitForAnother : 0)
+                                    .WithCancelingThrough("")
                                     .WithTimeout(EditorDefaults.Instance.InputTimeout)
                                     .Start();
 
