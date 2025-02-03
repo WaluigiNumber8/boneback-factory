@@ -16,10 +16,8 @@ namespace Rogium.Options.Core
             input = InputSystem.GetInstance();
         }
 
-        public override void Build(InputBindingsAsset asset)
+        public override void BuildInternal(InputBindingsAsset asset)
         {
-            Clear();
-            
             BuildFor(InputDeviceType.Keyboard, contentMain);
             BuildFor(InputDeviceType.Gamepad, contentSecond);
         }

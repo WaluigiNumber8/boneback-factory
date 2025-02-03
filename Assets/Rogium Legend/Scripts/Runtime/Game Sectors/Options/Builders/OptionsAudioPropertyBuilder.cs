@@ -16,9 +16,8 @@ namespace Rogium.Options.Core
             this.audio = audio;
         }
 
-        public override void Build(PreferencesAsset data)
+        public override void BuildInternal(PreferencesAsset data)
         {
-            Clear();
             b.BuildSlider("Master", 0f, 1f, data.MasterVolume, contentMain, value =>
             {
                 data.UpdateMasterVolume(value);

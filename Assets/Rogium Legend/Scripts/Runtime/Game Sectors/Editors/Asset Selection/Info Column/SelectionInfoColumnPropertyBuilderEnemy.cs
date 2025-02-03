@@ -18,9 +18,8 @@ namespace Rogium.Editors.AssetSelection
         /// Build <see cref="SelectionInfoColumn"/> properties for an enemy.
         /// </summary>
         /// <param name="asset">The enemy to build for.</param>
-        public override void Build(EnemyAsset asset)
+        public override void BuildInternal(EnemyAsset asset)
         {
-            Clear();
             b.BuildPlainText("Damage", asset.BaseDamage.ToString(), contentMain);
             b.BuildPlainText("Health", asset.MaxHealth.ToString(), contentMain);
             b.BuildAssetEmblemList("Weapons", asset.WeaponIDs.TryGetAssets(PackEditorOverseer.Instance.CurrentPack.Weapons).Select(d => d.Icon).ToList(), contentMain);

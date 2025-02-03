@@ -16,6 +16,7 @@ using Rogium.Editors.AssetSelection;
 using Rogium.Editors.AssetSelection.Campaigns;
 using Rogium.Editors.Palettes;
 using Rogium.Editors.Projectiles;
+using Rogium.Editors.PropertyEditor;
 using Rogium.Editors.Rooms;
 using Rogium.Editors.Sprites;
 using Rogium.Editors.Tiles;
@@ -721,18 +722,21 @@ namespace Rogium.Systems.GASExtension
         public static void SaveChangesWeapon()
         {
             WeaponEditorOverseer.Instance.CompleteEditing();
+            PropertyEditorOverseerMono.GetInstance().DisposeProperties();
             OpenSelectionWeapon();
         }
         
         public static void SaveChangesProjectile()
         {
             ProjectileEditorOverseer.Instance.CompleteEditing();
+            PropertyEditorOverseerMono.GetInstance().DisposeProperties();
             OpenSelectionProjectile();
         }
         
         public static void SaveChangesEnemy()
         {
             EnemyEditorOverseer.Instance.CompleteEditing();
+            PropertyEditorOverseerMono.GetInstance().DisposeProperties();
             OpenSelectionEnemy();
         }
         
@@ -751,12 +755,14 @@ namespace Rogium.Systems.GASExtension
                 return;
             }
             RoomEditorOverseer.Instance.CompleteEditing();
+            RoomEditorOverseerMono.GetInstance().DisposeProperties();
             OpenSelectionRoom();
         }
 
         public static void SaveChangesTile()
         {
             TileEditorOverseer.Instance.CompleteEditing();
+            PropertyEditorOverseerMono.GetInstance().DisposeProperties();
             OpenSelectionTile();
         }
         
@@ -794,6 +800,7 @@ namespace Rogium.Systems.GASExtension
         
         private static void CancelChangesCampaignConfirm()
         {
+            CampaignEditorOverseerMono.GetInstance().DisposeProperties();
             GAS.SwitchMenu(MenuType.CampaignSelection);
             CampaignAssetSelectionOverseer.Instance.SelectAgain();
         }
@@ -835,12 +842,18 @@ namespace Rogium.Systems.GASExtension
                 ModalWindowData data = new ModalWindowData.Builder()
                     .WithLayout(ModalWindowLayoutType.Message)
                     .WithMessage("Leave without saving changes?")
-                    .WithAcceptButton("Yes", OpenSelectionWeapon)
+                    .WithAcceptButton("Yes", CancelConfirm)
                     .WithDenyButton("No")
                     .Build();
                 GASRogium.OpenWindow(data);
             }
-            else OpenSelectionWeapon();
+            else CancelConfirm();
+            
+            void CancelConfirm()
+            {
+                PropertyEditorOverseerMono.GetInstance().DisposeProperties();
+                OpenSelectionWeapon();
+            }
         }
         
         public static void CancelChangesProjectile()
@@ -850,12 +863,18 @@ namespace Rogium.Systems.GASExtension
                 ModalWindowData data = new ModalWindowData.Builder()
                     .WithLayout(ModalWindowLayoutType.Message)
                     .WithMessage("Leave without saving changes?")
-                    .WithAcceptButton("Yes", OpenSelectionProjectile)
+                    .WithAcceptButton("Yes", CancelConfirm)
                     .WithDenyButton("No")
                     .Build();
                 GASRogium.OpenWindow(data);
             }
-            else OpenSelectionProjectile();
+            else CancelConfirm();
+            
+            void CancelConfirm()
+            {
+                PropertyEditorOverseerMono.GetInstance().DisposeProperties();
+                OpenSelectionProjectile();
+            }
         }
         
         public static void CancelChangesEnemy()
@@ -865,12 +884,18 @@ namespace Rogium.Systems.GASExtension
                 ModalWindowData data = new ModalWindowData.Builder()
                     .WithLayout(ModalWindowLayoutType.Message)
                     .WithMessage("Leave without saving changes?")
-                    .WithAcceptButton("Yes", OpenSelectionEnemy)
+                    .WithAcceptButton("Yes", CancelConfirm)
                     .WithDenyButton("No")
                     .Build();
                 GASRogium.OpenWindow(data);
             }
-            else OpenSelectionEnemy();
+            else CancelConfirm();
+            
+            void CancelConfirm()
+            {
+                PropertyEditorOverseerMono.GetInstance().DisposeProperties();
+                OpenSelectionEnemy();
+            }
         }
         
         public static void CancelChangesRoom()
@@ -880,12 +905,18 @@ namespace Rogium.Systems.GASExtension
                 ModalWindowData data = new ModalWindowData.Builder()
                     .WithLayout(ModalWindowLayoutType.Message)
                     .WithMessage("Leave without saving changes?")
-                    .WithAcceptButton("Yes", OpenSelectionRoom)
+                    .WithAcceptButton("Yes", CancelConfirm)
                     .WithDenyButton("No")
                     .Build();
                 GASRogium.OpenWindow(data);
             }
-            else OpenSelectionRoom();
+            else CancelConfirm();
+            
+            void CancelConfirm()
+            {
+                RoomEditorOverseerMono.GetInstance().DisposeProperties();
+                OpenSelectionRoom();
+            }
         }
 
         public static void CancelChangesTile()
@@ -895,12 +926,18 @@ namespace Rogium.Systems.GASExtension
                 ModalWindowData data = new ModalWindowData.Builder()
                     .WithLayout(ModalWindowLayoutType.Message)
                     .WithMessage("Leave without saving changes?")
-                    .WithAcceptButton("Yes", OpenSelectionTile)
+                    .WithAcceptButton("Yes", CancelConfirm)
                     .WithDenyButton("No")
                     .Build();
                 GASRogium.OpenWindow(data);
             }
-            else OpenSelectionTile();
+            else CancelConfirm();
+            
+            void CancelConfirm()
+            {
+                PropertyEditorOverseerMono.GetInstance().DisposeProperties();
+                OpenSelectionTile();
+            }
         }
         
         public static void CancelChangesOptions()
@@ -924,7 +961,11 @@ namespace Rogium.Systems.GASExtension
             }
         }
         
-        private static void ReturnToMainMenuOptionsConfirm() => GAS.SwitchMenu(MenuType.MainMenu);
+        private static void ReturnToMainMenuOptionsConfirm()
+        {
+            GAS.SwitchMenu(MenuType.MainMenu);
+            OptionsMenuOverseerMono.GetInstance().DisposeProperties();
+        }
 
         #endregion
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using Rogium.Editors.Core.Defaults;
 using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine;
 
@@ -7,41 +8,25 @@ namespace Rogium.Editors.Rooms
     /// <summary>
     /// Builds settings for a room.
     /// </summary>
-    public class RoomSettingsBuilder
+    public class RoomSettingsBuilder : UIPropertyContentBuilderBaseColumn1<RoomAsset>
     {
-        private readonly UIPropertyBuilder b = UIPropertyBuilder.GetInstance();
-        private readonly string[] difficulties = {
-            "Level 1",
-            "Level 2",
-            "Level 3",
-            "Level 4",
-            "Level 5"
-        };
+        public RoomSettingsBuilder(Transform contentMain) : base(contentMain) { }
 
         /// <summary>
         /// Build only teh essential setting properties for a room.
         /// </summary>
-        /// <param name="content">The content to build under.</param>
         /// <param name="asset">The data to use.</param>
-        /// <param name="clearContent">If on, all of contents children will be killed before building properties.</param>
-        public void BuildEssentials(Transform content, RoomAsset asset, bool clearContent)
+        public void BuildEssentials(RoomAsset asset)
         {
-            if (clearContent) content.ReleaseAllProperties();
-            b.BuildDropdown("Type", Enum.GetNames(typeof(RoomType)), (int) asset.Type, content, asset.UpdateType);
-            b.BuildDropdown("Tier", difficulties, asset.DifficultyLevel, content, asset.UpdateDifficultyLevel);
+            b.BuildDropdown("Type", Enum.GetNames(typeof(RoomType)), (int) asset.Type, contentMain, asset.UpdateType);
+            b.BuildDropdown("Tier", EditorDefaults.Instance.RoomDifficultyTitles, asset.DifficultyLevel, contentMain, asset.UpdateDifficultyLevel);
         }
         
-        /// <summary>
-        /// Build setting properties for a room.
-        /// </summary>
-        /// <param name="content">The content to build under.</param>
-        /// <param name="asset">The data to use.</param>
-        /// <param name="clearContent">If on, all of contents children will be killed before building properties.</param>
-        public void Build(Transform content, RoomAsset asset, bool clearContent)
+        public override void BuildInternal(RoomAsset asset)
         {
-            BuildEssentials(content, asset, clearContent);
-            b.BuildSlider("Light", 0, 255, asset.Lightness, content, l => asset.UpdateLightness((int)l));
-            b.BuildColorField("Light Color", asset.LightnessColor, content, asset.UpdateLightnessColor);
+            BuildEssentials(asset);
+            b.BuildSlider("Light", 0, 255, asset.Lightness, contentMain, l => asset.UpdateLightness((int)l));
+            b.BuildColorField("Light Color", asset.LightnessColor, contentMain, asset.UpdateLightnessColor);
         }
     }
 }

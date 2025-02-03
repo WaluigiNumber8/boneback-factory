@@ -99,6 +99,11 @@ namespace Rogium.Editors.AssetSelection
             return ui.content.GetChild(i).GetComponent<InteractablePropertyWithValueBase<T>>();
         }
         
+        public void DisposeProperties()
+        {
+            ui.content.ReleaseAllProperties();
+        }
+        
         private void Refresh(IAsset asset)
         {
             ui.title.text = asset.Title;

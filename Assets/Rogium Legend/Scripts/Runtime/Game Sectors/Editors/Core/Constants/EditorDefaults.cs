@@ -120,6 +120,7 @@ namespace Rogium.Editors.Core.Defaults
         [SerializeField, Required, FoldoutGroup("Rooms")] private string roomTitle = "New Room";
         [SerializeField, Required, FoldoutGroup("Rooms")] private Vector2Int roomSize = new(15, 10);
         [SerializeField, Required, FoldoutGroup("Rooms")] private int roomDifficulty;
+        [SerializeField, Required, FoldoutGroup("Rooms")] private string[] roomDifficultyTitles;
         [SerializeField, Required, FoldoutGroup("Rooms")] private RoomType roomType = RoomType.Common;
         [SerializeField, Required, FoldoutGroup("Rooms"), PropertyRange(0, 255)] private int roomLightness = 255;
         [SerializeField, Required, FoldoutGroup("Rooms")] private Color roomLightnessColor = new(1, 1, 1, 1);
@@ -214,6 +215,7 @@ namespace Rogium.Editors.Core.Defaults
         public string RoomTitle { get => roomTitle; }
         public Vector2Int RoomSize { get => roomSize; }
         public int RoomDifficulty { get => roomDifficulty; }
+        public string[] RoomDifficultyTitles { get => roomDifficultyTitles; }
         public RoomType RoomType { get => roomType; }
         public int RoomLightness { get => roomLightness; }
         public Color RoomLightnessColor { get => roomLightnessColor; }

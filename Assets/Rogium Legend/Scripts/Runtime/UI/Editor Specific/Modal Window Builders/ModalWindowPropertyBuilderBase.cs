@@ -21,7 +21,6 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
         protected readonly PackEditorOverseer editor = PackEditorOverseer.Instance;
         protected AssetBase editedAssetBase;
 
-
         protected void OpenForColumns1(string headerText, Action onConfirm, out Transform column1)
         {
             ModalWindowData data = new ModalWindowData.Builder()

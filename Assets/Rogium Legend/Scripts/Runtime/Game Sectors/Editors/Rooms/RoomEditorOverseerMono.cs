@@ -87,6 +87,14 @@ namespace Rogium.Editors.Rooms
         }
 
         /// <summary>
+        /// Dispose all properties from the editor.
+        /// </summary>
+        public void DisposeProperties()
+        {
+            propertyColumn.Dispose();
+        }
+        
+        /// <summary>
         /// Switches the currently used layer.
         /// </summary>
         /// <param name="index">The index of the layer.</param>

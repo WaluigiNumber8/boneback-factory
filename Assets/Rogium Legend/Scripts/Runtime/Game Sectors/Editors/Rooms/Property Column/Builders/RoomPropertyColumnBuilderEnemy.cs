@@ -16,10 +16,8 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         /// Build properties.
         /// </summary>
         /// <param name="data">The asset to read from.</param>
-        public override void Build(AssetData data)
+        public override void BuildInternal(AssetData data)
         {
-            Clear();
-
             b.BuildPlainText("Damage", data.Parameters.intValue1.ToString(), contentMain);
         }
         

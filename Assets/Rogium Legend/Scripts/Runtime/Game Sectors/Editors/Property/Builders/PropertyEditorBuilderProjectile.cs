@@ -19,11 +19,10 @@ namespace Rogium.Editors.PropertyEditor.Builders
         
         public PropertyEditorBuilderProjectile(Transform contentMain, Transform contentSecond) : base(contentMain, contentSecond) { }
 
-        public override void Build(ProjectileAsset asset)
+        public override void BuildInternal(ProjectileAsset asset)
         {
             this.asset = asset;
             currentPack = PackEditorOverseer.Instance.CurrentPack;
-            Clear();
             BuildColumnImportant(contentMain);
             BuildColumnProperty(contentSecond);
         }

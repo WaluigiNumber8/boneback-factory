@@ -68,6 +68,17 @@ namespace Rogium.Options.Core
             ShortcutToAssetConverter.Load(asset.ShortcutBindings);
             InputToAssetConverter.Load(asset.InputBindings);
         }
+
+        /// <summary>
+        /// Dispose all properties from the options menu.
+        /// </summary>
+        public void DisposeProperties()
+        {
+            audioPropertyBuilder.Clear();
+            graphicsPropertyBuilder.Clear();
+            shortcutPropertyBuilder.Clear();
+            inputPropertyBuilder.Clear();
+        }
         
         /// <summary>
         /// Prepares the Options menu for the user. 

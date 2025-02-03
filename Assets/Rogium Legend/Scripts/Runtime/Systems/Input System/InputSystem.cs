@@ -1,11 +1,9 @@
 ﻿using System.Collections;
-using System.Diagnostics;
 using RedRats.Core;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using Debug = UnityEngine.Debug;
 
 namespace Rogium.Systems.Input
 {

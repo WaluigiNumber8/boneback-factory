@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using RedRats.Core;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
@@ -36,7 +35,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
             builderTile = new RoomPropertyColumnBuilderTile(assetContent);
             builderObject = new RoomPropertyColumnBuilderObject(assetContent);
             builderEnemy = new RoomPropertyColumnBuilderEnemy(assetContent);
-            builderSettings = new RoomSettingsBuilder();
+            builderSettings = new RoomSettingsBuilder(assetContent);
         }
 
         private void OnEnable() => ActionHistorySystem.OnUpdateUndoHistory += RefreshProperties;
@@ -95,7 +94,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         public void ConstructSettings(RoomAsset data)
         {
             ui.roomTitleText.text = data.Title;
-            builderSettings.Build(settingsContent, data, true);
+            builderSettings.Build(data);
         }
 
         /// <summary>
@@ -112,6 +111,8 @@ namespace Rogium.Editors.Rooms.PropertyColumn
             currentType = AssetType.None;
             currentData = new AssetData();
         }
+
+        public void Dispose() => assetContent.ReleaseAllProperties();
 
         /// <summary>
         /// Prepares the Properties Column for Asset Properties visually.
