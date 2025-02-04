@@ -34,13 +34,16 @@ namespace Rogium.Systems.Input
 
         public void ClearAllInput()
         {
+            UI?.Disable();
+            Player?.Disable();
+            Pause?.Disable();
             Shortcuts?.Disable();
             input = new RogiumInputActions();
             inputPlayer = new InputProfilePlayer(input);
             inputUI = new InputProfileUI(input);
             inputPause = new InputProfilePause(input);
             inputShortcuts = new InputProfileShortcuts(input);
-            Shortcuts.Enable();
+            SwitchToMenuMaps();
         }
 
         public void SwitchToGameplayMaps()
@@ -57,6 +60,12 @@ namespace Rogium.Systems.Input
             UI.Enable();
         }
 
+        /// <summary>
+        /// Tries to find a duplicate binding combination in the same action map.
+        /// </summary>
+        /// <param name="action">The action containing the binding combination of interest.</param>
+        /// <param name="bindingCombo">The binding combination to find duplicate for</param>
+        /// <returns>The duplicate combination, the action it's a part of and the binding's index.</returns>
         public (InputAction, InputBindingCombination, int) FindDuplicateBinding(InputAction action, InputBindingCombination bindingCombo)
         {
             bool usesModifiers = bindingCombo.Modifier1.effectivePath != "" || bindingCombo.Modifier2.effectivePath != "";

@@ -117,8 +117,6 @@
 
         protected override void WhenDisabled()
         {
-            map.Disable();
-            
             undo.Disable();
             redo.Disable();
             save.Disable();
@@ -159,6 +157,8 @@
             selectAll.Disable();
             deselectAll.Disable();
             selectRandom.Disable();
+            
+            map.Disable();
         }
 
         public override bool IsMapEnabled { get => map.enabled; }
