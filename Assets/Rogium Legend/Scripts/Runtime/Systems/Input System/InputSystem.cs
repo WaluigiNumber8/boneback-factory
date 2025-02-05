@@ -107,7 +107,11 @@ namespace Rogium.Systems.Input
             }
         }
 
-        public void RemoveAllEmptyBindings() => BindingRemover.RemoveEmptyBindings(input);
+        public void RemoveAllEmptyBindings()
+        {
+            BindingReplacer.ReplaceBindings(input);
+            // BindingRemover.RemoveEmptyBindings(input);
+        }
 
         public InputAction GetAction(InputAction action) => input.FindAction(action.name);
 
