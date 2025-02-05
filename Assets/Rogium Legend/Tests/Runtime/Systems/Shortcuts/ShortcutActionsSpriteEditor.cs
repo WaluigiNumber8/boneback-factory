@@ -141,6 +141,8 @@ namespace Rogium.Tests.Systems.Shortcuts
         [UnityTest]
         public IEnumerator Should_OpenAssetPickerForPalettes_WhenShortcutPressed()
         {
+            i.Press(keyboard.ctrlKey);
+            i.Press(keyboard.pKey);
             i.Trigger(input.Shortcuts.ChangePalette.Action);
             yield return new WaitForSeconds(0.1f);
             Assert.That(Object.FindFirstObjectByType<AssetPickerWindow>(), Is.Not.Null);
@@ -160,6 +162,8 @@ namespace Rogium.Tests.Systems.Shortcuts
         [UnityTest]
         public IEnumerator Should_CloseAssetPickerForPalettesWithoutLEavingSpriteEditor_WhenShortcutPressed()
         {
+            i.Press(keyboard.ctrlKey);
+            i.Press(keyboard.pKey);
             i.Trigger(input.Shortcuts.ChangePalette.Action);
             yield return new WaitForSeconds(0.1f);
             i.Trigger(input.UI.Cancel.Action);
