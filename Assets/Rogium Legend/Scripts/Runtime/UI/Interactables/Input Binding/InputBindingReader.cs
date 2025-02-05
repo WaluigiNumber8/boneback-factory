@@ -139,7 +139,7 @@ namespace Rogium.UserInterface.Interactables
                     break;
                 }
 
-                if (duplicateReader != null) ActionHistorySystem.AddAndExecute(new UpdateInputBindingAction(duplicateReader, new InputBindingCombination.Builder().From(duplicateReader.Binding).AsEmpty(), duplicateReader.Binding, c => RebindAction(duplicateAction, c, duplicateReader.modifier1Index, duplicateReader.modifier2Index, duplicateReader.buttonIndex)));
+                ActionHistorySystem.AddAndExecute(new UpdateInputBindingAction(duplicateReader, new InputBindingCombination.Builder().From(combo).AsEmpty(), combo, c => RebindAction(duplicateAction, c, duplicateIndex-2, duplicateIndex-1, duplicateIndex)));
                 ActionHistorySystem.AddAndExecute(new UpdateInputBindingAction(this, binding, lastBinding, c => RebindAction(action, c, modifier1Index, modifier2Index, buttonIndex)));
                 ActionHistorySystem.ForceGroupAllActionsEnd();
             }
@@ -203,8 +203,8 @@ namespace Rogium.UserInterface.Interactables
         private static void RebindAction(InputAction action, InputBindingCombination combo, int modifier1Index, int modifier2Index, int buttonIndex)
         {
             action.Disable();
-            if (modifier1Index != -1) action.ApplyBindingOverride(modifier1Index, combo.Modifier1.effectivePath);
-            if (modifier2Index != -1) action.ApplyBindingOverride(modifier2Index, combo.Modifier2.effectivePath);
+            if (modifier1Index > -1) action.ApplyBindingOverride(modifier1Index, combo.Modifier1.effectivePath);
+            if (modifier2Index > -1) action.ApplyBindingOverride(modifier2Index, combo.Modifier2.effectivePath);
             action.ApplyBindingOverride(buttonIndex, combo.Button.effectivePath);
             action.Enable();
         }
