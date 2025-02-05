@@ -109,12 +109,7 @@ namespace Rogium.Systems.Input
 
         public void RemoveAllEmptyBindings() => BindingRemover.RemoveEmptyBindings(input);
 
-        public InputAction GetAction(InputAction action)
-        {
-            InputAction a = input.FindAction(action.name);
-            if (input == null) throw new NullReferenceException($"InputAction {action} not found.");
-            return a;
-        }
+        public InputAction GetAction(InputAction action) => input.FindAction(action.name);
 
         public InputAction GetAction(InputBinding binding)
         {

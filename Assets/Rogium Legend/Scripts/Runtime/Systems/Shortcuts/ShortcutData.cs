@@ -1,4 +1,5 @@
 ﻿using System;
+using RedRats.Safety;
 using Sirenix.OdinInspector;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -17,7 +18,7 @@ namespace Rogium.Core.Shortcuts
         [Required, FoldoutGroup("$GroupTitle")]
         public UnityEvent action;
 
-        private InputAction input;
+        private InputAction inputAction;
 
         public ShortcutData(InputAction trigger, UnityEvent action)
         {
@@ -26,18 +27,26 @@ namespace Rogium.Core.Shortcuts
             RefreshInput();
         }
 
-        public void RefreshInput() => input = InputSystem.GetInstance().GetAction(trigger);
+        public void RefreshInput()
+        {
+            SafetyNet.EnsureIsNotNull(trigger, "Trigger Action");
+            inputAction = InputSystem.GetInstance().GetAction(trigger);
+        }
 
-        public void Link() => input.performed += Press;
+        public void Link()
+        {
+            if (inputAction == null) return;
+            inputAction.performed += Press;
+        }
 
         public void Unlink()
         {
-            if (input == null) return;
-            input.performed -= Press;
+            if (inputAction == null) return;
+            inputAction.performed -= Press;
         }
 
         private void Press(InputAction.CallbackContext ctx) => action.Invoke();
 
-        public override string ToString() => $"{input.name} -> {action.GetPersistentMethodName(0)}()";
+        public override string ToString() => $"{inputAction.name} -> {action.GetPersistentMethodName(0)}()";
     }
 }
