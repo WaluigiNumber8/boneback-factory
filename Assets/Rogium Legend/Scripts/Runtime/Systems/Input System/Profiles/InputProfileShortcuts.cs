@@ -5,7 +5,13 @@
     /// </summary>
     public class InputProfileShortcuts : InputProfileBase
     {
-        private RogiumInputActions.ShortcutsActions map;
+        private RogiumInputActions.ShortcutsGeneralActions generalMap;
+        private RogiumInputActions.ShortcutsSelectionMenuActions selectionMenuMap;
+        private RogiumInputActions.ShortcutsCampaignSelectionActions campaignSelectionMap;
+        private RogiumInputActions.ShortcutsDrawingEditorsActions drawingEditorsMap;
+        private RogiumInputActions.ShortcutsSpriteEditorActions spriteMap;
+        private RogiumInputActions.ShortcutsRoomEditorActions roomMap;
+        private RogiumInputActions.ShortcutsCampaignEditorActions campaignEditorMap;
 
         private readonly InputButton undo, redo, save;
         private readonly InputButton newAsset, edit, editProperties, delete;
@@ -25,53 +31,65 @@
         
         public InputProfileShortcuts(RogiumInputActions input) : base(input)
         {
-            map = input.Shortcuts;
+            generalMap = input.ShortcutsGeneral;
+            selectionMenuMap = input.ShortcutsSelectionMenu;
+            campaignSelectionMap = input.ShortcutsCampaignSelection;
+            drawingEditorsMap = input.ShortcutsDrawingEditors;
+            spriteMap = input.ShortcutsSpriteEditor;
+            roomMap = input.ShortcutsRoomEditor;
+            campaignEditorMap = input.ShortcutsCampaignEditor;
             
-            undo = new InputButton(map.Undo);
-            redo = new InputButton(map.Redo);
-            save = new InputButton(map.Save);
-            newAsset = new InputButton(map.New);
-            edit = new InputButton(map.Edit);
-            editProperties = new InputButton(map.EditProperties);
-            delete = new InputButton(map.Delete);
+            undo = new InputButton(generalMap.Undo);
+            redo = new InputButton(generalMap.Redo);
+            save = new InputButton(generalMap.Save);
+            newAsset = new InputButton(generalMap.New);
+            edit = new InputButton(generalMap.Edit);
+            editProperties = new InputButton(generalMap.EditProperties);
+            delete = new InputButton(generalMap.Delete);
             
-            selectionTool = new InputButton(map.SelectTool);
-            brushTool = new InputButton(map.BrushTool);
-            eraserTool = new InputButton(map.EraserTool);
-            fillTool = new InputButton(map.FillTool);
-            pickerTool = new InputButton(map.PickerTool);
-            clearCanvas = new InputButton(map.ClearCanvas);
-            toggleGrid = new InputButton(map.ToggleGrid);
+            selectionTool = new InputButton(drawingEditorsMap.SelectionTool);
+            brushTool = new InputButton(drawingEditorsMap.BrushTool);
+            eraserTool = new InputButton(drawingEditorsMap.EraserTool);
+            fillTool = new InputButton(drawingEditorsMap.FillTool);
+            pickerTool = new InputButton(drawingEditorsMap.PickerTool);
+            clearCanvas = new InputButton(drawingEditorsMap.ClearCanvas);
+            toggleGrid = new InputButton(drawingEditorsMap.ToggleGrid);
             
-            tilesLayer = new InputButton(map.TileLayer);
-            decorLayer = new InputButton(map.DecorLayer);
-            objectsLayer = new InputButton(map.ObjectLayer);
-            enemiesLayer = new InputButton(map.EnemyLayer);
+            tilesLayer = new InputButton(roomMap.TileLayer);
+            decorLayer = new InputButton(roomMap.DecorLayer);
+            objectsLayer = new InputButton(roomMap.ObjectLayer);
+            enemiesLayer = new InputButton(roomMap.EnemyLayer);
             
-            changePalette = new InputButton(map.ChangePalette);
+            changePalette = new InputButton(spriteMap.ChangePalette);
             
-            switchLeft = new InputButton(map.SwitchLeft);
-            switchRight = new InputButton(map.SwitchRight);
-            refreshCurrent = new InputButton(map.Refresh);
-            refreshAll = new InputButton(map.RefreshAll);
-            play = new InputButton(map.Play);
+            switchLeft = new InputButton(campaignSelectionMap.SwitchLeft);
+            switchRight = new InputButton(campaignSelectionMap.SwitchRight);
+            refreshCurrent = new InputButton(campaignSelectionMap.Refresh);
+            refreshAll = new InputButton(campaignSelectionMap.RefreshAll);
+            play = new InputButton(campaignSelectionMap.Play);
             
-            showPalettes = new InputButton(map.ShowPalettes);
-            showSprites = new InputButton(map.ShowSprites);
-            showWeapons = new InputButton(map.ShowWeapons);
-            showProjectiles = new InputButton(map.ShowProjectiles);
-            showEnemies = new InputButton(map.ShowEnemies);
-            showRooms = new InputButton(map.ShowRooms);
-            showTiles = new InputButton(map.ShowTiles);
+            showPalettes = new InputButton(selectionMenuMap.ShowPalettes);
+            showSprites = new InputButton(selectionMenuMap.ShowSprites);
+            showWeapons = new InputButton(selectionMenuMap.ShowWeapons);
+            showProjectiles = new InputButton(selectionMenuMap.ShowProjectiles);
+            showEnemies = new InputButton(selectionMenuMap.ShowEnemies);
+            showRooms = new InputButton(selectionMenuMap.ShowRooms);
+            showTiles = new InputButton(selectionMenuMap.ShowTiles);
             
-            selectAll = new InputButton(map.SelectAll);
-            deselectAll = new InputButton(map.DeselectAll);
-            selectRandom = new InputButton(map.SelectRandom);
+            selectAll = new InputButton(campaignEditorMap.SelectAll);
+            deselectAll = new InputButton(campaignEditorMap.DeselectAll);
+            selectRandom = new InputButton(campaignEditorMap.SelectRandom);
         }
 
         protected override void WhenEnabled()
         {
-            map.Enable();
+            generalMap.Enable();
+            selectionMenuMap.Enable();
+            campaignSelectionMap.Enable();
+            drawingEditorsMap.Enable();
+            spriteMap.Enable();
+            roomMap.Enable();
+            campaignEditorMap.Enable();
             
             undo.Enable();
             redo.Enable();
@@ -158,10 +176,19 @@
             deselectAll.Disable();
             selectRandom.Disable();
             
-            map.Disable();
+            campaignEditorMap.Disable();
+            roomMap.Disable();
+            spriteMap.Disable();
+            drawingEditorsMap.Disable();
+            campaignSelectionMap.Disable();
+            selectionMenuMap.Disable();
+            generalMap.Disable();
         }
 
-        public override bool IsMapEnabled { get => map.enabled; }
+        public override bool IsMapEnabled { get => roomMap.enabled && campaignSelectionMap.enabled 
+                                                                   && selectionMenuMap.enabled && generalMap.enabled 
+                                                                   && drawingEditorsMap.enabled && spriteMap.enabled 
+                                                                   && campaignEditorMap.enabled; }
 
         public InputButton Undo { get => undo; }
         public InputButton Redo { get => redo; }

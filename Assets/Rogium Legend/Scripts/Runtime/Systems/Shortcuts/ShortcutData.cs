@@ -29,7 +29,13 @@ namespace Rogium.Core.Shortcuts
         public void RefreshInput() => input = InputSystem.GetInstance().GetAction(trigger);
 
         public void Link() => input.performed += Press;
-        public void Unlink() => input.performed -= Press;
+
+        public void Unlink()
+        {
+            if (input == null) return;
+            input.performed -= Press;
+        }
+
         private void Press(InputAction.CallbackContext ctx) => action.Invoke();
 
         public override string ToString() => $"{input.name} -> {action.GetPersistentMethodName(0)}()";

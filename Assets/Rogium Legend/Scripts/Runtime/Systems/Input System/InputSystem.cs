@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using RedRats.Core;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -108,9 +109,20 @@ namespace Rogium.Systems.Input
 
         public void RemoveAllEmptyBindings() => BindingRemover.RemoveEmptyBindings(input);
 
-        public InputAction GetAction(InputAction action) => input.FindAction(action.name);
-        public InputAction GetAction(InputBinding binding) => input.FindAction(binding.action);
-        
+        public InputAction GetAction(InputAction action)
+        {
+            InputAction a = input.FindAction(action.name);
+            if (input == null) throw new NullReferenceException($"InputAction {action} not found.");
+            return a;
+        }
+
+        public InputAction GetAction(InputBinding binding)
+        {
+            InputAction a = input.FindAction(binding.action);
+            if (input == null) throw new NullReferenceException($"InputAction {binding.action} not found.");
+            return a;
+        }
+
         private void UpdatePointerPosition(Vector2 value) => pointerPosition = value;
         
         public Vector2 PointerPosition { get => pointerPosition; }
