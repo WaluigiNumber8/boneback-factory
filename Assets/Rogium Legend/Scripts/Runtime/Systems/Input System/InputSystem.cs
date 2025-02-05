@@ -49,16 +49,16 @@ namespace Rogium.Systems.Input
 
         public void SwitchToGameplayMaps()
         {
-            UI.Disable();
             Shortcuts.Disable();
+            UI.Disable();
             Player.Enable();
         }
         
         public void SwitchToMenuMaps()
         {
             Player.Disable();
-            Shortcuts.Enable();
             UI.Enable();
+            Shortcuts.Enable();
         }
 
         /// <summary>
