@@ -1,6 +1,4 @@
 using System;
-using RedRats.Core;
-using RedRats.Safety;
 using RedRats.Systems.Themes;
 using RedRats.UI.Core;
 using UnityEngine;
@@ -16,6 +14,12 @@ namespace RedRats.UI.ModalWindows
     {
         [SerializeField] private UIInfo ui;
         private ThemeType lastTheme = ThemeType.Current;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            generalUI.backgroundArea.onClick.AddListener(OnDeny);
+        }
 
         public void OpenFor(ModalWindowData data)
         {
