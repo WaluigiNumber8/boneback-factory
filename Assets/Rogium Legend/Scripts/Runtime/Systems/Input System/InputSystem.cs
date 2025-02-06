@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using RedRats.Core;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -24,7 +25,7 @@ namespace Rogium.Systems.Input
         private InputProfileShortcuts inputShortcuts;
         
         private Vector2 pointerPosition;
-        private IDictionary<string, string[]> linkedActionMaps = new Dictionary<string, string[]>(); 
+        private readonly IDictionary<string, string[]> linkedActionMaps = new Dictionary<string, string[]>(); 
 
         protected override void Awake()
         {
@@ -131,11 +132,10 @@ namespace Rogium.Systems.Input
             }
         }
 
-        public void RemoveAllEmptyBindings()
-        {
-            BindingReplacer.ReplaceBindings(input);
-            // BindingRemover.RemoveEmptyBindings(input);
-        }
+        /// <summary>
+        /// Replaces all TwoOptionalModifiersComposite bindings with their respective composite bindings.
+        /// </summary>
+        public void ReplaceAllBindings() => BindingReplacer.ReplaceBindings(input);
 
         public InputAction GetAction(InputAction action) => input.FindAction(action.name);
 

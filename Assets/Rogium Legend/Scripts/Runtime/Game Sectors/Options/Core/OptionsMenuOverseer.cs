@@ -45,7 +45,7 @@ namespace Rogium.Options.Core
             currentAsset.UpdateShortcutBindings(ShortcutToAssetConverter.Get());
             OnSaveChanges?.Invoke(CurrentAsset);
             
-            InputSystem.GetInstance().RemoveAllEmptyBindings();
+            InputSystem.GetInstance().ReplaceAllBindings();
         }
         
         public GameDataAsset CurrentAsset 
