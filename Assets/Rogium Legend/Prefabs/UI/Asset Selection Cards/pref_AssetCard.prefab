@@ -723,7 +723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shortcuts:
-  - trigger: {fileID: 6058880774511212671, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+  - trigger: {fileID: -1299235554287948963, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
     action:
       m_PersistentCalls:
         m_Calls:
@@ -740,7 +740,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - trigger: {fileID: 5761637510587240, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+  - trigger: {fileID: -6542194280830389418, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
     action:
       m_PersistentCalls:
         m_Calls:
@@ -757,7 +757,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - trigger: {fileID: -217378903224263604, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+  - trigger: {fileID: 5160298879228320980, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
     action:
       m_PersistentCalls:
         m_Calls:
