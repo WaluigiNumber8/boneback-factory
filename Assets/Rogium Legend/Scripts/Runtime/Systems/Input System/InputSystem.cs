@@ -74,19 +74,8 @@ namespace Rogium.Systems.Input
         {
             bool usesModifiers = bindingCombo.Modifier1.effectivePath != "" || bindingCombo.Modifier2.effectivePath != "";
             
-            //Get all action maps of interest
-            ISet<InputActionMap> actionMaps = new HashSet<InputActionMap>();
-            actionMaps.Add(action.actionMap);
-            if (linkedActionMaps != null && linkedActionMaps.GetLinkedMaps.TryGetValue(action.actionMap.name, out ISet<string> maps))
-            {
-                foreach (string mapName in maps)
-                {
-                    InputActionMap map = input.asset.FindActionMap(mapName);
-                    if (map != null) actionMaps.Add(map);
-                }
-            }
-
-            foreach (InputActionMap map in actionMaps)
+            ISet<InputActionMap> mapsOfInterest = GetLinkedMaps(action);
+            foreach (InputActionMap map in mapsOfInterest)
             {
                 for (int i = 0; i < map.bindings.Count; i++)
                 {
@@ -140,6 +129,26 @@ namespace Rogium.Systems.Input
             return a;
         }
 
+        /// <summary>
+        /// Gets all action maps that are linked to the specified action.
+        /// </summary>
+        /// <param name="action">The action for which the maps are linked.</param>
+        /// <returns>A set of action maps.</returns>
+        private ISet<InputActionMap> GetLinkedMaps(InputAction action)
+        {
+            ISet<InputActionMap> actionMaps = new HashSet<InputActionMap>();
+            actionMaps.Add(action.actionMap);
+            if (linkedActionMaps != null && linkedActionMaps.GetLinkedMaps.TryGetValue(action.actionMap.name, out ISet<string> maps))
+            {
+                foreach (string mapName in maps)
+                {
+                    InputActionMap map = input.asset.FindActionMap(mapName);
+                    if (map != null) actionMaps.Add(map);
+                }
+            }
+            return actionMaps;
+        }
+        
         private void UpdatePointerPosition(Vector2 value) => pointerPosition = value;
         
         public Vector2 PointerPosition { get => pointerPosition; }
