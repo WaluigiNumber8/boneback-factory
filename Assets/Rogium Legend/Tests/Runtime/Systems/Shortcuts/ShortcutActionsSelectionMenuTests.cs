@@ -22,8 +22,8 @@ namespace Rogium.Tests.Systems.Shortcuts
         public override IEnumerator SetUp()
         {
             yield return base.SetUp();
-            yield return MenuLoader.PrepareSelectionMenu();
-            OverseerLoader.LoadModalWindowBuilder();
+            yield return TUtilsMenuLoader.PrepareSelectionMenu();
+            TUtilsOverseerLoader.LoadModalWindowBuilder();
             yield return null;
             menu = SelectionMenuOverseerMono.GetInstance();
             yield return OpenSelectionMenu(AssetType.Pack, 0);
@@ -32,7 +32,7 @@ namespace Rogium.Tests.Systems.Shortcuts
         [UnityTest]
         public IEnumerator Should_ReturnToMainMenu_WhenShortcutPressed()
         {
-            yield return MenuLoader.PrepareMainMenu();
+            yield return TUtilsMenuLoader.PrepareMainMenu();
             i.Trigger(input.UI.Cancel.Action);
             yield return null;
             yield return null;
@@ -70,7 +70,7 @@ namespace Rogium.Tests.Systems.Shortcuts
         [UnityTest]
         public IEnumerator Should_EditAsset_WhenShortcutPressed()
         {
-            yield return MenuLoader.PrepareRoomEditor(false);
+            yield return TUtilsMenuLoader.PrepareRoomEditor(false);
             yield return OpenSelectionMenu(AssetType.Room, 0);
             menu.CurrentSelector.GetCard(0).SetToggle(true);
             i.Trigger(input.Shortcuts.Edit.Action);

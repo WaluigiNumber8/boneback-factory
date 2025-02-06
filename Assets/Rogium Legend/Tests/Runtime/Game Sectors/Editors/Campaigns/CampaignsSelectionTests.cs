@@ -21,7 +21,7 @@ namespace Rogium.Tests.Editors.Campaigns
             yield return base.Setup();
             TUtilsAssetCreator.AddNewPackToLibrary();
             TUtilsAssetCreator.AddNewPackToLibrary();
-            yield return MenuLoader.PrepareCampaignEditor();
+            yield return TUtilsMenuLoader.PrepareCampaignEditor();
             editor = CampaignEditorOverseer.Instance;
             editorMono = CampaignEditorOverseerMono.GetInstance();
             yield return null;

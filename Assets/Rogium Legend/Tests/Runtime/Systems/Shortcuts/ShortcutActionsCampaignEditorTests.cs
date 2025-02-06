@@ -23,12 +23,12 @@ namespace Rogium.Tests.Systems.Shortcuts
         public override IEnumerator SetUp()
         {
             yield return base.SetUp();
-            yield return MenuLoader.PrepareCampaignSelection();
-            yield return MenuLoader.PrepareCampaignEditor(false);
+            yield return TUtilsMenuLoader.PrepareCampaignSelection();
+            yield return TUtilsMenuLoader.PrepareCampaignEditor(false);
             AddNewPackToLibrary();
             AddNewPackToLibrary();
             AddNewCampaignToLibrary();
-            OverseerLoader.LoadModalWindowBuilder();
+            TUtilsOverseerLoader.LoadModalWindowBuilder();
             editor = CampaignEditorOverseerMono.GetInstance();
             yield return null;
             yield return OpenEditor(AssetType.Campaign);

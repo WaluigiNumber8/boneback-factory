@@ -19,7 +19,7 @@ namespace Rogium.Tests.UI.Backgrounds
         public override IEnumerator Setup()
         {
             yield return base.Setup();
-            OverseerLoader.LoadBackgroundOverseer();
+            TUtilsOverseerLoader.LoadBackgroundOverseer();
             overseer = BackgroundOverseerMono.GetInstance();
             yield return null;
         }
@@ -53,7 +53,7 @@ namespace Rogium.Tests.UI.Backgrounds
         [UnityTest]
         public IEnumerator Should_ShowEditorBackground_WhenGoToPackSelectionMenu()
         {
-            yield return MenuLoader.PrepareSelectionMenu();
+            yield return TUtilsMenuLoader.PrepareSelectionMenu();
             GASActions.OpenSelectionPack();
             yield return null;
             Assert.That(overseer.IsSetToEditor(), Is.EqualTo(true));
@@ -62,7 +62,7 @@ namespace Rogium.Tests.UI.Backgrounds
         [UnityTest]
         public IEnumerator Should_ShowMainMenuBackground_WhenGoToMainMenuFromPackSelection()
         {
-            yield return MenuLoader.PrepareSelectionMenu();
+            yield return TUtilsMenuLoader.PrepareSelectionMenu();
             GASActions.OpenSelectionPack();
             yield return null;
             GASActions.ReturnFromSelectionMenu();
@@ -73,7 +73,7 @@ namespace Rogium.Tests.UI.Backgrounds
         [UnityTest]
         public IEnumerator Should_ShowGameMenuBackground_WhenGoToCampaignSelection()
         {
-            yield return MenuLoader.PrepareCampaignSelection();
+            yield return TUtilsMenuLoader.PrepareCampaignSelection();
             GASActions.OpenSelectionCampaign();
             yield return null;
             Assert.That(overseer.IsSetToGameMenu(), Is.EqualTo(true));
@@ -82,7 +82,7 @@ namespace Rogium.Tests.UI.Backgrounds
         [UnityTest]
         public IEnumerator Should_ShowMainMenuBackground_WhenGoToMainMenuFromCampaignSelection()
         {
-            yield return MenuLoader.PrepareCampaignSelection();
+            yield return TUtilsMenuLoader.PrepareCampaignSelection();
             GASActions.OpenSelectionCampaign();
             yield return null;
             GASActions.ReturnFromSelectionMenu();

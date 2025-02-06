@@ -31,7 +31,7 @@ namespace Rogium.Tests.Editors.Rooms
         {
             yield return base.Setup();
             yield return TUtilsAssetCreator.CreateAndAssignPack();
-            yield return MenuLoader.PrepareRoomEditor();
+            yield return TUtilsMenuLoader.PrepareRoomEditor();
             drawer = new SpriteDrawer(EditorDefaults.Instance.RoomSize, new Vector2Int(EditorDefaults.Instance.SpriteSize, EditorDefaults.Instance.SpriteSize), EditorDefaults.Instance.SpriteSize);
             packEditor = PackEditorOverseer.Instance;
         }
@@ -76,9 +76,9 @@ namespace Rogium.Tests.Editors.Rooms
             TUtilsAssetCreator.AddNewCampaignToLibrary();
             ExternalLibraryOverseer.Instance.Packs[0].Rooms[0].UpdateType(RoomType.Entrance);
             yield return null;
-            OverseerLoader.LoadModalWindowBuilder();
-            yield return MenuLoader.PrepareCampaignSelection();
-            yield return MenuLoader.PrepareCampaignEditor(false);
+            TUtilsOverseerLoader.LoadModalWindowBuilder();
+            yield return TUtilsMenuLoader.PrepareCampaignSelection();
+            yield return TUtilsMenuLoader.PrepareCampaignEditor(false);
             GASActions.OpenSelectionCampaign();
             GASActions.OpenEditorCampaign(0);
             yield return null;

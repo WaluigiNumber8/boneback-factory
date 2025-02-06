@@ -27,9 +27,9 @@ namespace Rogium.Tests.UI.Interactables.Properties
         public override IEnumerator SetUp()
         {
             yield return base.SetUp();
-            OverseerLoader.LoadThemeOverseer();
-            OverseerLoader.LoadUIBuilder();
-            OverseerLoader.LoadModalWindowBuilder();
+            TUtilsOverseerLoader.LoadThemeOverseer();
+            TUtilsOverseerLoader.LoadUIBuilder();
+            TUtilsOverseerLoader.LoadModalWindowBuilder();
             yield return null;
             action = input.Player.ButtonMain.Action;
             inputProperty = BuildInputBinding(action);

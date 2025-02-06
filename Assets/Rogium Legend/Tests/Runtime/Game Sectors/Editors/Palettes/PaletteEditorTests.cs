@@ -18,7 +18,7 @@ namespace Rogium.Tests.Editors.Palettes
         public override IEnumerator Setup()
         {
             yield return base.Setup();
-            yield return MenuLoader.PreparePaletteEditor();
+            yield return TUtilsMenuLoader.PreparePaletteEditor();
             editor = PaletteEditorOverseer.Instance;
             yield return null;
         }

@@ -25,7 +25,7 @@ namespace Rogium.Tests.Editors.Palettes
             packEditor = PackEditorOverseer.Instance;
             spriteEditor = SpriteEditorOverseer.Instance;
             
-            yield return MenuLoader.PrepareSpriteEditor();
+            yield return TUtilsMenuLoader.PrepareSpriteEditor();
             yield return null;
         }
 

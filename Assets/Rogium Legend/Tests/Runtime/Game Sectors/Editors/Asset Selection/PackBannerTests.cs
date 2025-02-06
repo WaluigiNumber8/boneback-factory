@@ -27,9 +27,9 @@ namespace Rogium.Tests.Editors.AssetSelection
         public override IEnumerator Setup()
         {
             yield return base.Setup();
-            OverseerLoader.LoadModalWindowBuilder();
-            OverseerLoader.LoadUIBuilder();
-            yield return MenuLoader.PrepareSelectionMenu();
+            TUtilsOverseerLoader.LoadModalWindowBuilder();
+            TUtilsOverseerLoader.LoadUIBuilder();
+            yield return TUtilsMenuLoader.PrepareSelectionMenu();
             selectionMenu = SelectionMenuOverseerMono.GetInstance();
             packBanner = selectionMenu.GetComponentInChildren<PackBanner>();
             currentPack = ExternalLibraryOverseer.Instance.Packs[0];
@@ -98,7 +98,7 @@ namespace Rogium.Tests.Editors.AssetSelection
             packBanner.Config();
             yield return null;
             ModalWindow window = Object.FindFirstObjectByType<ModalWindow>();
-            window.GetComponentInChildren<AssetField>().OnPointerClick(PointerDataCreator.LeftClick());
+            window.GetComponentInChildren<AssetField>().OnPointerClick(TUtilsPointerDataCreator.LeftClick());
             yield return null;
             AssetPickerWindow picker = Object.FindFirstObjectByType<AssetPickerWindow>();
             picker.Select(1);

@@ -29,14 +29,14 @@ namespace Rogium.Tests.Editors.Palettes
 
         public static IEnumerator UpdatePaletteColorInPaletteEditor(Color color, int index = 0)
         {
-            yield return MenuLoader.PreparePaletteEditor();
+            yield return TUtilsMenuLoader.PreparePaletteEditor();
             PaletteEditorOverseerMono.GetInstance().UpdateColorSlotColor(color, index);
             PaletteEditorOverseer.Instance.CompleteEditing();
         }
         
         public static IEnumerator UpdateSpriteOfWeaponInEditor(int index = 0)
         {
-            yield return MenuLoader.PrepareWeaponEditor();
+            yield return TUtilsMenuLoader.PrepareWeaponEditor();
             WeaponEditorOverseer.Instance.CurrentAsset.UpdateIcon(PackEditorOverseer.Instance.CurrentPack.Sprites[index]);
             WeaponEditorOverseer.Instance.CompleteEditing();
         }

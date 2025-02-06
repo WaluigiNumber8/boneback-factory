@@ -7,7 +7,7 @@ namespace Rogium.Tests.Core
     /// <summary>
     /// Loads in different overseers for testing.
     /// </summary>
-    public static class OverseerLoader
+    public static class TUtilsOverseerLoader
     {
         private static readonly GameObject internalLibraryPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/Global/pref_InternalLibrary.prefab");
         private static readonly GameObject uiBuilderPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/Global/Builders/pref_Builder_InteractableProperties.prefab");

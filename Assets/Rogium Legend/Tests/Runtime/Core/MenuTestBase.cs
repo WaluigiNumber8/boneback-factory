@@ -29,7 +29,7 @@ namespace Rogium.Tests.Core
         [UnitySetUp]
         public virtual IEnumerator Setup()
         {
-            SceneLoader.LoadMenuTestingScene();
+            TUtilsSceneLoader.LoadMenuTestingScene();
             yield return null;
             PrepareExternalStorageSubstitute();
             yield return null;

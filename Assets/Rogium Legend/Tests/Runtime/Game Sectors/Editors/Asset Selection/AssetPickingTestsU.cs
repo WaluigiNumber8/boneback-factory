@@ -20,7 +20,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         
         public static IEnumerator ClickAssetFieldToOpenAssetPickerWindow()
         {
-            Object.FindFirstObjectByType<AssetField>().OnPointerClick(PointerDataCreator.LeftClick());
+            Object.FindFirstObjectByType<AssetField>().OnPointerClick(TUtilsPointerDataCreator.LeftClick());
             yield return null;
         }
 

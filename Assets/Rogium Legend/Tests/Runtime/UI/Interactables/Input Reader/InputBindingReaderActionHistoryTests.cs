@@ -22,9 +22,9 @@ namespace Rogium.Tests.UI.Interactables.InputReader
         public override IEnumerator SetUp()
         {
             yield return base.SetUp();
-            OverseerLoader.LoadThemeOverseer();
-            OverseerLoader.LoadUIBuilder();
-            OverseerLoader.LoadModalWindowBuilder();
+            TUtilsOverseerLoader.LoadThemeOverseer();
+            TUtilsOverseerLoader.LoadUIBuilder();
+            TUtilsOverseerLoader.LoadModalWindowBuilder();
             yield return null;
             reader = BuildInputReader(input.Player.ButtonMain.Action);
         }

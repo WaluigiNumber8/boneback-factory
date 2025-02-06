@@ -22,9 +22,9 @@ namespace Rogium.Tests.UI.Interactables.Properties
         {
             yield return base.Setup();
             yield return CreateAndAssignPack();
-            OverseerLoader.LoadUIBuilder();
-            OverseerLoader.LoadThemeOverseer();
-            OverseerLoader.LoadInternalLibrary();
+            TUtilsOverseerLoader.LoadUIBuilder();
+            TUtilsOverseerLoader.LoadThemeOverseer();
+            TUtilsOverseerLoader.LoadInternalLibrary();
             yield return null;
         }
 

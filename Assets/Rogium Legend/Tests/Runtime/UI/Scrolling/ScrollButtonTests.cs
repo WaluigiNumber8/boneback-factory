@@ -20,7 +20,7 @@ namespace Rogium.Tests.UI.Scrolling
         public override IEnumerator Setup()
         {
             yield return base.Setup();
-            yield return MenuLoader.PrepareSelectionMenu();
+            yield return TUtilsMenuLoader.PrepareSelectionMenu();
             adapter = SelectionMenuOverseerMono.GetInstance().GetComponentInChildren<ScrollRectButtonAdapter>();
             scroll = adapter.ScrollRect;
             scroll.horizontalNormalizedPosition = 0.5f;

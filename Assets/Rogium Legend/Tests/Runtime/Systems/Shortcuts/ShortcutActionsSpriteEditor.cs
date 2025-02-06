@@ -26,9 +26,9 @@ namespace Rogium.Tests.Systems.Shortcuts
         public override IEnumerator SetUp()
         {
             yield return base.SetUp();
-            yield return MenuLoader.PrepareSelectionMenu();
-            yield return MenuLoader.PrepareSpriteEditor(false);
-            OverseerLoader.LoadModalWindowBuilder();
+            yield return TUtilsMenuLoader.PrepareSelectionMenu();
+            yield return TUtilsMenuLoader.PrepareSpriteEditor(false);
+            TUtilsOverseerLoader.LoadModalWindowBuilder();
             editor = SpriteEditorOverseerMono.GetInstance();
             yield return null;
             yield return OpenEditor(AssetType.Sprite);

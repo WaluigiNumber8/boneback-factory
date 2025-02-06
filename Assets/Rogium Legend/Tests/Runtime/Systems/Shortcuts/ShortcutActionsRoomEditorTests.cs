@@ -25,9 +25,9 @@ namespace Rogium.Tests.Systems.Shortcuts
         public override IEnumerator SetUp()
         {
             yield return base.SetUp();
-            yield return MenuLoader.PrepareSelectionMenu();
-            yield return MenuLoader.PrepareRoomEditor(false);
-            OverseerLoader.LoadModalWindowBuilder();
+            yield return TUtilsMenuLoader.PrepareSelectionMenu();
+            yield return TUtilsMenuLoader.PrepareRoomEditor(false);
+            TUtilsOverseerLoader.LoadModalWindowBuilder();
             editor = RoomEditorOverseerMono.GetInstance();
             yield return null;
             yield return OpenEditor(AssetType.Room);

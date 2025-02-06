@@ -12,7 +12,7 @@ using Rogium.Tests.Core;
 using Rogium.UserInterface.ModalWindows;
 using UnityEngine;
 using UnityEngine.TestTools;
-using static Rogium.Tests.Core.PointerDataCreator;
+using static Rogium.Tests.Core.TUtilsPointerDataCreator;
 using static Rogium.Tests.Editors.Sprites.PaletteEditingTestsU;
 using static Rogium.Tests.UI.Interactables.Properties.InteractableUtils;
 
@@ -28,11 +28,11 @@ namespace Rogium.Tests.Editors.Sprites
         public override IEnumerator Setup()
         {
             yield return base.Setup();
-            OverseerLoader.LoadModalWindowBuilder();
-            OverseerLoader.LoadUIBuilder();
+            TUtilsOverseerLoader.LoadModalWindowBuilder();
+            TUtilsOverseerLoader.LoadUIBuilder();
             yield return null;
-            yield return MenuLoader.PrepareSelectionMenu();
-            yield return MenuLoader.PrepareSpriteEditor();
+            yield return TUtilsMenuLoader.PrepareSelectionMenu();
+            yield return TUtilsMenuLoader.PrepareSpriteEditor();
             spriteEditor = SpriteEditorOverseerMono.GetInstance();
             ActionHistorySystem.ClearHistory();
             yield return null;
