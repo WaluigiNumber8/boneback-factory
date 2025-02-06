@@ -3,7 +3,7 @@ using System.Linq;
 using RedRats.Core;
 using UnityEngine;
 
-namespace Rogium.Core.Shortcuts
+namespace Rogium.Systems.Shortcuts
 {
     /// <summary>
     /// Stores a set of actions that can be triggered via button shortcuts.

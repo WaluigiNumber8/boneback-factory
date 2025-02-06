@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using InputSystem = Rogium.Systems.Input.InputSystem;
 
-namespace Rogium.Core.Shortcuts
+namespace Rogium.Systems.Shortcuts
 {
     [Serializable]
     public class ShortcutData

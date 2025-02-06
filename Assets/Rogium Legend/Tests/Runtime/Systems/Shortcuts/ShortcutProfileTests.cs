@@ -1,13 +1,12 @@
 ﻿using System.Collections;
 using NUnit.Framework;
-using Rogium.Core.Shortcuts;
+using Rogium.Systems.Shortcuts;
 using Rogium.Systems.Input;
 using Rogium.Tests.Core;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.TestTools;
-using InputSystem = Rogium.Systems.Input.InputSystem;
 
 namespace Rogium.Tests.Systems.Shortcuts
 {

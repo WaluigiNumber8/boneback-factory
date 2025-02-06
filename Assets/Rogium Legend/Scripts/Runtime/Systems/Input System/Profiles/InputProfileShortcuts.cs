@@ -185,11 +185,53 @@
             generalMap.Disable();
         }
 
-        public override bool IsMapEnabled { get => roomMap.enabled && campaignSelectionMap.enabled 
-                                                                   && selectionMenuMap.enabled && generalMap.enabled 
-                                                                   && drawingEditorsMap.enabled && spriteMap.enabled 
-                                                                   && campaignEditorMap.enabled; }
+        public override bool IsMapEnabled { get => roomMap.enabled || campaignSelectionMap.enabled 
+                                                                   || selectionMenuMap.enabled || generalMap.enabled 
+                                                                   || drawingEditorsMap.enabled || spriteMap.enabled 
+                                                                   || campaignEditorMap.enabled; }
 
+        public void ActivateGeneralMap(bool value)
+        {
+            if (value) generalMap.Enable();
+            else generalMap.Disable();
+        }
+        
+        public void ActivateSelectionMenuMap(bool value)
+        {
+            if (value) selectionMenuMap.Enable();
+            else selectionMenuMap.Disable();
+        }
+        
+        public void ActivateCampaignSelectionMap(bool value)
+        {
+            if (value) campaignSelectionMap.Enable();
+            else campaignSelectionMap.Disable();
+        }
+        
+        public void ActivateDrawingEditorsMap(bool value)
+        {
+            if (value) drawingEditorsMap.Enable();
+            else drawingEditorsMap.Disable();
+        }
+        
+        public void ActivateSpriteEditorMap(bool value)
+        {
+            if (value) spriteMap.Enable();
+            else spriteMap.Disable();
+        }
+        
+        public void ActivateRoomEditorMap(bool value)
+        {
+            if (value) roomMap.Enable();
+            else roomMap.Disable();
+        }
+        
+        public void ActivateCampaignEditorMap(bool value)
+        {
+            if (value) campaignEditorMap.Enable();
+            else campaignEditorMap.Disable();
+        }
+        
         public InputButton Undo { get => undo; }
         public InputButton Redo { get => redo; }
         public InputButton Save { get => save; }
