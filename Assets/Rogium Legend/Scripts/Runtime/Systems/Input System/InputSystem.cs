@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using RedRats.Core;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -23,14 +24,21 @@ namespace Rogium.Systems.Input
         private InputProfileShortcuts inputShortcuts;
         
         private Vector2 pointerPosition;
+        private IDictionary<string, string[]> linkedActionMaps = new Dictionary<string, string[]>(); 
 
         protected override void Awake()
         {
             base.Awake();
             ClearAllInput();
             SceneManager.sceneLoaded += (_, __) => eventSystem = FindFirstObjectByType<EventSystem>();
-            inputUI.PointerPosition.OnPressed += UpdatePointerPosition;
-            inputPause.Disable();
+            UI.PointerPosition.OnPressed += UpdatePointerPosition;
+            
+            linkedActionMaps.Add("ShortcutsDrawingEditors", new[] {"ShortcutsGeneral"});
+            linkedActionMaps.Add("ShortcutsRoomEditor", new[] {"ShortcutsGeneral", "ShortcutsDrawingEditors"});
+            linkedActionMaps.Add("ShortcutsSpriteEditor", new[] {"ShortcutsGeneral", "ShortcutsDrawingEditors"});
+            linkedActionMaps.Add("ShortcutsSelectionMenu", new[] {"ShortcutsGeneral"});
+            linkedActionMaps.Add("ShortcutsCampaignSelection", new[] {"ShortcutsGeneral"});
+            linkedActionMaps.Add("ShortcutsCampaignEditor", new[] {"ShortcutsGeneral"});
         }
 
         public void ClearAllInput()
@@ -70,25 +78,41 @@ namespace Rogium.Systems.Input
         public (InputAction, InputBindingCombination, int) FindDuplicateBinding(InputAction action, InputBindingCombination bindingCombo)
         {
             bool usesModifiers = bindingCombo.Modifier1.effectivePath != "" || bindingCombo.Modifier2.effectivePath != "";
-            for (int i = 0; i < action.actionMap.bindings.Count; i++)
+            
+            //Get all action maps of interest
+            ISet<InputActionMap> actionMaps = new HashSet<InputActionMap>();
+            actionMaps.Add(action.actionMap);
+            if (linkedActionMaps.TryGetValue(action.actionMap.name, out string[] maps))
             {
-                InputBinding binding = action.actionMap.bindings[i];
-                if (!binding.effectivePath.Equals(bindingCombo.Button.effectivePath) || binding.id == bindingCombo.Button.id) continue;
-                if (HasNoModifiersButIsModifierComposite(binding, i - 2)) continue;
-                if (HasNoModifiersButIsModifierComposite(binding, i - 1)) continue;
-                if (HasModifiersButNotSame(bindingCombo.Modifier1, i - 2)) continue;
-                if (HasModifiersButNotSame(bindingCombo.Modifier2, i - 1)) continue;
+                foreach (string mapName in maps)
+                {
+                    InputActionMap map = input.asset.FindActionMap(mapName);
+                    if (map != null) actionMaps.Add(map);
+                }
+            }
 
-                InputAction foundAction = input.FindAction(binding.action);
-                InputBindingCombination foundCombination = new InputBindingCombination.Builder().WithLinkedBindings(foundAction.actionMap.bindings[i], (usesModifiers) ? foundAction.actionMap.bindings[i-2] : new InputBinding(""), (usesModifiers) ? foundAction.actionMap.bindings[i-1] : new InputBinding("")).Build();
-                int foundIndex = foundAction.GetBindingIndexWithEmptySupport(binding);
-                return (foundAction, foundCombination, foundIndex);
+            foreach (InputActionMap map in actionMaps)
+            {
+                for (int i = 0; i < map.bindings.Count; i++)
+                {
+                    InputBinding binding = map.bindings[i];
+                    if (!binding.effectivePath.Equals(bindingCombo.Button.effectivePath) || binding.id == bindingCombo.Button.id) continue;
+                    if (HasNoModifiersButIsModifierComposite(binding, map, i - 2)) continue;
+                    if (HasNoModifiersButIsModifierComposite(binding, map, i - 1)) continue;
+                    if (HasModifiersButNotSame(bindingCombo.Modifier1, map, i - 2)) continue;
+                    if (HasModifiersButNotSame(bindingCombo.Modifier2, map, i - 1)) continue;
+
+                    InputAction foundAction = input.FindAction(binding.action);
+                    InputBindingCombination foundCombination = new InputBindingCombination.Builder().WithLinkedBindings(map.bindings[i], (usesModifiers) ? map.bindings[i-2] : new InputBinding(""), (usesModifiers) ? map.bindings[i-1] : new InputBinding("")).Build();
+                    int foundIndex = foundAction.GetBindingIndexWithEmptySupport(binding);
+                    return (foundAction, foundCombination, foundIndex);
+                }
             }
 
             return (null, new InputBindingCombination.Builder().AsEmpty(), -1);
 
-            bool HasNoModifiersButIsModifierComposite(InputBinding binding, int indexOffset) => !usesModifiers && binding.IsTwoOptionalModifiersComposite() && indexOffset > -1 && !string.IsNullOrEmpty(action.actionMap.bindings[indexOffset].effectivePath);
-            bool HasModifiersButNotSame(InputBinding other, int indexOffset) => usesModifiers &&  indexOffset > -1 && (!action.actionMap.bindings[indexOffset].effectivePath.Equals(other.effectivePath) || action.actionMap.bindings[indexOffset].id == other.id);
+            bool HasNoModifiersButIsModifierComposite(InputBinding binding, InputActionMap map, int indexOffset) => !usesModifiers && binding.IsTwoOptionalModifiersComposite() && indexOffset > -1 && !string.IsNullOrEmpty(map.bindings[indexOffset].effectivePath);
+            bool HasModifiersButNotSame(InputBinding other, InputActionMap map, int indexOffset) => usesModifiers &&  indexOffset > -1 && (!map.bindings[indexOffset].effectivePath.Equals(other.effectivePath) || map.bindings[indexOffset].id == other.id);
         }
 
         /// <summary>
