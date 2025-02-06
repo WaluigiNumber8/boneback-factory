@@ -35,7 +35,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
             builderTile = new RoomPropertyColumnBuilderTile(assetContent);
             builderObject = new RoomPropertyColumnBuilderObject(assetContent);
             builderEnemy = new RoomPropertyColumnBuilderEnemy(assetContent);
-            builderSettings = new RoomSettingsBuilder(assetContent);
+            builderSettings = new RoomSettingsBuilder(settingsContent);
         }
 
         private void OnEnable() => ActionHistorySystem.OnUpdateUndoHistory += RefreshProperties;
@@ -112,7 +112,11 @@ namespace Rogium.Editors.Rooms.PropertyColumn
             currentData = new AssetData();
         }
 
-        public void Dispose() => assetContent.ReleaseAllProperties();
+        public void Dispose()
+        {
+            assetContent.ReleaseAllProperties();
+            settingsContent.ReleaseAllProperties();
+        }
 
         /// <summary>
         /// Prepares the Properties Column for Asset Properties visually.
