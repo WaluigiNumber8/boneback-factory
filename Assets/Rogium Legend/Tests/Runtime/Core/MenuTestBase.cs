@@ -15,7 +15,7 @@ using Rogium.ExternalStorage.Serialization;
 using Rogium.Options.Core;
 using Rogium.Systems.ActionHistory;
 using Rogium.Systems.Input;
-using Rogium.Tests.Editors;
+using UnityEngine;
 using UnityEngine.TestTools;
 
 namespace Rogium.Tests.Core
@@ -26,11 +26,13 @@ namespace Rogium.Tests.Core
     [RequiresPlayMode]
     public abstract class MenuTestBase
     {
+     
         [UnitySetUp]
         public virtual IEnumerator Setup()
         {
             TUtilsSceneLoader.LoadMenuTestingScene();
             yield return null;
+            PrepareInputSystem();
             PrepareExternalStorageSubstitute();
             yield return null;
             ExternalLibraryOverseer.Instance.ClearPacks();
@@ -38,6 +40,13 @@ namespace Rogium.Tests.Core
             ActionHistorySystem.ClearHistory();
             InputSystem.GetInstance().ClearAllInput();
             yield return TUtilsAssetCreator.CreateAndAssignPack();
+        }
+
+        private static void PrepareInputSystem()
+        {
+            InputSystem input = Object.FindFirstObjectByType<InputSystem>();
+            if (input != null) Object.DestroyImmediate(input);
+            TUtilsOverseerLoader.LoadInputSystem();
         }
 
         private static void PrepareExternalStorageSubstitute()

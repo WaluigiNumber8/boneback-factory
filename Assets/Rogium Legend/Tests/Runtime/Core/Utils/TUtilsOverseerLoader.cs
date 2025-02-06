@@ -14,6 +14,7 @@ namespace Rogium.Tests.Core
         private static readonly ModalWindowBuilder modalWindowBuilderPrefab = AssetDatabase.LoadAssetAtPath<ModalWindowBuilder>("Assets/Rogium Legend/Prefabs/Global/Builders/pref_Builder_ModalWindows.prefab");
         private static readonly GameObject themeOverseerPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/Global/Overseers/pref_Overseer_Themes.prefab");
         private static readonly GameObject backgroundOverseerPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/Global/Overseers/pref_Overseer_Backgrounds.prefab");
+        private static readonly GameObject inputSystemPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Rogium Legend/Prefabs/Global/Systems/pref_System_Input.prefab");
 
         public static void LoadInternalLibrary() => Object.Instantiate(internalLibraryPrefab);
         public static void LoadThemeOverseer() => Object.Instantiate(themeOverseerPrefab);
@@ -25,6 +26,7 @@ namespace Rogium.Tests.Core
             LoadInternalLibrary();
             Object.Instantiate(modalWindowBuilderPrefab, GetCanvasTransform());
         }
+        public static void LoadInputSystem() => Object.Instantiate(inputSystemPrefab);
 
         private static Transform GetCanvasTransform() => Object.FindFirstObjectByType<Canvas>().transform;
     }

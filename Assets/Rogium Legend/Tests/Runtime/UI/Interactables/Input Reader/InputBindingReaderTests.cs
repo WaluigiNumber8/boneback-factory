@@ -25,9 +25,9 @@ namespace Rogium.Tests.UI.Interactables.InputReader
         public override IEnumerator SetUp()
         {
             yield return base.SetUp();
-            OverseerLoader.LoadThemeOverseer();
-            OverseerLoader.LoadUIBuilder();
-            OverseerLoader.LoadModalWindowBuilder();
+            TUtilsOverseerLoader.LoadThemeOverseer();
+            TUtilsOverseerLoader.LoadUIBuilder();
+            TUtilsOverseerLoader.LoadModalWindowBuilder();
             yield return null;
             inputReader = BuildInputReader(input.Player.ButtonMain.Action);
         }
@@ -119,15 +119,14 @@ namespace Rogium.Tests.UI.Interactables.InputReader
         {
             yield return BindKey(keyboard.spaceKey);
             yield return new WaitForSecondsRealtime(1f);
-            Assert.That(Object.FindFirstObjectByType<ModalWindow>().transform.GetChild(0).gameObject.activeSelf, Is.True);
+            Assert.That(IsModalWindowActive(), Is.True);
         }
         
         [UnityTest]
         public IEnumerator Should_NotShowMessage_WhenBindingIsNotUsed()
         {
             yield return BindKey(keyboard.oKey);
-            ModalWindow window = Object.FindFirstObjectByType<ModalWindow>();
-            Assert.That(window, Is.Null);
+            Assert.That(IsModalWindowActive(), Is.True);
         }
 
         [UnityTest]
@@ -168,7 +167,7 @@ namespace Rogium.Tests.UI.Interactables.InputReader
             string original = inputReader.InputString;
             string original2 = inputReader2.InputString;
             yield return BindKey(keyboard.spaceKey);
-            Object.FindFirstObjectByType<ModalWindow>().OnDeny();
+            yield return WindowCancel();
             yield return null;
             Assert.That(inputReader.InputString, Is.EqualTo(original));
             Assert.That(inputReader2.InputString, Is.EqualTo(original2));
@@ -221,11 +220,20 @@ namespace Rogium.Tests.UI.Interactables.InputReader
         [UnityTest]
         public IEnumerator Should_ClearBinding_WhenCleared()
         {
-            inputReader.OnPointerClick(PointerDataCreator.RightClick());
+            inputReader.OnPointerClick(TUtilsPointerDataCreator.RightClick());
             yield return null;
             Assert.That(inputReader.InputString, Is.EqualTo(EditorDefaults.Instance.InputEmptyText));
         }
-        
+
+        [UnityTest]
+        public IEnumerator Should_ShowOverrideDialog_WhenOverrideFromLinkedActionMap()
+        {
+            inputReader = BuildInputReader(input.Shortcuts.RefreshCurrent.Action);
+            yield return null;
+            yield return BindKey(keyboard.eKey);
+            Assert.That(IsModalWindowActive(), Is.True);
+        }
+
         private IEnumerator BindKey(ButtonControl key)
         {
             inputReader.StartRebinding();
