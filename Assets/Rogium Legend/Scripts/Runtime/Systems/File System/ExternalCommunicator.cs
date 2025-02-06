@@ -33,5 +33,6 @@ namespace Rogium.ExternalStorage
         public ICRUDOperations<TileAsset, JSONTileAsset> Tiles { get => storage.Tiles; }
         public ICRUDOperations<PreferencesAsset, JSONPreferencesAsset> Preferences { get => storage.Preferences; }
         public ICRUDOperations<InputBindingsAsset, JSONInputBindingsAsset> InputBindings { get => storage.InputBindings; }
+        public ICRUDOperations<ShortcutBindingsAsset, JSONShortcutBindingsAsset> ShortcutBindings { get => storage.ShortcutBindings; }
     }
 }

@@ -5,9 +5,16 @@
     /// </summary>
     public class InputProfileShortcuts : InputProfileBase
     {
-        private RogiumInputActions.ShortcutsActions map;
+        private RogiumInputActions.ShortcutsGeneralActions generalMap;
+        private RogiumInputActions.ShortcutsGeneralSelectionActions generalSelectionMap;
+        private RogiumInputActions.ShortcutsSelectionMenuActions selectionMenuMap;
+        private RogiumInputActions.ShortcutsCampaignSelectionActions campaignSelectionMap;
+        private RogiumInputActions.ShortcutsDrawingEditorsActions drawingEditorsMap;
+        private RogiumInputActions.ShortcutsSpriteEditorActions spriteMap;
+        private RogiumInputActions.ShortcutsRoomEditorActions roomMap;
+        private RogiumInputActions.ShortcutsCampaignEditorActions campaignEditorMap;
 
-        private readonly InputButton undo, redo, save, cancel;
+        private readonly InputButton undo, redo, save;
         private readonly InputButton newAsset, edit, editProperties, delete;
         
         private readonly InputButton selectionTool, brushTool, eraserTool, fillTool, pickerTool;
@@ -21,67 +28,76 @@
         
         private readonly InputButton showPalettes, showSprites, showWeapons, showProjectiles, showEnemies, showRooms, showTiles;
         
-        private readonly InputButton resetToDefault;
-        
         private readonly InputButton selectAll, deselectAll, selectRandom;
         
         public InputProfileShortcuts(RogiumInputActions input) : base(input)
         {
-            map = input.Shortcuts;
+            generalMap = input.ShortcutsGeneral;
+            generalSelectionMap = input.ShortcutsGeneralSelection;
+            selectionMenuMap = input.ShortcutsSelectionMenu;
+            campaignSelectionMap = input.ShortcutsCampaignSelection;
+            drawingEditorsMap = input.ShortcutsDrawingEditors;
+            spriteMap = input.ShortcutsSpriteEditor;
+            roomMap = input.ShortcutsRoomEditor;
+            campaignEditorMap = input.ShortcutsCampaignEditor;
             
-            undo = new InputButton(map.Undo);
-            redo = new InputButton(map.Redo);
-            save = new InputButton(map.Save);
-            cancel = new InputButton(map.Cancel);
-            newAsset = new InputButton(map.New);
-            edit = new InputButton(map.Edit);
-            editProperties = new InputButton(map.EditProperties);
-            delete = new InputButton(map.Delete);
+            undo = new InputButton(generalMap.Undo);
+            redo = new InputButton(generalMap.Redo);
+            save = new InputButton(generalMap.Save);
             
-            selectionTool = new InputButton(map.SelectionTool);
-            brushTool = new InputButton(map.BrushTool);
-            eraserTool = new InputButton(map.EraserTool);
-            fillTool = new InputButton(map.FillTool);
-            pickerTool = new InputButton(map.PickerTool);
-            clearCanvas = new InputButton(map.ClearCanvas);
-            toggleGrid = new InputButton(map.ToggleGrid);
+            newAsset = new InputButton(generalSelectionMap.New);
+            edit = new InputButton(generalSelectionMap.Edit);
+            editProperties = new InputButton(generalSelectionMap.EditProperties);
+            delete = new InputButton(generalSelectionMap.Delete);
             
-            tilesLayer = new InputButton(map.TilesLayer);
-            decorLayer = new InputButton(map.DecorLayer);
-            objectsLayer = new InputButton(map.ObjectsLayer);
-            enemiesLayer = new InputButton(map.EnemiesLayer);
+            selectionTool = new InputButton(drawingEditorsMap.SelectionTool);
+            brushTool = new InputButton(drawingEditorsMap.BrushTool);
+            eraserTool = new InputButton(drawingEditorsMap.EraserTool);
+            fillTool = new InputButton(drawingEditorsMap.FillTool);
+            pickerTool = new InputButton(drawingEditorsMap.PickerTool);
+            clearCanvas = new InputButton(drawingEditorsMap.ClearCanvas);
+            toggleGrid = new InputButton(drawingEditorsMap.ToggleGrid);
             
-            changePalette = new InputButton(map.ChangePalette);
+            tilesLayer = new InputButton(roomMap.TileLayer);
+            decorLayer = new InputButton(roomMap.DecorLayer);
+            objectsLayer = new InputButton(roomMap.ObjectLayer);
+            enemiesLayer = new InputButton(roomMap.EnemyLayer);
             
-            switchLeft = new InputButton(map.SwitchLeft);
-            switchRight = new InputButton(map.SwitchRight);
-            refreshCurrent = new InputButton(map.RefreshCurrent);
-            refreshAll = new InputButton(map.RefreshAll);
-            play = new InputButton(map.Play);
+            changePalette = new InputButton(spriteMap.ChangePalette);
             
-            showPalettes = new InputButton(map.ShowPalettes);
-            showSprites = new InputButton(map.ShowSprites);
-            showWeapons = new InputButton(map.ShowWeapons);
-            showProjectiles = new InputButton(map.ShowProjectiles);
-            showEnemies = new InputButton(map.ShowEnemies);
-            showRooms = new InputButton(map.ShowRooms);
-            showTiles = new InputButton(map.ShowTiles);
+            switchLeft = new InputButton(campaignSelectionMap.SwitchLeft);
+            switchRight = new InputButton(campaignSelectionMap.SwitchRight);
+            refreshCurrent = new InputButton(campaignSelectionMap.Refresh);
+            refreshAll = new InputButton(campaignSelectionMap.RefreshAll);
+            play = new InputButton(campaignSelectionMap.Play);
             
-            resetToDefault = new InputButton(map.ResetToDefault);
+            showPalettes = new InputButton(selectionMenuMap.ShowPalettes);
+            showSprites = new InputButton(selectionMenuMap.ShowSprites);
+            showWeapons = new InputButton(selectionMenuMap.ShowWeapons);
+            showProjectiles = new InputButton(selectionMenuMap.ShowProjectiles);
+            showEnemies = new InputButton(selectionMenuMap.ShowEnemies);
+            showRooms = new InputButton(selectionMenuMap.ShowRooms);
+            showTiles = new InputButton(selectionMenuMap.ShowTiles);
             
-            selectAll = new InputButton(map.SelectAll);
-            deselectAll = new InputButton(map.DeselectAll);
-            selectRandom = new InputButton(map.SelectRandom);
+            selectAll = new InputButton(campaignEditorMap.SelectAll);
+            deselectAll = new InputButton(campaignEditorMap.DeselectAll);
+            selectRandom = new InputButton(campaignEditorMap.SelectRandom);
         }
 
         protected override void WhenEnabled()
         {
-            map.Enable();
+            generalMap.Enable();
+            generalSelectionMap.Enable();
+            selectionMenuMap.Enable();
+            campaignSelectionMap.Enable();
+            drawingEditorsMap.Enable();
+            spriteMap.Enable();
+            roomMap.Enable();
+            campaignEditorMap.Enable();
             
             undo.Enable();
             redo.Enable();
             save.Enable();
-            cancel.Enable();
             newAsset.Enable();
             edit.Enable();
             editProperties.Enable();    
@@ -116,8 +132,6 @@
             showRooms.Enable();
             showTiles.Enable();
             
-            resetToDefault.Enable();
-            
             selectAll.Enable();
             deselectAll.Enable();
             selectRandom.Enable();
@@ -125,12 +139,9 @@
 
         protected override void WhenDisabled()
         {
-            map.Disable();
-            
             undo.Disable();
             redo.Disable();
             save.Disable();
-            cancel.Disable();
             newAsset.Disable();
             edit.Disable();
             editProperties.Disable();
@@ -165,19 +176,76 @@
             showRooms.Disable();
             showTiles.Disable();
             
-            resetToDefault.Disable();
-            
             selectAll.Disable();
             deselectAll.Disable();
             selectRandom.Disable();
+            
+            campaignEditorMap.Disable();
+            roomMap.Disable();
+            spriteMap.Disable();
+            drawingEditorsMap.Disable();
+            campaignSelectionMap.Disable();
+            selectionMenuMap.Disable();
+            generalSelectionMap.Disable();
+            generalMap.Disable();
         }
 
-        public override bool IsMapEnabled { get => map.enabled; }
+        public override bool IsMapEnabled { get => roomMap.enabled || generalSelectionMap.enabled || campaignSelectionMap.enabled 
+                                                                   || selectionMenuMap.enabled || generalMap.enabled 
+                                                                   || drawingEditorsMap.enabled || spriteMap.enabled 
+                                                                   || campaignEditorMap.enabled; }
 
+        public void ActivateGeneralMap(bool value)
+        {
+            if (value) generalMap.Enable();
+            else generalMap.Disable();
+        }
+        
+        public void ActivateGeneralSelectionMap(bool value)
+        {
+            if (value) generalSelectionMap.Enable();
+            else generalSelectionMap.Disable();
+        }
+        
+        public void ActivateSelectionMenuMap(bool value)
+        {
+            if (value) selectionMenuMap.Enable();
+            else selectionMenuMap.Disable();
+        }
+        
+        public void ActivateCampaignSelectionMap(bool value)
+        {
+            if (value) campaignSelectionMap.Enable();
+            else campaignSelectionMap.Disable();
+        }
+        
+        public void ActivateDrawingEditorsMap(bool value)
+        {
+            if (value) drawingEditorsMap.Enable();
+            else drawingEditorsMap.Disable();
+        }
+        
+        public void ActivateSpriteEditorMap(bool value)
+        {
+            if (value) spriteMap.Enable();
+            else spriteMap.Disable();
+        }
+        
+        public void ActivateRoomEditorMap(bool value)
+        {
+            if (value) roomMap.Enable();
+            else roomMap.Disable();
+        }
+        
+        public void ActivateCampaignEditorMap(bool value)
+        {
+            if (value) campaignEditorMap.Enable();
+            else campaignEditorMap.Disable();
+        }
+        
         public InputButton Undo { get => undo; }
         public InputButton Redo { get => redo; }
         public InputButton Save { get => save; }
-        public InputButton Cancel { get => cancel; }
         public InputButton NewAsset { get => newAsset; }
         public InputButton Edit { get => edit; }
         public InputButton EditProperties { get => editProperties; }
@@ -206,7 +274,6 @@
         public InputButton ShowEnemies { get => showEnemies; }
         public InputButton ShowRooms { get => showRooms; }
         public InputButton ShowTiles { get => showTiles; }
-        public InputButton ResetToDefault { get => resetToDefault; }
         public InputButton SelectAll { get => selectAll; }
         public InputButton DeselectAll { get => deselectAll; }
         public InputButton SelectRandom { get => selectRandom; }

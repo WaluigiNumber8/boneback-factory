@@ -15,9 +15,8 @@ namespace Rogium.Editors.AssetSelection
         /// Build <see cref="SelectionInfoColumn"/> properties for a room.
         /// </summary>
         /// <param name="asset">The room to build for.</param>
-        public override void Build(RoomAsset asset)
+        public override void BuildInternal(RoomAsset asset)
         {
-            Clear();
             b.BuildPlainText("Type", asset.Type.ToString(), contentMain);
             b.BuildPlainText("Tier", asset.DifficultyLevel.ToString(), contentMain);
         }

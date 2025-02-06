@@ -697,6 +697,57 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &2310492691001914370
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2815783254104278193}
+  - component: {fileID: 1427449360091086594}
+  m_Layer: 5
+  m_Name: Local
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2815783254104278193
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2310492691001914370}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3261771472823306911}
+  - {fileID: 5431188923265725226}
+  m_Father: {fileID: 4158905001783247752}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1427449360091086594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2310492691001914370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c71f9e646d537ff4f91d360b0c38be1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuType: 3
 --- !u!1 &2338780825435699606
 GameObject:
   m_ObjectHideFlags: 0
@@ -1433,8 +1484,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3261771472823306911}
-  - component: {fileID: 7183972031361896539}
-  - component: {fileID: 4823341683104166939}
   - component: {fileID: 1500377220338943080}
   m_Layer: 5
   m_Name: UI
@@ -1450,79 +1499,20 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3429597262837885681}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3128420795315698299}
   - {fileID: 6719497372078421204}
-  m_Father: {fileID: 4158905001783247752}
+  m_Father: {fileID: 2815783254104278193}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7183972031361896539
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3429597262837885681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c71f9e646d537ff4f91d360b0c38be1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  menuType: 3
---- !u!114 &4823341683104166939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3429597262837885681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e407ec64132b41d19a9b2efba8be9663, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shortcuts:
-  - trigger: {fileID: -4531501882662290933, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
-          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
-          m_MethodName: ReturnFromSelectionMenu
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - trigger: {fileID: 8610477003855033981, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
-          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
-          m_MethodName: CreateNewAssetBasedOnSelectionMenu
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  overrideAll: 0
 --- !u!114 &1500377220338943080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1561,7 +1551,7 @@ GameObject:
   - component: {fileID: 1712992018419263390}
   - component: {fileID: 802867413173005981}
   m_Layer: 5
-  m_Name: Other Asset Scroll Rects
+  m_Name: Other Asset Scroll Rects + Shortcuts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1632,7 +1622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shortcuts:
-  - trigger: {fileID: 745696771081051140, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+  - trigger: {fileID: -5603591719752247783, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
     action:
       m_PersistentCalls:
         m_Calls:
@@ -1648,7 +1638,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - trigger: {fileID: 2676700358860830262, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+  - trigger: {fileID: 7068441981735105468, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
     action:
       m_PersistentCalls:
         m_Calls:
@@ -1664,7 +1654,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - trigger: {fileID: 9147014384786786214, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+  - trigger: {fileID: 6939657694160168101, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
     action:
       m_PersistentCalls:
         m_Calls:
@@ -1680,7 +1670,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - trigger: {fileID: -8403669081686663906, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+  - trigger: {fileID: -6693283244005869550, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
     action:
       m_PersistentCalls:
         m_Calls:
@@ -1696,7 +1686,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - trigger: {fileID: -6482357571834360714, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+  - trigger: {fileID: 2277878937879227382, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
     action:
       m_PersistentCalls:
         m_Calls:
@@ -1712,7 +1702,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - trigger: {fileID: -2560970349022734593, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+  - trigger: {fileID: 5783281123977590591, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
     action:
       m_PersistentCalls:
         m_Calls:
@@ -1728,7 +1718,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - trigger: {fileID: 3492044639877968511, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+  - trigger: {fileID: -3931179897309059435, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
     action:
       m_PersistentCalls:
         m_Calls:
@@ -4221,6 +4211,102 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding: {x: 0, y: 0, z: 0, w: 0}
   m_Softness: {x: 0, y: 0}
+--- !u!1 &8621143664371102637
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5431188923265725226}
+  - component: {fileID: 5283295779231122903}
+  - component: {fileID: 5373382536045038797}
+  m_Layer: 5
+  m_Name: Shortcuts
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5431188923265725226
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8621143664371102637}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2815783254104278193}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5283295779231122903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8621143664371102637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e407ec64132b41d19a9b2efba8be9663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shortcuts:
+  - trigger: {fileID: 6176465743720167777, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
+          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
+          m_MethodName: ReturnFromSelectionMenu
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - trigger: {fileID: 1770537568118936813, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
+          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
+          m_MethodName: CreateNewAssetBasedOnSelectionMenu
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  overrideAll: 0
+--- !u!114 &5373382536045038797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8621143664371102637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31c7a407fa2c4efe8e9db8f12473228e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activatedMaps: 7
 --- !u!1 &8725747022451043939
 GameObject:
   m_ObjectHideFlags: 0
@@ -4355,7 +4441,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3261771472823306911}
+  - {fileID: 2815783254104278193}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4911,7 +4997,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8463756643395869780, guid: 9d67f85b412f9a74d9006ba729e91677, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 166.13
       objectReference: {fileID: 0}
     - target: {fileID: 8463756643395869780, guid: 9d67f85b412f9a74d9006ba729e91677, type: 3}
       propertyPath: m_SizeDelta.y
@@ -5158,7 +5244,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8463756643395869780, guid: 9d67f85b412f9a74d9006ba729e91677, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 213.38
       objectReference: {fileID: 0}
     - target: {fileID: 8463756643395869780, guid: 9d67f85b412f9a74d9006ba729e91677, type: 3}
       propertyPath: m_SizeDelta.y
@@ -5551,7 +5637,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8463756643395869780, guid: 9d67f85b412f9a74d9006ba729e91677, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 213.38
       objectReference: {fileID: 0}
     - target: {fileID: 8463756643395869780, guid: 9d67f85b412f9a74d9006ba729e91677, type: 3}
       propertyPath: m_SizeDelta.y
@@ -5818,7 +5904,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8463756643395869780, guid: 9d67f85b412f9a74d9006ba729e91677, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 213.38
       objectReference: {fileID: 0}
     - target: {fileID: 8463756643395869780, guid: 9d67f85b412f9a74d9006ba729e91677, type: 3}
       propertyPath: m_SizeDelta.y
@@ -6571,7 +6657,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8463756643395869780, guid: 9d67f85b412f9a74d9006ba729e91677, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 166.13
       objectReference: {fileID: 0}
     - target: {fileID: 8463756643395869780, guid: 9d67f85b412f9a74d9006ba729e91677, type: 3}
       propertyPath: m_SizeDelta.y
@@ -6826,7 +6912,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8463756643395869780, guid: 9d67f85b412f9a74d9006ba729e91677, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 237.01
       objectReference: {fileID: 0}
     - target: {fileID: 8463756643395869780, guid: 9d67f85b412f9a74d9006ba729e91677, type: 3}
       propertyPath: m_SizeDelta.y
@@ -7555,7 +7641,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8463756643395869780, guid: 9d67f85b412f9a74d9006ba729e91677, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 307.88
       objectReference: {fileID: 0}
     - target: {fileID: 8463756643395869780, guid: 9d67f85b412f9a74d9006ba729e91677, type: 3}
       propertyPath: m_SizeDelta.y

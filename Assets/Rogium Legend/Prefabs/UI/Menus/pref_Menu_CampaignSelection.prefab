@@ -3454,7 +3454,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6581007118420476412}
+  - {fileID: 734212804056093260}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -10629,8 +10629,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6581007118420476412}
-  - component: {fileID: 5357991952202859470}
-  - component: {fileID: 9178588587574989659}
   - component: {fileID: 1486335127721585765}
   m_Layer: 5
   m_Name: UI
@@ -10646,7 +10644,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6582724987140756149}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10656,200 +10654,13 @@ RectTransform:
   - {fileID: 6628053282475606653}
   - {fileID: 5482294749483437006}
   - {fileID: 5755312187681330368}
-  m_Father: {fileID: 6946927469302672812}
+  m_Father: {fileID: 734212804056093260}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5357991952202859470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6582724987140756149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c71f9e646d537ff4f91d360b0c38be1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  menuType: 5
---- !u!114 &9178588587574989659
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6582724987140756149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e407ec64132b41d19a9b2efba8be9663, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shortcuts:
-  - trigger: {fileID: -4531501882662290933, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
-          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
-          m_MethodName: ReturnFromSelectionMenu
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - trigger: {fileID: 8610477003855033981, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
-          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
-          m_MethodName: CreateCampaign
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - trigger: {fileID: -8702186798268454881, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
-          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
-          m_MethodName: OpenEditorCampaignCurrent
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: -1
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - trigger: {fileID: 6926642622285706452, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
-          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
-          m_MethodName: EditPropertiesCampaignCurrent
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: -1
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - trigger: {fileID: 1987048373942162741, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
-          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
-          m_MethodName: DeleteCampaign
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: -1
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - trigger: {fileID: 7369973944315000236, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
-          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
-          m_MethodName: CampaignShowPrevious
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - trigger: {fileID: -7317397669306775782, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
-          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
-          m_MethodName: CampaignShowNext
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - trigger: {fileID: -6331668872248905549, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
-          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
-          m_MethodName: CampaignRefreshCurrent
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: -1
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - trigger: {fileID: -5503343021907406901, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
-          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
-          m_MethodName: CampaignRefreshAll
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - trigger: {fileID: 2483369229414985021, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
-          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
-          m_MethodName: PlayCampaignCurrent
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  overrideAll: 0
 --- !u!114 &1486335127721585765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13553,6 +13364,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableButton: {fileID: 7531858952627900310}
   assetController: {fileID: 642896174875877270}
+--- !u!1 &8392386924446677266
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 734212804056093260}
+  - component: {fileID: 6794474100581562562}
+  m_Layer: 5
+  m_Name: Local
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &734212804056093260
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8392386924446677266}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6581007118420476412}
+  - {fileID: 5030580052464429194}
+  m_Father: {fileID: 6946927469302672812}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6794474100581562562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8392386924446677266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c71f9e646d537ff4f91d360b0c38be1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuType: 5
 --- !u!1 &8552345593746554030
 GameObject:
   m_ObjectHideFlags: 0
@@ -14644,6 +14506,230 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a8061150b14197a9b0d990e72b6162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8812722961764163433
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5030580052464429194}
+  - component: {fileID: 7401337544017788989}
+  - component: {fileID: 8248849342608475968}
+  m_Layer: 5
+  m_Name: Shortcuts
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5030580052464429194
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8812722961764163433}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 734212804056093260}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7401337544017788989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8812722961764163433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e407ec64132b41d19a9b2efba8be9663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shortcuts:
+  - trigger: {fileID: 6176465743720167777, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
+          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
+          m_MethodName: ReturnFromSelectionMenu
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - trigger: {fileID: 1770537568118936813, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
+          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
+          m_MethodName: CreateCampaign
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - trigger: {fileID: -1299235554287948963, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
+          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
+          m_MethodName: OpenEditorCampaignCurrent
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: -1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - trigger: {fileID: -6542194280830389418, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
+          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
+          m_MethodName: EditPropertiesCampaignCurrent
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: -1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - trigger: {fileID: 5160298879228320980, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
+          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
+          m_MethodName: DeleteCampaign
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: -1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - trigger: {fileID: 793505003215358449, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
+          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
+          m_MethodName: CampaignShowPrevious
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - trigger: {fileID: 6875874699473687444, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
+          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
+          m_MethodName: CampaignShowNext
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - trigger: {fileID: 3052907028298830985, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
+          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
+          m_MethodName: CampaignRefreshCurrent
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: -1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - trigger: {fileID: 8146820043534618158, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
+          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
+          m_MethodName: CampaignRefreshAll
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - trigger: {fileID: 9195678116572869033, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
+          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
+          m_MethodName: PlayCampaignCurrent
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  overrideAll: 0
+--- !u!114 &8248849342608475968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8812722961764163433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31c7a407fa2c4efe8e9db8f12473228e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activatedMaps: 11
 --- !u!1 &8818594586407396169
 GameObject:
   m_ObjectHideFlags: 0

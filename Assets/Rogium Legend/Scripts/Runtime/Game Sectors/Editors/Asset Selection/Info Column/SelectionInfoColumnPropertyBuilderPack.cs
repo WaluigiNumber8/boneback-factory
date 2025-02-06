@@ -20,9 +20,8 @@ namespace Rogium.Editors.AssetSelection
         /// Build <see cref="SelectionInfoColumn"/> properties for a pack.
         /// </summary>
         /// <param name="asset">The pack to build for.</param>
-        public override void Build(PackAsset asset)
+        public override void BuildInternal(PackAsset asset)
         {
-            Clear();
             if (essentialOnly) BuildLite(asset);
             else BuildFull(asset);
         }

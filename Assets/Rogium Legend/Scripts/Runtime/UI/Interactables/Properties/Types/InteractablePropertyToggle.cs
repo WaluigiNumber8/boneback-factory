@@ -9,7 +9,7 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// <summary>
     /// Overseers everything happening in a toggle interactable property.
     /// </summary>
-    public class InteractablePropertyToggle : InteractablePropertyBase<bool>
+    public class InteractablePropertyToggle : InteractablePropertyWithValueBase<bool>
     {
         [SerializeField] private Toggle toggle;
         [SerializeField] private UIInfo ui;

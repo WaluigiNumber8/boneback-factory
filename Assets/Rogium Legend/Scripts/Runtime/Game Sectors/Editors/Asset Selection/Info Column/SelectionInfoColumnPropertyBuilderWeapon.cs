@@ -18,9 +18,8 @@ namespace Rogium.Editors.AssetSelection
         /// Build <see cref="SelectionInfoColumn"/> properties for a weapon.
         /// </summary>
         /// <param name="asset">The weapon to build for.</param>
-        public override void Build(WeaponAsset asset)
+        public override void BuildInternal(WeaponAsset asset)
         {
-            Clear();
             b.BuildPlainText("Damage", asset.BaseDamage.ToString(), contentMain);
             b.BuildPlainText("Type", (asset.IsEvasive) ? "Evasive" : "Active", contentMain);
             b.BuildAssetEmblemList("Fires", asset.ProjectileIDs.Select(d => d.id).ToList().TryGetAssets(PackEditorOverseer.Instance.CurrentPack.Projectiles).Select(d => d.Icon).ToList(), contentMain);

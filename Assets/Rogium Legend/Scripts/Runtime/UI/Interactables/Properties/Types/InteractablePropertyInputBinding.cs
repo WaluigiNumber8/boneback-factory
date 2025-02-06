@@ -1,4 +1,4 @@
-﻿using System.Text.RegularExpressions;
+﻿using RedRats.Core;
 using RedRats.UI.Core;
 using TMPro;
 using UnityEngine;
@@ -10,21 +10,20 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// <summary>
     /// Represents a property that allows rebinding an single-button input for both keyboard and gamepad.
     /// </summary>
-    public class InteractablePropertyInputBinding : InteractablePropertyBase<InputAction>
+    public class InteractablePropertyInputBinding : InteractablePropertyWithValueBase<InputAction>
     {
         [SerializeField] private InputBindingReader inputReader;
         [SerializeField] private InputBindingReader inputReaderAlt;
 
-        public void Construct(string title, InputAction action, int bindingIndex, int bindingIndexAlt = -1)
+        public void Construct(string title, InputAction action, int bindingIndex, int modifier1Index = -1, int modifier2Index = -1, int bindingIndexAlt = -1, int modifier1IndexAlt = -1, int modifier2IndexAlt = -1)
         {
-            title = Regex.Replace(title, "([A-Z])", " $1").Trim();
-            ConstructTitle(title);
+            ConstructTitle(title.WithSpacesBeforeCapitals());
             
-            inputReader.Construct(action, bindingIndex);
+            inputReader.Construct(action, bindingIndex, modifier1Index, modifier2Index);
             inputReaderAlt.gameObject.SetActive(bindingIndexAlt != -1);
-            if (bindingIndexAlt != -1) inputReaderAlt.Construct(action, bindingIndexAlt);
+            if (bindingIndexAlt != -1) inputReaderAlt.Construct(action, bindingIndexAlt, modifier1IndexAlt, modifier2IndexAlt);
         }
-        
+
         public override void SetDisabled(bool isDisabled)
         {
             inputReader.SetActive(!isDisabled);
@@ -44,5 +43,7 @@ namespace Rogium.UserInterface.Interactables.Properties
 
         public string InputString { get => inputReader.InputString; }
         public string InputStringAlt { get => inputReaderAlt.InputString; }
+        public InputBindingReader InputReader { get => inputReader; }
+        public InputBindingReader InputReaderAlt { get => inputReaderAlt; }
     }
 }

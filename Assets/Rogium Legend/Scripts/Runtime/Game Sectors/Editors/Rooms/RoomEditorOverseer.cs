@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using RedRats.Core;
-using Rogium.Core;
-using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Tiles;

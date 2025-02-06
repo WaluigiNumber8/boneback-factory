@@ -10,18 +10,14 @@ namespace Rogium.Options.Core
     public class OptionsInputPropertyBuilder : UIPropertyContentBuilderBaseColumn2<InputBindingsAsset>
     {
         private readonly InputSystem input;
-        private InputBindingsAsset asset;
 
         public OptionsInputPropertyBuilder(Transform contentMain, Transform contentSecond) : base(contentMain, contentSecond)
         {
             input = InputSystem.GetInstance();
         }
 
-        public override void Build(InputBindingsAsset asset)
+        public override void BuildInternal(InputBindingsAsset asset)
         {
-            this.asset = asset;
-            Clear();
-            
             BuildFor(InputDeviceType.Keyboard, contentMain);
             BuildFor(InputDeviceType.Gamepad, contentSecond);
         }

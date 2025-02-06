@@ -17,9 +17,8 @@ namespace Rogium.Editors.AssetSelection
         /// Build <see cref="SelectionInfoColumn"/> properties for a sprite.
         /// </summary>
         /// <param name="asset">The sprite to build for.</param>
-        public override void Build(SpriteAsset asset)
+        public override void BuildInternal(SpriteAsset asset)
         {
-            Clear();
             b.BuildAssetEmblemList("Palette", asset.AssociatedPaletteID.TryGetAsset(PackEditorOverseer.Instance.CurrentPack.Palettes).Icon, contentMain);
         }
     }

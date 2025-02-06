@@ -15,7 +15,7 @@ namespace Rogium.Tests.Editors.Sprites
     {
         public static IEnumerator UpdateColorSlot(Color color, int slot = 0)
         {
-            SpriteEditorOverseerMono.GetInstance().Palette.GetSlot(slot).OnPointerClick(PointerDataCreator.RightClick());
+            SpriteEditorOverseerMono.GetInstance().Palette.GetSlot(slot).OnPointerClick(TUtilsPointerDataCreator.RightClick());
             ColorPickerWindow colorPicker = InteractableUtils.FindFirstColorPickerWindow();
             colorPicker.UpdateColor(color);
             colorPicker.Close();

@@ -657,7 +657,7 @@ GameObject:
   - component: {fileID: 6905151788904653711}
   - component: {fileID: 76189560843520569}
   m_Layer: 5
-  m_Name: Buttons Group
+  m_Name: Buttons Group + Shortcuts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -723,7 +723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shortcuts:
-  - trigger: {fileID: -8702186798268454881, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+  - trigger: {fileID: -1299235554287948963, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
     action:
       m_PersistentCalls:
         m_Calls:
@@ -740,7 +740,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - trigger: {fileID: 6926642622285706452, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+  - trigger: {fileID: -6542194280830389418, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
     action:
       m_PersistentCalls:
         m_Calls:
@@ -757,7 +757,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - trigger: {fileID: 1987048373942162741, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+  - trigger: {fileID: 5160298879228320980, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
     action:
       m_PersistentCalls:
         m_Calls:

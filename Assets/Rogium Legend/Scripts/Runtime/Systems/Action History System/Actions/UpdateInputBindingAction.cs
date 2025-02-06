@@ -1,15 +1,16 @@
 ﻿using System;
+using Rogium.Systems.Input;
 using Rogium.UserInterface.Interactables;
 
 namespace Rogium.Systems.ActionHistory
 {
-    public class UpdateInputBindingAction : ActionBase<string>
+    public class UpdateInputBindingAction : ActionBase<InputBindingCombination>
     {
         private readonly InputBindingReader reader;
-        private readonly string value;
-        private readonly string lastValue;
+        private readonly InputBindingCombination value;
+        private readonly InputBindingCombination lastValue;
         
-        public UpdateInputBindingAction(InputBindingReader reader, string value, string lastValue,  Action<string> fallback) : base(fallback)
+        public UpdateInputBindingAction(InputBindingReader reader, InputBindingCombination value, InputBindingCombination lastValue,  Action<InputBindingCombination> fallback) : base(fallback)
         {
             this.reader = reader;
             this.value = value;
@@ -23,7 +24,7 @@ namespace Rogium.Systems.ActionHistory
         public override bool NothingChanged() => value == lastValue;
         public override string ToString() => $"{reader.name}: {lastValue} -> {value}";
         public override object AffectedConstruct { get => reader; }
-        public override string Value { get => value; }
-        public override string LastValue { get => lastValue; }
+        public override InputBindingCombination Value { get => value; }
+        public override InputBindingCombination LastValue { get => lastValue; }
     }
 }

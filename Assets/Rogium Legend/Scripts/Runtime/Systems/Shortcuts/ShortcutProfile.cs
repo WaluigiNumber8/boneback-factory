@@ -3,7 +3,7 @@ using System.Linq;
 using RedRats.Core;
 using UnityEngine;
 
-namespace Rogium.Core.Shortcuts
+namespace Rogium.Systems.Shortcuts
 {
     /// <summary>
     /// Stores a set of actions that can be triggered via button shortcuts.
@@ -15,17 +15,9 @@ namespace Rogium.Core.Shortcuts
 
         private List<ShortcutProfile> lastProfiles;
 
-        private void Awake()
-        {
-            if (shortcuts == null || shortcuts.Length == 0) return;
-            foreach (ShortcutData shortcut in shortcuts)
-            {
-                shortcut.RefreshInput();
-            }
-        }
-
         private void OnEnable()
         {
+            RefreshAllInput();
             FindAndDisableProfiles();
             LinkAll();
         }
@@ -50,6 +42,15 @@ namespace Rogium.Core.Shortcuts
             FindAndDisableProfiles();
         }
 
+        private void RefreshAllInput()
+        {
+            if (shortcuts == null || shortcuts.Length == 0) return;
+            foreach (ShortcutData shortcut in shortcuts)
+            {
+                shortcut.RefreshInput();
+            }
+        }
+        
         private void LinkAll()
         {
             if (shortcuts == null || shortcuts.Length == 0) return;

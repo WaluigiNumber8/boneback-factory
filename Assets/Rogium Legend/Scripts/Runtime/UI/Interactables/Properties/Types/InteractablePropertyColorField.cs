@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Rogium.UserInterface.Interactables.Properties
 {
-    public class InteractablePropertyColorField : InteractablePropertyBase<Color>
+    public class InteractablePropertyColorField : InteractablePropertyWithValueBase<Color>
     {
         [SerializeField] private ColorField colorField;
         

@@ -23,12 +23,12 @@ namespace Rogium.Tests.Systems.Shortcuts
         public override IEnumerator SetUp()
         {
             yield return base.SetUp();
-            yield return MenuLoader.PrepareCampaignSelection();
-            yield return MenuLoader.PrepareCampaignEditor(false);
+            yield return TUtilsMenuLoader.PrepareCampaignSelection();
+            yield return TUtilsMenuLoader.PrepareCampaignEditor(false);
             AddNewPackToLibrary();
             AddNewPackToLibrary();
             AddNewCampaignToLibrary();
-            OverseerLoader.LoadModalWindowBuilder();
+            TUtilsOverseerLoader.LoadModalWindowBuilder();
             editor = CampaignEditorOverseerMono.GetInstance();
             yield return null;
             yield return OpenEditor(AssetType.Campaign);
@@ -48,7 +48,7 @@ namespace Rogium.Tests.Systems.Shortcuts
         [UnityTest]
         public IEnumerator Should_CancelChanges_WhenShortcutPressed()
         {
-            i.Trigger(input.Shortcuts.Cancel.Action);
+            i.Trigger(input.UI.Cancel.Action);
             yield return new WaitForSecondsRealtime(0.1f);
             Assert.That(Object.FindFirstObjectByType<ModalWindow>(), Is.Not.Null);
             Assert.That(Object.FindFirstObjectByType<ModalWindow>().IsOpen, Is.True);

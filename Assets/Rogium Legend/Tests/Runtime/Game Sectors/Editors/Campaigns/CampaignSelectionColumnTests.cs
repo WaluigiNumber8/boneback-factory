@@ -20,12 +20,12 @@ namespace Rogium.Tests.Editors.Campaigns
         public override IEnumerator Setup()
         {
             yield return base.Setup();
-            OverseerLoader.LoadModalWindowBuilder();
-            OverseerLoader.LoadUIBuilder();
+            TUtilsOverseerLoader.LoadModalWindowBuilder();
+            TUtilsOverseerLoader.LoadUIBuilder();
             AddNewPackToLibrary();
             AddNewPackToLibrary();
             yield return null;
-            yield return MenuLoader.PrepareCampaignEditor();
+            yield return TUtilsMenuLoader.PrepareCampaignEditor();
             campaignEditor = CampaignEditorOverseerMono.GetInstance();
             infoColumn = campaignEditor.GetComponentInChildren<SelectionInfoColumn>();
             yield return null;

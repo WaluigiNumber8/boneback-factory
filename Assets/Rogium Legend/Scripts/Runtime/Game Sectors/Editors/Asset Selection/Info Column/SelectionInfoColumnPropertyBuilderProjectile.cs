@@ -15,9 +15,8 @@ namespace Rogium.Editors.AssetSelection
         /// Build <see cref="SelectionInfoColumn"/> properties for a projectile.
         /// </summary>
         /// <param name="asset">The projectile to build for.</param>
-        public override void Build(ProjectileAsset asset)
+        public override void BuildInternal(ProjectileAsset asset)
         {
-            Clear();
             b.BuildPlainText("Damage", asset.BaseDamage.ToString(), contentMain);
             b.BuildPlainText("Speed", asset.FlightSpeed.ToString(), contentMain);
             b.BuildPlainText("Type", asset.PierceType.ToString(), contentMain);

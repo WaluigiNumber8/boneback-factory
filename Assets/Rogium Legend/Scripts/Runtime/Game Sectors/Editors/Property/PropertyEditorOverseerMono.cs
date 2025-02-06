@@ -50,6 +50,16 @@ namespace Rogium.Editors.PropertyEditor
             TileEditorOverseer.Instance.OnAssignAsset -= InitTiles;
         }
 
+        /// <summary>
+        /// Dispose all properties from the editor.
+        /// </summary>
+        public void DisposeProperties()
+        {
+            weaponBuilder.Clear();
+            projectileBuilder.Clear();
+            enemyBuilder.Clear();
+            tileBuilder.Clear();
+        }
         
         /// <summary>
         /// Initializes the editor for Weapons.

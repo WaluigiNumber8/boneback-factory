@@ -15,9 +15,8 @@ namespace Rogium.Editors.AssetSelection
         /// Build <see cref="SelectionInfoColumn"/> properties for a tile.
         /// </summary>
         /// <param name="asset">The tile to build for.</param>
-        public override void Build(TileAsset asset)
+        public override void BuildInternal(TileAsset asset)
         {
-            Clear();
             b.BuildPlainText("Type", asset.Type.ToString(), contentMain);
             b.BuildPlainText("Layer", asset.LayerType.ToString(), contentMain);
             b.BuildPlainText("Terrain", asset.TerrainType.ToString(), contentMain);

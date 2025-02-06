@@ -61,11 +61,10 @@ namespace Rogium.Options.Core
             
             public Builder AsCopy(InputBindingsAsset asset)
             {
-                Asset.keyboard = asset.keyboard;
-                Asset.keyboardAlt = asset.keyboardAlt;
-                Asset.gamepad = asset.gamepad;
-                Asset.gamepadAlt = asset.gamepadAlt;
-                return this;
+                return WithKeyboard(asset.Keyboard)
+                      .WithKeyboardAlt(asset.KeyboardAlt)
+                      .WithGamepad(asset.Gamepad)
+                      .WithGamepadAlt(asset.GamepadAlt);
             }
         
             public InputBindingsAsset Build() => Asset;

@@ -1,15 +1,16 @@
 ﻿using System.Collections;
 using NUnit.Framework;
 using RedRats.UI.ModalWindows;
+using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.ActionHistory;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables;
 using UnityEngine;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.TestTools;
-using static Rogium.Tests.UI.Interactables.InputBindingReaderTestsU;
+using static Rogium.Tests.UI.Interactables.InputReader.InputBindingReaderTestsU;
 
-namespace Rogium.Tests.UI.Interactables
+namespace Rogium.Tests.UI.Interactables.InputReader
 {
     /// <summary>
     /// Tests for interactions between <see cref="InputBindingReader"/> and <see cref="ActionHistorySystem"/>.
@@ -21,9 +22,9 @@ namespace Rogium.Tests.UI.Interactables
         public override IEnumerator SetUp()
         {
             yield return base.SetUp();
-            OverseerLoader.LoadThemeOverseer();
-            OverseerLoader.LoadUIBuilder();
-            OverseerLoader.LoadModalWindowBuilder();
+            TUtilsOverseerLoader.LoadThemeOverseer();
+            TUtilsOverseerLoader.LoadUIBuilder();
+            TUtilsOverseerLoader.LoadModalWindowBuilder();
             yield return null;
             reader = BuildInputReader(input.Player.ButtonMain.Action);
         }
@@ -39,11 +40,11 @@ namespace Rogium.Tests.UI.Interactables
         [UnityTest]
         public IEnumerator Should_UndoRebinding_WhenUndone()
         {
-            string originalKey = reader.Binding.effectivePath;
+            string originalKey = reader.Binding.DisplayString;
             yield return BindKey(keyboard.lKey);
             ActionHistorySystem.ForceEndGrouping();
             ActionHistorySystem.Undo();
-            Assert.That(reader.Binding.effectivePath, Is.EqualTo(originalKey));
+            Assert.That(reader.Binding.DisplayString, Is.EqualTo(originalKey));
         }
 
         [UnityTest]
@@ -51,9 +52,9 @@ namespace Rogium.Tests.UI.Interactables
         {
             yield return BindKey(keyboard.lKey);
             ActionHistorySystem.ForceEndGrouping();
-            string reboundKey = reader.Binding.effectivePath;
+            string reboundKey = reader.Binding.DisplayString;
             ActionHistorySystem.Undo();
-            Assert.That(reader.Binding.effectivePath, Is.Not.EqualTo(reboundKey));
+            Assert.That(reader.Binding.DisplayString, Is.Not.EqualTo(reboundKey));
         }
 
         [UnityTest]
@@ -61,21 +62,21 @@ namespace Rogium.Tests.UI.Interactables
         {
             yield return BindKey(keyboard.lKey);
             ActionHistorySystem.ForceEndGrouping();
-            string reboundKey = reader.Binding.effectivePath;
+            string reboundKey = reader.Binding.DisplayString;
             ActionHistorySystem.Undo();
             ActionHistorySystem.Redo();
-            Assert.That(reader.Binding.effectivePath, Is.EqualTo(reboundKey));
+            Assert.That(reader.Binding.DisplayString, Is.EqualTo(reboundKey));
         }
 
         [UnityTest]
         public IEnumerator Should_NotEqualToOriginalKey_WhenRedone()
         {
-            string originalKey = reader.Binding.effectivePath;
+            string originalKey = reader.Binding.DisplayString;
             yield return BindKey(keyboard.lKey);
             ActionHistorySystem.ForceEndGrouping();
             ActionHistorySystem.Undo();
             ActionHistorySystem.Redo();
-            Assert.That(reader.Binding.effectivePath, Is.Not.EqualTo(originalKey));
+            Assert.That(reader.Binding.DisplayString, Is.Not.EqualTo(originalKey));
         }
 
         [UnityTest]
@@ -146,9 +147,9 @@ namespace Rogium.Tests.UI.Interactables
         private IEnumerator BindKey(ButtonControl key)
         {
             reader.StartRebinding();
-            yield return new WaitForSecondsRealtime(0.1f);
+            yield return new WaitForSecondsRealtime(0.01f);
             i.Press(key);
-            yield return new WaitForSecondsRealtime(0.1f);
+            yield return new WaitForSecondsRealtime(EditorDefaults.Instance.InputWaitForAnother);
         }
     }
 }

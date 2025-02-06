@@ -31,9 +31,9 @@ namespace Rogium.Tests.Editors.AssetSelection
         public override IEnumerator Setup()
         {
             yield return base.Setup();
-            OverseerLoader.LoadModalWindowBuilder();
-            OverseerLoader.LoadUIBuilder();
-            yield return MenuLoader.PrepareSelectionMenu();
+            TUtilsOverseerLoader.LoadModalWindowBuilder();
+            TUtilsOverseerLoader.LoadUIBuilder();
+            yield return TUtilsMenuLoader.PrepareSelectionMenu();
             selectionMenu = SelectionMenuOverseerMono.GetInstance();
             infoColumn = selectionMenu.GetComponentInChildren<SelectionInfoColumn>();
             AddNewPackToLibrary();
@@ -139,7 +139,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         public IEnumerator Should_KeepPropertiesThemeBlue_WhenReturnFromEnemyEditor()
         {
             yield return OpenPackAndSelectEnemy();
-            yield return MenuLoader.PrepareEnemyEditor(false);
+            yield return TUtilsMenuLoader.PrepareEnemyEditor(false);
             GASActions.OpenEditorEnemy(0);
             GASActions.CancelChangesEnemy();
             yield return null;

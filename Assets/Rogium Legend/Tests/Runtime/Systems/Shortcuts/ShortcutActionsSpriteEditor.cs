@@ -26,9 +26,9 @@ namespace Rogium.Tests.Systems.Shortcuts
         public override IEnumerator SetUp()
         {
             yield return base.SetUp();
-            yield return MenuLoader.PrepareSelectionMenu();
-            yield return MenuLoader.PrepareSpriteEditor(false);
-            OverseerLoader.LoadModalWindowBuilder();
+            yield return TUtilsMenuLoader.PrepareSelectionMenu();
+            yield return TUtilsMenuLoader.PrepareSpriteEditor(false);
+            TUtilsOverseerLoader.LoadModalWindowBuilder();
             editor = SpriteEditorOverseerMono.GetInstance();
             yield return null;
             yield return OpenEditor(AssetType.Sprite);
@@ -74,7 +74,7 @@ namespace Rogium.Tests.Systems.Shortcuts
         {
             yield return FillCanvas();
             int drawnCell = editor.GetCurrentGridCopy.GetAt(0, 0);
-            i.Trigger(input.Shortcuts.Cancel.Action);
+            i.Trigger(input.UI.Cancel.Action);
             yield return null;
             yield return null;
             yield return WindowAccept();
@@ -141,6 +141,8 @@ namespace Rogium.Tests.Systems.Shortcuts
         [UnityTest]
         public IEnumerator Should_OpenAssetPickerForPalettes_WhenShortcutPressed()
         {
+            i.Press(keyboard.ctrlKey);
+            i.Press(keyboard.pKey);
             i.Trigger(input.Shortcuts.ChangePalette.Action);
             yield return new WaitForSeconds(0.1f);
             Assert.That(Object.FindFirstObjectByType<AssetPickerWindow>(), Is.Not.Null);
@@ -152,7 +154,7 @@ namespace Rogium.Tests.Systems.Shortcuts
         {
             i.Trigger(input.Shortcuts.ChangePalette.Action);
             yield return new WaitForSeconds(0.1f);
-            i.Trigger(input.Shortcuts.Cancel.Action);
+            i.Trigger(input.UI.Cancel.Action);
             yield return new WaitForSeconds(0.1f);
             Assert.That(Object.FindFirstObjectByType<AssetPickerWindow>(FindObjectsInactive.Include).IsOpen, Is.False);
         }
@@ -160,9 +162,11 @@ namespace Rogium.Tests.Systems.Shortcuts
         [UnityTest]
         public IEnumerator Should_CloseAssetPickerForPalettesWithoutLEavingSpriteEditor_WhenShortcutPressed()
         {
+            i.Press(keyboard.ctrlKey);
+            i.Press(keyboard.pKey);
             i.Trigger(input.Shortcuts.ChangePalette.Action);
             yield return new WaitForSeconds(0.1f);
-            i.Trigger(input.Shortcuts.Cancel.Action);
+            i.Trigger(input.UI.Cancel.Action);
             yield return new WaitForSeconds(0.1f);
             Assert.That(MenuSwitcher.GetInstance().CurrentMenu, Is.EqualTo(MenuType.SpriteEditor));
         }

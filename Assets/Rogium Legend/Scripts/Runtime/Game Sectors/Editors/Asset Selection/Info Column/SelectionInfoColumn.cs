@@ -50,7 +50,7 @@ namespace Rogium.Editors.AssetSelection
             {
                 { typeof(PackAsset), asset => {PrepareIcon(asset.Icon); builderPack.Build((PackAsset) asset); }},
                 { typeof(CampaignAsset), asset => {PrepareIcon(asset.Icon);}},
-                { typeof(PaletteAsset), asset => {PrepareIcon(asset.Icon); ui.content.KillChildren();}},
+                { typeof(PaletteAsset), asset => {PrepareIcon(asset.Icon); ui.content.ReleaseAllProperties();}},
                 { typeof(SpriteAsset), asset => {PrepareIcon(asset.Icon); builderSprite.Build((SpriteAsset)asset);}},
                 { typeof(WeaponAsset), asset => {PrepareIcon(asset.Icon); builderWeapon.Build((WeaponAsset)asset);}},
                 { typeof(ProjectileAsset), asset => {PrepareIcon(asset.Icon); builderProjectile.Build((ProjectileAsset)asset);}},
@@ -89,14 +89,19 @@ namespace Rogium.Editors.AssetSelection
             ui.title.text = $"Select a {type.ToString().ToLower()}";
             if (ui.previewIconContainer != null) ui.previewIconContainer.SetActive(false);
             if (ui.previewBannerContainer != null) ui.previewBannerContainer.SetActive(false);
-            ui.content.KillChildren();
+            ui.content.ReleaseAllProperties();
         }
         
-        public InteractablePropertyBase<T> GetProperty<T>(int i)
+        public InteractablePropertyWithValueBase<T> GetProperty<T>(int i)
         {
             SafetyNet.EnsureIntIsLowerOrEqualTo(i, ui.content.childCount, nameof(i));
             SafetyNet.EnsureIntIsInRange(i, 0, ui.content.childCount, nameof(i));
-            return ui.content.GetChild(i).GetComponent<InteractablePropertyBase<T>>();
+            return ui.content.GetChild(i).GetComponent<InteractablePropertyWithValueBase<T>>();
+        }
+        
+        public void DisposeProperties()
+        {
+            ui.content.ReleaseAllProperties();
         }
         
         private void Refresh(IAsset asset)

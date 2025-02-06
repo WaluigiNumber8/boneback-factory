@@ -1,5 +1,4 @@
-﻿using RedRats.Core;
-using Rogium.Editors.Core;
+﻿using Rogium.Editors.Core;
 using UnityEngine;
 
 namespace Rogium.UserInterface.Interactables.Properties
@@ -11,6 +10,9 @@ namespace Rogium.UserInterface.Interactables.Properties
     {
         protected UIPropertyContentBuilderBaseColumn1(Transform contentMain) : base(contentMain) { }
 
-        public override void Clear() => contentMain.gameObject.KillChildren();
+        public override void Clear()
+        {
+            contentMain.ReleaseAllProperties();
+        }
     }
 }

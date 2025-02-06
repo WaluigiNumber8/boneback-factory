@@ -38,14 +38,14 @@
 
         protected override void WhenDisabled()
         {
-            map.Disable();
-            
             navigate.Disable();
             pointerPosition.Disable();
             select.Disable();
             cancel.Disable();
             contextSelect.Disable();
             showTooltip.Disable();
+            
+            map.Disable();
         }
 
         public override bool IsMapEnabled { get => map.enabled; }

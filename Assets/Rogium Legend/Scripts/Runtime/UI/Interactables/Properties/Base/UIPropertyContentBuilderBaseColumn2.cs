@@ -21,8 +21,8 @@ namespace Rogium.UserInterface.Interactables.Properties
 
         public override void Clear()
         {
-            contentMain.gameObject.KillChildren();
-            contentSecond.gameObject.KillChildren();
+            contentMain.ReleaseAllProperties();
+            contentSecond.ReleaseAllProperties();
         }
     }
 }

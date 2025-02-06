@@ -34,13 +34,12 @@ namespace Rogium.Editors.PropertyEditor.Builders
             aiOptions = new[] {"Look", "Rotate"};
         }
 
-        public override void Build(EnemyAsset asset)
+        public override void BuildInternal(EnemyAsset asset)
         {
             this.asset = asset;
             currentPack = PackEditorOverseer.Instance.CurrentPack;
             packWeapons = currentPack.Weapons;
             
-            Clear();
             BuildColumnImportant(contentMain);
             BuildColumnProperty(contentSecond);
         }

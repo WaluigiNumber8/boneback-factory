@@ -25,9 +25,9 @@ namespace Rogium.Tests.Systems.Shortcuts
         public override IEnumerator SetUp()
         {
             yield return base.SetUp();
-            yield return MenuLoader.PrepareSelectionMenu();
-            yield return MenuLoader.PrepareRoomEditor(false);
-            OverseerLoader.LoadModalWindowBuilder();
+            yield return TUtilsMenuLoader.PrepareSelectionMenu();
+            yield return TUtilsMenuLoader.PrepareRoomEditor(false);
+            TUtilsOverseerLoader.LoadModalWindowBuilder();
             editor = RoomEditorOverseerMono.GetInstance();
             yield return null;
             yield return OpenEditor(AssetType.Room);
@@ -73,7 +73,7 @@ namespace Rogium.Tests.Systems.Shortcuts
         {
             yield return FillTileLayer();
             AssetData drawnCell = editor.GetCurrentGridCopy.GetAt(0, 0);
-            i.Trigger(input.Shortcuts.Cancel.Action);
+            i.Trigger(input.UI.Cancel.Action);
             yield return null;
             yield return null;
             yield return WindowAccept();
@@ -150,11 +150,11 @@ namespace Rogium.Tests.Systems.Shortcuts
         public IEnumerator Should_CloseModalWindow_WhenShortcutPressed()
         {
             yield return FillTileLayer();
-            i.Trigger(input.Shortcuts.Cancel.Action);
+            i.Trigger(input.UI.Cancel.Action);
             yield return null;
             yield return new WaitForSecondsRealtime(2f);
             yield return null;
-            i.Trigger(input.Shortcuts.Cancel.Action);
+            i.Trigger(input.UI.Cancel.Action);
             yield return new WaitForSecondsRealtime(2f);
             Assert.That(Object.FindFirstObjectByType<ModalWindow>(FindObjectsInactive.Include).transform.GetChild(0).gameObject.activeSelf, Is.False);
         }

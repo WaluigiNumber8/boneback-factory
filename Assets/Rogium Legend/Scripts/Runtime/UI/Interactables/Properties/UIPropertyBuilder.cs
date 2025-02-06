@@ -10,7 +10,6 @@ using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using InputSystem = Rogium.Systems.Input.InputSystem;
 
 namespace Rogium.UserInterface.Interactables.Properties
 {
@@ -24,10 +23,10 @@ namespace Rogium.UserInterface.Interactables.Properties
         [SerializeField] private InteractablePropertyPlainText plainTextProperty;
         [SerializeField] private InteractablePropertyInputField inputFieldProperty;
         [SerializeField] private InteractablePropertyInputField inputFieldAreaProperty;
-        [SerializeField] private InteractablePropertyAssetField assetFieldProperty;
-        [SerializeField] private InteractablePropertyToggle toggleProperty;
         [SerializeField] private InteractablePropertyDropdown dropdownProperty;
+        [SerializeField] private InteractablePropertyToggle toggleProperty;
         [SerializeField] private InteractablePropertySlider sliderProperty;
+        [SerializeField] private InteractablePropertyAssetField assetFieldProperty;
         [SerializeField] private InteractablePropertySoundField soundFieldProperty;
         [SerializeField] private InteractablePropertyColorField colorFieldProperty;
         [SerializeField] private InteractablePropertyAssetEmblemList assetEmblemListProperty;
@@ -36,6 +35,47 @@ namespace Rogium.UserInterface.Interactables.Properties
         [Title("Other properties")]
         [SerializeField] private ContentBlockInfo contentBlocks;
         [SerializeField] private VerticalVariantsInfo verticalVariants;
+        
+        [Title("Other")] [SerializeField]
+        private Transform poolParent;
+
+        private UIPropertyPool<InteractablePropertyHeader> headerPool;
+        private UIPropertyPool<InteractablePropertyPlainText> plainTextPool, plainTextVerticalPool;
+        private UIPropertyPool<InteractablePropertyInputField> inputFieldPool, inputFieldAreaPool, inputFieldVerticalPool;
+        private UIPropertyPool<InteractablePropertyDropdown> dropdownPool, dropdownVerticalPool;
+        private UIPropertyPool<InteractablePropertyToggle> togglePool;
+        private UIPropertyPool<InteractablePropertySlider> sliderPool;
+        private UIPropertyPool<InteractablePropertyAssetField> assetFieldPool;
+        private UIPropertyPool<InteractablePropertySoundField> soundFieldPool;
+        private UIPropertyPool<InteractablePropertyColorField> colorFieldPool;
+        private UIPropertyPool<InteractablePropertyAssetEmblemList> assetEmblemListPool;
+        private UIPropertyPool<InteractablePropertyInputBinding> inputBindingPool;
+        
+        private UIPropertyPool<InteractablePropertyContentBlock> contentBlockHorizontalPool, contentBlockVerticalPool, contentBlockColumn2Pool;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            headerPool = new UIPropertyPool<InteractablePropertyHeader>(headerProperty, poolParent, 25, 100);
+            plainTextPool = new UIPropertyPool<InteractablePropertyPlainText>(plainTextProperty, poolParent, 50, 150);
+            plainTextVerticalPool = new UIPropertyPool<InteractablePropertyPlainText>(verticalVariants.plainTextProperty, poolParent, 50, 150);
+            inputFieldPool = new UIPropertyPool<InteractablePropertyInputField>(inputFieldProperty, poolParent, 50, 150);
+            inputFieldAreaPool = new UIPropertyPool<InteractablePropertyInputField>(inputFieldAreaProperty, poolParent, 50, 150);
+            inputFieldVerticalPool = new UIPropertyPool<InteractablePropertyInputField>(verticalVariants.inputFieldProperty, poolParent, 50, 150);
+            dropdownPool = new UIPropertyPool<InteractablePropertyDropdown>(dropdownProperty, poolParent, 50, 150);
+            dropdownVerticalPool = new UIPropertyPool<InteractablePropertyDropdown>(verticalVariants.dropdownProperty, poolParent, 50, 150);
+            togglePool = new UIPropertyPool<InteractablePropertyToggle>(toggleProperty, poolParent, 50, 150);
+            sliderPool = new UIPropertyPool<InteractablePropertySlider>(sliderProperty, poolParent, 50, 150);
+            assetFieldPool = new UIPropertyPool<InteractablePropertyAssetField>(assetFieldProperty, poolParent, 50, 150);
+            soundFieldPool = new UIPropertyPool<InteractablePropertySoundField>(soundFieldProperty, poolParent, 50, 150);
+            colorFieldPool = new UIPropertyPool<InteractablePropertyColorField>(colorFieldProperty, poolParent, 50, 150);
+            assetEmblemListPool = new UIPropertyPool<InteractablePropertyAssetEmblemList>(assetEmblemListProperty, poolParent, 50, 150);
+            inputBindingPool = new UIPropertyPool<InteractablePropertyInputBinding>(inputBindingProperty, poolParent, 50, 150);
+            
+            contentBlockHorizontalPool = new UIPropertyPool<InteractablePropertyContentBlock>(contentBlocks.horizontal, poolParent, 10, 40);
+            contentBlockVerticalPool = new UIPropertyPool<InteractablePropertyContentBlock>(contentBlocks.vertical, poolParent, 10, 40);
+            contentBlockColumn2Pool = new UIPropertyPool<InteractablePropertyContentBlock>(contentBlocks.column2, poolParent, 10, 40);
+        }
 
         #region Properties
 
@@ -47,7 +87,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <returns>The property itself.</returns>
         public void BuildHeader(string headerText, Transform parent)
         {
-            InteractablePropertyHeader header = Instantiate(headerProperty, parent);
+            InteractablePropertyHeader header = headerPool.Get(parent);
             header.name = $"{headerText} Header";
             header.Construct(headerText);
             ThemeUpdaterRogium.UpdateHeader(header);
@@ -68,7 +108,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <returns>The property itself.</returns>
         public void BuildInputField(string title, string value, Transform parent, Action<string> whenFinishEditing, bool isDisabled = false, bool isVertical = false, TMP_InputField.CharacterValidation characterValidation = TMP_InputField.CharacterValidation.Regex, float minLimit = float.MinValue, float maxLimit = float.MaxValue)
         {
-            InteractablePropertyInputField inputField = Instantiate((isVertical) ? verticalVariants.inputFieldProperty : inputFieldProperty, parent);
+            InteractablePropertyInputField inputField = (isVertical) ? inputFieldVerticalPool.Get(parent) : inputFieldPool.Get(parent);
             inputField.name = $"{title} InputField";
             inputField.Construct(title, value, whenFinishEditing, characterValidation, minLimit, maxLimit);
             inputField.SetDisabled(isDisabled);
@@ -89,7 +129,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <returns>The property itself.</returns>
         public void BuildInputFieldArea(string title, string value, Transform parent, Action<string> whenFinishEditing, bool isDisabled = false, TMP_InputField.CharacterValidation characterValidation = TMP_InputField.CharacterValidation.Regex, float minLimit = float.MinValue, float maxLimit = float.MaxValue)
         {
-            InteractablePropertyInputField inputField = Instantiate(inputFieldAreaProperty, parent);
+            InteractablePropertyInputField inputField = inputFieldAreaPool.Get(parent);
             inputField.name = $"{title} InputField";
             inputField.Construct(title, value, whenFinishEditing, characterValidation, minLimit, maxLimit);
             inputField.SetDisabled(isDisabled);
@@ -107,7 +147,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <returns>The property itself.</returns>
         public void BuildToggle(string title, bool value, Transform parent, Action<bool> whenValueChange, bool isDisabled = false)
         {
-            InteractablePropertyToggle toggle = Instantiate(toggleProperty, parent).GetComponent<InteractablePropertyToggle>();
+            InteractablePropertyToggle toggle = togglePool.Get(parent);
             toggle.name = $"{title} Toggle";
             toggle.Construct(title, value, whenValueChange);
             toggle.SetDisabled(isDisabled);
@@ -127,7 +167,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <returns>The property itself.</returns>
         public void BuildDropdown(string title, IEnumerable<string> options, int value, Transform parent, Action<int> whenValueChange, bool isDisabled = false, bool isVertical = false)
         {
-            InteractablePropertyDropdown dropdown = Instantiate((isVertical) ? verticalVariants.dropdownProperty : dropdownProperty, parent);
+            InteractablePropertyDropdown dropdown = (isVertical) ? dropdownVerticalPool.Get(parent) : dropdownPool.Get(parent);
             dropdown.name = $"{title} Dropdown";
             dropdown.Construct(title, options, value, whenValueChange);
             dropdown.SetDisabled(isDisabled);
@@ -144,7 +184,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <returns>The property itself.</returns>
         public void BuildPlainText(string title, string value, Transform parent, bool isVertical = false)
         {
-            InteractablePropertyPlainText plainText = Instantiate((isVertical) ? verticalVariants.plainTextProperty : plainTextProperty, parent);
+            InteractablePropertyPlainText plainText = (isVertical) ? plainTextVerticalPool.Get(parent) : plainTextPool.Get(parent);
             plainText.name = $"{title} PlainText";
             plainText.Construct(title, value);
             ThemeUpdaterRogium.UpdatePlainText(plainText);
@@ -164,7 +204,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <returns>The property itself.</returns>
         public void BuildAssetField(string title, AssetType type, IAsset value, Transform parent, Action<IAsset> whenValueChange, Action whenSelectEmpty = null, bool isDisabled = false, ThemeType theme = ThemeType.Current)
         {
-            InteractablePropertyAssetField assetField = Instantiate(assetFieldProperty, parent);
+            InteractablePropertyAssetField assetField = assetFieldPool.Get(parent);
             assetField.name = $"{title} AssetField";
             assetField.Construct(title, type, value, whenValueChange, whenSelectEmpty, theme);
             assetField.SetDisabled(isDisabled);
@@ -184,7 +224,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <returns>The property itself.</returns>
         public void BuildSlider(string title, float minValue, float maxValue, float startingValue, Transform parent, Action<float> whenValueChange, bool isDisabled = false)
         {
-            InteractablePropertySlider slider = Instantiate(sliderProperty, parent);
+            InteractablePropertySlider slider = sliderPool.Get(parent);
             slider.name = $"{title} Slider";
             slider.Construct(title, minValue, maxValue, startingValue, whenValueChange);
             slider.SetDisabled(isDisabled);
@@ -205,7 +245,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <returns>The property itself.</returns>
         public void BuildSlider(string title, int minValue, int maxValue, int startingValue, Transform parent, Action<float> whenValueChange, bool isDisabled = false)
         {
-            InteractablePropertySlider slider = Instantiate(sliderProperty, parent);
+            InteractablePropertySlider slider = sliderPool.Get(parent);
             slider.name = $"{title} Slider";
             slider.Construct(title, minValue, maxValue, startingValue, whenValueChange);
             slider.SetDisabled(isDisabled);
@@ -223,7 +263,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="isDisabled">Initialize the property as a non-interactable</param>
         public void BuildSoundField(string title, AssetData value, Transform parent, Action<AssetData> whenValueChange, bool canBeEmpty = false, bool isDisabled = false)
         {
-            InteractablePropertySoundField soundField = Instantiate(soundFieldProperty, parent);
+            InteractablePropertySoundField soundField = soundFieldPool.Get(parent);
             soundField.name = $"{title} SoundField";
             soundField.Construct(title, value, whenValueChange, canBeEmpty);
             soundField.SetDisabled(isDisabled);
@@ -240,7 +280,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="isDisabled">Initialize the property as a non-interactable</param>
         public void BuildColorField(string title, Color value, Transform parent, Action<Color> whenValueChange, bool isDisabled = false)
         {
-            InteractablePropertyColorField colorField = Instantiate(colorFieldProperty, parent);
+            InteractablePropertyColorField colorField = colorFieldPool.Get(parent);
             colorField.name = $"{title} ColorField";
             colorField.Construct(title, value, whenValueChange);
             colorField.SetDisabled(isDisabled);
@@ -262,7 +302,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="parent">The parent under which to instantiate the property.</param>
         public void BuildAssetEmblemList(string title, IList<Sprite> values, Transform parent)
         {
-            InteractablePropertyAssetEmblemList assetEmblemList = Instantiate(assetEmblemListProperty, parent);
+            InteractablePropertyAssetEmblemList assetEmblemList = assetEmblemListPool.Get(parent);
             assetEmblemList.name = $"{title} Emblem List";
             assetEmblemList.Construct(title, values);
             ThemeUpdaterRogium.UpdateAssetEmblemList(assetEmblemList);
@@ -284,6 +324,13 @@ namespace Rogium.UserInterface.Interactables.Properties
             //If action is composite, spawn for each binding
             if (action.bindings[bindingIndex].isPartOfComposite)
             {
+                //If is a modifier composite, spawn only one
+                if (action.bindings[bindingIndex - 1].IsTwoOptionalModifiersComposite())
+                {
+                    ConstructInputBinding(action.name, true);
+                    return;
+                }
+                //Any other type spawn for each binding
                 while (bindingIndex < action.bindings.Count && action.bindings[bindingIndex].isPartOfComposite)
                 {
                     string title = $"{action.name}{action.bindings[bindingIndex].name.Capitalize()}";
@@ -295,11 +342,17 @@ namespace Rogium.UserInterface.Interactables.Properties
             }
             ConstructInputBinding(action.name);
             
-            void ConstructInputBinding(string title)
+            void ConstructInputBinding(string title, bool useModifiers = false)
             {
-                InteractablePropertyInputBinding inputBinding = Instantiate(inputBindingProperty, parent);
+                InteractablePropertyInputBinding inputBinding = inputBindingPool.Get(parent);
                 inputBinding.name = $"{title} InputBinding";
-                inputBinding.Construct(title, action, bindingIndex, bindingIndexAlt);
+                inputBinding.Construct(title, action, 
+                                       (useModifiers) ? bindingIndex + 2 : bindingIndex,
+                                       (useModifiers) ? bindingIndex : -1,
+                                       (useModifiers) ? bindingIndex + 1 : -1,
+                                       (useModifiers) ? bindingIndexAlt + 2 : bindingIndexAlt, 
+                                       (useModifiers) ? bindingIndexAlt : -1, 
+                                       (useModifiers) ? bindingIndexAlt + 1 : -1);
                 inputBinding.SetDisabled(isDisabled);
                 ThemeUpdaterRogium.UpdateInputBinding(inputBinding);
             }
@@ -317,7 +370,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <returns></returns>
         public InteractablePropertyContentBlock CreateContentBlockHorizontal(Transform parent, bool isDisabled = false)
         {
-            InteractablePropertyContentBlock contentBlock = Instantiate(contentBlocks.horizontal, parent);
+            InteractablePropertyContentBlock contentBlock = contentBlockHorizontalPool.Get(parent);
             contentBlock.SetDisabled(isDisabled);
             return contentBlock;
         }
@@ -330,7 +383,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <returns></returns>
         public InteractablePropertyContentBlock CreateContentBlockVertical(Transform parent, bool isDisabled = false)
         {
-            InteractablePropertyContentBlock contentBlock = Instantiate(contentBlocks.vertical, parent);
+            InteractablePropertyContentBlock contentBlock = contentBlockVerticalPool.Get(parent);
             contentBlock.SetDisabled(isDisabled);
             return contentBlock;
         }
@@ -343,7 +396,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <returns></returns>
         public InteractablePropertyContentBlock CreateContentBlockColumn2(Transform parent, bool isDisabled = false)
         {
-            InteractablePropertyContentBlock contentBlock = Instantiate(contentBlocks.column2, parent);
+            InteractablePropertyContentBlock contentBlock = contentBlockColumn2Pool.Get(parent);
             contentBlock.SetDisabled(isDisabled);
             return contentBlock;
         }

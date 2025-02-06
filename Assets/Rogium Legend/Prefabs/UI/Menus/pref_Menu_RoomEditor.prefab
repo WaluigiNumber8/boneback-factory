@@ -434,8 +434,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 244.58351, y: -0}
-  m_SizeDelta: {x: 489.16702, y: 0}
+  m_AnchoredPosition: {x: 332.5281, y: -0}
+  m_SizeDelta: {x: 665.0562, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &2703615381557064679
 CanvasRenderer:
@@ -878,8 +878,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8445472277154425703}
-  - component: {fileID: 4084164060629878328}
-  - component: {fileID: 2262921565593109992}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -894,7 +892,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2912141944282826211}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -903,286 +901,13 @@ RectTransform:
   - {fileID: 4777603816250845194}
   - {fileID: 308137252760202909}
   - {fileID: 3337324051928345528}
-  m_Father: {fileID: 3744289975823204836}
+  m_Father: {fileID: 7393895990004890245}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4084164060629878328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2912141944282826211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c71f9e646d537ff4f91d360b0c38be1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  menuType: 7
---- !u!114 &2262921565593109992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2912141944282826211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e407ec64132b41d19a9b2efba8be9663, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shortcuts:
-  - trigger: {fileID: -8964611696984835702, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
-          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASButtonActions,
-            Rogium.Runtime
-          m_MethodName: UndoLastAction
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - trigger: {fileID: -8526870751406642163, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
-          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
-          m_MethodName: RedoLastAction
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - trigger: {fileID: -6357785368114129414, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
-          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
-          m_MethodName: SaveChangesRoom
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - trigger: {fileID: -4531501882662290933, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
-          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
-          m_MethodName: CancelChangesRoom
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - trigger: {fileID: 2575069327092495878, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8624880981983502459}
-          m_TargetAssemblyTypeName: Rogium.Systems.Toolbox.ToolBoxUIManager, Rogium.Runtime
-          m_MethodName: SwitchToolSelection
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - trigger: {fileID: 3402928225118745922, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8624880981983502459}
-          m_TargetAssemblyTypeName: Rogium.Systems.Toolbox.ToolBoxUIManager, Rogium.Runtime
-          m_MethodName: SwitchToolBrush
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - trigger: {fileID: -3004038259785636041, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8624880981983502459}
-          m_TargetAssemblyTypeName: Rogium.Systems.Toolbox.ToolBoxUIManager, Rogium.Runtime
-          m_MethodName: SwitchToolEraser
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - trigger: {fileID: -2630175964665442836, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8624880981983502459}
-          m_TargetAssemblyTypeName: Rogium.Systems.Toolbox.ToolBoxUIManager, Rogium.Runtime
-          m_MethodName: SwitchToolBucket
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - trigger: {fileID: 9028432552348148864, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8624880981983502459}
-          m_TargetAssemblyTypeName: Rogium.Systems.Toolbox.ToolBoxUIManager, Rogium.Runtime
-          m_MethodName: SwitchToolPicker
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - trigger: {fileID: 3566249994969015305, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8217221320749065733}
-          m_TargetAssemblyTypeName: Rogium.Editors.Rooms.RoomEditorOverseerMono,
-            Rogium.Runtime
-          m_MethodName: ClearActiveLayer
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - trigger: {fileID: -5456502531854555292, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4556724042525422283}
-          m_TargetAssemblyTypeName: RedRats.Core.Helpers.ActiveStatusToggler, RedRats.Runtime
-          m_MethodName: ToggleActiveStatus
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - trigger: {fileID: 858265375994918704, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8217221320749065733}
-          m_TargetAssemblyTypeName: Rogium.Editors.Rooms.RoomEditorOverseerMono,
-            Rogium.Runtime
-          m_MethodName: SwitchLayer
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - trigger: {fileID: 8687280752772489027, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8217221320749065733}
-          m_TargetAssemblyTypeName: Rogium.Editors.Rooms.RoomEditorOverseerMono,
-            Rogium.Runtime
-          m_MethodName: SwitchLayer
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 1
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - trigger: {fileID: 841647530240474704, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8217221320749065733}
-          m_TargetAssemblyTypeName: Rogium.Editors.Rooms.RoomEditorOverseerMono,
-            Rogium.Runtime
-          m_MethodName: SwitchLayer
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 2
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - trigger: {fileID: -7584204678304179151, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
-    action:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8217221320749065733}
-          m_TargetAssemblyTypeName: Rogium.Editors.Rooms.RoomEditorOverseerMono,
-            Rogium.Runtime
-          m_MethodName: SwitchLayer
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 3
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  overrideAll: 0
 --- !u!1 &3051795002143262769
 GameObject:
   m_ObjectHideFlags: 0
@@ -1219,8 +944,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 244.58351, y: 0}
-  m_SizeDelta: {x: 489.16702, y: 0}
+  m_AnchoredPosition: {x: 332.5281, y: 0}
+  m_SizeDelta: {x: 665.0562, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &3129131883241862082
 CanvasRenderer:
@@ -2791,6 +2516,316 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddffa2efbb4430faf125924906a1e7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5460461126058403611
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9061978090811849934}
+  - component: {fileID: 8546361961268317225}
+  - component: {fileID: 5084857919356109884}
+  m_Layer: 5
+  m_Name: Shortcuts
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &9061978090811849934
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5460461126058403611}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7393895990004890245}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8546361961268317225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5460461126058403611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e407ec64132b41d19a9b2efba8be9663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shortcuts:
+  - trigger: {fileID: -8964611696984835702, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
+          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASButtonActions,
+            Rogium.Runtime
+          m_MethodName: UndoLastAction
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - trigger: {fileID: -9209410195060677911, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
+          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
+          m_MethodName: RedoLastAction
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - trigger: {fileID: -114994854449089288, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
+          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
+          m_MethodName: SaveChangesRoom
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - trigger: {fileID: 6176465743720167777, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 548334541910753705, guid: 9c7997f1e5193fa45822453cb7042e07, type: 3}
+          m_TargetAssemblyTypeName: Rogium.Systems.GASExtension.GASActions, Rogium.Runtime
+          m_MethodName: CancelChangesRoom
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - trigger: {fileID: -4327501308665482525, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8624880981983502459}
+          m_TargetAssemblyTypeName: Rogium.Systems.Toolbox.ToolBoxUIManager, Rogium.Runtime
+          m_MethodName: SwitchToolSelection
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - trigger: {fileID: -593450358929844970, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8624880981983502459}
+          m_TargetAssemblyTypeName: Rogium.Systems.Toolbox.ToolBoxUIManager, Rogium.Runtime
+          m_MethodName: SwitchToolBrush
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - trigger: {fileID: -2093857332311622890, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8624880981983502459}
+          m_TargetAssemblyTypeName: Rogium.Systems.Toolbox.ToolBoxUIManager, Rogium.Runtime
+          m_MethodName: SwitchToolEraser
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - trigger: {fileID: 5665075927366352085, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8624880981983502459}
+          m_TargetAssemblyTypeName: Rogium.Systems.Toolbox.ToolBoxUIManager, Rogium.Runtime
+          m_MethodName: SwitchToolBucket
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - trigger: {fileID: 9079402983221717873, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8624880981983502459}
+          m_TargetAssemblyTypeName: Rogium.Systems.Toolbox.ToolBoxUIManager, Rogium.Runtime
+          m_MethodName: SwitchToolPicker
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - trigger: {fileID: -6702628578699250812, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8217221320749065733}
+          m_TargetAssemblyTypeName: Rogium.Editors.Rooms.RoomEditorOverseerMono,
+            Rogium.Runtime
+          m_MethodName: ClearActiveLayer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - trigger: {fileID: 874081620955687981, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4556724042525422283}
+          m_TargetAssemblyTypeName: RedRats.Core.Helpers.ActiveStatusToggler, RedRats.Runtime
+          m_MethodName: ToggleActiveStatus
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - trigger: {fileID: 5262587155802176661, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8217221320749065733}
+          m_TargetAssemblyTypeName: Rogium.Editors.Rooms.RoomEditorOverseerMono,
+            Rogium.Runtime
+          m_MethodName: SwitchLayer
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - trigger: {fileID: 5727975347176691591, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8217221320749065733}
+          m_TargetAssemblyTypeName: Rogium.Editors.Rooms.RoomEditorOverseerMono,
+            Rogium.Runtime
+          m_MethodName: SwitchLayer
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - trigger: {fileID: 2401290637901762734, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8217221320749065733}
+          m_TargetAssemblyTypeName: Rogium.Editors.Rooms.RoomEditorOverseerMono,
+            Rogium.Runtime
+          m_MethodName: SwitchLayer
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - trigger: {fileID: 6426615435317299852, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8217221320749065733}
+          m_TargetAssemblyTypeName: Rogium.Editors.Rooms.RoomEditorOverseerMono,
+            Rogium.Runtime
+          m_MethodName: SwitchLayer
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 3
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  overrideAll: 0
+--- !u!114 &5084857919356109884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5460461126058403611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31c7a407fa2c4efe8e9db8f12473228e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activatedMaps: 81
 --- !u!1 &5565483797945547141
 GameObject:
   m_ObjectHideFlags: 0
@@ -4045,6 +4080,57 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!1 &8208332737127745605
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7393895990004890245}
+  - component: {fileID: 1729637488789022397}
+  m_Layer: 5
+  m_Name: Local
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7393895990004890245
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8208332737127745605}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8445472277154425703}
+  - {fileID: 9061978090811849934}
+  m_Father: {fileID: 3744289975823204836}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1729637488789022397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8208332737127745605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c71f9e646d537ff4f91d360b0c38be1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuType: 7
 --- !u!1 &8235457689323220717
 GameObject:
   m_ObjectHideFlags: 0
@@ -4741,7 +4827,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8445472277154425703}
+  - {fileID: 7393895990004890245}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5392,11 +5478,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8463756643395869780, guid: 9d67f85b412f9a74d9006ba729e91677, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 166.13
       objectReference: {fileID: 0}
     - target: {fileID: 8463756643395869780, guid: 9d67f85b412f9a74d9006ba729e91677, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 48
+      value: 62.010002
       objectReference: {fileID: 0}
     - target: {fileID: 8463756643395869780, guid: 9d67f85b412f9a74d9006ba729e91677, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -5404,7 +5490,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8463756643395869780, guid: 9d67f85b412f9a74d9006ba729e91677, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -24
+      value: -31.005001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6392,11 +6478,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8463756643395869780, guid: 9d67f85b412f9a74d9006ba729e91677, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 132.38
       objectReference: {fileID: 0}
     - target: {fileID: 8463756643395869780, guid: 9d67f85b412f9a74d9006ba729e91677, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 48
+      value: 62.010002
       objectReference: {fileID: 0}
     - target: {fileID: 8463756643395869780, guid: 9d67f85b412f9a74d9006ba729e91677, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -6404,7 +6490,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8463756643395869780, guid: 9d67f85b412f9a74d9006ba729e91677, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -24
+      value: -31.005001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7092,11 +7178,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8463756643395869780, guid: 9d67f85b412f9a74d9006ba729e91677, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 132.38
       objectReference: {fileID: 0}
     - target: {fileID: 8463756643395869780, guid: 9d67f85b412f9a74d9006ba729e91677, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 48
+      value: 62.010002
       objectReference: {fileID: 0}
     - target: {fileID: 8463756643395869780, guid: 9d67f85b412f9a74d9006ba729e91677, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -7104,7 +7190,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8463756643395869780, guid: 9d67f85b412f9a74d9006ba729e91677, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -24
+      value: -31.005001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8692,11 +8778,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8463756643395869780, guid: 9d67f85b412f9a74d9006ba729e91677, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 166.13
       objectReference: {fileID: 0}
     - target: {fileID: 8463756643395869780, guid: 9d67f85b412f9a74d9006ba729e91677, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 48
+      value: 62.010002
       objectReference: {fileID: 0}
     - target: {fileID: 8463756643395869780, guid: 9d67f85b412f9a74d9006ba729e91677, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -8704,7 +8790,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8463756643395869780, guid: 9d67f85b412f9a74d9006ba729e91677, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -24
+      value: -31.005001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

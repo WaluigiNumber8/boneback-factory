@@ -9,17 +9,20 @@ namespace Rogium.Options.Core
     {
         private PreferencesAsset preferences;
         private InputBindingsAsset inputBindings;
+        private ShortcutBindingsAsset shortcutBindings;
 
         private GameDataAsset() { }
         
         public void UpdatePreferences(PreferencesAsset newPreferences) => preferences = new PreferencesAsset.Builder().AsCopy(newPreferences).Build();
         public void UpdateInputBindings(InputBindingsAsset newInputBindings) => inputBindings = new InputBindingsAsset.Builder().AsCopy(newInputBindings).Build();
+        public void UpdateShortcutBindings(ShortcutBindingsAsset newShortcutBindings) => shortcutBindings = new ShortcutBindingsAsset.Builder().AsCopy(newShortcutBindings).Build();
         
         public override string ToString() => $"{Title}";
         public string ID { get => "Z"; }
         public string Title { get => "Game Data"; }
         public PreferencesAsset Preferences { get => preferences; }
         public InputBindingsAsset InputBindings { get => inputBindings; }
+        public ShortcutBindingsAsset ShortcutBindings { get => shortcutBindings; }
         
         public class Builder
         {
@@ -29,6 +32,7 @@ namespace Rogium.Options.Core
             {
                 Asset.preferences = new PreferencesAsset.Builder().Build();
                 Asset.inputBindings = new InputBindingsAsset.Builder().Build();
+                Asset.shortcutBindings = new ShortcutBindingsAsset.Builder().Build();
             }
             
             public Builder WithPreferences(PreferencesAsset preferences)
@@ -43,11 +47,17 @@ namespace Rogium.Options.Core
                 return this;
             }
             
+            public Builder WithShortcutBindings(ShortcutBindingsAsset shortcutBindings)
+            {
+                Asset.shortcutBindings = new ShortcutBindingsAsset.Builder().AsCopy(shortcutBindings).Build();
+                return this;
+            }
+            
             public Builder AsCopy(GameDataAsset asset)
             {
-                Asset.preferences = new PreferencesAsset.Builder().AsCopy(asset.preferences).Build();
-                Asset.inputBindings = new InputBindingsAsset.Builder().AsCopy(asset.inputBindings).Build();
-                return this;
+                return WithPreferences(asset.Preferences)
+                      .WithInputBindings(asset.InputBindings)
+                      .WithShortcutBindings(asset.shortcutBindings);
             }
             
             public GameDataAsset Build() => Asset;

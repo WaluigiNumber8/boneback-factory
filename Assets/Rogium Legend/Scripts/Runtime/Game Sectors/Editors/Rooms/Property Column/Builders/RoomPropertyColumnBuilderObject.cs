@@ -33,11 +33,10 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         /// Decide, which object to build.
         /// </summary>
         /// <param name="data">The object data.</param>
-        public override void Build(AssetData data)
+        public override void BuildInternal(AssetData data)
         {
             if (presets.TryGetValue(data.ID, out Action<AssetData> method))
             {
-                Clear();
                 method?.Invoke(data);
                 return;
             }

@@ -15,7 +15,7 @@ using Rogium.ExternalStorage.Serialization;
 using Rogium.Options.Core;
 using Rogium.Systems.ActionHistory;
 using Rogium.Systems.Input;
-using Rogium.Tests.Editors;
+using UnityEngine;
 using UnityEngine.TestTools;
 
 namespace Rogium.Tests.Core
@@ -26,11 +26,13 @@ namespace Rogium.Tests.Core
     [RequiresPlayMode]
     public abstract class MenuTestBase
     {
+     
         [UnitySetUp]
         public virtual IEnumerator Setup()
         {
-            SceneLoader.LoadMenuTestingScene();
+            TUtilsSceneLoader.LoadMenuTestingScene();
             yield return null;
+            PrepareInputSystem();
             PrepareExternalStorageSubstitute();
             yield return null;
             ExternalLibraryOverseer.Instance.ClearPacks();
@@ -38,6 +40,13 @@ namespace Rogium.Tests.Core
             ActionHistorySystem.ClearHistory();
             InputSystem.GetInstance().ClearAllInput();
             yield return TUtilsAssetCreator.CreateAndAssignPack();
+        }
+
+        private static void PrepareInputSystem()
+        {
+            InputSystem input = Object.FindFirstObjectByType<InputSystem>();
+            if (input != null) Object.DestroyImmediate(input);
+            TUtilsOverseerLoader.LoadInputSystem();
         }
 
         private static void PrepareExternalStorageSubstitute()
@@ -55,6 +64,8 @@ namespace Rogium.Tests.Core
             ex.Tiles.Returns(Substitute.For<ICRUDOperations<TileAsset, JSONTileAsset>>());
             ex.Campaigns.Returns(Substitute.For<ICRUDOperations<CampaignAsset, JSONCampaignAsset>>());
             ex.Preferences.Returns(Substitute.For<ICRUDOperations<PreferencesAsset, JSONPreferencesAsset>>());
+            ex.InputBindings.Returns(Substitute.For<ICRUDOperations<InputBindingsAsset, JSONInputBindingsAsset>>());
+            ex.ShortcutBindings.Returns(Substitute.For<ICRUDOperations<ShortcutBindingsAsset, JSONShortcutBindingsAsset>>());
             ExternalCommunicator.Instance.OverrideStorageOverseer(ex);
         }
     }

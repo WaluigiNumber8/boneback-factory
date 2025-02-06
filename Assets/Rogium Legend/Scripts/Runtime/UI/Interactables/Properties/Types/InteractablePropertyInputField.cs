@@ -10,7 +10,7 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// <summary>
     /// Overseers everything happening in an input field interactable property.
     /// </summary>
-    public class InteractablePropertyInputField : InteractablePropertyBase<string>
+    public class InteractablePropertyInputField : InteractablePropertyWithValueBase<string>
     {
         [SerializeField] private TMP_InputField inputField;
         [SerializeField] private UIInfo ui;

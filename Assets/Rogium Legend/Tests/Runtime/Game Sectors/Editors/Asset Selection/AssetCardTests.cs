@@ -28,7 +28,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         public override IEnumerator Setup()
         {
             yield return base.Setup();
-            yield return MenuLoader.PrepareSelectionMenu();
+            yield return TUtilsMenuLoader.PrepareSelectionMenu();
             selectionMenu = SelectionMenuOverseerMono.GetInstance();
             AddNewPackToLibrary();
             AddNewPackToLibrary();
@@ -129,8 +129,8 @@ namespace Rogium.Tests.Editors.AssetSelection
         [UnityTest]
         public IEnumerator Should_HaveProperShimmerColorOnMaterial_WhenAssetPickerWindowOpened()
         {
-            OverseerLoader.LoadModalWindowBuilder();
-            OverseerLoader.LoadUIBuilder();
+            TUtilsOverseerLoader.LoadModalWindowBuilder();
+            TUtilsOverseerLoader.LoadUIBuilder();
             yield return null;
             UIPropertyBuilder.GetInstance().BuildAssetField("Test", AssetType.Weapon, null, Object.FindFirstObjectByType<Canvas>().transform, null);
             yield return null;

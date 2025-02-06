@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using NUnit.Framework;
+using Rogium.Editors.Core.Defaults;
 using Rogium.Systems.Input;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables;
@@ -8,7 +9,7 @@ using UnityEngine;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.TestTools;
 
-namespace Rogium.Tests.UI.Interactables
+namespace Rogium.Tests.UI.Interactables.InputReader
 {
     /// <summary>
     /// Tests for the <see cref="InputBindingReader"/> that deals with composite actions.
@@ -20,9 +21,9 @@ namespace Rogium.Tests.UI.Interactables
         public override IEnumerator SetUp()
         {
             yield return base.SetUp();
-            OverseerLoader.LoadThemeOverseer();
-            OverseerLoader.LoadUIBuilder();
-            OverseerLoader.LoadModalWindowBuilder();
+            TUtilsOverseerLoader.LoadThemeOverseer();
+            TUtilsOverseerLoader.LoadUIBuilder();
+            TUtilsOverseerLoader.LoadModalWindowBuilder();
             yield return null;
             bindingParent = new GameObject("Input Bindings").transform;
             bindingParent.SetParent(Object.FindFirstObjectByType<Canvas>().transform);
@@ -41,8 +42,7 @@ namespace Rogium.Tests.UI.Interactables
         {
             InputBindingReader reader = bindingParent.GetComponentInChildren<InputBindingReader>();
             yield return BindKey(reader, keyboard.gKey);
-            yield return null;
-            Assert.That(input.Player.Movement.Action.bindings[1].effectivePath, Is.EqualTo("<Keyboard>/g"));
+            Assert.That(input.Player.Movement.Action.bindings[1].effectivePath, Is.EqualTo(keyboard.gKey.path.FormatForBindingPath()));
         }
 
         [Test]
@@ -55,9 +55,9 @@ namespace Rogium.Tests.UI.Interactables
         private IEnumerator BindKey(InputBindingReader reader, KeyControl key)
         {
             reader.StartRebinding();
-            yield return new WaitForSecondsRealtime(0.1f);
+            yield return new WaitForSecondsRealtime(0.01f);
             i.Press(key);
-            yield return new WaitForSecondsRealtime(0.1f);
+            yield return new WaitForSecondsRealtime(EditorDefaults.Instance.InputWaitForAnother);
         }
     }
 }

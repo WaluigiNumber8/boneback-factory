@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace RedRats.Core
 {
@@ -69,5 +70,11 @@ namespace RedRats.Core
             }
             return prettyJson.ToString();
         }
+
+        /// <summary>
+        /// Adds spaces to a Pascal Case string. Example: "PascalCase" -> "Pascal Case".
+        /// </summary>
+        /// <param name="s">The string to affect.</param>
+        public static string WithSpacesBeforeCapitals(this string s) => Regex.Replace(s, "([A-Z])", " $1").Trim();
     }
 }

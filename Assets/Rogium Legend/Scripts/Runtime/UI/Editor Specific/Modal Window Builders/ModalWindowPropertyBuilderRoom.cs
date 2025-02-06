@@ -11,7 +11,6 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     public class ModalWindowPropertyBuilderRoom : ModalWindowPropertyBuilderBase
     {
         private readonly RoomEditorOverseer roomEditor = RoomEditorOverseer.Instance;
-        private readonly RoomSettingsBuilder roomBuilder = new();
 
         public override void OpenForCreate(Action whenConfirm = null) => OpenWindow(new RoomAsset.Builder().Build() , () => CreateAsset(whenConfirm), "Creating new room", AssetModificationType.Create);
 
@@ -25,7 +24,7 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
             OpenForColumns1(headerText, onConfirm, out Transform col1);
             
             b.BuildInputField("Title", asset.Title, col1, asset.UpdateTitle);
-            roomBuilder.BuildEssentials(col1, asset, false);
+            new RoomSettingsBuilder(col1).BuildEssentials(asset);
             b.BuildPlainText("Created by", asset.Author, col1);
             b.BuildPlainText("Created on", asset.CreationDate.ToString(), col1);
             

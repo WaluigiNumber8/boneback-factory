@@ -47,6 +47,8 @@ namespace Rogium.Editors.Campaign
             selectionPicker.Selector.OnSelectNone -= PreparePropertyColumnEmpty;
         }
 
+        public void DisposeProperties() => propertyColumn.DisposeProperties();
+
         /// <summary>
         /// Selects/Deselects an asset.
         /// </summary>

@@ -19,6 +19,12 @@ MonoBehaviour:
     m_ClosingDefinition: 
     m_OpeningTagArray: 
     m_ClosingTagArray: 
+  - m_Name: Important
+    m_HashCode: 371327558
+    m_OpeningDefinition: <#E32121>
+    m_ClosingDefinition: </color>
+    m_OpeningTagArray: 3c000000230000004500000033000000320000003100000032000000310000003e000000
+    m_ClosingTagArray: 3c0000002f000000630000006f0000006c0000006f000000720000003e000000
   - m_Name: StartingPoint
     m_HashCode: 1315658732
     m_OpeningDefinition: <sprite=0><#E32121>

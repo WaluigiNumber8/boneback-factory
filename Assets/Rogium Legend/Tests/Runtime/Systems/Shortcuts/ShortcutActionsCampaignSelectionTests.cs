@@ -25,8 +25,8 @@ namespace Rogium.Tests.Systems.Shortcuts
         public override IEnumerator SetUp()
         {
             yield return base.SetUp();
-            yield return MenuLoader.PrepareCampaignSelection();
-            OverseerLoader.LoadModalWindowBuilder();
+            yield return TUtilsMenuLoader.PrepareCampaignSelection();
+            TUtilsOverseerLoader.LoadModalWindowBuilder();
             yield return null;
             AddNewCampaignToLibrary(PackEditorOverseer.Instance.CurrentPack);
             AddNewCampaignToLibrary(PackEditorOverseer.Instance.CurrentPack);
@@ -37,10 +37,10 @@ namespace Rogium.Tests.Systems.Shortcuts
         [UnityTest]
         public IEnumerator Should_ReturnToMainMenu_WhenShortcutPressed()
         {
-            yield return MenuLoader.PrepareMainMenu();
+            yield return TUtilsMenuLoader.PrepareMainMenu();
             yield return OpenSelectionMenu(AssetType.Campaign, 0);
             yield return new WaitForSecondsRealtime(0.1f);
-            i.Trigger(input.Shortcuts.Cancel.Action);
+            i.Trigger(input.UI.Cancel.Action);
             yield return new WaitForSecondsRealtime(0.1f);
             Assert.That(MenuSwitcher.GetInstance().CurrentMenu, Is.EqualTo(MenuType.MainMenu));
         }
@@ -59,7 +59,7 @@ namespace Rogium.Tests.Systems.Shortcuts
         [UnityTest]
         public IEnumerator Should_Edit_WhenShortcutPressed()
         {
-            yield return MenuLoader.PrepareCampaignEditor(false);
+            yield return TUtilsMenuLoader.PrepareCampaignEditor(false);
             i.Trigger(input.Shortcuts.Edit.Action);
             yield return null;
             Assert.That(MenuSwitcher.GetInstance().CurrentMenu, Is.EqualTo(MenuType.CampaignEditor));
@@ -93,8 +93,8 @@ namespace Rogium.Tests.Systems.Shortcuts
         [UnityTest]
         public IEnumerator Should_RefreshCurrentCampaign_WhenEditedThenShortcutPressed()
         {
-            yield return MenuLoader.PrepareSelectionMenu();
-            yield return MenuLoader.PrepareRoomEditor();
+            yield return TUtilsMenuLoader.PrepareSelectionMenu();
+            yield return TUtilsMenuLoader.PrepareRoomEditor();
             yield return OpenSelectionMenu(AssetType.Pack, 0);
             yield return OpenEditor(AssetType.Room);
             yield return TUtilsRoomEditor.FillTileLayer();

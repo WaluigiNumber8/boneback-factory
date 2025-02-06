@@ -25,10 +25,8 @@ namespace Rogium.Options.Core
             resolutionStrings = resolutions.Select(r => $"{r.width}x{r.height}").ToList();
         }
 
-        public override void Build(PreferencesAsset preferences)
+        public override void BuildInternal(PreferencesAsset preferences)
         {
-            Clear();
-
             BuildResolutionsDropdown(preferences);
             b.BuildDropdown("Screen", Enum.GetNames(typeof(ScreenType)), (int)preferences.ScreenMode, contentMain, value =>
             {

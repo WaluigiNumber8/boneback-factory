@@ -7,7 +7,7 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// <summary>
     /// Overseers everything happening in a plain text interactable property.
     /// </summary>
-    public class InteractablePropertyPlainText : InteractablePropertyBase<string>
+    public class InteractablePropertyPlainText : InteractablePropertyWithValueBase<string>
     {
         [SerializeField] private TextMeshProUGUI plainText;
         

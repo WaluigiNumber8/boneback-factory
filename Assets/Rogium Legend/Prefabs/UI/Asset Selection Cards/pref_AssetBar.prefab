@@ -375,10 +375,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7960186345773439842}
+  - component: {fileID: 8087727404395684978}
   - component: {fileID: 3192331833001656839}
   - component: {fileID: 3724802084214698744}
   m_Layer: 5
-  m_Name: Button Group
+  m_Name: Button Group + Shortcuts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -406,6 +407,71 @@ RectTransform:
   m_AnchoredPosition: {x: 396.0191, y: -50}
   m_SizeDelta: {x: 257.9618, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8087727404395684978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750192886941938561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e407ec64132b41d19a9b2efba8be9663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shortcuts:
+  - trigger: {fileID: 6058880774511212671, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 833234706571210346}
+          m_TargetAssemblyTypeName: Rogium.Editors.AssetSelection.EditableAssetCardController,
+            Rogium.Runtime
+          m_MethodName: Edit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - trigger: {fileID: 5761637510587240, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 833234706571210346}
+          m_TargetAssemblyTypeName: Rogium.Editors.AssetSelection.EditableAssetCardController,
+            Rogium.Runtime
+          m_MethodName: Config
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - trigger: {fileID: -217378903224263604, guid: 0314bb87c29cbd04a88f12b90e990a4b, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 833234706571210346}
+          m_TargetAssemblyTypeName: Rogium.Editors.AssetSelection.EditableAssetCardController,
+            Rogium.Runtime
+          m_MethodName: Delete
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  overrideAll: 0
 --- !u!114 &3192331833001656839
 MonoBehaviour:
   m_ObjectHideFlags: 0

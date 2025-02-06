@@ -27,5 +27,10 @@ namespace Rogium.Tests.Core
             yield return null;
         }
 
+        public static bool IsModalWindowActive()
+        {
+            ModalWindow window = Object.FindFirstObjectByType<ModalWindow>();
+            return (window != null && window.transform.GetChild(0).gameObject.activeSelf);
+        }
     }
 }

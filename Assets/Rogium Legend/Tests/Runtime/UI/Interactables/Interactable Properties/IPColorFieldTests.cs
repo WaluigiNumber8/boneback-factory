@@ -26,11 +26,11 @@ namespace Rogium.Tests.UI.Interactables.Properties
         {
             yield return base.Setup();
             ActionHistorySystem.ClearHistory();
-            OverseerLoader.LoadInternalLibrary();
+            TUtilsOverseerLoader.LoadInternalLibrary();
             
             yield return null;
-            OverseerLoader.LoadModalWindowBuilder();
-            OverseerLoader.LoadThemeOverseer();
+            TUtilsOverseerLoader.LoadModalWindowBuilder();
+            TUtilsOverseerLoader.LoadThemeOverseer();
             
             yield return null;
             colorField = CreateAndInitColorField(Color.white);

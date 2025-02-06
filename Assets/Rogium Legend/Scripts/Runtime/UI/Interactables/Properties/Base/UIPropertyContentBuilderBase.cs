@@ -23,7 +23,13 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <summary>
         /// Build properties for the asset.
         /// </summary>
-        public abstract void Build(T asset);
+        public void Build(T asset)
+        {
+            Clear();
+            BuildInternal(asset);
+        }
+        
+        public abstract void BuildInternal(T asset);
         
         /// <summary>
         /// Empty contents.

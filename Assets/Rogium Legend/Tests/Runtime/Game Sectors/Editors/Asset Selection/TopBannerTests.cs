@@ -21,7 +21,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         public override IEnumerator Setup()
         {
             yield return base.Setup();
-            yield return MenuLoader.PrepareSelectionMenu();
+            yield return TUtilsMenuLoader.PrepareSelectionMenu();
             selectionMenu = SelectionMenuOverseerMono.GetInstance();
             AddNewPackToLibrary();
             AddNewPackToLibrary();
@@ -31,7 +31,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         [UnityTest]
         public IEnumerator ReturnButton_Should_ReturnToMainMenu_WhenClickedOnPackSelection()
         {
-            yield return MenuLoader.PrepareMainMenu();
+            yield return TUtilsMenuLoader.PrepareMainMenu();
             selectionMenu.Open(AssetType.Pack);
             yield return null;
             Button returnButton = GameObject.Find("Top Banner").GetComponentInChildren<Button>();
