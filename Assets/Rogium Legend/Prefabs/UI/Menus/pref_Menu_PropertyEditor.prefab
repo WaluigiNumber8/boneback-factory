@@ -61,6 +61,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6314484053542676381}
   - component: {fileID: 8456927137504779807}
+  - component: {fileID: 6991983953523631678}
   m_Layer: 5
   m_Name: Shortcuts
   m_TagString: Untagged
@@ -168,6 +169,19 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   overrideAll: 0
+--- !u!114 &6991983953523631678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2347471195581715935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31c7a407fa2c4efe8e9db8f12473228e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activatedMaps: 1
 --- !u!1 &2982498077585187749
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,13 +1012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c7a407fa2c4efe8e9db8f12473228e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generalMap: 1
-  drawingEditorsMap: 0
-  selectionMenuMap: 0
-  campaignSelectionMap: 0
-  roomEditorMap: 0
-  spriteEditorMap: 0
-  campaignEditorMap: 0
+  activatedMaps: 1
 --- !u!1 &8209363714473729412
 GameObject:
   m_ObjectHideFlags: 0

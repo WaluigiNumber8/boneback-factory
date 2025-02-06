@@ -8,13 +8,7 @@ namespace Rogium.Systems.Shortcuts
     /// </summary>
     public class ShortcutMapActivator : MonoBehaviour
     {
-        [SerializeField] private bool generalMap = true;
-        [SerializeField] private bool drawingEditorsMap;
-        [SerializeField] private bool selectionMenuMap;
-        [SerializeField] private bool campaignSelectionMap;
-        [SerializeField] private bool roomEditorMap;
-        [SerializeField] private bool spriteEditorMap;
-        [SerializeField] private bool campaignEditorMap;
+        [SerializeField] private ShortcutActionMapType activatedMaps = ShortcutActionMapType.General;
         
         private InputSystem input;
 
@@ -22,13 +16,13 @@ namespace Rogium.Systems.Shortcuts
 
         private void OnEnable()
         {
-            input.Shortcuts.ActivateGeneralMap(generalMap);
-            input.Shortcuts.ActivateDrawingEditorsMap(drawingEditorsMap);
-            input.Shortcuts.ActivateSelectionMenuMap(selectionMenuMap);
-            input.Shortcuts.ActivateCampaignSelectionMap(campaignSelectionMap);
-            input.Shortcuts.ActivateRoomEditorMap(roomEditorMap);
-            input.Shortcuts.ActivateSpriteEditorMap(spriteEditorMap);
-            input.Shortcuts.ActivateCampaignEditorMap(campaignEditorMap);
+            input.Shortcuts.ActivateGeneralMap((activatedMaps & ShortcutActionMapType.General) == ShortcutActionMapType.General);
+            input.Shortcuts.ActivateDrawingEditorsMap((activatedMaps & ShortcutActionMapType.DrawingEditors) == ShortcutActionMapType.DrawingEditors);
+            input.Shortcuts.ActivateSelectionMenuMap((activatedMaps & ShortcutActionMapType.SelectionMenu) == ShortcutActionMapType.SelectionMenu);
+            input.Shortcuts.ActivateCampaignSelectionMap((activatedMaps & ShortcutActionMapType.CampaignSelection) == ShortcutActionMapType.CampaignSelection);
+            input.Shortcuts.ActivateRoomEditorMap((activatedMaps & ShortcutActionMapType.RoomEditor) == ShortcutActionMapType.RoomEditor);
+            input.Shortcuts.ActivateSpriteEditorMap((activatedMaps & ShortcutActionMapType.SpriteEditor) == ShortcutActionMapType.SpriteEditor);
+            input.Shortcuts.ActivateCampaignEditorMap((activatedMaps & ShortcutActionMapType.CampaignEditor) == ShortcutActionMapType.CampaignEditor);
         }
     }
 }

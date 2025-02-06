@@ -733,7 +733,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1174.415, y: -540}
+  m_AnchoredPosition: {x: 1814.415, y: -720}
   m_SizeDelta: {x: 99.170044, y: 930.58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8209606449519683449
@@ -1702,13 +1702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c7a407fa2c4efe8e9db8f12473228e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generalMap: 1
-  drawingEditorsMap: 1
-  selectionMenuMap: 0
-  campaignSelectionMap: 0
-  roomEditorMap: 0
-  spriteEditorMap: 1
-  campaignEditorMap: 0
+  activatedMaps: 25
 --- !u!1 &8308465147124685500
 GameObject:
   m_ObjectHideFlags: 0
@@ -1871,7 +1865,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 651.5397, y: -540}
+  m_AnchoredPosition: {x: 1291.5397, y: -720}
   m_SizeDelta: {x: 930.58057, y: 930.58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8645429336524205186

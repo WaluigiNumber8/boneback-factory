@@ -4306,13 +4306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c7a407fa2c4efe8e9db8f12473228e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generalMap: 1
-  drawingEditorsMap: 0
-  selectionMenuMap: 1
-  campaignSelectionMap: 0
-  roomEditorMap: 0
-  spriteEditorMap: 0
-  campaignEditorMap: 0
+  activatedMaps: 3
 --- !u!1 &8725747022451043939
 GameObject:
   m_ObjectHideFlags: 0
