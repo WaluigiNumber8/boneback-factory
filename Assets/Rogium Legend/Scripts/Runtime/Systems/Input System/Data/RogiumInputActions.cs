@@ -2630,7 +2630,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""button"",
                     ""id"": ""d10a9949-0b00-43b3-a86d-9ecd7ffe80f8"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
@@ -2806,7 +2806,7 @@ namespace Rogium.Systems.Input
                 {
                     ""name"": ""button"",
                     ""id"": ""28fabd45-7862-4b1f-81fe-b28b941fd6f5"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard + Mouse"",
