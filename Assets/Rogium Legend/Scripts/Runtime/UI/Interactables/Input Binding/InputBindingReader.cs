@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using RedRats.Core;
 using RedRats.Safety;
@@ -100,7 +101,10 @@ namespace Rogium.UserInterface.Interactables
                 InputBindingCombination c = GetBindingCombinationFrom(operation);
                 Rebind(c);
 
+                Stopwatch s = Stopwatch.StartNew();
                 (InputAction duplicateAction, InputBindingCombination duplicateCombination, int duplicateIndex) = InputSystem.GetInstance().FindDuplicateBinding(action, binding);
+                s.Stop();
+                UnityEngine.Debug.Log($"Duplicate search took {s.ElapsedMilliseconds}ms");
                 if (duplicateAction != null)
                 {
                     ModalWindowBuilder.GetInstance().OpenWindow(new ModalWindowData.Builder()

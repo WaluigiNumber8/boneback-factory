@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using RedRats.Core;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -16,6 +15,8 @@ namespace Rogium.Systems.Input
     [DefaultExecutionOrder(-50)]
     public class InputSystem : PersistentMonoSingleton<InputSystem>
     {
+        [SerializeField] private LinkedActionMapsAsset linkedActionMaps;
+        
         private EventSystem eventSystem;
         private RogiumInputActions input;
         
@@ -25,7 +26,6 @@ namespace Rogium.Systems.Input
         private InputProfileShortcuts inputShortcuts;
         
         private Vector2 pointerPosition;
-        private readonly IDictionary<string, string[]> linkedActionMaps = new Dictionary<string, string[]>(); 
 
         protected override void Awake()
         {
@@ -33,13 +33,7 @@ namespace Rogium.Systems.Input
             ClearAllInput();
             SceneManager.sceneLoaded += (_, __) => eventSystem = FindFirstObjectByType<EventSystem>();
             UI.PointerPosition.OnPressed += UpdatePointerPosition;
-            
-            linkedActionMaps.Add("ShortcutsDrawingEditors", new[] {"ShortcutsGeneral"});
-            linkedActionMaps.Add("ShortcutsRoomEditor", new[] {"ShortcutsGeneral", "ShortcutsDrawingEditors"});
-            linkedActionMaps.Add("ShortcutsSpriteEditor", new[] {"ShortcutsGeneral", "ShortcutsDrawingEditors"});
-            linkedActionMaps.Add("ShortcutsSelectionMenu", new[] {"ShortcutsGeneral"});
-            linkedActionMaps.Add("ShortcutsCampaignSelection", new[] {"ShortcutsGeneral"});
-            linkedActionMaps.Add("ShortcutsCampaignEditor", new[] {"ShortcutsGeneral"});
+            linkedActionMaps?.RefreshDictionary();
         }
 
         public void ClearAllInput()
@@ -83,7 +77,7 @@ namespace Rogium.Systems.Input
             //Get all action maps of interest
             ISet<InputActionMap> actionMaps = new HashSet<InputActionMap>();
             actionMaps.Add(action.actionMap);
-            if (linkedActionMaps.TryGetValue(action.actionMap.name, out string[] maps))
+            if (linkedActionMaps != null && linkedActionMaps.GetLinkedMaps.TryGetValue(action.actionMap.name, out ISet<string> maps))
             {
                 foreach (string mapName in maps)
                 {
