@@ -28,11 +28,12 @@ namespace Rogium.Options.Core
             b.BuildInputBinding(input.Shortcuts.Undo.Action, device, parent);
             b.BuildInputBinding(input.Shortcuts.Redo.Action, device, parent);
             b.BuildInputBinding(input.Shortcuts.Save.Action, device, parent);
+            b.BuildHeader("General Selection", parent);
             b.BuildInputBinding(input.Shortcuts.NewAsset.Action, device, parent);
             b.BuildInputBinding(input.Shortcuts.Edit.Action, device, parent);
             b.BuildInputBinding(input.Shortcuts.EditProperties.Action, device, parent);
             b.BuildInputBinding(input.Shortcuts.Delete.Action, device, parent);
-            b.BuildHeader("Selection Menu", parent);
+            b.BuildHeader("Asset Selection", parent);
             b.BuildInputBinding(input.Shortcuts.ShowPalettes.Action, device, parent);
             b.BuildInputBinding(input.Shortcuts.ShowSprites.Action, device, parent);
             b.BuildInputBinding(input.Shortcuts.ShowWeapons.Action, device, parent);

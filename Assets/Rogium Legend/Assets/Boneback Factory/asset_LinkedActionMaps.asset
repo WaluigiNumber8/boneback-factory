@@ -30,6 +30,8 @@ MonoBehaviour:
   - map: ShortcutsSelectionMenu
     linkedMaps:
     - ShortcutsGeneral
+    - ShortcutsGeneralSelection
   - map: ShortcutsCampaignSelection
     linkedMaps:
     - ShortcutsGeneral
+    - ShortcutsGeneralSelection

@@ -1262,42 +1262,6 @@ namespace Rogium.Systems.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""New"",
-                    ""type"": ""Button"",
-                    ""id"": ""3fa51034-ac48-4ce7-8576-7622172aabaf"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Edit"",
-                    ""type"": ""Button"",
-                    ""id"": ""d00b6c8c-f798-4ccf-8bb2-57f466e27787"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""EditProperties"",
-                    ""type"": ""Button"",
-                    ""id"": ""ae48f0b4-848e-4d5d-9c41-0febf1d6a37c"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Delete"",
-                    ""type"": ""Button"",
-                    ""id"": ""d8ead8de-0f91-4a55-8d5d-f33c25cd9dff"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1828,10 +1792,54 @@ namespace Rogium.Systems.Input
                     ""action"": ""Save"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                }
+            ]
+        },
+        {
+            ""name"": ""ShortcutsGeneralSelection"",
+            ""id"": ""58191743-57c0-4efb-a8de-b25c8208df06"",
+            ""actions"": [
+                {
+                    ""name"": ""New"",
+                    ""type"": ""Button"",
+                    ""id"": ""f8f219df-d72e-40e0-a833-39a363416a59"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Edit"",
+                    ""type"": ""Button"",
+                    ""id"": ""18ed922c-37ff-4176-be67-64cb0ac389b5"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EditProperties"",
+                    ""type"": ""Button"",
+                    ""id"": ""30061156-dc47-4eec-99a4-4fe2fafcae6d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Delete"",
+                    ""type"": ""Button"",
+                    ""id"": ""39f997f2-dd23-4086-a570-77a46885e414"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
                     ""name"": ""Keyboard1"",
-                    ""id"": ""9c2dcb24-f29d-435d-840b-e43191ab7b44"",
+                    ""id"": ""14aa0f6a-53a1-43d2-b115-1b9945bc31fe"",
                     ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1842,7 +1850,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier1"",
-                    ""id"": ""007ec13c-3356-48e4-85d9-a764d5483245"",
+                    ""id"": ""5470f78c-8106-4321-b98d-b8ff46526d0f"",
                     ""path"": ""<Keyboard>/leftCtrl"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1853,7 +1861,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier2"",
-                    ""id"": ""e453398b-3894-4e9c-b469-950f62d00fad"",
+                    ""id"": ""519eb3c2-1011-4343-ab53-4a09feeed0dc"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1864,7 +1872,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""button"",
-                    ""id"": ""3eba2823-e0be-4d10-abf5-5bf66b0904e7"",
+                    ""id"": ""d6630c3e-0dde-4122-bf63-651a2acf7052"",
                     ""path"": ""<Keyboard>/n"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1875,7 +1883,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""Keyboard2"",
-                    ""id"": ""59ad951e-4423-46d6-86db-773af2bb17bc"",
+                    ""id"": ""185bceeb-b9d6-44df-9771-a758a3251bb5"",
                     ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1886,7 +1894,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier1"",
-                    ""id"": ""e124eb64-4f5d-46d4-80f5-6efab62d10c1"",
+                    ""id"": ""8318a930-363d-43c5-843b-5b6e55aa6936"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1897,7 +1905,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier2"",
-                    ""id"": ""502cdf3a-e808-475a-8a05-9095624cb976"",
+                    ""id"": ""ff276f84-ac66-4d23-83a8-1adb4911c557"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1908,7 +1916,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""button"",
-                    ""id"": ""a931dbbc-45e6-4f43-ab53-ca3db52bec24"",
+                    ""id"": ""36b88149-ffaf-4240-9629-e14ebe641608"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1919,7 +1927,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""Gamepad1"",
-                    ""id"": ""d042d95b-ff5c-40de-bd34-04a178acb4ca"",
+                    ""id"": ""d06e728b-3d42-4fef-9c3b-88f25ef7474c"",
                     ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1930,7 +1938,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier1"",
-                    ""id"": ""c1590b86-b6fa-4f99-a491-7b57c3cac6e9"",
+                    ""id"": ""9a83bb6e-9e33-41ad-9d68-aaa7eca4a260"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1941,7 +1949,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier2"",
-                    ""id"": ""2f122ca2-2102-4548-b0ac-acf03f6e3ae9"",
+                    ""id"": ""d2f5fda7-e3a2-4e49-b273-9c5bee0d74b8"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1952,7 +1960,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""button"",
-                    ""id"": ""2288e870-2f9d-4e17-8c6f-a6a2776372ac"",
+                    ""id"": ""2a42e90b-01fc-4795-ad87-48f088d1a4f7"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1963,7 +1971,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""Gamepad2"",
-                    ""id"": ""6b34a78f-e972-40bd-9b23-065edf566019"",
+                    ""id"": ""8f1c629f-d68a-4958-81a3-308fa9a7bfc2"",
                     ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1974,7 +1982,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier1"",
-                    ""id"": ""d90337b1-6f4a-4d6f-a779-93087fdddfc6"",
+                    ""id"": ""cf216cf6-bb86-4a57-b294-b83c187c747b"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1985,7 +1993,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier2"",
-                    ""id"": ""fd628e86-1355-44d2-a8d3-2a4686b7f06f"",
+                    ""id"": ""9b7b4f2a-8cc4-4311-be8d-ecf3248eab19"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1996,7 +2004,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""button"",
-                    ""id"": ""41b14a24-7ee3-4c5b-a792-456587f5000d"",
+                    ""id"": ""20312e9e-8375-4e90-a193-c143482312ca"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2007,7 +2015,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""Keyboard1"",
-                    ""id"": ""83a7e2e9-95b9-477c-81dd-bee0d3a203be"",
+                    ""id"": ""150a0422-3990-4ec8-ab03-71cad50edd62"",
                     ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2018,7 +2026,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier1"",
-                    ""id"": ""946f2b49-6cb5-4859-b145-fc681945e286"",
+                    ""id"": ""09eade0d-bfc9-4a1b-a5c4-7b29219cf4c7"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2029,7 +2037,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier2"",
-                    ""id"": ""8f1f1751-4760-4213-a4f5-e493a70883da"",
+                    ""id"": ""7ab367ad-2a60-4218-b585-a92d10ea38ee"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2040,7 +2048,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""button"",
-                    ""id"": ""6919618f-2cde-4c30-aa2d-60f2a3dd4e2b"",
+                    ""id"": ""a6c17a01-47ec-434f-9575-b5b327bf4bec"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2051,7 +2059,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""Keyboard2"",
-                    ""id"": ""268410f6-c937-4f18-bb7a-50ac6e507697"",
+                    ""id"": ""e43f575d-7177-43dd-9d03-bf49abf1aa1b"",
                     ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2062,7 +2070,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier1"",
-                    ""id"": ""fe53138b-b805-4940-b41c-a80115943850"",
+                    ""id"": ""275e483e-b636-4c1a-b3c5-401370a6b30b"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2073,7 +2081,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier2"",
-                    ""id"": ""00c1aa36-cdb5-4978-a910-a1b3c5a1da46"",
+                    ""id"": ""93c97b83-8454-4911-b256-97b4edff63b4"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2084,7 +2092,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""button"",
-                    ""id"": ""5cd8b130-b748-4362-9f77-b199ae4accf7"",
+                    ""id"": ""cc8d3518-6b17-456a-864d-c9dfa11a10bb"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2095,7 +2103,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""Gamepad1"",
-                    ""id"": ""5f25d22a-1b81-4198-a3f3-84b3ec9dee95"",
+                    ""id"": ""f3a5d7be-3759-4d07-ac85-6b38ccf2bd58"",
                     ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2106,7 +2114,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier1"",
-                    ""id"": ""e56c5827-acc2-405a-a954-ee8bd6f1bd3f"",
+                    ""id"": ""72e9091d-3ed5-440a-b396-f5c462602a44"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2117,7 +2125,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier2"",
-                    ""id"": ""66052f4f-41b4-4453-a46a-a026c44b0b72"",
+                    ""id"": ""6a5abd4d-376b-4ca6-b09b-e6c4bf447fb8"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2128,7 +2136,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""button"",
-                    ""id"": ""5f174135-02e5-47eb-8267-71e31a0b2692"",
+                    ""id"": ""ca70fa0a-704d-4ac3-b922-2174a8407d97"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2139,7 +2147,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""Gamepad2"",
-                    ""id"": ""348d23aa-c513-4179-9697-3618a11cd2c9"",
+                    ""id"": ""b531d57e-5e89-45b1-a127-06471e5ef3f6"",
                     ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2150,7 +2158,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier1"",
-                    ""id"": ""30d8e3de-dc5a-42d1-a52e-469ad2378842"",
+                    ""id"": ""f4613e7a-e000-495f-9989-f86d6a2d13b2"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2161,7 +2169,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier2"",
-                    ""id"": ""20db7386-13aa-423a-bdd2-655f6fc7fe89"",
+                    ""id"": ""a6329829-ad78-416c-a438-cccb0f411a0d"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2172,7 +2180,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""button"",
-                    ""id"": ""920ca714-ff4c-4aa4-99de-11f2e35298ef"",
+                    ""id"": ""557c2b44-29b8-40bd-bd92-b86d548f0192"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2183,7 +2191,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""Keyboard1"",
-                    ""id"": ""da7b2550-1e98-4344-b152-dedc0bb2d8df"",
+                    ""id"": ""096fa5fb-aff3-4fa9-b5a7-ce009272b3f8"",
                     ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2194,7 +2202,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier1"",
-                    ""id"": ""96d7b217-25fd-4e0c-acc5-7db506a5c715"",
+                    ""id"": ""27815513-50ab-4810-a9d3-3b6bc5ec8bcc"",
                     ""path"": ""<Keyboard>/leftCtrl"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2205,7 +2213,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier2"",
-                    ""id"": ""6bed7111-ad32-4845-9d37-6707acdfb8fc"",
+                    ""id"": ""bc29ff9d-3056-4988-9a5c-7b6621facc65"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2216,7 +2224,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""button"",
-                    ""id"": ""2bd95521-fc71-4050-8190-e4df10bfd600"",
+                    ""id"": ""5c77a94a-4109-4df4-b9ed-d283897ca6d7"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2227,7 +2235,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""Keyboard2"",
-                    ""id"": ""66234242-8419-49f0-95e2-f636842bf4c9"",
+                    ""id"": ""c7ab67ab-05e5-45b2-afa1-b473232bba65"",
                     ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2238,7 +2246,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier1"",
-                    ""id"": ""5c07735c-3048-4a99-ad01-1ccb5a10d4dc"",
+                    ""id"": ""be0cea1d-da4b-4891-8e3a-902833fb6ffe"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2249,7 +2257,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier2"",
-                    ""id"": ""7b1d7608-1060-427a-80df-d35fb716311a"",
+                    ""id"": ""97daae80-0083-4ae1-8359-04be5a68bd0d"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2260,7 +2268,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""button"",
-                    ""id"": ""6de0bfc5-ca90-4baa-b09b-9f2781a1455e"",
+                    ""id"": ""61a2b643-6005-45d2-8549-161a63b0196f"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2271,7 +2279,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""Gamepad1"",
-                    ""id"": ""a54aa317-bc62-42e6-8792-73e86aaa5db0"",
+                    ""id"": ""064b0a1e-9076-4056-a34d-a6b2691019d1"",
                     ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2282,7 +2290,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier1"",
-                    ""id"": ""2c27db2c-0029-4c5c-8ad5-907e6724069c"",
+                    ""id"": ""3fc66d00-aa72-4742-a941-5fdcb669b98e"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2293,7 +2301,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier2"",
-                    ""id"": ""ee549e8c-2928-4234-b5ed-77d64f75a8c1"",
+                    ""id"": ""4f7a978b-9f83-4995-96cc-e69411d1c24f"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2304,7 +2312,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""button"",
-                    ""id"": ""2b4d64ae-9ff9-4deb-8ef6-47f71fefcddc"",
+                    ""id"": ""45c00a18-b516-4eb7-82d3-0fc9c809c5b2"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2315,7 +2323,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""Gamepad2"",
-                    ""id"": ""1f94e5da-983f-4b50-8b4c-9704693744b6"",
+                    ""id"": ""9225b0fc-cd71-4320-a855-d99d6fc30b9b"",
                     ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2326,7 +2334,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier1"",
-                    ""id"": ""beae1e47-4eaf-41dc-a626-f56076cf02e0"",
+                    ""id"": ""ebadfe60-2e38-4b87-b235-e25385a4a01d"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2337,7 +2345,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier2"",
-                    ""id"": ""8ea96275-9dda-4bc7-ba66-0a0d81b63ba8"",
+                    ""id"": ""d9d1ecba-1597-40d1-9850-f6459c7bfdeb"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2348,7 +2356,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""button"",
-                    ""id"": ""d96d72b7-e22c-42b5-81ca-f0abb587671a"",
+                    ""id"": ""3725f95a-f57a-4381-9bcb-64aff97c4b43"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2359,7 +2367,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""Keyboard1"",
-                    ""id"": ""481daa11-b2fa-48f7-8c76-ed1f0dce759b"",
+                    ""id"": ""b1752609-4b3f-48ad-aff1-db25b54f941d"",
                     ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2370,7 +2378,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier1"",
-                    ""id"": ""596b3a6b-6e15-42d4-965e-16443d592e81"",
+                    ""id"": ""c7f92ee0-2d3b-4eb7-a1e8-d302855807dc"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2381,7 +2389,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier2"",
-                    ""id"": ""7f243abf-a0e9-47c4-8e3b-955092bc0405"",
+                    ""id"": ""2ae04107-29f1-4361-8d6f-d4c8ae665e19"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2392,7 +2400,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""button"",
-                    ""id"": ""63549d00-46f1-4c9f-b58c-4eda44149e3a"",
+                    ""id"": ""4e20fa64-8de5-49b4-8169-8c5bec1af23b"",
                     ""path"": ""<Keyboard>/delete"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2403,7 +2411,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""Keyboard2"",
-                    ""id"": ""9f3e2cd1-c3bc-4644-b7bb-d67096feba7c"",
+                    ""id"": ""51c6819a-9dff-4171-a04c-62f04e6d9d7d"",
                     ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2414,7 +2422,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier1"",
-                    ""id"": ""75eb316f-290b-4a02-89a7-231d6fce7b43"",
+                    ""id"": ""c28e69b8-9168-4d29-a2c3-b31d762f1562"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2425,7 +2433,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier2"",
-                    ""id"": ""03100570-377c-47f2-9c5c-dc00551e2f54"",
+                    ""id"": ""10bf70f7-b783-4be9-81e2-ac350895bfef"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2436,7 +2444,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""button"",
-                    ""id"": ""ee3b9f3b-7824-4125-844c-5f182b53bf12"",
+                    ""id"": ""8fbf01ff-4809-4c2e-b4f9-fbae55175f73"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2447,7 +2455,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""Gamepad1"",
-                    ""id"": ""a8191c3a-edf9-4803-937b-8dfab43a2cf4"",
+                    ""id"": ""acd58baa-bd33-436f-bfe0-fda771c01474"",
                     ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2458,7 +2466,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier1"",
-                    ""id"": ""715fa11c-9b61-44a3-b1dc-24f53bdc1760"",
+                    ""id"": ""176a4e9a-a696-402c-9959-7bd82874fafb"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2469,7 +2477,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier2"",
-                    ""id"": ""a7b55fdc-dd2e-4780-b579-755ec64398c3"",
+                    ""id"": ""3ea0a901-f83c-45cb-ab0b-010b03ad9411"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2480,7 +2488,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""button"",
-                    ""id"": ""dbadbeb5-edc5-4397-aad6-41f5b0af2974"",
+                    ""id"": ""af40416a-9c08-46a7-b127-04c41707c70e"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2491,7 +2499,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""Gamepad2"",
-                    ""id"": ""e003315e-956b-4f36-a9fa-3905309cf42a"",
+                    ""id"": ""656b82a4-6d03-47fb-a663-eb906ce023fa"",
                     ""path"": ""TwoOptionalModifiers"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2502,7 +2510,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier1"",
-                    ""id"": ""d65cdd65-7cce-426e-a034-0ddc0e947647"",
+                    ""id"": ""ae32cd38-dd65-4da1-a9ce-3e3e87028059"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2513,7 +2521,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""modifier2"",
-                    ""id"": ""82ba23b9-3ff2-4f67-8dca-a4005a4d78dd"",
+                    ""id"": ""21cc5f6c-818d-46ef-a998-4fe358b7b3e0"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -2524,7 +2532,7 @@ namespace Rogium.Systems.Input
                 },
                 {
                     ""name"": ""button"",
-                    ""id"": ""2e5742d2-1303-43f6-8603-8b21f2c9c38b"",
+                    ""id"": ""098457c5-b658-43f6-84d7-afa819a0e0d2"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -7639,10 +7647,12 @@ namespace Rogium.Systems.Input
             m_ShortcutsGeneral_Undo = m_ShortcutsGeneral.FindAction("Undo", throwIfNotFound: true);
             m_ShortcutsGeneral_Redo = m_ShortcutsGeneral.FindAction("Redo", throwIfNotFound: true);
             m_ShortcutsGeneral_Save = m_ShortcutsGeneral.FindAction("Save", throwIfNotFound: true);
-            m_ShortcutsGeneral_New = m_ShortcutsGeneral.FindAction("New", throwIfNotFound: true);
-            m_ShortcutsGeneral_Edit = m_ShortcutsGeneral.FindAction("Edit", throwIfNotFound: true);
-            m_ShortcutsGeneral_EditProperties = m_ShortcutsGeneral.FindAction("EditProperties", throwIfNotFound: true);
-            m_ShortcutsGeneral_Delete = m_ShortcutsGeneral.FindAction("Delete", throwIfNotFound: true);
+            // ShortcutsGeneralSelection
+            m_ShortcutsGeneralSelection = asset.FindActionMap("ShortcutsGeneralSelection", throwIfNotFound: true);
+            m_ShortcutsGeneralSelection_New = m_ShortcutsGeneralSelection.FindAction("New", throwIfNotFound: true);
+            m_ShortcutsGeneralSelection_Edit = m_ShortcutsGeneralSelection.FindAction("Edit", throwIfNotFound: true);
+            m_ShortcutsGeneralSelection_EditProperties = m_ShortcutsGeneralSelection.FindAction("EditProperties", throwIfNotFound: true);
+            m_ShortcutsGeneralSelection_Delete = m_ShortcutsGeneralSelection.FindAction("Delete", throwIfNotFound: true);
             // ShortcutsCampaignSelection
             m_ShortcutsCampaignSelection = asset.FindActionMap("ShortcutsCampaignSelection", throwIfNotFound: true);
             m_ShortcutsCampaignSelection_SwitchLeft = m_ShortcutsCampaignSelection.FindAction("SwitchLeft", throwIfNotFound: true);
@@ -7690,6 +7700,7 @@ namespace Rogium.Systems.Input
             UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, RogiumInputActions.Player.Disable() has not been called.");
             UnityEngine.Debug.Assert(!m_PauseGame.enabled, "This will cause a leak and performance issues, RogiumInputActions.PauseGame.Disable() has not been called.");
             UnityEngine.Debug.Assert(!m_ShortcutsGeneral.enabled, "This will cause a leak and performance issues, RogiumInputActions.ShortcutsGeneral.Disable() has not been called.");
+            UnityEngine.Debug.Assert(!m_ShortcutsGeneralSelection.enabled, "This will cause a leak and performance issues, RogiumInputActions.ShortcutsGeneralSelection.Disable() has not been called.");
             UnityEngine.Debug.Assert(!m_ShortcutsCampaignSelection.enabled, "This will cause a leak and performance issues, RogiumInputActions.ShortcutsCampaignSelection.Disable() has not been called.");
             UnityEngine.Debug.Assert(!m_ShortcutsSelectionMenu.enabled, "This will cause a leak and performance issues, RogiumInputActions.ShortcutsSelectionMenu.Disable() has not been called.");
             UnityEngine.Debug.Assert(!m_ShortcutsDrawingEditors.enabled, "This will cause a leak and performance issues, RogiumInputActions.ShortcutsDrawingEditors.Disable() has not been called.");
@@ -8026,10 +8037,6 @@ namespace Rogium.Systems.Input
         private readonly InputAction m_ShortcutsGeneral_Undo;
         private readonly InputAction m_ShortcutsGeneral_Redo;
         private readonly InputAction m_ShortcutsGeneral_Save;
-        private readonly InputAction m_ShortcutsGeneral_New;
-        private readonly InputAction m_ShortcutsGeneral_Edit;
-        private readonly InputAction m_ShortcutsGeneral_EditProperties;
-        private readonly InputAction m_ShortcutsGeneral_Delete;
         public struct ShortcutsGeneralActions
         {
             private @RogiumInputActions m_Wrapper;
@@ -8037,10 +8044,6 @@ namespace Rogium.Systems.Input
             public InputAction @Undo => m_Wrapper.m_ShortcutsGeneral_Undo;
             public InputAction @Redo => m_Wrapper.m_ShortcutsGeneral_Redo;
             public InputAction @Save => m_Wrapper.m_ShortcutsGeneral_Save;
-            public InputAction @New => m_Wrapper.m_ShortcutsGeneral_New;
-            public InputAction @Edit => m_Wrapper.m_ShortcutsGeneral_Edit;
-            public InputAction @EditProperties => m_Wrapper.m_ShortcutsGeneral_EditProperties;
-            public InputAction @Delete => m_Wrapper.m_ShortcutsGeneral_Delete;
             public InputActionMap Get() { return m_Wrapper.m_ShortcutsGeneral; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -8059,18 +8062,6 @@ namespace Rogium.Systems.Input
                 @Save.started += instance.OnSave;
                 @Save.performed += instance.OnSave;
                 @Save.canceled += instance.OnSave;
-                @New.started += instance.OnNew;
-                @New.performed += instance.OnNew;
-                @New.canceled += instance.OnNew;
-                @Edit.started += instance.OnEdit;
-                @Edit.performed += instance.OnEdit;
-                @Edit.canceled += instance.OnEdit;
-                @EditProperties.started += instance.OnEditProperties;
-                @EditProperties.performed += instance.OnEditProperties;
-                @EditProperties.canceled += instance.OnEditProperties;
-                @Delete.started += instance.OnDelete;
-                @Delete.performed += instance.OnDelete;
-                @Delete.canceled += instance.OnDelete;
             }
 
             private void UnregisterCallbacks(IShortcutsGeneralActions instance)
@@ -8084,18 +8075,6 @@ namespace Rogium.Systems.Input
                 @Save.started -= instance.OnSave;
                 @Save.performed -= instance.OnSave;
                 @Save.canceled -= instance.OnSave;
-                @New.started -= instance.OnNew;
-                @New.performed -= instance.OnNew;
-                @New.canceled -= instance.OnNew;
-                @Edit.started -= instance.OnEdit;
-                @Edit.performed -= instance.OnEdit;
-                @Edit.canceled -= instance.OnEdit;
-                @EditProperties.started -= instance.OnEditProperties;
-                @EditProperties.performed -= instance.OnEditProperties;
-                @EditProperties.canceled -= instance.OnEditProperties;
-                @Delete.started -= instance.OnDelete;
-                @Delete.performed -= instance.OnDelete;
-                @Delete.canceled -= instance.OnDelete;
             }
 
             public void RemoveCallbacks(IShortcutsGeneralActions instance)
@@ -8113,6 +8092,76 @@ namespace Rogium.Systems.Input
             }
         }
         public ShortcutsGeneralActions @ShortcutsGeneral => new ShortcutsGeneralActions(this);
+
+        // ShortcutsGeneralSelection
+        private readonly InputActionMap m_ShortcutsGeneralSelection;
+        private List<IShortcutsGeneralSelectionActions> m_ShortcutsGeneralSelectionActionsCallbackInterfaces = new List<IShortcutsGeneralSelectionActions>();
+        private readonly InputAction m_ShortcutsGeneralSelection_New;
+        private readonly InputAction m_ShortcutsGeneralSelection_Edit;
+        private readonly InputAction m_ShortcutsGeneralSelection_EditProperties;
+        private readonly InputAction m_ShortcutsGeneralSelection_Delete;
+        public struct ShortcutsGeneralSelectionActions
+        {
+            private @RogiumInputActions m_Wrapper;
+            public ShortcutsGeneralSelectionActions(@RogiumInputActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @New => m_Wrapper.m_ShortcutsGeneralSelection_New;
+            public InputAction @Edit => m_Wrapper.m_ShortcutsGeneralSelection_Edit;
+            public InputAction @EditProperties => m_Wrapper.m_ShortcutsGeneralSelection_EditProperties;
+            public InputAction @Delete => m_Wrapper.m_ShortcutsGeneralSelection_Delete;
+            public InputActionMap Get() { return m_Wrapper.m_ShortcutsGeneralSelection; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(ShortcutsGeneralSelectionActions set) { return set.Get(); }
+            public void AddCallbacks(IShortcutsGeneralSelectionActions instance)
+            {
+                if (instance == null || m_Wrapper.m_ShortcutsGeneralSelectionActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_ShortcutsGeneralSelectionActionsCallbackInterfaces.Add(instance);
+                @New.started += instance.OnNew;
+                @New.performed += instance.OnNew;
+                @New.canceled += instance.OnNew;
+                @Edit.started += instance.OnEdit;
+                @Edit.performed += instance.OnEdit;
+                @Edit.canceled += instance.OnEdit;
+                @EditProperties.started += instance.OnEditProperties;
+                @EditProperties.performed += instance.OnEditProperties;
+                @EditProperties.canceled += instance.OnEditProperties;
+                @Delete.started += instance.OnDelete;
+                @Delete.performed += instance.OnDelete;
+                @Delete.canceled += instance.OnDelete;
+            }
+
+            private void UnregisterCallbacks(IShortcutsGeneralSelectionActions instance)
+            {
+                @New.started -= instance.OnNew;
+                @New.performed -= instance.OnNew;
+                @New.canceled -= instance.OnNew;
+                @Edit.started -= instance.OnEdit;
+                @Edit.performed -= instance.OnEdit;
+                @Edit.canceled -= instance.OnEdit;
+                @EditProperties.started -= instance.OnEditProperties;
+                @EditProperties.performed -= instance.OnEditProperties;
+                @EditProperties.canceled -= instance.OnEditProperties;
+                @Delete.started -= instance.OnDelete;
+                @Delete.performed -= instance.OnDelete;
+                @Delete.canceled -= instance.OnDelete;
+            }
+
+            public void RemoveCallbacks(IShortcutsGeneralSelectionActions instance)
+            {
+                if (m_Wrapper.m_ShortcutsGeneralSelectionActionsCallbackInterfaces.Remove(instance))
+                    UnregisterCallbacks(instance);
+            }
+
+            public void SetCallbacks(IShortcutsGeneralSelectionActions instance)
+            {
+                foreach (var item in m_Wrapper.m_ShortcutsGeneralSelectionActionsCallbackInterfaces)
+                    UnregisterCallbacks(item);
+                m_Wrapper.m_ShortcutsGeneralSelectionActionsCallbackInterfaces.Clear();
+                AddCallbacks(instance);
+            }
+        }
+        public ShortcutsGeneralSelectionActions @ShortcutsGeneralSelection => new ShortcutsGeneralSelectionActions(this);
 
         // ShortcutsCampaignSelection
         private readonly InputActionMap m_ShortcutsCampaignSelection;
@@ -8608,6 +8657,9 @@ namespace Rogium.Systems.Input
             void OnUndo(InputAction.CallbackContext context);
             void OnRedo(InputAction.CallbackContext context);
             void OnSave(InputAction.CallbackContext context);
+        }
+        public interface IShortcutsGeneralSelectionActions
+        {
             void OnNew(InputAction.CallbackContext context);
             void OnEdit(InputAction.CallbackContext context);
             void OnEditProperties(InputAction.CallbackContext context);

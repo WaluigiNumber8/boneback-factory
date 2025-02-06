@@ -6,6 +6,7 @@
     public class InputProfileShortcuts : InputProfileBase
     {
         private RogiumInputActions.ShortcutsGeneralActions generalMap;
+        private RogiumInputActions.ShortcutsGeneralSelectionActions generalSelectionMap;
         private RogiumInputActions.ShortcutsSelectionMenuActions selectionMenuMap;
         private RogiumInputActions.ShortcutsCampaignSelectionActions campaignSelectionMap;
         private RogiumInputActions.ShortcutsDrawingEditorsActions drawingEditorsMap;
@@ -32,6 +33,7 @@
         public InputProfileShortcuts(RogiumInputActions input) : base(input)
         {
             generalMap = input.ShortcutsGeneral;
+            generalSelectionMap = input.ShortcutsGeneralSelection;
             selectionMenuMap = input.ShortcutsSelectionMenu;
             campaignSelectionMap = input.ShortcutsCampaignSelection;
             drawingEditorsMap = input.ShortcutsDrawingEditors;
@@ -42,10 +44,11 @@
             undo = new InputButton(generalMap.Undo);
             redo = new InputButton(generalMap.Redo);
             save = new InputButton(generalMap.Save);
-            newAsset = new InputButton(generalMap.New);
-            edit = new InputButton(generalMap.Edit);
-            editProperties = new InputButton(generalMap.EditProperties);
-            delete = new InputButton(generalMap.Delete);
+            
+            newAsset = new InputButton(generalSelectionMap.New);
+            edit = new InputButton(generalSelectionMap.Edit);
+            editProperties = new InputButton(generalSelectionMap.EditProperties);
+            delete = new InputButton(generalSelectionMap.Delete);
             
             selectionTool = new InputButton(drawingEditorsMap.SelectionTool);
             brushTool = new InputButton(drawingEditorsMap.BrushTool);
@@ -84,6 +87,7 @@
         protected override void WhenEnabled()
         {
             generalMap.Enable();
+            generalSelectionMap.Enable();
             selectionMenuMap.Enable();
             campaignSelectionMap.Enable();
             drawingEditorsMap.Enable();
@@ -182,10 +186,11 @@
             drawingEditorsMap.Disable();
             campaignSelectionMap.Disable();
             selectionMenuMap.Disable();
+            generalSelectionMap.Disable();
             generalMap.Disable();
         }
 
-        public override bool IsMapEnabled { get => roomMap.enabled || campaignSelectionMap.enabled 
+        public override bool IsMapEnabled { get => roomMap.enabled || generalSelectionMap.enabled || campaignSelectionMap.enabled 
                                                                    || selectionMenuMap.enabled || generalMap.enabled 
                                                                    || drawingEditorsMap.enabled || spriteMap.enabled 
                                                                    || campaignEditorMap.enabled; }
@@ -194,6 +199,12 @@
         {
             if (value) generalMap.Enable();
             else generalMap.Disable();
+        }
+        
+        public void ActivateGeneralSelectionMap(bool value)
+        {
+            if (value) generalSelectionMap.Enable();
+            else generalSelectionMap.Disable();
         }
         
         public void ActivateSelectionMenuMap(bool value)

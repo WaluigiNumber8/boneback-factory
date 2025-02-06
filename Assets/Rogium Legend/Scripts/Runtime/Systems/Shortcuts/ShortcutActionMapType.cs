@@ -9,11 +9,12 @@ namespace Rogium.Systems.Shortcuts
     public enum ShortcutActionMapType
     {
         General = 1 << 0,
-        SelectionMenu = 1 << 1,
-        CampaignSelection = 1 << 2,
-        DrawingEditors = 1 << 3,
-        SpriteEditor = 1 << 4,
-        RoomEditor = 1 << 5,
-        CampaignEditor = 1 << 6,
+        GeneralSelection = 1 << 1,
+        SelectionMenu = 1 << 2,
+        CampaignSelection = 1 << 3,
+        DrawingEditors = 1 << 4,
+        SpriteEditor = 1 << 5,
+        RoomEditor = 1 << 6,
+        CampaignEditor = 1 << 7,
     }
 }

@@ -17,6 +17,7 @@ namespace Rogium.Systems.Shortcuts
         private void OnEnable()
         {
             input.Shortcuts.ActivateGeneralMap((activatedMaps & ShortcutActionMapType.General) == ShortcutActionMapType.General);
+            input.Shortcuts.ActivateGeneralSelectionMap((activatedMaps & ShortcutActionMapType.GeneralSelection) == ShortcutActionMapType.GeneralSelection);
             input.Shortcuts.ActivateDrawingEditorsMap((activatedMaps & ShortcutActionMapType.DrawingEditors) == ShortcutActionMapType.DrawingEditors);
             input.Shortcuts.ActivateSelectionMenuMap((activatedMaps & ShortcutActionMapType.SelectionMenu) == ShortcutActionMapType.SelectionMenu);
             input.Shortcuts.ActivateCampaignSelectionMap((activatedMaps & ShortcutActionMapType.CampaignSelection) == ShortcutActionMapType.CampaignSelection);
