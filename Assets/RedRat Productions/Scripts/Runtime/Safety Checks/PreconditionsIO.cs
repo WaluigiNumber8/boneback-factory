@@ -5,7 +5,10 @@ using RedRats.UI.ErrorMessageWindow;
 
 namespace RedRats.Safety
 {
-    public static class SafetyNetIO
+    /// <summary>
+    /// Contains methods for checking preconditions related to I/O operations.
+    /// </summary>
+    public static class PreconditionsIO
     {
         public static event Action<string> OnFireErrorMessage;
 
@@ -13,7 +16,7 @@ namespace RedRats.Safety
         /// Checks if a given directory exists on the external storage.
         /// </summary>
         /// <param name="path">The path of the directory.</param>
-        public static void EnsureDirectoryExists(string path)
+        public static void DirectoryExists(string path)
         {
             if (!Directory.Exists(path))
             {
@@ -27,7 +30,7 @@ namespace RedRats.Safety
         /// Checks if a given file exists on the external storage.
         /// </summary>
         /// <param name="path">The path of the file.</param>
-        public static void EnsureFileExists(string path)
+        public static void FileExists(string path)
         {
             if (!File.Exists(path))
             {
@@ -42,7 +45,7 @@ namespace RedRats.Safety
         /// </summary>
         /// <param name="path">The path to check.</param>
         /// <exception cref="SafetyNetIOException">Is thrown if path contains invalid characters.</exception>
-        public static void EnsurePathNotContainsInvalidCharacters(string path)
+        public static void PathNotContainsInvalidCharacters(string path)
         {
             if (Path.GetInvalidFileNameChars().All(path.Contains))
             {

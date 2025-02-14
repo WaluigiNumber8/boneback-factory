@@ -111,7 +111,7 @@ namespace Rogium.ExternalStorage
             foreach (KeyValuePair<string, int> dupe in duplicates)
             {
                 string name = typeof(T).FullName.Split('.')[^1];
-                SafetyNetIO.ThrowMessage($" The {name} called '{dupe.Key}' was not loaded as it has duplicates ({(dupe.Value-1).ToString()}). \n\n Edited changes to any '{dupe.Key}' will not be saved until all duplicates are removed.");
+                PreconditionsIO.ThrowMessage($" The {name} called '{dupe.Key}' was not loaded as it has duplicates ({(dupe.Value-1).ToString()}). \n\n Edited changes to any '{dupe.Key}' will not be saved until all duplicates are removed.");
             }
             
             return list.GroupBy(asset => asset.ID)

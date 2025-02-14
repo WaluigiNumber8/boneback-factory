@@ -26,8 +26,8 @@ namespace RedRats.Systems.FileSystem
         /// <exception cref="IOException">IS thrown when the object could not be loaded.</exception>
         public string LoadFile(string path, string expectedExtension, ICompressionSystem compression = null)
         {
-            SafetyNetIO.EnsurePathNotContainsInvalidCharacters(path);
-            SafetyNetIO.EnsureFileExists(path);
+            PreconditionsIO.PathNotContainsInvalidCharacters(path);
+            PreconditionsIO.FileExists(path);
             try
             {
                 compression?.Decompress(path, expectedExtension);
@@ -53,8 +53,8 @@ namespace RedRats.Systems.FileSystem
         /// <returns>A list where each element being file data represented by a string.</returns>
         public IList<string> LoadAllFiles(string path, string extension, bool deepSearch = false, ICompressionSystem compression = null)
         {
-            SafetyNetIO.EnsurePathNotContainsInvalidCharacters(path);
-            SafetyNetIO.EnsureDirectoryExists(path);
+            PreconditionsIO.PathNotContainsInvalidCharacters(path);
+            PreconditionsIO.DirectoryExists(path);
 
             dataList.Clear();
             searchedExtension = extension;
