@@ -15,17 +15,10 @@ namespace Rogium.Core
 
         private void Start()
         {
-            InputSystem input = InputSystem.GetInstance();
-            input.SwitchToMenuMaps();
+            InputSystem.GetInstance().SwitchToMenuMaps();
             ExternalLibraryOverseer.Instance.ActivateOptionsEditor();
             ExternalLibraryOverseer.Instance.RefreshOptions();
             OptionsMenuOverseer.Instance.CompleteEditing();
-            
-            //Force grouping on click/right click
-            input.UI.Select.OnPress += ActionHistorySystem.ForceBeginGrouping;
-            input.UI.ContextSelect.OnPress += ActionHistorySystem.ForceBeginGrouping;
-            input.UI.Select.OnRelease += ActionHistorySystem.ForceEndGrouping;
-            input.UI.ContextSelect.OnRelease += ActionHistorySystem.ForceEndGrouping;
         }
 
     }
