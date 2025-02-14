@@ -22,7 +22,7 @@ namespace RedRats.Safety
             {
                 string message = $"'{path}' doesn't exist.";
                 OnFireErrorMessage?.Invoke(message);
-                throw new SafetyNetIOException(message);
+                throw new PreconditionIOException(message);
             }
         }
 
@@ -36,7 +36,7 @@ namespace RedRats.Safety
             {
                 string message = $"'{path}' doesn't exist.";
                 OnFireErrorMessage?.Invoke(message);
-                throw new SafetyNetIOException(message);
+                throw new PreconditionIOException(message);
             }
         }
 
@@ -44,12 +44,12 @@ namespace RedRats.Safety
         /// Checks if a given path contains any invalid characters.
         /// </summary>
         /// <param name="path">The path to check.</param>
-        /// <exception cref="SafetyNetIOException">Is thrown if path contains invalid characters.</exception>
+        /// <exception cref="PreconditionIOException">Is thrown if path contains invalid characters.</exception>
         public static void PathNotContainsInvalidCharacters(string path)
         {
             if (Path.GetInvalidFileNameChars().All(path.Contains))
             {
-                throw new SafetyNetIOException($"'{path}' contains invalid symbols.");
+                throw new PreconditionIOException($"'{path}' contains invalid symbols.");
             }
         }
         

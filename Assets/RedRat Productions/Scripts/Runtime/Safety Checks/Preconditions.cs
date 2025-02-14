@@ -20,12 +20,12 @@ namespace RedRats.Safety
         /// <param name="value">The object to check.</param>
         /// <param name="variableName">Name of the checked variable.</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        /// <exception cref="SafetyNetException"></exception>
+        /// <exception cref="PreconditionException"></exception>
         public static void IsNotNull(object value, string variableName, string customMessage = "")
         {
             if (value == null)
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"'{variableName}' cannot be null.");
+                ThrowException(s => new PreconditionException(s), customMessage, $"'{variableName}' cannot be null.");
             }
         }
 
@@ -40,7 +40,7 @@ namespace RedRats.Safety
         {
             if (value is not T)
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} must be of type {typeof(T)}. ({value.GetType()})");
+                ThrowException(s => new PreconditionException(s), customMessage, $"{variableName} must be of type {typeof(T)}. ({value.GetType()})");
             }
         }
         
@@ -57,7 +57,7 @@ namespace RedRats.Safety
         /// /// <param name="customMessage">The message of the error. If blank will use default.</param>
         public static void IsIntEqual(int value, int allowedValue, string variableName, string customMessage = "")
         {
-            if (value != allowedValue) ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{value.ToString()}' must equal {allowedValue.ToString()}.");
+            if (value != allowedValue) ThrowException(s => new PreconditionException(s), customMessage, $"{variableName} '{value.ToString()}' must equal {allowedValue.ToString()}.");
         }
         
         /// <summary>
@@ -71,7 +71,7 @@ namespace RedRats.Safety
         {
             if (value == disallowedValue)
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{value.ToString()}' cannot equal {disallowedValue.ToString()}.");
+                ThrowException(s => new PreconditionException(s), customMessage, $"{variableName} '{value.ToString()}' cannot equal {disallowedValue.ToString()}.");
             }
         }
 
@@ -86,7 +86,7 @@ namespace RedRats.Safety
         {
             if (value <= minSize)
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{value.ToString()}' must be above {minSize.ToString()}.");
+                ThrowException(s => new PreconditionException(s), customMessage, $"{variableName} '{value.ToString()}' must be above {minSize.ToString()}.");
             }
         }
 
@@ -101,7 +101,7 @@ namespace RedRats.Safety
         {
             if (value < minSize)
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{value.ToString()}' must be above or equal {minSize.ToString()}.");
+                ThrowException(s => new PreconditionException(s), customMessage, $"{variableName} '{value.ToString()}' must be above or equal {minSize.ToString()}.");
             }
         }
 
@@ -116,7 +116,7 @@ namespace RedRats.Safety
         {
             if (value >= maxSize)
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} {value.ToString()} must be below {maxSize.ToString()}.");
+                ThrowException(s => new PreconditionException(s), customMessage, $"{variableName} {value.ToString()} must be below {maxSize.ToString()}.");
             }
         }
 
@@ -131,7 +131,7 @@ namespace RedRats.Safety
         {
             if (value > maxSize)
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{value.ToString()}' must be below or equal {maxSize.ToString()}.");
+                ThrowException(s => new PreconditionException(s), customMessage, $"{variableName} '{value.ToString()}' must be below or equal {maxSize.ToString()}.");
             }
         }
 
@@ -147,7 +147,7 @@ namespace RedRats.Safety
         {
             if (value < lowBounds && value > highBounds)
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{value.ToString()}' must be in between {lowBounds.ToString()} - {highBounds.ToString()}.");
+                ThrowException(s => new PreconditionException(s), customMessage, $"{variableName} '{value.ToString()}' must be in between {lowBounds.ToString()} - {highBounds.ToString()}.");
             }
         }
 
@@ -166,7 +166,7 @@ namespace RedRats.Safety
         {
             if (Math.Abs(value - allowedValue) > 0.01f) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{value.ToString()}' must equal {allowedValue.ToString()}.");
+                ThrowException(s => new PreconditionException(s), customMessage, $"{variableName} '{value.ToString()}' must equal {allowedValue.ToString()}.");
             }
         }
         
@@ -181,7 +181,7 @@ namespace RedRats.Safety
         {
             if (Math.Abs(value - disallowedValue) < 0.01f) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{value.ToString()}' cannot equal {disallowedValue.ToString()}.");
+                ThrowException(s => new PreconditionException(s), customMessage, $"{variableName} '{value.ToString()}' cannot equal {disallowedValue.ToString()}.");
             }
         }
 
@@ -196,7 +196,7 @@ namespace RedRats.Safety
         {
             if (value <= minSize) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{value.ToString()}' must be above {minSize.ToString()}.");
+                ThrowException(s => new PreconditionException(s), customMessage, $"{variableName} '{value.ToString()}' must be above {minSize.ToString()}.");
             }
         }
 
@@ -211,7 +211,7 @@ namespace RedRats.Safety
         {
             if (value < minSize) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{value.ToString()}' must be above or equal to {minSize.ToString()}.");
+                ThrowException(s => new PreconditionException(s), customMessage, $"{variableName} '{value.ToString()}' must be above or equal to {minSize.ToString()}.");
             }
         }
 
@@ -226,7 +226,7 @@ namespace RedRats.Safety
         {
             if (value >= maxSize) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{value.ToString()}' must be below {maxSize.ToString()}.");
+                ThrowException(s => new PreconditionException(s), customMessage, $"{variableName} '{value.ToString()}' must be below {maxSize.ToString()}.");
             }
         }
 
@@ -241,7 +241,7 @@ namespace RedRats.Safety
         {
             if (value > maxSize) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{value.ToString()}' must be below or equal to {maxSize.ToString()}.");
+                ThrowException(s => new PreconditionException(s), customMessage, $"{variableName} '{value.ToString()}' must be below or equal to {maxSize.ToString()}.");
             }
         }
 
@@ -257,7 +257,7 @@ namespace RedRats.Safety
         {
             if (value < lowBounds && value > highBounds) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{value.ToString()}' must be in between {lowBounds.ToString()} - {highBounds.ToString()}.");
+                ThrowException(s => new PreconditionException(s), customMessage, $"{variableName} '{value.ToString()}' must be in between {lowBounds.ToString()} - {highBounds.ToString()}.");
             }
         }
         #endregion
@@ -273,7 +273,7 @@ namespace RedRats.Safety
         {
             if (string.IsNullOrEmpty(value))
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"'{variableName}' cannot be null or empty.");
+                ThrowException(s => new PreconditionException(s), customMessage, $"'{variableName}' cannot be null or empty.");
             }
         }
         
@@ -284,12 +284,12 @@ namespace RedRats.Safety
         /// <param name="minLimit">Minimum characters allowed for the string.</param>
         /// <param name="variableName">Description of wronged variable.</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        /// <exception cref="SafetyNetException"></exception>
+        /// <exception cref="PreconditionException"></exception>
         public static void IsStringLengthAbove(string value, int minLimit, string variableName, string customMessage = "")
         {
             if (value.Length < minLimit)
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{value}' cannot have less than or equal to {minLimit.ToString()} characters.");
+                ThrowException(s => new PreconditionException(s), customMessage, $"{variableName} '{value}' cannot have less than or equal to {minLimit.ToString()} characters.");
             }
         }
 
@@ -300,12 +300,12 @@ namespace RedRats.Safety
         /// <param name="maxLimit">Maximum characters allowed for the string.</param>
         /// <param name="variableName">Description of wronged variable.</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        /// <exception cref="SafetyNetException"></exception>
+        /// <exception cref="PreconditionException"></exception>
         public static void IsStringLengthBelow(string value, int maxLimit, string variableName, string customMessage = "")
         {
             if (value.Length > maxLimit)
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{value}' cannot have more than or equal to {maxLimit.ToString()} characters.");
+                ThrowException(s => new PreconditionException(s), customMessage, $"{variableName} '{value}' cannot have more than or equal to {maxLimit.ToString()} characters.");
             }
         }
 
@@ -317,7 +317,7 @@ namespace RedRats.Safety
         /// <param name="maxLimit">Range maximum.</param>
         /// <param name="variableName">Name of the wronged variable.</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        /// <exception cref="SafetyNetException"></exception>
+        /// <exception cref="PreconditionException"></exception>
         public static void IsStringInRange(string value, int minLimit, int maxLimit, string variableName, string customMessage = "")
         {
             IsStringLengthAbove(value, minLimit, variableName, customMessage);
@@ -333,12 +333,12 @@ namespace RedRats.Safety
         /// <param name="value">The list to check.</param>
         /// <param name="variableName">The name of the list</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        /// <exception cref="SafetyNetCollectionException"></exception>
+        /// <exception cref="PreconditionCollectionException"></exception>
         public static void IsListNotEmpty<T>(IList<T> value, string variableName, string customMessage = "")
         {
             if (value.Count <= 0) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} cannot be empty.");
+                ThrowException(s => new PreconditionException(s), customMessage, $"{variableName} cannot be empty.");
             }
         }
 
@@ -348,12 +348,12 @@ namespace RedRats.Safety
         /// <param name="value">The list to check.</param>
         /// <param name="variableName">The name of the list</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        /// <exception cref="SafetyNetCollectionException"></exception>
+        /// <exception cref="PreconditionCollectionException"></exception>
         public static void IsListNotNullOrEmpty<T>(IList<T> value, string variableName, string customMessage = "")
         {
             if (value == null || value.Count <= 0) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} cannot be empty or null.");
+                ThrowException(s => new PreconditionException(s), customMessage, $"{variableName} cannot be empty or null.");
             }
         }
 
@@ -364,12 +364,12 @@ namespace RedRats.Safety
         /// <param name="maxAllowedSize">Max allowed size for the list.</param>
         /// <param name="variableName">The name of the list</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        /// <exception cref="SafetyNetCollectionException"></exception>
+        /// <exception cref="PreconditionCollectionException"></exception>
         public static void IsListIsNotLongerThan<T>(IList<T> value, int maxAllowedSize, string variableName, string customMessage = "")
         {
             if (value.Count > maxAllowedSize) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} length-{value.Count.ToString()} cannot have more than {maxAllowedSize.ToString()} items.");
+                ThrowException(s => new PreconditionException(s), customMessage, $"{variableName} length-{value.Count.ToString()} cannot have more than {maxAllowedSize.ToString()} items.");
             }
         }
 
@@ -380,12 +380,12 @@ namespace RedRats.Safety
         /// <param name="maxAllowedSize">Max allowed size for the list.</param>
         /// <param name="variableName">The name of the list</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        /// <exception cref="SafetyNetCollectionException"></exception>
+        /// <exception cref="PreconditionCollectionException"></exception>
         public static void IsListIsNotLongerOrEqualTo<T>(IList<T> value, int maxAllowedSize, string variableName, string customMessage = "")
         {
             if (value.Count >= maxAllowedSize) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} length-{value.Count.ToString()} cannot have more than or equal to {maxAllowedSize.ToString()} items.");
+                ThrowException(s => new PreconditionException(s), customMessage, $"{variableName} length-{value.Count.ToString()} cannot have more than or equal to {maxAllowedSize.ToString()} items.");
             }
         }
 
@@ -396,12 +396,12 @@ namespace RedRats.Safety
         /// <param name="minAllowedSize">Min allowed size for the list.</param>
         /// <param name="variableName">The name of the list</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        /// <exception cref="SafetyNetCollectionException"></exception>
+        /// <exception cref="PreconditionCollectionException"></exception>
         public static void IsListNotShorterThan<T>(IList<T> value, int minAllowedSize, string variableName, string customMessage = "")
         {
             if (value.Count < minAllowedSize) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} length-{value.Count.ToString()} cannot have less than {minAllowedSize.ToString()} items.");
+                ThrowException(s => new PreconditionException(s), customMessage, $"{variableName} length-{value.Count.ToString()} cannot have less than {minAllowedSize.ToString()} items.");
             }
         }
 
@@ -412,12 +412,12 @@ namespace RedRats.Safety
         /// <param name="minAllowedSize">Min allowed size for the list.</param>
         /// <param name="variableName">The name of the list</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        /// <exception cref="SafetyNetCollectionException"></exception>
+        /// <exception cref="PreconditionCollectionException"></exception>
         public static void IsListNotShorterOrEqualTo<T>(IList<T> value, int minAllowedSize, string variableName, string customMessage = "")
         {
             if (value.Count <= minAllowedSize) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} length-{value.Count.ToString()} cannot have less than or equal to {minAllowedSize.ToString()} items.");
+                ThrowException(s => new PreconditionException(s), customMessage, $"{variableName} length-{value.Count.ToString()} cannot have less than or equal to {minAllowedSize.ToString()} items.");
             }
         }
 
@@ -428,12 +428,12 @@ namespace RedRats.Safety
         /// <param name="size">The allowed size for the list.</param>
         /// <param name="variableName">The name of the list</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        /// <exception cref="SafetyNetCollectionException"></exception>
+        /// <exception cref="PreconditionCollectionException"></exception>
         public static void IsListNotLongExactly<T>(IList<T> value, int size, string variableName, string customMessage = "")
         {
             if (value.Count == size) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} length-{value.Count.ToString()} must have exactly {size.ToString()} items.");
+                ThrowException(s => new PreconditionException(s), customMessage, $"{variableName} length-{value.Count.ToString()} must have exactly {size.ToString()} items.");
             }
         }
 
@@ -445,12 +445,12 @@ namespace RedRats.Safety
         /// <param name="element">The object we check the duplicity for.</param>
         /// <param name="variableName">Name of the checked variable.</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        /// <exception cref="SafetyNetCollectionException"></exception>
+        /// <exception cref="PreconditionCollectionException"></exception>
         public static void IsListNotContaining<T>(IList<T> value, T element, string variableName, string customMessage = "")
         {
             if (value.Contains(element)) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} cannot contain '{element.ToString()}.'");
+                ThrowException(s => new PreconditionException(s), customMessage, $"{variableName} cannot contain '{element.ToString()}.'");
             }
         }
         
@@ -462,12 +462,12 @@ namespace RedRats.Safety
         /// <param name="element">The object we check the duplicity for.</param>
         /// <param name="variableName">Name of the checked variable.</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        /// <exception cref="SafetyNetCollectionException"></exception>
+        /// <exception cref="PreconditionCollectionException"></exception>
         public static void isListContaining<T>(IList<T> value, T element, string variableName, string customMessage = "") where T : class
         {
             if (!value.ContainsValue(element)) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} must contain '{element}.'");
+                ThrowException(s => new PreconditionException(s), customMessage, $"{variableName} must contain '{element}.'");
             }
         }
 
@@ -483,7 +483,7 @@ namespace RedRats.Safety
             if (value.GetDuplicatesCount(out IList<string> duplicates) > 0) 
             {
                 string duplicateString = string.Join(", ", duplicates);
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} cannot have any duplicates. Duplicates found: {duplicateString}");
+                ThrowException(s => new PreconditionException(s), customMessage, $"{variableName} cannot have any duplicates. Duplicates found: {duplicateString}");
             }
         }
         
@@ -492,7 +492,7 @@ namespace RedRats.Safety
             int count = value.Count();
             if (index < 0 || index > count - 1) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"Index ({index.ToString()}) must fit within {collectionName} of size-{count.ToString()}.");
+                ThrowException(s => new PreconditionException(s), customMessage, $"Index ({index.ToString()}) must fit within {collectionName} of size-{count.ToString()}.");
             }
         }
         #endregion
@@ -503,7 +503,7 @@ namespace RedRats.Safety
         {
             if (value == null || value.Count <= 0) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} cannot be empty or null.");
+                ThrowException(s => new PreconditionException(s), customMessage, $"{variableName} cannot be empty or null.");
             }
         }
 
@@ -515,7 +515,7 @@ namespace RedRats.Safety
         {
             if (!value.ContainsKey(key)) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} must contain the key '{key.ToString()}'.");
+                ThrowException(s => new PreconditionException(s), customMessage, $"{variableName} must contain the key '{key.ToString()}'.");
             }
         }
 

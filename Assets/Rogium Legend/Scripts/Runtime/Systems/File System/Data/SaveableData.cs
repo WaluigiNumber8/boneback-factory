@@ -57,7 +57,7 @@ namespace Rogium.ExternalStorage
         public void TryAddNewFilePath(string id, string title)
         {
             try {filePaths.FindValueFirst(id);}
-            catch (SafetyNetCollectionException)
+            catch (PreconditionCollectionException)
             {
                 FilePathInfo filePathInfo = ConvertToFileInfo(id, title);
                 filePaths.Add(filePathInfo);

@@ -69,7 +69,7 @@ namespace Rogium.ExternalStorage
                 packPaths.RemoveAt(index);
                 currentPackInfo = null;
             }
-            catch (SafetyNetCollectionException)
+            catch (PreconditionCollectionException)
             {
                 throw new InvalidOperationException("Cannot delete a pack that doesn't exist.");
             }
@@ -83,7 +83,7 @@ namespace Rogium.ExternalStorage
         {
             //Update current pack info.
             try {currentPackInfo = packPaths.FindValueFirst(pack.ID); }
-            catch (SafetyNetCollectionException) { CreateSkeleton(pack); }
+            catch (PreconditionCollectionException) { CreateSkeleton(pack); }
             refreshAssetSaveableData.Invoke(currentPackInfo);
 
             return createPack.Invoke(pack);
