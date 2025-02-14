@@ -133,7 +133,7 @@ namespace Rogium.Gameplay.Sequencer
         {
             if (startingPoints.Count <= 0)
             {
-                SafetyNet.ThrowMessage("There cannot be 0 starting points in a room!");
+                Preconditions.ThrowMessage("There cannot be 0 starting points in a room!");
                 startingPoints.Add(defaultStartPos, Vector2.down);
                 return 0;
             }

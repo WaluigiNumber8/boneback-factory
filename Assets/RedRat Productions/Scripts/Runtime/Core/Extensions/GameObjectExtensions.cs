@@ -15,7 +15,7 @@ namespace RedRats.Core
         /// <param name="gObject"></param>
         public static void KillChildren(this GameObject gObject)
         {
-            SafetyNet.EnsureIsNotNull(gObject, "GameObject to kill children of");
+            Preconditions.IsNotNull(gObject, "GameObject to kill children of");
             if (gObject.transform.childCount <= 0) return;
             
             foreach (Transform child in gObject.transform)

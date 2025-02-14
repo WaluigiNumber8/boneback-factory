@@ -14,7 +14,7 @@ namespace RedRats.Systems.FileSystem.Compression
 
         public void Compress(string filePath)
         {
-            SafetyNetIO.EnsurePathNotContainsInvalidCharacters(filePath);
+            PreconditionsIO.PathNotContainsInvalidCharacters(filePath);
             
             string compressedPath = Path.ChangeExtension(filePath, COMPRESSED_EXTENSION);
             using FileStream originalFileStream = File.Open(filePath, FileMode.Open);
@@ -25,7 +25,7 @@ namespace RedRats.Systems.FileSystem.Compression
 
         public void Decompress(string filePath, string originalExtension)
         {
-            SafetyNetIO.EnsurePathNotContainsInvalidCharacters(filePath);
+            PreconditionsIO.PathNotContainsInvalidCharacters(filePath);
             
             string decompressedPath = Path.ChangeExtension(filePath, originalExtension);
             using FileStream compressedFileStream = File.Open(filePath, FileMode.Open);

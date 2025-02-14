@@ -86,7 +86,7 @@ namespace Rogium.Gameplay.Core
                 lastProjectile = allProjectiles[id];
                 return true;
             }
-            catch (SafetyNetCollectionException)
+            catch (PreconditionCollectionException)
             {
                 return false;
             }

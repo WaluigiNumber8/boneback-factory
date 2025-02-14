@@ -49,7 +49,7 @@ namespace Rogium.Gameplay.InteractableObjects
             }
             catch (Exception e)
             {
-                if (e is SafetyNetException or SafetyNetCollectionException) Destroy(gameObject);
+                if (e is PreconditionException or PreconditionCollectionException) Destroy(gameObject);
             }
 
         }

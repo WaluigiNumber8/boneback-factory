@@ -28,8 +28,8 @@ namespace Rogium.Editors.Palettes
         /// <param name="prepareEditor">If true, load asset into the editor.</param>
         public void AssignAsset(PaletteAsset asset, int index, bool prepareEditor = true)
         {
-            SafetyNet.EnsureIsNotNull(asset, "Assigned Palette");
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(index, 0, "Assigned asset index");
+            Preconditions.IsNotNull(asset, "Assigned Palette");
+            Preconditions.IsIntBiggerOrEqualTo(index, 0, "Assigned asset index");
 
             currentAsset = new PaletteAsset.Builder().AsCopy(asset).Build();
             myIndex = index;
@@ -44,7 +44,7 @@ namespace Rogium.Editors.Palettes
         /// <param name="updatedAsset">Asset Containing new data.</param>
         public void UpdateAsset(PaletteAsset updatedAsset)
         { 
-            SafetyNet.EnsureIsNotNull(currentAsset, "Currently active asset.");
+            Preconditions.IsNotNull(currentAsset, "Currently active asset.");
             currentAsset = new PaletteAsset.Builder().AsCopy(updatedAsset).Build();
         }
 
@@ -55,7 +55,7 @@ namespace Rogium.Editors.Palettes
         /// <param name="posIndex">The position for the color.</param>
         public void UpdateColor(Color color, int posIndex)
         {
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(posIndex, 0, "posIndex");
+            Preconditions.IsIntBiggerOrEqualTo(posIndex, 0, "posIndex");
             currentAsset.Colors[posIndex] = color;
         }
         

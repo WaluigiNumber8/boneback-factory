@@ -32,7 +32,7 @@ namespace Rogium.ExternalStorage
         /// <param name="asset">The room to save.</param>
         public void Save(T asset)
         {
-            SafetyNet.EnsureIsNotNull(data, "Saveable Data");
+            Preconditions.IsNotNull(data, "Saveable Data");
             
             data.TryAddNewFilePath(asset.ID, asset.Title);
             JSONSystem.Save(data.GetFilePath(asset.ID), dataIdentifier, asset, r => newSerializedObject(r), useCompression);
@@ -61,7 +61,7 @@ namespace Rogium.ExternalStorage
         /// <param name="asset">The room, whose title to update.</param>
         public void Update(T asset)
         {
-            SafetyNet.EnsureIsNotNull(data, "Saveable Data");
+            Preconditions.IsNotNull(data, "Saveable Data");
             
             Save(asset);
             data.GetFileTitleAndPath(asset.ID, out string title, out string oldPath);
@@ -77,7 +77,7 @@ namespace Rogium.ExternalStorage
         /// <param name="asset">The room to delete.</param>
         public void Delete(T asset)
         {
-            SafetyNet.EnsureIsNotNull(data, "Saveable Data");
+            Preconditions.IsNotNull(data, "Saveable Data");
             
             JSONSystem.Delete(data.GetFilePath(asset.ID));
             data.RemoveFilePath(asset.ID);
@@ -111,7 +111,7 @@ namespace Rogium.ExternalStorage
             foreach (KeyValuePair<string, int> dupe in duplicates)
             {
                 string name = typeof(T).FullName.Split('.')[^1];
-                SafetyNetIO.ThrowMessage($" The {name} called '{dupe.Key}' was not loaded as it has duplicates ({(dupe.Value-1).ToString()}). \n\n Edited changes to any '{dupe.Key}' will not be saved until all duplicates are removed.");
+                PreconditionsIO.ThrowMessage($" The {name} called '{dupe.Key}' was not loaded as it has duplicates ({(dupe.Value-1).ToString()}). \n\n Edited changes to any '{dupe.Key}' will not be saved until all duplicates are removed.");
             }
             
             return list.GroupBy(asset => asset.ID)

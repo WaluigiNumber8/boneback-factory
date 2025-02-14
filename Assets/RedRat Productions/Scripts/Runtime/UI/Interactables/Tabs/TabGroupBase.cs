@@ -22,7 +22,7 @@ namespace RedRats.UI.Tabs
         
         private void Start()
         {
-            SafetyNet.EnsureIntIsInRange(defaultTabIndex, 0, pageButtons.Length, "Default Tab Index");
+            Preconditions.IsIntInRange(defaultTabIndex, 0, pageButtons.Length, "Default Tab Index");
             Switch(defaultTabIndex);
         }
 
@@ -62,7 +62,7 @@ namespace RedRats.UI.Tabs
         /// <param name="index">The index of the button to switch.</param>
         public void Switch(int index)
         {
-            SafetyNet.EnsureIndexWithingCollectionRange(index, pageButtons, "Tab Buttons");
+            Preconditions.IsIndexWithingCollectionRange(pageButtons, index, "Tab Buttons");
             OnTabSelect(pageButtons[index]);
         }
 

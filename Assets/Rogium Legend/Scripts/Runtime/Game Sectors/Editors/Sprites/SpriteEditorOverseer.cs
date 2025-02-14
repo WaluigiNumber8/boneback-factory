@@ -34,8 +34,8 @@ namespace Rogium.Editors.Sprites
         /// <param name="prepareEditor"></param>
         public void AssignAsset(SpriteAsset asset, int index, bool prepareEditor = true)
         {
-            SafetyNet.EnsureIsNotNull(asset, "Assigned Sprite");
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(index, 0, "Assigned asset index");
+            Preconditions.IsNotNull(asset, "Assigned Sprite");
+            Preconditions.IsIntBiggerOrEqualTo(index, 0, "Assigned asset index");
 
             currentAsset = new SpriteAsset.Builder().AsCopy(asset).Build();
             currentPalette = palettePicker.GrabBasedOn(currentAsset.AssociatedPaletteID);
@@ -53,13 +53,13 @@ namespace Rogium.Editors.Sprites
         /// <param name="updatedAsset">Asset containing new data.</param>
         public void UpdateAsset(SpriteAsset updatedAsset)
         { 
-            SafetyNet.EnsureIsNotNull(currentAsset, "Currently active asset.");
+            Preconditions.IsNotNull(currentAsset, "Currently active asset.");
             currentAsset = new SpriteAsset.Builder().AsCopy(updatedAsset).Build();
         }
 
         public void UpdatePalette(PaletteAsset updatedPalette)
         {
-            SafetyNet.EnsureIsNotNull(currentPalette, "Currently active palette.");
+            Preconditions.IsNotNull(currentPalette, "Currently active palette.");
             currentPalette = new PaletteAsset.Builder().AsCopy(updatedPalette).Build();
             currentAsset.UpdateAssociatedPaletteID(currentPalette.ID);
             originalColors = currentPalette.Colors.AsCopy();

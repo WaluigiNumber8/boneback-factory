@@ -31,7 +31,7 @@ namespace Rogium.UserInterface.Interactables
         
         public Sprite GetEmblem(int index)
         {
-            SafetyNet.EnsureIndexWithingCollectionRange(index, emblems, nameof(index));
+            Preconditions.IsIndexWithingCollectionRange(emblems, index, nameof(index));
             return emblems[index];
         }
         

@@ -371,7 +371,7 @@ namespace Rogium.Systems.GASExtension
         }
         private static void DeletePackAccept()
         {
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(storedIndex, 0, "StoredNumber");
+            Preconditions.IsIntBiggerOrEqualTo(storedIndex, 0, "StoredNumber");
             ExternalLibraryOverseer.Instance.DeletePack(storedIndex);
             GASRogium.OpenSelectionMenu(AssetType.Pack);
             storedIndex = -1;
@@ -391,7 +391,7 @@ namespace Rogium.Systems.GASExtension
         
         private static void DeleteCampaignAccept()
         {
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(storedIndex, 0, "StoredNumber");
+            Preconditions.IsIntBiggerOrEqualTo(storedIndex, 0, "StoredNumber");
             ExternalLibraryOverseer.Instance.DeleteCampaign(storedIndex);
             CampaignShowPrevious();
             storedIndex = -1;
@@ -410,7 +410,7 @@ namespace Rogium.Systems.GASExtension
         }
         private static void DeletePaletteAccept()
         {
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(storedIndex, 0, "StoredNumber");
+            Preconditions.IsIntBiggerOrEqualTo(storedIndex, 0, "StoredNumber");
             
             PackEditorOverseer.Instance.RemovePalette(storedIndex);
             GASRogium.OpenSelectionMenu(AssetType.Palette);
@@ -430,7 +430,7 @@ namespace Rogium.Systems.GASExtension
         }
         private static void DeleteSpriteAccept()
         {
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(storedIndex, 0, "StoredNumber");
+            Preconditions.IsIntBiggerOrEqualTo(storedIndex, 0, "StoredNumber");
             
             PackEditorOverseer.Instance.RemoveSprite(storedIndex);
             GASRogium.OpenSelectionMenu(AssetType.Sprite);
@@ -450,7 +450,7 @@ namespace Rogium.Systems.GASExtension
         }
         private static void DeleteWeaponAccept()
         {
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(storedIndex, 0, "StoredNumber");
+            Preconditions.IsIntBiggerOrEqualTo(storedIndex, 0, "StoredNumber");
             
             PackEditorOverseer.Instance.RemoveWeapon(storedIndex);
             GASRogium.OpenSelectionMenu(AssetType.Weapon);
@@ -470,7 +470,7 @@ namespace Rogium.Systems.GASExtension
         }
         private static void DeleteProjectileAccept()
         {
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(storedIndex, 0, "StoredNumber");
+            Preconditions.IsIntBiggerOrEqualTo(storedIndex, 0, "StoredNumber");
             
             PackEditorOverseer.Instance.RemoveProjectile(storedIndex);
             GASRogium.OpenSelectionMenu(AssetType.Projectile);
@@ -490,7 +490,7 @@ namespace Rogium.Systems.GASExtension
         }
         private static void DeleteEnemyAccept()
         {
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(storedIndex, 0, "StoredNumber");
+            Preconditions.IsIntBiggerOrEqualTo(storedIndex, 0, "StoredNumber");
             
             PackEditorOverseer.Instance.RemoveEnemy(storedIndex);
             GASRogium.OpenSelectionMenu(AssetType.Enemy);
@@ -510,7 +510,7 @@ namespace Rogium.Systems.GASExtension
         }
         private static void DeleteRoomAccept()
         {
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(storedIndex, 0, "StoredNumber");
+            Preconditions.IsIntBiggerOrEqualTo(storedIndex, 0, "StoredNumber");
             PackEditorOverseer.Instance.RemoveRoom(storedIndex);
             GASRogium.OpenSelectionMenu(AssetType.Room);
             storedIndex = -1;
@@ -529,7 +529,7 @@ namespace Rogium.Systems.GASExtension
         }
         private static void DeleteTileAccept()
         {
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(storedIndex, 0, "StoredNumber");
+            Preconditions.IsIntBiggerOrEqualTo(storedIndex, 0, "StoredNumber");
             PackEditorOverseer.Instance.RemoveTile(storedIndex);
             GASRogium.OpenSelectionMenu(AssetType.Tile);
             storedIndex = -1;

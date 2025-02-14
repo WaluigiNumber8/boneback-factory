@@ -85,8 +85,8 @@ namespace Rogium.Editors.Core
         /// </summary>
         public void ActivatePackEditor(int packIndex)
         {
-            SafetyNet.EnsureListIsNotNullOrEmpty(packs, "Pack Library");
-            SafetyNet.EnsureIntIsInRange(packIndex, 0, packs.Count, "packIndex for activating Pack Editor");
+            Preconditions.IsListNotNullOrEmpty(packs, "Pack Library");
+            Preconditions.IsIntInRange(packIndex, 0, packs.Count, "packIndex for activating Pack Editor");
             packs[packIndex] = ex.Packs.Load(packs[packIndex]);
             packs[packIndex].RefreshAssetCounts();
             packEditor.AssignAsset(packs[packIndex], packIndex);
@@ -134,8 +134,8 @@ namespace Rogium.Editors.Core
         /// </summary>
         public void ActivateCampaignEditor(int campaignIndex, bool prepareEditor = true)
         {
-            SafetyNet.EnsureListIsNotNullOrEmpty(campaigns, "Campaign Library");
-            SafetyNet.EnsureIntIsInRange(campaignIndex, 0, campaigns.Count, "campaignIndex for activating Campaign Editor");
+            Preconditions.IsListNotNullOrEmpty(campaigns, "Campaign Library");
+            Preconditions.IsIntInRange(campaignIndex, 0, campaigns.Count, "campaignIndex for activating Campaign Editor");
             campaignEditor.AssignAsset(campaigns[campaignIndex], campaignIndex, prepareEditor);
         }
 
@@ -145,8 +145,8 @@ namespace Rogium.Editors.Core
         /// <param name="campaignIndex"></param>
         public void ActivateCampaignPlaythrough(int campaignIndex)
         {
-            SafetyNet.EnsureListIsNotNullOrEmpty(campaigns, "Campaign Library");
-            SafetyNet.EnsureIntIsInRange(campaignIndex, 0, campaigns.Count, "campaignIndex for activating Campaign Playthrough");
+            Preconditions.IsListNotNullOrEmpty(campaigns, "Campaign Library");
+            Preconditions.IsIntInRange(campaignIndex, 0, campaigns.Count, "campaignIndex for activating Campaign Playthrough");
             SceneTransferOverseer.GetInstance().LoadUp(campaigns[campaignIndex]);
         }
         

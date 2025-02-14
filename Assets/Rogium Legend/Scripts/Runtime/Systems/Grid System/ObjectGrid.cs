@@ -50,8 +50,8 @@ namespace Rogium.Systems.GridSystem
         /// <param name="value">Value to set.</param>
         public void SetTo(int x, int y, T value)
         {
-            SafetyNet.EnsureIntIsInRange(x, 0, width, "Grid X");
-            SafetyNet.EnsureIntIsInRange(y, 0, height, "Grid Y");
+            Preconditions.IsIntInRange(x, 0, width, "Grid X");
+            Preconditions.IsIntInRange(y, 0, height, "Grid Y");
             cellArray[x, y] = value;
         }
 
@@ -70,8 +70,8 @@ namespace Rogium.Systems.GridSystem
         /// <returns></returns>
         public T GetAt(int x, int y)
         {
-            SafetyNet.EnsureIntIsInRange(x, 0, width-1, "Grid X");
-            SafetyNet.EnsureIntIsInRange(y, 0, height-1, "Grid Y");
+            Preconditions.IsIntInRange(x, 0, width-1, "Grid X");
+            Preconditions.IsIntInRange(y, 0, height-1, "Grid Y");
             return cellArray[x, y];
         }
 
@@ -81,8 +81,8 @@ namespace Rogium.Systems.GridSystem
         /// <param name="grid">The grid to copy from (Must have same WIDTH and HEIGHT).</param>
         public void SetFrom(ObjectGrid<T> grid)
         {
-            SafetyNet.EnsureIntIsEqual(grid.Width, width, "Grid Width");
-            SafetyNet.EnsureIntIsEqual(grid.Height, height, "Grid Height");
+            Preconditions.IsIntEqual(grid.Width, width, "Grid Width");
+            Preconditions.IsIntEqual(grid.Height, height, "Grid Height");
 
             for (int i = 0; i < width; i++)
             {

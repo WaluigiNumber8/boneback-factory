@@ -37,7 +37,7 @@ namespace RedRats.Systems.FileSystem.JSON.Serialization
         
         public ISet<T> Decode()
         {
-            SafetyNet.EnsureIsNotNull(newDeserializedObject, nameof(newDeserializedObject), "You need to set the decoder method before decoding.");
+            Preconditions.IsNotNull(newDeserializedObject, nameof(newDeserializedObject), "You need to set the decoder method before decoding.");
             return serializedSet.Select(newDeserializedObject).ToHashSet();
         }
     }

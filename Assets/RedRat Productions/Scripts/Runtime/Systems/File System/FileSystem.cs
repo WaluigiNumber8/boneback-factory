@@ -29,7 +29,7 @@ namespace RedRats.Systems.FileSystem
         /// <param name="path">The location to create the directory in. (including directory title)</param>
         public static void CreateDirectory(string path)
         {
-            SafetyNetIO.EnsurePathNotContainsInvalidCharacters(path);
+            PreconditionsIO.PathNotContainsInvalidCharacters(path);
             if (Directory.Exists(path)) return;
             Directory.CreateDirectory(path);
         }
@@ -43,7 +43,7 @@ namespace RedRats.Systems.FileSystem
         /// <param name="overrideByCompression">If TRUE, keep onl the compressed file.</param>
         public static void SaveFile(string path, string data, ICompressionSystem compression = null, bool overrideByCompression = true)
         {
-            SafetyNetIO.EnsurePathNotContainsInvalidCharacters(path);
+            PreconditionsIO.PathNotContainsInvalidCharacters(path);
             try
             {
                 File.WriteAllText(path, data);
@@ -55,7 +55,7 @@ namespace RedRats.Systems.FileSystem
             }
             catch (IOException)
             {
-                SafetyNetIO.ThrowMessage($"File '{Path.GetFileName(path)} could not be saved.'");
+                PreconditionsIO.ThrowMessage($"File '{Path.GetFileName(path)} could not be saved.'");
             }
         }
 
@@ -99,8 +99,8 @@ namespace RedRats.Systems.FileSystem
         /// <param name="path">The path to the file.</param>
         public static void DeleteFile(string path)
         {
-            SafetyNetIO.EnsurePathNotContainsInvalidCharacters(path);
-            SafetyNetIO.EnsureFileExists(path);
+            PreconditionsIO.PathNotContainsInvalidCharacters(path);
+            PreconditionsIO.FileExists(path);
             File.Delete(path);
         }
 
@@ -110,8 +110,8 @@ namespace RedRats.Systems.FileSystem
         /// <param name="path">The path to the directory.</param>
         public static void DeleteDirectory(string path)
         {
-            SafetyNetIO.EnsurePathNotContainsInvalidCharacters(path);
-            SafetyNetIO.EnsureDirectoryExists(path);
+            PreconditionsIO.PathNotContainsInvalidCharacters(path);
+            PreconditionsIO.DirectoryExists(path);
             Directory.Delete(path, true);
         }
 
@@ -122,9 +122,9 @@ namespace RedRats.Systems.FileSystem
         /// <param name="newPath">The full path of the new file. (no extension)</param>
         public static void RenameFile(string oldPath, string newPath)
         {
-            SafetyNetIO.EnsurePathNotContainsInvalidCharacters(oldPath);
-            SafetyNetIO.EnsurePathNotContainsInvalidCharacters(newPath);
-            SafetyNetIO.EnsureFileExists(oldPath);
+            PreconditionsIO.PathNotContainsInvalidCharacters(oldPath);
+            PreconditionsIO.PathNotContainsInvalidCharacters(newPath);
+            PreconditionsIO.FileExists(oldPath);
             File.Move(oldPath, newPath);
         }
 
@@ -135,9 +135,9 @@ namespace RedRats.Systems.FileSystem
         /// <param name="newPath">The full path of the new directory.</param>
         public static void RenameDirectory(string oldPath, string newPath)
         {
-            SafetyNetIO.EnsurePathNotContainsInvalidCharacters(oldPath);
-            SafetyNetIO.EnsurePathNotContainsInvalidCharacters(newPath);
-            SafetyNetIO.EnsureDirectoryExists(oldPath);
+            PreconditionsIO.PathNotContainsInvalidCharacters(oldPath);
+            PreconditionsIO.PathNotContainsInvalidCharacters(newPath);
+            PreconditionsIO.DirectoryExists(oldPath);
             Directory.Move(oldPath, newPath);
         }
     }

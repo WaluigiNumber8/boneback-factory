@@ -28,7 +28,7 @@ namespace Rogium.Systems.Toolbox
 
         public override void ApplyEffect(ObjectGrid<T> grid, Vector2Int position, T value, Sprite graphicValue, int layer)
         {
-            SafetyNet.EnsureIsNotNull(grid, "grid");
+            Preconditions.IsNotNull(grid, "grid");
             
             this.grid = grid;
             this.layerIndex = layer;

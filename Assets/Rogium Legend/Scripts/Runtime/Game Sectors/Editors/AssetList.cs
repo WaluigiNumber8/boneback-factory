@@ -20,10 +20,10 @@ namespace Rogium.Editors.Core
         public AssetList(Action<T> saveToExternalStorage, Action<T> updateOnExternalStorage, Action<T> deleteFromExternalStorage) : this(saveToExternalStorage, updateOnExternalStorage, deleteFromExternalStorage, new List<T>()) { }
         public AssetList(Action<T> saveToExternalStorage, Action<T> updateOnExternalStorage, Action<T> deleteFromExternalStorage, IList<T> original)
         {
-            SafetyNet.EnsureIsNotNull(original, "List to use/copy");
-            SafetyNet.EnsureIsNotNull(saveToExternalStorage, "Saving Method");
-            SafetyNet.EnsureIsNotNull(updateOnExternalStorage, "Updating Method");
-            SafetyNet.EnsureIsNotNull(deleteFromExternalStorage, "Deleting Method");
+            Preconditions.IsNotNull(original, "List to use/copy");
+            Preconditions.IsNotNull(saveToExternalStorage, "Saving Method");
+            Preconditions.IsNotNull(updateOnExternalStorage, "Updating Method");
+            Preconditions.IsNotNull(deleteFromExternalStorage, "Deleting Method");
 
             list = new List<T>(original);
             this.saveToExternalStorage = saveToExternalStorage;
@@ -39,10 +39,10 @@ namespace Rogium.Editors.Core
         /// <param name="asset">the PackAsset to add.</param>
         public void Add(T asset)
         {
-            SafetyNet.EnsureIsNotNull(asset, "Asset to add");
+            Preconditions.IsNotNull(asset, "Asset to add");
             if (TryFinding(asset.Title, asset.Author) != null)
             {
-                SafetyNet.ThrowMessage("The asset cannot have the same name as an already existing one.");
+                Preconditions.ThrowMessage("The asset cannot have the same name as an already existing one.");
                 throw new FoundDuplicationException("You are trying to create an asset, that already exists. Cannot have the same title and author!");
             }
             list.Add(asset);
@@ -55,12 +55,12 @@ namespace Rogium.Editors.Core
         /// <param name="assets"></param>
         public void AddAllWithoutSave(IList<T> assets)
         {
-            SafetyNet.EnsureIsNotNull(assets, "List of assets to add.");
+            Preconditions.IsNotNull(assets, "List of assets to add.");
             
             List<T> newAssets = new List<T>(list);
             newAssets.AddRange(assets);
             
-            SafetyNet.EnsureListDoesNotHaveDuplicities(newAssets, "Newly Added Assets");
+            Preconditions.isListWithoutDuplicates(newAssets, "Newly Added Assets");
             
             list.AddRange(assets);
         }
@@ -73,11 +73,11 @@ namespace Rogium.Editors.Core
         /// <exception cref="FoundDuplicationException"></exception>
         public void Update(int index, T asset)
         {
-            SafetyNet.EnsureIsNotNull(asset, "Asset to add");
-            SafetyNet.EnsureIntIsInRange(index ,0, list.Count, "Asset List");
+            Preconditions.IsNotNull(asset, "Asset to add");
+            Preconditions.IsIntInRange(index ,0, list.Count, "Asset List");
             if (TryFinding(asset.Title, asset.Author, index) != null)
             {
-                SafetyNet.ThrowMessage("The asset cannot have the same name as an already existing one.");
+                Preconditions.ThrowMessage("The asset cannot have the same name as an already existing one.");
                 throw new FoundDuplicationException("You are trying to create an asset, that already exists. Cannot have the same title and author!");
             }
             list[index] = asset;
@@ -93,7 +93,7 @@ namespace Rogium.Editors.Core
         public void Remove(string name, string author)
         {
             T foundAsset = TryFinding(name, author);
-            SafetyNet.EnsureIsNotNull(foundAsset, "Asset to Remove");
+            Preconditions.IsNotNull(foundAsset, "Asset to Remove");
 
             list.Remove(foundAsset);
             deleteFromExternalStorage.Invoke(foundAsset);
@@ -105,9 +105,9 @@ namespace Rogium.Editors.Core
         /// <param name="assetIndex"></param>
         public void Remove(int assetIndex)
         {
-            SafetyNet.EnsureIntIsInRange(assetIndex, 0, list.Count, "Pack Index when removing");
+            Preconditions.IsIntInRange(assetIndex, 0, list.Count, "Pack Index when removing");
             T foundAsset = list[assetIndex];
-            SafetyNet.EnsureIsNotNull(foundAsset, "Asset to Remove");
+            Preconditions.IsNotNull(foundAsset, "Asset to Remove");
 
             list.Remove(foundAsset);
             deleteFromExternalStorage.Invoke(foundAsset);
@@ -128,7 +128,7 @@ namespace Rogium.Editors.Core
                                        .Where(asset => asset.Title == title && asset.Author == author)
                                        .ToList();
 
-            SafetyNet.EnsureListIsNotLongerThan(foundAssets, 1, "Found Packs by name & author");
+            Preconditions.IsListIsNotLongerThan(foundAssets, 1, "Found Packs by name & author");
             return (foundAssets.Count == 0) ? default : foundAssets[0];
         }
 
@@ -138,7 +138,7 @@ namespace Rogium.Editors.Core
         /// <param name="newList">the list to replace it with.</param>
         public void ReplaceAll(IList<T> newList)
         {
-            SafetyNet.EnsureIsNotNull(newList, "New List");
+            Preconditions.IsNotNull(newList, "New List");
             list.Clear();
             list.AddRange(newList);
         }
@@ -159,10 +159,10 @@ namespace Rogium.Editors.Core
 
         public void Insert(int index, T asset)
         {
-            SafetyNet.EnsureIsNotNull(asset, "Asset to add");
+            Preconditions.IsNotNull(asset, "Asset to add");
             if (TryFinding(asset.Title, asset.Author) != null)
             {
-                SafetyNet.ThrowMessage("The asset cannot have the same name as an already existing one.");
+                Preconditions.ThrowMessage("The asset cannot have the same name as an already existing one.");
                 throw new FoundDuplicationException("You are trying to create an asset, that already exists. Cannot have the same title and author!");
             }
             list.Insert(index, asset);
@@ -171,7 +171,7 @@ namespace Rogium.Editors.Core
 
         public void RemoveAt(int index)
         {
-            SafetyNet.EnsureIntIsInRange(index, 0, list.Count, "Index");
+            Preconditions.IsIntInRange(index, 0, list.Count, "Index");
             Remove(index);
         }
 
@@ -186,10 +186,10 @@ namespace Rogium.Editors.Core
 
         public bool Remove(T asset)
         {
-            SafetyNet.EnsureIsNotNull(asset, "Asset to add");
+            Preconditions.IsNotNull(asset, "Asset to add");
             if (TryFinding(asset.Title, asset.Author) != null)
             {
-                SafetyNet.ThrowMessage("The asset cannot have the same name as an already existing one.");
+                Preconditions.ThrowMessage("The asset cannot have the same name as an already existing one.");
                 throw new FoundDuplicationException("You are trying to create an asset, that already exists. Cannot have the same title and author!");
             }
             if (!list.Remove(asset)) return false;

@@ -26,7 +26,7 @@ namespace Rogium.Editors.AssetSelection.Campaigns
         /// </summary>
         public void Initialize(AssetWallpaperController wallpaper)
         {
-            SafetyNet.EnsureIsNotNull(wallpaper, "Wallpaper to Initialize");
+            Preconditions.IsNotNull(wallpaper, "Wallpaper to Initialize");
             this.wallpaper = wallpaper;
         }
 

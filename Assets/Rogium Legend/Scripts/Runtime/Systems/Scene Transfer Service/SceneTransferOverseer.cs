@@ -21,8 +21,8 @@ namespace Rogium.Systems.SceneTransferService
         /// <param name="campaign">The Campaign Asset to load up for transfer.</param>
         public void LoadUp(CampaignAsset campaign)
         {
-            SafetyNet.EnsureIsNotNull(campaign, "Loaded up campaign");
-            SafetyNet.EnsureIsNotNull(campaign.DataPack, "Loaded up campaign's DataPack.");
+            Preconditions.IsNotNull(campaign, "Loaded up campaign");
+            Preconditions.IsNotNull(campaign.DataPack, "Loaded up campaign's DataPack.");
             this.campaign = new CampaignAsset.Builder().AsCopy(campaign).Build();
         }
 

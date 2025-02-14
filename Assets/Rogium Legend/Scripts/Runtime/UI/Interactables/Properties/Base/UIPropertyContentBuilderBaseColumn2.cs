@@ -14,7 +14,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         
         protected UIPropertyContentBuilderBaseColumn2(Transform contentMain, Transform contentSecond) : base(contentMain)
         {
-            SafetyNet.EnsureIsNotNull(contentSecond, "Secondary Content Property Transform");
+            Preconditions.IsNotNull(contentSecond, "Secondary Content Property Transform");
             
             this.contentSecond = contentSecond;
         }

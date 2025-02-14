@@ -20,7 +20,7 @@ namespace RedRats.UI.Tabs
         protected override void Awake()
         {
             group = GetComponentInParent<TabGroupBase>();
-            SafetyNet.EnsureIsNotNull(group, group.name);
+            Preconditions.IsNotNull(group, group.name);
         }
 
         public override void OnPointerClick(PointerEventData eventData)

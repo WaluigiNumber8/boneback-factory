@@ -63,7 +63,7 @@ namespace Rogium.Editors.Packs
         /// <param name="index">The index of the pack in library list.</param>
         public void AssignAsset(PackAsset asset, int index)
         {
-            SafetyNet.EnsureIsNotNull(asset, "Pack to assign");
+            Preconditions.IsNotNull(asset, "Pack to assign");
             currentPack = new PackAsset.Builder().AsCopy(asset).Build();
             myIndex = index;
             lastAssociatedSpriteID = asset.AssociatedSpriteID;
@@ -77,7 +77,7 @@ namespace Rogium.Editors.Packs
         /// <param name="updatedAsset">Asset, containing new data.</param>
         public void UpdateAsset(PackAsset updatedAsset)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Currently active asset.");
+            Preconditions.IsNotNull(currentPack, "Currently active asset.");
             currentPack = new PackAsset.Builder().AsCopy(updatedAsset).Build();
         }
         
@@ -88,8 +88,8 @@ namespace Rogium.Editors.Packs
         /// </summary>
         public void CreateNewPalette(PaletteAsset newAsset)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureIsNotNull(currentPack.Palettes, "Pack Editor - List of Palettes");
+            Preconditions.IsNotNull(currentPack, "Pack Editor - Current Pack");
+            Preconditions.IsNotNull(currentPack.Palettes, "Pack Editor - List of Palettes");
             CurrentPack.Palettes.Add(newAsset);
             CompleteEditing();
         }
@@ -101,8 +101,8 @@ namespace Rogium.Editors.Packs
         /// <param name="positionIndex">Which palette to override.</param>
         public void UpdatePalette(PaletteAsset newAsset, int positionIndex)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Palettes, "List of Palettes");
+            Preconditions.IsNotNull(currentPack, "Pack Editor - Current Pack");
+            Preconditions.IsListNotNullOrEmpty(currentPack.Palettes, "List of Palettes");
             RefreshPaletteForOtherAssets(newAsset, currentPack, CompleteEditing);
             CurrentPack.Palettes.Update(positionIndex, newAsset);
         } 
@@ -113,8 +113,8 @@ namespace Rogium.Editors.Packs
         /// </summary>
         public void RemovePalette(int assetIndex)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Palettes, "List of Palettes");
+            Preconditions.IsNotNull(currentPack, "Pack Editor - Current Pack");
+            Preconditions.IsListNotNullOrEmpty(currentPack.Palettes, "List of Palettes");
             PaletteAsset palette = currentPack.Palettes[assetIndex];
             foreach (string id in palette.AssociatedAssetsIDs)
             {
@@ -132,9 +132,9 @@ namespace Rogium.Editors.Packs
         /// <param name="prepareEditor"></param>
         public void ActivatePaletteEditor(int assetIndex, bool prepareEditor = true)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Palettes, "List of Palettes");
-            SafetyNet.EnsureIntIsInRange(assetIndex, 0, currentPack.Palettes.Count, "Palette Index");
+            Preconditions.IsNotNull(currentPack, "Pack Editor - Current Pack");
+            Preconditions.IsListNotNullOrEmpty(currentPack.Palettes, "List of Palettes");
+            Preconditions.IsIntInRange(assetIndex, 0, currentPack.Palettes.Count, "Palette Index");
             paletteEditor.AssignAsset(CurrentPack.Palettes[assetIndex], assetIndex, prepareEditor);
         }
 
@@ -147,8 +147,8 @@ namespace Rogium.Editors.Packs
         /// </summary>
         public void CreateNewSprite(SpriteAsset newAsset)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureIsNotNull(currentPack.Sprites, "Pack Editor - List of Sprites");
+            Preconditions.IsNotNull(currentPack, "Pack Editor - Current Pack");
+            Preconditions.IsNotNull(currentPack.Sprites, "Pack Editor - List of Sprites");
             CurrentPack.Sprites.Add(newAsset);
             CompleteEditing();
         }
@@ -161,8 +161,8 @@ namespace Rogium.Editors.Packs
         /// <param name="lastAssociatedPaletteID">The palette ID associated before editing.</param>
         public void UpdateSprite(SpriteAsset newAsset, int positionIndex, string lastAssociatedPaletteID)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Sprites, "List of Sprites");
+            Preconditions.IsNotNull(currentPack, "Pack Editor - Current Pack");
+            Preconditions.IsListNotNullOrEmpty(currentPack.Sprites, "List of Sprites");
             
             ProcessPaletteAssociations(currentPack, newAsset, lastAssociatedPaletteID);
             CurrentPack.Sprites.Update(positionIndex, newAsset);
@@ -175,8 +175,8 @@ namespace Rogium.Editors.Packs
         /// </summary>
         public void RemoveSprite(int assetIndex)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Sprites, "List of Sprites");
+            Preconditions.IsNotNull(currentPack, "Pack Editor - Current Pack");
+            Preconditions.IsListNotNullOrEmpty(currentPack.Sprites, "List of Sprites");
             SpriteAsset sprite = currentPack.Sprites[assetIndex];
             RemovePaletteAssociation(currentPack, sprite);
             foreach (string id in sprite.AssociatedAssetsIDs)
@@ -213,9 +213,9 @@ namespace Rogium.Editors.Packs
         /// <param name="prepareEditor">If true, load asset into the editor.</param>
         public void ActivateSpriteEditor(int assetIndex, bool prepareEditor = true)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Sprites, "List of Sprites");
-            SafetyNet.EnsureIntIsInRange(assetIndex, 0, currentPack.Sprites.Count, "Sprite Index");
+            Preconditions.IsNotNull(currentPack, "Pack Editor - Current Pack");
+            Preconditions.IsListNotNullOrEmpty(currentPack.Sprites, "List of Sprites");
+            Preconditions.IsIntInRange(assetIndex, 0, currentPack.Sprites.Count, "Sprite Index");
             spriteEditor.AssignAsset(CurrentPack.Sprites[assetIndex], assetIndex, prepareEditor);
         }
 
@@ -229,8 +229,8 @@ namespace Rogium.Editors.Packs
         /// </summary>
         public void CreateNewWeapon(WeaponAsset newAsset)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureIsNotNull(currentPack.Weapons, "Pack Editor - List of Weapons");
+            Preconditions.IsNotNull(currentPack, "Pack Editor - Current Pack");
+            Preconditions.IsNotNull(currentPack.Weapons, "Pack Editor - List of Weapons");
             CurrentPack.Weapons.Add(newAsset);
             CompleteEditing();
         }
@@ -243,8 +243,8 @@ namespace Rogium.Editors.Packs
         /// <param name="lastAssociatedSpriteID">The weapon's sprite before it was edited.</param>
         public void UpdateWeapon(WeaponAsset newAsset, int positionIndex, string lastAssociatedSpriteID)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Weapons, "List of Weapons");
+            Preconditions.IsNotNull(currentPack, "Pack Editor - Current Pack");
+            Preconditions.IsListNotNullOrEmpty(currentPack.Weapons, "List of Weapons");
             ProcessSpriteAssociations(currentPack, newAsset, lastAssociatedSpriteID);
             CurrentPack.Weapons.Update(positionIndex, newAsset);
         } 
@@ -255,8 +255,8 @@ namespace Rogium.Editors.Packs
         /// </summary>
         public void RemoveWeapon(int assetIndex)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Weapons, "List of Weapons");
+            Preconditions.IsNotNull(currentPack, "Pack Editor - Current Pack");
+            Preconditions.IsListNotNullOrEmpty(currentPack.Weapons, "List of Weapons");
             RemoveSpriteAssociation(currentPack, currentPack.Weapons[assetIndex]);
             currentPack.Weapons.Remove(assetIndex);
             CompleteEditing();
@@ -269,9 +269,9 @@ namespace Rogium.Editors.Packs
         /// <param name="prepareEditor">If true, load asset into the editor.</param>
         public void ActivateWeaponEditor(int assetIndex, bool prepareEditor = true)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Weapons, "List of Weapons");
-            SafetyNet.EnsureIntIsInRange(assetIndex, 0, currentPack.Weapons.Count, "Weapon Index");
+            Preconditions.IsNotNull(currentPack, "Pack Editor - Current Pack");
+            Preconditions.IsListNotNullOrEmpty(currentPack.Weapons, "List of Weapons");
+            Preconditions.IsIntInRange(assetIndex, 0, currentPack.Weapons.Count, "Weapon Index");
             weaponEditor.AssignAsset(CurrentPack.Weapons[assetIndex], assetIndex, prepareEditor);
         }
 
@@ -284,8 +284,8 @@ namespace Rogium.Editors.Packs
         /// </summary>
         public void CreateNewProjectile(ProjectileAsset newAsset)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureIsNotNull(currentPack.Projectiles, "Pack Editor - List of Projectiles");
+            Preconditions.IsNotNull(currentPack, "Pack Editor - Current Pack");
+            Preconditions.IsNotNull(currentPack.Projectiles, "Pack Editor - List of Projectiles");
             CurrentPack.Projectiles.Add(newAsset);
             CompleteEditing();
         }
@@ -298,8 +298,8 @@ namespace Rogium.Editors.Packs
         /// /// <param name="lastAssociatedSpriteID">The projectile's sprite before it was edited.</param>
         public void UpdateProjectile(ProjectileAsset newAsset, int positionIndex, string lastAssociatedSpriteID)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Projectiles, "List of Projectiles");
+            Preconditions.IsNotNull(currentPack, "Pack Editor - Current Pack");
+            Preconditions.IsListNotNullOrEmpty(currentPack.Projectiles, "List of Projectiles");
             ProcessSpriteAssociations(currentPack, newAsset, lastAssociatedSpriteID);
             CurrentPack.Projectiles.Update(positionIndex, newAsset);
         } 
@@ -310,8 +310,8 @@ namespace Rogium.Editors.Packs
         /// </summary>
         public void RemoveProjectile(int assetIndex)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Projectiles, "List of Projectiles");
+            Preconditions.IsNotNull(currentPack, "Pack Editor - Current Pack");
+            Preconditions.IsListNotNullOrEmpty(currentPack.Projectiles, "List of Projectiles");
             RemoveSpriteAssociation(currentPack, currentPack.Projectiles[assetIndex]);
             currentPack.Projectiles.Remove(assetIndex);
             CompleteEditing();
@@ -324,9 +324,9 @@ namespace Rogium.Editors.Packs
         /// <param name="prepareEditor">If true, load asset into the editor.</param>
         public void ActivateProjectileEditor(int assetIndex, bool prepareEditor = true)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Projectiles, "List of Projectiles");
-            SafetyNet.EnsureIntIsInRange(assetIndex, 0, currentPack.Projectiles.Count, "Projectile Index");
+            Preconditions.IsNotNull(currentPack, "Pack Editor - Current Pack");
+            Preconditions.IsListNotNullOrEmpty(currentPack.Projectiles, "List of Projectiles");
+            Preconditions.IsIntInRange(assetIndex, 0, currentPack.Projectiles.Count, "Projectile Index");
             projectileEditor.AssignAsset(CurrentPack.Projectiles[assetIndex], assetIndex, prepareEditor);
         }
 
@@ -339,8 +339,8 @@ namespace Rogium.Editors.Packs
         /// </summary>
         public void CreateNewEnemy(EnemyAsset newAsset)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureIsNotNull(currentPack.Enemies, "Pack Editor - List of Enemies");
+            Preconditions.IsNotNull(currentPack, "Pack Editor - Current Pack");
+            Preconditions.IsNotNull(currentPack.Enemies, "Pack Editor - List of Enemies");
             CurrentPack.Enemies.Add(newAsset);
             CompleteEditing();
         }
@@ -353,8 +353,8 @@ namespace Rogium.Editors.Packs
         /// /// <param name="lastAssociatedSpriteID">The enemy's sprite before it was edited.</param>
         public void UpdateEnemy(EnemyAsset newAsset, int positionIndex, string lastAssociatedSpriteID)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Enemies, "List of Enemies");
+            Preconditions.IsNotNull(currentPack, "Pack Editor - Current Pack");
+            Preconditions.IsListNotNullOrEmpty(currentPack.Enemies, "List of Enemies");
             ProcessSpriteAssociations(currentPack, newAsset, lastAssociatedSpriteID);
             CurrentPack.Enemies.Update(positionIndex, newAsset);
         } 
@@ -365,8 +365,8 @@ namespace Rogium.Editors.Packs
         /// </summary>
         public void RemoveEnemy(int assetIndex)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Enemies, "List of Enemies");
+            Preconditions.IsNotNull(currentPack, "Pack Editor - Current Pack");
+            Preconditions.IsListNotNullOrEmpty(currentPack.Enemies, "List of Enemies");
             RemoveSpriteAssociation(currentPack, currentPack.Enemies[assetIndex]);
             currentPack.Enemies.Remove(assetIndex);
             CompleteEditing();
@@ -379,9 +379,9 @@ namespace Rogium.Editors.Packs
         /// <param name="prepareEditor">If true, load asset into the editor.</param>
         public void ActivateEnemyEditor(int assetIndex, bool prepareEditor = true)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Enemies, "List of Enemies");
-            SafetyNet.EnsureIntIsInRange(assetIndex, 0, currentPack.Enemies.Count, "Enemy Index");
+            Preconditions.IsNotNull(currentPack, "Pack Editor - Current Pack");
+            Preconditions.IsListNotNullOrEmpty(currentPack.Enemies, "List of Enemies");
+            Preconditions.IsIntInRange(assetIndex, 0, currentPack.Enemies.Count, "Enemy Index");
             enemyEditor.AssignAsset(CurrentPack.Enemies[assetIndex], assetIndex, prepareEditor);
         }
 
@@ -394,8 +394,8 @@ namespace Rogium.Editors.Packs
         /// </summary>
         public void CreateNewRoom(RoomAsset newAsset)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureIsNotNull(currentPack.Rooms, "Pack Editor - List of Rooms");
+            Preconditions.IsNotNull(currentPack, "Pack Editor - Current Pack");
+            Preconditions.IsNotNull(currentPack.Rooms, "Pack Editor - List of Rooms");
 
             InternalLibraryOverseer library = InternalLibraryOverseer.GetInstance();
             newAsset.ObjectGrid.SetTo(new Vector2Int(6, 5), AssetDataBuilder.ForObject(library.GetObjectByID("001")));
@@ -411,8 +411,8 @@ namespace Rogium.Editors.Packs
         /// <param name="positionIndex">Which room to override.</param>
         public void UpdateRoom(RoomAsset newAsset, int positionIndex)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Rooms, "List of Rooms");
+            Preconditions.IsNotNull(currentPack, "Pack Editor - Current Pack");
+            Preconditions.IsListNotNullOrEmpty(currentPack.Rooms, "List of Rooms");
             CurrentPack.Rooms.Update(positionIndex, newAsset);
         } 
 
@@ -422,8 +422,8 @@ namespace Rogium.Editors.Packs
         /// </summary>
         public void RemoveRoom(int assetIndex)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Rooms, "List of Rooms");
+            Preconditions.IsNotNull(currentPack, "Pack Editor - Current Pack");
+            Preconditions.IsListNotNullOrEmpty(currentPack.Rooms, "List of Rooms");
             currentPack.Rooms.Remove(assetIndex);
             CompleteEditing();
         }
@@ -435,9 +435,9 @@ namespace Rogium.Editors.Packs
         /// <param name="prepareEditor"></param>
         public void ActivateRoomEditor(int assetIndex, bool prepareEditor = true)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Rooms, "List of Rooms");
-            SafetyNet.EnsureIntIsInRange(assetIndex, 0, currentPack.Rooms.Count, "Room Index");
+            Preconditions.IsNotNull(currentPack, "Pack Editor - Current Pack");
+            Preconditions.IsListNotNullOrEmpty(currentPack.Rooms, "List of Rooms");
+            Preconditions.IsIntInRange(assetIndex, 0, currentPack.Rooms.Count, "Room Index");
             roomEditor.AssignAsset(CurrentPack.Rooms[assetIndex], assetIndex, prepareEditor);
         }
 
@@ -450,8 +450,8 @@ namespace Rogium.Editors.Packs
         /// </summary>
         public void CreateNewTile(TileAsset newAsset)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureIsNotNull(currentPack.Tiles, "Pack Editor - List of Tiles");
+            Preconditions.IsNotNull(currentPack, "Pack Editor - Current Pack");
+            Preconditions.IsNotNull(currentPack.Tiles, "Pack Editor - List of Tiles");
             CurrentPack.Tiles.Add(newAsset);
             CompleteEditing();
         }
@@ -464,8 +464,8 @@ namespace Rogium.Editors.Packs
         /// /// <param name="lastAssociatedSpriteID">The tile's sprite before it was edited.</param>
         public void UpdateTile(TileAsset newAsset, int positionIndex, string lastAssociatedSpriteID)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Tiles, "List of Tiles");
+            Preconditions.IsNotNull(currentPack, "Pack Editor - Current Pack");
+            Preconditions.IsListNotNullOrEmpty(currentPack.Tiles, "List of Tiles");
             ProcessSpriteAssociations(currentPack, newAsset, lastAssociatedSpriteID);
             CurrentPack.Tiles.Update(positionIndex, newAsset);
         } 
@@ -476,8 +476,8 @@ namespace Rogium.Editors.Packs
         /// </summary>
         public void RemoveTile(int assetIndex)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Tiles, "List of Tiles");
+            Preconditions.IsNotNull(currentPack, "Pack Editor - Current Pack");
+            Preconditions.IsListNotNullOrEmpty(currentPack.Tiles, "List of Tiles");
             RemoveSpriteAssociation(currentPack, currentPack.Tiles[assetIndex]);
             currentPack.Tiles.Remove(assetIndex);
             CompleteEditing();
@@ -490,9 +490,9 @@ namespace Rogium.Editors.Packs
         /// <param name="prepareEditor">If true, load asset into the editor.</param>
         public void ActivateTileEditor(int assetIndex, bool prepareEditor = true)
         {
-            SafetyNet.EnsureIsNotNull(currentPack, "Pack Editor - Current Pack");
-            SafetyNet.EnsureListIsNotNullOrEmpty(currentPack.Tiles, "List of Tiles");
-            SafetyNet.EnsureIntIsInRange(assetIndex, 0, currentPack.Tiles.Count, "Tile Index");
+            Preconditions.IsNotNull(currentPack, "Pack Editor - Current Pack");
+            Preconditions.IsListNotNullOrEmpty(currentPack.Tiles, "List of Tiles");
+            Preconditions.IsIntInRange(assetIndex, 0, currentPack.Tiles.Count, "Tile Index");
             tileEditor.AssignAsset(CurrentPack.Tiles[assetIndex], assetIndex, prepareEditor);
         }
 

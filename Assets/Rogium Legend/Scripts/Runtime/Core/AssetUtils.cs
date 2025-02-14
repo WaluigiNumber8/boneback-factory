@@ -60,7 +60,7 @@ namespace Rogium.Core
                         whenIDSame?.Invoke(x, Y, lastValue, data);
                     }
                     //When the tile is missing.
-                    catch (SafetyNetCollectionException)
+                    catch (PreconditionCollectionException)
                     {
                         whenIDInvalid?.Invoke(x, Y);
                     }
@@ -115,7 +115,7 @@ namespace Rogium.Core
                         whenIDSame?.Invoke(x, Y, lastValue);
                     }
                     //When the tile is missing.
-                    catch (SafetyNetCollectionException)
+                    catch (PreconditionCollectionException)
                     {
                         whenIDInvalid?.Invoke(x, Y);
                     }

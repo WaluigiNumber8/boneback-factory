@@ -46,7 +46,7 @@ namespace Rogium.UserInterface.Interactables
                 #region Open Selection Menus
 
                 case ButtonType.OpenEditor:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - EDIT PACK");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - EDIT PACK");
                     GASActions.OpenEditor(index);
                     break;
                 case ButtonType.SelectionOpenPack:
@@ -114,39 +114,39 @@ namespace Rogium.UserInterface.Interactables
                 #region Edit Asset Properties
 
                 case ButtonType.EditPackProperties:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - EDIT PACK PROPERTIES");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - EDIT PACK PROPERTIES");
                     GASActions.EditPropertiesPack(index);
                     break;
                 case ButtonType.EditCampaignProperties:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - EDIT CAMPAIGN PROPERTIES");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - EDIT CAMPAIGN PROPERTIES");
                     GASActions.EditPropertiesCampaign(index);
                     break;
                 case ButtonType.EditPaletteProperties:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - EDIT PALETTE PROPERTIES");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - EDIT PALETTE PROPERTIES");
                     GASActions.EditPropertiesPalette(index);
                     break;
                 case ButtonType.EditSpriteProperties:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - EDIT SPRITE PROPERTIES");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - EDIT SPRITE PROPERTIES");
                     GASActions.EditPropertiesSprite(index);
                     break;
                 case ButtonType.EditWeaponProperties:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - EDIT WEAPON PROPERTIES");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - EDIT WEAPON PROPERTIES");
                     GASActions.EditPropertiesWeapon(index);
                     break;
                 case ButtonType.EditProjectileProperties:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - EDIT PROJECTILE PROPERTIES");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - EDIT PROJECTILE PROPERTIES");
                     GASActions.EditPropertiesProjectile(index);
                     break;
                 case ButtonType.EditEnemyProperties:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - EDIT ENEMY PROPERTIES");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - EDIT ENEMY PROPERTIES");
                     GASActions.EditPropertiesEnemy(index);
                     break;
                 case ButtonType.EditRoomProperties:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - EDIT ROOM PROPERTIES");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - EDIT ROOM PROPERTIES");
                     GASActions.EditPropertiesRoom(index);
                     break;
                 case ButtonType.EditTileProperties:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - EDIT TILE PROPERTIES");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - EDIT TILE PROPERTIES");
                     GASActions.EditPropertiesTile(index);
                     break;
 
@@ -155,39 +155,39 @@ namespace Rogium.UserInterface.Interactables
                 #region Delete Assets
 
                 case ButtonType.DeletePack:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - DELETE PACK");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - DELETE PACK");
                     GASActions.DeletePack(index);
                     break;
                 case ButtonType.DeleteCampaign:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - DELETE CAMPAIGN");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - DELETE CAMPAIGN");
                     GASActions.DeleteCampaign(index);
                     break;
                 case ButtonType.DeletePalette:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - DELETE PALETTE");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - DELETE PALETTE");
                     GASActions.DeletePalette(index);
                     break;
                 case ButtonType.DeleteSprite:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - DELETE SPRITE");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - DELETE SPRITE");
                     GASActions.DeleteSprite(index);
                     break;
                 case ButtonType.DeleteWeapon:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - DELETE WEAPON");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - DELETE WEAPON");
                     GASActions.DeleteWeapon(index);
                     break;
                 case ButtonType.DeleteProjectile:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - DELETE PROJECTILE");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - DELETE PROJECTILE");
                     GASActions.DeleteProjectile(index);
                     break;
                 case ButtonType.DeleteEnemy:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - DELETE ENEMY");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - DELETE ENEMY");
                     GASActions.DeleteEnemy(index);
                     break;
                 case ButtonType.DeleteRoom:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - DELETE ROOM");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - DELETE ROOM");
                     GASActions.DeleteRoom(index);
                     break;
                 case ButtonType.DeleteTile:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - DELETE TILE");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - DELETE TILE");
                     GASActions.DeleteTile(index);
                     break;
 
@@ -196,35 +196,35 @@ namespace Rogium.UserInterface.Interactables
                 #region Open Editors
 
                 case ButtonType.EditorOpenCampaign:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - OPEN EDITOR CAMPAIGN");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - OPEN EDITOR CAMPAIGN");
                     GASActions.OpenEditorCampaign(index);
                     break;
                 case ButtonType.EditorOpenPalette:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - OPEN EDITOR PALETTE");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - OPEN EDITOR PALETTE");
                     GASActions.OpenEditorPalette(index);
                     break;
                 case ButtonType.EditorOpenSprite:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - OPEN EDITOR SPRITE");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - OPEN EDITOR SPRITE");
                     GASActions.OpenEditorSprite(index);
                     break;
                 case ButtonType.EditorOpenWeapon:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - OPEN EDITOR WEAPON");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - OPEN EDITOR WEAPON");
                     GASActions.OpenEditorWeapon(index);
                     break;
                 case ButtonType.EditorOpenProjectile:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - OPEN EDITOR PROJECTILE");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - OPEN EDITOR PROJECTILE");
                     GASActions.OpenEditorProjectile(index);
                     break;
                 case ButtonType.EditorOpenEnemy:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - OPEN EDITOR ENEMY");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - OPEN EDITOR ENEMY");
                     GASActions.OpenEditorEnemy(index);
                     break;
                 case ButtonType.EditorOpenRoom:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - OPEN EDITOR ROOM");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - OPEN EDITOR ROOM");
                     GASActions.OpenEditorRoom(index);
                     break;
                 case ButtonType.EditorOpenTile:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - OPEN EDITOR TILE");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - OPEN EDITOR TILE");
                     GASActions.OpenEditorTile(index);
                     break;
 
@@ -317,7 +317,7 @@ namespace Rogium.UserInterface.Interactables
                     GASActions.CampaignEditorSelectRandom();
                     break;
                 case ButtonType.CampaignEditorChangeImportState:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - CHANGE PACK IMPORT STATE");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - CHANGE PACK IMPORT STATE");
                     GASActions.ChangeImportStatus(index);
                     break;
 
@@ -326,7 +326,7 @@ namespace Rogium.UserInterface.Interactables
                 #region Sprite Editor
 
                 case ButtonType.SpriteSwitchTool:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - SWITCH SPRITE TOOL");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - SWITCH SPRITE TOOL");
                     GASActions.SpriteSwitchTool(index);
                     break;
                 case ButtonType.SpriteSwitchPalette:
@@ -342,12 +342,12 @@ namespace Rogium.UserInterface.Interactables
                 #region Room Editor
 
                 case ButtonType.RoomSwitchTool:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - SWITCH ROOM TOOL");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - SWITCH ROOM TOOL");
                     GASActions.RoomSwitchTool(index);
                     break;
 
                 case ButtonType.RoomSwitchPalette:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - SWITCH ROOM PALETTE");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - SWITCH ROOM PALETTE");
                     GASActions.RoomSwitchPalette(index);
                     break;
 
@@ -368,7 +368,7 @@ namespace Rogium.UserInterface.Interactables
                     break;
 
                 case ButtonType.GameplaySelectWeapon:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - GAMEPLAY SELECT WEAPON");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - GAMEPLAY SELECT WEAPON");
                     GASActions.GameplaySelectWeapon(index);
                     break;
 
@@ -394,7 +394,7 @@ namespace Rogium.UserInterface.Interactables
                 #endregion
 
                 case ButtonType.Play:
-                    SafetyNet.EnsureIntIsNotEqual(index, -1, "BUTTON INTERACTION - PLAY CAMPAIGN");
+                    Preconditions.IsIntNotEqual(index, -1, "BUTTON INTERACTION - PLAY CAMPAIGN");
                     GASActions.PlayCampaign(index);
                     break;
 

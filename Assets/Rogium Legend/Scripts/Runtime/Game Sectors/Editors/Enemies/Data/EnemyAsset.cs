@@ -36,7 +36,7 @@ namespace Rogium.Editors.Enemies
 
         public void UpdateWeaponIDsLength(int newLength)
         {
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(newLength, 0, "New weapon IDs size");
+            Preconditions.IsIntBiggerOrEqualTo(newLength, 0, "New weapon IDs size");
             weaponIDs.Resize(newLength, EditorDefaults.EmptyAssetID);
         }
 

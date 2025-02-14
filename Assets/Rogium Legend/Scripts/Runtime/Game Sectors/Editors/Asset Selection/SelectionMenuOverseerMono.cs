@@ -68,7 +68,7 @@ namespace Rogium.Editors.AssetSelection
 
         private SelectionMenuData GetData(AssetType type)
         {
-            SafetyNet.EnsureDictionaryContainsKey(menuData, type, nameof(menuData));
+            Preconditions.IsDictionaryContainingKey(menuData, type, nameof(menuData));
             return menuData[type];
         }
 

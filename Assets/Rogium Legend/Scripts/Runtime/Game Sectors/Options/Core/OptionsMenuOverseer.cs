@@ -25,7 +25,7 @@ namespace Rogium.Options.Core
         /// <param name="prepareEditor">If TRUE, load asset into the editor.</param>
         public void AssignAsset(GameDataAsset asset, bool prepareEditor = true)
         {
-            SafetyNet.EnsureIsNotNull(asset, "Preferences Asset");
+            Preconditions.IsNotNull(asset, "Preferences Asset");
             currentAsset = new GameDataAsset.Builder().AsCopy(asset).Build();
             InputSystem.GetInstance().ClearAllInput();
             ShortcutToAssetConverter.Load(asset.ShortcutBindings);

@@ -30,7 +30,7 @@ namespace Rogium.Editors.Core
         /// <param name="toggleGroup">The new <see cref="ToggleGroup"/> to assign.</param>
         public void RegisterToggleGroup(ToggleGroup toggleGroup)
         {
-            SafetyNet.EnsureIsNotNull(toggleGroup, "New Toggle Group");
+            Preconditions.IsNotNull(toggleGroup, "New Toggle Group");
             toggle.group = toggleGroup;
         }
 

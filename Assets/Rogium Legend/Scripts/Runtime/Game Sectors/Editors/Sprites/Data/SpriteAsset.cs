@@ -40,7 +40,7 @@ namespace Rogium.Editors.Sprites
             associatedPaletteID = newPalette.ID;
             if (newPalette is not EmptyAsset)
             {
-                SafetyNet.EnsureIsType<PaletteAsset>(newPalette, nameof(newPalette));
+                Preconditions.IsType<PaletteAsset>(newPalette, nameof(newPalette));
                 PaletteAsset p = (PaletteAsset) newPalette;
                 icon = IconBuilder.DrawFromGrid(SpriteData, p.Colors);
                 return;

@@ -22,18 +22,18 @@ namespace Rogium.Editors.Campaign
 
         public void UpdateLength(int newLength)
         {
-            SafetyNet.EnsureIntIsBiggerThan(newLength, 0, "New Campaign Length");
+            Preconditions.IsIntBiggerThan(newLength, 0, "New Campaign Length");
             adventureLength = newLength;
         }
         public void UpdateDataPack(PackAsset newPack)
         {
-            SafetyNet.EnsureIsNotNull(newPack, "newPack");
+            Preconditions.IsNotNull(newPack, "newPack");
             dataPack = new PackAsset.Builder().AsCopy(newPack).Build();
         }
 
         public void UpdatePackReferences(ISet<string> newPackReferences)
         {
-            SafetyNet.EnsureIsNotNull(newPackReferences, nameof(newPackReferences));
+            Preconditions.IsNotNull(newPackReferences, nameof(newPackReferences));
             packReferences = new HashSet<string>(newPackReferences);
         }
         #endregion

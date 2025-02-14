@@ -55,9 +55,9 @@ namespace Rogium.UserInterface.Interactables
 
         public void Construct(InputAction action, int bindingIndex, int modifier1Index = -1, int modifier2Index = -1)
         {
-            SafetyNet.EnsureIndexWithingCollectionRange(bindingIndex, action.bindings, nameof(action.bindings));
-            if (modifier1Index != -1) SafetyNet.EnsureIndexWithingCollectionRange(modifier1Index, action.bindings, nameof(action.bindings));
-            if (modifier2Index != -1) SafetyNet.EnsureIndexWithingCollectionRange(modifier2Index, action.bindings, nameof(action.bindings));
+            Preconditions.IsIndexWithingCollectionRange(action.bindings, bindingIndex, nameof(action.bindings));
+            if (modifier1Index != -1) Preconditions.IsIndexWithingCollectionRange(action.bindings, modifier1Index, nameof(action.bindings));
+            if (modifier2Index != -1) Preconditions.IsIndexWithingCollectionRange(action.bindings, modifier2Index, nameof(action.bindings));
             
             this.action = action;
             this.modifier1Index = modifier1Index;

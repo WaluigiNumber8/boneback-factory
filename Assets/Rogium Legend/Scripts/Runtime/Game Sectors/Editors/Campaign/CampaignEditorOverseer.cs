@@ -34,7 +34,7 @@ namespace Rogium.Editors.Campaign
         /// <param name="prepareEditor">If true, load asset into the editor.</param>
         public void AssignAsset(CampaignAsset campaign, int index, bool prepareEditor = true)
         {
-            SafetyNet.EnsureIsNotNull(campaign, "Campaign to assign.");
+            Preconditions.IsNotNull(campaign, "Campaign to assign.");
             currentCampaign = new CampaignAsset.Builder().AsCopy(campaign).Build();
             myIndex = index;
             originalTitle = campaign.Title;
@@ -50,7 +50,7 @@ namespace Rogium.Editors.Campaign
         /// <param name="updatedAsset">Asset Containing new data.</param>
         public void UpdateAsset(CampaignAsset updatedAsset)
         { 
-            SafetyNet.EnsureIsNotNull(currentCampaign, "Currently active asset.");
+            Preconditions.IsNotNull(currentCampaign, "Currently active asset.");
             currentCampaign = new CampaignAsset.Builder().AsCopy(updatedAsset).Build();
         }
 

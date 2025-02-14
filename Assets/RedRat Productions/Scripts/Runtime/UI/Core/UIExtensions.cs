@@ -28,8 +28,8 @@ namespace RedRats.UI.Core
         /// <param name="spriteData">The set of sprites to update with.</param>
         public static void ChangeInteractableSprites(Selectable interactable, Image interactableImage, InteractableSpriteInfo spriteData)
         {
-            SafetyNet.EnsureIsNotNull(interactable, "Selectable to update.");
-            SafetyNet.EnsureIsNotNull(interactableImage, "Selectable image");
+            Preconditions.IsNotNull(interactable, "Selectable to update.");
+            Preconditions.IsNotNull(interactableImage, "Selectable image");
 
             interactableImage.sprite = spriteData.normal;
 
@@ -49,7 +49,7 @@ namespace RedRats.UI.Core
         /// <param name="fontData">The new data to update with.</param>
         public static void ChangeFont(TMP_Text textAsset, FontInfo fontData)
         {
-            SafetyNet.EnsureIsNotNull(textAsset, "Text whose font will be updated");
+            Preconditions.IsNotNull(textAsset, "Text whose font will be updated");
 
             textAsset.font = fontData.font;
             textAsset.color = fontData.color;

@@ -72,7 +72,7 @@ namespace Rogium.Editors.Campaign
         /// <param name="finalSelectedAssets">The packs to update with.</param>
         private void UpdatePacksFromSelection(ISet<IAsset> finalSelectedAssets)
         {
-            SafetyNet.EnsureSetIsNotNullOrEmpty(finalSelectedAssets, "Selected Packs");
+            Preconditions.IsSetNotNullOrEmpty(finalSelectedAssets, "Selected Packs");
             ISet<PackAsset> finalSelectedPacks = finalSelectedAssets.Cast<PackAsset>().ToHashSet();
             editor.UpdateDataPack(finalSelectedPacks);
         }
