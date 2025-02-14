@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using RedRats.Core;
+using Rogium.Systems.ActionHistory;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -48,6 +49,12 @@ namespace Rogium.Systems.Input
             inputPause = new InputProfilePause(input);
             inputShortcuts = new InputProfileShortcuts(input);
             SwitchToMenuMaps();
+            
+            //Force grouping on click/right click
+            UI.Select.OnPress += ActionHistorySystem.ForceBeginGrouping;
+            UI.ContextSelect.OnPress += ActionHistorySystem.ForceBeginGrouping;
+            UI.Select.OnRelease += ActionHistorySystem.ForceEndGrouping;
+            UI.ContextSelect.OnRelease += ActionHistorySystem.ForceEndGrouping;
         }
 
         public void SwitchToGameplayMaps()
