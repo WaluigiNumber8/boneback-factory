@@ -15,7 +15,7 @@ namespace RedRats.Core
         /// <param name="transform"></param>
         public static void KillChildren(this Transform transform)
         {
-            SafetyNet.EnsureIsNotNull(transform, "Transform to kill children of");
+            Preconditions.IsNotNull(transform, "Transform to kill children of");
             
             if (transform.childCount <= 0) return;
             

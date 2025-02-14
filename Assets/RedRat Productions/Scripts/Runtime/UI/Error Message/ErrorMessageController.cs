@@ -15,13 +15,13 @@ namespace RedRats.UI.ErrorMessageWindow
 
         private void OnEnable()
         {
-            SafetyNet.OnFireErrorMessage += Open;
+            Preconditions.OnFireErrorMessage += Open;
             SafetyNetIO.OnFireErrorMessage += Open;
         }
 
         private void OnDisable()
         {
-            SafetyNet.OnFireErrorMessage -= Open;
+            Preconditions.OnFireErrorMessage -= Open;
             SafetyNetIO.OnFireErrorMessage -= Open;
         }
 

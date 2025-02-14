@@ -179,7 +179,7 @@ namespace Rogium.Systems.Input
         /// <param name="asset">The asset to load the paths from.</param>
         public static void Load(ShortcutBindingsAsset asset)
         {
-            SafetyNet.EnsureIsNotNull(asset, nameof(asset));
+            Preconditions.IsNotNull(asset, nameof(asset));
             if (asset.Keyboard.Undo == null || asset.Gamepad.Undo == null) return;
 
             ApplyBindingOverride(asset.Keyboard.Undo, input.Shortcuts.Undo.Action, InputDeviceType.Keyboard);

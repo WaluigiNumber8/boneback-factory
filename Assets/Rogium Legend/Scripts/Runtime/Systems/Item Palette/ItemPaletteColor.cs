@@ -49,7 +49,7 @@ namespace Rogium.Systems.ItemPalette
         /// <param name="colors"></param>
         public void Fill(Color[] colors)
         {
-            SafetyNet.EnsureIsNotNull(colors, "List of colors");
+            Preconditions.IsNotNull(colors, "List of colors");
             
             //Hint Text
             if (emptyText != null) emptyText.gameObject.SetActive((colors.Length <= 0));
@@ -72,15 +72,15 @@ namespace Rogium.Systems.ItemPalette
         {
             if (index == EditorDefaults.EmptyColorID) return;
             if (slots == null || slots.Count <= 0) return;
-            SafetyNet.EnsureIndexWithingCollectionRange(index, slots, "List of Slots");
+            Preconditions.IsIndexWithingCollectionRange(slots, index, "List of Slots");
             if (slots[index].IsOn) slots[index].SetToggle(false);
             slots[index].SetToggle(true);
         }
         
         public ColorSlot GetSlot(int index)
         {
-            SafetyNet.EnsureIndexWithingCollectionRange(index, slots, "List of Slots");
-            SafetyNet.EnsureIsNotNull(slots[index], "Slot");
+            Preconditions.IsIndexWithingCollectionRange(slots, index, "List of Slots");
+            Preconditions.IsNotNull(slots[index], "Slot");
             return slots[index];
         }
         
@@ -90,7 +90,7 @@ namespace Rogium.Systems.ItemPalette
         /// <param name="index">The index of the slot to select.</param>
         private void NotifyListeners(int index)
         {
-            SafetyNet.EnsureIndexWithingCollectionRange(index, slots, "List of Slots");
+            Preconditions.IsIndexWithingCollectionRange(slots, index, "List of Slots");
             currentSelectedIndex = index;
             OnSelect?.Invoke(slots[index]);
         }

@@ -35,7 +35,7 @@ namespace Rogium.Core
         /// <exception cref="SafetyNetCollectionException">Is thrown when no asset with ID was found.</exception>
         public static int FindIndexFirst<T, TS>(this IList<T> list, TS id) where T : IIDHolder where TS : IComparable
         {
-            SafetyNet.EnsureIsNotNull(list, "List ot search");
+            Preconditions.IsNotNull(list, "List ot search");
             for (int i = 0; i < list.Count; i++)
             {
                 if (id.CompareTo(list[i].ID) != 0) continue;
@@ -56,8 +56,8 @@ namespace Rogium.Core
         /// <exception cref="SafetyNetCollectionException">Is thrown when no asset with ID was found.</exception>
         public static T FindValueFirst<T, TS>(this IEnumerable<T> list, TS id) where T : IIDHolder where TS : IComparable
         {
-            SafetyNet.EnsureIsNotNull(list, "List ot search");
-            SafetyNet.EnsureIsNotNull(id, "Value to find cannot be null");
+            Preconditions.IsNotNull(list, "List ot search");
+            Preconditions.IsNotNull(id, "Value to find cannot be null");
             foreach (T value in list)
             {
                 if (id.CompareTo(value.ID) != 0) continue;
@@ -78,7 +78,7 @@ namespace Rogium.Core
         /// <exception cref="SafetyNetCollectionException">Is thrown when no asset with ID was found.</exception>
         public static (T, int) FindValueAndIndexFirst<T, TS>(this IList<T> list, TS id) where T : IIDHolder where TS : IComparable
         {
-            SafetyNet.EnsureIsNotNull(list, "List ot search");
+            Preconditions.IsNotNull(list, "List ot search");
             for (int i = 0; i < list.Count; i++)
             {
                 if (id.CompareTo(list[i].ID) != 0) continue;
@@ -98,8 +98,8 @@ namespace Rogium.Core
         /// <returns>Value of the first found asset or the first value of the collection.</returns>
         public static T FindValueFirstOrReturnFirst<T, TS>(this IList<T> list, TS id) where T : IIDHolder where TS : IComparable
         {
-            SafetyNet.EnsureIsNotNull(list, "List ot search");
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(list.Count, 1, nameof(list));
+            Preconditions.IsNotNull(list, "List ot search");
+            Preconditions.IsIntBiggerOrEqualTo(list.Count, 1, nameof(list));
             
             try { return list.FindValueFirst(id); }
             catch (SafetyNetCollectionException)
@@ -119,7 +119,7 @@ namespace Rogium.Core
         /// <returns>Value of the first found asset or default.</returns>
         public static T FindValueFirstOrDefault<T, TS>(this IList<T> list, TS id) where T : IIDHolder where TS : IComparable
         {
-            SafetyNet.EnsureIsNotNull(list, "List ot search");
+            Preconditions.IsNotNull(list, "List ot search");
             
             try { return list.FindValueFirst(id); }
             catch (SafetyNetCollectionException)
@@ -140,7 +140,7 @@ namespace Rogium.Core
         /// <returns>Value of the first found asset or the first value of the collection or default.</returns>
         public static T FindValueFirstOrReturnFirstOrDefault<T, TS>(this IList<T> list, TS id) where T : IIDHolder where TS : IComparable
         {
-            SafetyNet.EnsureIsNotNull(list, "List ot search");
+            Preconditions.IsNotNull(list, "List ot search");
             
             try { return list.FindValueFirstOrReturnFirst(id); }
             catch (SafetyNetCollectionException)

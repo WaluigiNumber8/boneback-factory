@@ -35,9 +35,9 @@ namespace Rogium.Systems.GridSystem
         
         private void Awake()
         {
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(gridSize.x, 1, "Grid Size X");
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(gridSize.y, 1, "Grid Size Y");
-            SafetyNet.EnsureIntIsBiggerThan(layers.Length, 0, "Layers amount");
+            Preconditions.IsIntBiggerOrEqualTo(gridSize.x, 1, "Grid Size X");
+            Preconditions.IsIntBiggerOrEqualTo(gridSize.y, 1, "Grid Size Y");
+            Preconditions.IsIntBiggerThan(layers.Length, 0, "Layers amount");
             
             ttransform = GetComponent<RectTransform>();
             drawer = new SpriteDrawer(gridSize, new Vector2Int(EditorDefaults.Instance.SpriteSize, EditorDefaults.Instance.SpriteSize), EditorDefaults.Instance.SpriteSize);
@@ -84,15 +84,15 @@ namespace Rogium.Systems.GridSystem
 
         public override void LoadWithAssets<T, TS>(ObjectGrid<TS> IDGrid, IList<T> assetList, int layer)
         {
-            SafetyNet.EnsureIntIsEqual(IDGrid.Width, gridSize.x, "Grid Width");
-            SafetyNet.EnsureIntIsEqual(IDGrid.Height, gridSize.y, "Grid Height");
+            Preconditions.IsIntEqual(IDGrid.Width, gridSize.x, "Grid Width");
+            Preconditions.IsIntEqual(IDGrid.Height, gridSize.y, "Grid Height");
             layers[layer].layer.sprite = drawer.Draw(IDGrid, assetList);
         }
         
         public override void LoadWithColors(ObjectGrid<int> indexGrid, Color[] colorArray)
         {
-            SafetyNet.EnsureIntIsEqual(indexGrid.Width, gridSize.x, "Grid Width");
-            SafetyNet.EnsureIntIsEqual(indexGrid.Height, gridSize.y, "Grid Height");
+            Preconditions.IsIntEqual(indexGrid.Width, gridSize.x, "Grid Width");
+            Preconditions.IsIntEqual(indexGrid.Height, gridSize.y, "Grid Height");
             GetActiveLayer().sprite = drawer.Draw(indexGrid, colorArray);
         }
         
@@ -122,7 +122,7 @@ namespace Rogium.Systems.GridSystem
         /// <param name="layerIndex">The index of the active layer.</param>
         public void SwitchActiveLayer(int layerIndex)
         {
-            SafetyNet.EnsureIndexWithingCollectionRange(layerIndex, layers, nameof(layers));
+            Preconditions.IsIndexWithingCollectionRange(layers, layerIndex, nameof(layers));
             
             activeLayerIndex = layerIndex;
             RefreshLayerColors(layerIndex);

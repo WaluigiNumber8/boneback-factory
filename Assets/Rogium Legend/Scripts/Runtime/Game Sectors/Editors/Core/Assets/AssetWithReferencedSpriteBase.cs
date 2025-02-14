@@ -15,7 +15,7 @@ namespace Rogium.Editors.Core
             associatedSpriteID = newSprite.ID;
             if (newSprite is not EmptyAsset)
             {
-                SafetyNet.EnsureIsType<SpriteAsset>(newSprite, nameof(newSprite));
+                Preconditions.IsType<SpriteAsset>(newSprite, nameof(newSprite));
                 SpriteAsset s = (SpriteAsset) newSprite;
                 icon = s.Icon;
                 return;

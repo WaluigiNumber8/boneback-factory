@@ -35,7 +35,7 @@ namespace Rogium.Gameplay.AssetRandomGenerator
         /// <param name="roomAmount">How many rooms to allot, until teh finish state is reached.</param>
         public RRG(IList<RoomAsset> allRooms, int roomAmount)
         {
-            SafetyNet.EnsureListIsNotNullOrEmpty(allRooms, "Campaign rooms to use for RRG");
+            Preconditions.IsListNotNullOrEmpty(allRooms, "Campaign rooms to use for RRG");
             
             difficultyData = new SortedDictionary<int, int>();
             
@@ -48,7 +48,7 @@ namespace Rogium.Gameplay.AssetRandomGenerator
             LoadUpLists(allRooms);
             CalculateRoomCountPerTier(allRooms.Count, roomAmount);
             
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(difficultyData.Count, 1, "Detected Room Difficulty Tiers");
+            Preconditions.IsIntBiggerOrEqualTo(difficultyData.Count, 1, "Detected Room Difficulty Tiers");
             currentTier = difficultyData.Keys.First();
             
             UpdateRandomizers();
@@ -130,7 +130,7 @@ namespace Rogium.Gameplay.AssetRandomGenerator
             {
                 if (commonRooms.Count > 0) return commonRooms.Values.First().First();
                 const string message = "The campaign must have at least 1 common room present.";
-                SafetyNet.ThrowMessage(message);
+                Preconditions.ThrowMessage(message);
                 throw new InvalidOperationException(message);
             }
             return commonRooms[currentTier][randomizerNormal.GetNext()];

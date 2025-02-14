@@ -14,7 +14,7 @@ namespace Rogium.UserInterface.Interactables.Properties
 
         protected UIPropertyContentBuilderBase(Transform contentMain)
         {
-            SafetyNet.EnsureIsNotNull(contentMain, "Property Content Transform");
+            Preconditions.IsNotNull(contentMain, "Property Content Transform");
             
             b = UIPropertyBuilder.GetInstance();
             this.contentMain = contentMain;

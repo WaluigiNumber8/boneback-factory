@@ -97,9 +97,9 @@ namespace Rogium.Systems.GridSystem
         /// <typeparam name="TS">Any type of <see cref="IComparable"/>.</typeparam>
         public Sprite Draw<T, TS>(ObjectGrid<TS> IDGrid, IList<T> assetList, Sprite sprite) where T : IAsset where TS : IComparable
         {
-            SafetyNet.EnsureIntIsEqual(sprite.texture.width, IDGrid.Width * unitSize.x, "Bottom Sprite Width");
-            SafetyNet.EnsureIntIsEqual(sprite.texture.height, IDGrid.Height * unitSize.y, "Bottom Sprite Height");
-            SafetyNet.EnsureFloatIsEqual(sprite.pixelsPerUnit, pixelsPerUnit, "Pixels per unit");
+            Preconditions.IsIntEqual(sprite.texture.width, IDGrid.Width * unitSize.x, "Bottom Sprite Width");
+            Preconditions.IsIntEqual(sprite.texture.height, IDGrid.Height * unitSize.y, "Bottom Sprite Height");
+            Preconditions.IsFloatEqual(sprite.pixelsPerUnit, pixelsPerUnit, "Pixels per unit");
             
             AssetUtils.UpdateFromGridByList(IDGrid, assetList, 
                 (x, y, asset) => DrawTo(sprite, new Vector2Int(x, y), asset.Icon),
@@ -131,8 +131,8 @@ namespace Rogium.Systems.GridSystem
         {
             Texture2D canvasTex = canvas.texture;
             Texture2D tex = sprite.texture;
-            SafetyNet.EnsureIntIsEqual(tex.width, 16, $"{tex.name}'s width");
-            SafetyNet.EnsureIntIsEqual(tex.height, 16, $"{tex.name}'s height");
+            Preconditions.IsIntEqual(tex.width, 16, $"{tex.name}'s width");
+            Preconditions.IsIntEqual(tex.height, 16, $"{tex.name}'s height");
 
             int startX = pos.x * unitSize.x;
             int startY = pos.y * unitSize.y;

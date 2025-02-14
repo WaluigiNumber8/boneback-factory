@@ -12,13 +12,13 @@ namespace RedRats.Systems.GASCore
     {
         public static void ObjectSetActive(bool status, GameObject gObject)
         {
-            SafetyNet.EnsureIsNotNull(gObject, $"{gObject.name} from a GAS action.");
+            Preconditions.IsNotNull(gObject, $"{gObject.name} from a GAS action.");
             gObject.SetActive(status);
         }
 
         public static void SwitchScene(int buildIndex)
         {
-            SafetyNet.EnsureIntIsInRange(buildIndex, 0, SceneManager.sceneCount, "Scene buildIndex");
+            Preconditions.IsIntInRange(buildIndex, 0, SceneManager.sceneCount, "Scene buildIndex");
             SceneManager.LoadScene(buildIndex);
         }
         

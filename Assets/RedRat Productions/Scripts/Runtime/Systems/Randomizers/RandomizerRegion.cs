@@ -39,9 +39,9 @@ namespace RedRats.Systems.Randomization
         /// <param name="leadway">The higher this value is, the less the randomizer depends on it's memory.</param>
         public RandomizerRegion(int max, int min = 0, float errorChance = 0f, int rerolls = 2, int leadway = 0)
         {
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(rerolls, 0, "rerolls");
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(leadway, 0, "leadway");
-            SafetyNet.EnsureFloatIsInRange(errorChance, 0, 1, "error chance");
+            Preconditions.IsIntBiggerOrEqualTo(rerolls, 0, "rerolls");
+            Preconditions.IsIntBiggerOrEqualTo(leadway, 0, "leadway");
+            Preconditions.IsFloatInRange(errorChance, 0, 1, "error chance");
             
             this.min = min;
             this.max = max;

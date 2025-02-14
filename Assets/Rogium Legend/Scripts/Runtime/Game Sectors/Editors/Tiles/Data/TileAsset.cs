@@ -23,7 +23,7 @@ namespace Rogium.Editors.Tiles
         public override void UpdateIcon(IAsset newSprite)
         {
             base.UpdateIcon(newSprite);
-            SafetyNet.EnsureIsNotNull(tile, "TileObject");
+            Preconditions.IsNotNull(tile, "TileObject");
             tile.sprite = newSprite.Icon;
         }
 

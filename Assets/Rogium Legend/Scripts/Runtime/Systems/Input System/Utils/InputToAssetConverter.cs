@@ -126,7 +126,7 @@ namespace Rogium.Systems.Input
         /// <param name="asset">The asset to load the paths from.</param>
         public static void Load(InputBindingsAsset asset)
         {
-            SafetyNet.EnsureIsNotNull(asset, nameof(asset));
+            Preconditions.IsNotNull(asset, nameof(asset));
             if (asset.Keyboard.Select == null || asset.Gamepad.Select == null) return;
             
             //inputSystem.UI - Keyboard

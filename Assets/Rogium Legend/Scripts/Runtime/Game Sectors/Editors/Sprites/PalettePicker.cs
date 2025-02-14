@@ -66,7 +66,7 @@ namespace Rogium.Editors.Sprites
             {
                 previousID = paletteID;
                 previousAsset = palettes.First();
-                SafetyNet.ThrowMessage("Assigned palette was not found. Replaced with first one found");
+                Preconditions.ThrowMessage("Assigned palette was not found. Replaced with first one found");
                 return previousAsset;
             }
         }

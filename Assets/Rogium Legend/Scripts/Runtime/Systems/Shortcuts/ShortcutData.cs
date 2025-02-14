@@ -29,7 +29,7 @@ namespace Rogium.Systems.Shortcuts
 
         public void RefreshInput()
         {
-            SafetyNet.EnsureIsNotNull(trigger, "Trigger Action");
+            Preconditions.IsNotNull(trigger, "Trigger Action");
             inputAction = InputSystem.GetInstance().GetAction(trigger);
         }
 

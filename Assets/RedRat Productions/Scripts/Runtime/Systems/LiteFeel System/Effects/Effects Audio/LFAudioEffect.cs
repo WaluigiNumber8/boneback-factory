@@ -35,11 +35,11 @@ namespace RedRats.Systems.LiteFeel.Effects
         protected override void PlaySelf()
         {
             if (mySource != null && mySource.isPlaying && mySource.loop) return;
-            SafetyNet.EnsureListIsNotNullOrEmpty(clips, nameof(clips));
+            Preconditions.IsListNotNullOrEmpty(clips, nameof(clips));
             
             AudioClipSO c = clips[Random.Range(0, clips.Length)];
             
-            SafetyNet.EnsureIsNotNull(c, nameof(c));
+            Preconditions.IsNotNull(c, nameof(c));
             clipDuration = c.Clip.length;
             AudioMixerGroup mixer = (overrideMixerGroup) ? mixerGroup : c.MixerGroup;
             float vol = (overrideVolume) ? volume : c.Volume;

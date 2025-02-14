@@ -113,7 +113,7 @@ namespace Rogium.Editors.AssetSelection
         
         public AssetCardController GetCard(int index)
         {
-            SafetyNet.EnsureIndexWithingCollectionRange(index, cards, nameof(cards));
+            Preconditions.IsIndexWithingCollectionRange(cards, index, nameof(cards));
             return cards[index];
         }
         

@@ -35,7 +35,7 @@ namespace Rogium.Editors.Rooms
         /// <param name="prepareEditor">If true, load asset into the editor.</param>
         public void AssignAsset(RoomAsset asset, int index, bool prepareEditor = true)
         {
-            SafetyNet.EnsureIsNotNull(asset, "Assigned Room");
+            Preconditions.IsNotNull(asset, "Assigned Room");
             currentAsset = new RoomAsset.Builder().AsCopy(asset).Build();
             myIndex = index;
 
@@ -49,7 +49,7 @@ namespace Rogium.Editors.Rooms
         /// <param name="updatedAsset">Asset Containing new data.</param>
         public void UpdateAsset(RoomAsset updatedAsset)
         { 
-            SafetyNet.EnsureIsNotNull(currentAsset, "Currently active asset.");
+            Preconditions.IsNotNull(currentAsset, "Currently active asset.");
             currentAsset = new RoomAsset.Builder().AsCopy(updatedAsset).Build();
         }
         

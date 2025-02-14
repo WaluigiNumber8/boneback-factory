@@ -6,9 +6,9 @@ using System.Linq;
 namespace RedRats.Safety
 {
     /// <summary>
-    /// Contains various method for checking correctness of given parameters. If a method fails to pass, it throws an exception.
+    /// Contains various methods for checking correctness of parameters. If a method fails to pass, it throws an exception.
     /// </summary>
-    public static class SafetyNet
+    public static class Preconditions
     {
         public static event Action<string> OnFireErrorMessage;
 
@@ -17,13 +17,13 @@ namespace RedRats.Safety
         /// <summary>
         /// Ensures a given object is not null.
         /// </summary>
-        /// <param name="obj">The object to check.</param>
+        /// <param name="value">The object to check.</param>
         /// <param name="variableName">Name of the checked variable.</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
         /// <exception cref="SafetyNetException"></exception>
-        public static void EnsureIsNotNull(object obj, string variableName, string customMessage = "")
+        public static void IsNotNull(object value, string variableName, string customMessage = "")
         {
-            if (obj == null)
+            if (value == null)
             {
                 ThrowException(s => new SafetyNetException(s), customMessage, $"'{variableName}' cannot be null.");
             }
@@ -32,15 +32,15 @@ namespace RedRats.Safety
         /// <summary>
         /// Ensures a given object is of a specific type.
         /// </summary>
-        /// <param name="obj"></param>
+        /// <param name="value"></param>
         /// <param name="variableName"></param>
         /// <param name="customMessage"></param>
         /// <typeparam name="T"></typeparam>
-        public static void EnsureIsType<T>(object obj, string variableName, string customMessage = "")
+        public static void IsType<T>(object value, string variableName, string customMessage = "")
         {
-            if (obj is not T)
+            if (value is not T)
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} must be of type {typeof(T)}. ({obj.GetType()})");
+                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} must be of type {typeof(T)}. ({value.GetType()})");
             }
         }
         
@@ -51,103 +51,103 @@ namespace RedRats.Safety
         /// <summary>
         /// Ensures an number is not equal to a specific value.
         /// </summary>
-        /// <param name="number">The number to check.</param>
+        /// <param name="value">The number to check.</param>
         /// <param name="allowedValue">The value it cannot equal to.</param>
         /// <param name="variableName">Name of the checked variable.</param>
         /// /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        public static void EnsureIntIsEqual(int number, int allowedValue, string variableName, string customMessage = "")
+        public static void IsIntEqual(int value, int allowedValue, string variableName, string customMessage = "")
         {
-            if (number != allowedValue) ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{number.ToString()}' must equal {allowedValue.ToString()}.");
+            if (value != allowedValue) ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{value.ToString()}' must equal {allowedValue.ToString()}.");
         }
         
         /// <summary>
         /// Ensures an number is not equal to a specific value.
         /// </summary>
-        /// <param name="number">The number to check.</param>
+        /// <param name="value">The number to check.</param>
         /// <param name="disallowedValue">The value it cannot equal to.</param>
         /// <param name="variableName">Name of the checked variable.</param>
         /// /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        public static void EnsureIntIsNotEqual(int number, int disallowedValue, string variableName, string customMessage = "")
+        public static void IsIntNotEqual(int value, int disallowedValue, string variableName, string customMessage = "")
         {
-            if (number == disallowedValue)
+            if (value == disallowedValue)
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{number.ToString()}' cannot equal {disallowedValue.ToString()}.");
+                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{value.ToString()}' cannot equal {disallowedValue.ToString()}.");
             }
         }
 
         /// <summary>
         /// Ensures an number is bigger than a specific value.
         /// </summary>
-        /// <param name="number">The number to check.</param>
+        /// <param name="value">The number to check.</param>
         /// <param name="minSize">Minimum value allowed.</param>
         /// <param name="variableName">Name of the checked variable.</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        public static void EnsureIntIsBiggerThan(int number, int minSize, string variableName, string customMessage = "")
+        public static void IsIntBiggerThan(int value, int minSize, string variableName, string customMessage = "")
         {
-            if (number <= minSize)
+            if (value <= minSize)
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{number.ToString()}' must be above {minSize.ToString()}.");
+                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{value.ToString()}' must be above {minSize.ToString()}.");
             }
         }
 
         /// <summary>
         /// Ensures an number is bigger than or equal to a specific value.
         /// </summary>
-        /// <param name="number">The number to check.</param>
+        /// <param name="value">The number to check.</param>
         /// <param name="minSize">Minimum value allowed.</param>
         /// <param name="variableName">Name of the checked variable.</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        public static void EnsureIntIsBiggerOrEqualTo(int number, int minSize, string variableName, string customMessage = "")
+        public static void IsIntBiggerOrEqualTo(int value, int minSize, string variableName, string customMessage = "")
         {
-            if (number < minSize)
+            if (value < minSize)
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{number.ToString()}' must be above or equal {minSize.ToString()}.");
+                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{value.ToString()}' must be above or equal {minSize.ToString()}.");
             }
         }
 
         /// <summary>
         /// Ensures an number is lower than a specific value.
         /// </summary>
-        /// <param name="number">The number to check.</param>
+        /// <param name="value">The number to check.</param>
         /// <param name="maxSize">Maximum value allowed.</param>
         /// <param name="variableName">Name of the checked variable.</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        public static void EnsureIntIsLowerThan(int number, int maxSize, string variableName, string customMessage = "")
+        public static void IsIntLowerThan(int value, int maxSize, string variableName, string customMessage = "")
         {
-            if (number >= maxSize)
+            if (value >= maxSize)
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} {number.ToString()} must be below {maxSize.ToString()}.");
+                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} {value.ToString()} must be below {maxSize.ToString()}.");
             }
         }
 
         /// <summary>
         /// Ensures an number is lower than or equal to a specific value.
         /// </summary>
-        /// <param name="number">The number to check.</param>
+        /// <param name="value">The number to check.</param>
         /// <param name="maxSize">Maximum value allowed.</param>
         /// <param name="variableName">Name of the checked variable.</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        public static void EnsureIntIsLowerOrEqualTo(int number, int maxSize, string variableName, string customMessage = "")
+        public static void IsIntLowerOrEqualTo(int value, int maxSize, string variableName, string customMessage = "")
         {
-            if (number > maxSize)
+            if (value > maxSize)
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{number.ToString()}' must be below or equal {maxSize.ToString()}.");
+                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{value.ToString()}' must be below or equal {maxSize.ToString()}.");
             }
         }
 
         /// <summary>
         /// Ensures an number is within a given range (both inclusive).
         /// </summary>
-        /// <param name="number">The number to check.</param>
+        /// <param name="value">The number to check.</param>
         /// <param name="lowBounds">Minimum value allowed.</param>
         /// <param name="highBounds">Maximum value allowed.</param>
         /// <param name="variableName">Name of the checked variable.</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        public static void EnsureIntIsInRange(int number, int lowBounds, int highBounds, string variableName, string customMessage = "")
+        public static void IsIntInRange(int value, int lowBounds, int highBounds, string variableName, string customMessage = "")
         {
-            if (number < lowBounds && number > highBounds)
+            if (value < lowBounds && value > highBounds)
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{number.ToString()}' must be in between {lowBounds.ToString()} - {highBounds.ToString()}.");
+                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{value.ToString()}' must be in between {lowBounds.ToString()} - {highBounds.ToString()}.");
             }
         }
 
@@ -158,122 +158,106 @@ namespace RedRats.Safety
         /// <summary>
         /// Ensures a number is not equal to a specific value.
         /// </summary>
-        /// <param name="number">The number to check.</param>
+        /// <param name="value">The number to check.</param>
         /// <param name="allowedValue">The value it cannot equal to.</param>
         /// <param name="variableName">Name of the checked variable.</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        public static void EnsureFloatIsEqual(float number, float allowedValue, string variableName, string customMessage = "")
+        public static void IsFloatEqual(float value, float allowedValue, string variableName, string customMessage = "")
         {
-            if (Math.Abs(number - allowedValue) > 0.01f) 
+            if (Math.Abs(value - allowedValue) > 0.01f) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{number.ToString()}' must equal {allowedValue.ToString()}.");
+                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{value.ToString()}' must equal {allowedValue.ToString()}.");
             }
         }
         
         /// <summary>
         /// Ensures a number is not equal to a specific value.
         /// </summary>
-        /// <param name="number">The number to check.</param>
+        /// <param name="value">The number to check.</param>
         /// <param name="disallowedValue">The value it cannot equal to.</param>
         /// <param name="variableName">Name of the checked variable.</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        public static void EnsureFloatIsNotEqual(float number, float disallowedValue, string variableName, string customMessage = "")
+        public static void IsFloatNotEqual(float value, float disallowedValue, string variableName, string customMessage = "")
         {
-            if (Math.Abs(number - disallowedValue) < 0.01f) 
+            if (Math.Abs(value - disallowedValue) < 0.01f) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{number.ToString()}' cannot equal {disallowedValue.ToString()}.");
+                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{value.ToString()}' cannot equal {disallowedValue.ToString()}.");
             }
         }
 
         /// <summary>
         /// Ensures an number is bigger than a specific value.
         /// </summary>
-        /// <param name="number">The number to check.</param>
+        /// <param name="value">The number to check.</param>
         /// <param name="minSize">Minimum value allowed.</param>
         /// <param name="variableName">Name of the checked variable.</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        public static void EnsureFloatIsBiggerThan(float number, float minSize, string variableName, string customMessage = "")
+        public static void IsFloatBiggerThan(float value, float minSize, string variableName, string customMessage = "")
         {
-            if (number <= minSize) 
+            if (value <= minSize) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{number.ToString()}' must be above {minSize.ToString()}.");
+                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{value.ToString()}' must be above {minSize.ToString()}.");
             }
         }
 
         /// <summary>
         /// Ensures an number is bigger than or equal to a specific value.
         /// </summary>
-        /// <param name="number">The number to check.</param>
+        /// <param name="value">The number to check.</param>
         /// <param name="minSize">Minimum value allowed.</param>
         /// <param name="variableName">Name of the checked variable.</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        public static void EnsureFloatIsBiggerOrEqualTo(float number, float minSize, string variableName, string customMessage = "")
+        public static void IsFloatBiggerOrEqualTo(float value, float minSize, string variableName, string customMessage = "")
         {
-            if (number < minSize) 
+            if (value < minSize) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{number.ToString()}' must be above or equal to {minSize.ToString()}.");
+                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{value.ToString()}' must be above or equal to {minSize.ToString()}.");
             }
         }
 
         /// <summary>
         /// Ensures an number is lower than a specific value.
         /// </summary>
-        /// <param name="number">The number to check.</param>
+        /// <param name="value">The number to check.</param>
         /// <param name="maxSize">Maximum value allowed.</param>
         /// <param name="variableName">Name of the checked variable.</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        public static void EnsureFloatIsLowerThan(float number, float maxSize, string variableName, string customMessage = "")
+        public static void IsFloatLowerThan(float value, float maxSize, string variableName, string customMessage = "")
         {
-            if (number >= maxSize) 
+            if (value >= maxSize) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{number.ToString()}' must be below {maxSize.ToString()}.");
+                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{value.ToString()}' must be below {maxSize.ToString()}.");
             }
         }
 
         /// <summary>
         /// Ensures an number is lower than or equal to a specific value.
         /// </summary>
-        /// <param name="number">The number to check.</param>
+        /// <param name="value">The number to check.</param>
         /// <param name="maxSize">Maximum value allowed.</param>
         /// <param name="variableName">Name of the checked variable.</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        public static void EnsureFloatIsLowerOrEqualTo(float number, float maxSize, string variableName, string customMessage = "")
+        public static void IsFloatLowerOrEqualTo(float value, float maxSize, string variableName, string customMessage = "")
         {
-            if (number > maxSize) 
+            if (value > maxSize) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{number.ToString()}' must be below or equal to {maxSize.ToString()}.");
+                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{value.ToString()}' must be below or equal to {maxSize.ToString()}.");
             }
         }
 
         /// <summary>
         /// Ensures an number is within a given range (both inclusive).
         /// </summary>
-        /// <param name="number">The number to check.</param>
+        /// <param name="value">The number to check.</param>
         /// <param name="lowBounds">Minimum value allowed.</param>
         /// <param name="highBounds">Maximum value allowed.</param>
         /// <param name="variableName">Name of the checked variable.</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        public static void EnsureValueIsInRange(float number, float lowBounds, float highBounds, string variableName, string customMessage = "")
+        public static void IsFloatInRange(float value, float lowBounds, float highBounds, string variableName, string customMessage = "")
         {
-            if (number < lowBounds && number > highBounds) 
+            if (value < lowBounds && value > highBounds) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{number.ToString()}' must be in between {lowBounds.ToString()} - {highBounds.ToString()}.");
-            }
-        }
-
-        /// <summary>
-        /// Ensures an number is within a given range (both inclusive).
-        /// </summary>
-        /// <param name="number">The number to check.</param>
-        /// <param name="lowBounds">Minimum value allowed.</param>
-        /// <param name="highBounds">Maximum value allowed.</param>
-        /// <param name="variableName">Name of the checked variable.</param>
-        /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        public static void EnsureFloatIsInRange(float number, float lowBounds, float highBounds, string variableName, string customMessage = "")
-        {
-            if (number < lowBounds && number > highBounds) 
-            {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{number.ToString()}' must be in between {lowBounds.ToString()} - {highBounds.ToString()}.");
+                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{value.ToString()}' must be in between {lowBounds.ToString()} - {highBounds.ToString()}.");
             }
         }
         #endregion
@@ -282,12 +266,12 @@ namespace RedRats.Safety
         /// <summary>
         /// Ensures a given string is not null or empty.
         /// </summary>
-        /// <param name="stringObject">The string to check.</param>
+        /// <param name="value">The string to check.</param>
         /// <param name="variableName">Name of the variable.</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        public static void EnsureStringNotNullOrEmpty(string stringObject, string variableName, string customMessage = "")
+        public static void IsStringNotNullOrEmpty(string value, string variableName, string customMessage = "")
         {
-            if (string.IsNullOrEmpty(stringObject))
+            if (string.IsNullOrEmpty(value))
             {
                 ThrowException(s => new SafetyNetException(s), customMessage, $"'{variableName}' cannot be null or empty.");
             }
@@ -296,46 +280,48 @@ namespace RedRats.Safety
         /// <summary>
         /// Makes sure that a string is longer than minLimit.
         /// </summary>
-        /// <param name="stringObject">The string to check.</param>
+        /// <param name="value">The string to check.</param>
         /// <param name="minLimit">Minimum characters allowed for the string.</param>
         /// <param name="variableName">Description of wronged variable.</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
         /// <exception cref="SafetyNetException"></exception>
-        public static void EnsureStringMinLimit(string stringObject, int minLimit, string variableName, string customMessage = "")
+        public static void IsStringLengthAbove(string value, int minLimit, string variableName, string customMessage = "")
         {
-            if (stringObject.Length < minLimit)
+            if (value.Length < minLimit)
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{stringObject}' cannot have less than or equal to {minLimit.ToString()} characters.");
+                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{value}' cannot have less than or equal to {minLimit.ToString()} characters.");
             }
         }
 
         /// <summary>
         /// Makes sure that a string is shorter than maxLimit.
         /// </summary>
-        /// <param name="stringObject">The string to check.</param>
+        /// <param name="value">The string to check.</param>
         /// <param name="maxLimit">Maximum characters allowed for the string.</param>
         /// <param name="variableName">Description of wronged variable.</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
         /// <exception cref="SafetyNetException"></exception>
-        public static void EnsureStringMaxLimit(string stringObject, int maxLimit, string variableName, string customMessage = "")
+        public static void IsStringLengthBelow(string value, int maxLimit, string variableName, string customMessage = "")
         {
-            if (stringObject.Length > maxLimit)
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{stringObject}' cannot have more than or equal to {maxLimit.ToString()} characters.");
+            if (value.Length > maxLimit)
+            {
+                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} '{value}' cannot have more than or equal to {maxLimit.ToString()} characters.");
+            }
         }
 
         /// <summary>
         /// Ensures a string's amount of characters is within a given range.
         /// </summary>
-        /// <param name="stringObject">The string to check.</param>
+        /// <param name="value">The string to check.</param>
         /// <param name="minLimit">Range minimum.</param>
         /// <param name="maxLimit">Range maximum.</param>
         /// <param name="variableName">Name of the wronged variable.</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
         /// <exception cref="SafetyNetException"></exception>
-        public static void EnsureStringInRange(string stringObject, int minLimit, int maxLimit, string variableName, string customMessage = "")
+        public static void IsStringInRange(string value, int minLimit, int maxLimit, string variableName, string customMessage = "")
         {
-            EnsureStringMinLimit(stringObject, minLimit, variableName, customMessage);
-            EnsureStringMaxLimit(stringObject, maxLimit, variableName, customMessage);
+            IsStringLengthAbove(value, minLimit, variableName, customMessage);
+            IsStringLengthBelow(value, maxLimit, variableName, customMessage);
         }
         #endregion
 
@@ -344,13 +330,13 @@ namespace RedRats.Safety
         /// <summary>
         /// Ensures a given list is not empty.
         /// </summary>
-        /// <param name="list">The list to check.</param>
+        /// <param name="value">The list to check.</param>
         /// <param name="variableName">The name of the list</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
         /// <exception cref="SafetyNetCollectionException"></exception>
-        public static void EnsureListIsNotEmpty<T>(IList<T> list, string variableName, string customMessage = "")
+        public static void IsListNotEmpty<T>(IList<T> value, string variableName, string customMessage = "")
         {
-            if (list.Count <= 0) 
+            if (value.Count <= 0) 
             {
                 ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} cannot be empty.");
             }
@@ -359,13 +345,13 @@ namespace RedRats.Safety
         /// <summary>
         /// Ensures a given list is not null.
         /// </summary>
-        /// <param name="list">The list to check.</param>
+        /// <param name="value">The list to check.</param>
         /// <param name="variableName">The name of the list</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
         /// <exception cref="SafetyNetCollectionException"></exception>
-        public static void EnsureListIsNotNullOrEmpty<T>(IList<T> list, string variableName, string customMessage = "")
+        public static void IsListNotNullOrEmpty<T>(IList<T> value, string variableName, string customMessage = "")
         {
-            if (list == null || list.Count <= 0) 
+            if (value == null || value.Count <= 0) 
             {
                 ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} cannot be empty or null.");
             }
@@ -374,80 +360,80 @@ namespace RedRats.Safety
         /// <summary>
         /// Ensures a given list has a size lower than a specific size.
         /// </summary>
-        /// <param name="list">The list to check.</param>
+        /// <param name="value">The list to check.</param>
         /// <param name="maxAllowedSize">Max allowed size for the list.</param>
         /// <param name="variableName">The name of the list</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
         /// <exception cref="SafetyNetCollectionException"></exception>
-        public static void EnsureListIsNotLongerThan<T>(IList<T> list, int maxAllowedSize, string variableName, string customMessage = "")
+        public static void IsListIsNotLongerThan<T>(IList<T> value, int maxAllowedSize, string variableName, string customMessage = "")
         {
-            if (list.Count > maxAllowedSize) 
+            if (value.Count > maxAllowedSize) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} length-{list.Count.ToString()} cannot have more than {maxAllowedSize.ToString()} items.");
+                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} length-{value.Count.ToString()} cannot have more than {maxAllowedSize.ToString()} items.");
             }
         }
 
         /// <summary>
         /// Ensures a given list has a size lower or equal to a specific size.
         /// </summary>
-        /// <param name="list">The list to check.</param>
+        /// <param name="value">The list to check.</param>
         /// <param name="maxAllowedSize">Max allowed size for the list.</param>
         /// <param name="variableName">The name of the list</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
         /// <exception cref="SafetyNetCollectionException"></exception>
-        public static void EnsureListIsNotLongerOrEqualThan<T>(IList<T> list, int maxAllowedSize, string variableName, string customMessage = "")
+        public static void IsListIsNotLongerOrEqualTo<T>(IList<T> value, int maxAllowedSize, string variableName, string customMessage = "")
         {
-            if (list.Count >= maxAllowedSize) 
+            if (value.Count >= maxAllowedSize) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} length-{list.Count.ToString()} cannot have more than or equal to {maxAllowedSize.ToString()} items.");
+                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} length-{value.Count.ToString()} cannot have more than or equal to {maxAllowedSize.ToString()} items.");
             }
         }
 
         /// <summary>
         /// Ensures a given list has a size bigger than a specific value.
         /// </summary>
-        /// <param name="list">The list to check.</param>
+        /// <param name="value">The list to check.</param>
         /// <param name="minAllowedSize">Min allowed size for the list.</param>
         /// <param name="variableName">The name of the list</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
         /// <exception cref="SafetyNetCollectionException"></exception>
-        public static void EnsureListIsNotShorterThan<T>(IList<T> list, int minAllowedSize, string variableName, string customMessage = "")
+        public static void IsListNotShorterThan<T>(IList<T> value, int minAllowedSize, string variableName, string customMessage = "")
         {
-            if (list.Count < minAllowedSize) 
+            if (value.Count < minAllowedSize) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} length-{list.Count.ToString()} cannot have less than {minAllowedSize.ToString()} items.");
+                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} length-{value.Count.ToString()} cannot have less than {minAllowedSize.ToString()} items.");
             }
         }
 
         /// <summary>
         /// Ensures a given list has a size bigger or equal to a specific value.
         /// </summary>
-        /// <param name="list">The list to check.</param>
+        /// <param name="value">The list to check.</param>
         /// <param name="minAllowedSize">Min allowed size for the list.</param>
         /// <param name="variableName">The name of the list</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
         /// <exception cref="SafetyNetCollectionException"></exception>
-        public static void EnsureListIsNotShorterOrEqualThan<T>(IList<T> list, int minAllowedSize, string variableName, string customMessage = "")
+        public static void IsListNotShorterOrEqualTo<T>(IList<T> value, int minAllowedSize, string variableName, string customMessage = "")
         {
-            if (list.Count <= minAllowedSize) 
+            if (value.Count <= minAllowedSize) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} length-{list.Count.ToString()} cannot have less than or equal to {minAllowedSize.ToString()} items.");
+                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} length-{value.Count.ToString()} cannot have less than or equal to {minAllowedSize.ToString()} items.");
             }
         }
 
         /// <summary>
         /// Ensures a given list has a specific size.
         /// </summary>
-        /// <param name="list">The list to check.</param>
+        /// <param name="value">The list to check.</param>
         /// <param name="size">The allowed size for the list.</param>
         /// <param name="variableName">The name of the list</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
         /// <exception cref="SafetyNetCollectionException"></exception>
-        public static void EnsureListIsLongExactly<T>(IList<T> list, int size, string variableName, string customMessage = "")
+        public static void IsListNotLongExactly<T>(IList<T> value, int size, string variableName, string customMessage = "")
         {
-            if (list.Count == size) 
+            if (value.Count == size) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} length-{list.Count.ToString()} must have exactly {size.ToString()} items.");
+                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} length-{value.Count.ToString()} must have exactly {size.ToString()} items.");
             }
         }
 
@@ -455,16 +441,16 @@ namespace RedRats.Safety
         /// Ensures a list does not contain a specific object.
         /// </summary>
         /// <typeparam name="T">Any object type.</typeparam>
-        /// <param name="list">The list to check.</param>
-        /// <param name="value">The object we check the duplicity for.</param>
+        /// <param name="value">The list to check.</param>
+        /// <param name="element">The object we check the duplicity for.</param>
         /// <param name="variableName">Name of the checked variable.</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
         /// <exception cref="SafetyNetCollectionException"></exception>
-        public static void EnsureListNotContains<T>(IList<T> list, T value, string variableName, string customMessage = "")
+        public static void IsListNotContaining<T>(IList<T> value, T element, string variableName, string customMessage = "")
         {
-            if (list.Contains(value)) 
+            if (value.Contains(element)) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} cannot contain '{value.ToString()}.'");
+                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} cannot contain '{element.ToString()}.'");
             }
         }
         
@@ -472,16 +458,16 @@ namespace RedRats.Safety
         /// Ensures that list contains a specific object.
         /// </summary>
         /// <typeparam name="T">Any object type.</typeparam>
-        /// <param name="list">The list to check.</param>
-        /// <param name="value">The object we check the duplicity for.</param>
+        /// <param name="value">The list to check.</param>
+        /// <param name="element">The object we check the duplicity for.</param>
         /// <param name="variableName">Name of the checked variable.</param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
         /// <exception cref="SafetyNetCollectionException"></exception>
-        public static void EnsureListContains<T>(IList<T> list, T value, string variableName, string customMessage = "") where T : class
+        public static void isListContaining<T>(IList<T> value, T element, string variableName, string customMessage = "") where T : class
         {
-            if (!list.ContainsValue(value)) 
+            if (!value.ContainsValue(element)) 
             {
-                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} must contain '{value}.'");
+                ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} must contain '{element}.'");
             }
         }
 
@@ -489,21 +475,21 @@ namespace RedRats.Safety
         /// Ensures a given list does not have any duplicates.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="list"></param>
+        /// <param name="value"></param>
         /// <param name="variableName"></param>
         /// <param name="customMessage">The message of the error. If blank will use default.</param>
-        public static void EnsureListDoesNotHaveDuplicities<T>(IList<T> list, string variableName, string customMessage = "")
+        public static void isListWithoutDuplicates<T>(IList<T> value, string variableName, string customMessage = "")
         {
-            if (list.GetDuplicatesCount(out IList<string> duplicates) > 0) 
+            if (value.GetDuplicatesCount(out IList<string> duplicates) > 0) 
             {
                 string duplicateString = string.Join(", ", duplicates);
                 ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} cannot have any duplicates. Duplicates found: {duplicateString}");
             }
         }
         
-        public static void EnsureIndexWithingCollectionRange<T>(int index, IEnumerable<T> collection, string collectionName, string customMessage = "")
+        public static void IsIndexWithingCollectionRange<T>(IEnumerable<T> value, int index, string collectionName, string customMessage = "")
         {
-            int count = collection.Count();
+            int count = value.Count();
             if (index < 0 || index > count - 1) 
             {
                 ThrowException(s => new SafetyNetException(s), customMessage, $"Index ({index.ToString()}) must fit within {collectionName} of size-{count.ToString()}.");
@@ -513,9 +499,9 @@ namespace RedRats.Safety
 
         #region Set Checks
 
-        public static void EnsureSetIsNotNullOrEmpty<T>(ISet<T> set, string variableName, string customMessage = "")
+        public static void IsSetNotNullOrEmpty<T>(ISet<T> value, string variableName, string customMessage = "")
         {
-            if (set == null || set.Count <= 0) 
+            if (value == null || value.Count <= 0) 
             {
                 ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} cannot be empty or null.");
             }
@@ -525,9 +511,9 @@ namespace RedRats.Safety
         
         #region Dictionary Checks
 
-        public static void EnsureDictionaryContainsKey<TKey, TValue>(IDictionary<TKey, TValue> dictionary, TKey key, string variableName, string customMessage = "")
+        public static void IsDictionaryContainingKey<TKey, TValue>(IDictionary<TKey, TValue> value, TKey key, string variableName, string customMessage = "")
         {
-            if (!dictionary.ContainsKey(key)) 
+            if (!value.ContainsKey(key)) 
             {
                 ThrowException(s => new SafetyNetException(s), customMessage, $"{variableName} must contain the key '{key.ToString()}'.");
             }

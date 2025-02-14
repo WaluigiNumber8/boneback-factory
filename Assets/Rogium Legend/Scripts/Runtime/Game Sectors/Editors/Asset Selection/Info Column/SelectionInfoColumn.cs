@@ -94,8 +94,8 @@ namespace Rogium.Editors.AssetSelection
         
         public InteractablePropertyWithValueBase<T> GetProperty<T>(int i)
         {
-            SafetyNet.EnsureIntIsLowerOrEqualTo(i, ui.content.childCount, nameof(i));
-            SafetyNet.EnsureIntIsInRange(i, 0, ui.content.childCount, nameof(i));
+            Preconditions.IsIntLowerOrEqualTo(i, ui.content.childCount, nameof(i));
+            Preconditions.IsIntInRange(i, 0, ui.content.childCount, nameof(i));
             return ui.content.GetChild(i).GetComponent<InteractablePropertyWithValueBase<T>>();
         }
         

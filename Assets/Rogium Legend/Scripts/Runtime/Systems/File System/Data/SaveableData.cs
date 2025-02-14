@@ -80,7 +80,7 @@ namespace Rogium.ExternalStorage
         /// <param name="newTitle">The nw to title to use.</param>
         public void UpdateFileTitle(string id, string newTitle)
         {
-            SafetyNet.EnsureListIsNotNullOrEmpty(filePaths, "filePaths");
+            Preconditions.IsListNotNullOrEmpty(filePaths, "filePaths");
             foreach (FilePathInfo pathInfo in filePaths)
             {
                 if (pathInfo.ID != id) continue;

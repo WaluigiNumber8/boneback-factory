@@ -32,7 +32,7 @@ namespace Rogium.Editors.Weapons
         public void UpdateFreezeUser(bool newFreezeUser) => freezeUser = newFreezeUser;
         public void UpdateProjectileIDsLength(int newLength)
         {
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(newLength, 0, "New weapon IDs size");
+            Preconditions.IsIntBiggerOrEqualTo(newLength, 0, "New weapon IDs size");
 
             ProjectileDataInfo data = new(EditorDefaults.EmptyAssetID, 
                                           EditorDefaults.Instance.WeaponProjectileSpawnDelay,
