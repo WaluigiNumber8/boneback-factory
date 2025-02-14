@@ -33,7 +33,6 @@ namespace Rogium.Systems.Input
             base.Awake();
             ClearAllInput();
             SceneManager.sceneLoaded += (_, __) => eventSystem = FindFirstObjectByType<EventSystem>();
-            UI.PointerPosition.OnPressed += UpdatePointerPosition;
             linkedActionMaps?.RefreshDictionary();
         }
 
@@ -49,6 +48,8 @@ namespace Rogium.Systems.Input
             inputPause = new InputProfilePause(input);
             inputShortcuts = new InputProfileShortcuts(input);
             SwitchToMenuMaps();
+            
+            UI.PointerPosition.OnPressed += UpdatePointerPosition;
             
             //Force grouping on click/right click
             UI.Select.OnPress += ActionHistorySystem.ForceBeginGrouping;

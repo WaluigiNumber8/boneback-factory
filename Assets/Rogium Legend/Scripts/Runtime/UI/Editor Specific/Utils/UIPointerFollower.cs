@@ -16,7 +16,7 @@ namespace Rogium.UserInterface.Editors.Utils
         
         private RectTransform ttransform;
         private RectTransform canvasTransform;
-        private InputSystem inputSystem;
+        private InputSystem input;
         private Canvas canvas;
         private Camera cam;
         
@@ -25,7 +25,7 @@ namespace Rogium.UserInterface.Editors.Utils
         private void Awake()
         {
             ttransform = GetComponent<RectTransform>();
-            inputSystem = InputSystem.GetInstance();
+            input = InputSystem.GetInstance();
             canvas = GetComponentInParent<Canvas>();
             canvasTransform = canvas.GetComponent<RectTransform>();
             cam = Camera.main;
@@ -37,20 +37,20 @@ namespace Rogium.UserInterface.Editors.Utils
         {
             if (!rememberDraggedPosition) ttransform.anchoredPosition = originalPosition;
             if ((followType & UIFollowType.OnEnable) != 0 || (followType & UIFollowType.OnUpdate) != 0) MoveToPointerPosition();
-            if ((followType & UIFollowType.OnUpdate) != 0) inputSystem.UI.PointerPosition.OnPressed += MoveToPointerPosition;
+            if ((followType & UIFollowType.OnUpdate) != 0) input.UI.PointerPosition.OnPressed += MoveToPointerPosition;
         }
         
         private void OnDisable()
         {
-            if ((followType & UIFollowType.OnUpdate) != 0) inputSystem.UI.PointerPosition.OnPressed -= MoveToPointerPosition;
+            if ((followType & UIFollowType.OnUpdate) != 0) input.UI.PointerPosition.OnPressed -= MoveToPointerPosition;
         }
-        
+
         public void OnDrag(PointerEventData eventData)
         {
             if ((followType & UIFollowType.OnDrag) != 0) DragBy(eventData.delta);
         }
         
-        private void MoveToPointerPosition() => MoveToPointerPosition(inputSystem.PointerPosition);
+        private void MoveToPointerPosition() => MoveToPointerPosition(input.PointerPosition);
         private void MoveToPointerPosition(Vector2 mousePosition)
         {
             (Vector2 minPos, Vector2 maxPos) = GetAllowedMinMaxPositions();
