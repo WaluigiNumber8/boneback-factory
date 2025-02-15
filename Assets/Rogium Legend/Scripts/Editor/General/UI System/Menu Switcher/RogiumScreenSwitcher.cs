@@ -156,7 +156,7 @@ namespace Rogium.Editor.UI
         {
             GameObject o = GameObject.Find(parentName);
             if (o == null) return null;
-            return (o.transform.childCount > 0) ? (o.transform.GetChild(0).childCount > 0) ? o.transform.GetChild(0).GetChild(0).gameObject : o.transform.GetChild(0).gameObject : o;
+            return (o.transform.childCount > 0) ? (o.transform.GetChild(0).childCount > 0) ? o.transform.GetChild(0).gameObject : o.transform.gameObject : o;
         }
     }
 }
