@@ -39,6 +39,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="whenValueChange">Method that will run when the slider changes value.</param>
         public void Construct(string titleText, float minValue, float maxValue, float startingValue, Action<float> whenValueChange)
         {
+            this.whenValueChange = null; 
             decimalMultiplier = 1;
             for (int i = 0; i < decimals.allowedDecimals; i++) decimalMultiplier *= 10;
             decimals.sliderWithInput.OverrideDecimalMultiplier(decimalMultiplier);
@@ -48,11 +49,12 @@ namespace Rogium.UserInterface.Interactables.Properties
             inputField.UpdateContentType(TMP_InputField.ContentType.DecimalNumber);
             slider.maxValue = Mathf.RoundToInt(maxValue * decimalMultiplier);
             slider.minValue = Mathf.RoundToInt(minValue * decimalMultiplier);
-            decimals.sliderWithInput.SetValue(startingValue);
+            UpdateValueWithoutNotify(startingValue);
             lastValue = startingValue * decimalMultiplier;
             
             
             slider.onValueChanged.RemoveListener(WhenValueChanged);
+            slider.onValueChanged.RemoveListener(WhenValueChangedToInt);
             this.whenValueChange = whenValueChange;
             slider.onValueChanged.AddListener(WhenValueChanged);
         }
@@ -67,6 +69,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         /// <param name="whenValueChange">Method that will run when the slider changes value.</param>
         public void Construct(string titleText, int minValue, int maxValue, int startingValue, Action<float> whenValueChange)
         {
+            this.whenValueChange = null; 
             decimalMultiplier = 1;
             decimals.sliderWithInput.ResetDecimalMultiplier();
             
@@ -76,7 +79,9 @@ namespace Rogium.UserInterface.Interactables.Properties
             slider.maxValue = maxValue;
             slider.minValue = minValue;
             UpdateValueWithoutNotify(startingValue);
+            lastValue = startingValue;
             
+            slider.onValueChanged.RemoveListener(WhenValueChanged);
             slider.onValueChanged.RemoveListener(WhenValueChangedToInt);
             this.whenValueChange = whenValueChange;
             slider.onValueChanged.AddListener(WhenValueChangedToInt);
