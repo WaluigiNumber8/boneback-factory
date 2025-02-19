@@ -60,6 +60,7 @@ namespace Rogium.Tests.Systems.Shortcuts
         public IEnumerator Should_Edit_WhenShortcutPressed()
         {
             yield return TUtilsMenuLoader.PrepareCampaignEditor(false);
+            yield return null;
             i.Trigger(input.Shortcuts.Edit.Action);
             yield return null;
             Assert.That(MenuSwitcher.Instance.CurrentMenu, Is.EqualTo(MenuType.CampaignEditor));

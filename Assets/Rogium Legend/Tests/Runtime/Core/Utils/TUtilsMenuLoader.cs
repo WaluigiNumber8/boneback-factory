@@ -172,6 +172,7 @@ namespace Rogium.Tests.Core
             
             Object.Instantiate(campaignEditorProperty, Object.FindFirstObjectByType<Canvas>().transform);
             MenuSwitcher.Instance.ReloadMenus();
+            MenuSwitcher.Instance.SwitchTo(MenuSwitcher.Instance.CurrentMenu);
             yield return null;
             if (!openEditor) yield break;
             yield return TUtilsAssetCreator.CreateAndAssignCampaign();

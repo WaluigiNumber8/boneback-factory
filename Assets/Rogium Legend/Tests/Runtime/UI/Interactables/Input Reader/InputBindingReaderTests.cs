@@ -126,7 +126,7 @@ namespace Rogium.Tests.UI.Interactables.InputReader
         public IEnumerator Should_NotShowMessage_WhenBindingIsNotUsed()
         {
             yield return BindKey(keyboard.oKey);
-            Assert.That(IsModalWindowActive(), Is.True);
+            Assert.That(IsModalWindowActive(), Is.False);
         }
 
         [UnityTest]
