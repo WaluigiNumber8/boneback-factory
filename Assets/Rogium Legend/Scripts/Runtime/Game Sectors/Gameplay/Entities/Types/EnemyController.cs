@@ -45,7 +45,7 @@ namespace Rogium.Gameplay.Entities.Enemy
         protected override void Awake()
         {
             base.Awake();
-            gameplayOverseer = GameplayOverseerMono.GetInstance();
+            gameplayOverseer = GameplayOverseerMono.Instance;
             updateFaceDirectionMethod = FaceDirectionLook;
         }
 

@@ -22,7 +22,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
 
         private void Awake()
         {
-            audioSystem = AudioSystemRogium.GetInstance();
+            audioSystem = AudioSystemRogium.Instance;
             idleTimer = new CountdownTimer(() =>
             {
                 PlaySound(soundData.idleSound);

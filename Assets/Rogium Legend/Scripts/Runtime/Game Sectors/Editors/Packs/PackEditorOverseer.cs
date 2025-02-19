@@ -397,7 +397,7 @@ namespace Rogium.Editors.Packs
             Preconditions.IsNotNull(currentPack, "Pack Editor - Current Pack");
             Preconditions.IsNotNull(currentPack.Rooms, "Pack Editor - List of Rooms");
 
-            InternalLibraryOverseer library = InternalLibraryOverseer.GetInstance();
+            InternalLibraryOverseer library = InternalLibraryOverseer.Instance;
             newAsset.ObjectGrid.SetTo(new Vector2Int(6, 5), AssetDataBuilder.ForObject(library.GetObjectByID("001")));
             newAsset.ObjectGrid.SetTo(new Vector2Int(8, 5), AssetDataBuilder.ForObject(library.GetObjectByID("002")));
             CurrentPack.Rooms.Add(newAsset);

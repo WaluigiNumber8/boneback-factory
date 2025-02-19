@@ -13,7 +13,7 @@ namespace Rogium.Tests.Editors.Rooms
     {
         public static void FillEntireActiveLayer()
         {
-            RoomEditorOverseerMono roomEditor = RoomEditorOverseerMono.GetInstance();
+            RoomEditorOverseerMono roomEditor = RoomEditorOverseerMono.Instance;
             ObjectGrid<AssetData> layer = roomEditor.GetCurrentGridCopy;
             ActionHistorySystem.ForceBeginGrouping();
             for (int i = 0; i < layer.Width; i++)

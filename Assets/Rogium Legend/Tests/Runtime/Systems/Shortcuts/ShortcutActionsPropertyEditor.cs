@@ -28,7 +28,7 @@ namespace Rogium.Tests.Systems.Shortcuts
             yield return TUtilsMenuLoader.PrepareSelectionMenu();
             yield return TUtilsMenuLoader.PrepareWeaponEditor(false);
             TUtilsOverseerLoader.LoadModalWindowBuilder();
-            editor = PropertyEditorOverseerMono.GetInstance();
+            editor = PropertyEditorOverseerMono.Instance;
             yield return null;
             yield return OpenEditor(AssetType.Weapon);
         }
@@ -98,7 +98,7 @@ namespace Rogium.Tests.Systems.Shortcuts
             yield return null;
             i.Trigger(input.UI.Cancel.Action);
             yield return null;
-            Assert.That(MenuSwitcher.GetInstance().CurrentMenu, Is.EqualTo(MenuType.PropertyEditor));
+            Assert.That(MenuSwitcher.Instance.CurrentMenu, Is.EqualTo(MenuType.PropertyEditor));
         }
         
         [UnityTest]
@@ -122,7 +122,7 @@ namespace Rogium.Tests.Systems.Shortcuts
             yield return new WaitForSeconds(0.1f);
             i.Trigger(input.UI.Cancel.Action);
             yield return new WaitForSeconds(0.1f);
-            Assert.That(MenuSwitcher.GetInstance().CurrentMenu, Is.EqualTo(MenuType.PropertyEditor));
+            Assert.That(MenuSwitcher.Instance.CurrentMenu, Is.EqualTo(MenuType.PropertyEditor));
         }
     }
 }

@@ -32,7 +32,7 @@ namespace Rogium.Gameplay.Entities.Player
         protected override void Awake()
         {
             base.Awake();
-            input = InputSystem.GetInstance().Player;
+            input = InputSystem.Instance.Player;
         }
 
         private void OnEnable()

@@ -21,7 +21,7 @@ namespace Rogium.Gameplay.TilemapInteractions
 
         private void Start()
         {
-            IList<TileAsset> allTiles = GameplayOverseerMono.GetInstance().CurrentCampaign.DataPack.Tiles;
+            IList<TileAsset> allTiles = GameplayOverseerMono.Instance.CurrentCampaign.DataPack.Tiles;
             floorTiles = allTiles.Where(t => t.Tile != null).ToDictionary(t => t.Tile, t => new FloorTileInfo(t.TerrainType));
         }
 

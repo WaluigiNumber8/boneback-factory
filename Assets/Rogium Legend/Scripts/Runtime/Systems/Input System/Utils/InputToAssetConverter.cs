@@ -9,7 +9,7 @@ namespace Rogium.Systems.Input
     /// </summary>
     public static class InputToAssetConverter
     {
-        private static readonly InputSystem input = InputSystem.GetInstance();
+        private static readonly InputSystem input = InputSystem.Instance;
 
         /// <summary>
         /// Builds an <see cref="InputBindingsAsset"/> from the current <see cref="RogiumInputActions"/> and returns it.

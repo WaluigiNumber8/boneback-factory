@@ -34,8 +34,8 @@ namespace Rogium.UserInterface.Interactables
         
         private void Awake()
         {
-            ui.showWindowButton.onClick.AddListener(() => ModalWindowBuilder.GetInstance().OpenSoundPickerWindow(UpdateSoundAsset, UpdateValue, value));
-            ui.playButton.onClick.AddListener(() => AudioSystemRogium.GetInstance().PlaySound(value, mixerGroup, new AudioSourceSettingsInfo(0, false, false, false)));
+            ui.showWindowButton.onClick.AddListener(() => ModalWindowBuilder.Instance.OpenSoundPickerWindow(UpdateSoundAsset, UpdateValue, value));
+            ui.playButton.onClick.AddListener(() => AudioSystemRogium.Instance.PlaySound(value, mixerGroup, new AudioSourceSettingsInfo(0, false, false, false)));
             ui.showWindowButton.OnClickRight += EmptyOut;
             ui.playButton.OnClickRight += EmptyOut;
         }
@@ -54,7 +54,7 @@ namespace Rogium.UserInterface.Interactables
             this.canBeEmpty = canBeEmpty;
             
             if (value.IsEmpty()) { ClearElements(); return; }
-            Refresh(InternalLibraryOverseer.GetInstance().GetSoundByID(value.ID));
+            Refresh(InternalLibraryOverseer.Instance.GetSoundByID(value.ID));
         }
 
         public void SetActive(bool isActive)

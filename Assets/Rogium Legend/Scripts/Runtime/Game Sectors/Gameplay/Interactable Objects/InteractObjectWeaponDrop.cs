@@ -43,7 +43,7 @@ namespace Rogium.Gameplay.InteractableObjects
         {
             try
             {
-                weapon = GameplayOverseerMono.GetInstance().CurrentCampaign.DataPack.Weapons.FindValueFirstOrReturnFirst(parameters.stringValue1);
+                weapon = GameplayOverseerMono.Instance.CurrentCampaign.DataPack.Weapons.FindValueFirstOrReturnFirst(parameters.stringValue1);
                 iconRenderer.sprite = weapon.Icon;
                 playerOnly = parameters.boolValue1;
             }

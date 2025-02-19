@@ -25,7 +25,7 @@ namespace Rogium.Gameplay.Core
 
         private void Start()
         {
-            allProjectiles = GameplayOverseerMono.GetInstance().CurrentCampaign.DataPack.Projectiles.ToDictionary(p => p.ID);
+            allProjectiles = GameplayOverseerMono.Instance.CurrentCampaign.DataPack.Projectiles.ToDictionary(p => p.ID);
             pool = new ObjectPool<ProjectileController>(
                 () =>
                 {

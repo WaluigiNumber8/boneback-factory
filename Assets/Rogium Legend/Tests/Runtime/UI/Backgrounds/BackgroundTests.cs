@@ -20,7 +20,7 @@ namespace Rogium.Tests.UI.Backgrounds
         {
             yield return base.Setup();
             TUtilsOverseerLoader.LoadBackgroundOverseer();
-            overseer = BackgroundOverseerMono.GetInstance();
+            overseer = BackgroundOverseerMono.Instance;
             yield return null;
         }
 

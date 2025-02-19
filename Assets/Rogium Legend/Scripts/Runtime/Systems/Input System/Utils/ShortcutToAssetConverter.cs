@@ -9,7 +9,7 @@ namespace Rogium.Systems.Input
     /// </summary>
     public static class ShortcutToAssetConverter
     {
-        private static readonly InputSystem input = InputSystem.GetInstance();
+        private static readonly InputSystem input = InputSystem.Instance;
 
         /// <summary>
         /// Builds a <see cref="ShortcutBindingsAsset"/> from the current <see cref="RogiumInputActions"/> and returns it.

@@ -15,7 +15,7 @@ namespace Rogium.Editors.AssetSelection.UI
         [SerializeField] private bool adjustOnEnable = true;
         private ThemeOverseerMono themeOverseer;
 
-        private void Awake() => themeOverseer = ThemeOverseerMono.GetInstance();
+        private void Awake() => themeOverseer = ThemeOverseerMono.Instance;
 
         private void OnEnable()
         {

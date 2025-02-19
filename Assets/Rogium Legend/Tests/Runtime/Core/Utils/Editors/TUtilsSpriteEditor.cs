@@ -14,11 +14,11 @@ namespace Rogium.Tests.Core
         public static IEnumerator FillCanvas()
         {
             SelectTool(ToolType.Fill);
-            SpriteEditorOverseerMono.GetInstance().UpdateCell(new Vector2Int(0, 0));
+            SpriteEditorOverseerMono.Instance.UpdateCell(new Vector2Int(0, 0));
             ActionHistorySystem.ForceEndGrouping();
             yield return null;
         }
 
-        public static void SelectTool(ToolType toolType) => SpriteEditorOverseerMono.GetInstance().Toolbox.SwitchTool(toolType);
+        public static void SelectTool(ToolType toolType) => SpriteEditorOverseerMono.Instance.Toolbox.SwitchTool(toolType);
     }
 }

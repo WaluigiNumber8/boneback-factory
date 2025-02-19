@@ -29,7 +29,7 @@ namespace Rogium.Tests.Systems.Shortcuts
             AddNewPackToLibrary();
             AddNewCampaignToLibrary();
             TUtilsOverseerLoader.LoadModalWindowBuilder();
-            editor = CampaignEditorOverseerMono.GetInstance();
+            editor = CampaignEditorOverseerMono.Instance;
             yield return null;
             yield return OpenEditor(AssetType.Campaign);
         }

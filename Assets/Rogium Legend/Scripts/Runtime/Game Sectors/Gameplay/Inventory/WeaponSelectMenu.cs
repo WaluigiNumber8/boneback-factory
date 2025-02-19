@@ -42,7 +42,7 @@ namespace Rogium.Gameplay.Inventory
             ttransform = GetComponent<RectTransform>();
             canvasTransform = ttransform.GetComponentInParent<Canvas>().GetComponent<RectTransform>();
             cam = Camera.main;
-            inputSystem = InputSystem.GetInstance();
+            inputSystem = InputSystem.Instance;
             
             ui.ui.SetActive(false);
             Hide();
@@ -96,7 +96,7 @@ namespace Rogium.Gameplay.Inventory
         {
             SnapToTarget();
             ui.ui.SetActive(true);
-            GameplayOverseerMono.GetInstance().Pause();
+            GameplayOverseerMono.Instance.Pause();
             inputSystem.DisableInput(this, inputStartDelay);
             
             OnOpen?.Invoke();
@@ -108,7 +108,7 @@ namespace Rogium.Gameplay.Inventory
             IEnumerator DelayCoroutine()
             {
                 OnClose?.Invoke();
-                GameplayOverseerMono.GetInstance().Resume();
+                GameplayOverseerMono.Instance.Resume();
                 inputSystem.DisableInput(this, hideDelay);
                 
                 yield return new WaitForSecondsRealtime(hideDelay);

@@ -22,7 +22,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         {
             yield return base.Setup();
             yield return TUtilsMenuLoader.PrepareSelectionMenu();
-            selectionMenu = SelectionMenuOverseerMono.GetInstance();
+            selectionMenu = SelectionMenuOverseerMono.Instance;
             AddNewPackToLibrary();
             AddNewPackToLibrary();
             yield return null;

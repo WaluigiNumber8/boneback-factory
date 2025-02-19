@@ -83,9 +83,9 @@ namespace Rogium.Tests.UI.Interactables.Properties
         [Test]
         public void Should_SetProperTheme_WhenConstructed()
         {
-            ThemeOverseerMono.GetInstance().ChangeTheme(ThemeType.Red);
+            ThemeOverseerMono.Instance.ChangeTheme(ThemeType.Red);
             inputProperty = BuildInputBinding(action);
-            Assert.That(inputProperty.GetComponentInChildren<Button>().image.sprite, Is.EqualTo(ThemeOverseerMono.GetInstance().GetThemeData(ThemeType.Red).Interactables.inputBinding.normal));
+            Assert.That(inputProperty.GetComponentInChildren<Button>().image.sprite, Is.EqualTo(ThemeOverseerMono.Instance.GetThemeData(ThemeType.Red).Interactables.inputBinding.normal));
         }
         
         [Test]

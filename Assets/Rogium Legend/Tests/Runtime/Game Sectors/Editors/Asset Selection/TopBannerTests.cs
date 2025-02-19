@@ -22,7 +22,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         {
             yield return base.Setup();
             yield return TUtilsMenuLoader.PrepareSelectionMenu();
-            selectionMenu = SelectionMenuOverseerMono.GetInstance();
+            selectionMenu = SelectionMenuOverseerMono.Instance;
             AddNewPackToLibrary();
             AddNewPackToLibrary();
             yield return null;
@@ -37,7 +37,7 @@ namespace Rogium.Tests.Editors.AssetSelection
             Button returnButton = GameObject.Find("Top Banner").GetComponentInChildren<Button>();
             returnButton.onClick.Invoke();
             yield return null;
-            Assert.That(MenuSwitcher.GetInstance().CurrentMenu, Is.EqualTo(MenuType.MainMenu));
+            Assert.That(MenuSwitcher.Instance.CurrentMenu, Is.EqualTo(MenuType.MainMenu));
         }
 
         [UnityTest]

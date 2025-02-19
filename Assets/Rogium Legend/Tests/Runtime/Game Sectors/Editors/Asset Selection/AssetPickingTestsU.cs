@@ -14,7 +14,7 @@ namespace Rogium.Tests.Editors.AssetSelection
     {
         public static IEnumerator BuildAssetField(PackAsset value = null)
         {
-            UIPropertyBuilder.GetInstance().BuildAssetField("Test", AssetType.Pack, value, Object.FindFirstObjectByType<Canvas>().transform, null);
+            UIPropertyBuilder.Instance.BuildAssetField("Test", AssetType.Pack, value, Object.FindFirstObjectByType<Canvas>().transform, null);
             yield return null;
         }
         

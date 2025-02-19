@@ -42,7 +42,7 @@ namespace Rogium.Tests.Core
             yield return null;
             if (assetType == AssetType.Pack) yield break;
             Object.FindObjectsByType<EditableAssetCardController>(FindObjectsSortMode.None)[cardIndex].Edit();
-            SelectionMenuOverseerMono.GetInstance().Open(assetType);
+            SelectionMenuOverseerMono.Instance.Open(assetType);
             yield return null;
         }
     }

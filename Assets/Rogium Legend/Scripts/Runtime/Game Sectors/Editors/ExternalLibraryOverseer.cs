@@ -147,7 +147,7 @@ namespace Rogium.Editors.Core
         {
             Preconditions.IsListNotNullOrEmpty(campaigns, "Campaign Library");
             Preconditions.IsIntInRange(campaignIndex, 0, campaigns.Count, "campaignIndex for activating Campaign Playthrough");
-            SceneTransferOverseer.GetInstance().LoadUp(campaigns[campaignIndex]);
+            SceneTransferOverseer.Instance.LoadUp(campaigns[campaignIndex]);
         }
         
         public void ClearCampaigns() => campaigns.Clear();

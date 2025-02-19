@@ -48,8 +48,8 @@ namespace Rogium.Tests.Editors.Rooms
         [UnityTest]
         public IEnumerator Should_UpdateBanner_WhenCompleteEditing()
         {
-            RoomEditorOverseerMono.GetInstance().UpdateGridCell(new Vector2Int(0, 0));
-            RoomEditorOverseerMono.GetInstance().UpdateGridCell(new Vector2Int(1, 0));
+            RoomEditorOverseerMono.Instance.UpdateGridCell(new Vector2Int(0, 0));
+            RoomEditorOverseerMono.Instance.UpdateGridCell(new Vector2Int(1, 0));
             RoomEditorOverseer.Instance.CompleteEditing();
             yield return null;
             Assert.That(packEditor.CurrentPack.Rooms[0].Banner, Is.Not.Null);
@@ -67,7 +67,7 @@ namespace Rogium.Tests.Editors.Rooms
         public IEnumerator Should_ShowRoomBannerInSelectionMenuInsteadOfIcon()
         {
             yield return SelectRoomAndUpdateTileGridThenSave();
-            Assert.That(SelectionMenuOverseerMono.GetInstance().GetComponentInChildren<SelectionInfoColumn>().BannerIcon, Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Rooms[0].Banner));
+            Assert.That(SelectionMenuOverseerMono.Instance.GetComponentInChildren<SelectionInfoColumn>().BannerIcon, Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Rooms[0].Banner));
         }
 
         [UnityTest]
@@ -82,12 +82,12 @@ namespace Rogium.Tests.Editors.Rooms
             GASActions.OpenSelectionCampaign();
             GASActions.OpenEditorCampaign(0);
             yield return null;
-            CampaignEditorOverseerMono.GetInstance().SelectionPicker.Select(0);
+            CampaignEditorOverseerMono.Instance.SelectionPicker.Select(0);
             GASActions.SaveChangesCampaign();
             yield return null;
             Object.FindFirstObjectByType<ModalWindow>().OnAccept();
             yield return null;
-            Assert.That(CampaignAssetSelectionOverseerMono.GetInstance().Wallpaper.BannerIcon, Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Rooms[0].Banner));
+            Assert.That(CampaignAssetSelectionOverseerMono.Instance.Wallpaper.BannerIcon, Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Rooms[0].Banner));
         }
 
         [UnityTest]

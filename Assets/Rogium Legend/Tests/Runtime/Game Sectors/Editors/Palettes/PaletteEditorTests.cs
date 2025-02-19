@@ -33,8 +33,8 @@ namespace Rogium.Tests.Editors.Palettes
         [UnityTest]
         public IEnumerator CompleteEditing_Should_UpdateColorOfAsset()
         {
-            PaletteEditorOverseerMono.GetInstance().UpdateColorSlotColor(Color.red, 0);
-            PaletteEditorOverseerMono.GetInstance().SelectSlot(0);
+            PaletteEditorOverseerMono.Instance.UpdateColorSlotColor(Color.red, 0);
+            PaletteEditorOverseerMono.Instance.SelectSlot(0);
             yield return null;
             editor.CompleteEditing();
             Assert.That(PackEditorOverseer.Instance.CurrentPack.Palettes[0].Colors[0], Is.EqualTo(Color.red));

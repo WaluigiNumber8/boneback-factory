@@ -30,7 +30,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         private AudioSource mySource;
         private float clipDuration;
 
-        protected override void Initialize() => audioSystem = AudioSystem.GetInstance();
+        protected override void Initialize() => audioSystem = AudioSystem.Instance;
 
         protected override void PlaySelf()
         {

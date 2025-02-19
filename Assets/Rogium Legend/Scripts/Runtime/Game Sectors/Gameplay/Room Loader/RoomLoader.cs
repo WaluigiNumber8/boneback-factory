@@ -29,9 +29,9 @@ namespace Rogium.Gameplay.DataLoading
 
         public void Init()
         {
-            roomLight = RoomLight.GetInstance();
-            objects = InternalLibraryOverseer.GetInstance().Objects;
-            dataPack = GameplayOverseerMono.GetInstance().CurrentCampaign.DataPack;
+            roomLight = RoomLight.Instance;
+            objects = InternalLibraryOverseer.Instance.Objects;
+            dataPack = GameplayOverseerMono.Instance.CurrentCampaign.DataPack;
         }
 
         /// <summary>

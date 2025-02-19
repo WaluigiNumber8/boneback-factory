@@ -84,7 +84,7 @@ namespace Rogium.Editors.Sprites
         /// </summary>
         public void SwitchPaletteViaWindow()
         {
-            ModalWindowBuilder.GetInstance().OpenAssetPickerWindow(AssetType.Palette, asset =>
+            ModalWindowBuilder.Instance.OpenAssetPickerWindow(AssetType.Palette, asset =>
             {
                 editor.UpdatePalette((PaletteAsset) asset);
                 ActionHistorySystem.AddAndExecute(new SwitchSpriteEditorPaletteAction(editor.CurrentPalette, lastPalette, SwitchPalette));

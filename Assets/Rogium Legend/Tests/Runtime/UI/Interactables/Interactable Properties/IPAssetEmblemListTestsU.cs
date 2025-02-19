@@ -10,7 +10,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
     {
         public static IEnumerator CreateEmblemListOfPalettes()
         {
-            UIPropertyBuilder.GetInstance().BuildAssetEmblemList("Test", PackEditorOverseer.Instance.CurrentPack.Palettes.Select(pal => pal.Icon).ToList(), Object.FindFirstObjectByType<Canvas>().transform);
+            UIPropertyBuilder.Instance.BuildAssetEmblemList("Test", PackEditorOverseer.Instance.CurrentPack.Palettes.Select(pal => pal.Icon).ToList(), Object.FindFirstObjectByType<Canvas>().transform);
             yield return null;
         }
     }

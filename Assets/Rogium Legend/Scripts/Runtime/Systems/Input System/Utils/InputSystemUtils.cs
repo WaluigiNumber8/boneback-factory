@@ -29,8 +29,8 @@ namespace Rogium.Systems.Input
         {
             return device switch
             {
-                InputDeviceType.Keyboard => GetBindingIndex(new InputBinding(groups: InputSystem.GetInstance().KeyboardBindingGroup, path: null)),
-                InputDeviceType.Gamepad => GetBindingIndex(new InputBinding(groups: InputSystem.GetInstance().GamepadBindingGroup, path: null)),
+                InputDeviceType.Keyboard => GetBindingIndex(new InputBinding(groups: InputSystem.Instance.KeyboardBindingGroup, path: null)),
+                InputDeviceType.Gamepad => GetBindingIndex(new InputBinding(groups: InputSystem.Instance.GamepadBindingGroup, path: null)),
                 _ => throw new ArgumentOutOfRangeException(nameof(device), device, null)
             };
             
@@ -140,7 +140,7 @@ namespace Rogium.Systems.Input
         /// <returns>TRUE if it is <see cref="TwoOptionalModifiersComposite"/>.</returns>
         public static bool IsTwoOptionalModifiersComposite(this InputBinding binding)
         {
-            InputSystem input = InputSystem.GetInstance();
+            InputSystem input = InputSystem.Instance;
             while (true)
             {
                 if (!binding.isPartOfComposite || binding.isComposite) return binding.path == nameof(TwoOptionalModifiersComposite).Replace("Composite", "");

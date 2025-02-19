@@ -30,7 +30,7 @@ namespace Rogium.Tests.Editors.AssetSelection
             TUtilsOverseerLoader.LoadModalWindowBuilder();
             TUtilsOverseerLoader.LoadUIBuilder();
             yield return TUtilsMenuLoader.PrepareSelectionMenu();
-            selectionMenu = SelectionMenuOverseerMono.GetInstance();
+            selectionMenu = SelectionMenuOverseerMono.Instance;
             packBanner = selectionMenu.GetComponentInChildren<PackBanner>();
             currentPack = ExternalLibraryOverseer.Instance.Packs[0];
             TUtilsAssetCreator.AddNewPackToLibrary();
@@ -75,7 +75,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         {
             packBanner.Config();
             yield return null;
-            Assert.That(ModalWindowBuilder.GetInstance().GenericActiveWindows, Is.GreaterThan(0));
+            Assert.That(ModalWindowBuilder.Instance.GenericActiveWindows, Is.GreaterThan(0));
         }
 
         [UnityTest]

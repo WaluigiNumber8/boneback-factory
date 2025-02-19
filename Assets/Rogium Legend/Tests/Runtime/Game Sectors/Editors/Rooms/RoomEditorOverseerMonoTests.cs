@@ -25,7 +25,7 @@ namespace Rogium.Tests.Editors.Rooms
             yield return base.Setup();
             yield return CreateAndAssignPack();
             yield return TUtilsMenuLoader.PrepareRoomEditor();
-            roomEditor = RoomEditorOverseerMono.GetInstance();
+            roomEditor = RoomEditorOverseerMono.Instance;
             yield return null;
         }
         

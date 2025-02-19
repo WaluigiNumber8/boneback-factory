@@ -11,7 +11,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
     {
         private ProjectileOverseerMono projectileOverseer;
 
-        private void Awake() => projectileOverseer = ProjectileOverseerMono.GetInstance();
+        private void Awake() => projectileOverseer = ProjectileOverseerMono.Instance;
 
         /// <summary>
         /// Fires a projectile from this entity.

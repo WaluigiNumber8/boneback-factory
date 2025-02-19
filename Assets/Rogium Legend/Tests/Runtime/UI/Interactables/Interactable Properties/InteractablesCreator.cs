@@ -90,7 +90,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
         
         public static InteractablePropertyInputBinding BuildInputBinding(InputAction action, bool useAlt = true, InputDeviceType device = InputDeviceType.Keyboard)
         {
-            UIPropertyBuilder.GetInstance().BuildInputBinding(action, device, Object.FindFirstObjectByType<Canvas>().transform, useAlt);
+            UIPropertyBuilder.Instance.BuildInputBinding(action, device, Object.FindFirstObjectByType<Canvas>().transform, useAlt);
             return Object.FindFirstObjectByType<InteractablePropertyInputBinding>();
         }
     }

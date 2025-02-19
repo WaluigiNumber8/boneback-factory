@@ -42,7 +42,7 @@ namespace Rogium.UserInterface.Interactables
             OpenWindow();
         }
 
-        public void OpenWindow() => ModalWindowBuilder.GetInstance().OpenAssetPickerWindow(type, WhenAssetPicked, value, canBeEmpty);
+        public void OpenWindow() => ModalWindowBuilder.Instance.OpenAssetPickerWindow(type, WhenAssetPicked, value, canBeEmpty);
 
         /// <summary>
         /// Constructs the asset field with initial values.

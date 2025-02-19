@@ -8,10 +8,14 @@ namespace RedRats.Core
     /// <typeparam name="T">Any Component type.</typeparam>
     public abstract class PersistentMonoSingleton<T> : MonoSingleton<T> where T : Component
     {
-        protected override void Awake()
+        public new static T Instance
         {
-            DontDestroyOnLoad(gameObject);
-            base.Awake();
+            get
+            {
+                T instance = MonoSingleton<T>.Instance;
+                DontDestroyOnLoad(instance.gameObject);
+                return instance;
+            }
         }
     }
 }

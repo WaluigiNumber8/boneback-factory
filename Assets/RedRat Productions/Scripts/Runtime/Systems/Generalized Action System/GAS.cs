@@ -24,7 +24,7 @@ namespace RedRats.Systems.GASCore
         
         public static void SwitchMenu(MenuType newMenu)
         {
-            MenuSwitcher.GetInstance().SwitchTo(newMenu);
+            MenuSwitcher.Instance.SwitchTo(newMenu);
         }
         
     }

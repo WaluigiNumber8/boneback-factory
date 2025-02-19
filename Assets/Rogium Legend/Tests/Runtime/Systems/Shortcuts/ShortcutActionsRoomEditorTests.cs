@@ -28,7 +28,7 @@ namespace Rogium.Tests.Systems.Shortcuts
             yield return TUtilsMenuLoader.PrepareSelectionMenu();
             yield return TUtilsMenuLoader.PrepareRoomEditor(false);
             TUtilsOverseerLoader.LoadModalWindowBuilder();
-            editor = RoomEditorOverseerMono.GetInstance();
+            editor = RoomEditorOverseerMono.Instance;
             yield return null;
             yield return OpenEditor(AssetType.Room);
         }

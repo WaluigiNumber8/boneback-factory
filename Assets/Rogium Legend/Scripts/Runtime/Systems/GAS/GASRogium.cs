@@ -11,9 +11,9 @@ namespace Rogium.Systems.GASExtension
     /// </summary>
     public static class GASRogium
     {
-        public static void OpenSelectionMenu(AssetType type) => SelectionMenuOverseerMono.GetInstance().Open(type);
+        public static void OpenSelectionMenu(AssetType type) => SelectionMenuOverseerMono.Instance.Open(type);
 
-        public static void ChangeTheme(ThemeType type) => ThemeOverseerMono.GetInstance().ChangeTheme(type);
-        public static void OpenWindow(ModalWindowData data) => ModalWindowBuilder.GetInstance().OpenWindow(data);
+        public static void ChangeTheme(ThemeType type) => ThemeOverseerMono.Instance.ChangeTheme(type);
+        public static void OpenWindow(ModalWindowData data) => ModalWindowBuilder.Instance.OpenWindow(data);
     }
 }

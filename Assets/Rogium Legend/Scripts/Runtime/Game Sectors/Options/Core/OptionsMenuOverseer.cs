@@ -27,7 +27,7 @@ namespace Rogium.Options.Core
         {
             Preconditions.IsNotNull(asset, "Preferences Asset");
             currentAsset = new GameDataAsset.Builder().AsCopy(asset).Build();
-            InputSystem.GetInstance().ClearAllInput();
+            InputSystem.Instance.ClearAllInput();
             ShortcutToAssetConverter.Load(asset.ShortcutBindings);
             InputToAssetConverter.Load(asset.InputBindings);
             if (!prepareEditor) return;
@@ -45,7 +45,7 @@ namespace Rogium.Options.Core
             currentAsset.UpdateShortcutBindings(ShortcutToAssetConverter.Get());
             OnSaveChanges?.Invoke(CurrentAsset);
             
-            InputSystem.GetInstance().ReplaceAllBindings();
+            InputSystem.Instance.ReplaceAllBindings();
         }
         
         public GameDataAsset CurrentAsset 

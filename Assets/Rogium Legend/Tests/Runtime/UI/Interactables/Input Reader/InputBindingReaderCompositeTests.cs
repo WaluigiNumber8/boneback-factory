@@ -27,7 +27,7 @@ namespace Rogium.Tests.UI.Interactables.InputReader
             yield return null;
             bindingParent = new GameObject("Input Bindings").transform;
             bindingParent.SetParent(Object.FindFirstObjectByType<Canvas>().transform);
-            UIPropertyBuilder.GetInstance().BuildInputBinding(input.Player.Movement.Action, InputDeviceType.Keyboard, bindingParent);
+            UIPropertyBuilder.Instance.BuildInputBinding(input.Player.Movement.Action, InputDeviceType.Keyboard, bindingParent);
             yield return null;
         }
         

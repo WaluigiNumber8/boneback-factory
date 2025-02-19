@@ -39,7 +39,7 @@ namespace RedRats.Systems.LiteFeel.Effects
         public void UpdateRotationOffset(Vector3 newRotationOffset) => rotationOffset = newRotationOffset;
         #endregion
         
-        protected override void Initialize() => particlesSystem = ParticlesSystem.GetInstance();
+        protected override void Initialize() => particlesSystem = ParticlesSystem.Instance;
 
         protected override void PlaySelf()
         {
