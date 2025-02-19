@@ -29,7 +29,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         {
             yield return base.Setup();
             yield return TUtilsMenuLoader.PrepareSelectionMenu();
-            selectionMenu = SelectionMenuOverseerMono.GetInstance();
+            selectionMenu = SelectionMenuOverseerMono.Instance;
             AddNewPackToLibrary();
             AddNewPackToLibrary();
         }
@@ -94,19 +94,19 @@ namespace Rogium.Tests.Editors.AssetSelection
         [Test]
         public void Should_SetProperToggleSpritesBasedOnCurrentTheme_WhenMenuOpened()
         {
-            ThemeOverseerMono.GetInstance().ChangeTheme(ThemeType.Green);
+            ThemeOverseerMono.Instance.ChangeTheme(ThemeType.Green);
             selectionMenu.Open(AssetType.Weapon);
             Toggle cardToggle = selectionMenu.CurrentSelector.GetCard(0).GetComponent<Toggle>();
-            Assert.That(cardToggle.image.sprite, Is.EqualTo(ThemeOverseerMono.GetInstance().CurrentThemeData.Interactables.assetCard.normal));
+            Assert.That(cardToggle.image.sprite, Is.EqualTo(ThemeOverseerMono.Instance.CurrentThemeData.Interactables.assetCard.normal));
         }
 
         [Test]
         public void Should_SetProperFontForInfoBasedOnCurrentTheme_WhenMenuOpened()
         {
-            ThemeOverseerMono.GetInstance().ChangeTheme(ThemeType.Green);
+            ThemeOverseerMono.Instance.ChangeTheme(ThemeType.Green);
             selectionMenu.Open(AssetType.Weapon);
             TextMeshProUGUI titleText = selectionMenu.CurrentSelector.GetCard(0).GetComponentInChildren<TextMeshProUGUI>();
-            FontInfo fontInfo = ThemeOverseerMono.GetInstance().CurrentThemeData.Fonts.assetCardInfo;
+            FontInfo fontInfo = ThemeOverseerMono.Instance.CurrentThemeData.Fonts.assetCardInfo;
             Assert.That(titleText.font, Is.EqualTo(fontInfo.font));
             Assert.That(titleText.fontSize, Is.EqualTo(fontInfo.size));
             Assert.That(titleText.color, Is.EqualTo(fontInfo.color));
@@ -118,7 +118,7 @@ namespace Rogium.Tests.Editors.AssetSelection
             selectionMenu.Open(AssetType.Weapon);
             yield return null;
             Color shimmerColor = selectionMenu.CurrentSelector.GetCard(0).GetComponentInChildren<MaterialExtractor>().Get().GetColor("_ShimmerColor");
-            Color targetColor = ThemeOverseerMono.GetInstance().GetThemeData(ThemeType.Green).Colors.shimmerEffects;
+            Color targetColor = ThemeOverseerMono.Instance.GetThemeData(ThemeType.Green).Colors.shimmerEffects;
             yield return null;
             Assert.That(shimmerColor.r.IsSameAs(targetColor.r), Is.True);
             Assert.That(shimmerColor.g.IsSameAs(targetColor.g), Is.True);
@@ -132,11 +132,11 @@ namespace Rogium.Tests.Editors.AssetSelection
             TUtilsOverseerLoader.LoadModalWindowBuilder();
             TUtilsOverseerLoader.LoadUIBuilder();
             yield return null;
-            UIPropertyBuilder.GetInstance().BuildAssetField("Test", AssetType.Weapon, null, Object.FindFirstObjectByType<Canvas>().transform, null);
+            UIPropertyBuilder.Instance.BuildAssetField("Test", AssetType.Weapon, null, Object.FindFirstObjectByType<Canvas>().transform, null);
             yield return null;
             yield return AssetPickingTestsU.ClickAssetFieldToOpenAssetPickerWindow();
             Color shimmerColor = Object.FindFirstObjectByType<AssetPickerWindow>().SelectorContent.GetChild(0).GetComponentInChildren<MaterialExtractor>().Get().GetColor("_ShimmerColor");
-            Color targetColor = ThemeOverseerMono.GetInstance().GetThemeData(ThemeType.Green).Colors.shimmerEffects;
+            Color targetColor = ThemeOverseerMono.Instance.GetThemeData(ThemeType.Green).Colors.shimmerEffects;
             yield return null;
             Assert.That(shimmerColor.r.IsSameAs(targetColor.r), Is.True);
             Assert.That(shimmerColor.g.IsSameAs(targetColor.g), Is.True);

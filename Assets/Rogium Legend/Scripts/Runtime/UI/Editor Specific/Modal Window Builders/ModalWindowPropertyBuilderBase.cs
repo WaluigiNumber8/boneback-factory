@@ -16,8 +16,8 @@ namespace Rogium.UserInterface.Editors.ModalWindowBuilding
     {
         private const string ModalWindowKey = "PropertyBuilder";
         
-        protected readonly UIPropertyBuilder b = UIPropertyBuilder.GetInstance();
-        private readonly ModalWindowBuilder wb = ModalWindowBuilder.GetInstance();
+        protected readonly UIPropertyBuilder b = UIPropertyBuilder.Instance;
+        private readonly ModalWindowBuilder wb = ModalWindowBuilder.Instance;
         protected readonly PackEditorOverseer editor = PackEditorOverseer.Instance;
         protected AssetBase editedAssetBase;
 

@@ -15,7 +15,7 @@ namespace Rogium.Systems.ActionHistory
         
         public SwitchSpriteEditorPaletteAction(PaletteAsset value, PaletteAsset lastValue, Action<PaletteAsset> fallback) : base(fallback)
         {
-            this.editor = SpriteEditorOverseerMono.GetInstance();
+            this.editor = SpriteEditorOverseerMono.Instance;
             this.value = value;
             this.lastValue = lastValue;
         }

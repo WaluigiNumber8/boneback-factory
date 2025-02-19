@@ -7,8 +7,8 @@ namespace Rogium.Tests.Editors.AssetSelection
     {
         public static void OpenPackSelectionAndEditFirstPack()
         {
-            SelectionMenuOverseerMono.GetInstance().Open(AssetType.Pack);
-            SelectionMenuOverseerMono.GetInstance().CurrentSelector.Content.GetChild(1).GetComponent<EditableAssetCardController>().Edit();
+            SelectionMenuOverseerMono.Instance.Open(AssetType.Pack);
+            SelectionMenuOverseerMono.Instance.CurrentSelector.Content.GetChild(1).GetComponent<EditableAssetCardController>().Edit();
         }
     }
 }

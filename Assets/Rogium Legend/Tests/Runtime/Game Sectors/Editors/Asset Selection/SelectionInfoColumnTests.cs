@@ -34,7 +34,7 @@ namespace Rogium.Tests.Editors.AssetSelection
             TUtilsOverseerLoader.LoadModalWindowBuilder();
             TUtilsOverseerLoader.LoadUIBuilder();
             yield return TUtilsMenuLoader.PrepareSelectionMenu();
-            selectionMenu = SelectionMenuOverseerMono.GetInstance();
+            selectionMenu = SelectionMenuOverseerMono.Instance;
             infoColumn = selectionMenu.GetComponentInChildren<SelectionInfoColumn>();
             AddNewPackToLibrary();
             AddNewPackToLibrary();
@@ -125,14 +125,14 @@ namespace Rogium.Tests.Editors.AssetSelection
         public IEnumerator Should_KeepPropertyThemeToBlue_WhenCreatingPropertiesInColumn()
         {
             yield return OpenPackAndSelectEnemy();
-            Assert.That(infoColumn.GetProperty<string>(0).GetComponentInChildren<TextMeshProUGUI>().color, Is.EqualTo(ThemeOverseerMono.GetInstance().GetThemeData(ThemeType.Blue).Fonts.general.color));
+            Assert.That(infoColumn.GetProperty<string>(0).GetComponentInChildren<TextMeshProUGUI>().color, Is.EqualTo(ThemeOverseerMono.Instance.GetThemeData(ThemeType.Blue).Fonts.general.color));
         }
 
         [UnityTest]
         public IEnumerator Should_MakeEnemyCardsRed_WhenEnemySelectionOpened()
         {
             yield return OpenPackAndSelectEnemy();
-            Assert.That(selectionMenu.CurrentSelector.GetCard(0).GetComponentInChildren<Image>().sprite, Is.EqualTo(ThemeOverseerMono.GetInstance().GetThemeData(ThemeType.Red).Interactables.assetCard.normal));
+            Assert.That(selectionMenu.CurrentSelector.GetCard(0).GetComponentInChildren<Image>().sprite, Is.EqualTo(ThemeOverseerMono.Instance.GetThemeData(ThemeType.Red).Interactables.assetCard.normal));
         }
 
         [UnityTest]
@@ -143,7 +143,7 @@ namespace Rogium.Tests.Editors.AssetSelection
             GASActions.OpenEditorEnemy(0);
             GASActions.CancelChangesEnemy();
             yield return null;
-            Assert.That(infoColumn.GetProperty<string>(0).GetComponentInChildren<TextMeshProUGUI>().color, Is.EqualTo(ThemeOverseerMono.GetInstance().GetThemeData(ThemeType.Blue).Fonts.general.color));
+            Assert.That(infoColumn.GetProperty<string>(0).GetComponentInChildren<TextMeshProUGUI>().color, Is.EqualTo(ThemeOverseerMono.Instance.GetThemeData(ThemeType.Blue).Fonts.general.color));
         }
 
         [UnityTest]

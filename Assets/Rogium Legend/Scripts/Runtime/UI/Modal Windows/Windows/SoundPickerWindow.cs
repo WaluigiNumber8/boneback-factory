@@ -42,8 +42,8 @@ namespace Rogium.UserInterface.ModalWindows
         protected override void Awake()
         {
             base.Awake();
-            lib = InternalLibraryOverseer.GetInstance();
-            playSoundButton.onClick.AddListener(() => AudioSystemRogium.GetInstance().PlaySound(currentData, mixerGroup, new AudioSourceSettingsInfo(0, false, false, false)));
+            lib = InternalLibraryOverseer.Instance;
+            playSoundButton.onClick.AddListener(() => AudioSystemRogium.Instance.PlaySound(currentData, mixerGroup, new AudioSourceSettingsInfo(0, false, false, false)));
         }
 
         /// <summary>

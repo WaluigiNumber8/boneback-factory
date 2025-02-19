@@ -45,12 +45,12 @@ namespace Rogium.Tests.UI.Interactables.Properties
         [UnityTest]
         public IEnumerator Should_UpdateEmblemListTitleTheme_WhenConstructed()
         {
-            ThemeOverseerMono.GetInstance().ChangeTheme(ThemeType.Green);
+            ThemeOverseerMono.Instance.ChangeTheme(ThemeType.Green);
             yield return CreateEmblemListOfPalettes();
             TextMeshProUGUI title = Object.FindFirstObjectByType<InteractablePropertyAssetEmblemList>().GetComponentInChildren<TextMeshProUGUI>();
-            Assert.That(title.color, Is.EqualTo(ThemeOverseerMono.GetInstance().CurrentThemeData.Fonts.general.color));
-            Assert.That(title.font, Is.EqualTo(ThemeOverseerMono.GetInstance().CurrentThemeData.Fonts.general.font));
-            Assert.That(title.fontSize, Is.EqualTo(ThemeOverseerMono.GetInstance().CurrentThemeData.Fonts.general.size));
+            Assert.That(title.color, Is.EqualTo(ThemeOverseerMono.Instance.CurrentThemeData.Fonts.general.color));
+            Assert.That(title.font, Is.EqualTo(ThemeOverseerMono.Instance.CurrentThemeData.Fonts.general.font));
+            Assert.That(title.fontSize, Is.EqualTo(ThemeOverseerMono.Instance.CurrentThemeData.Fonts.general.size));
         }
     }
 }

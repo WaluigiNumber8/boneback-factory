@@ -5,40 +5,38 @@ namespace RedRats.Core
     /// <summary>
     /// Turns a MonoBehaviour class, that inherits this into a Singleton.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">Any component type.</typeparam>
     public abstract class MonoSingleton<T> : MonoBehaviour where T : Component
     {
+        private static readonly object instanceLock = new();
         private static T instance;
-
-        private static bool applicationIsQuitting = false;
-
-        public static T GetInstance()
-        {
-            if (applicationIsQuitting) return null;
-            if (instance != null) return instance;
-            
-            instance = FindFirstObjectByType<T>();
-            
-            if (instance != null) return instance;
-            
-            GameObject obj = new GameObject();
-            obj.name = typeof(T).Name;
-            instance = obj.AddComponent<T>();
-            return instance;
-        }
+        private static bool isQuiting;
 
         protected virtual void Awake()
         {
-            if (instance == null)
-            {
-                instance = this as T;
-            }
-            else if (instance != this as T)
+            if (instance == null) instance = gameObject.GetComponent<T>();
+            else if (instance.GetInstanceID() != GetInstanceID())
             {
                 Destroy(gameObject);
             }
         }
 
-        private void OnApplicationQuit() => applicationIsQuitting = true;
+        protected virtual void OnApplicationQuit() => isQuiting = true;
+
+        public static T Instance
+        {
+            get
+            {
+                lock (instanceLock)
+                {
+                    if (instance != null || isQuiting) return instance;
+                    instance = FindFirstObjectByType<T>();
+                    
+                    if (instance != null) return instance;
+                    instance = new GameObject(typeof(T).ToString()).AddComponent<T>();
+                    return instance;
+                }
+            }
+        }
     }
 }

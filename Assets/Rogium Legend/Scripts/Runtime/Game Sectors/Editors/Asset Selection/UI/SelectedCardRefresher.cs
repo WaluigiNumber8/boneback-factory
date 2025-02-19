@@ -18,7 +18,7 @@ namespace Rogium.Editors.AssetSelection.UI
     {
         private SelectionMenuOverseerMono selectionMenu;
 
-        private void Awake() => selectionMenu = SelectionMenuOverseerMono.GetInstance();
+        private void Awake() => selectionMenu = SelectionMenuOverseerMono.Instance;
 
         private void OnEnable()
         {

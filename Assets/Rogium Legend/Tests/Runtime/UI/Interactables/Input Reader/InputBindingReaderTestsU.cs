@@ -11,7 +11,7 @@ namespace Rogium.Tests.UI.Interactables.InputReader
         public static InputBindingReader BuildInputReader(InputAction action)
         {
             Transform canvas = Object.FindFirstObjectByType<Canvas>().transform;
-            UIPropertyBuilder.GetInstance().BuildInputBinding(action, InputDeviceType.Keyboard, canvas);
+            UIPropertyBuilder.Instance.BuildInputBinding(action, InputDeviceType.Keyboard, canvas);
             return canvas.GetChild(canvas.childCount-1).GetComponentInChildren<InputBindingReader>();
         }
     }

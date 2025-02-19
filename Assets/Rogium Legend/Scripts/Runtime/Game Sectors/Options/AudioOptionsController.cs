@@ -14,8 +14,8 @@ namespace Rogium.Options.OptionControllers
         
         private void Awake()
         {
-            mixer = AudioSystem.GetInstance().AudioMixer;
-            parameters = AudioSystem.GetInstance().MixerParameters;
+            mixer = AudioSystem.Instance.AudioMixer;
+            parameters = AudioSystem.Instance.MixerParameters;
         }
 
         /// <summary>

@@ -20,8 +20,8 @@ namespace Rogium.Tests.Systems.Cursors
         public override IEnumerator Setup()
         {
             yield return base.Setup();
-            cursorOverseer = CursorOverseerMono.GetInstance();
-            gameplay = GameplayOverseerMono.GetInstance();
+            cursorOverseer = CursorOverseerMono.Instance;
+            gameplay = GameplayOverseerMono.Instance;
         }
 
         [UnityTest]

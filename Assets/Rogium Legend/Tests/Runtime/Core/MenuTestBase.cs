@@ -38,7 +38,7 @@ namespace Rogium.Tests.Core
             ExternalLibraryOverseer.Instance.ClearPacks();
             ExternalLibraryOverseer.Instance.ClearCampaigns();
             ActionHistorySystem.ClearHistory();
-            InputSystem.GetInstance().ClearAllInput();
+            InputSystem.Instance.ClearAllInput();
             yield return TUtilsAssetCreator.CreateAndAssignPack();
         }
 

@@ -31,7 +31,7 @@ namespace Rogium.Tests.Core
             i.Release(gamepad.buttonSouth);
 
             yield return base.Setup();
-            input = Rogium.Systems.Input.InputSystem.GetInstance();
+            input = Rogium.Systems.Input.InputSystem.Instance;
         }
         
         [UnityTearDown]

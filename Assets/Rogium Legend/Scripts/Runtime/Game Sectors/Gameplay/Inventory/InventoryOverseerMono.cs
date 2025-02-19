@@ -21,12 +21,12 @@ namespace Rogium.Gameplay.Inventory
         private WeaponAsset processedWeapon;
         private HUDController hudController;
 
-        private void Awake() => hudController = HUDController.GetInstance();
+        private void Awake() => hudController = HUDController.Instance;
 
         private void Start()
         {
             currentWeapons = new List<WeaponAsset>(new WeaponAsset[weaponHolder.WeaponCount]);
-            weaponSelectMenu = WeaponSelectMenu.GetInstance();
+            weaponSelectMenu = WeaponSelectMenu.Instance;
         }
 
         private void OnEnable() => InteractObjectWeaponDrop.OnPlayerPickUp += ProcessNewWeapon;

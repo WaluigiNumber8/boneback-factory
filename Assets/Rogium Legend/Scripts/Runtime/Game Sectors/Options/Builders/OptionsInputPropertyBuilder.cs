@@ -13,7 +13,7 @@ namespace Rogium.Options.Core
 
         public OptionsInputPropertyBuilder(Transform contentMain, Transform contentSecond) : base(contentMain, contentSecond)
         {
-            input = InputSystem.GetInstance();
+            input = InputSystem.Instance;
         }
 
         public override void BuildInternal(InputBindingsAsset asset)

@@ -25,7 +25,7 @@ namespace Rogium.Tests.Systems.Shortcuts
             yield return TUtilsMenuLoader.PrepareSelectionMenu();
             TUtilsOverseerLoader.LoadModalWindowBuilder();
             yield return null;
-            menu = SelectionMenuOverseerMono.GetInstance();
+            menu = SelectionMenuOverseerMono.Instance;
             yield return OpenSelectionMenu(AssetType.Pack, 0);
         }
 
@@ -36,7 +36,7 @@ namespace Rogium.Tests.Systems.Shortcuts
             i.Trigger(input.UI.Cancel.Action);
             yield return null;
             yield return null;
-            Assert.That(MenuSwitcher.GetInstance().CurrentMenu, Is.EqualTo(MenuType.MainMenu));
+            Assert.That(MenuSwitcher.Instance.CurrentMenu, Is.EqualTo(MenuType.MainMenu));
         }
 
         [UnityTest]
@@ -75,7 +75,7 @@ namespace Rogium.Tests.Systems.Shortcuts
             menu.CurrentSelector.GetCard(0).SetToggle(true);
             i.Trigger(input.Shortcuts.Edit.Action);
             yield return new WaitForSecondsRealtime(0.1f);
-            Assert.That(MenuSwitcher.GetInstance().CurrentMenu, Is.EqualTo(MenuType.RoomEditor));
+            Assert.That(MenuSwitcher.Instance.CurrentMenu, Is.EqualTo(MenuType.RoomEditor));
         }
 
         [UnityTest]
@@ -83,7 +83,7 @@ namespace Rogium.Tests.Systems.Shortcuts
         {
             i.Trigger(input.Shortcuts.Edit.Action);
             yield return null;
-            Assert.That(MenuSwitcher.GetInstance().CurrentMenu, Is.EqualTo(MenuType.AssetSelection));
+            Assert.That(MenuSwitcher.Instance.CurrentMenu, Is.EqualTo(MenuType.AssetSelection));
         }
 
         [UnityTest]

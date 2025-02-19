@@ -59,7 +59,7 @@ namespace RedRats.Safety
         /// <param name="message">The message to throw.</param>
         public static void ThrowMessage(string message)
         {
-            ErrorMessageController.GetInstance().Open(message);
+            ErrorMessageController.Instance.Open(message);
             OnFireErrorMessage?.Invoke(message);
         }
     }

@@ -28,7 +28,7 @@ namespace Rogium.Editors.Palettes
         public void OnPointerClick(PointerEventData eventData)
         {
             if (eventData.button != PointerEventData.InputButton.Right) return;
-            ModalWindowBuilder.GetInstance().OpenColorPickerWindow(color => ActionHistorySystem.AddAndExecute(new UpdateColorSlotAction(this, color, lastColor)), currentColor);
+            ModalWindowBuilder.Instance.OpenColorPickerWindow(color => ActionHistorySystem.AddAndExecute(new UpdateColorSlotAction(this, color, lastColor)), currentColor);
         }
         
         /// <summary>

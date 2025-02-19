@@ -33,7 +33,7 @@ namespace Rogium.Tests.Editors.Sprites
             yield return null;
             yield return TUtilsMenuLoader.PrepareSelectionMenu();
             yield return TUtilsMenuLoader.PrepareSpriteEditor();
-            spriteEditor = SpriteEditorOverseerMono.GetInstance();
+            spriteEditor = SpriteEditorOverseerMono.Instance;
             ActionHistorySystem.ClearHistory();
             yield return null;
         }
@@ -115,7 +115,7 @@ namespace Rogium.Tests.Editors.Sprites
         public void Should_NotOpenPaletteDialog_WhenPaletteEditedAndOverriden()
         {
             GASActions.SavePaletteAsOverride();
-            Assert.That(ModalWindowBuilder.GetInstance().GenericActiveWindows, Is.EqualTo(0));
+            Assert.That(ModalWindowBuilder.Instance.GenericActiveWindows, Is.EqualTo(0));
         }
 
         [UnityTest]
@@ -175,7 +175,7 @@ namespace Rogium.Tests.Editors.Sprites
         {
             yield return UpdateColorSlot(Color.blue);
             GASActions.SavePaletteAsNew();
-            Assert.That(ModalWindowBuilder.GetInstance().GenericActiveWindows, Is.EqualTo(1));
+            Assert.That(ModalWindowBuilder.Instance.GenericActiveWindows, Is.EqualTo(1));
         }
         
         [UnityTest]
@@ -229,7 +229,7 @@ namespace Rogium.Tests.Editors.Sprites
             yield return null;
             PackEditorOverseer.Instance.ActivateSpriteEditor(0);
             yield return null;
-            Assert.That(SpriteEditorOverseerMono.GetInstance().Palette.GetSlot(0).CurrentColor, Is.EqualTo(EditorDefaults.Instance.MissingPalette[0]));
+            Assert.That(SpriteEditorOverseerMono.Instance.Palette.GetSlot(0).CurrentColor, Is.EqualTo(EditorDefaults.Instance.MissingPalette[0]));
         }
 
         [UnityTest]

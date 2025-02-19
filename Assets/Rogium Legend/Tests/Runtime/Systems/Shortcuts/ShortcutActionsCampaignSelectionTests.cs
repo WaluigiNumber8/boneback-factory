@@ -42,7 +42,7 @@ namespace Rogium.Tests.Systems.Shortcuts
             yield return new WaitForSecondsRealtime(0.1f);
             i.Trigger(input.UI.Cancel.Action);
             yield return new WaitForSecondsRealtime(0.1f);
-            Assert.That(MenuSwitcher.GetInstance().CurrentMenu, Is.EqualTo(MenuType.MainMenu));
+            Assert.That(MenuSwitcher.Instance.CurrentMenu, Is.EqualTo(MenuType.MainMenu));
         }
 
         [UnityTest]
@@ -62,7 +62,7 @@ namespace Rogium.Tests.Systems.Shortcuts
             yield return TUtilsMenuLoader.PrepareCampaignEditor(false);
             i.Trigger(input.Shortcuts.Edit.Action);
             yield return null;
-            Assert.That(MenuSwitcher.GetInstance().CurrentMenu, Is.EqualTo(MenuType.CampaignEditor));
+            Assert.That(MenuSwitcher.Instance.CurrentMenu, Is.EqualTo(MenuType.CampaignEditor));
         }
 
         [UnityTest]

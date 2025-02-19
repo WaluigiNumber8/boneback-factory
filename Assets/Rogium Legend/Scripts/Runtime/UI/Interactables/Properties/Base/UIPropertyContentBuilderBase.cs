@@ -16,7 +16,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         {
             Preconditions.IsNotNull(contentMain, "Property Content Transform");
             
-            b = UIPropertyBuilder.GetInstance();
+            b = UIPropertyBuilder.Instance;
             this.contentMain = contentMain;
         }
 

@@ -23,7 +23,7 @@ namespace Rogium.Tests.Editors.Campaigns
             TUtilsAssetCreator.AddNewPackToLibrary();
             yield return TUtilsMenuLoader.PrepareCampaignEditor();
             editor = CampaignEditorOverseer.Instance;
-            editorMono = CampaignEditorOverseerMono.GetInstance();
+            editorMono = CampaignEditorOverseerMono.Instance;
             yield return null;
         }
 

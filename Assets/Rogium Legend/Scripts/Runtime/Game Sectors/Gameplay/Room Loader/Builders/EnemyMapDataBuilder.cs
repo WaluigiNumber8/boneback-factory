@@ -22,7 +22,7 @@ namespace Rogium.Gameplay.DataLoading
 
         private IList<WeaponAsset> weapons;
 
-        private void Start() => weapons = GameplayOverseerMono.GetInstance().CurrentCampaign.DataPack.Weapons;
+        private void Start() => weapons = GameplayOverseerMono.Instance.CurrentCampaign.DataPack.Weapons;
 
         /// <summary>
         /// Load a new grid tilemap of enemies.

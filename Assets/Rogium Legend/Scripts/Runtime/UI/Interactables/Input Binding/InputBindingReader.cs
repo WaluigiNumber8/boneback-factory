@@ -101,10 +101,10 @@ namespace Rogium.UserInterface.Interactables
                 InputBindingCombination c = GetBindingCombinationFrom(operation);
                 Rebind(c);
 
-                (InputAction duplicateAction, InputBindingCombination duplicateCombination, int duplicateIndex) = InputSystem.GetInstance().FindDuplicateBinding(action, binding);
+                (InputAction duplicateAction, InputBindingCombination duplicateCombination, int duplicateIndex) = InputSystem.Instance.FindDuplicateBinding(action, binding);
                 if (duplicateAction != null)
                 {
-                    ModalWindowBuilder.GetInstance().OpenWindow(new ModalWindowData.Builder()
+                    ModalWindowBuilder.Instance.OpenWindow(new ModalWindowData.Builder()
                         .WithMessage($"The input is already used in <style=\"Important\">{duplicateAction.name.WithSpacesBeforeCapitals()}</style>.")
                         .WithAcceptButton("Override", () => OverrideDuplicateBinding(duplicateAction, duplicateCombination, duplicateIndex))
                         .WithDenyButton("Revert", RevertBinding)

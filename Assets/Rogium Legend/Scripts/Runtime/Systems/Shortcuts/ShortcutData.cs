@@ -30,7 +30,7 @@ namespace Rogium.Systems.Shortcuts
         public void RefreshInput()
         {
             Preconditions.IsNotNull(trigger, "Trigger Action");
-            inputAction = InputSystem.GetInstance().GetAction(trigger);
+            inputAction = InputSystem.Instance.GetAction(trigger);
         }
 
         public void Link()

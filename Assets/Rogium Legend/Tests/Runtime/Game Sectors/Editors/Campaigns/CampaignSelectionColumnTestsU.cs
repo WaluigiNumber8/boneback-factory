@@ -7,13 +7,13 @@ namespace Rogium.Tests.Editors.Campaigns
     {
         public static IEnumerator SelectCard(int index = 0)
         {
-            CampaignEditorOverseerMono.GetInstance().SelectionPicker.Selector.GetCard(index).SetToggle(true);
+            CampaignEditorOverseerMono.Instance.SelectionPicker.Selector.GetCard(index).SetToggle(true);
             return null;
         }
         
         public static IEnumerator DeselectCard(int index = 0)
         {
-            CampaignEditorOverseerMono.GetInstance().SelectionPicker.Selector.GetCard(index).SetToggle(false);
+            CampaignEditorOverseerMono.Instance.SelectionPicker.Selector.GetCard(index).SetToggle(false);
             return null;
         }
     }

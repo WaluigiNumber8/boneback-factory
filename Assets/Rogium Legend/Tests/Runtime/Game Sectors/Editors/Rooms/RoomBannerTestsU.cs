@@ -14,10 +14,10 @@ namespace Rogium.Tests.Editors.Rooms
         {
             yield return TUtilsMenuLoader.PrepareSelectionMenu();
             yield return SelectionInfoColumnTestsU.OpenPackAndSelectRoom();
-            ((EditableAssetCardController)SelectionMenuOverseerMono.GetInstance().CurrentSelector.GetCard(0)).Edit();
+            ((EditableAssetCardController)SelectionMenuOverseerMono.Instance.CurrentSelector.GetCard(0)).Edit();
             yield return null;
-            RoomEditorOverseerMono.GetInstance().UpdateGridCell(new Vector2Int(0, 0));
-            RoomEditorOverseerMono.GetInstance().UpdateGridCell(new Vector2Int(1, 0));
+            RoomEditorOverseerMono.Instance.UpdateGridCell(new Vector2Int(0, 0));
+            RoomEditorOverseerMono.Instance.UpdateGridCell(new Vector2Int(1, 0));
             GASActions.SaveChangesRoom();
             yield return null;
         }

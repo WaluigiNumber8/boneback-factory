@@ -12,7 +12,7 @@ namespace Rogium.Systems.Shortcuts
         
         private InputSystem input;
 
-        private void Awake() => input = InputSystem.GetInstance();
+        private void Awake() => input = InputSystem.Instance;
 
         private void OnEnable()
         {

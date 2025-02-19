@@ -41,10 +41,10 @@ namespace Rogium.Gameplay.Core
         protected override void Awake()
         {
             base.Awake();
-            input = InputSystem.GetInstance();
+            input = InputSystem.Instance;
             input.SwitchToGameplayMaps();
             input.Pause.Enable();
-            try { currentCampaign = new CampaignAsset.Builder().AsCopy(SceneTransferOverseer.GetInstance().PickUpCampaign()).Build(); }
+            try { currentCampaign = new CampaignAsset.Builder().AsCopy(SceneTransferOverseer.Instance.PickUpCampaign()).Build(); }
             catch (Exception) { currentCampaign = ExternalLibraryOverseer.Instance.Campaigns[0]; }
         }
         private void OnEnable()

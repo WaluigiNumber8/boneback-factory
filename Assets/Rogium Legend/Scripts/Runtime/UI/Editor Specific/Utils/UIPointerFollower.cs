@@ -25,7 +25,7 @@ namespace Rogium.UserInterface.Editors.Utils
         private void Awake()
         {
             ttransform = GetComponent<RectTransform>();
-            input = InputSystem.GetInstance();
+            input = InputSystem.Instance;
             canvas = GetComponentInParent<Canvas>();
             canvasTransform = canvas.GetComponent<RectTransform>();
             cam = Camera.main;

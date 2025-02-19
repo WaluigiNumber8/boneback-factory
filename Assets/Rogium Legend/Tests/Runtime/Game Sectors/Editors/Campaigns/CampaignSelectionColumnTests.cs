@@ -26,7 +26,7 @@ namespace Rogium.Tests.Editors.Campaigns
             AddNewPackToLibrary();
             yield return null;
             yield return TUtilsMenuLoader.PrepareCampaignEditor();
-            campaignEditor = CampaignEditorOverseerMono.GetInstance();
+            campaignEditor = CampaignEditorOverseerMono.Instance;
             infoColumn = campaignEditor.GetComponentInChildren<SelectionInfoColumn>();
             yield return null;
         }

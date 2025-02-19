@@ -29,7 +29,7 @@ namespace Rogium.UserInterface.Interactables
         public override void OnPointerDown(PointerEventData eventData)
         {
             base.OnPointerDown(eventData);
-            ModalWindowBuilder.GetInstance().OpenColorPickerWindow(WhenColorPicked, value);
+            ModalWindowBuilder.Instance.OpenColorPickerWindow(WhenColorPicked, value);
         }
 
         /// <summary>

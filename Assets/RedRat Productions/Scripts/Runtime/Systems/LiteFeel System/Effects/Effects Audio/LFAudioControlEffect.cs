@@ -14,7 +14,7 @@ namespace RedRats.Systems.LiteFeel.Effects
 
         private AudioSystem audioSystem;
         
-        protected override void Initialize() => audioSystem = AudioSystem.GetInstance();
+        protected override void Initialize() => audioSystem = AudioSystem.Instance;
 
         protected override void PlaySelf()
         {

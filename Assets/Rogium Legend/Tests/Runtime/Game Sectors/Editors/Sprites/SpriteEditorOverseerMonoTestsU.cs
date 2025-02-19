@@ -12,7 +12,7 @@ namespace Rogium.Tests.Editors.Sprites
     /// </summary>
     public static class SpriteEditorOverseerMonoTestsU
     {
-        private static readonly SpriteEditorOverseerMono spriteEditor = SpriteEditorOverseerMono.GetInstance();
+        private static readonly SpriteEditorOverseerMono spriteEditor = SpriteEditorOverseerMono.Instance;
 
         public static void FillEntireGrid()
         {

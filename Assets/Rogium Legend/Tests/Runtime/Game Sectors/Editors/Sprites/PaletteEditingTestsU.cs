@@ -15,7 +15,7 @@ namespace Rogium.Tests.Editors.Sprites
     {
         public static IEnumerator UpdateColorSlot(Color color, int slot = 0)
         {
-            SpriteEditorOverseerMono.GetInstance().Palette.GetSlot(slot).OnPointerClick(TUtilsPointerDataCreator.RightClick());
+            SpriteEditorOverseerMono.Instance.Palette.GetSlot(slot).OnPointerClick(TUtilsPointerDataCreator.RightClick());
             ColorPickerWindow colorPicker = InteractableUtils.FindFirstColorPickerWindow();
             colorPicker.UpdateColor(color);
             colorPicker.Close();
@@ -44,8 +44,8 @@ namespace Rogium.Tests.Editors.Sprites
         
         public static void FillSpriteEditorGrid()
         {
-            SpriteEditorOverseerMono.GetInstance().Toolbox.SwitchTool(ToolType.Fill);
-            SpriteEditorOverseerMono.GetInstance().UpdateCell(Vector2Int.zero);
+            SpriteEditorOverseerMono.Instance.Toolbox.SwitchTool(ToolType.Fill);
+            SpriteEditorOverseerMono.Instance.UpdateCell(Vector2Int.zero);
         }
     }
 }

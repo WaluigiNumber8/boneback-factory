@@ -21,8 +21,8 @@ namespace Rogium.Editors.AssetSelection
                 AssetType.Enemy => PackEditorOverseer.Instance.CurrentPack.Enemies.Cast<IAsset>().ToList,
                 AssetType.Room => PackEditorOverseer.Instance.CurrentPack.Rooms.Cast<IAsset>().ToList,
                 AssetType.Tile => PackEditorOverseer.Instance.CurrentPack.Tiles.Cast<IAsset>().ToList,
-                AssetType.Object => InternalLibraryOverseer.GetInstance().Objects.Cast<IAsset>().ToList,
-                AssetType.Sound => InternalLibraryOverseer.GetInstance().Sounds.Cast<IAsset>().ToList,
+                AssetType.Object => InternalLibraryOverseer.Instance.Objects.Cast<IAsset>().ToList,
+                AssetType.Sound => InternalLibraryOverseer.Instance.Sounds.Cast<IAsset>().ToList,
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };
         }

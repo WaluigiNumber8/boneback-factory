@@ -73,14 +73,14 @@ namespace Rogium.Systems.GASExtension
         #region Return from menus
         public static void ReturnFromSelectionMenu()
         {
-            if (MenuSwitcher.GetInstance().CurrentMenu != MenuType.CampaignSelection && SelectionMenuOverseerMono.GetInstance().CurrentType != AssetType.Pack)
+            if (MenuSwitcher.Instance.CurrentMenu != MenuType.CampaignSelection && SelectionMenuOverseerMono.Instance.CurrentType != AssetType.Pack)
             {
                 OpenSelectionPack();
                 return;
             }
 
             GAS.SwitchMenu(MenuType.MainMenu);
-            BackgroundOverseerMono.GetInstance().SwitchToMainMenu();
+            BackgroundOverseerMono.Instance.SwitchToMainMenu();
             GASRogium.ChangeTheme(ThemeType.Blue);
         }
 
@@ -94,7 +94,7 @@ namespace Rogium.Systems.GASExtension
         public static void OpenSelectionPack()
         {
             GASRogium.ChangeTheme(ThemeType.Blue);
-            BackgroundOverseerMono.GetInstance().SwitchToEditor();
+            BackgroundOverseerMono.Instance.SwitchToEditor();
             GAS.SwitchMenu(MenuType.AssetSelection);
             GASRogium.OpenSelectionMenu(AssetType.Pack);
         }
@@ -103,7 +103,7 @@ namespace Rogium.Systems.GASExtension
         {
             GASRogium.ChangeTheme(ThemeType.Red);
             GAS.SwitchMenu(MenuType.CampaignSelection);
-            BackgroundOverseerMono.GetInstance().SwitchToGameMenu();
+            BackgroundOverseerMono.Instance.SwitchToGameMenu();
             CampaignAssetSelectionOverseer.Instance.SelectCampaignFirst();
         }
         
@@ -162,7 +162,7 @@ namespace Rogium.Systems.GASExtension
 
         public static void CreateNewAssetBasedOnSelectionMenu()
         {
-            switch (SelectionMenuOverseerMono.GetInstance().CurrentType)
+            switch (SelectionMenuOverseerMono.Instance.CurrentType)
             {
                 case AssetType.Pack:
                     CreatePack();
@@ -188,7 +188,7 @@ namespace Rogium.Systems.GASExtension
                 case AssetType.Tile:
                     CreateTile();
                     break;
-                default: throw new ArgumentOutOfRangeException($"Asset type {SelectionMenuOverseerMono.GetInstance().CurrentType} is not supported by this method.");
+                default: throw new ArgumentOutOfRangeException($"Asset type {SelectionMenuOverseerMono.Instance.CurrentType} is not supported by this method.");
             }
         }
         
@@ -541,7 +541,7 @@ namespace Rogium.Systems.GASExtension
         {
             ExternalLibraryOverseer.Instance.ActivatePackEditor(packIndex);
             storedIndex = packIndex;
-            SelectionMenuOverseerMono.GetInstance().ResetTabGroup();
+            SelectionMenuOverseerMono.Instance.ResetTabGroup();
             OpenSelectionPalette();
         }
 
@@ -621,7 +621,7 @@ namespace Rogium.Systems.GASExtension
         #region Save Editor Changes
         public static void SaveChangesCampaign()
         {
-            bool noPacksSelected = (CampaignEditorOverseerMono.GetInstance().SelectionPicker.SelectedAssetsCount <= 0);
+            bool noPacksSelected = (CampaignEditorOverseerMono.Instance.SelectionPicker.SelectedAssetsCount <= 0);
             ModalWindowData noPackData = new ModalWindowData.Builder()
                 .WithLayout(ModalWindowLayoutType.Message)
                 .WithMessage("Cannot save the campaign without selecting any <style=\"CardAmount\"> packs</style>.")
@@ -639,7 +639,7 @@ namespace Rogium.Systems.GASExtension
 
         private static void SaveChangesCampaignConfirm()
         {
-            CampaignEditorOverseerMono.GetInstance().CompleteSelection();
+            CampaignEditorOverseerMono.Instance.CompleteSelection();
             CampaignEditorOverseer.Instance.CompleteEditing();
             CancelChangesCampaignConfirm();
         }
@@ -669,7 +669,7 @@ namespace Rogium.Systems.GASExtension
                 return;
             }
             
-            if (SpriteEditorOverseerMono.GetInstance().PaletteChanged)
+            if (SpriteEditorOverseerMono.Instance.PaletteChanged)
             {
                 ModalWindowData data = new ModalWindowData.Builder()
                     .WithLayout(ModalWindowLayoutType.Message)
@@ -722,28 +722,28 @@ namespace Rogium.Systems.GASExtension
         public static void SaveChangesWeapon()
         {
             WeaponEditorOverseer.Instance.CompleteEditing();
-            PropertyEditorOverseerMono.GetInstance().DisposeProperties();
+            PropertyEditorOverseerMono.Instance.DisposeProperties();
             OpenSelectionWeapon();
         }
         
         public static void SaveChangesProjectile()
         {
             ProjectileEditorOverseer.Instance.CompleteEditing();
-            PropertyEditorOverseerMono.GetInstance().DisposeProperties();
+            PropertyEditorOverseerMono.Instance.DisposeProperties();
             OpenSelectionProjectile();
         }
         
         public static void SaveChangesEnemy()
         {
             EnemyEditorOverseer.Instance.CompleteEditing();
-            PropertyEditorOverseerMono.GetInstance().DisposeProperties();
+            PropertyEditorOverseerMono.Instance.DisposeProperties();
             OpenSelectionEnemy();
         }
         
         public static void SaveChangesRoom()
         {
             RoomAsset currentAsset = RoomEditorOverseer.Instance.CurrentAsset;
-            InternalLibraryOverseer lib = InternalLibraryOverseer.GetInstance();
+            InternalLibraryOverseer lib = InternalLibraryOverseer.Instance;
             if (!currentAsset.ObjectGrid.Contains(AssetDataBuilder.ForObject(lib.GetObjectByID("001"))) || !currentAsset.ObjectGrid.Contains(AssetDataBuilder.ForObject(lib.GetObjectByID("002"))))
             {
                 ModalWindowData data = new ModalWindowData.Builder()
@@ -755,14 +755,14 @@ namespace Rogium.Systems.GASExtension
                 return;
             }
             RoomEditorOverseer.Instance.CompleteEditing();
-            RoomEditorOverseerMono.GetInstance().DisposeProperties();
+            RoomEditorOverseerMono.Instance.DisposeProperties();
             OpenSelectionRoom();
         }
 
         public static void SaveChangesTile()
         {
             TileEditorOverseer.Instance.CompleteEditing();
-            PropertyEditorOverseerMono.GetInstance().DisposeProperties();
+            PropertyEditorOverseerMono.Instance.DisposeProperties();
             OpenSelectionTile();
         }
         
@@ -776,7 +776,7 @@ namespace Rogium.Systems.GASExtension
         #region Cancel Editor Changes
         public static void CancelChangesCampaign()
         {
-            bool noPacksSelected = (CampaignEditorOverseerMono.GetInstance().SelectionPicker.SelectedAssetsCount <= 0);
+            bool noPacksSelected = (CampaignEditorOverseerMono.Instance.SelectionPicker.SelectedAssetsCount <= 0);
             bool campaignIsNew = (CampaignEditorOverseer.Instance.CurrentAsset.PackReferences.Count <= 0);
             ModalWindowData noPackData = new ModalWindowData.Builder()
                 .WithLayout(ModalWindowLayoutType.Message)
@@ -800,7 +800,7 @@ namespace Rogium.Systems.GASExtension
         
         private static void CancelChangesCampaignConfirm()
         {
-            CampaignEditorOverseerMono.GetInstance().DisposeProperties();
+            CampaignEditorOverseerMono.Instance.DisposeProperties();
             GAS.SwitchMenu(MenuType.CampaignSelection);
             CampaignAssetSelectionOverseer.Instance.SelectAgain();
         }
@@ -851,7 +851,7 @@ namespace Rogium.Systems.GASExtension
             
             void CancelConfirm()
             {
-                PropertyEditorOverseerMono.GetInstance().DisposeProperties();
+                PropertyEditorOverseerMono.Instance.DisposeProperties();
                 OpenSelectionWeapon();
             }
         }
@@ -872,7 +872,7 @@ namespace Rogium.Systems.GASExtension
             
             void CancelConfirm()
             {
-                PropertyEditorOverseerMono.GetInstance().DisposeProperties();
+                PropertyEditorOverseerMono.Instance.DisposeProperties();
                 OpenSelectionProjectile();
             }
         }
@@ -893,7 +893,7 @@ namespace Rogium.Systems.GASExtension
             
             void CancelConfirm()
             {
-                PropertyEditorOverseerMono.GetInstance().DisposeProperties();
+                PropertyEditorOverseerMono.Instance.DisposeProperties();
                 OpenSelectionEnemy();
             }
         }
@@ -914,7 +914,7 @@ namespace Rogium.Systems.GASExtension
             
             void CancelConfirm()
             {
-                RoomEditorOverseerMono.GetInstance().DisposeProperties();
+                RoomEditorOverseerMono.Instance.DisposeProperties();
                 OpenSelectionRoom();
             }
         }
@@ -935,7 +935,7 @@ namespace Rogium.Systems.GASExtension
             
             void CancelConfirm()
             {
-                PropertyEditorOverseerMono.GetInstance().DisposeProperties();
+                PropertyEditorOverseerMono.Instance.DisposeProperties();
                 OpenSelectionTile();
             }
         }
@@ -964,7 +964,7 @@ namespace Rogium.Systems.GASExtension
         private static void ReturnToMainMenuOptionsConfirm()
         {
             GAS.SwitchMenu(MenuType.MainMenu);
-            OptionsMenuOverseerMono.GetInstance().DisposeProperties();
+            OptionsMenuOverseerMono.Instance.DisposeProperties();
         }
 
         #endregion
@@ -972,21 +972,21 @@ namespace Rogium.Systems.GASExtension
         #region Campaign Editor Menu
         public static void ChangeImportStatus(int assetIndex)
         {
-            CampaignEditorOverseerMono.GetInstance().ChangeSelectStatus(assetIndex);
+            CampaignEditorOverseerMono.Instance.ChangeSelectStatus(assetIndex);
         }
         public static void CampaignEditorSelectAll()
         {
-            CampaignEditorOverseerMono.GetInstance().SelectionPicker.SelectAll(true);
+            CampaignEditorOverseerMono.Instance.SelectionPicker.SelectAll(true);
         }
         
         public static void CampaignEditorSelectNone()
         {
-            CampaignEditorOverseerMono.GetInstance().SelectionPicker.SelectAll(false);
+            CampaignEditorOverseerMono.Instance.SelectionPicker.SelectAll(false);
         }
         
         public static void CampaignEditorSelectRandom()
         {
-            CampaignEditorOverseerMono.GetInstance().SelectionPicker.SelectRandom();
+            CampaignEditorOverseerMono.Instance.SelectionPicker.SelectRandom();
         }
         #endregion
         
@@ -1052,17 +1052,17 @@ namespace Rogium.Systems.GASExtension
         #region Sprite Editor
         public static void SpriteSwitchTool(int index)
         {
-            SpriteEditorOverseerMono.GetInstance().Toolbox.SwitchTool((ToolType) index);
+            SpriteEditorOverseerMono.Instance.Toolbox.SwitchTool((ToolType) index);
         }
 
         public static void SpriteSwitchPalette()
         {
-            SpriteEditorOverseerMono.GetInstance().SwitchPaletteViaWindow();
+            SpriteEditorOverseerMono.Instance.SwitchPaletteViaWindow();
         }
 
         public static void SpriteClearActiveLayer()
         {
-            SpriteEditorOverseerMono.GetInstance().ClearActiveGrid();
+            SpriteEditorOverseerMono.Instance.ClearActiveGrid();
         }
         #endregion
 
@@ -1070,17 +1070,17 @@ namespace Rogium.Systems.GASExtension
 
         public static void RoomSwitchTool(int index)
         {
-            RoomEditorOverseerMono.GetInstance().Toolbox.SwitchTool((ToolType) index);
+            RoomEditorOverseerMono.Instance.Toolbox.SwitchTool((ToolType) index);
         }
 
         public static void RoomSwitchPalette(int index)
         {
-            RoomEditorOverseerMono.GetInstance().SwitchLayer(index);
+            RoomEditorOverseerMono.Instance.SwitchLayer(index);
         }
 
         public static void RoomClearActiveLayer()
         {
-            RoomEditorOverseerMono.GetInstance().ClearActiveLayer();
+            RoomEditorOverseerMono.Instance.ClearActiveLayer();
         }
         #endregion
         
@@ -1088,17 +1088,17 @@ namespace Rogium.Systems.GASExtension
 
         public static void GameplayPauseResume()
         {
-            PauseMenuOverseerMono.GetInstance().SwitchMenuState();
+            PauseMenuOverseerMono.Instance.SwitchMenuState();
         }
 
         public static void GameplayPauseQuit()
         {
-            PauseMenuOverseerMono.GetInstance().ReturnToMainMenu();
+            PauseMenuOverseerMono.Instance.ReturnToMainMenu();
         }
 
         public static void GameplaySelectWeapon(int index)
         {
-            WeaponSelectMenu.GetInstance().Select(index);
+            WeaponSelectMenu.Instance.Select(index);
         }
         #endregion
     }

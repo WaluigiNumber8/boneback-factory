@@ -13,7 +13,7 @@ namespace Rogium.Options.Core
 
         public OptionsShortcutPropertyBuilder(Transform contentMain, Transform contentSecond) : base(contentMain, contentSecond)
         {
-            input = InputSystem.GetInstance();
+            input = InputSystem.Instance;
         }
 
         public override void BuildInternal(ShortcutBindingsAsset asset)

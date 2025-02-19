@@ -11,7 +11,7 @@ namespace Rogium.Tests.Core
     {
         public static IEnumerator EditFirstInputField(string newValue)
         {
-            InteractablePropertyInputField inputField = PropertyEditorOverseerMono.GetInstance().GetComponentInChildren<InteractablePropertyInputField>();
+            InteractablePropertyInputField inputField = PropertyEditorOverseerMono.Instance.GetComponentInChildren<InteractablePropertyInputField>();
             inputField.UpdateValue(newValue);
             yield return null;
         }

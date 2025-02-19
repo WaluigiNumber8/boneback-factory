@@ -20,7 +20,7 @@ namespace Rogium.Systems.Particles
         private void Awake()
         {
             effect = GetComponent<ParticleSystem>();
-            audioSystem = AudioSystem.GetInstance();
+            audioSystem = AudioSystem.Instance;
         }
 
         private void OnEnable()

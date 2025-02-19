@@ -29,7 +29,7 @@ namespace Rogium.Tests.UI.Interactables.InputReader
             yield return null;
             bindingParent = new GameObject("Input Bindings").transform;
             bindingParent.SetParent(Object.FindFirstObjectByType<Canvas>().transform);
-            UIPropertyBuilder.GetInstance().BuildInputBinding(input.Shortcuts.Undo.Action, InputDeviceType.Keyboard, bindingParent);
+            UIPropertyBuilder.Instance.BuildInputBinding(input.Shortcuts.Undo.Action, InputDeviceType.Keyboard, bindingParent);
             inputReader = bindingParent.GetComponentInChildren<InputBindingReader>();
             yield return null;
         }

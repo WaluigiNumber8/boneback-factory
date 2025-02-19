@@ -25,7 +25,7 @@ namespace Rogium.Tests.Editors.AssetSelection
             TUtilsOverseerLoader.LoadModalWindowBuilder();
             TUtilsOverseerLoader.LoadUIBuilder();
             yield return TUtilsMenuLoader.PrepareSelectionMenu();
-            selectionMenu = SelectionMenuOverseerMono.GetInstance();
+            selectionMenu = SelectionMenuOverseerMono.Instance;
             AddNewPackToLibrary();
             AddNewPackToLibrary();
             ExternalLibraryOverseer.Instance.Packs[0].Palettes.Add(CreatePalette());

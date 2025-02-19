@@ -22,8 +22,8 @@ namespace Rogium.Systems.Audio
         protected override void Awake()
         {
             base.Awake();
-            audioSystem = AudioSystem.GetInstance();
-            allSounds = InternalLibraryOverseer.GetInstance().Sounds.ToDictionary(x => x.ID);
+            audioSystem = AudioSystem.Instance;
+            allSounds = InternalLibraryOverseer.Instance.Sounds.ToDictionary(x => x.ID);
         }
 
         /// <summary>
