@@ -446,7 +446,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 711.65, y: -896.01}
+  m_AnchoredPosition: {x: 711.65, y: -897.015}
   m_SizeDelta: {x: 479.52002, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8496682471255201455
@@ -1729,7 +1729,7 @@ MonoBehaviour:
   initialDelayMin: 0
   initialDelayMax: 0
   randomizeDelay: 0
-  duration: 0.15
+  duration: 0.05
   infiniteLoop: 0
   loops: 1
   loopType: 0
@@ -1738,7 +1738,7 @@ MonoBehaviour:
   mode: 1
   uniform: 1
   beginScale: {x: 0.1, y: 0.1, z: 1}
-  beginScaleU: 0.5
+  beginScaleU: 0.8
   targetScale: {x: 0.9, y: 0.2, z: 1}
   targetScaleU: 1
   scaleCurve:
@@ -1747,29 +1747,20 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.8692029
-      value: 1.0509212
-      inSlope: 1.2494205
-      outSlope: 1.2494205
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.06970353
-      outWeight: 0.33333334
-    - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: -0.030998036
-      outSlope: -0.030998036
-      tangentMode: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
       weightedMode: 0
-      inWeight: 1
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
