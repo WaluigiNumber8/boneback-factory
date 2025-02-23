@@ -16,6 +16,8 @@ namespace Rogium.UserInterface.Interactables.Properties
         
         private Action<bool> whenChangeValue;
 
+        private void Awake() => toggle.onValueChanged.AddListener(WhenValueChanged);
+
         public override void SetDisabled(bool isDisabled) => toggle.interactable = !isDisabled;
 
         /// <summary>
@@ -30,7 +32,6 @@ namespace Rogium.UserInterface.Interactables.Properties
             
             toggle.isOn = toggleState;
             this.whenChangeValue = whenChangeValue;
-            toggle.onValueChanged.AddListener(WhenValueChanged);
         }
         
         public void UpdateValueWithoutNotify(bool value)

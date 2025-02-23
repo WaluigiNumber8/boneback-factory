@@ -18,7 +18,9 @@ namespace Rogium.UserInterface.Interactables.Properties
         private Action<string> whenFinishEditing;
         private float minLimit, maxLimit;
         private string lastValue;
-        
+
+        private void Awake() => inputField.onEndEdit.AddListener(WhenValueChanged);
+
         public override void SetDisabled(bool isDisabled) => inputField.interactable = !isDisabled;
 
         /// <summary>
@@ -44,7 +46,6 @@ namespace Rogium.UserInterface.Interactables.Properties
             lastValue = inputtedText;
             
             this.whenFinishEditing = whenFinishEditing;
-            inputField.onEndEdit.AddListener(WhenValueChanged);
         }
 
         public void UpdateValue(string value) => WhenValueChanged(value);
