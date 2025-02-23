@@ -19,6 +19,8 @@ namespace Rogium.UserInterface.Interactables.Properties
         private Action<int> whenValueChange;
         private int lastValue;
 
+        private void Awake() => dropdown.onValueChanged.AddListener(WhenValueChanged);
+
         public override void SetDisabled(bool isDisabled) => dropdown.interactable = !isDisabled;
 
         /// <summary>
@@ -38,7 +40,6 @@ namespace Rogium.UserInterface.Interactables.Properties
             dropdown.RefreshShownValue();
             
             this.whenValueChange = whenValueChange;
-            dropdown.onValueChanged.AddListener(WhenValueChanged);
         }
 
         /// <summary>
