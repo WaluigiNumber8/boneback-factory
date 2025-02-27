@@ -238,23 +238,14 @@ namespace Rogium.Editors.Rooms
                 return;
             }
             
-            switch (type)
+            propertyColumn.Construct(data);
+            asset ??= type switch
             {
-                case AssetType.Tile:
-                    propertyColumn.ConstructAssetPropertiesTile(data);
-                    asset ??= packEditor.CurrentPack.Tiles.FindValueFirst(data.ID);
-                    break;
-                case AssetType.Object:
-                    propertyColumn.ConstructAssetPropertiesObject(data);
-                    asset ??= objects.FindValueFirst(data.ID);
-                    break;
-                case AssetType.Enemy:
-                    propertyColumn.ConstructAssetPropertiesEnemies(data);
-                    asset ??= packEditor.CurrentPack.Enemies.FindValueFirst(data.ID);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException($"Layer with type '{type}' is not supported.");
-            }
+                AssetType.Tile => packEditor.CurrentPack.Tiles.FindValueFirst(data.ID),
+                AssetType.Object => objects.FindValueFirst(data.ID),
+                AssetType.Enemy => packEditor.CurrentPack.Enemies.FindValueFirst(data.ID),
+                _ => throw new ArgumentOutOfRangeException($"Layer with type '{type}' is not supported.")
+            };
             currentData.UpdateUsedPaint(data);
             propertyColumn.ConstructAsset(asset, type);
         }
