@@ -36,7 +36,6 @@ namespace Rogium.Editors.AssetSelection
             IList<IAsset> assets = data.GetAssetList();
             IAsset selectedAsset = (selectedAssetIndexes.Contains(-1)) ? new EmptyAsset() : assets[selectedAssetIndexes.First()];
             whenConfirmed?.Invoke(selectedAsset);
-            whenConfirmed = null;
         }
         
         protected override void SelectAsset(int index)

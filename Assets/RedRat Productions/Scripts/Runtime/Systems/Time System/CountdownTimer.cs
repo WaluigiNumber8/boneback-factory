@@ -21,7 +21,7 @@ namespace RedRats.Systems.Clocks
         /// Set the timer to a specific time.
         /// </summary>
         /// <param name="time">How many seconds the timer lasts</param>
-        public void Set(float time)
+        public void Start(float time)
         {
             timer = time;
             whenStarted?.Invoke();
@@ -46,6 +46,11 @@ namespace RedRats.Systems.Clocks
                 whenFinished?.Invoke();
             }
         }
+        
+        /// <summary>
+        /// Is the time above 0?
+        /// </summary>
+        public bool IsRunning => timer > 0;
         
         /// <summary>
         /// How much time is left.

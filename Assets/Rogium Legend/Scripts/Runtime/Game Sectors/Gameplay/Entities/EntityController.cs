@@ -88,7 +88,7 @@ namespace Rogium.Gameplay.Entities
         {
             // Do nothing if movement is locked and new time is less than the current time.
             if (movementLocked && movementLockTimer.TimeLeft > time) return;
-            movementLockTimer.Set(time);
+            movementLockTimer.Start(time);
         }
         
         /// <summary>
@@ -99,7 +99,7 @@ namespace Rogium.Gameplay.Entities
         {
             // Do nothing if faceDirection is locked and new time is less than the current time.
             if (faceDirectionLocked && faceDirectionLockTimer.TimeLeft > time) return;
-            faceDirectionLockTimer.Set(time);
+            faceDirectionLockTimer.Start(time);
         }
         
         /// <summary>
@@ -181,7 +181,7 @@ namespace Rogium.Gameplay.Entities
             public void SetTimer(float time)
             {
                 lastForceMoveTime = time;
-                movementBreakTimer.Set(time);
+                movementBreakTimer.Start(time);
             }
         }
     }

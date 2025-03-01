@@ -90,7 +90,6 @@ namespace Rogium.UserInterface.ModalWindows
         private void WhenAssetPicked(IAsset asset)
         {
             whenAssetPicked.Invoke(asset);
-            whenAssetPicked = null;
             CancelSelection();
         }
 

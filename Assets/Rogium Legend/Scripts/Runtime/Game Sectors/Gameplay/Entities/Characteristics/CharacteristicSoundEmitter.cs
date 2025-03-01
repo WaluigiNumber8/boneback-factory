@@ -69,7 +69,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
             float length = audioSystem.GetSound(soundData.idleSound).Data.Clip.length;
             float pitch = soundData.idleSound.Parameters.floatValue2;
             float finalLength = length / Mathf.Abs(pitch) + Random.Range(0f, 0.05f);
-            idleTimer.Set(finalLength);
+            idleTimer.Start(finalLength);
         }
     }
 }
