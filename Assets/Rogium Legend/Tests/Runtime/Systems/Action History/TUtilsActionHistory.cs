@@ -3,7 +3,7 @@ using Rogium.Systems.ActionHistory;
 
 namespace Rogium.Tests.Systems.ActionHistory
 {
-    public static class ActionHistoryUtils
+    public static class TUtilsActionHistory
     {
         public static IAction CreateAction(object construct = null)
         {

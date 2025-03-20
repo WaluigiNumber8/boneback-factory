@@ -6,7 +6,7 @@ using Rogium.Tests.Core;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.TestTools;
-using static Rogium.Tests.Systems.ActionHistory.ActionHistoryUtils;
+using static Rogium.Tests.Systems.ActionHistory.TUtilsActionHistory;
 
 namespace Rogium.Tests.Systems.ActionHistory
 {

@@ -1,7 +1,7 @@
 using NSubstitute;
 using NUnit.Framework;
 using Rogium.Systems.ActionHistory;
-using static Rogium.Tests.Systems.ActionHistory.ActionHistoryUtils;
+using static Rogium.Tests.Systems.ActionHistory.TUtilsActionHistory;
 
 namespace Rogium.Tests.Systems.ActionHistory
 {

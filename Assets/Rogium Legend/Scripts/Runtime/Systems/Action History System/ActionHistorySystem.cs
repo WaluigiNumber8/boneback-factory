@@ -39,7 +39,7 @@ namespace Rogium.Systems.ActionHistory
             if (assetDetector.WasAssetChanged) undoHistory.Clear();
             
             action.Execute();
-            DecideUndoStatusFor(action, blockGrouping);
+            DecideGroupingResponseFor(action, blockGrouping);
             redoHistory.Clear();
             lastAction = action;
             
@@ -79,8 +79,10 @@ namespace Rogium.Systems.ActionHistory
         /// <summary>
         /// Forces the system to allow grouping of actions.
         /// </summary>
-        public static void ForceBeginGrouping()
+        public static void ForceBeginGrouping() => ForceBeginGrouping(false);
+        public static void ForceBeginGrouping(bool allowDifferentConstructs)
         {
+            if (allowDifferentConstructs) ignoreConstructs = true;
             if (canCreateGroups) ForceEndGrouping();
             canCreateGroups = true;
         }
@@ -90,29 +92,12 @@ namespace Rogium.Systems.ActionHistory
         /// </summary>
         public static void ForceEndGrouping()
         {
+            ignoreConstructs = false;
             canCreateGroups = false;
             AddCurrentGroupToUndo();
         }
-
-        /// <summary>
-        /// The next actions will gruped regardless of the construct.
-        /// </summary>
-        public static void ForceGroupAllActions()
-        {
-            ignoreConstructs = true;
-            ForceBeginGrouping();
-        }
-
-        /// <summary>
-        /// Ends the forced grouping of all actions.
-        /// </summary>
-        public static void ForceGroupAllActionsEnd()
-        {
-            ignoreConstructs = false;
-            ForceEndGrouping();
-        }
         
-        private static void DecideUndoStatusFor(IAction action, bool blockGrouping = false)
+        private static void DecideGroupingResponseFor(IAction action, bool blockGrouping = false)
         {
             // If in group mode
             if (!blockGrouping && canCreateGroups)

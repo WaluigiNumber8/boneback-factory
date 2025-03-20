@@ -52,6 +52,11 @@ namespace Rogium.Systems.Input
             UI.PointerPosition.OnPressed += UpdatePointerPosition;
             
             //Force grouping on click/right click
+            UI.Select.OnPress -= ActionHistorySystem.ForceBeginGrouping;
+            UI.ContextSelect.OnPress -= ActionHistorySystem.ForceBeginGrouping;
+            UI.Select.OnRelease -= ActionHistorySystem.ForceEndGrouping;
+            UI.ContextSelect.OnRelease -= ActionHistorySystem.ForceEndGrouping;
+            
             UI.Select.OnPress += ActionHistorySystem.ForceBeginGrouping;
             UI.ContextSelect.OnPress += ActionHistorySystem.ForceBeginGrouping;
             UI.Select.OnRelease += ActionHistorySystem.ForceEndGrouping;
