@@ -37,14 +37,11 @@ namespace RedRats.Core
         {
             Texture2D tex = new(width, height);
             tex.filterMode = filterMode;
-            if (color != Color.clear)
+            for (int y = 0; y < height; y++)
             {
-                for (int y = 0; y < height; y++)
+                for (int x = 0; x < width; x++)
                 {
-                    for (int x = 0; x < width; x++)
-                    {
-                        tex.SetPixel(x, y, color);
-                    }
+                    tex.SetPixel(x, y, color);
                 }
             }
             tex.Apply();
