@@ -7,7 +7,7 @@ namespace Rogium.Editors.AssetSelection
     /// <summary>
     /// Builds the <see cref="SelectionInfoColumn"/> for a <see cref="PackAsset"/>.
     /// </summary>
-    public class SelectionInfoColumnPropertyBuilderPack : UIPropertyContentBuilderBaseColumn1<PackAsset>
+    public class SelectionInfoColumnPropertyBuilderPack : IPContentBuilderBaseColumn1<PackAsset>
     {
         private readonly bool essentialOnly;
 

@@ -8,7 +8,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
     /// <summary>
     /// Builds the Room Property Column for enemies.
     /// </summary>
-    public class RoomPropertyColumnBuilderEnemy : UIPropertyContentBuilderBaseColumn1<AssetData>
+    public class RoomPropertyColumnBuilderEnemy : IPContentBuilderBaseColumn1<AssetData>
     {
         public RoomPropertyColumnBuilderEnemy(Transform contentMain) : base(contentMain) { }
 

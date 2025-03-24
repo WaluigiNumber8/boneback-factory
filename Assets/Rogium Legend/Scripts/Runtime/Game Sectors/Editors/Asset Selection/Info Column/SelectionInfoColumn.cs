@@ -92,11 +92,11 @@ namespace Rogium.Editors.AssetSelection
             ui.content.ReleaseAllProperties();
         }
         
-        public InteractablePropertyWithValueBase<T> GetProperty<T>(int i)
+        public IPWithValueBase<T> GetProperty<T>(int i)
         {
             Preconditions.IsIntLowerOrEqualTo(i, ui.content.childCount, nameof(i));
             Preconditions.IsIntInRange(i, 0, ui.content.childCount, nameof(i));
-            return ui.content.GetChild(i).GetComponent<InteractablePropertyWithValueBase<T>>();
+            return ui.content.GetChild(i).GetComponent<IPWithValueBase<T>>();
         }
         
         public void DisposeProperties()

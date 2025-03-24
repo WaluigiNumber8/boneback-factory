@@ -7,7 +7,7 @@ namespace Rogium.Options.Core
     /// <summary>
     /// Builds properties for the Audio section in the Options Menu.
     /// </summary>
-    public class OptionsAudioPropertyBuilder : UIPropertyContentBuilderBaseColumn1<PreferencesAsset>
+    public class OptionsAudioPropertyBuilder : IPContentBuilderBaseColumn1<PreferencesAsset>
     {
         private readonly AudioOptionsController audio;
 

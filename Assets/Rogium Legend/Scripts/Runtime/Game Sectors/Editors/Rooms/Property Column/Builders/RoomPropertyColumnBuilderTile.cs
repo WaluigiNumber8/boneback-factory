@@ -10,7 +10,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
     /// <summary>
     /// Builds the Room Property Column for tiles.
     /// </summary>
-    public class RoomPropertyColumnBuilderTile : UIPropertyContentBuilderBaseColumn1<AssetData>
+    public class RoomPropertyColumnBuilderTile : IPContentBuilderBaseColumn1<AssetData>
     {
         public RoomPropertyColumnBuilderTile(Transform contentMain) : base(contentMain) { }
 

@@ -19,7 +19,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
     /// </summary>
     public class IPColorFieldTests : MenuTestBase
     {
-        private InteractablePropertyColorField colorField;
+        private IPColorField colorField;
         
         [UnitySetUp]
         public override IEnumerator Setup()

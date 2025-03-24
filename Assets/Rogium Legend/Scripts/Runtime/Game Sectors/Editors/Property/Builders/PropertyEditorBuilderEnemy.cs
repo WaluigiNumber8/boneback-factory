@@ -24,10 +24,10 @@ namespace Rogium.Editors.PropertyEditor.Builders
 
         private readonly string[] aiOptions;
 
-        private InteractablePropertyContentBlock aiLookInDirectionBlock;
-        private InteractablePropertyContentBlock aiRotateTowardsBlock;
+        private IPContentBlock aiLookInDirectionBlock;
+        private IPContentBlock aiRotateTowardsBlock;
         
-        private InteractablePropertyContentBlock weaponSlotsBlock;
+        private IPContentBlock weaponSlotsBlock;
 
         public PropertyEditorBuilderEnemy(Transform contentMain, Transform contentSecond) : base(contentMain, contentSecond)
         {

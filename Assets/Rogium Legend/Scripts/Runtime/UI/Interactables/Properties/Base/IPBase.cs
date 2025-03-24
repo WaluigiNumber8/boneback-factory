@@ -7,7 +7,7 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// <summary>
     /// A base for all interactable properties.
     /// </summary>
-    public abstract class InteractablePropertyBase : MonoBehaviour
+    public abstract class IPBase : MonoBehaviour
     {
         public event Action OnReleaseToPool;
         

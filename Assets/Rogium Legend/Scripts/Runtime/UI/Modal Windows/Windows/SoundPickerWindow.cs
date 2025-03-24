@@ -23,11 +23,11 @@ namespace Rogium.UserInterface.ModalWindows
         [SerializeField] private UIInfo ui;
         
         [Header("Interactables")]
-        [SerializeField] private InteractablePropertyAssetField soundField;
-        [SerializeField] private InteractablePropertySlider volumeSlider;
-        [SerializeField] private InteractablePropertySlider pitchSlider;
-        [SerializeField] private InteractablePropertySlider chanceToPlaySlider;
-        [SerializeField] private InteractablePropertyToggle randomPitchToggle;
+        [SerializeField] private IPAssetField soundField;
+        [SerializeField] private IPSlider volumeSlider;
+        [SerializeField] private IPSlider pitchSlider;
+        [SerializeField] private IPSlider chanceToPlaySlider;
+        [SerializeField] private IPToggle randomPitchToggle;
         [Header("Audio")]
         [SerializeField] private Button playSoundButton;
         [SerializeField] private AudioMixerGroup mixerGroup;

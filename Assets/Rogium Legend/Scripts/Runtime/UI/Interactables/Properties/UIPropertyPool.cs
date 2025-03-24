@@ -5,9 +5,9 @@ using static UnityEngine.Object;
 namespace Rogium.UserInterface.Interactables.Properties
 {
     /// <summary>
-    /// Contains a pool of <see cref="InteractablePropertyBase"/>s.
+    /// Contains a pool of <see cref="IPBase"/>s.
     /// </summary>
-    public class UIPropertyPool<T> where T : InteractablePropertyBase
+    public class UIPropertyPool<T> where T : IPBase
     {
         private readonly ObjectPool<T> propertyPool;
 

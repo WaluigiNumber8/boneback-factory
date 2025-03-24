@@ -10,7 +10,7 @@ namespace Rogium.Options.Core
     /// <summary>
     /// Builds properties for the Graphics section in the Options Menu.
     /// </summary>
-    public class OptionsGraphicsPropertyBuilder : UIPropertyContentBuilderBaseColumn1<PreferencesAsset>
+    public class OptionsGraphicsPropertyBuilder : IPContentBuilderBaseColumn1<PreferencesAsset>
     {
         private readonly GraphicsOptionsController graphics;
         

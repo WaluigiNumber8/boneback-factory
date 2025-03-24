@@ -7,8 +7,8 @@ namespace Rogium.Editors.PropertyEditor.Builders
 {
     public abstract class PropertyEditorBuilderAnimationBase<T> : PropertyEditorBuilderBase<T> where T : IAsset
     {
-        protected InteractablePropertyContentBlock animationBlock1Slot;
-        protected InteractablePropertyContentBlock animationBlock2Slot;
+        protected IPContentBlock animationBlock1Slot;
+        protected IPContentBlock animationBlock2Slot;
 
         protected readonly string[] animationOptions;
 

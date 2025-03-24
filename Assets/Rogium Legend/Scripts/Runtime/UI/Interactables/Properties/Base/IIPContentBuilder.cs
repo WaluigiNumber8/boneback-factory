@@ -3,7 +3,7 @@
     /// <summary>
     /// Interface allowing content builders to delete their content.
     /// </summary>
-    public interface IUIPropertyContentBuilder
+    public interface IIPContentBuilder
     {
         /// <summary>
         /// Empty contents.

@@ -7,7 +7,7 @@ namespace Rogium.Editors.AssetSelection
     /// <summary>
     /// Builds the <see cref="SelectionInfoColumn"/> for a <see cref="RoomAsset"/>.
     /// </summary>
-    public class SelectionInfoColumnPropertyBuilderRoom : UIPropertyContentBuilderBaseColumn1<RoomAsset>
+    public class SelectionInfoColumnPropertyBuilderRoom : IPContentBuilderBaseColumn1<RoomAsset>
     {
         public SelectionInfoColumnPropertyBuilderRoom(Transform contentMain) : base(contentMain) { }
 

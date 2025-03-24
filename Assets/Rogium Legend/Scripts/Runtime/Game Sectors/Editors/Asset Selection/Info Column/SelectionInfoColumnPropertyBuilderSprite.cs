@@ -9,7 +9,7 @@ namespace Rogium.Editors.AssetSelection
     /// <summary>
     /// Builds the <see cref="SelectionInfoColumn"/> for a <see cref="Sprite"/>.
     /// </summary>
-    public class SelectionInfoColumnPropertyBuilderSprite : UIPropertyContentBuilderBaseColumn1<SpriteAsset>
+    public class SelectionInfoColumnPropertyBuilderSprite : IPContentBuilderBaseColumn1<SpriteAsset>
     {
         public SelectionInfoColumnPropertyBuilderSprite(Transform contentMain) : base(contentMain) { }
 

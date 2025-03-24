@@ -10,7 +10,7 @@ namespace Rogium.Editors.AssetSelection
     /// <summary>
     /// Builds the <see cref="SelectionInfoColumn"/> for a <see cref="EnemyAsset"/>.
     /// </summary>
-    public class SelectionInfoColumnPropertyBuilderEnemy : UIPropertyContentBuilderBaseColumn1<EnemyAsset>
+    public class SelectionInfoColumnPropertyBuilderEnemy : IPContentBuilderBaseColumn1<EnemyAsset>
     {
         public SelectionInfoColumnPropertyBuilderEnemy(Transform contentMain) : base(contentMain) { }
 

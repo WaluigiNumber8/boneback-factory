@@ -7,7 +7,7 @@ namespace Rogium.Options.Core
     /// <summary>
     /// Builds properties for the Input section in the Options Menu.
     /// </summary>
-    public class OptionsInputPropertyBuilder : UIPropertyContentBuilderBaseColumn2<InputBindingsAsset>
+    public class OptionsInputPropertyBuilder : IPContentBuilderBaseColumn2<InputBindingsAsset>
     {
         private readonly InputSystem input;
 

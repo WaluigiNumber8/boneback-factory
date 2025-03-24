@@ -9,11 +9,11 @@ namespace Rogium.Systems.ActionHistory
     /// </summary>
     public class UpdateDropdownAction : ActionBase<int>
     {
-        private readonly InteractablePropertyDropdown dropdown;
+        private readonly IPDropdown dropdown;
         private readonly int value;
         private readonly int lastValue;
 
-        public UpdateDropdownAction(InteractablePropertyDropdown dropdown, int value, int lastValue, Action<int> fallback) : base(fallback)
+        public UpdateDropdownAction(IPDropdown dropdown, int value, int lastValue, Action<int> fallback) : base(fallback)
         {
             this.dropdown = dropdown;
             this.value = value;

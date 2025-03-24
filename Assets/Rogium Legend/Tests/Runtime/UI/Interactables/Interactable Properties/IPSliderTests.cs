@@ -24,7 +24,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
         [UnityTest]
         public IEnumerator WhenValueChanged_Should_UpdateSelfValue_WhenClicked()
         {
-            InteractablePropertySlider slider = CreateAndInitSlider(0f);
+            IPSlider slider = CreateAndInitSlider(0f);
             
             yield return null;
             slider.GetComponentInChildren<Slider>().onValueChanged.Invoke(0.5f * 100); //  * 100 because the default decimalMultiplier is 100
@@ -36,7 +36,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
         [UnityTest]
         public IEnumerator WhenValueChanged_Should_AddToActionHistory_WhenClicked()
         {
-            InteractablePropertySlider slider = CreateAndInitSlider(0f);
+            IPSlider slider = CreateAndInitSlider(0f);
             
             yield return null;
             slider.GetComponentInChildren<Slider>().onValueChanged.Invoke(0.5f);
@@ -49,7 +49,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
         [UnityTest]
         public IEnumerator UndoLast_Should_RevertValue_WhenClicked()
         {
-            InteractablePropertySlider slider = CreateAndInitSlider(0f);
+            IPSlider slider = CreateAndInitSlider(0f);
             
             yield return null;
             slider.GetComponentInChildren<Slider>().onValueChanged.Invoke(0.5f);

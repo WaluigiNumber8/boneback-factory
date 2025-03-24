@@ -22,7 +22,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
     /// </summary>
     public class IPInputBindingTests : MenuTestWithInputBase
     {
-        private InteractablePropertyInputBinding inputProperty;
+        private IPInputBinding inputProperty;
         private InputAction action;
         public override IEnumerator SetUp()
         {
@@ -99,7 +99,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
         public void Should_CreateAlternativeComposite_WhenConstructedAndAltIsUsed()
         {
             inputProperty = BuildInputBinding(input.Player.Movement.Action);
-            InputBindingReader[] readers = Object.FindObjectsByType<InteractablePropertyInputBinding>(FindObjectsSortMode.InstanceID)[1].GetComponentsInChildren<InputBindingReader>(true);
+            InputBindingReader[] readers = Object.FindObjectsByType<IPInputBinding>(FindObjectsSortMode.InstanceID)[1].GetComponentsInChildren<InputBindingReader>(true);
             Assert.That(readers[1].InputString, Is.EqualTo(input.Player.Movement.Action.bindings[8].ToDisplayString()));
         }
         

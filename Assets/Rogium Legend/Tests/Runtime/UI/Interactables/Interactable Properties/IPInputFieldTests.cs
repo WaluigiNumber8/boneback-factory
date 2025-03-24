@@ -24,7 +24,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
         [UnityTest]
         public IEnumerator WhenValueChanged_Should_UpdateSelfValue_WhenClicked()
         {
-            InteractablePropertyInputField inputField = CreateAndInitInputField();
+            IPInputField inputField = CreateAndInitInputField();
             
             yield return null;
             inputField.GetComponentInChildren<TMP_InputField>().onEndEdit.Invoke("Test");
@@ -36,7 +36,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
         [UnityTest]
         public IEnumerator WhenValueChanged_Should_AddToActionHistory_WhenClicked()
         {
-            InteractablePropertyInputField inputField = CreateAndInitInputField();
+            IPInputField inputField = CreateAndInitInputField();
             
             yield return null;
             inputField.GetComponentInChildren<TMP_InputField>().onEndEdit.Invoke("Test");
@@ -49,7 +49,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
         [UnityTest]
         public IEnumerator UndoLast_Should_RevertValue_WhenClicked()
         {
-            InteractablePropertyInputField inputField = CreateAndInitInputField();
+            IPInputField inputField = CreateAndInitInputField();
             
             yield return null;
             inputField.GetComponentInChildren<TMP_InputField>().onEndEdit.Invoke("Test");

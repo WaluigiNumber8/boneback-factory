@@ -2,7 +2,7 @@
 
 namespace Rogium.UserInterface.Interactables.Properties
 {
-    public class InteractablePropertyContentBlock : InteractablePropertyBase
+    public class IPContentBlock : IPBase
     {
         [SerializeField] private new Transform transform;
         

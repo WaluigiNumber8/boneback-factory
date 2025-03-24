@@ -7,12 +7,12 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// <summary>
     /// A base for all Property Builders.
     /// </summary>
-    public abstract class UIPropertyContentBuilderBase<T> : IUIPropertyContentBuilder where T : IIDHolder
+    public abstract class IPContentBuilderBase<T> : IIPContentBuilder where T : IIDHolder
     {
         protected readonly UIPropertyBuilder b;
         protected readonly Transform contentMain;
 
-        protected UIPropertyContentBuilderBase(Transform contentMain)
+        protected IPContentBuilderBase(Transform contentMain)
         {
             Preconditions.IsNotNull(contentMain, "Property Content Transform");
             

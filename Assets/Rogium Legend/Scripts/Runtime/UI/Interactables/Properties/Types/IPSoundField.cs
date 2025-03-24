@@ -8,7 +8,7 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// <summary>
     /// Represents a sound picker property.
     /// </summary>
-    public class InteractablePropertySoundField : InteractablePropertyWithValueBase<AssetData>
+    public class IPSoundField : IPWithValueBase<AssetData>
     {
         [SerializeField] private SoundField soundField;
 

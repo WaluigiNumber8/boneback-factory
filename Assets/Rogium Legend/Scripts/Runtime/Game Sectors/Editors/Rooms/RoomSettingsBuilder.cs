@@ -8,7 +8,7 @@ namespace Rogium.Editors.Rooms
     /// <summary>
     /// Builds settings for a room.
     /// </summary>
-    public class RoomSettingsBuilder : UIPropertyContentBuilderBaseColumn1<RoomAsset>
+    public class RoomSettingsBuilder : IPContentBuilderBaseColumn1<RoomAsset>
     {
         public RoomSettingsBuilder(Transform contentMain) : base(contentMain) { }
 

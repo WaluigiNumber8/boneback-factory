@@ -15,7 +15,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
     /// <summary>
     /// Builds the Room Property Column for different objects.
     /// </summary>
-    public class RoomPropertyColumnBuilderObject : UIPropertyContentBuilderBaseColumn1<AssetData>
+    public class RoomPropertyColumnBuilderObject : IPContentBuilderBaseColumn1<AssetData>
     {
         private readonly IDictionary<string, Action<AssetData>> presets;
 

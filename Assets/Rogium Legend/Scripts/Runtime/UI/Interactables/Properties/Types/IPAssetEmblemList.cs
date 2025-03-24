@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Rogium.UserInterface.Interactables.Properties
 {
-    public class InteractablePropertyAssetEmblemList : InteractablePropertyWithValueBase<ReadOnlyCollection<Sprite>>
+    public class IPAssetEmblemList : IPWithValueBase<ReadOnlyCollection<Sprite>>
     {
         [SerializeField] private AssetEmblemList emblemList;
         

@@ -9,8 +9,8 @@ namespace Rogium.UserInterface.Interactables.Properties
     {
         public static void ReleaseAllProperties(this Transform content, bool includeSelf = false)
         {
-            InteractablePropertyBase[] p = content.GetComponentsInChildren<InteractablePropertyBase>();
-            foreach (InteractablePropertyBase property in p)
+            IPBase[] p = content.GetComponentsInChildren<IPBase>();
+            foreach (IPBase property in p)
             {
                 if (includeSelf == false && property.transform == content) continue;
                 property.ReleaseToPool();

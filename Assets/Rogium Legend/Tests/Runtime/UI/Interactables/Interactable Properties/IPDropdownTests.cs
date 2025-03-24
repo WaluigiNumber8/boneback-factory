@@ -24,7 +24,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
         [UnityTest]
         public IEnumerator WhenValueChanged_Should_UpdateSelfValue_WhenClicked()
         {
-            InteractablePropertyDropdown dropdown = CreateAndInitDropdown();
+            IPDropdown dropdown = CreateAndInitDropdown();
             
             yield return null;
             dropdown.GetComponentInChildren<TMP_Dropdown>().onValueChanged.Invoke(1);
@@ -36,7 +36,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
         [UnityTest]
         public IEnumerator WhenValueChanged_Should_AddToActionHistory_WhenClicked()
         {
-            InteractablePropertyDropdown dropdown = CreateAndInitDropdown();
+            IPDropdown dropdown = CreateAndInitDropdown();
             
             yield return null;
             dropdown.GetComponentInChildren<TMP_Dropdown>().onValueChanged.Invoke(1);
@@ -49,7 +49,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
         [UnityTest]
         public IEnumerator UndoLast_Should_RevertValue_WhenClicked()
         {
-            InteractablePropertyDropdown dropdown = CreateAndInitDropdown();
+            IPDropdown dropdown = CreateAndInitDropdown();
             
             yield return null;
             dropdown.GetComponentInChildren<TMP_Dropdown>().onValueChanged.Invoke(1);

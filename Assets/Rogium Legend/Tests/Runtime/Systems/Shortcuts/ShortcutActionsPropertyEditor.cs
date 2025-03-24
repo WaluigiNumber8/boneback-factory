@@ -37,12 +37,12 @@ namespace Rogium.Tests.Systems.Shortcuts
         public IEnumerator Should_Undo_WhenShortcutPressed()
         {
             yield return EditFirstInputField("Fred");
-            string value = editor.GetComponentInChildren<InteractablePropertyInputField>().PropertyValue;
+            string value = editor.GetComponentInChildren<IPInputField>().PropertyValue;
             i.Press(keyboard.ctrlKey);
             i.Press(keyboard.yKey);
             i.Trigger(input.Shortcuts.Undo.Action);
             yield return new WaitForSecondsRealtime(0.1f);
-            Assert.That(editor.GetComponentInChildren<InteractablePropertyInputField>().PropertyValue, Is.Not.EqualTo(value));
+            Assert.That(editor.GetComponentInChildren<IPInputField>().PropertyValue, Is.Not.EqualTo(value));
         }
 
         [UnityTest]
@@ -53,7 +53,7 @@ namespace Rogium.Tests.Systems.Shortcuts
             i.Press(keyboard.zKey);
             i.Trigger(input.Shortcuts.Redo.Action);
             yield return new WaitForSecondsRealtime(0.1f);
-            Assert.That(editor.GetComponentInChildren<InteractablePropertyInputField>().PropertyValue, Is.EqualTo("Fred"));
+            Assert.That(editor.GetComponentInChildren<IPInputField>().PropertyValue, Is.EqualTo("Fred"));
         }
 
         [UnityTest]
@@ -83,7 +83,7 @@ namespace Rogium.Tests.Systems.Shortcuts
         [UnityTest]
         public IEnumerator Should_CloseSoundPickerWindow_WhenShortcutPressed()
         {
-            editor.GetComponentInChildren<InteractablePropertySoundField>().OpenWindow();
+            editor.GetComponentInChildren<IPSoundField>().OpenWindow();
             yield return null;
             i.Trigger(input.UI.Cancel.Action);
             yield return null;
@@ -94,7 +94,7 @@ namespace Rogium.Tests.Systems.Shortcuts
         [UnityTest]
         public IEnumerator Should_CloseSoundPickerWindowWithoutLeavingPropertyEditor_WhenShortcutPressed()
         {
-            editor.GetComponentInChildren<InteractablePropertySoundField>().OpenWindow();
+            editor.GetComponentInChildren<IPSoundField>().OpenWindow();
             yield return null;
             i.Trigger(input.UI.Cancel.Action);
             yield return null;
@@ -104,9 +104,9 @@ namespace Rogium.Tests.Systems.Shortcuts
         [UnityTest]
         public IEnumerator Should_CloseSoundPickingWindowButNotSoundPickerWindow_WhenShortcutPressed()
         {
-            editor.GetComponentInChildren<InteractablePropertySoundField>().OpenWindow();
+            editor.GetComponentInChildren<IPSoundField>().OpenWindow();
             yield return null;
-            Object.FindFirstObjectByType<SoundPickerWindow>().GetComponentInChildren<InteractablePropertyAssetField>().OpenWindow();
+            Object.FindFirstObjectByType<SoundPickerWindow>().GetComponentInChildren<IPAssetField>().OpenWindow();
             i.Trigger(input.UI.Cancel.Action);
             yield return null;
             Assert.That(Object.FindFirstObjectByType<SoundPickerWindow>().IsOpen, Is.True);
@@ -116,9 +116,9 @@ namespace Rogium.Tests.Systems.Shortcuts
         [UnityTest]
         public IEnumerator Should_CloseSoundPickingWindowAndNotLeavePropertyEditor_WhenShortcutPressed()
         {
-            editor.GetComponentInChildren<InteractablePropertySoundField>().OpenWindow();
+            editor.GetComponentInChildren<IPSoundField>().OpenWindow();
             yield return new WaitForSeconds(0.1f);
-            Object.FindFirstObjectByType<SoundPickerWindow>().GetComponentInChildren<InteractablePropertyAssetField>().OpenWindow();
+            Object.FindFirstObjectByType<SoundPickerWindow>().GetComponentInChildren<IPAssetField>().OpenWindow();
             yield return new WaitForSeconds(0.1f);
             i.Trigger(input.UI.Cancel.Action);
             yield return new WaitForSeconds(0.1f);

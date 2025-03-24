@@ -11,10 +11,10 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// <summary>
     /// Prepares the Slider property for correct use.
     /// </summary>
-    public class InteractablePropertySlider : InteractablePropertyWithValueBase<float>
+    public class IPSlider : IPWithValueBase<float>
     {
         [SerializeField] private Slider slider;
-        [SerializeField] private InteractablePropertyInputField inputField;
+        [SerializeField] private IPInputField inputField;
 
         [SerializeField] private DecimalInfo decimals;
         [SerializeField] private UIInfo ui;
@@ -123,7 +123,7 @@ namespace Rogium.UserInterface.Interactables.Properties
         }
         
         public override float PropertyValue { get => slider.value / decimalMultiplier; }
-        public InteractablePropertyInputField InputField { get => inputField; }
+        public IPInputField InputField { get => inputField; }
 
         [Serializable]
         public struct DecimalInfo

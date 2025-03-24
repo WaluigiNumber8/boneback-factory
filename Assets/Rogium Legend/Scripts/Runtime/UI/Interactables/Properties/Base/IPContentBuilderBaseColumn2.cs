@@ -8,11 +8,11 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// <summary>
     /// A base for all Property Builders working with a 2-column setup.
     /// </summary>
-    public abstract class UIPropertyContentBuilderBaseColumn2<T> : UIPropertyContentBuilderBase<T> where T : IIDHolder
+    public abstract class IPContentBuilderBaseColumn2<T> : IPContentBuilderBase<T> where T : IIDHolder
     {
         protected readonly Transform contentSecond;
         
-        protected UIPropertyContentBuilderBaseColumn2(Transform contentMain, Transform contentSecond) : base(contentMain)
+        protected IPContentBuilderBaseColumn2(Transform contentMain, Transform contentSecond) : base(contentMain)
         {
             Preconditions.IsNotNull(contentSecond, "Secondary Content Property Transform");
             

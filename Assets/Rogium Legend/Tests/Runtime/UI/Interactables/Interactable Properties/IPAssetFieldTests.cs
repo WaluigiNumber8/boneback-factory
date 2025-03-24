@@ -19,7 +19,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
     /// </summary>
     public class IPAssetFieldTests : MenuTestBase
     {
-        private InteractablePropertyAssetField assetField;
+        private IPAssetField assetField;
 
         [UnitySetUp]
         public override IEnumerator Setup()

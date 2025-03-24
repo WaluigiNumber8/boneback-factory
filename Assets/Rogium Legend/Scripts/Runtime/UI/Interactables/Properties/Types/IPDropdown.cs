@@ -11,7 +11,7 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// <summary>
     /// Overseers everything happening in a dropdown interactable property.
     /// </summary>
-    public class InteractablePropertyDropdown : InteractablePropertyWithValueBase<int>
+    public class IPDropdown : IPWithValueBase<int>
     {
         [SerializeField] private TMP_Dropdown dropdown;
         [SerializeField] private UIInfo ui;

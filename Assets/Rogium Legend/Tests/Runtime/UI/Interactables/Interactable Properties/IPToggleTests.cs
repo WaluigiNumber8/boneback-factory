@@ -24,7 +24,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
         [UnityTest]
         public IEnumerator WhenValueChanged_Should_UpdateSelfValue_WhenClicked()
         {
-            InteractablePropertyToggle toggle = CreateAndInitToggle();
+            IPToggle toggle = CreateAndInitToggle();
             
             yield return null;
             toggle.GetComponentInChildren<Toggle>().onValueChanged.Invoke(true);
@@ -36,7 +36,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
         [UnityTest]
         public IEnumerator WhenValueChanged_Should_AddToActionHistory_WhenClicked()
         {
-            InteractablePropertyToggle toggle = CreateAndInitToggle();
+            IPToggle toggle = CreateAndInitToggle();
             
             yield return null;
             toggle.GetComponentInChildren<Toggle>().onValueChanged.Invoke(true);
@@ -49,7 +49,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
         [UnityTest]
         public IEnumerator UndoLast_Should_RevertValue_WhenClicked()
         {
-            InteractablePropertyToggle toggle = CreateAndInitToggle();
+            IPToggle toggle = CreateAndInitToggle();
             
             yield return null;
             toggle.GetComponentInChildren<Toggle>().onValueChanged.Invoke(true);

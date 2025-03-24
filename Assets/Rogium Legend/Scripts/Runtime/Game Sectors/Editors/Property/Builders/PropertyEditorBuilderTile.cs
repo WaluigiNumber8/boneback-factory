@@ -17,7 +17,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
         private TileAsset asset;
         private PackAsset currentPack;
 
-        private InteractablePropertyContentBlock terrainTypeBlock;
+        private IPContentBlock terrainTypeBlock;
         public PropertyEditorBuilderTile(Transform contentMain, Transform contentSecond) : base(contentMain, contentSecond) { }
 
         public override void BuildInternal(TileAsset asset)

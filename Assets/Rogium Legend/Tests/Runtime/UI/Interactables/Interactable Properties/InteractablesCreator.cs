@@ -14,84 +14,84 @@ namespace Rogium.Tests.UI.Interactables.Properties
     /// </summary>
     public static class InteractablesCreator
     {
-        private static readonly InteractablePropertyToggle toggleProperty = AssetDatabase.LoadAssetAtPath<InteractablePropertyToggle>("Assets/Rogium Legend/Prefabs/UI/Interactables/Properties/Horizontal/pref_Property_Toggle_Blue.prefab");
-        private static readonly InteractablePropertySlider sliderProperty = AssetDatabase.LoadAssetAtPath<InteractablePropertySlider>("Assets/Rogium Legend/Prefabs/UI/Interactables/Properties/Horizontal/pref_Property_Slider_Horizontal_Input_Blue.prefab");
-        private static readonly InteractablePropertyInputField inputFieldProperty = AssetDatabase.LoadAssetAtPath<InteractablePropertyInputField>("Assets/Rogium Legend/Prefabs/UI/Interactables/Properties/Horizontal/pref_Property_InputField_Blue.prefab");
-        private static readonly InteractablePropertyDropdown dropdownProperty = AssetDatabase.LoadAssetAtPath<InteractablePropertyDropdown>("Assets/Rogium Legend/Prefabs/UI/Interactables/Properties/Horizontal/pref_Property_Dropdown_Blue.prefab");
-        private static readonly InteractablePropertyAssetField assetFieldProperty = AssetDatabase.LoadAssetAtPath<InteractablePropertyAssetField>("Assets/Rogium Legend/Prefabs/UI/Interactables/Properties/Horizontal/pref_Property_AssetField_Blue.prefab");
-        private static readonly InteractablePropertyAssetField assetFieldTextProperty = AssetDatabase.LoadAssetAtPath<InteractablePropertyAssetField>("Assets/Rogium Legend/Prefabs/UI/Interactables/Properties/Horizontal/pref_Property_AssetField_Text_Blue.prefab");
-        private static readonly InteractablePropertyColorField colorFieldProperty = AssetDatabase.LoadAssetAtPath<InteractablePropertyColorField>("Assets/Rogium Legend/Prefabs/UI/Interactables/Properties/Horizontal/pref_Property_ColorField_Blue.prefab");
-        private static readonly InteractablePropertySoundField soundFieldProperty = AssetDatabase.LoadAssetAtPath<InteractablePropertySoundField>("Assets/Rogium Legend/Prefabs/UI/Interactables/Properties/Horizontal/pref_Property_SoundField_Blue.prefab");
-        private static readonly InteractablePropertySoundField assetEmblemListProperty = AssetDatabase.LoadAssetAtPath<InteractablePropertySoundField>("Assets/Rogium Legend/Prefabs/UI/Interactables/Properties/Horizontal/pref_Property_AssetEmblemList_Blue.prefab");
-        private static readonly InteractablePropertyInputBinding inputBindingProperty = AssetDatabase.LoadAssetAtPath<InteractablePropertyInputBinding>("Assets/Rogium Legend/Prefabs/UI/Interactables/Properties/Horizontal/pref_Property_InputBinding_Blue.prefab");
+        private static readonly IPToggle toggleProperty = AssetDatabase.LoadAssetAtPath<IPToggle>("Assets/Rogium Legend/Prefabs/UI/Interactables/Properties/Horizontal/pref_Property_Toggle_Blue.prefab");
+        private static readonly IPSlider sliderProperty = AssetDatabase.LoadAssetAtPath<IPSlider>("Assets/Rogium Legend/Prefabs/UI/Interactables/Properties/Horizontal/pref_Property_Slider_Horizontal_Input_Blue.prefab");
+        private static readonly IPInputField inputFieldProperty = AssetDatabase.LoadAssetAtPath<IPInputField>("Assets/Rogium Legend/Prefabs/UI/Interactables/Properties/Horizontal/pref_Property_InputField_Blue.prefab");
+        private static readonly IPDropdown dropdownProperty = AssetDatabase.LoadAssetAtPath<IPDropdown>("Assets/Rogium Legend/Prefabs/UI/Interactables/Properties/Horizontal/pref_Property_Dropdown_Blue.prefab");
+        private static readonly IPAssetField assetFieldProperty = AssetDatabase.LoadAssetAtPath<IPAssetField>("Assets/Rogium Legend/Prefabs/UI/Interactables/Properties/Horizontal/pref_Property_AssetField_Blue.prefab");
+        private static readonly IPAssetField assetFieldTextProperty = AssetDatabase.LoadAssetAtPath<IPAssetField>("Assets/Rogium Legend/Prefabs/UI/Interactables/Properties/Horizontal/pref_Property_AssetField_Text_Blue.prefab");
+        private static readonly IPColorField colorFieldProperty = AssetDatabase.LoadAssetAtPath<IPColorField>("Assets/Rogium Legend/Prefabs/UI/Interactables/Properties/Horizontal/pref_Property_ColorField_Blue.prefab");
+        private static readonly IPSoundField soundFieldProperty = AssetDatabase.LoadAssetAtPath<IPSoundField>("Assets/Rogium Legend/Prefabs/UI/Interactables/Properties/Horizontal/pref_Property_SoundField_Blue.prefab");
+        private static readonly IPSoundField assetEmblemListProperty = AssetDatabase.LoadAssetAtPath<IPSoundField>("Assets/Rogium Legend/Prefabs/UI/Interactables/Properties/Horizontal/pref_Property_AssetEmblemList_Blue.prefab");
+        private static readonly IPInputBinding inputBindingProperty = AssetDatabase.LoadAssetAtPath<IPInputBinding>("Assets/Rogium Legend/Prefabs/UI/Interactables/Properties/Horizontal/pref_Property_InputBinding_Blue.prefab");
         
-        public static InteractablePropertyToggle CreateAndInitToggle(bool value = false)
+        public static IPToggle CreateAndInitToggle(bool value = false)
         {
-            InteractablePropertyToggle toggle = Object.Instantiate(toggleProperty, Vector3.zero, Quaternion.identity);
+            IPToggle toggle = Object.Instantiate(toggleProperty, Vector3.zero, Quaternion.identity);
             toggle.Construct("Test Toggle", value, null);
             return toggle;
         }
 
-        public static InteractablePropertySlider CreateAndInitSlider(float value = 0)
+        public static IPSlider CreateAndInitSlider(float value = 0)
         {
-            InteractablePropertySlider slider = Object.Instantiate(sliderProperty, Vector3.zero, Quaternion.identity);
+            IPSlider slider = Object.Instantiate(sliderProperty, Vector3.zero, Quaternion.identity);
             slider.Construct("Test Slider", 0f, 1f, value, null);
             return slider;
         }
 
-        public static InteractablePropertySlider CreateAndInitSlider(int value = 0)
+        public static IPSlider CreateAndInitSlider(int value = 0)
         {
-            InteractablePropertySlider slider = Object.Instantiate(sliderProperty, Vector3.zero, Quaternion.identity);
+            IPSlider slider = Object.Instantiate(sliderProperty, Vector3.zero, Quaternion.identity);
             slider.Construct("Test Slider", 0, 1, value, null);
             return slider;
         }
 
-        public static InteractablePropertyInputField CreateAndInitInputField(string value = "")
+        public static IPInputField CreateAndInitInputField(string value = "")
         {
-            InteractablePropertyInputField inputField = Object.Instantiate(inputFieldProperty, Vector3.zero, Quaternion.identity);
+            IPInputField inputField = Object.Instantiate(inputFieldProperty, Vector3.zero, Quaternion.identity);
             inputField.Construct("Test InputField", value, null, TMP_InputField.CharacterValidation.Alphanumeric, 0f, 100f);
             return inputField;
         }
 
-        public static InteractablePropertyDropdown CreateAndInitDropdown(int value = 0)
+        public static IPDropdown CreateAndInitDropdown(int value = 0)
         {
-            InteractablePropertyDropdown dropdown = Object.Instantiate(dropdownProperty, Vector3.zero, Quaternion.identity);
+            IPDropdown dropdown = Object.Instantiate(dropdownProperty, Vector3.zero, Quaternion.identity);
             dropdown.Construct("Test Dropdown", new[] {"Option 1", "Option 2", "Option 3"}, value, null);
             return dropdown;
         }
 
-        public static InteractablePropertyAssetField CreateAndInitAssetField(AssetType type, IAsset value = null)
+        public static IPAssetField CreateAndInitAssetField(AssetType type, IAsset value = null)
         {
-            InteractablePropertyAssetField assetField = Object.Instantiate(assetFieldProperty, Vector3.zero, Quaternion.identity);
+            IPAssetField assetField = Object.Instantiate(assetFieldProperty, Vector3.zero, Quaternion.identity);
             assetField.Construct("Test AssetField", type, value ?? new EmptyAsset(), null, () => { });
             return assetField;
         }
 
-        public static InteractablePropertyAssetField CreateAndInitAssetFieldText(AssetType type = AssetType.None, IAsset value = null)
+        public static IPAssetField CreateAndInitAssetFieldText(AssetType type = AssetType.None, IAsset value = null)
         {
-            InteractablePropertyAssetField assetField = Object.Instantiate(assetFieldTextProperty, Vector3.zero, Quaternion.identity);
+            IPAssetField assetField = Object.Instantiate(assetFieldTextProperty, Vector3.zero, Quaternion.identity);
             assetField.Construct("Test AssetField", type, value, null);
             return assetField;
         }
 
-        public static InteractablePropertyColorField CreateAndInitColorField(Color value = new())
+        public static IPColorField CreateAndInitColorField(Color value = new())
         {
-            InteractablePropertyColorField colorField = Object.Instantiate(colorFieldProperty, Vector3.zero, Quaternion.identity);
+            IPColorField colorField = Object.Instantiate(colorFieldProperty, Vector3.zero, Quaternion.identity);
             colorField.Construct("Test ColorField", value, null);
             return colorField;
         }
 
-        public static InteractablePropertySoundField CreateAndInitSoundField(AssetData value = null)
+        public static IPSoundField CreateAndInitSoundField(AssetData value = null)
         {
-            InteractablePropertySoundField soundField = Object.Instantiate(soundFieldProperty, Vector3.zero, Quaternion.identity);
+            IPSoundField soundField = Object.Instantiate(soundFieldProperty, Vector3.zero, Quaternion.identity);
             soundField.Construct("Test SoundField", value, null);
             return soundField;
         }
         
-        public static InteractablePropertyInputBinding BuildInputBinding(InputAction action, bool useAlt = true, InputDeviceType device = InputDeviceType.Keyboard)
+        public static IPInputBinding BuildInputBinding(InputAction action, bool useAlt = true, InputDeviceType device = InputDeviceType.Keyboard)
         {
             UIPropertyBuilder.Instance.BuildInputBinding(action, device, Object.FindFirstObjectByType<Canvas>().transform, useAlt);
-            return Object.FindFirstObjectByType<InteractablePropertyInputBinding>();
+            return Object.FindFirstObjectByType<IPInputBinding>();
         }
     }
 }

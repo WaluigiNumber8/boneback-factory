@@ -10,7 +10,7 @@ namespace Rogium.UserInterface.Interactables.Properties
     /// <summary>
     /// Represents a property that allows rebinding an single-button input for both keyboard and gamepad.
     /// </summary>
-    public class InteractablePropertyInputBinding : InteractablePropertyWithValueBase<InputAction>
+    public class IPInputBinding : IPWithValueBase<InputAction>
     {
         [SerializeField] private InputBindingReader inputReader;
         [SerializeField] private InputBindingReader inputReaderAlt;
