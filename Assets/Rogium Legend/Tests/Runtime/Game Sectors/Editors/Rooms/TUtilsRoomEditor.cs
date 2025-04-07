@@ -9,13 +9,13 @@ namespace Rogium.Tests.Editors.Rooms
     /// <summary>
     /// Utils for the <see cref="RoomEditorOverseerMono"/> tests.
     /// </summary>
-    public static class RoomEditorUtils
+    public static class TUtilsRoomEditor
     {
         public static void FillEntireActiveLayer()
         {
             RoomEditorOverseerMono roomEditor = RoomEditorOverseerMono.Instance;
             ObjectGrid<AssetData> layer = roomEditor.GetCurrentGridCopy;
-            ActionHistorySystem.ForceBeginGrouping();
+            ActionHistorySystem.StartNewGroup();
             for (int i = 0; i < layer.Width; i++)
             {
                 for (int j = 0; j < layer.Height; j++)
@@ -23,7 +23,7 @@ namespace Rogium.Tests.Editors.Rooms
                     roomEditor.UpdateGridCell(new Vector2Int(i, j));
                 }
             }
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
         }
     }
 }

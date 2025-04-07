@@ -41,7 +41,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
             yield return null;
             toggle.GetComponentInChildren<Toggle>().onValueChanged.Invoke(true);
             yield return null;
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
 
             Assert.That(ActionHistorySystem.UndoCount, Is.EqualTo(1));
         }
@@ -54,7 +54,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
             yield return null;
             toggle.GetComponentInChildren<Toggle>().onValueChanged.Invoke(true);
             yield return null;
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             ActionHistorySystem.Undo();
             yield return null;
 

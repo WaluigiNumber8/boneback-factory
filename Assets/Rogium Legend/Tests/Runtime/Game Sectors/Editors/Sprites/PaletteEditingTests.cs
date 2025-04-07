@@ -70,7 +70,7 @@ namespace Rogium.Tests.Editors.Sprites
         public IEnumerator Should_AddSlotColorChangeToActionHistory()
         {
             yield return UpdateColorSlot(Color.blue);
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             yield return null;
 
             Assert.That(ActionHistorySystem.UndoCount, Is.GreaterThanOrEqualTo(1));
@@ -80,10 +80,10 @@ namespace Rogium.Tests.Editors.Sprites
         public IEnumerator Should_RevertColorSlotChange_WhenUndoIsCalled()
         {
             yield return UpdateColorSlot(Color.blue);
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             yield return null;
             yield return UpdateColorSlot(Color.red);
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             yield return null;
             ActionHistorySystem.Undo();
 
@@ -137,7 +137,7 @@ namespace Rogium.Tests.Editors.Sprites
         public IEnumerator Should_FlagPaletteAsChanged_WhenPaletteSlotColorChangedThenUndoThenChanged()
         {
             yield return UpdateColorSlot(Color.blue);
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             ActionHistorySystem.Undo();
             yield return UpdateColorSlot(Color.red);
             Assert.That(spriteEditor.PaletteChanged, Is.True);
@@ -147,7 +147,7 @@ namespace Rogium.Tests.Editors.Sprites
         public IEnumerator Should_FlagPaletteAsNotChanged_WhenPaletteSlotColorChangedAndUndoIsCalled()
         {
             yield return UpdateColorSlot(Color.blue);
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             ActionHistorySystem.Undo();
             Assert.That(spriteEditor.PaletteChanged, Is.False);
         }

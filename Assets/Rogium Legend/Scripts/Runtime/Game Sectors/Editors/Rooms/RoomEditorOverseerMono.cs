@@ -129,7 +129,7 @@ namespace Rogium.Editors.Rooms
         /// </summary>
         public void ClearActiveLayer()
         {
-            ActionHistorySystem.ForceBeginGrouping();
+            ActionHistorySystem.StartNewGroup();
             for (int x = 0; x < grid.Size.x; x++)
             {
                 for (int y = 0; y < grid.Size.y; y++)
@@ -137,7 +137,7 @@ namespace Rogium.Editors.Rooms
                     EraseCell(new Vector2Int(x, y));
                 }
             }
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
         }
         
         /// <summary>

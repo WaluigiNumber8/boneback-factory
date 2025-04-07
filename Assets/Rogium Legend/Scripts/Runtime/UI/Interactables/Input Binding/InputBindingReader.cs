@@ -127,7 +127,7 @@ namespace Rogium.UserInterface.Interactables
             
             void OverrideDuplicateBinding(InputAction duplicateAction, InputBindingCombination combo, int duplicateIndex)
             {
-                ActionHistorySystem.ForceBeginGrouping(true);
+                ActionHistorySystem.StartNewGroup(true);
                 
                 //Clear the duplicate binding reader
                 InputBindingReader duplicateReader = null;
@@ -142,7 +142,7 @@ namespace Rogium.UserInterface.Interactables
 
                 ActionHistorySystem.AddAndExecute(new UpdateInputBindingAction(duplicateReader, new InputBindingCombination.Builder().From(combo).AsEmpty(), combo, c => RebindAction(duplicateAction, c, duplicateIndex-2, duplicateIndex-1, duplicateIndex)));
                 ActionHistorySystem.AddAndExecute(new UpdateInputBindingAction(this, binding, lastBinding, c => RebindAction(action, c, modifier1Index, modifier2Index, buttonIndex)));
-                ActionHistorySystem.ForceEndGrouping();
+                ActionHistorySystem.EndCurrentGroup();
             }
             
             void RevertBinding() => Rebind(lastBinding);

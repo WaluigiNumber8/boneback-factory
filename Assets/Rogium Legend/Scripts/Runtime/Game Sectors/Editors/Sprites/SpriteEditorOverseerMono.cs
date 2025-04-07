@@ -111,7 +111,7 @@ namespace Rogium.Editors.Sprites
         /// </summary>
         public void ClearActiveGrid()
         {
-            ActionHistorySystem.ForceBeginGrouping();
+            ActionHistorySystem.StartNewGroup();
             for (int x = 0; x < grid.Size.x; x++)
             {
                 for (int y = 0; y < grid.Size.y; y++)
@@ -119,7 +119,7 @@ namespace Rogium.Editors.Sprites
                     EraseCell(new Vector2Int(x, y));
                 }
             }
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
         }
         
         /// <summary>

@@ -51,7 +51,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
         public IEnumerator WhenValueChanged_Should_AddToActionHistory_WhenClicked()
         {
             FillColorField(Color.red);
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             yield return null;
             
             Assert.That(ActionHistorySystem.UndoCount, Is.EqualTo(1));
@@ -61,7 +61,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
         public IEnumerator Undo_Should_RevertToPreviousColor()
         {
             FillColorField(Color.red);
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             yield return null;
             
             ActionHistorySystem.Undo();

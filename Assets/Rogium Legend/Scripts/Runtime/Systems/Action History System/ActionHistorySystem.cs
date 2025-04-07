@@ -75,28 +75,35 @@ namespace Rogium.Systems.ActionHistory
         }
 
         #region Group Processing
-
         /// <summary>
-        /// Forces the system to allow grouping of actions.
+        /// Enables/disables grouping of actions.
         /// </summary>
-        public static void ForceBeginGrouping() => ForceBeginGrouping(false);
-        public static void ForceBeginGrouping(bool allowDifferentConstructs)
+        /// <param name="value">TRUE to enable.</param>
+        public static void EnableGroupingBehaviour(bool value)
         {
-            if (allowDifferentConstructs) ignoreConstructs = true;
-            if (canCreateGroups) ForceEndGrouping();
-            canCreateGroups = true;
-        }
-
-        /// <summary>
-        /// Forces the system to add the current group to undo history.
-        /// </summary>
-        public static void ForceEndGrouping()
-        {
-            ignoreConstructs = false;
-            canCreateGroups = false;
-            AddCurrentGroupToUndo();
+            canCreateGroups = value;
+            if (!value) EndCurrentGroup();
         }
         
+        /// <summary>
+        /// Forces the system to end current group and prepare for a new one.
+        /// </summary>
+        public static void StartNewGroup() => StartNewGroup(false);
+        public static void StartNewGroup(bool allowDifferentConstructs)
+        {
+            if (allowDifferentConstructs) ignoreConstructs = true;
+            if (canCreateGroups) EndCurrentGroup();
+        }
+
+        /// <summary>
+        /// Forces the system to add the current group to undo.
+        /// </summary>
+        public static void EndCurrentGroup()
+        {
+            ignoreConstructs = false;
+            AddCurrentGroupToUndo();
+        }
+
         private static void DecideGroupingResponseFor(IAction action, bool blockGrouping = false)
         {
             // If in group mode

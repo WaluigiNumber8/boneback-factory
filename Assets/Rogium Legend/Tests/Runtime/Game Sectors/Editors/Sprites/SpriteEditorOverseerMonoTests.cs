@@ -60,7 +60,7 @@ namespace Rogium.Tests.Editors.Sprites
         public void ClearActiveGrid_Should_AddToUndoHistory()
         {
             SpriteEditorOverseerMonoTestsU.FillEntireGrid();
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             spriteEditor.ClearActiveGrid();
             
             Assert.That(ActionHistorySystem.UndoCount, Is.EqualTo(2));

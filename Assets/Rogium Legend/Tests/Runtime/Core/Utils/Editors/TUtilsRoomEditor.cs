@@ -15,7 +15,7 @@ namespace Rogium.Tests.Core
         {
             SelectTool(ToolType.Fill);
             RoomEditorOverseerMono.Instance.UpdateGridCell(new Vector2Int(0, 0));
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             yield return null;
         }
 

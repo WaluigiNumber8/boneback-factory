@@ -33,7 +33,7 @@ namespace Rogium.Tests.UI.Interactables.InputReader
         public IEnumerator Should_AddToActionHistory_WhenRebound()
         {
             yield return BindKey(keyboard.lKey);
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             Assert.That(ActionHistorySystem.UndoCount, Is.EqualTo(1));
         }
 
@@ -42,7 +42,7 @@ namespace Rogium.Tests.UI.Interactables.InputReader
         {
             string originalKey = reader.Binding.DisplayString;
             yield return BindKey(keyboard.lKey);
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             ActionHistorySystem.Undo();
             Assert.That(reader.Binding.DisplayString, Is.EqualTo(originalKey));
         }
@@ -51,7 +51,7 @@ namespace Rogium.Tests.UI.Interactables.InputReader
         public IEnumerator Should_NotEqualToNewKey_WhenUndone()
         {
             yield return BindKey(keyboard.lKey);
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             string reboundKey = reader.Binding.DisplayString;
             ActionHistorySystem.Undo();
             Assert.That(reader.Binding.DisplayString, Is.Not.EqualTo(reboundKey));
@@ -61,7 +61,7 @@ namespace Rogium.Tests.UI.Interactables.InputReader
         public IEnumerator Should_RedoRebinding_WhenRedone()
         {
             yield return BindKey(keyboard.lKey);
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             string reboundKey = reader.Binding.DisplayString;
             ActionHistorySystem.Undo();
             ActionHistorySystem.Redo();
@@ -73,7 +73,7 @@ namespace Rogium.Tests.UI.Interactables.InputReader
         {
             string originalKey = reader.Binding.DisplayString;
             yield return BindKey(keyboard.lKey);
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             ActionHistorySystem.Undo();
             ActionHistorySystem.Redo();
             Assert.That(reader.Binding.DisplayString, Is.Not.EqualTo(originalKey));
@@ -84,7 +84,7 @@ namespace Rogium.Tests.UI.Interactables.InputReader
         {
             string originalSymbol = reader.InputString;
             yield return BindKey(keyboard.lKey);
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             ActionHistorySystem.Undo();
             Assert.That(reader.InputString, Is.EqualTo(originalSymbol));
         }
@@ -115,7 +115,7 @@ namespace Rogium.Tests.UI.Interactables.InputReader
         public IEnumerator Should_RevertActionBinding_WhenReaderIsInactiveAndUndone()
         {
             yield return BindKey(keyboard.lKey);
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             reader.gameObject.SetActive(false);
             ActionHistorySystem.Undo();
             yield return null;
@@ -126,7 +126,7 @@ namespace Rogium.Tests.UI.Interactables.InputReader
         public IEnumerator Should_NotKeepNewAction_WhenReaderIsInactiveAndUndone()
         {
             yield return BindKey(keyboard.lKey);
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             reader.gameObject.SetActive(false);
             ActionHistorySystem.Undo();
             yield return null;
@@ -140,7 +140,7 @@ namespace Rogium.Tests.UI.Interactables.InputReader
             yield return BindKey(mouse.rightButton);
             Object.FindFirstObjectByType<ModalWindow>().OnDeny();
             yield return null;
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             Assert.That(ActionHistorySystem.UndoCount, Is.EqualTo(0));
         }
         

@@ -52,15 +52,15 @@ namespace Rogium.Systems.Input
             UI.PointerPosition.OnPressed += UpdatePointerPosition;
             
             //Force grouping on click/right click
-            UI.Select.OnPress -= ActionHistorySystem.ForceBeginGrouping;
-            UI.ContextSelect.OnPress -= ActionHistorySystem.ForceBeginGrouping;
-            UI.Select.OnRelease -= ActionHistorySystem.ForceEndGrouping;
-            UI.ContextSelect.OnRelease -= ActionHistorySystem.ForceEndGrouping;
+            UI.Select.OnPress -= ActionHistorySystem.StartNewGroup;
+            UI.ContextSelect.OnPress -= ActionHistorySystem.StartNewGroup;
+            UI.Select.OnRelease -= ActionHistorySystem.EndCurrentGroup;
+            UI.ContextSelect.OnRelease -= ActionHistorySystem.EndCurrentGroup;
             
-            UI.Select.OnPress += ActionHistorySystem.ForceBeginGrouping;
-            UI.ContextSelect.OnPress += ActionHistorySystem.ForceBeginGrouping;
-            UI.Select.OnRelease += ActionHistorySystem.ForceEndGrouping;
-            UI.ContextSelect.OnRelease += ActionHistorySystem.ForceEndGrouping;
+            UI.Select.OnPress += ActionHistorySystem.StartNewGroup;
+            UI.ContextSelect.OnPress += ActionHistorySystem.StartNewGroup;
+            UI.Select.OnRelease += ActionHistorySystem.EndCurrentGroup;
+            UI.ContextSelect.OnRelease += ActionHistorySystem.EndCurrentGroup;
         }
 
         public void SwitchToGameplayMaps()

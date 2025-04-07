@@ -60,7 +60,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
         public IEnumerator WhenValueChanged_Should_AddToActionHistory_WhenClicked()
         {
             yield return FillAssetField();
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             
             Assert.That(ActionHistorySystem.UndoCount, Is.EqualTo(1));
         }
@@ -69,7 +69,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
         public IEnumerator UndoLast_Should_RevertValue_WhenClicked()
         {
             yield return FillAssetField();
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             ActionHistorySystem.Undo();
 
             Assert.That(assetField.PropertyValue, Is.EqualTo(new EmptyAsset()));
@@ -79,9 +79,9 @@ namespace Rogium.Tests.UI.Interactables.Properties
         public IEnumerator WhenValueChanged_Should_AddToActionHistory_WhenCleared()
         {
             yield return FillAssetField();
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             assetField.GetComponentInChildren<AssetField>().OnPointerClick(TUtilsPointerDataCreator.RightClick());
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             
             Assert.That(ActionHistorySystem.UndoCount, Is.EqualTo(2));
         }

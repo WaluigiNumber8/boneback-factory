@@ -49,7 +49,7 @@ namespace Rogium.Tests.Editors.Rooms
         [Test]
         public void ClearActiveLayer_Should_AddToUndoHistory()
         {
-            RoomEditorUtils.FillEntireActiveLayer();
+            TUtilsRoomEditor.FillEntireActiveLayer();
             roomEditor.ClearActiveLayer();
             
             Assert.That(ActionHistorySystem.UndoCount, Is.EqualTo(2));
@@ -58,7 +58,7 @@ namespace Rogium.Tests.Editors.Rooms
         [UnityTest]
         public IEnumerator UndoLast_Should_UndoClearActiveGrid()
         {
-            RoomEditorUtils.FillEntireActiveLayer();
+            TUtilsRoomEditor.FillEntireActiveLayer();
             yield return null;
             roomEditor.ClearActiveLayer();
             yield return null;

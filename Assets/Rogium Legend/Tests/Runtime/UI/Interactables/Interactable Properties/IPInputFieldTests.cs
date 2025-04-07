@@ -41,7 +41,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
             yield return null;
             inputField.GetComponentInChildren<TMP_InputField>().onEndEdit.Invoke("Test");
             yield return null;
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
 
             Assert.That(ActionHistorySystem.UndoCount, Is.EqualTo(1));
         }
@@ -54,7 +54,7 @@ namespace Rogium.Tests.UI.Interactables.Properties
             yield return null;
             inputField.GetComponentInChildren<TMP_InputField>().onEndEdit.Invoke("Test");
             yield return null;
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             ActionHistorySystem.Undo();
             yield return null;
 

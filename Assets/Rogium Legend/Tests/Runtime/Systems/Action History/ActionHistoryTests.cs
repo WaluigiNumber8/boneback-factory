@@ -18,17 +18,17 @@ namespace Rogium.Tests.Systems.ActionHistory
             mockAction = CreateAction();
             
             ActionHistorySystem.ClearHistory();
-            ActionHistorySystem.ForceBeginGrouping();
+            ActionHistorySystem.StartNewGroup();
         }
         
         [TearDown]
-        public void TearDown() => ActionHistorySystem.ForceEndGrouping();
+        public void TearDown() => ActionHistorySystem.EndCurrentGroup();
 
         [Test]
         public void AddAndExecute_Should_AddNewActionToUndo()
         {
             ActionHistorySystem.AddAndExecute(mockAction);
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             
             Assert.That(ActionHistorySystem.UndoCount, Is.EqualTo(1));
         }
@@ -39,7 +39,7 @@ namespace Rogium.Tests.Systems.ActionHistory
             mockAction = CreateNonChangingAction();
 
             ActionHistorySystem.AddAndExecute(mockAction);
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             
             Assert.That(ActionHistorySystem.UndoCount, Is.EqualTo(0));
         }
@@ -48,7 +48,7 @@ namespace Rogium.Tests.Systems.ActionHistory
         public void AddAndExecute_Should_ExecuteAction()
         {
             ActionHistorySystem.AddAndExecute(mockAction);
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             
             mockAction.Received().Execute();
         }
@@ -57,7 +57,7 @@ namespace Rogium.Tests.Systems.ActionHistory
         public void AddAndExecute_Should_ClearRedoHistory()
         {
             ActionHistorySystem.AddAndExecute(mockAction);
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             
             Assert.That(ActionHistorySystem.RedoCount, Is.EqualTo(0));
         }
@@ -74,7 +74,7 @@ namespace Rogium.Tests.Systems.ActionHistory
         [Test]
         public void AddAndExecute_Should_NotAddActionToGroup_IfGroupingBlocked()
         {
-            ActionHistorySystem.ForceBeginGrouping();
+            ActionHistorySystem.StartNewGroup();
             ActionHistorySystem.AddAndExecute(mockAction, true);
             
             Assert.That(ActionHistorySystem.CurrentGroup, Is.Null);
@@ -113,7 +113,7 @@ namespace Rogium.Tests.Systems.ActionHistory
         public void UndoLast_Should_UndoLastAction()
         {
             ActionHistorySystem.AddAndExecute(mockAction);
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             ActionHistorySystem.Undo();
             
             mockAction.Received().Undo();
@@ -123,7 +123,7 @@ namespace Rogium.Tests.Systems.ActionHistory
         public void UndoLast_Should_ExecuteActionUndo()
         {
             ActionHistorySystem.AddAndExecute(mockAction);
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             ActionHistorySystem.Undo();
             
             mockAction.Received().Undo();
@@ -133,7 +133,7 @@ namespace Rogium.Tests.Systems.ActionHistory
         public void UndoLast_Should_AddActionToRedoHistory()
         {
             ActionHistorySystem.AddAndExecute(mockAction);
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             ActionHistorySystem.Undo();
             
             Assert.That(ActionHistorySystem.RedoCount, Is.EqualTo(1));
@@ -159,7 +159,7 @@ namespace Rogium.Tests.Systems.ActionHistory
         public void RedoLast_Should_RedoLastAction()
         {
             ActionHistorySystem.AddAndExecute(mockAction);
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             ActionHistorySystem.Undo();
             ActionHistorySystem.Redo();
             
@@ -170,7 +170,7 @@ namespace Rogium.Tests.Systems.ActionHistory
         public void RedoLast_Should_AddActionToUndoHistory()
         {
             ActionHistorySystem.AddAndExecute(mockAction);
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             ActionHistorySystem.Undo();
             ActionHistorySystem.Redo();
             
