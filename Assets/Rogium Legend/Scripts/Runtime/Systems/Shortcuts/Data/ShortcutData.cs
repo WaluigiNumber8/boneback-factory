@@ -36,16 +36,16 @@ namespace Rogium.Systems.Shortcuts
         public void Link()
         {
             if (inputAction == null) return;
-            inputAction.performed += Press;
+            inputAction.performed += Activate;
         }
 
         public void Unlink()
         {
             if (inputAction == null) return;
-            inputAction.performed -= Press;
+            inputAction.performed -= Activate;
         }
 
-        private void Press(InputAction.CallbackContext ctx) => action.Invoke();
+        private void Activate(InputAction.CallbackContext ctx) => action.Invoke();
 
         public override string ToString() => $"{inputAction.name} -> {action.GetPersistentMethodName(0)}()";
     }
