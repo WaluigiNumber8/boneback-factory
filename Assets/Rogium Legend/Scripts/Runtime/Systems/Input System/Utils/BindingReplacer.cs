@@ -15,9 +15,9 @@ namespace Rogium.Systems.Input
         /// Replace TwoOptionalModifierComposites with built-in modifiers.
         /// </summary>
         /// <param name="actions">The input action asset.</param>
-        public static void ReplaceBindings(RogiumInputActions actions)
+        public static void ReplaceBindings(InputActionAsset actions)
         {
-            foreach (InputActionMap map in actions.asset.actionMaps)
+            foreach (InputActionMap map in actions.actionMaps)
             {
                 foreach (InputAction action in map.actions)
                 {

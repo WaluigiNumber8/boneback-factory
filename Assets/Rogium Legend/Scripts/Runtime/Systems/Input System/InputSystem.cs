@@ -131,7 +131,7 @@ namespace Rogium.Systems.Input
         /// <summary>
         /// Replaces all TwoOptionalModifiersComposite bindings with their respective composite bindings.
         /// </summary>
-        public void ReplaceAllBindings() => BindingReplacer.ReplaceBindings(input);
+        public void ReplaceAllBindings() => BindingReplacer.ReplaceBindings(input.asset);
 
         public InputAction GetAction(InputAction action) => input.FindAction(action.name);
 
