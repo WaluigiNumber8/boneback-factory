@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using RedRats.Core;
+using RedRats.Safety;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Rogium.Systems.Shortcuts
 {
@@ -14,6 +16,17 @@ namespace Rogium.Systems.Shortcuts
         [SerializeField] private bool overrideAll;
 
         private List<ShortcutProfile> lastProfiles;
+
+        private void Awake()
+        {
+            //Check duplicate triggers in shortcuts
+            ISet<InputActionReference> triggers = new HashSet<InputActionReference>();
+            foreach (ShortcutData shortcut in shortcuts)
+            {
+                if (triggers.Add(shortcut.trigger)) continue;
+                throw new FoundDuplicationException($"Duplicate trigger found: '{shortcut.trigger.action.name}' in '{gameObject.name}'");
+            }
+        }
 
         private void OnEnable()
         {
