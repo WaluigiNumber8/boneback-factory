@@ -3812,6 +3812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   windowPrefab: {fileID: 1053597741724360686, guid: 4ed7771a46fa79d47b6ad8147723fe9b, type: 3}
+  poolParent: {fileID: 913386668}
 --- !u!224 &913386668
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3844,7 +3845,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   windowGenerator: {fileID: 913386667}
-  windowParent: {fileID: 913386668}
   assetPickerWindow: {fileID: 68577838218189983, guid: 9ede1282458e18148aae96abc978cf51, type: 3}
   soundPickerWindow: {fileID: 2980716121167271837, guid: 6f45ed5840029c748b2b65af2de5eedc, type: 3}
   colorPickerWindow: {fileID: 3072775963780375276, guid: 882d3a23b020d334cbd9878b500dd606, type: 3}
