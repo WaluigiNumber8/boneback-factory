@@ -4734,14 +4734,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2101485451}
     m_Modifications:
-    - target: {fileID: 6032676319869755054, guid: 1cbc42513542e6f4388fdd48f3c1e875, type: 3}
-      propertyPath: m_EffectDistance.x
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6032676319869755054, guid: 1cbc42513542e6f4388fdd48f3c1e875, type: 3}
-      propertyPath: m_EffectDistance.y
-      value: -5.5
-      objectReference: {fileID: 0}
     - target: {fileID: 6652775427856126012, guid: 1cbc42513542e6f4388fdd48f3c1e875, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -10550,6 +10542,59 @@ PrefabInstance:
     - target: {fileID: 1244352594400173024, guid: d790e035213896e419da527b1da6f0df, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -8755.265
+      objectReference: {fileID: 0}
+    - target: {fileID: 1479433180766167139, guid: d790e035213896e419da527b1da6f0df, type: 3}
+      propertyPath: m_text
+      value: '<b><color=#E32121>Features<color=#E6E6E6></b>
+
+        <margin-left=1ep>
+
+        *
+        <indent=2ep>Added Undo/Redo to editors</indent>
+
+        * <indent=2ep>Added
+        cursor visuals</indent>
+
+        * <indent=2ep>Can edit palettes in Sprite
+        Editor by right clicking slots</indent>
+
+        * <indent=2ep>Redesigned
+        Asset Selection Menu</indent>
+
+        * <indent=2ep>Can click on pack title
+        in selection menu to edit properties</indent>
+
+        * <indent=2ep>Added
+        button shortcuts to the editor</indent>
+
+        </margin>
+
+
+        <b><color=#E32121>Improvements<color=#E6E6E6></b>
+
+        <margin-left=1ep>
+
+        *
+        <indent=2ep>Show smooth transition on backgrounds when switching menus</indent>
+
+        *
+        <indent=2ep>Show weapon, enemy & room count in selected pack in Campaign
+        Editor</indent>
+
+        * <indent=2ep>Add new menu logo</indent>
+
+        </margin>
+
+
+        <b><color=#E32121>Bug
+        Fixes<color=#E6E6E6></b>
+
+        <margin-left=1ep>
+
+        * <indent=2ep>Changes
+        made to palettes will be visible in associated assets</indent>
+
+        </margin>'
       objectReference: {fileID: 0}
     - target: {fileID: 1607050888982262491, guid: d790e035213896e419da527b1da6f0df, type: 3}
       propertyPath: m_AnchorMax.y
