@@ -1,4 +1,6 @@
 using System;
+using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -9,9 +11,9 @@ namespace RedRats.UI.Core.Interactables.Buttons
     /// </summary>
     public class ClickDetectingButton : Button
     {
-        public event Action OnClickRight;
-        public event Action OnClickMiddle;
-
+        [SerializeField] public ButtonClickedEvent OnClickRight;
+        [SerializeField] public ButtonClickedEvent OnClickMiddle;
+        
         public override void OnPointerClick(PointerEventData eventData)
         {
             switch (eventData.button)
