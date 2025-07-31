@@ -76,8 +76,8 @@ namespace Rogium.Gameplay.Entities
         {
             base.Construct();
             color = asset.Color;
-            lifeTimer.Set(asset.UseDelay);
-            breakingTimer.Set(asset.UseDelay * 0.1f);
+            lifeTimer.Start(asset.UseDelay);
+            breakingTimer.Start(asset.UseDelay * 0.1f);
             pierceType = asset.PierceType;
             isDead = false;
             
@@ -96,8 +96,8 @@ namespace Rogium.Gameplay.Entities
         public void ConstructMissing()
         {
             base.Construct();
-            lifeTimer.Set(missingInfo.lifetime);
-            breakingTimer.Set(missingInfo.lifetime * 0.2f);
+            lifeTimer.Start(missingInfo.lifetime);
+            breakingTimer.Start(missingInfo.lifetime * 0.2f);
             pierceType = missingInfo.pierce;
             isDead = false;
             
@@ -116,7 +116,7 @@ namespace Rogium.Gameplay.Entities
         private void HandleMovement()
         {
             if (isDead) return;
-            Vector2 direction = (breakingTimer.TimeLeft > 0) ? TTransform.up : Vector2.zero;
+            Vector2 direction = (breakingTimer.IsRunning) ? TTransform.up : Vector2.zero;
             move.Move(direction);
         }
 

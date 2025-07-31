@@ -21,17 +21,16 @@ namespace Rogium.Editors.PropertyEditor.Builders
         private PackAsset currentPack;
         private IList<ProjectileAsset> packProjectiles;
         
-        private InteractablePropertyContentBlock projectileSlotsBlock;
+        private IPContentBlock projectileSlotsBlock;
         
         public PropertyEditorBuilderWeapon(Transform contentMain, Transform contentSecond) : base(contentMain, contentSecond) { }
 
-        public override void Build(WeaponAsset asset)
+        public override void BuildInternal(WeaponAsset asset)
         {
             this.asset = asset;
             currentPack = PackEditorOverseer.Instance.CurrentPack;
             packProjectiles = currentPack.Projectiles;
             
-            Clear();
             BuildColumnImportant(contentMain);
             BuildColumnProperty(contentSecond);
         }

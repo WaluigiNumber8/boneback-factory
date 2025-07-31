@@ -50,6 +50,16 @@ namespace Rogium.Editors.PropertyEditor
             TileEditorOverseer.Instance.OnAssignAsset -= InitTiles;
         }
 
+        /// <summary>
+        /// Dispose all properties from the editor.
+        /// </summary>
+        public void DisposeProperties()
+        {
+            weaponBuilder.Clear();
+            projectileBuilder.Clear();
+            enemyBuilder.Clear();
+            tileBuilder.Clear();
+        }
         
         /// <summary>
         /// Initializes the editor for Weapons.
@@ -129,6 +139,7 @@ namespace Rogium.Editors.PropertyEditor
             ThemeUpdaterRogium.UpdateScrollbar(ui.propertyScrollbar);
             ThemeUpdaterRogium.UpdateButtonMenu(ui.undoButton);
             ThemeUpdaterRogium.UpdateButtonMenu(ui.redoButton);
+            //TODO: Enable when reset button is added.
             // ThemeUpdaterRogium.UpdateButtonMenu(ui.resetButton);
         }
         

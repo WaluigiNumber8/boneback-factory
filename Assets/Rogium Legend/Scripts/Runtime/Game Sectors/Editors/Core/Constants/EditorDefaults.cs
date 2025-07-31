@@ -26,6 +26,10 @@ namespace Rogium.Editors.Core.Defaults
         [SerializeField, Required, FoldoutGroup("General")] private string author = "NO_AUTHOR";
         [SerializeField, Required, FoldoutGroup("General")] private string authorGame = "Game";
         
+        [SerializeField, Required, FoldoutGroup("Input"), Range(0.1f, 16f)] private float inputTimeout = 5f;
+        [SerializeField, Required, FoldoutGroup("Input"), Range(0f, 1f)] private float inputWaitForAnother = 0.16f;
+        [SerializeField, Required, FoldoutGroup("Input")] private string inputEmptyText = "-";
+        
         [SerializeField, Required, FoldoutGroup("Packs")] private string packTitle = "New Pack";
         [SerializeField, Required, FoldoutGroup("Packs"), PreviewField] private Sprite packIcon;
         [SerializeField, Required, FoldoutGroup("Packs"), TextArea] private string packDescription = "A new pack filled with adventure!";
@@ -116,6 +120,7 @@ namespace Rogium.Editors.Core.Defaults
         [SerializeField, Required, FoldoutGroup("Rooms")] private string roomTitle = "New Room";
         [SerializeField, Required, FoldoutGroup("Rooms")] private Vector2Int roomSize = new(15, 10);
         [SerializeField, Required, FoldoutGroup("Rooms")] private int roomDifficulty;
+        [SerializeField, Required, FoldoutGroup("Rooms")] private string[] roomDifficultyTitles = { "Tier 1", "Tier 2", "Tier 3", "Tier 4", "Tier 5" };
         [SerializeField, Required, FoldoutGroup("Rooms")] private RoomType roomType = RoomType.Common;
         [SerializeField, Required, FoldoutGroup("Rooms"), PropertyRange(0, 255)] private int roomLightness = 255;
         [SerializeField, Required, FoldoutGroup("Rooms")] private Color roomLightnessColor = new(1, 1, 1, 1);
@@ -128,6 +133,9 @@ namespace Rogium.Editors.Core.Defaults
         
         [SerializeField, Required, FoldoutGroup("Sounds"), MinValue(0f)] private float soundPitchOffset = 0.05f;
         
+        public float InputTimeout { get => inputTimeout; }
+        public float InputWaitForAnother { get => inputWaitForAnother; }
+        public string InputEmptyText { get => inputEmptyText; }
         public string PackTitle { get => packTitle; }
         public string PackDescription { get => packDescription; }
         public string CampaignTitle { get => campaignTitle; }
@@ -207,6 +215,7 @@ namespace Rogium.Editors.Core.Defaults
         public string RoomTitle { get => roomTitle; }
         public Vector2Int RoomSize { get => roomSize; }
         public int RoomDifficulty { get => roomDifficulty; }
+        public string[] RoomDifficultyTitles { get => roomDifficultyTitles; }
         public RoomType RoomType { get => roomType; }
         public int RoomLightness { get => roomLightness; }
         public Color RoomLightnessColor { get => roomLightnessColor; }

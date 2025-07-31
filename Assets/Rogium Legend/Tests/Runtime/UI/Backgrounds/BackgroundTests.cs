@@ -19,8 +19,8 @@ namespace Rogium.Tests.UI.Backgrounds
         public override IEnumerator Setup()
         {
             yield return base.Setup();
-            OverseerLoader.LoadBackgroundOverseer();
-            overseer = BackgroundOverseerMono.GetInstance();
+            TUtilsOverseerLoader.LoadBackgroundOverseer();
+            overseer = BackgroundOverseerMono.Instance;
             yield return null;
         }
 
@@ -53,8 +53,8 @@ namespace Rogium.Tests.UI.Backgrounds
         [UnityTest]
         public IEnumerator Should_ShowEditorBackground_WhenGoToPackSelectionMenu()
         {
-            yield return MenuLoader.PrepareSelectionMenuV2();
-            GASButtonActions.OpenSelectionPack();
+            yield return TUtilsMenuLoader.PrepareSelectionMenu();
+            GASActions.OpenSelectionPack();
             yield return null;
             Assert.That(overseer.IsSetToEditor(), Is.EqualTo(true));
         }
@@ -62,10 +62,10 @@ namespace Rogium.Tests.UI.Backgrounds
         [UnityTest]
         public IEnumerator Should_ShowMainMenuBackground_WhenGoToMainMenuFromPackSelection()
         {
-            yield return MenuLoader.PrepareSelectionMenuV2();
-            GASButtonActions.OpenSelectionPack();
+            yield return TUtilsMenuLoader.PrepareSelectionMenu();
+            GASActions.OpenSelectionPack();
             yield return null;
-            GASButtonActions.ReturnToMainMenuSelection();
+            GASActions.ReturnFromSelectionMenu();
             yield return null;
             Assert.That(overseer.IsSetToMainMenu(), Is.EqualTo(true));
         }
@@ -73,8 +73,8 @@ namespace Rogium.Tests.UI.Backgrounds
         [UnityTest]
         public IEnumerator Should_ShowGameMenuBackground_WhenGoToCampaignSelection()
         {
-            yield return MenuLoader.PrepareCampaignSelection();
-            GASButtonActions.OpenSelectionCampaign();
+            yield return TUtilsMenuLoader.PrepareCampaignSelection();
+            GASActions.OpenSelectionCampaign();
             yield return null;
             Assert.That(overseer.IsSetToGameMenu(), Is.EqualTo(true));
         }
@@ -82,10 +82,10 @@ namespace Rogium.Tests.UI.Backgrounds
         [UnityTest]
         public IEnumerator Should_ShowMainMenuBackground_WhenGoToMainMenuFromCampaignSelection()
         {
-            yield return MenuLoader.PrepareCampaignSelection();
-            GASButtonActions.OpenSelectionCampaign();
+            yield return TUtilsMenuLoader.PrepareCampaignSelection();
+            GASActions.OpenSelectionCampaign();
             yield return null;
-            GASButtonActions.ReturnToMainMenuSelection();
+            GASActions.ReturnFromSelectionMenu();
             yield return null;
             Assert.That(overseer.IsSetToMainMenu(), Is.EqualTo(true));
         }

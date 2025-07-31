@@ -18,7 +18,7 @@ namespace RedRats.Core
         /// <returns>Amount of duplicate entries.</returns>
         public static int GetDuplicatesCount<T>(this IList<T> list, out IList<string> duplicateValues)
         {
-            SafetyNet.EnsureIsNotNull(list, "List to Check");
+            Preconditions.IsNotNull(list, "List to Check");
             duplicateValues = new List<string>();
             
             if (list.Count <= 1) return 0;
@@ -115,7 +115,7 @@ namespace RedRats.Core
         /// <typeparam name="T">Any type.</typeparam>
         public static void RemoveAll<T>(this IList<T> list, Predicate<T> condition)
         {
-            SafetyNet.EnsureIsNotNull(list, nameof(list));
+            Preconditions.IsNotNull(list, nameof(list));
             if (list.Count <= 0) return;
             for (int i = 0; i < list.Count; i++)
             {

@@ -23,11 +23,11 @@ namespace Rogium.UserInterface.ModalWindows
         [SerializeField] private UIInfo ui;
         
         [Header("Interactables")]
-        [SerializeField] private InteractablePropertyAssetField soundField;
-        [SerializeField] private InteractablePropertySlider volumeSlider;
-        [SerializeField] private InteractablePropertySlider pitchSlider;
-        [SerializeField] private InteractablePropertySlider chanceToPlaySlider;
-        [SerializeField] private InteractablePropertyToggle randomPitchToggle;
+        [SerializeField] private IPAssetField soundField;
+        [SerializeField] private IPSlider volumeSlider;
+        [SerializeField] private IPSlider pitchSlider;
+        [SerializeField] private IPSlider chanceToPlaySlider;
+        [SerializeField] private IPToggle randomPitchToggle;
         [Header("Audio")]
         [SerializeField] private Button playSoundButton;
         [SerializeField] private AudioMixerGroup mixerGroup;
@@ -42,8 +42,8 @@ namespace Rogium.UserInterface.ModalWindows
         protected override void Awake()
         {
             base.Awake();
-            lib = InternalLibraryOverseer.GetInstance();
-            playSoundButton.onClick.AddListener(() => AudioSystemRogium.GetInstance().PlaySound(currentData, mixerGroup, new AudioSourceSettingsInfo(0, false, false, false)));
+            lib = InternalLibraryOverseer.Instance;
+            playSoundButton.onClick.AddListener(() => AudioSystemRogium.Instance.PlaySound(currentData, mixerGroup, new AudioSourceSettingsInfo(0, false, false, false)));
         }
 
         /// <summary>

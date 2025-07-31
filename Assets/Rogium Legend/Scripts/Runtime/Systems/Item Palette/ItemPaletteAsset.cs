@@ -1,7 +1,6 @@
 ﻿using RedRats.Safety;
 using Rogium.Core;
 using Rogium.Editors.Core;
-using Rogium.UserInterface.Editors.AssetSelection;
 using System;
 using System.Collections.Generic;
 using RedRats.UI.MenuFilling;
@@ -50,7 +49,7 @@ namespace Rogium.Systems.ItemPalette
         public void Select(int index)
         {
             if (holders == null || holders.Count <= 0) return;
-            SafetyNet.EnsureIndexWithingCollectionRange(index, holders, "Item Index");
+            Preconditions.IsIndexWithingCollectionRange(holders, index, "Item Index");
             holders[index].SetToggle(true);
             OnSelect?.Invoke(holders[index].Asset);
         }
@@ -71,7 +70,7 @@ namespace Rogium.Systems.ItemPalette
         /// <param name="type">The type the assets are.</param>
         public void Fill<T>(IList<T> assets, AssetType type) where T : IAsset
         {
-            SafetyNet.EnsureIsNotNull(assets, "List of assets");
+            Preconditions.IsNotNull(assets, "List of assets");
             
             //Hint Text
             emptyText.gameObject.SetActive((assets.Count <= 0));
@@ -91,7 +90,7 @@ namespace Rogium.Systems.ItemPalette
         /// <param name="index">The index of the slot to select.</param>
         private void WhenSelected(int index)
         {
-            SafetyNet.EnsureIndexWithingCollectionRange(index, holders, "List of holders");
+            Preconditions.IsIndexWithingCollectionRange(holders, index, "List of holders");
             lastSelected = index;
             OnSelect?.Invoke(holders[index].Asset);
         }

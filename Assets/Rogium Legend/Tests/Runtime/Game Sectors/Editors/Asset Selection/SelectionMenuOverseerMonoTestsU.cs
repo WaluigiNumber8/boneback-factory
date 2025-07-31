@@ -1,5 +1,5 @@
 using Rogium.Core;
-using Rogium.Editors.NewAssetSelection;
+using Rogium.Editors.AssetSelection;
 
 namespace Rogium.Tests.Editors.AssetSelection
 {
@@ -7,8 +7,8 @@ namespace Rogium.Tests.Editors.AssetSelection
     {
         public static void OpenPackSelectionAndEditFirstPack()
         {
-            SelectionMenuOverseerMono.GetInstance().Open(AssetType.Pack);
-            SelectionMenuOverseerMono.GetInstance().CurrentSelector.Content.GetChild(1).GetComponent<EditableAssetCardControllerV2>().Edit();
+            SelectionMenuOverseerMono.Instance.Open(AssetType.Pack);
+            SelectionMenuOverseerMono.Instance.CurrentSelector.Content.GetChild(1).GetComponent<EditableAssetCardController>().Edit();
         }
     }
 }

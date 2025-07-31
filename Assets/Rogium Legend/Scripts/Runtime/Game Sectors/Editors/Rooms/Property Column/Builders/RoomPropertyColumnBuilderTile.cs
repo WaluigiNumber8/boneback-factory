@@ -10,7 +10,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
     /// <summary>
     /// Builds the Room Property Column for tiles.
     /// </summary>
-    public class RoomPropertyColumnBuilderTile : UIPropertyContentBuilderBaseColumn1<AssetData>
+    public class RoomPropertyColumnBuilderTile : IPContentBuilderBaseColumn1<AssetData>
     {
         public RoomPropertyColumnBuilderTile(Transform contentMain) : base(contentMain) { }
 
@@ -18,10 +18,8 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         /// Build properties.
         /// </summary>
         /// <param name="data">The data of the individual asset.</param>
-        public override void Build(AssetData data)
+        public override void BuildInternal(AssetData data)
         {
-            Clear();
-            
             b.BuildPlainText("Layer", Enum.GetNames(typeof(TileLayerType))[data.Parameters.intValue1], contentMain);
         }
 

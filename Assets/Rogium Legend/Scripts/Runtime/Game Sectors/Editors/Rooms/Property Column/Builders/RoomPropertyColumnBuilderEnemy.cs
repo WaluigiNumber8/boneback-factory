@@ -8,7 +8,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
     /// <summary>
     /// Builds the Room Property Column for enemies.
     /// </summary>
-    public class RoomPropertyColumnBuilderEnemy : UIPropertyContentBuilderBaseColumn1<AssetData>
+    public class RoomPropertyColumnBuilderEnemy : IPContentBuilderBaseColumn1<AssetData>
     {
         public RoomPropertyColumnBuilderEnemy(Transform contentMain) : base(contentMain) { }
 
@@ -16,10 +16,8 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         /// Build properties.
         /// </summary>
         /// <param name="data">The asset to read from.</param>
-        public override void Build(AssetData data)
+        public override void BuildInternal(AssetData data)
         {
-            Clear();
-
             b.BuildPlainText("Damage", data.Parameters.intValue1.ToString(), contentMain);
         }
         

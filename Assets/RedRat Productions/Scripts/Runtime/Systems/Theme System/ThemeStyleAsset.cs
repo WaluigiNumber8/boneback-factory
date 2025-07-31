@@ -12,12 +12,14 @@ namespace RedRats.Systems.Themes
         [SerializeField] private InteractablesInfo interactables;
         [SerializeField] private IconsInfo icons;
         [SerializeField] private FontsInfo fonts;
+        [SerializeField] private ColorsInfo colors;
 
         public ElementsInfo Elements { get => elements; }
         public InteractablesInfo Interactables { get => interactables; }
         public IconsInfo Icons { get => icons; }
         public FontsInfo Fonts { get => fonts; }
-        
+        public ColorsInfo Colors { get => colors; }
+
         [Serializable]
         public struct ElementsInfo
         {
@@ -47,6 +49,7 @@ namespace RedRats.Systems.Themes
             [BoxGroup] public InteractableSpriteInfo colorField;
             [BoxGroup] public InteractableSpriteInfo scrollbarHandle;
             [BoxGroup] public InteractableSpriteInfo assetCard;
+            [BoxGroup] public InteractableSpriteInfo inputBinding;
         }
 
         [Serializable]
@@ -63,6 +66,12 @@ namespace RedRats.Systems.Themes
             public FontInfo inputted;
             public FontInfo header;
             public FontInfo assetCardInfo;
+        }
+
+        [Serializable]
+        public struct ColorsInfo
+        {
+            public Color shimmerEffects;
         }
     }
 }

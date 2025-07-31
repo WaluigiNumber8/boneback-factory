@@ -21,6 +21,9 @@ MonoBehaviour:
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   author: NO_AUTHOR
   authorGame: Game
+  inputTimeout: 10
+  inputWaitForAnother: 0.5
+  inputEmptyText: '-'
   packTitle: New Pack
   packIcon: {fileID: 21300000, guid: b43ac7d93a106884db47dcff5f07d3fb, type: 3}
   packDescription: A new pack filled with adventure!

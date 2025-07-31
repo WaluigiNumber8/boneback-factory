@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
-using Rogium.Editors.Core;
-using Rogium.Editors.NewAssetSelection;
+using Rogium.Editors.AssetSelection;
 using UnityEngine;
 using TMPro;
 
@@ -17,7 +16,7 @@ namespace Rogium.Editors.Campaign
         private AssetSelectionPickerBase picker;
         private int counter;
 
-        private void Awake() => picker = CampaignEditorOverseerMono.GetInstance().SelectionPicker;
+        private void Awake() => picker = CampaignEditorOverseerMono.Instance.SelectionPicker;
 
         private void OnEnable()
         {

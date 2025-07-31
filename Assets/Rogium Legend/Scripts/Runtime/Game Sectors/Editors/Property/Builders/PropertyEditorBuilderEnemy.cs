@@ -24,23 +24,22 @@ namespace Rogium.Editors.PropertyEditor.Builders
 
         private readonly string[] aiOptions;
 
-        private InteractablePropertyContentBlock aiLookInDirectionBlock;
-        private InteractablePropertyContentBlock aiRotateTowardsBlock;
+        private IPContentBlock aiLookInDirectionBlock;
+        private IPContentBlock aiRotateTowardsBlock;
         
-        private InteractablePropertyContentBlock weaponSlotsBlock;
+        private IPContentBlock weaponSlotsBlock;
 
         public PropertyEditorBuilderEnemy(Transform contentMain, Transform contentSecond) : base(contentMain, contentSecond)
         {
             aiOptions = new[] {"Look", "Rotate"};
         }
 
-        public override void Build(EnemyAsset asset)
+        public override void BuildInternal(EnemyAsset asset)
         {
             this.asset = asset;
             currentPack = PackEditorOverseer.Instance.CurrentPack;
             packWeapons = currentPack.Weapons;
             
-            Clear();
             BuildColumnImportant(contentMain);
             BuildColumnProperty(contentSecond);
         }

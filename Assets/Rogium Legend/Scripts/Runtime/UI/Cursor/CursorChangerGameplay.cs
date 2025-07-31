@@ -16,8 +16,8 @@ namespace Rogium.UserInterface.Cursors
 
         private void Awake()
         {
-            overseer = CursorOverseerMono.GetInstance();
-            gameplay = GameplayOverseerMono.GetInstance();
+            overseer = CursorOverseerMono.Instance;
+            gameplay = GameplayOverseerMono.Instance;
             ToGameplay();
         }
         

@@ -16,7 +16,7 @@ namespace RedRats.Systems.Themes
         protected override void Awake()
         {
             base.Awake();
-            SafetyNet.EnsureIntIsInRange(defaultThemeIndex, 0, themes.Length, "Themes to set");
+            Preconditions.IsIntInRange(defaultThemeIndex, 0, themes.Length, "Themes to set");
             
             currentTheme = (ThemeType) defaultThemeIndex;
             currentThemeData = themes[defaultThemeIndex];

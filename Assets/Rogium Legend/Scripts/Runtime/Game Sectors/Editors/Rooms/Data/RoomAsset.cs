@@ -39,7 +39,7 @@ namespace Rogium.Editors.Rooms
 
         public void UpdateLightness(int newLightness)
         {
-            SafetyNet.EnsureIntIsInRange(newLightness, 0, 255, "Room Lightness");
+            Preconditions.IsIntInRange(newLightness, 0, 255, "Room Lightness");
             lightness = newLightness;
         }
         

@@ -20,8 +20,8 @@ namespace Rogium.Editors.Core
         protected override void Awake()
         {
             base.Awake();
-            SafetyNet.EnsureListDoesNotHaveDuplicities(objects.ReadOnlyList, "Iobjects list");
-            SafetyNet.EnsureListDoesNotHaveDuplicities(sounds.ReadOnlyList, "sounds list");
+            Preconditions.isListWithoutDuplicates(objects.ReadOnlyList, "Iobjects list");
+            Preconditions.isListWithoutDuplicates(sounds.ReadOnlyList, "sounds list");
         }
 
         #region Interactable Objects

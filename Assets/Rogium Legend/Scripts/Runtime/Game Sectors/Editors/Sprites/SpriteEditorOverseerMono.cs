@@ -75,7 +75,7 @@ namespace Rogium.Editors.Sprites
         public void UpdateCell(Vector2Int position)
         {
             if (currentSlot == null) return;
-            Sprite brushSprite = RedRatBuilder.GenerateSprite(currentSlot.CurrentColor, spriteSize, spriteSize, spriteSize);
+            Sprite brushSprite = new SpriteBuilder().WithSingleColorTexture(currentSlot.CurrentColor, spriteSize, spriteSize).WithPPU(spriteSize).Build();
             toolbox.ApplyCurrent(editor.CurrentAsset.SpriteData, position, currentSlot.Index, brushSprite, grid.ActiveLayer);
         }
 
@@ -84,7 +84,7 @@ namespace Rogium.Editors.Sprites
         /// </summary>
         public void SwitchPaletteViaWindow()
         {
-            ModalWindowBuilder.GetInstance().OpenAssetPickerWindow(AssetType.Palette, asset =>
+            ModalWindowBuilder.Instance.OpenAssetPickerWindow(AssetType.Palette, asset =>
             {
                 editor.UpdatePalette((PaletteAsset) asset);
                 ActionHistorySystem.AddAndExecute(new SwitchSpriteEditorPaletteAction(editor.CurrentPalette, lastPalette, SwitchPalette));
@@ -111,7 +111,7 @@ namespace Rogium.Editors.Sprites
         /// </summary>
         public void ClearActiveGrid()
         {
-            ActionHistorySystem.ForceBeginGrouping();
+            ActionHistorySystem.StartNewGroup();
             for (int x = 0; x < grid.Size.x; x++)
             {
                 for (int y = 0; y < grid.Size.y; y++)
@@ -119,7 +119,7 @@ namespace Rogium.Editors.Sprites
                     EraseCell(new Vector2Int(x, y));
                 }
             }
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
         }
         
         /// <summary>
@@ -164,7 +164,7 @@ namespace Rogium.Editors.Sprites
         /// <param name="position">The cell to erase.</param>
         private void EraseCell(Vector2Int position)
         {
-            Sprite brushSprite = RedRatBuilder.GenerateSprite(EditorDefaults.Instance.EmptyGridColor, spriteSize, spriteSize, spriteSize);
+            Sprite brushSprite = new SpriteBuilder().WithSingleColorTexture(EditorDefaults.Instance.EmptyGridColor, spriteSize, spriteSize).WithPPU(spriteSize).Build();
             toolbox.ApplySpecific(ToolType.Eraser, currentSpriteAsset.SpriteData, position, currentSlot.Index, brushSprite, grid.ActiveLayer);
         }
 
@@ -183,7 +183,7 @@ namespace Rogium.Editors.Sprites
         private void RedrawColorOnGrid(int slotIndex)
         {
             ObjectGrid<int> dataGrid = currentSpriteAsset.SpriteData;
-            Sprite colorSprite = RedRatBuilder.GenerateSprite(palette.GetSlot(slotIndex).CurrentColor, spriteSize, spriteSize, spriteSize);
+            Sprite colorSprite = new SpriteBuilder().WithSingleColorTexture(palette.GetSlot(slotIndex).CurrentColor, spriteSize, spriteSize).WithPPU(spriteSize).Build();
             
             for (int x = 0; x < dataGrid.Width; x++)
             {

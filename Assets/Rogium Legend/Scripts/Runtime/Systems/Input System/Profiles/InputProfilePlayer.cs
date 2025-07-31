@@ -16,20 +16,17 @@ namespace Rogium.Systems.Input
         private readonly InputButton buttonMainAlt;
         private readonly InputButton buttonSubAlt;
         private readonly InputButton buttonDashAlt;
-        
-        private readonly InputButton buttonStart;
 
         public InputProfilePlayer(RogiumInputActions input) : base(input)
         {
             map = input.Player;
-            movement = new InputVector2(map.Movement);
-            buttonMain = new InputButton(map.UseMain);
-            buttonSub = new InputButton(map.UseSub);
-            buttonDash = new InputButton(map.UseDash);
-            buttonMainAlt = new InputButton(map.AlternativeMain);
-            buttonSubAlt = new InputButton(map.AlternativeSub);
-            buttonDashAlt = new InputButton(map.AlternativeDash);
-            buttonStart = new InputButton(map.Start);
+            movement = new InputVector2(map.Move);
+            buttonMain = new InputButton(map.Main);
+            buttonSub = new InputButton(map.Sub);
+            buttonDash = new InputButton(map.Dash);
+            buttonMainAlt = new InputButton(map.MainAlt);
+            buttonSubAlt = new InputButton(map.SubAlt);
+            buttonDashAlt = new InputButton(map.DashAlt);
         }
         
         protected override void WhenEnabled()
@@ -43,7 +40,6 @@ namespace Rogium.Systems.Input
             buttonMainAlt.Enable();
             buttonSubAlt.Enable();
             buttonDashAlt.Enable();
-            buttonStart.Enable();
         }
 
         protected override void WhenDisabled()
@@ -55,10 +51,11 @@ namespace Rogium.Systems.Input
             buttonMainAlt.Disable();
             buttonSubAlt.Disable();
             buttonDashAlt.Disable();
-            buttonStart.Disable();
             
             map.Disable();
         }
+
+        public override bool IsMapEnabled { get => map.enabled; }
 
         public InputVector2 Movement { get => movement; }
         public InputButton ButtonMain { get => buttonMain; }
@@ -68,6 +65,5 @@ namespace Rogium.Systems.Input
         public InputButton ButtonSubAlt { get => buttonSubAlt; }
         public InputButton ButtonDashAlt { get => buttonDashAlt; }
         
-        public InputButton ButtonStart { get => buttonStart; }
     }
 }

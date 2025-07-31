@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using RedRats.Core;
 using RedRats.Systems.FileSystem;
@@ -35,6 +36,26 @@ namespace Rogium.ExternalStorage
             FileSystem.SaveFile(path, JSONFormat.ToString(), (useCompression) ? new DFLCompression() : null);
         }
 
+        /// <summary>
+        /// Loads a single JSON file under a file path.
+        /// </summary>
+        /// <param name="path">Destination of the data.</param>
+        /// <param name="identifier">Load only JSON files with this specific identifier.</param>
+        /// <param name="isCompressed">Is the wanted file compressed in the DFL format?</param>
+        /// <typeparam name="T">Unity readable Asset.</typeparam>
+        /// <typeparam name="TS">Serialized form of the Asset.</typeparam>
+        public static T Load<T, TS>(string path, string identifier, bool isCompressed = true) where TS : IEncodedObject<T>
+        {
+            string extension = (isCompressed) ? DFLCompression.COMPRESSED_EXTENSION : JSON_EXTENSION;
+            if (Path.HasExtension(path)) path = Path.ChangeExtension(path, extension);
+            
+            string data = FileSystem.LoadFile(path, extension, isCompressed ? new DFLCompression() : null);
+            if (!HasSameIdentifier(data, identifier)) throw new IOException($"Data does not have the same identifier. Expected: {identifier} Got: {data.Substring(1, identifier.Length)}");
+            int lengthToCut = StringUtils.GrabIntFrom(data, 0) + 1;
+            string jsonText = data[lengthToCut..];
+            return JsonUtility.FromJson<TS>(jsonText).Decode();
+        }
+        
         /// <summary>
         /// Loads all JSON files under a directory path.
         /// </summary>

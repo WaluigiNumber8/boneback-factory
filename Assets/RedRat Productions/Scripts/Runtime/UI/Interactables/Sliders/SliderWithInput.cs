@@ -67,7 +67,11 @@ namespace RedRats.UI.Sliders
             int decimals = multiplier.ToString().Length - 1;
             decimalsInText = $"0.{new string('#', decimals)}";
         }
-        public void ResetDecimalMultiplier() => decimalMultiplier = 1;
+        public void ResetDecimalMultiplier()
+        {
+            decimalMultiplier = 1;
+            decimalsInText = "0";
+        }
 
         /// <summary>
         /// Set a value into the attached input field only.

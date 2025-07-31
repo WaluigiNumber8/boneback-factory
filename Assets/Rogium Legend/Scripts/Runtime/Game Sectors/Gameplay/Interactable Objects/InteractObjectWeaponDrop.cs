@@ -43,13 +43,13 @@ namespace Rogium.Gameplay.InteractableObjects
         {
             try
             {
-                weapon = GameplayOverseerMono.GetInstance().CurrentCampaign.DataPack.Weapons.FindValueFirstOrReturnFirst(parameters.stringValue1);
+                weapon = GameplayOverseerMono.Instance.CurrentCampaign.DataPack.Weapons.FindValueFirstOrReturnFirst(parameters.stringValue1);
                 iconRenderer.sprite = weapon.Icon;
                 playerOnly = parameters.boolValue1;
             }
             catch (Exception e)
             {
-                if (e is SafetyNetException or SafetyNetCollectionException) Destroy(gameObject);
+                if (e is PreconditionException or PreconditionCollectionException) Destroy(gameObject);
             }
 
         }

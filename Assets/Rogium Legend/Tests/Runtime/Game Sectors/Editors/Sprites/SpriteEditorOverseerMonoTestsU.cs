@@ -12,7 +12,7 @@ namespace Rogium.Tests.Editors.Sprites
     /// </summary>
     public static class SpriteEditorOverseerMonoTestsU
     {
-        private static readonly SpriteEditorOverseerMono spriteEditor = SpriteEditorOverseerMono.GetInstance();
+        private static readonly SpriteEditorOverseerMono spriteEditor = SpriteEditorOverseerMono.Instance;
 
         public static void FillEntireGrid()
         {
@@ -21,7 +21,7 @@ namespace Rogium.Tests.Editors.Sprites
             color.CurrentColor.Returns(Color.red);
             spriteEditor.UpdateCurrentColor(color);
             
-            ActionHistorySystem.ForceBeginGrouping();
+            ActionHistorySystem.StartNewGroup();
             for (int i = 0; i < grid.Width; i++)
             {
                 for (int j = 0; j < grid.Height; j++)
@@ -29,7 +29,7 @@ namespace Rogium.Tests.Editors.Sprites
                     spriteEditor.UpdateCell(new Vector2Int(i, j));
                 }
             }
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
         }
     }
 }

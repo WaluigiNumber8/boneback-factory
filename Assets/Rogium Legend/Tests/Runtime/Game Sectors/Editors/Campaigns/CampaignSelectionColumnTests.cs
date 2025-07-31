@@ -2,10 +2,10 @@ using System.Collections;
 using NUnit.Framework;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Core;
-using Rogium.Editors.NewAssetSelection;
+using Rogium.Editors.AssetSelection;
 using Rogium.Tests.Core;
 using UnityEngine.TestTools;
-using static Rogium.Tests.Editors.AssetCreator;
+using static Rogium.Tests.Core.TUtilsAssetCreator;
 
 namespace Rogium.Tests.Editors.Campaigns
 {
@@ -20,13 +20,13 @@ namespace Rogium.Tests.Editors.Campaigns
         public override IEnumerator Setup()
         {
             yield return base.Setup();
-            OverseerLoader.LoadModalWindowBuilder();
-            OverseerLoader.LoadUIBuilder();
+            TUtilsOverseerLoader.LoadModalWindowBuilder();
+            TUtilsOverseerLoader.LoadUIBuilder();
             AddNewPackToLibrary();
             AddNewPackToLibrary();
             yield return null;
-            yield return MenuLoader.PrepareCampaignEditor();
-            campaignEditor = CampaignEditorOverseerMono.GetInstance();
+            yield return TUtilsMenuLoader.PrepareCampaignEditor();
+            campaignEditor = CampaignEditorOverseerMono.Instance;
             infoColumn = campaignEditor.GetComponentInChildren<SelectionInfoColumn>();
             yield return null;
         }

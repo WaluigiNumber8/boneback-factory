@@ -11,6 +11,7 @@ namespace RedRats.UI.ModalWindows
     public class ModalWindowGenerator : MonoBehaviour
     {
         [SerializeField] private ModalWindow windowPrefab;
+        [SerializeField] private Transform poolParent;
 
         private Dictionary<string, ModalWindow> identifiedWindows;
         private ObjectPool<ModalWindow> windowPool;
@@ -21,7 +22,7 @@ namespace RedRats.UI.ModalWindows
             windowPool = new ObjectPool<ModalWindow>(
                 () =>
                 {
-                    ModalWindow window = Instantiate(windowPrefab, transform);
+                    ModalWindow window = Instantiate(windowPrefab, poolParent);
                     window.OnClose += () =>
                     {
                         if (identifiedWindows.ContainsValue(window)) return;
@@ -47,7 +48,7 @@ namespace RedRats.UI.ModalWindows
         /// <param name="key">The key that identifies the window. (Is used when updating the window information is needed.)</param>
         public void Open(ModalWindowData data, string key)
         {
-            SafetyNet.EnsureStringNotNullOrEmpty(key, nameof(key));
+            Preconditions.IsStringNotNullOrEmpty(key, nameof(key));
 
             PrepareWindowIfNotExists(key);
             ModalWindow window = identifiedWindows[key];
@@ -71,7 +72,7 @@ namespace RedRats.UI.ModalWindows
         /// <returns><see cref="Transform"/> of the left-most column.</returns>
         public Transform GetColumn1(string key)
         {
-            SafetyNet.EnsureStringNotNullOrEmpty(key, nameof(key));
+            Preconditions.IsStringNotNullOrEmpty(key, nameof(key));
 
             PrepareWindowIfNotExists(key);
             return identifiedWindows[key].FirstColumnContent;
@@ -84,7 +85,7 @@ namespace RedRats.UI.ModalWindows
         /// <returns><see cref="Transform"/> of the right-most column.</returns>
         public Transform GetColumn2(string key)
         {
-            SafetyNet.EnsureStringNotNullOrEmpty(key, nameof(key));
+            Preconditions.IsStringNotNullOrEmpty(key, nameof(key));
 
             PrepareWindowIfNotExists(key);
             return identifiedWindows[key].SecondColumnContent;
@@ -100,5 +101,6 @@ namespace RedRats.UI.ModalWindows
         }
         
         public int ActiveWindows { get => windowPool.CountActive; }
+        public Transform PoolParent { get => poolParent; }
     }
 }

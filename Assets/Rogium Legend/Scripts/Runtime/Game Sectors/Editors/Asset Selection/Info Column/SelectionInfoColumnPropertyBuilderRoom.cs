@@ -2,12 +2,12 @@
 using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine;
 
-namespace Rogium.Editors.NewAssetSelection
+namespace Rogium.Editors.AssetSelection
 {
     /// <summary>
     /// Builds the <see cref="SelectionInfoColumn"/> for a <see cref="RoomAsset"/>.
     /// </summary>
-    public class SelectionInfoColumnPropertyBuilderRoom : UIPropertyContentBuilderBaseColumn1<RoomAsset>
+    public class SelectionInfoColumnPropertyBuilderRoom : IPContentBuilderBaseColumn1<RoomAsset>
     {
         public SelectionInfoColumnPropertyBuilderRoom(Transform contentMain) : base(contentMain) { }
 
@@ -15,9 +15,8 @@ namespace Rogium.Editors.NewAssetSelection
         /// Build <see cref="SelectionInfoColumn"/> properties for a room.
         /// </summary>
         /// <param name="asset">The room to build for.</param>
-        public override void Build(RoomAsset asset)
+        public override void BuildInternal(RoomAsset asset)
         {
-            Clear();
             b.BuildPlainText("Type", asset.Type.ToString(), contentMain);
             b.BuildPlainText("Tier", asset.DifficultyLevel.ToString(), contentMain);
         }

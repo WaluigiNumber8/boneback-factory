@@ -36,7 +36,7 @@ namespace Rogium.Gameplay.Sequencer
 
         private void Awake()
         {
-            sas = SASCore.GetInstance();
+            sas = SASCore.Instance;
             startingPoints = new Dictionary<Vector2, Vector2>();
             playerTransform = player.transform;
         }
@@ -90,7 +90,7 @@ namespace Rogium.Gameplay.Sequencer
                 roomLoader.LoadNext(roomIndex);
                 OnRoomLoaded?.Invoke();
                 (Vector2 pos, Vector2 dir) = startingPoints.ElementAt(GetPlayerStartPositionIndex());
-                ProjectileOverseerMono.GetInstance().ClearAllProjectiles();
+                ProjectileOverseerMono.Instance.ClearAllProjectiles();
 
                 // Running around the screen
                 // yield return sas.Transport(playerTransform, new Vector2(Random.Range(-7.5f, 6.5f), Random.Range(-4.5f, 4.5f)), transportRunSpeed);
@@ -133,7 +133,7 @@ namespace Rogium.Gameplay.Sequencer
         {
             if (startingPoints.Count <= 0)
             {
-                SafetyNet.ThrowMessage("There cannot be 0 starting points in a room!");
+                Preconditions.ThrowMessage("There cannot be 0 starting points in a room!");
                 startingPoints.Add(defaultStartPos, Vector2.down);
                 return 0;
             }

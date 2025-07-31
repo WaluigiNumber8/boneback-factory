@@ -51,10 +51,10 @@ namespace Rogium.UserInterface.Gameplay.HUD
                     weaponSlots.main.SetMain(icon);
                     break;
                 case 1:
-                    weaponSlots.sub.SetMain(icon);
+                    weaponSlots.main.SetSub(icon);
                     break;
                 case 2:
-                    weaponSlots.main.SetSub(icon);
+                    weaponSlots.sub.SetMain(icon);
                     break;
                 case 3:
                     weaponSlots.sub.SetSub(icon);

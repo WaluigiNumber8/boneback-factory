@@ -1,6 +1,6 @@
 using System;
 
-namespace Rogium.Editors.NewAssetSelection
+namespace Rogium.Editors.AssetSelection
 {
     public sealed partial class SelectionMenuOverseerMono
     {

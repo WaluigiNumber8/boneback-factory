@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using RedRats.Core;
 using RedRats.Safety;
 using Rogium.Core;
@@ -9,6 +10,7 @@ using Rogium.ExternalStorage;
 using Rogium.Options.Core;
 using Rogium.Systems.SceneTransferService;
 using static Rogium.Editors.Packs.AssetAssociation;
+using Debug = UnityEngine.Debug;
 
 namespace Rogium.Editors.Core
 {
@@ -25,33 +27,18 @@ namespace Rogium.Editors.Core
         
         private readonly AssetList<PackAsset> packs;
         private readonly AssetList<CampaignAsset> campaigns;
-        private GameDataAsset preferences;
+        private GameDataAsset gameData;
 
         private ExternalLibraryOverseer()
         {
-            packs = new AssetList<PackAsset>(ex.CreatePack, ex.UpdatePack, ex.DeletePack);
+            packs = new AssetList<PackAsset>(ex.Packs.Save, ex.Packs.Update, ex.Packs.Delete);
             campaigns = new AssetList<CampaignAsset>(ex.Campaigns.Save, ex.Campaigns.Update, ex.Campaigns.Delete);
             
             packEditor.OnSaveChanges += UpdatePack;
             packEditor.OnRemoveSprite += RemoveSpriteAssociation;
             campaignEditor.OnSaveChanges += UpdateCampaign;
-            optionsEditor.OnSaveChanges += UpdatePreferences;
+            optionsEditor.OnSaveChanges += UpdateGameData;
             ReloadFromExternalStorage();
-            
-            optionsEditor.ApplyAllSettings(preferences);
-        }
-
-        /// <summary>
-        /// Repopulates the library with all packs located on external storage.
-        /// </summary>
-        public void ReloadFromExternalStorage()
-        {
-            packs.ReplaceAll(ex.LoadAllPacks());
-            campaigns.ReplaceAll(ex.Campaigns.LoadAll());
-            campaigns.RemoveAll(campaign => campaign.PackReferences.Count <= 0);
-            
-            IList<GameDataAsset> data = ex.Preferences.LoadAll();
-            preferences = (data == null || data.Count <= 0) ? new GameDataAsset.Builder().Build() : data[0];
         }
 
         #region Packs
@@ -98,9 +85,9 @@ namespace Rogium.Editors.Core
         /// </summary>
         public void ActivatePackEditor(int packIndex)
         {
-            SafetyNet.EnsureListIsNotNullOrEmpty(packs, "Pack Library");
-            SafetyNet.EnsureIntIsInRange(packIndex, 0, packs.Count, "packIndex for activating Pack Editor");
-            packs[packIndex] = ex.LoadPack(packs[packIndex]);
+            Preconditions.IsListNotNullOrEmpty(packs, "Pack Library");
+            Preconditions.IsIntInRange(packIndex, 0, packs.Count, "packIndex for activating Pack Editor");
+            packs[packIndex] = ex.Packs.Load(packs[packIndex]);
             packs[packIndex].RefreshAssetCounts();
             packEditor.AssignAsset(packs[packIndex], packIndex);
         }
@@ -141,23 +128,14 @@ namespace Rogium.Editors.Core
         {
             campaigns.Remove(campaignIndex);
         }
-        /// <summary>
-        /// Remove Campaign from the library.
-        /// </summary>
-        /// <param name="title">Campaign's Title</param>
-        /// <param name="author">Campaign's Author</param>
-        public void DeleteCampaign(string title, string author)
-        {
-            campaigns.Remove(title, author);
-        }
         
         /// <summary>
         /// Prepare one of the campaigns in the library for editing.
         /// </summary>
         public void ActivateCampaignEditor(int campaignIndex, bool prepareEditor = true)
         {
-            SafetyNet.EnsureListIsNotNullOrEmpty(campaigns, "Campaign Library");
-            SafetyNet.EnsureIntIsInRange(campaignIndex, 0, campaigns.Count, "campaignIndex for activating Campaign Editor");
+            Preconditions.IsListNotNullOrEmpty(campaigns, "Campaign Library");
+            Preconditions.IsIntInRange(campaignIndex, 0, campaigns.Count, "campaignIndex for activating Campaign Editor");
             campaignEditor.AssignAsset(campaigns[campaignIndex], campaignIndex, prepareEditor);
         }
 
@@ -167,9 +145,9 @@ namespace Rogium.Editors.Core
         /// <param name="campaignIndex"></param>
         public void ActivateCampaignPlaythrough(int campaignIndex)
         {
-            SafetyNet.EnsureListIsNotNullOrEmpty(campaigns, "Campaign Library");
-            SafetyNet.EnsureIntIsInRange(campaignIndex, 0, campaigns.Count, "campaignIndex for activating Campaign Playthrough");
-            SceneTransferOverseer.GetInstance().LoadUp(campaigns[campaignIndex]);
+            Preconditions.IsListNotNullOrEmpty(campaigns, "Campaign Library");
+            Preconditions.IsIntInRange(campaignIndex, 0, campaigns.Count, "campaignIndex for activating Campaign Playthrough");
+            SceneTransferOverseer.Instance.LoadUp(campaigns[campaignIndex]);
         }
         
         public void ClearCampaigns() => campaigns.Clear();
@@ -177,30 +155,47 @@ namespace Rogium.Editors.Core
 
         #region Preferences
 
-        public void UpdatePreferences(GameDataAsset gameData)
+        public void UpdateGameData(GameDataAsset gameData)
         {
-            preferences = gameData;
-            ex.Preferences.Save(preferences);
+            this.gameData = gameData;
+            ex.Preferences.Save(this.gameData.Preferences);
+            ex.InputBindings.Save(this.gameData.InputBindings);
+            ex.ShortcutBindings.Save(this.gameData.ShortcutBindings);
         }
 
-        public void ActivateOptionsEditor()
-        {
-            optionsEditor.AssignAsset(preferences);
-        }
+        public void ActivateOptionsEditor() => optionsEditor.AssignAsset(gameData);
 
         /// <summary>
         /// Refresh game settings from the currently saved data.
         /// </summary>
-        public void RefreshSettings()
-        {
-            ActivateOptionsEditor();
-            optionsEditor.ApplyAllSettings(preferences);
-        }
+        public void RefreshOptions() => optionsEditor.ApplyAllOptions(gameData);
 
         #endregion
         
+        /// <summary>
+        /// Loads all external storage data into the library.
+        /// </summary>
+        private void ReloadFromExternalStorage()
+        {
+            packs.ReplaceAll(ex.Packs.LoadAll());
+            campaigns.ReplaceAll(ex.Campaigns.LoadAll());
+            campaigns.RemoveAll(campaign => campaign.PackReferences.Count <= 0);
+            
+            IList<PreferencesAsset> preferencesData = ex.Preferences.LoadAll();
+            PreferencesAsset preferences = (preferencesData == null || preferencesData.Count <= 0) ? new PreferencesAsset.Builder().Build() : preferencesData[0];
+            IList<InputBindingsAsset> inputBindingsData = ex.InputBindings.LoadAll();
+            InputBindingsAsset inputBindings = (inputBindingsData == null || inputBindingsData.Count <= 0) ? new InputBindingsAsset.Builder().Build() : inputBindingsData[0];
+            IList<ShortcutBindingsAsset> shortcutBindingsData = ex.ShortcutBindings.LoadAll();
+            ShortcutBindingsAsset shortcutBindings = (shortcutBindingsData == null || shortcutBindingsData.Count <= 0) ? new ShortcutBindingsAsset.Builder().Build() : shortcutBindingsData[0];
+            
+            gameData = new GameDataAsset.Builder()
+                          .WithPreferences(preferences)
+                          .WithInputBindings(inputBindings)
+                          .WithShortcutBindings(shortcutBindings)
+                          .Build();
+        }
+        
         public ReadOnlyCollection<PackAsset> Packs { get => new(packs); }
         public ReadOnlyCollection<CampaignAsset> Campaigns {get => new(campaigns);}
-        public GameDataAsset Preferences { get => preferences; }
     }
 }

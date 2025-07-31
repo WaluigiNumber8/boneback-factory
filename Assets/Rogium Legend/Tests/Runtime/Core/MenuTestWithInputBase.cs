@@ -7,30 +7,41 @@ namespace Rogium.Tests.Core
     /// <summary>
     /// A base for all play mode, that run on the UI scene.
     /// </summary>
-    [RequiresPlayMode]
-    public abstract class MenuTestWithInputBase : InputTestFixture
+    public abstract class MenuTestWithInputBase : MenuTestBase
     {
+        protected readonly InputTestFixture i = new();
+        protected Rogium.Systems.Input.InputSystem input;
+        
+        protected Keyboard keyboard;
         protected Mouse mouse;
-
-        public override void Setup()
-        {
-            base.Setup();
-            mouse = InputSystem.AddDevice<Mouse>();
-            Press(mouse.leftButton);
-            Release(mouse.leftButton);
-        }
-
-        public override void TearDown()
-        {
-            InputSystem.RemoveDevice(mouse);
-            base.TearDown();
-        }
+        protected Gamepad gamepad;
         
         [UnitySetUp]
         public virtual IEnumerator SetUp()
         {
-            SceneLoader.LoadMenuTestingScene();
+            i.Setup();
+            mouse = InputSystem.AddDevice<Mouse>();
+            keyboard = InputSystem.AddDevice<Keyboard>();
+            gamepad = InputSystem.AddDevice<Gamepad>();
+            i.Press(mouse.leftButton);
+            i.Release(mouse.leftButton);
+            i.Press(keyboard.spaceKey);
+            i.Release(keyboard.spaceKey);
+            i.Press(gamepad.buttonSouth);
+            i.Release(gamepad.buttonSouth);
+
+            yield return base.Setup();
+            input = Rogium.Systems.Input.InputSystem.Instance;
+        }
+        
+        [UnityTearDown]
+        public IEnumerator TearDown()
+        {
             yield return null;
+            InputSystem.RemoveDevice(mouse);
+            InputSystem.RemoveDevice(keyboard);
+            InputSystem.RemoveDevice(gamepad);
+            i.TearDown();
         }
     }
 }

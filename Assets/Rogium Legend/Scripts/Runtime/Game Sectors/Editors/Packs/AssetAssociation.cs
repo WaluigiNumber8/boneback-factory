@@ -122,7 +122,7 @@ namespace Rogium.Editors.Packs
                 asset.UpdateIcon(sprite);
                 list.Update(index, asset);
             }
-            catch (SafetyNetCollectionException)
+            catch (PreconditionCollectionException)
             {
                 sprite.RemoveAssociation(id);
             }
@@ -137,7 +137,7 @@ namespace Rogium.Editors.Packs
                 asset.UpdatePalette(palette);
                 list.Update(index, asset);
             }
-            catch (SafetyNetCollectionException)
+            catch (PreconditionCollectionException)
             {
                 palette.RemoveAssociation(id);
             }
@@ -157,7 +157,7 @@ namespace Rogium.Editors.Packs
                 asset.ClearAssociatedSprite();
                 list.Update(index, asset);
             }
-            catch (SafetyNetCollectionException)
+            catch (PreconditionCollectionException)
             {
                 //Intentionally blank (doesn't matter if asset does not exist, since we are removing the sprite anyway).
             }
@@ -171,7 +171,7 @@ namespace Rogium.Editors.Packs
                 asset.ClearAssociatedPalette();
                 list.Update(index, asset);
             }
-            catch (SafetyNetCollectionException)
+            catch (PreconditionCollectionException)
             {
                 //Intentionally blank (doesn't matter if asset does not exist, since we are removing the sprite anyway).
             }

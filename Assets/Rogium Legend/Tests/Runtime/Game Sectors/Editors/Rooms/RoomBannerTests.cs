@@ -5,18 +5,17 @@ using Rogium.Core;
 using Rogium.Editors.Campaign;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
-using Rogium.Editors.NewAssetSelection;
+using Rogium.Editors.AssetSelection;
+using Rogium.Editors.AssetSelection.Campaigns;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Rooms;
 using Rogium.Systems.GASExtension;
 using Rogium.Systems.GridSystem;
 using Rogium.Tests.Core;
-using Rogium.Tests.Editors.AssetSelection;
-using Rogium.UserInterface.Editors.AssetSelection;
 using UnityEngine;
 using UnityEngine.TestTools;
 using static Rogium.Tests.Editors.Rooms.RoomBannerTestsU;
-using SelectionInfoColumn = Rogium.Editors.NewAssetSelection.SelectionInfoColumn;
+using SelectionInfoColumn = Rogium.Editors.AssetSelection.SelectionInfoColumn;
 
 namespace Rogium.Tests.Editors.Rooms
 {
@@ -31,8 +30,8 @@ namespace Rogium.Tests.Editors.Rooms
         public override IEnumerator Setup()
         {
             yield return base.Setup();
-            yield return AssetCreator.CreateAndAssignPack();
-            yield return MenuLoader.PrepareRoomEditor();
+            yield return TUtilsAssetCreator.CreateAndAssignPack();
+            yield return TUtilsMenuLoader.PrepareRoomEditor();
             drawer = new SpriteDrawer(EditorDefaults.Instance.RoomSize, new Vector2Int(EditorDefaults.Instance.SpriteSize, EditorDefaults.Instance.SpriteSize), EditorDefaults.Instance.SpriteSize);
             packEditor = PackEditorOverseer.Instance;
         }
@@ -49,8 +48,8 @@ namespace Rogium.Tests.Editors.Rooms
         [UnityTest]
         public IEnumerator Should_UpdateBanner_WhenCompleteEditing()
         {
-            RoomEditorOverseerMono.GetInstance().UpdateGridCell(new Vector2Int(0, 0));
-            RoomEditorOverseerMono.GetInstance().UpdateGridCell(new Vector2Int(1, 0));
+            RoomEditorOverseerMono.Instance.UpdateGridCell(new Vector2Int(0, 0));
+            RoomEditorOverseerMono.Instance.UpdateGridCell(new Vector2Int(1, 0));
             RoomEditorOverseer.Instance.CompleteEditing();
             yield return null;
             Assert.That(packEditor.CurrentPack.Rooms[0].Banner, Is.Not.Null);
@@ -68,27 +67,27 @@ namespace Rogium.Tests.Editors.Rooms
         public IEnumerator Should_ShowRoomBannerInSelectionMenuInsteadOfIcon()
         {
             yield return SelectRoomAndUpdateTileGridThenSave();
-            Assert.That(SelectionMenuOverseerMono.GetInstance().GetComponentInChildren<SelectionInfoColumn>().BannerIcon, Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Rooms[0].Banner));
+            Assert.That(SelectionMenuOverseerMono.Instance.GetComponentInChildren<SelectionInfoColumn>().BannerIcon, Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Rooms[0].Banner));
         }
 
         [UnityTest]
         public IEnumerator Should_ShowRoomBannerInCampaignSelectionInsteadOfIcon()
         {
-            AssetCreator.AddNewCampaignToLibrary();
+            TUtilsAssetCreator.AddNewCampaignToLibrary();
             ExternalLibraryOverseer.Instance.Packs[0].Rooms[0].UpdateType(RoomType.Entrance);
             yield return null;
-            OverseerLoader.LoadModalWindowBuilder();
-            yield return MenuLoader.PrepareCampaignSelection();
-            yield return MenuLoader.PrepareCampaignEditor(false);
-            GASButtonActions.OpenSelectionCampaign();
-            GASButtonActions.OpenEditorCampaign(0);
+            TUtilsOverseerLoader.LoadModalWindowBuilder();
+            yield return TUtilsMenuLoader.PrepareCampaignSelection();
+            yield return TUtilsMenuLoader.PrepareCampaignEditor(false);
+            GASActions.OpenSelectionCampaign();
+            GASActions.OpenEditorCampaign(0);
             yield return null;
-            CampaignEditorOverseerMono.GetInstance().SelectionPicker.Select(0);
-            GASButtonActions.SaveChangesCampaign();
+            CampaignEditorOverseerMono.Instance.SelectionPicker.Select(0);
+            GASActions.SaveChangesCampaign();
             yield return null;
             Object.FindFirstObjectByType<ModalWindow>().OnAccept();
             yield return null;
-            Assert.That(CampaignAssetSelectionOverseerMono.GetInstance().Wallpaper.BannerIcon, Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Rooms[0].Banner));
+            Assert.That(CampaignAssetSelectionOverseerMono.Instance.Wallpaper.BannerIcon, Is.EqualTo(PackEditorOverseer.Instance.CurrentPack.Rooms[0].Banner));
         }
 
         [UnityTest]

@@ -5,7 +5,7 @@ using Rogium.Editors.Packs;
 using System.Collections.Generic;
 using System.Linq;
 using RedRats.Safety;
-using Rogium.Editors.NewAssetSelection;
+using Rogium.Editors.AssetSelection;
 using UnityEngine;
 
 namespace Rogium.Editors.Campaign
@@ -47,6 +47,8 @@ namespace Rogium.Editors.Campaign
             selectionPicker.Selector.OnSelectNone -= PreparePropertyColumnEmpty;
         }
 
+        public void DisposeProperties() => propertyColumn.DisposeProperties();
+
         /// <summary>
         /// Selects/Deselects an asset.
         /// </summary>
@@ -70,7 +72,7 @@ namespace Rogium.Editors.Campaign
         /// <param name="finalSelectedAssets">The packs to update with.</param>
         private void UpdatePacksFromSelection(ISet<IAsset> finalSelectedAssets)
         {
-            SafetyNet.EnsureSetIsNotNullOrEmpty(finalSelectedAssets, "Selected Packs");
+            Preconditions.IsSetNotNullOrEmpty(finalSelectedAssets, "Selected Packs");
             ISet<PackAsset> finalSelectedPacks = finalSelectedAssets.Cast<PackAsset>().ToHashSet();
             editor.UpdateDataPack(finalSelectedPacks);
         }

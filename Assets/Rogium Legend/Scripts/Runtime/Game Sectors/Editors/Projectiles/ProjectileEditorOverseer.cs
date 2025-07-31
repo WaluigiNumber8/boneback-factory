@@ -27,8 +27,8 @@ namespace Rogium.Editors.Projectiles
         /// <param name="prepareEditor">If true, load asset into the editor.</param>
         public void AssignAsset(ProjectileAsset asset, int index, bool prepareEditor = true)
         {
-            SafetyNet.EnsureIsNotNull(asset, "Assigned Tile");
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(index, 0, "Assigned asset index");
+            Preconditions.IsNotNull(asset, "Assigned Tile");
+            Preconditions.IsIntBiggerOrEqualTo(index, 0, "Assigned asset index");
             
             currentAsset = new ProjectileAsset.Builder().AsCopy(asset).Build();
             myIndex = index;
@@ -44,7 +44,7 @@ namespace Rogium.Editors.Projectiles
         /// <param name="updatedAsset">Asset Containing new data.</param>
         public void UpdateAsset(ProjectileAsset updatedAsset)
         { 
-            SafetyNet.EnsureIsNotNull(currentAsset, "Currently active asset.");
+            Preconditions.IsNotNull(currentAsset, "Currently active asset.");
             currentAsset = new ProjectileAsset.Builder().AsCopy(updatedAsset).Build();
         }
         

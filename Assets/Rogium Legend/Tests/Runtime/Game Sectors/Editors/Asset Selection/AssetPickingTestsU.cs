@@ -1,6 +1,6 @@
 using System.Collections;
 using Rogium.Core;
-using Rogium.Editors.NewAssetSelection;
+using Rogium.Editors.AssetSelection;
 using Rogium.Editors.Packs;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables;
@@ -14,20 +14,20 @@ namespace Rogium.Tests.Editors.AssetSelection
     {
         public static IEnumerator BuildAssetField(PackAsset value = null)
         {
-            UIPropertyBuilder.GetInstance().BuildAssetField("Test", AssetType.Pack, value, Object.FindFirstObjectByType<Canvas>().transform, null);
+            UIPropertyBuilder.Instance.BuildAssetField("Test", AssetType.Pack, value, Object.FindFirstObjectByType<Canvas>().transform, null);
             yield return null;
         }
         
         public static IEnumerator ClickAssetFieldToOpenAssetPickerWindow()
         {
-            Object.FindFirstObjectByType<AssetField>().OnPointerClick(PointerDataCreator.LeftClick());
+            Object.FindFirstObjectByType<AssetField>().OnPointerClick(TUtilsPointerDataCreator.LeftClick());
             yield return null;
         }
 
         public static IEnumerator PickAssetAndConfirm(int childIndex = 0)
         {
             AssetPickerWindow window = Object.FindFirstObjectByType<AssetPickerWindow>();
-            AssetCardControllerV2 card = window.SelectorContent.GetChild(childIndex).GetComponent<AssetCardControllerV2>();
+            AssetCardController card = window.SelectorContent.GetChild(childIndex).GetComponent<AssetCardController>();
             card.SetToggle(true);
             yield return null;
             window.ConfirmSelection();

@@ -1,8 +1,7 @@
 using Rogium.Core;
-using Rogium.Editors.Packs;
 using UnityEngine;
 
-namespace Rogium.Editors.NewAssetSelection.UI
+namespace Rogium.Editors.AssetSelection.UI
 {
     /// <summary>
     /// Adjusts the UI of the Selection Menu for different types of assets.
@@ -16,7 +15,7 @@ namespace Rogium.Editors.NewAssetSelection.UI
         
         private SelectionMenuOverseerMono selectionMenu;
 
-        private void Awake() => selectionMenu = SelectionMenuOverseerMono.GetInstance();
+        private void Awake() => selectionMenu = SelectionMenuOverseerMono.Instance;
         private void OnEnable() => selectionMenu.OnOpen += AdjustUI;
         private void OnDisable() => selectionMenu.OnOpen -= AdjustUI;
 

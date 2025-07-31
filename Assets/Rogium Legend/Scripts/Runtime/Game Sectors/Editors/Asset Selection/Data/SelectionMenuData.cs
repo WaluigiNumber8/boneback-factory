@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
+using RedRats.Systems.Themes;
 using Rogium.Editors.Core;
 using Rogium.UserInterface.Interactables;
 using UnityEngine;
 
-namespace Rogium.Editors.NewAssetSelection
+namespace Rogium.Editors.AssetSelection
 {
     /// <summary>
     /// Contains data needed to setup a Selection Menu via <see cref="SelectionMenuOverseerMono"/>.
@@ -17,6 +18,7 @@ namespace Rogium.Editors.NewAssetSelection
         [SerializeField] private ButtonType whenAssetEdit;
         [SerializeField] private ButtonType whenAssetConfig;
         [SerializeField] private ButtonType whenAssetDelete;
+        [SerializeField] private ThemeType cardTheme;
         private Func<IList<IAsset>> getAssetList;
         private Action<int> whenCardSelected;
         private Action<int> whenCardDeselected;
@@ -42,6 +44,7 @@ namespace Rogium.Editors.NewAssetSelection
         public Func<IList<IAsset>> GetAssetList { get => getAssetList; }
         public Action<int> WhenCardSelected { get => whenCardSelected; }
         public Action<int> WhenCardDeselected { get => whenCardDeselected; }
+        public ThemeType CardTheme { get => cardTheme; }
 
         public class Builder
         {
@@ -52,7 +55,8 @@ namespace Rogium.Editors.NewAssetSelection
                 whenAssetEdit = ButtonType.None,
                 whenAssetConfig = ButtonType.None,
                 whenAssetDelete = ButtonType.None,
-                getAssetList = Array.Empty<IAsset>
+                getAssetList = Array.Empty<IAsset>,
+                cardTheme = ThemeType.Blue
             };
 
             public Builder WithAssetSelector(AssetSelector assetSelector)
@@ -103,6 +107,12 @@ namespace Rogium.Editors.NewAssetSelection
                 return this;
             }
             
+            public Builder WithTheme(ThemeType cardTheme)
+            {
+                data.cardTheme = cardTheme;
+                return this;
+            }
+            
             public Builder AsCopy(SelectionMenuData other)
             {
                 data.assetSelector = other.assetSelector;
@@ -113,6 +123,7 @@ namespace Rogium.Editors.NewAssetSelection
                 data.getAssetList = other.getAssetList;
                 data.whenCardSelected = other.whenCardSelected;
                 data.whenCardDeselected = other.whenCardDeselected;
+                data.cardTheme = other.cardTheme;
                 return this;
             }
 

@@ -54,7 +54,7 @@ namespace Rogium.Editors.Rooms
             packEditor = PackEditorOverseer.Instance;
             editor = RoomEditorOverseer.Instance;
             toolbox = new ToolBox<AssetData>(grid, grid.UpdateCell, new AssetData());
-            objects = InternalLibraryOverseer.GetInstance().Objects;
+            objects = InternalLibraryOverseer.Instance.Objects;
 
             paletteTile.OnSelect += asset => SelectedValue(asset, AssetType.Tile);
             paletteDecor.OnSelect += asset => SelectedValue(asset, AssetType.Tile);
@@ -86,6 +86,14 @@ namespace Rogium.Editors.Rooms
             cursorChangers.UnsubscribeFrom(toolbox);
         }
 
+        /// <summary>
+        /// Dispose all properties from the editor.
+        /// </summary>
+        public void DisposeProperties()
+        {
+            propertyColumn.Dispose();
+        }
+        
         /// <summary>
         /// Switches the currently used layer.
         /// </summary>
@@ -121,7 +129,7 @@ namespace Rogium.Editors.Rooms
         /// </summary>
         public void ClearActiveLayer()
         {
-            ActionHistorySystem.ForceBeginGrouping();
+            ActionHistorySystem.StartNewGroup();
             for (int x = 0; x < grid.Size.x; x++)
             {
                 for (int y = 0; y < grid.Size.y; y++)
@@ -129,7 +137,7 @@ namespace Rogium.Editors.Rooms
                     EraseCell(new Vector2Int(x, y));
                 }
             }
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
         }
         
         /// <summary>
@@ -230,23 +238,14 @@ namespace Rogium.Editors.Rooms
                 return;
             }
             
-            switch (type)
+            propertyColumn.Construct(data);
+            asset ??= type switch
             {
-                case AssetType.Tile:
-                    propertyColumn.ConstructAssetPropertiesTile(data);
-                    asset ??= packEditor.CurrentPack.Tiles.FindValueFirst(data.ID);
-                    break;
-                case AssetType.Object:
-                    propertyColumn.ConstructAssetPropertiesObject(data);
-                    asset ??= objects.FindValueFirst(data.ID);
-                    break;
-                case AssetType.Enemy:
-                    propertyColumn.ConstructAssetPropertiesEnemies(data);
-                    asset ??= packEditor.CurrentPack.Enemies.FindValueFirst(data.ID);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException($"Layer with type '{type}' is not supported.");
-            }
+                AssetType.Tile => packEditor.CurrentPack.Tiles.FindValueFirst(data.ID),
+                AssetType.Object => objects.FindValueFirst(data.ID),
+                AssetType.Enemy => packEditor.CurrentPack.Enemies.FindValueFirst(data.ID),
+                _ => throw new ArgumentOutOfRangeException($"Layer with type '{type}' is not supported.")
+            };
             currentData.UpdateUsedPaint(data);
             propertyColumn.ConstructAsset(asset, type);
         }
@@ -254,6 +253,7 @@ namespace Rogium.Editors.Rooms
         public ToolBox<AssetData> Toolbox { get => toolbox; }
         public ObjectGrid<AssetData> GetCurrentGridCopy => new(currentData.Grid);
         public Sprite CurrentGridSprite => grid.ActiveLayerSprite;
+        public int ActiveLayerIndex { get => grid.ActiveLayer; }
 
         [Serializable]
         public struct CursorChangerLayersInfo

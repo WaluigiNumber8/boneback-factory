@@ -25,7 +25,7 @@ namespace Rogium.Systems.Validation
         /// <param name="title">The title to validate.</param>
         public static void ValidateTitle(string title)
         {
-            SafetyNet.EnsureStringInRange(title, TitleMinAllowedCharacters, TitleMaxAllowedCharacters, "Title");
+            Preconditions.IsStringInRange(title, TitleMinAllowedCharacters, TitleMaxAllowedCharacters, "Title");
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Rogium.Systems.Validation
         /// <param name="description">The description text to validate.</param>
         public static void ValidateDescription(string description)
         {
-            SafetyNet.EnsureStringInRange(description, DescriptionMinAllowedCharacters, DescriptionMaxAllowedCharacters, "Description");
+            Preconditions.IsStringInRange(description, DescriptionMinAllowedCharacters, DescriptionMaxAllowedCharacters, "Description");
         }
     }
 }

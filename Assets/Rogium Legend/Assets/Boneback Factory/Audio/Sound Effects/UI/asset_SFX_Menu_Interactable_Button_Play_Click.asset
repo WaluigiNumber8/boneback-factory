@@ -18,4 +18,3 @@ MonoBehaviour:
   volume: 1
   pitchMin: 1
   pitchMax: 1
-  avoidLastPlayed: 0

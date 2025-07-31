@@ -1,11 +1,10 @@
 using System.Collections;
-using NSubstitute.Extensions;
 using NUnit.Framework;
 using RedRats.UI.ModalWindows;
 using Rogium.Core;
 using Rogium.Editors.Core;
-using Rogium.Editors.NewAssetSelection;
-using Rogium.Editors.NewAssetSelection.UI;
+using Rogium.Editors.AssetSelection;
+using Rogium.Editors.AssetSelection.UI;
 using Rogium.Editors.Packs;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables;
@@ -13,7 +12,6 @@ using Rogium.UserInterface.ModalWindows;
 using TMPro;
 using UnityEngine;
 using UnityEngine.TestTools;
-using UnityEngine.UI;
 
 namespace Rogium.Tests.Editors.AssetSelection
 {
@@ -29,16 +27,16 @@ namespace Rogium.Tests.Editors.AssetSelection
         public override IEnumerator Setup()
         {
             yield return base.Setup();
-            OverseerLoader.LoadModalWindowBuilder();
-            OverseerLoader.LoadUIBuilder();
-            yield return MenuLoader.PrepareSelectionMenuV2();
-            selectionMenu = SelectionMenuOverseerMono.GetInstance();
+            TUtilsOverseerLoader.LoadModalWindowBuilder();
+            TUtilsOverseerLoader.LoadUIBuilder();
+            yield return TUtilsMenuLoader.PrepareSelectionMenu();
+            selectionMenu = SelectionMenuOverseerMono.Instance;
             packBanner = selectionMenu.GetComponentInChildren<PackBanner>();
             currentPack = ExternalLibraryOverseer.Instance.Packs[0];
-            AssetCreator.AddNewPackToLibrary();
+            TUtilsAssetCreator.AddNewPackToLibrary();
             yield return null;
             selectionMenu.Open(AssetType.Pack);
-            ((EditableAssetCardControllerV2) selectionMenu.CurrentSelector.GetCard(0)).Edit();
+            ((EditableAssetCardController) selectionMenu.CurrentSelector.GetCard(0)).Edit();
             yield return null;
         }
 
@@ -52,7 +50,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         public IEnumerator Should_DisplayPackTitle_WhenLoadedThenLoadedADifferentPack()
         {
             selectionMenu.Open(AssetType.Pack);
-            ((EditableAssetCardControllerV2) selectionMenu.CurrentSelector.GetCard(1)).Edit();
+            ((EditableAssetCardController) selectionMenu.CurrentSelector.GetCard(1)).Edit();
             yield return null;
             Assert.That(packBanner.Title, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[1].Title));
         }
@@ -67,7 +65,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         public IEnumerator Should_DisplayPackIcon_WhenLoadedThenLoadedADifferentPack()
         {
             selectionMenu.Open(AssetType.Pack);
-            ((EditableAssetCardControllerV2) selectionMenu.CurrentSelector.GetCard(1)).Edit();
+            ((EditableAssetCardController) selectionMenu.CurrentSelector.GetCard(1)).Edit();
             yield return null;
             Assert.That(packBanner.Icon, Is.EqualTo(ExternalLibraryOverseer.Instance.Packs[1].Icon));
         }
@@ -77,7 +75,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         {
             packBanner.Config();
             yield return null;
-            Assert.That(ModalWindowBuilder.GetInstance().GenericActiveWindows, Is.GreaterThan(0));
+            Assert.That(ModalWindowBuilder.Instance.GenericActiveWindows, Is.GreaterThan(0));
         }
 
         [UnityTest]
@@ -95,12 +93,12 @@ namespace Rogium.Tests.Editors.AssetSelection
         [UnityTest]
         public IEnumerator Should_RefreshBannerIcon_WhenPackIconEdited()
         {
-            PackEditorOverseer.Instance.CurrentPack.Sprites.Add(AssetCreator.CreateSprite(Color.green));
+            PackEditorOverseer.Instance.CurrentPack.Sprites.Add(TUtilsAssetCreator.CreateSprite(Color.green));
             yield return null;
             packBanner.Config();
             yield return null;
             ModalWindow window = Object.FindFirstObjectByType<ModalWindow>();
-            window.GetComponentInChildren<AssetField>().OnPointerClick(PointerDataCreator.LeftClick());
+            window.GetComponentInChildren<AssetField>().OnPointerClick(TUtilsPointerDataCreator.LeftClick());
             yield return null;
             AssetPickerWindow picker = Object.FindFirstObjectByType<AssetPickerWindow>();
             picker.Select(1);

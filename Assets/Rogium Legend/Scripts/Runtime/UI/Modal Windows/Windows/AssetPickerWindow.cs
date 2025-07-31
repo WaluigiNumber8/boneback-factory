@@ -3,7 +3,7 @@ using RedRats.UI.Core;
 using RedRats.UI.ModalWindows;
 using Rogium.Core;
 using Rogium.Editors.Core;
-using Rogium.Editors.NewAssetSelection;
+using Rogium.Editors.AssetSelection;
 using Rogium.Systems.ThemeSystem;
 using Rogium.UserInterface.Interactables;
 using TMPro;
@@ -21,6 +21,7 @@ namespace Rogium.UserInterface.ModalWindows
         [SerializeField] private UIInfo ui;
 
         private Action<IAsset> whenAssetPicked;
+        private AssetType currentType;
 
         private void OnEnable()
         {
@@ -46,10 +47,11 @@ namespace Rogium.UserInterface.ModalWindows
         public void Construct(AssetType type, Action<IAsset> whenAssetPicked, IAsset preselectedAsset = null, bool canSelectEmpty = false)
         {
             this.whenAssetPicked = whenAssetPicked;
+            this.currentType = type;
             
             generalUI.entireArea.GetComponentInParent<Transform>().SetAsLastSibling();
-            ui.header.text.text = $"Select a {type.ToString().ToLower()}";
-            picker.Pick(type, WhenAssetPicked, preselectedAsset, canSelectEmpty);
+            ui.header.text.text = $"Select a {currentType.ToString().ToLower()}";
+            picker.Pick(currentType, WhenAssetPicked, preselectedAsset, canSelectEmpty);
             ui.layout.emptyMessage.gameObject.SetActive(picker.Selector.Content.childCount == 0);
             Open();
         }
@@ -88,7 +90,6 @@ namespace Rogium.UserInterface.ModalWindows
         private void WhenAssetPicked(IAsset asset)
         {
             whenAssetPicked.Invoke(asset);
-            whenAssetPicked = null;
             CancelSelection();
         }
 
@@ -99,6 +100,7 @@ namespace Rogium.UserInterface.ModalWindows
 
         public RectTransform SelectorContent { get => picker.Selector.Content; }
         public int SelectedAssetsCount { get => picker.SelectedAssetsCount; }
+        public AssetType CurrentType { get => currentType; }
 
         [Serializable]
         public struct UIInfo

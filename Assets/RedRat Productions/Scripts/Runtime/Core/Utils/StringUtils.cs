@@ -16,9 +16,9 @@ namespace RedRats.Core
         /// <returns>The grabbed number.</returns>
         public static int GrabIntFrom(string s, int pos, int chars = 1)
         {
-            SafetyNet.EnsureStringNotNullOrEmpty(s, "string to convert");
-            SafetyNet.EnsureIntIsInRange(pos, 0, s.Length, "number's position");
-            SafetyNet.EnsureIntIsInRange(chars, 0, s.Length - pos, "number's position");
+            Preconditions.IsStringNotNullOrEmpty(s, "string to convert");
+            Preconditions.IsIntInRange(pos, 0, s.Length, "number's position");
+            Preconditions.IsIntInRange(chars, 0, s.Length - pos, "number's position");
             return int.Parse(s.Substring(pos, chars));
         }
 
@@ -32,9 +32,9 @@ namespace RedRats.Core
         /// <returns>TRUE if it was able to grab a number.</returns>
         public static bool TryGrabIntFrom(string s, out int result, int pos, int chars = 1)
         {
-            SafetyNet.EnsureStringNotNullOrEmpty(s, "string to convert");
-            SafetyNet.EnsureIntIsInRange(pos, 0, s.Length, "number's position");
-            SafetyNet.EnsureIntIsInRange(chars, 0, s.Length - pos, "number's position");
+            Preconditions.IsStringNotNullOrEmpty(s, "string to convert");
+            Preconditions.IsIntInRange(pos, 0, s.Length, "number's position");
+            Preconditions.IsIntInRange(chars, 0, s.Length - pos, "number's position");
             return int.TryParse(s.Substring(pos, chars), out result);
         }
     }

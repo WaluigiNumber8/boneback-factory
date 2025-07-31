@@ -5,12 +5,12 @@ using Rogium.Editors.Packs;
 using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine;
 
-namespace Rogium.Editors.NewAssetSelection
+namespace Rogium.Editors.AssetSelection
 {
     /// <summary>
     /// Builds the <see cref="SelectionInfoColumn"/> for a <see cref="EnemyAsset"/>.
     /// </summary>
-    public class SelectionInfoColumnPropertyBuilderEnemy : UIPropertyContentBuilderBaseColumn1<EnemyAsset>
+    public class SelectionInfoColumnPropertyBuilderEnemy : IPContentBuilderBaseColumn1<EnemyAsset>
     {
         public SelectionInfoColumnPropertyBuilderEnemy(Transform contentMain) : base(contentMain) { }
 
@@ -18,9 +18,8 @@ namespace Rogium.Editors.NewAssetSelection
         /// Build <see cref="SelectionInfoColumn"/> properties for an enemy.
         /// </summary>
         /// <param name="asset">The enemy to build for.</param>
-        public override void Build(EnemyAsset asset)
+        public override void BuildInternal(EnemyAsset asset)
         {
-            Clear();
             b.BuildPlainText("Damage", asset.BaseDamage.ToString(), contentMain);
             b.BuildPlainText("Health", asset.MaxHealth.ToString(), contentMain);
             b.BuildAssetEmblemList("Weapons", asset.WeaponIDs.TryGetAssets(PackEditorOverseer.Instance.CurrentPack.Weapons).Select(d => d.Icon).ToList(), contentMain);

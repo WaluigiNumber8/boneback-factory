@@ -40,7 +40,7 @@ namespace Rogium.Editors.Campaign
         /// <param name="importInfo">The import information about the pack.</param>
         public void AssignAsset(PackAsset pack, PackImportInfo importInfo)
         {
-            SafetyNet.EnsureIsNotNull(pack, "Current Pack");
+            Preconditions.IsNotNull(pack, "Current Pack");
             currentPack = pack;
             currentImportInfo = importInfo;
             

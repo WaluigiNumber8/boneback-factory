@@ -27,8 +27,8 @@ namespace Rogium.Editors.Enemies
         /// <param name="prepareEditor">If true, load asset into the editor.</param>
         public void AssignAsset(EnemyAsset asset, int index, bool prepareEditor = true)
         {
-            SafetyNet.EnsureIsNotNull(asset, "Assigned Tile");
-            SafetyNet.EnsureIntIsBiggerOrEqualTo(index, 0, "Assigned asset index");
+            Preconditions.IsNotNull(asset, "Assigned Tile");
+            Preconditions.IsIntBiggerOrEqualTo(index, 0, "Assigned asset index");
 
             currentAsset = new EnemyAsset.Builder().AsCopy(asset).Build();
             myIndex = index;
@@ -44,7 +44,7 @@ namespace Rogium.Editors.Enemies
         /// <param name="updatedAsset">Asset Containing new data.</param>
         public void UpdateAsset(EnemyAsset updatedAsset)
         { 
-            SafetyNet.EnsureIsNotNull(currentAsset, "Currently active asset.");
+            Preconditions.IsNotNull(currentAsset, "Currently active asset.");
             currentAsset = new EnemyAsset.Builder().AsCopy(updatedAsset).Build();
         }
         

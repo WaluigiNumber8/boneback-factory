@@ -14,7 +14,8 @@ using Rogium.ExternalStorage;
 using Rogium.ExternalStorage.Serialization;
 using Rogium.Options.Core;
 using Rogium.Systems.ActionHistory;
-using Rogium.Tests.Editors;
+using Rogium.Systems.Input;
+using UnityEngine;
 using UnityEngine.TestTools;
 
 namespace Rogium.Tests.Core
@@ -25,23 +26,35 @@ namespace Rogium.Tests.Core
     [RequiresPlayMode]
     public abstract class MenuTestBase
     {
+     
         [UnitySetUp]
         public virtual IEnumerator Setup()
         {
-            SceneLoader.LoadMenuTestingScene();
+            TUtilsSceneLoader.LoadMenuTestingScene();
             yield return null;
+            PrepareInputSystem();
             PrepareExternalStorageSubstitute();
             yield return null;
             ExternalLibraryOverseer.Instance.ClearPacks();
             ExternalLibraryOverseer.Instance.ClearCampaigns();
             ActionHistorySystem.ClearHistory();
-            yield return AssetCreator.CreateAndAssignPack();
+            InputSystem.Instance.ClearAllInput();
+            yield return TUtilsAssetCreator.CreateAndAssignPack();
         }
 
-        private void PrepareExternalStorageSubstitute()
+        private static void PrepareInputSystem()
+        {
+            InputSystem input = Object.FindFirstObjectByType<InputSystem>();
+            if (input != null) Object.DestroyImmediate(input);
+            TUtilsOverseerLoader.LoadInputSystem();
+        }
+
+        private static void PrepareExternalStorageSubstitute()
         {
             IExternalStorageOverseer ex = Substitute.For<IExternalStorageOverseer>();
-            ex.LoadPack(Arg.Any<PackAsset>()).Returns(info => info.Arg<PackAsset>());
+            ex.Packs.Returns(Substitute.For<ICRUDOperations<PackAsset, JSONPackAsset>>());
+            ex.Packs.Load(Arg.Any<PackAsset>()).Returns(info => info.Arg<PackAsset>());
+            ex.Palettes.Returns(Substitute.For<ICRUDOperations<PaletteAsset, JSONPaletteAsset>>());
             ex.Palettes.Returns(Substitute.For<ICRUDOperations<PaletteAsset, JSONPaletteAsset>>());
             ex.Sprites.Returns(Substitute.For<ICRUDOperations<SpriteAsset, JSONSpriteAsset>>());
             ex.Enemies.Returns(Substitute.For<ICRUDOperations<EnemyAsset, JSONEnemyAsset>>());
@@ -50,7 +63,9 @@ namespace Rogium.Tests.Core
             ex.Rooms.Returns(Substitute.For<ICRUDOperations<RoomAsset, JSONRoomAsset>>());
             ex.Tiles.Returns(Substitute.For<ICRUDOperations<TileAsset, JSONTileAsset>>());
             ex.Campaigns.Returns(Substitute.For<ICRUDOperations<CampaignAsset, JSONCampaignAsset>>());
-            ex.Preferences.Returns(Substitute.For<ICRUDOperations<GameDataAsset, JSONGameDataAsset>>());
+            ex.Preferences.Returns(Substitute.For<ICRUDOperations<PreferencesAsset, JSONPreferencesAsset>>());
+            ex.InputBindings.Returns(Substitute.For<ICRUDOperations<InputBindingsAsset, JSONInputBindingsAsset>>());
+            ex.ShortcutBindings.Returns(Substitute.For<ICRUDOperations<ShortcutBindingsAsset, JSONShortcutBindingsAsset>>());
             ExternalCommunicator.Instance.OverrideStorageOverseer(ex);
         }
     }

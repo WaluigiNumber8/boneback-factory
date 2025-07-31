@@ -17,7 +17,6 @@ namespace Rogium.UserInterface.ModalWindows
     {
         [Title("Settings")] 
         [SerializeField] private ModalWindowGenerator windowGenerator;
-        [SerializeField] private Transform windowParent;
         
         [Title("Modal Window Prefabs")]
         [SerializeField] private AssetPickerWindow assetPickerWindow;
@@ -31,11 +30,11 @@ namespace Rogium.UserInterface.ModalWindows
         protected override void Awake()
         {
             base.Awake();
-            cachedAssetPickerWindow = Instantiate(assetPickerWindow, windowParent);
+            cachedAssetPickerWindow = Instantiate(assetPickerWindow, WindowParent);
             cachedAssetPickerWindow.Close();
-            cachedSoundPickerWindow = Instantiate(soundPickerWindow, windowParent);
+            cachedSoundPickerWindow = Instantiate(soundPickerWindow, WindowParent);
             cachedSoundPickerWindow.Close();
-            cachedColorPickerWindow = Instantiate(colorPickerWindow, windowParent);
+            cachedColorPickerWindow = Instantiate(colorPickerWindow, WindowParent);
             cachedColorPickerWindow.Close();
         }
 
@@ -85,7 +84,7 @@ namespace Rogium.UserInterface.ModalWindows
         /// <param name="preselectedAsset">The asset that will be selected on window open.</param>
         public void OpenAssetPickerWindow(AssetType type, Action<IAsset> whenAssetPicked, IAsset preselectedAsset = null, bool canSelectEmpty = false)
         {
-            AssetPickerWindow window = (cachedAssetPickerWindow.IsOpen) ? Instantiate(assetPickerWindow, windowParent) : cachedAssetPickerWindow;
+            AssetPickerWindow window = (cachedAssetPickerWindow.IsOpen) ? Instantiate(assetPickerWindow, WindowParent) : cachedAssetPickerWindow;
             window.Construct(type, whenAssetPicked, preselectedAsset, canSelectEmpty);
             ThemeUpdaterRogium.UpdateAssetPickerWindow(window);
             SendToFront(window);
@@ -100,7 +99,7 @@ namespace Rogium.UserInterface.ModalWindows
         /// <param name="value">Which data to load up into the window.</param>
         public void OpenSoundPickerWindow(Action<SoundAsset> whenSoundChanged, Action<AssetData> onChangeAnyValue, AssetData value)
         {
-            SoundPickerWindow window = (cachedSoundPickerWindow.IsOpen) ? Instantiate(soundPickerWindow, windowParent) : cachedSoundPickerWindow;
+            SoundPickerWindow window = (cachedSoundPickerWindow.IsOpen) ? Instantiate(soundPickerWindow, WindowParent) : cachedSoundPickerWindow;
             window.Construct(whenSoundChanged, onChangeAnyValue, value);
             ThemeUpdaterRogium.UpdateSoundPickerWindow(window);
             SendToFront(window);
@@ -114,7 +113,7 @@ namespace Rogium.UserInterface.ModalWindows
         /// <param name="preselectedColor">Which data to load up into the window.</param>
         public void OpenColorPickerWindow(Action<Color> whenColorChanged, Color preselectedColor)
         {
-            ColorPickerWindow window = (cachedColorPickerWindow.IsOpen) ? Instantiate(colorPickerWindow, windowParent) : cachedColorPickerWindow;
+            ColorPickerWindow window = (cachedColorPickerWindow.IsOpen) ? Instantiate(colorPickerWindow, WindowParent) : cachedColorPickerWindow;
             window.Construct(whenColorChanged, preselectedColor);
             ThemeUpdaterRogium.UpdateColorPickerWindow(window);
             SendToFront(window);
@@ -123,6 +122,8 @@ namespace Rogium.UserInterface.ModalWindows
 
         private void SendToFront(ModalWindowBase window) => window.transform.SetAsLastSibling();
 
+        private Transform WindowParent => windowGenerator.PoolParent;
+        
         public int GenericActiveWindows => windowGenerator.ActiveWindows;
     }
 }

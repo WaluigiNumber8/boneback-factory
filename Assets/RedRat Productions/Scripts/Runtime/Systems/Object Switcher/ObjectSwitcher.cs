@@ -50,7 +50,7 @@ namespace RedRats.Systems.ObjectSwitching
         {
             if (index == lastIndex) return;
             if (index == -1) return;
-            SafetyNet.EnsureIntIsInRange(index, 0, objects.Length, "Default Tab Index");
+            Preconditions.IsIntInRange(index, 0, objects.Length, "Default Tab Index");
             
             foreach (GameObject gObject in objects)
             {

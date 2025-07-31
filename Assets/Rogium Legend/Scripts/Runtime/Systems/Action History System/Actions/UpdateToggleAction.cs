@@ -9,10 +9,10 @@ namespace Rogium.Systems.ActionHistory
     /// </summary>
     public class UpdateToggleAction : ActionBase<bool>
     {
-        private readonly InteractablePropertyToggle toggle;
+        private readonly IPToggle toggle;
         private readonly bool value;
         
-        public UpdateToggleAction(InteractablePropertyToggle toggle, bool value, Action<bool> fallback) : base(fallback)
+        public UpdateToggleAction(IPToggle toggle, bool value, Action<bool> fallback) : base(fallback)
         {
             this.toggle = toggle;
             this.value = value;

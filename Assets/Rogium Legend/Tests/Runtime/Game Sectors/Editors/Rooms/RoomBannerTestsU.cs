@@ -1,6 +1,5 @@
 using System.Collections;
-using Rogium.Editors.NewAssetSelection;
-using Rogium.Editors.Packs;
+using Rogium.Editors.AssetSelection;
 using Rogium.Editors.Rooms;
 using Rogium.Systems.GASExtension;
 using Rogium.Tests.Core;
@@ -13,13 +12,13 @@ namespace Rogium.Tests.Editors.Rooms
     {
         public static IEnumerator SelectRoomAndUpdateTileGridThenSave()
         {
-            yield return MenuLoader.PrepareSelectionMenuV2();
+            yield return TUtilsMenuLoader.PrepareSelectionMenu();
             yield return SelectionInfoColumnTestsU.OpenPackAndSelectRoom();
-            ((EditableAssetCardControllerV2)SelectionMenuOverseerMono.GetInstance().CurrentSelector.GetCard(0)).Edit();
+            ((EditableAssetCardController)SelectionMenuOverseerMono.Instance.CurrentSelector.GetCard(0)).Edit();
             yield return null;
-            RoomEditorOverseerMono.GetInstance().UpdateGridCell(new Vector2Int(0, 0));
-            RoomEditorOverseerMono.GetInstance().UpdateGridCell(new Vector2Int(1, 0));
-            GASButtonActions.SaveChangesRoom();
+            RoomEditorOverseerMono.Instance.UpdateGridCell(new Vector2Int(0, 0));
+            RoomEditorOverseerMono.Instance.UpdateGridCell(new Vector2Int(1, 0));
+            GASActions.SaveChangesRoom();
             yield return null;
         }
     }

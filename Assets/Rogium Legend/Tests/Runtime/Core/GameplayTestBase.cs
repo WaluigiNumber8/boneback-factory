@@ -15,10 +15,10 @@ namespace Rogium.Tests.Core
         [UnitySetUp]
         public virtual IEnumerator Setup()
         {
-            SceneLoader.LoadGameplayTestingScene();
+            TUtilsSceneLoader.LoadGameplayTestingScene();
             ExternalLibraryOverseer.Instance.ClearCampaigns();
             ActionHistorySystem.ClearHistory();
-            AssetCreator.AddNewCampaignToLibrary();
+            TUtilsAssetCreator.AddNewCampaignToLibrary();
             yield return null;
         }
     }

@@ -10,18 +10,13 @@ namespace RedRats.UI.Core
     /// Calls out different events for a Selectable object.
     /// </summary>
     [RequireComponent(typeof(Selectable))]
-    public class InteractableEventCaller : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler, ISelectHandler, IDeselectHandler, ISubmitHandler
+    public class InteractableEventCaller : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler, ISelectHandler, IDeselectHandler, ISubmitHandler
     {
         private const float BlockTime = 0.1f;
 
-        public event Action OnSelect;
-        public event Action OnDeselect;
-        public event Action OnClickLeft;
-        public event Action OnClickLeftDown;
-        public event Action OnClickLeftUp;
-        public event Action OnClickRight;
-        public event Action OnClickRightDown;
-        public event Action OnClickRightUp;
+        public event Action OnSelect, OnDeselect;
+        public event Action OnClickLeft, OnClickLeftDown, OnClickLeftUp;
+        public event Action OnClickRight, OnClickRightDown, OnClickRightUp;
         public event Action OnClickDisabled;
 
         private Selectable selectable;
@@ -49,7 +44,8 @@ namespace RedRats.UI.Core
             WhenDeselect();
         }
 
-        public void OnPointerDown(PointerEventData eventData) => WhenClick(eventData.button);
+        public void OnPointerClick(PointerEventData eventData) => WhenClick(eventData.button);
+        public void OnPointerDown(PointerEventData eventData) => WhenClickDown(eventData.button);
         public void OnPointerUp(PointerEventData eventData) => WhenClickUp(eventData.button);
         void ISelectHandler.OnSelect(BaseEventData eventData) => WhenSelect();
         void IDeselectHandler.OnDeselect(BaseEventData eventData) => WhenDeselect();
@@ -80,7 +76,6 @@ namespace RedRats.UI.Core
         /// </summary>
         protected virtual void WhenClick(PointerEventData.InputButton button)
         {
-            // If the button is not interactable, ignore events.
             if (!selectable.interactable)
             {
                 OnClickDisabled?.Invoke();
@@ -91,10 +86,28 @@ namespace RedRats.UI.Core
             {
                 case PointerEventData.InputButton.Left:
                     OnClickLeft?.Invoke();
-                    OnClickLeftDown?.Invoke();
                     break;
                 case PointerEventData.InputButton.Right:
                     OnClickRight?.Invoke();
+                    break;
+                case PointerEventData.InputButton.Middle:
+                default: throw new ArgumentOutOfRangeException(nameof(button), button, null);
+            }
+        }
+        
+        /// <summary>
+        /// Is called when the interactable is clicked down anywhere on screen.
+        /// </summary>
+        protected virtual void WhenClickDown(PointerEventData.InputButton button)
+        {
+            if (!selectable.interactable) return;
+            
+            switch (button)
+            {
+                case PointerEventData.InputButton.Left:
+                    OnClickLeftDown?.Invoke();
+                    break;
+                case PointerEventData.InputButton.Right:
                     OnClickRightDown?.Invoke();
                     break;
                 case PointerEventData.InputButton.Middle:
@@ -103,7 +116,7 @@ namespace RedRats.UI.Core
         }
         
         /// <summary>
-        /// Is called when the interactable is clicked.
+        /// Is called when the interactable is clicked up anywhere on screen.
         /// </summary>
         protected virtual void WhenClickUp(PointerEventData.InputButton button)
         {

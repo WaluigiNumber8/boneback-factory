@@ -11,10 +11,7 @@ namespace RedRats.UI.Core.Cursors
         private CursorOverseerMono overseer;
         private bool withinBounds;
         
-        protected virtual void Awake()
-        {
-            overseer = CursorOverseerMono.GetInstance();
-        }
+        protected virtual void Awake() => overseer = CursorOverseerMono.Instance;
 
         protected virtual void OnDisable()
         {

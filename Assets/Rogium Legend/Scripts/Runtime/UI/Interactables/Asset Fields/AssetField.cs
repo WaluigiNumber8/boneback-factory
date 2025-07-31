@@ -39,8 +39,10 @@ namespace Rogium.UserInterface.Interactables
             
             if (eventData.button != PointerEventData.InputButton.Left) return;
             
-            ModalWindowBuilder.GetInstance().OpenAssetPickerWindow(type, WhenAssetPicked, value, canBeEmpty);
+            OpenWindow();
         }
+
+        public void OpenWindow() => ModalWindowBuilder.Instance.OpenAssetPickerWindow(type, WhenAssetPicked, value, canBeEmpty);
 
         /// <summary>
         /// Constructs the asset field with initial values.

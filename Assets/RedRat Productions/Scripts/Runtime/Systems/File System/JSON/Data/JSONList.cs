@@ -46,7 +46,7 @@ namespace RedRats.Systems.FileSystem.JSON.Serialization
         /// <returns>A list of deserialized objects.</returns>
         public IList<T> Decode()
         {
-            SafetyNet.EnsureIsNotNull(newDeserializedObject, nameof(newDeserializedObject), "You need to set the decoder method before decoding.");
+            Preconditions.IsNotNull(newDeserializedObject, nameof(newDeserializedObject), "You need to set the decoder method before decoding.");
             return serializedList.Select(newDeserializedObject).ToList();
         }
 

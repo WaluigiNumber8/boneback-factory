@@ -1,7 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using RedRats.Core;
+using Rogium.Systems.ActionHistory;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 namespace Rogium.Systems.Input
@@ -9,42 +13,105 @@ namespace Rogium.Systems.Input
     /// <summary>
     /// Overseers all input profiles and deals with their switching.
     /// </summary>
+    [DefaultExecutionOrder(-50)]
     public class InputSystem : PersistentMonoSingleton<InputSystem>
     {
+        [SerializeField] private LinkedActionMapsAsset linkedActionMaps;
+        
+        private EventSystem eventSystem;
+        private RogiumInputActions input;
+        
         private InputProfilePlayer inputPlayer;
         private InputProfileUI inputUI;
-        private EventSystem eventSystem;
+        private InputProfilePause inputPause;
+        private InputProfileShortcuts inputShortcuts;
         
         private Vector2 pointerPosition;
 
         protected override void Awake()
         {
             base.Awake();
-            RogiumInputActions input = new();
+            ClearAllInput();
+            SceneManager.sceneLoaded += (_, __) => eventSystem = FindFirstObjectByType<EventSystem>();
+            linkedActionMaps?.RefreshDictionary();
+        }
+
+        public void ClearAllInput()
+        {
+            UI?.Disable();
+            Player?.Disable();
+            Pause?.Disable();
+            Shortcuts?.Disable();
+            input = new RogiumInputActions();
             inputPlayer = new InputProfilePlayer(input);
             inputUI = new InputProfileUI(input);
-            SceneManager.sceneLoaded += (_, __) => eventSystem = FindFirstObjectByType<EventSystem>();
-            inputUI.PointerPosition.OnPressed += UpdatePointerPosition;
+            inputPause = new InputProfilePause(input);
+            inputShortcuts = new InputProfileShortcuts(input);
+            SwitchToMenuMaps();
+            
+            UI.PointerPosition.OnPressed += UpdatePointerPosition;
+            
+            //Force grouping on click/right click
+            UI.Select.OnPress -= ActionHistorySystem.StartNewGroup;
+            UI.ContextSelect.OnPress -= ActionHistorySystem.StartNewGroup;
+            UI.Select.OnRelease -= ActionHistorySystem.EndCurrentGroup;
+            UI.ContextSelect.OnRelease -= ActionHistorySystem.EndCurrentGroup;
+            
+            UI.Select.OnPress += ActionHistorySystem.StartNewGroup;
+            UI.ContextSelect.OnPress += ActionHistorySystem.StartNewGroup;
+            UI.Select.OnRelease += ActionHistorySystem.EndCurrentGroup;
+            UI.ContextSelect.OnRelease += ActionHistorySystem.EndCurrentGroup;
+        }
+
+        public void SwitchToGameplayMaps()
+        {
+            Shortcuts.Disable();
+            UI.Disable();
+            Player.Enable();
+        }
+        
+        public void SwitchToMenuMaps()
+        {
+            Player.Disable();
+            UI.Enable();
+            Shortcuts.Enable();
         }
 
         /// <summary>
-        /// Enables the UI Action Map.
+        /// Tries to find a duplicate binding combination in the same action map.
         /// </summary>
-        public void EnableUIMap()
+        /// <param name="action">The action containing the binding combination of interest.</param>
+        /// <param name="bindingCombo">The binding combination to find duplicate for</param>
+        /// <returns>The duplicate combination, the action it's a part of and the binding's index.</returns>
+        public (InputAction, InputBindingCombination, int) FindDuplicateBinding(InputAction action, InputBindingCombination bindingCombo)
         {
-            DisableAll();
-            inputUI.Enable();
+            bool usesModifiers = bindingCombo.Modifier1.effectivePath != "" || bindingCombo.Modifier2.effectivePath != "";
+            
+            ISet<InputActionMap> mapsOfInterest = GetLinkedMaps(action);
+            foreach (InputActionMap map in mapsOfInterest)
+            {
+                for (int i = 0; i < map.bindings.Count; i++)
+                {
+                    InputBinding binding = map.bindings[i];
+                    if (!binding.effectivePath.Equals(bindingCombo.Button.effectivePath) || binding.id == bindingCombo.Button.id) continue;
+                    if (HasNoModifiersButIsModifierComposite(binding, map, i - 2)) continue;
+                    if (HasNoModifiersButIsModifierComposite(binding, map, i - 1)) continue;
+                    if (HasModifiersButNotSame(bindingCombo.Modifier1, map, i - 2)) continue;
+                    if (HasModifiersButNotSame(bindingCombo.Modifier2, map, i - 1)) continue;
+
+                    InputAction foundAction = input.FindAction(binding.action);
+                    InputBindingCombination foundCombination = new InputBindingCombination.Builder().WithLinkedBindings(map.bindings[i], (usesModifiers) ? map.bindings[i-2] : new InputBinding(""), (usesModifiers) ? map.bindings[i-1] : new InputBinding("")).Build();
+                    int foundIndex = foundAction.GetBindingIndexWithEmptySupport(binding);
+                    return (foundAction, foundCombination, foundIndex);
+                }
+            }
+
+            return (null, new InputBindingCombination.Builder().AsEmpty(), -1);
+
+            bool HasNoModifiersButIsModifierComposite(InputBinding binding, InputActionMap map, int indexOffset) => !usesModifiers && binding.IsTwoOptionalModifiersComposite() && indexOffset > -1 && !string.IsNullOrEmpty(map.bindings[indexOffset].effectivePath);
+            bool HasModifiersButNotSame(InputBinding other, InputActionMap map, int indexOffset) => usesModifiers &&  indexOffset > -1 && (!map.bindings[indexOffset].effectivePath.Equals(other.effectivePath) || map.bindings[indexOffset].id == other.id);
         }
-        
-        /// <summary>
-        /// Enables the Player Action Map.
-        /// </summary>
-        public void EnablePlayerMap()
-        {
-            DisableAll();
-            inputPlayer.Enable();
-        }
-        
+
         /// <summary>
         /// Disables all input for a specified amount of time.
         /// </summary>
@@ -60,19 +127,49 @@ namespace Rogium.Systems.Input
                 eventSystem.sendNavigationEvents = true;
             }
         }
-        
+
         /// <summary>
-        /// Disables all Action Maps except UI.
+        /// Replaces all TwoOptionalModifiersComposite bindings with their respective composite bindings.
         /// </summary>
-        private void DisableAll()
+        public void ReplaceAllBindings() => BindingReplacer.ReplaceBindings(input.asset);
+
+        public InputAction GetAction(InputAction action) => input.FindAction(action.name);
+
+        public InputAction GetAction(InputBinding binding)
         {
-            inputPlayer.Disable();
+            InputAction a = input.FindAction(binding.action);
+            if (input == null) throw new NullReferenceException($"InputAction {binding.action} not found.");
+            return a;
+        }
+
+        /// <summary>
+        /// Gets all action maps that are linked to the specified action.
+        /// </summary>
+        /// <param name="action">The action for which the maps are linked.</param>
+        /// <returns>A set of action maps.</returns>
+        private ISet<InputActionMap> GetLinkedMaps(InputAction action)
+        {
+            ISet<InputActionMap> actionMaps = new HashSet<InputActionMap>();
+            actionMaps.Add(action.actionMap);
+            if (linkedActionMaps != null && linkedActionMaps.GetLinkedMaps.TryGetValue(action.actionMap.name, out ISet<string> maps))
+            {
+                foreach (string mapName in maps)
+                {
+                    InputActionMap map = input.asset.FindActionMap(mapName);
+                    if (map != null) actionMaps.Add(map);
+                }
+            }
+            return actionMaps;
         }
         
         private void UpdatePointerPosition(Vector2 value) => pointerPosition = value;
-
+        
         public Vector2 PointerPosition { get => pointerPosition; }
         public InputProfilePlayer Player { get => inputPlayer; }
         public InputProfileUI UI { get => inputUI; }
+        public InputProfilePause Pause { get => inputPause; }
+        public InputProfileShortcuts Shortcuts { get => inputShortcuts; }
+        public string KeyboardBindingGroup { get => input.KeyboardMouseScheme.bindingGroup; }
+        public string GamepadBindingGroup { get => input.GamepadScheme.bindingGroup;}
     }
 }

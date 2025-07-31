@@ -1,12 +1,12 @@
 using System.Collections;
 using NUnit.Framework;
 using Rogium.Core;
-using Rogium.Editors.NewAssetSelection;
-using Rogium.Editors.NewAssetSelection.UI;
+using Rogium.Editors.AssetSelection;
+using Rogium.Editors.AssetSelection.UI;
 using Rogium.Tests.Core;
 using UnityEngine;
 using UnityEngine.TestTools;
-using static Rogium.Tests.Editors.AssetCreator;
+using static Rogium.Tests.Core.TUtilsAssetCreator;
 
 namespace Rogium.Tests.Editors.AssetSelection
 {
@@ -21,8 +21,8 @@ namespace Rogium.Tests.Editors.AssetSelection
         public override IEnumerator Setup()
         {
             yield return base.Setup();
-            yield return MenuLoader.PrepareSelectionMenuV2();
-            selectionMenu = SelectionMenuOverseerMono.GetInstance();
+            yield return TUtilsMenuLoader.PrepareSelectionMenu();
+            selectionMenu = SelectionMenuOverseerMono.Instance;
             AddNewPackToLibrary();
             AddNewPackToLibrary();
             yield return null;

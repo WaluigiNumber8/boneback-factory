@@ -17,13 +17,12 @@ namespace RedRats.UI.Tabs
         private TabPageButton[] pageButtons;
         private TabPageButton selectedTab;
 
-        public int DefaultTabIndex { get => defaultTabIndex; }
 
         private void Awake() => pageButtons = GetButtons();
         
         private void Start()
         {
-            SafetyNet.EnsureIntIsInRange(defaultTabIndex, 0, pageButtons.Length, "Default Tab Index");
+            Preconditions.IsIntInRange(defaultTabIndex, 0, pageButtons.Length, "Default Tab Index");
             Switch(defaultTabIndex);
         }
 
@@ -63,7 +62,7 @@ namespace RedRats.UI.Tabs
         /// <param name="index">The index of the button to switch.</param>
         public void Switch(int index)
         {
-            SafetyNet.EnsureIndexWithingCollectionRange(index, pageButtons, "Tab Buttons");
+            Preconditions.IsIndexWithingCollectionRange(pageButtons, index, "Tab Buttons");
             OnTabSelect(pageButtons[index]);
         }
 
@@ -85,7 +84,9 @@ namespace RedRats.UI.Tabs
         /// Get all pages from tab group as an array of GameObjects.
         /// </summary>
         /// <returns>An array of pages.</returns>
-        public GameObject[] GetButtonsAsArray() => pageButtons.Select(button => button.Page).ToArray();
+        public GameObject[] GetPagesAsArray() => pageButtons.Select(button => button.Page).ToArray();
+        
+        public int DefaultTabIndex { get => defaultTabIndex; }
 
         [Serializable]
         protected struct ButtonVisualInfo

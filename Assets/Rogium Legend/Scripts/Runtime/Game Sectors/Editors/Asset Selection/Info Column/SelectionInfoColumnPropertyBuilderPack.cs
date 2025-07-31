@@ -2,12 +2,12 @@ using Rogium.Editors.Packs;
 using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine;
 
-namespace Rogium.Editors.NewAssetSelection
+namespace Rogium.Editors.AssetSelection
 {
     /// <summary>
     /// Builds the <see cref="SelectionInfoColumn"/> for a <see cref="PackAsset"/>.
     /// </summary>
-    public class SelectionInfoColumnPropertyBuilderPack : UIPropertyContentBuilderBaseColumn1<PackAsset>
+    public class SelectionInfoColumnPropertyBuilderPack : IPContentBuilderBaseColumn1<PackAsset>
     {
         private readonly bool essentialOnly;
 
@@ -20,9 +20,8 @@ namespace Rogium.Editors.NewAssetSelection
         /// Build <see cref="SelectionInfoColumn"/> properties for a pack.
         /// </summary>
         /// <param name="asset">The pack to build for.</param>
-        public override void Build(PackAsset asset)
+        public override void BuildInternal(PackAsset asset)
         {
-            Clear();
             if (essentialOnly) BuildLite(asset);
             else BuildFull(asset);
         }

@@ -24,8 +24,8 @@ namespace Rogium.Tests.Editors.Sprites
         {
             yield return base.Setup();
             
-            yield return MenuLoader.PrepareSpriteEditor();
-            spriteEditor = SpriteEditorOverseerMono.GetInstance();
+            yield return TUtilsMenuLoader.PrepareSpriteEditor();
+            spriteEditor = SpriteEditorOverseerMono.Instance;
             ActionHistorySystem.ClearHistory();
             yield return null;
         }
@@ -33,7 +33,7 @@ namespace Rogium.Tests.Editors.Sprites
         [Test]
         public void SwitchPalette_Should_ChangeCurrentPalette()
         {
-            PaletteAsset newPalette = AssetCreator.CreatePalette();
+            PaletteAsset newPalette = TUtilsAssetCreator.CreatePalette();
             spriteEditor.SwitchPalette(newPalette);
             Assert.That(spriteEditor.CurrentPaletteAsset, Is.EqualTo(newPalette));
         }
@@ -60,7 +60,7 @@ namespace Rogium.Tests.Editors.Sprites
         public void ClearActiveGrid_Should_AddToUndoHistory()
         {
             SpriteEditorOverseerMonoTestsU.FillEntireGrid();
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             spriteEditor.ClearActiveGrid();
             
             Assert.That(ActionHistorySystem.UndoCount, Is.EqualTo(2));
@@ -71,7 +71,7 @@ namespace Rogium.Tests.Editors.Sprites
         {
             SpriteEditorOverseerMonoTestsU.FillEntireGrid();
             spriteEditor.ClearActiveGrid();
-            ActionHistorySystem.UndoLast();
+            ActionHistorySystem.Undo();
             
             Assert.That(spriteEditor.GetCurrentGridCopy.GetCellsCopy, Is.Not.All.EqualTo(EditorDefaults.EmptyColorID));
         }

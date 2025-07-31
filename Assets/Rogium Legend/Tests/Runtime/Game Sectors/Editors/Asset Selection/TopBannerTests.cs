@@ -2,12 +2,12 @@ using System.Collections;
 using NUnit.Framework;
 using RedRats.UI.MenuSwitching;
 using Rogium.Core;
-using Rogium.Editors.NewAssetSelection;
-using Rogium.Editors.NewAssetSelection.UI;
+using Rogium.Editors.AssetSelection;
 using Rogium.Tests.Core;
 using UnityEngine;
 using UnityEngine.TestTools;
-using static Rogium.Tests.Editors.AssetCreator;
+using UnityEngine.UI;
+using static Rogium.Tests.Core.TUtilsAssetCreator;
 
 namespace Rogium.Tests.Editors.AssetSelection
 {
@@ -21,8 +21,8 @@ namespace Rogium.Tests.Editors.AssetSelection
         public override IEnumerator Setup()
         {
             yield return base.Setup();
-            yield return MenuLoader.PrepareSelectionMenuV2();
-            selectionMenu = SelectionMenuOverseerMono.GetInstance();
+            yield return TUtilsMenuLoader.PrepareSelectionMenu();
+            selectionMenu = SelectionMenuOverseerMono.Instance;
             AddNewPackToLibrary();
             AddNewPackToLibrary();
             yield return null;
@@ -31,13 +31,13 @@ namespace Rogium.Tests.Editors.AssetSelection
         [UnityTest]
         public IEnumerator ReturnButton_Should_ReturnToMainMenu_WhenClickedOnPackSelection()
         {
-            yield return MenuLoader.PrepareMainMenu();
+            yield return TUtilsMenuLoader.PrepareMainMenu();
             selectionMenu.Open(AssetType.Pack);
             yield return null;
-            SelectionMenuReturnButton returnButton = Object.FindFirstObjectByType<SelectionMenuReturnButton>();
-            returnButton.Click();
+            Button returnButton = GameObject.Find("Top Banner").GetComponentInChildren<Button>();
+            returnButton.onClick.Invoke();
             yield return null;
-            Assert.That(MenuSwitcher.GetInstance().CurrentMenu, Is.EqualTo(MenuType.MainMenu));
+            Assert.That(MenuSwitcher.Instance.CurrentMenu, Is.EqualTo(MenuType.MainMenu));
         }
 
         [UnityTest]
@@ -45,8 +45,8 @@ namespace Rogium.Tests.Editors.AssetSelection
         {
             SelectionMenuOverseerMonoTestsU.OpenPackSelectionAndEditFirstPack();
             yield return null;
-            SelectionMenuReturnButton returnButton = Object.FindFirstObjectByType<SelectionMenuReturnButton>();
-            returnButton.Click();
+            Button returnButton = GameObject.Find("Top Banner").GetComponentInChildren<Button>();
+            returnButton.onClick.Invoke();
             yield return null;
             Assert.That(selectionMenu.CurrentType, Is.EqualTo(AssetType.Pack));
         }

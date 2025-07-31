@@ -7,7 +7,7 @@ namespace Rogium.Editors.PropertyEditor.Builders
     /// <summary>
     /// A base for all property editor builders.
     /// </summary>
-    public abstract class PropertyEditorBuilderBase<T> : UIPropertyContentBuilderBaseColumn2<T> where T : IAsset
+    public abstract class PropertyEditorBuilderBase<T> : IPContentBuilderBaseColumn2<T> where T : IAsset
     {
         protected PropertyEditorBuilderBase(Transform contentMain, Transform contentSecond) : base(contentMain, contentSecond) { }
         

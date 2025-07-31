@@ -19,6 +19,7 @@ namespace RedRats.UI.ModalWindows
         
         protected virtual void Awake()
         {
+            isOpen = generalUI.entireArea.activeSelf;
             generalUI.backgroundArea.onClick.AddListener(Close);
             if (generalUI.closeButton != null) generalUI.closeButton.onClick.AddListener(Close);
         }
@@ -38,6 +39,7 @@ namespace RedRats.UI.ModalWindows
         /// </summary>
         public virtual void Close()
         {
+            if (!isOpen) return;
             generalUI.entireArea.SetActive(false);
             OnClose?.Invoke();
             isOpen = false;

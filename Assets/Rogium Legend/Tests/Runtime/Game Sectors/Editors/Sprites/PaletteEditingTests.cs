@@ -12,11 +12,9 @@ using Rogium.Tests.Core;
 using Rogium.UserInterface.ModalWindows;
 using UnityEngine;
 using UnityEngine.TestTools;
-using UnityEngine.UI;
-using static Rogium.Tests.Core.PointerDataCreator;
+using static Rogium.Tests.Core.TUtilsPointerDataCreator;
 using static Rogium.Tests.Editors.Sprites.PaletteEditingTestsU;
-using static Rogium.Tests.Editors.Sprites.SpriteEditorOverseerMonoTestsU;
-using static Rogium.Tests.UI.Interactables.InteractableUtils;
+using static Rogium.Tests.UI.Interactables.Properties.InteractableUtils;
 
 namespace Rogium.Tests.Editors.Sprites
 {
@@ -30,12 +28,12 @@ namespace Rogium.Tests.Editors.Sprites
         public override IEnumerator Setup()
         {
             yield return base.Setup();
-            OverseerLoader.LoadModalWindowBuilder();
-            OverseerLoader.LoadUIBuilder();
+            TUtilsOverseerLoader.LoadModalWindowBuilder();
+            TUtilsOverseerLoader.LoadUIBuilder();
             yield return null;
-            yield return MenuLoader.PrepareSelectionMenuV2();
-            yield return MenuLoader.PrepareSpriteEditor();
-            spriteEditor = SpriteEditorOverseerMono.GetInstance();
+            yield return TUtilsMenuLoader.PrepareSelectionMenu();
+            yield return TUtilsMenuLoader.PrepareSpriteEditor();
+            spriteEditor = SpriteEditorOverseerMono.Instance;
             ActionHistorySystem.ClearHistory();
             yield return null;
         }
@@ -72,7 +70,7 @@ namespace Rogium.Tests.Editors.Sprites
         public IEnumerator Should_AddSlotColorChangeToActionHistory()
         {
             yield return UpdateColorSlot(Color.blue);
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             yield return null;
 
             Assert.That(ActionHistorySystem.UndoCount, Is.GreaterThanOrEqualTo(1));
@@ -82,12 +80,12 @@ namespace Rogium.Tests.Editors.Sprites
         public IEnumerator Should_RevertColorSlotChange_WhenUndoIsCalled()
         {
             yield return UpdateColorSlot(Color.blue);
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             yield return null;
             yield return UpdateColorSlot(Color.red);
-            ActionHistorySystem.ForceEndGrouping();
+            ActionHistorySystem.EndCurrentGroup();
             yield return null;
-            ActionHistorySystem.UndoLast();
+            ActionHistorySystem.Undo();
 
             Assert.That(spriteEditor.Palette.GetSlot(0).CurrentColor, Is.EqualTo(Color.blue));
         }
@@ -108,7 +106,7 @@ namespace Rogium.Tests.Editors.Sprites
             yield return UpdateColorSlot(Color.blue);
             spriteEditor.UpdateCell(new Vector2Int(0, 0));
             yield return UpdateColorSlot(Color.red);
-            ActionHistorySystem.UndoLast();
+            ActionHistorySystem.Undo();
 
             Assert.That(spriteEditor.CurrentGridSprite.texture.GetPixel(0, 0), Is.EqualTo(Color.blue));
         }
@@ -116,8 +114,8 @@ namespace Rogium.Tests.Editors.Sprites
         [Test]
         public void Should_NotOpenPaletteDialog_WhenPaletteEditedAndOverriden()
         {
-            GASButtonActions.SavePaletteAsOverride();
-            Assert.That(ModalWindowBuilder.GetInstance().GenericActiveWindows, Is.EqualTo(0));
+            GASActions.SavePaletteAsOverride();
+            Assert.That(ModalWindowBuilder.Instance.GenericActiveWindows, Is.EqualTo(0));
         }
 
         [UnityTest]
@@ -139,8 +137,8 @@ namespace Rogium.Tests.Editors.Sprites
         public IEnumerator Should_FlagPaletteAsChanged_WhenPaletteSlotColorChangedThenUndoThenChanged()
         {
             yield return UpdateColorSlot(Color.blue);
-            ActionHistorySystem.ForceEndGrouping();
-            ActionHistorySystem.UndoLast();
+            ActionHistorySystem.EndCurrentGroup();
+            ActionHistorySystem.Undo();
             yield return UpdateColorSlot(Color.red);
             Assert.That(spriteEditor.PaletteChanged, Is.True);
         }
@@ -149,8 +147,8 @@ namespace Rogium.Tests.Editors.Sprites
         public IEnumerator Should_FlagPaletteAsNotChanged_WhenPaletteSlotColorChangedAndUndoIsCalled()
         {
             yield return UpdateColorSlot(Color.blue);
-            ActionHistorySystem.ForceEndGrouping();
-            ActionHistorySystem.UndoLast();
+            ActionHistorySystem.EndCurrentGroup();
+            ActionHistorySystem.Undo();
             Assert.That(spriteEditor.PaletteChanged, Is.False);
         }
 
@@ -158,7 +156,7 @@ namespace Rogium.Tests.Editors.Sprites
         public IEnumerator Should_OverridePaletteAsset_WhenEditedAndOverriden()
         {
             yield return UpdateColorSlot(Color.blue);
-            GASButtonActions.SavePaletteAsOverride();
+            GASActions.SavePaletteAsOverride();
             Assert.That(PackEditorOverseer.Instance.CurrentPack.Palettes[0].Colors[0], Is.EqualTo(Color.blue));
         }
 
@@ -166,7 +164,7 @@ namespace Rogium.Tests.Editors.Sprites
         public IEnumerator Should_UpdatePaletteIcon_WhenEditedAndOverriden()
         {
             yield return UpdateColorSlot(Color.blue, 0);
-            GASButtonActions.SavePaletteAsOverride();
+            GASActions.SavePaletteAsOverride();
             yield return null;
             Texture2D icon = PackEditorOverseer.Instance.CurrentPack.Palettes[0].Icon.texture;
             Assert.That(icon.GetPixel(0, icon.height-1), Is.EqualTo(Color.blue));
@@ -176,8 +174,8 @@ namespace Rogium.Tests.Editors.Sprites
         public IEnumerator Should_OpenPaletteDialog_WhenPaletteEditedAndSavedAsNew()
         {
             yield return UpdateColorSlot(Color.blue);
-            GASButtonActions.SavePaletteAsNew();
-            Assert.That(ModalWindowBuilder.GetInstance().GenericActiveWindows, Is.EqualTo(1));
+            GASActions.SavePaletteAsNew();
+            Assert.That(ModalWindowBuilder.Instance.GenericActiveWindows, Is.EqualTo(1));
         }
         
         [UnityTest]
@@ -231,7 +229,7 @@ namespace Rogium.Tests.Editors.Sprites
             yield return null;
             PackEditorOverseer.Instance.ActivateSpriteEditor(0);
             yield return null;
-            Assert.That(SpriteEditorOverseerMono.GetInstance().Palette.GetSlot(0).CurrentColor, Is.EqualTo(EditorDefaults.Instance.MissingPalette[0]));
+            Assert.That(SpriteEditorOverseerMono.Instance.Palette.GetSlot(0).CurrentColor, Is.EqualTo(EditorDefaults.Instance.MissingPalette[0]));
         }
 
         [UnityTest]
@@ -286,7 +284,7 @@ namespace Rogium.Tests.Editors.Sprites
         public IEnumerator Should_NotChangePaletteColors_WhenEditedWithoutSaving()
         {
             yield return UpdateColorSlot(Color.blue);
-            GASButtonActions.SaveChangesSprite();
+            GASActions.SaveChangesSprite();
             Object.FindFirstObjectByType<ModalWindow>()?.OnDeny();
             Assert.That(PackEditorOverseer.Instance.CurrentPack.Palettes[0].Colors[0], Is.Not.EqualTo(Color.blue));
         }
@@ -295,7 +293,7 @@ namespace Rogium.Tests.Editors.Sprites
         public IEnumerator Should_KeepOriginalPaletteColors_WhenEditedWithoutSaving()
         {
             yield return UpdateColorSlot(Color.blue);
-            GASButtonActions.SaveChangesSprite();
+            GASActions.SaveChangesSprite();
             Object.FindFirstObjectByType<ModalWindow>()?.OnDeny();
             Assert.That(PackEditorOverseer.Instance.CurrentPack.Palettes[0].Colors[0], Is.EqualTo(Color.magenta));
         }
@@ -305,7 +303,7 @@ namespace Rogium.Tests.Editors.Sprites
         {
             yield return UpdateColorSlot(Color.blue);
             FillSpriteEditorGrid();
-            GASButtonActions.SaveChangesSprite();
+            GASActions.SaveChangesSprite();
             Object.FindFirstObjectByType<ModalWindow>()?.OnDeny();
             Texture2D icon = PackEditorOverseer.Instance.CurrentPack.Sprites[0].Icon.texture;
             Assert.That(icon.GetPixel(0, icon.height-1), Is.EqualTo(Color.magenta));
@@ -316,7 +314,7 @@ namespace Rogium.Tests.Editors.Sprites
         {
             yield return UpdateColorSlotForSpriteWithMissingPalette();
             FillSpriteEditorGrid();
-            GASButtonActions.SaveChangesSprite();
+            GASActions.SaveChangesSprite();
             Object.FindFirstObjectByType<ModalWindow>()?.OnDeny();
             Texture2D icon = PackEditorOverseer.Instance.CurrentPack.Sprites[0].Icon.texture;
             Assert.That(icon.GetPixel(0, icon.height-1), Is.EqualTo(EditorDefaults.Instance.MissingPalette[0]));

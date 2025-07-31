@@ -47,7 +47,7 @@ namespace Rogium.Core
                     lastID = lastAsset.ID;
                     assets.Add(lastAsset);
                 }
-                catch (SafetyNetCollectionException)
+                catch (PreconditionCollectionException)
                 {
                     if (!keepEmpty) assets.Add(default);
                 }
@@ -64,11 +64,11 @@ namespace Rogium.Core
             {
                 return allAssets.FindValueFirst(id);
             }
-            catch (SafetyNetCollectionException)
+            catch (PreconditionCollectionException)
             {
                 if (!keepEmpty) return default;
             }
-            throw new SafetyNetCollectionException($"Asset with id '{id}' not found.");
+            throw new PreconditionCollectionException($"Asset with id '{id}' not found.");
         }
 
         /// <summary>

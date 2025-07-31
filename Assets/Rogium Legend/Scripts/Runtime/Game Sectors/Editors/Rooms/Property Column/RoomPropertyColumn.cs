@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections;
-using RedRats.Core;
 using Rogium.Core;
 using Rogium.Editors.Core;
 using Rogium.Editors.Core.Defaults;
 using Rogium.Editors.Tiles;
 using Rogium.Systems.ActionHistory;
+using Rogium.UserInterface.Interactables.Properties;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -35,12 +35,13 @@ namespace Rogium.Editors.Rooms.PropertyColumn
             builderTile = new RoomPropertyColumnBuilderTile(assetContent);
             builderObject = new RoomPropertyColumnBuilderObject(assetContent);
             builderEnemy = new RoomPropertyColumnBuilderEnemy(assetContent);
-            builderSettings = new RoomSettingsBuilder();
+            builderSettings = new RoomSettingsBuilder(settingsContent);
         }
 
-        private void OnEnable() => ActionHistorySystem.OnUpdateUndoHistory += RefreshProperties;
-        private void OnDisable() => ActionHistorySystem.OnUpdateUndoHistory -= RefreshProperties;
+        private void OnEnable() => ActionHistorySystem.OnUpdateUndoHistory += Reconstruct;
+        private void OnDisable() => ActionHistorySystem.OnUpdateUndoHistory -= Reconstruct;
 
+        private void Reconstruct() => Construct(currentData);
 
         /// <summary>
         /// Load asset data into the column.
@@ -59,42 +60,12 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         }
 
         /// <summary>
-        /// Constructs the Asset Properties Column from tiles.
-        /// </summary>
-        /// <param name="data">The asset data to read from.</param>
-        public void ConstructAssetPropertiesTile(AssetData data)
-        {
-            builderTile.Build(data);
-            currentData = data;
-        }
-
-        /// <summary>
-        /// Constructs the Asset Properties Column from interactable objects.
-        /// </summary>
-        /// <param name="data">The asset data to read from.</param>
-        public void ConstructAssetPropertiesObject(AssetData data)
-        {
-            builderObject.Build(data);
-            currentData = data;
-        }
-
-        /// <summary>
-        /// Constructs the Asset Properties Column from enemies.
-        /// </summary>
-        /// <param name="data">The asset data to read from.</param>
-        public void ConstructAssetPropertiesEnemies(AssetData data)
-        {
-            builderEnemy.Build(data);
-            currentData = data;
-        }
-
-        /// <summary>
         /// Constructs the Room Settings Column.
         /// </summary>
         public void ConstructSettings(RoomAsset data)
         {
             ui.roomTitleText.text = data.Title;
-            builderSettings.Build(settingsContent, data, true);
+            builderSettings.Build(data);
         }
 
         /// <summary>
@@ -102,7 +73,7 @@ namespace Rogium.Editors.Rooms.PropertyColumn
         /// </summary>
         public void ConstructEmpty()
         {
-            assetContent.gameObject.KillChildren();
+            assetContent.ReleaseAllProperties();
             ui.assetTitleText.text = defaultText;
             ui.typeText.text = "";
             ui.iconImage.color = EditorDefaults.Instance.NoColor;
@@ -110,6 +81,12 @@ namespace Rogium.Editors.Rooms.PropertyColumn
             
             currentType = AssetType.None;
             currentData = new AssetData();
+        }
+
+        public void Dispose()
+        {
+            assetContent.ReleaseAllProperties();
+            settingsContent.ReleaseAllProperties();
         }
 
         /// <summary>
@@ -134,23 +111,25 @@ namespace Rogium.Editors.Rooms.PropertyColumn
             ui.icon.SetActive(false);
         }
 
-        private void RefreshProperties()
+        public void Construct(AssetData data)
         {
-            if (currentData.IsEmpty()) return;
+            if (data.IsEmpty()) return;
             StartCoroutine(DelayCoroutine());
             IEnumerator DelayCoroutine()
             {
+                currentData = data;
+                
                 yield return new WaitForEndOfFrame();
                 switch (currentType)
                 {
                     case AssetType.Enemy:
-                        ConstructAssetPropertiesEnemies(currentData);
+                        builderEnemy.Build(currentData);
                         break;
                     case AssetType.Tile:
-                        ConstructAssetPropertiesTile(currentData);
+                        builderTile.Build(currentData);
                         break;
                     case AssetType.Object:
-                        ConstructAssetPropertiesObject(currentData);
+                        builderObject.Build(currentData);
                         break;
                     default: throw new NotSupportedException($"Asset type '{currentType}' is not supported.");
                 }

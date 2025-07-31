@@ -3,9 +3,8 @@ using System.Collections.ObjectModel;
 using NUnit.Framework;
 using RedRats.Systems.Themes;
 using Rogium.Core;
-using Rogium.Editors.Campaign;
 using Rogium.Editors.Core;
-using Rogium.Editors.NewAssetSelection;
+using Rogium.Editors.AssetSelection;
 using Rogium.Editors.Packs;
 using Rogium.Editors.Weapons;
 using Rogium.Systems.GASExtension;
@@ -15,7 +14,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.UI;
-using static Rogium.Tests.Editors.AssetCreator;
+using static Rogium.Tests.Core.TUtilsAssetCreator;
 using static Rogium.Tests.Editors.AssetSelection.SelectionInfoColumnTestsU;
 
 namespace Rogium.Tests.Editors.AssetSelection
@@ -32,10 +31,10 @@ namespace Rogium.Tests.Editors.AssetSelection
         public override IEnumerator Setup()
         {
             yield return base.Setup();
-            OverseerLoader.LoadModalWindowBuilder();
-            OverseerLoader.LoadUIBuilder();
-            yield return MenuLoader.PrepareSelectionMenuV2();
-            selectionMenu = SelectionMenuOverseerMono.GetInstance();
+            TUtilsOverseerLoader.LoadModalWindowBuilder();
+            TUtilsOverseerLoader.LoadUIBuilder();
+            yield return TUtilsMenuLoader.PrepareSelectionMenu();
+            selectionMenu = SelectionMenuOverseerMono.Instance;
             infoColumn = selectionMenu.GetComponentInChildren<SelectionInfoColumn>();
             AddNewPackToLibrary();
             AddNewPackToLibrary();
@@ -68,7 +67,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         public IEnumerator Should_ShowRoomBanner_WhenRoomCardClicked()
         {
             yield return OpenPackAndSelectRoom();
-            Assert.That(infoColumn.BannerIcon, Is.EqualTo(currentPack.Rooms[0].Icon));
+            Assert.That(infoColumn.BannerIcon, Is.EqualTo(currentPack.Rooms[0].Banner));
         }
 
         [UnityTest]
@@ -126,25 +125,25 @@ namespace Rogium.Tests.Editors.AssetSelection
         public IEnumerator Should_KeepPropertyThemeToBlue_WhenCreatingPropertiesInColumn()
         {
             yield return OpenPackAndSelectEnemy();
-            Assert.That(infoColumn.GetProperty<string>(0).GetComponentInChildren<TextMeshProUGUI>().color, Is.EqualTo(ThemeOverseerMono.GetInstance().GetThemeData(ThemeType.Blue).Fonts.general.color));
+            Assert.That(infoColumn.GetProperty<string>(0).GetComponentInChildren<TextMeshProUGUI>().color, Is.EqualTo(ThemeOverseerMono.Instance.GetThemeData(ThemeType.Blue).Fonts.general.color));
         }
 
         [UnityTest]
         public IEnumerator Should_MakeEnemyCardsRed_WhenEnemySelectionOpened()
         {
             yield return OpenPackAndSelectEnemy();
-            Assert.That(selectionMenu.CurrentSelector.GetCard(0).GetComponentInChildren<Image>().sprite, Is.EqualTo(ThemeOverseerMono.GetInstance().GetThemeData(ThemeType.Red).Interactables.assetCard.normal));
+            Assert.That(selectionMenu.CurrentSelector.GetCard(0).GetComponentInChildren<Image>().sprite, Is.EqualTo(ThemeOverseerMono.Instance.GetThemeData(ThemeType.Red).Interactables.assetCard.normal));
         }
 
         [UnityTest]
         public IEnumerator Should_KeepPropertiesThemeBlue_WhenReturnFromEnemyEditor()
         {
             yield return OpenPackAndSelectEnemy();
-            yield return MenuLoader.PrepareEnemyEditor(false);
-            GASButtonActions.OpenEditorEnemy(0);
-            GASButtonActions.CancelChangesEnemy();
+            yield return TUtilsMenuLoader.PrepareEnemyEditor(false);
+            GASActions.OpenEditorEnemy(0);
+            GASActions.CancelChangesEnemy();
             yield return null;
-            Assert.That(infoColumn.GetProperty<string>(0).GetComponentInChildren<TextMeshProUGUI>().color, Is.EqualTo(ThemeOverseerMono.GetInstance().GetThemeData(ThemeType.Blue).Fonts.general.color));
+            Assert.That(infoColumn.GetProperty<string>(0).GetComponentInChildren<TextMeshProUGUI>().color, Is.EqualTo(ThemeOverseerMono.Instance.GetThemeData(ThemeType.Blue).Fonts.general.color));
         }
 
         [UnityTest]
@@ -153,7 +152,7 @@ namespace Rogium.Tests.Editors.AssetSelection
             yield return OpenPackAndSelectEnemy();
             yield return SelectPack(0);
             yield return null;
-            Assert.That(selectionMenu.CurrentSelector.GetCard(0).GetComponentInChildren<Image>().sprite, Is.EqualTo(AssetDatabase.LoadAssetAtPath<EditableAssetCardControllerV2>("Assets/Rogium Legend/Prefabs/UI/UI Assets/Selection V2/prefvar_AssetCard_V2_Pack.prefab").GetComponentInChildren<Image>().sprite));
+            Assert.That(selectionMenu.CurrentSelector.GetCard(0).GetComponentInChildren<Image>().sprite, Is.EqualTo(AssetDatabase.LoadAssetAtPath<EditableAssetCardController>("Assets/Rogium Legend/Prefabs/UI/Asset Selection Cards/prefvar_AssetCard_Pack.prefab").GetComponentInChildren<Image>().sprite));
         }
     
         #region Properties

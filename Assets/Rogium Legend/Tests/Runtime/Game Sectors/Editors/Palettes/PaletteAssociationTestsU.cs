@@ -18,25 +18,25 @@ namespace Rogium.Tests.Editors.Palettes
         public static void SwitchToPalette(int index = 0)
         {
             PaletteAsset palette = PackEditorOverseer.Instance.CurrentPack.Palettes[index];
-            SpriteEditorOverseerMono.GetInstance().SwitchPalette(palette);
+            SpriteEditorOverseerMono.Instance.SwitchPalette(palette);
         }
 
         public static void FillSpriteEditorGrid()
         {
-            SpriteEditorOverseerMono.GetInstance().Toolbox.SwitchTool(ToolType.Fill);
-            SpriteEditorOverseerMono.GetInstance().UpdateCell(Vector2Int.zero);
+            SpriteEditorOverseerMono.Instance.Toolbox.SwitchTool(ToolType.Fill);
+            SpriteEditorOverseerMono.Instance.UpdateCell(Vector2Int.zero);
         }
 
         public static IEnumerator UpdatePaletteColorInPaletteEditor(Color color, int index = 0)
         {
-            yield return MenuLoader.PreparePaletteEditor();
-            PaletteEditorOverseerMono.GetInstance().UpdateColorSlotColor(color, index);
+            yield return TUtilsMenuLoader.PreparePaletteEditor();
+            PaletteEditorOverseerMono.Instance.UpdateColorSlotColor(color, index);
             PaletteEditorOverseer.Instance.CompleteEditing();
         }
         
         public static IEnumerator UpdateSpriteOfWeaponInEditor(int index = 0)
         {
-            yield return MenuLoader.PrepareWeaponEditor();
+            yield return TUtilsMenuLoader.PrepareWeaponEditor();
             WeaponEditorOverseer.Instance.CurrentAsset.UpdateIcon(PackEditorOverseer.Instance.CurrentPack.Sprites[index]);
             WeaponEditorOverseer.Instance.CompleteEditing();
         }
@@ -45,9 +45,9 @@ namespace Rogium.Tests.Editors.Palettes
         {
             PackEditorOverseer.Instance.ActivateSpriteEditor(index);
             yield return null;
-            SpriteEditorOverseerMono.GetInstance().Palette.GetSlot(index).UpdateColor(color);
-            SpriteEditorOverseerMono.GetInstance().Palette.Select(index);
-            GASButtonActions.SavePaletteAsOverride();
+            SpriteEditorOverseerMono.Instance.Palette.GetSlot(index).UpdateColor(color);
+            SpriteEditorOverseerMono.Instance.Palette.Select(index);
+            GASActions.SavePaletteAsOverride();
         }
 
         public static IEnumerator SwitchPaletteAndFillForSprite(int index = 0)

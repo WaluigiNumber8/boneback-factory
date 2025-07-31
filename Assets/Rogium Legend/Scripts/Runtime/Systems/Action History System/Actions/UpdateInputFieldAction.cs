@@ -9,11 +9,11 @@ namespace Rogium.Systems.ActionHistory
     /// </summary>
     public class UpdateInputFieldAction : ActionBase<string>
     {
-        private readonly InteractablePropertyInputField inputField;
+        private readonly IPInputField inputField;
         private readonly string value;
         private readonly string lastValue;
 
-        public UpdateInputFieldAction(InteractablePropertyInputField inputField, string value, string lastValue, Action<string> fallback) : base(fallback)
+        public UpdateInputFieldAction(IPInputField inputField, string value, string lastValue, Action<string> fallback) : base(fallback)
         {
             this.inputField = inputField;
             this.value = value;

@@ -8,6 +8,7 @@ using Rogium.Systems.ActionHistory;
 using Rogium.Tests.Core;
 using UnityEngine;
 using UnityEngine.TestTools;
+using static Rogium.Tests.Core.TUtilsAssetCreator;
 
 namespace Rogium.Tests.Editors.Rooms
 {
@@ -22,17 +23,9 @@ namespace Rogium.Tests.Editors.Rooms
         public override IEnumerator Setup()
         {
             yield return base.Setup();
-            yield return AssetCreator.CreateAndAssignPack();
-            OverseerLoader.LoadInternalLibrary();
-            
-            yield return null;
-            OverseerLoader.LoadUIBuilder();
-            OverseerLoader.LoadThemeOverseer();
-            
-            yield return MenuLoader.PrepareRoomEditor();
-            RoomEditorOverseer.Instance.AssignAsset(PackEditorOverseer.Instance.CurrentPack.Rooms[0], 0);
-            roomEditor = RoomEditorOverseerMono.GetInstance();
-            ActionHistorySystem.ClearHistory();
+            yield return CreateAndAssignPack();
+            yield return TUtilsMenuLoader.PrepareRoomEditor();
+            roomEditor = RoomEditorOverseerMono.Instance;
             yield return null;
         }
         
@@ -40,7 +33,6 @@ namespace Rogium.Tests.Editors.Rooms
         public void ClearActiveLayer_Should_ClearDataGrid()
         {
             roomEditor.ClearActiveLayer();
-
             Assert.That(roomEditor.GetCurrentGridCopy.GetCellsCopy, Is.All.EqualTo(new AssetData()));
         }
         
@@ -57,19 +49,20 @@ namespace Rogium.Tests.Editors.Rooms
         [Test]
         public void ClearActiveLayer_Should_AddToUndoHistory()
         {
-            RoomEditorUtils.FillEntireActiveLayer();
-            ActionHistorySystem.ForceEndGrouping();
+            TUtilsRoomEditor.FillEntireActiveLayer();
             roomEditor.ClearActiveLayer();
             
             Assert.That(ActionHistorySystem.UndoCount, Is.EqualTo(2));
         }
         
-        [Test]
-        public void UndoLast_Should_UndoClearActiveGrid()
+        [UnityTest]
+        public IEnumerator UndoLast_Should_UndoClearActiveGrid()
         {
-            RoomEditorUtils.FillEntireActiveLayer();
+            TUtilsRoomEditor.FillEntireActiveLayer();
+            yield return null;
             roomEditor.ClearActiveLayer();
-            ActionHistorySystem.UndoLast();
+            yield return null;
+            ActionHistorySystem.Undo();
             
             Assert.That(roomEditor.GetCurrentGridCopy.GetCellsCopy, Is.Not.All.EqualTo(new AssetData()));
         }

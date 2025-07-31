@@ -28,7 +28,8 @@ namespace Rogium.Systems.Input
             action.performed -= CallPress;
             action.canceled -= CallRelease;
         }
-        
+
+
         private void CallPress(InputAction.CallbackContext ctx)
         {
             isHeld = true;
@@ -40,7 +41,10 @@ namespace Rogium.Systems.Input
             isHeld = false;
             OnRelease?.Invoke();
         }
-        
+
+        public override string ToString() => action.name;
+
         public bool IsHeld { get => isHeld; }
+        public InputAction Action { get => action; }
     }
 }

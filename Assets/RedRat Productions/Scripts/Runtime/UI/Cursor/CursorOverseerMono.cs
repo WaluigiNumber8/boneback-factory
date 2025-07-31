@@ -32,6 +32,7 @@ namespace RedRats.UI.Core.Cursors
         /// <param name="type">The type of cursor.</param>
         public void Set(CursorType type)
         {
+            if (cursors == null || cursors.Count == 0) return;
             cursors[type].Use();
             currentCursorType = type;
         }

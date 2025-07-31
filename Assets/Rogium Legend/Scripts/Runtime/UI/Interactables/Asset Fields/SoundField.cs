@@ -34,10 +34,10 @@ namespace Rogium.UserInterface.Interactables
         
         private void Awake()
         {
-            ui.showWindowButton.onClick.AddListener(() => ModalWindowBuilder.GetInstance().OpenSoundPickerWindow(UpdateSoundAsset, UpdateValue, value));
-            ui.playButton.onClick.AddListener(() => AudioSystemRogium.GetInstance().PlaySound(value, mixerGroup, new AudioSourceSettingsInfo(0, false, false, false)));
-            ui.showWindowButton.OnClickRight += EmptyOut;
-            ui.playButton.OnClickRight += EmptyOut;
+            ui.showWindowButton.onClick.AddListener(() => ModalWindowBuilder.Instance.OpenSoundPickerWindow(UpdateSoundAsset, UpdateValue, value));
+            ui.playButton.onClick.AddListener(() => AudioSystemRogium.Instance.PlaySound(value, mixerGroup, new AudioSourceSettingsInfo(0, false, false, false)));
+            ui.showWindowButton.OnClickRight.AddListener(EmptyOut);
+            ui.playButton.OnClickRight.AddListener(EmptyOut);
         }
 
         public void OnPointerClick(PointerEventData eventData)
@@ -54,7 +54,7 @@ namespace Rogium.UserInterface.Interactables
             this.canBeEmpty = canBeEmpty;
             
             if (value.IsEmpty()) { ClearElements(); return; }
-            Refresh(InternalLibraryOverseer.GetInstance().GetSoundByID(value.ID));
+            Refresh(InternalLibraryOverseer.Instance.GetSoundByID(value.ID));
         }
 
         public void SetActive(bool isActive)
@@ -115,8 +115,8 @@ namespace Rogium.UserInterface.Interactables
         [Serializable]
         public struct UIInfo
         {
-            public EnhancedButton showWindowButton;
-            public EnhancedButton playButton;
+            public ClickDetectingButton showWindowButton;
+            public ClickDetectingButton playButton;
             public TextMeshProUGUI soundTitle;
             public Image soundIcon;
             public Image playSoundButtonIcon;

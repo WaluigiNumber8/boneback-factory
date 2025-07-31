@@ -2,14 +2,13 @@ using System.Collections;
 using NUnit.Framework;
 using Rogium.Core;
 using Rogium.Editors.Core;
-using Rogium.Editors.NewAssetSelection;
+using Rogium.Editors.AssetSelection;
 using Rogium.Tests.Core;
 using Rogium.UserInterface.Interactables;
 using Rogium.UserInterface.ModalWindows;
-using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.TestTools;
-using UnityEngine.UI;
+using static Rogium.Tests.Core.TUtilsAssetCreator;
 using static Rogium.Tests.Editors.AssetSelection.AssetPickingTestsU;
 
 namespace Rogium.Tests.Editors.AssetSelection
@@ -24,11 +23,11 @@ namespace Rogium.Tests.Editors.AssetSelection
         public override IEnumerator Setup()
         {
             yield return base.Setup();
-            OverseerLoader.LoadModalWindowBuilder();
-            OverseerLoader.LoadUIBuilder();
+            TUtilsOverseerLoader.LoadModalWindowBuilder();
+            TUtilsOverseerLoader.LoadUIBuilder();
             yield return null;
-            AssetCreator.AddNewPackToLibrary();
-            AssetCreator.AddNewPackToLibrary();
+            AddNewPackToLibrary();
+            AddNewPackToLibrary();
             yield return BuildAssetField(ExternalLibraryOverseer.Instance.Packs[1]);
             assetField = Object.FindFirstObjectByType<AssetField>();
         }
@@ -71,7 +70,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         {
             yield return ClickAssetFieldToOpenAssetPickerWindow();
             AssetPickerWindow window = Object.FindFirstObjectByType<AssetPickerWindow>();
-            AssetCardControllerV2 card = window.SelectorContent.GetChild(0).GetComponent<AssetCardControllerV2>();
+            AssetCardController card = window.SelectorContent.GetChild(0).GetComponent<AssetCardController>();
             card.SetToggle(true);
             yield return null;
             card.SetToggle(false);
@@ -85,7 +84,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         {
             yield return ClickAssetFieldToOpenAssetPickerWindow();
             AssetPickerWindow window = Object.FindFirstObjectByType<AssetPickerWindow>();
-            AssetCardControllerV2 card = window.SelectorContent.GetChild(1).GetComponent<AssetCardControllerV2>();
+            AssetCardController card = window.SelectorContent.GetChild(1).GetComponent<AssetCardController>();
             Assert.That(card.IsOn, Is.True);
         }
 

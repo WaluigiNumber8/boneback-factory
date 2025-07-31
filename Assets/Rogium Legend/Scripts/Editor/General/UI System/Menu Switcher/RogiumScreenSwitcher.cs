@@ -152,11 +152,11 @@ namespace Rogium.Editor.UI
         /// </summary>
         /// <param name="parentName">The name of the parent.</param>
         /// <returns>The child object or if not found, then returns the parent. If no object was found, return NULL.</returns>
-        private GameObject FindObject(string parentName)
+        private static GameObject FindObject(string parentName)
         {
             GameObject o = GameObject.Find(parentName);
             if (o == null) return null;
-            return (o.transform.childCount > 0) ? o.transform.GetChild(0).gameObject : o;
+            return (o.transform.childCount > 0) ? (o.transform.GetChild(0).childCount > 0) ? o.transform.GetChild(0).gameObject : o.transform.gameObject : o;
         }
     }
 }

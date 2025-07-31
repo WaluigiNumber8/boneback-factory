@@ -8,9 +8,9 @@ using UnityEngine;
 namespace Rogium.Options.Core
 {
     /// <summary>
-    /// Builds the properties of the options menu.
+    /// Builds properties for the Graphics section in the Options Menu.
     /// </summary>
-    public class OptionsGraphicsPropertyBuilder : UIPropertyContentBuilderBaseColumn1<GameDataAsset>
+    public class OptionsGraphicsPropertyBuilder : IPContentBuilderBaseColumn1<PreferencesAsset>
     {
         private readonly GraphicsOptionsController graphics;
         
@@ -25,19 +25,17 @@ namespace Rogium.Options.Core
             resolutionStrings = resolutions.Select(r => $"{r.width}x{r.height}").ToList();
         }
 
-        public override void Build(GameDataAsset gameData)
+        public override void BuildInternal(PreferencesAsset preferences)
         {
-            Clear();
-
-            BuildResolutionsDropdown(gameData);
-            b.BuildDropdown("Screen", Enum.GetNames(typeof(ScreenType)), (int)gameData.ScreenMode, contentMain, value =>
+            BuildResolutionsDropdown(preferences);
+            b.BuildDropdown("Screen", Enum.GetNames(typeof(ScreenType)), (int)preferences.ScreenMode, contentMain, value =>
             {
-                gameData.UpdateScreenMode(value);
+                preferences.UpdateScreenMode(value);
                 graphics.UpdateScreen((ScreenType) value);
             });
-            b.BuildToggle("VSync", gameData.VSync, contentMain, value =>
+            b.BuildToggle("VSync", preferences.VSync, contentMain, value =>
             {
-                gameData.UpdateVSync(value);
+                preferences.UpdateVSync(value);
                 graphics.UpdateVSync(value);
             });
         }
@@ -45,13 +43,13 @@ namespace Rogium.Options.Core
         /// <summary>
         /// Builds the dropdown for resolutions.
         /// </summary>
-        /// <param name="gameData">The game settings asset.</param>
-        private void BuildResolutionsDropdown(GameDataAsset gameData)
+        /// <param name="preferences">The game settings asset.</param>
+        private void BuildResolutionsDropdown(PreferencesAsset preferences)
         {
             Resolution startingResolution;
             try
             {
-                startingResolution = resolutions.First(r => r.width == gameData.Resolution.x && r.height == gameData.Resolution.y);
+                startingResolution = resolutions.First(r => r.width == preferences.Resolution.x && r.height == preferences.Resolution.y);
             }
             catch (InvalidOperationException)
             {
@@ -65,7 +63,7 @@ namespace Rogium.Options.Core
             b.BuildDropdown("Resolution", resolutionStrings, wantedIndex, contentMain, value =>
             {
                 Resolution resolution = resolutions[value];
-                gameData.UpdateResolution(resolution);
+                preferences.UpdateResolution(resolution);
                 graphics.UpdateResolution(resolution);
             });
         }

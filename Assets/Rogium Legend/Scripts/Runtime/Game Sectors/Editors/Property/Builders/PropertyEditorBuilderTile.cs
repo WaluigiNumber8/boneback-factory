@@ -17,15 +17,14 @@ namespace Rogium.Editors.PropertyEditor.Builders
         private TileAsset asset;
         private PackAsset currentPack;
 
-        private InteractablePropertyContentBlock terrainTypeBlock;
+        private IPContentBlock terrainTypeBlock;
         public PropertyEditorBuilderTile(Transform contentMain, Transform contentSecond) : base(contentMain, contentSecond) { }
 
-        public override void Build(TileAsset asset)
+        public override void BuildInternal(TileAsset asset)
         {
             this.asset = asset;
             currentPack = PackEditorOverseer.Instance.CurrentPack;
             
-            Clear();
             BuildColumnImportant(contentMain);
             BuildColumnProperty(contentSecond);
         }

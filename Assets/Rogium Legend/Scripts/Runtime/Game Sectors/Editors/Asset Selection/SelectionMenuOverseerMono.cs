@@ -5,12 +5,13 @@ using RedRats.Core;
 using RedRats.Safety;
 using Rogium.Core;
 using Rogium.Editors.Core;
-using Rogium.Editors.NewAssetSelection.UI;
+using Rogium.Editors.AssetSelection.UI;
 using Rogium.Editors.Packs;
+using Rogium.UserInterface.Interactables;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Rogium.Editors.NewAssetSelection
+namespace Rogium.Editors.AssetSelection
 {
     /// <summary>
     /// Overseers the Asset Selection Menu.
@@ -55,14 +56,6 @@ namespace Rogium.Editors.NewAssetSelection
             data.UnsubscribeFromNoSelection(PrepareInfoColumnForEmpty);
         }
 
-        private static IList<IAsset> GetPaletteList() => PackEditorOverseer.Instance.CurrentPack.Palettes.Cast<IAsset>().ToList();
-        private static IList<IAsset> GetSpriteList() => PackEditorOverseer.Instance.CurrentPack.Sprites.Cast<IAsset>().ToList();
-        private static IList<IAsset> GetWeaponList() => PackEditorOverseer.Instance.CurrentPack.Weapons.Cast<IAsset>().ToList();
-        private static IList<IAsset> GetProjectileList() => PackEditorOverseer.Instance.CurrentPack.Projectiles.Cast<IAsset>().ToList();
-        private static IList<IAsset> GetEnemyList() => PackEditorOverseer.Instance.CurrentPack.Enemies.Cast<IAsset>().ToList();
-        private static IList<IAsset> GetRoomList() => PackEditorOverseer.Instance.CurrentPack.Rooms.Cast<IAsset>().ToList();
-        private static IList<IAsset> GetTileList() => PackEditorOverseer.Instance.CurrentPack.Tiles.Cast<IAsset>().ToList();
-
         public void Open(AssetType type)
         {
             currentType = type;
@@ -75,12 +68,20 @@ namespace Rogium.Editors.NewAssetSelection
 
         private SelectionMenuData GetData(AssetType type)
         {
-            SafetyNet.EnsureDictionaryContainsKey(menuData, type, nameof(menuData));
+            Preconditions.IsDictionaryContainingKey(menuData, type, nameof(menuData));
             return menuData[type];
         }
 
         private void PrepareInfoColumn(int index) => infoColumn.Construct(GetData(currentType).GetAssetList()[index]);
         private void PrepareInfoColumnForEmpty() => infoColumn.ConstructEmpty(currentType);
+        
+        private static IList<IAsset> GetPaletteList() => PackEditorOverseer.Instance.CurrentPack.Palettes.Cast<IAsset>().ToList();
+        private static IList<IAsset> GetSpriteList() => PackEditorOverseer.Instance.CurrentPack.Sprites.Cast<IAsset>().ToList();
+        private static IList<IAsset> GetWeaponList() => PackEditorOverseer.Instance.CurrentPack.Weapons.Cast<IAsset>().ToList();
+        private static IList<IAsset> GetProjectileList() => PackEditorOverseer.Instance.CurrentPack.Projectiles.Cast<IAsset>().ToList();
+        private static IList<IAsset> GetEnemyList() => PackEditorOverseer.Instance.CurrentPack.Enemies.Cast<IAsset>().ToList();
+        private static IList<IAsset> GetRoomList() => PackEditorOverseer.Instance.CurrentPack.Rooms.Cast<IAsset>().ToList();
+        private static IList<IAsset> GetTileList() => PackEditorOverseer.Instance.CurrentPack.Tiles.Cast<IAsset>().ToList();
 
         public AssetSelector CurrentSelector { get => GetData(currentType).AssetSelector; }
         public AssetType CurrentType { get => currentType; }

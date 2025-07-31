@@ -25,14 +25,14 @@ namespace Rogium.Tests.Editors.Palettes
             packEditor = PackEditorOverseer.Instance;
             spriteEditor = SpriteEditorOverseer.Instance;
             
-            yield return MenuLoader.PrepareSpriteEditor();
+            yield return TUtilsMenuLoader.PrepareSpriteEditor();
             yield return null;
         }
 
         [Test]
         public void Should_CreatePaletteAssetWithNoAssociations()
         {
-            PaletteAsset palette = AssetCreator.CreatePalette();
+            PaletteAsset palette = TUtilsAssetCreator.CreatePalette();
             Assert.That(palette.AssociatedAssetsIDs, Is.Empty);
         }
 
@@ -94,8 +94,8 @@ namespace Rogium.Tests.Editors.Palettes
         [UnityTest]
         public IEnumerator Should_UpdateIconColorOfAllSprites_WhenAssociatedPaletteUpdatedInPaletteEditor()
         {
-            packEditor.CreateNewSprite(AssetCreator.CreateSprite(Color.blue));
-            packEditor.CreateNewSprite(AssetCreator.CreateSprite(Color.yellow));
+            packEditor.CreateNewSprite(TUtilsAssetCreator.CreateSprite(Color.blue));
+            packEditor.CreateNewSprite(TUtilsAssetCreator.CreateSprite(Color.yellow));
             for (int i = 0; i < 3; i++)
             {
                 yield return SwitchPaletteAndFillForSprite(i);
@@ -113,8 +113,8 @@ namespace Rogium.Tests.Editors.Palettes
         [UnityTest]
         public IEnumerator Should_UpdateIconColorOfAllSprites_WhenAssociatedPaletteUpdatedInSpriteEditor()
         {
-            packEditor.CreateNewSprite(AssetCreator.CreateSprite(Color.blue));
-            packEditor.CreateNewSprite(AssetCreator.CreateSprite(Color.yellow));
+            packEditor.CreateNewSprite(TUtilsAssetCreator.CreateSprite(Color.blue));
+            packEditor.CreateNewSprite(TUtilsAssetCreator.CreateSprite(Color.yellow));
             for (int i = 0; i < 3; i++)
             {
                 yield return SwitchPaletteAndFillForSprite(i);
@@ -132,7 +132,7 @@ namespace Rogium.Tests.Editors.Palettes
         [UnityTest]
         public IEnumerator Should_RemoveSpriteAssociationFromPalette_WhenSpritePaletteIsSwitched()
         {
-            packEditor.CreateNewPalette(AssetCreator.CreatePalette());
+            packEditor.CreateNewPalette(TUtilsAssetCreator.CreatePalette());
             SwitchToPalette(0);
             spriteEditor.CompleteEditing();
             

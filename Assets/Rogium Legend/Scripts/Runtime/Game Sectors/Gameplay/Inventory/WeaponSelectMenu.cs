@@ -42,7 +42,7 @@ namespace Rogium.Gameplay.Inventory
             ttransform = GetComponent<RectTransform>();
             canvasTransform = ttransform.GetComponentInParent<Canvas>().GetComponent<RectTransform>();
             cam = Camera.main;
-            inputSystem = InputSystem.GetInstance();
+            inputSystem = InputSystem.Instance;
             
             ui.ui.SetActive(false);
             Hide();
@@ -82,11 +82,11 @@ namespace Rogium.Gameplay.Inventory
             Hide();
         }
         
-        public void RefreshSlotIcons(Sprite main, Sprite sub, Sprite mainAlt, Sprite subAlt, Sprite dash, Sprite dashAlt)
+        public void RefreshSlotIcons(Sprite main, Sprite mainAlt, Sprite sub, Sprite subAlt, Sprite dash, Sprite dashAlt)
         {
             UpdateIconImage(ui.slotIcons.mainIconImage, main);
-            UpdateIconImage(ui.slotIcons.subIconImage, sub);
             UpdateIconImage(ui.slotIcons.mainAltIconImage, mainAlt);
+            UpdateIconImage(ui.slotIcons.subIconImage, sub);
             UpdateIconImage(ui.slotIcons.subAltIconImage, subAlt);
             UpdateIconImage(ui.slotIcons.dashIconImage, dash);
             UpdateIconImage(ui.slotIcons.dashAltIconImage, dashAlt);
@@ -96,7 +96,7 @@ namespace Rogium.Gameplay.Inventory
         {
             SnapToTarget();
             ui.ui.SetActive(true);
-            GameplayOverseerMono.GetInstance().Pause();
+            GameplayOverseerMono.Instance.Pause();
             inputSystem.DisableInput(this, inputStartDelay);
             
             OnOpen?.Invoke();
@@ -108,7 +108,7 @@ namespace Rogium.Gameplay.Inventory
             IEnumerator DelayCoroutine()
             {
                 OnClose?.Invoke();
-                GameplayOverseerMono.GetInstance().Resume();
+                GameplayOverseerMono.Instance.Resume();
                 inputSystem.DisableInput(this, hideDelay);
                 
                 yield return new WaitForSecondsRealtime(hideDelay);

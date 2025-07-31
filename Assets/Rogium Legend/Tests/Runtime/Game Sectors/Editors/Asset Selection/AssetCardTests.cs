@@ -1,19 +1,25 @@
 using System.Collections;
 using NUnit.Framework;
+using RedRats.Core;
+using RedRats.Core.Utils;
 using RedRats.Systems.Themes;
 using RedRats.UI.Core;
 using Rogium.Core;
 using Rogium.Editors.Core;
-using Rogium.Editors.NewAssetSelection;
+using Rogium.Editors.AssetSelection;
 using Rogium.Tests.Core;
+using Rogium.UserInterface.Interactables.Properties;
+using Rogium.UserInterface.ModalWindows;
 using TMPro;
+using UnityEngine;
+using UnityEngine.TestTools;
 using UnityEngine.UI;
-using static Rogium.Tests.Editors.AssetCreator;
+using static Rogium.Tests.Core.TUtilsAssetCreator;
 
 namespace Rogium.Tests.Editors.AssetSelection
 {
     /// <summary>
-    /// Tests for working with the <see cref="EditableAssetCardControllerV2"/>.
+    /// Tests for working with the <see cref="EditableAssetCardController"/>.
     /// </summary>
     public class AssetCardTests : MenuTestBase
     {
@@ -22,8 +28,8 @@ namespace Rogium.Tests.Editors.AssetSelection
         public override IEnumerator Setup()
         {
             yield return base.Setup();
-            yield return MenuLoader.PrepareSelectionMenuV2();
-            selectionMenu = SelectionMenuOverseerMono.GetInstance();
+            yield return TUtilsMenuLoader.PrepareSelectionMenu();
+            selectionMenu = SelectionMenuOverseerMono.Instance;
             AddNewPackToLibrary();
             AddNewPackToLibrary();
         }
@@ -46,7 +52,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         public void Should_ShowInfoGroup_WhenMenuOpened()
         {
             selectionMenu.Open(AssetType.Pack);
-            EditableAssetCardControllerV2 card = (EditableAssetCardControllerV2)selectionMenu.CurrentSelector.GetCard(0);
+            EditableAssetCardController card = (EditableAssetCardController)selectionMenu.CurrentSelector.GetCard(0);
             Assert.That(card.IsInfoGroupShown, Is.True);
             Assert.That(card.IsButtonGroupShown, Is.False);
         }
@@ -55,7 +61,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         public void Should_ToggleToButtonGroup_WhenCardClicked()
         {
             selectionMenu.Open(AssetType.Pack);
-            EditableAssetCardControllerV2 card = (EditableAssetCardControllerV2) selectionMenu.CurrentSelector.GetCard(0);
+            EditableAssetCardController card = (EditableAssetCardController) selectionMenu.CurrentSelector.GetCard(0);
             card.SetToggle(true);
             Assert.That(card.IsInfoGroupShown, Is.False);
             Assert.That(card.IsButtonGroupShown, Is.True);
@@ -65,7 +71,7 @@ namespace Rogium.Tests.Editors.AssetSelection
         public void Should_ToggleToInfoGroup_WhenCardClickedTwice()
         {
             selectionMenu.Open(AssetType.Pack);
-            EditableAssetCardControllerV2 card = (EditableAssetCardControllerV2) selectionMenu.CurrentSelector.GetCard(0);
+            EditableAssetCardController card = (EditableAssetCardController) selectionMenu.CurrentSelector.GetCard(0);
             card.SetToggle(true);
             card.SetToggle(false);
             Assert.That(card.IsInfoGroupShown, Is.True);
@@ -76,8 +82,8 @@ namespace Rogium.Tests.Editors.AssetSelection
         public void Should_ToggleOffOtherCards_WhenCardClicked()
         {
             selectionMenu.Open(AssetType.Pack);
-            AssetCardControllerV2 card1 = selectionMenu.CurrentSelector.GetCard(0);
-            AssetCardControllerV2 card2 = selectionMenu.CurrentSelector.GetCard(1);
+            AssetCardController card1 = selectionMenu.CurrentSelector.GetCard(0);
+            AssetCardController card2 = selectionMenu.CurrentSelector.GetCard(1);
             card1.SetToggle(true);
             card2.SetToggle(true);
             card1.SetToggle(true);
@@ -88,22 +94,54 @@ namespace Rogium.Tests.Editors.AssetSelection
         [Test]
         public void Should_SetProperToggleSpritesBasedOnCurrentTheme_WhenMenuOpened()
         {
-            ThemeOverseerMono.GetInstance().ChangeTheme(ThemeType.Green);
+            ThemeOverseerMono.Instance.ChangeTheme(ThemeType.Green);
             selectionMenu.Open(AssetType.Weapon);
             Toggle cardToggle = selectionMenu.CurrentSelector.GetCard(0).GetComponent<Toggle>();
-            Assert.That(cardToggle.image.sprite, Is.EqualTo(ThemeOverseerMono.GetInstance().CurrentThemeData.Interactables.assetCard.normal));
+            Assert.That(cardToggle.image.sprite, Is.EqualTo(ThemeOverseerMono.Instance.CurrentThemeData.Interactables.assetCard.normal));
         }
 
         [Test]
         public void Should_SetProperFontForInfoBasedOnCurrentTheme_WhenMenuOpened()
         {
-            ThemeOverseerMono.GetInstance().ChangeTheme(ThemeType.Green);
+            ThemeOverseerMono.Instance.ChangeTheme(ThemeType.Green);
             selectionMenu.Open(AssetType.Weapon);
             TextMeshProUGUI titleText = selectionMenu.CurrentSelector.GetCard(0).GetComponentInChildren<TextMeshProUGUI>();
-            FontInfo fontInfo = ThemeOverseerMono.GetInstance().CurrentThemeData.Fonts.assetCardInfo;
+            FontInfo fontInfo = ThemeOverseerMono.Instance.CurrentThemeData.Fonts.assetCardInfo;
             Assert.That(titleText.font, Is.EqualTo(fontInfo.font));
             Assert.That(titleText.fontSize, Is.EqualTo(fontInfo.size));
             Assert.That(titleText.color, Is.EqualTo(fontInfo.color));
+        }
+
+        [UnityTest]
+        public IEnumerator Should_HaveProperShimmerColorOnMaterial_WhenMenuOpened()
+        {
+            selectionMenu.Open(AssetType.Weapon);
+            yield return null;
+            Color shimmerColor = selectionMenu.CurrentSelector.GetCard(0).GetComponentInChildren<MaterialExtractor>().Get().GetColor("_ShimmerColor");
+            Color targetColor = ThemeOverseerMono.Instance.GetThemeData(ThemeType.Green).Colors.shimmerEffects;
+            yield return null;
+            Assert.That(shimmerColor.r.IsSameAs(targetColor.r), Is.True);
+            Assert.That(shimmerColor.g.IsSameAs(targetColor.g), Is.True);
+            Assert.That(shimmerColor.b.IsSameAs(targetColor.b), Is.True);
+            Assert.That(shimmerColor.a.IsSameAs(targetColor.a), Is.True);
+        }
+
+        [UnityTest]
+        public IEnumerator Should_HaveProperShimmerColorOnMaterial_WhenAssetPickerWindowOpened()
+        {
+            TUtilsOverseerLoader.LoadModalWindowBuilder();
+            TUtilsOverseerLoader.LoadUIBuilder();
+            yield return null;
+            UIPropertyBuilder.Instance.BuildAssetField("Test", AssetType.Weapon, null, Object.FindFirstObjectByType<Canvas>().transform, null);
+            yield return null;
+            yield return AssetPickingTestsU.ClickAssetFieldToOpenAssetPickerWindow();
+            Color shimmerColor = Object.FindFirstObjectByType<AssetPickerWindow>().SelectorContent.GetChild(0).GetComponentInChildren<MaterialExtractor>().Get().GetColor("_ShimmerColor");
+            Color targetColor = ThemeOverseerMono.Instance.GetThemeData(ThemeType.Green).Colors.shimmerEffects;
+            yield return null;
+            Assert.That(shimmerColor.r.IsSameAs(targetColor.r), Is.True);
+            Assert.That(shimmerColor.g.IsSameAs(targetColor.g), Is.True);
+            Assert.That(shimmerColor.b.IsSameAs(targetColor.b), Is.True);
+            Assert.That(shimmerColor.a.IsSameAs(targetColor.a), Is.True);
         }
     }
 }

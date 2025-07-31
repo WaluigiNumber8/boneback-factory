@@ -364,7 +364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entity: {fileID: 42737588524664429}
   defaultData:
-    maxSpeed: 2
+    maxSpeed: 2.2
     acceleration: 1
     brakeForce: 20
   breakForceType: 0

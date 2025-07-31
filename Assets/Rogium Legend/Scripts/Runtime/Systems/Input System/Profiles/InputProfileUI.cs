@@ -7,9 +7,10 @@
         private readonly InputVector2 navigate;
         private readonly InputVector2 pointerPosition;
 
-        private readonly InputButton click;
-        private readonly InputButton clickAlternative;
-        private readonly InputButton menu;
+        private readonly InputButton select;
+        private readonly InputButton cancel;
+        private readonly InputButton contextSelect;
+        private readonly InputButton showTooltip;
 
         public InputProfileUI(RogiumInputActions input) : base(input)
         {
@@ -17,9 +18,10 @@
 
             navigate = new InputVector2(map.Navigate);
             pointerPosition = new InputVector2(map.Point);
-            click = new InputButton(map.Click);
-            clickAlternative = new InputButton(map.RightClick);
-            menu = new InputButton(map.Menu);
+            select = new InputButton(map.Select);
+            cancel = new InputButton(map.Cancel);
+            contextSelect = new InputButton(map.ContextSelect);
+            showTooltip = new InputButton(map.ShowTooltip);
         }
         
         protected override void WhenEnabled()
@@ -28,26 +30,31 @@
             
             navigate.Enable();
             pointerPosition.Enable();
-            click.Enable();
-            clickAlternative.Enable();
-            menu.Enable();
+            select.Enable();
+            cancel.Enable();
+            contextSelect.Enable();
+            showTooltip.Enable();
         }
 
         protected override void WhenDisabled()
         {
-            map.Disable();
-            
             navigate.Disable();
             pointerPosition.Disable();
-            click.Disable();
-            clickAlternative.Disable();
-            menu.Disable();
+            select.Disable();
+            cancel.Disable();
+            contextSelect.Disable();
+            showTooltip.Disable();
+            
+            map.Disable();
         }
-        
+
+        public override bool IsMapEnabled { get => map.enabled; }
+
         public InputVector2 Navigate { get => navigate; }
         public InputVector2 PointerPosition { get => pointerPosition; }
-        public InputButton Click { get => click; }
-        public InputButton ClickAlternative { get => clickAlternative; }
-        public InputButton Menu { get => menu; }
+        public InputButton Select { get => select; }
+        public InputButton Cancel { get => cancel; }
+        public InputButton ContextSelect { get => contextSelect; }
+        public InputButton ShowTooltip { get => showTooltip; }
     }
 }

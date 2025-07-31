@@ -10,11 +10,11 @@ namespace Rogium.Systems.ActionHistory
     /// </summary>
     public class UpdateSliderAction : ActionBase<float>
     {
-        private readonly InteractablePropertySlider slider;
+        private readonly IPSlider slider;
         private readonly float value;
         private readonly float lastValue;
 
-        public UpdateSliderAction(InteractablePropertySlider slider, float value, float lastValue, Action<float> fallback) : base(fallback)
+        public UpdateSliderAction(IPSlider slider, float value, float lastValue, Action<float> fallback) : base(fallback)
         {
             this.slider = slider;
             this.value = value;

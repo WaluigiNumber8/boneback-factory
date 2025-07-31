@@ -97,7 +97,7 @@ namespace Rogium.Gameplay.Entities.Characteristics
         /// <param name="slot">The slot to equip to.</param>
         public void Equip(WeaponAsset newWeapon, int slot)
         {
-            SafetyNet.EnsureIndexWithingCollectionRange(slot, currentWeapons, "List of usable weapons");
+            Preconditions.IsIndexWithingCollectionRange(currentWeapons, slot, "List of usable weapons");
             currentWeapons[slot] = newWeapon;
             OnEquipWeapon?.Invoke(newWeapon);
         }

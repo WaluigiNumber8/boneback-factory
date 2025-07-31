@@ -9,7 +9,7 @@ using Rogium.Editors.Tiles;
 using Rogium.Editors.Weapons;
 using UnityEngine;
 
-namespace Rogium.Editors.NewAssetSelection.UI
+namespace Rogium.Editors.AssetSelection.UI
 {
     /// <summary>
     /// Refreshes the currently selected card if it's values were updated.
@@ -18,7 +18,7 @@ namespace Rogium.Editors.NewAssetSelection.UI
     {
         private SelectionMenuOverseerMono selectionMenu;
 
-        private void Awake() => selectionMenu = SelectionMenuOverseerMono.GetInstance();
+        private void Awake() => selectionMenu = SelectionMenuOverseerMono.Instance;
 
         private void OnEnable()
         {
