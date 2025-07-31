@@ -36,8 +36,8 @@ namespace Rogium.UserInterface.Interactables
         {
             ui.showWindowButton.onClick.AddListener(() => ModalWindowBuilder.Instance.OpenSoundPickerWindow(UpdateSoundAsset, UpdateValue, value));
             ui.playButton.onClick.AddListener(() => AudioSystemRogium.Instance.PlaySound(value, mixerGroup, new AudioSourceSettingsInfo(0, false, false, false)));
-            ui.showWindowButton.OnClickRight += EmptyOut;
-            ui.playButton.OnClickRight += EmptyOut;
+            ui.showWindowButton.OnClickRight.AddListener(EmptyOut);
+            ui.playButton.OnClickRight.AddListener(EmptyOut);
         }
 
         public void OnPointerClick(PointerEventData eventData)
