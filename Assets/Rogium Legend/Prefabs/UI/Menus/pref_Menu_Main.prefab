@@ -1097,7 +1097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoplay: 2
-  timescale: 2
+  timescale: 1
 --- !u!114 &4536401369543367190
 MonoBehaviour:
   m_ObjectHideFlags: 0
