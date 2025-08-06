@@ -33,3 +33,12 @@ The game contains a built-in editor for every single of the following assets.
 - **Campaigns**
 
 Besides campaigns, each asset belongs under a specific pack which the user can later combine into campaigns along with additional settings. 
+
+## Code Requirements
+
+In order for to be able to open the project you need:
+
+- Unity 6000.0.29f1
+- Odin Inspector
+- DoTween
+- Rainbow Hierarchy (Alternatively can just remove *RainbowHierarchyRuleset* from both scenes)
